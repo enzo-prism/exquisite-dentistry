@@ -12,10 +12,14 @@ interface AmenityProps {
   description: string;
   icon: React.ReactNode;
   className?: string;
+  animationDelay?: string;
 }
 
-const Amenity: React.FC<AmenityProps> = ({ title, description, icon, className }) => (
-  <div className={cn("bg-white p-6 rounded-sm shadow-md", className)}>
+const Amenity: React.FC<AmenityProps> = ({ title, description, icon, className, animationDelay }) => (
+  <div 
+    className={cn("bg-white p-6 rounded-sm shadow-md", className)}
+    style={animationDelay ? { animationDelay } : undefined}
+  >
     <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4">
       {icon}
     </div>
@@ -101,7 +105,7 @@ const PatientExperience = () => {
                 description={amenity.description}
                 icon={amenity.icon}
                 className="opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
+                animationDelay={`${index * 150}ms`}
               />
             ))}
           </div>
