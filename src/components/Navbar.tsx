@@ -1,13 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import Button from './Button';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
@@ -19,6 +20,11 @@ const Navbar = () => {
     { name: 'Testimonials', path: '/testimonials' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  // Close mobile menu when location changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,7 +87,7 @@ const Navbar = () => {
 
           {/* Mobile Menu - Using Sheet component from shadcn/ui */}
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <button
                   className="text-white p-2 rounded-md hover:bg-white/10 transition-colors"
