@@ -62,7 +62,20 @@ const PatientExperienceSection: React.FC = () => {
           </div>
           
           <div className="space-y-6">
-            <h3 className="heading-sm">Our Office</h3>
+            <div className="relative rounded-sm overflow-hidden shadow-md mb-6">
+              <img 
+                src="/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png" 
+                alt="Dr. Alexie Aguil with patient" 
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-white text-xl font-semibold mb-2">Dr. Aguil's Approach</h3>
+                <p className="text-white/90 text-sm">
+                  "My goal is to make every patient feel comfortable and cared for throughout their visit." - Dr. Alexie Aguil
+                </p>
+              </div>
+            </div>
             
             <div className="bg-white p-6 rounded-sm shadow-md mb-6">
               <h4 className="font-medium text-lg mb-2">Wilshire Boulevard Location</h4>

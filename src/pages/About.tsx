@@ -65,7 +65,7 @@ const About = () => {
     <div className="min-h-screen page-transition-in">
       {/* Hero Section with YouTube Video */}
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
+        posterSrc="/lovable-uploads/0fd21f21-b7ba-404a-a028-16662a8dc60a.png"
         youtubeId={YOUTUBE_VIDEOS.OFFICE}
         title={<>About <span className="text-gold">Dr. Alexie Aguil</span></>}
         subtitle="Meet the expert behind Exquisite Dentistry's exceptional cosmetic and general dental services in Los Angeles."
@@ -127,7 +127,7 @@ const About = () => {
                 <div>
                   <div className="aspect-square rounded-sm overflow-hidden shadow-lg">
                     <img 
-                      src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2564&auto=format&fit=crop" 
+                      src="/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png" 
                       alt="Dr. Alexie Aguil" 
                       className="w-full h-full object-cover object-center"
                     />
@@ -214,15 +214,15 @@ const About = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="aspect-[3/4] rounded-sm overflow-hidden shadow-md">
                     <img 
-                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070&auto=format&fit=crop" 
-                      alt="Dr. Aguil at conference" 
+                      src="/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png" 
+                      alt="Dr. Aguil explaining dental x-rays" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="aspect-[3/4] rounded-sm overflow-hidden shadow-md">
                     <img 
-                      src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" 
-                      alt="Dr. Aguil performing dental work" 
+                      src="/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png" 
+                      alt="Dr. Aguil with patient" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -244,7 +244,29 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div 
+            className="bg-white rounded-sm shadow-md overflow-hidden opacity-0 animate-fade-in-left"
+            style={{ animationDelay: '0ms' }}
+          >
+            <div className="aspect-[3/2]">
+              <img 
+                src="/lovable-uploads/0fd21f21-b7ba-404a-a028-16662a8dc60a.png" 
+                alt="Dr. Alexie Aguil" 
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="heading-sm mb-1">Dr. Alexie Aguil</h3>
+              <p className="text-gold font-medium mb-4">Founder & Lead Dentist</p>
+              <p className="text-black-light/80 mb-6">With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.</p>
+              <div className="flex items-center">
+                <User2 size={16} className="text-gold mr-2" />
+                <span className="text-sm font-medium">View Full Profile</span>
+              </div>
+            </div>
+          </div>
+          
           {[
             { 
               name: "Dr. Emily Carter", 
@@ -258,12 +280,6 @@ const About = () => {
               image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop",
               description: "With over 10 years of experience, Lisa is dedicated to helping patients maintain optimal oral health through thorough cleanings and education."
             },
-            { 
-              name: "Michael Chen", 
-              role: "Dental Assistant",
-              image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?q=80&w=1887&auto=format&fit=crop",
-              description: "Michael's attention to detail and caring approach helps ensure that patients are comfortable throughout their treatment."
-            },
           ].map((member, index) => (
             <div 
               key={member.name} 
@@ -271,7 +287,7 @@ const About = () => {
                 "bg-white rounded-sm shadow-md overflow-hidden opacity-0",
                 index % 2 === 0 ? "animate-fade-in-left" : "animate-fade-in-right"
               )}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ animationDelay: `${(index + 1) * 150}ms` }}
             >
               <div className="aspect-[3/2]">
                 <img 

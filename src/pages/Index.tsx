@@ -142,7 +142,7 @@ const Index = () => {
           <div className="relative opacity-0 animate-fade-in-right">
             <div className="aspect-[4/5] rounded-sm overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop" 
+                src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
                 alt="Dr. Alexie Aguil" 
                 className="w-full h-full object-cover"
                 loading="lazy"
