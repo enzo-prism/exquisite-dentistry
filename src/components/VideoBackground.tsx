@@ -20,30 +20,27 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    // Simulate loading of the YouTube iframe
+    // Reduce loading time for faster video appearance
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800);
+    }, 500); // Reduced from 800ms to 500ms for faster loading
     
     return () => clearTimeout(timer);
   }, [youtubeId]);
   
   return (
     <>
-      {/* Poster image (visible during loading and as fallback) */}
-      {posterSrc && (
-        <div 
-          className={cn(
-            "absolute inset-0 w-full h-full bg-cover bg-center z-0 transition-opacity duration-700",
-            isLoading ? "opacity-100" : "opacity-80"
-          )}
-          style={{ backgroundImage: `url(${posterSrc})` }} 
-        />
-      )}
+      {/* Black background (visible during loading) */}
+      <div 
+        className={cn(
+          "absolute inset-0 w-full h-full bg-black z-0 transition-opacity duration-700",
+          isLoading ? "opacity-100" : "opacity-80"
+        )}
+      />
       
       {/* Animated gradient overlay (visible during loading) */}
       {isLoading && (
-        <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/40 via-black/60 to-black/40 animate-pulse-subtle" />
+        <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/80 via-black/90 to-black/80 animate-pulse-subtle" />
       )}
       
       {/* YouTube iframe */}
@@ -64,7 +61,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           style={{ aspectRatio: '16/9' }}
           frameBorder="0"
           title="YouTube video player"
-          loading="lazy" // Better performance on mobile
+          loading="eager" // Changed from "lazy" to "eager" for faster loading
         />
       </div>
     </>

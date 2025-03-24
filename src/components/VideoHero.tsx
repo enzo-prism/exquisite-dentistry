@@ -9,7 +9,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 
 interface VideoHeroProps {
   videoSrc?: string;
-  posterSrc: string;
+  posterSrc?: string; // Made optional
   youtubeId?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -61,10 +61,10 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   const isMobile = useIsMobile();
   
   useEffect(() => {
-    // Slight delay for the content to fade in after hero loads
+    // Reduced delay for the content to fade in after hero loads
     const timer = setTimeout(() => {
       setIsContentVisible(true);
-    }, 400);
+    }, 300); // Reduced from 400ms to 300ms
     
     return () => clearTimeout(timer);
   }, []);
