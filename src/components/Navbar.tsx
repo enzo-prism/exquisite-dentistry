@@ -1,16 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Button from './Button';
 import { cn } from '@/lib/utils';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isMobile = useIsMobile();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -32,10 +30,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
-
   // Apply styles for header based on scroll position
   const headerClasses = cn(
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
@@ -43,20 +37,6 @@ const Navbar = () => {
       ? 'bg-black bg-opacity-95 py-3 md:py-4 shadow-lg' 
       : 'bg-black bg-opacity-80 backdrop-blur-md py-4 md:py-6'
   );
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobile) {
-      if (isMenuOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen, isMobile]);
 
   return (
     <header className={headerClasses}>
@@ -74,7 +54,7 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Navigation - Redesigned */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center">
             <div className="flex space-x-1 xl:space-x-2 mr-6">
               {navLinks.map((link) => (
@@ -99,60 +79,55 @@ const Navbar = () => {
             </Button>
           </nav>
 
-          {/* Mobile Menu Button - Updated styling */}
-          <button
-            className="lg:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+          {/* Mobile Menu - Using Sheet component from shadcn/ui */}
+          <div className="lg:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  className="text-white p-2 rounded-md hover:bg-white/10 transition-colors"
+                  aria-label="Open menu"
+                >
+                  <Menu size={24} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full max-w-full sm:max-w-md p-0 bg-black border-l border-gold/30">
+                <div className="flex flex-col h-full">
+                  <div className="p-6 border-b border-gold/10">
+                    <img 
+                      src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
+                      alt="Exquisite Dentistry" 
+                      className="h-8 mb-4"
+                    />
+                  </div>
 
-      {/* Mobile Navigation - Completely solid black background with new design */}
-      <div
-        className={cn(
-          'fixed inset-0 bg-black z-40 flex flex-col lg:hidden transition-all duration-400 ease-in-out',
-          isMenuOpen 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 -translate-y-full pointer-events-none'
-        )}
-        style={{ backgroundColor: '#000000' }} // Ensuring solid black background
-      >
-        <div className="flex justify-end p-4">
-          <button
-            className="text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-        </div>
-        
-        <div className="px-6 py-4 flex-1 overflow-y-auto">
-          <div className="space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={cn(
-                  'flex items-center w-full p-4 text-lg font-medium rounded-md transition-colors',
-                  location.pathname === link.path 
-                    ? 'text-gold bg-white/5' 
-                    : 'text-white hover:bg-white/5'
-                )}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-          
-          <div className="mt-8 p-4 border-t border-white/10">
-            <Button variant="gold" fullWidth className="rounded-md">
-              Book an Appointment
-            </Button>
+                  <nav className="flex-1 overflow-auto py-6 px-4">
+                    <ul className="space-y-1">
+                      {navLinks.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            to={link.path}
+                            className={cn(
+                              'flex items-center py-3 px-4 rounded-md text-base font-medium transition-colors',
+                              location.pathname === link.path
+                                ? 'bg-gold/10 text-gold'
+                                : 'text-white hover:bg-white/5'
+                            )}
+                          >
+                            {link.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+
+                  <div className="p-6 border-t border-gold/10">
+                    <Button variant="gold" fullWidth className="rounded-md">
+                      Book an Appointment
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
