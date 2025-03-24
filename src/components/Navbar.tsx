@@ -34,15 +34,14 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
+  // Always use a dark background, with additional opacity/blur when scrolled
+  const headerClasses = cn(
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/90 backdrop-blur-md',
+    scrolled ? 'py-3 md:py-4 shadow-sm' : 'py-4 md:py-6'
+  );
+
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled 
-          ? 'py-3 md:py-4 bg-black/90 backdrop-blur-md shadow-sm' 
-          : 'py-4 md:py-6 bg-transparent'
-      )}
-    >
+    <header className={headerClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -67,9 +66,7 @@ const Navbar = () => {
                   'font-medium text-sm transition-colors duration-200',
                   location.pathname === link.path 
                     ? 'text-gold' 
-                    : scrolled || location.pathname !== '/' 
-                      ? 'text-white/90 hover:text-white' 
-                      : 'text-white/90 hover:text-white'
+                    : 'text-white/90 hover:text-white'
                 )}
               >
                 {link.name}
@@ -80,12 +77,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={cn(
-              "lg:hidden transition-colors",
-              scrolled || location.pathname !== '/' 
-                ? 'text-white hover:text-gold' 
-                : 'text-white hover:text-gold'
-            )}
+            className="lg:hidden text-white hover:text-gold transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
@@ -124,3 +116,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
