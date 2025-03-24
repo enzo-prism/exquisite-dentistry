@@ -38,10 +38,10 @@ const Navbar = () => {
 
   // Apply styles for header based on scroll position
   const headerClasses = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black',
     scrolled 
-      ? 'bg-black bg-opacity-95 py-3 md:py-4 shadow-lg' 
-      : 'bg-transparent py-4 md:py-6'
+      ? 'bg-opacity-95 py-3 md:py-4 shadow-lg' 
+      : 'bg-opacity-100 py-4 md:py-6'
   );
 
   return (
