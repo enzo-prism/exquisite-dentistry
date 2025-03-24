@@ -62,20 +62,17 @@ const PatientExperienceSection: React.FC = () => {
           </div>
           
           <div className="space-y-6">
-            <h3 className="heading-sm">Our Offices</h3>
+            <h3 className="heading-sm">Our Office</h3>
             
             <div className="bg-white p-6 rounded-sm shadow-md mb-6">
-              <h4 className="font-medium text-lg mb-2">Los Angeles Office</h4>
+              <h4 className="font-medium text-lg mb-2">Wilshire Boulevard Location</h4>
               <p className="text-black-light/80 mb-4">
-                Experience soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass cloths in our flagship location.
+                Experience soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass cloths in our modern, comfortable office at 6227 Wilshire Blvd.
               </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-sm shadow-md mb-6">
-              <h4 className="font-medium text-lg mb-2">Melrose Office</h4>
-              <p className="text-black-light/80 mb-4">
-                Enjoy soft pillows, private treatment rooms, curated local art, and entertainment options during procedures in our convenient Melrose location.
-              </p>
+              <div className="flex items-start text-black-light/80">
+                <span className="font-medium mr-2">Address:</span> 
+                <span>6227 Wilshire Blvd, Los Angeles, CA 90048</span>
+              </div>
             </div>
             
             <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold">

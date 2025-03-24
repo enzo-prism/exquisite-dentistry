@@ -65,8 +65,8 @@ const Contact = () => {
                     <div>
                       <h3 className="font-medium mb-1">Address</h3>
                       <p className="text-white/80">
-                        123 Dental Avenue, Suite 100<br />
-                        Los Angeles, CA 90210
+                        6227 Wilshire Blvd<br />
+                        Los Angeles, CA 90048
                       </p>
                     </div>
                   </div>
@@ -193,15 +193,22 @@ const Contact = () => {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="heading-lg mb-4">Our Location</h2>
             <p className="paragraph">
-              Conveniently located in the heart of Beverly Hills, our office is easily accessible with ample parking available.
+              Conveniently located on Wilshire Blvd, our office is easily accessible with ample parking available.
             </p>
           </div>
           
           <div className="aspect-video bg-gray-200 rounded-sm overflow-hidden shadow-lg">
-            {/* Replace with actual map embed code */}
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <p className="text-gray-500 text-lg">Google Maps Embed</p>
-            </div>
+            {/* Embed Google Maps for 6227 Wilshire Blvd, Los Angeles, CA 90048 */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7467390070256!2d-118.3650287!3d34.063844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93cca04c0c3%3A0x98b9bda196f7b6bf!2s6227%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090048!5e0!3m2!1sen!2sus!4v1653485691058!5m2!1sen!2sus"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Exquisite Dentistry Location"
+            ></iframe>
           </div>
         </div>
       </section>

@@ -90,7 +90,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <MapPin size={18} className="text-gold mt-1 mr-3" />
-                <span>123 Dental Avenue, Suite 100<br />Los Angeles, CA 90210</span>
+                <span>6227 Wilshire Blvd<br />Los Angeles, CA 90048</span>
               </li>
               <li className="flex items-start">
                 <Clock size={18} className="text-gold mt-1 mr-3" />
