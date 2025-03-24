@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { Smile, Shield, Tool, Stethoscope, ArrowRight, Check } from 'lucide-react';
+import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 
@@ -39,7 +38,7 @@ const Services = () => {
     {
       id: "restorative",
       title: "Restorative Dentistry",
-      icon: <Tool size={40} />,
+      icon: <Wrench size={40} />,
       description: "Restore the function, integrity, and morphology of missing tooth structure due to decay or trauma with our advanced restorative procedures.",
       treatments: [
         { name: "Dental Implants", details: "Permanent replacements for missing teeth that look, feel, and function like natural teeth." },

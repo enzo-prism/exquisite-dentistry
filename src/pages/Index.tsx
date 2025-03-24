@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Smile, Shield, Wrench, Star } from 'lucide-react';
@@ -164,11 +163,10 @@ const Index = () => {
 
         <TestimonialCarousel 
           testimonials={testimonials} 
-          className="opacity-0 animate-fade-in"
-          style={{ animationDelay: '300ms' }}
+          className="opacity-0 animate-fade-in delay-300"
         />
 
-        <div className="text-center mt-12 opacity-0 animate-fade-in" style={{ animationDelay: '600ms' }}>
+        <div className="text-center mt-12 opacity-0 animate-fade-in delay-600">
           <Link to="/testimonials">
             <Button variant="outline" className="group">
               Read More Patient Stories
