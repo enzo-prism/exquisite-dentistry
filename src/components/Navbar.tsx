@@ -60,9 +60,9 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - IMPROVED SPACING */}
           <nav className="hidden lg:flex items-center">
-            <div className="flex space-x-1 xl:space-x-2 mr-6">
+            <div className="flex space-x-4 xl:space-x-6 mr-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -80,7 +80,7 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-            <Button variant="gold" size="sm" className="ml-2 rounded-md">
+            <Button variant="gold" size="sm" className="ml-4 rounded-md">
               Book an Appointment
             </Button>
           </nav>
@@ -114,7 +114,7 @@ const Navbar = () => {
                   </div>
 
                   <nav className="flex-1 overflow-auto py-6 px-4">
-                    <ul className="space-y-1">
+                    <ul className="space-y-3">
                       {navLinks.map((link) => (
                         <li key={link.name}>
                           <Link
