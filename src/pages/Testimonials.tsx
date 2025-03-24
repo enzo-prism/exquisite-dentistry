@@ -1,8 +1,11 @@
+
 import React, { useEffect } from 'react';
 import { Star, Quote, CheckCircle } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import GoogleReviews from '@/components/GoogleReviews';
+import TestimonialCarousel from '@/components/TestimonialCarousel';
+import VideoHero from '@/components/VideoHero';
 
 const Testimonials = () => {
   useEffect(() => {
@@ -75,143 +78,164 @@ const Testimonials = () => {
     "Convenient scheduling options"
   ];
 
+  const carouselTestimonials = testimonials.map(t => ({
+    id: t.id,
+    name: t.name,
+    content: t.content.substring(0, 150) + "...",
+    stars: t.stars
+  }));
+
   return (
-    <div className="min-h-screen pt-24 page-transition-in">
+    <div className="min-h-screen pt-16 md:pt-20 page-transition-in">
       {/* Hero Section */}
-      <section className="relative py-24">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1513757271804-385fb022e70c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
-              TESTIMONIALS
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
-              Patient <span className="text-gold">Stories</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1513757271804-385fb022e70c?q=80&w=2070&auto=format&fit=crop"
+        title={<>Patient <span className="text-gold">Stories</span></>}
+        subtitle="Discover why our patients love Exquisite Dentistry and the results they've achieved with Dr. Aguil."
+        height="medium"
+        overlayColor="gradient"
+        primaryCta={{
+          text: "Book a Consultation",
+          href: "/contact"
+        }}
+        secondaryCta={{
+          text: "View Our Work",
+          href: "/services"
+        }}
+      />
 
       {/* Introduction Section */}
-      <section className="-mt-32 relative z-20 mb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="heading-lg mb-6">What Our Patients Say</h2>
+      <section className="px-4 py-12 md:py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="inline-block text-sm text-gold font-medium mb-3">WHAT OUR PATIENTS SAY</span>
+              <h2 className="heading-lg mb-6">Real Stories from Real Patients</h2>
               <div className="separator"></div>
-              <p className="paragraph mb-8">
-                We're proud of the relationships we build with our patients and the positive impact our care has on their lives. Here are some of their stories and experiences with Exquisite Dentistry.
+              <p className="paragraph mt-6">
+                We're proud of the relationships we build with our patients and the positive impact our care has on their lives.
               </p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12">
-                {testimonialHighlights.map((highlight, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <CheckCircle size={20} className="text-gold" />
-                    <span className="text-sm font-medium">{highlight}</span>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex justify-center space-x-2 mt-8">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} size={24} className="text-gold fill-gold" />
-                ))}
-              </div>
-              <p className="text-lg font-medium text-gold mt-2">Over 500 5-Star Reviews</p>
             </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-8 mb-10">
+              {testimonialHighlights.map((highlight, index) => (
+                <div key={index} className="flex items-center space-x-2 bg-gray-50 rounded-sm p-3 shadow-sm">
+                  <CheckCircle size={16} className="text-gold shrink-0" />
+                  <span className="text-xs md:text-sm font-medium">{highlight}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="flex justify-center space-x-1 mt-8">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} size={20} className="text-gold fill-gold" />
+              ))}
+            </div>
+            <p className="text-base md:text-lg font-medium text-gold mt-2 text-center">Over 500 5-Star Reviews</p>
           </div>
         </div>
       </section>
 
-      {/* Google Reviews Section - New Addition */}
-      <section className="section-container mb-24">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">GOOGLE REVIEWS</span>
-          <h2 className="heading-lg mb-6">Our Latest Google Reviews</h2>
-          <div className="separator"></div>
-          <p className="paragraph">
-            See what patients are saying about their experiences with Dr. Aguil and Exquisite Dentistry on Google.
-          </p>
-        </div>
-        
-        <GoogleReviews />
-      </section>
-
-      {/* Testimonials Grid */}
-      <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT TESTIMONIALS</span>
-          <h2 className="heading-lg mb-6">Exquisite Dentistry Testimonials</h2>
-          <div className="separator"></div>
-          <p className="paragraph">
-            Read these testimonials from our patients who have experienced our exceptional dental care and transformative results.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={testimonial.id} 
-              className={cn(
-                "bg-white rounded-sm shadow-md p-8 relative opacity-0",
-                index % 2 === 0 ? "animate-fade-in-left" : "animate-fade-in-right"
-              )}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <Quote size={30} className="text-gold/20 absolute top-6 right-6" />
-              
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-medium text-lg text-black">{testimonial.name}</h3>
-                  <p className="text-sm text-gold">{testimonial.profession}</p>
-                </div>
-              </div>
-              
-              <div className="bg-gold/10 text-black px-3 py-1 rounded-sm inline-block text-xs font-medium mb-4">
-                {testimonial.procedure}
-              </div>
-              
-              <div className="flex mb-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={16} 
-                    className={cn(
-                      i < testimonial.stars ? "text-gold fill-gold" : "text-gray-300"
-                    )}
-                  />
-                ))}
-              </div>
-              
-              <p className="text-black-light/80 italic mb-6">"{testimonial.content}"</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Video Testimonial Section */}
-      <section className="py-24 bg-gray-50">
+      {/* Testimonial Carousel - Mobile-Friendly */}
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-sm text-gold font-medium mb-3">VIDEO TESTIMONIALS</span>
-            <h2 className="heading-lg mb-6">Hear From Our Patients</h2>
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">FEATURED TESTIMONIALS</span>
+            <h2 className="heading-md mb-6">What Our Patients Are Saying</h2>
             <div className="separator"></div>
-            <p className="paragraph">
-              Watch these videos to hear directly from our patients about their experiences and results at Exquisite Dentistry.
+          </div>
+          
+          <TestimonialCarousel testimonials={carouselTestimonials} autoplaySpeed={5000} />
+        </div>
+      </section>
+
+      {/* Google Reviews Section */}
+      <section className="px-4 py-12 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">GOOGLE REVIEWS</span>
+            <h2 className="heading-md mb-6">Our Latest Google Reviews</h2>
+            <div className="separator"></div>
+            <p className="paragraph mt-6">
+              See what patients are saying about their experiences on Google.
             </p>
           </div>
+          
+          <GoogleReviews />
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Testimonials Grid - Mobile First */}
+      <section className="px-4 py-12 md:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT TESTIMONIALS</span>
+            <h2 className="heading-md mb-6">More Patient Stories</h2>
+            <div className="separator"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={testimonial.id} 
+                className={cn(
+                  "bg-white rounded-sm shadow-sm p-6 relative opacity-0 border border-gray-100",
+                  index % 2 === 0 ? "animate-fade-in-left" : "animate-fade-in-right"
+                )}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <Quote size={24} className="text-gold/20 absolute top-6 right-6" />
+                
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden mr-3">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-base text-black">{testimonial.name}</h3>
+                    <p className="text-xs text-gold">{testimonial.profession}</p>
+                  </div>
+                </div>
+                
+                <div className="bg-gold/10 text-black px-2 py-1 rounded-sm inline-block text-xs font-medium mb-3">
+                  {testimonial.procedure}
+                </div>
+                
+                <div className="flex mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star 
+                      key={i} 
+                      size={14} 
+                      className={cn(
+                        i < testimonial.stars ? "text-gold fill-gold" : "text-gray-300"
+                      )}
+                    />
+                  ))}
+                </div>
+                
+                <p className="text-black-light/80 text-sm italic mb-4">{testimonial.content.length > 150 
+                  ? `"${testimonial.content.substring(0, 150)}..."` 
+                  : `"${testimonial.content}"`}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Testimonial Section - Simplified Mobile First */}
+      <section className="px-4 py-12 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">VIDEO TESTIMONIALS</span>
+            <h2 className="heading-md mb-6">Hear From Our Patients</h2>
+            <div className="separator"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 title: "Sarah's Smile Transformation",
@@ -224,29 +248,29 @@ const Testimonials = () => {
                 procedure: "Invisalign Treatment"
               }
             ].map((video, index) => (
-              <div key={index} className="bg-white rounded-sm shadow-md overflow-hidden">
+              <div key={index} className="bg-white rounded-sm shadow-sm overflow-hidden border border-gray-100">
                 <div className="aspect-video bg-black relative">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Button variant="gold" size="lg" className="rounded-full w-16 h-16 p-0">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <Button variant="gold" size="lg" className="rounded-full w-12 h-12 p-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="5 3 19 12 5 21 5 3" fill="white" />
                       </svg>
                     </Button>
                   </div>
                 </div>
-                <div className="p-6">
-                  <div className="bg-gold/10 text-black px-3 py-1 rounded-sm inline-block text-xs font-medium mb-2">
+                <div className="p-4 md:p-6">
+                  <div className="bg-gold/10 text-black px-2 py-1 rounded-sm inline-block text-xs font-medium mb-2">
                     {video.procedure}
                   </div>
-                  <h3 className="heading-sm mb-2">{video.title}</h3>
-                  <p className="text-black-light/80 mb-4">{video.description}</p>
+                  <h3 className="text-lg md:text-xl font-medium mb-2">{video.title}</h3>
+                  <p className="text-black-light/80 text-sm mb-4">{video.description}</p>
                   <div className="flex items-center">
                     <div className="flex">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} size={16} className="text-gold fill-gold" />
+                        <Star key={i} size={14} className="text-gold fill-gold" />
                       ))}
                     </div>
-                    <span className="text-sm font-medium text-gold ml-2">5.0</span>
+                    <span className="text-xs font-medium text-gold ml-2">5.0</span>
                   </div>
                 </div>
               </div>
@@ -255,58 +279,59 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* Before and After Gallery */}
-      <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">BEFORE & AFTER</span>
-          <h2 className="heading-lg mb-6">Smile Transformations</h2>
-          <div className="separator"></div>
-          <p className="paragraph">
-            See the real results of Dr. Aguil's work with these before and after photos of actual patients.
-          </p>
-        </div>
+      {/* Before and After Gallery - Mobile First */}
+      <section className="px-4 py-12 md:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">BEFORE & AFTER</span>
+            <h2 className="heading-md mb-6">Smile Transformations</h2>
+            <div className="separator"></div>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { procedure: "Porcelain Veneers", image: "https://images.unsplash.com/photo-1616702451225-05bbeaae073f?q=80&w=1770&auto=format&fit=crop" },
-            { procedure: "Smile Makeover", image: "https://images.unsplash.com/photo-1581871737046-24c48381c75f?q=80&w=1858&auto=format&fit=crop" },
-            { procedure: "Invisalign", image: "https://images.unsplash.com/photo-1537212013133-060fd2e24791?q=80&w=1767&auto=format&fit=crop" }
-          ].map((item, index) => (
-            <div key={index} className="bg-white rounded-sm shadow-md overflow-hidden">
-              <div className="aspect-[4/3] relative overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={`${item.procedure} before and after`} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                  <div>
-                    <div className="bg-gold/90 text-white px-3 py-1 rounded-sm inline-block text-xs font-medium mb-2">
-                      {item.procedure}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[
+              { procedure: "Porcelain Veneers", image: "https://images.unsplash.com/photo-1616702451225-05bbeaae073f?q=80&w=1770&auto=format&fit=crop" },
+              { procedure: "Smile Makeover", image: "https://images.unsplash.com/photo-1581871737046-24c48381c75f?q=80&w=1858&auto=format&fit=crop" },
+              { procedure: "Invisalign", image: "https://images.unsplash.com/photo-1537212013133-060fd2e24791?q=80&w=1767&auto=format&fit=crop" }
+            ].map((item, index) => (
+              <div key={index} className="bg-white rounded-sm shadow-sm overflow-hidden border border-gray-100">
+                <div className="aspect-square sm:aspect-[4/3] relative overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={`${item.procedure} before and after`} 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                    <div>
+                      <div className="bg-gold/90 text-white px-2 py-1 rounded-sm inline-block text-xs font-medium mb-2">
+                        {item.procedure}
+                      </div>
+                      <h3 className="text-white text-sm font-medium">Amazing Transformation</h3>
                     </div>
-                    <h3 className="text-white font-medium">Amazing Transformation</h3>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Share Your Story Section */}
-      <section className="section-container">
-        <div className="max-w-4xl mx-auto bg-black rounded-sm p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
-            Share Your <span className="text-gold">Experience</span>
-          </h2>
-          <p className="text-lg text-white/80 mb-8 font-light">
-            We value your feedback and would love to hear about your experience at Exquisite Dentistry. Your testimonial helps us improve our services and assists others in making informed decisions.
-          </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
-            <Button size="lg">Leave a Review</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-              Contact Us
-            </Button>
+      {/* Share Your Story Section - Mobile First */}
+      <section className="px-4 py-12 md:py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-black rounded-sm p-6 md:p-10 text-center">
+            <h2 className="text-2xl md:text-3xl font-sans font-semibold text-white leading-tight mb-4 md:mb-6">
+              Share Your <span className="text-gold">Experience</span>
+            </h2>
+            <p className="text-base md:text-lg text-white/80 mb-6 md:mb-8 font-light">
+              We value your feedback and would love to hear about your experience at Exquisite Dentistry.
+            </p>
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center">
+              <Button size="lg" fullWidth={true} className="sm:w-auto">Leave a Review</Button>
+              <Button variant="outline" size="lg" fullWidth={true} className="border-white text-white hover:bg-white/10 sm:w-auto">
+                Contact Us
+              </Button>
+            </div>
           </div>
         </div>
       </section>
