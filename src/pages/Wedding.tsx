@@ -1,6 +1,7 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
+import { ArrowRight, Calendar, Star, Heart, Check, Clock, Diamond } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
@@ -278,4 +279,3 @@ const Wedding = () => {
 };
 
 export default Wedding;
-

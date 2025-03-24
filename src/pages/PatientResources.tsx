@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
+import { FileText, HelpCircle, Calendar, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FAQ {
@@ -9,7 +11,66 @@ interface FAQ {
   answer: string;
 }
 
+// Define the patient forms data
+const patientForms = [
+  {
+    name: "New Patient Registration Form",
+    description: "Required for all first-time patients"
+  },
+  {
+    name: "Medical History Form",
+    description: "Comprehensive health information"
+  },
+  {
+    name: "Insurance Information Form",
+    description: "Details about your dental coverage"
+  },
+  {
+    name: "HIPAA Privacy Form",
+    description: "Acknowledgment of privacy practices"
+  }
+];
+
+// Define the insurance info data
+const insuranceInfo = [
+  "We accept most major PPO insurance plans",
+  "Our team will verify your benefits before your appointment",
+  "We'll help maximize your insurance coverage",
+  "We offer detailed pre-treatment estimates",
+  "We file all claims on your behalf"
+];
+
+// Define the FAQs data
+const faqs: FAQ[] = [
+  {
+    question: "What should I expect during my first visit?",
+    answer: "Your first visit will include a comprehensive examination, professional cleaning, and discussion of your oral health goals. We'll take any necessary X-rays and create a personalized treatment plan based on your needs."
+  },
+  {
+    question: "How often should I visit the dentist?",
+    answer: "Most patients benefit from professional cleanings and check-ups every six months. However, some conditions may require more frequent visits, which Dr. Aguil will discuss with you based on your specific needs."
+  },
+  {
+    question: "Do you offer payment plans?",
+    answer: "Yes, we offer flexible payment options through CareCredit and our in-house financing plans. Our team will work with you to find a solution that fits your budget while allowing you to receive the care you need."
+  },
+  {
+    question: "What if I have a dental emergency?",
+    answer: "We reserve time in our schedule for dental emergencies and will do our best to see you the same day. Call our office immediately, and we'll provide instructions for care until you can be seen."
+  },
+  {
+    question: "Do you offer sedation dentistry?",
+    answer: "Yes, we offer several sedation options for anxious patients or complex procedures, including nitrous oxide (laughing gas) and oral conscious sedation. Dr. Aguil will discuss which option is best for your needs."
+  }
+];
+
 const PatientResources = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

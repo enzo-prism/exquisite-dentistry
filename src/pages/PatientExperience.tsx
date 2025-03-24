@@ -1,7 +1,9 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
+import { Headphones, Clock, Sofa, Calendar, ArrowRight, User2 } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';

@@ -1,9 +1,60 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { 
+  ArrowRight, 
+  HeartHandshake, 
+  Medal, 
+  Stethoscope, 
+  GraduationCap,
+  Award,
+  BookOpen,
+  User2
+} from 'lucide-react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
+import { cn } from '@/lib/utils';
+
+// Define the credentials data
+const credentials = [
+  {
+    title: "Doctor of Dental Surgery (DDS)",
+    details: "University of Southern California School of Dentistry"
+  },
+  {
+    title: "Advanced Certification in Cosmetic Dentistry",
+    details: "American Academy of Cosmetic Dentistry"
+  },
+  {
+    title: "Fellowship in Implant Dentistry",
+    details: "International Congress of Oral Implantologists"
+  },
+  {
+    title: "Invisalign® Certified Provider",
+    details: "Align Technology Institute"
+  }
+];
+
+// Define the awards data
+const awards = [
+  {
+    title: "America's Top Dentists",
+    year: "2020, 2021, 2022"
+  },
+  {
+    title: "Best Cosmetic Dentist in Los Angeles",
+    year: "LA Magazine, 2021"
+  },
+  {
+    title: "Excellence in Patient Care",
+    year: "American Dental Association, 2019"
+  },
+  {
+    title: "Top 40 Dentists Under 40",
+    year: "Dental Entrepreneurs Society, 2018"
+  }
+];
 
 const About = () => {
   useEffect(() => {
