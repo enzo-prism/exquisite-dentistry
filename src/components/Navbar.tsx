@@ -69,7 +69,7 @@ const Navbar = () => {
     <header className={headerClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo - reduced size by 25% */}
           <Link 
             to="/" 
             className="flex items-center"
@@ -77,7 +77,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
               alt="Exquisite Dentistry" 
-              className="h-8 md:h-10 lg:h-12"
+              className="h-6 md:h-7.5 lg:h-9"
             />
           </Link>
 
@@ -183,10 +183,11 @@ const Navbar = () => {
               <SheetContent side="right" className="w-full max-w-full sm:max-w-md p-0 bg-black border-l border-gold/30">
                 <div className="flex flex-col h-full">
                   <div className="p-6 border-b border-gold/10 flex justify-between items-center">
+                    {/* Reduced logo size in mobile menu by 25% */}
                     <img 
                       src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
                       alt="Exquisite Dentistry" 
-                      className="h-8"
+                      className="h-6"
                     />
                     <button 
                       onClick={() => setIsMenuOpen(false)}
