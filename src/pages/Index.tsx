@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones } from 'lucide-react';
@@ -106,19 +107,19 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <ServiceCard 
               title="Cosmetic Dentistry" 
-              description="Transform your smile with our range of cosmetic services including veneers, teeth whitening, Invisalign, and complete smile makeovers."
+              description="Transform your smile with our range of cosmetic services including porcelain veneers, Invisalign, teeth whitening, and complete smile makeovers."
               icon={<Smile size={32} />}
               index={0}
             />
             <ServiceCard 
-              title="Preventive Care" 
-              description="Maintain optimal oral health with regular check-ups, cleanings, and personalized preventive care plans."
+              title="General Dentistry" 
+              description="Maintain optimal oral health with professional cleanings, oral cancer screenings, and same-day emergency appointments at our Melrose location."
               icon={<Shield size={32} />}
               index={1}
             />
             <ServiceCard 
               title="Restorative Dentistry" 
-              description="Restore function and aesthetics with our comprehensive restorative treatments including crowns, bridges, and implants."
+              description="Restore function and aesthetics with dental implants, porcelain crowns, bridges, and full mouth restorations for a natural-looking smile."
               icon={<Wrench size={32} />}
               index={2}
             />
