@@ -39,7 +39,7 @@ const Navbar = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled 
-          ? 'py-3 md:py-4 bg-white/90 backdrop-blur-md shadow-sm' 
+          ? 'py-3 md:py-4 bg-black/90 backdrop-blur-md shadow-sm' 
           : 'py-4 md:py-6 bg-transparent'
       )}
     >
@@ -68,7 +68,7 @@ const Navbar = () => {
                   location.pathname === link.path 
                     ? 'text-gold' 
                     : scrolled || location.pathname !== '/' 
-                      ? 'text-black-light hover:text-black' 
+                      ? 'text-white/90 hover:text-white' 
                       : 'text-white/90 hover:text-white'
                 )}
               >
@@ -83,7 +83,7 @@ const Navbar = () => {
             className={cn(
               "lg:hidden transition-colors",
               scrolled || location.pathname !== '/' 
-                ? 'text-black hover:text-gold' 
+                ? 'text-white hover:text-gold' 
                 : 'text-white hover:text-gold'
             )}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -97,7 +97,7 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          'fixed inset-0 bg-white z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
+          'fixed inset-0 bg-black z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
@@ -107,7 +107,7 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               className={cn(
-                'block text-xl font-medium py-2 text-black-light hover:text-gold transition-colors duration-200',
+                'block text-xl font-medium py-2 text-white/90 hover:text-gold transition-colors duration-200',
                 location.pathname === link.path && 'text-gold'
               )}
             >
