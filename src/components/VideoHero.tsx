@@ -118,12 +118,17 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         contentClassName
       )}>
         <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
+          {/* Added vertical space for the badge */}
+          <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8">
+            MEET DR. ALEXIE AGUIL
+          </span>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
             {title}
           </h1>
           
           {subtitle && (
-            <p className="text-lg md:text-xl text-white/90 mb-8 font-light max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white/90 mb-10 font-light max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}

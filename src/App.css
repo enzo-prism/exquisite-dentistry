@@ -6,6 +6,22 @@
   text-align: center;
 }
 
+/* Additional spacing for content sections */
+.content-section {
+  margin-bottom: 4rem;
+}
+
+.content-wrapper {
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    padding: 3rem 2rem;
+  }
+}
+
+/* Original styles */
 .logo {
   height: 6em;
   padding: 1.5em;

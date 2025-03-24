@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { User2, Medal, HeartHandshake, Stethoscope, Award, GraduationCap, BookOpen } from 'lucide-react';
 import Button from '@/components/Button';
@@ -24,33 +23,33 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 page-transition-in">
-      {/* Hero Section */}
-      <section className="relative py-24">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
+    <div className="min-h-screen pt-32 page-transition-in">
+      {/* Hero Section - Increased top padding from pt-24 to pt-32 */}
+      <section className="relative py-32">
+        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center h-[60vh]">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8">
               MEET DR. ALEXIE AGUIL
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
               Leading <span className="text-gold">Cosmetic Dentistry</span> Expert in Los Angeles
             </h1>
           </div>
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="-mt-32 relative z-20">
+      {/* Introduction Section - Adjusted positioning */}
+      <section className="-mt-24 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="heading-lg mb-6">Philosophy & Approach</h2>
+            <div className="max-w-3xl mx-auto text-center mb-20">
+              <h2 className="heading-lg mb-8">Philosophy & Approach</h2>
               <div className="separator"></div>
-              <p className="paragraph">
+              <p className="paragraph mt-8">
                 At Exquisite Dentistry, Dr. Alexie Aguil's approach centers on the perfect balance of artistry and science. He believes that exceptional dentistry goes beyond technical skill to embrace a personalized, patient-centric philosophy where your comfort, goals, and long-term satisfaction drive every decision.
               </p>
             </div>
