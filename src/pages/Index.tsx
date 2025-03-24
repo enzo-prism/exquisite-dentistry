@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones } from 'lucide-react';
@@ -37,9 +36,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Video */}
+      {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1936&auto=format&fit=crop"
+        youtubeId="GfC4M9HRR_A"
         title={<>Award-Winning <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles & Beyond</>}
         subtitle="Experience the perfect blend of artistry and science at Dr. Alexie Aguil's refined dental practice, where patient comfort meets clinical excellence."
         primaryCta={{ text: "Book an Appointment" }}

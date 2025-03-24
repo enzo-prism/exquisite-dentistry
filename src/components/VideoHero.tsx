@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface VideoHeroProps {
   videoSrc?: string;
   posterSrc: string;
+  youtubeId?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   primaryCta?: {
@@ -27,6 +29,7 @@ interface VideoHeroProps {
 const VideoHero: React.FC<VideoHeroProps> = ({
   videoSrc,
   posterSrc,
+  youtubeId,
   title,
   subtitle,
   primaryCta,
@@ -37,6 +40,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   height = 'full'
 }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const isMobile = useIsMobile();
   
   // Handle video load event
   const handleVideoLoaded = () => {
@@ -65,33 +69,41 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         className
       )}
     >
-      {/* Video or Image Background */}
-      {videoSrc ? (
-        <>
-          <div className="absolute inset-0 bg-cover bg-center z-0" 
-               style={{ backgroundImage: `url(${posterSrc})` }} />
-          
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            onLoadedData={handleVideoLoaded}
-            className={cn(
-              "absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700",
-              isVideoLoaded ? 'opacity-100' : 'opacity-0'
-            )}
-          >
-            <source src={videoSrc} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </>
-      ) : (
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-10" 
-          style={{ backgroundImage: `url(${posterSrc})` }} 
-        />
-      )}
+      {/* Background Options: YouTube, regular video, or image */}
+      <div className="absolute inset-0 bg-cover bg-center z-0" 
+           style={{ backgroundImage: `url(${posterSrc})` }} />
+      
+      {youtubeId ? (
+        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+          <div className="relative w-full h-full overflow-hidden">
+            <iframe 
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className={cn(
+                "absolute top-1/2 left-1/2 min-w-[150%] min-h-[150%] transform -translate-x-1/2 -translate-y-1/2 w-auto h-auto",
+                isMobile ? "min-w-[250%] min-h-[250%]" : "min-w-[150%] min-h-[150%]"
+              )}
+              frameBorder="0"
+              title="YouTube video player"
+            />
+          </div>
+        </div>
+      ) : videoSrc ? (
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          onLoadedData={handleVideoLoaded}
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700",
+            isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          )}
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : null}
 
       {/* Overlay */}
       <div className={cn(
