@@ -64,19 +64,19 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Wedding CTA - Improved readability */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 transition-all duration-300 group-hover:from-black/80"></div>
+              {/* Enhanced dark overlay with stronger gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
               <img 
                 src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop" 
                 alt="Wedding Smile" 
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm">
+                <div className="w-16 h-16 rounded-full bg-gold/40 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm shadow-lg">
                   <Heart size={32} className="drop-shadow-md" />
                 </div>
-                <h3 className="text-2xl font-medium text-white mb-3 drop-shadow-md">Wedding Smile Makeover</h3>
-                <p className="text-white mb-6 max-w-md drop-shadow-md font-medium">
+                <h3 className="text-2xl font-semibold text-white mb-3 drop-shadow-lg">Wedding Smile Makeover</h3>
+                <p className="text-white text-lg mb-6 max-w-md drop-shadow-lg font-medium leading-snug">
                   Look picture-perfect for your special day with our customized wedding smile treatments.
                 </p>
                 <Link to="/wedding">
@@ -90,19 +90,19 @@ const Index = () => {
 
             {/* Graduation CTA - Improved readability */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 transition-all duration-300 group-hover:from-black/80"></div>
+              {/* Enhanced dark overlay with stronger gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
               <img 
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop" 
                 alt="Graduation Smile" 
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm">
+                <div className="w-16 h-16 rounded-full bg-gold/40 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm shadow-lg">
                   <GraduationCap size={32} className="drop-shadow-md" />
                 </div>
-                <h3 className="text-2xl font-medium text-white mb-3 drop-shadow-md">Graduation Smile Treatment</h3>
-                <p className="text-white mb-6 max-w-md drop-shadow-md font-medium">
+                <h3 className="text-2xl font-semibold text-white mb-3 drop-shadow-lg">Graduation Smile Treatment</h3>
+                <p className="text-white text-lg mb-6 max-w-md drop-shadow-lg font-medium leading-snug">
                   Graduate with confidence with our quick, effective smile enhancement solutions.
                 </p>
                 <Link to="/graduation">
