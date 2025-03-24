@@ -1,0 +1,113 @@
+
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import Button from './Button';
+import { cn } from '@/lib/utils';
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Patient Resources', path: '/patient-resources' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setScrolled(offset > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  return (
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        scrolled 
+          ? 'py-3 bg-white/90 backdrop-blur-md shadow-sm' 
+          : 'py-5 bg-transparent'
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link 
+            to="/" 
+            className="flex items-center font-sans font-semibold text-2xl"
+          >
+            <span className="text-black">Exquisite</span>
+            <span className="text-gold ml-1">Dentistry</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={cn(
+                  'font-medium text-black-light hover:text-black transition-colors duration-200',
+                  location.pathname === link.path && 'text-gold'
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <Button size="sm">Book an Appointment</Button>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden text-black hover:text-gold transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div
+        className={cn(
+          'fixed inset-0 bg-white z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        )}
+      >
+        <div className="px-4 py-6 space-y-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className={cn(
+                'block text-xl font-medium py-2 text-black-light hover:text-gold transition-colors duration-200',
+                location.pathname === link.path && 'text-gold'
+              )}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="pt-4">
+            <Button fullWidth>Book an Appointment</Button>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;

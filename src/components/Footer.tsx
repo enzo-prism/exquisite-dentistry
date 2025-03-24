@@ -1,0 +1,122 @@
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-black text-white pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Logo and Brief Intro */}
+          <div className="space-y-4">
+            <div className="font-sans font-semibold text-2xl">
+              <span className="text-white">Exquisite</span>
+              <span className="text-gold ml-1">Dentistry</span>
+            </div>
+            <p className="text-gray-300 text-sm max-w-xs">
+              Providing exceptional dental care with a focus on comfort, quality, and personalized treatment plans.
+            </p>
+            <div className="flex space-x-4 pt-2">
+              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Instagram">
+                <Instagram size={20} />
+              </a>
+              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Facebook">
+                <Facebook size={20} />
+              </a>
+              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Twitter">
+                <Twitter size={20} />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-gray-300 hover:text-white transition-colors">Services</Link>
+              </li>
+              <li>
+                <Link to="/patient-resources" className="text-gray-300 hover:text-white transition-colors">Patient Resources</Link>
+              </li>
+              <li>
+                <Link to="/testimonials" className="text-gray-300 hover:text-white transition-colors">Testimonials</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Our Services</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/services#cosmetic" className="text-gray-300 hover:text-white transition-colors">Cosmetic Dentistry</Link>
+              </li>
+              <li>
+                <Link to="/services#preventive" className="text-gray-300 hover:text-white transition-colors">Preventive Care</Link>
+              </li>
+              <li>
+                <Link to="/services#restorative" className="text-gray-300 hover:text-white transition-colors">Restorative Dentistry</Link>
+              </li>
+              <li>
+                <Link to="/services#specialized" className="text-gray-300 hover:text-white transition-colors">Specialized Procedures</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Contact Information</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <Phone size={18} className="text-gold mt-1 mr-3" />
+                <span>(123) 456-7890</span>
+              </li>
+              <li className="flex items-start">
+                <Mail size={18} className="text-gold mt-1 mr-3" />
+                <span>info@exquisitedentistry.com</span>
+              </li>
+              <li className="flex items-start">
+                <MapPin size={18} className="text-gold mt-1 mr-3" />
+                <span>123 Dental Avenue, Suite 100<br />Los Angeles, CA 90210</span>
+              </li>
+              <li className="flex items-start">
+                <Clock size={18} className="text-gold mt-1 mr-3" />
+                <div>
+                  <div>Monday-Friday: 9AM-6PM</div>
+                  <div>Saturday: 9AM-2PM</div>
+                  <div>Sunday: Closed</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
+          <div>
+            © {currentYear} Exquisite Dentistry. All rights reserved.
+          </div>
+          <div className="mt-4 md:mt-0 flex space-x-6">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+            <div>HIPAA Compliant</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
