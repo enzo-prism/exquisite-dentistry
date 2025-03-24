@@ -64,29 +64,30 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative flex items-center overflow-hidden', 
+        'relative flex items-center overflow-hidden w-full', 
         heightClasses[height],
         className
       )}
     >
       {/* Background Options: YouTube, regular video, or image */}
-      <div className="absolute inset-0 bg-cover bg-center z-0" 
+      <div className="absolute inset-0 w-full h-full bg-cover bg-center z-0" 
            style={{ backgroundImage: `url(${posterSrc})` }} />
       
       {youtubeId ? (
-        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
-          <div className="relative w-full h-full overflow-hidden">
-            <iframe 
-              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              className={cn(
-                "absolute top-1/2 left-1/2 min-w-[150%] min-h-[150%] transform -translate-x-1/2 -translate-y-1/2 w-auto h-auto",
-                isMobile ? "min-w-[250%] min-h-[250%]" : "min-w-[150%] min-h-[150%]"
-              )}
-              frameBorder="0"
-              title="YouTube video player"
-            />
-          </div>
+        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-hidden">
+          <iframe 
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            className={cn(
+              "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto h-auto",
+              isMobile 
+                ? "min-w-[300%] min-h-[300%]" 
+                : "min-w-[200%] min-h-[200%]"
+            )}
+            style={{ aspectRatio: '16/9' }}
+            frameBorder="0"
+            title="YouTube video player"
+          />
         </div>
       ) : videoSrc ? (
         <video 
