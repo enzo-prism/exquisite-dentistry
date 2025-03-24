@@ -15,6 +15,8 @@ import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
 import PatientExperience from "@/pages/PatientExperience";
+import Wedding from "@/pages/Wedding";
+import Graduation from "@/pages/Graduation";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ const App = () => (
               <Route path="/patient-experience" element={<PatientExperience />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/wedding" element={<Wedding />} />
+              <Route path="/graduation" element={<Graduation />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

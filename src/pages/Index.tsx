@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones } from 'lucide-react';
+import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones, Heart, GraduationCap } from 'lucide-react';
 import Button from '@/components/Button';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
@@ -47,6 +47,71 @@ const Index = () => {
         secondaryCta={{ text: "Learn More About Our Services", href: "/services" }}
         overlayColor="gradient"
       />
+
+      {/* Seasonal CTAs Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="inline-block text-sm text-gold font-medium mb-3">SPECIAL OCCASIONS</span>
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">Get Ready For Your Big Day</h2>
+            <p className="text-lg text-black-light">
+              Looking your best for an upcoming special event? We offer specialized cosmetic treatments to help you shine.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Wedding CTA */}
+            <div className="relative overflow-hidden rounded-sm shadow-lg group">
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop" 
+                alt="Wedding Smile" 
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-gold mb-4">
+                  <Heart size={32} />
+                </div>
+                <h3 className="text-2xl font-medium text-white mb-3">Wedding Smile Makeover</h3>
+                <p className="text-white/90 mb-6 max-w-md">
+                  Look picture-perfect for your special day with our customized wedding smile treatments.
+                </p>
+                <Link to="/wedding">
+                  <Button variant="gold" size="lg" className="group">
+                    Wedding Smile Guide
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Graduation CTA */}
+            <div className="relative overflow-hidden rounded-sm shadow-lg group">
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop" 
+                alt="Graduation Smile" 
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-gold mb-4">
+                  <GraduationCap size={32} />
+                </div>
+                <h3 className="text-2xl font-medium text-white mb-3">Graduation Smile Treatment</h3>
+                <p className="text-white/90 mb-6 max-w-md">
+                  Graduate with confidence with our quick, effective smile enhancement solutions.
+                </p>
+                <Link to="/graduation">
+                  <Button variant="gold" size="lg" className="group">
+                    Graduation Smile Guide
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Introduction Section */}
       <section className="section-container">
