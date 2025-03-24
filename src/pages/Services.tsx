@@ -1,7 +1,8 @@
-
 import React, { useEffect } from 'react';
-import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import Button from '@/components/Button';
+import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
+import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Services = () => {
@@ -9,88 +10,20 @@ const Services = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const services = [
-    {
-      id: "cosmetic",
-      title: "Cosmetic Dentistry",
-      icon: <Smile size={40} />,
-      description: "Transform your smile with our comprehensive range of cosmetic procedures, where Dr. Aguil's expertise has made us a leading provider in Beverly Hills and West Hollywood.",
-      highlight: "Dr. Aguil is ranked as a top Invisalign provider in West Hollywood and Beverly Hills.",
-      treatments: [
-        { name: "Porcelain Veneers", details: "Custom-made, thin shells of porcelain that cover the front surface of teeth to improve appearance and provide a natural, beautiful look." },
-        { name: "Invisalign", details: "Clear aligner therapy for straightening teeth without the appearance of traditional braces." },
-        { name: "Smile Makeovers", details: "Comprehensive treatment plans combining multiple cosmetic procedures to achieve your ideal smile." },
-        { name: "Dental Bonding", details: "Using composite resin to repair chipped, cracked, or discolored teeth with natural-looking results." },
-        { name: "Laser Teeth Whitening", details: "Advanced whitening technology that removes deep stains for a brighter, more youthful smile." }
-      ],
-      image: "https://images.unsplash.com/photo-1581600140682-79c8177640fb?q=80&w=1903&auto=format&fit=crop"
-    },
-    {
-      id: "general",
-      title: "General Dentistry",
-      icon: <Shield size={40} />,
-      description: "Maintain optimal oral health with our comprehensive general dentistry services, designed to prevent issues and keep your smile healthy for life.",
-      highlight: "We offer same-day emergency appointments at our Melrose location.",
-      treatments: [
-        { name: "Teeth Cleaning", details: "Professional cleanings to remove plaque and tartar buildup, maintaining healthy teeth and gums." },
-        { name: "Oral Cancer Screening", details: "Early detection screenings that can be life-saving, performed during regular checkups." },
-        { name: "Pain-Free Dentistry", details: "Utilizing the latest techniques and amenities to ensure a comfortable, stress-free experience." },
-        { name: "Root Canals", details: "Comfortable, effective treatment to save infected or damaged teeth and relieve pain." },
-        { name: "Emergency Dental Care", details: "Same-day appointments for urgent dental issues at our Melrose location." }
-      ],
-      image: "https://images.unsplash.com/photo-1606265752439-1f18756aa8fc?q=80&w=1964&auto=format&fit=crop"
-    },
-    {
-      id: "restorative",
-      title: "Restorative Dentistry",
-      icon: <Wrench size={40} />,
-      description: "Restore the function, integrity, and aesthetics of your teeth with our advanced restorative procedures customized to your unique needs.",
-      highlight: "",
-      treatments: [
-        { name: "Dental Implants", details: "Permanent replacements for missing teeth that look, feel, and function like natural teeth." },
-        { name: "Porcelain Dental Crowns", details: "Tooth-colored crowns that protect damaged teeth while providing a natural appearance." },
-        { name: "Dental Bridges", details: "Replace missing teeth by bridging the gap between existing teeth with natural-looking prosthetics." },
-        { name: "Full Mouth Restorations", details: "Comprehensive procedures to restore function and aesthetics to your entire mouth." },
-        { name: "Implant-Supported Restorations", details: "Advanced solutions combining implants with crowns, bridges or dentures for optimal results." }
-      ],
-      image: "https://images.unsplash.com/photo-1579683563554-ca08d70a1265?q=80&w=1887&auto=format&fit=crop"
-    },
-    {
-      id: "specialized",
-      title: "Specialized Treatments",
-      icon: <Stethoscope size={40} />,
-      description: "Experience exceptional care with our specialized dental treatments, designed to address specific concerns with the highest level of expertise.",
-      highlight: "",
-      treatments: [
-        { name: "Sedation Dentistry", details: "Gentle and effective sedation methods for anxious patients or complex procedures." },
-        { name: "Gum Treatments", details: "Non-surgical treatments to maintain healthy gums and prevent periodontal disease." },
-        { name: "Night Guards & TMJ Treatment", details: "Custom solutions for teeth grinding and temporomandibular joint discomfort." },
-        { name: "Laser Dentistry", details: "Minimally invasive procedures using advanced laser technology for enhanced precision and comfort." },
-        { name: "Digital Smile Design", details: "Advanced technology to preview your smile transformation before treatment begins." }
-      ],
-      image: "https://images.unsplash.com/photo-1579684288361-5c1a2957a700?q=80&w=1887&auto=format&fit=crop"
-    }
-  ];
-  
   return (
-    <div className="min-h-screen pt-24 page-transition-in">
-      {/* Hero Section */}
-      <section className="relative py-24">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=2069&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
-              OUR SERVICES
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
-              Comprehensive <span className="text-gold">Dental Services</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen page-transition-in">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop"
+        youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
+        title={<>Our <span className="text-gold">Services</span></>}
+        subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles."
+        primaryCta={{ text: "Book an Appointment" }}
+        overlayColor="gradient"
+        height="medium"
+        badgeText="EXCEPTIONAL DENTAL CARE"
+        scrollIndicator={false}
+      />
 
       {/* Introduction Section */}
       <section className="-mt-32 relative z-20 mb-24">

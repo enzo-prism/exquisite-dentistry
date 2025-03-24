@@ -1,6 +1,6 @@
-
-import React, { useEffect, useState } from 'react';
-import { ChevronDown, FileText, HelpCircle, Calendar } from 'lucide-react';
+import React, { useEffect } from 'react';
+import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 
@@ -14,80 +14,21 @@ const PatientResources = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const faqs: FAQ[] = [
-    {
-      question: "How often should I visit the dentist?",
-      answer: "For optimal oral health, we recommend visiting the dentist every six months for a routine checkup and cleaning. However, patients with specific conditions may require more frequent visits, which Dr. Aguil will discuss with you based on your individual needs."
-    },
-    {
-      question: "What should I do in a dental emergency?",
-      answer: "If you experience a dental emergency such as severe pain, a knocked-out tooth, or a broken restoration, contact our office immediately. We reserve time in our schedule for emergency appointments. For after-hours emergencies, our answering service will connect you with the appropriate care."
-    },
-    {
-      question: "How can I improve my smile?",
-      answer: "We offer numerous cosmetic options to enhance your smile, including professional whitening, veneers, bonding, and complete smile makeovers. During a consultation, Dr. Aguil will discuss your goals and recommend the most appropriate treatments for your specific situation."
-    },
-    {
-      question: "Are dental x-rays safe?",
-      answer: "Yes, dental x-rays are safe. We use digital x-ray technology that significantly reduces radiation exposure compared to traditional film x-rays. Additionally, protective measures such as lead aprons further minimize exposure. The diagnostic benefits of x-rays far outweigh the minimal risks."
-    },
-    {
-      question: "What payment options do you offer?",
-      answer: "We accept most major insurance plans and offer various payment options, including credit cards and flexible payment plans. Our administrative team will work with you to maximize your insurance benefits and find financial solutions that fit your budget."
-    },
-    {
-      question: "How can I prevent cavities?",
-      answer: "Preventing cavities involves a combination of good home care and professional treatment. Brush twice daily with fluoride toothpaste, floss daily, maintain a balanced diet low in sugary foods and drinks, and visit us regularly for professional cleanings and preventive treatments like sealants when appropriate."
-    },
-    {
-      question: "What causes tooth sensitivity?",
-      answer: "Tooth sensitivity can be caused by various factors, including enamel erosion, gum recession, cracked teeth, or recent dental procedures. During your visit, we'll identify the source of your sensitivity and recommend appropriate treatments, which may include desensitizing toothpaste, fluoride applications, or other procedures to address the underlying cause."
-    },
-    {
-      question: "How safe are dental implants?",
-      answer: "Dental implants are a safe and effective tooth replacement option with a high success rate. The procedure is performed under appropriate anesthesia, and most patients report minimal discomfort. Dr. Aguil will thoroughly evaluate your oral health and medical history to ensure implants are a suitable option for you."
-    }
-  ];
-
-  const patientForms = [
-    { name: "New Patient Registration", description: "Complete this form before your first appointment." },
-    { name: "Medical History", description: "Provide detailed information about your health history." },
-    { name: "HIPAA Privacy Policy", description: "Review our privacy practices and your rights." },
-    { name: "Insurance Information", description: "Form for submitting your insurance details." }
-  ];
-
-  const insuranceInfo = [
-    "We accept most major PPO dental insurance plans.",
-    "Our administrative team will verify your benefits before your appointment.",
-    "We'll submit all insurance claims on your behalf.",
-    "For patients without insurance, we offer affordable self-pay options and payment plans."
-  ];
-
   return (
-    <div className="min-h-screen pt-24 page-transition-in">
-      {/* Hero Section */}
-      <section className="relative py-24">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
-              RESOURCES
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
-              Patient <span className="text-gold">Information</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen page-transition-in">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+        youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
+        title={<>Patient <span className="text-gold">Resources</span></>}
+        subtitle="Everything you need to know before, during, and after your visit to Exquisite Dentistry."
+        primaryCta={{ text: "Book an Appointment" }}
+        secondaryCta={{ text: "Contact Us", href: "/contact" }}
+        overlayColor="gradient"
+        height="medium"
+        badgeText="HELPFUL INFORMATION"
+        scrollIndicator={false}
+      />
 
       {/* Introduction Section */}
       <section className="-mt-32 relative z-20 mb-24">

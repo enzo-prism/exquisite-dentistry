@@ -47,6 +47,8 @@ const Index = () => {
         primaryCta={{ text: "Book an Appointment" }}
         secondaryCta={{ text: "Learn More About Our Services", href: "/services" }}
         overlayColor="gradient"
+        scrollIndicator={true}
+        badgeText="EXQUISITE DENTISTRY"
       />
 
       {/* Seasonal CTAs Section */}

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
@@ -11,19 +12,22 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
+    // form submission logic
     console.log('Form submitted');
   };
 
   return (
-    <div className="min-h-screen page-transition-in">
+    <div className="min-h-screen">
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.OFFICE}
-        title={<>Contact <span className="text-gold">Us</span></>}
+        title={<>Get In <span className="text-gold">Touch</span></>}
+        subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
         overlayColor="gradient"
         height="medium"
+        badgeText="CONTACT US"
+        scrollIndicator={false}
       />
 
       {/* Contact Information */}

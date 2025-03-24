@@ -1,46 +1,31 @@
 import React, { useEffect } from 'react';
-import { User2, Medal, HeartHandshake, Stethoscope, Award, GraduationCap, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import Button from '@/components/Button';
-import { cn } from '@/lib/utils';
+import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const credentials = [
-    { title: "Education", details: "Doctor of Dental Surgery (DDS), University of Southern California" },
-    { title: "Advanced Training", details: "UCLA Advanced Continuum Program in Aesthetic Dentistry" },
-    { title: "Certification", details: "Invisalign Certified Provider, Platinum Status" },
-    { title: "Professional Memberships", details: "American Academy of Cosmetic Dentistry, Academy of General Dentistry" }
-  ];
-
-  const awards = [
-    { title: "Patients' Choice Award", year: "2022" },
-    { title: "Top Dentist in Los Angeles", year: "2018-2023" },
-    { title: "Invisalign Lifetime Achievement Award", year: "2021" },
-    { title: "Best Cosmetic Dentistry Practice", year: "2023" }
-  ];
-
   return (
-    <div className="min-h-screen pt-32 page-transition-in">
-      {/* Hero Section - Increased top padding from pt-24 to pt-32 */}
-      <section className="relative py-32">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center h-[60vh]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8">
-              MEET DR. ALEXIE AGUIL
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
-              Leading <span className="text-gold">Cosmetic Dentistry</span> Expert in Los Angeles
-            </h1>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen page-transition-in">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
+        youtubeId={YOUTUBE_VIDEOS.OFFICE}
+        title={<>About <span className="text-gold">Dr. Alexie Aguil</span></>}
+        subtitle="Meet the expert behind Exquisite Dentistry's exceptional cosmetic and general dental services in Los Angeles."
+        primaryCta={{ text: "Book a Consultation" }}
+        secondaryCta={{ text: "View Our Services", href: "/services" }}
+        overlayColor="gradient"
+        height="medium"
+        badgeText="OUR STORY"
+        alignment="left"
+        scrollIndicator={false}
+      />
 
       {/* Introduction Section - Adjusted positioning */}
       <section className="-mt-24 relative z-20">

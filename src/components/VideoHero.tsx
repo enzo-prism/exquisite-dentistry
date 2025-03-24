@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import VideoBackground from './VideoBackground';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 interface VideoHeroProps {
   videoSrc?: string;
@@ -21,10 +22,13 @@ interface VideoHeroProps {
     text: string;
     href: string;
   };
-  overlayColor?: 'dark' | 'light' | 'gradient';
+  overlayColor?: 'dark' | 'light' | 'gradient' | 'none';
   className?: string;
   contentClassName?: string;
   height?: 'full' | 'large' | 'medium';
+  badgeText?: string;
+  alignment?: 'center' | 'left';
+  scrollIndicator?: boolean;
 }
 
 // Collection of YouTube IDs to choose from if none is provided
@@ -45,17 +49,33 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   subtitle,
   primaryCta,
   secondaryCta,
-  overlayColor = 'dark',
+  overlayColor = 'gradient',
   className,
   contentClassName,
-  height = 'full'
+  height = 'full',
+  badgeText = "MEET DR. ALEXIE AGUIL",
+  alignment = 'center',
+  scrollIndicator = true
 }) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false);
   const isMobile = useIsMobile();
   
-  // Handle video load event
-  const handleVideoLoaded = () => {
-    setIsVideoLoaded(true);
+  useEffect(() => {
+    // Slight delay for the content to fade in after hero loads
+    const timer = setTimeout(() => {
+      setIsContentVisible(true);
+    }, 400);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const scrollToNextSection = () => {
+    const heroSection = document.querySelector('section');
+    if (heroSection && heroSection.nextElementSibling) {
+      heroSection.nextElementSibling.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
   };
 
   // Define height classes
@@ -69,7 +89,14 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   const overlayClasses = {
     dark: 'bg-black/60',
     light: 'bg-white/30',
-    gradient: 'bg-gradient-to-b from-black/70 via-black/50 to-black/70'
+    gradient: 'bg-gradient-to-b from-black/70 via-black/50 to-black/70',
+    none: ''
+  };
+
+  // Define content alignment classes
+  const alignmentClasses = {
+    center: 'text-center mx-auto',
+    left: 'text-left ml-0 mr-auto'
   };
 
   return (
@@ -91,50 +118,98 @@ const VideoHero: React.FC<VideoHeroProps> = ({
 
       {/* Content */}
       <div className={cn(
-        'relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center',
+        'relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full',
         contentClassName
       )}>
-        <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
-          {/* Added vertical space for the badge */}
-          <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8">
-            MEET DR. ALEXIE AGUIL
-          </span>
+        <div className={cn(
+          "max-w-3xl transition-all duration-1000 ease-out",
+          alignmentClasses[alignment],
+          isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          {/* Badge */}
+          {badgeText && (
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8 transform hover:scale-105 transition-transform duration-300">
+              {badgeText}
+            </span>
+          )}
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
+          {/* Title with animated reveal */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8 relative">
             {title}
           </h1>
           
+          {/* Subtitle with delayed fade-in */}
           {subtitle && (
-            <p className="text-lg md:text-xl text-white/90 mb-10 font-light max-w-2xl mx-auto">
+            <p className={cn(
+              "text-lg md:text-xl text-white/90 mb-10 font-light",
+              alignment === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'
+            )}>
               {subtitle}
             </p>
           )}
           
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          {/* CTA Buttons */}
+          <div className={cn(
+            "flex items-center space-y-4 mt-8",
+            alignment === 'center' 
+              ? "flex-col sm:flex-row sm:space-y-0 sm:space-x-4 justify-center" 
+              : "flex-col sm:flex-row sm:space-y-0 sm:space-x-4"
+          )}>
             {primaryCta && (
               primaryCta.href ? (
-                <Link to={primaryCta.href}>
-                  <Button size="lg" onClick={primaryCta.onClick}>
+                <Link to={primaryCta.href} className="w-full sm:w-auto">
+                  <Button 
+                    size="lg" 
+                    onClick={primaryCta.onClick}
+                    fullWidth={isMobile}
+                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
                     {primaryCta.text}
+                    <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
               ) : (
-                <Button size="lg" onClick={primaryCta.onClick}>
+                <Button 
+                  size="lg" 
+                  onClick={primaryCta.onClick}
+                  fullWidth={isMobile}
+                  className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                >
                   {primaryCta.text}
+                  <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
               )
             )}
             
             {secondaryCta && (
-              <Link to={secondaryCta.href}>
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+              <Link to={secondaryCta.href} className="w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white text-white hover:bg-white/10 group"
+                  fullWidth={isMobile}
+                >
                   {secondaryCta.text}
+                  <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
             )}
           </div>
         </div>
       </div>
+      
+      {/* Scroll indicator */}
+      {scrollIndicator && height === 'full' && (
+        <div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer animate-bounce"
+          onClick={scrollToNextSection}
+        >
+          <div className="flex flex-col items-center">
+            <span className="text-white/70 text-sm mb-2">Scroll Down</span>
+            <ChevronDown className="text-white/70 w-6 h-6" />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

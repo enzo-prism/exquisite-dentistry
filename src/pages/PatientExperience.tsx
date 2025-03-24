@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
@@ -60,14 +59,17 @@ const PatientExperience = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section */}
+      {/* Hero Section with YouTube Video */}
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1521453510357-5c7a77db7074?q=80&w=2144&auto=format&fit=crop"
-        title={<>Exceptional <span className="text-gold">Patient Experience</span></>}
-        subtitle="We've reimagined what a dental visit can be, focusing on your comfort, convenience, and peace of mind."
-        primaryCta={{ text: "Book an Appointment" }}
-        height="large"
+        posterSrc="https://images.unsplash.com/photo-1620283085068-5aab84e2db3e?q=80&w=2070&auto=format&fit=crop"
+        youtubeId={YOUTUBE_VIDEOS.PATIENT}
+        title={<>The <span className="text-gold">Patient Experience</span></>}
+        subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
+        primaryCta={{ text: "Book Your First Appointment" }}
         overlayColor="gradient"
+        height="medium"
+        badgeText="COMFORT & CARE"
+        scrollIndicator={false}
       />
 
       {/* Welcome Section */}

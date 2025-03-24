@@ -1,9 +1,10 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock, Diamond, Heart, Check } from 'lucide-react';
+import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
+import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
 const Wedding = () => {
   useEffect(() => {
@@ -11,28 +12,20 @@ const Wedding = () => {
   }, []);
 
   return (
-    <div className="pt-28 md:pt-32 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-b from-black to-black/90">
-        <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-          <img
-            src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop"
-            alt="Wedding smile"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Picture-Perfect <span className="text-gold">Wedding Smiles</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
-              Look your best for your special day with our comprehensive cosmetic dental treatments designed specifically for brides, grooms, and the wedding party.
-            </p>
-            <Button size="xl" className="animate-pulse-subtle">Book Your Wedding Smile Consultation</Button>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen page-transition-in">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop"
+        youtubeId={YOUTUBE_VIDEOS.COSMETIC}
+        title={<>Perfect <span className="text-gold">Wedding Smiles</span></>}
+        subtitle="Look and feel your best on your special day with our customized wedding smile makeover treatments."
+        primaryCta={{ text: "Book Your Wedding Smile Consultation" }}
+        secondaryCta={{ text: "Learn About Our Wedding Packages", href: "#packages" }}
+        overlayColor="gradient"
+        height="large"
+        badgeText="WEDDING SPECIALS"
+        scrollIndicator={true}
+      />
 
       {/* Timeline Section */}
       <section className="py-16 md:py-20 bg-white">
@@ -285,3 +278,4 @@ const Wedding = () => {
 };
 
 export default Wedding;
+
