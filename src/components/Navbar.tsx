@@ -34,10 +34,12 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
-  // Always use a dark background, with additional opacity/blur when scrolled
+  // Ensure a consistent dark background by using a solid black with opacity
+  // even when at the top of the page, with slightly different styling when scrolled
   const headerClasses = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/90 backdrop-blur-md',
-    scrolled ? 'py-3 md:py-4 shadow-sm' : 'py-4 md:py-6'
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    'bg-black backdrop-blur-md', // Always use black background with backdrop blur
+    scrolled ? 'py-3 md:py-4 shadow-sm bg-opacity-90' : 'py-4 md:py-6 bg-opacity-80'
   );
 
   return (
@@ -116,4 +118,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
