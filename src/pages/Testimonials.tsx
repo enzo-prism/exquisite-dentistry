@@ -1,8 +1,8 @@
-
 import React, { useEffect } from 'react';
 import { Star, Quote, CheckCircle } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
+import GoogleReviews from '@/components/GoogleReviews';
 
 const Testimonials = () => {
   useEffect(() => {
@@ -126,8 +126,31 @@ const Testimonials = () => {
         </div>
       </section>
 
+      {/* Google Reviews Section - New Addition */}
+      <section className="section-container mb-24">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block text-sm text-gold font-medium mb-3">GOOGLE REVIEWS</span>
+          <h2 className="heading-lg mb-6">Our Latest Google Reviews</h2>
+          <div className="separator"></div>
+          <p className="paragraph">
+            See what patients are saying about their experiences with Dr. Aguil and Exquisite Dentistry on Google.
+          </p>
+        </div>
+        
+        <GoogleReviews />
+      </section>
+
       {/* Testimonials Grid */}
       <section className="section-container">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT TESTIMONIALS</span>
+          <h2 className="heading-lg mb-6">Exquisite Dentistry Testimonials</h2>
+          <div className="separator"></div>
+          <p className="paragraph">
+            Read these testimonials from our patients who have experienced our exceptional dental care and transformative results.
+          </p>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
