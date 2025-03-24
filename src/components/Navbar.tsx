@@ -88,10 +88,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Updated to ensure solid black background */}
       <div
         className={cn(
-          'fixed inset-0 bg-black z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
+          'fixed inset-0 bg-black bg-opacity-100 z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
