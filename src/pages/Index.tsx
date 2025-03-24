@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones, Heart, GraduationCap } from 'lucide-react';
@@ -61,24 +62,25 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Wedding CTA */}
+            {/* Wedding CTA - Improved readability */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300"></div>
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 transition-all duration-300 group-hover:from-black/80"></div>
               <img 
                 src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop" 
                 alt="Wedding Smile" 
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-gold mb-4">
-                  <Heart size={32} />
+                <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm">
+                  <Heart size={32} className="drop-shadow-md" />
                 </div>
-                <h3 className="text-2xl font-medium text-white mb-3">Wedding Smile Makeover</h3>
-                <p className="text-white/90 mb-6 max-w-md">
+                <h3 className="text-2xl font-medium text-white mb-3 drop-shadow-md">Wedding Smile Makeover</h3>
+                <p className="text-white mb-6 max-w-md drop-shadow-md font-medium">
                   Look picture-perfect for your special day with our customized wedding smile treatments.
                 </p>
                 <Link to="/wedding">
-                  <Button variant="gold" size="lg" className="group">
+                  <Button variant="gold" size="lg" className="group shadow-lg">
                     Wedding Smile Guide
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -86,24 +88,25 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Graduation CTA */}
+            {/* Graduation CTA - Improved readability */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300"></div>
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 transition-all duration-300 group-hover:from-black/80"></div>
               <img 
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop" 
                 alt="Graduation Smile" 
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-gold mb-4">
-                  <GraduationCap size={32} />
+                <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm">
+                  <GraduationCap size={32} className="drop-shadow-md" />
                 </div>
-                <h3 className="text-2xl font-medium text-white mb-3">Graduation Smile Treatment</h3>
-                <p className="text-white/90 mb-6 max-w-md">
+                <h3 className="text-2xl font-medium text-white mb-3 drop-shadow-md">Graduation Smile Treatment</h3>
+                <p className="text-white mb-6 max-w-md drop-shadow-md font-medium">
                   Graduate with confidence with our quick, effective smile enhancement solutions.
                 </p>
                 <Link to="/graduation">
-                  <Button variant="gold" size="lg" className="group">
+                  <Button variant="gold" size="lg" className="group shadow-lg">
                     Graduation Smile Guide
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -291,4 +294,3 @@ const Index = () => {
 };
 
 export default Index;
-
