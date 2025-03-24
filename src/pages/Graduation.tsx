@@ -1,9 +1,11 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
 const Graduation = () => {
   useEffect(() => {
@@ -15,7 +17,7 @@ const Graduation = () => {
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
-        youtubeId="GfC4M9HRR_A"
+        youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Graduate With A <span className="text-gold">Confident Smile</span></>}
         subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
         primaryCta={{ text: "Book Your Graduation Smile Consultation" }}

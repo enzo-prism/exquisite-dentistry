@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
 const Contact = () => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Contact = () => {
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
-        youtubeId="GfC4M9HRR_A"
+        youtubeId={YOUTUBE_VIDEOS.OFFICE}
         title={<>Contact <span className="text-gold">Us</span></>}
         overlayColor="gradient"
         height="medium"

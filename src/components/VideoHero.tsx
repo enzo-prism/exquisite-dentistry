@@ -27,13 +27,20 @@ interface VideoHeroProps {
   height?: 'full' | 'large' | 'medium';
 }
 
-// Default YouTube ID to use if none is provided
-const DEFAULT_YOUTUBE_ID = 'GfC4M9HRR_A';
+// Collection of YouTube IDs to choose from if none is provided
+const YOUTUBE_VIDEOS = {
+  DEFAULT: 'GfC4M9HRR_A',  // Original default
+  COSMETIC: '3pNo4sKFB58', // Cosmetic dentistry
+  SMILE: 'dpd6glBbZVU',    // Smile makeover
+  PATIENT: '3O6FuKufvL4',  // Patient experience
+  PROCEDURE: '6QACxCt6J7g', // Dental procedure
+  OFFICE: 'ogjAzMV2ZYY'    // Office tour
+};
 
 const VideoHero: React.FC<VideoHeroProps> = ({
   videoSrc,
   posterSrc,
-  youtubeId = DEFAULT_YOUTUBE_ID,
+  youtubeId = YOUTUBE_VIDEOS.DEFAULT,
   title,
   subtitle,
   primaryCta,
@@ -132,4 +139,6 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   );
 };
 
+// Export the YouTube IDs for use in other components
+export { YOUTUBE_VIDEOS };
 export default VideoHero;

@@ -6,6 +6,7 @@ import Button from '@/components/Button';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import VideoHero from '@/components/VideoHero';
+import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { cn } from '@/lib/utils';
 import PatientExperienceSection from '@/components/PatientExperienceSection';
 
@@ -40,7 +41,7 @@ const Index = () => {
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1936&auto=format&fit=crop"
-        youtubeId="GfC4M9HRR_A"
+        youtubeId={YOUTUBE_VIDEOS.SMILE}
         title={<>Award-Winning <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles & Beyond</>}
         subtitle="Experience the perfect blend of artistry and science at Dr. Alexie Aguil's refined dental practice, where patient comfort meets clinical excellence."
         primaryCta={{ text: "Book an Appointment" }}
