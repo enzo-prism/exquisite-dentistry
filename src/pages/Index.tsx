@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smile, Shield, Tool, Star } from 'lucide-react';
+import { ArrowRight, Smile, Shield, Wrench, Star } from 'lucide-react';
 import Button from '@/components/Button';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
@@ -138,7 +138,7 @@ const Index = () => {
             <ServiceCard 
               title="Restorative Dentistry" 
               description="Restore function and aesthetics with our comprehensive restorative treatments including crowns, bridges, and implants."
-              icon={<Tool size={32} />}
+              icon={<Wrench size={32} />}
               index={2}
             />
           </div>
