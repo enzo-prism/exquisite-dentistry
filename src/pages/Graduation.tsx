@@ -1,9 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
+import VideoHero from '@/components/VideoHero';
 
 const Graduation = () => {
   useEffect(() => {
@@ -11,28 +11,17 @@ const Graduation = () => {
   }, []);
 
   return (
-    <div className="pt-28 md:pt-32 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-b from-black to-black/90">
-        <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-          <img
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
-            alt="Graduation smile"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Graduate With A <span className="text-gold">Confident Smile</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
-              Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates.
-            </p>
-            <Button size="xl" className="animate-pulse-subtle">Book Your Graduation Smile Consultation</Button>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
+        youtubeId="GfC4M9HRR_A"
+        title={<>Graduate With A <span className="text-gold">Confident Smile</span></>}
+        subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
+        primaryCta={{ text: "Book Your Graduation Smile Consultation" }}
+        overlayColor="gradient"
+        height="large"
+      />
 
       {/* Quick Treatments Section */}
       <section className="py-16 md:py-20 bg-white">

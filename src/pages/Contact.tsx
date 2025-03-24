@@ -1,7 +1,7 @@
-
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
+import VideoHero from '@/components/VideoHero';
 
 const Contact = () => {
   useEffect(() => {
@@ -15,24 +15,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 page-transition-in">
-      {/* Hero Section */}
-      <section className="relative py-28">
-        <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-5 py-1.5 rounded-sm text-sm font-medium mb-8">
-              GET IN TOUCH
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
-              Contact <span className="text-gold">Us</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen page-transition-in">
+      {/* Hero Section with YouTube Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
+        youtubeId="GfC4M9HRR_A"
+        title={<>Contact <span className="text-gold">Us</span></>}
+        overlayColor="gradient"
+        height="medium"
+      />
 
       {/* Contact Information */}
       <section className="-mt-32 relative z-20 mb-28">
@@ -198,7 +189,6 @@ const Contact = () => {
           </div>
           
           <div className="aspect-video bg-gray-200 rounded-sm overflow-hidden shadow-lg">
-            {/* Embed Google Maps for 6227 Wilshire Blvd, Los Angeles, CA 90048 */}
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7467390070256!2d-118.3650287!3d34.063844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93cca04c0c3%3A0x98b9bda196f7b6bf!2s6227%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090048!5e0!3m2!1sen!2sus!4v1653485691058!5m2!1sen!2sus"
               width="100%" 

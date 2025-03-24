@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+import VideoBackground from './VideoBackground';
 
 interface VideoHeroProps {
   videoSrc?: string;
@@ -26,10 +27,13 @@ interface VideoHeroProps {
   height?: 'full' | 'large' | 'medium';
 }
 
+// Default YouTube ID to use if none is provided
+const DEFAULT_YOUTUBE_ID = 'GfC4M9HRR_A';
+
 const VideoHero: React.FC<VideoHeroProps> = ({
   videoSrc,
   posterSrc,
-  youtubeId,
+  youtubeId = DEFAULT_YOUTUBE_ID,
   title,
   subtitle,
   primaryCta,
@@ -69,43 +73,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         className
       )}
     >
-      {/* Background Options: YouTube, regular video, or image */}
-      <div className="absolute inset-0 w-full h-full bg-cover bg-center z-0" 
-           style={{ backgroundImage: `url(${posterSrc})` }} />
+      {/* Background with YouTube video */}
+      <VideoBackground youtubeId={youtubeId} posterSrc={posterSrc} />
       
-      {youtubeId ? (
-        <div className="absolute inset-0 w-full h-full z-10 pointer-events-none overflow-hidden">
-          <iframe 
-            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className={cn(
-              "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto h-auto",
-              isMobile 
-                ? "min-w-[300%] min-h-[300%]" 
-                : "min-w-[200%] min-h-[200%]"
-            )}
-            style={{ aspectRatio: '16/9' }}
-            frameBorder="0"
-            title="YouTube video player"
-          />
-        </div>
-      ) : videoSrc ? (
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          onLoadedData={handleVideoLoaded}
-          className={cn(
-            "absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700",
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          )}
-        >
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      ) : null}
-
       {/* Overlay */}
       <div className={cn(
         'absolute inset-0 z-20',
