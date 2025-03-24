@@ -58,12 +58,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className={cn(
             "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto h-auto",
             isMobile 
-              ? "min-w-[300%] min-h-[300%]" 
+              ? "min-w-[400%] min-h-[400%]" // Increased coverage for better mobile display
               : "min-w-[200%] min-h-[200%]"
           )}
           style={{ aspectRatio: '16/9' }}
           frameBorder="0"
           title="YouTube video player"
+          loading="lazy" // Better performance on mobile
         />
       </div>
     </>

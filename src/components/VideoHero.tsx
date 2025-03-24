@@ -128,20 +128,20 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         )}>
           {/* Badge */}
           {badgeText && (
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-8 transform hover:scale-105 transition-transform duration-300">
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 md:mb-8 transform hover:scale-105 transition-transform duration-300">
               {badgeText}
             </span>
           )}
           
           {/* Title with animated reveal */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8 relative">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6 md:mb-8 relative">
             {title}
           </h1>
           
           {/* Subtitle with delayed fade-in */}
           {subtitle && (
             <p className={cn(
-              "text-lg md:text-xl text-white/90 mb-10 font-light",
+              "text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 font-light",
               alignment === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'
             )}>
               {subtitle}
@@ -150,7 +150,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           
           {/* CTA Buttons */}
           <div className={cn(
-            "flex items-center space-y-4 mt-8",
+            "flex items-center space-y-4 mt-6 md:mt-8",
             alignment === 'center' 
               ? "flex-col sm:flex-row sm:space-y-0 sm:space-x-4 justify-center" 
               : "flex-col sm:flex-row sm:space-y-0 sm:space-x-4"
@@ -159,24 +159,24 @@ const VideoHero: React.FC<VideoHeroProps> = ({
               primaryCta.href ? (
                 <Link to={primaryCta.href} className="w-full sm:w-auto">
                   <Button 
-                    size="lg" 
+                    size={isMobile ? "default" : "lg"}
                     onClick={primaryCta.onClick}
                     fullWidth={isMobile}
                     className="group shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     {primaryCta.text}
-                    <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
               ) : (
                 <Button 
-                  size="lg" 
+                  size={isMobile ? "default" : "lg"}
                   onClick={primaryCta.onClick}
                   fullWidth={isMobile}
                   className="group shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   {primaryCta.text}
-                  <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
               )
             )}
@@ -185,12 +185,12 @@ const VideoHero: React.FC<VideoHeroProps> = ({
               <Link to={secondaryCta.href} className="w-full sm:w-auto">
                 <Button 
                   variant="outline" 
-                  size="lg" 
+                  size={isMobile ? "default" : "lg"}
                   className="border-white text-white hover:bg-white/10 group"
                   fullWidth={isMobile}
                 >
                   {secondaryCta.text}
-                  <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
             )}
@@ -198,15 +198,15 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         </div>
       </div>
       
-      {/* Scroll indicator */}
+      {/* Scroll indicator - Fixed to be properly centered on mobile */}
       {scrollIndicator && height === 'full' && (
         <div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer animate-bounce"
+          className="absolute bottom-8 left-0 right-0 mx-auto z-30 flex justify-center cursor-pointer animate-bounce"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">
-            <span className="text-white/70 text-sm mb-2">Scroll Down</span>
-            <ChevronDown className="text-white/70 w-6 h-6" />
+            <span className="text-white/70 text-xs sm:text-sm mb-1 sm:mb-2">Scroll Down</span>
+            <ChevronDown className="text-white/70 w-5 h-5 sm:w-6 sm:h-6" />
           </div>
         </div>
       )}

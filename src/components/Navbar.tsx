@@ -40,8 +40,8 @@ const Navbar = () => {
   const headerClasses = cn(
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black',
     scrolled 
-      ? 'bg-opacity-95 py-3 md:py-4 shadow-lg' 
-      : 'bg-opacity-100 py-4 md:py-6'
+      ? 'bg-opacity-95 py-2 md:py-4 shadow-lg' 
+      : 'bg-opacity-100 py-3 md:py-6'
   );
 
   return (
@@ -56,7 +56,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
               alt="Exquisite Dentistry" 
-              className="h-10 md:h-12"
+              className="h-8 md:h-10 lg:h-12"
             />
           </Link>
 
@@ -125,6 +125,7 @@ const Navbar = () => {
                                 ? 'bg-gold/10 text-gold'
                                 : 'text-white hover:bg-white/5'
                             )}
+                            onClick={() => setIsMenuOpen(false)}
                           >
                             {link.name}
                           </Link>
