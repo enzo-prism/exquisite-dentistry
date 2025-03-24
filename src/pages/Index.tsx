@@ -117,45 +117,70 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="space-y-6 opacity-0 animate-fade-in-left">
-            <span className="inline-block text-sm text-gold font-medium">MEET DR. ALEXIE AGUIL</span>
-            <h2 className="heading-lg">Leading Cosmetic Dentistry Expert in Los Angeles</h2>
-            <div className="separator-left"></div>
-            <p className="paragraph">
-              At Exquisite Dentistry, Dr. Alexie Aguil combines artistic vision with advanced dental techniques to create stunning, natural-looking smiles. His patient-centric approach ensures each visit is comfortable and stress-free in our spa-like environment.
-            </p>
-            <p className="paragraph">
-              From convenient scheduling options including same-day emergency appointments to amenities like noise-canceling headphones and aromatherapy, we've reimagined what dental care can be.
-            </p>
-            <div className="pt-4">
-              <Link to="/about">
-                <Button className="group">
-                  Learn About Dr. Aguil
-                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-          <div className="relative opacity-0 animate-fade-in-right">
-            <div className="aspect-[4/5] rounded-sm overflow-hidden shadow-xl">
-              <img 
-                src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
-                alt="Dr. Alexie Aguil" 
-                className="w-full h-full object-contain object-top"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
-              <div className="flex items-center space-x-2 mb-2">
-                <Award size={20} className="text-gold" />
-                <span className="text-sm font-medium text-black">Invisalign Lifetime Achievement Award</span>
+      {/* Redesigned Introduction Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col-reverse lg:flex-row gap-12 items-center">
+            {/* Content Column */}
+            <div className="w-full lg:w-1/2 space-y-6 opacity-0 animate-fade-in-left">
+              <div className="inline-flex items-center gap-2">
+                <div className="h-1 w-10 bg-gold rounded-full"></div>
+                <span className="text-sm text-gold font-medium uppercase tracking-wider">Meet Dr. Alexie Aguil</span>
               </div>
-              <p className="text-sm text-black-light">
-                Top provider in Beverly Hills & West Hollywood
+              
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight">
+                Leading Cosmetic Dentistry Expert in Los Angeles
+              </h2>
+              
+              <p className="text-lg text-black-light leading-relaxed">
+                At Exquisite Dentistry, Dr. Alexie Aguil combines artistic vision with advanced dental techniques to create stunning, natural-looking smiles. His patient-centric approach ensures each visit is comfortable and stress-free in our spa-like environment.
               </p>
+              
+              <p className="text-lg text-black-light leading-relaxed">
+                From convenient scheduling options including same-day emergency appointments to amenities like noise-canceling headphones and aromatherapy, we've reimagined what dental care can be.
+              </p>
+              
+              <div className="flex items-center gap-4 pt-4">
+                <Link to="/about">
+                  <Button className="group">
+                    Learn About Dr. Aguil
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Image Column */}
+            <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-right">
+              <div className="relative mx-auto max-w-md lg:max-w-full">
+                {/* Main Image with Frame */}
+                <div className="relative z-10 bg-white p-3 rounded-sm shadow-xl">
+                  <div className="aspect-[3/4] overflow-hidden rounded-sm">
+                    <img 
+                      src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
+                      alt="Dr. Alexie Aguil" 
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                
+                {/* Award Badge */}
+                <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 z-20 bg-white rounded-sm shadow-xl p-4 max-w-[200px]">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Award size={20} className="text-gold" />
+                    <span className="text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
+                  </div>
+                  <p className="text-xs text-black-light">
+                    Top provider in Beverly Hills & West Hollywood
+                  </p>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute top-8 -right-4 w-20 h-20 bg-gold/10 rounded-full filter blur-xl"></div>
+                <div className="absolute -bottom-10 right-16 w-32 h-32 bg-gold/10 rounded-full filter blur-xl"></div>
+                <div className="absolute -z-10 -top-6 -left-6 w-full h-full border-2 border-gold/30 rounded-sm"></div>
+              </div>
             </div>
           </div>
         </div>
