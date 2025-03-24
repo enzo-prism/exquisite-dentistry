@@ -12,9 +12,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Brief Intro */}
           <div className="space-y-6">
-            <div className="font-sans font-semibold text-2xl">
-              <span className="text-white">Exquisite</span>
-              <span className="text-gold ml-1">Dentistry</span>
+            <div>
+              <img 
+                src="https://drive.google.com/uc?export=view&id=12ddztwLJcoOgoOcDamdxBF9vnAbHRYJW" 
+                alt="Exquisite Dentistry" 
+                className="h-12"
+              />
             </div>
             <p className="text-gray-300 text-sm max-w-xs">
               Providing exceptional dental care with a focus on comfort, quality, and personalized treatment plans.

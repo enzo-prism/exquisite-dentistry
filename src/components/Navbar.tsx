@@ -48,13 +48,13 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center font-sans font-semibold text-xl md:text-2xl"
+            className="flex items-center"
           >
-            <span className={cn(
-              "transition-colors duration-300",
-              scrolled || location.pathname !== '/' ? "text-black" : "text-white"
-            )}>Exquisite</span>
-            <span className="text-gold ml-1">Dentistry</span>
+            <img 
+              src="https://drive.google.com/uc?export=view&id=12ddztwLJcoOgoOcDamdxBF9vnAbHRYJW" 
+              alt="Exquisite Dentistry" 
+              className="h-10 md:h-12"
+            />
           </Link>
 
           {/* Desktop Navigation */}
