@@ -22,11 +22,11 @@ const Contact = () => {
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.OFFICE}
-        title={<>Get In <span className="text-gold">Touch</span></>}
+        title={<>Contact <span className="text-gold">Us</span></>}
         subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
         overlayColor="gradient"
         height="medium"
-        badgeText="CONTACT US"
+        badgeText="REACH OUT"
         scrollIndicator={false}
       />
 
@@ -213,12 +213,12 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-8">
-              Ready for Your <span className="text-gold">Appointment?</span>
+              Book <span className="text-gold">Now</span>
             </h2>
             <p className="text-xl text-white/80 mb-12 font-light">
               Schedule your visit today and experience the Exquisite Dentistry difference.
             </p>
-            <Button size="lg" className="px-8 py-3.5">Book an Appointment</Button>
+            <Button size="lg" className="px-8 py-3.5">Book Appointment</Button>
           </div>
         </div>
       </section>

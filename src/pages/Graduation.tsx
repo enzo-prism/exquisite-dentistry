@@ -18,13 +18,13 @@ const Graduation = () => {
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
-        title={<>Graduate With A <span className="text-gold">Confident Smile</span></>}
+        title={<>Graduation <span className="text-gold">Smile</span></>}
         subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
-        primaryCta={{ text: "Book Your Graduation Smile Consultation" }}
-        secondaryCta={{ text: "Learn About Our Graduation Packages", href: "#packages" }}
+        primaryCta={{ text: "Book Consultation" }}
+        secondaryCta={{ text: "View Packages", href: "#packages" }}
         overlayColor="gradient"
         height="large"
-        badgeText="GRADUATION SPECIALS"
+        badgeText="GRAD SPECIALS"
         scrollIndicator={true}
       />
 
@@ -33,7 +33,7 @@ const Graduation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
-              Quick-Fix <span className="text-gold">Smile Solutions</span>
+              Quick <span className="text-gold">Solutions</span>
             </h2>
             <p className="text-lg text-black-light">
               Short on time before graduation? We have fast, effective treatments to ensure you look your best.
@@ -121,7 +121,7 @@ const Graduation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
-              Most Popular <span className="text-gold">Graduation Treatments</span>
+              Popular <span className="text-gold">Treatments</span>
             </h2>
             <p className="text-lg text-black-light">
               These treatments are favorites among graduates for their quick results and lasting impact.
@@ -221,7 +221,7 @@ const Graduation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
-              Graduation <span className="text-gold">Success Stories</span>
+              Success <span className="text-gold">Stories</span>
             </h2>
             <p className="text-lg text-black-light">
               Hear from recent graduates who transformed their smiles for their big day.
@@ -265,12 +265,12 @@ const Graduation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
-              Ready to <span className="text-gold">Graduate with Confidence?</span>
+              Graduate <span className="text-gold">Confidently</span>
             </h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Don't wait! Schedule your consultation today and let us help you create a graduation-ready smile.
             </p>
-            <Button size="xl">Book Your Graduation Smile Consultation</Button>
+            <Button size="xl">Book Consultation</Button>
           </div>
         </div>
       </section>
