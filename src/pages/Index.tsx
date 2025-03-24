@@ -144,7 +144,7 @@ const Index = () => {
               <img 
                 src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
                 alt="Dr. Alexie Aguil" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain object-top"
                 loading="lazy"
               />
             </div>
