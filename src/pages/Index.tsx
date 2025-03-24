@@ -1,11 +1,13 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smile, Shield, Wrench, Star, Award, Camera, Monitor, Headphones } from 'lucide-react';
+import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones } from 'lucide-react';
 import Button from '@/components/Button';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import VideoHero from '@/components/VideoHero';
 import { cn } from '@/lib/utils';
+import PatientExperienceSection from '@/components/PatientExperienceSection';
 
 const testimonials = [
   {
@@ -35,38 +37,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1936&auto=format&fit=crop')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-xs"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-3xl opacity-0 animate-fade-in">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
-              BEVERLY HILLS PREMIER DENTAL CARE
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold text-white leading-tight mb-6">
-              Award-Winning <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles & Beyond
-            </h1>
-            <p className="text-xl text-white/90 mb-8 font-light max-w-2xl">
-              Experience the perfect blend of artistry and science at Dr. Alexie Aguil's refined dental practice, where patient comfort meets clinical excellence.
-            </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button size="lg">Book an Appointment</Button>
-              <Link to="/services">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                  Learn More About Our Services
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with Video */}
+      <VideoHero
+        posterSrc="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1936&auto=format&fit=crop"
+        title={<>Award-Winning <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles & Beyond</>}
+        subtitle="Experience the perfect blend of artistry and science at Dr. Alexie Aguil's refined dental practice, where patient comfort meets clinical excellence."
+        primaryCta={{ text: "Book an Appointment" }}
+        secondaryCta={{ text: "Learn More About Our Services", href: "/services" }}
+        overlayColor="gradient"
+      />
 
       {/* Introduction Section */}
       <section className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="space-y-6 opacity-0 animate-fade-in-left">
             <span className="inline-block text-sm text-gold font-medium">MEET DR. ALEXIE AGUIL</span>
             <h2 className="heading-lg">Leading Cosmetic Dentistry Expert in Los Angeles</h2>
@@ -92,6 +75,7 @@ const Index = () => {
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop" 
                 alt="Dr. Alexie Aguil" 
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
@@ -108,9 +92,9 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="section-container">
-          <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-in">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
             <span className="inline-block text-sm text-gold font-medium mb-3">OUR SERVICES</span>
             <h2 className="heading-lg mb-6">Comprehensive Dental Services</h2>
             <div className="separator"></div>
@@ -119,7 +103,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <ServiceCard 
               title="Cosmetic Dentistry" 
               description="Transform your smile with our range of cosmetic services including veneers, teeth whitening, Invisalign, and complete smile makeovers."
@@ -140,7 +124,7 @@ const Index = () => {
             />
           </div>
 
-          <div className="text-center mt-12 opacity-0 animate-fade-in delay-600">
+          <div className="text-center mt-10 md:mt-12 opacity-0 animate-fade-in delay-600">
             <Link to="/services">
               <Button variant="outline" className="group">
                 View All Services
@@ -153,7 +137,7 @@ const Index = () => {
 
       {/* Advanced Technology Section */}
       <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
           <span className="inline-block text-sm text-gold font-medium mb-3">ADVANCED TECHNOLOGY</span>
           <h2 className="heading-lg mb-6">Cutting-Edge Dental Equipment</h2>
           <div className="separator"></div>
@@ -162,8 +146,8 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '150ms' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '150ms' }}>
             <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
               <Camera size={32} />
             </div>
@@ -173,7 +157,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="bg-white p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '300ms' }}>
+          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '300ms' }}>
             <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
               <Monitor size={32} />
             </div>
@@ -183,7 +167,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="bg-white p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '450ms' }}>
+          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '450ms' }}>
             <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
               <span className="text-2xl font-bold">3D</span>
             </div>
@@ -196,84 +180,11 @@ const Index = () => {
       </section>
 
       {/* Patient Experience Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="section-container">
-          <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-in">
-            <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT EXPERIENCE</span>
-            <h2 className="heading-lg mb-6">Spa-Like Comfort & Amenities</h2>
-            <div className="separator"></div>
-            <p className="paragraph">
-              We've reimagined the dental experience with amenities designed for your ultimate comfort.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 opacity-0 animate-fade-in-left">
-              <div className="flex items-start space-x-4 mb-6">
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold flex-shrink-0 mt-1">
-                  <Headphones size={20} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Comfort Amenities</h3>
-                  <p className="text-black-light/80">
-                    Enjoy soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass cloths during your visit.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4 mb-6">
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold flex-shrink-0 mt-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar">
-                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                    <line x1="16" x2="16" y1="2" y2="6" />
-                    <line x1="8" x2="8" y1="2" y2="6" />
-                    <line x1="3" x2="21" y1="10" y2="10" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Flexible Scheduling</h3>
-                  <p className="text-black-light/80">
-                    We offer same-day emergency appointments, early morning and lunchtime slots, and family block appointments for your convenience.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold flex-shrink-0 mt-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-square">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Patient Involvement</h3>
-                  <p className="text-black-light/80">
-                    We believe in clear communication and active patient participation in all treatment decisions to ensure your confidence and satisfaction.
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative h-full opacity-0 animate-fade-in-right">
-              <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1521453510357-5c7a77db7074?q=80&w=2144&auto=format&fit=crop" 
-                  alt="Spa-like dental environment" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
-                <p className="text-black-light italic text-sm">
-                  "Our Los Angeles and Melrose offices are designed to provide a calming, stress-free environment with all the comforts you deserve."
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PatientExperienceSection />
 
       {/* Testimonials Section */}
       <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-in">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
           <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT TESTIMONIALS</span>
           <h2 className="heading-lg mb-6">What Our Patients Say</h2>
           <div className="separator"></div>
@@ -284,7 +195,7 @@ const Index = () => {
           className="opacity-0 animate-fade-in delay-300"
         />
 
-        <div className="text-center mt-12 opacity-0 animate-fade-in delay-600">
+        <div className="text-center mt-10 md:mt-12 opacity-0 animate-fade-in delay-600">
           <Link to="/testimonials">
             <Button variant="outline" className="group">
               Read More Patient Stories
@@ -295,16 +206,16 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-black">
+      <section className="py-16 md:py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">
               Ready for Your <span className="text-gold">Smile Transformation?</span>
             </h2>
-            <p className="text-xl text-white/80 mb-10 font-light">
+            <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Schedule your consultation today and take the first step towards the smile you've always wanted.
             </p>
-            <Button size="lg" className="animate-pulse-subtle">Book an Appointment</Button>
+            <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
           </div>
         </div>
       </section>

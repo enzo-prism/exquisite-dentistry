@@ -10,14 +10,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-gold hover:bg-gold/90 text-white",
-        outline: "border border-gray-300 bg-transparent hover:bg-gray-100 text-black",
+        outline: "border border-gold bg-transparent hover:bg-gold/10 text-black",
         ghost: "bg-transparent hover:bg-gray-100 text-black",
         gold: "bg-gold hover:bg-gold/90 text-white",
+        black: "bg-black hover:bg-black/90 text-white",
       },
       size: {
         default: "h-10 px-4 py-2 rounded-sm",
         sm: "h-9 px-3 rounded-sm text-sm",
         lg: "h-12 px-8 rounded-sm text-lg",
+        xl: "h-14 px-10 rounded-sm text-lg",
       },
       fullWidth: {
         true: "w-full",
@@ -32,8 +34,8 @@ const buttonVariants = cva(
 );
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "ghost" | "gold";
-  size?: "default" | "sm" | "lg";
+  variant?: "default" | "outline" | "ghost" | "gold" | "black";
+  size?: "default" | "sm" | "lg" | "xl";
   fullWidth?: boolean;
   children: React.ReactNode;
   className?: string;

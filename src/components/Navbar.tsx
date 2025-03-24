@@ -14,6 +14,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'Patient Experience', path: '/patient-experience' },
     { name: 'Patient Resources', path: '/patient-resources' },
     { name: 'Testimonials', path: '/testimonials' },
     { name: 'Contact', path: '/contact' },
@@ -38,8 +39,8 @@ const Navbar = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled 
-          ? 'py-3 bg-white/90 backdrop-blur-md shadow-sm' 
-          : 'py-5 bg-transparent'
+          ? 'py-2 md:py-3 bg-white/90 backdrop-blur-md shadow-sm' 
+          : 'py-3 md:py-5 bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,21 +48,28 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center font-sans font-semibold text-2xl"
+            className="flex items-center font-sans font-semibold text-xl md:text-2xl"
           >
-            <span className="text-black">Exquisite</span>
+            <span className={cn(
+              "transition-colors duration-300",
+              scrolled || location.pathname !== '/' ? "text-black" : "text-white"
+            )}>Exquisite</span>
             <span className="text-gold ml-1">Dentistry</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  'font-medium text-black-light hover:text-black transition-colors duration-200',
-                  location.pathname === link.path && 'text-gold'
+                  'font-medium text-sm transition-colors duration-200',
+                  location.pathname === link.path 
+                    ? 'text-gold' 
+                    : scrolled || location.pathname !== '/' 
+                      ? 'text-black-light hover:text-black' 
+                      : 'text-white/90 hover:text-white'
                 )}
               >
                 {link.name}
@@ -72,7 +80,12 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-black hover:text-gold transition-colors"
+            className={cn(
+              "lg:hidden transition-colors",
+              scrolled || location.pathname !== '/' 
+                ? 'text-black hover:text-gold' 
+                : 'text-white hover:text-gold'
+            )}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
