@@ -88,12 +88,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation - Updated to ensure solid black background */}
+      {/* Mobile Navigation - Fixed with a completely solid black background */}
       <div
         className={cn(
           'fixed inset-0 bg-black bg-opacity-100 z-40 flex flex-col lg:hidden transition-transform duration-300 ease-in-out pt-24',
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
+        style={{ backgroundColor: '#000000' }} // Adding inline style for extra assurance
       >
         <div className="px-6 py-8 space-y-8">
           {navLinks.map((link) => (
