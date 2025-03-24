@@ -24,8 +24,20 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24;
   }
 
+  .section-spacing {
+    @apply py-12 md:py-16 lg:py-24;
+  }
+
+  .content-spacing {
+    @apply space-y-8;
+  }
+
   .heading-lg {
     @apply text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-sans font-semibold text-black leading-tight;
   }
 
   .heading-sm {
@@ -37,11 +49,11 @@
   }
 
   .separator {
-    @apply w-24 h-1 bg-gold rounded-full mx-auto;
+    @apply w-24 h-1 bg-gold rounded-full mx-auto my-6;
   }
 
   .separator-left {
-    @apply w-24 h-1 bg-gold rounded-full;
+    @apply w-24 h-1 bg-gold rounded-full my-6;
   }
 
   .animate-fade-in {
@@ -78,6 +90,22 @@
   
   .fill-gold {
     @apply fill-[#D4AF37];
+  }
+
+  .card-spacing {
+    @apply p-6 md:p-8;
+  }
+
+  .section-title {
+    @apply inline-block text-sm text-gold font-medium mb-4;
+  }
+
+  .section-heading {
+    @apply heading-lg mb-6;
+  }
+
+  .page-section {
+    @apply py-16 md:py-24;
   }
 }
 

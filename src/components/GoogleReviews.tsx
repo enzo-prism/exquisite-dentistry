@@ -72,25 +72,25 @@ const GoogleReviews = () => {
 
   if (loading) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-16">
         <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-gold border-r-transparent align-[-0.125em]"></div>
-        <p className="mt-4 text-black-light">Loading Google Reviews...</p>
+        <p className="mt-6 text-black-light">Loading Google Reviews...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-16">
         <p className="text-red-500">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <img 
             src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
             alt="Google" 
@@ -104,23 +104,23 @@ const GoogleReviews = () => {
           rel="noopener noreferrer"
           className="flex items-center text-gold hover:text-gold-dark transition-colors"
         >
-          <MessageSquare size={16} className="mr-1" />
+          <MessageSquare size={16} className="mr-2" />
           <span>Write a review</span>
-          <ExternalLink size={14} className="ml-1" />
+          <ExternalLink size={14} className="ml-1.5" />
         </a>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {reviews.map((review, index) => (
           <div 
             key={index} 
             className={cn(
-              "bg-white rounded-sm shadow-md p-6 opacity-0",
+              "bg-white rounded-sm shadow-md p-8 opacity-0",
               index % 2 === 0 ? "animate-fade-in-left" : "animate-fade-in-right"
             )}
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-5">
               {review.profile_photo_url ? (
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
                   <img 
@@ -138,29 +138,30 @@ const GoogleReviews = () => {
               )}
               <div>
                 <h3 className="font-medium text-black">{review.author_name}</h3>
-                <p className="text-xs text-black-light/70">{formatDate(review.time)}</p>
+                <p className="text-xs text-black-light/70 mt-1">{formatDate(review.time)}</p>
               </div>
             </div>
             
-            <div className="flex mb-3">
+            <div className="flex mb-4">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star 
                   key={i} 
                   size={16} 
                   className={cn(
-                    i < review.rating ? "text-gold fill-gold" : "text-gray-300"
+                    i < review.rating ? "text-gold fill-gold" : "text-gray-300",
+                    "mr-0.5"
                   )}
                 />
               ))}
             </div>
             
-            <p className="text-black-light/80 mb-3">{review.text}</p>
+            <p className="text-black-light/80 mb-4 leading-relaxed">{review.text}</p>
             
             <div className="flex items-center text-xs text-black-light/60">
               <img 
                 src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
                 alt="Google" 
-                className="h-4 object-contain mr-1"
+                className="h-4 object-contain mr-1.5"
               />
               <span>Posted on Google</span>
             </div>
@@ -168,7 +169,7 @@ const GoogleReviews = () => {
         ))}
       </div>
 
-      <div className="text-center mt-8">
+      <div className="text-center mt-10">
         <a 
           href="https://g.page/r/Ccg0Xrr-M_pIEAE/review" 
           target="_blank" 
@@ -176,23 +177,23 @@ const GoogleReviews = () => {
         >
           <Button variant="outline" className="group">
             View All Google Reviews
-            <ExternalLink size={16} className="ml-2" />
+            <ExternalLink size={16} className="ml-2.5" />
           </Button>
         </a>
       </div>
 
-      <div className="mt-12 bg-gray-50 rounded-sm p-8 border border-gray-100">
-        <h3 className="heading-sm mb-4">Implementation Note</h3>
-        <p className="paragraph mb-4">
+      <div className="mt-16 bg-gray-50 rounded-sm p-8 border border-gray-100">
+        <h3 className="heading-sm mb-5">Implementation Note</h3>
+        <p className="paragraph mb-6">
           This component currently displays sample reviews. To fetch actual Google reviews, you'll need to:
         </p>
-        <ol className="list-decimal list-inside space-y-2 text-black-light/80">
-          <li>Set up a backend API to securely fetch reviews from the Google Places API</li>
-          <li>Use your Google API key on the server-side to make requests to the Places API</li>
-          <li>Implement caching to reduce API calls and improve performance</li>
-          <li>Create an endpoint that your frontend can call to retrieve the reviews</li>
+        <ol className="list-decimal list-inside space-y-3 text-black-light/80">
+          <li className="pl-1">Set up a backend API to securely fetch reviews from the Google Places API</li>
+          <li className="pl-1">Use your Google API key on the server-side to make requests to the Places API</li>
+          <li className="pl-1">Implement caching to reduce API calls and improve performance</li>
+          <li className="pl-1">Create an endpoint that your frontend can call to retrieve the reviews</li>
         </ol>
-        <p className="paragraph mt-4">
+        <p className="paragraph mt-6">
           For security reasons, Google API keys should never be exposed in frontend code.
         </p>
       </div>

@@ -7,11 +7,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-white pt-16 pb-8">
+    <footer className="bg-black text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Brief Intro */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="font-sans font-semibold text-2xl">
               <span className="text-white">Exquisite</span>
               <span className="text-gold ml-1">Dentistry</span>
@@ -19,7 +19,7 @@ const Footer = () => {
             <p className="text-gray-300 text-sm max-w-xs">
               Providing exceptional dental care with a focus on comfort, quality, and personalized treatment plans.
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex space-x-5 pt-2">
               <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
@@ -34,8 +34,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="font-sans font-medium text-lg mb-5 text-gold">Quick Links</h3>
+            <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
               </li>
@@ -59,8 +59,8 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Our Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-sans font-medium text-lg mb-5 text-gold">Our Services</h3>
+            <ul className="space-y-3">
               <li>
                 <Link to="/services#cosmetic" className="text-gray-300 hover:text-white transition-colors">Cosmetic Dentistry</Link>
               </li>
@@ -78,23 +78,23 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-sans font-medium text-lg mb-4 text-gold">Contact Information</h3>
-            <ul className="space-y-3">
+            <h3 className="font-sans font-medium text-lg mb-5 text-gold">Contact Information</h3>
+            <ul className="space-y-4">
               <li className="flex items-start">
-                <Phone size={18} className="text-gold mt-1 mr-3" />
+                <Phone size={18} className="text-gold mt-1 mr-3.5" />
                 <span>(123) 456-7890</span>
               </li>
               <li className="flex items-start">
-                <Mail size={18} className="text-gold mt-1 mr-3" />
+                <Mail size={18} className="text-gold mt-1 mr-3.5" />
                 <span>info@exquisitedentistry.com</span>
               </li>
               <li className="flex items-start">
-                <MapPin size={18} className="text-gold mt-1 mr-3" />
+                <MapPin size={18} className="text-gold mt-1 mr-3.5" />
                 <span>6227 Wilshire Blvd<br />Los Angeles, CA 90048</span>
               </li>
               <li className="flex items-start">
-                <Clock size={18} className="text-gold mt-1 mr-3" />
-                <div>
+                <Clock size={18} className="text-gold mt-1 mr-3.5" />
+                <div className="space-y-1">
                   <div>Monday-Friday: 9AM-6PM</div>
                   <div>Saturday: 9AM-2PM</div>
                   <div>Sunday: Closed</div>
@@ -104,11 +104,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-20 pt-8 border-t border-gray-800 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
           <div>
             © {currentYear} Exquisite Dentistry. All rights reserved.
           </div>
-          <div className="mt-4 md:mt-0 flex space-x-6">
+          <div className="mt-5 md:mt-0 flex space-x-8">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             <div>HIPAA Compliant</div>

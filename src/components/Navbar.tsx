@@ -39,8 +39,8 @@ const Navbar = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled 
-          ? 'py-2 md:py-3 bg-white/90 backdrop-blur-md shadow-sm' 
-          : 'py-3 md:py-5 bg-transparent'
+          ? 'py-3 md:py-4 bg-white/90 backdrop-blur-md shadow-sm' 
+          : 'py-4 md:py-6 bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +58,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -75,7 +75,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button size="sm">Book an Appointment</Button>
+            <Button size="sm" className="ml-2">Book an Appointment</Button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -101,7 +101,7 @@ const Navbar = () => {
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        <div className="px-4 py-6 space-y-6">
+        <div className="px-6 py-8 space-y-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -114,7 +114,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <div className="pt-4">
+          <div className="pt-6">
             <Button fullWidth>Book an Appointment</Button>
           </div>
         </div>

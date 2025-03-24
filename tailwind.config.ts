@@ -68,6 +68,10 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 			},
+			spacing: {
+				'section': '6rem',
+				'content': '2.5rem',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

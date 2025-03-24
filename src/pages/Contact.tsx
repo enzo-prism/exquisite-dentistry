@@ -15,19 +15,19 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 page-transition-in">
+    <div className="min-h-screen pt-28 page-transition-in">
       {/* Hero Section */}
-      <section className="relative py-24">
+      <section className="relative py-28">
         <div className="absolute top-0 inset-0 bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop')] bg-cover bg-center h-[50vh]">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6">
+            <span className="inline-block bg-gold/90 text-white px-5 py-1.5 rounded-sm text-sm font-medium mb-8">
               GET IN TOUCH
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-8">
               Contact <span className="text-gold">Us</span>
             </h1>
           </div>
@@ -35,35 +35,35 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="-mt-32 relative z-20 mb-24">
+      <section className="-mt-32 relative z-20 mb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm">
             <div className="grid grid-cols-1 lg:grid-cols-3">
               {/* Contact Details */}
-              <div className="bg-black text-white p-10 lg:p-12">
-                <h2 className="text-2xl font-semibold mb-8">Contact Information</h2>
+              <div className="bg-black text-white p-10 lg:p-14">
+                <h2 className="text-2xl font-semibold mb-10">Contact Information</h2>
                 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <div className="flex items-start">
-                    <Phone size={20} className="text-gold mt-1 mr-4" />
+                    <Phone size={20} className="text-gold mt-1 mr-5" />
                     <div>
-                      <h3 className="font-medium mb-1">Phone</h3>
+                      <h3 className="font-medium mb-1.5">Phone</h3>
                       <p className="text-white/80">(123) 456-7890</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <Mail size={20} className="text-gold mt-1 mr-4" />
+                    <Mail size={20} className="text-gold mt-1 mr-5" />
                     <div>
-                      <h3 className="font-medium mb-1">Email</h3>
+                      <h3 className="font-medium mb-1.5">Email</h3>
                       <p className="text-white/80">info@exquisitedentistry.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <MapPin size={20} className="text-gold mt-1 mr-4" />
+                    <MapPin size={20} className="text-gold mt-1 mr-5" />
                     <div>
-                      <h3 className="font-medium mb-1">Address</h3>
+                      <h3 className="font-medium mb-1.5">Address</h3>
                       <p className="text-white/80">
                         6227 Wilshire Blvd<br />
                         Los Angeles, CA 90048
@@ -72,10 +72,10 @@ const Contact = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <Clock size={20} className="text-gold mt-1 mr-4" />
+                    <Clock size={20} className="text-gold mt-1 mr-5" />
                     <div>
-                      <h3 className="font-medium mb-1">Hours</h3>
-                      <div className="text-white/80">
+                      <h3 className="font-medium mb-1.5">Hours</h3>
+                      <div className="text-white/80 space-y-1">
                         <p>Monday-Friday: 9AM-6PM</p>
                         <p>Saturday: 9AM-2PM</p>
                         <p>Sunday: Closed</p>
@@ -84,9 +84,9 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="mt-12 pt-6 border-t border-white/20">
-                  <h3 className="font-medium mb-4">Follow Us</h3>
-                  <div className="flex space-x-4">
+                <div className="mt-14 pt-8 border-t border-white/20">
+                  <h3 className="font-medium mb-5">Follow Us</h3>
+                  <div className="flex space-x-5">
                     <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -109,37 +109,37 @@ const Contact = () => {
               </div>
               
               {/* Contact Form */}
-              <div className="col-span-2 p-10 lg:p-12">
-                <h2 className="text-2xl font-semibold mb-8">Send Us a Message</h2>
+              <div className="col-span-2 p-10 lg:p-14">
+                <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
                       <label htmlFor="name" className="block font-medium text-black">Name</label>
                       <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                           <User size={18} className="text-gray-400" />
                         </div>
                         <input
                           type="text"
                           id="name"
-                          className="block w-full pl-10 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                          className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
                           placeholder="Your name"
                           required
                         />
                       </div>
                     </div>
                     
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <label htmlFor="email" className="block font-medium text-black">Email</label>
                       <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                           <Mail size={18} className="text-gray-400" />
                         </div>
                         <input
                           type="email"
                           id="email"
-                          className="block w-full pl-10 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                          className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
                           placeholder="Your email"
                           required
                         />
@@ -147,37 +147,37 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <label htmlFor="subject" className="block font-medium text-black">Subject</label>
                     <input
                       type="text"
                       id="subject"
-                      className="block w-full py-3 px-4 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                      className="block w-full py-3.5 px-4 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
                       placeholder="How can we help you?"
                       required
                     />
                   </div>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <label htmlFor="message" className="block font-medium text-black">Message</label>
                     <div className="relative">
-                      <div className="absolute top-3 left-3 pointer-events-none">
+                      <div className="absolute top-3.5 left-4 pointer-events-none">
                         <MessageSquare size={18} className="text-gray-400" />
                       </div>
                       <textarea
                         id="message"
                         rows={6}
-                        className="block w-full pl-10 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                        className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
                         placeholder="Your message"
                         required
                       ></textarea>
                     </div>
                   </div>
                   
-                  <div>
-                    <Button type="submit" className="w-full md:w-auto flex items-center justify-center group">
+                  <div className="pt-2">
+                    <Button type="submit" className="w-full md:w-auto flex items-center justify-center group px-6 py-3">
                       Send Message
-                      <Send size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      <Send size={16} className="ml-3 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>
                 </form>
@@ -188,10 +188,10 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="mb-24">
+      <section className="mb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="heading-lg mb-4">Our Location</h2>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="heading-lg mb-5">Our Location</h2>
             <p className="paragraph">
               Conveniently located on Wilshire Blvd, our office is easily accessible with ample parking available.
             </p>
@@ -214,16 +214,16 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-black">
+      <section className="py-28 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-8">
               Ready for Your <span className="text-gold">Appointment?</span>
             </h2>
-            <p className="text-xl text-white/80 mb-10 font-light">
+            <p className="text-xl text-white/80 mb-12 font-light">
               Schedule your visit today and experience the Exquisite Dentistry difference.
             </p>
-            <Button size="lg">Book an Appointment</Button>
+            <Button size="lg" className="px-8 py-3.5">Book an Appointment</Button>
           </div>
         </div>
       </section>
