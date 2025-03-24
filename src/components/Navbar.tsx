@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Button from './Button';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -98,12 +98,19 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-full max-w-full sm:max-w-md p-0 bg-black border-l border-gold/30">
                 <div className="flex flex-col h-full">
-                  <div className="p-6 border-b border-gold/10">
+                  <div className="p-6 border-b border-gold/10 flex justify-between items-center">
                     <img 
                       src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
                       alt="Exquisite Dentistry" 
-                      className="h-8 mb-4"
+                      className="h-8"
                     />
+                    <button 
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-white hover:text-gold transition-colors"
+                      aria-label="Close menu"
+                    >
+                      <X size={24} />
+                    </button>
                   </div>
 
                   <nav className="flex-1 overflow-auto py-6 px-4">
