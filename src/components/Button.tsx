@@ -1,41 +1,62 @@
 
 import React from 'react';
+import { Button as ShadcnButton } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'gold' | 'black' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  fullWidth?: boolean;
-  children: React.ReactNode;
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'gold', size = 'md', fullWidth, children, ...props }, ref) => {
-    return (
-      <button
-        className={cn(
-          'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-sm shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2',
-          {
-            'bg-gold hover:bg-gold-dark text-white': variant === 'gold',
-            'bg-black hover:bg-black-light text-white': variant === 'black',
-            'bg-transparent border border-gold text-gold hover:bg-gold/5': variant === 'outline',
-            'bg-transparent text-black-light hover:text-black hover:bg-black/5': variant === 'ghost',
-            'px-3 py-1.5 text-sm': size === 'sm',
-            'px-6 py-3': size === 'md',
-            'px-8 py-4 text-lg': size === 'lg',
-            'w-full': fullWidth,
-          },
-          className
-        )}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </button>
-    );
+const buttonVariants = cva(
+  "inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-gold hover:bg-gold/90 text-white",
+        outline: "border border-gray-300 bg-transparent hover:bg-gray-100 text-black",
+        ghost: "bg-transparent hover:bg-gray-100 text-black",
+        gold: "bg-gold hover:bg-gold/90 text-white",
+      },
+      size: {
+        default: "h-10 px-4 py-2 rounded-sm",
+        sm: "h-9 px-3 rounded-sm text-sm",
+        lg: "h-12 px-8 rounded-sm text-lg",
+      },
+      fullWidth: {
+        true: "w-full",
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+      fullWidth: false
+    }
   }
 );
 
-Button.displayName = 'Button';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "outline" | "ghost" | "gold";
+  size?: "default" | "sm" | "lg";
+  fullWidth?: boolean;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Button = ({ 
+  variant = "default", 
+  size = "default", 
+  fullWidth = false,
+  children, 
+  className,
+  ...props 
+}: ButtonProps) => {
+  return (
+    <ShadcnButton 
+      className={cn(
+        buttonVariants({ variant, size, fullWidth, className })
+      )}
+      {...props}
+    >
+      {children}
+    </ShadcnButton>
+  );
+};
 
 export default Button;

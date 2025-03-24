@@ -14,6 +14,7 @@ import PatientResources from "@/pages/PatientResources";
 import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
+import PatientExperienceSection from "@/components/PatientExperienceSection";
 
 const queryClient = new QueryClient();
 

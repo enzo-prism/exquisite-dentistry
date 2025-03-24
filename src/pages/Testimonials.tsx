@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, CheckCircle } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +16,8 @@ const Testimonials = () => {
       profession: "Marketing Executive",
       content: "Dr. Aguil is amazing! The entire staff made me feel comfortable and the results are exceptional. I couldn't be happier with my new smile. The office environment is elegant yet welcoming, and every detail of my treatment plan was clearly explained.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
+      procedure: "Smile Makeover"
     },
     {
       id: 2,
@@ -24,7 +25,8 @@ const Testimonials = () => {
       profession: "Software Engineer",
       content: "I've been to many dentists, but Exquisite Dentistry truly lives up to its name. The attention to detail and quality of care is unmatched. Dr. Aguil took the time to understand my concerns and created a personalized treatment plan that addressed all my needs.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1974&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1974&auto=format&fit=crop",
+      procedure: "Invisalign"
     },
     {
       id: 3,
@@ -32,7 +34,8 @@ const Testimonials = () => {
       profession: "Teacher",
       content: "After years of being afraid of dental work, I finally found a practice that puts patient comfort first. The team is professional and genuinely caring. They took extra steps to ensure I was relaxed throughout my procedure, and the results exceeded my expectations.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?q=80&w=1960&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?q=80&w=1960&auto=format&fit=crop",
+      procedure: "Dental Implants"
     },
     {
       id: 4,
@@ -40,7 +43,8 @@ const Testimonials = () => {
       profession: "Architect",
       content: "The level of expertise at Exquisite Dentistry is outstanding. Dr. Aguil combines technical skill with an artistic eye, resulting in dental work that looks completely natural. I've received numerous compliments on my smile since completing treatment.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop",
+      procedure: "Porcelain Veneers"
     },
     {
       id: 5,
@@ -48,7 +52,8 @@ const Testimonials = () => {
       profession: "Financial Analyst",
       content: "From the moment you walk in, it's clear that Exquisite Dentistry is different from other dental offices. The elegant environment, attentive staff, and state-of-the-art technology all contribute to an exceptional experience. I wouldn't trust my smile to anyone else.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop",
+      procedure: "Teeth Whitening"
     },
     {
       id: 6,
@@ -56,8 +61,18 @@ const Testimonials = () => {
       profession: "Attorney",
       content: "As someone who speaks publicly for a living, having a confident smile is essential. Dr. Aguil understood this and worked with me to achieve results that enhance my appearance while still looking completely natural. The investment in my smile has been invaluable.",
       stars: 5,
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
+      procedure: "Full Mouth Reconstruction"
     }
+  ];
+
+  const testimonialHighlights = [
+    "Gentle, painless procedures",
+    "Spa-like office environment",
+    "Clear communication throughout treatment",
+    "Expert cosmetic results",
+    "Friendly, attentive staff",
+    "Convenient scheduling options"
   ];
 
   return (
@@ -90,6 +105,16 @@ const Testimonials = () => {
               <p className="paragraph mb-8">
                 We're proud of the relationships we build with our patients and the positive impact our care has on their lives. Here are some of their stories and experiences with Exquisite Dentistry.
               </p>
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12">
+                {testimonialHighlights.map((highlight, index) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <CheckCircle size={20} className="text-gold" />
+                    <span className="text-sm font-medium">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+              
               <div className="flex justify-center space-x-2 mt-8">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Star key={index} size={24} className="text-gold fill-gold" />
@@ -129,6 +154,10 @@ const Testimonials = () => {
                 </div>
               </div>
               
+              <div className="bg-gold/10 text-black px-3 py-1 rounded-sm inline-block text-xs font-medium mb-4">
+                {testimonial.procedure}
+              </div>
+              
               <div className="flex mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star 
@@ -160,8 +189,19 @@ const Testimonials = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2].map((item, index) => (
-              <div key={item} className="bg-white rounded-sm shadow-md overflow-hidden">
+            {[
+              {
+                title: "Sarah's Smile Transformation",
+                description: "Sarah shares her experience with cosmetic dentistry and how it has improved her confidence.",
+                procedure: "Porcelain Veneers"
+              },
+              {
+                title: "Michael's Experience",
+                description: "Michael discusses his journey to overcome dental anxiety and find comfort at our practice.",
+                procedure: "Invisalign Treatment"
+              }
+            ].map((video, index) => (
+              <div key={index} className="bg-white rounded-sm shadow-md overflow-hidden">
                 <div className="aspect-video bg-black relative">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Button variant="gold" size="lg" className="rounded-full w-16 h-16 p-0">
@@ -172,14 +212,11 @@ const Testimonials = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="heading-sm mb-2">
-                    {index === 0 ? "Sarah's Smile Transformation" : "Michael's Experience"}
-                  </h3>
-                  <p className="text-black-light/80 mb-4">
-                    {index === 0 
-                      ? "Sarah shares her experience with cosmetic dentistry and how it has improved her confidence." 
-                      : "Michael discusses his journey to overcome dental anxiety and find comfort at our practice."}
-                  </p>
+                  <div className="bg-gold/10 text-black px-3 py-1 rounded-sm inline-block text-xs font-medium mb-2">
+                    {video.procedure}
+                  </div>
+                  <h3 className="heading-sm mb-2">{video.title}</h3>
+                  <p className="text-black-light/80 mb-4">{video.description}</p>
                   <div className="flex items-center">
                     <div className="flex">
                       {Array.from({ length: 5 }).map((_, i) => (
@@ -192,6 +229,44 @@ const Testimonials = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Before and After Gallery */}
+      <section className="section-container">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block text-sm text-gold font-medium mb-3">BEFORE & AFTER</span>
+          <h2 className="heading-lg mb-6">Smile Transformations</h2>
+          <div className="separator"></div>
+          <p className="paragraph">
+            See the real results of Dr. Aguil's work with these before and after photos of actual patients.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { procedure: "Porcelain Veneers", image: "https://images.unsplash.com/photo-1616702451225-05bbeaae073f?q=80&w=1770&auto=format&fit=crop" },
+            { procedure: "Smile Makeover", image: "https://images.unsplash.com/photo-1581871737046-24c48381c75f?q=80&w=1858&auto=format&fit=crop" },
+            { procedure: "Invisalign", image: "https://images.unsplash.com/photo-1537212013133-060fd2e24791?q=80&w=1767&auto=format&fit=crop" }
+          ].map((item, index) => (
+            <div key={index} className="bg-white rounded-sm shadow-md overflow-hidden">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={`${item.procedure} before and after`} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                  <div>
+                    <div className="bg-gold/90 text-white px-3 py-1 rounded-sm inline-block text-xs font-medium mb-2">
+                      {item.procedure}
+                    </div>
+                    <h3 className="text-white font-medium">Amazing Transformation</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
