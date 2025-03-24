@@ -4,10 +4,17 @@ import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-re
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
+import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 
 const Contact = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Check and fix any section gaps
+    setTimeout(() => {
+      checkForSectionGaps();
+      fixBackgroundConsistency();
+    }, 500);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,7 +24,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden">
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
@@ -31,7 +38,7 @@ const Contact = () => {
       />
 
       {/* Contact Information */}
-      <section className="-mt-32 relative z-20 mb-28">
+      <section className="-mt-32 relative z-20 mb-0 py-0 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm">
             <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -184,7 +191,7 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="mb-28">
+      <section className="mb-0 py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="heading-lg mb-5">Our Location</h2>
@@ -209,7 +216,7 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-28 bg-black">
+      <section className="py-28 bg-black w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-8">

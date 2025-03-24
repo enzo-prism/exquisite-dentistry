@@ -12,12 +12,15 @@
     animation-delay: 600ms;
   }
   
+  /* Fixed section spacing to eliminate gaps */
   .section-vertical-spacing {
     @apply py-12 md:py-16 lg:py-24 xl:py-32;
+    margin: 0;
   }
   
   .content-vertical-spacing {
     @apply py-6 md:py-8 lg:py-12;
+    margin: 0;
   }
   
   .element-spacing {
@@ -31,11 +34,19 @@
   .mobile-text-balance {
     text-wrap: balance;
   }
+
+  /* Fix for unwanted gaps */
+  .no-gap {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @layer base {
   body {
-    @apply bg-gray-50 text-black antialiased;
+    @apply bg-gray-50 text-black antialiased m-0 p-0;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -46,8 +57,9 @@
     @apply mb-6;
   }
   
+  /* Remove default margin from sections causing gaps */
   section {
-    @apply mb-12 md:mb-16;
+    @apply m-0;
   }
   
   /* Improve tap target sizes on mobile */
@@ -59,31 +71,21 @@
 @layer components {
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24 xl:py-32;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .section-spacing {
     @apply py-12 md:py-16 lg:py-24 xl:py-32;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .content-spacing {
     @apply space-y-8 md:space-y-10;
   }
 
-  .heading-lg {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mobile-text-balance;
-  }
-
-  .heading-md {
-    @apply text-xl sm:text-2xl md:text-3xl font-sans font-semibold text-black leading-tight mobile-text-balance;
-  }
-
-  .heading-sm {
-    @apply text-lg sm:text-xl md:text-2xl font-sans font-semibold text-black leading-tight mobile-text-balance;
-  }
-
-  .paragraph {
-    @apply text-black-light text-base sm:text-lg font-light leading-relaxed;
-  }
+  /* ... keep existing code (heading and paragraph styles) */
 
   .separator {
     @apply w-16 sm:w-24 h-1 bg-gold rounded-full mx-auto my-6 md:my-8;
@@ -93,21 +95,7 @@
     @apply w-16 sm:w-24 h-1 bg-gold rounded-full my-6 md:my-8;
   }
 
-  .animate-fade-in {
-    animation: fadeIn 0.5s forwards;
-  }
-
-  .animate-fade-in-left {
-    animation: fadeInFromLeft 0.5s forwards;
-  }
-
-  .animate-fade-in-right {
-    animation: fadeInFromRight 0.5s forwards;
-  }
-
-  .animate-pulse-subtle {
-    animation: pulseSubtle 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
+  /* ... keep existing code (animation styles) */
 
   .page-transition-in {
     animation: pageTransitionIn 0.3s ease-out forwards;
@@ -143,6 +131,7 @@
 
   .page-section {
     @apply py-12 md:py-16 lg:py-24;
+    margin: 0;
   }
   
   /* Mobile optimization for grid layouts */
@@ -154,60 +143,23 @@
   .mobile-cta {
     @apply py-3 px-4 text-base sm:py-4 sm:px-6 sm:text-lg w-full sm:w-auto;
   }
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  /* Fix for sections with different background colors */
+  .bg-section {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes fadeInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  .bg-section::before,
+  .bg-section::after {
+    display: none;
   }
 }
 
-@keyframes fadeInFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulseSubtle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes pageTransitionIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ... keep existing code (keyframes and animations) */
 
 /* Mobile viewport optimization */
 @media (max-width: 640px) {
@@ -218,4 +170,23 @@
   :root {
     --radius: 4px; /* Slightly smaller radius on mobile */
   }
+
+  /* Prevent horizontal overflow on mobile */
+  body, #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Create consistent full-width sections */
+.full-width-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+}
+
+/* Ensure consistent backgrounds */
+.bg-black {
+  background-color: #1A1A1A;
 }

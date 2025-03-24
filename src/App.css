@@ -6,9 +6,21 @@
   text-align: center;
 }
 
-/* Additional spacing for content sections */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Eliminate unwanted gaps between sections */
+section {
+  margin: 0;
+}
+
+/* Fix content sections that might have unwanted margins */
 .content-section {
-  margin-bottom: 4rem;
+  margin: 0;
+  padding: 4rem 0;
 }
 
 .content-wrapper {
