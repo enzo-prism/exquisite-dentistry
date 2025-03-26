@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -66,7 +65,7 @@ const services = [
     description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
     highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
     icon: <Shield size={24} />,
-    image: "https://images.unsplash.com/photo-1513193563746-fac77a988f8a?q=80&w=1925&auto=format&fit=crop",
+    image: "/lovable-uploads/9605398c-9376-492f-96bf-fe0660461b0b.png",
     treatments: [
       {
         name: "Comprehensive Exams",
