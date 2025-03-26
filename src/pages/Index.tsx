@@ -62,12 +62,12 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Wedding CTA - Improved readability */}
+            {/* Wedding CTA - Updated with new image */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
               {/* Enhanced dark overlay with stronger gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
               <img 
-                src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop" 
+                src="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png" 
                 alt="Wedding Smile" 
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -88,7 +88,7 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Graduation CTA - Improved readability */}
+            {/* Graduation CTA */}
             <div className="relative overflow-hidden rounded-sm shadow-lg group">
               {/* Enhanced dark overlay with stronger gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
@@ -285,10 +285,33 @@ const Index = () => {
           <div className="separator"></div>
         </div>
 
-        <TestimonialCarousel 
-          testimonials={testimonials} 
-          className="opacity-0 animate-fade-in delay-300"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-white p-8 rounded-sm shadow-md opacity-0 animate-fade-in" style={{ animationDelay: '150ms' }}>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="md:w-1/3">
+                <img 
+                  src="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
+                  alt="Wedding Couple Testimonial" 
+                  className="w-full aspect-square object-cover rounded-sm"
+                  loading="lazy"
+                />
+              </div>
+              <div className="md:w-2/3">
+                <div className="text-gold mb-3">★★★★★</div>
+                <p className="text-base italic mb-4">
+                  "As a bride, I wanted my smile to be perfect for our wedding photos. Dr. Aguil created a custom treatment plan that gave me the confidence to smile brightly on our special day!"
+                </p>
+                <p className="font-medium">Amanda S.</p>
+                <p className="text-sm text-black-light">Wedding Client, Beverly Hills</p>
+              </div>
+            </div>
+          </div>
+          
+          <TestimonialCarousel 
+            testimonials={testimonials} 
+            className="opacity-0 animate-fade-in delay-300"
+          />
+        </div>
 
         <div className="text-center mt-10 md:mt-12 opacity-0 animate-fade-in delay-600">
           <Link to="/testimonials">

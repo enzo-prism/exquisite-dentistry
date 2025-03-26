@@ -16,7 +16,7 @@ const Wedding = () => {
     <div className="min-h-screen page-transition-in">
       {/* Hero Section with YouTube Video */}
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop"
+        posterSrc="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
         youtubeId={YOUTUBE_VIDEOS.COSMETIC}
         title={<>Perfect <span className="text-gold">Wedding Smiles</span></>}
         subtitle="Look and feel your best on your special day with our customized wedding smile makeover treatments."
@@ -229,17 +229,27 @@ const Wedding = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
-              <div className="flex items-center mb-6">
-                <Heart size={24} className="text-gold mr-3" />
-                <div className="text-gold">★★★★★</div>
+            <div className="flex flex-col md:flex-row gap-6 bg-gray-50 p-8 rounded-sm shadow-sm">
+              <div className="md:w-1/3">
+                <img 
+                  src="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
+                  alt="Happy Wedding Couple" 
+                  className="w-full h-full object-cover rounded-sm"
+                  loading="lazy"
+                />
               </div>
-              <p className="text-lg italic mb-6">
-                "Dr. Aguil and his team helped me achieve the smile I always wanted for my wedding day. The Invisalign and whitening combination was perfect, and my photos came out amazing!"
-              </p>
-              <div>
-                <p className="font-medium">Jessica T.</p>
-                <p className="text-sm text-black-light">Bride, Los Angeles</p>
+              <div className="md:w-2/3">
+                <div className="flex items-center mb-4">
+                  <Heart size={24} className="text-gold mr-3" />
+                  <div className="text-gold">★★★★★</div>
+                </div>
+                <p className="text-lg italic mb-4">
+                  "Dr. Aguil and his team helped me achieve the smile I always wanted for my wedding day. The Invisalign and whitening combination was perfect, and my photos came out amazing!"
+                </p>
+                <div>
+                  <p className="font-medium">Jessica T.</p>
+                  <p className="text-sm text-black-light">Bride, Los Angeles</p>
+                </div>
               </div>
             </div>
 
