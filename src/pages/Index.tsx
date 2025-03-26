@@ -1,225 +1,88 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smile, Shield, Wrench, Award, Camera, Monitor, Headphones, Heart, GraduationCap } from 'lucide-react';
+import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
 import Button from '@/components/Button';
-import ServiceCard from '@/components/ServiceCard';
-import TestimonialCarousel from '@/components/TestimonialCarousel';
+import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
-import { cn } from '@/lib/utils';
-import PatientExperienceSection from '@/components/PatientExperienceSection';
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Thompson",
-    content: "Dr. Aguil is amazing! The entire staff made me feel comfortable and the results are exceptional. I couldn't be happier with my new smile.",
-    stars: 5
-  },
-  {
-    id: 2,
-    name: "Michael Rodriguez",
-    content: "I've been to many dentists, but Exquisite Dentistry truly lives up to its name. The attention to detail and quality of care is unmatched.",
-    stars: 5
-  },
-  {
-    id: 3,
-    name: "Jennifer Wallace",
-    content: "After years of being afraid of dental work, I finally found a practice that puts patient comfort first. The team is professional and genuinely caring.",
-    stars: 5
-  }
-];
+import ServiceCard from '@/components/ServiceCard';
+import TestimonialCard from '@/components/TestimonialCard';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen page-transition-in">
       {/* Hero Section with YouTube Video */}
       <VideoHero
-        youtubeId={YOUTUBE_VIDEOS.SMILE}
-        title={<>Award-Winning <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles & Beyond</>}
-        subtitle="Experience the perfect blend of artistry and science at Dr. Alexie Aguil's refined dental practice, where patient comfort meets clinical excellence."
-        primaryCta={{ text: "Book an Appointment" }}
-        secondaryCta={{ text: "Learn More About Our Services", href: "/services" }}
+        posterSrc="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png"
+        youtubeId={YOUTUBE_VIDEOS.DEFAULT}
+        title={<>Beverly Hills <span className="text-gold">Cosmetic Dentistry</span></>}
+        subtitle="Experience the perfect blend of artistry and science at Exquisite Dentistry, where we create beautiful, natural-looking smiles in a luxurious, comfortable environment."
+        primaryCta={{ text: "Book Consultation" }}
+        secondaryCta={{ text: "Meet Dr. Aguil", href: "/about" }}
         overlayColor="gradient"
+        height="full"
         scrollIndicator={true}
-        badgeText="EXQUISITE DENTISTRY"
       />
 
-      {/* Seasonal CTAs Section */}
-      <section className="py-12 bg-white">
+      {/* Services Overview Section */}
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="inline-block text-sm text-gold font-medium mb-3">SPECIAL OCCASIONS</span>
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">Get Ready For Your Big Day</h2>
-            <p className="text-lg text-black-light">
-              Looking your best for an upcoming special event? We offer specialized cosmetic treatments to help you shine.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Wedding CTA - Updated with new image */}
-            <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              {/* Enhanced dark overlay with stronger gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
-              <img 
-                src="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png" 
-                alt="Wedding Smile" 
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/40 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm shadow-lg">
-                  <Heart size={32} className="drop-shadow-md" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-3 drop-shadow-lg">Wedding Smile Makeover</h3>
-                <p className="text-white text-lg mb-6 max-w-md drop-shadow-lg font-medium leading-snug">
-                  Look picture-perfect for your special day with our customized wedding smile treatments.
-                </p>
-                <Link to="/wedding">
-                  <Button variant="gold" size="lg" className="group shadow-lg">
-                    Wedding Smile Guide
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Graduation CTA */}
-            <div className="relative overflow-hidden rounded-sm shadow-lg group">
-              {/* Enhanced dark overlay with stronger gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 transition-all duration-300 group-hover:from-black/95"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop" 
-                alt="Graduation Smile" 
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/40 flex items-center justify-center mx-auto text-white mb-4 backdrop-blur-sm shadow-lg">
-                  <GraduationCap size={32} className="drop-shadow-md" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-3 drop-shadow-lg">Graduation Smile Treatment</h3>
-                <p className="text-white text-lg mb-6 max-w-md drop-shadow-lg font-medium leading-snug">
-                  Graduate with confidence with our quick, effective smile enhancement solutions.
-                </p>
-                <Link to="/graduation">
-                  <Button variant="gold" size="lg" className="group shadow-lg">
-                    Graduation Smile Guide
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Redesigned Introduction Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col-reverse lg:flex-row gap-12 items-center">
-            {/* Content Column */}
-            <div className="w-full lg:w-1/2 space-y-6 opacity-0 animate-fade-in-left">
-              <div className="inline-flex items-center gap-2">
-                <div className="h-1 w-10 bg-gold rounded-full"></div>
-                <span className="text-sm text-gold font-medium uppercase tracking-wider">Meet Dr. Alexie Aguil</span>
-              </div>
-              
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight">
-                Leading Cosmetic Dentistry Expert in Los Angeles
-              </h2>
-              
-              <p className="text-lg text-black-light leading-relaxed">
-                At Exquisite Dentistry, Dr. Alexie Aguil combines artistic vision with advanced dental techniques to create stunning, natural-looking smiles. His patient-centric approach ensures each visit is comfortable and stress-free in our spa-like environment.
-              </p>
-              
-              <p className="text-lg text-black-light leading-relaxed">
-                From convenient scheduling options including same-day emergency appointments to amenities like noise-canceling headphones and aromatherapy, we've reimagined what dental care can be.
-              </p>
-              
-              <div className="flex items-center gap-4 pt-4">
-                <Link to="/about">
-                  <Button className="group">
-                    Learn About Dr. Aguil
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            {/* Image Column */}
-            <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-right">
-              <div className="relative mx-auto max-w-md lg:max-w-full">
-                {/* Main Image with Frame */}
-                <div className="relative z-10 bg-white p-3 rounded-sm shadow-xl">
-                  <div className="aspect-[3/4] overflow-hidden rounded-sm">
-                    <img 
-                      src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
-                      alt="Dr. Alexie Aguil" 
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-                
-                {/* Award Badge */}
-                <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 z-20 bg-white rounded-sm shadow-xl p-4 max-w-[200px]">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Award size={20} className="text-gold" />
-                    <span className="text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
-                  </div>
-                  <p className="text-xs text-black-light">
-                    Top provider in Beverly Hills & West Hollywood
-                  </p>
-                </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute top-8 -right-4 w-20 h-20 bg-gold/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -bottom-10 right-16 w-32 h-32 bg-gold/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -z-10 -top-6 -left-6 w-full h-full border-2 border-gold/30 rounded-sm"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="section-container">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
-            <span className="inline-block text-sm text-gold font-medium mb-3">OUR SERVICES</span>
-            <h2 className="heading-lg mb-6">Comprehensive Dental Services</h2>
-            <div className="separator"></div>
-            <p className="paragraph">
-              From advanced cosmetic procedures to general and restorative treatments, we offer a full spectrum of dental services tailored to your unique needs.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+              Our <span className="text-gold">Services</span>
+            </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto">
+              Comprehensive cosmetic and restorative dental solutions tailored to your unique needs
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <ServiceCard 
-              title="Cosmetic Dentistry" 
-              description="Transform your smile with our range of cosmetic services including porcelain veneers, Invisalign, teeth whitening, and complete smile makeovers."
-              icon={<Smile size={32} />}
-              index={0}
+            <ServiceCard
+              title="Porcelain Veneers"
+              description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#veneers"
             />
-            <ServiceCard 
-              title="General Dentistry" 
-              description="Maintain optimal oral health with professional cleanings, oral cancer screenings, and same-day emergency appointments at our Melrose location."
-              icon={<Shield size={32} />}
-              index={1}
+            <ServiceCard
+              title="Smile Makeovers"
+              description="Comprehensive treatment plans combining multiple procedures to completely transform your smile's appearance."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#smile-makeovers"
             />
-            <ServiceCard 
-              title="Restorative Dentistry" 
-              description="Restore function and aesthetics with dental implants, porcelain crowns, bridges, and full mouth restorations for a natural-looking smile."
-              icon={<Wrench size={32} />}
-              index={2}
+            <ServiceCard
+              title="Teeth Whitening"
+              description="Professional-grade whitening treatments that safely and effectively remove stains and discoloration for a brighter smile."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#whitening"
+            />
+            <ServiceCard
+              title="Invisalign"
+              description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#invisalign"
+            />
+            <ServiceCard
+              title="Dental Implants"
+              description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#implants"
+            />
+            <ServiceCard
+              title="Full Mouth Reconstruction"
+              description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
+              icon={<Star className="h-6 w-6" />}
+              href="/services#reconstruction"
             />
           </div>
 
-          <div className="text-center mt-10 md:mt-12 opacity-0 animate-fade-in delay-600">
+          <div className="text-center mt-12">
             <Link to="/services">
               <Button variant="outline" className="group">
                 View All Services
@@ -230,110 +93,163 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Advanced Technology Section */}
-      <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
-          <span className="inline-block text-sm text-gold font-medium mb-3">ADVANCED TECHNOLOGY</span>
-          <h2 className="heading-lg mb-6">Cutting-Edge Dental Equipment</h2>
-          <div className="separator"></div>
-          <p className="paragraph">
-            We utilize the latest dental technology to enhance precision, comfort, and results for all our treatments.
-          </p>
-        </div>
+      {/* Seasonal CTAs Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+              Seasonal <span className="text-gold">Treatments</span>
+            </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto">
+              Special services for life's important moments
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '150ms' }}>
-            <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
-              <Camera size={32} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Wedding Card */}
+            <div className="relative overflow-hidden group rounded-sm shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                alt="Wedding celebration" 
+                className="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
+                <div className="w-14 h-14 bg-gold/90 rounded-full flex items-center justify-center mb-4">
+                  <Calendar size={28} />
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">Wedding Smile Packages</h3>
+                <p className="text-center max-w-xs mb-6">
+                  Look your absolute best on your special day with our customized wedding smile treatments.
+                </p>
+                <Link to="/wedding" className="inline-flex items-center justify-center">
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                    Wedding Smile Guide
+                    <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <h3 className="heading-sm mb-4">Intraoral Cameras</h3>
-            <p className="text-black-light/80">
-              High-definition intraoral cameras allow us to show you exactly what we see, helping you understand your treatment needs.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '300ms' }}>
-            <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
-              <Monitor size={32} />
+
+            {/* Graduation Card */}
+            <div className="relative overflow-hidden group rounded-sm shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
+              <img 
+                src="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
+                alt="Graduation celebration" 
+                className="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
+                <div className="w-14 h-14 bg-gold/90 rounded-full flex items-center justify-center mb-4">
+                  <GraduationCap size={28} />
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">Graduation Smile Treatment</h3>
+                <p className="text-center max-w-xs mb-6">
+                  Graduate with confidence with our quick, effective smile enhancement solutions.
+                </p>
+                <Link to="/graduation" className="inline-flex items-center justify-center">
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                    Graduation Smile Guide
+                    <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <h3 className="heading-sm mb-4">Digital X-Rays</h3>
-            <p className="text-black-light/80">
-              Digital radiography provides immediate, high-quality images with significantly reduced radiation exposure.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 md:p-8 rounded-sm shadow-md text-center opacity-0 animate-fade-in" style={{ animationDelay: '450ms' }}>
-            <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold mb-6">
-              <span className="text-2xl font-bold">3D</span>
-            </div>
-            <h3 className="heading-sm mb-4">3Shape Trios Scanner</h3>
-            <p className="text-black-light/80">
-              Our advanced 3D scanner creates precise digital impressions without the discomfort of traditional methods.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Patient Experience Section */}
-      <PatientExperienceSection />
-
-      {/* Testimonials Section */}
-      <section className="section-container">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
-          <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT TESTIMONIALS</span>
-          <h2 className="heading-lg mb-6">What Our Patients Say</h2>
-          <div className="separator"></div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white p-8 rounded-sm shadow-md opacity-0 animate-fade-in" style={{ animationDelay: '150ms' }}>
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/3">
-                <img 
-                  src="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
-                  alt="Wedding Couple Testimonial" 
-                  className="w-full aspect-square object-cover rounded-sm"
-                  loading="lazy"
-                />
-              </div>
-              <div className="md:w-2/3">
-                <div className="text-gold mb-3">★★★★★</div>
-                <p className="text-base italic mb-4">
-                  "As a bride, I wanted my smile to be perfect for our wedding photos. Dr. Aguil created a custom treatment plan that gave me the confidence to smile brightly on our special day!"
-                </p>
-                <p className="font-medium">Amanda S.</p>
-                <p className="text-sm text-black-light">Wedding Client, Beverly Hills</p>
-              </div>
+      {/* Featured Image Section */}
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2">
+              <img 
+                src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
+                alt="Dr. Alexie Aguil performing cosmetic dentistry" 
+                className="w-full h-auto object-cover rounded-sm shadow-md"
+                loading="lazy"
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h2 className="text-2xl md:text-3xl font-sans font-semibold text-black leading-tight mb-4">
+                The <span className="text-gold">Exquisite</span> Experience
+              </h2>
+              <p className="text-lg text-black-light mb-6">
+                At Exquisite Dentistry, we believe that dental care should be a luxurious, comfortable experience. Our state-of-the-art Beverly Hills practice combines the latest technology with a spa-like atmosphere to ensure your comfort at every step.
+              </p>
+              <p className="text-lg text-black-light mb-6">
+                Dr. Alexie Aguil's artistic approach to cosmetic dentistry creates smiles that are not just beautiful, but perfectly suited to your unique facial features and personality.
+              </p>
+              <Link to="/patient-experience">
+                <Button>
+                  Discover the Experience
+                  <ArrowRight size={16} className="ml-2" />
+                </Button>
+              </Link>
             </div>
           </div>
-          
-          <TestimonialCarousel 
-            testimonials={testimonials} 
-            className="opacity-0 animate-fade-in delay-300"
-          />
         </div>
+      </section>
 
-        <div className="text-center mt-10 md:mt-12 opacity-0 animate-fade-in delay-600">
-          <Link to="/testimonials">
-            <Button variant="outline" className="group">
-              Read More Patient Stories
-              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+              Patient <span className="text-gold">Testimonials</span>
+            </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto">
+              Hear what our patients have to say about their experience at Exquisite Dentistry
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <TestimonialCard
+              quote="Dr. Aguil completely transformed my smile with porcelain veneers. The attention to detail and personalized care I received was exceptional."
+              author="Jennifer L."
+              location="Beverly Hills, CA"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="After years of being self-conscious about my smile, Exquisite Dentistry gave me the confidence I've always wanted. The results exceeded my expectations."
+              author="Michael T."
+              location="Los Angeles, CA"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="The entire team at Exquisite Dentistry made me feel comfortable from the moment I walked in. My smile makeover was painless and the results are stunning."
+              author="Sarah K."
+              location="West Hollywood, CA"
+              rating={5}
+            />
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/testimonials">
+              <Button variant="outline" className="group">
+                Read More Testimonials
+                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-black">
+      <section className="py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Ready for Your <span className="text-gold">Smile Transformation?</span>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
+              Transform Your <span className="text-gold">Smile</span> Today
             </h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-              Schedule your consultation today and take the first step towards the smile you've always wanted.
+              Schedule your consultation with Dr. Alexie Aguil and take the first step toward the smile you've always wanted.
             </p>
-            <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+            <Button size={isMobile ? "default" : "lg"}>
+              Book Your Consultation
+              <ArrowUpRight size={16} className="ml-2" />
+            </Button>
           </div>
         </div>
       </section>
