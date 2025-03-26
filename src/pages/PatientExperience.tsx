@@ -96,7 +96,7 @@ const PatientExperience = () => {
             <h2 className="heading-lg mb-6">A Dental Experience Like No Other</h2>
             <div className="separator"></div>
             <p className="paragraph mt-6">
-              We've carefully designed our offices and services to create a soothing environment 
+              We've carefully designed our office and services to create a soothing environment 
               that helps alleviate dental anxiety and ensures your complete comfort.
             </p>
           </div>
@@ -116,34 +116,34 @@ const PatientExperience = () => {
         </div>
       </section>
 
-      {/* Office Locations */}
+      {/* Office Location */}
       <section className="section-container">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">OUR OFFICES</span>
-          <h2 className="heading-lg mb-6">Premium Locations Designed for Your Comfort</h2>
+          <span className="inline-block text-sm text-gold font-medium mb-3">OUR OFFICE</span>
+          <h2 className="heading-lg mb-6">Premium Location Designed for Your Comfort</h2>
           <div className="separator"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Los Angeles Office */}
+        <div className="max-w-4xl mx-auto">
+          {/* Wilshire Blvd Office */}
           <div className="group">
             <div className="relative overflow-hidden rounded-sm shadow-xl mb-6">
               <img 
                 src="https://images.unsplash.com/photo-1629909615957-f40c4c5a6951?q=80&w=2071&auto=format&fit=crop" 
-                alt="Los Angeles Office" 
+                alt="Wilshire Boulevard Office" 
                 className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-semibold text-white">Los Angeles Office</h3>
+                <h3 className="text-2xl font-semibold text-white">Wilshire Boulevard Office</h3>
                 <p className="text-white/90 mt-2">Our flagship location with premium amenities</p>
               </div>
             </div>
             
             <Collapsible className="bg-white p-6 rounded-sm shadow-md">
               <div className="flex justify-between items-center">
-                <h3 className="font-medium text-xl">Los Angeles Office Amenities</h3>
+                <h3 className="font-medium text-xl">Office Amenities</h3>
                 <CollapsibleTrigger className="text-gold hover:text-gold/80">
                   <span className="text-sm underline">View Details</span>
                 </CollapsibleTrigger>
@@ -170,57 +170,6 @@ const PatientExperience = () => {
                   <li className="flex items-center">
                     <span className="w-2 h-2 bg-gold rounded-full mr-2"></span>
                     <span>Hot lemongrass towels post-treatment</span>
-                  </li>
-                </ul>
-              </CollapsibleContent>
-            </Collapsible>
-          </div>
-
-          {/* Melrose Office */}
-          <div className="group">
-            <div className="relative overflow-hidden rounded-sm shadow-xl mb-6">
-              <img 
-                src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop" 
-                alt="Melrose Office" 
-                className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-semibold text-white">Melrose Office</h3>
-                <p className="text-white/90 mt-2">Contemporary space with artistic elements</p>
-              </div>
-            </div>
-            
-            <Collapsible className="bg-white p-6 rounded-sm shadow-md">
-              <div className="flex justify-between items-center">
-                <h3 className="font-medium text-xl">Melrose Office Amenities</h3>
-                <CollapsibleTrigger className="text-gold hover:text-gold/80">
-                  <span className="text-sm underline">View Details</span>
-                </CollapsibleTrigger>
-              </div>
-              
-              <CollapsibleContent className="mt-4 space-y-3">
-                <p className="text-black-light/80">
-                  Enjoy soft pillows, private treatment rooms, curated local art, and entertainment 
-                  options during procedures in our convenient Melrose location.
-                </p>
-                <ul className="space-y-2 mt-4">
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-gold rounded-full mr-2"></span>
-                    <span>Private treatment rooms with ambient music</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-gold rounded-full mr-2"></span>
-                    <span>Curated art from local artists</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-gold rounded-full mr-2"></span>
-                    <span>Entertainment streaming options</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-gold rounded-full mr-2"></span>
-                    <span>Comfort-focused dental chairs</span>
                   </li>
                 </ul>
               </CollapsibleContent>
