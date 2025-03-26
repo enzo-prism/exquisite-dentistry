@@ -2,11 +2,13 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import Button from './Button';
+import { Link } from 'react-router-dom';
 
 interface ServiceCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  href?: string;
   className?: string;
   index?: number;
 }
@@ -15,6 +17,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   title, 
   description, 
   icon, 
+  href,
   className,
   index = 0
 }) => {
@@ -32,7 +35,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       </div>
       <h3 className="heading-sm mb-4 text-black">{title}</h3>
       <p className="paragraph mb-6">{description}</p>
-      <Button variant="outline" size="sm">Learn More</Button>
+      {href ? (
+        <Link to={href}>
+          <Button variant="outline" size="sm">Learn More</Button>
+        </Link>
+      ) : (
+        <Button variant="outline" size="sm">Learn More</Button>
+      )}
     </div>
   );
 };
