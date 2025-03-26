@@ -88,11 +88,11 @@
   /* ... keep existing code (heading and paragraph styles) */
 
   .separator {
-    @apply w-16 sm:w-24 h-1 bg-gold rounded-full mx-auto my-6 md:my-8;
+    @apply w-16 sm:w-24 h-1 bg-secondary rounded-full mx-auto my-6 md:my-8;
   }
 
   .separator-left {
-    @apply w-16 sm:w-24 h-1 bg-gold rounded-full my-6 md:my-8;
+    @apply w-16 sm:w-24 h-1 bg-secondary rounded-full my-6 md:my-8;
   }
 
   /* ... keep existing code (animation styles) */
@@ -102,19 +102,19 @@
   }
   
   .bg-gold {
-    @apply bg-[#D4AF37];
+    @apply bg-[#9A8360];
   }
   
   .text-gold {
-    @apply text-[#D4AF37];
+    @apply text-[#9A8360];
   }
   
   .border-gold {
-    @apply border-[#D4AF37];
+    @apply border-[#9A8360];
   }
   
   .fill-gold {
-    @apply fill-[#D4AF37];
+    @apply fill-[#9A8360];
   }
 
   .card-spacing {

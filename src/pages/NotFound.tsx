@@ -23,7 +23,7 @@ const NotFound = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 bg-gray-50">
       <div className="text-center max-w-lg">
-        <span className="inline-block text-sm text-gold font-medium mb-3">404 ERROR</span>
+        <span className="inline-block text-sm text-secondary font-medium mb-3">404 ERROR</span>
         <h1 className="heading-xl mb-6">Page Missing</h1>
         <div className="separator"></div>
         <p className="paragraph my-8">
