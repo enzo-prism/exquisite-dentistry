@@ -16,7 +16,7 @@ const Graduation = () => {
     <div className="min-h-screen page-transition-in">
       {/* Hero Section with YouTube Video */}
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
+        posterSrc="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Graduation <span className="text-gold">Smile</span></>}
         subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
@@ -116,8 +116,33 @@ const Graduation = () => {
         </div>
       </section>
 
+      {/* Featured Graduation Image */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2">
+              <img 
+                src="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
+                alt="Graduates with beautiful smiles" 
+                className="w-full h-auto object-cover rounded-sm shadow-md"
+                loading="lazy"
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h2 className="text-2xl md:text-3xl font-sans font-semibold text-black leading-tight mb-4">
+                Picture-Perfect <span className="text-gold">Graduation Smiles</span>
+              </h2>
+              <p className="text-lg text-black-light mb-6">
+                Your graduation photos will be cherished for a lifetime. Our specialized dental treatments ensure your smile is as bright and confident as your future. From quick touch-ups to comprehensive smile makeovers, we have solutions that fit your timeline and budget.
+              </p>
+              <Button>Schedule Your Grad Smile Consultation</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Popular Treatments Section */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
