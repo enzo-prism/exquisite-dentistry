@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default: "bg-secondary hover:bg-secondary/90 text-white",
         outline: "border border-secondary bg-transparent hover:bg-secondary/10 text-black",
         ghost: "bg-transparent hover:bg-gray-100 text-black",
-        gold: "bg-secondary hover:bg-secondary/90 text-white",
+        gold: "bg-secondary hover:bg-secondary/90 text-white", // This was already set to use secondary color
         black: "bg-black hover:bg-black/90 text-white",
       },
       size: {
