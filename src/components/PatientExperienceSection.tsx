@@ -77,17 +77,6 @@ const PatientExperienceSection: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-white p-6 rounded-sm shadow-md mb-6">
-              <h4 className="font-medium text-lg mb-2">Our Wilshire Boulevard Location</h4>
-              <p className="text-black-light/80 mb-4">
-                Experience our premium amenities including soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass towels at our flagship location.
-              </p>
-              <div className="flex items-start text-black-light/80">
-                <span className="font-medium mr-2">Address:</span> 
-                <span>6227 Wilshire Blvd, Los Angeles, CA 90048</span>
-              </div>
-            </div>
-            
             <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold">
               <h4 className="font-medium text-lg mb-2">Patient Involvement</h4>
               <p className="text-black-light/80">
