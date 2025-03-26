@@ -40,7 +40,7 @@ const services = [
     description: "Restore function and aesthetics to damaged or missing teeth with our advanced restorative solutions. We focus on long-lasting results that look and feel completely natural.",
     highlight: "Our metal-free restorations provide superior strength without compromising aesthetics.",
     icon: <Wrench size={24} />,
-    image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1936&auto=format&fit=crop",
+    image: "/lovable-uploads/ab504393-67bf-4498-b08e-0ff259231b9e.png",
     treatments: [
       {
         name: "Dental Implants",
