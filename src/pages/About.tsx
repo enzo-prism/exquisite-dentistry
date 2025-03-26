@@ -123,7 +123,7 @@ const About = () => {
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="w-full md:w-1/3">
                   <img 
-                    src="/lovable-uploads/59e70fe7-4f12-4534-9fff-33150538f73b.png" 
+                    src="https://i.ytimg.com/vi/Zlb9l_EqXjo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgVihMMA8=&rs=AOn4CLBszZ-tR93CsE3BOc8nPJJBAmqW4w" 
                     alt="Dr. Alexie Aguil" 
                     className="w-full aspect-[3/4] object-cover rounded-sm shadow-md"
                   />
