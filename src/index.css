@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,19 +98,19 @@
   }
   
   .bg-gold {
-    @apply bg-[#876F50];
+    @apply bg-[#9A8360];
   }
   
   .text-gold {
-    @apply text-[#876F50];
+    @apply text-[#9A8360];
   }
   
   .border-gold {
-    @apply border-[#876F50];
+    @apply border-[#9A8360];
   }
   
   .fill-gold {
-    @apply fill-[#876F50];
+    @apply fill-[#9A8360];
   }
 
   .card-spacing {
