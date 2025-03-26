@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -91,7 +92,7 @@ const services = [
     description: "Access specialized dental care without being referred elsewhere. Our comprehensive range of specialty services allows us to address complex dental issues with the same attention to comfort and quality.",
     highlight: "Dr. Aguil's advanced training allows us to offer specialized care that many general practices cannot provide.",
     icon: <Stethoscope size={24} />,
-    image: "https://images.unsplash.com/photo-1606265752439-1f18756c8df2?q=80&w=2070&auto=format&fit=crop",
+    image: "/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png",
     treatments: [
       {
         name: "Invisalign® Clear Aligners",
