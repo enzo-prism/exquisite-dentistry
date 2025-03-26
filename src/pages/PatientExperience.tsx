@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Headphones, Clock, Sofa, Calendar, ArrowRight, User2 } from 'lucide-react';
+import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
@@ -152,7 +152,7 @@ const PatientExperience = () => {
               <CollapsibleContent className="mt-4 space-y-3">
                 <p className="text-black-light/80">
                   Experience soft lighting, warm blankets, noise-canceling headphones, aromatherapy, 
-                  and post-treatment hot lemongrass cloths in our flagship location.
+                  and post-treatment hot lemongrass towels at our Wilshire Boulevard location.
                 </p>
                 <ul className="space-y-2 mt-4">
                   <li className="flex items-center">
@@ -248,7 +248,7 @@ const PatientExperience = () => {
               Experience <span className="text-gold">Dentistry Reimagined</span>
             </h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-              Book your visit today and discover how comfortable and rewarding dental care can be.
+              Book your visit today and discover how comfortable and rewarding dental care can be at our Wilshire Boulevard location.
             </p>
             <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
           </div>

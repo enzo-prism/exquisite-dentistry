@@ -78,9 +78,9 @@ const PatientExperienceSection: React.FC = () => {
             </div>
             
             <div className="bg-white p-6 rounded-sm shadow-md mb-6">
-              <h4 className="font-medium text-lg mb-2">Wilshire Boulevard Location</h4>
+              <h4 className="font-medium text-lg mb-2">Our Wilshire Boulevard Location</h4>
               <p className="text-black-light/80 mb-4">
-                Experience soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass cloths in our modern, comfortable office at 6227 Wilshire Blvd.
+                Experience our premium amenities including soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and post-treatment hot lemongrass towels at our flagship location.
               </p>
               <div className="flex items-start text-black-light/80">
                 <span className="font-medium mr-2">Address:</span> 
