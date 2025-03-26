@@ -14,7 +14,7 @@ const services = [
     description: "Transform your smile with our comprehensive cosmetic dental services. We combine artistic vision with technical precision to create beautiful, natural-looking results that enhance your confidence.",
     highlight: "Our signature smile makeovers are custom-designed to complement your facial features and achieve your aesthetic goals.",
     icon: <Smile size={24} />,
-    image: "https://images.unsplash.com/photo-1581585095058-12a60e5601e4?q=80&w=2070&auto=format&fit=crop",
+    image: "/lovable-uploads/a7c198f8-b229-4850-af33-aff84c90fd94.png",
     treatments: [
       {
         name: "Porcelain Veneers",
