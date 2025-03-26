@@ -30,18 +30,18 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				gold: {
-					light: '#B09A78',
-					DEFAULT: '#9A8360',
-					dark: '#7D6A4D',
+					light: '#9A8360',
+					DEFAULT: '#876F50',
+					dark: '#6E5940',
 				},
 				secondary: {
-					light: '#B09A78',
-					DEFAULT: '#9A8360',
-					dark: '#7D6A4D',
+					light: '#9A8360',
+					DEFAULT: '#876F50',
+					dark: '#6E5940',
 				},
 				black: {
-					light: '#333333',
-					DEFAULT: '#1A1A1A',
+					light: '#2A2A2A',
+					DEFAULT: '#171717',
 					dark: '#000000',
 				},
 				primary: {
