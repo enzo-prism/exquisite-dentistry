@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
@@ -6,6 +7,9 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
+
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 interface AmenityProps {
   title: string;
@@ -65,7 +69,11 @@ const PatientExperience = () => {
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>The <span className="text-gold">Patient Experience</span></>}
         subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
-        primaryCta={{ text: "Book Your First Appointment" }}
+        primaryCta={{ 
+          text: "Book Your First Appointment", 
+          href: SCHEDULING_URL,
+          onClick: () => window.open(SCHEDULING_URL, '_blank')
+        }}
         overlayColor="gradient"
         height="medium"
         badgeText="COMFORT & CARE"
@@ -182,7 +190,9 @@ const PatientExperience = () => {
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Book your visit today and discover how comfortable and rewarding dental care can be at our Wilshire Boulevard location.
             </p>
-            <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+            </a>
           </div>
         </div>
       </section>

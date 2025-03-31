@@ -4,6 +4,9 @@ import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
 interface Feature {
   icon: React.ReactNode;
   title: string;
@@ -85,7 +88,7 @@ const PatientExperienceSection: React.FC = () => {
             </div>
             
             <div className="pt-4">
-              <Link to="/contact">
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="group">
                   Schedule Your Visit
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 transition-transform group-hover:translate-x-1">
@@ -93,7 +96,7 @@ const PatientExperienceSection: React.FC = () => {
                     <path d="m12 5 7 7-7 7" />
                   </svg>
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

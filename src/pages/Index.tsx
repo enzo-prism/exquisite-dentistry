@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
@@ -8,6 +9,9 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import { useIsMobile } from '@/hooks/use-mobile';
+
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -24,7 +28,11 @@ const Index = () => {
         youtubeId={YOUTUBE_VIDEOS.DEFAULT}
         title={<>Beverly Hills <span className="text-gold">Cosmetic Dentistry</span></>}
         subtitle="Experience the perfect blend of artistry and science at Exquisite Dentistry, where we create beautiful, natural-looking smiles in a luxurious, comfortable environment."
-        primaryCta={{ text: "Book Consultation" }}
+        primaryCta={{ 
+          text: "Book Consultation",
+          href: SCHEDULING_URL,
+          onClick: () => window.open(SCHEDULING_URL, '_blank') 
+        }}
         secondaryCta={{ text: "Meet Dr. Aguil", href: "/about" }}
         overlayColor="gradient"
         height="full"
@@ -246,10 +254,12 @@ const Index = () => {
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Schedule your consultation with Dr. Alexie Aguil and take the first step toward the smile you've always wanted.
             </p>
-            <Button size={isMobile ? "default" : "lg"}>
-              Book Your Consultation
-              <ArrowUpRight size={16} className="ml-2" />
-            </Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size={isMobile ? "default" : "lg"}>
+                Book Your Consultation
+                <ArrowUpRight size={16} className="ml-2" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>

@@ -157,17 +157,31 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           )}>
             {primaryCta && (
               primaryCta.href ? (
-                <Link to={primaryCta.href} className="w-full sm:w-auto">
-                  <Button 
-                    size={isMobile ? "default" : "lg"}
-                    onClick={primaryCta.onClick}
-                    fullWidth={isMobile}
-                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {primaryCta.text}
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
+                primaryCta.href.startsWith('http') ? (
+                  <a href={primaryCta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button 
+                      size={isMobile ? "default" : "lg"}
+                      onClick={primaryCta.onClick}
+                      fullWidth={isMobile}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Link to={primaryCta.href} className="w-full sm:w-auto">
+                    <Button 
+                      size={isMobile ? "default" : "lg"}
+                      onClick={primaryCta.onClick}
+                      fullWidth={isMobile}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                )
               ) : (
                 <Button 
                   size={isMobile ? "default" : "lg"}
