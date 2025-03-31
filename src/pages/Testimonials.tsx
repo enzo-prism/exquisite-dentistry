@@ -37,7 +37,7 @@ const testimonials = [
     name: "David Chen",
     content: "The level of service at Exquisite Dentistry is exceptional. Dr. Aguil took the time to explain all my options and created a treatment plan that worked perfectly for me.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1287&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1500648767791-15a19d654956?q=80&w=1361&auto=format&fit=crop",
     procedure: "Dental Implants"
   },
   {
@@ -45,7 +45,7 @@ const testimonials = [
     name: "Emily Johnson",
     content: "I was nervous about getting veneers, but Dr. Aguil made the process so easy. The results exceeded my expectations - my smile looks completely natural!",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1361&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1287&auto=format&fit=crop",
     procedure: "Porcelain Veneers"
   },
   {
@@ -221,7 +221,7 @@ const Testimonials = () => {
               Based on 150+ reviews
             </p>
             <a 
-              href="https://www.google.com/maps/place/Exquisite+Dentistry/@34.0835204,-118.3505078,17z/" 
+              href="https://g.co/kgs/eoZWBrR" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-white px-6 py-3 rounded-sm shadow-md hover:shadow-lg transition-shadow text-black font-medium"
