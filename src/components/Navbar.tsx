@@ -12,6 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -164,9 +167,11 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <Button variant="gold" size="sm" className="ml-4 rounded-md">
-              Book an Appointment
-            </Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="gold" size="sm" className="ml-4 rounded-md">
+                Book an Appointment
+              </Button>
+            </a>
           </nav>
 
           {/* Mobile Menu - Using Sheet component from shadcn/ui */}
@@ -220,9 +225,11 @@ const Navbar = () => {
                   </nav>
 
                   <div className="p-6 border-t border-gold/10">
-                    <Button variant="gold" fullWidth className="rounded-md">
-                      Book an Appointment
-                    </Button>
+                    <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                      <Button variant="gold" fullWidth className="rounded-md">
+                        Book an Appointment
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </SheetContent>

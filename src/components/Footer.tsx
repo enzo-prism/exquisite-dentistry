@@ -2,6 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+import Button from './Button';
+
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,6 +35,11 @@ const Footer = () => {
               </a>
               <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Twitter">
                 <Twitter size={20} />
+              </a>
+            </div>
+            <div className="pt-4">
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="gold" size="sm">Book an Appointment</Button>
               </a>
             </div>
           </div>
