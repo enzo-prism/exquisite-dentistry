@@ -134,12 +134,12 @@ const PatientExperience = () => {
                   ensuring that you're confident and informed at every step.
                 </p>
                 <div className="mt-8">
-                  <Link to="/contact">
+                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="group">
                       Schedule Your Consultation
                       <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
               
