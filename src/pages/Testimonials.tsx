@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import VideoModal from '@/components/VideoModal';
 
 // Testimonial data
 const testimonials = [
@@ -37,7 +38,7 @@ const testimonials = [
     name: "David Chen",
     content: "The level of service at Exquisite Dentistry is exceptional. Dr. Aguil took the time to explain all my options and created a treatment plan that worked perfectly for me.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-15a19d654956?q=80&w=1361&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1500648767791-15a19d654956?q=80&w=1281&auto=format&fit=crop",
     procedure: "Dental Implants"
   },
   {
@@ -123,10 +124,16 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
   );
 };
 
-const VideoTestimonialCard = ({ testimonial }: { testimonial: typeof videoTestimonials[0] }) => {
+const VideoTestimonialCard = ({ testimonial, onPlay }: { 
+  testimonial: typeof videoTestimonials[0], 
+  onPlay: (youtubeId: string) => void 
+}) => {
   return (
     <div className="bg-white rounded-sm shadow-md overflow-hidden opacity-0 animate-fade-in">
-      <div className="relative aspect-video group cursor-pointer">
+      <div 
+        className="relative aspect-video group cursor-pointer"
+        onClick={() => onPlay(testimonial.youtubeId)}
+      >
         <img 
           src={testimonial.thumbnail} 
           alt={testimonial.name} 
@@ -153,8 +160,25 @@ const Testimonials = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+  const handlePlayVideo = (youtubeId: string) => {
+    setActiveVideoId(youtubeId);
+  };
+
+  const handleCloseVideo = () => {
+    setActiveVideoId(null);
+  };
+
   return (
     <div className="min-h-screen page-transition-in">
+      {/* Video Modal */}
+      <VideoModal
+        youtubeId={activeVideoId || ''}
+        isOpen={!!activeVideoId}
+        onClose={handleCloseVideo}
+      />
+
       {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1513757271804-385fb022e70a?q=80&w=2070&auto=format&fit=crop"
@@ -209,7 +233,10 @@ const Testimonials = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {videoTestimonials.slice(0, 3).map((testimonial, index) => (
               <div key={testimonial.id} style={{ animationDelay: `${index * 150}ms` }}>
-                <VideoTestimonialCard testimonial={testimonial} />
+                <VideoTestimonialCard 
+                  testimonial={testimonial} 
+                  onPlay={handlePlayVideo}
+                />
               </div>
             ))}
           </div>
@@ -218,7 +245,10 @@ const Testimonials = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8 md:max-w-4xl md:mx-auto">
             {videoTestimonials.slice(3).map((testimonial, index) => (
               <div key={testimonial.id} style={{ animationDelay: `${(index + 3) * 150}ms` }}>
-                <VideoTestimonialCard testimonial={testimonial} />
+                <VideoTestimonialCard 
+                  testimonial={testimonial} 
+                  onPlay={handlePlayVideo}
+                />
               </div>
             ))}
           </div>
