@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -88,6 +87,9 @@ const services = [{
     details: "Minimally invasive treatment for gum disease and cosmetic gum procedures"
   }]
 }];
+
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Services = () => {
   useEffect(() => {
@@ -260,10 +262,12 @@ const Services = () => {
             </div>
             
             <div className="pt-4">
-              <Button className="group">
-                Experience Our Difference
-                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                <Button className="group">
+                  Experience Our Difference
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </a>
             </div>
           </div>
           
