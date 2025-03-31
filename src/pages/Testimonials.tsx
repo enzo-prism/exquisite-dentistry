@@ -1,100 +1,94 @@
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
-import { Star } from 'lucide-react';
+import { Star, Users, MessageSquare, Award, Check, ThumbsUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 import VideoModal from '@/components/VideoModal';
 
-// Testimonial data
+// Testimonial data with more generic content
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Thompson",
-    content: "Dr. Aguil is amazing! The entire staff made me feel comfortable and the results are exceptional. I couldn't be happier with my new smile.",
+    content: "The entire staff made me feel comfortable and the results are exceptional. I couldn't be happier with my new smile.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1288&auto=format&fit=crop",
-    procedure: "Porcelain Veneers"
+    icon: <Users className="text-gold" size={32} />,
+    procedure: "Cosmetic Dentistry"
   },
   {
     id: 2,
-    name: "Michael Rodriguez",
-    content: "I've been to many dentists, but Exquisite Dentistry truly lives up to its name. The attention to detail and quality of care is unmatched.",
+    content: "I've been to many dental practices, but this one truly lives up to expectations. The attention to detail and quality of care is unmatched.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1287&auto=format&fit=crop",
-    procedure: "Invisalign Treatment"
+    icon: <Star className="text-gold" size={32} />,
+    procedure: "Orthodontic Treatment"
   },
   {
     id: 3,
-    name: "Jennifer Wallace",
     content: "After years of being afraid of dental work, I finally found a practice that puts patient comfort first. The team is professional and genuinely caring.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1288&auto=format&fit=crop",
-    procedure: "Full Smile Makeover"
+    icon: <MessageSquare className="text-gold" size={32} />,
+    procedure: "Complete Smile Makeover"
   },
   {
     id: 4,
-    name: "David Chen",
-    content: "The level of service at Exquisite Dentistry is exceptional. Dr. Aguil took the time to explain all my options and created a treatment plan that worked perfectly for me.",
+    content: "The level of service is exceptional. The doctor took the time to explain all my options and created a treatment plan that worked perfectly for me.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-15a19d654956?q=80&w=1281&auto=format&fit=crop",
+    icon: <Award className="text-gold" size={32} />,
     procedure: "Dental Implants"
   },
   {
     id: 5,
-    name: "Emily Johnson",
-    content: "I was nervous about getting veneers, but Dr. Aguil made the process so easy. The results exceeded my expectations - my smile looks completely natural!",
+    content: "I was nervous about getting cosmetic work done, but the process was so easy. The results exceeded my expectations - my smile looks completely natural!",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1287&auto=format&fit=crop",
+    icon: <Check className="text-gold" size={32} />,
     procedure: "Porcelain Veneers"
   },
   {
     id: 6,
-    name: "Robert Williams",
-    content: "The office environment is so calming, and the staff is incredibly friendly. My Invisalign treatment was smooth from start to finish.",
+    content: "The office environment is so calming, and the staff is incredibly friendly. My treatment was smooth from start to finish.",
     stars: 5,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1287&auto=format&fit=crop",
-    procedure: "Invisalign Treatment"
+    icon: <ThumbsUp className="text-gold" size={32} />,
+    procedure: "Preventive Dentistry"
   }
 ];
 
-// Video testimonials
+// Video testimonials with generic descriptions
 const videoTestimonials = [
   {
     id: 1,
-    name: "Jessica Martinez",
+    title: "Life-Changing Smile Transformation",
     youtubeId: "U32NScY_qCQ",
-    thumbnail: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=1287&auto=format&fit=crop",
-    procedure: "Porcelain Veneers & Smile Makeover"
+    icon: <Award className="text-gold/90" size={48} />,
+    procedure: "Comprehensive Smile Makeover"
   },
   {
     id: 2,
-    name: "Thomas Wilson",
+    title: "Restoring Confidence with Expert Care",
     youtubeId: "6QACxCt6J7g",
-    thumbnail: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1170&auto=format&fit=crop",
-    procedure: "Complete Dental Restoration"
+    icon: <Star className="text-gold/90" size={48} />,
+    procedure: "Full Dental Restoration"
   },
   {
     id: 3,
-    name: "Olivia Parker",
+    title: "The Journey to a Perfect Smile",
     youtubeId: "3O6FuKufvL4",
-    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1364&auto=format&fit=crop",
-    procedure: "Full Smile Transformation"
+    icon: <ThumbsUp className="text-gold/90" size={48} />,
+    procedure: "Cosmetic Dentistry Excellence"
   },
   {
     id: 4,
-    name: "Michael Davis",
+    title: "Transforming Lives Through Dentistry",
     youtubeId: "dpd6glBbZVU",
-    thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1287&auto=format&fit=crop",
-    procedure: "Dental Implants & Reconstruction"
+    icon: <Users className="text-gold/90" size={48} />,
+    procedure: "Dental Reconstruction"
   },
   {
     id: 5,
-    name: "Amanda Johnson",
+    title: "A Patient's Journey to Dental Health",
     youtubeId: "3pNo4sKFB58",
-    thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1364&auto=format&fit=crop",
-    procedure: "Cosmetic Dentistry Journey"
+    icon: <MessageSquare className="text-gold/90" size={48} />,
+    procedure: "Comprehensive Treatment"
   }
 ];
 
@@ -102,15 +96,10 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
   return (
     <div className="bg-white p-6 rounded-sm shadow-md flex flex-col h-full opacity-0 animate-fade-in">
       <div className="flex items-center mb-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
-          <img 
-            src={testimonial.image} 
-            alt={testimonial.name} 
-            className="w-full h-full object-cover"
-          />
+        <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mr-4">
+          {testimonial.icon}
         </div>
         <div>
-          <h3 className="font-medium text-lg">{testimonial.name}</h3>
           <p className="text-sm text-gold">{testimonial.procedure}</p>
           <div className="flex mt-1">
             {Array.from({ length: testimonial.stars }).map((_, i) => (
@@ -131,15 +120,13 @@ const VideoTestimonialCard = ({ testimonial, onPlay }: {
   return (
     <div className="bg-white rounded-sm shadow-md overflow-hidden opacity-0 animate-fade-in">
       <div 
-        className="relative aspect-video group cursor-pointer"
+        className="relative aspect-video group cursor-pointer bg-gray-50 flex items-center justify-center"
         onClick={() => onPlay(testimonial.youtubeId)}
       >
-        <img 
-          src={testimonial.thumbnail} 
-          alt={testimonial.name} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/70 transition-colors">
+        <div className="absolute inset-0 flex items-center justify-center">
+          {testimonial.icon}
+        </div>
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/60 transition-colors">
           <div className="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -148,7 +135,7 @@ const VideoTestimonialCard = ({ testimonial, onPlay }: {
         </div>
       </div>
       <div className="p-4">
-        <h3 className="font-medium text-lg">{testimonial.name}</h3>
+        <h3 className="font-medium text-lg">{testimonial.title}</h3>
         <p className="text-sm text-gold">{testimonial.procedure}</p>
       </div>
     </div>
@@ -184,7 +171,7 @@ const Testimonials = () => {
         posterSrc="https://images.unsplash.com/photo-1513757271804-385fb022e70a?q=80&w=2070&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Our Patients <span className="text-gold">Share Their Stories</span></>}
-        subtitle="Read what our patients have to say about their experience with Dr. Alexie Aguil and the Exquisite Dentistry team."
+        subtitle="Hear what our patients have to say about their experience with our expert dental team."
         primaryCta={{ text: "Become Our Next Success Story" }}
         overlayColor="gradient"
         height="medium"
@@ -226,7 +213,7 @@ const Testimonials = () => {
             </h2>
             <div className="w-24 h-1 bg-gold rounded-full mx-auto my-8"></div>
             <p className="text-lg text-black-light/80">
-              Watch these video testimonials to hear directly from our patients about their transformative experiences at Exquisite Dentistry.
+              Watch these video testimonials to hear directly from our patients about their transformative experiences at our dental practice.
             </p>
           </div>
 
