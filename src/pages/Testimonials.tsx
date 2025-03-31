@@ -63,23 +63,37 @@ const videoTestimonials = [
   {
     id: 1,
     name: "Jessica Martinez",
-    youtubeId: "3O6FuKufvL4",
+    youtubeId: "U32NScY_qCQ",
     thumbnail: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=1287&auto=format&fit=crop",
-    procedure: "Complete Smile Makeover"
+    procedure: "Porcelain Veneers & Smile Makeover"
   },
   {
     id: 2,
     name: "Thomas Wilson",
-    youtubeId: "dpd6glBbZVU",
+    youtubeId: "6QACxCt6J7g",
     thumbnail: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1170&auto=format&fit=crop",
-    procedure: "Dental Implants"
+    procedure: "Complete Dental Restoration"
   },
   {
     id: 3,
     name: "Olivia Parker",
-    youtubeId: "3pNo4sKFB58",
+    youtubeId: "3O6FuKufvL4",
     thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1364&auto=format&fit=crop",
-    procedure: "Porcelain Veneers"
+    procedure: "Full Smile Transformation"
+  },
+  {
+    id: 4,
+    name: "Michael Davis",
+    youtubeId: "dpd6glBbZVU",
+    thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1287&auto=format&fit=crop",
+    procedure: "Dental Implants & Reconstruction"
+  },
+  {
+    id: 5,
+    name: "Amanda Johnson",
+    youtubeId: "3pNo4sKFB58",
+    thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1364&auto=format&fit=crop",
+    procedure: "Cosmetic Dentistry Journey"
   }
 ];
 
@@ -188,13 +202,22 @@ const Testimonials = () => {
             </h2>
             <div className="w-24 h-1 bg-gold rounded-full mx-auto my-8"></div>
             <p className="text-lg text-black-light/80">
-              Watch these video testimonials to hear directly from our patients about their experience at Exquisite Dentistry.
+              Watch these video testimonials to hear directly from our patients about their transformative experiences at Exquisite Dentistry.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {videoTestimonials.map((testimonial, index) => (
+            {videoTestimonials.slice(0, 3).map((testimonial, index) => (
               <div key={testimonial.id} style={{ animationDelay: `${index * 150}ms` }}>
+                <VideoTestimonialCard testimonial={testimonial} />
+              </div>
+            ))}
+          </div>
+          
+          {/* Second row for the additional videos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8 md:max-w-4xl md:mx-auto">
+            {videoTestimonials.slice(3).map((testimonial, index) => (
+              <div key={testimonial.id} style={{ animationDelay: `${(index + 3) * 150}ms` }}>
                 <VideoTestimonialCard testimonial={testimonial} />
               </div>
             ))}
