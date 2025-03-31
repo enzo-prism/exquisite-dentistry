@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -98,7 +99,9 @@ const Services = () => {
   return <div className="min-h-screen page-transition-in">
       {/* Hero Section with YouTube Video */}
       <VideoHero posterSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" youtubeId={YOUTUBE_VIDEOS.PROCEDURE} title={<>Our <span className="text-gold">Services</span></>} subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles." primaryCta={{
-      text: "Book an Appointment"
+      text: "Book an Appointment",
+      href: SCHEDULING_URL,
+      onClick: () => window.open(SCHEDULING_URL, '_blank')
     }} overlayColor="gradient" height="medium" badgeText="EXCEPTIONAL DENTAL CARE" scrollIndicator={false} />
 
       {/* Introduction Section */}
@@ -155,10 +158,12 @@ const Services = () => {
                 </div>
                 
                 <div className="pt-4">
-                  <Button className="group">
-                    Schedule a Consultation
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                    <Button className="group">
+                      Schedule a Consultation
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
                 </div>
               </div>
               
@@ -294,7 +299,9 @@ const Services = () => {
             <p className="text-xl text-white/80 mb-10 font-light">
               Schedule your consultation today and discover how our comprehensive dental services can enhance your smile and oral health.
             </p>
-            <Button size="lg">Book an Appointment</Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg">Book an Appointment</Button>
+            </a>
           </div>
         </div>
       </section>
