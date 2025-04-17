@@ -347,4 +347,6 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   );
 };
 
+export { YOUTUBE_VIDEOS };
+
 export default VideoHero;
