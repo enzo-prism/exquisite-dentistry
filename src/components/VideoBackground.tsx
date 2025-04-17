@@ -64,12 +64,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               loading="eager"
             />
             
-            {/* Logo cover - strategically positioned element to hide YouTube logo */}
-            <div className="absolute bottom-0 right-0 w-24 h-12 bg-black z-20" 
-                 style={{
-                   boxShadow: "0 0 10px 10px rgba(0, 0, 0, 0.8)",
-                   borderTopLeftRadius: "4px"
-                 }} 
+            {/* Improved logo cover - larger size with solid black background */}
+            <div 
+              className="absolute bottom-0 right-0 w-32 h-16 bg-black z-20" 
+              style={{
+                borderTopLeftRadius: "8px"
+              }}
             />
           </div>
         </div>
