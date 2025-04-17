@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -100,7 +101,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     return (
       <section 
         className={cn(
-          'relative flex flex-col bg-black w-full pt-24', 
+          'relative flex flex-col bg-black w-full pt-32', // Increased from pt-24 to pt-32
           heightClasses[height],
           className
         )}
@@ -220,7 +221,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full py-16 md:py-20 pt-24', 
+        'relative bg-black w-full py-16 md:py-20 pt-32', // Increased from pt-24 to pt-32
         heightClasses[height],
         className
       )}
@@ -350,3 +351,4 @@ const VideoHero: React.FC<VideoHeroProps> = ({
 export { YOUTUBE_VIDEOS };
 
 export default VideoHero;
+
