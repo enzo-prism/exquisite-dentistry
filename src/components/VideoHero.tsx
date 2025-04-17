@@ -27,7 +27,7 @@ interface VideoHeroProps {
   overlayColor?: 'dark' | 'light' | 'gradient' | 'none';
   className?: string;
   contentClassName?: string;
-  height?: 'full' | 'large' | 'medium';
+  height?: 'full' | 'large' | 'medium' | 'auto';
   badgeText?: string;
   alignment?: 'center' | 'left';
   scrollIndicator?: boolean;
@@ -58,7 +58,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   overlayColor = 'gradient',
   className,
   contentClassName,
-  height = 'full',
+  height = 'auto',
   badgeText = "MEET DR. ALEXIE AGUIL",
   alignment = 'center',
   scrollIndicator = true,
@@ -89,6 +89,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     full: 'min-h-screen',
     large: 'min-h-[80vh]',
     medium: 'min-h-[60vh]',
+    auto: ''
   };
 
   const alignmentClasses = {
@@ -101,28 +102,28 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     return (
       <section 
         className={cn(
-          'relative flex flex-col bg-black w-full pb-8', 
+          'relative flex flex-col bg-black w-full', 
           heightClasses[height],
           className
         )}
       >
         <div className={cn(
-          'w-full px-4 pt-24 pb-6 z-20 bg-black',
+          'w-full px-4 pt-20 pb-4 z-20 bg-black',
           contentClassName
         )}>
           {badgeText && (
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-4 transform hover:scale-105 transition-transform duration-300">
               {badgeText}
             </span>
           )}
           
-          <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-6 relative">
+          <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-4 relative">
             {title}
           </h1>
           
           {subtitle && (
             <p className={cn(
-              "text-base text-white/90 mb-6 font-light",
+              "text-base text-white/90 mb-4 font-light",
               alignment === 'center' ? 'w-full' : 'w-full'
             )}>
               {subtitle}
@@ -140,7 +141,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         </div>
         
         <div className={cn(
-          "w-full px-4 pt-6 z-20",
+          "w-full px-4 pt-4 pb-6 z-20",
           alignment === 'center' ? 'flex flex-col items-center' : 'flex flex-col'
         )}>
           {primaryCta && (
@@ -203,9 +204,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           )}
         </div>
         
-        {scrollIndicator && height === 'full' && (
+        {scrollIndicator && height !== 'auto' && (
           <div 
-            className="w-full flex justify-center pt-4 z-20 cursor-pointer animate-bounce"
+            className="w-full flex justify-center pt-2 pb-2 z-20 cursor-pointer animate-bounce"
             onClick={scrollToNextSection}
           >
             <div className="flex flex-col items-center">
@@ -222,13 +223,13 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full', 
+        'relative bg-black w-full py-16 md:py-20', 
         heightClasses[height],
         className
       )}
     >
-      <div className="container mx-auto px-4 h-full flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full py-16">
+      <div className="container mx-auto px-4 flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
           {/* Left column - Text content */}
           <div className={cn(
             "flex flex-col justify-center",
@@ -258,7 +259,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
             )}
             
             <div className={cn(
-              "flex items-center space-y-4 mt-6",
+              "flex items-center space-y-4",
               alignment === 'center' 
                 ? "flex-col sm:flex-row sm:space-y-0 sm:space-x-4 justify-center" 
                 : "flex-col sm:flex-row sm:space-y-0 sm:space-x-4"
@@ -336,9 +337,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         </div>
       </div>
       
-      {scrollIndicator && height === 'full' && (
+      {scrollIndicator && height !== 'auto' && (
         <div 
-          className="absolute bottom-8 left-0 right-0 mx-auto z-30 flex justify-center cursor-pointer animate-bounce"
+          className="absolute bottom-4 left-0 right-0 mx-auto z-30 flex justify-center cursor-pointer animate-bounce"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">

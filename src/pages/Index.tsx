@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
@@ -36,8 +37,8 @@ const Index = () => {
         }}
         secondaryCta={{ text: "Meet Dr. Aguil", href: "/about" }}
         overlayColor="gradient"
-        height="full"
-        scrollIndicator={true}
+        height="auto"
+        scrollIndicator={false}
         alignment="left"
       />
 
