@@ -10,6 +10,7 @@ interface VideoHeroProps {
   videoSrc?: string;
   posterSrc?: string;
   youtubeId?: string;
+  streamableUrl?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   primaryCta?: {
@@ -40,10 +41,13 @@ const YOUTUBE_VIDEOS = {
   OFFICE: 'ogjAzMV2ZYY'
 };
 
+const DEFAULT_STREAMABLE_URL = "https://streamable.com/wzbe79";
+
 const VideoHero: React.FC<VideoHeroProps> = ({
   videoSrc,
   posterSrc,
   youtubeId = YOUTUBE_VIDEOS.DEFAULT,
+  streamableUrl = DEFAULT_STREAMABLE_URL,
   title,
   subtitle,
   primaryCta,
@@ -109,35 +113,29 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           'w-full px-4 pt-24 pb-6 z-20 bg-black',
           contentClassName
         )}>
-          <div className={cn(
-            "w-full transition-all duration-1000 ease-out",
-            alignmentClasses[alignment],
-            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            {badgeText && (
-              <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
-                {badgeText}
-              </span>
-            )}
-            
-            <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-6 relative">
-              {title}
-            </h1>
-            
-            {subtitle && (
-              <p className={cn(
-                "text-base text-white/90 mb-6 font-light",
-                alignment === 'center' ? 'w-full' : 'w-full'
-              )}>
-                {subtitle}
-              </p>
-            )}
-          </div>
+          {badgeText && (
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
+              {badgeText}
+            </span>
+          )}
+          
+          <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-6 relative">
+            {title}
+          </h1>
+          
+          {subtitle && (
+            <p className={cn(
+              "text-base text-white/90 mb-6 font-light",
+              alignment === 'center' ? 'w-full' : 'w-full'
+            )}>
+              {subtitle}
+            </p>
+          )}
         </div>
         
         <div className="w-full px-4 z-10">
           <VideoBackground 
-            youtubeId={youtubeId} 
+            streamableUrl={streamableUrl} 
             posterSrc={posterSrc} 
             aspectRatio={aspectRatio}
             isContained={true}
@@ -231,7 +229,11 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         className
       )}
     >
-      <VideoBackground youtubeId={youtubeId} posterSrc={posterSrc} aspectRatio={aspectRatio} />
+      <VideoBackground 
+        streamableUrl={streamableUrl} 
+        posterSrc={posterSrc} 
+        aspectRatio={aspectRatio} 
+      />
       
       <div className={cn(
         'absolute inset-0 z-20',
