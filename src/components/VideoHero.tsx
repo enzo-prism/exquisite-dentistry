@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -97,12 +96,11 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     left: 'text-left ml-0 mr-auto'
   };
 
-  // Mobile layout (stacked)
   if (isMobile) {
     return (
       <section 
         className={cn(
-          'relative flex flex-col bg-black w-full', 
+          'relative flex flex-col bg-black w-full pt-24', 
           heightClasses[height],
           className
         )}
@@ -219,18 +217,16 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     );
   }
 
-  // Desktop layout (side-by-side)
   return (
     <section 
       className={cn(
-        'relative bg-black w-full py-16 md:py-20', 
+        'relative bg-black w-full py-16 md:py-20 pt-24', 
         heightClasses[height],
         className
       )}
     >
       <div className="container mx-auto px-4 flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-          {/* Left column - Text content */}
           <div className={cn(
             "flex flex-col justify-center",
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
@@ -320,7 +316,6 @@ const VideoHero: React.FC<VideoHeroProps> = ({
             </div>
           </div>
           
-          {/* Right column - Video */}
           <div className={cn(
             "flex items-center justify-center",
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
@@ -352,5 +347,4 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   );
 };
 
-export { YOUTUBE_VIDEOS };
 export default VideoHero;
