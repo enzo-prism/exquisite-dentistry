@@ -7,6 +7,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 interface VideoBackgroundProps {
   youtubeId?: string;
   streamableUrl?: string;
+  vimeoId?: string;
   posterSrc?: string;
   className?: string;
   overlayOpacity?: number;
@@ -17,6 +18,7 @@ interface VideoBackgroundProps {
 const VideoBackground: React.FC<VideoBackgroundProps> = ({
   youtubeId,
   streamableUrl,
+  vimeoId,
   posterSrc,
   className,
   overlayOpacity = 60,
@@ -26,6 +28,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,14 +36,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     }, 500);
     
     return () => clearTimeout(timer);
-  }, [youtubeId, streamableUrl]);
+  }, [youtubeId, streamableUrl, vimeoId]);
   
   useEffect(() => {
-    // Force video play when the component mounts
+    // Force video play when the component mounts (for direct video elements)
     const playVideo = async () => {
       if (videoRef.current) {
         try {
-          // Ensure video is muted for autoplay to work
           videoRef.current.muted = true;
           const playPromise = videoRef.current.play();
           
@@ -51,7 +53,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               })
               .catch(error => {
                 console.error('Error playing video:', error);
-                // Try to play again after a small delay
                 setTimeout(() => {
                   if (videoRef.current) {
                     videoRef.current.play().catch(e => 
@@ -67,7 +68,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       }
     };
     
-    playVideo();
+    if (!vimeoId) {
+      playVideo();
+    }
     
     // Add event listeners to debug video issues
     const video = videoRef.current;
@@ -90,13 +93,39 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       };
     }
   }, []);
+
+  // Load the Vimeo API script
+  useEffect(() => {
+    if (vimeoId) {
+      // Check if the script is already loaded
+      if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://player.vimeo.com/api/player.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [vimeoId]);
   
-  // Render Streamable video if URL is provided
+  // Render video element based on provided source
   const renderVideoElement = () => {
+    if (vimeoId) {
+      return (
+        <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <iframe 
+            ref={iframeRef}
+            src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            title="Exquisite Dentistry Dental Spa"
+            loading="eager"
+          />
+        </div>
+      );
+    }
+    
     if (streamableUrl) {
-      // Extract the direct MP4 URL from streamable URL if needed
-      // Streamable URLs can be in format like "https://streamable.com/wzbe79"
-      // The direct video file might need to be fetched differently
       return (
         <video
           ref={videoRef}
@@ -115,7 +144,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       );
     }
     
-    // Fallback to YouTube if no Streamable URL
     if (youtubeId) {
       return (
         <iframe 
