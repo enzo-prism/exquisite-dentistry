@@ -9,7 +9,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 
 interface VideoHeroProps {
   videoSrc?: string;
-  posterSrc?: string; // Made optional
+  posterSrc?: string;
   youtubeId?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -29,6 +29,7 @@ interface VideoHeroProps {
   badgeText?: string;
   alignment?: 'center' | 'left';
   scrollIndicator?: boolean;
+  aspectRatio?: number; // Add support for custom aspect ratio
 }
 
 // Collection of YouTube IDs to choose from if none is provided
@@ -55,7 +56,8 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   height = 'full',
   badgeText = "MEET DR. ALEXIE AGUIL",
   alignment = 'center',
-  scrollIndicator = true
+  scrollIndicator = true,
+  aspectRatio
 }) => {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const isMobile = useIsMobile();
@@ -64,7 +66,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     // Reduced delay for the content to fade in after hero loads
     const timer = setTimeout(() => {
       setIsContentVisible(true);
-    }, 300); // Reduced from 400ms to 300ms
+    }, 300);
     
     return () => clearTimeout(timer);
   }, []);
@@ -108,7 +110,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       )}
     >
       {/* Background with YouTube video */}
-      <VideoBackground youtubeId={youtubeId} posterSrc={posterSrc} />
+      <VideoBackground youtubeId={youtubeId} posterSrc={posterSrc} aspectRatio={aspectRatio} />
       
       {/* Overlay */}
       <div className={cn(
