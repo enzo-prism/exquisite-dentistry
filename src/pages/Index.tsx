@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
@@ -12,8 +11,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
-// Default streamable URL
-const DEFAULT_STREAMABLE_URL = "https://streamable.com/wzbe79";
+// Direct streamable URL
+const HERO_STREAMABLE_URL = "https://streamable.com/wzbe79";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -27,7 +26,7 @@ const Index = () => {
       {/* Hero Section with Streamable Video */}
       <VideoHero
         posterSrc="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png"
-        streamableUrl={DEFAULT_STREAMABLE_URL}
+        streamableUrl={HERO_STREAMABLE_URL}
         title={<>Beverly Hills <span className="text-gold">Cosmetic Dentistry</span></>}
         subtitle="Experience the perfect blend of artistry and science at Exquisite Dentistry, where we create beautiful, natural-looking smiles in a luxurious, comfortable environment."
         primaryCta={{ 

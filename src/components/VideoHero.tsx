@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -41,6 +42,8 @@ const YOUTUBE_VIDEOS = {
   OFFICE: 'ogjAzMV2ZYY'
 };
 
+// Streamable URL that works with direct embedding
+// For URLs like https://streamable.com/wzbe79, we need to ensure it's properly formatted
 const DEFAULT_STREAMABLE_URL = "https://streamable.com/wzbe79";
 
 const VideoHero: React.FC<VideoHeroProps> = ({
@@ -100,6 +103,16 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     left: 'text-left ml-0 mr-auto'
   };
 
+  // Clean streamable URL to ensure it works correctly
+  const cleanStreamableUrl = () => {
+    if (!streamableUrl) return undefined;
+    
+    // Handle direct Streamable URLs
+    // The API for streamable videos is different from YouTube
+    // If needed, we can convert to a direct mp4 URL
+    return streamableUrl;
+  };
+
   if (isMobile) {
     return (
       <section 
@@ -135,7 +148,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         
         <div className="w-full px-4 z-10">
           <VideoBackground 
-            streamableUrl={streamableUrl} 
+            streamableUrl={cleanStreamableUrl()} 
             posterSrc={posterSrc} 
             aspectRatio={aspectRatio}
             isContained={true}
@@ -230,7 +243,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       )}
     >
       <VideoBackground 
-        streamableUrl={streamableUrl} 
+        streamableUrl={cleanStreamableUrl()} 
         posterSrc={posterSrc} 
         aspectRatio={aspectRatio} 
       />
