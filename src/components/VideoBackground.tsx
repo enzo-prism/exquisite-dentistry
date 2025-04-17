@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -9,7 +8,7 @@ interface VideoBackgroundProps {
   posterSrc?: string;
   className?: string;
   overlayOpacity?: number;
-  aspectRatio?: number; // Add support for custom aspect ratio
+  aspectRatio?: number;
 }
 
 const VideoBackground: React.FC<VideoBackgroundProps> = ({
@@ -17,13 +16,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   posterSrc,
   className,
   overlayOpacity = 60,
-  aspectRatio = 16 / 9 // Default to standard 16:9 ratio
+  aspectRatio = 16 / 9
 }) => {
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    // Reduced loading time for faster video appearance
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -33,7 +31,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   return (
     <>
-      {/* Black background (visible during loading) */}
       <div 
         className={cn(
           "absolute inset-0 w-full h-full bg-black z-0 transition-opacity duration-700",
@@ -41,12 +38,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         )}
       />
       
-      {/* Animated gradient overlay (visible during loading) */}
       {isLoading && (
         <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/80 via-black/90 to-black/80 animate-pulse-subtle" />
       )}
       
-      {/* YouTube iframe with proper aspect ratio container */}
       <div className={cn(
         "absolute inset-0 w-full h-full z-10 overflow-hidden transition-opacity duration-700",
         isLoading ? "opacity-0" : "opacity-100",
@@ -64,10 +59,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               loading="eager"
             />
             
-            {/* Improved logo cover - larger size with solid black background */}
             <div 
-              className="absolute bottom-0 right-0 w-32 h-16 bg-black z-20" 
+              className="absolute bottom-0 right-0 w-32 h-16 z-20" 
               style={{
+                backgroundColor: '#000000',
                 borderTopLeftRadius: "8px"
               }}
             />
