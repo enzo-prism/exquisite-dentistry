@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -9,6 +10,7 @@ interface VideoBackgroundProps {
   className?: string;
   overlayOpacity?: number;
   aspectRatio?: number;
+  isContained?: boolean; // New prop to support contained mode
 }
 
 const VideoBackground: React.FC<VideoBackgroundProps> = ({
@@ -16,7 +18,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   posterSrc,
   className,
   overlayOpacity = 60,
-  aspectRatio = 16 / 9
+  aspectRatio = 16 / 9,
+  isContained = false
 }) => {
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +32,33 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     return () => clearTimeout(timer);
   }, [youtubeId]);
   
+  // For contained mode, return a simpler component with proper aspect ratio
+  if (isContained) {
+    return (
+      <div className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
+        <AspectRatio ratio={aspectRatio}>
+          <iframe 
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1&origin=${window.location.origin}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            className="w-full h-full"
+            frameBorder="0"
+            title="YouTube video player"
+            loading="eager"
+          />
+          
+          <div 
+            className="absolute bottom-0 right-0 w-32 h-16 z-20" 
+            style={{
+              backgroundColor: '#000000',
+              borderTopLeftRadius: "8px"
+            }}
+          />
+        </AspectRatio>
+      </div>
+    );
+  }
+  
+  // Original background implementation for desktop
   return (
     <>
       <div 
