@@ -101,7 +101,8 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     return (
       <section 
         className={cn(
-          'relative flex flex-col bg-black w-full pt-32', // Increased from pt-24 to pt-32
+          'relative flex flex-col bg-black w-full',
+          'pt-24', // Set appropriate padding for mobile
           heightClasses[height],
           className
         )}
@@ -221,7 +222,8 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full py-16 md:py-20 pt-32', // Increased from pt-24 to pt-32
+        'relative bg-black w-full py-16 md:py-20',
+        'pt-24 md:pt-32', // Responsive padding for all screen sizes
         heightClasses[height],
         className
       )}
@@ -351,4 +353,3 @@ const VideoHero: React.FC<VideoHeroProps> = ({
 export { YOUTUBE_VIDEOS };
 
 export default VideoHero;
-
