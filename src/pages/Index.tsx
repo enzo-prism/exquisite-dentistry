@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
@@ -39,6 +38,7 @@ const Index = () => {
         overlayColor="gradient"
         height="full"
         scrollIndicator={true}
+        alignment="left"
       />
 
       {/* Services Overview Section */}
