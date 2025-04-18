@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
@@ -6,6 +5,13 @@ import Button from './Button';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
+// Social media URLs
+const SOCIAL_URLS = {
+  FACEBOOK: "https://www.facebook.com/ExquisiteDentistry/",
+  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/",
+  X: "https://x.com/alexieaguildds"
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,13 +33,31 @@ const Footer = () => {
               Providing exceptional dental care with a focus on comfort, quality, and personalized treatment plans.
             </p>
             <div className="flex space-x-5 pt-2">
-              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Instagram">
+              <a 
+                href={SOCIAL_URLS.INSTAGRAM} 
+                className="text-white hover:text-gold transition-colors" 
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Facebook">
+              <a 
+                href={SOCIAL_URLS.FACEBOOK} 
+                className="text-white hover:text-gold transition-colors" 
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-gold transition-colors" aria-label="Twitter">
+              <a 
+                href={SOCIAL_URLS.X} 
+                className="text-white hover:text-gold transition-colors" 
+                aria-label="X (formerly Twitter)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Twitter size={20} />
               </a>
             </div>
