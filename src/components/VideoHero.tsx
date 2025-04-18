@@ -107,7 +107,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         )}
       >
         <div className={cn(
-          'w-full px-4 py-8 z-20 bg-black/80',
+          'w-full px-4 py-8',
           contentClassName
         )}>
           {badgeText && (
@@ -188,7 +188,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           </div>
         </div>
         
-        <div className="w-full px-4 z-10">
+        <div className="w-full mt-8 px-4">
           <VideoBackground 
             vimeoId={vimeoId}
             youtubeId={youtubeId}
@@ -201,7 +201,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
         
         {scrollIndicator && height !== 'auto' && (
           <div 
-            className="w-full flex justify-center pt-2 pb-2 z-20 cursor-pointer animate-bounce"
+            className="w-full flex justify-center pt-4 pb-2 cursor-pointer animate-bounce"
             onClick={scrollToNextSection}
           >
             <div className="flex flex-col items-center">
@@ -217,122 +217,112 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full',
-        'min-h-[80vh] flex items-center',
+        'relative bg-black w-full py-20',
+        heightClasses[height],
         className
       )}
     >
-      <div className="absolute inset-0 z-0">
-        <VideoBackground 
-          vimeoId={vimeoId}
-          youtubeId={youtubeId}
-          streamableUrl={streamableUrl}
-          posterSrc={posterSrc}
-          aspectRatio={aspectRatio}
-          isContained={false}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className={cn(
-          "max-w-3xl",
-          isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-          "transition-all duration-1000 ease-out",
-          alignmentClasses[alignment]
-        )}>
-          {badgeText && (
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
-              {badgeText}
-            </span>
-          )}
-          
-          <h1 className={cn(
-            "text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6",
-            alignmentClasses[alignment]
-          )}>
-            {title}
-          </h1>
-          
-          {subtitle && (
-            <p className={cn(
-              "text-lg md:text-xl text-white/90 mb-8 font-light",
-              alignment === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'
-            )}>
-              {subtitle}
-            </p>
-          )}
-          
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className={cn(
-            "flex items-center gap-4",
-            alignment === 'center' 
-              ? "justify-center" 
-              : "justify-start"
+            "w-full lg:w-1/2",
+            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            "transition-all duration-1000 ease-out"
           )}>
-            {primaryCta && (
-              primaryCta.href ? (
-                primaryCta.href.startsWith('http') ? (
-                  <a 
-                    href={primaryCta.href} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="w-full sm:w-auto"
-                  >
-                    <Button 
-                      size="lg"
-                      onClick={primaryCta.onClick}
-                      fullWidth={isMobile}
-                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      {primaryCta.text}
-                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </a>
-                ) : (
-                  <Link to={primaryCta.href} className="w-full sm:w-auto">
-                    <Button 
-                      size="lg"
-                      onClick={primaryCta.onClick}
-                      fullWidth={isMobile}
-                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      {primaryCta.text}
-                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </Link>
-                )
-              ) : (
-                <Button 
-                  size="lg"
-                  onClick={primaryCta.onClick}
-                  fullWidth={isMobile}
-                  className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  {primaryCta.text}
-                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              )
+            {badgeText && (
+              <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
+                {badgeText}
+              </span>
             )}
             
-            {secondaryCta && (
-              <Link to={secondaryCta.href} className="w-full sm:w-auto">
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-white text-white hover:bg-white/10 group"
-                  fullWidth={isMobile}
-                >
-                  {secondaryCta.text}
-                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
+              {title}
+            </h1>
+            
+            {subtitle && (
+              <p className="text-lg md:text-xl text-white/90 mb-8 font-light max-w-2xl">
+                {subtitle}
+              </p>
             )}
+            
+            <div className="flex items-center gap-4">
+              {primaryCta && (
+                primaryCta.href ? (
+                  primaryCta.href.startsWith('http') ? (
+                    <a 
+                      href={primaryCta.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <Button 
+                        size="lg"
+                        onClick={primaryCta.onClick}
+                        className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        {primaryCta.text}
+                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </a>
+                  ) : (
+                    <Link to={primaryCta.href}>
+                      <Button 
+                        size="lg"
+                        onClick={primaryCta.onClick}
+                        className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        {primaryCta.text}
+                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
+                  )
+                ) : (
+                  <Button 
+                    size="lg"
+                    onClick={primaryCta.onClick}
+                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {primaryCta.text}
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                )
+              )}
+              
+              {secondaryCta && (
+                <Link to={secondaryCta.href}>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="border-white text-white hover:bg-white/10 group"
+                  >
+                    {secondaryCta.text}
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
+          
+          <div className={cn(
+            "w-full lg:w-1/2",
+            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            "transition-all duration-1000 ease-out"
+          )}>
+            <VideoBackground 
+              vimeoId={vimeoId}
+              youtubeId={youtubeId}
+              streamableUrl={streamableUrl}
+              posterSrc={posterSrc}
+              aspectRatio={aspectRatio}
+              isContained={true}
+              className="rounded-sm shadow-xl"
+            />
           </div>
         </div>
       </div>
       
       {scrollIndicator && height !== 'auto' && (
         <div 
-          className="absolute bottom-4 left-0 right-0 mx-auto z-30 flex justify-center cursor-pointer animate-bounce"
+          className="absolute bottom-8 left-0 right-0 mx-auto flex justify-center cursor-pointer animate-bounce"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">
