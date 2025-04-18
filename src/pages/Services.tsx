@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
@@ -280,7 +280,11 @@ const Services = () => {
           
           <div className="relative">
             <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-              <img alt="Spa-like dental environment" className="w-full h-full object-cover" src="https://i.imgur.com/IhI6mvf.png" />
+              <img 
+                alt="Spa-like dental environment" 
+                className="w-full h-full object-cover" 
+                src="/lovable-uploads/ff4f6eda-6721-417a-aaf9-52db68468d45.png" 
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
               <p className="text-black-light italic text-sm">
