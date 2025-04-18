@@ -191,7 +191,7 @@ const Index = () => {
               <p className="text-lg text-black-light mb-6">
                 Dr. Alexie Aguil's artistic approach to cosmetic dentistry creates smiles that are not just beautiful, but perfectly suited to your unique facial features and personality.
               </p>
-              <Link to="/patient-experience">
+              <Link to="/client-experience">
                 <Button>
                   Discover the Experience
                   <ArrowRight size={16} className="ml-2" />
