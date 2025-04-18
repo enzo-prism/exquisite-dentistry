@@ -67,12 +67,6 @@ const Index = () => {
               href="/services#smile-makeovers"
             />
             <ServiceCard
-              title="Teeth Whitening"
-              description="Professional-grade whitening treatments that safely and effectively remove stains and discoloration for a brighter smile."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#whitening"
-            />
-            <ServiceCard
               title="Invisalign"
               description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
               icon={<Star className="h-6 w-6" />}
