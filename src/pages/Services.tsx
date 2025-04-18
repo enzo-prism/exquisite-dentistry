@@ -33,6 +33,9 @@ const services = [{
   icon: <Wrench size={24} />,
   image: "/lovable-uploads/ab504393-67bf-4498-b08e-0ff259231b9e.png",
   treatments: [{
+    name: "Porcelain Crowns & Bridges",
+    details: "Beautiful, durable restorations to repair damaged teeth or replace missing teeth"
+  }, {
     name: "Inlays & Onlays",
     details: "Conservative alternatives to full crowns that preserve more of your natural tooth structure"
   }, {
@@ -41,9 +44,6 @@ const services = [{
   }, {
     name: "Full & Partial Dentures",
     details: "Removable appliances to replace multiple missing teeth and restore function"
-  }, {
-    name: "Porcelain Crowns & Bridges",
-    details: "Beautiful, durable restorations to repair damaged teeth or replace missing teeth"
   }]
 }, {
   id: "preventive",
