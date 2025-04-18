@@ -26,9 +26,9 @@ const Navbar = () => {
     { name: 'Services', path: '/services' },
   ];
 
-  const patientLinks = [
-    { name: 'Patient Experience', path: '/patient-experience' },
-    { name: 'Patient Resources', path: '/patient-resources' },
+  const clientLinks = [
+    { name: 'Client Experience', path: '/client-experience' },
+    { name: 'Client Resources', path: '/client-resources' },
     { name: 'FAQs', path: '/faqs' },
   ];
 
@@ -38,7 +38,7 @@ const Navbar = () => {
   ];
 
   // All links flattened for mobile menu
-  const allNavLinks = [...mainNavLinks, ...patientLinks, ...moreLinks];
+  const allNavLinks = [...mainNavLinks, ...clientLinks, ...moreLinks];
 
   // Close mobile menu when location changes
   useEffect(() => {
@@ -105,20 +105,20 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Patient dropdown */}
+              {/* Clients dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger className={cn(
                   'relative inline-flex items-center px-3 py-2 font-medium text-sm transition-colors rounded-md hover:bg-white/10',
                   'after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2',
                   'after:h-[2px] after:bg-gold after:transition-all after:duration-300',
-                  isDropdownActive(patientLinks)
+                  isDropdownActive(clientLinks)
                     ? 'text-gold after:w-1/2' 
                     : 'text-white/90 hover:text-white after:w-0 hover:after:w-1/2'
                 )}>
-                  Patients <ChevronDown className="ml-1 h-4 w-4" />
+                  Clients <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="bg-black/95 border border-gold/20 shadow-lg p-2 rounded-md backdrop-blur">
-                  {patientLinks.map((link) => (
+                  {clientLinks.map((link) => (
                     <DropdownMenuItem key={link.name} asChild className="focus:bg-white/10 rounded-md">
                       <Link
                         to={link.path}
