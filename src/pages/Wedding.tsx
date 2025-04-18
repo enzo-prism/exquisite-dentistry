@@ -129,12 +129,7 @@ const Wedding = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1581583885017-cf639cd9cbc5?q=80&w=983&auto=format&fit=crop"
-                  alt="Teeth Whitening" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#FEF7CD] via-[#FDE1D3] to-white" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Professional Teeth Whitening</h3>
@@ -150,12 +145,7 @@ const Wedding = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1502229725503-e8b4e922e201?q=80&w=1935&auto=format&fit=crop"
-                  alt="Porcelain Veneers" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-white via-[#FEF7CD] to-[#FDE1D3]" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Porcelain Veneers</h3>
@@ -171,12 +161,7 @@ const Wedding = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1565611425466-8c653bcb4a97?q=80&w=2066&auto=format&fit=crop"
-                  alt="Invisalign" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#FDE1D3] via-white to-[#FEF7CD]" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Invisalign Express</h3>
@@ -192,12 +177,7 @@ const Wedding = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1616788709236-ffdbb0a953a5?q=80&w=1961&auto=format&fit=crop"
-                  alt="Dental Bonding" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#FEF7CD] to-[#FDE1D3]" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Cosmetic Bonding</h3>
