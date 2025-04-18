@@ -152,12 +152,7 @@ const Graduation = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1594839688900-0935432b8d15?q=80&w=1974&auto=format&fit=crop"
-                  alt="Professional Teeth Whitening" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#9A8360] via-black/10 to-black/5" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">One-Hour Power Whitening</h3>
@@ -173,12 +168,7 @@ const Graduation = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1936&auto=format&fit=crop"
-                  alt="Smile Makeover" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-black/10 via-[#9A8360] to-black/5" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Graduation Smile Package</h3>
@@ -194,12 +184,7 @@ const Graduation = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1628508962459-f41c41c761f4?q=80&w=1972&auto=format&fit=crop"
-                  alt="Cosmetic Bonding" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#9A8360] to-black/10" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Express Cosmetic Bonding</h3>
@@ -215,12 +200,7 @@ const Graduation = () => {
 
             <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-sm shadow-sm">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1541599468348-e96984315921?q=80&w=2070&auto=format&fit=crop"
-                  alt="Dental Veneers" 
-                  className="w-full h-full object-cover rounded-sm"
-                  loading="lazy"
-                />
+                <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-black/5 via-[#9A8360] to-black/10" />
               </div>
               <div className="md:w-2/3">
                 <h3 className="text-xl font-medium mb-3">Front Teeth Veneers</h3>
