@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
@@ -36,12 +35,12 @@ const features: Feature[] = [
   }
 ];
 
-const PatientExperienceSection: React.FC = () => {
+const ClientExperienceSection: React.FC = () => {
   return (
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT EXPERIENCE</span>
+          <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT EXPERIENCE</span>
           <h2 className="heading-lg mb-6">Exceptional Comfort & Care</h2>
           <div className="separator"></div>
           <p className="paragraph">
@@ -81,9 +80,9 @@ const PatientExperienceSection: React.FC = () => {
             </div>
             
             <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold">
-              <h4 className="font-medium text-lg mb-2">Patient Involvement</h4>
+              <h4 className="font-medium text-lg mb-2">Client Involvement</h4>
               <p className="text-black-light/80">
-                We believe in clear communication and active patient participation in all treatment decisions. Dr. Aguil and our team will thoroughly explain all options and answer any questions you have.
+                We believe in clear communication and active client participation in all treatment decisions. Dr. Aguil and our team will thoroughly explain all options and answer any questions you have.
               </p>
             </div>
             
@@ -105,4 +104,4 @@ const PatientExperienceSection: React.FC = () => {
   );
 };
 
-export default PatientExperienceSection;
+export default ClientExperienceSection;

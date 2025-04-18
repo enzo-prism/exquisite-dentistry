@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
@@ -11,11 +10,11 @@ interface FAQ {
   answer: string;
 }
 
-// Define the patient forms data
-const patientForms = [
+// Define the client forms data
+const clientForms = [
   {
-    name: "New Patient Registration Form",
-    description: "Required for all first-time patients"
+    name: "New Client Registration Form",
+    description: "Required for all first-time visits"
   },
   {
     name: "Medical History Form",
@@ -47,12 +46,12 @@ const faqs: FAQ[] = [
     answer: "Your first visit will include a comprehensive examination, professional cleaning, and discussion of your oral health goals. We'll take any necessary X-rays and create a personalized treatment plan based on your needs."
   },
   {
-    question: "How often should I visit the dentist?",
-    answer: "Most patients benefit from professional cleanings and check-ups every six months. However, some conditions may require more frequent visits, which Dr. Aguil will discuss with you based on your specific needs."
+    question: "How often should I visit for dental care?",
+    answer: "Most clients benefit from professional cleanings and check-ups every six months. However, some conditions may require more frequent visits, which Dr. Aguil will discuss with you based on your specific needs."
   },
   {
     question: "Do you offer payment plans?",
-    answer: "Yes, we offer flexible payment options through CareCredit and our in-house financing plans. Our team will work with you to find a solution that fits your budget while allowing you to receive the care you need."
+    answer: "Yes, we offer flexible payment options through CareCredit and our in-house financing plans. Our team will work with you to find a solution that fits your budget while allowing you to receive the care you desire."
   },
   {
     question: "What if I have a dental emergency?",
@@ -60,11 +59,11 @@ const faqs: FAQ[] = [
   },
   {
     question: "Do you offer sedation dentistry?",
-    answer: "Yes, we offer several sedation options for anxious patients or complex procedures, including nitrous oxide (laughing gas) and oral conscious sedation. Dr. Aguil will discuss which option is best for your needs."
+    answer: "Yes, we offer several sedation options for enhanced comfort during procedures, including nitrous oxide (laughing gas) and oral conscious sedation. Dr. Aguil will discuss which option is best for your needs."
   }
 ];
 
-const PatientResources = () => {
+const ClientResources = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -77,11 +76,10 @@ const PatientResources = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
-        title={<>Patient <span className="text-gold">Resources</span></>}
+        title={<>Client <span className="text-gold">Resources</span></>}
         subtitle="Everything you need to know before, during, and after your visit to Exquisite Dentistry."
         primaryCta={{ text: "Book an Appointment" }}
         secondaryCta={{ text: "Contact Us", href: "/contact" }}
@@ -91,7 +89,6 @@ const PatientResources = () => {
         scrollIndicator={false}
       />
 
-      {/* Introduction Section */}
       <section className="-mt-32 relative z-20 mb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 lg:p-16">
@@ -105,7 +102,7 @@ const PatientResources = () => {
                 {[
                   { 
                     icon: <FileText size={30} />, 
-                    title: "Patient Forms", 
+                    title: "Client Forms", 
                     description: "Download and complete forms before your visit" 
                   },
                   { 
@@ -133,19 +130,18 @@ const PatientResources = () => {
         </div>
       </section>
 
-      {/* Patient Forms Section */}
       <section className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-6">
-            <span className="inline-block text-sm text-gold font-medium">FOR NEW PATIENTS</span>
-            <h2 className="heading-lg">Patient Forms</h2>
+            <span className="inline-block text-sm text-gold font-medium">FOR NEW CLIENTS</span>
+            <h2 className="heading-lg">Client Forms</h2>
             <div className="separator-left"></div>
             <p className="paragraph">
               To make your first visit as efficient as possible, please download and complete these forms before your appointment. This allows us to focus on your dental needs rather than paperwork during your visit.
             </p>
             
             <div className="space-y-4 mt-8">
-              {patientForms.map((form, index) => (
+              {clientForms.map((form, index) => (
                 <div key={form.name} className="border border-gray-200 rounded-sm p-4 flex items-center justify-between hover:shadow-md transition-shadow">
                   <div>
                     <h4 className="font-medium text-black">{form.name}</h4>
@@ -188,7 +184,6 @@ const PatientResources = () => {
         </div>
       </section>
 
-      {/* FAQs Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -238,7 +233,6 @@ const PatientResources = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="section-container">
         <div className="max-w-4xl mx-auto bg-black rounded-sm p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
@@ -259,4 +253,4 @@ const PatientResources = () => {
   );
 };
 
-export default PatientResources;
+export default ClientResources;

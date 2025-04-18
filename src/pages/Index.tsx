@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check, ArrowUpRight } from 'lucide-react';
@@ -208,10 +207,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
-              Patient <span className="text-gold">Testimonials</span>
+              Client <span className="text-gold">Testimonials</span>
             </h2>
             <p className="text-lg text-black-light max-w-3xl mx-auto">
-              Hear what our patients have to say about their experience at Exquisite Dentistry
+              Hear what our clients have to say about their experience at Exquisite Dentistry
             </p>
           </div>
 

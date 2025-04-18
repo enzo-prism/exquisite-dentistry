@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -6,7 +5,6 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Define services data
 const services = [{
   id: "cosmetic",
   title: "Cosmetic Dentistry",
@@ -89,22 +87,20 @@ const services = [{
   }]
 }];
 
-// Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <div className="min-h-screen page-transition-in">
-      {/* Hero Section with YouTube Video */}
+  return (
+    <div className="min-h-screen page-transition-in">
       <VideoHero posterSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" youtubeId={YOUTUBE_VIDEOS.PROCEDURE} title={<>Our <span className="text-gold">Services</span></>} subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles." primaryCta={{
-      text: "Book an Appointment",
-      href: SCHEDULING_URL,
-      onClick: () => window.open(SCHEDULING_URL, '_blank')
-    }} overlayColor="gradient" height="medium" badgeText="EXCEPTIONAL DENTAL CARE" scrollIndicator={false} />
+        text: "Book an Appointment",
+        href: SCHEDULING_URL,
+        onClick: () => window.open(SCHEDULING_URL, '_blank')
+      }} overlayColor="gradient" height="medium" badgeText="EXCEPTIONAL DENTAL CARE" scrollIndicator={false} />
 
-      {/* Introduction Section */}
       <section className="-mt-32 relative z-20 mb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 lg:p-16">
@@ -129,7 +125,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Sections */}
       {services.map((service, index) => <section key={service.id} id={service.id} className={cn("py-20", index % 2 === 1 ? "bg-gray-50" : "")}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -182,7 +177,6 @@ const Services = () => {
           </div>
         </section>)}
 
-      {/* Technology Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -228,11 +222,10 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Patient Experience */}
       <section className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <span className="inline-block text-sm text-gold font-medium">PATIENT EXPERIENCE</span>
+            <span className="inline-block text-sm text-gold font-medium">CLIENT EXPERIENCE</span>
             <h2 className="heading-lg">Exceptional Comfort & Care</h2>
             <div className="separator-left"></div>
             <p className="paragraph">
@@ -289,7 +282,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
@@ -305,6 +297,8 @@ const Services = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default Services;
