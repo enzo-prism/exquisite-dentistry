@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,25 +17,23 @@ import NotFound from "@/pages/NotFound";
 import PatientExperience from "@/pages/PatientExperience";
 import Wedding from "@/pages/Wedding";
 import Graduation from "@/pages/Graduation";
+import FAQs from "@/pages/FAQs";
 
 const queryClient = new QueryClient();
 
-// Internal component to run audit on route changes
 const RouteAudit = () => {
   const location = useLocation();
   
   useEffect(() => {
-    // Wait for the page to fully render before running the audit
     const timer = setTimeout(() => {
       if (process.env.NODE_ENV === 'development') {
-        // Only import in development mode to avoid bundling in production
         import('@/utils/uiAudit').then(({ logAuditResults }) => {
           console.group(`UI Audit for route: ${location.pathname}`);
           logAuditResults();
           console.groupEnd();
         });
       }
-    }, 500); // Short delay to ensure components are rendered
+    }, 500);
     
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -59,6 +56,7 @@ const AppRoutes = () => (
         <Route path="/contact" element={<Contact />} />
         <Route path="/wedding" element={<Wedding />} />
         <Route path="/graduation" element={<Graduation />} />
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

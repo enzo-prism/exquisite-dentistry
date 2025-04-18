@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -30,6 +29,7 @@ const Navbar = () => {
   const patientLinks = [
     { name: 'Patient Experience', path: '/patient-experience' },
     { name: 'Patient Resources', path: '/patient-resources' },
+    { name: 'FAQs', path: '/faqs' },
   ];
 
   const moreLinks = [
