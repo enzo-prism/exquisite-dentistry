@@ -9,6 +9,7 @@ import VideoModal from '@/components/VideoModal';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Fixed thumbnail URLs - using high-quality version for all videos
 const videoTestimonials = [
   {
     id: 1,
@@ -56,18 +57,32 @@ const VideoTestimonialCard = ({ testimonial, onPlay }: {
   testimonial: typeof videoTestimonials[0], 
   onPlay: (youtubeId: string) => void 
 }) => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 opacity-0 animate-fade-in">
       <div 
         className="relative aspect-video group cursor-pointer hover:scale-105 transition-transform duration-300"
         onClick={() => onPlay(testimonial.youtubeId)}
       >
-        <img 
-          src={testimonial.thumbnail} 
-          alt={testimonial.title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        {imageError ? (
+          // Fallback for any thumbnail loading errors
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+          </div>
+        ) : (
+          <img 
+            src={testimonial.thumbnail} 
+            alt={testimonial.title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            onError={() => setImageError(true)}
+          />
+        )}
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/60 transition-colors">
           <div className="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
