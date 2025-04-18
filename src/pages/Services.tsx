@@ -95,11 +95,20 @@ const Services = () => {
   }, []);
   return (
     <div className="min-h-screen page-transition-in">
-      <VideoHero posterSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" youtubeId={YOUTUBE_VIDEOS.PROCEDURE} title={<>Our <span className="text-gold">Services</span></>} subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles." primaryCta={{
-        text: "Book an Appointment",
-        href: SCHEDULING_URL,
-        onClick: () => window.open(SCHEDULING_URL, '_blank')
-      }} overlayColor="gradient" height="medium" badgeText="EXCEPTIONAL DENTAL CARE" scrollIndicator={false} />
+      <VideoHero 
+        vimeoId="1076745525"
+        title={<>Our <span className="text-gold">Services</span></>} 
+        subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles." 
+        primaryCta={{
+          text: "Book an Appointment",
+          href: SCHEDULING_URL,
+          onClick: () => window.open(SCHEDULING_URL, '_blank')
+        }} 
+        overlayColor="gradient" 
+        height="medium" 
+        badgeText="EXCEPTIONAL DENTAL CARE" 
+        scrollIndicator={false} 
+      />
 
       <section className="-mt-32 relative z-20 mb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
