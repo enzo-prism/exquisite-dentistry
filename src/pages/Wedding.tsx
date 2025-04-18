@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, Heart, Check, Clock, Diamond } from 'lucide-react';
@@ -15,8 +14,7 @@ const Wedding = () => {
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
-        posterSrc="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
-        youtubeId={YOUTUBE_VIDEOS.COSMETIC}
+        vimeoId="1076745525"
         title={<>Perfect <span className="text-gold">Wedding Smiles</span></>}
         subtitle="Look and feel your best on your special day with our customized wedding smile makeover treatments."
         primaryCta={{ text: "Book Your Wedding Smile Consultation" }}
