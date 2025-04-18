@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -102,17 +101,17 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       <section 
         className={cn(
           'relative flex flex-col bg-black w-full',
-          'pt-20 pb-8',
+          'section-vertical-spacing',
           heightClasses[height],
           className
         )}
       >
         <div className={cn(
-          'w-full px-4 py-8',
+          'w-full content-vertical-spacing mobile-optimized-padding',
           contentClassName
         )}>
           {badgeText && (
-            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-4 transform hover:scale-105 transition-transform duration-300">
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
               {badgeText}
             </span>
           )}
@@ -189,7 +188,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           </div>
         </div>
         
-        <div className="w-full mt-8 px-4">
+        <div className="w-full mt-8 mobile-optimized-padding">
           <VideoBackground 
             vimeoId={vimeoId}
             youtubeId={youtubeId}
@@ -218,15 +217,15 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full py-20',
+        'relative bg-black w-full section-vertical-spacing',
         heightClasses[height],
         className
       )}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+      <div className="section-container">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           <div className={cn(
-            "w-full lg:w-1/2 max-w-3xl", // Added max-width to ensure content doesn't stretch too wide
+            "w-full lg:w-1/2 max-w-3xl content-spacing",
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             "transition-all duration-1000 ease-out"
           )}>
@@ -304,7 +303,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           </div>
           
           <div className={cn(
-            "w-full lg:w-1/2 flex-shrink-0", // Added flex-shrink-0 to prevent video from shrinking
+            "w-full lg:w-1/2 flex-shrink-0",
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             "transition-all duration-1000 ease-out"
           )}>
