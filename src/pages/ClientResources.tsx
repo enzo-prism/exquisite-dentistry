@@ -12,8 +12,8 @@ const faqs: FAQ[] = [
     answer: "You can always expect to be treated like a VIP. Our office looks, sounds, and smells like a day spa. As soon as you come through the door, you'll be warmly greeted and offered freshly brewed coffee, water, or herbal tea. Enjoy a soft blanket, neck pillow, and noise-canceling headphones as you relax in a comfortable treatment chair. We value your time and get right to work for you. Dr. Aguil will patiently keep you informed and involved in your treatment."
   },
   {
-    question: "What if I'm a new patient?",
-    answer: "Welcome! We're excited to see you! Please arrive 15 minutes early to complete the paperwork for your first appointment. Or, you can complete our dental patient forms through our secure patient portal to save time."
+    question: "What if I'm a new client?",
+    answer: "Welcome! We're excited to see you! Please arrive 15 minutes early to complete the paperwork for your first appointment. Or, you can complete our dental forms through our secure client portal to save time."
   },
   {
     question: "Is there parking nearby?",
@@ -96,7 +96,7 @@ const ClientResources = () => {
         youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
         title={<>Client <span className="text-gold">Resources</span></>}
         subtitle="Everything you need to know before, during, and after your visit to Exquisite Dentistry."
-        primaryCta={{ text: "Access Patient Portal", href: "#forms" }}
+        primaryCta={{ text: "Access Client Portal", href: "#forms" }}
         overlayColor="gradient"
         height="medium"
         badgeText="HELPFUL INFORMATION"
@@ -108,12 +108,12 @@ const ClientResources = () => {
           <div className="bg-white shadow-xl rounded-sm p-8 md:p-12">
             <div className="max-w-3xl mx-auto">
               <div id="forms" className="text-center mb-12">
-                <h2 className="text-3xl font-medium mb-4">Patient Forms & Portal</h2>
+                <h2 className="text-3xl font-medium mb-4">Forms & Portal</h2>
                 <p className="text-black-light/80 mb-8">
-                  Access and complete all necessary forms through our secure patient portal. This allows us to focus on your dental needs rather than paperwork during your visit.
+                  Access and complete all necessary forms through our secure client portal. This allows us to focus on your dental needs rather than paperwork during your visit.
                 </p>
                 <Button className="gap-2">
-                  Access Patient Portal 
+                  Access Client Portal 
                   <ExternalLink size={18} />
                 </Button>
               </div>

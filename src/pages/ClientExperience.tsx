@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
@@ -34,7 +33,7 @@ const Amenity: React.FC<AmenityProps> = ({ title, description, icon, className, 
   </div>
 );
 
-const PatientExperience = () => {
+const ClientExperience = () => {
   const amenities = [
     {
       title: "Spa-Like Amenities",
@@ -67,7 +66,7 @@ const PatientExperience = () => {
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1620283085068-5aab84e2db3e?q=80&w=2070&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
-        title={<>The <span className="text-gold">Patient Experience</span></>}
+        title={<>The <span className="text-gold">Client Experience</span></>}
         subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
         primaryCta={{ 
           text: "Book Your First Appointment", 
@@ -125,11 +124,11 @@ const PatientExperience = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
               <div>
-                <span className="inline-block text-sm text-gold font-medium mb-3">PATIENT INVOLVEMENT</span>
+                <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT INVOLVEMENT</span>
                 <h2 className="heading-lg mb-6">Your Voice Matters in Your Treatment</h2>
                 <div className="separator-left"></div>
                 <p className="paragraph mt-6">
-                  We believe in clear communication and active patient participation in all treatment decisions. 
+                  We believe in clear communication and active client participation in all treatment decisions. 
                   Dr. Aguil and our team will thoroughly explain all options and answer any questions you have, 
                   ensuring that you're confident and informed at every step.
                 </p>
@@ -144,7 +143,7 @@ const PatientExperience = () => {
               </div>
               
               <div className="bg-white p-8 rounded-sm shadow-xl">
-                <h3 className="text-xl font-medium mb-4">Our Patient-First Approach</h3>
+                <h3 className="text-xl font-medium mb-4">Our Client-First Approach</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">1</span>
@@ -200,4 +199,4 @@ const PatientExperience = () => {
   );
 };
 
-export default PatientExperience;
+export default ClientExperience;

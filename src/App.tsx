@@ -10,11 +10,11 @@ import Footer from "@/components/Footer";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
-import PatientResources from "@/pages/PatientResources";
+import ClientResources from "@/pages/ClientResources";
 import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
-import PatientExperience from "@/pages/PatientExperience";
+import ClientExperience from "@/pages/ClientExperience";
 import Wedding from "@/pages/Wedding";
 import Graduation from "@/pages/Graduation";
 import FAQs from "@/pages/FAQs";
@@ -50,8 +50,8 @@ const AppRoutes = () => (
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/patient-resources" element={<PatientResources />} />
-        <Route path="/patient-experience" element={<PatientExperience />} />
+        <Route path="/client-resources" element={<ClientResources />} />
+        <Route path="/client-experience" element={<ClientExperience />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/wedding" element={<Wedding />} />

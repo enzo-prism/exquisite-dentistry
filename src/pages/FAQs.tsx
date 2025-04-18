@@ -18,9 +18,9 @@ const faqs: FAQ[] = [
     category: "Appointments"
   },
   {
-    question: "What if I'm a new patient?",
-    answer: "Welcome! We're excited to see you! Please arrive 15 minutes early to complete the paperwork for your first appointment. Or, you can complete our dental patient forms online and print or email them back to us to save time.",
-    category: "New Patients"
+    question: "What if I'm a new client?",
+    answer: "Welcome! We're excited to see you! Please arrive 15 minutes early to complete the paperwork for your first appointment. Or, you can complete our dental forms online and print or email them back to us to save time.",
+    category: "New Clients"
   },
   {
     question: "Is there parking nearby?",
@@ -49,7 +49,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "What types of imaging are available?",
-    answer: "We use digital imaging for routine x-rays and 3D imaging for more advanced diagnosis. Our iTero scanner takes a digital impression of your mouth and records the movement of teeth over time, something that happens to everyone as we age.\n\niTero scanning also allows us to create digital impressions for crowns and bridges. This is great news for our patients because in many cases, we won't have to use traditional trays lined with a gooey material to create these impressions. This is another way our advanced technology helps to make your visit more comfortable.",
+    answer: "We use digital imaging for routine x-rays and 3D imaging for more advanced diagnosis. Our iTero scanner takes a digital impression of your mouth and records the movement of teeth over time, something that happens to everyone as we age.\n\niTero scanning also allows us to create digital impressions for crowns and bridges. This is great news for our clients because in many cases, we won't have to use traditional trays lined with a gooey material to create these impressions. This is another way our advanced technology helps to make your visit more comfortable.",
     category: "Services"
   },
   {
