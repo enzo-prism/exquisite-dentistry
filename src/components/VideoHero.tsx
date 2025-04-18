@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -102,7 +101,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       <section 
         className={cn(
           'relative flex flex-col bg-black w-full',
-          'pt-24', // Set appropriate padding for mobile
+          'pt-32 sm:pt-24', // Increased top padding to prevent navbar overlap
           heightClasses[height],
           className
         )}
@@ -223,7 +222,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     <section 
       className={cn(
         'relative bg-black w-full py-16 md:py-20',
-        'pt-24 md:pt-32', // Responsive padding for all screen sizes
+        'pt-32 md:pt-24', // Increased desktop top padding to prevent navbar overlap
         heightClasses[height],
         className
       )}
