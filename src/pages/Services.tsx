@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -284,7 +283,7 @@ const Services = () => {
               <img 
                 alt="Spa-like dental environment" 
                 className="w-full h-full object-cover" 
-                src="/lovable-uploads/ff4f6eda-6721-417a-aaf9-52db68468d45.png" 
+                src="/lovable-uploads/bccd20a5-67f9-4966-a433-0e020f0023db.png" 
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
