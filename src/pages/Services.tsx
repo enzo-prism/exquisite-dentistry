@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
