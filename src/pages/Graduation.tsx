@@ -13,7 +13,7 @@ const Graduation = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section with YouTube Video */}
+      {/* Hero Section with YouTube Video - Adjusted for better padding */}
       <VideoHero
         posterSrc="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
@@ -25,6 +25,7 @@ const Graduation = () => {
         height="large"
         badgeText="GRAD SPECIALS"
         scrollIndicator={true}
+        className="py-10 md:py-12" // Added custom padding to ensure proper spacing
       />
 
       {/* Quick Treatments Section */}

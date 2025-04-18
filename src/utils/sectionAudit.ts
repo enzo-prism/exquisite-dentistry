@@ -1,4 +1,3 @@
-
 /**
  * Section Audit Utility
  * This utility helps detect and fix spacing issues between sections
@@ -65,8 +64,32 @@ export const fixBackgroundConsistency = (): void => {
   });
 };
 
+// Function to ensure balanced padding between sections
+export const balanceSectionPadding = (): void => {
+  const sections = document.querySelectorAll('section');
+  
+  sections.forEach((section, index) => {
+    const sectionStyle = window.getComputedStyle(section);
+    const paddingTop = parseInt(sectionStyle.paddingTop, 10);
+    const paddingBottom = parseInt(sectionStyle.paddingBottom, 10);
+    
+    // If padding is significantly unbalanced (more than 25% difference)
+    if (Math.abs(paddingTop - paddingBottom) > Math.max(paddingTop, paddingBottom) * 0.25) {
+      // Calculate balanced padding
+      const avgPadding = Math.floor((paddingTop + paddingBottom) / 2);
+      
+      // Apply balanced padding
+      (section as HTMLElement).style.paddingTop = `${avgPadding}px`;
+      (section as HTMLElement).style.paddingBottom = `${avgPadding}px`;
+      
+      console.log(`Balanced padding for section ${index + 1}: ${avgPadding}px top and bottom`);
+    }
+  });
+};
+
 // For debugging - add to window object
 if (typeof window !== 'undefined') {
   (window as any).checkForSectionGaps = checkForSectionGaps;
   (window as any).fixBackgroundConsistency = fixBackgroundConsistency;
+  (window as any).balanceSectionPadding = balanceSectionPadding;
 }

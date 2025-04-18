@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -84,9 +85,10 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     }
   };
 
+  // Updated height classes with more balanced padding
   const heightClasses = {
     full: 'min-h-screen',
-    large: 'min-h-[80vh]',
+    large: 'min-h-[75vh]', // Reduced from 80vh
     medium: 'min-h-[60vh]',
     auto: ''
   };
@@ -101,13 +103,13 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       <section 
         className={cn(
           'relative flex flex-col bg-black w-full',
-          'pt-32 sm:pt-24', // Increased top padding to prevent navbar overlap
+          'pt-20 sm:pt-24 pb-8', // Adjusted top padding and added bottom padding
           heightClasses[height],
           className
         )}
       >
         <div className={cn(
-          'w-full px-4 pt-20 pb-4 z-20 bg-black',
+          'w-full px-4 pt-8 pb-4 z-20 bg-black', // Reduced top padding
           contentClassName
         )}>
           {badgeText && (
@@ -221,8 +223,8 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full py-16 md:py-20',
-        'pt-32 md:pt-24', // Increased desktop top padding to prevent navbar overlap
+        'relative bg-black w-full',
+        'py-12 md:py-16', // Balanced padding top and bottom
         heightClasses[height],
         className
       )}
