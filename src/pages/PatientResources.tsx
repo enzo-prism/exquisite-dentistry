@@ -63,6 +63,50 @@ const faqs: FAQ[] = [
   }
 ];
 
+// Define the financing info component
+const FinancingSection = () => {
+  return (
+    <div className="bg-gray-50 p-6 rounded-sm mt-8">
+      <h3 className="heading-sm mb-4">Payment & Financing Options</h3>
+      <div className="space-y-6">
+        {/* Accepted Payment Methods */}
+        <div>
+          <h4 className="font-medium text-lg mb-3">We Accept</h4>
+          <ul className="space-y-2 text-black-light">
+            <li>Cash</li>
+            <li>All major credit cards</li>
+          </ul>
+        </div>
+
+        {/* Care Plus Financing */}
+        <div className="bg-white p-6 rounded-sm shadow-sm border border-gold/20">
+          <h4 className="font-medium text-lg mb-3 text-gold">Care Plus Financing</h4>
+          <p className="text-black-light mb-4">
+            Get the care you need with convenient monthly payments. Quick applications with instant decisions.
+          </p>
+          <Button>Learn More About Financing</Button>
+        </div>
+
+        {/* Personal Financing Message */}
+        <div className="bg-gray-100 p-4 rounded-sm">
+          <p className="text-black-light">
+            Considering a larger treatment plan? Ask us about flexible monthly payment options designed to fit your budget.
+          </p>
+        </div>
+
+        {/* VineTrellis Integration */}
+        <div className="pt-4 border-t border-gray-200">
+          <h4 className="font-medium text-lg mb-3">Online Forms & Payments</h4>
+          <p className="text-black-light mb-4">
+            Access your forms and make payments securely through our patient portal.
+          </p>
+          <Button variant="outline">Access Patient Portal</Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ClientResources = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -161,25 +205,7 @@ const ClientResources = () => {
               We strive to make dental care accessible and affordable. Our administrative team will work with you to maximize your insurance benefits and explore payment options that suit your needs.
             </p>
             
-            <div className="bg-gray-50 p-6 rounded-sm mt-8">
-              <h3 className="heading-sm mb-4">Insurance Information</h3>
-              <ul className="space-y-3">
-                {insuranceInfo.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="w-4 h-4 rounded-full bg-gold/20 flex-shrink-0 mt-1 mr-3"></span>
-                    <span className="text-black-light">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <h3 className="heading-sm mb-4">Payment Options</h3>
-                <p className="text-black-light mb-4">
-                  We accept cash, personal checks, and all major credit cards. We also offer flexible payment plans through CareCredit to help you manage larger treatment costs.
-                </p>
-                <Button>Learn About CareCredit</Button>
-              </div>
-            </div>
+            <FinancingSection />
           </div>
         </div>
       </section>
