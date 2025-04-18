@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -85,10 +84,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     }
   };
 
-  // Updated height classes with more balanced padding
   const heightClasses = {
     full: 'min-h-screen',
-    large: 'min-h-[75vh]', // Reduced from 80vh
+    large: 'min-h-[80vh]',
     medium: 'min-h-[60vh]',
     auto: ''
   };
@@ -103,13 +101,13 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       <section 
         className={cn(
           'relative flex flex-col bg-black w-full',
-          'pt-20 sm:pt-24 pb-8', // Adjusted top padding and added bottom padding
+          'pt-20 pb-8',
           heightClasses[height],
           className
         )}
       >
         <div className={cn(
-          'w-full px-4 pt-8 pb-4 z-20 bg-black', // Reduced top padding
+          'w-full px-4 py-8 z-20 bg-black/80',
           contentClassName
         )}>
           {badgeText && (
@@ -118,91 +116,87 @@ const VideoHero: React.FC<VideoHeroProps> = ({
             </span>
           )}
           
-          <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-4 relative">
+          <h1 className="text-3xl sm:text-4xl font-sans font-semibold text-white leading-tight mb-6">
             {title}
           </h1>
           
           {subtitle && (
-            <p className={cn(
-              "text-base text-white/90 mb-4 font-light",
-              alignment === 'center' ? 'w-full' : 'w-full'
-            )}>
+            <p className="text-base sm:text-lg text-white/90 mb-8 font-light max-w-2xl">
               {subtitle}
             </p>
           )}
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            {primaryCta && (
+              primaryCta.href ? (
+                primaryCta.href.startsWith('http') ? (
+                  <a 
+                    href={primaryCta.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full sm:w-auto"
+                  >
+                    <Button 
+                      size="default"
+                      onClick={primaryCta.onClick}
+                      fullWidth={true}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Link to={primaryCta.href} className="w-full sm:w-auto">
+                    <Button 
+                      size="default"
+                      onClick={primaryCta.onClick}
+                      fullWidth={true}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                )
+              ) : (
+                <Button 
+                  size="default"
+                  onClick={primaryCta.onClick}
+                  fullWidth={true}
+                  className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  {primaryCta.text}
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              )
+            )}
+            
+            {secondaryCta && (
+              <Link to={secondaryCta.href} className="w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="default"
+                  className="border-white text-white hover:bg-white/10 group"
+                  fullWidth={true}
+                >
+                  {secondaryCta.text}
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
         
         <div className="w-full px-4 z-10">
           <VideoBackground 
             vimeoId={vimeoId}
+            youtubeId={youtubeId}
+            streamableUrl={streamableUrl}
             posterSrc={posterSrc} 
             aspectRatio={aspectRatio}
             isContained={true}
           />
-        </div>
-        
-        <div className={cn(
-          "w-full px-4 pt-4 pb-6 z-20",
-          alignment === 'center' ? 'flex flex-col items-center' : 'flex flex-col'
-        )}>
-          {primaryCta && (
-            primaryCta.href ? (
-              primaryCta.href.startsWith('http') ? (
-                <a 
-                  href={primaryCta.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-full mb-4"
-                >
-                  <Button 
-                    size="default"
-                    onClick={primaryCta.onClick}
-                    fullWidth={true}
-                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {primaryCta.text}
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </a>
-              ) : (
-                <Link to={primaryCta.href} className="w-full mb-4">
-                  <Button 
-                    size="default"
-                    onClick={primaryCta.onClick}
-                    fullWidth={true}
-                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {primaryCta.text}
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              )
-            ) : (
-              <Button 
-                size="default"
-                onClick={primaryCta.onClick}
-                fullWidth={true}
-                className="group shadow-lg hover:shadow-xl transition-all duration-300 mb-4"
-              >
-                {primaryCta.text}
-                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-            )
-          )}
-          
-          {secondaryCta && (
-            <Link to={secondaryCta.href} className="w-full">
-              <Button 
-                variant="outline" 
-                size="default"
-                className="border-white text-white hover:bg-white/10 group"
-                fullWidth={true}
-              >
-                {secondaryCta.text}
-                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-          )}
         </div>
         
         {scrollIndicator && height !== 'auto' && (
@@ -224,114 +218,114 @@ const VideoHero: React.FC<VideoHeroProps> = ({
     <section 
       className={cn(
         'relative bg-black w-full',
-        'py-12 md:py-16', // Balanced padding top and bottom
-        heightClasses[height],
+        'min-h-[80vh] flex items-center',
         className
       )}
     >
-      <div className="container mx-auto px-4 flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-          <div className={cn(
-            "flex flex-col justify-center",
-            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-            "transition-all duration-1000 ease-out"
+      <div className="absolute inset-0 z-0">
+        <VideoBackground 
+          vimeoId={vimeoId}
+          youtubeId={youtubeId}
+          streamableUrl={streamableUrl}
+          posterSrc={posterSrc}
+          aspectRatio={aspectRatio}
+          isContained={false}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className={cn(
+          "max-w-3xl",
+          isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+          "transition-all duration-1000 ease-out",
+          alignmentClasses[alignment]
+        )}>
+          {badgeText && (
+            <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
+              {badgeText}
+            </span>
+          )}
+          
+          <h1 className={cn(
+            "text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6",
+            alignmentClasses[alignment]
           )}>
-            {badgeText && (
-              <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
-                {badgeText}
-              </span>
-            )}
-            
-            <h1 className={cn(
-              "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6 relative",
-              alignmentClasses[alignment]
+            {title}
+          </h1>
+          
+          {subtitle && (
+            <p className={cn(
+              "text-lg md:text-xl text-white/90 mb-8 font-light",
+              alignment === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'
             )}>
-              {title}
-            </h1>
-            
-            {subtitle && (
-              <p className={cn(
-                "text-base sm:text-lg md:text-xl text-white/90 mb-8 font-light",
-                alignment === 'center' ? 'max-w-2xl mx-auto' : 'max-w-2xl'
-              )}>
-                {subtitle}
-              </p>
-            )}
-            
-            <div className={cn(
-              "flex items-center space-y-4",
-              alignment === 'center' 
-                ? "flex-col sm:flex-row sm:space-y-0 sm:space-x-4 justify-center" 
-                : "flex-col sm:flex-row sm:space-y-0 sm:space-x-4"
-            )}>
-              {primaryCta && (
-                primaryCta.href ? (
-                  primaryCta.href.startsWith('http') ? (
-                    <a href={primaryCta.href} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                      <Button 
-                        size="lg"
-                        onClick={primaryCta.onClick}
-                        fullWidth={isMobile}
-                        className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                      >
-                        {primaryCta.text}
-                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </a>
-                  ) : (
-                    <Link to={primaryCta.href} className="w-full sm:w-auto">
-                      <Button 
-                        size="lg"
-                        onClick={primaryCta.onClick}
-                        fullWidth={isMobile}
-                        className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                      >
-                        {primaryCta.text}
-                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </Link>
-                  )
-                ) : (
-                  <Button 
-                    size="lg"
-                    onClick={primaryCta.onClick}
-                    fullWidth={isMobile}
-                    className="group shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {primaryCta.text}
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                )
-              )}
-              
-              {secondaryCta && (
-                <Link to={secondaryCta.href} className="w-full sm:w-auto">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-white text-white hover:bg-white/10 group"
-                    fullWidth={isMobile}
-                  >
-                    {secondaryCta.text}
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              )}
-            </div>
-          </div>
+              {subtitle}
+            </p>
+          )}
           
           <div className={cn(
-            "flex items-center justify-center",
-            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-            "transition-all duration-1000 ease-out delay-300"
+            "flex items-center gap-4",
+            alignment === 'center' 
+              ? "justify-center" 
+              : "justify-start"
           )}>
-            <VideoBackground 
-              vimeoId={vimeoId}
-              posterSrc={posterSrc}
-              aspectRatio={aspectRatio}
-              isContained={true}
-              className="shadow-2xl rounded-lg overflow-hidden"
-            />
+            {primaryCta && (
+              primaryCta.href ? (
+                primaryCta.href.startsWith('http') ? (
+                  <a 
+                    href={primaryCta.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full sm:w-auto"
+                  >
+                    <Button 
+                      size="lg"
+                      onClick={primaryCta.onClick}
+                      fullWidth={isMobile}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Link to={primaryCta.href} className="w-full sm:w-auto">
+                    <Button 
+                      size="lg"
+                      onClick={primaryCta.onClick}
+                      fullWidth={isMobile}
+                      className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      {primaryCta.text}
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                )
+              ) : (
+                <Button 
+                  size="lg"
+                  onClick={primaryCta.onClick}
+                  fullWidth={isMobile}
+                  className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  {primaryCta.text}
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              )
+            )}
+            
+            {secondaryCta && (
+              <Link to={secondaryCta.href} className="w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-white text-white hover:bg-white/10 group"
+                  fullWidth={isMobile}
+                >
+                  {secondaryCta.text}
+                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -352,5 +346,4 @@ const VideoHero: React.FC<VideoHeroProps> = ({
 };
 
 export { YOUTUBE_VIDEOS };
-
 export default VideoHero;

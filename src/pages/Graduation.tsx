@@ -13,7 +13,6 @@ const Graduation = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section with YouTube Video - Adjusted for better padding */}
       <VideoHero
         posterSrc="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
@@ -25,10 +24,9 @@ const Graduation = () => {
         height="large"
         badgeText="GRAD SPECIALS"
         scrollIndicator={true}
-        className="py-10 md:py-12" // Added custom padding to ensure proper spacing
+        alignment="center"
       />
 
-      {/* Quick Treatments Section */}
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -116,7 +114,6 @@ const Graduation = () => {
         </div>
       </section>
 
-      {/* Featured Graduation Image */}
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -141,7 +138,6 @@ const Graduation = () => {
         </div>
       </section>
 
-      {/* Popular Treatments Section */}
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -241,7 +237,6 @@ const Graduation = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -285,7 +280,6 @@ const Graduation = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-12 md:py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">

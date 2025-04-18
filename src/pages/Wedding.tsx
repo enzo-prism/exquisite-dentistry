@@ -14,7 +14,6 @@ const Wedding = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png"
         youtubeId={YOUTUBE_VIDEOS.COSMETIC}
@@ -26,6 +25,7 @@ const Wedding = () => {
         height="large"
         badgeText="WEDDING SPECIALS"
         scrollIndicator={true}
+        alignment="center"
       />
 
       {/* Timeline Section */}
