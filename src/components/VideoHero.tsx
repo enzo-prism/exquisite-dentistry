@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
@@ -225,7 +226,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className={cn(
-            "w-full lg:w-1/2",
+            "w-full lg:w-1/2 max-w-3xl", // Added max-width to ensure content doesn't stretch too wide
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             "transition-all duration-1000 ease-out"
           )}>
@@ -245,7 +246,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
               </p>
             )}
             
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               {primaryCta && (
                 primaryCta.href ? (
                   primaryCta.href.startsWith('http') ? (
@@ -303,19 +304,21 @@ const VideoHero: React.FC<VideoHeroProps> = ({
           </div>
           
           <div className={cn(
-            "w-full lg:w-1/2",
+            "w-full lg:w-1/2 flex-shrink-0", // Added flex-shrink-0 to prevent video from shrinking
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             "transition-all duration-1000 ease-out"
           )}>
-            <VideoBackground 
-              vimeoId={vimeoId}
-              youtubeId={youtubeId}
-              streamableUrl={streamableUrl}
-              posterSrc={posterSrc}
-              aspectRatio={aspectRatio}
-              isContained={true}
-              className="rounded-sm shadow-xl"
-            />
+            <div className="w-full h-full">
+              <VideoBackground 
+                vimeoId={vimeoId}
+                youtubeId={youtubeId}
+                streamableUrl={streamableUrl}
+                posterSrc={posterSrc}
+                aspectRatio={aspectRatio}
+                isContained={true}
+                className="rounded-sm shadow-xl"
+              />
+            </div>
           </div>
         </div>
       </div>
