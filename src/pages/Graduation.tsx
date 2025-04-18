@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
@@ -29,7 +28,7 @@ const Graduation = () => {
       />
 
       {/* Quick Treatments Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
@@ -117,7 +116,7 @@ const Graduation = () => {
       </section>
 
       {/* Featured Graduation Image */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2">
@@ -142,7 +141,7 @@ const Graduation = () => {
       </section>
 
       {/* Popular Treatments Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
@@ -242,7 +241,7 @@ const Graduation = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
@@ -286,7 +285,7 @@ const Graduation = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-black">
+      <section className="py-12 md:py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
