@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
@@ -10,42 +9,46 @@ import VideoModal from '@/components/VideoModal';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent } from '@/components/ui/card';
 
-// Video testimonials with generic descriptions
 const videoTestimonials = [
   {
     id: 1,
     title: "Life-Changing Smile Transformation",
     youtubeId: "U32NScY_qCQ",
     icon: <Award className="text-gold/90" size={48} />,
-    procedure: "Comprehensive Smile Makeover"
+    procedure: "Comprehensive Smile Makeover",
+    thumbnail: `https://img.youtube.com/vi/U32NScY_qCQ/maxresdefault.jpg`
   },
   {
     id: 2,
     title: "Restoring Confidence with Expert Care",
     youtubeId: "6QACxCt6J7g",
     icon: <Star className="text-gold/90" size={48} />,
-    procedure: "Full Dental Restoration"
+    procedure: "Full Dental Restoration",
+    thumbnail: `https://img.youtube.com/vi/6QACxCt6J7g/maxresdefault.jpg`
   },
   {
     id: 3,
     title: "The Journey to a Perfect Smile",
     youtubeId: "3O6FuKufvL4",
     icon: <ThumbsUp className="text-gold/90" size={48} />,
-    procedure: "Cosmetic Dentistry Excellence"
+    procedure: "Cosmetic Dentistry Excellence",
+    thumbnail: `https://img.youtube.com/vi/3O6FuKufvL4/maxresdefault.jpg`
   },
   {
     id: 4,
     title: "Transforming Lives Through Dentistry",
     youtubeId: "dpd6glBbZVU",
     icon: <Users className="text-gold/90" size={48} />,
-    procedure: "Dental Reconstruction"
+    procedure: "Dental Reconstruction",
+    thumbnail: `https://img.youtube.com/vi/dpd6glBbZVU/maxresdefault.jpg`
   },
   {
     id: 5,
     title: "A Patient's Journey to Dental Health",
     youtubeId: "3pNo4sKFB58",
     icon: <MessageSquare className="text-gold/90" size={48} />,
-    procedure: "Comprehensive Treatment"
+    procedure: "Comprehensive Treatment",
+    thumbnail: `https://img.youtube.com/vi/3pNo4sKFB58/maxresdefault.jpg`
   }
 ];
 
@@ -56,14 +59,17 @@ const VideoTestimonialCard = ({ testimonial, onPlay }: {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 opacity-0 animate-fade-in">
       <div 
-        className="relative aspect-video group cursor-pointer bg-gray-50 flex items-center justify-center"
+        className="relative aspect-video group cursor-pointer hover:scale-105 transition-transform duration-300"
         onClick={() => onPlay(testimonial.youtubeId)}
       >
-        <div className="absolute inset-0 flex items-center justify-center">
-          {testimonial.icon}
-        </div>
+        <img 
+          src={testimonial.thumbnail} 
+          alt={testimonial.title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/60 transition-colors">
-          <div className="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
@@ -95,14 +101,12 @@ const Testimonials = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Video Modal */}
       <VideoModal
         youtubeId={activeVideoId || ''}
         isOpen={!!activeVideoId}
         onClose={handleCloseVideo}
       />
 
-      {/* Hero Section with YouTube Video */}
       <VideoHero
         posterSrc="https://images.unsplash.com/photo-1513757271804-385fb022e70a?q=80&w=2070&auto=format&fit=crop"
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
@@ -115,7 +119,6 @@ const Testimonials = () => {
         scrollIndicator={false}
       />
 
-      {/* Featured Video Testimonials */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
@@ -142,7 +145,6 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* More Video Testimonials */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 opacity-0 animate-fade-in">
@@ -169,7 +171,6 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* Google Reviews Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 opacity-0 animate-fade-in">
@@ -199,7 +200,6 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 md:py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
