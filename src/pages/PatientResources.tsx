@@ -8,24 +8,36 @@ import { cn } from '@/lib/utils';
 // Define the FAQs data
 const faqs: FAQ[] = [
   {
-    question: "What should I expect during my first visit?",
-    answer: "Your first visit will include a comprehensive examination, professional cleaning, and discussion of your oral health goals. We'll take any necessary X-rays and create a personalized treatment plan based on your needs."
+    question: "What can I expect during my appointment?",
+    answer: "You can always expect to be treated like a VIP. Our office looks, sounds, and smells like a day spa. As soon as you come through the door, you'll be warmly greeted and offered freshly brewed coffee, water, or herbal tea. Enjoy a soft blanket, neck pillow, and noise-canceling headphones as you relax in a comfortable treatment chair. We value your time and get right to work for you. Dr. Aguil will patiently keep you informed and involved in your treatment."
   },
   {
-    question: "How often should I visit for dental care?",
-    answer: "Most clients benefit from professional cleanings and check-ups every six months. However, some conditions may require more frequent visits, which Dr. Aguil will discuss with you based on your specific needs."
+    question: "What if I'm a new patient?",
+    answer: "Welcome! We're excited to see you! Please arrive 15 minutes early to complete the paperwork for your first appointment. Or, you can complete our dental patient forms through our secure patient portal to save time."
   },
   {
-    question: "Do you offer payment plans?",
-    answer: "Yes, we offer flexible payment options through CareCredit and our in-house financing plans. Our team will work with you to find a solution that fits your budget while allowing you to receive the care you desire."
+    question: "Is there parking nearby?",
+    answer: "Yes, there is parking on-site at 6227 Wilshire Blvd. West Hollywood, CA 90048. Please note that it's not our parking lot and does charge a cash fee. Street parking in the surrounding neighborhoods is very limited, so please read street signs carefully if you decide to park there."
   },
   {
-    question: "What if I have a dental emergency?",
-    answer: "We reserve time in our schedule for dental emergencies and will do our best to see you the same day. Call our office immediately, and we'll provide instructions for care until you can be seen."
+    question: "Is Exquisite Dentistry for children & adults?",
+    answer: "Exquisite Dentistry is focused on caring for the treatment and comfort of adults. Though we would be happy to recommend a pediatric dental office for your children."
   },
   {
-    question: "Do you offer sedation dentistry?",
-    answer: "Yes, we offer several sedation options for enhanced comfort during procedures, including nitrous oxide (laughing gas) and oral conscious sedation. Dr. Aguil will discuss which option is best for your needs."
+    question: "What insurances do you accept?",
+    answer: "We accept most major PPO providers. Please call our office at (323) 272-2388 to determine if we will accept your plan."
+  },
+  {
+    question: "What types of payment do you accept?",
+    answer: "We accept payment in cash and credit cards. We also offer financing options through Care Plus to help make your treatment more affordable."
+  },
+  {
+    question: "What types of imaging are available?",
+    answer: "We use digital imaging for routine x-rays and 3D imaging for more advanced diagnosis. Our iTero scanner takes digital impressions and records tooth movement over time. This advanced technology eliminates the need for traditional impression trays in many cases, making your visit more comfortable."
+  },
+  {
+    question: "What if I can't make it to my appointment?",
+    answer: "Please provide a notice within 48 hours to cancel or reschedule an appointment. Cancellations within 48 hours will be subject to a cancellation fee."
   }
 ];
 
