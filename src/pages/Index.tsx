@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
+import ReviewWidget from '@/components/ReviewWidget';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 // Scheduling URL constant
@@ -160,6 +161,21 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Add Review Widget Section before the Featured Image Section */}
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+              Our Patient <span className="text-gold">Reviews</span>
+            </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto">
+              Read verified reviews from our satisfied patients
+            </p>
+          </div>
+          <ReviewWidget />
         </div>
       </section>
 

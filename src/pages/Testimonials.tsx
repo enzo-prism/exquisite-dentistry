@@ -1,9 +1,9 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ReviewWidget from '@/components/ReviewWidget';
 
 const testimonials = [
   {
@@ -89,6 +89,20 @@ const Testimonials = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
+              Verified Patient Reviews
+            </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto mb-10">
+              See what our patients are saying about their experience at Exquisite Dentistry
+            </p>
+          </div>
+          <ReviewWidget />
         </div>
       </section>
     </div>
