@@ -213,50 +213,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
-              Client <span className="text-gold">Testimonials</span>
-            </h2>
-            <p className="text-lg text-black-light max-w-3xl mx-auto">
-              Hear what our clients have to say about their experience at Exquisite Dentistry
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TestimonialCard
-              quote="Dr. Aguil completely transformed my smile with porcelain veneers. The attention to detail and personalized care I received was exceptional."
-              author="Jennifer L."
-              location="Beverly Hills, CA"
-              rating={5}
-            />
-            <TestimonialCard
-              quote="After years of being self-conscious about my smile, Exquisite Dentistry gave me the confidence I've always wanted. The results exceeded my expectations."
-              author="Michael T."
-              location="Los Angeles, CA"
-              rating={5}
-            />
-            <TestimonialCard
-              quote="The entire team at Exquisite Dentistry made me feel comfortable from the moment I walked in. My smile makeover was painless and the results are stunning."
-              author="Sarah K."
-              location="West Hollywood, CA"
-              rating={5}
-            />
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/testimonials">
-              <Button variant="outline" className="group">
-                Read More Testimonials
-                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
