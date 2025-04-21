@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
 const Graduation = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,7 +20,10 @@ const Graduation = () => {
         youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Graduation <span className="text-gold">Smile</span></>}
         subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
-        primaryCta={{ text: "Book Consultation" }}
+        primaryCta={{ 
+          text: "Book Consultation",
+          href: SCHEDULING_URL
+        }}
         secondaryCta={{ text: "View Packages", href: "#packages" }}
         overlayColor="gradient"
         height="large"
@@ -132,7 +137,9 @@ const Graduation = () => {
               <p className="text-lg text-black-light mb-6">
                 Your graduation photos will be cherished for a lifetime. Our specialized dental treatments ensure your smile is as bright and confident as your future. From quick touch-ups to comprehensive smile makeovers, we have solutions that fit your timeline and budget.
               </p>
-              <Button>Schedule Your Grad Smile Consultation</Button>
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                <Button>Schedule Your Grad Smile Consultation</Button>
+              </a>
             </div>
           </div>
         </div>
@@ -269,7 +276,9 @@ const Graduation = () => {
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Don't wait! Schedule your consultation today and let us help you create a graduation-ready smile.
             </p>
-            <Button size="xl">Book Consultation</Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="xl">Book Consultation</Button>
+            </a>
           </div>
         </div>
       </section>
