@@ -6,11 +6,10 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 
-// Social media URLs - matching the ones from Footer.tsx
+// Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
   FACEBOOK: "https://www.facebook.com/ExquisiteDentistry/",
-  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/",
-  X: "https://x.com/alexieaguildds"
+  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/"
 };
 
 // Scheduling URL constant
@@ -111,11 +110,6 @@ const Contact = () => {
                     <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                      </svg>
-                    </a>
-                    <a href={SOCIAL_URLS.X} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                       </svg>
                     </a>
                   </div>
