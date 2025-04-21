@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -103,14 +102,6 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
               </div>
             </div>
           )}
-          
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Link to="/about">
-              <Button variant="gold" size="sm" className="shadow-lg">
-                {compact ? "View Profile" : "Learn More About Dr. Aguil"}
-              </Button>
-            </Link>
-          </div>
         </div>
 
         {/* Smaller images */}
