@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
@@ -12,6 +11,9 @@ const SOCIAL_URLS = {
   INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/",
   X: "https://x.com/alexieaguildds"
 };
+
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Contact = () => {
   useEffect(() => {
@@ -233,7 +235,9 @@ const Contact = () => {
             <p className="text-xl text-white/80 mb-12 font-light">
               Schedule your visit today and experience the Exquisite Dentistry difference.
             </p>
-            <Button size="lg" className="px-8 py-3.5">Book Appointment</Button>
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="px-8 py-3.5">Book Appointment</Button>
+            </a>
           </div>
         </div>
       </section>
