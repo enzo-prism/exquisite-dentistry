@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -52,7 +53,8 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Top row - 3 cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               <ServiceCard
                 title="Porcelain Veneers"
                 description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
@@ -70,11 +72,13 @@ const Index = () => {
                 description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
                 href="/services#invisalign"
                 index={2}
+                className="sm:col-span-2 md:col-span-1"
               />
             </div>
             
-            <div className="flex justify-center gap-8">
-              <div className="w-full md:w-auto md:flex-1 md:max-w-[400px]">
+            {/* Bottom row - 2 cards centered */}
+            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-8">
+              <div className="w-full sm:w-[calc(50%-1rem)] md:max-w-[400px]">
                 <ServiceCard
                   title="Dental Implants"
                   description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
@@ -82,7 +86,7 @@ const Index = () => {
                   index={3}
                 />
               </div>
-              <div className="w-full md:w-auto md:flex-1 md:max-w-[400px]">
+              <div className="w-full sm:w-[calc(50%-1rem)] md:max-w-[400px]">
                 <ServiceCard
                   title="Full Mouth Reconstruction"
                   description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
