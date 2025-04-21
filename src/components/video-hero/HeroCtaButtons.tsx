@@ -60,7 +60,9 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         </Link>
       );
     }
-    return <ButtonContent />;
+    
+    // If only onClick is provided (no href), render the button directly
+    return <div className={primaryButtonClass}><ButtonContent /></div>;
   };
 
   return (

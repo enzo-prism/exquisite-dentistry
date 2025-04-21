@@ -5,6 +5,9 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Scheduling URL constant - consistent across site
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
 interface FAQ {
   question: string;
   answer: string;
@@ -82,7 +85,7 @@ const FAQs = () => {
         youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
         title={<>Frequently Asked <span className="text-gold">Questions</span></>}
         subtitle="Everything you need to know about your visit to Exquisite Dentistry."
-        primaryCta={{ text: "Schedule a Visit", href: "#" }}
+        primaryCta={{ text: "Schedule a Visit", href: SCHEDULING_URL }}
         badgeText="GET ANSWERS"
         height="medium"
         scrollIndicator={false}
