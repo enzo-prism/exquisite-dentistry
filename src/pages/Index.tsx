@@ -10,10 +10,8 @@ import TestimonialCard from '@/components/TestimonialCard';
 import ReviewWidget from '@/components/ReviewWidget';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-// Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
-// Vimeo video ID
 const HERO_VIMEO_ID = "1076433847";
 
 const Index = () => {
@@ -25,7 +23,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen page-transition-in">
-      {/* Hero Section with Vimeo Video */}
       <VideoHero
         posterSrc="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png"
         vimeoId={HERO_VIMEO_ID}
@@ -43,58 +40,60 @@ const Index = () => {
         alignment="left"
       />
 
-      {/* Services Overview Section */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
               Our <span className="text-gold">Services</span>
             </h2>
-            <p className="text-lg text-black-light max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Comprehensive cosmetic and restorative dental solutions tailored to your unique needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
               <ServiceCard
                 title="Porcelain Veneers"
                 description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
-                icon={<Star className="h-6 w-6" />}
                 href="/services#veneers"
+                index={0}
               />
               <ServiceCard
                 title="Smile Makeovers"
                 description="Comprehensive treatment plans combining multiple procedures to completely transform your smile's appearance."
-                icon={<Star className="h-6 w-6" />}
                 href="/services#smile-makeovers"
+                index={1}
               />
               <ServiceCard
                 title="Invisalign"
                 description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
-                icon={<Star className="h-6 w-6" />}
                 href="/services#invisalign"
+                index={2}
               />
             </div>
-            <div className="lg:col-start-2 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="lg:col-start-2 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
               <ServiceCard
                 title="Dental Implants"
                 description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
-                icon={<Star className="h-6 w-6" />}
                 href="/services#implants"
+                index={3}
               />
               <ServiceCard
                 title="Full Mouth Reconstruction"
                 description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
-                icon={<Star className="h-6 w-6" />}
                 href="/services#reconstruction"
+                index={4}
               />
             </div>
           </div>
 
           <div className="text-center mt-12">
             <Link to="/services">
-              <Button variant="outline" className="group">
+              <Button 
+                variant="outline" 
+                className="border-gold text-black hover:bg-gold/5 group"
+              >
                 View All Services
                 <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -103,7 +102,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Seasonal CTAs Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -116,7 +114,6 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Wedding Card */}
             <div className="relative overflow-hidden group rounded-sm shadow-md">
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
               <img 
@@ -141,7 +138,6 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Graduation Card */}
             <div className="relative overflow-hidden group rounded-sm shadow-md">
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
               <img 
@@ -169,7 +165,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Review Widget Section before the Featured Image Section */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -184,7 +179,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Image Section */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -217,7 +211,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
