@@ -3,7 +3,6 @@ import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
 
-// Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 interface Feature {
@@ -66,8 +65,8 @@ const ClientExperienceSection: React.FC = () => {
           <div className="space-y-6">
             <div className="relative rounded-sm overflow-hidden shadow-md mb-6">
               <img 
-                src="/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png" 
-                alt="Dr. Alexie Aguil with patient" 
+                src="/lovable-uploads/e40a4e62-7bc2-4fe0-90e5-b31e37ed26ee.png" 
+                alt="Patient relaxing in dental chair" 
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
