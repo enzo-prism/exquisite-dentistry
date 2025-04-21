@@ -283,7 +283,7 @@ const Services = () => {
               <img 
                 alt="Spa-like dental environment" 
                 className="w-full h-full object-cover" 
-                src="/lovable-uploads/3e26b70e-31d0-4e1f-95b7-b2f1144f262b.png" 
+                src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png" 
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
