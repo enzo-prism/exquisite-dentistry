@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 import Button from './Button';
 
 // Scheduling URL constant
@@ -9,8 +9,7 @@ const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV4
 // Social media URLs
 const SOCIAL_URLS = {
   FACEBOOK: "https://www.facebook.com/ExquisiteDentistry/",
-  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/",
-  X: "https://x.com/alexieaguildds"
+  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/"
 };
 
 const Footer = () => {
@@ -50,15 +49,6 @@ const Footer = () => {
                 rel="noopener noreferrer"
               >
                 <Facebook size={20} />
-              </a>
-              <a 
-                href={SOCIAL_URLS.X} 
-                className="text-white hover:text-gold transition-colors" 
-                aria-label="X (formerly Twitter)"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter size={20} />
               </a>
             </div>
             <div className="pt-4">
