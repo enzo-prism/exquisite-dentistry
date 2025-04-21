@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ArrowRight } from 'lucide-react';
 
+// Scheduling URL constant
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+
 interface CtaButtonsProps {
   primaryCta?: {
     text: string;
@@ -29,6 +32,9 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   const renderPrimaryButton = () => {
     if (!primaryCta) return null;
 
+    // If no href is provided, use the default scheduling URL
+    const buttonHref = primaryCta.href || SCHEDULING_URL;
+
     const ButtonContent = () => (
       <Button 
         size={buttonSize}
@@ -41,28 +47,26 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
       </Button>
     );
 
-    if (primaryCta.href) {
-      if (primaryCta.href.startsWith('http')) {
-        return (
-          <a 
-            href={primaryCta.href} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={primaryButtonClass}
-          >
-            <ButtonContent />
-          </a>
-        );
-      }
+    // If it's an external link or scheduling URL
+    if (buttonHref.startsWith('http')) {
       return (
-        <Link to={primaryCta.href} className={primaryButtonClass}>
+        <a 
+          href={buttonHref} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={primaryButtonClass}
+        >
           <ButtonContent />
-        </Link>
+        </a>
       );
     }
-    
-    // If only onClick is provided (no href), render the button directly
-    return <div className={primaryButtonClass}><ButtonContent /></div>;
+
+    // For internal routes
+    return (
+      <Link to={buttonHref} className={primaryButtonClass}>
+        <ButtonContent />
+      </Link>
+    );
   };
 
   return (
@@ -87,3 +91,4 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
 };
 
 export default HeroCtaButtons;
+
