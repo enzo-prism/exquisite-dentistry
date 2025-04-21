@@ -51,8 +51,8 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <ServiceCard
                 title="Porcelain Veneers"
                 description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
@@ -72,19 +72,24 @@ const Index = () => {
                 index={2}
               />
             </div>
-            <div className="lg:col-start-2 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ServiceCard
-                title="Dental Implants"
-                description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
-                href="/services#implants"
-                index={3}
-              />
-              <ServiceCard
-                title="Full Mouth Reconstruction"
-                description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
-                href="/services#reconstruction"
-                index={4}
-              />
+            
+            <div className="flex justify-center gap-8">
+              <div className="w-full md:w-auto md:flex-1 md:max-w-[400px]">
+                <ServiceCard
+                  title="Dental Implants"
+                  description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
+                  href="/services#implants"
+                  index={3}
+                />
+              </div>
+              <div className="w-full md:w-auto md:flex-1 md:max-w-[400px]">
+                <ServiceCard
+                  title="Full Mouth Reconstruction"
+                  description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
+                  href="/services#reconstruction"
+                  index={4}
+                />
+              </div>
             </div>
           </div>
 
