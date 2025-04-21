@@ -51,7 +51,7 @@ const services = [{
   description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
   highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
   icon: <Shield size={24} />,
-  image: "/lovable-uploads/59827607-3607-49c6-9a55-8cb56ec09a3b.png",
+  image: "/lovable-uploads/492219eb-34a3-48cb-8f8f-58023e7cb5e1.png",
   treatments: [{
     name: "Comprehensive Exams",
     details: "Thorough evaluation of your oral health, including teeth, gums, and supporting structures"
