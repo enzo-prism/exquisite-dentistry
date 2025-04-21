@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -132,16 +133,7 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
         ))}
       </div>
       
-      {showButton && !compact && (
-        <div className="text-center mt-10">
-          <Link to="/about">
-            <Button variant="outline" className="group">
-              Learn More About Dr. Aguil
-              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </div>
-      )}
+      {/* Removing the Learn More button by not rendering this section */}
     </div>
   );
 };
