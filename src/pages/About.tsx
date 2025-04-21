@@ -1,11 +1,10 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
 import Button from '@/components/Button';
 import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
 
 const About = () => {
@@ -223,6 +222,20 @@ const About = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
+              Patient <span className="text-gold">Reviews</span>
+            </h2>
+            <p className="text-lg text-black-light">
+              See what our patients say about their experience with Dr. Aguil
+            </p>
+          </div>
+          <ReviewWidget />
         </div>
       </section>
 
