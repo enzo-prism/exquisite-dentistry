@@ -87,6 +87,12 @@ const services = [{
   }]
 }];
 
+services.map((service, index) => {
+  if (service.id === "preventive") {
+    service.image = "/lovable-uploads/c876408e-2891-4863-9f01-e5d025c7c52f.png";
+  }
+});
+
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Services = () => {
