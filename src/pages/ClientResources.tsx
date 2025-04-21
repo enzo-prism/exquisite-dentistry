@@ -1,9 +1,13 @@
+
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { FileText, HelpCircle, Calendar, ChevronDown, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+// Scheduling URL constant - consistent across site
+const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 // Define the FAQs data
 const faqs: FAQ[] = [
@@ -112,10 +116,12 @@ const ClientResources = () => {
                 <p className="text-black-light/80 mb-8">
                   Access and complete all necessary forms through our secure client portal. This allows us to focus on your dental needs rather than paperwork during your visit.
                 </p>
-                <Button className="gap-2">
-                  Access Client Portal 
-                  <ExternalLink size={18} />
-                </Button>
+                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="gap-2">
+                    Access Client Portal 
+                    <ExternalLink size={18} />
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
