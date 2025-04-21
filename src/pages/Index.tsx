@@ -56,36 +56,40 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <ServiceCard
-              title="Porcelain Veneers"
-              description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#veneers"
-            />
-            <ServiceCard
-              title="Smile Makeovers"
-              description="Comprehensive treatment plans combining multiple procedures to completely transform your smile's appearance."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#smile-makeovers"
-            />
-            <ServiceCard
-              title="Invisalign"
-              description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#invisalign"
-            />
-            <ServiceCard
-              title="Dental Implants"
-              description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#implants"
-            />
-            <ServiceCard
-              title="Full Mouth Reconstruction"
-              description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
-              icon={<Star className="h-6 w-6" />}
-              href="/services#reconstruction"
-            />
+            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <ServiceCard
+                title="Porcelain Veneers"
+                description="Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance."
+                icon={<Star className="h-6 w-6" />}
+                href="/services#veneers"
+              />
+              <ServiceCard
+                title="Smile Makeovers"
+                description="Comprehensive treatment plans combining multiple procedures to completely transform your smile's appearance."
+                icon={<Star className="h-6 w-6" />}
+                href="/services#smile-makeovers"
+              />
+              <ServiceCard
+                title="Invisalign"
+                description="Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces."
+                icon={<Star className="h-6 w-6" />}
+                href="/services#invisalign"
+              />
+            </div>
+            <div className="lg:col-start-2 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <ServiceCard
+                title="Dental Implants"
+                description="Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile."
+                icon={<Star className="h-6 w-6" />}
+                href="/services#implants"
+              />
+              <ServiceCard
+                title="Full Mouth Reconstruction"
+                description="Comprehensive restoration of all teeth in both jaws through a combination of restorative procedures."
+                icon={<Star className="h-6 w-6" />}
+                href="/services#reconstruction"
+              />
+            </div>
           </div>
 
           <div className="text-center mt-12">
