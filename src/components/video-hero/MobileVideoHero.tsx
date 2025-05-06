@@ -33,7 +33,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative overflow-hidden bg-black w-full min-h-[80vh] flex flex-col',
+        'relative overflow-hidden bg-black w-full min-h-[100vh] flex flex-col',
         'section-vertical-spacing',
         getHeightClasses(height),
         className
@@ -54,7 +54,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       
       {/* Content overlay - z-30 to ensure it's above the new overlay */}
       <div className={cn(
-        'relative z-30 w-full content-vertical-spacing mobile-optimized-padding',
+        'relative z-30 w-full h-full flex flex-col justify-center content-vertical-spacing mobile-optimized-padding',
         contentClassName
       )}>
         {badgeText && (

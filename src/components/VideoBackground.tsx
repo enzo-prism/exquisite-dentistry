@@ -111,7 +111,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
-        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
+        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '177.78%' : '56.25%' }}>
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
