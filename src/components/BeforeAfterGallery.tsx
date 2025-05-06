@@ -72,14 +72,19 @@ const BeforeAfterGallery: React.FC = () => {
                 <div className="relative">
                   <AspectRatio ratio={4/5} className="bg-gray-100">
                     <div className="relative w-full h-full overflow-hidden">
-                      <motion.img
-                        src={showAfter[item.id] ? item.afterSrc : item.beforeSrc}
-                        alt={`${showAfter[item.id] ? 'After' : 'Before'} - ${item.name}`}
-                        className="object-cover w-full h-full"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
+                      {showAfter[item.id] ? (
+                        <img
+                          src={item.afterSrc}
+                          alt={`After - ${item.name}`}
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <img
+                          src={item.beforeSrc}
+                          alt={`Before - ${item.name}`}
+                          className="object-cover w-full h-full"
+                        />
+                      )}
                       <div className="absolute top-3 left-3 bg-black/70 text-white text-xs font-medium py-1 px-2 rounded">
                         {showAfter[item.id] ? 'AFTER' : 'BEFORE'}
                       </div>
