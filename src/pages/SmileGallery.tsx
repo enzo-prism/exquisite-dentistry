@@ -23,57 +23,11 @@ const SmileGallery = () => {
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Patient 1 */}
+            {/* Patient 1 - Blonde woman */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
-                src="/lovable-uploads/9ec0cfd8-d712-4273-9130-0ff0df4db763.png" 
-                alt="Smile transformation before - man with brown hair"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/2e30c49e-37fa-426d-90af-84d0fa47f509.png" 
-                alt="Smile transformation after - man with brown hair and improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 2 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/124bbcce-7edb-49c0-90f8-e9848d0f0a62.png" 
-                alt="Smile transformation before - man with black hair"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/6b031372-9f2b-4a3b-8ea3-9efcec39c1e0.png" 
-                alt="Smile transformation after - man with black hair and improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 3 - Blonde woman */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/0cbed633-33a3-4a68-adfc-6478828f2e92.png" 
+                src="/lovable-uploads/6ce2fbc9-ac08-4b7a-83b3-644a80e37c6b.png" 
                 alt="Smile transformation before - blonde woman"
                 className="w-full h-auto rounded-md"
                 width="300"
@@ -84,7 +38,7 @@ const SmileGallery = () => {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
-                src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png" 
+                src="/lovable-uploads/5bcd552b-6f71-4559-92b9-97dd3e1a2470.png" 
                 alt="Smile transformation after - blonde woman with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
@@ -92,11 +46,11 @@ const SmileGallery = () => {
               />
             </div>
 
-            {/* Patient 4 - Man with gray hair */}
+            {/* Patient 2 - Man with gray hair */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
-                src="/lovable-uploads/da378185-9743-4ad1-8ce1-ea01988c9334.png" 
+                src="/lovable-uploads/7641dba4-9185-4856-bc7a-56f7cc3e03cd.png" 
                 alt="Smile transformation before - man with gray hair"
                 className="w-full h-auto rounded-md"
                 width="300"
@@ -107,215 +61,8 @@ const SmileGallery = () => {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
-                src="/lovable-uploads/4675f75a-ae1b-4651-b0b6-19d43b7fa9e4.png" 
+                src="/lovable-uploads/ee15b843-0c64-42fb-8bb3-3a212d3a5e80.png" 
                 alt="Smile transformation after - man with gray hair and improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 5 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/51132a46-8cea-4c27-8d9b-e8573ad67aab.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/ab504393-67bf-4498-b08e-0ff259231b9e.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 6 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/12dc2c79-1117-472c-b6f1-ec5f0c10211a.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/eb25f991-bf24-480c-8f52-8ad7b5de8822.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 7 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/37cdc255-28ce-4666-a15a-77d31eb76918.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/bfaf7bd3-d0b6-442a-860a-9e5f488bc85f.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 8 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/cad1dd9b-5c06-4e3c-bec8-7d2529902c09.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/eaf61f0f-aa5e-488a-ac17-87b4bc3fbf67.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 9 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/5f3a041e-ea53-4da8-bc1f-1eeb90b730c1.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/f12764ad-4c25-4e5b-9f3c-6d29dad5744c.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 10 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/d00303bf-350e-4362-aeb3-6847c830d4ed.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/93f1a500-b803-42fa-838f-9442f9bb6935.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 11 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/2c732616-978d-4757-b992-b94b8950041d.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/5e6b1354-41ce-40e9-ad5a-104165497581.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 12 - New patient from recent uploads */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/bcc9d420-1fa6-46b9-a7d8-29d2cecb9ce2.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/04f3dcf2-ff47-40de-9f55-738f0978ca90.png" 
-                alt="Smile transformation after - patient with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 13 - New patient from recent uploads */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/db67cbe7-dd01-4a01-8362-eee1966542b4.png" 
-                alt="Smile transformation before - patient with dental issues"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/a07b6101-3ed7-4adb-98e9-6204eb30c61e.png" 
-                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
