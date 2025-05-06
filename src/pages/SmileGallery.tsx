@@ -23,6 +23,29 @@ const SmileGallery = () => {
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* New Image */}
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
+              <img 
+                src="/lovable-uploads/51132a46-8cea-4c27-8d9b-e8573ad67aab.png" 
+                alt="New smile transformation before"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
+              <img 
+                src="/lovable-uploads/51132a46-8cea-4c27-8d9b-e8573ad67aab.png" 
+                alt="New smile transformation after"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+
             {/* Before/After 1 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
