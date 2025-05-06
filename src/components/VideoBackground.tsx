@@ -118,7 +118,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            title="Exquisite Dentistry Dental Spa"
+            title="Exquisite Dentistry Video Background"
             loading="eager"
           />
         </div>
@@ -172,7 +172,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     );
   }
   
-  // Original background implementation for desktop
+  // Original background implementation
   return (
     <>
       <div 
