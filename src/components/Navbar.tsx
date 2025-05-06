@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -65,8 +66,12 @@ const Navbar = () => {
         <div className="flex h-16 md:h-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-              {/* Logo here */}
-              <span className="text-2xl font-bold text-gold">EXQUISITE DENTISTRY</span>
+              <img 
+                src="/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png" 
+                alt="Exquisite Dentistry Logo" 
+                className="h-10 md:h-12"
+                style={{ filter: 'brightness(0) invert(70%) sepia(11%) saturate(659%) hue-rotate(358deg) brightness(90%) contrast(83%)' }}
+              />
             </Link>
           </div>
           
