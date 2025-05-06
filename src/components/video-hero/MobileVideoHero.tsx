@@ -40,7 +40,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       )}
     >
       {/* Full-screen video background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 w-full h-full">
         <VideoBackground 
           vimeoId={vimeoId}
           youtubeId={youtubeId}
@@ -48,6 +48,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           posterSrc={posterSrc}
           isContained={false}
           overlayOpacity={70}
+          className="w-full h-full"
         />
       </div>
       

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -110,7 +111,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
-        <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
@@ -194,7 +195,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         <div className="absolute inset-0 bg-black/70 z-10"></div>
         
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
-          <div className="relative w-full h-full max-h-screen overflow-hidden">
+          <div className="w-full h-full overflow-hidden">
             {renderVideoElement()}
           </div>
         </div>
