@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +19,7 @@ import ClientExperience from "@/pages/ClientExperience";
 import Wedding from "@/pages/Wedding";
 import Graduation from "@/pages/Graduation";
 import FAQs from "@/pages/FAQs";
+import SmileGallery from "@/pages/SmileGallery";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,7 @@ const AppRoutes = () => (
         <Route path="/wedding" element={<Wedding />} />
         <Route path="/graduation" element={<Graduation />} />
         <Route path="/faqs" element={<FAQs />} />
+        <Route path="/smile-gallery" element={<SmileGallery />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

@@ -1,241 +1,140 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import Button from './Button';
-import { cn } from '@/lib/utils';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
-// Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ to, children }) => (
+  <RouterNavLink
+    to={to}
+    className={({ isActive }) =>
+      `text-gray-700 hover:text-gold transition-colors duration-200 ${
+        isActive ? 'text-gold font-medium' : ''
+      }`
+    }
+  >
+    {children}
+  </RouterNavLink>
+);
+
+const MobileNavLink: React.FC<NavLinkProps> = ({ to, children, onClick }) => (
+  <RouterNavLink
+    to={to}
+    onClick={onClick}
+    className="block py-2 px-4 text-base text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+  >
+    {children}
+  </RouterNavLink>
+);
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
-
-  // Restructured navigation with main items and dropdown categories
-  const mainNavLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-  ];
-
-  const clientLinks = [
-    { name: 'Client Experience', path: '/client-experience' },
-    { name: 'Client Resources', path: '/client-resources' },
-    { name: 'FAQs', path: '/faqs' },
-  ];
-
-  const moreLinks = [
-    { name: 'Testimonials', path: '/testimonials' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
-  // All links flattened for mobile menu
-  const allNavLinks = [...mainNavLinks, ...clientLinks, ...moreLinks];
-
-  // Close mobile menu when location changes
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setScrolled(offset > 50);
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  // Check if a dropdown item is active
-  const isDropdownActive = (links) => {
-    return links.some(link => link.path === location.pathname);
+  const toggleMobileMenu = () => {
+    setIsOpen(!isOpen);
   };
 
-  // Apply styles for header based on scroll position
-  const headerClasses = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black',
-    scrolled 
-      ? 'bg-opacity-95 py-2 md:py-4 shadow-lg' 
-      : 'bg-opacity-100 py-3 md:py-6'
-  );
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <header className={headerClasses}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo - reduced size by 25% */}
-          <Link 
-            to="/" 
-            className="flex items-center"
-          >
-            <img 
-              src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
-              alt="Exquisite Dentistry" 
-              className="h-6 md:h-7.5 lg:h-9"
-            />
-          </Link>
-
-          {/* Desktop Navigation with Dropdowns */}
-          <nav className="hidden lg:flex items-center">
-            <div className="flex space-x-6 xl:space-x-8 mr-8 items-center">
-              {/* Main nav links */}
-              {mainNavLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={cn(
-                    'relative inline-flex items-center px-3 py-2 font-medium text-sm transition-colors rounded-md hover:bg-white/10',
-                    'after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2',
-                    'after:h-[2px] after:bg-gold after:transition-all after:duration-300',
-                    location.pathname === link.path 
-                      ? 'text-gold after:w-1/2' 
-                      : 'text-white/90 hover:text-white after:w-0 hover:after:w-1/2'
-                  )}
-                >
-                  {link.name}
-                </Link>
-              ))}
-
-              {/* Clients dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className={cn(
-                  'relative inline-flex items-center px-3 py-2 font-medium text-sm transition-colors rounded-md hover:bg-white/10',
-                  'after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2',
-                  'after:h-[2px] after:bg-gold after:transition-all after:duration-300',
-                  isDropdownActive(clientLinks)
-                    ? 'text-gold after:w-1/2' 
-                    : 'text-white/90 hover:text-white after:w-0 hover:after:w-1/2'
-                )}>
-                  Clients <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="bg-black/95 border border-gold/20 shadow-lg p-2 rounded-md backdrop-blur">
-                  {clientLinks.map((link) => (
-                    <DropdownMenuItem key={link.name} asChild className="focus:bg-white/10 rounded-md">
-                      <Link
-                        to={link.path}
-                        className={cn(
-                          'px-4 py-2 text-sm font-medium w-full hover:bg-white/10 rounded-md transition-colors',
-                          location.pathname === link.path 
-                            ? 'text-gold' 
-                            : 'text-white/90 hover:text-white'
-                        )}
-                      >
-                        {link.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {/* More dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className={cn(
-                  'relative inline-flex items-center px-3 py-2 font-medium text-sm transition-colors rounded-md hover:bg-white/10',
-                  'after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2',
-                  'after:h-[2px] after:bg-gold after:transition-all after:duration-300',
-                  isDropdownActive(moreLinks)
-                    ? 'text-gold after:w-1/2' 
-                    : 'text-white/90 hover:text-white after:w-0 hover:after:w-1/2'
-                )}>
-                  More <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="bg-black/95 border border-gold/20 shadow-lg p-2 rounded-md backdrop-blur">
-                  {moreLinks.map((link) => (
-                    <DropdownMenuItem key={link.name} asChild className="focus:bg-white/10 rounded-md">
-                      <Link
-                        to={link.path}
-                        className={cn(
-                          'px-4 py-2 text-sm font-medium w-full hover:bg-white/10 rounded-md transition-colors',
-                          location.pathname === link.path 
-                            ? 'text-gold' 
-                            : 'text-white/90 hover:text-white'
-                        )}
-                      >
-                        {link.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button variant="gold" size="sm" className="ml-4 rounded-md">
-                Book an Appointment
-              </Button>
-            </a>
-          </nav>
-
-          {/* Mobile Menu - Using Sheet component from shadcn/ui */}
-          <div className="lg:hidden">
-            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetTrigger asChild>
-                <button
-                  className="text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-                  aria-label="Open menu"
-                >
-                  <Menu size={24} />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-full sm:max-w-md p-0 bg-black border-l border-gold/30">
-                <div className="flex flex-col h-full">
-                  <div className="p-6 border-b border-gold/10 flex justify-between items-center">
-                    {/* Reduced logo size in mobile menu by 25% */}
-                    <img 
-                      src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
-                      alt="Exquisite Dentistry" 
-                      className="h-6"
-                    />
-                    <button 
-                      onClick={() => setIsMenuOpen(false)}
-                      className="text-white hover:text-gold transition-colors"
-                      aria-label="Close menu"
-                    >
-                      <X size={24} />
-                    </button>
-                  </div>
-
-                  <nav className="flex-1 overflow-auto py-6 px-4">
-                    <ul className="space-y-4">
-                      {allNavLinks.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            to={link.path}
-                            className={cn(
-                              'flex items-center py-3 px-4 rounded-md text-base font-medium transition-colors',
-                              location.pathname === link.path
-                                ? 'bg-gold/10 text-gold'
-                                : 'text-white hover:bg-white/5'
-                            )}
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {link.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-
-                  <div className="p-6 border-t border-gold/10">
-                    <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                      <Button variant="gold" fullWidth className="rounded-md">
-                        Book an Appointment
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+    <header className={`sticky top-0 z-50 w-full transition-all duration-200 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
+      <div className="mx-auto px-4 max-w-7xl">
+        <div className="flex h-16 md:h-20 items-center justify-between">
+          <div className="flex-shrink-0">
+            <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+              {/* Logo here */}
+              <span className="text-2xl font-bold text-gold">EXQUISITE DENTISTRY</span>
+            </Link>
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-6">
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/about">About</NavLink>
+              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/smile-gallery">Smile Gallery</NavLink>
+              <NavLink to="/testimonials">Testimonials</NavLink>
+              <NavLink to="/client-resources">Resources</NavLink>
+              <NavLink to="/contact">Contact</NavLink>
+            </nav>
+            
+            <Button asChild size="sm" className="hidden md:flex bg-gold text-white hover:bg-gold/90">
+              <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
+                Book Appointment
+              </a>
+            </Button>
+          </div>
+          
+          <div className="md:hidden">
+            <button
+              type="button"
+              className="text-gray-800 hover:text-gold focus:outline-none"
+              onClick={toggleMobileMenu}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
           </div>
         </div>
+      </div>
+      
+      {/* Mobile menu */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-screen bg-white shadow-lg' : 'max-h-0'
+        }`}
+      >
+        <nav className="px-4 pt-2 pb-4 space-y-1">
+          <MobileNavLink to="/" onClick={closeMobileMenu}>Home</MobileNavLink>
+          <MobileNavLink to="/about" onClick={closeMobileMenu}>About</MobileNavLink>
+          <MobileNavLink to="/services" onClick={closeMobileMenu}>Services</MobileNavLink>
+          <MobileNavLink to="/smile-gallery" onClick={closeMobileMenu}>Smile Gallery</MobileNavLink>
+          <MobileNavLink to="/testimonials" onClick={closeMobileMenu}>Testimonials</MobileNavLink>
+          <MobileNavLink to="/client-resources" onClick={closeMobileMenu}>Resources</MobileNavLink>
+          <MobileNavLink to="/contact" onClick={closeMobileMenu}>Contact</MobileNavLink>
+          <div className="pt-2">
+            <Button asChild size="sm" className="w-full bg-gold text-white hover:bg-gold/90">
+              <a 
+                href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={closeMobileMenu}
+              >
+                Book Appointment
+              </a>
+            </Button>
+          </div>
+        </nav>
       </div>
     </header>
   );
