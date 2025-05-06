@@ -21,10 +21,9 @@ export interface VideoHeroProps {
   overlayColor?: 'dark' | 'light' | 'gradient' | 'none';
   className?: string;
   contentClassName?: string;
-  height?: 'full' | 'large' | 'medium' | 'auto';
+  height?: 'small' | 'medium' | 'large' | 'full' | 'auto';
   badgeText?: string;
   alignment?: 'center' | 'left';
   scrollIndicator?: boolean;
   aspectRatio?: number;
 }
-
