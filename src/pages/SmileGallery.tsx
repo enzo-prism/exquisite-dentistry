@@ -30,7 +30,7 @@ const SmileGallery = () => {
               <div className="w-full overflow-hidden rounded-md">
                 <AspectRatio ratio={3/2}>
                   <img 
-                    src="/lovable-uploads/6aa8d474-6375-4efa-a97a-ad879c6a0460.png" 
+                    src="/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.png" 
                     alt="Patient smile before transformation"
                     className="w-full h-full object-cover"
                   />
@@ -44,7 +44,7 @@ const SmileGallery = () => {
               <div className="w-full overflow-hidden rounded-md">
                 <AspectRatio ratio={3/2}>
                   <img 
-                    src="/lovable-uploads/e5438a81-0752-486e-b9fa-65827267015e.png" 
+                    src="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png" 
                     alt="Patient smile after transformation"
                     className="w-full h-full object-cover"
                   />
