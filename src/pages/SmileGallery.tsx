@@ -24,12 +24,11 @@ const SmileGallery = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <span className="inline-block text-sm text-gold font-medium mb-3">TRANSFORMATIONS</span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">Smile Gallery</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">Ryan's Smile Transformation</h1>
             <div className="separator"></div>
             <p className="text-lg text-gray-700 mt-6 mobile-text-balance">
-              Witness the artistry of Dr. Alexie Aguil through our collection of smile transformations. 
-              Each case represents our commitment to creating natural, beautiful smiles that enhance 
-              our patients' confidence and quality of life.
+              Witness the remarkable transformation of Ryan's smile. Our commitment to creating 
+              natural, beautiful smiles has helped Ryan achieve a brighter, more confident smile.
             </p>
           </motion.div>
         </div>
