@@ -23,6 +23,52 @@ const SmileGallery = () => {
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* New uploaded image pair 1 */}
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
+              <img 
+                src="/lovable-uploads/0cbed633-33a3-4a68-adfc-6478828f2e92.png" 
+                alt="Smile transformation before - blonde woman"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
+              <img 
+                src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png" 
+                alt="Smile transformation after - blonde woman with improved smile"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+
+            {/* New uploaded image pair 2 */}
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
+              <img 
+                src="/lovable-uploads/da378185-9743-4ad1-8ce1-ea01988c9334.png" 
+                alt="Smile transformation before - man with gray hair"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
+              <img 
+                src="/lovable-uploads/4675f75a-ae1b-4651-b0b6-19d43b7fa9e4.png" 
+                alt="Smile transformation after - man with gray hair and improved smile"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+
             {/* New Image */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
