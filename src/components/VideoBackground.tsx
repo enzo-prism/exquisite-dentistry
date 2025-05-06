@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -191,6 +190,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         isLoading ? "opacity-0" : "opacity-100",
         className
       )}>
+        {/* Add darker overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
           <div className="relative w-full h-full max-h-screen overflow-hidden">
             {renderVideoElement()}

@@ -51,9 +51,9 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         />
       </div>
       
-      {/* Content overlay */}
+      {/* Content overlay - z-30 to ensure it's above the new overlay */}
       <div className={cn(
-        'relative z-20 w-full content-vertical-spacing mobile-optimized-padding',
+        'relative z-30 w-full content-vertical-spacing mobile-optimized-padding',
         contentClassName
       )}>
         {badgeText && (
@@ -81,7 +81,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       
       {scrollIndicator && height !== 'auto' && (
         <div 
-          className="relative z-20 w-full flex justify-center pt-8 pb-4 cursor-pointer animate-bounce"
+          className="relative z-30 w-full flex justify-center pt-8 pb-4 cursor-pointer animate-bounce"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">

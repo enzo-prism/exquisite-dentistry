@@ -57,7 +57,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
         overlayOpacity={70}
       />
       
-      <div className="absolute inset-0 z-20">
+      <div className="absolute inset-0 z-30">
         <div className="section-container h-full flex items-center">
           <div className={cn(
             "w-full lg:w-3/5 max-w-3xl content-spacing",
