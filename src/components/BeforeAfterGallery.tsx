@@ -19,8 +19,8 @@ const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: '/lovable-uploads/30248a33-7e1a-4fcb-84b7-f3b8f12ff738.png',
-    afterSrc: '/lovable-uploads/9e9cf008-4567-4d1e-85c7-cf306196ec22.png',
+    beforeSrc: '/lovable-uploads/d0cd40f9-c341-4d89-8848-67b3dd134d2a.png',
+    afterSrc: '/lovable-uploads/5286bad4-b2e2-4b5e-b90c-09f0976a9b71.png',
   }
 ];
 
