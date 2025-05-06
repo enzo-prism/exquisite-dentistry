@@ -1,19 +1,26 @@
 
-export const YOUTUBE_VIDEOS = {
-  DEFAULT: 'GfC4M9HRR_A',
-  COSMETIC: '3pNo4sKFB58',
-  SMILE: 'dpd6glBbZVU',
-  PATIENT: '3O6FuKufvL4',
-  PROCEDURE: '6QACxCt6J7g',
-  OFFICE: 'ogjAzMV2ZYY'
+// Height options
+export const getHeightClasses = (height: 'small' | 'medium' | 'large' | 'auto') => {
+  switch (height) {
+    case 'small':
+      return 'min-h-[50vh]';
+    case 'medium':
+      return 'min-h-[70vh]';
+    case 'large':
+      return 'min-h-[90vh]';
+    case 'auto':
+    default:
+      return 'min-h-[80vh]';
+  }
 };
 
-export const DEFAULT_VIMEO_ID = "1076433847";
+// YouTube video IDs
+export const YOUTUBE_VIDEOS = {
+  SMILE: "D6fILR2L5ik",
+  PATIENT: "U32NScY_qCQ",
+  PROCEDURE: "3pNo4sKFB58",
+  LOBBY: "bq6NufaDR_w"
+};
 
-export const getHeightClasses = (height: 'full' | 'large' | 'medium' | 'auto') => ({
-  full: 'min-h-screen',
-  large: 'min-h-[80vh]',
-  medium: 'min-h-[60vh]',
-  auto: ''
-}[height]);
-
+// Default Vimeo ID for the main hero video across all pages
+export const DEFAULT_HERO_VIMEO_ID = "1081706653";

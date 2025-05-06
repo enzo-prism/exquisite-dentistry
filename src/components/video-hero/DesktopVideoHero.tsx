@@ -42,30 +42,40 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   return (
     <section 
       className={cn(
-        'relative bg-black w-full section-vertical-spacing',
+        'relative bg-black w-full section-vertical-spacing overflow-hidden',
         getHeightClasses(height),
         className
       )}
     >
-      <div className="section-container">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      {/* Enhanced Video Background with reduced opacity for better text visibility */}
+      <VideoBackground 
+        vimeoId={vimeoId}
+        youtubeId={youtubeId}
+        streamableUrl={streamableUrl}
+        posterSrc={posterSrc}
+        isContained={false}
+        overlayOpacity={70}
+      />
+      
+      <div className="absolute inset-0 z-20">
+        <div className="section-container h-full flex items-center">
           <div className={cn(
-            "w-full lg:w-1/2 max-w-3xl content-spacing",
+            "w-full lg:w-3/5 max-w-3xl content-spacing",
             isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             "transition-all duration-1000 ease-out"
           )}>
             {badgeText && (
-              <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300">
+              <span className="inline-block bg-gold/90 text-white px-4 py-1 rounded-sm text-sm font-medium mb-6 transform hover:scale-105 transition-transform duration-300 shadow-lg">
                 {badgeText}
               </span>
             )}
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight mb-6 drop-shadow-md">
               {title}
             </h1>
             
             {subtitle && (
-              <p className="text-lg md:text-xl text-white/90 mb-8 font-light max-w-2xl">
+              <p className="text-lg md:text-xl text-white/90 mb-8 font-light max-w-2xl drop-shadow-md">
                 {subtitle}
               </p>
             )}
@@ -75,35 +85,17 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
               secondaryCta={secondaryCta}
             />
           </div>
-          
-          <div className={cn(
-            "w-full lg:w-1/2 flex-shrink-0",
-            isContentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-            "transition-all duration-1000 ease-out"
-          )}>
-            <div className="w-full h-full">
-              <VideoBackground 
-                vimeoId={vimeoId}
-                youtubeId={youtubeId}
-                streamableUrl={streamableUrl}
-                posterSrc={posterSrc}
-                aspectRatio={aspectRatio}
-                isContained={true}
-                className="rounded-sm shadow-xl"
-              />
-            </div>
-          </div>
         </div>
       </div>
       
       {scrollIndicator && height !== 'auto' && (
         <div 
-          className="absolute bottom-8 left-0 right-0 mx-auto flex justify-center cursor-pointer animate-bounce"
+          className="absolute bottom-8 left-0 right-0 mx-auto flex justify-center cursor-pointer animate-bounce z-30"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">
-            <span className="text-white/70 text-xs sm:text-sm mb-1 sm:mb-2">Scroll Down</span>
-            <ChevronDown className="text-white/70 w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="text-white/70 text-xs sm:text-sm mb-1 sm:mb-2 drop-shadow-md">Scroll Down</span>
+            <ChevronDown className="text-white/70 w-5 h-5 sm:w-6 sm:h-6 drop-shadow-md" />
           </div>
         </div>
       )}
@@ -112,4 +104,3 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
 };
 
 export default DesktopVideoHero;
-
