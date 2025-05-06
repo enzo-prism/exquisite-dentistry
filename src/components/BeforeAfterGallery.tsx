@@ -1,12 +1,12 @@
 
 import React from 'react';
 
-// This component has been refactored and its functionality
-// has been moved directly into the SmileGallery page
-// for better reliability and simplicity
+// This component is no longer used - its functionality
+// has been incorporated directly into the SmileGallery page
+// for better reliability and simpler implementation
 
 const BeforeAfterGallery: React.FC = () => {
-  return <></>;
+  return null;
 };
 
 export default BeforeAfterGallery;
