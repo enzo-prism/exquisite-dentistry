@@ -23,6 +23,52 @@ const SmileGallery = () => {
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* New uploaded patient 1 */}
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
+              <img 
+                src="/lovable-uploads/9ec0cfd8-d712-4273-9130-0ff0df4db763.png" 
+                alt="Smile transformation before - man with brown hair"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
+              <img 
+                src="/lovable-uploads/2e30c49e-37fa-426d-90af-84d0fa47f509.png" 
+                alt="Smile transformation after - man with brown hair and improved smile"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+
+            {/* New uploaded patient 2 */}
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
+              <img 
+                src="/lovable-uploads/124bbcce-7edb-49c0-90f8-e9848d0f0a62.png" 
+                alt="Smile transformation before - man with black hair"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
+              <img 
+                src="/lovable-uploads/6b031372-9f2b-4a3b-8ea3-9efcec39c1e0.png" 
+                alt="Smile transformation after - man with black hair and improved smile"
+                className="w-full h-auto rounded-md"
+                width="300"
+                height="200"
+              />
+            </div>
+
             {/* New uploaded image pair 1 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
