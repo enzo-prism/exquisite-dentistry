@@ -19,11 +19,11 @@ const SmileGallery = () => {
         </div>
       </section>
 
-      {/* Super simple image display */}
+      {/* Smile transformation gallery */}
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* New uploaded patient 1 */}
+            {/* Patient 1 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
@@ -46,7 +46,7 @@ const SmileGallery = () => {
               />
             </div>
 
-            {/* New uploaded patient 2 */}
+            {/* Patient 2 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
@@ -69,7 +69,7 @@ const SmileGallery = () => {
               />
             </div>
 
-            {/* New uploaded image pair 1 */}
+            {/* Patient 3 - Blonde woman */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
@@ -92,7 +92,7 @@ const SmileGallery = () => {
               />
             </div>
 
-            {/* New uploaded image pair 2 */}
+            {/* Patient 4 - Man with gray hair */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
@@ -115,12 +115,12 @@ const SmileGallery = () => {
               />
             </div>
 
-            {/* New Image */}
+            {/* Patient 5 - Corrected to show a before/after pair */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/51132a46-8cea-4c27-8d9b-e8573ad67aab.png" 
-                alt="New smile transformation before"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -130,20 +130,20 @@ const SmileGallery = () => {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
-                src="/lovable-uploads/51132a46-8cea-4c27-8d9b-e8573ad67aab.png" 
-                alt="New smile transformation after"
+                src="/lovable-uploads/ab504393-67bf-4498-b08e-0ff259231b9e.png" 
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 1 */}
+            {/* Patient 6 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/12dc2c79-1117-472c-b6f1-ec5f0c10211a.png" 
-                alt="Smile transformation before 1"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -154,19 +154,19 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/eb25f991-bf24-480c-8f52-8ad7b5de8822.png" 
-                alt="Smile transformation after 1"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 2 */}
+            {/* Patient 7 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/37cdc255-28ce-4666-a15a-77d31eb76918.png" 
-                alt="Smile transformation before 2"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -177,19 +177,19 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/bfaf7bd3-d0b6-442a-860a-9e5f488bc85f.png" 
-                alt="Smile transformation after 2"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 3 */}
+            {/* Patient 8 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/cad1dd9b-5c06-4e3c-bec8-7d2529902c09.png" 
-                alt="Smile transformation before 3"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -200,19 +200,19 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/eaf61f0f-aa5e-488a-ac17-87b4bc3fbf67.png" 
-                alt="Smile transformation after 3"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 4 */}
+            {/* Patient 9 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/5f3a041e-ea53-4da8-bc1f-1eeb90b730c1.png" 
-                alt="Smile transformation before 4"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -223,19 +223,19 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/f12764ad-4c25-4e5b-9f3c-6d29dad5744c.png" 
-                alt="Smile transformation after 4"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 5 */}
+            {/* Patient 10 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/d00303bf-350e-4362-aeb3-6847c830d4ed.png" 
-                alt="Smile transformation before 5"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -246,19 +246,19 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/93f1a500-b803-42fa-838f-9442f9bb6935.png" 
-                alt="Smile transformation after 5"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
               />
             </div>
 
-            {/* Before/After 6 */}
+            {/* Patient 11 */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
               <img 
                 src="/lovable-uploads/2c732616-978d-4757-b992-b94b8950041d.png" 
-                alt="Smile transformation before 6"
+                alt="Smile transformation before - patient with dental issues"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
@@ -269,7 +269,7 @@ const SmileGallery = () => {
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
               <img 
                 src="/lovable-uploads/5e6b1354-41ce-40e9-ad5a-104165497581.png" 
-                alt="Smile transformation after 6"
+                alt="Smile transformation after - patient with improved smile"
                 className="w-full h-auto rounded-md"
                 width="300"
                 height="200"
