@@ -3,6 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const SmileGallery = () => {
   return (
@@ -23,50 +24,32 @@ const SmileGallery = () => {
       <section className="bg-white py-4 pb-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Patient 1 - Blonde woman */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            {/* First patient - before image */}
+            <div className="bg-gray-50 p-4 rounded-lg shadow">
               <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/6ce2fbc9-ac08-4b7a-83b3-644a80e37c6b.png" 
-                alt="Smile transformation before - blonde woman"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
+              <div className="w-full overflow-hidden rounded-md">
+                <AspectRatio ratio={3/2}>
+                  <img 
+                    src="/lovable-uploads/6aa8d474-6375-4efa-a97a-ad879c6a0460.png" 
+                    alt="Patient smile before transformation"
+                    className="w-full h-full object-cover"
+                  />
+                </AspectRatio>
+              </div>
             </div>
             
-            <div className="bg-gray-50 p-4 rounded-lg">
+            {/* First patient - after image */}
+            <div className="bg-gray-50 p-4 rounded-lg shadow">
               <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/5bcd552b-6f71-4559-92b9-97dd3e1a2470.png" 
-                alt="Smile transformation after - blonde woman with improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-
-            {/* Patient 2 - Man with gray hair */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-              <img 
-                src="/lovable-uploads/7641dba4-9185-4856-bc7a-56f7cc3e03cd.png" 
-                alt="Smile transformation before - man with gray hair"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-              <img 
-                src="/lovable-uploads/ee15b843-0c64-42fb-8bb3-3a212d3a5e80.png" 
-                alt="Smile transformation after - man with gray hair and improved smile"
-                className="w-full h-auto rounded-md"
-                width="300"
-                height="200"
-              />
+              <div className="w-full overflow-hidden rounded-md">
+                <AspectRatio ratio={3/2}>
+                  <img 
+                    src="/lovable-uploads/e5438a81-0752-486e-b9fa-65827267015e.png" 
+                    alt="Patient smile after transformation"
+                    className="w-full h-full object-cover"
+                  />
+                </AspectRatio>
+              </div>
             </div>
           </div>
         </div>
