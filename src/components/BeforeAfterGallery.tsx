@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -6,6 +7,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Skeleton } from '@/components/ui/skeleton';
+import { toast } from 'sonner';
 
 interface GalleryItem {
   id: string;
@@ -26,14 +29,24 @@ const galleryData: GalleryItem[] = [
 const BeforeAfterGallery: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'compare'>('grid');
   // Track which items are showing "after" images (true) or "before" images (false)
+  // Start with "before" images by default
   const [showAfter, setShowAfter] = useState<Record<string, boolean>>(() => {
     const initialState: Record<string, boolean> = {};
     galleryData.forEach(item => {
-      initialState[item.id] = true; // Start with "after" images
+      initialState[item.id] = false; // Start with "before" images
     });
     return initialState;
   });
   
+  // Add loading state for images
+  const [imagesLoaded, setImagesLoaded] = useState<Record<string, Record<'before' | 'after', boolean>>>(() => {
+    const initialState: Record<string, Record<'before' | 'after', boolean>> = {};
+    galleryData.forEach(item => {
+      initialState[item.id] = { before: false, after: false };
+    });
+    return initialState;
+  });
+
   const toggleImage = (id: string) => {
     setShowAfter(prev => ({
       ...prev,
@@ -46,13 +59,38 @@ const BeforeAfterGallery: React.FC = () => {
   // Default fallback image if loading fails
   const fallbackImage = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=1000&fit=crop";
 
+  // Mark an image as loaded
+  const handleImageLoad = (id: string, type: 'before' | 'after') => {
+    setImagesLoaded(prev => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        [type]: true
+      }
+    }));
+    console.log(`${type} image for ${id} loaded successfully`);
+  };
+
+  // Handle image load error
+  const handleImageError = (id: string, type: 'before' | 'after', e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error(`${type} image load error for ${id}:`, e);
+    toast.error(`Failed to load ${type} image for ${id}'s transformation`);
+    
+    // Set src to fallback
+    (e.target as HTMLImageElement).src = fallbackImage;
+  };
+
   // Pre-load images to ensure they're available before rendering
-  React.useEffect(() => {
+  useEffect(() => {
     galleryData.forEach(item => {
       const beforeImg = new Image();
+      beforeImg.onload = () => handleImageLoad(item.id, 'before');
+      beforeImg.onerror = (e) => console.error("Before image preload error:", e);
       beforeImg.src = item.beforeSrc;
       
       const afterImg = new Image();
+      afterImg.onload = () => handleImageLoad(item.id, 'after');
+      afterImg.onerror = (e) => console.error("After image preload error:", e);
       afterImg.src = item.afterSrc;
     });
   }, []);
@@ -86,25 +124,31 @@ const BeforeAfterGallery: React.FC = () => {
                   <AspectRatio ratio={4/5} className="bg-gray-100">
                     <div className="relative w-full h-full overflow-hidden">
                       {showAfter[item.id] ? (
-                        <img
-                          src={item.afterSrc}
-                          alt={`After - ${item.name}`}
-                          className="object-cover w-full h-full"
-                          onError={(e) => {
-                            console.error("After image load error:", e);
-                            (e.target as HTMLImageElement).src = fallbackImage;
-                          }}
-                        />
+                        <>
+                          {!imagesLoaded[item.id]?.after && (
+                            <Skeleton className="absolute inset-0" />
+                          )}
+                          <img
+                            src={item.afterSrc}
+                            alt={`After - ${item.name}`}
+                            className="object-cover w-full h-full"
+                            onLoad={() => handleImageLoad(item.id, 'after')}
+                            onError={(e) => handleImageError(item.id, 'after', e)}
+                          />
+                        </>
                       ) : (
-                        <img
-                          src={item.beforeSrc}
-                          alt={`Before - ${item.name}`}
-                          className="object-cover w-full h-full"
-                          onError={(e) => {
-                            console.error("Before image load error:", e);
-                            (e.target as HTMLImageElement).src = fallbackImage;
-                          }}
-                        />
+                        <>
+                          {!imagesLoaded[item.id]?.before && (
+                            <Skeleton className="absolute inset-0" />
+                          )}
+                          <img
+                            src={item.beforeSrc}
+                            alt={`Before - ${item.name}`}
+                            className="object-cover w-full h-full"
+                            onLoad={() => handleImageLoad(item.id, 'before')}
+                            onError={(e) => handleImageError(item.id, 'before', e)}
+                          />
+                        </>
                       )}
                       <div className="absolute top-3 left-3 bg-black/70 text-white text-xs font-medium py-1 px-2 rounded">
                         {showAfter[item.id] ? 'AFTER' : 'BEFORE'}
@@ -140,28 +184,30 @@ const BeforeAfterGallery: React.FC = () => {
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-gray-500">BEFORE</h4>
                   <AspectRatio ratio={4/5} className="bg-gray-100 rounded-md overflow-hidden">
+                    {!imagesLoaded[item.id]?.before && (
+                      <Skeleton className="absolute inset-0" />
+                    )}
                     <img 
                       src={item.beforeSrc} 
                       alt={`Before - ${item.name}`} 
                       className="object-cover w-full h-full"
-                      onError={(e) => {
-                        console.error("Before image load error in compare view:", e);
-                        (e.target as HTMLImageElement).src = fallbackImage;
-                      }}
+                      onLoad={() => handleImageLoad(item.id, 'before')}
+                      onError={(e) => handleImageError(item.id, 'before', e)}
                     />
                   </AspectRatio>
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-gray-500">AFTER</h4>
                   <AspectRatio ratio={4/5} className="bg-gray-100 rounded-md overflow-hidden">
+                    {!imagesLoaded[item.id]?.after && (
+                      <Skeleton className="absolute inset-0" />
+                    )}
                     <img 
                       src={item.afterSrc} 
                       alt={`After - ${item.name}`} 
                       className="object-cover w-full h-full" 
-                      onError={(e) => {
-                        console.error("After image load error in compare view:", e);
-                        (e.target as HTMLImageElement).src = fallbackImage;
-                      }}
+                      onLoad={() => handleImageLoad(item.id, 'after')}
+                      onError={(e) => handleImageError(item.id, 'after', e)}
                     />
                   </AspectRatio>
                 </div>
