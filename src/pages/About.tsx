@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
 import Button from '@/components/Button';
+import VideoHero from '@/components/VideoHero';
 import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
@@ -14,21 +15,18 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block text-sm text-secondary font-medium mb-3">ABOUT US</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-black leading-tight mb-6">
-              Meet Dr. Alexie Aguil
-            </h1>
-            <div className="h-1 w-20 bg-secondary rounded-full mx-auto mb-8"></div>
-            <p className="text-lg md:text-xl text-black-light mb-8">
-              Discover the passion, expertise, and commitment behind Exquisite Dentistry and Dr. Aguil's approach to exceptional dental care.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with VideoHero */}
+      <VideoHero
+        title={<>Meet Dr. Alexie <span className="text-gold">Aguil</span></>}
+        subtitle="Discover the passion, expertise, and commitment behind Exquisite Dentistry and Dr. Aguil's approach to exceptional dental care."
+        primaryCta={{ 
+          text: "Schedule a Consultation" 
+        }}
+        secondaryCta={{ text: "Explore Services", href: "/services" }}
+        height="medium"
+        badgeText="ABOUT US"
+        scrollIndicator={true}
+      />
 
       {/* Dr. Aguil Introduction */}
       <section className="py-16 md:py-24">

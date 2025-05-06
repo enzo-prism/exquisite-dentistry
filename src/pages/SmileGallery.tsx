@@ -1,11 +1,16 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import VideoHero from '@/components/VideoHero';
 
 const SmileGallery = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -13,12 +18,17 @@ const SmileGallery = () => {
         <meta name="description" content="View our amazing smile transformations at Exquisite Dentistry." />
       </Helmet>
 
-      {/* Page title */}
-      <section className="bg-white py-6">
-        <div className="container mx-auto px-4">
-          <h1 className="text-2xl md:text-3xl font-semibold text-center text-gold">Smile Transformations</h1>
-        </div>
-      </section>
+      {/* Hero Section with VideoHero */}
+      <VideoHero
+        title={<>Smile <span className="text-gold">Transformations</span></>}
+        subtitle="See the incredible results our patients have achieved with our expert dental care."
+        primaryCta={{ 
+          text: "Schedule a Consultation" 
+        }}
+        height="medium"
+        badgeText="SMILE GALLERY"
+        scrollIndicator={true}
+      />
 
       {/* Smile transformation gallery */}
       <section className="bg-white py-4 pb-12">
