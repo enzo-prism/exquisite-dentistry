@@ -20,27 +20,51 @@ interface GalleryItem {
 const galleryData: GalleryItem[] = [
   {
     id: 'smile1',
-    beforeSrc: '/lovable-uploads/f0436570-462f-46d7-9fc5-8d7219056cf9.png',
-    afterSrc: '/lovable-uploads/11e485a4-b030-45b9-b44d-2e4f0ae79a9c.png',
+    beforeSrc: '/lovable-uploads/7afe5319-fc08-4608-8f05-3dadcca5fd25.png',
+    afterSrc: '/lovable-uploads/6832c089-3eb3-4e1d-829e-b63bccf1c054.png',
     title: 'Complete Smile Makeover',
     description: 'Porcelain veneers transformed this smile, creating a brighter, more aligned appearance.',
     treatment: 'Porcelain Veneers'
   },
   {
     id: 'smile2',
-    beforeSrc: '/lovable-uploads/db363a4c-61db-4070-bcd3-7c8f5b524e8d.png',
-    afterSrc: '/lovable-uploads/d5bb32be-44bc-4b3b-ac47-48cc224cf54d.png',
+    beforeSrc: '/lovable-uploads/5a676e52-fa74-4ba4-936b-a940f42ffcd2.png',
+    afterSrc: '/lovable-uploads/7362eaa3-a68b-4aee-a7e5-e2593297c02f.png',
     title: 'Comprehensive Restoration',
     description: 'Full-mouth rehabilitation addressed alignment issues and discoloration.',
     treatment: 'Porcelain Crowns & Veneers'
   },
   {
     id: 'smile3',
-    beforeSrc: '/lovable-uploads/02ae5c96-b8b6-43d0-afa7-629cb02b9c5b.png',
-    afterSrc: '/lovable-uploads/e2653f4b-3af7-4690-bde6-cea5d7ad82b3.png',
+    beforeSrc: '/lovable-uploads/021c3c54-bf83-4812-99f0-c9b7a962b088.png',
+    afterSrc: '/lovable-uploads/86aac28f-bdf3-490f-8a1d-07e5b15d452d.png',
     title: 'Aesthetic Enhancement',
     description: 'Cosmetic bonding and whitening created a naturally beautiful smile.',
     treatment: 'Cosmetic Bonding & Whitening'
+  },
+  {
+    id: 'smile4',
+    beforeSrc: '/lovable-uploads/f0436570-462f-46d7-9fc5-8d7219056cf9.png',
+    afterSrc: '/lovable-uploads/11e485a4-b030-45b9-b44d-2e4f0ae79a9c.png',
+    title: 'Smile Transformation',
+    description: 'A combination of treatments addressed multiple cosmetic concerns.',
+    treatment: 'Veneers & Whitening'
+  },
+  {
+    id: 'smile5',
+    beforeSrc: '/lovable-uploads/db363a4c-61db-4070-bcd3-7c8f5b524e8d.png',
+    afterSrc: '/lovable-uploads/d5bb32be-44bc-4b3b-ac47-48cc224cf54d.png',
+    title: 'Full Smile Restoration',
+    description: 'Complete dental rehabilitation for improved function and aesthetics.',
+    treatment: 'Full Mouth Reconstruction'
+  },
+  {
+    id: 'smile6',
+    beforeSrc: '/lovable-uploads/02ae5c96-b8b6-43d0-afa7-629cb02b9c5b.png',
+    afterSrc: '/lovable-uploads/e2653f4b-3af7-4690-bde6-cea5d7ad82b3.png',
+    title: 'Smile Refinement',
+    description: 'Subtle enhancements created a more balanced and harmonious smile.',
+    treatment: 'Conservative Cosmetic Dentistry'
   }
 ];
 
