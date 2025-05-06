@@ -110,11 +110,19 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
-        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '200%' : '56.25%' }}>
+        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '300%' : '56.25%' }}>
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            style={{ 
+              position: 'absolute', 
+              top: '50%', 
+              left: '50%', 
+              width: '100%', 
+              height: '100%',
+              transform: 'translate(-50%, -50%) scale(1.2)',
+              objectFit: 'cover'
+            }}
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             title="Exquisite Dentistry Video Background"

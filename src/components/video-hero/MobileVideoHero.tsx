@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
@@ -39,7 +38,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         className
       )}
     >
-      {/* Full-screen video background */}
+      {/* Full-screen video background with enhanced mobile coverage */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <VideoBackground 
           vimeoId={vimeoId}
@@ -52,7 +51,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         />
       </div>
       
-      {/* Content overlay - z-30 to ensure it's above the new overlay */}
+      {/* Content overlay - centered vertically for better alignment with expanded video */}
       <div className={cn(
         'relative z-30 w-full h-full flex flex-col justify-center content-vertical-spacing mobile-optimized-padding',
         contentClassName
