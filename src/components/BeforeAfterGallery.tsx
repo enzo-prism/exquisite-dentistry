@@ -15,13 +15,13 @@ interface GalleryItem {
   afterSrc: string;
 }
 
-// Updated image paths to use the newly uploaded image and a placeholder for testing
+// Using external image links for reliable display
 const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: '/lovable-uploads/d1dbb218-913d-4d64-87ca-8b7aed46c0b2.png',
-    afterSrc: '/placeholder.svg', // Using a placeholder that should exist in the project for testing
+    beforeSrc: 'https://i.ibb.co/JwjKNh3/before-ryan.jpg', // Fixed URL format
+    afterSrc: 'https://i.ibb.co/LDL6J2z/after-ryan.jpg', // Fixed URL format
   }
 ];
 
@@ -81,12 +81,14 @@ const BeforeAfterGallery: React.FC = () => {
                           src={item.afterSrc}
                           alt={`After - ${item.name}`}
                           className="object-cover w-full h-full"
+                          onError={(e) => console.error("Image load error:", e)}
                         />
                       ) : (
                         <img
                           src={item.beforeSrc}
                           alt={`Before - ${item.name}`}
                           className="object-cover w-full h-full"
+                          onError={(e) => console.error("Image load error:", e)}
                         />
                       )}
                       <div className="absolute top-3 left-3 bg-black/70 text-white text-xs font-medium py-1 px-2 rounded">
@@ -127,6 +129,7 @@ const BeforeAfterGallery: React.FC = () => {
                       src={item.beforeSrc} 
                       alt={`Before - ${item.name}`} 
                       className="object-cover w-full h-full"
+                      onError={(e) => console.error("Image load error:", e)}
                     />
                   </AspectRatio>
                 </div>
@@ -137,6 +140,7 @@ const BeforeAfterGallery: React.FC = () => {
                       src={item.afterSrc} 
                       alt={`After - ${item.name}`} 
                       className="object-cover w-full h-full" 
+                      onError={(e) => console.error("Image load error:", e)}
                     />
                   </AspectRatio>
                 </div>
