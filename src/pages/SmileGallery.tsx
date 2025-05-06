@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import BeforeAfterGallery from '@/components/BeforeAfterGallery';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import BeforeAfterGallery from '@/components/BeforeAfterGallery';
 
 const SmileGallery = () => {
   return (
@@ -14,28 +13,20 @@ const SmileGallery = () => {
         <meta name="description" content="View our amazing smile transformations at Exquisite Dentistry. Before and after photos of our cosmetic dentistry work in Los Angeles." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="bg-gray-50 py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <span className="inline-block text-sm text-gold font-medium mb-3">TRANSFORMATIONS</span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">Ryan's Smile Transformation</h1>
-            <div className="separator"></div>
-            <p className="text-lg text-gray-700 mt-6 mobile-text-balance">
-              Witness the remarkable transformation of Ryan's smile. Our commitment to creating 
-              natural, beautiful smiles has helped Ryan achieve a brighter, more confident smile.
-            </p>
-          </motion.div>
+      {/* Hero Section - Simplified */}
+      <section className="bg-gray-50 py-12 md:py-16">
+        <div className="container mx-auto px-4 text-center">
+          <span className="inline-block text-sm text-gold font-medium mb-3">TRANSFORMATIONS</span>
+          <h1 className="text-3xl md:text-4xl font-semibold mb-6">Smile Transformations</h1>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            See the remarkable difference our dental services can make. 
+            Browse our before and after gallery showcasing real results from our patients.
+          </p>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-12 md:py-20 bg-white">
+      {/* Gallery Section - Simplified */}
+      <section className="py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <BeforeAfterGallery />
         </div>
