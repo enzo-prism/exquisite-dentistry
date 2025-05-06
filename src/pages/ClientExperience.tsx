@@ -64,8 +64,6 @@ const ClientExperience = () => {
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1620283085068-5aab84e2db3e?q=80&w=2070&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>The <span className="text-gold">Client Experience</span></>}
         subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
         primaryCta={{ 
@@ -73,7 +71,6 @@ const ClientExperience = () => {
           href: SCHEDULING_URL,
           onClick: () => window.open(SCHEDULING_URL, '_blank')
         }}
-        overlayColor="gradient"
         height="medium"
         badgeText="COMFORT & CARE"
         scrollIndicator={false}

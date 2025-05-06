@@ -1,7 +1,5 @@
-
 import React, { useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ReviewWidget from '@/components/ReviewWidget';
@@ -51,12 +49,9 @@ const Testimonials = () => {
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1513757271804-385fb022e70a?q=80&w=2070&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Our Clients <span className="text-gold">Share Their Stories</span></>}
         subtitle="Hear what our clients have to say about their experience with our expert dental team."
         primaryCta={{ text: "Become Our Next Success Story" }}
-        overlayColor="gradient"
         height="medium"
         badgeText="CLIENT TESTIMONIALS"
         scrollIndicator={false}

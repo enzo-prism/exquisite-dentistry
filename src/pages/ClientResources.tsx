@@ -1,7 +1,5 @@
-
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { FileText, HelpCircle, Calendar, ChevronDown, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -96,12 +94,9 @@ const ClientResources = () => {
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
         title={<>Client <span className="text-gold">Resources</span></>}
         subtitle="Everything you need to know before, during, and after your visit to Exquisite Dentistry."
         primaryCta={{ text: "Access Client Portal", href: "#forms" }}
-        overlayColor="gradient"
         height="medium"
         badgeText="HELPFUL INFORMATION"
         scrollIndicator={false}

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 
@@ -34,13 +33,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      {/* Hero Section with YouTube Video */}
+      {/* Hero Section with Video Background */}
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1968&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.OFFICE}
         title={<>Contact <span className="text-gold">Us</span></>}
         subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
-        overlayColor="gradient"
         height="medium"
         badgeText="REACH OUT"
         scrollIndicator={false}

@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -81,15 +79,12 @@ const FAQs = () => {
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.PROCEDURE}
         title={<>Frequently Asked <span className="text-gold">Questions</span></>}
         subtitle="Everything you need to know about your visit to Exquisite Dentistry."
         primaryCta={{ text: "Schedule a Visit", href: SCHEDULING_URL }}
         badgeText="GET ANSWERS"
         height="medium"
         scrollIndicator={false}
-        overlayColor="gradient"
       />
 
       <section className="py-16 px-4 -mt-32 relative z-20">

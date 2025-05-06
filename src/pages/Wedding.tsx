@@ -15,8 +15,6 @@ const Wedding = () => {
   return (
     <div className="min-h-screen">
       <VideoHero
-        posterSrc="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop"
-        youtubeId={YOUTUBE_VIDEOS.SMILE}
         title={<>Wedding <span className="text-gold">Smile</span></>}
         subtitle="Look your absolute best on your special day with our customized wedding smile packages."
         primaryCta={{ 
@@ -24,7 +22,6 @@ const Wedding = () => {
           href: SCHEDULING_URL 
         }}
         secondaryCta={{ text: "View Packages", href: "#packages" }}
-        overlayColor="gradient"
         height="large"
         badgeText="WEDDING SPECIALS"
         scrollIndicator={true}

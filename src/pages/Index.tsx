@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -31,7 +32,6 @@ const Index = () => {
           onClick: () => window.open(SCHEDULING_URL, '_blank') 
         }}
         secondaryCta={{ text: "Meet Dr. Aguil", href: "/about" }}
-        overlayColor="gradient"
         height="auto"
         scrollIndicator={false}
         alignment="left"

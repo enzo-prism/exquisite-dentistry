@@ -4,7 +4,6 @@ import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -17,7 +16,6 @@ const Graduation = () => {
     <div className="min-h-screen page-transition-in">
       <VideoHero
         posterSrc="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
-        youtubeId={YOUTUBE_VIDEOS.PATIENT}
         title={<>Graduation <span className="text-gold">Smile</span></>}
         subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
         primaryCta={{ 
@@ -25,7 +23,6 @@ const Graduation = () => {
           href: SCHEDULING_URL
         }}
         secondaryCta={{ text: "View Packages", href: "#packages" }}
-        overlayColor="gradient"
         height="large"
         badgeText="GRAD SPECIALS"
         scrollIndicator={true}
