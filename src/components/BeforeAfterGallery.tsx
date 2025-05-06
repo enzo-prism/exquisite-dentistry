@@ -15,12 +15,13 @@ interface GalleryItem {
   afterSrc: string;
 }
 
+// Updated image paths to use the newly uploaded image and a placeholder for testing
 const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: '/lovable-uploads/d0cd40f9-c341-4d89-8848-67b3dd134d2a.png',
-    afterSrc: '/lovable-uploads/5286bad4-b2e2-4b5e-b90c-09f0976a9b71.png',
+    beforeSrc: '/lovable-uploads/d1dbb218-913d-4d64-87ca-8b7aed46c0b2.png',
+    afterSrc: '/placeholder.svg', // Using a placeholder that should exist in the project for testing
   }
 ];
 
@@ -43,6 +44,9 @@ const BeforeAfterGallery: React.FC = () => {
   };
   
   const isMobile = useIsMobile();
+
+  // Console log to debug image paths
+  console.log('Gallery data:', galleryData);
 
   return (
     <div className="space-y-8">
