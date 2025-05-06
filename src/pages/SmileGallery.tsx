@@ -92,7 +92,7 @@ const SmileGallery = () => {
           </div>
           
           {/* Third patient */}
-          <div className="mb-12">
+          <div>
             <h2 className="text-xl font-semibold mb-6 text-center">Patient 3</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Third patient - before image */}
@@ -117,40 +117,6 @@ const SmileGallery = () => {
                     <img 
                       src="/lovable-uploads/791699d1-9474-4953-bb30-46c70f5565b9.png" 
                       alt="Third patient smile after transformation"
-                      className="w-full h-full object-cover"
-                    />
-                  </AspectRatio>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Fourth patient */}
-          <div>
-            <h2 className="text-xl font-semibold mb-6 text-center">Patient 4</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Fourth patient - before image */}
-              <div className="bg-gray-50 p-4 rounded-lg shadow">
-                <p className="text-sm text-gold font-medium mb-2 text-center">BEFORE</p>
-                <div className="w-full overflow-hidden rounded-md">
-                  <AspectRatio ratio={3/2}>
-                    <img 
-                      src="/lovable-uploads/photo-2024-05-06-12.jpg" 
-                      alt="Fourth patient smile before transformation"
-                      className="w-full h-full object-cover"
-                    />
-                  </AspectRatio>
-                </div>
-              </div>
-              
-              {/* Fourth patient - after image */}
-              <div className="bg-gray-50 p-4 rounded-lg shadow">
-                <p className="text-sm text-gold font-medium mb-2 text-center">AFTER</p>
-                <div className="w-full overflow-hidden rounded-md">
-                  <AspectRatio ratio={3/2}>
-                    <img 
-                      src="/lovable-uploads/photo-2024-05-06-13.jpg" 
-                      alt="Fourth patient smile after transformation"
                       className="w-full h-full object-cover"
                     />
                   </AspectRatio>
