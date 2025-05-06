@@ -15,13 +15,12 @@ interface GalleryItem {
   afterSrc: string;
 }
 
-// The issue is with the URL format - direct image links should end with .jpg not .jpg/b
 const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: 'https://i.imgur.com/JwjKNh3.jpg', // Using imgur format which is more reliable
-    afterSrc: 'https://i.imgur.com/LDL6J2z.jpg', // Using imgur format which is more reliable
+    beforeSrc: '/lovable-uploads/2ecc4af3-dd4b-4cd9-9db7-cbe1db1c240e.png', // Using locally uploaded image
+    afterSrc: '/lovable-uploads/2ecc4af3-dd4b-4cd9-9db7-cbe1db1c240e.png', // Using the same image for after temporarily
   }
 ];
 
@@ -45,8 +44,19 @@ const BeforeAfterGallery: React.FC = () => {
   
   const isMobile = useIsMobile();
 
-  // Added fallback images in case the primary images fail to load
+  // Default fallback image if loading fails
   const fallbackImage = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=1000&fit=crop";
+
+  // Pre-load images to ensure they're available before rendering
+  React.useEffect(() => {
+    galleryData.forEach(item => {
+      const beforeImg = new Image();
+      beforeImg.src = item.beforeSrc;
+      
+      const afterImg = new Image();
+      afterImg.src = item.afterSrc;
+    });
+  }, []);
 
   return (
     <div className="space-y-8">
@@ -82,7 +92,7 @@ const BeforeAfterGallery: React.FC = () => {
                           alt={`After - ${item.name}`}
                           className="object-cover w-full h-full"
                           onError={(e) => {
-                            console.error("Image load error:", e);
+                            console.error("After image load error:", e);
                             (e.target as HTMLImageElement).src = fallbackImage;
                           }}
                         />
@@ -92,7 +102,7 @@ const BeforeAfterGallery: React.FC = () => {
                           alt={`Before - ${item.name}`}
                           className="object-cover w-full h-full"
                           onError={(e) => {
-                            console.error("Image load error:", e);
+                            console.error("Before image load error:", e);
                             (e.target as HTMLImageElement).src = fallbackImage;
                           }}
                         />
@@ -136,7 +146,7 @@ const BeforeAfterGallery: React.FC = () => {
                       alt={`Before - ${item.name}`} 
                       className="object-cover w-full h-full"
                       onError={(e) => {
-                        console.error("Image load error:", e);
+                        console.error("Before image load error in compare view:", e);
                         (e.target as HTMLImageElement).src = fallbackImage;
                       }}
                     />
@@ -150,7 +160,7 @@ const BeforeAfterGallery: React.FC = () => {
                       alt={`After - ${item.name}`} 
                       className="object-cover w-full h-full" 
                       onError={(e) => {
-                        console.error("Image load error:", e);
+                        console.error("After image load error in compare view:", e);
                         (e.target as HTMLImageElement).src = fallbackImage;
                       }}
                     />
