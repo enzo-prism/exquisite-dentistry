@@ -13,6 +13,18 @@ const SmileGallery = () => {
         <meta name="description" content="View our amazing smile transformations at Exquisite Dentistry. Before and after photos of our cosmetic dentistry work in Los Angeles." />
       </Helmet>
 
+      {/* Featured Image Section */}
+      <section className="bg-white py-6 md:py-8">
+        <div className="container mx-auto px-4 text-center">
+          <img 
+            src="/lovable-uploads/79cfda4c-3311-48c3-ac16-8da387378db8.png" 
+            alt="Beautiful smile transformation" 
+            className="mx-auto max-w-full h-auto rounded-lg shadow-md"
+            style={{ maxHeight: '400px' }}
+          />
+        </div>
+      </section>
+
       {/* Hero Section - Simplified */}
       <section className="bg-gray-50 py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
