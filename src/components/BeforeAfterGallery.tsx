@@ -21,8 +21,8 @@ const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: '/lovable-uploads/453484f1-409d-4583-bc45-efe992867945.png', // Using the newly uploaded image for before
-    afterSrc: '/lovable-uploads/2ecc4af3-dd4b-4cd9-9db7-cbe1db1c240e.png', // Keeping this one for after
+    beforeSrc: '/lovable-uploads/cfcb94a5-2958-486f-a740-f950690c9dc5.png', // Updated to use the first uploaded image
+    afterSrc: '/lovable-uploads/e47e6790-9bff-4b18-a085-7a6ed12e1648.png', // Updated to use the second uploaded image
   }
 ];
 
@@ -57,7 +57,7 @@ const BeforeAfterGallery: React.FC = () => {
   const isMobile = useIsMobile();
 
   // Default fallback image if loading fails
-  const fallbackImage = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=1000&fit=crop";
+  const fallbackImage = '/lovable-uploads/2fb5c7d2-e25a-4153-a61e-04d767c89307.png'; // Updated to use the third uploaded image as fallback
 
   // Mark an image as loaded
   const handleImageLoad = (id: string, type: 'before' | 'after') => {
