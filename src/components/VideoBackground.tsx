@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -110,7 +111,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
-        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '300%' : '56.25%' }}>
+        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '177.78%' : '56.25%' }}>
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
@@ -118,9 +119,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: '100%', 
-              height: '100%',
-              transform: 'translate(-50%, -50%) scale(1.2)',
+              width: '200%', 
+              height: '200%',
+              transform: isMobile ? 'translate(-50%, -50%) scale(1.5)' : 'translate(-50%, -50%) scale(1.2)',
+              maxWidth: 'none',
               objectFit: 'cover'
             }}
             frameBorder="0"
@@ -141,7 +143,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           loop
           playsInline
           className="w-full h-full object-cover"
-          style={{ objectFit: isContained ? 'contain' : 'cover' }}
+          style={{ 
+            objectFit: isContained ? 'contain' : 'cover',
+            width: isMobile ? '200%' : '100%',
+            height: '100%',
+            transform: isMobile ? 'translateX(-25%)' : 'none',
+            maxWidth: 'none'
+          }}
           poster={posterSrc}
         >
           <source src={`${streamableUrl}.mp4`} type="video/mp4" />
@@ -157,7 +165,16 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1&origin=${window.location.origin}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           className="w-full h-full"
-          style={{ objectFit: isContained ? 'contain' : 'cover' }}
+          style={{ 
+            objectFit: isContained ? 'contain' : 'cover',
+            width: isMobile ? '300%' : '100%',
+            height: '100%',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: isMobile ? 'translate(-50%, -50%)' : 'none',
+            maxWidth: 'none'
+          }}
           frameBorder="0"
           title="Video player"
           loading="eager"
