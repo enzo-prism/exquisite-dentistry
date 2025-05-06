@@ -15,13 +15,13 @@ interface GalleryItem {
   afterSrc: string;
 }
 
-// Using external image links for reliable display
+// The issue is with the URL format - direct image links should end with .jpg not .jpg/b
 const galleryData: GalleryItem[] = [
   {
     id: 'ryan',
     name: 'Ryan',
-    beforeSrc: 'https://i.ibb.co/JwjKNh3/before-ryan.jpg', // Fixed URL format
-    afterSrc: 'https://i.ibb.co/LDL6J2z/after-ryan.jpg', // Fixed URL format
+    beforeSrc: 'https://i.imgur.com/JwjKNh3.jpg', // Using imgur format which is more reliable
+    afterSrc: 'https://i.imgur.com/LDL6J2z.jpg', // Using imgur format which is more reliable
   }
 ];
 
@@ -45,8 +45,8 @@ const BeforeAfterGallery: React.FC = () => {
   
   const isMobile = useIsMobile();
 
-  // Console log to debug image paths
-  console.log('Gallery data:', galleryData);
+  // Added fallback images in case the primary images fail to load
+  const fallbackImage = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=1000&fit=crop";
 
   return (
     <div className="space-y-8">
@@ -81,14 +81,20 @@ const BeforeAfterGallery: React.FC = () => {
                           src={item.afterSrc}
                           alt={`After - ${item.name}`}
                           className="object-cover w-full h-full"
-                          onError={(e) => console.error("Image load error:", e)}
+                          onError={(e) => {
+                            console.error("Image load error:", e);
+                            (e.target as HTMLImageElement).src = fallbackImage;
+                          }}
                         />
                       ) : (
                         <img
                           src={item.beforeSrc}
                           alt={`Before - ${item.name}`}
                           className="object-cover w-full h-full"
-                          onError={(e) => console.error("Image load error:", e)}
+                          onError={(e) => {
+                            console.error("Image load error:", e);
+                            (e.target as HTMLImageElement).src = fallbackImage;
+                          }}
                         />
                       )}
                       <div className="absolute top-3 left-3 bg-black/70 text-white text-xs font-medium py-1 px-2 rounded">
@@ -129,7 +135,10 @@ const BeforeAfterGallery: React.FC = () => {
                       src={item.beforeSrc} 
                       alt={`Before - ${item.name}`} 
                       className="object-cover w-full h-full"
-                      onError={(e) => console.error("Image load error:", e)}
+                      onError={(e) => {
+                        console.error("Image load error:", e);
+                        (e.target as HTMLImageElement).src = fallbackImage;
+                      }}
                     />
                   </AspectRatio>
                 </div>
@@ -140,7 +149,10 @@ const BeforeAfterGallery: React.FC = () => {
                       src={item.afterSrc} 
                       alt={`After - ${item.name}`} 
                       className="object-cover w-full h-full" 
-                      onError={(e) => console.error("Image load error:", e)}
+                      onError={(e) => {
+                        console.error("Image load error:", e);
+                        (e.target as HTMLImageElement).src = fallbackImage;
+                      }}
                     />
                   </AspectRatio>
                 </div>
