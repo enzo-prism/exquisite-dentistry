@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -52,6 +51,13 @@ const videoTestimonials = [
     title: "Dental Care Experience",
     description: "Shannon shares her positive experience with our dental care services and the exceptional results she received.",
     thumbnail: "/lovable-uploads/1228ba28-d235-4f1b-bcfd-1fd79a1ad756.png"
+  },
+  {
+    id: "1082192501",
+    name: "Taylor Vasek",
+    title: "Dental Treatment Journey",
+    description: "Taylor shares his experience with our dental treatments and the positive impact they've had on his smile and confidence.",
+    thumbnail: "/lovable-uploads/993eead8-0b95-49ef-84bc-778c614cda09.png"
   }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
