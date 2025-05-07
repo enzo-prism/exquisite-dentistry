@@ -64,7 +64,7 @@ const videoTestimonials = [
     name: "",
     title: "More Testimonials",
     description: "Watch multiple patients share their experiences with Exquisite Dentistry and their smile transformations.",
-    thumbnail: "/placeholder.svg"
+    thumbnail: "/lovable-uploads/b51f12fb-722d-4d87-ba02-516ef7bd452c.png"
   }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
