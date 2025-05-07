@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -13,6 +12,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface NavLinkProps {
   to: string;
@@ -98,6 +98,7 @@ const MobileDropdown: React.FC<{ title: string; children: React.ReactNode }> = (
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,7 +132,7 @@ const Navbar = () => {
               <img 
                 src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png" 
                 alt="Exquisite Dentistry Logo" 
-                className="h-12"
+                className={`${isMobile ? 'h-6' : 'h-12'}`}
               />
             </Link>
           </div>
