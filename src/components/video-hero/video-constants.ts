@@ -26,4 +26,4 @@ export const YOUTUBE_VIDEOS = {
 };
 
 // Default Vimeo ID for the main hero video across all pages
-export const DEFAULT_HERO_VIMEO_ID = "1081706653";
+export const DEFAULT_HERO_VIMEO_ID = "1082215464";
