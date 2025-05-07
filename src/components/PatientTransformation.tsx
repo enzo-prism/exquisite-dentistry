@@ -3,14 +3,7 @@ import React, { useState } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
 import OptimizedImage from './OptimizedImage';
-
-export interface PatientTransformationData {
-  name: string;
-  procedure: string;
-  description?: string;
-  beforeImage: string;
-  afterImage: string;
-}
+import { PatientTransformation as PatientTransformationData } from '@/data/patientTransformations';
 
 interface PatientTransformationCardProps {
   patient: PatientTransformationData;
