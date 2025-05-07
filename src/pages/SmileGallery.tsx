@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent } from '@/components/ui/card';
-import { Sparkles, ChevronRight } from 'lucide-react';
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Sparkles, ChevronRight, ToggleLeft, ToggleRight } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
 
 const SmileGallery = () => {
@@ -15,8 +14,6 @@ const SmileGallery = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // State for tracking which view is shown (before or after)
-  const [view, setView] = useState<"before" | "after">("after");
   const { isMobile } = useBreakpoint();
   
   // Patient data
@@ -24,18 +21,28 @@ const SmileGallery = () => {
     {
       name: "Brittany",
       beforeImg: "/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.png",
-      afterImg: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png", 
-      beforeQuote: "I was always self-conscious about my smile...",
-      afterQuote: "Now I can't stop smiling! Dr. Aguil changed my life."
+      afterImg: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png",
     },
     {
       name: "Ryan",
       beforeImg: "/lovable-uploads/8e2e1684-e2b2-4ebe-81de-ffec0bb4c801.png",
       afterImg: "/lovable-uploads/4820b0df-82b4-4e9b-9724-b8d1f720712b.png",
-      beforeQuote: "I never liked showing my teeth in photos...",
-      afterQuote: "The confidence I've gained is incredible. Best decision ever!"
     }
   ];
+
+  // State for tracking individual patient views
+  const [patientViews, setPatientViews] = useState<Record<string, "before" | "after">>({
+    "Brittany": "after",
+    "Ryan": "after"
+  });
+
+  // Toggle handler for individual patients
+  const togglePatientView = (patientName: string) => {
+    setPatientViews(prev => ({
+      ...prev,
+      [patientName]: prev[patientName] === "before" ? "after" : "before"
+    }));
+  };
 
   return (
     <>
@@ -61,30 +68,6 @@ const SmileGallery = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-3xl font-semibold mb-8 text-center">Real Patient Results</h2>
           
-          {/* Toggle for before/after */}
-          <div className="flex flex-col items-center justify-center mb-8">
-            <p className="text-gray-600 mb-3">Toggle between before and after</p>
-            <ToggleGroup 
-              type="single" 
-              value={view} 
-              onValueChange={(value) => value && setView(value as "before" | "after")}
-              className="border border-gray-200 rounded-full p-1"
-            >
-              <ToggleGroupItem 
-                value="before" 
-                className={`rounded-l-full px-6 py-2 ${view === 'before' ? 'bg-gray-800 text-white' : 'bg-transparent text-gray-700'}`}
-              >
-                Before
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="after" 
-                className={`rounded-r-full px-6 py-2 ${view === 'after' ? 'bg-gold text-white' : 'bg-transparent text-gray-700'}`}
-              >
-                After
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
-          
           {/* Patient transformations - simplified grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {patients.map((patient, index) => (
@@ -104,20 +87,32 @@ const SmileGallery = () => {
                     {/* Image */}
                     <AspectRatio ratio={3/4} className="bg-black/5">
                       <img 
-                        src={view === "before" ? patient.beforeImg : patient.afterImg}
-                        alt={`${patient.name}'s smile ${view} transformation`}
+                        src={patientViews[patient.name] === "before" ? patient.beforeImg : patient.afterImg}
+                        alt={`${patient.name}'s smile ${patientViews[patient.name]} transformation`}
                         className="w-full h-full object-cover transition-all duration-500"
                       />
                     </AspectRatio>
                     
                     {/* Corner label */}
-                    <div className={`absolute top-0 right-0 ${view === "before" ? "bg-black/80" : "bg-gold"} text-white px-4 py-2 rounded-bl-lg font-medium`}>
-                      {view.toUpperCase()}
+                    <div className={`absolute top-0 right-0 ${patientViews[patient.name] === "before" ? "bg-black/80" : "bg-gold"} text-white px-4 py-2 rounded-bl-lg font-medium`}>
+                      {patientViews[patient.name].toUpperCase()}
                     </div>
+
+                    {/* Individual toggle button */}
+                    <button 
+                      onClick={() => togglePatientView(patient.name)}
+                      className="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition-colors"
+                      aria-label={`Toggle ${patient.name}'s before and after`}
+                    >
+                      {patientViews[patient.name] === "before" 
+                        ? <ToggleLeft className="w-6 h-6 text-gray-700" /> 
+                        : <ToggleRight className="w-6 h-6 text-gold" />
+                      }
+                    </button>
                   </div>
-                  <CardContent className={`p-5 ${view === "before" ? "bg-gradient-to-r from-gray-50 to-white" : "bg-gradient-to-r from-gold/10 to-white"}`}>
-                    <p className={`${view === "before" ? "text-gray-600 italic" : "text-gray-800"}`}>
-                      {view === "before" ? patient.beforeQuote : patient.afterQuote}
+                  <CardContent className={`p-5 ${patientViews[patient.name] === "before" ? "bg-gradient-to-r from-gray-50 to-white" : "bg-gradient-to-r from-gold/10 to-white"}`}>
+                    <p className="text-center font-medium">
+                      Click to toggle {patientViews[patient.name] === "before" ? "after" : "before"} image
                     </p>
                   </CardContent>
                 </Card>
