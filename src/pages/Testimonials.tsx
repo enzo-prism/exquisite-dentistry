@@ -45,6 +45,13 @@ const videoTestimonials = [
     title: "Cosmetic Dentistry Journey",
     description: "Rob discusses his experience with our cosmetic dentistry services and how they've transformed his smile and confidence.",
     thumbnail: "/lovable-uploads/46552f14-ce4f-4246-9d40-d5d1c6cc8956.png"
+  },
+  {
+    id: "1082192427",
+    name: "Shannon Langhorne",
+    title: "Dental Care Experience",
+    description: "Shannon shares her positive experience with our dental care services and the exceptional results she received.",
+    thumbnail: "/lovable-uploads/1228ba28-d235-4f1b-bcfd-1fd79a1ad756.png"
   }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
