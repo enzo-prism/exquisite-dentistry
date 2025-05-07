@@ -39,6 +39,13 @@ const videoTestimonials = [
     description: "Christian shares her experience with our comprehensive dental care and the impact it's had on her confidence and daily life.",
     thumbnail: "/lovable-uploads/969c20fb-4345-4982-ad1e-0d6c2a554a24.png"
   },
+  {
+    id: "1082192452",
+    name: "Emma Rodriguez",
+    title: "Cosmetic Dentistry Journey",
+    description: "Emma discusses her experience with our cosmetic dentistry services and how they've transformed her smile and confidence.",
+    thumbnail: "/lovable-uploads/791699d1-9474-4953-bb30-46c70f5565b9.png"
+  }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
   //   id: "vimeo_video_id",
