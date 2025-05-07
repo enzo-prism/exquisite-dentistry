@@ -74,9 +74,9 @@ const SmileGallery = () => {
               <div key={index} className="transform transition-all duration-300 hover:scale-[1.02]">
                 <Card className="overflow-hidden border-0 shadow-lg h-full">
                   <div className="relative">
-                    {/* Patient name badge */}
+                    {/* Patient name badge - UPDATED PADDING HERE */}
                     <div className="absolute top-0 left-0 z-10 m-4">
-                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
+                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
                         <h3 className="text-lg font-medium text-gray-800 flex items-center">
                           <Sparkles className="w-4 h-4 mr-2 text-gold" />
                           {patient.name}
