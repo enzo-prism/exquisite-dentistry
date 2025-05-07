@@ -31,6 +31,11 @@ export const patientTransformations: PatientTransformation[] = [
     name: "Jessica",
     beforeImg: "/lovable-uploads/c4eb9134-7e7d-4dc3-ab3a-abf2fc453302.png",
     afterImg: "/lovable-uploads/3a42dad4-7415-4cdc-aaad-8186717434d4.png"
+  },
+  {
+    name: "Michael",
+    beforeImg: "/lovable-uploads/ebaec307-40e4-4cf9-9b8a-02379250bb8e.png",
+    afterImg: "/lovable-uploads/bb889b6f-f57b-492d-a1d2-06164aedf1e8.png"
   }
   // New patients can be easily added here by following the same structure
 ];
