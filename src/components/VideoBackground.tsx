@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -39,7 +38,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }, [youtubeId, streamableUrl, vimeoId]);
   
   useEffect(() => {
-    // Force video play when the component mounts (for direct video elements)
     const playVideo = async () => {
       if (videoRef.current) {
         try {
@@ -72,7 +70,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       playVideo();
     }
     
-    // Add event listeners to debug video issues
     const video = videoRef.current;
     if (video) {
       const handleError = (e: Event) => console.error('Video error:', e);
@@ -93,11 +90,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       };
     }
   }, []);
-
-  // Load the Vimeo API script
+  
   useEffect(() => {
     if (vimeoId) {
-      // Check if the script is already loaded
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
         const script = document.createElement('script');
         script.src = 'https://player.vimeo.com/api/player.js';
@@ -107,7 +102,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     }
   }, [vimeoId]);
   
-  // Render video element based on provided source
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
@@ -119,9 +113,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: '200%', 
-              height: '200%',
-              transform: isMobile ? 'translate(-50%, -50%) scale(1.5)' : 'translate(-50%, -50%) scale(1.2)',
+              width: isMobile ? '300%' : '200%',  // Increased from 200% to 300% for mobile
+              height: isMobile ? '300%' : '200%',  // Increased from 200% to 300% for mobile
+              transform: isMobile ? 'translate(-50%, -50%) scale(1.8)' : 'translate(-50%, -50%) scale(1.2)', // Increased scale from 1.5 to 1.8 for mobile
               maxWidth: 'none',
               objectFit: 'cover'
             }}
@@ -145,9 +139,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full object-cover"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '200%' : '100%',
+            width: isMobile ? '300%' : '200%', // Increased from 200% to 300% for mobile
             height: '100%',
-            transform: isMobile ? 'translateX(-25%)' : 'none',
+            transform: isMobile ? 'translateX(-33.3%)' : 'none', // Adjusted transform for the new width
             maxWidth: 'none'
           }}
           poster={posterSrc}
@@ -167,12 +161,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '300%' : '100%',
-            height: '100%',
+            width: isMobile ? '350%' : '300%', // Increased from 300% to 350% for mobile
+            height: isMobile ? '150%' : '100%', // Increased height for mobile
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: isMobile ? 'translate(-50%, -50%)' : 'none',
+            transform: isMobile ? 'translate(-50%, -50%) scale(1.2)' : 'translate(-50%, -50%)', // Added scaling for mobile
             maxWidth: 'none'
           }}
           frameBorder="0"
@@ -185,7 +179,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     return null;
   };
   
-  // For contained mode, return a simpler component with proper aspect ratio
   if (isContained) {
     return (
       <div className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
@@ -196,7 +189,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     );
   }
   
-  // Original background implementation
   return (
     <>
       <div 
