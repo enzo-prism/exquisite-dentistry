@@ -30,7 +30,7 @@ const testimonialReviews = [
   }
 ];
 
-// Video testimonials data
+// Video testimonials data - structured for easy addition of new videos
 const videoTestimonials = [
   {
     id: "1082192388",
@@ -38,7 +38,15 @@ const videoTestimonials = [
     title: "Full Smile Transformation",
     description: "Christian shares her experience with our comprehensive dental care and the impact it's had on her confidence and daily life.",
     thumbnail: "/lovable-uploads/969c20fb-4345-4982-ad1e-0d6c2a554a24.png"
-  }
+  },
+  // To add a new video testimonial, simply add another object here with the following structure:
+  // {
+  //   id: "vimeo_video_id",
+  //   name: "Patient Name",
+  //   title: "Video Title",
+  //   description: "Brief description about the testimonial",
+  //   thumbnail: "/path/to/thumbnail/image.png"
+  // }
 ];
 
 const Testimonials = () => {
@@ -81,61 +89,24 @@ const Testimonials = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {videoTestimonials.map((testimonial) => (
-              <div 
-                key={testimonial.id} 
-                className="rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl"
-              >
-                <div 
-                  className="relative cursor-pointer group" 
-                  onClick={() => openVideoModal(testimonial.id, testimonial.thumbnail)}
-                >
-                  <AspectRatio ratio={16 / 9}>
-                    <div className="w-full h-full overflow-hidden">
-                      <img 
-                        src={testimonial.thumbnail} 
-                        alt={`${testimonial.name} testimonial thumbnail`} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
-                    </div>
-                  </AspectRatio>
-                  
-                  {/* Play button overlay with scaling effect */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-gold/90 rounded-full p-5 transform transition-all duration-300 
-                                  group-hover:scale-110 group-hover:bg-gold shadow-lg">
-                      <Play className="text-white w-10 h-10" />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 bg-white border-t-2 border-gold/20">
-                  <h3 className="text-2xl font-medium mb-2">{testimonial.name}</h3>
-                  <p className="text-gold mb-4">{testimonial.title}</p>
-                  <p className="text-black-light mb-4">
-                    {testimonial.description}
-                  </p>
-                  <Button
-                    variant="outline"
-                    size="sm" 
-                    onClick={() => openVideoModal(testimonial.id, testimonial.thumbnail)}
-                    className="mt-2"
-                  >
-                    Watch Story
-                  </Button>
-                </div>
-              </div>
+              <VideoTestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+                onPlayClick={openVideoModal}
+              />
             ))}
           </div>
 
-          {/* Add more videos section */}
-          <div className="text-center mb-8">
-            <p className="text-black-light mb-6">
-              We have many more happy clients who've shared their experiences with us.
-            </p>
-            <Button variant="gold" size="lg">
-              View More Testimonials
-            </Button>
-          </div>
+          {videoTestimonials.length > 0 && (
+            <div className="text-center mb-8">
+              <p className="text-black-light mb-6">
+                We have many more happy clients who've shared their experiences with us.
+              </p>
+              <Button variant="gold" size="lg">
+                View More Testimonials
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -160,6 +131,63 @@ const Testimonials = () => {
         onClose={() => setIsVideoModalOpen(false)} 
         thumbnailUrl={activeThumbnail}
       />
+    </div>
+  );
+};
+
+// Video testimonial card component for better reusability
+interface VideoTestimonialCardProps {
+  testimonial: {
+    id: string;
+    name: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+  };
+  onPlayClick: (videoId: string, thumbnailUrl: string) => void;
+}
+
+const VideoTestimonialCard: React.FC<VideoTestimonialCardProps> = ({ testimonial, onPlayClick }) => {
+  return (
+    <div className="rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+      <div 
+        className="relative cursor-pointer group" 
+        onClick={() => onPlayClick(testimonial.id, testimonial.thumbnail)}
+      >
+        <AspectRatio ratio={16 / 9}>
+          <div className="w-full h-full overflow-hidden">
+            <img 
+              src={testimonial.thumbnail} 
+              alt={`${testimonial.name} testimonial thumbnail`} 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
+          </div>
+        </AspectRatio>
+        
+        {/* Play button overlay with scaling effect */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-gold/90 rounded-full p-5 transform transition-all duration-300 
+                        group-hover:scale-110 group-hover:bg-gold shadow-lg">
+            <Play className="text-white w-10 h-10" />
+          </div>
+        </div>
+      </div>
+      <div className="p-6 bg-white border-t-2 border-gold/20">
+        <h3 className="text-2xl font-medium mb-2">{testimonial.name}</h3>
+        <p className="text-gold mb-4">{testimonial.title}</p>
+        <p className="text-black-light mb-4">
+          {testimonial.description}
+        </p>
+        <Button
+          variant="outline"
+          size="sm" 
+          onClick={() => onPlayClick(testimonial.id, testimonial.thumbnail)}
+          className="mt-2"
+        >
+          Watch Story
+        </Button>
+      </div>
     </div>
   );
 };
