@@ -1,89 +1,90 @@
+
 import React, { useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
-import { Youtube } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ReviewWidget from '@/components/ReviewWidget';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import VideoBackground from '@/components/VideoBackground';
+import TestimonialCarousel from '@/components/TestimonialCarousel';
 
-const testimonials = [
+// Sample testimonial reviews for the carousel
+const testimonialReviews = [
   {
     id: 1,
-    title: "Life-Changing Smile Transformation",
-    youtubeId: "U32NScY_qCQ",
-    procedure: "Comprehensive Smile Makeover"
+    name: "Sarah Johnson",
+    content: "Dr. Aguil and his team provided the most comfortable dental experience I've ever had. My smile transformation exceeded all expectations!",
+    stars: 5
   },
   {
     id: 2,
-    title: "Restoring Confidence with Expert Care",
-    youtubeId: "6QACxCt6J7g",
-    procedure: "Full Dental Restoration"
+    name: "Michael Rodriguez",
+    content: "I was always anxious about dental visits until I found Exquisite Dentistry. Their attention to detail and gentle approach changed everything for me.",
+    stars: 5
   },
   {
     id: 3,
-    title: "The Journey to a Perfect Smile",
-    youtubeId: "3O6FuKufvL4",
-    procedure: "Cosmetic Dentistry Excellence"
-  },
-  {
-    id: 4,
-    title: "Transforming Lives Through Dentistry",
-    youtubeId: "dpd6glBbZVU",
-    procedure: "Dental Reconstruction"
-  },
-  {
-    id: 5,
-    title: "A Client's Journey to Dental Health",
-    youtubeId: "3pNo4sKFB58",
-    procedure: "Comprehensive Treatment"
+    name: "Jennifer Williams",
+    content: "The level of care and expertise at Exquisite Dentistry is unmatched. My smile makeover has boosted my confidence tremendously.",
+    stars: 5
   }
 ];
 
 const Testimonials = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Load the Vimeo API script if not already loaded
+    if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
-
-  const openYouTube = (youtubeId: string) => {
-    window.open(`https://www.youtube.com/watch?v=${youtubeId}`, '_blank');
-  };
 
   return (
     <div className="min-h-screen page-transition-in">
       <VideoHero
         title={<>Our Clients <span className="text-gold">Share Their Stories</span></>}
-        subtitle="Hear what our clients have to say about their experience with our expert dental team."
-        primaryCta={{ text: "Become Our Next Success Story" }}
+        subtitle="Hear directly from our clients about their transformative experiences at Exquisite Dentistry."
+        primaryCta={{ text: "Schedule Your Consultation" }}
         height="medium"
         badgeText="CLIENT TESTIMONIALS"
         scrollIndicator={false}
       />
 
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 opacity-0 animate-fade-in">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-              Client Success Stories
+              Video Testimonials
             </h2>
+            <p className="text-lg text-black-light max-w-3xl mx-auto mb-10">
+              Watch our clients share their transformative dental experiences
+            </p>
             <div className="w-24 h-1 bg-gold rounded-full mx-auto"></div>
           </div>
 
-          <div className="space-y-12">
-            {testimonials.map((testimonial) => (
-              <div 
-                key={testimonial.id} 
-                className="text-center p-6 opacity-0 animate-fade-in"
-              >
-                <h3 className="text-xl font-medium mb-2">{testimonial.title}</h3>
-                <p className="text-gold mb-4">{testimonial.procedure}</p>
-                <Button
-                  variant="outline"
-                  onClick={() => openYouTube(testimonial.youtubeId)}
-                  className="gap-2"
-                >
-                  <Youtube size={20} />
-                  Watch Story
-                </Button>
+          <div className="space-y-20">
+            {/* Featured Testimonial */}
+            <div className="rounded-md overflow-hidden shadow-xl">
+              <div style={{ position: 'relative' }}>
+                <AspectRatio ratio={16 / 9}>
+                  <iframe 
+                    src="https://player.vimeo.com/video/1082192388?badge=0&autopause=0&player_id=0&app_id=58479" 
+                    frameBorder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    title="Exquisite Dentistry Testimonial ｜ Christian Fernandez"
+                  />
+                </AspectRatio>
               </div>
-            ))}
+              <div className="p-6 bg-white">
+                <h3 className="text-2xl font-medium mb-2">Christian Fernandez</h3>
+                <p className="text-gold mb-4">Full Smile Transformation</p>
+                <p className="text-black-light">
+                  Christian shares his experience with our comprehensive dental care and the impact it's had on his confidence and daily life.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -92,13 +93,13 @@ const Testimonials = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-              Our Client <span className="text-gold">Reviews</span>
+              Client <span className="text-gold">Reviews</span>
             </h2>
             <p className="text-lg text-black-light max-w-3xl mx-auto mb-10">
-              Read verified reviews from our satisfied clients
+              Read what our clients are saying about us
             </p>
           </div>
-          <ReviewWidget />
+          <TestimonialCarousel testimonials={testimonialReviews} />
         </div>
       </section>
     </div>
