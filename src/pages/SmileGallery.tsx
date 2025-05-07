@@ -40,8 +40,8 @@ const SmileGallery = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-3xl font-semibold mb-8 text-center">Real Patient Results</h2>
           
-          {/* Patient transformations grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {/* Patient transformations grid - Updated to show 3 per row on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {patientTransformations.map((patient, index) => (
               <PatientTransformationCard key={`patient-${index}`} patient={patient} />
             ))}
