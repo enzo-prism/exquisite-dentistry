@@ -50,11 +50,10 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose }) =
         
         <div className="relative aspect-video w-full">
           <iframe 
-            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
-            title="YouTube video player"
+            src={`https://player.vimeo.com/video/${youtubeId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`}
+            title="Vimeo video player"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             className="absolute inset-0 h-full w-full"
           ></iframe>
         </div>

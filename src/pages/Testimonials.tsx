@@ -1,9 +1,11 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import VideoBackground from '@/components/VideoBackground';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import { Play } from 'lucide-react';
+import VideoModal from '@/components/VideoModal';
 
 // Sample testimonial reviews for the carousel
 const testimonialReviews = [
@@ -28,16 +30,10 @@ const testimonialReviews = [
 ];
 
 const Testimonials = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Load the Vimeo API script if not already loaded
-    if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://player.vimeo.com/api/player.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
   }, []);
 
   return (
@@ -64,18 +60,26 @@ const Testimonials = () => {
           </div>
 
           <div className="space-y-20">
-            {/* Featured Testimonial */}
+            {/* Featured Testimonial with Play Button */}
             <div className="rounded-md overflow-hidden shadow-xl">
-              <div style={{ position: 'relative' }}>
+              <div className="relative cursor-pointer" onClick={() => setIsVideoModalOpen(true)}>
                 <AspectRatio ratio={16 / 9}>
-                  <iframe 
-                    src="https://player.vimeo.com/video/1082192388?badge=0&autopause=0&player_id=0&app_id=58479" 
-                    frameBorder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                    title="Exquisite Dentistry Testimonial ｜ Christian Fernandez"
-                  />
+                  {/* Thumbnail image for the video */}
+                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <img 
+                      src="https://i.vimeocdn.com/video/1621891097-daf6a0fcaedd2f3fd465a22d5f27263c6c0d8a8dcd2f24db0026c644ca8dcc0f-d_640x360.jpg" 
+                      alt="Christian Fernandez testimonial thumbnail" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </AspectRatio>
+                
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-gold/90 rounded-full p-5 transform transition-transform hover:scale-110">
+                    <Play className="text-white w-10 h-10" />
+                  </div>
+                </div>
               </div>
               <div className="p-6 bg-white">
                 <h3 className="text-2xl font-medium mb-2">Christian Fernandez</h3>
@@ -102,6 +106,13 @@ const Testimonials = () => {
           <TestimonialCarousel testimonials={testimonialReviews} />
         </div>
       </section>
+
+      {/* Video Modal */}
+      <VideoModal 
+        youtubeId="1082192388" 
+        isOpen={isVideoModalOpen} 
+        onClose={() => setIsVideoModalOpen(false)} 
+      />
     </div>
   );
 };
