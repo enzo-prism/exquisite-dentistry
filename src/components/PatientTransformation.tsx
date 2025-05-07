@@ -2,8 +2,14 @@
 import React, { useState } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import OptimizedImage from './OptimizedImage';
-import { PatientTransformation as PatientTransformationData } from '@/data/patientTransformations';
+
+interface PatientTransformationData {
+  name: string;
+  procedure: string;
+  description?: string;
+  beforeImage: string;
+  afterImage: string;
+}
 
 interface PatientTransformationCardProps {
   patient: PatientTransformationData;
@@ -26,13 +32,10 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
               "absolute inset-0 w-full h-full transition-opacity duration-500",
               showAfter ? "opacity-0" : "opacity-100"
             )}>
-              <OptimizedImage
+              <img
                 src={patient.beforeImage}
                 alt={`${patient.name} before ${patient.procedure}`}
-                className="w-full h-full"
-                objectFit="cover"
-                width={400}
-                height={300}
+                className="w-full h-full object-cover"
               />
             </div>
             
@@ -41,13 +44,10 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
               "absolute inset-0 w-full h-full transition-opacity duration-500",
               showAfter ? "opacity-100" : "opacity-0"
             )}>
-              <OptimizedImage
+              <img
                 src={patient.afterImage}
                 alt={`${patient.name} after ${patient.procedure}`}
-                className="w-full h-full"
-                objectFit="cover"
-                width={400}
-                height={300}
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
