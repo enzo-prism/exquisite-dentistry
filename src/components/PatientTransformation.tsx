@@ -1,52 +1,103 @@
+
 import React, { useState } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Card, CardContent } from '@/components/ui/card';
-import { Sparkles, ToggleLeft, ToggleRight } from 'lucide-react';
-import type { PatientTransformation } from '@/data/patientTransformations';
-interface PatientTransformationCardProps {
-  patient: PatientTransformation;
+import { cn } from '@/lib/utils';
+import OptimizedImage from './OptimizedImage';
+
+export interface PatientTransformationData {
+  name: string;
+  procedure: string;
+  description?: string;
+  beforeImage: string;
+  afterImage: string;
 }
+
+interface PatientTransformationCardProps {
+  patient: PatientTransformationData;
+  className?: string;
+}
+
 const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
-  patient
+  patient,
+  className
 }) => {
-  const [view, setView] = useState<"before" | "after">("after");
-  const toggleView = () => {
-    setView(prev => prev === "before" ? "after" : "before");
-  };
-  return <div className="transform transition-all duration-300 hover:scale-[1.02]">
-      <Card className="overflow-hidden border-0 shadow-lg h-full">
-        <div className="relative">
-          {/* Patient name badge */}
-          <div className="absolute top-0 left-0 z-10 m-4">
-            <div className="bg-white/90 backdrop-blur-sm px-3 rounded-full shadow-md py-0">
-              <h3 className="text-lg font-medium text-gray-800 flex items-center">
-                <Sparkles className="w-4 h-4 mr-2 text-gold" />
-                {patient.name}
-              </h3>
+  const [showAfter, setShowAfter] = useState(true);
+
+  return (
+    <div className={cn("bg-white shadow-md rounded-sm overflow-hidden", className)}>
+      <div className="relative">
+        <AspectRatio ratio={4/3}>
+          <div className="relative w-full h-full">
+            {/* Before image (shown when showAfter is false) */}
+            <div className={cn(
+              "absolute inset-0 w-full h-full transition-opacity duration-500",
+              showAfter ? "opacity-0" : "opacity-100"
+            )}>
+              <OptimizedImage
+                src={patient.beforeImage}
+                alt={`${patient.name} before ${patient.procedure}`}
+                className="w-full h-full"
+                objectFit="cover"
+                width={400}
+                height={300}
+              />
+            </div>
+            
+            {/* After image (shown when showAfter is true) */}
+            <div className={cn(
+              "absolute inset-0 w-full h-full transition-opacity duration-500",
+              showAfter ? "opacity-100" : "opacity-0"
+            )}>
+              <OptimizedImage
+                src={patient.afterImage}
+                alt={`${patient.name} after ${patient.procedure}`}
+                className="w-full h-full"
+                objectFit="cover"
+                width={400}
+                height={300}
+              />
             </div>
           </div>
+        </AspectRatio>
 
-          {/* Image */}
-          <AspectRatio ratio={3 / 4} className="bg-black/5">
-            <img src={view === "before" ? patient.beforeImg : patient.afterImg} alt={`${patient.name}'s smile ${view} transformation`} className="w-full h-full object-cover transition-all duration-500" />
-          </AspectRatio>
-          
-          {/* Corner label */}
-          <div className={`absolute top-0 right-0 ${view === "before" ? "bg-black/80" : "bg-gold"} text-white px-4 py-2 rounded-bl-lg font-medium`}>
-            {view.toUpperCase()}
-          </div>
-
-          {/* Toggle button */}
-          <button onClick={toggleView} className="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition-colors" aria-label={`Toggle ${patient.name}'s before and after`}>
-            {view === "before" ? <ToggleLeft className="w-6 h-6 text-gray-700" /> : <ToggleRight className="w-6 h-6 text-gold" />}
+        {/* Before/After toggle buttons */}
+        <div className="absolute bottom-0 left-0 right-0 flex">
+          <button 
+            className={cn(
+              "flex-1 py-2 text-sm font-medium",
+              !showAfter 
+                ? "bg-gold text-white" 
+                : "bg-black/50 text-white/90 hover:bg-black/60"
+            )}
+            onClick={() => setShowAfter(false)}
+            type="button"
+          >
+            Before
+          </button>
+          <button 
+            className={cn(
+              "flex-1 py-2 text-sm font-medium",
+              showAfter 
+                ? "bg-gold text-white" 
+                : "bg-black/50 text-white/90 hover:bg-black/60"
+            )}
+            onClick={() => setShowAfter(true)}
+            type="button"
+          >
+            After
           </button>
         </div>
-        <CardContent className={`p-5 ${view === "before" ? "bg-gradient-to-r from-gray-50 to-white" : "bg-gradient-to-r from-gold/10 to-white"}`}>
-          <p className="text-center font-medium">
-            Click to toggle {view === "before" ? "after" : "before"} image
-          </p>
-        </CardContent>
-      </Card>
-    </div>;
+      </div>
+      
+      <div className="p-4">
+        <h3 className="text-lg font-medium">{patient.name}</h3>
+        <p className="text-gold text-sm mb-2">{patient.procedure}</p>
+        {patient.description && (
+          <p className="text-gray-600 text-sm">{patient.description}</p>
+        )}
+      </div>
+    </div>
+  );
 };
+
 export default PatientTransformationCard;

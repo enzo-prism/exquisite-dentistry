@@ -10,6 +10,7 @@ import ServiceCard from '@/components/ServiceCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import ReviewWidget from '@/components/ReviewWidget';
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -121,10 +122,13 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative overflow-hidden group rounded-sm shadow-md">
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
-              <img 
+              <OptimizedImage 
                 src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
                 alt="Wedding celebration" 
-                className="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-80"
+                width={800}
+                height={320}
+                objectFit="cover"
               />
               <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
                 <div className="w-14 h-14 bg-gold/90 rounded-full flex items-center justify-center mb-4">
@@ -145,10 +149,13 @@ const Index = () => {
 
             <div className="relative overflow-hidden group rounded-sm shadow-md">
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
-              <img 
+              <OptimizedImage 
                 src="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
                 alt="Graduation celebration" 
-                className="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-80"
+                width={800}
+                height={320}
+                objectFit="cover"
               />
               <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6">
                 <div className="w-14 h-14 bg-gold/90 rounded-full flex items-center justify-center mb-4">
@@ -188,11 +195,14 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2">
-              <img 
+              <OptimizedImage 
                 src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
                 alt="Dr. Alexie Aguil performing cosmetic dentistry" 
-                className="w-full h-auto object-cover rounded-sm shadow-md"
-                loading="lazy"
+                className="w-full h-auto rounded-sm shadow-md"
+                width={600}
+                height={480}
+                priority={false}
+                objectFit="cover"
               />
             </div>
             <div className="md:w-1/2">

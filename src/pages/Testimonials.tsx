@@ -6,6 +6,7 @@ import TestimonialCarousel from '@/components/TestimonialCarousel';
 import { Play } from 'lucide-react';
 import VideoModal from '@/components/VideoModal';
 import Button from '@/components/Button';
+import OptimizedImage from '@/components/OptimizedImage';
 
 // Sample testimonial reviews for the carousel
 const testimonialReviews = [
@@ -183,10 +184,13 @@ const VideoTestimonialCard: React.FC<VideoTestimonialCardProps> = ({ testimonial
       >
         <AspectRatio ratio={16 / 9}>
           <div className="w-full h-full overflow-hidden">
-            <img 
+            <OptimizedImage 
               src={testimonial.thumbnail} 
               alt={`${testimonial.title} testimonial thumbnail`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full"
+              width={600}
+              height={338}
+              objectFit="cover"
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
           </div>

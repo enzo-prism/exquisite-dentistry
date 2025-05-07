@@ -11,6 +11,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface DrAguilImageItem {
   src: string;
@@ -82,15 +83,19 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           "relative overflow-hidden rounded-sm shadow-lg group",
           compact ? "col-span-1" : "md:col-span-2 lg:col-span-2 md:row-span-2"
         )}>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <img 
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+          <OptimizedImage 
             src={featuredImage.src} 
             alt={featuredImage.alt} 
-            className="w-full h-full object-cover aspect-[4/3]"
+            className="w-full h-full"
+            width={800}
+            height={600}
+            objectFit="cover"
+            priority={true}
           />
           
           {!compact && (
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent z-10">
               <div className="flex items-center space-x-3">
                 <Avatar className="h-12 w-12 border-2 border-gold">
                   <AvatarImage src={featuredImage.src} alt="Dr. Aguil" />
@@ -108,20 +113,23 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
         {/* Smaller images */}
         {!compact && remainingImages.map((image, index) => (
           <div key={index} className="relative overflow-hidden rounded-sm shadow-md group">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <img 
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+            <OptimizedImage 
               src={image.src} 
               alt={image.alt} 
-              className="w-full h-full object-cover aspect-square"
+              className="w-full h-full"
+              width={400}
+              height={400}
+              objectFit="cover"
             />
             
             {image.caption && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-10">
                 <p className="text-white text-sm font-medium">{image.caption}</p>
               </div>
             )}
             
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
               <Link to="/about">
                 <Button variant="ghost" size="sm" className="text-white bg-black/30 hover:bg-black/50">
                   <Eye size={16} className="mr-2" />
@@ -132,8 +140,6 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           </div>
         ))}
       </div>
-      
-      {/* Removing the Learn More button by not rendering this section */}
     </div>
   );
 };

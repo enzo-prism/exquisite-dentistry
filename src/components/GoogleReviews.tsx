@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Star, MessageSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface GoogleReview {
   author_name: string;
@@ -91,10 +92,13 @@ const GoogleReviews = () => {
     <div className="space-y-10">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <img 
+          <OptimizedImage 
             src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
             alt="Google" 
             className="h-8 object-contain"
+            width={92}
+            height={30}
+            priority={true}
           />
           <span className="text-lg font-medium">Reviews</span>
         </div>
@@ -123,10 +127,13 @@ const GoogleReviews = () => {
             <div className="flex items-center mb-5">
               {review.profile_photo_url ? (
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                  <img 
+                  <OptimizedImage 
                     src={review.profile_photo_url} 
                     alt={review.author_name} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    width={48}
+                    height={48}
+                    objectFit="cover"
                   />
                 </div>
               ) : (
@@ -158,10 +165,12 @@ const GoogleReviews = () => {
             <p className="text-black-light/80 mb-4 leading-relaxed">{review.text}</p>
             
             <div className="flex items-center text-xs text-black-light/60">
-              <img 
+              <OptimizedImage 
                 src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
                 alt="Google" 
                 className="h-4 object-contain mr-1.5"
+                width={46}
+                height={15}
               />
               <span>Posted on Google</span>
             </div>

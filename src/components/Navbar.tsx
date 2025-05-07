@@ -13,6 +13,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface NavLinkProps {
   to: string;
@@ -129,10 +130,13 @@ const Navbar = () => {
         <div className="flex h-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-              <img 
+              <OptimizedImage 
                 src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png" 
                 alt="Exquisite Dentistry Logo" 
-                className={`${isMobile ? 'h-6' : 'h-12'}`}
+                className={isMobile ? 'h-6' : 'h-12'}
+                width={isMobile ? 120 : 240}
+                height={isMobile ? 24 : 48}
+                priority={true}
               />
             </Link>
           </div>
