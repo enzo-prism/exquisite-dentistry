@@ -44,13 +44,15 @@ const videoTestimonials = [
 const Testimonials = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [activeVideoId, setActiveVideoId] = useState("");
+  const [activeThumbnail, setActiveThumbnail] = useState("");
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const openVideoModal = (videoId: string) => {
+  const openVideoModal = (videoId: string, thumbnailUrl: string) => {
     setActiveVideoId(videoId);
+    setActiveThumbnail(thumbnailUrl);
     setIsVideoModalOpen(true);
   };
 
@@ -85,7 +87,7 @@ const Testimonials = () => {
               >
                 <div 
                   className="relative cursor-pointer group" 
-                  onClick={() => openVideoModal(testimonial.id)}
+                  onClick={() => openVideoModal(testimonial.id, testimonial.thumbnail)}
                 >
                   <AspectRatio ratio={16 / 9}>
                     <div className="w-full h-full overflow-hidden">
@@ -115,7 +117,7 @@ const Testimonials = () => {
                   <Button
                     variant="outline"
                     size="sm" 
-                    onClick={() => openVideoModal(testimonial.id)}
+                    onClick={() => openVideoModal(testimonial.id, testimonial.thumbnail)}
                     className="mt-2"
                   >
                     Watch Story
@@ -156,6 +158,7 @@ const Testimonials = () => {
         youtubeId={activeVideoId} 
         isOpen={isVideoModalOpen} 
         onClose={() => setIsVideoModalOpen(false)} 
+        thumbnailUrl={activeThumbnail}
       />
     </div>
   );

@@ -7,9 +7,10 @@ interface VideoModalProps {
   youtubeId: string;
   isOpen: boolean;
   onClose: () => void;
+  thumbnailUrl?: string;
 }
 
-const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose }) => {
+const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thumbnailUrl }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -132,7 +133,20 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose }) =
         </button>
         
         <div className="relative aspect-video w-full">
-          {!isLoaded && (
+          {!isLoaded && thumbnailUrl && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black">
+              <img 
+                src={thumbnailUrl} 
+                alt="Video thumbnail" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            </div>
+          )}
+          
+          {!isLoaded && !thumbnailUrl && (
             <div className="absolute inset-0 flex items-center justify-center bg-black">
               <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
             </div>
@@ -150,7 +164,9 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose }) =
         
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <div className="mb-2">
-            <Progress value={progress} className="h-1 bg-gray-700" />
+            <Progress value={progress} className="h-1 bg-gray-700">
+              <div className="h-full bg-gold" style={{width: `${progress}%`}} />
+            </Progress>
           </div>
           
           <div className="flex items-center justify-between">
