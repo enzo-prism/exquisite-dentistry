@@ -36,8 +36,8 @@ const videoTestimonials = [
     id: "1082192388",
     name: "Christian Fernandez",
     title: "Full Smile Transformation",
-    description: "Christian shares his experience with our comprehensive dental care and the impact it's had on his confidence and daily life.",
-    thumbnail: "https://i.vimeocdn.com/video/1621891097-daf6a0fcaedd2f3fd465a22d5f27263c6c0d8a8dcd2f24db0026c644ca8dcc0f-d_640x360.jpg"
+    description: "Christian shares her experience with our comprehensive dental care and the impact it's had on her confidence and daily life.",
+    thumbnail: "/lovable-uploads/969c20fb-4345-4982-ad1e-0d6c2a554a24.png"
   }
 ];
 
