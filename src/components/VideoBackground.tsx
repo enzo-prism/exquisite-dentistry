@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -113,9 +114,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '300%' : '200%',  // Increased from 200% to 300% for mobile
-              height: isMobile ? '300%' : '200%',  // Increased from 200% to 300% for mobile
-              transform: isMobile ? 'translate(-50%, -50%) scale(1.8)' : 'translate(-50%, -50%) scale(1.2)', // Increased scale from 1.5 to 1.8 for mobile
+              width: isMobile ? '180%' : '150%',  // Reduced from 300%/200% to 180%/150% for less stretching
+              height: isMobile ? '180%' : '150%',  // Reduced from 300%/200% to 180%/150% for less stretching
+              transform: isMobile ? 'translate(-50%, -50%) scale(1.3)' : 'translate(-50%, -50%) scale(1.1)', // Reduced scale from 1.8/1.2 to 1.3/1.1
               maxWidth: 'none',
               objectFit: 'cover'
             }}
