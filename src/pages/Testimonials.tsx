@@ -58,6 +58,13 @@ const videoTestimonials = [
     title: "Dental Treatment Journey",
     description: "Taylor shares his experience with our dental treatments and the positive impact they've had on his smile and confidence.",
     thumbnail: "/lovable-uploads/993eead8-0b95-49ef-84bc-778c614cda09.png"
+  },
+  {
+    id: "1082192658",
+    name: "",
+    title: "More Testimonials",
+    description: "Watch multiple patients share their experiences with Exquisite Dentistry and their smile transformations.",
+    thumbnail: "/placeholder.svg"
   }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
@@ -178,7 +185,7 @@ const VideoTestimonialCard: React.FC<VideoTestimonialCardProps> = ({ testimonial
           <div className="w-full h-full overflow-hidden">
             <img 
               src={testimonial.thumbnail} 
-              alt={`${testimonial.name} testimonial thumbnail`} 
+              alt={`${testimonial.title} testimonial thumbnail`} 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
@@ -194,8 +201,8 @@ const VideoTestimonialCard: React.FC<VideoTestimonialCardProps> = ({ testimonial
         </div>
       </div>
       <div className="p-6 bg-white border-t-2 border-gold/20">
-        <h3 className="text-2xl font-medium mb-2">{testimonial.name}</h3>
-        <p className="text-gold mb-4">{testimonial.title}</p>
+        <h3 className="text-2xl font-medium mb-2">{testimonial.name || testimonial.title}</h3>
+        {testimonial.name && <p className="text-gold mb-4">{testimonial.title}</p>}
         <p className="text-black-light mb-4">
           {testimonial.description}
         </p>
