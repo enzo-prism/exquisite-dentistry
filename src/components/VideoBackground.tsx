@@ -114,9 +114,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '180%' : '150%',  // Reduced from 300%/200% to 180%/150% for less stretching
-              height: isMobile ? '180%' : '150%',  // Reduced from 300%/200% to 180%/150% for less stretching
-              transform: isMobile ? 'translate(-50%, -50%) scale(1.3)' : 'translate(-50%, -50%) scale(1.1)', // Reduced scale from 1.8/1.2 to 1.3/1.1
+              width: isMobile ? '220%' : '150%',  // Increased from 180% to 220% for mobile to eliminate black bars
+              height: isMobile ? '220%' : '150%',  // Increased from 180% to 220% for mobile to eliminate black bars
+              transform: isMobile ? 'translate(-50%, -50%) scale(1.4)' : 'translate(-50%, -50%) scale(1.1)', // Increased scale for mobile slightly
               maxWidth: 'none',
               objectFit: 'cover'
             }}
