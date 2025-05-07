@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
@@ -8,27 +7,24 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sparkles, ChevronRight, ToggleLeft, ToggleRight } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
-
 const SmileGallery = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const {
+    isMobile
+  } = useBreakpoint();
 
-  const { isMobile } = useBreakpoint();
-  
   // Patient data
-  const patients = [
-    {
-      name: "Brittany",
-      beforeImg: "/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.png",
-      afterImg: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png",
-    },
-    {
-      name: "Ryan",
-      beforeImg: "/lovable-uploads/8e2e1684-e2b2-4ebe-81de-ffec0bb4c801.png",
-      afterImg: "/lovable-uploads/4820b0df-82b4-4e9b-9724-b8d1f720712b.png",
-    }
-  ];
+  const patients = [{
+    name: "Brittany",
+    beforeImg: "/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.png",
+    afterImg: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png"
+  }, {
+    name: "Ryan",
+    beforeImg: "/lovable-uploads/8e2e1684-e2b2-4ebe-81de-ffec0bb4c801.png",
+    afterImg: "/lovable-uploads/4820b0df-82b4-4e9b-9724-b8d1f720712b.png"
+  }];
 
   // State for tracking individual patient views
   const [patientViews, setPatientViews] = useState<Record<string, "before" | "after">>({
@@ -43,25 +39,16 @@ const SmileGallery = () => {
       [patientName]: prev[patientName] === "before" ? "after" : "before"
     }));
   };
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Smile Gallery | Exquisite Dentistry</title>
         <meta name="description" content="View our amazing smile transformations at Exquisite Dentistry." />
       </Helmet>
 
       {/* Hero Section with VideoHero */}
-      <VideoHero
-        title={<>Smile <span className="text-gold">Transformations</span></>}
-        subtitle="See the incredible results our patients have achieved with our expert dental care."
-        primaryCta={{ 
-          text: "Schedule a Consultation" 
-        }}
-        height="medium"
-        badgeText="SMILE GALLERY"
-        scrollIndicator={true}
-      />
+      <VideoHero title={<>Smile <span className="text-gold">Transformations</span></>} subtitle="See the incredible results our patients have achieved with our expert dental care." primaryCta={{
+      text: "Schedule a Consultation"
+    }} height="medium" badgeText="SMILE GALLERY" scrollIndicator={true} />
 
       {/* Simplified smile transformation gallery */}
       <section className="bg-white py-10 md:py-16">
@@ -70,13 +57,12 @@ const SmileGallery = () => {
           
           {/* Patient transformations - simplified grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {patients.map((patient, index) => (
-              <div key={index} className="transform transition-all duration-300 hover:scale-[1.02]">
+            {patients.map((patient, index) => <div key={index} className="transform transition-all duration-300 hover:scale-[1.02]">
                 <Card className="overflow-hidden border-0 shadow-lg h-full">
                   <div className="relative">
                     {/* Patient name badge - UPDATED PADDING HERE */}
                     <div className="absolute top-0 left-0 z-10 m-4">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
+                      <div className="bg-white/90 backdrop-blur-sm px-3 rounded-full shadow-md py-0">
                         <h3 className="text-lg font-medium text-gray-800 flex items-center">
                           <Sparkles className="w-4 h-4 mr-2 text-gold" />
                           {patient.name}
@@ -85,12 +71,8 @@ const SmileGallery = () => {
                     </div>
 
                     {/* Image */}
-                    <AspectRatio ratio={3/4} className="bg-black/5">
-                      <img 
-                        src={patientViews[patient.name] === "before" ? patient.beforeImg : patient.afterImg}
-                        alt={`${patient.name}'s smile ${patientViews[patient.name]} transformation`}
-                        className="w-full h-full object-cover transition-all duration-500"
-                      />
+                    <AspectRatio ratio={3 / 4} className="bg-black/5">
+                      <img src={patientViews[patient.name] === "before" ? patient.beforeImg : patient.afterImg} alt={`${patient.name}'s smile ${patientViews[patient.name]} transformation`} className="w-full h-full object-cover transition-all duration-500" />
                     </AspectRatio>
                     
                     {/* Corner label */}
@@ -99,15 +81,8 @@ const SmileGallery = () => {
                     </div>
 
                     {/* Individual toggle button */}
-                    <button 
-                      onClick={() => togglePatientView(patient.name)}
-                      className="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition-colors"
-                      aria-label={`Toggle ${patient.name}'s before and after`}
-                    >
-                      {patientViews[patient.name] === "before" 
-                        ? <ToggleLeft className="w-6 h-6 text-gray-700" /> 
-                        : <ToggleRight className="w-6 h-6 text-gold" />
-                      }
+                    <button onClick={() => togglePatientView(patient.name)} className="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition-colors" aria-label={`Toggle ${patient.name}'s before and after`}>
+                      {patientViews[patient.name] === "before" ? <ToggleLeft className="w-6 h-6 text-gray-700" /> : <ToggleRight className="w-6 h-6 text-gold" />}
                     </button>
                   </div>
                   <CardContent className={`p-5 ${patientViews[patient.name] === "before" ? "bg-gradient-to-r from-gray-50 to-white" : "bg-gradient-to-r from-gold/10 to-white"}`}>
@@ -116,8 +91,7 @@ const SmileGallery = () => {
                     </p>
                   </CardContent>
                 </Card>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -142,8 +116,6 @@ const SmileGallery = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default SmileGallery;
