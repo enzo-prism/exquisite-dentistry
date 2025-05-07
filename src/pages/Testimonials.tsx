@@ -41,10 +41,10 @@ const videoTestimonials = [
   },
   {
     id: "1082192452",
-    name: "Emma Rodriguez",
+    name: "Rob Talbert",
     title: "Cosmetic Dentistry Journey",
-    description: "Emma discusses her experience with our cosmetic dentistry services and how they've transformed her smile and confidence.",
-    thumbnail: "/lovable-uploads/791699d1-9474-4953-bb30-46c70f5565b9.png"
+    description: "Rob discusses his experience with our cosmetic dentistry services and how they've transformed his smile and confidence.",
+    thumbnail: "/lovable-uploads/46552f14-ce4f-4246-9d40-d5d1c6cc8956.png"
   }
   // To add a new video testimonial, simply add another object here with the following structure:
   // {
