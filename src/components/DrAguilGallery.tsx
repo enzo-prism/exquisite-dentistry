@@ -11,7 +11,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
 
 interface DrAguilImageItem {
   src: string;
@@ -84,14 +83,12 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           compact ? "col-span-1" : "md:col-span-2 lg:col-span-2 md:row-span-2"
         )}>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-          <OptimizedImage 
+          <img 
             src={featuredImage.src} 
             alt={featuredImage.alt} 
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             width={800}
             height={600}
-            objectFit="cover"
-            priority={true}
           />
           
           {!compact && (
@@ -114,13 +111,12 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
         {!compact && remainingImages.map((image, index) => (
           <div key={index} className="relative overflow-hidden rounded-sm shadow-md group">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-            <OptimizedImage 
+            <img 
               src={image.src} 
               alt={image.alt} 
-              className="w-full h-full"
+              className="w-full h-full object-cover"
               width={400}
               height={400}
-              objectFit="cover"
             />
             
             {image.caption && (

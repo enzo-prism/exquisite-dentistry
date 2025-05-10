@@ -1,226 +1,201 @@
-import React, { useEffect, useState } from 'react';
-import VideoHero from '@/components/VideoHero';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import VideoBackground from '@/components/VideoBackground';
-import TestimonialCarousel from '@/components/TestimonialCarousel';
-import { Play } from 'lucide-react';
-import VideoModal from '@/components/VideoModal';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Star, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import PageHeader from '@/components/PageHeader';
+import TestimonialCard from '@/components/TestimonialCard';
+import GoogleReviews from '@/components/GoogleReviews';
 import Button from '@/components/Button';
-import OptimizedImage from '@/components/OptimizedImage';
+import { cn } from '@/lib/utils';
 
-// Sample testimonial reviews for the carousel
-const testimonialReviews = [
+interface Testimonial {
+  id: number;
+  name: string;
+  title?: string;
+  content: string;
+  rating: number;
+  image?: string;
+  featured?: boolean;
+}
+
+const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    content: "Dr. Aguil and his team provided the most comfortable dental experience I've ever had. My smile transformation exceeded all expectations!",
-    stars: 5
+    name: "Jennifer L.",
+    title: "Actress",
+    content: "Dr. Aguil and his team have completely transformed my smile and my confidence. The veneers look so natural that even my close friends can't tell they're not my real teeth. The entire experience from consultation to final placement was comfortable and exceeded my expectations.",
+    rating: 5,
+    image: "/lovable-uploads/c4eb9134-7e7d-4dc3-ab3a-abf2fc453302.png",
+    featured: true
   },
   {
     id: 2,
-    name: "Michael Rodriguez",
-    content: "I was always anxious about dental visits until I found Exquisite Dentistry. Their attention to detail and gentle approach changed everything for me.",
-    stars: 5
+    name: "Michael T.",
+    title: "Business Executive",
+    content: "After years of being self-conscious about my smile, I finally decided to do something about it. Dr. Aguil took the time to understand exactly what I wanted and delivered results that were better than I could have imagined. The office environment is more like a spa than a dental office.",
+    rating: 5,
+    image: "/lovable-uploads/ebaec307-40e4-4cf9-9b8a-02379250bb8e.png"
   },
   {
     id: 3,
-    name: "Jennifer Williams",
-    content: "The level of care and expertise at Exquisite Dentistry is unmatched. My smile makeover has boosted my confidence tremendously.",
-    stars: 5
+    name: "Sarah K.",
+    title: "Marketing Director",
+    content: "I had severe dental anxiety before coming to Exquisite Dentistry. Dr. Aguil and his team were incredibly patient and understanding. They made sure I was comfortable every step of the way. Now I actually look forward to my dental visits!",
+    rating: 5
+  },
+  {
+    id: 4,
+    name: "David R.",
+    title: "Attorney",
+    content: "The level of care and attention to detail at Exquisite Dentistry is unmatched. Dr. Aguil is truly an artist when it comes to cosmetic dentistry. My smile makeover has made such a difference in both my professional and personal life.",
+    rating: 5,
+    image: "/lovable-uploads/e29f50ba-aebe-42e9-b82c-1fd4fe0dbccb.png"
+  },
+  {
+    id: 5,
+    name: "Amanda P.",
+    title: "Teacher",
+    content: "I had put off dental work for years due to bad experiences in the past. From the moment I walked into Exquisite Dentistry, I knew this place was different. The staff is friendly, the office is beautiful, and Dr. Aguil's work is phenomenal.",
+    rating: 5
+  },
+  {
+    id: 6,
+    name: "Robert J.",
+    title: "Photographer",
+    content: "As someone who works in a visual field, having a great smile is important to me. Dr. Aguil understood exactly what I was looking for and delivered results that were both natural and impactful. I couldn't be happier with my experience.",
+    rating: 5
   }
 ];
 
-// Video testimonials data - structured for easy addition of new videos
-const videoTestimonials = [
-  {
-    id: "1082192388",
-    name: "Christian Fernandez",
-    title: "Full Smile Transformation",
-    description: "Christian shares her experience with our comprehensive dental care and the impact it's had on her confidence and daily life.",
-    thumbnail: "/lovable-uploads/969c20fb-4345-4982-ad1e-0d6c2a554a24.png"
-  },
-  {
-    id: "1082192452",
-    name: "Rob Talbert",
-    title: "Cosmetic Dentistry Journey",
-    description: "Rob discusses his experience with our cosmetic dentistry services and how they've transformed his smile and confidence.",
-    thumbnail: "/lovable-uploads/46552f14-ce4f-4246-9d40-d5d1c6cc8956.png"
-  },
-  {
-    id: "1082192427",
-    name: "Shannon Langhorne",
-    title: "Dental Care Experience",
-    description: "Shannon shares her positive experience with our dental care services and the exceptional results she received.",
-    thumbnail: "/lovable-uploads/1228ba28-d235-4f1b-bcfd-1fd79a1ad756.png"
-  },
-  {
-    id: "1082192501",
-    name: "Taylor Vasek",
-    title: "Dental Treatment Journey",
-    description: "Taylor shares his experience with our dental treatments and the positive impact they've had on his smile and confidence.",
-    thumbnail: "/lovable-uploads/993eead8-0b95-49ef-84bc-778c614cda09.png"
-  },
-  {
-    id: "1082192658",
-    name: "",
-    title: "More Testimonials",
-    description: "Watch multiple patients share their experiences with Exquisite Dentistry and their smile transformations.",
-    thumbnail: "/lovable-uploads/b51f12fb-722d-4d87-ba02-516ef7bd452c.png"
-  }
-  // To add a new video testimonial, simply add another object here with the following structure:
-  // {
-  //   id: "vimeo_video_id",
-  //   name: "Patient Name",
-  //   title: "Video Title",
-  //   description: "Brief description about the testimonial",
-  //   thumbnail: "/path/to/thumbnail/image.png"
-  // }
-];
-
-const Testimonials = () => {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [activeVideoId, setActiveVideoId] = useState("");
-  const [activeThumbnail, setActiveThumbnail] = useState("");
+const TestimonialsPage: React.FC = () => {
+  // Find the featured testimonial
+  const featuredTestimonial = testimonials.find(t => t.featured) || testimonials[0];
+  // Get the rest of the testimonials
+  const regularTestimonials = testimonials.filter(t => t !== featuredTestimonial);
   
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const openVideoModal = (videoId: string, thumbnailUrl: string) => {
-    setActiveVideoId(videoId);
-    setActiveThumbnail(thumbnailUrl);
-    setIsVideoModalOpen(true);
-  };
-
   return (
-    <div className="min-h-screen page-transition-in">
-      <VideoHero
-        title={<>Our Clients <span className="text-gold">Share Their Stories</span></>}
-        subtitle="Hear directly from our clients about their transformative experiences at Exquisite Dentistry."
-        primaryCta={{ text: "Schedule Your Consultation" }}
-        height="medium"
-        badgeText="CLIENT TESTIMONIALS"
-        scrollIndicator={false}
+    <>
+      <Helmet>
+        <title>Client Testimonials | Exquisite Dentistry</title>
+        <meta name="description" content="Read what our clients have to say about their experience at Exquisite Dentistry in Los Angeles. Real stories from real patients about their smile transformations." />
+      </Helmet>
+      
+      <PageHeader
+        title="Client Testimonials"
+        subtitle="Real stories from real clients about their experience at Exquisite Dentistry"
+        bgImage="/lovable-uploads/c4eb9134-7e7d-4dc3-ab3a-abf2fc453302.png"
       />
-
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-              Video Testimonials
-            </h2>
-            <p className="text-lg text-black-light max-w-3xl mx-auto mb-10">
-              Watch our clients share their transformative dental experiences
+      
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT STORIES</span>
+            <h2 className="heading-lg mb-6">Hear From Our Clients</h2>
+            <div className="separator"></div>
+            <p className="paragraph mt-6">
+              We're proud of the relationships we've built with our clients and the transformations we've helped them achieve. Here are some of their stories.
             </p>
-            <div className="w-24 h-1 bg-gold rounded-full mx-auto"></div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {videoTestimonials.map((testimonial) => (
-              <VideoTestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                onPlayClick={openVideoModal}
-              />
-            ))}
-          </div>
-
-          {videoTestimonials.length > 0 && (
-            <div className="text-center mb-8">
-              <p className="text-black-light mb-6">
-                We have many more happy clients who've shared their experiences with us.
-              </p>
-              <Button variant="gold" size="lg">
-                View More Testimonials
-              </Button>
+          
+          {/* Featured Testimonial */}
+          {featuredTestimonial && (
+            <div className="mb-16">
+              <div className="bg-white rounded-sm shadow-lg overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {featuredTestimonial.image && (
+                    <div className="relative h-64 md:h-auto">
+                      <img 
+                        src={featuredTestimonial.image} 
+                        alt={featuredTestimonial.name} 
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent md:hidden"></div>
+                    </div>
+                  )}
+                  
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <div className="flex mb-4">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star 
+                          key={i} 
+                          size={20} 
+                          className={cn(
+                            i < featuredTestimonial.rating ? "text-gold fill-gold" : "text-gray-300",
+                            "mr-1"
+                          )}
+                        />
+                      ))}
+                    </div>
+                    
+                    <blockquote className="mb-6">
+                      <p className="text-lg italic leading-relaxed text-black-light/90">"{featuredTestimonial.content}"</p>
+                    </blockquote>
+                    
+                    <div>
+                      <p className="font-medium text-lg">{featuredTestimonial.name}</p>
+                      {featuredTestimonial.title && (
+                        <p className="text-black-light/70">{featuredTestimonial.title}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
+          
+          {/* Regular Testimonials */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {regularTestimonials.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+          </div>
+          
+          <div className="mt-16 text-center">
+            <Link to="/contact">
+              <Button className="group">
+                Schedule Your Consultation
+                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
-
-      <section className="py-16 bg-gray-50">
+      
+      {/* Google Reviews Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-              Client <span className="text-gold">Reviews</span>
-            </h2>
-            <p className="text-lg text-black-light max-w-3xl mx-auto mb-10">
-              Read what our clients are saying about us
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-sm text-gold font-medium mb-3">GOOGLE REVIEWS</span>
+            <h2 className="heading-lg mb-6">What People Are Saying</h2>
+            <div className="separator"></div>
+            <p className="paragraph mt-6">
+              We're proud to maintain a 5-star rating on Google with over 100 reviews from satisfied clients.
             </p>
           </div>
-          <TestimonialCarousel testimonials={testimonialReviews} />
+          
+          <GoogleReviews />
         </div>
       </section>
-
-      {/* Video Modal */}
-      <VideoModal 
-        youtubeId={activeVideoId} 
-        isOpen={isVideoModalOpen} 
-        onClose={() => setIsVideoModalOpen(false)} 
-        thumbnailUrl={activeThumbnail}
-      />
-    </div>
-  );
-};
-
-// Video testimonial card component for better reusability
-interface VideoTestimonialCardProps {
-  testimonial: {
-    id: string;
-    name: string;
-    title: string;
-    description: string;
-    thumbnail: string;
-  };
-  onPlayClick: (videoId: string, thumbnailUrl: string) => void;
-}
-
-const VideoTestimonialCard: React.FC<VideoTestimonialCardProps> = ({ testimonial, onPlayClick }) => {
-  return (
-    <div className="rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
-      <div 
-        className="relative cursor-pointer group" 
-        onClick={() => onPlayClick(testimonial.id, testimonial.thumbnail)}
-      >
-        <AspectRatio ratio={16 / 9}>
-          <div className="w-full h-full overflow-hidden">
-            <OptimizedImage 
-              src={testimonial.thumbnail} 
-              alt={`${testimonial.title} testimonial thumbnail`} 
-              className="w-full h-full"
-              width={600}
-              height={338}
-              objectFit="cover"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
-          </div>
-        </AspectRatio>
-        
-        {/* Play button overlay with scaling effect */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-gold/90 rounded-full p-5 transform transition-all duration-300 
-                        group-hover:scale-110 group-hover:bg-gold shadow-lg">
-            <Play className="text-white w-10 h-10" />
+      
+      {/* CTA Section */}
+      <section className="py-20 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="heading-lg mb-6">Ready to Transform Your Smile?</h2>
+            <p className="paragraph mb-10 text-white/80">
+              Join our satisfied clients and experience the Exquisite Dentistry difference. Schedule your consultation today.
+            </p>
+            <Link to="/contact">
+              <Button variant="gold" size="lg" className="group">
+                Book Your Consultation
+                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </div>
         </div>
-      </div>
-      <div className="p-6 bg-white border-t-2 border-gold/20">
-        <h3 className="text-2xl font-medium mb-2">{testimonial.name || testimonial.title}</h3>
-        {testimonial.name && <p className="text-gold mb-4">{testimonial.title}</p>}
-        <p className="text-black-light mb-4">
-          {testimonial.description}
-        </p>
-        <Button
-          variant="outline"
-          size="sm" 
-          onClick={() => onPlayClick(testimonial.id, testimonial.thumbnail)}
-          className="mt-2"
-        >
-          Watch Story
-        </Button>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
-export default Testimonials;
+export default TestimonialsPage;

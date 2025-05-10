@@ -3,7 +3,6 @@ import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
-import OptimizedImage from '@/components/OptimizedImage';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -66,14 +65,12 @@ const ClientExperienceSection: React.FC = () => {
           
           <div className="space-y-6">
             <div className="relative rounded-sm overflow-hidden shadow-md mb-6">
-              <OptimizedImage 
+              <img 
                 src="/lovable-uploads/3e26b70e-31d0-4e1f-95b7-b2f1144f262b.png" 
                 alt="Patient relaxing in dental chair" 
-                className="w-full h-full"
+                className="w-full h-full object-cover"
                 width={600}
                 height={400}
-                objectFit="cover"
-                priority={true}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
