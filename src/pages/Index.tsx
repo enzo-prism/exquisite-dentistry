@@ -5,6 +5,7 @@ import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
 import DrAguilGallery from '@/components/DrAguilGallery';
 import GoogleReviews from '@/components/GoogleReviews';
+import ServicesSection from '@/components/ServicesSection';
 
 const IndexPage: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const IndexPage: React.FC = () => {
           href: "/about"
         }}
       />
+      <ServicesSection />
       <ClientExperienceSection />
       <DrAguilGallery />
       <GoogleReviews />
