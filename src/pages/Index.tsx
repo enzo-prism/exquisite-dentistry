@@ -36,17 +36,19 @@ const IndexPage: React.FC = () => {
       <ServicesSection />
       <ClientExperienceSection />
       <DrAguilGallery />
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">TESTIMONIALS</span>
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               Client <span className="text-gold">Reviews</span>
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <div className="separator mx-auto"></div>
+            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
               See what our clients are saying about their experience at Exquisite Dentistry
             </p>
           </div>
-          <div className="bg-white shadow-md p-8 rounded-sm">
+          <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
             <ReviewWidget />
           </div>
         </div>

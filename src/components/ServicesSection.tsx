@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
 
 interface ServiceItemProps {
@@ -47,13 +46,15 @@ const services: ServiceItemProps[] = [
 
 const ServicesSection: React.FC = () => {
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block text-sm text-gold font-medium mb-3">OUR EXPERTISE</span>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             Our <span className="text-gold">Services</span>
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="separator mx-auto"></div>
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
             Comprehensive cosmetic and restorative dental solutions tailored to your unique needs
           </p>
         </div>
@@ -83,7 +84,7 @@ const ServicesSection: React.FC = () => {
         </div>
         
         <div className="flex justify-center mt-12">
-          <Link to="/services" className="inline-flex items-center border border-gold text-black hover:bg-gold/5 px-6 py-3 rounded-sm transition-colors group">
+          <Link to="/services" className="inline-flex items-center bg-white border border-gold text-black hover:bg-gold/5 px-6 py-3 rounded-sm shadow-sm transition-colors group">
             View All Services 
             <ArrowRight className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
           </Link>

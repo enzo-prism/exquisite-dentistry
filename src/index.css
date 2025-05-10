@@ -86,11 +86,11 @@
   }
 
   .separator {
-    @apply w-16 sm:w-24 h-1 bg-secondary rounded-full mx-auto my-6 md:my-8;
+    @apply w-16 sm:w-24 h-1 bg-gold rounded-full my-6 md:my-8;
   }
 
   .separator-left {
-    @apply w-16 sm:w-24 h-1 bg-secondary rounded-full my-6 md:my-8;
+    @apply w-16 sm:w-24 h-1 bg-gold rounded-full my-6 md:my-8;
   }
 
   .page-transition-in {
@@ -149,6 +149,23 @@
   .bg-section::before,
   .bg-section::after {
     display: none;
+  }
+  
+  /* New design elements */
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold;
+  }
+  
+  .paragraph {
+    @apply text-base md:text-lg text-gray-600;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.01];
+  }
+  
+  .gradient-overlay {
+    @apply bg-gradient-to-t from-black/80 via-black/40 to-transparent;
   }
 }
 

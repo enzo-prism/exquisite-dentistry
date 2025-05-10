@@ -37,34 +37,38 @@ const features: Feature[] = [
 
 const ClientExperienceSection: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT EXPERIENCE</span>
-          <h2 className="heading-lg mb-6">Exceptional Comfort & Care</h2>
-          <div className="separator"></div>
-          <p className="paragraph">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">Exceptional Comfort & Care</h2>
+          <div className="separator mx-auto"></div>
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
             At Exquisite Dentistry, we've reimagined what a dental visit can be, focusing on your comfort, convenience, and peace of mind.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white p-6 rounded-sm shadow-md">
+              <div 
+                key={index} 
+                className="bg-white p-6 rounded-sm shadow-lg border border-gray-100 transform transition-all duration-300 hover:shadow-xl hover:scale-[1.01]"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-medium mb-2">{feature.title}</h3>
-                <p className="text-black-light/80">
+                <p className="text-gray-600">
                   {feature.description}
                 </p>
               </div>
             ))}
           </div>
           
-          <div className="space-y-6">
-            <div className="relative rounded-sm overflow-hidden shadow-md mb-6">
+          <div className="space-y-6 md:space-y-8">
+            <div className="relative rounded-sm overflow-hidden shadow-lg">
               <img 
                 src="/lovable-uploads/3e26b70e-31d0-4e1f-95b7-b2f1144f262b.png" 
                 alt="Patient relaxing in dental chair" 
@@ -72,7 +76,7 @@ const ClientExperienceSection: React.FC = () => {
                 width={600}
                 height={400}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="text-white text-xl font-semibold mb-2">Dr. Aguil's Approach</h3>
                 <p className="text-white/90 text-sm">
@@ -81,16 +85,16 @@ const ClientExperienceSection: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold">
+            <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold shadow-md">
               <h4 className="font-medium text-lg mb-2">Client Involvement</h4>
-              <p className="text-black-light/80">
+              <p className="text-gray-700">
                 We believe in clear communication and active client participation in all treatment decisions. Dr. Aguil and our team will thoroughly explain all options and answer any questions you have.
               </p>
             </div>
             
-            <div className="pt-4">
+            <div className="pt-4 flex justify-center md:justify-start">
               <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button className="group">
+                <Button className="group shadow-md hover:shadow-lg">
                   Schedule Your Visit
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 transition-transform group-hover:translate-x-1">
                     <path d="M5 12h14" />
