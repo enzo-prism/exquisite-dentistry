@@ -23,11 +23,11 @@ const IndexPage: React.FC = () => {
         subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
         primaryCta={{
           text: "Schedule a Consultation",
-          url: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
         secondaryCta={{
           text: "Learn More",
-          url: "/about"
+          href: "/about"
         }}
       />
       <ClientExperienceSection />
