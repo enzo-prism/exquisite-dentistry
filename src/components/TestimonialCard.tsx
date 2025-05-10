@@ -3,15 +3,24 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface TestimonialCardProps {
-  quote: string;
-  author: string;
-  location?: string;
+export interface TestimonialType {
+  id: number;
+  name: string;
+  title?: string;
+  content: string;
   rating: number;
+  image?: string;
+  featured?: boolean;
+}
+
+interface TestimonialCardProps {
+  testimonial: TestimonialType;
   className?: string;
 }
 
-const TestimonialCard = ({ quote, author, location, rating = 5, className }: TestimonialCardProps) => {
+const TestimonialCard = ({ testimonial, className }: TestimonialCardProps) => {
+  const { content, name, title, rating } = testimonial;
+  
   return (
     <div className={cn(
       'bg-white p-6 rounded-sm shadow-md transition-all duration-300 hover:shadow-lg',
@@ -29,12 +38,12 @@ const TestimonialCard = ({ quote, author, location, rating = 5, className }: Tes
         ))}
       </div>
       <blockquote className="text-black-light italic mb-6">
-        "{quote}"
+        "{content}"
       </blockquote>
       <div className="flex flex-col">
-        <span className="font-medium text-black">{author}</span>
-        {location && (
-          <span className="text-sm text-black-light">{location}</span>
+        <span className="font-medium text-black">{name}</span>
+        {title && (
+          <span className="text-sm text-black-light">{title}</span>
         )}
       </div>
     </div>

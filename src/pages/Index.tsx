@@ -1,31 +1,37 @@
-import React from 'react';
-import HeroSection from '@/components/HeroSection';
-import ClientExperienceSection from '@/components/PatientExperienceSection';
-import ServicesSection from '@/components/ServicesSection';
-import DrAguilGallery from '@/components/DrAguilGallery';
-import TransformationGallery from '@/components/TransformationGallery';
-import GoogleReviews from '@/components/GoogleReviews';
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Exquisite Dentistry - Los Angeles Cosmetic Dentist',
-  description: 'Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care.',
-  openGraph: {
-    title: 'Exquisite Dentistry - Los Angeles Cosmetic Dentist',
-    description: 'Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care.',
-    images: ['/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png'],
-    url: 'https://exquisitedentistry.com',
-  },
-};
+import React from 'react';
+import VideoHero from '@/components/VideoHero';
+import ClientExperienceSection from '@/components/PatientExperienceSection';
+import { Helmet } from 'react-helmet-async';
+import DrAguilGallery from '@/components/DrAguilGallery';
+import GoogleReviews from '@/components/GoogleReviews';
 
 const IndexPage: React.FC = () => {
   return (
     <>
-      <HeroSection />
+      <Helmet>
+        <title>Exquisite Dentistry - Los Angeles Cosmetic Dentist</title>
+        <meta name="description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care." />
+        <meta property="og:title" content="Exquisite Dentistry - Los Angeles Cosmetic Dentist" />
+        <meta property="og:description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care." />
+        <meta property="og:image" content="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" />
+        <meta property="og:url" content="https://exquisitedentistry.com" />
+      </Helmet>
+      
+      <VideoHero 
+        title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
+        subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
+        primaryCta={{
+          text: "Schedule a Consultation",
+          url: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+        }}
+        secondaryCta={{
+          text: "Learn More",
+          url: "/about"
+        }}
+      />
       <ClientExperienceSection />
-      <ServicesSection />
       <DrAguilGallery />
-      <TransformationGallery />
       <GoogleReviews />
     </>
   );
