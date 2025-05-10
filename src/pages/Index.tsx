@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import DrAguilGallery from '@/components/DrAguilGallery';
 import GoogleReviews from '@/components/GoogleReviews';
 import ServicesSection from '@/components/ServicesSection';
+import ReviewWidget from '@/components/ReviewWidget';
 
 const IndexPage: React.FC = () => {
   return (
@@ -34,6 +35,21 @@ const IndexPage: React.FC = () => {
       <ServicesSection />
       <ClientExperienceSection />
       <DrAguilGallery />
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+              Client <span className="text-gold">Reviews</span>
+            </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              See what our clients are saying about their experience at Exquisite Dentistry
+            </p>
+          </div>
+          <div className="bg-white shadow-md p-8 rounded-sm">
+            <ReviewWidget />
+          </div>
+        </div>
+      </section>
       <GoogleReviews />
     </>
   );
