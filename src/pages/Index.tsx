@@ -4,7 +4,6 @@ import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
 import DrAguilGallery from '@/components/DrAguilGallery';
-import GoogleReviews from '@/components/GoogleReviews';
 import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 
@@ -50,7 +49,6 @@ const IndexPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <GoogleReviews />
     </>
   );
 };
