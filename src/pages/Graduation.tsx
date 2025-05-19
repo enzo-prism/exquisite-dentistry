@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
@@ -215,49 +216,6 @@ const Graduation = () => {
                   <span className="font-medium mr-2">Treatment Time:</span>
                   <span>Two appointments over 2-3 weeks</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
-              Success <span className="text-gold">Stories</span>
-            </h2>
-            <p className="text-lg text-black-light">
-              Hear from recent graduates who transformed their smiles for their big day.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
-              <div className="flex items-center mb-6">
-                <GraduationCap size={24} className="text-gold mr-3" />
-                <div className="text-gold">★★★★★</div>
-              </div>
-              <p className="text-lg italic mb-6">
-                "With just two weeks before graduation, Dr. Aguil's one-hour whitening treatment gave me the confidence to smile widely in all my photos. Best investment I made for graduation!"
-              </p>
-              <div>
-                <p className="font-medium">Tyler J.</p>
-                <p className="text-sm text-black-light">UCLA Graduate, 2023</p>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
-              <div className="flex items-center mb-6">
-                <GraduationCap size={24} className="text-gold mr-3" />
-                <div className="text-gold">★★★★★</div>
-              </div>
-              <p className="text-lg italic mb-6">
-                "I had always been self-conscious about my slightly chipped front tooth. Dr. Aguil's cosmetic bonding fixed it in one visit. My graduation photos are perfect now!"
-              </p>
-              <div>
-                <p className="font-medium">Aisha M.</p>
-                <p className="text-sm text-black-light">USC Graduate, 2023</p>
               </div>
             </div>
           </div>
