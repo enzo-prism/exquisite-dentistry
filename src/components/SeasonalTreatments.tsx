@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, GraduationCap } from 'lucide-react';
@@ -25,7 +24,7 @@ const SeasonalTreatments: React.FC = () => {
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <OptimizedImage
-                src="/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png"
+                src="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
                 alt="Wedding couple smiling"
                 fill={true}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -54,7 +53,7 @@ const SeasonalTreatments: React.FC = () => {
             </div>
           </div>
           
-          {/* Graduation Card - Updated with new image */}
+          {/* Graduation Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <OptimizedImage
