@@ -47,11 +47,7 @@ const TestimonialsPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="https://vumbnail.com/1082192427.jpg" 
-                  alt="Client testimonial video thumbnail" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                <div className="w-full h-full bg-black"></div>
               </div>
             </div>
             
@@ -63,11 +59,7 @@ const TestimonialsPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="https://vumbnail.com/1082192501.jpg" 
-                  alt="Second client testimonial video thumbnail" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                <div className="w-full h-full bg-black"></div>
               </div>
             </div>
           </div>
@@ -83,14 +75,14 @@ const TestimonialsPage: React.FC = () => {
         youtubeId="1082192427"
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
-        thumbnailUrl="https://vumbnail.com/1082192427.jpg"
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // Transparent 1x1 px
       />
       
       <VideoModal
         youtubeId="1082192501"
         isOpen={isSecondVideoModalOpen}
         onClose={() => setIsSecondVideoModalOpen(false)}
-        thumbnailUrl="https://vumbnail.com/1082192501.jpg"
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // Transparent 1x1 px
       />
     </>
   );
