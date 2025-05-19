@@ -114,7 +114,7 @@ const Footer = () => {
                 <Link to="/services#restorative" className="text-gray-300 hover:text-white transition-colors">Restorative Dentistry</Link>
               </li>
               <li>
-                <Link to="/services#specialized" className="text-gray-300 hover:text-white transition-colors">Specialized Procedures</Link>
+                <Link to="/services#specialty" className="text-gray-300 hover:text-white transition-colors">Specialized Procedures</Link>
               </li>
             </ul>
           </div>
