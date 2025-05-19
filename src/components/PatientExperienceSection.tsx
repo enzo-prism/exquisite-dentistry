@@ -70,8 +70,8 @@ const ClientExperienceSection: React.FC = () => {
           <div className="space-y-6 md:space-y-8">
             <div className="relative rounded-sm overflow-hidden shadow-lg">
               <img 
-                src="/lovable-uploads/3e26b70e-31d0-4e1f-95b7-b2f1144f262b.png" 
-                alt="Patient relaxing in dental chair" 
+                src="/lovable-uploads/12f8e6b3-7a8d-451d-903c-29ad3d2ee057.png" 
+                alt="Dr. Aguil pointing at dental X-rays" 
                 className="w-full h-full object-cover"
                 width={600}
                 height={400}
