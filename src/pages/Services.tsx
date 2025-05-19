@@ -32,7 +32,7 @@ const services = [{
   description: "Restore function and aesthetics to damaged or missing teeth with our advanced restorative solutions. We focus on long-lasting results that look and feel completely natural.",
   highlight: "Our metal-free restorations provide superior strength without compromising aesthetics.",
   icon: <Wrench size={24} />,
-  image: "/lovable-uploads/ab504393-67bf-4498-b08e-0ff259231b9e.png",
+  image: "/lovable-uploads/cc4f1722-a37f-42b6-8438-6160759e3eb8.png",
   treatments: [{
     name: "Porcelain Crowns & Bridges",
     details: "Beautiful, durable restorations to repair damaged teeth or replace missing teeth"
