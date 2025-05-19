@@ -88,10 +88,8 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
       
       <div className="p-4">
         <h3 className="text-lg font-medium">{patient.name}</h3>
-        <p className="text-gold text-sm mb-2">{patient.procedure}</p>
-        {patient.description && (
-          <p className="text-gray-600 text-sm">{patient.description}</p>
-        )}
+        <p className="text-gold text-sm">{patient.procedure}</p>
+        {/* Removed the description paragraph */}
       </div>
     </div>
   );
