@@ -66,7 +66,9 @@ const Footer = () => {
               <p className="text-sm text-gray-300 mb-3">
                 Get the care you need with convenient monthly payments
               </p>
-              <Button variant="gold" size="sm">Learn More</Button>
+              <Link to="/client-resources">
+                <Button variant="gold" size="sm">Learn More</Button>
+              </Link>
             </div>
           </div>
 
