@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
@@ -23,8 +22,6 @@ const Graduation = () => {
           text: "Book Consultation",
           href: SCHEDULING_URL
         }}
-        secondaryCta={{ text: "View Packages", href: "#packages" }}
-        height="large"
         badgeText="GRAD SPECIALS"
         scrollIndicator={true}
         alignment="center"
@@ -117,6 +114,7 @@ const Graduation = () => {
         </div>
       </section>
 
+      
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
