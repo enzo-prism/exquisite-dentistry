@@ -37,10 +37,10 @@ const TestimonialsPage: React.FC = () => {
             <div className="separator mx-auto"></div>
           </div>
           
-          {/* Featured Video Testimonials */}
+          {/* Featured Video Testimonials - Simplified without text */}
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             {/* First Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
                   <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -53,20 +53,10 @@ const TestimonialsPage: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6 bg-white h-full">
-                <h3 className="text-xl font-semibold mb-2">Nicole's Experience</h3>
-                <p className="text-gray-600 mb-4">Hear about Nicole's journey with Exquisite Dentistry and her amazing results.</p>
-                <Button 
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="bg-secondary hover:bg-secondary/90"
-                >
-                  <Play className="mr-2 h-4 w-4" /> Watch Video
-                </Button>
-              </div>
             </div>
             
             {/* Second Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full">
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
                   <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -78,16 +68,6 @@ const TestimonialsPage: React.FC = () => {
                   alt="Second client testimonial video thumbnail" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-              </div>
-              <div className="p-6 bg-white h-full">
-                <h3 className="text-xl font-semibold mb-2">John's Story</h3>
-                <p className="text-gray-600 mb-4">John shares his incredible dental transformation and experience with Dr. Aguil.</p>
-                <Button 
-                  onClick={() => setIsSecondVideoModalOpen(true)}
-                  className="bg-secondary hover:bg-secondary/90"
-                >
-                  <Play className="mr-2 h-4 w-4" /> Watch Video
-                </Button>
               </div>
             </div>
           </div>
