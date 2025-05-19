@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, GraduationCap } from 'lucide-react';
+import { Flower } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import Button from '@/components/Button';
 
@@ -31,7 +32,7 @@ const SeasonalTreatments: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
-                  <Calendar className="h-7 w-7 text-gold" />
+                  <Flower className="h-7 w-7 text-gold" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-semibold mb-3">Wedding Smile Packages</h3>
                 <p className="text-center text-white/90 mb-6 max-w-md">
@@ -64,7 +65,7 @@ const SeasonalTreatments: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
-                  <GraduationCap className="h-7 w-7 text-gold" />
+                  <Flower className="h-7 w-7 text-gold" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-semibold mb-3">Graduation Smile Treatment</h3>
                 <p className="text-center text-white/90 mb-6 max-w-md">
