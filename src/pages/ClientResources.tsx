@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import Button from '@/components/Button';
@@ -67,7 +68,7 @@ const FinancingSection = () => {
         <p className="text-black-light mb-6">
           Get the care you need with convenient monthly payments. Quick applications with instant decisions.
         </p>
-        <Button>Learn More About Financing</Button>
+        {/* Button removed from here */}
       </div>
 
       {/* Personal Financing Message */}
