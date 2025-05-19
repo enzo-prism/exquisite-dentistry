@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 import Button from './Button';
+import OptimizedImage from './OptimizedImage';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -22,13 +23,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Brief Intro */}
           <div className="space-y-6">
-            <div>
-              <img 
+            <div className="flex items-center justify-start">
+              <OptimizedImage 
                 src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
                 alt="Exquisite Dentistry" 
-                className="h-12"
                 width={180}
                 height={48}
+                className="h-12 w-auto object-contain"
               />
             </div>
             <p className="text-gray-300 text-sm max-w-xs">
