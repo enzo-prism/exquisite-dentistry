@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { 
   Carousel, 
   CarouselContent, 
@@ -52,7 +52,7 @@ const services: ServiceItemProps[] = [
 ];
 
 const ServicesSection: React.FC = () => {
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
