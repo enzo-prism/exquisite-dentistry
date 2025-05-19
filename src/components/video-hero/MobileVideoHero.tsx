@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
@@ -46,12 +47,12 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           streamableUrl={streamableUrl}
           posterSrc={posterSrc}
           isContained={false}
-          overlayOpacity={70}
+          overlayOpacity={50} // Reduced overlay opacity for better video visibility
           className="w-full h-full"
         />
       </div>
       
-      {/* Content overlay - centered vertically for better alignment with expanded video */}
+      {/* Content overlay - optimized positioning */}
       <div className={cn(
         'relative z-30 w-full h-full flex flex-col justify-center content-vertical-spacing mobile-optimized-padding',
         contentClassName
