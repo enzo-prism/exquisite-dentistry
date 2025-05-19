@@ -9,6 +9,7 @@ import { Play } from 'lucide-react';
 
 const TestimonialsPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
   
   return (
     <>
@@ -36,29 +37,58 @@ const TestimonialsPage: React.FC = () => {
             <div className="separator mx-auto"></div>
           </div>
           
-          {/* Featured Video Testimonial */}
-          <div className="mb-16 bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-            <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play className="h-6 w-6" />
+          {/* Featured Video Testimonials */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* First Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
                 </div>
+                <img 
+                  src="https://vumbnail.com/1082192427.jpg" 
+                  alt="Client testimonial video thumbnail" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <img 
-                src="https://vumbnail.com/1082192427.jpg" 
-                alt="Client testimonial video thumbnail" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <div className="p-6 bg-white h-full">
+                <h3 className="text-xl font-semibold mb-2">Nicole's Experience</h3>
+                <p className="text-gray-600 mb-4">Hear about Nicole's journey with Exquisite Dentistry and her amazing results.</p>
+                <Button 
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="bg-secondary hover:bg-secondary/90"
+                >
+                  <Play className="mr-2 h-4 w-4" /> Watch Video
+                </Button>
+              </div>
             </div>
-            <div className="p-6 bg-white">
-              <h3 className="text-xl font-semibold mb-2">Hear From Our Satisfied Clients</h3>
-              <p className="text-gray-600 mb-4">Watch this testimonial to learn more about the exceptional care our patients receive.</p>
-              <Button 
-                onClick={() => setIsVideoModalOpen(true)}
-                className="bg-secondary hover:bg-secondary/90"
-              >
-                <Play className="mr-2 h-4 w-4" /> Watch Video
-              </Button>
+            
+            {/* Second Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
+                </div>
+                <img 
+                  src="https://vumbnail.com/1082192501.jpg" 
+                  alt="Second client testimonial video thumbnail" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 bg-white h-full">
+                <h3 className="text-xl font-semibold mb-2">John's Story</h3>
+                <p className="text-gray-600 mb-4">John shares his incredible dental transformation and experience with Dr. Aguil.</p>
+                <Button 
+                  onClick={() => setIsSecondVideoModalOpen(true)}
+                  className="bg-secondary hover:bg-secondary/90"
+                >
+                  <Play className="mr-2 h-4 w-4" /> Watch Video
+                </Button>
+              </div>
             </div>
           </div>
           
@@ -68,12 +98,19 @@ const TestimonialsPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Video Modal */}
+      {/* Video Modals */}
       <VideoModal
         youtubeId="1082192427"
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
         thumbnailUrl="https://vumbnail.com/1082192427.jpg"
+      />
+      
+      <VideoModal
+        youtubeId="1082192501"
+        isOpen={isSecondVideoModalOpen}
+        onClose={() => setIsSecondVideoModalOpen(false)}
+        thumbnailUrl="https://vumbnail.com/1082192501.jpg"
       />
     </>
   );
