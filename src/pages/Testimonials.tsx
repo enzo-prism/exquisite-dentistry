@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import PageHeader from '@/components/PageHeader';
 import ReviewWidget from '@/components/ReviewWidget';
+import VideoHero from '@/components/VideoHero';
 
 const TestimonialsPage: React.FC = () => {
   return (
@@ -12,10 +12,13 @@ const TestimonialsPage: React.FC = () => {
         <meta name="description" content="See what our clients are saying about their experience at Exquisite Dentistry in Los Angeles." />
       </Helmet>
       
-      <PageHeader
+      <VideoHero 
         title="Client Testimonials"
         subtitle="See what our clients are saying about their experience at Exquisite Dentistry"
-        bgImage="/lovable-uploads/c4eb9134-7e7d-4dc3-ab3a-abf2fc453302.png"
+        primaryCta={{
+          text: "Schedule a Consultation",
+          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+        }}
       />
       
       <section className="py-16 md:py-24">
