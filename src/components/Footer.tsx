@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
@@ -24,7 +25,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center justify-start h-14">
               <OptimizedImage 
-                src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
+                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
                 alt="Exquisite Dentistry" 
                 width={180}
                 height={48}
