@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
@@ -23,13 +22,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Brief Intro */}
           <div className="space-y-6">
-            <div className="flex items-center justify-start">
+            <div className="flex items-center justify-start h-14">
               <OptimizedImage 
                 src="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" 
                 alt="Exquisite Dentistry" 
                 width={180}
                 height={48}
-                className="h-12 w-auto object-contain"
+                className="w-auto h-full max-h-14"
+                objectFit="contain"
               />
             </div>
             <p className="text-gray-300 text-sm max-w-xs">
