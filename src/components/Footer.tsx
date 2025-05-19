@@ -23,15 +23,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Brief Intro */}
           <div className="space-y-6">
-            <div className="flex items-center justify-start h-14">
-              <OptimizedImage 
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
-                alt="Exquisite Dentistry" 
-                width={180}
-                height={48}
-                className="w-auto h-full max-h-14"
-                objectFit="contain"
-              />
+            <div className="flex items-start justify-start h-16">
+              <div className="bg-transparent h-full">
+                <OptimizedImage 
+                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
+                  alt="Exquisite Dentistry" 
+                  width={180}
+                  height={48}
+                  className="h-full w-auto max-h-14"
+                  objectFit="contain"
+                  priority={true}
+                />
+              </div>
             </div>
             <p className="text-gray-300 text-sm max-w-xs">
               Providing exceptional dental care with a focus on comfort, quality, and personalized treatment plans.

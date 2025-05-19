@@ -41,7 +41,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   priority = false,
   className = '',
   objectFit = 'cover',
-  placeholderColor = '#f3f4f6', // Light gray placeholder
+  placeholderColor = 'transparent', // Changed to transparent for better PNG support
   formats = ['webp', 'original'],
   onLoad,
   onError,
@@ -95,8 +95,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   return (
     <div 
       className={cn(
-        'relative overflow-hidden bg-opacity-10',
+        'relative overflow-hidden',
         fill ? 'w-full h-full' : '',
+        isLocalImage && src.toLowerCase().endsWith('.png') ? 'bg-transparent' : '', // Add transparent background for PNGs
         className
       )}
       style={{
@@ -136,7 +137,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       {error && (
         <div 
           className={cn(
-            "flex items-center justify-center bg-gray-100 text-gray-400 text-sm",
+            "flex items-center justify-center bg-transparent text-gray-400 text-sm", // Changed bg to transparent
             fill ? 'w-full h-full' : ''
           )}
           style={{
