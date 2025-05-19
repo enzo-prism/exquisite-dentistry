@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -11,7 +12,7 @@ const services = [{
   description: "Transform your smile with our comprehensive cosmetic dental services. We combine artistic vision with technical precision to create beautiful, natural-looking results that enhance your confidence.",
   highlight: "Our signature smile makeovers are custom-designed to complement your facial features and achieve your aesthetic goals.",
   icon: <Smile size={24} />,
-  image: "/lovable-uploads/a7c198f8-b229-4850-af33-aff84c90fd94.png",
+  image: "/lovable-uploads/33335962-b99c-4063-aa3c-96dfaf5215bb.png",
   treatments: [{
     name: "Porcelain Veneers",
     details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance"
@@ -51,7 +52,7 @@ const services = [{
   description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
   highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
   icon: <Shield size={24} />,
-  image: "/lovable-uploads/492219eb-34a3-48cb-8f8f-58023e7cb5e1.png",
+  image: "/lovable-uploads/c876408e-2891-4863-9f01-e5d025c7c52f.png",
   treatments: [{
     name: "Comprehensive Exams",
     details: "Thorough evaluation of your oral health, including teeth, gums, and supporting structures"
