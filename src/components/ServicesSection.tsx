@@ -1,8 +1,15 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
+import { useMobile } from '@/hooks/use-mobile';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
 
 interface ServiceItemProps {
   title: string;
@@ -45,6 +52,8 @@ const services: ServiceItemProps[] = [
 ];
 
 const ServicesSection: React.FC = () => {
+  const isMobile = useMobile();
+
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,29 +68,57 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.slice(0, 3).map((service) => (
-            <ServiceCard
-              key={service.title}
-              title={service.title}
-              description={service.description}
-              href={service.href}
-              index={service.index}
-            />
-          ))}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-          {services.slice(3, 5).map((service) => (
-            <ServiceCard
-              key={service.title}
-              title={service.title}
-              description={service.description}
-              href={service.href}
-              index={service.index}
-            />
-          ))}
-        </div>
+        {isMobile ? (
+          // Mobile carousel view
+          <div className="px-4 md:hidden">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {services.map((service) => (
+                  <CarouselItem key={service.title}>
+                    <ServiceCard
+                      title={service.title}
+                      description={service.description}
+                      href={service.href}
+                      index={service.index}
+                      className="h-full"
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center gap-4 mt-6">
+                <CarouselPrevious className="relative static transform-none translate-y-0 left-0" />
+                <CarouselNext className="relative static transform-none translate-y-0 right-0" />
+              </div>
+            </Carousel>
+          </div>
+        ) : (
+          // Desktop grid view (unchanged)
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.slice(0, 3).map((service) => (
+                <ServiceCard
+                  key={service.title}
+                  title={service.title}
+                  description={service.description}
+                  href={service.href}
+                  index={service.index}
+                />
+              ))}
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {services.slice(3, 5).map((service) => (
+                <ServiceCard
+                  key={service.title}
+                  title={service.title}
+                  description={service.description}
+                  href={service.href}
+                  index={service.index}
+                />
+              ))}
+            </div>
+          </>
+        )}
         
         <div className="flex justify-center mt-12">
           <Link to="/services" className="inline-flex items-center bg-white border border-gold text-black hover:bg-gold/5 px-6 py-3 rounded-sm shadow-sm transition-colors group">
