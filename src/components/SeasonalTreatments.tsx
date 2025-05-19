@@ -54,11 +54,11 @@ const SeasonalTreatments: React.FC = () => {
             </div>
           </div>
           
-          {/* Graduation Card */}
+          {/* Graduation Card - Updated with new image */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <OptimizedImage
-                src="/lovable-uploads/993eead8-0b95-49ef-84bc-778c614cda09.png"
+                src="/lovable-uploads/b873d422-2613-49ad-b9ef-d12c878cf4f4.png"
                 alt="Graduates smiling"
                 fill={true}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
