@@ -24,7 +24,7 @@ const PracticeVideoSection: React.FC = () => {
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden relative">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe 
-                src={`https://player.vimeo.com/video/1076433847?badge=0&autopause=0&autoplay=1&muted=${isMuted ? 1 : 0}&controls=0&title=0&byline=0&portrait=0&background=0&player_id=0&app_id=58479`}
+                src={`https://player.vimeo.com/video/1076433847?badge=0&autopause=0&autoplay=1&muted=${isMuted ? 1 : 0}&controls=0&title=0&byline=0&portrait=0&background=0&player_id=0&app_id=58479&loop=1&autopause=0`}
                 style={{ 
                   position: 'absolute', 
                   top: 0, 
