@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
@@ -33,158 +34,161 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      {/* Hero Section with Video Background */}
-      <VideoHero
-        title={<>Contact <span className="text-gold">Us</span></>}
-        subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
-        height="medium"
-        badgeText="REACH OUT"
-        scrollIndicator={false}
-      />
-
-      {/* Contact Information */}
-      <section className="-mt-32 relative z-20 mb-0 py-0 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-xl rounded-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-3">
-              {/* Contact Details */}
-              <div className="bg-black text-white p-10 lg:p-14">
-                <h2 className="text-2xl font-semibold mb-10">Contact Information</h2>
-                
-                <div className="space-y-8">
-                  <div className="flex items-start">
-                    <Phone size={20} className="text-gold mt-1 mr-5" />
-                    <div>
-                      <h3 className="font-medium mb-1.5">Phone</h3>
-                      <p className="text-white/80">(323) 272-2388</p>
-                    </div>
-                  </div>
+      {/* Hero Section with Video Background - Extended to cover contact form area */}
+      <section className="relative min-h-screen bg-black overflow-hidden">
+        <VideoHero
+          title={<>Contact <span className="text-gold">Us</span></>}
+          subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
+          height="large"
+          badgeText="REACH OUT"
+          scrollIndicator={false}
+          className="absolute inset-0"
+        />
+        
+        {/* Floating Contact Information Card */}
+        <div className="relative z-30 pt-96 pb-32">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white shadow-xl rounded-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-3">
+                {/* Contact Details */}
+                <div className="bg-black text-white p-10 lg:p-14">
+                  <h2 className="text-2xl font-semibold mb-10">Contact Information</h2>
                   
-                  <div className="flex items-start">
-                    <Mail size={20} className="text-gold mt-1 mr-5" />
-                    <div>
-                      <h3 className="font-medium mb-1.5">Email</h3>
-                      <p className="text-white/80">info@exquisitedentistry.com</p>
+                  <div className="space-y-8">
+                    <div className="flex items-start">
+                      <Phone size={20} className="text-gold mt-1 mr-5" />
+                      <div>
+                        <h3 className="font-medium mb-1.5">Phone</h3>
+                        <p className="text-white/80">(323) 272-2388</p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <MapPin size={20} className="text-gold mt-1 mr-5" />
-                    <div>
-                      <h3 className="font-medium mb-1.5">Address</h3>
-                      <p className="text-white/80">
-                        6227 Wilshire Blvd<br />
-                        Los Angeles, CA 90048
-                      </p>
+                    
+                    <div className="flex items-start">
+                      <Mail size={20} className="text-gold mt-1 mr-5" />
+                      <div>
+                        <h3 className="font-medium mb-1.5">Email</h3>
+                        <p className="text-white/80">info@exquisitedentistry.com</p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Clock size={20} className="text-gold mt-1 mr-5" />
-                    <div>
-                      <h3 className="font-medium mb-1.5">Hours</h3>
-                      <div className="text-white/80 space-y-1">
-                        <p>Monday-Thursday: 8AM-6PM</p>
-                        <p>Friday: Closed</p>
-                        <p>Saturday: Closed</p>
-                        <p>Sunday: Closed</p>
+                    
+                    <div className="flex items-start">
+                      <MapPin size={20} className="text-gold mt-1 mr-5" />
+                      <div>
+                        <h3 className="font-medium mb-1.5">Address</h3>
+                        <p className="text-white/80">
+                          6227 Wilshire Blvd<br />
+                          Los Angeles, CA 90048
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <Clock size={20} className="text-gold mt-1 mr-5" />
+                      <div>
+                        <h3 className="font-medium mb-1.5">Hours</h3>
+                        <div className="text-white/80 space-y-1">
+                          <p>Monday-Thursday: 8AM-6PM</p>
+                          <p>Friday: Closed</p>
+                          <p>Saturday: Closed</p>
+                          <p>Sunday: Closed</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className="mt-14 pt-8 border-t border-white/20">
-                  <h3 className="font-medium mb-5">Follow Us</h3>
-                  <div className="flex space-x-5">
-                    <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                      </svg>
-                    </a>
-                    <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                      </svg>
-                    </a>
+                  
+                  <div className="mt-14 pt-8 border-t border-white/20">
+                    <h3 className="font-medium mb-5">Follow Us</h3>
+                    <div className="flex space-x-5">
+                      <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                      </a>
+                      <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Contact Form */}
-              <div className="col-span-2 p-10 lg:p-14">
-                <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                      <label htmlFor="name" className="block font-medium text-black">Name</label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                          <User size={18} className="text-gray-400" />
+                {/* Contact Form */}
+                <div className="col-span-2 p-10 lg:p-14">
+                  <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label htmlFor="name" className="block font-medium text-black">Name</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <User size={18} className="text-gray-400" />
+                          </div>
+                          <input
+                            type="text"
+                            id="name"
+                            className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                            placeholder="Your name"
+                            required
+                          />
                         </div>
-                        <input
-                          type="text"
-                          id="name"
-                          className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                          placeholder="Your name"
-                          required
-                        />
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <label htmlFor="email" className="block font-medium text-black">Email</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <Mail size={18} className="text-gray-400" />
+                          </div>
+                          <input
+                            type="email"
+                            id="email"
+                            className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                            placeholder="Your email"
+                            required
+                          />
+                        </div>
                       </div>
                     </div>
                     
                     <div className="space-y-3">
-                      <label htmlFor="email" className="block font-medium text-black">Email</label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                          <Mail size={18} className="text-gray-400" />
-                        </div>
-                        <input
-                          type="email"
-                          id="email"
-                          className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                          placeholder="Your email"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <label htmlFor="subject" className="block font-medium text-black">Subject</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      className="block w-full py-3.5 px-4 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                      placeholder="How can we help you?"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <label htmlFor="message" className="block font-medium text-black">Message</label>
-                    <div className="relative">
-                      <div className="absolute top-3.5 left-4 pointer-events-none">
-                        <MessageSquare size={18} className="text-gray-400" />
-                      </div>
-                      <textarea
-                        id="message"
-                        rows={6}
-                        className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                        placeholder="Your message"
+                      <label htmlFor="subject" className="block font-medium text-black">Subject</label>
+                      <input
+                        type="text"
+                        id="subject"
+                        className="block w-full py-3.5 px-4 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                        placeholder="How can we help you?"
                         required
-                      ></textarea>
+                      />
                     </div>
-                  </div>
-                  
-                  <div className="pt-2">
-                    <Button type="submit" className="w-full md:w-auto flex items-center justify-center group px-6 py-3">
-                      Send Message
-                      <Send size={16} className="ml-3 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </div>
-                </form>
+                    
+                    <div className="space-y-3">
+                      <label htmlFor="message" className="block font-medium text-black">Message</label>
+                      <div className="relative">
+                        <div className="absolute top-3.5 left-4 pointer-events-none">
+                          <MessageSquare size={18} className="text-gray-400" />
+                        </div>
+                        <textarea
+                          id="message"
+                          rows={6}
+                          className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
+                          placeholder="Your message"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                    
+                    <div className="pt-2">
+                      <Button type="submit" className="w-full md:w-auto flex items-center justify-center group px-6 py-3">
+                        Send Message
+                        <Send size={16} className="ml-3 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -216,7 +220,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Review Widget Section */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
