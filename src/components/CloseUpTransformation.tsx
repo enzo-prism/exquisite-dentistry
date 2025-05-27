@@ -123,12 +123,12 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
               </div>
             </div>
 
-            {/* Enhanced labels with better contrast */}
+            {/* Updated labels with golden and white colors */}
             <div className="absolute bottom-4 left-4 right-4 flex justify-between pointer-events-none">
-              <span className="bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
+              <span className="bg-gold text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
                 Before
               </span>
-              <span className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
+              <span className="bg-white text-gold px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg border-2 border-gold">
                 After
               </span>
             </div>
