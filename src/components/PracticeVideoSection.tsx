@@ -1,8 +1,11 @@
 
-import React from 'react';
-import VideoBackground from './VideoBackground';
+import React, { useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
+import { Button } from './ui/button';
 
 const PracticeVideoSection: React.FC = () => {
+  const [isMuted, setIsMuted] = useState(true);
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,13 +21,39 @@ const PracticeVideoSection: React.FC = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-            <VideoBackground 
-              vimeoId="1076433847"
-              isContained={true}
-              aspectRatio={16 / 9}
-              className="rounded-sm"
-            />
+          <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden relative">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe 
+                src={`https://player.vimeo.com/video/1076433847?badge=0&autopause=0&autoplay=1&muted=${isMuted ? 1 : 0}&background=0&player_id=0&app_id=58479`}
+                style={{ 
+                  position: 'absolute', 
+                  top: 0, 
+                  left: 0, 
+                  width: '100%', 
+                  height: '100%'
+                }}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                title="Exquisite Dentistry Practice Video"
+                loading="eager"
+              />
+            </div>
+            
+            {/* Unmute Button */}
+            <div className="absolute bottom-4 right-4 z-10">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsMuted(!isMuted)}
+                className="bg-black/70 hover:bg-black/80 text-white border-none"
+              >
+                {isMuted ? (
+                  <VolumeX className="h-4 w-4" />
+                ) : (
+                  <Volume2 className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
