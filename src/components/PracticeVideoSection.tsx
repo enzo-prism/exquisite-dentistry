@@ -1,13 +1,6 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from './ui/button';
-
-declare global {
-  interface Window {
-    Vimeo: any;
-  }
-}
 
 const PracticeVideoSection: React.FC = () => {
   const [isMuted, setIsMuted] = useState(true);
