@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import Button from '@/components/Button';
@@ -60,22 +59,6 @@ const FinancingSection = () => {
           <li>Cash</li>
           <li>All major credit cards</li>
         </ul>
-      </div>
-
-      {/* Care Plus Financing */}
-      <div className="bg-white p-8 rounded-sm shadow-sm border border-gold/20">
-        <h3 className="text-xl font-medium text-gold mb-4">Care Plus Financing</h3>
-        <p className="text-black-light mb-6">
-          Get the care you need with convenient monthly payments. Quick applications with instant decisions.
-        </p>
-        {/* Button removed from here */}
-      </div>
-
-      {/* Personal Financing Message */}
-      <div className="bg-white p-8 rounded-sm shadow-sm">
-        <p className="text-black-light">
-          Considering a larger treatment plan? Ask us about flexible monthly payment options designed to fit your budget.
-        </p>
       </div>
     </div>
   );
