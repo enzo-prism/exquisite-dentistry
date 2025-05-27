@@ -30,11 +30,6 @@ interface DrAguilGalleryProps {
 
 const defaultImages: DrAguilImageItem[] = [
   {
-    src: '/lovable-uploads/0fd21f21-b7ba-404a-a028-16662a8dc60a.png',
-    alt: 'Dr. Alexie Aguil in scrubs',
-    featured: true
-  },
-  {
     src: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png',
     alt: 'Dr. Alexie Aguil explaining dental x-rays',
     caption: 'Dr. Aguil reviewing patient scans'
@@ -59,9 +54,6 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
   className,
   compact = false
 }) => {
-  // Get the featured image or the first one
-  const featuredImage = images.find(img => img.featured) || images[0];
-  const remainingImages = images.filter(img => img !== featuredImage).slice(0, 3);
   
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
@@ -78,47 +70,16 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
             </div>
           )}
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* Featured image takes up more space */}
-            <div className={cn(
-              "relative overflow-hidden rounded-sm shadow-lg group",
-              compact ? "col-span-1" : "md:col-span-2 lg:col-span-2 md:row-span-2"
-            )}>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-              <img 
-                src={featuredImage.src} 
-                alt={featuredImage.alt} 
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-                width={800}
-                height={600}
-              />
-              
-              {!compact && (
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent z-10">
-                  <div className="flex items-center space-x-3">
-                    <Avatar className="h-12 w-12 border-2 border-gold shadow-lg">
-                      <AvatarImage src={featuredImage.src} alt="Dr. Aguil" />
-                      <AvatarFallback>AA</AvatarFallback>
-                    </Avatar>
-                    <div className="text-white">
-                      <h3 className="font-medium text-lg leading-tight">Dr. Alexie Aguil, DDS</h3>
-                      <p className="text-sm text-gold">Founder, Exquisite Dentistry</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Smaller images */}
-            {!compact && remainingImages.map((image, index) => (
-              <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {images.map((image, index) => (
+              <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                 <img 
                   src={image.src} 
                   alt={image.alt} 
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                   width={400}
-                  height={400}
+                  height={320}
                 />
                 
                 {image.caption && (
