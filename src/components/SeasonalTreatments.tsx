@@ -12,7 +12,7 @@ const SeasonalTreatments: React.FC = () => {
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block text-sm text-gold font-medium mb-3">SPECIAL OCCASIONS</span>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Seasonal <span className="text-gold">Treatments</span>
+            Special <span className="text-gold">Occasions</span>
           </h2>
           <div className="separator mx-auto"></div>
           <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
