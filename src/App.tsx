@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
@@ -56,6 +58,7 @@ const RouteAudit = () => {
 
 const AppRoutes = () => (
   <>
+    <ScrollToTop />
     <RouteAudit />
     <Navbar />
     <main className="flex-grow">
