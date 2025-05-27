@@ -43,7 +43,7 @@ export const patientTransformations: PatientTransformation[] = [
     afterImage: "/lovable-uploads/3a42dad4-7415-4cdc-aaad-8186717434d4.png"
   },
   {
-    name: "Michael",
+    name: "Wilson",
     procedure: "Invisalign & Bonding",
     beforeImage: "/lovable-uploads/ebaec307-40e4-4cf9-9b8a-02379250bb8e.png",
     afterImage: "/lovable-uploads/bb889b6f-f57b-492d-a1d2-06164aedf1e8.png"
