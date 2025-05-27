@@ -14,8 +14,8 @@ export const closeUpTransformations: CloseUpTransformation[] = [
   },
   {
     id: "transformation-2", 
-    beforeImage: "/lovable-uploads/124bbcce-7edb-49c0-90f8-e9848d0f0a62.png",
-    afterImage: "/lovable-uploads/12f8e6b3-7a8d-451d-903c-29ad3d2ee057.png",
+    beforeImage: "/lovable-uploads/2ab6ba69-7000-4368-9ec8-1264ebe5cee1.png",
+    afterImage: "/lovable-uploads/c6994b6f-0247-4180-8643-a323a515b7fb.png",
     description: "Cosmetic restoration for improved alignment and whitening"
   },
   {
