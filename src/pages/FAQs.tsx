@@ -44,16 +44,6 @@ const faqs: FAQ[] = [
     category: "Insurance & Payment"
   },
   {
-    question: "Are financing options available?",
-    answer: "Yes! We have financing available through Care Credit and Wells Fargo. We work within your budget to help find the best options for you.",
-    category: "Insurance & Payment"
-  },
-  {
-    question: "What types of imaging are available?",
-    answer: "We use digital imaging for routine x-rays and 3D imaging for more advanced diagnosis. Our iTero scanner takes a digital impression of your mouth and records the movement of teeth over time, something that happens to everyone as we age.\n\niTero scanning also allows us to create digital impressions for crowns and bridges. This is great news for our clients because in many cases, we won't have to use traditional trays lined with a gooey material to create these impressions. This is another way our advanced technology helps to make your visit more comfortable.",
-    category: "Services"
-  },
-  {
     question: "What if I can't make it to my appointment?",
     answer: "Please provide a notice within 48 hours to cancel or reschedule an appointment. Cancellations within 48 hours will be subject to a cancellation fee.",
     category: "Appointments"
