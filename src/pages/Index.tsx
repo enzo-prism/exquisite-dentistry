@@ -7,6 +7,7 @@ import DrAguilGallery from '@/components/DrAguilGallery';
 import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
+import PracticeVideoSection from '@/components/PracticeVideoSection';
 
 const IndexPage: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const IndexPage: React.FC = () => {
         }}
       />
       <SeasonalTreatments />
+      <PracticeVideoSection />
       <ServicesSection />
       <ClientExperienceSection />
       <DrAguilGallery />
