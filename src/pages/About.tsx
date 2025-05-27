@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
@@ -73,7 +74,7 @@ const About = () => {
                 <div className="relative z-10 bg-white p-3 rounded-sm shadow-xl">
                   <div className="aspect-[3/4] overflow-hidden rounded-sm">
                     <img 
-                      src="/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png" 
+                      src="/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png" 
                       alt="Dr. Alexie Aguil" 
                       className="w-full h-full object-contain"
                     />
