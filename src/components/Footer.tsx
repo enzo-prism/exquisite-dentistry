@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
@@ -63,17 +62,6 @@ const Footer = () => {
               <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                 <Button variant="gold" size="sm">Book an Appointment</Button>
               </a>
-            </div>
-
-            {/* Care Plus Financing Banner */}
-            <div className="bg-gold/10 p-4 rounded-sm mt-4">
-              <h4 className="text-gold font-medium mb-2">Flexible Financing Available</h4>
-              <p className="text-sm text-gray-300 mb-3">
-                Get the care you need with convenient monthly payments
-              </p>
-              <Link to="/client-resources">
-                <Button variant="gold" size="sm">Learn More</Button>
-              </Link>
             </div>
           </div>
 
