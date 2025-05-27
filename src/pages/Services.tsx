@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -76,12 +75,6 @@ const services = [{
   treatments: [{
     name: "Invisalign® Clear Aligners",
     details: "Discreet orthodontic treatment to straighten teeth without metal braces"
-  }, {
-    name: "TMJ/TMD Therapy",
-    details: "Treatment for jaw pain, clicking, and limited mouth movement"
-  }, {
-    name: "Sleep Apnea Solutions",
-    details: "Custom oral appliances to improve breathing during sleep"
   }, {
     name: "Laser Gum Therapy",
     details: "Minimally invasive treatment for gum disease and cosmetic gum procedures"
