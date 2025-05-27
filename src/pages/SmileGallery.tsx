@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,8 @@ import { ChevronRight } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { patientTransformations } from '@/data/patientTransformations';
 import PatientTransformationCard from '@/components/PatientTransformation';
+import { closeUpTransformations } from '@/data/closeUpTransformations';
+import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -35,13 +36,18 @@ const SmileGallery = () => {
         scrollIndicator={true} 
       />
 
-      {/* Simplified smile transformation gallery */}
+      {/* Patient Stories Section */}
       <section className="bg-white py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-semibold mb-8 text-center">Real Patient Results</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-semibold mb-4">Patient Success Stories</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Real transformations from our patients who trusted us with their smiles
+            </p>
+          </div>
           
-          {/* Patient transformations grid - Updated to show 3 per row on desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {/* Patient transformations grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {patientTransformations.map((patient, index) => (
               <PatientTransformationCard key={`patient-${index}`} patient={patient} />
             ))}
@@ -49,19 +55,46 @@ const SmileGallery = () => {
         </div>
       </section>
 
+      {/* New Up Close Transformations Section */}
+      <section className="bg-gray-50 py-12 md:py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              See the incredible detail and precision of our cosmetic dental work. 
+              Drag the slider to reveal the dramatic before and after results.
+            </p>
+          </div>
+          
+          {/* Close-up transformations grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {closeUpTransformations.map((transformation) => (
+              <CloseUpTransformationCard 
+                key={transformation.id} 
+                transformation={transformation}
+                className="animate-fade-in"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Mobile-optimized CTA section */}
-      <section className="bg-gray-50 py-10 md:py-12">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6">Ready for Your Own Transformation?</h2>
-          <p className="text-gray-600 mb-6 md:mb-8">Our cosmetic dentistry experts can help you achieve the smile you've always dreamed of.</p>
+      <section className="bg-gray-900 py-12 md:py-16">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-white">Ready for Your Own Transformation?</h2>
+          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            Our cosmetic dentistry experts can help you achieve the smile you've always dreamed of. 
+            Schedule your consultation today to start your journey.
+          </p>
           <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4 justify-center`}>
-            <Button asChild className="bg-gold hover:bg-gold/90 text-white px-6 py-5 w-full md:w-auto">
+            <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-6 text-lg w-full md:w-auto">
               <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
                 Schedule Your Consultation
                 <ChevronRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button asChild variant="outline" className="border-gold text-gold hover:bg-gold/10 w-full md:w-auto">
+            <Button asChild variant="outline" className="border-gold text-gold hover:bg-gold/10 px-8 py-6 text-lg w-full md:w-auto">
               <Link to="/contact">
                 Contact Us
               </Link>
