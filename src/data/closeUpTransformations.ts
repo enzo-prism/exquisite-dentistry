@@ -1,4 +1,3 @@
-
 export interface CloseUpTransformation {
   id: string;
   beforeImage: string;
@@ -9,8 +8,8 @@ export interface CloseUpTransformation {
 export const closeUpTransformations: CloseUpTransformation[] = [
   {
     id: "transformation-1",
-    beforeImage: "/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png",
-    afterImage: "/lovable-uploads/0fd21f21-b7ba-404a-a028-16662a8dc60a.png", 
+    beforeImage: "/lovable-uploads/927eb7e1-b5fa-4551-ac20-82666716d7e1.png",
+    afterImage: "/lovable-uploads/442f1b06-f170-43a9-ab81-6c7d7e27dda8.png", 
     description: "Complete smile transformation with porcelain veneers"
   },
   {
