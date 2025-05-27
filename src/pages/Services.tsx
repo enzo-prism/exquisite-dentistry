@@ -225,7 +225,7 @@ const Services = () => {
               <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
                 <span className="text-2xl font-bold">3D</span>
               </div>
-              <h3 className="heading-sm mb-4">3Shape Trios Scanner</h3>
+              <h3 className="heading-sm mb-4">Invisalign iTero scanner</h3>
               <p className="text-black-light/80">
                 Our advanced 3D scanner creates precise digital impressions without the discomfort of traditional methods, improving treatment planning and results.
               </p>
