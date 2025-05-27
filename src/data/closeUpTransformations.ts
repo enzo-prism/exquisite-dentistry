@@ -26,8 +26,8 @@ export const closeUpTransformations: CloseUpTransformation[] = [
   },
   {
     id: "transformation-4",
-    beforeImage: "/lovable-uploads/33335962-b99c-4063-aa3c-96dfaf5215bb.png",
-    afterImage: "/lovable-uploads/3a42dad4-7415-4cdc-aaad-8186717434d4.png",
+    beforeImage: "/lovable-uploads/5d9db165-60d4-4dee-80d9-5a89d7dacfe5.png",
+    afterImage: "/lovable-uploads/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed.png",
     description: "Restorative treatment for damaged front teeth"
   },
   {
