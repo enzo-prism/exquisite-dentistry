@@ -20,8 +20,8 @@ export const closeUpTransformations: CloseUpTransformation[] = [
   },
   {
     id: "transformation-3",
-    beforeImage: "/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png",
-    afterImage: "/lovable-uploads/2e30c49e-37fa-426d-90af-84d0fa47f509.png", 
+    beforeImage: "/lovable-uploads/e89dc5c2-d95e-481e-b9ad-287a86a0ff23.png",
+    afterImage: "/lovable-uploads/4dd9a295-29d0-4804-99bd-83d836885d72.png", 
     description: "Full smile makeover with dental crowns and veneers"
   },
   {
