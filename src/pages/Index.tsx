@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
@@ -8,8 +8,14 @@ import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
+import VideoModal from '@/components/VideoModal';
+import { Button } from '@/components/ui/button';
+import { Play } from 'lucide-react';
 
 const IndexPage: React.FC = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
+
   return (
     <>
       <Helmet>
@@ -50,11 +56,54 @@ const IndexPage: React.FC = () => {
               See what our clients are saying about their experience at Exquisite Dentistry
             </p>
           </div>
+          
+          {/* Video Testimonials */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* First Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
+                </div>
+                <div className="w-full h-full bg-black"></div>
+              </div>
+            </div>
+            
+            {/* Second Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
+                </div>
+                <div className="w-full h-full bg-black"></div>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
             <ReviewWidget />
           </div>
         </div>
       </section>
+      
+      {/* Video Modals */}
+      <VideoModal
+        youtubeId="1082192427"
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      />
+      
+      <VideoModal
+        youtubeId="1082192501"
+        isOpen={isSecondVideoModalOpen}
+        onClose={() => setIsSecondVideoModalOpen(false)}
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      />
     </>
   );
 };
