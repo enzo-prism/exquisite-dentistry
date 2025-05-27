@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
@@ -34,7 +33,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      {/* Hero Section with Video Background - Extended to cover contact form area */}
+      {/* Hero Section with Full Video Background */}
       <section className="relative min-h-screen bg-black overflow-hidden">
         <VideoHero
           title={<>Contact <span className="text-gold">Us</span></>}
@@ -42,13 +41,13 @@ const Contact = () => {
           height="large"
           badgeText="REACH OUT"
           scrollIndicator={false}
-          className="absolute inset-0"
+          className="absolute inset-0 h-full"
         />
         
-        {/* Floating Contact Information Card */}
-        <div className="relative z-30 pt-96 pb-32">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white shadow-xl rounded-sm">
+        {/* Floating Contact Card - positioned to allow video background behind */}
+        <div className="relative z-30 flex items-center justify-center min-h-screen py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="bg-white shadow-2xl rounded-sm max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3">
                 {/* Contact Details */}
                 <div className="bg-black text-white p-10 lg:p-14">

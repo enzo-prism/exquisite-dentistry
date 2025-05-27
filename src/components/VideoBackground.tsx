@@ -106,7 +106,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     if (vimeoId) {
       return (
-        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: isMobile ? '177.78%' : '56.25%' }}>
+        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
@@ -114,9 +114,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '300%' : '150%',  // Increased from 220% to 300% for mobile to fully eliminate black bars
-              height: isMobile ? '300%' : '150%',  // Increased from 220% to 300% for mobile to fully eliminate black bars
-              transform: isMobile ? 'translate(-50%, -50%) scale(1.6)' : 'translate(-50%, -50%) scale(1.1)', // Increased scale for mobile
+              width: isMobile ? '400%' : '200%',  // Increased coverage to eliminate black bars
+              height: isMobile ? '400%' : '200%',  // Increased coverage to eliminate black bars
+              transform: isMobile ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1.5)', // Increased scale
               maxWidth: 'none',
               objectFit: 'cover'
             }}
@@ -140,9 +140,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full object-cover"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '400%' : '200%', // Increased from 300% to 400% for mobile
-            height: '100%',
-            transform: isMobile ? 'translateX(-37.5%)' : 'none', // Adjusted transform for the new width
+            width: isMobile ? '500%' : '300%', // Increased from previous values
+            height: isMobile ? '500%' : '300%', // Increased from previous values
+            transform: isMobile ? 'translate(-40%, -40%)' : 'translate(-33%, -33%)', // Adjusted transform
             maxWidth: 'none'
           }}
           poster={posterSrc}
@@ -162,12 +162,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '400%' : '300%', // Increased from 350% to 400% for mobile
-            height: isMobile ? '200%' : '100%', // Increased height for mobile from 150% to 200%
+            width: isMobile ? '500%' : '400%', // Increased coverage
+            height: isMobile ? '300%' : '200%', // Increased coverage
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: isMobile ? 'translate(-50%, -50%) scale(1.4)' : 'translate(-50%, -50%)', // Increased scale for mobile
+            transform: isMobile ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1.5)', // Increased scale
             maxWidth: 'none'
           }}
           frameBorder="0"
