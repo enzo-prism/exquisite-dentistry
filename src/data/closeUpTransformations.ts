@@ -1,3 +1,4 @@
+
 export interface CloseUpTransformation {
   id: string;
   beforeImage: string;
@@ -14,14 +15,14 @@ export const closeUpTransformations: CloseUpTransformation[] = [
   },
   {
     id: "transformation-2", 
-    beforeImage: "/lovable-uploads/2ab6ba69-7000-4368-9ec8-1264ebe5cee1.png",
-    afterImage: "/lovable-uploads/c6994b6f-0247-4180-8643-a323a515b7fb.png",
+    beforeImage: "/lovable-uploads/124bbcce-7edb-49c0-90f8-e9848d0f0a62.png",
+    afterImage: "/lovable-uploads/12f8e6b3-7a8d-451d-903c-29ad3d2ee057.png",
     description: "Cosmetic restoration for improved alignment and whitening"
   },
   {
     id: "transformation-3",
-    beforeImage: "/lovable-uploads/e89dc5c2-d95e-481e-b9ad-287a86a0ff23.png",
-    afterImage: "/lovable-uploads/4dd9a295-29d0-4804-99bd-83d836885d72.png", 
+    beforeImage: "/lovable-uploads/1228ba28-d235-4f1b-bcfd-1fd79a1ad756.png",
+    afterImage: "/lovable-uploads/0cbed633-33a3-4a68-adfc-6478828f2e92.png", 
     description: "Full smile makeover with dental crowns and veneers"
   },
   {
@@ -32,8 +33,8 @@ export const closeUpTransformations: CloseUpTransformation[] = [
   },
   {
     id: "transformation-5",
-    beforeImage: "/lovable-uploads/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9.png",
-    afterImage: "/lovable-uploads/3e26b70e-31d0-4e1f-95b7-b2f1144f262b.png",
+    beforeImage: "/lovable-uploads/124b1461-00bb-4065-9657-02b2984d461f.png",
+    afterImage: "/lovable-uploads/e5666e84-eae4-42d0-a75c-f034454be491.png",
     description: "Comprehensive dental rehabilitation"
   },
   {
