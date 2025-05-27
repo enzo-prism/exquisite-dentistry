@@ -1,10 +1,62 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from './ui/button';
 
+declare global {
+  interface Window {
+    Vimeo: any;
+  }
+}
+
 const PracticeVideoSection: React.FC = () => {
   const [isMuted, setIsMuted] = useState(true);
+  const playerRef = useRef<any>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Load Vimeo Player API
+    if (!window.Vimeo) {
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.onload = initializePlayer;
+      document.head.appendChild(script);
+    } else {
+      initializePlayer();
+    }
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
+    };
+  }, []);
+
+  const initializePlayer = () => {
+    if (iframeRef.current && window.Vimeo) {
+      playerRef.current = new window.Vimeo.Player(iframeRef.current);
+    }
+  };
+
+  const toggleMute = async () => {
+    if (playerRef.current) {
+      try {
+        if (isMuted) {
+          await playerRef.current.setVolume(1);
+        } else {
+          await playerRef.current.setVolume(0);
+        }
+        setIsMuted(!isMuted);
+      } catch (error) {
+        console.log('Error toggling mute:', error);
+        // Fallback: just update the state
+        setIsMuted(!isMuted);
+      }
+    } else {
+      // Fallback: just update the state
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -24,7 +76,8 @@ const PracticeVideoSection: React.FC = () => {
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden relative">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe 
-                src={`https://player.vimeo.com/video/1076433847?badge=0&autopause=0&autoplay=1&muted=${isMuted ? 1 : 0}&controls=0&title=0&byline=0&portrait=0&background=0&player_id=0&app_id=58479&loop=1&autopause=0`}
+                ref={iframeRef}
+                src="https://player.vimeo.com/video/1076433847?badge=0&autopause=0&autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=0&player_id=0&app_id=58479&loop=1"
                 style={{ 
                   position: 'absolute', 
                   top: 0, 
@@ -44,7 +97,7 @@ const PracticeVideoSection: React.FC = () => {
               <Button
                 variant="secondary"
                 size="sm"
-                onClick={() => setIsMuted(!isMuted)}
+                onClick={toggleMute}
                 className="bg-black/70 hover:bg-black/80 text-white border-none"
               >
                 {isMuted ? (
