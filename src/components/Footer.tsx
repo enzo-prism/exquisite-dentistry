@@ -148,7 +148,7 @@ const Footer = () => {
           <div className="mt-5 md:mt-0 flex space-x-8">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
-            <div>HIPAA Compliant</div>
+            <Link to="/hipaa-compliance" className="hover:text-white transition-colors">HIPAA Compliant</Link>
           </div>
         </div>
       </div>
