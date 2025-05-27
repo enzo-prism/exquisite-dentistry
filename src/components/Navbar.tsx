@@ -149,17 +149,10 @@ const Navbar = () => {
               <HoverCard openDelay={0} closeDelay={100}>
                 <HoverCardTrigger asChild>
                   <div className="relative group">
-                    <RouterNavLink
-                      to="/client-resources"
-                      className={({ isActive: active }) =>
-                        `text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 ${
-                          active ? 'text-gold' : ''
-                        }`
-                      }
-                    >
+                    <span className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 cursor-pointer">
                       Clients
                       <ChevronDown size={16} className="transition-transform group-hover:rotate-180" />
-                    </RouterNavLink>
+                    </span>
                   </div>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-auto p-0 bg-black border-gold">
@@ -180,24 +173,14 @@ const Navbar = () => {
               <HoverCard openDelay={0} closeDelay={100}>
                 <HoverCardTrigger asChild>
                   <div className="relative group">
-                    <RouterNavLink
-                      to="/client-resources"
-                      className={({ isActive: active }) =>
-                        `text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 ${
-                          active ? 'text-gold' : ''
-                        }`
-                      }
-                    >
+                    <span className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 cursor-pointer">
                       More
                       <ChevronDown size={16} className="transition-transform group-hover:rotate-180" />
-                    </RouterNavLink>
+                    </span>
                   </div>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-auto p-0 bg-black border-gold">
                   <div className="py-2">
-                    <Link to="/client-resources" className="block px-4 py-2 text-white hover:text-gold hover:bg-black/50">
-                      Resources
-                    </Link>
                     <Link to="/faqs" className="block px-4 py-2 text-white hover:text-gold hover:bg-black/50">
                       FAQs
                     </Link>
@@ -254,7 +237,6 @@ const Navbar = () => {
           </MobileDropdown>
           
           <MobileDropdown title="More">
-            <MobileNavLink to="/client-resources" onClick={closeMobileMenu}>Resources</MobileNavLink>
             <MobileNavLink to="/faqs" onClick={closeMobileMenu}>FAQs</MobileNavLink>
             <MobileNavLink to="/contact" onClick={closeMobileMenu}>Contact</MobileNavLink>
           </MobileDropdown>
