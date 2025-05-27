@@ -78,6 +78,9 @@ const services = [{
   }, {
     name: "Laser Gum Therapy",
     details: "Minimally invasive treatment for gum disease and cosmetic gum procedures"
+  }, {
+    name: "Full Mouth Reconstruction",
+    details: "A comprehensive, holistic, and multi-layered dental treatment involving a series of procedures aimed at transforming your smile, restoring the functionality of your teeth, and enhancing the overall health of your mouth"
   }]
 }];
 
