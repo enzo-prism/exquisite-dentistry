@@ -5,7 +5,6 @@ import { ChevronDown } from 'lucide-react';
 import VideoBackground from '../VideoBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import { VideoHeroProps } from './video-hero-types';
-import { getHeightClasses } from './video-constants';
 
 const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   vimeoId,
@@ -39,13 +38,16 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
     }
   };
 
+  // Calculate height based on video aspect ratio for desktop screens
+  const videoHeight = `${(100 / aspectRatio)}vw`;
+
   return (
     <section 
       className={cn(
         'relative bg-black w-full section-vertical-spacing overflow-hidden',
-        getHeightClasses(height),
         className
       )}
+      style={{ height: videoHeight, minHeight: '60vh', maxHeight: '100vh' }}
     >
       {/* Enhanced Video Background with reduced opacity for better text visibility */}
       <VideoBackground 

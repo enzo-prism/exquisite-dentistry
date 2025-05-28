@@ -5,7 +5,6 @@ import { ChevronDown } from 'lucide-react';
 import VideoBackground from '../VideoBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import { VideoHeroProps } from './video-hero-types';
-import { getHeightClasses } from './video-constants';
 
 const MobileVideoHero: React.FC<VideoHeroProps> = ({
   vimeoId,
@@ -30,14 +29,17 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
     }
   };
 
+  // Calculate height based on video aspect ratio for mobile screens
+  const videoHeight = `${(100 / aspectRatio)}vw`;
+
   return (
     <section 
       className={cn(
-        'relative overflow-hidden bg-black w-full min-h-[100vh] flex flex-col',
+        'relative overflow-hidden bg-black w-full flex flex-col',
         'section-vertical-spacing',
-        getHeightClasses(height),
         className
       )}
+      style={{ height: videoHeight, minHeight: '60vh', maxHeight: '100vh' }}
     >
       {/* Full-screen video background with enhanced mobile coverage */}
       <div className="absolute inset-0 z-0 w-full h-full">
@@ -47,7 +49,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           streamableUrl={streamableUrl}
           posterSrc={posterSrc}
           isContained={false}
-          overlayOpacity={50} // Reduced overlay opacity for better video visibility
+          overlayOpacity={50}
           className="w-full h-full"
         />
       </div>
