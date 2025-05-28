@@ -114,9 +114,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '400%' : '200%',  // Increased coverage to eliminate black bars
-              height: isMobile ? '400%' : '200%',  // Increased coverage to eliminate black bars
-              transform: isMobile ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1.5)', // Increased scale
+              width: isMobile ? '180%' : '140%',  // Optimized scaling to minimize cropping
+              height: isMobile ? '180%' : '140%',  // Optimized scaling to minimize cropping
+              transform: 'translate(-50%, -50%)', // Centered positioning
               maxWidth: 'none',
               objectFit: 'cover'
             }}
@@ -140,10 +140,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full object-cover"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '500%' : '300%', // Increased from previous values
-            height: isMobile ? '500%' : '300%', // Increased from previous values
-            transform: isMobile ? 'translate(-40%, -40%)' : 'translate(-33%, -33%)', // Adjusted transform
-            maxWidth: 'none'
+            width: isMobile ? '150%' : '120%', // Optimized scaling
+            height: isMobile ? '150%' : '120%', // Optimized scaling
+            transform: 'translate(-25%, -25%)', // Adjusted centering
+            maxWidth: 'none',
+            position: 'absolute',
+            top: '50%',
+            left: '50%'
           }}
           poster={posterSrc}
         >
@@ -162,12 +165,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '500%' : '400%', // Increased coverage
-            height: isMobile ? '300%' : '200%', // Increased coverage
+            width: isMobile ? '160%' : '130%', // Optimized scaling for YouTube
+            height: isMobile ? '160%' : '130%', // Optimized scaling for YouTube
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: isMobile ? 'translate(-50%, -50%) scale(2)' : 'translate(-50%, -50%) scale(1.5)', // Increased scale
+            transform: 'translate(-50%, -50%)', // Perfect centering
             maxWidth: 'none'
           }}
           frameBorder="0"
@@ -212,7 +215,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         <div className="absolute inset-0 bg-black/70 z-10"></div>
         
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
-          <div className="w-full h-full overflow-hidden">
+          <div className="w-full h-full overflow-hidden relative">
             {renderVideoElement()}
           </div>
         </div>
