@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronDown } from 'lucide-react';
 import VideoBackground from '../VideoBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import { VideoHeroProps } from './video-hero-types';
@@ -22,13 +21,6 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   scrollIndicator = true,
   aspectRatio = 16 / 9,
 }) => {
-  const scrollToNextSection = () => {
-    const heroSection = document.querySelector('section');
-    if (heroSection && heroSection.nextElementSibling) {
-      heroSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   // Calculate height based on video aspect ratio for mobile screens
   const videoHeight = `${(100 / aspectRatio)}vw`;
 
@@ -81,18 +73,6 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           isMobile={true}
         />
       </div>
-      
-      {scrollIndicator && height !== 'auto' && (
-        <div 
-          className="relative z-30 w-full flex justify-center pt-8 pb-4 cursor-pointer animate-bounce"
-          onClick={scrollToNextSection}
-        >
-          <div className="flex flex-col items-center">
-            <span className="text-white/70 text-xs mb-1 drop-shadow-md">Scroll Down</span>
-            <ChevronDown className="text-white/70 w-5 h-5 drop-shadow-md" />
-          </div>
-        </div>
-      )}
     </section>
   );
 };
