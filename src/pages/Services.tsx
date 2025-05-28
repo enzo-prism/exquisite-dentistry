@@ -113,21 +113,21 @@ const Services = () => {
         scrollIndicator={false} 
       />
 
-      <section className="-mt-32 relative z-20 mb-24">
+      <section className="-mt-16 sm:-mt-24 md:-mt-32 relative z-20 mb-16 sm:mb-20 md:mb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 lg:p-16">
+          <div className="bg-white shadow-xl rounded-sm p-6 sm:p-8 md:p-12 lg:p-16">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="heading-lg mb-6">Excellence in Every Aspect of Dental Care</h2>
+              <h2 className="heading-lg mb-4 sm:mb-6">Excellence in Every Aspect of Dental Care</h2>
               <div className="separator"></div>
-              <p className="paragraph mb-8">
+              <p className="paragraph mb-6 sm:mb-8">
                 At Exquisite Dentistry, Dr. Alexie Aguil offers a comprehensive range of dental services utilizing the latest techniques and technology. From advanced cosmetic procedures to general and restorative treatments, we are committed to providing exceptional care tailored to your unique needs.
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {services.map((service, index) => <a key={service.id} href={`#${service.id}`} className="flex flex-col items-center text-center group">
-                    <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
                       {service.icon}
                     </div>
-                    <span className="font-medium text-black group-hover:text-gold transition-colors duration-300">
+                    <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
                       {service.title}
                     </span>
                   </a>)}
