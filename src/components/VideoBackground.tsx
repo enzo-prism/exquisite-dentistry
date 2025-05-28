@@ -208,8 +208,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         isLoading ? "opacity-0" : "opacity-100",
         className
       )}>
-        {/* Reduced overlay opacity for better video visibility */}
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        {/* Increased overlay opacity for better contrast - from bg-black/50 to bg-black/70 */}
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
         
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
           <div className="w-full h-full overflow-hidden">
