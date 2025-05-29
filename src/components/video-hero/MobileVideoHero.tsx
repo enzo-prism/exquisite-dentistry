@@ -33,7 +33,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       )}
       style={{ height: videoHeight, minHeight: '60vh', maxHeight: '100vh' }}
     >
-      {/* Full-screen video background with enhanced mobile coverage - increased overlay opacity from 50 to 60 */}
+      {/* Full-screen video background with enhanced mobile coverage - overlay opacity set to 60 */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <VideoBackground 
           vimeoId={vimeoId}

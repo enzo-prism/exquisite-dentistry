@@ -41,14 +41,14 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
       )}
       style={{ height: videoHeight, minHeight: '60vh', maxHeight: '100vh' }}
     >
-      {/* Enhanced Video Background with increased opacity - from 70 to 80 for better text visibility */}
+      {/* Enhanced Video Background with reduced opacity to 60 for better text visibility */}
       <VideoBackground 
         vimeoId={vimeoId}
         youtubeId={youtubeId}
         streamableUrl={streamableUrl}
         posterSrc={posterSrc}
         isContained={false}
-        overlayOpacity={80}
+        overlayOpacity={60}
       />
       
       <div className="absolute inset-0 z-30">
