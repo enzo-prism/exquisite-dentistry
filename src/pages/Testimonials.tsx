@@ -47,7 +47,11 @@ const TestimonialsPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <div className="w-full h-full bg-black"></div>
+                <img 
+                  src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png" 
+                  alt="Shannon Langhorne Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             
@@ -59,7 +63,11 @@ const TestimonialsPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <div className="w-full h-full bg-black"></div>
+                <img 
+                  src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png" 
+                  alt="Taylor Vasek Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -70,19 +78,18 @@ const TestimonialsPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Video Modals */}
       <VideoModal
         youtubeId="1082192427"
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // Transparent 1x1 px
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
       
       <VideoModal
         youtubeId="1082192501"
         isOpen={isSecondVideoModalOpen}
         onClose={() => setIsSecondVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // Transparent 1x1 px
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
     </>
   );
