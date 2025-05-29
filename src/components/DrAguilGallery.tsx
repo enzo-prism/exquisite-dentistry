@@ -73,7 +73,6 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {images.map((image, index) => (
               <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                 <img 
                   src={image.src} 
                   alt={image.alt} 
@@ -87,15 +86,6 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                     <p className="text-white text-sm font-medium">{image.caption}</p>
                   </div>
                 )}
-                
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <Link to="/about">
-                    <Button variant="ghost" size="sm" className="text-white bg-black/30 hover:bg-black/50 shadow-md">
-                      <Eye size={16} className="mr-2" />
-                      View
-                    </Button>
-                  </Link>
-                </div>
               </div>
             ))}
           </div>
