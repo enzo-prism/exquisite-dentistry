@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Flower } from 'lucide-react';
@@ -10,7 +9,7 @@ const SeasonalTreatments: React.FC = () => {
     <section className="bg-gradient-to-b from-black/5 to-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">SPECIAL OCCASIONS</span>
+          <span className="inline-block text-sm text-gold font-medium mb-3">LIFE'S SPECIAL MOMENTS</span>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             Special <span className="text-gold">Occasions</span>
           </h2>
