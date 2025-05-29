@@ -16,6 +16,7 @@ const IndexPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
   const [isThirdVideoModalOpen, setIsThirdVideoModalOpen] = useState(false);
+  const [isFourthVideoModalOpen, setIsFourthVideoModalOpen] = useState(false);
 
   return (
     <>
@@ -59,7 +60,7 @@ const IndexPage: React.FC = () => {
           </div>
           
           {/* Video Testimonials */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
@@ -107,6 +108,22 @@ const IndexPage: React.FC = () => {
                 />
               </div>
             </div>
+
+            {/* Fourth Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
+                </div>
+                <img 
+                  src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png" 
+                  alt="Rob Talbert Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
@@ -133,6 +150,13 @@ const IndexPage: React.FC = () => {
         youtubeId="1088876675"
         isOpen={isThirdVideoModalOpen}
         onClose={() => setIsThirdVideoModalOpen(false)}
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      />
+
+      <VideoModal
+        youtubeId="1088877336"
+        isOpen={isFourthVideoModalOpen}
+        onClose={() => setIsFourthVideoModalOpen(false)}
         thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
     </>
