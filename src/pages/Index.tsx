@@ -67,7 +67,11 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <div className="w-full h-full bg-black"></div>
+                <img 
+                  src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png" 
+                  alt="Shannon Langhorne Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             
