@@ -69,30 +69,19 @@ const ServicesSection: React.FC = () => {
         </div>
         
         {isMobile ? (
-          // Mobile carousel view
-          <div className="px-4 md:hidden">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {services.map((service) => (
-                  <CarouselItem key={service.title}>
-                    <ServiceCard
-                      title={service.title}
-                      description={service.description}
-                      href={service.href}
-                      index={service.index}
-                      className="h-full"
-                    />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="flex justify-center gap-4 mt-6">
-                <CarouselPrevious className="relative static transform-none translate-y-0 left-0" />
-                <CarouselNext className="relative static transform-none translate-y-0 right-0" />
-              </div>
-            </Carousel>
+          <div className="space-y-6">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.title}
+                title={service.title}
+                description={service.description}
+                href={service.href}
+                index={service.index}
+                className="h-full"
+              />
+            ))}
           </div>
         ) : (
-          // Desktop grid view (unchanged)
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.slice(0, 3).map((service) => (
