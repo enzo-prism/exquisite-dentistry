@@ -12,6 +12,7 @@ const TestimonialsPage: React.FC = () => {
   const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
   const [isThirdVideoModalOpen, setIsThirdVideoModalOpen] = useState(false);
   const [isFourthVideoModalOpen, setIsFourthVideoModalOpen] = useState(false);
+  const [isFifthVideoModalOpen, setIsFifthVideoModalOpen] = useState(false);
   
   return (
     <>
@@ -40,7 +41,7 @@ const TestimonialsPage: React.FC = () => {
           </div>
           
           {/* Featured Video Testimonials */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
@@ -104,6 +105,22 @@ const TestimonialsPage: React.FC = () => {
                 />
               </div>
             </div>
+
+            {/* Fifth Video Testimonial */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
+                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="h-6 w-6" />
+                  </div>
+                </div>
+                <img 
+                  src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png" 
+                  alt="Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
           
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
@@ -137,6 +154,13 @@ const TestimonialsPage: React.FC = () => {
         youtubeId="1088877336"
         isOpen={isFourthVideoModalOpen}
         onClose={() => setIsFourthVideoModalOpen(false)}
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      />
+
+      <VideoModal
+        youtubeId="1088878160"
+        isOpen={isFifthVideoModalOpen}
+        onClose={() => setIsFifthVideoModalOpen(false)}
         thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
     </>
