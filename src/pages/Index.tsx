@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
@@ -83,7 +82,11 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <div className="w-full h-full bg-black"></div>
+                <img 
+                  src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png" 
+                  alt="Taylor Vasek Patient Testimonial"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -94,7 +97,6 @@ const IndexPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Video Modals */}
       <VideoModal
         youtubeId="1082192427"
         isOpen={isVideoModalOpen}
