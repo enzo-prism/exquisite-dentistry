@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
@@ -30,36 +29,36 @@ const About = () => {
       />
 
       {/* Dr. Aguil Introduction */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col-reverse lg:flex-row gap-12 items-center">
+          <div className="flex flex-col-reverse lg:flex-row gap-8 sm:gap-12 items-center">
             {/* Content Column */}
-            <div className="w-full lg:w-1/2 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
+            <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
                 A Unique Approach to Cosmetic Dentistry
               </h2>
               
-              <p className="text-lg text-black-light">
+              <p className="text-base sm:text-lg text-black-light">
                 At Exquisite Dentistry, Dr. Alexie Aguil has reimagined what a dental visit can be. His patient-centric approach ensures that each patient receives not only exceptional clinical care but also a comfortable, personalized experience.
               </p>
               
-              <p className="text-lg text-black-light">
+              <p className="text-base sm:text-lg text-black-light">
                 With over 15 years of experience and extensive training in advanced cosmetic techniques, Dr. Aguil brings artistry and precision to every smile transformation. He has worked with numerous celebrities, professionals, and patients seeking the highest quality dental care.
               </p>
               
-              <p className="text-lg text-black-light">
+              <p className="text-base sm:text-lg text-black-light">
                 Dr. Aguil's commitment to continuing education and investment in cutting-edge technology ensures that his patients benefit from the latest advancements in dental science and techniques.
               </p>
               
-              <div className="pt-4 flex flex-wrap gap-4">
+              <div className="pt-4 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                 <Link to="/services">
-                  <Button className="group">
+                  <Button className="group w-full sm:w-auto">
                     Explore Our Services
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" className="group">
+                  <Button variant="outline" className="group w-full sm:w-auto">
                     Schedule a Consultation
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -69,9 +68,9 @@ const About = () => {
             
             {/* Image Column */}
             <div className="w-full lg:w-1/2">
-              <div className="relative mx-auto max-w-md lg:max-w-full">
+              <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-full">
                 {/* Main Image with Frame */}
-                <div className="relative z-10 bg-white p-3 rounded-sm shadow-xl">
+                <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
                   <div className="aspect-[3/4] overflow-hidden rounded-sm">
                     <img 
                       src="/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png" 
@@ -82,10 +81,10 @@ const About = () => {
                 </div>
                 
                 {/* Award Badge */}
-                <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 z-20 bg-white rounded-sm shadow-xl p-4 max-w-[200px]">
+                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 md:-bottom-8 md:-left-8 z-20 bg-white rounded-sm shadow-xl p-3 sm:p-4 max-w-[180px] sm:max-w-[200px]">
                   <div className="flex items-center space-x-2 mb-2">
-                    <Award size={20} className="text-secondary" />
-                    <span className="text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
+                    <Award size={18} className="text-secondary flex-shrink-0" />
+                    <span className="text-xs sm:text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
                   </div>
                   <p className="text-xs text-black-light">
                     Top provider in Beverly Hills & West Hollywood
@@ -93,9 +92,9 @@ const About = () => {
                 </div>
                 
                 {/* Decorative Elements */}
-                <div className="absolute top-8 -right-4 w-20 h-20 bg-secondary/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -bottom-10 right-16 w-32 h-32 bg-secondary/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -z-10 -top-6 -left-6 w-full h-full border-2 border-secondary/30 rounded-sm"></div>
+                <div className="absolute top-6 sm:top-8 -right-3 sm:-right-4 w-16 sm:w-20 h-16 sm:h-20 bg-secondary/10 rounded-full filter blur-xl"></div>
+                <div className="absolute -bottom-8 sm:-bottom-10 right-12 sm:right-16 w-24 sm:w-32 h-24 sm:h-32 bg-secondary/10 rounded-full filter blur-xl"></div>
+                <div className="absolute -z-10 -top-4 sm:-top-6 -left-4 sm:-left-6 w-full h-full border-2 border-secondary/30 rounded-sm"></div>
               </div>
             </div>
           </div>
