@@ -27,7 +27,7 @@ const IndexPage: React.FC = () => {
         <meta name="keywords" content="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry" />
         <meta property="og:title" content="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil" />
         <meta property="og:description" content="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area." />
-        <meta property="og:image" content="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:url" content="https://exquisitedentistryla.com" />
       </Helmet>
       

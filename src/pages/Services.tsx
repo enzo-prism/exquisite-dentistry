@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Button from '@/components/Button';
@@ -106,6 +107,7 @@ const Services = () => {
         <meta name="keywords" content="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills" />
         <meta property="og:title" content="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More" />
         <meta property="og:description" content="Comprehensive cosmetic dental services including porcelain veneers, teeth whitening, dental implants, and smile makeovers in Los Angeles." />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
       </Helmet>
       

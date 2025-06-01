@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
@@ -21,6 +22,7 @@ const Wedding = () => {
         <meta name="keywords" content="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides" />
         <meta property="og:title" content="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry" />
         <meta property="og:description" content="Get the perfect wedding smile with specialized bridal dentistry packages including teeth whitening, veneers, and smile makeovers." />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
       </Helmet>
 

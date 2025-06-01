@@ -12,6 +12,7 @@ const HipaaCompliance: React.FC = () => {
         <meta name="keywords" content="HIPAA compliance, health information privacy, patient data protection, medical records security, dental office compliance" />
         <meta property="og:title" content="HIPAA Compliance | Patient Health Information Protection" />
         <meta property="og:description" content="Learn how Exquisite Dentistry protects your health information privacy and security in accordance with HIPAA regulations." />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
       </Helmet>
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Button from "@/components/Button";
@@ -26,6 +27,7 @@ const NotFound = () => {
         <title>Page Not Found | Exquisite Dentistry Los Angeles</title>
         <meta name="description" content="The page you're looking for doesn't exist. Return to Exquisite Dentistry's homepage or contact us for assistance with your cosmetic dental needs." />
         <meta name="robots" content="noindex, nofollow" />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
       </Helmet>
 
       <div className="min-h-[80vh] flex items-center justify-center px-4 bg-gray-50">

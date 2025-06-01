@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { ChevronDown } from 'lucide-react';
@@ -75,6 +76,7 @@ const FAQs = () => {
         <meta name="keywords" content="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions" />
         <meta property="og:title" content="Dental FAQ Los Angeles | Common Questions Answered" />
         <meta property="og:description" content="Get answers to frequently asked questions about cosmetic dentistry, procedures, insurance, and appointments at Exquisite Dentistry." />
+        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
       </Helmet>
 
