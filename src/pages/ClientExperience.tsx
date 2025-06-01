@@ -6,6 +6,7 @@ import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import Button from '@/components/Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -62,137 +63,148 @@ const ClientExperience = () => {
   }, []);
 
   return (
-    <div className="min-h-screen page-transition-in">
-      <VideoHero
-        title={<>The <span className="text-gold">Client Experience</span></>}
-        subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
-        primaryCta={{ 
-          text: "Book Your First Appointment", 
-          href: SCHEDULING_URL,
-          onClick: () => window.open(SCHEDULING_URL, '_blank')
-        }}
-        height="medium"
-        badgeText="COMFORT & CARE"
-        scrollIndicator={false}
-      />
+    <>
+      <Helmet>
+        <title>Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care</title>
+        <meta name="description" content="Experience luxury dental care in Los Angeles with spa-like amenities, advanced technology, and personalized comfort. Redefining dental visits at Exquisite Dentistry." />
+        <meta name="keywords" content="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa" />
+        <meta property="og:title" content="Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care" />
+        <meta property="og:description" content="Experience luxury dental care with spa-like amenities, advanced technology, and personalized comfort at Exquisite Dentistry." />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-      <section className="section-container">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block text-sm text-gold font-medium mb-3">WELCOME TO EXQUISITE DENTISTRY</span>
-          <h1 className="heading-lg mb-6">Redefining the Dental Experience</h1>
-          <div className="separator"></div>
-          <p className="paragraph mt-6">
-            At Exquisite Dentistry, we believe that dental care should be a comfortable and stress-free experience. 
-            Dr. Alexie Aguil and our team have created an environment where advanced dental technology meets spa-like comfort, 
-            ensuring that every visit is as pleasant as possible.
-          </p>
-        </div>
-      </section>
+      <div className="min-h-screen page-transition-in">
+        <VideoHero
+          title={<>The <span className="text-gold">Client Experience</span></>}
+          subtitle="At Exquisite Dentistry, we've reimagined what a dental visit can be with our focus on comfort, technology, and personalized care."
+          primaryCta={{ 
+            text: "Book Your First Appointment", 
+            href: SCHEDULING_URL,
+            onClick: () => window.open(SCHEDULING_URL, '_blank')
+          }}
+          height="medium"
+          badgeText="COMFORT & CARE"
+          scrollIndicator={false}
+        />
 
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="section-container">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <span className="inline-block text-sm text-gold font-medium mb-3">COMFORT & AMENITIES</span>
-            <h2 className="heading-lg mb-6">A Dental Experience Like No Other</h2>
+        <section className="section-container">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block text-sm text-gold font-medium mb-3">WELCOME TO EXQUISITE DENTISTRY</span>
+            <h1 className="heading-lg mb-6">Redefining the Dental Experience</h1>
             <div className="separator"></div>
             <p className="paragraph mt-6">
-              We've carefully designed our office and services to create a soothing environment 
-              that helps alleviate dental anxiety and ensures your complete comfort.
+              At Exquisite Dentistry, we believe that dental care should be a comfortable and stress-free experience. 
+              Dr. Alexie Aguil and our team have created an environment where advanced dental technology meets spa-like comfort, 
+              ensuring that every visit is as pleasant as possible.
             </p>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {amenities.map((amenity, index) => (
-              <Amenity 
-                key={index}
-                title={amenity.title}
-                description={amenity.description}
-                icon={amenity.icon}
-                className="opacity-0 animate-fade-in"
-                animationDelay={`${index * 150}ms`}
-              />
-            ))}
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="section-container">
+            <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+              <span className="inline-block text-sm text-gold font-medium mb-3">COMFORT & AMENITIES</span>
+              <h2 className="heading-lg mb-6">A Dental Experience Like No Other</h2>
+              <div className="separator"></div>
+              <p className="paragraph mt-6">
+                We've carefully designed our office and services to create a soothing environment 
+                that helps alleviate dental anxiety and ensures your complete comfort.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {amenities.map((amenity, index) => (
+                <Amenity 
+                  key={index}
+                  title={amenity.title}
+                  description={amenity.description}
+                  icon={amenity.icon}
+                  className="opacity-0 animate-fade-in"
+                  animationDelay={`${index * 150}ms`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="section-container">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-              <div>
-                <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT INVOLVEMENT</span>
-                <h2 className="heading-lg mb-6">Your Voice Matters in Your Treatment</h2>
-                <div className="separator-left"></div>
-                <p className="paragraph mt-6">
-                  We believe in clear communication and active client participation in all treatment decisions. 
-                  Dr. Aguil and our team will thoroughly explain all options and answer any questions you have, 
-                  ensuring that you're confident and informed at every step.
-                </p>
-                <div className="mt-8">
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    <Button className="group">
-                      Schedule Your Consultation
-                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </a>
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="section-container">
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div>
+                  <span className="inline-block text-sm text-gold font-medium mb-3">CLIENT INVOLVEMENT</span>
+                  <h2 className="heading-lg mb-6">Your Voice Matters in Your Treatment</h2>
+                  <div className="separator-left"></div>
+                  <p className="paragraph mt-6">
+                    We believe in clear communication and active client participation in all treatment decisions. 
+                    Dr. Aguil and our team will thoroughly explain all options and answer any questions you have, 
+                    ensuring that you're confident and informed at every step.
+                  </p>
+                  <div className="mt-8">
+                    <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                      <Button className="group">
+                        Schedule Your Consultation
+                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-8 rounded-sm shadow-xl">
-                <h3 className="text-xl font-medium mb-4">Our Client-First Approach</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">1</span>
-                    <div>
-                      <h4 className="font-medium mb-1">Comprehensive Consultation</h4>
-                      <p className="text-black-light/80 text-sm">We take the time to listen to your concerns and goals before suggesting any treatment.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">2</span>
-                    <div>
-                      <h4 className="font-medium mb-1">Education & Options</h4>
-                      <p className="text-black-light/80 text-sm">We explain all available treatment options with their benefits and considerations.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">3</span>
-                    <div>
-                      <h4 className="font-medium mb-1">Visual Communication</h4>
-                      <p className="text-black-light/80 text-sm">Using intraoral cameras and digital imaging to show you exactly what we see and plan.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">4</span>
-                    <div>
-                      <h4 className="font-medium mb-1">Collaborative Decision-Making</h4>
-                      <p className="text-black-light/80 text-sm">Your input shapes the final treatment plan, ensuring it aligns with your priorities.</p>
-                    </div>
-                  </li>
-                </ul>
+                
+                <div className="bg-white p-8 rounded-sm shadow-xl">
+                  <h3 className="text-xl font-medium mb-4">Our Client-First Approach</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">1</span>
+                      <div>
+                        <h4 className="font-medium mb-1">Comprehensive Consultation</h4>
+                        <p className="text-black-light/80 text-sm">We take the time to listen to your concerns and goals before suggesting any treatment.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">2</span>
+                      <div>
+                        <h4 className="font-medium mb-1">Education & Options</h4>
+                        <p className="text-black-light/80 text-sm">We explain all available treatment options with their benefits and considerations.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">3</span>
+                      <div>
+                        <h4 className="font-medium mb-1">Visual Communication</h4>
+                        <p className="text-black-light/80 text-sm">Using intraoral cameras and digital imaging to show you exactly what we see and plan.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">4</span>
+                      <div>
+                        <h4 className="font-medium mb-1">Collaborative Decision-Making</h4>
+                        <p className="text-black-light/80 text-sm">Your input shapes the final treatment plan, ensuring it aligns with your priorities.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Experience <span className="text-gold">Dentistry Reimagined</span>
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-              Book your visit today and discover how comfortable and rewarding dental care can be at our Wilshire Boulevard location.
-            </p>
-            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
-            </a>
+        <section className="py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-3xl mx-auto opacity-0 animate-fade-in">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">
+                Experience <span className="text-gold">Dentistry Reimagined</span>
+              </h2>
+              <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
+                Book your visit today and discover how comfortable and rewarding dental care can be at our Wilshire Boulevard location.
+              </p>
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

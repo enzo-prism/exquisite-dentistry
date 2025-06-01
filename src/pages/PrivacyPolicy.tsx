@@ -7,8 +7,12 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy - Exquisite Dentistry</title>
-        <meta name="description" content="Privacy Policy for Exquisite Dentistry. Learn how we protect and handle your personal information." />
+        <title>Privacy Policy | Exquisite Dentistry Los Angeles</title>
+        <meta name="description" content="Read our privacy policy to understand how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />
+        <meta name="keywords" content="dental privacy policy, HIPAA compliance, patient information protection, dental office privacy, health information security" />
+        <meta property="og:title" content="Privacy Policy | Exquisite Dentistry Los Angeles" />
+        <meta property="og:description" content="Learn how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <PageHeader 

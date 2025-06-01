@@ -7,8 +7,12 @@ const HipaaCompliance: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>HIPAA Compliance - Exquisite Dentistry</title>
-        <meta name="description" content="Learn about our HIPAA compliance and how we protect your health information at Exquisite Dentistry." />
+        <title>HIPAA Compliance | Patient Health Information Protection</title>
+        <meta name="description" content="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations." />
+        <meta name="keywords" content="HIPAA compliance, health information privacy, patient data protection, medical records security, dental office compliance" />
+        <meta property="og:title" content="HIPAA Compliance | Patient Health Information Protection" />
+        <meta property="og:description" content="Learn how Exquisite Dentistry protects your health information privacy and security in accordance with HIPAA regulations." />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <PageHeader 

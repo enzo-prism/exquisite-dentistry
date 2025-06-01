@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
@@ -20,8 +21,12 @@ const SmileGallery = () => {
   return (
     <>
       <Helmet>
-        <title>Smile Gallery | Exquisite Dentistry</title>
-        <meta name="description" content="View our amazing smile transformations at Exquisite Dentistry." />
+        <title>Before & After Smile Gallery Los Angeles | Real Patient Results</title>
+        <meta name="description" content="View amazing before and after smile transformations from Exquisite Dentistry in Los Angeles. Real patient results from veneers, whitening, and cosmetic dental procedures." />
+        <meta name="keywords" content="smile gallery Los Angeles, before after dental photos, smile transformation results, porcelain veneers before after, cosmetic dentistry results, patient transformations" />
+        <meta property="og:title" content="Before & After Smile Gallery Los Angeles | Real Patient Results" />
+        <meta property="og:description" content="View amazing before and after smile transformations from cosmetic dental procedures at Exquisite Dentistry in Los Angeles." />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       {/* Hero Section with VideoHero */}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 // Scheduling URL constant - consistent across site
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -67,53 +68,64 @@ const FAQs = () => {
   };
 
   return (
-    <div className="min-h-screen page-transition-in">
-      <VideoHero
-        title={<>Frequently Asked <span className="text-gold">Questions</span></>}
-        subtitle="Everything you need to know about your visit to Exquisite Dentistry."
-        primaryCta={{ text: "Schedule a Visit", href: SCHEDULING_URL }}
-        badgeText="GET ANSWERS"
-        height="medium"
-        scrollIndicator={false}
-      />
+    <>
+      <Helmet>
+        <title>Dental FAQ Los Angeles | Common Questions Answered</title>
+        <meta name="description" content="Get answers to frequently asked questions about cosmetic dentistry, dental procedures, insurance, and what to expect at Exquisite Dentistry in Los Angeles." />
+        <meta name="keywords" content="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions" />
+        <meta property="og:title" content="Dental FAQ Los Angeles | Common Questions Answered" />
+        <meta property="og:description" content="Get answers to frequently asked questions about cosmetic dentistry, procedures, insurance, and appointments at Exquisite Dentistry." />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-      <section className="py-16 px-4 -mt-32 relative z-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 space-y-6">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="border-b border-gray-100 last:border-0"
-              >
-                <button
-                  className="w-full text-left py-6 flex justify-between items-start gap-4"
-                  onClick={() => toggleFaq(index)}
-                  aria-expanded={openFaq === index}
+      <div className="min-h-screen page-transition-in">
+        <VideoHero
+          title={<>Frequently Asked <span className="text-gold">Questions</span></>}
+          subtitle="Everything you need to know about your visit to Exquisite Dentistry."
+          primaryCta={{ text: "Schedule a Visit", href: SCHEDULING_URL }}
+          badgeText="GET ANSWERS"
+          height="medium"
+          scrollIndicator={false}
+        />
+
+        <section className="py-16 px-4 -mt-32 relative z-20">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 space-y-6">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border-b border-gray-100 last:border-0"
                 >
-                  <h3 className="font-medium text-lg leading-tight">{faq.question}</h3>
-                  <ChevronDown 
+                  <button
+                    className="w-full text-left py-6 flex justify-between items-start gap-4"
+                    onClick={() => toggleFaq(index)}
+                    aria-expanded={openFaq === index}
+                  >
+                    <h3 className="font-medium text-lg leading-tight">{faq.question}</h3>
+                    <ChevronDown 
+                      className={cn(
+                        "flex-shrink-0 w-5 h-5 mt-1 text-gold transition-transform duration-200",
+                        openFaq === index ? "transform rotate-180" : ""
+                      )} 
+                    />
+                  </button>
+                  <div 
                     className={cn(
-                      "flex-shrink-0 w-5 h-5 mt-1 text-gold transition-transform duration-200",
-                      openFaq === index ? "transform rotate-180" : ""
-                    )} 
-                  />
-                </button>
-                <div 
-                  className={cn(
-                    "overflow-hidden transition-all duration-200",
-                    openFaq === index ? "max-h-[500px] pb-6" : "max-h-0"
-                  )}
-                >
-                  <div className="text-black-light/80 whitespace-pre-line">
-                    {faq.answer}
+                      "overflow-hidden transition-all duration-200",
+                      openFaq === index ? "max-h-[500px] pb-6" : "max-h-0"
+                    )}
+                  >
+                    <div className="text-black-light/80 whitespace-pre-line">
+                      {faq.answer}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

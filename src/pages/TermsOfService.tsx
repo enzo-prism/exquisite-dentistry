@@ -7,8 +7,12 @@ const TermsOfService: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Terms of Service - Exquisite Dentistry</title>
-        <meta name="description" content="Terms of Service for Exquisite Dentistry. Understanding our policies and your responsibilities as a patient." />
+        <title>Terms of Service | Exquisite Dentistry Los Angeles</title>
+        <meta name="description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry in Los Angeles." />
+        <meta name="keywords" content="dental terms of service, appointment policy, payment terms, patient responsibilities, dental office policies" />
+        <meta property="og:title" content="Terms of Service | Exquisite Dentistry Los Angeles" />
+        <meta property="og:description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry." />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <PageHeader 

@@ -17,8 +17,12 @@ const TestimonialsPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Client Testimonials | Exquisite Dentistry</title>
-        <meta name="description" content="See what our clients are saying about their experience at Exquisite Dentistry in Los Angeles." />
+        <title>Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles</title>
+        <meta name="description" content="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles." />
+        <meta name="keywords" content="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews" />
+        <meta property="og:title" content="Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles" />
+        <meta property="og:description" content="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry." />
+        <meta property="og:type" content="website" />
       </Helmet>
       
       <VideoHero 

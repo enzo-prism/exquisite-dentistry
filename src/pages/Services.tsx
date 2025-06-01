@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
@@ -96,8 +97,18 @@ const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
-    <div className="min-h-screen page-transition-in">
+    <>
+      <Helmet>
+        <title>Cosmetic Dental Services Los Angeles | Veneers, Whitening & More</title>
+        <meta name="description" content="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil." />
+        <meta name="keywords" content="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills" />
+        <meta property="og:title" content="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More" />
+        <meta property="og:description" content="Comprehensive cosmetic dental services including porcelain veneers, teeth whitening, dental implants, and smile makeovers in Los Angeles." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      
       <VideoHero 
         vimeoId="1076745525"
         title={<>Our <span className="text-gold">Services</span></>} 
@@ -313,7 +324,7 @@ const Services = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
