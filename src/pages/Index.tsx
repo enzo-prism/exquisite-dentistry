@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
@@ -22,10 +21,10 @@ const IndexPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Exquisite Dentistry - Los Angeles Cosmetic Dentist</title>
-        <meta name="description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care." />
-        <meta property="og:title" content="Exquisite Dentistry - Los Angeles Cosmetic Dentist" />
-        <meta property="og:description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care." />
+        <title>Exquisite Dentistry - Los Angeles Cosmetic Dentist | Dr. Alexie Aguil</title>
+        <meta name="description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care at Exquisite Dentistry." />
+        <meta property="og:title" content="Exquisite Dentistry - Los Angeles Cosmetic Dentist | Dr. Alexie Aguil" />
+        <meta property="og:description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care at Exquisite Dentistry." />
         <meta property="og:image" content="/lovable-uploads/aaedf2d1-c204-4ff6-9e44-695686f3871c.png" />
         <meta property="og:url" content="https://exquisitedentistry.com" />
       </Helmet>
@@ -181,7 +180,7 @@ const IndexPage: React.FC = () => {
         youtubeId="1088878160"
         isOpen={isFifthVideoModalOpen}
         onClose={() => setIsFifthVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP___yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
     </>
   );
