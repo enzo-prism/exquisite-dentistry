@@ -14,4 +14,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://exquisitedentistry.com/sitemap.xml
+Sitemap: https://exquisitedentistryla.com/sitemap.xml
