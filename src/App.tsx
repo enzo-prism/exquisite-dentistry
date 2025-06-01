@@ -96,6 +96,11 @@ const AppRoutes = () => (
         <Route path="/need-dentist-visiting-los-angeles/" element={<Navigate to="/contact" replace />} />
         <Route path="/cosmetic-dentist-venice-ca/" element={<Navigate to="/contact" replace />} />
         
+        {/* Additional redirects from the screenshot */}
+        <Route path="/contact/utm_source=google&utm_medium=organic&utm_campaign=gmb_listing" element={<Navigate to="/contact" replace />} />
+        <Route path="/are-veneers-covered-by-insurance/" element={<Navigate to="/faqs" replace />} />
+        <Route path="/restoration-and-maintenance-for-dental-veneers/" element={<Navigate to="/services" replace />} />
+        
         {/* Catch-all for any other old routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
