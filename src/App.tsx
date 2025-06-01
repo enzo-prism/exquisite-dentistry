@@ -65,6 +65,7 @@ const AppRoutes = () => (
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/about-us/about-dr-alexie-aguil/" element={<Navigate to="/about" replace />} />
+        <Route path="/about-us" element={<Navigate to="/about" replace />} />
         <Route path="/services" element={<Services />} />
         <Route path="/client-experience" element={<ClientExperience />} />
         <Route path="/testimonials" element={<Testimonials />} />
@@ -72,10 +73,30 @@ const AppRoutes = () => (
         <Route path="/wedding" element={<Wedding />} />
         <Route path="/graduation" element={<Graduation />} />
         <Route path="/faqs" element={<FAQs />} />
+        <Route path="/faq" element={<Navigate to="/faqs" replace />} />
         <Route path="/smile-gallery" element={<SmileGallery />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/hipaa-compliance" element={<HipaaCompliance />} />
+        
+        {/* Old website redirects based on top pages */}
+        <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/services" replace />} />
+        <Route path="/choosing-veneers-for-just-one-tooth/" element={<Navigate to="/services" replace />} />
+        <Route path="/top-4-netflix-shows-to-explore-from-the-dentists-chair/" element={<Navigate to="/client-experience" replace />} />
+        <Route path="/can-damaged-teeth-repair-themselves-naturally/" element={<Navigate to="/faqs" replace />} />
+        <Route path="/services/zoom-whitening/" element={<Navigate to="/services" replace />} />
+        <Route path="/5-ways-to-improve-oral-care-while-youre-at-work/" element={<Navigate to="/faqs" replace />} />
+        <Route path="/long-will-take-fix-crooked-teeth/" element={<Navigate to="/services" replace />} />
+        <Route path="/finding-the-best-cosmetic-dentist-in-the-usa-the-world/" element={<Navigate to="/about" replace />} />
+        <Route path="/choosing-veneers-for-the-four-front-teeth/" element={<Navigate to="/services" replace />} />
+        <Route path="/the-shapes-and-styles-of-dental-veneers/" element={<Navigate to="/services" replace />} />
+        <Route path="/the-cost-of-dental-veneers-in-los-angeles/" element={<Navigate to="/services" replace />} />
+        <Route path="/high-end-dentistry/" element={<Navigate to="/about" replace />} />
+        <Route path="/services/teeth-cleaning/" element={<Navigate to="/services" replace />} />
+        <Route path="/need-dentist-visiting-los-angeles/" element={<Navigate to="/contact" replace />} />
+        <Route path="/cosmetic-dentist-venice-ca/" element={<Navigate to="/contact" replace />} />
+        
+        {/* Catch-all for any other old routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>
