@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
@@ -7,6 +8,7 @@ import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   useEffect(() => {
@@ -15,6 +17,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>About Dr. Alexie Aguil - Exquisite Dentistry</title>
+        <meta name="description" content="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil. Specializing in smile transformations and personalized care at Exquisite Dentistry." />
+      </Helmet>
+
       {/* Hero Section with VideoHero */}
       <VideoHero
         title={<>Meet Dr. Alexie <span className="text-gold">Aguil</span></>}
