@@ -1,8 +1,9 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -63,6 +64,7 @@ const AppRoutes = () => (
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
+        <Route path="/about-us/about-dr-alexie-aguil/" element={<Navigate to="/about" replace />} />
         <Route path="/services" element={<Services />} />
         <Route path="/client-experience" element={<ClientExperience />} />
         <Route path="/testimonials" element={<Testimonials />} />
