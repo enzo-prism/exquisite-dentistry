@@ -174,8 +174,8 @@ const Footer = () => {
                 <Mail size={20} className="text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-white font-medium">Email Us</p>
-                  <a href="mailto:info@exquisitedentistry.com" className="text-gray-300 hover:text-white transition-colors">
-                    info@exquisitedentistry.com
+                  <a href="mailto:info@exquisitedentistryla.com" className="text-gray-300 hover:text-white transition-colors">
+                    info@exquisitedentistryla.com
                   </a>
                 </div>
               </div>

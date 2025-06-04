@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
 import Button from '@/components/Button';
@@ -77,7 +78,7 @@ const Contact = () => {
                         <Mail size={20} className="text-gold mt-1 mr-5" />
                         <div>
                           <h3 className="font-medium mb-1.5">Email</h3>
-                          <p className="text-white/80">info@exquisitedentistry.com</p>
+                          <p className="text-white/80">info@exquisitedentistryla.com</p>
                         </div>
                       </div>
                       
