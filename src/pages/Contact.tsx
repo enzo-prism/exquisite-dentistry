@@ -67,7 +67,7 @@ const Contact = () => {
                     
                     <div className="space-y-8">
                       <div className="flex items-start">
-                        <Phone size={20} className="text-gold mt-1 mr-5" />
+                        <Phone size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Phone</h3>
                           <p className="text-white/80">(323) 272-2388</p>
@@ -75,7 +75,7 @@ const Contact = () => {
                       </div>
                       
                       <div className="flex items-start">
-                        <Mail size={20} className="text-gold mt-1 mr-5" />
+                        <Mail size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Email</h3>
                           <p className="text-white/80">info@exquisitedentistryla.com</p>
@@ -83,7 +83,7 @@ const Contact = () => {
                       </div>
                       
                       <div className="flex items-start">
-                        <MapPin size={20} className="text-gold mt-1 mr-5" />
+                        <MapPin size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Address</h3>
                           <p className="text-white/80">
@@ -94,7 +94,7 @@ const Contact = () => {
                       </div>
                       
                       <div className="flex items-start">
-                        <Clock size={20} className="text-gold mt-1 mr-5" />
+                        <Clock size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Hours</h3>
                           <div className="text-white/80 space-y-1">
