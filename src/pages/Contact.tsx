@@ -6,6 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import { Helmet } from 'react-helmet-async';
+import SeoStructuredData from '@/components/SeoStructuredData';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -41,8 +42,9 @@ const Contact = () => {
         <meta name="keywords" content="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd" />
         <meta property="og:title" content="Contact Exquisite Dentistry Los Angeles | Schedule Your Appointment" />
         <meta property="og:description" content="Contact Exquisite Dentistry to schedule your cosmetic dental consultation in Los Angeles. Call (323) 272-2388 or book online." />
-        <meta property="og:type" content="website" />
+      <meta property="og:type" content="website" />
       </Helmet>
+      <SeoStructuredData />
 
       <div className="min-h-screen overflow-hidden">
         {/* Hero Section with Full Video Background */}
