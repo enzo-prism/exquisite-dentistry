@@ -6,6 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import { Helmet } from 'react-helmet-async';
+import SeoStructuredData from '@/components/SeoStructuredData';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -44,6 +45,7 @@ const Contact = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://exquisitedentistryla.com/contact" />
       </Helmet>
+      <SeoStructuredData />
 
       <div className="min-h-screen overflow-hidden">
         {/* Hero Section with Full Video Background */}

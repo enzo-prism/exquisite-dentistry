@@ -11,6 +11,7 @@ import PracticeVideoSection from '@/components/PracticeVideoSection';
 import VideoModal from '@/components/VideoModal';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
+import SeoStructuredData from '@/components/SeoStructuredData';
 
 const IndexPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -31,6 +32,7 @@ const IndexPage: React.FC = () => {
         <meta property="og:url" content="https://exquisitedentistryla.com" />
         <link rel="canonical" href="https://exquisitedentistryla.com/" />
       </Helmet>
+      <SeoStructuredData />
       
       <VideoHero 
         title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
