@@ -28,6 +28,7 @@ const SmileGallery = () => {
         <meta property="og:description" content="View amazing before and after smile transformations from cosmetic dental procedures at Exquisite Dentistry in Los Angeles." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/smile-gallery" />
       </Helmet>
 
       {/* Hero Section with VideoHero */}

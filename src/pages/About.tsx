@@ -23,6 +23,7 @@ const About = () => {
         <meta property="og:title" content="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles" />
         <meta property="og:description" content="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations and advanced dental techniques." />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/about" />
       </Helmet>
 
       {/* Hero Section with VideoHero */}
