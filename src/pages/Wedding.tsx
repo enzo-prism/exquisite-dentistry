@@ -24,6 +24,7 @@ const Wedding = () => {
         <meta property="og:description" content="Get the perfect wedding smile with specialized bridal dentistry packages including teeth whitening, veneers, and smile makeovers." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/wedding" />
       </Helmet>
 
       <div className="min-h-screen page-transition-in">

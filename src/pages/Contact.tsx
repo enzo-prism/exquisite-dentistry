@@ -42,6 +42,7 @@ const Contact = () => {
         <meta property="og:title" content="Contact Exquisite Dentistry Los Angeles | Schedule Your Appointment" />
         <meta property="og:description" content="Contact Exquisite Dentistry to schedule your cosmetic dental consultation in Los Angeles. Call (323) 272-2388 or book online." />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/contact" />
       </Helmet>
 
       <div className="min-h-screen overflow-hidden">
