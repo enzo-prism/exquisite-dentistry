@@ -14,6 +14,7 @@ const PrivacyPolicy: React.FC = () => {
         <meta property="og:description" content="Learn how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/privacy-policy" />
       </Helmet>
 
       <PageHeader 

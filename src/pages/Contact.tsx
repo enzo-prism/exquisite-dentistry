@@ -42,7 +42,8 @@ const Contact = () => {
         <meta name="keywords" content="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd" />
         <meta property="og:title" content="Contact Exquisite Dentistry Los Angeles | Schedule Your Appointment" />
         <meta property="og:description" content="Contact Exquisite Dentistry to schedule your cosmetic dental consultation in Los Angeles. Call (323) 272-2388 or book online." />
-      <meta property="og:type" content="website" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/contact" />
       </Helmet>
       <SeoStructuredData />
 
