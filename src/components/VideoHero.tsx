@@ -9,10 +9,10 @@ import { DEFAULT_HERO_VIMEO_ID } from './video-hero/video-constants';
 const VideoHero: React.FC<VideoHeroProps> = (props) => {
   const isMobile = useIsMobile();
   
-  // Always use the default Vimeo ID
+  // Use the provided Vimeo ID if available, otherwise fall back to the default
   const enhancedProps = {
     ...props,
-    vimeoId: DEFAULT_HERO_VIMEO_ID
+    vimeoId: props.vimeoId || DEFAULT_HERO_VIMEO_ID
   };
   
   if (isMobile) {
