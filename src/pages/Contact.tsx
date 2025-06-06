@@ -26,6 +26,20 @@ const Contact = () => {
       checkForSectionGaps();
       fixBackgroundConsistency();
     }, 500);
+
+    // Load Typeform script
+    const script = document.createElement('script');
+    script.src = '//embed.typeform.com/next/embed.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="//embed.typeform.com/next/embed.js"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
   }, []);
 
   return (
@@ -127,9 +141,8 @@ const Contact = () => {
                   <div className="col-span-2 p-10 lg:p-14">
                     <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
                     
-                    <div className="min-h-[600px]">
-                      <div data-tf-live="01JX3KQBQ1TW64FY4G46QAJ6WX"></div>
-                      <script src="//embed.typeform.com/next/embed.js"></script>
+                    <div className="w-full" style={{ height: '600px' }}>
+                      <div data-tf-live="01JX3KQBQ1TW64FY4G46QAJ6WX" style={{ width: '100%', height: '100%' }}></div>
                     </div>
                   </div>
                 </div>
