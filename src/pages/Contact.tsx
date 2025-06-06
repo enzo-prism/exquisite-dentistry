@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, User, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
@@ -27,12 +27,6 @@ const Contact = () => {
       fixBackgroundConsistency();
     }, 500);
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // form submission logic
-    console.log('Form submitted');
-  };
 
   return (
     <>
@@ -129,79 +123,14 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  {/* Contact Form */}
+                  {/* Typeform Embed */}
                   <div className="col-span-2 p-10 lg:p-14">
                     <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
                     
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-3">
-                          <label htmlFor="name" className="block font-medium text-black">Name</label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                              <User size={18} className="text-gray-400" />
-                            </div>
-                            <input
-                              type="text"
-                              id="name"
-                              className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                              placeholder="Your name"
-                              required
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-3">
-                          <label htmlFor="email" className="block font-medium text-black">Email</label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                              <Mail size={18} className="text-gray-400" />
-                            </div>
-                            <input
-                              type="email"
-                              id="email"
-                              className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                              placeholder="Your email"
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-3">
-                        <label htmlFor="subject" className="block font-medium text-black">Subject</label>
-                        <input
-                          type="text"
-                          id="subject"
-                          className="block w-full py-3.5 px-4 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                          placeholder="How can we help you?"
-                          required
-                        />
-                      </div>
-                      
-                      <div className="space-y-3">
-                        <label htmlFor="message" className="block font-medium text-black">Message</label>
-                        <div className="relative">
-                          <div className="absolute top-3.5 left-4 pointer-events-none">
-                            <MessageSquare size={18} className="text-gray-400" />
-                          </div>
-                          <textarea
-                            id="message"
-                            rows={6}
-                            className="block w-full pl-11 py-3.5 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
-                            placeholder="Your message"
-                            required
-                          ></textarea>
-                        </div>
-                      </div>
-                      
-                      <div className="pt-2">
-                        <Button type="submit" className="w-full md:w-auto flex items-center justify-center group px-6 py-3">
-                          Send Message
-                          <Send size={16} className="ml-3 transition-transform group-hover:translate-x-1" />
-                        </Button>
-                      </div>
-                    </form>
+                    <div className="min-h-[600px]">
+                      <div data-tf-live="01JX3KQBQ1TW64FY4G46QAJ6WX"></div>
+                      <script src="//embed.typeform.com/next/embed.js"></script>
+                    </div>
                   </div>
                 </div>
               </div>
