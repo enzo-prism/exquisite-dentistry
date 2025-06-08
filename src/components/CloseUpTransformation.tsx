@@ -15,6 +15,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -70,14 +71,15 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
   }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div className={cn("bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200", className)}>
+    <div className={cn("bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 group", className)}>
       <div 
         ref={containerRef}
         className="relative cursor-ew-resize select-none"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
-        {/* Optimized aspect ratio for close-up dental photos */}
         <AspectRatio ratio={16/9}>
           <div className="relative w-full h-full overflow-hidden bg-gray-100">
             {/* After image (full background) */}
@@ -109,36 +111,41 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
               />
             </div>
 
-            {/* Enhanced slider line for better visibility */}
+            {/* Enhanced slider line for close-up photos */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white shadow-xl z-10 border-l-2 border-r-2 border-gold"
+              className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-10 transition-all duration-150"
               style={{ left: `${sliderPosition}%` }}
             >
-              {/* Enhanced slider handle for close-up photos */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl border-3 border-gold flex items-center justify-center cursor-ew-resize hover:scale-110 transition-transform">
-                <div className="flex space-x-0.5">
-                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
-                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
+              {/* Premium slider handle for close-up photos */}
+              <div className={cn(
+                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl border-3 border-gold flex items-center justify-center cursor-ew-resize transition-all duration-200",
+                (isHovering || isDragging) ? "scale-110 shadow-3xl border-gold" : "scale-100"
+              )}>
+                {/* Elegant drag indicator */}
+                <div className="flex space-x-1">
+                  <div className="w-1 h-7 bg-gold rounded-full"></div>
+                  <div className="w-1 h-7 bg-gold rounded-full"></div>
                 </div>
               </div>
             </div>
 
-            {/* Updated labels with golden and white colors */}
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between pointer-events-none">
-              <span className="bg-gold text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
-                Before
-              </span>
-              <span className="bg-white text-gold px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg border-2 border-gold">
-                After
-              </span>
-            </div>
+            {/* Subtle interaction hint */}
+            {isHovering && !isDragging && (
+              <div className="absolute inset-0 bg-black/5 flex items-center justify-center pointer-events-none">
+                <div className="bg-white/95 px-6 py-3 rounded-full text-sm text-gray-700 shadow-xl animate-fade-in border border-gold/20">
+                  Drag to reveal transformation
+                </div>
+              </div>
+            )}
           </div>
         </AspectRatio>
       </div>
       
-      <div className="p-4">
-        <p className="text-sm text-gray-600 leading-relaxed">{transformation.description}</p>
-      </div>
+      {transformation.description && (
+        <div className="p-4">
+          <p className="text-sm text-gray-600 leading-relaxed">{transformation.description}</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -20,8 +20,9 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
   patient,
   className
 }) => {
-  const [sliderPosition, setSliderPosition] = useState(50); // Start at 50% to show both images
+  const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -60,7 +61,6 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
     setIsDragging(false);
   }, []);
 
-  // Add event listeners for mouse and touch events
   React.useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
@@ -78,12 +78,14 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
   }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div className={cn("bg-white shadow-md rounded-sm overflow-hidden", className)}>
+    <div className={cn("bg-white shadow-md rounded-sm overflow-hidden group", className)}>
       <div 
         ref={containerRef}
         className="relative cursor-ew-resize select-none"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
         <AspectRatio ratio={4/3}>
           <div className="relative w-full h-full overflow-hidden">
@@ -116,29 +118,34 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
               />
             </div>
 
-            {/* Slider line and handle */}
+            {/* Enhanced slider line and handle */}
             <div 
-              className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg z-10"
+              className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-10 transition-all duration-150"
               style={{ left: `${sliderPosition}%` }}
             >
-              {/* Slider handle */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg border-2 border-gray-200 flex items-center justify-center cursor-ew-resize">
-                <div className="w-1 h-4 bg-gray-400 rounded-full mx-0.5"></div>
-                <div className="w-1 h-4 bg-gray-400 rounded-full mx-0.5"></div>
+              {/* Modern slider handle */}
+              <div className={cn(
+                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl border-2 border-gray-200 flex items-center justify-center cursor-ew-resize transition-all duration-200",
+                (isHovering || isDragging) ? "scale-110 shadow-2xl border-gold" : "scale-100"
+              )}>
+                {/* Drag indicator */}
+                <div className="flex space-x-1">
+                  <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                  <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                </div>
               </div>
             </div>
+
+            {/* Subtle hint overlay on first hover */}
+            {isHovering && !isDragging && (
+              <div className="absolute inset-0 bg-black/5 flex items-center justify-center pointer-events-none">
+                <div className="bg-white/90 px-4 py-2 rounded-full text-sm text-gray-700 shadow-lg animate-fade-in">
+                  Drag to compare
+                </div>
+              </div>
+            )}
           </div>
         </AspectRatio>
-
-        {/* Labels */}
-        <div className="absolute bottom-4 left-4 right-4 flex justify-between pointer-events-none">
-          <span className="bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
-            Before
-          </span>
-          <span className="bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
-            After
-          </span>
-        </div>
       </div>
       
       <div className="p-4">
