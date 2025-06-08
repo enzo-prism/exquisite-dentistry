@@ -111,28 +111,28 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
               />
             </div>
 
-            {/* Enhanced slider line for close-up photos */}
+            {/* Smooth slider line */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-10 transition-all duration-150"
+              className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg z-10"
               style={{ left: `${sliderPosition}%` }}
             >
-              {/* Premium slider handle for close-up photos */}
+              {/* Refined slider handle */}
               <div className={cn(
-                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl border-3 border-gold flex items-center justify-center cursor-ew-resize transition-all duration-200",
-                (isHovering || isDragging) ? "scale-110 shadow-3xl border-gold" : "scale-100"
+                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg border-2 border-gold/30 flex items-center justify-center cursor-ew-resize transition-transform duration-100",
+                (isHovering || isDragging) ? "scale-105" : "scale-100"
               )}>
                 {/* Elegant drag indicator */}
-                <div className="flex space-x-1">
-                  <div className="w-1 h-7 bg-gold rounded-full"></div>
-                  <div className="w-1 h-7 bg-gold rounded-full"></div>
+                <div className="flex space-x-0.5">
+                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
+                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
                 </div>
               </div>
             </div>
 
-            {/* Subtle interaction hint */}
+            {/* Minimal interaction hint */}
             {isHovering && !isDragging && (
-              <div className="absolute inset-0 bg-black/5 flex items-center justify-center pointer-events-none">
-                <div className="bg-white/95 px-6 py-3 rounded-full text-sm text-gray-700 shadow-xl animate-fade-in border border-gold/20">
+              <div className="absolute inset-0 bg-black/10 flex items-center justify-center pointer-events-none">
+                <div className="bg-white/95 px-4 py-2 rounded-lg text-sm text-gray-700 shadow-md border border-gold/20">
                   Drag to reveal transformation
                 </div>
               </div>
