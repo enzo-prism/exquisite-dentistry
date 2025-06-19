@@ -128,8 +128,10 @@ const Blog = () => {
                       <span>{blogPosts[0].author}</span>
                     </div>
                     <Button variant="outline" className="group">
-                      Read More
-                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      <Link to="/blog/single-tooth-veneers-perfect-solutions" className="flex items-center">
+                        Read More
+                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>

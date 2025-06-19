@@ -24,6 +24,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import HipaaCompliance from "@/pages/HipaaCompliance";
 import Blog from "@/pages/Blog";
+import SingleToothVeneersBlog from "@/pages/SingleToothVeneersBlog";
 
 // Create a client
 const queryClient = new QueryClient({
