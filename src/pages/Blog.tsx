@@ -22,73 +22,18 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'The Complete Guide to Dental Veneers: Transform Your Smile',
-    excerpt: 'Discover how dental veneers can completely transform your smile and boost your confidence. Learn about the process, benefits, and what to expect.',
+    title: 'Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections',
+    excerpt: 'Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.',
     author: 'Dr. Alexie Aguil',
-    date: 'March 15, 2024',
-    readTime: '5 min read',
+    date: 'June 19, 2025',
+    readTime: '6 min read',
     category: 'Cosmetic Dentistry',
     image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&h=400&fit=crop',
-    slug: 'complete-guide-dental-veneers'
-  },
-  {
-    id: '2',
-    title: 'Preparing for Your Wedding Day Smile Makeover',
-    excerpt: 'Planning your perfect wedding smile? Learn the timeline and procedures that will give you the confidence to shine on your special day.',
-    author: 'Dr. Alexie Aguil',
-    date: 'March 10, 2024',
-    readTime: '4 min read',
-    category: 'Wedding Dentistry',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=400&fit=crop',
-    slug: 'wedding-day-smile-makeover'
-  },
-  {
-    id: '3',
-    title: 'Teeth Whitening: Professional vs. At-Home Options',
-    excerpt: 'Compare professional teeth whitening treatments with at-home options to find the best solution for your lifestyle and budget.',
-    author: 'Dr. Alexie Aguil',
-    date: 'March 5, 2024',
-    readTime: '6 min read',
-    category: 'Teeth Whitening',
-    image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&h=400&fit=crop',
-    slug: 'teeth-whitening-professional-vs-home'
-  },
-  {
-    id: '4',
-    title: 'Maintaining Your Oral Health: Daily Habits That Matter',
-    excerpt: 'Simple daily habits that can significantly improve your oral health and prevent common dental problems.',
-    author: 'Dr. Alexie Aguil',
-    date: 'February 28, 2024',
-    readTime: '3 min read',
-    category: 'Oral Health',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
-    slug: 'maintaining-oral-health-daily-habits'
-  },
-  {
-    id: '5',
-    title: 'Invisalign vs. Traditional Braces: Making the Right Choice',
-    excerpt: 'Understand the differences between Invisalign and traditional braces to make an informed decision about your orthodontic treatment.',
-    author: 'Dr. Alexie Aguil',
-    date: 'February 20, 2024',
-    readTime: '7 min read',
-    category: 'Orthodontics',
-    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&h=400&fit=crop',
-    slug: 'invisalign-vs-traditional-braces'
-  },
-  {
-    id: '6',
-    title: 'The Psychology of a Beautiful Smile: Confidence and Success',
-    excerpt: 'Explore how a confident smile impacts your personal and professional relationships, and the psychological benefits of cosmetic dentistry.',
-    author: 'Dr. Alexie Aguil',
-    date: 'February 15, 2024',
-    readTime: '5 min read',
-    category: 'Psychology',
-    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=400&fit=crop',
-    slug: 'psychology-beautiful-smile-confidence'
+    slug: 'single-tooth-veneers-perfect-solutions'
   }
 ];
 
-const categories = ['All', 'Cosmetic Dentistry', 'Wedding Dentistry', 'Teeth Whitening', 'Oral Health', 'Orthodontics', 'Psychology'];
+const categories = ['All', 'Cosmetic Dentistry'];
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = React.useState('All');
@@ -102,7 +47,7 @@ const Blog = () => {
       <Helmet>
         <title>Dental Blog - Tips, Insights & Expert Advice | Exquisite Dentistry</title>
         <meta name="description" content="Stay informed with our dental blog featuring expert tips, treatment insights, and oral health advice from Dr. Alexie Aguil in Los Angeles." />
-        <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, teeth whitening, dental care Los Angeles" />
+        <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles" />
       </Helmet>
 
       <PageHeader
@@ -183,67 +128,6 @@ const Blog = () => {
                 </CardContent>
               </div>
             </Card>
-          </div>
-
-          {/* Blog Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {filteredPosts.slice(1).map((post) => (
-              <Card key={post.id} className="overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    width={400}
-                    height={200}
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 text-gold px-3 py-1 rounded-full text-xs font-medium">
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
-                
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                    <div className="flex items-center gap-1">
-                      <Calendar size={14} />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock size={14} />
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-lg font-semibold mb-3 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <User size={14} />
-                      <span>{post.author}</span>
-                    </div>
-                    <Button variant="ghost" size="sm" className="group text-gold hover:text-gold p-0">
-                      Read More
-                      <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              Load More Articles
-            </Button>
           </div>
 
           {/* Newsletter Signup */}
