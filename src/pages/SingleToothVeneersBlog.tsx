@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, User, CheckCircle, AlertCircle, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import Button from '@/components/Button';
 
 const SingleToothVeneersBlog = () => {
@@ -25,21 +26,29 @@ const SingleToothVeneersBlog = () => {
               Back to Blog
             </Link>
             
-            <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
-              <span className="bg-gold/15 text-gold px-3 py-1 rounded-full text-xs font-medium">
-                Cosmetic Dentistry
-              </span>
-              <div className="flex items-center gap-1">
-                <Calendar size={16} />
-                <span>June 19, 2025</span>
+            {/* Redesigned metadata section */}
+            <div className="mb-8">
+              {/* Category badge */}
+              <div className="mb-4">
+                <Badge variant="secondary" className="bg-gold/15 text-gold border-gold/20 hover:bg-gold/20">
+                  Cosmetic Dentistry
+                </Badge>
               </div>
-              <div className="flex items-center gap-1">
-                <Clock size={16} />
-                <span>6 min read</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <User size={16} />
-                <span>Dr. Alexie Aguil</span>
+              
+              {/* Metadata grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2">
+                  <Calendar size={16} className="text-gold flex-shrink-0" />
+                  <span>June 19, 2025</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock size={16} className="text-gold flex-shrink-0" />
+                  <span>6 min read</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <User size={16} className="text-gold flex-shrink-0" />
+                  <span>Dr. Alexie Aguil</span>
+                </div>
               </div>
             </div>
 
