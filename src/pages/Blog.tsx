@@ -15,7 +15,6 @@ interface BlogPost {
   date: string;
   readTime: string;
   category: string;
-  image: string;
   slug: string;
 }
 
@@ -28,7 +27,6 @@ const blogPosts: BlogPost[] = [
     date: 'June 19, 2025',
     readTime: '6 min read',
     category: 'Cosmetic Dentistry',
-    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&h=400&fit=crop',
     slug: 'single-tooth-veneers-perfect-solutions'
   }
 ];
@@ -50,11 +48,17 @@ const Blog = () => {
         <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles" />
       </Helmet>
 
-      <PageHeader
-        title="Dental Blog"
-        subtitle="Expert insights, tips, and advice for optimal oral health and beautiful smiles"
-        bgImage="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=600&fit=crop"
-      />
+      <div className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gold/10 via-gold/5 to-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent"></div>
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-black">
+            Dental Blog
+          </h1>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+            Expert insights, tips, and advice for optimal oral health and beautiful smiles
+          </p>
+        </div>
+      </div>
 
       <section className="section-spacing bg-white">
         <div className="max-w-7xl mx-auto mobile-optimized-padding">
@@ -86,14 +90,17 @@ const Blog = () => {
             
             <Card className="overflow-hidden shadow-lg">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                <div className="relative h-64 lg:h-auto">
-                  <img
-                    src={blogPosts[0].image}
-                    alt={blogPosts[0].title}
-                    className="w-full h-full object-cover"
-                    width={800}
-                    height={400}
-                  />
+                <div className="relative h-64 lg:h-auto bg-gradient-to-br from-gold/30 via-gold/10 to-gold/5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gold/40 via-transparent to-gold/20"></div>
+                  <div className="relative z-10 h-full flex items-center justify-center">
+                    <div className="text-center p-8">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-white/80 rounded-full flex items-center justify-center">
+                        <User size={32} className="text-gold" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2">Single Tooth Veneers</h3>
+                      <p className="text-gray-600">Transform your smile with precision</p>
+                    </div>
+                  </div>
                 </div>
                 <CardContent className="p-6 md:p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
@@ -132,8 +139,9 @@ const Blog = () => {
 
           {/* Newsletter Signup */}
           <div className="mt-16 md:mt-20">
-            <Card className="bg-gradient-to-r from-gray-50 to-gold/5 border-gold/20">
-              <CardContent className="p-8 md:p-12 text-center">
+            <Card className="bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 border-gold/20 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent"></div>
+              <CardContent className="relative z-10 p-8 md:p-12 text-center">
                 <h3 className="text-2xl md:text-3xl font-semibold mb-4">
                   Stay Updated with Our Latest Articles
                 </h3>
