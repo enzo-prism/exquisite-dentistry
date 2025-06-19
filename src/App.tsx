@@ -78,6 +78,7 @@ const AppRoutes = () => (
         <Route path="/faq" element={<Navigate to="/faqs" replace />} />
         <Route path="/smile-gallery" element={<SmileGallery />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/single-tooth-veneers-perfect-solutions" element={<SingleToothVeneersBlog />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/hipaa-compliance" element={<HipaaCompliance />} />
