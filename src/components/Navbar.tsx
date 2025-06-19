@@ -145,6 +145,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">About</NavLink>
               <NavLink to="/services">Services</NavLink>
+              <NavLink to="/blog">Blog</NavLink>
               
               <HoverCard openDelay={0} closeDelay={100}>
                 <HoverCardTrigger asChild>
@@ -229,6 +230,7 @@ const Navbar = () => {
           <MobileNavLink to="/" onClick={closeMobileMenu}>Home</MobileNavLink>
           <MobileNavLink to="/about" onClick={closeMobileMenu}>About</MobileNavLink>
           <MobileNavLink to="/services" onClick={closeMobileMenu}>Services</MobileNavLink>
+          <MobileNavLink to="/blog" onClick={closeMobileMenu}>Blog</MobileNavLink>
           
           <MobileDropdown title="Clients">
             <MobileNavLink to="/smile-gallery" onClick={closeMobileMenu}>Smile Gallery</MobileNavLink>

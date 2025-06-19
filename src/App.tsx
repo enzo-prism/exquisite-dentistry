@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,6 +23,7 @@ import SmileGallery from "@/pages/SmileGallery";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import HipaaCompliance from "@/pages/HipaaCompliance";
+import Blog from "@/pages/Blog";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -76,6 +76,7 @@ const AppRoutes = () => (
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/faq" element={<Navigate to="/faqs" replace />} />
         <Route path="/smile-gallery" element={<SmileGallery />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/hipaa-compliance" element={<HipaaCompliance />} />
