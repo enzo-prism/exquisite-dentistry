@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -136,31 +135,6 @@ const Blog = () => {
                   </div>
                 </CardContent>
               </div>
-            </Card>
-          </div>
-
-          {/* Newsletter Signup */}
-          <div className="mt-16 md:mt-20">
-            <Card className="bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 border-gold/20 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent"></div>
-              <CardContent className="relative z-10 p-8 md:p-12 text-center">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-                  Stay Updated with Our Latest Articles
-                </h3>
-                <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Subscribe to our newsletter and receive expert dental tips, treatment updates, and exclusive insights directly in your inbox.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold"
-                  />
-                  <Button variant="gold" size="lg" className="whitespace-nowrap">
-                    Subscribe
-                  </Button>
-                </div>
-              </CardContent>
             </Card>
           </div>
         </div>
