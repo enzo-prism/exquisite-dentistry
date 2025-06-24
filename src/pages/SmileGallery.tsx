@@ -85,30 +85,6 @@ const SmileGallery = () => {
           </div>
         </div>
       </section>
-
-      {/* Mobile-optimized CTA section */}
-      <section className="bg-gray-900 py-12 md:py-16">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-white">Ready for Your Own Transformation?</h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Our cosmetic dentistry experts can help you achieve the smile you've always dreamed of. 
-            Schedule your consultation today to start your journey.
-          </p>
-          <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4 justify-center`}>
-            <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-6 text-lg w-full md:w-auto">
-              <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                Schedule Your Consultation
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-            <Button asChild variant="outline" className="border-gold text-gold hover:bg-gold/10 px-8 py-6 text-lg w-full md:w-auto">
-              <Link to="/contact">
-                Contact Us
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </>
   );
 };
