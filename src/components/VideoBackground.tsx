@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -13,6 +12,7 @@ interface VideoBackgroundProps {
   overlayOpacity?: number;
   aspectRatio?: number;
   isContained?: boolean;
+  onLoad?: () => void;
 }
 
 const VideoBackground: React.FC<VideoBackgroundProps> = ({
@@ -23,7 +23,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   className,
   overlayOpacity = 60,
   aspectRatio = 16 / 9,
-  isContained = false
+  isContained = false,
+  onLoad
 }) => {
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
+            onLoad?.(); // Call onLoad callback if provided
             observer.disconnect();
           }
         });
@@ -54,7 +56,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     }
     
     return () => observer.disconnect();
-  }, []);
+  }, [onLoad]);
   
   useEffect(() => {
     if (!isVisible) return;

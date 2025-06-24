@@ -28,7 +28,6 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         <h1 
           className="text-2xl sm:text-3xl font-bold mb-4 leading-tight"
           style={{ 
-            fontDisplay: 'swap',
             willChange: 'auto',
             contain: 'layout style'
           }}
@@ -40,7 +39,6 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           <p 
             className="text-sm sm:text-base mb-6 text-white/90 leading-relaxed"
             style={{ 
-              fontDisplay: 'swap',
               contain: 'layout'
             }}
           >
