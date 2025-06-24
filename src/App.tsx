@@ -3,28 +3,30 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import Index from "@/pages/Index";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import Testimonials from "@/pages/Testimonials";
-import Contact from "@/pages/Contact";
-import NotFound from "@/pages/NotFound";
-import ClientExperience from "@/pages/ClientExperience";
-import Wedding from "@/pages/Wedding";
-import Graduation from "@/pages/Graduation";
-import FAQs from "@/pages/FAQs";
-import SmileGallery from "@/pages/SmileGallery";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsOfService from "@/pages/TermsOfService";
-import HipaaCompliance from "@/pages/HipaaCompliance";
-import Blog from "@/pages/Blog";
-import SingleToothVeneersBlog from "@/pages/SingleToothVeneersBlog";
+
+// Lazy load all routes for code splitting
+const Index = lazy(() => import("@/pages/Index"));
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const Testimonials = lazy(() => import("@/pages/Testimonials"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
+const Wedding = lazy(() => import("@/pages/Wedding"));
+const Graduation = lazy(() => import("@/pages/Graduation"));
+const FAQs = lazy(() => import("@/pages/FAQs"));
+const SmileGallery = lazy(() => import("@/pages/SmileGallery"));
+const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
+const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
+const Blog = lazy(() => import("@/pages/Blog"));
+const SingleToothVeneersBlog = lazy(() => import("@/pages/SingleToothVeneersBlog"));
 
 // Create a client
 const queryClient = new QueryClient({
@@ -56,6 +58,15 @@ const RouteAudit = () => {
   return null;
 };
 
+// Loading fallback component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="animate-pulse">
+      <div className="w-12 h-12 bg-gold/20 rounded-full"></div>
+    </div>
+  </div>
+);
+
 const AppRoutes = () => (
   <>
     <ScrollToTop />
@@ -63,25 +74,55 @@ const AppRoutes = () => (
     <Navbar />
     <main className="flex-grow">
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Suspense fallback={<PageLoader />}>
+          <Index />
+        </Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<PageLoader />}>
+          <About />
+        </Suspense>} />
         <Route path="/about-us/about-dr-alexie-aguil/" element={<Navigate to="/about" replace />} />
         <Route path="/about-us" element={<Navigate to="/about" replace />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<Suspense fallback={<PageLoader />}>
+          <Services />
+        </Suspense>} />
         <Route path="/services/general-dentistry/" element={<Navigate to="/services" replace />} />
-        <Route path="/client-experience" element={<ClientExperience />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/wedding" element={<Wedding />} />
-        <Route path="/graduation" element={<Graduation />} />
-        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/client-experience" element={<Suspense fallback={<PageLoader />}>
+          <ClientExperience />
+        </Suspense>} />
+        <Route path="/testimonials" element={<Suspense fallback={<PageLoader />}>
+          <Testimonials />
+        </Suspense>} />
+        <Route path="/contact" element={<Suspense fallback={<PageLoader />}>
+          <Contact />
+        </Suspense>} />
+        <Route path="/wedding" element={<Suspense fallback={<PageLoader />}>
+          <Wedding />
+        </Suspense>} />
+        <Route path="/graduation" element={<Suspense fallback={<PageLoader />}>
+          <Graduation />
+        </Suspense>} />
+        <Route path="/faqs" element={<Suspense fallback={<PageLoader />}>
+          <FAQs />
+        </Suspense>} />
         <Route path="/faq" element={<Navigate to="/faqs" replace />} />
-        <Route path="/smile-gallery" element={<SmileGallery />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/single-tooth-veneers-perfect-solutions" element={<SingleToothVeneersBlog />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/hipaa-compliance" element={<HipaaCompliance />} />
+        <Route path="/smile-gallery" element={<Suspense fallback={<PageLoader />}>
+          <SmileGallery />
+        </Suspense>} />
+        <Route path="/blog" element={<Suspense fallback={<PageLoader />}>
+          <Blog />
+        </Suspense>} />
+        <Route path="/blog/single-tooth-veneers-perfect-solutions" element={<Suspense fallback={<PageLoader />}>
+          <SingleToothVeneersBlog />
+        </Suspense>} />
+        <Route path="/privacy-policy" element={<Suspense fallback={<PageLoader />}>
+          <PrivacyPolicy />
+        </Suspense>} />
+        <Route path="/terms-of-service" element={<Suspense fallback={<PageLoader />}>
+          <TermsOfService />
+        </Suspense>} />
+        <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoader />}>
+          <HipaaCompliance />
+        </Suspense>} />
         
         {/* Old website redirects based on top pages */}
         <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/services" replace />} />
@@ -106,7 +147,9 @@ const AppRoutes = () => (
         <Route path="/restoration-and-maintenance-for-dental-veneers/" element={<Navigate to="/services" replace />} />
         
         {/* Catch-all for any other old routes */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Suspense fallback={<PageLoader />}>
+          <NotFound />
+        </Suspense>} />
       </Routes>
     </main>
     <Footer />

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -57,6 +56,18 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Check if the image is hosted on lovable-uploads
   const isLocalImage = src.includes('/lovable-uploads/');
   
+  // Generate optimized paths
+  const getOptimizedPath = (size?: string) => {
+    if (!isLocalImage) return src;
+    
+    const filename = src.split('/').pop()?.split('.')[0];
+    const suffix = size || 'original';
+    
+    // Check if optimized version exists
+    const optimizedPath = `/optimized/${filename}-${suffix}.webp`;
+    return optimizedPath;
+  };
+  
   // Intersection Observer for lazy loading
   useEffect(() => {
     if (priority || isVisible) return;
@@ -85,11 +96,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   
   // Preload critical images
   useEffect(() => {
-    if (priority) {
+    if (priority && isLocalImage) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
-      link.href = src;
+      link.type = 'image/webp';
+      link.href = getOptimizedPath('lg');
       document.head.appendChild(link);
       
       return () => {
@@ -98,7 +110,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         }
       };
     }
-  }, [priority, src]);
+  }, [priority, src, isLocalImage]);
   
   // Handle image load event
   const handleImageLoad = () => {
@@ -119,15 +131,24 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const getSrcSet = () => {
     if (!isLocalImage || error || !width) return undefined;
     
-    // Generate multiple sizes for responsive loading
-    const sizes = [0.5, 1, 1.5, 2].map(scale => Math.round(width * scale));
-    return sizes.map(size => `${src} ${size}w`).join(', ');
+    // Generate srcset with optimized WebP images
+    const sizes = [
+      { width: 320, suffix: 'sm' },
+      { width: 640, suffix: 'md' },
+      { width: 1024, suffix: 'lg' },
+      { width: 1920, suffix: 'xl' }
+    ];
+    
+    return sizes
+      .filter(size => width >= size.width * 0.5) // Only include sizes that make sense
+      .map(size => `${getOptimizedPath(size.suffix)} ${size.width}w`)
+      .join(', ');
   };
   
   // Determine sizes attribute for responsive images
   const getSizes = () => {
     if (!width || fill || !isLocalImage) return undefined;
-    return '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
+    return '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
   };
 
   return (
@@ -162,30 +183,42 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       
       {/* Actual image - only render when visible or priority */}
       {(isVisible || priority) && !error && (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt}
-          width={fill ? undefined : width}
-          height={fill ? undefined : height}
-          loading={loadingStrategy}
-          fetchPriority={priority ? 'high' : 'auto'}
-          decoding="async"
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-          className={cn(
-            'transition-opacity duration-300',
-            fill ? 'object-cover w-full h-full' : '',
-            isLoaded ? 'opacity-100' : 'opacity-0',
-            objectFit ? `object-${objectFit}` : ''
+        <picture>
+          {/* WebP source for modern browsers */}
+          {isLocalImage && (
+            <source
+              type="image/webp"
+              srcSet={getSrcSet()}
+              sizes={getSizes()}
+            />
           )}
-          style={{
-            objectFit,
-          }}
-          sizes={getSizes()}
-          srcSet={getSrcSet()}
-          {...props}
-        />
+          
+          {/* Fallback to original format */}
+          <img
+            ref={imgRef}
+            src={error || !isLocalImage ? src : getOptimizedPath()}
+            alt={alt}
+            width={fill ? undefined : width}
+            height={fill ? undefined : height}
+            loading={loadingStrategy}
+            fetchPriority={priority ? 'high' : 'auto'}
+            decoding="async"
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            className={cn(
+              'transition-opacity duration-300',
+              fill ? 'object-cover w-full h-full' : '',
+              isLoaded ? 'opacity-100' : 'opacity-0',
+              objectFit ? `object-${objectFit}` : ''
+            )}
+            style={{
+              objectFit,
+            }}
+            sizes={!isLocalImage ? getSizes() : undefined}
+            srcSet={!isLocalImage && !error && width ? getSrcSet() : undefined}
+            {...props}
+          />
+        </picture>
       )}
       
       {/* Error fallback */}

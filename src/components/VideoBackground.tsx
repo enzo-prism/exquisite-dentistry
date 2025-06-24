@@ -29,12 +29,32 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Defer video loading until after initial page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Check if the page has been idle for a moment
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => {
+          setShouldLoadVideo(true);
+        }, { timeout: 2000 });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setShouldLoadVideo(true);
+      }
+    }, 1000); // Wait 1 second before considering video load
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   // Intersection Observer for lazy loading videos
   useEffect(() => {
+    if (!shouldLoadVideo) return;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,7 +76,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     }
     
     return () => observer.disconnect();
-  }, [onLoad]);
+  }, [onLoad, shouldLoadVideo]);
   
   useEffect(() => {
     if (!isVisible) return;
@@ -70,7 +90,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   // Optimized video playback
   useEffect(() => {
-    if (!isVisible || !videoRef.current) return;
+    if (!isVisible || !videoRef.current || !shouldLoadVideo) return;
     
     const playVideo = async () => {
       try {
@@ -99,11 +119,11 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     if (!vimeoId && streamableUrl) {
       playVideo();
     }
-  }, [isVisible, vimeoId, streamableUrl]);
+  }, [isVisible, vimeoId, streamableUrl, shouldLoadVideo]);
   
   // Preload Vimeo API only when needed
   useEffect(() => {
-    if (vimeoId && isVisible) {
+    if (vimeoId && isVisible && shouldLoadVideo) {
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
         const script = document.createElement('script');
         script.src = 'https://player.vimeo.com/api/player.js';
@@ -112,17 +132,19 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         document.body.appendChild(script);
       }
     }
-  }, [vimeoId, isVisible]);
+  }, [vimeoId, isVisible, shouldLoadVideo]);
   
   const renderVideoElement = () => {
-    if (!isVisible) {
-      // Show poster image while not visible
+    // Always show poster image initially
+    if (!isVisible || !shouldLoadVideo) {
       return posterSrc ? (
         <img
           src={posterSrc}
           alt="Video poster"
           className="w-full h-full object-cover"
           loading="lazy"
+          width={1920}
+          height={1080}
         />
       ) : (
         <div className="w-full h-full bg-black" />
@@ -232,15 +254,24 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         )}
       />
       
-      {/* Loading placeholder */}
-      {isLoading && (
-        <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/80 via-black/90 to-black/80" />
+      {/* Loading placeholder with poster image */}
+      {(isLoading || !shouldLoadVideo) && posterSrc && (
+        <div className="absolute inset-0 w-full h-full z-5">
+          <img
+            src={posterSrc}
+            alt="Video poster"
+            className="w-full h-full object-cover opacity-30"
+            loading="eager"
+            width={1920}
+            height={1080}
+          />
+        </div>
       )}
       
       {/* Video content */}
       <div className={cn(
         "absolute inset-0 w-full h-full z-10 overflow-hidden transition-opacity duration-700",
-        isLoading ? "opacity-0" : "opacity-100",
+        isLoading || !shouldLoadVideo ? "opacity-0" : "opacity-100",
         className
       )}>
         <div className="absolute inset-0 bg-black/60 z-10"></div>
