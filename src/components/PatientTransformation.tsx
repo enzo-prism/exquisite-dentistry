@@ -135,15 +135,6 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 </div>
               </div>
             </div>
-
-            {/* Minimal interaction hint */}
-            {isHovering && !isDragging && (
-              <div className="absolute inset-0 bg-black/10 flex items-center justify-center pointer-events-none">
-                <div className="bg-white/95 px-3 py-1.5 rounded-lg text-xs text-gray-700 shadow-md">
-                  Drag to compare
-                </div>
-              </div>
-            )}
           </div>
         </AspectRatio>
       </div>
