@@ -15,7 +15,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center overflow-hidden">
       <VideoBackground
         vimeoId={vimeoId}
         onLoad={() => setIsVideoLoaded(true)}
@@ -24,9 +24,9 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
       
       <div className="absolute inset-0 bg-black/40 z-10" />
       
-      <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div className="relative z-20 text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
         <h1 
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-left"
           style={{ 
             willChange: 'auto',
             contain: 'layout style'
@@ -37,7 +37,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl text-white/90 leading-relaxed text-left"
             style={{ 
               contain: 'layout'
             }}
@@ -46,10 +46,12 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
           </p>
         )}
         
-        <HeroCtaButtons 
-          primaryCta={primaryCta}
-          secondaryCta={secondaryCta}
-        />
+        <div className="flex justify-start">
+          <HeroCtaButtons 
+            primaryCta={primaryCta}
+            secondaryCta={secondaryCta}
+          />
+        </div>
       </div>
     </section>
   );

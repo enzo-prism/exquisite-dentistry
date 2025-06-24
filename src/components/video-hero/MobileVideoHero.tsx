@@ -15,7 +15,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[60vh] flex items-center overflow-hidden">
       <VideoBackground
         vimeoId={vimeoId}
         onLoad={() => setIsVideoLoaded(true)}
@@ -24,9 +24,9 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       
       <div className="absolute inset-0 bg-black/50 z-10" />
       
-      <div className="relative z-20 text-center text-white px-4 max-w-sm mx-auto">
+      <div className="relative z-20 text-white px-4 max-w-sm">
         <h1 
-          className="text-2xl sm:text-3xl font-bold mb-4 leading-tight"
+          className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-left"
           style={{ 
             willChange: 'auto',
             contain: 'layout style'
@@ -37,7 +37,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-sm sm:text-base mb-6 text-white/90 leading-relaxed"
+            className="text-sm sm:text-base mb-6 text-white/90 leading-relaxed text-left"
             style={{ 
               contain: 'layout'
             }}
@@ -46,10 +46,13 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           </p>
         )}
         
-        <HeroCtaButtons 
-          primaryCta={primaryCta}
-          secondaryCta={secondaryCta}
-        />
+        <div className="flex justify-start">
+          <HeroCtaButtons 
+            primaryCta={primaryCta}
+            secondaryCta={secondaryCta}
+            isMobile={true}
+          />
+        </div>
       </div>
     </section>
   );
