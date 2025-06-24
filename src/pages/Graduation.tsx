@@ -230,22 +230,6 @@ const Graduation = () => {
             </div>
           </div>
         </section>
-
-        <section className="py-12 md:py-16 bg-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-sans font-semibold text-white leading-tight mb-6">
-                Graduate <span className="text-gold">Confidently</span>
-              </h2>
-              <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-                Don't wait! Schedule your consultation today and let us help you create a graduation-ready smile.
-              </p>
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="xl">Book Consultation</Button>
-              </a>
-            </div>
-          </div>
-        </section>
       </div>
     </>
   );
