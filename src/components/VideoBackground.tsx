@@ -131,7 +131,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     
     if (vimeoId) {
       return (
-        <div className="w-full h-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
           <iframe 
             ref={iframeRef}
             src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479&quality=auto`}
@@ -139,10 +139,11 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '180%' : '140%',
-              height: isMobile ? '180%' : '140%',
+              width: isMobile ? '200%' : '140%',
+              height: isMobile ? '200%' : '140%',
               transform: 'translate(-50%, -50%)',
               maxWidth: 'none',
+              maxHeight: 'none',
               objectFit: 'cover'
             }}
             frameBorder="0"
@@ -163,16 +164,16 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           loop
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '150%' : '120%',
-            height: isMobile ? '150%' : '120%',
-            transform: 'translate(-25%, -25%)',
-            maxWidth: 'none',
+            width: '100%',
+            height: '100%',
+            minWidth: '100%',
+            minHeight: '100%',
             position: 'absolute',
-            top: '50%',
-            left: '50%'
+            top: '0',
+            left: '0'
           }}
           poster={posterSrc}
         >
@@ -184,24 +185,27 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     
     if (youtubeId) {
       return (
-        <iframe 
-          src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1&origin=${window.location.origin}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          className="w-full h-full"
-          style={{ 
-            objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '160%' : '130%',
-            height: isMobile ? '160%' : '130%',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            maxWidth: 'none'
-          }}
-          frameBorder="0"
-          title="Video player"
-          loading="lazy"
-        />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <iframe 
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1&origin=${window.location.origin}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            className="absolute"
+            style={{ 
+              width: isMobile ? '200%' : '140%',
+              height: isMobile ? '200%' : '140%',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              maxWidth: 'none',
+              maxHeight: 'none',
+              objectFit: 'cover'
+            }}
+            frameBorder="0"
+            title="Video player"
+            loading="lazy"
+          />
+        </div>
       );
     }
     

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
@@ -15,11 +14,11 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+    <section className="relative h-[100vh] h-[100dvh] min-h-[600px] flex items-center overflow-hidden">
       <VideoBackground
         vimeoId={vimeoId}
         onLoad={() => setIsVideoLoaded(true)}
-        className="absolute inset-0"
+        className="absolute inset-0 w-full h-full"
       />
       
       <div className="absolute inset-0 bg-black/50 z-10" />
