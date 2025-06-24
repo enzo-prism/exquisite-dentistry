@@ -12,15 +12,17 @@
     animation-delay: 600ms;
   }
   
-  /* Fixed section spacing to eliminate gaps */
+  /* Performance optimized section spacing */
   .section-vertical-spacing {
     @apply py-12 md:py-16 lg:py-24 xl:py-32;
     margin: 0;
+    contain: layout style;
   }
   
   .content-vertical-spacing {
     @apply py-6 md:py-8 lg:py-12;
     margin: 0;
+    contain: layout;
   }
   
   .element-spacing {
@@ -35,22 +37,47 @@
     text-wrap: balance;
   }
 
-  /* Fix for unwanted gaps */
+  /* Performance optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
   .no-gap {
     margin: 0;
     padding: 0;
   }
+  
+  /* Intersection observer optimization */
+  .lazy-load {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px;
+  }
 }
 
 @layer base {
+  /* Performance optimized base styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+  
   body {
     @apply bg-gray-50 text-black antialiased m-0 p-0;
     overflow-x: hidden;
     min-height: 100vh;
+    font-display: swap;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply mb-6;
+    font-display: swap;
   }
   
   p {
@@ -60,11 +87,28 @@
   /* Remove default margin from sections causing gaps */
   section {
     @apply m-0;
+    contain: layout style;
   }
   
   /* Improve tap target sizes on mobile */
   button, a, [role="button"] {
     @apply min-h-[44px] touch-manipulation;
+  }
+  
+  /* Optimize images and videos */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    content-visibility: auto;
+  }
+  
+  /* Reduce motion for accessibility and performance */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -73,12 +117,14 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24 xl:py-32;
     margin-top: 0;
     margin-bottom: 0;
+    contain: layout style;
   }
 
   .section-spacing {
     @apply py-12 md:py-16 lg:py-24 xl:py-32;
     margin-top: 0;
     margin-bottom: 0;
+    contain: layout style;
   }
 
   .content-spacing {
@@ -128,6 +174,7 @@
   .page-section {
     @apply py-12 md:py-16 lg:py-24;
     margin: 0;
+    contain: layout style;
   }
   
   .mobile-grid {
@@ -144,6 +191,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    contain: layout style;
   }
 
   .bg-section::before,
@@ -151,9 +199,10 @@
     display: none;
   }
   
-  /* New design elements */
+  /* Performance optimized design elements */
   .heading-lg {
     @apply text-3xl md:text-4xl lg:text-5xl font-semibold;
+    font-display: swap;
   }
   
   .paragraph {
@@ -162,13 +211,23 @@
   
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.01];
+    will-change: transform;
   }
   
   .gradient-overlay {
     @apply bg-gradient-to-t from-black/80 via-black/40 to-transparent;
   }
+  
+  /* Loading skeletons */
+  .skeleton {
+    @apply bg-gray-200 animate-pulse rounded;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
 }
 
+/* Performance optimizations for mobile */
 @media (max-width: 640px) {
   html {
     scroll-padding-top: 80px;
@@ -182,15 +241,40 @@
     overflow-x: hidden;
     width: 100%;
   }
+  
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
 }
 
+/* Layout optimization */
 .full-width-section {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   position: relative;
+  contain: layout;
 }
 
 .bg-black {
   background-color: #1A1A1A;
+}
+
+/* Performance keyframes */
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes pageTransitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

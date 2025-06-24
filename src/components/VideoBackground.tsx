@@ -27,103 +27,126 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
+  // Intersection Observer for lazy loading videos
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    
-    return () => clearTimeout(timer);
-  }, [youtubeId, streamableUrl, vimeoId]);
-  
-  useEffect(() => {
-    const playVideo = async () => {
-      if (videoRef.current) {
-        try {
-          videoRef.current.muted = true;
-          const playPromise = videoRef.current.play();
-          
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                console.log('Video playback started successfully');
-              })
-              .catch(error => {
-                console.error('Error playing video:', error);
-                setTimeout(() => {
-                  if (videoRef.current) {
-                    videoRef.current.play().catch(e => 
-                      console.error('Second attempt to play video failed:', e)
-                    );
-                  }
-                }, 1000);
-              });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
           }
-        } catch (error) {
-          console.error('Error in playVideo function:', error);
-        }
+        });
+      },
+      {
+        rootMargin: '100px', // Start loading 100px before coming into view
+        threshold: 0.1
       }
-    };
+    );
     
-    if (!vimeoId) {
-      playVideo();
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
     
-    const video = videoRef.current;
-    if (video) {
-      const handleError = (e: Event) => console.error('Video error:', e);
-      const handleStalled = () => console.warn('Video stalled');
-      const handleWaiting = () => console.warn('Video waiting');
-      const handleLoad = () => console.log('Video loaded metadata');
-      
-      video.addEventListener('error', handleError);
-      video.addEventListener('stalled', handleStalled);
-      video.addEventListener('waiting', handleWaiting);
-      video.addEventListener('loadedmetadata', handleLoad);
-      
-      return () => {
-        video.removeEventListener('error', handleError);
-        video.removeEventListener('stalled', handleStalled);
-        video.removeEventListener('waiting', handleWaiting);
-        video.removeEventListener('loadedmetadata', handleLoad);
-      };
-    }
+    return () => observer.disconnect();
   }, []);
   
   useEffect(() => {
-    if (vimeoId) {
+    if (!isVisible) return;
+    
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300); // Reduced from 500ms
+    
+    return () => clearTimeout(timer);
+  }, [isVisible]);
+  
+  // Optimized video playback
+  useEffect(() => {
+    if (!isVisible || !videoRef.current) return;
+    
+    const playVideo = async () => {
+      try {
+        const video = videoRef.current;
+        if (!video) return;
+        
+        video.muted = true;
+        video.preload = 'metadata'; // Only load metadata initially
+        
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Video playback started successfully');
+            })
+            .catch(error => {
+              console.error('Error playing video:', error);
+            });
+        }
+      } catch (error) {
+        console.error('Error in playVideo function:', error);
+      }
+    };
+    
+    if (!vimeoId && streamableUrl) {
+      playVideo();
+    }
+  }, [isVisible, vimeoId, streamableUrl]);
+  
+  // Preload Vimeo API only when needed
+  useEffect(() => {
+    if (vimeoId && isVisible) {
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
         const script = document.createElement('script');
         script.src = 'https://player.vimeo.com/api/player.js';
         script.async = true;
+        script.defer = true; // Add defer for better performance
         document.body.appendChild(script);
       }
     }
-  }, [vimeoId]);
+  }, [vimeoId, isVisible]);
   
   const renderVideoElement = () => {
+    if (!isVisible) {
+      // Show poster image while not visible
+      return posterSrc ? (
+        <img
+          src={posterSrc}
+          alt="Video poster"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div className="w-full h-full bg-black" />
+      );
+    }
+    
     if (vimeoId) {
       return (
         <div className="w-full h-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
           <iframe 
             ref={iframeRef}
-            src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479`}
+            src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479&quality=auto`}
             style={{ 
               position: 'absolute', 
               top: '50%', 
               left: '50%', 
-              width: isMobile ? '180%' : '140%',  // Optimized scaling to minimize cropping
-              height: isMobile ? '180%' : '140%',  // Optimized scaling to minimize cropping
-              transform: 'translate(-50%, -50%)', // Centered positioning
+              width: isMobile ? '180%' : '140%',
+              height: isMobile ? '180%' : '140%',
+              transform: 'translate(-50%, -50%)',
               maxWidth: 'none',
               objectFit: 'cover'
             }}
             frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            title="Exquisite Dentistry Video Background"
-            loading="eager"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Video Background"
+            loading="lazy"
           />
         </div>
       );
@@ -137,12 +160,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '150%' : '120%', // Optimized scaling
-            height: isMobile ? '150%' : '120%', // Optimized scaling
-            transform: 'translate(-25%, -25%)', // Adjusted centering
+            width: isMobile ? '150%' : '120%',
+            height: isMobile ? '150%' : '120%',
+            transform: 'translate(-25%, -25%)',
             maxWidth: 'none',
             position: 'absolute',
             top: '50%',
@@ -152,7 +176,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         >
           <source src={`${streamableUrl}.mp4`} type="video/mp4" />
           <source src={streamableUrl} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       );
     }
@@ -165,17 +188,17 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           className="w-full h-full"
           style={{ 
             objectFit: isContained ? 'contain' : 'cover',
-            width: isMobile ? '160%' : '130%', // Optimized scaling for YouTube
-            height: isMobile ? '160%' : '130%', // Optimized scaling for YouTube
+            width: isMobile ? '160%' : '130%',
+            height: isMobile ? '160%' : '130%',
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)', // Perfect centering
+            transform: 'translate(-50%, -50%)',
             maxWidth: 'none'
           }}
           frameBorder="0"
           title="Video player"
-          loading="eager"
+          loading="lazy"
         />
       );
     }
@@ -185,7 +208,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   if (isContained) {
     return (
-      <div className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
+      <div ref={containerRef} className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
         <AspectRatio ratio={aspectRatio}>
           {renderVideoElement()}
         </AspectRatio>
@@ -194,7 +217,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }
   
   return (
-    <>
+    <div ref={containerRef} className="absolute inset-0 w-full h-full">
+      {/* Loading background */}
       <div 
         className={cn(
           "absolute inset-0 w-full h-full bg-black z-0 transition-opacity duration-700",
@@ -202,16 +226,17 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         )}
       />
       
+      {/* Loading placeholder */}
       {isLoading && (
-        <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/80 via-black/90 to-black/80 animate-pulse-subtle" />
+        <div className="absolute inset-0 w-full h-full z-5 bg-gradient-to-r from-black/80 via-black/90 to-black/80" />
       )}
       
+      {/* Video content */}
       <div className={cn(
         "absolute inset-0 w-full h-full z-10 overflow-hidden transition-opacity duration-700",
         isLoading ? "opacity-0" : "opacity-100",
         className
       )}>
-        {/* Updated overlay opacity to 60% - from bg-black/80 to bg-black/60 */}
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
@@ -220,7 +245,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

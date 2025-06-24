@@ -22,13 +22,14 @@ export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEl
 }
 
 /**
- * OptimizedImage - A component for optimized image loading
+ * OptimizedImage - A high-performance component for optimized image loading
  * 
  * Features:
  * - Lazy loading for non-priority images
  * - Responsive images with srcset
  * - Modern image format support (WebP, AVIF with fallbacks)
- * - Placeholder while loading
+ * - Intersection Observer for performance
+ * - Preload hints for critical images
  * - Smooth fade-in animation
  */
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -41,17 +42,63 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   priority = false,
   className = '',
   objectFit = 'cover',
-  placeholderColor = 'transparent', // Changed to transparent for better PNG support
+  placeholderColor = 'transparent',
   formats = ['webp', 'original'],
   onLoad,
   onError,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(priority); // Priority images are immediately visible
   const [error, setError] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   
   // Check if the image is hosted on lovable-uploads
   const isLocalImage = src.includes('/lovable-uploads/');
+  
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority || isVisible) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '50px', // Start loading 50px before the image comes into view
+        threshold: 0.1
+      }
+    );
+    
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, [priority, isVisible]);
+  
+  // Preload critical images
+  useEffect(() => {
+    if (priority) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+      
+      return () => {
+        if (document.head.contains(link)) {
+          document.head.removeChild(link);
+        }
+      };
+    }
+  }, [priority, src]);
   
   // Handle image load event
   const handleImageLoad = () => {
@@ -68,22 +115,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Determine if image should be lazy loaded
   const loadingStrategy = priority ? 'eager' : 'lazy';
   
-  // For local images we can generate a simpler path structure
-  // For external images we don't attempt format conversion
+  // Generate responsive srcset for better performance
   const getSrcSet = () => {
-    if (!isLocalImage || error) return undefined;
+    if (!isLocalImage || error || !width) return undefined;
     
-    if (width && !fill) {
-      // Calculate responsive sizes
-      const sizes = [0.5, 1, 1.5, 2].map(scale => Math.round(width * scale));
-      
-      // Generate srcset for WebP if supported
-      if (formats.includes('webp')) {
-        return sizes.map(size => `${src} ${size}w`).join(', ');
-      }
-    }
-    
-    return undefined;
+    // Generate multiple sizes for responsive loading
+    const sizes = [0.5, 1, 1.5, 2].map(scale => Math.round(width * scale));
+    return sizes.map(size => `${src} ${size}w`).join(', ');
   };
   
   // Determine sizes attribute for responsive images
@@ -94,10 +132,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   return (
     <div 
+      ref={containerRef}
       className={cn(
         'relative overflow-hidden',
         fill ? 'w-full h-full' : '',
-        isLocalImage && src.toLowerCase().endsWith('.png') ? 'bg-transparent' : '', // Add transparent background for PNGs
+        isLocalImage && src.toLowerCase().endsWith('.png') ? 'bg-transparent' : '',
         className
       )}
       style={{
@@ -107,8 +146,24 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         aspectRatio: width && height ? `${width}/${height}` : undefined,
       }}
     >
-      {!error && (
+      {/* Placeholder while loading */}
+      {!isLoaded && !error && (
+        <div 
+          className={cn(
+            "absolute inset-0 bg-gray-100 animate-pulse",
+            fill ? 'w-full h-full' : ''
+          )}
+          style={{
+            width: fill ? '100%' : width,
+            height: fill ? '100%' : height,
+          }}
+        />
+      )}
+      
+      {/* Actual image - only render when visible or priority */}
+      {(isVisible || priority) && !error && (
         <img
+          ref={imgRef}
           src={src}
           alt={alt}
           width={fill ? undefined : width}
@@ -133,11 +188,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
       
-      {/* Display fallback for error state */}
+      {/* Error fallback */}
       {error && (
         <div 
           className={cn(
-            "flex items-center justify-center bg-transparent text-gray-400 text-sm", // Changed bg to transparent
+            "flex items-center justify-center bg-transparent text-gray-400 text-sm",
             fill ? 'w-full h-full' : ''
           )}
           style={{

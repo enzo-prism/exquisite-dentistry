@@ -21,30 +21,51 @@
     <link rel="icon" href="/lovable-uploads/c02fc442-7238-4410-80f6-e6fb780c406f.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/c02fc442-7238-4410-80f6-e6fb780c406f.png">
     
+    <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://static.hotjar.com" crossorigin>
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2HKBYNRKYX"></script>
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//player.vimeo.com">
+    <link rel="dns-prefetch" href="//www.youtube.com">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" as="image" type="image/png">
+    
+    <!-- Google tag (gtag.js) - Optimized loading -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-2HKBYNRKYX');
+      gtag('config', 'G-2HKBYNRKYX', {
+        'page_title': document.title,
+        'page_location': window.location.href
+      });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2HKBYNRKYX"></script>
     
-    <!-- Hotjar Tracking Code for Primary -->
+    <!-- Hotjar Tracking Code - Optimized loading -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:5272510,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.addEventListener('load', function() {
+          (function(h,o,t,j,a,r){
+              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+              h._hjSettings={hjid:5272510,hjsv:6};
+              a=o.getElementsByTagName('head')[0];
+              r=o.createElement('script');r.async=1;
+              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+              a.appendChild(r);
+          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        });
     </script>
     
     <style>
@@ -52,11 +73,43 @@
       .gptengineer-select-ux-container {
         display: none !important;
       }
+      
+      /* Critical CSS for above-the-fold content */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+        background-color: #f9fafb;
+        color: #1a1a1a;
+        overflow-x: hidden;
+      }
+      
+      /* Prevent layout shift */
+      .video-hero-container {
+        min-height: 60vh;
+        background-color: #1a1a1a;
+      }
+      
+      /* Loading skeleton styles */
+      .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+      
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
     </style>
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- Preload module script for faster loading -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
