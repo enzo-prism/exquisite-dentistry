@@ -3,6 +3,7 @@ import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -69,9 +70,9 @@ const ClientExperienceSection: React.FC = () => {
           
           <div className="space-y-6 md:space-y-8">
             <div className="relative rounded-sm overflow-hidden shadow-lg">
-              <img 
-                src="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png" 
-                alt="Dr. Aguil with patient" 
+              <OptimizedImage
+                src="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
+                alt="Dr. Aguil with patient"
                 className="w-full h-full object-cover"
                 width={600}
                 height={400}

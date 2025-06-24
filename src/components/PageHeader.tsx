@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface PageHeaderProps {
   title: string;
@@ -25,7 +26,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       {bgImage && (
         <>
           <div className="absolute inset-0 z-0">
-            <img 
+            <OptimizedImage
               src={bgImage}
               alt=""
               className="w-full h-full object-cover"

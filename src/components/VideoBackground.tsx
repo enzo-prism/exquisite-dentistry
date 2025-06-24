@@ -3,6 +3,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import VimeoFacade from './VimeoFacade';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface VideoBackgroundProps {
   youtubeId?: string;
@@ -117,11 +118,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     // Always show poster image initially
     if (!isVisible || !shouldLoadVideo) {
       return posterSrc ? (
-        <img
+        <OptimizedImage
           src={posterSrc}
           alt="Video poster"
           className="w-full h-full object-cover"
-          loading="lazy"
           width={1920}
           height={1080}
         />
@@ -225,11 +225,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       {/* Loading placeholder with poster image */}
       {(isLoading || !shouldLoadVideo) && posterSrc && (
         <div className="absolute inset-0 w-full h-full z-5">
-          <img
+          <OptimizedImage
             src={posterSrc}
             alt="Video poster"
             className="w-full h-full object-cover opacity-30"
-            loading="eager"
             width={1920}
             height={1080}
           />

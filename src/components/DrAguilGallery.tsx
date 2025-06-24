@@ -8,6 +8,7 @@ import {
   Heart
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import OptimizedImage from '@/components/OptimizedImage';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
@@ -73,9 +74,9 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {images.map((image, index) => (
               <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
+              <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                   width={400}
                   height={320}
