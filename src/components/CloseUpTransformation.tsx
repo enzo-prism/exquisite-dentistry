@@ -128,15 +128,6 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
                 </div>
               </div>
             </div>
-
-            {/* Minimal interaction hint */}
-            {isHovering && !isDragging && (
-              <div className="absolute inset-0 bg-black/10 flex items-center justify-center pointer-events-none">
-                <div className="bg-white/95 px-4 py-2 rounded-lg text-sm text-gray-700 shadow-md border border-gold/20">
-                  Drag to reveal transformation
-                </div>
-              </div>
-            )}
           </div>
         </AspectRatio>
       </div>
