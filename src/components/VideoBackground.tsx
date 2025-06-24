@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import VimeoFacade from './VimeoFacade';
 
 interface VideoBackgroundProps {
   youtubeId?: string;
@@ -31,7 +32,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Defer video loading until after initial page load
@@ -41,10 +41,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       if ('requestIdleCallback' in window) {
         window.requestIdleCallback(() => {
           setShouldLoadVideo(true);
+          setIsLoading(false);
         }, { timeout: 2000 });
       } else {
         // Fallback for browsers without requestIdleCallback
         setShouldLoadVideo(true);
+        setIsLoading(false);
       }
     }, 1000); // Wait 1 second before considering video load
     
@@ -78,19 +80,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     return () => observer.disconnect();
   }, [onLoad, shouldLoadVideo]);
   
+  // Optimized video playback for streamable videos
   useEffect(() => {
-    if (!isVisible) return;
-    
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300); // Reduced from 500ms
-    
-    return () => clearTimeout(timer);
-  }, [isVisible]);
-  
-  // Optimized video playback
-  useEffect(() => {
-    if (!isVisible || !videoRef.current || !shouldLoadVideo) return;
+    if (!isVisible || !videoRef.current || !shouldLoadVideo || vimeoId) return;
     
     const playVideo = async () => {
       try {
@@ -116,23 +108,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       }
     };
     
-    if (!vimeoId && streamableUrl) {
+    if (streamableUrl) {
       playVideo();
     }
   }, [isVisible, vimeoId, streamableUrl, shouldLoadVideo]);
-  
-  // Preload Vimeo API only when needed
-  useEffect(() => {
-    if (vimeoId && isVisible && shouldLoadVideo) {
-      if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://player.vimeo.com/api/player.js';
-        script.async = true;
-        script.defer = true; // Add defer for better performance
-        document.body.appendChild(script);
-      }
-    }
-  }, [vimeoId, isVisible, shouldLoadVideo]);
   
   const renderVideoElement = () => {
     // Always show poster image initially
@@ -153,27 +132,16 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     
     if (vimeoId) {
       return (
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <iframe 
-            ref={iframeRef}
-            src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&background=1&player_id=0&app_id=58479&quality=auto`}
-            style={{ 
-              position: 'absolute', 
-              top: '50%', 
-              left: '50%', 
-              width: isMobile ? '200%' : '140%',
-              height: isMobile ? '200%' : '140%',
-              transform: 'translate(-50%, -50%)',
-              maxWidth: 'none',
-              maxHeight: 'none',
-              objectFit: 'cover'
-            }}
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="Video Background"
-            loading="lazy"
-          />
-        </div>
+        <VimeoFacade
+          videoId={vimeoId}
+          thumbnailUrl={posterSrc}
+          className="w-full h-full"
+          autoplay={true}
+          muted={true}
+          loop={true}
+          background={true}
+          controls={false}
+        />
       );
     }
     

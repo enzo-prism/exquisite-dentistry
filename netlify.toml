@@ -1,0 +1,97 @@
+# Netlify configuration for performance optimization
+
+[build]
+  command = "npm run build:prod"
+  publish = "dist"
+
+# Enable asset optimization
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = true
+[build.processing.js]
+  bundle = true
+  minify = true
+[build.processing.images]
+  compress = true
+
+# Headers for caching and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache static assets for 1 year
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images for 1 year
+[[headers]]
+  for = "/lovable-uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/optimized/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Enable compression
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Encoding = "br, gzip"
+
+# Redirects for old URLs
+[[redirects]]
+  from = "/choosing-veneers-for-the-front-4-teeth/"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/choosing-veneers-for-just-one-tooth/"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/about-us/*"
+  to = "/about"
+  status = 301
+
+# Enable Netlify plugins for optimization
+[[plugins]]
+  package = "netlify-plugin-image-optim"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+    output_path = "reports/lighthouse.html"
+    
+[[plugins]]
+  package = "netlify-plugin-inline-critical-css"
+  [plugins.inputs]
+    minify = true
+    extract = true 
