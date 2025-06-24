@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
@@ -21,28 +22,6 @@ const Footer = () => {
     <footer className="bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Top Section - Call to Action */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4">Ready to Transform Your Smile?</h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Schedule your consultation today and discover how we can help you achieve the smile of your dreams.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button variant="gold" size="lg" className="text-lg px-8 py-4">
-                Book Your Appointment
-              </Button>
-            </a>
-            <a href="tel:(323) 272-2388">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-black">
-                Call (323) 272-2388
-              </Button>
-            </a>
-          </div>
-        </div>
-
-        <Separator className="bg-gray-700 mb-12" />
-
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Practice Info */}
