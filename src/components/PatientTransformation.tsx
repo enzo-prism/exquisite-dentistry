@@ -2,6 +2,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export interface PatientTransformationData {
   name: string;
@@ -91,7 +92,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
           <div className="relative w-full h-full overflow-hidden">
             {/* After image (full background) */}
             <div className="absolute inset-0 w-full h-full">
-              <img
+              <OptimizedImage
                 src={patient.afterImage}
                 alt={`${patient.name} after ${patient.procedure}`}
                 className="w-full h-full object-cover"
@@ -108,7 +109,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` 
               }}
             >
-              <img
+              <OptimizedImage
                 src={patient.beforeImage}
                 alt={`${patient.name} before ${patient.procedure}`}
                 className="w-full h-full object-cover"

@@ -12,6 +12,7 @@ import VideoModal from '@/components/VideoModal';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const IndexPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -74,8 +75,8 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png" 
+                <OptimizedImage
+                  src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png"
                   alt="Shannon Langhorne Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
@@ -90,8 +91,8 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png" 
+                <OptimizedImage
+                  src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png"
                   alt="Taylor Vasek Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
@@ -106,8 +107,8 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png" 
+                <OptimizedImage
+                  src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png"
                   alt="Christian Fernandez Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
@@ -122,8 +123,8 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png" 
+                <OptimizedImage
+                  src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png"
                   alt="Rob Talbert Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
@@ -138,8 +139,8 @@ const IndexPage: React.FC = () => {
                     <Play className="h-6 w-6" />
                   </div>
                 </div>
-                <img 
-                  src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png" 
+                <OptimizedImage
+                  src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png"
                   alt="Patient Testimonial"
                   className="w-full h-full object-cover"
                 />

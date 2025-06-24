@@ -6,6 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const services = [{
   id: "cosmetic",
@@ -190,7 +191,7 @@ const Services = () => {
               
               <div className={cn("relative", index % 2 === 1 ? "lg:order-1" : "")}>
                 <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  <OptimizedImage src={service.image} alt={service.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
@@ -297,10 +298,10 @@ const Services = () => {
           
           <div className="relative">
             <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-              <img 
-                alt="Spa-like dental environment" 
-                className="w-full h-full object-cover" 
-                src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png" 
+              <OptimizedImage
+                alt="Spa-like dental environment"
+                className="w-full h-full object-cover"
+                src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">

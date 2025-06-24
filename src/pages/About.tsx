@@ -8,6 +8,7 @@ import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const About = () => {
   useEffect(() => {
@@ -83,9 +84,9 @@ const About = () => {
                 {/* Main Image with Frame */}
                 <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
                   <div className="aspect-[3/4] overflow-hidden rounded-sm">
-                    <img 
-                      src="/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png" 
-                      alt="Dr. Alexie Aguil" 
+                    <OptimizedImage
+                      src="/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png"
+                      alt="Dr. Alexie Aguil"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -130,9 +131,9 @@ const About = () => {
             <div className="bg-white p-8 rounded-sm shadow-md">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="w-full md:w-1/3">
-                  <img 
-                    src="https://i.ytimg.com/vi/Zlb9l_EqXjo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgVihMMA8=&rs=AOn4CLBszZ-tR93CsE3BOc8nPJJBAmqW4w" 
-                    alt="Dr. Alexie Aguil" 
+                  <OptimizedImage
+                    src="https://i.ytimg.com/vi/Zlb9l_EqXjo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgVihMMA8=&rs=AOn4CLBszZ-tR93CsE3BOc8nPJJBAmqW4w"
+                    alt="Dr. Alexie Aguil"
                     className="w-full aspect-[3/4] object-cover rounded-sm shadow-md"
                   />
                 </div>

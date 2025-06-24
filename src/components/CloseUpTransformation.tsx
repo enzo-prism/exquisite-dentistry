@@ -3,6 +3,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
 import { CloseUpTransformation } from '@/data/closeUpTransformations';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface CloseUpTransformationCardProps {
   transformation: CloseUpTransformation;
@@ -84,7 +85,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
           <div className="relative w-full h-full overflow-hidden bg-gray-100">
             {/* After image (full background) */}
             <div className="absolute inset-0 w-full h-full">
-              <img
+              <OptimizedImage
                 src={transformation.afterImage}
                 alt={`After ${transformation.description}`}
                 className="w-full h-full object-cover object-center"
@@ -101,7 +102,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
                 clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` 
               }}
             >
-              <img
+              <OptimizedImage
                 src={transformation.beforeImage}
                 alt={`Before ${transformation.description}`}
                 className="w-full h-full object-cover object-center"

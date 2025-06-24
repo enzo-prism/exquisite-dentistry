@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface VimeoFacadeProps {
   videoId: string;
@@ -115,11 +116,10 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       onClick={handleClick}
     >
       {/* Thumbnail */}
-      <img
+      <OptimizedImage
         src={thumbnail}
         alt={`${title} thumbnail`}
         className="w-full h-full object-cover"
-        loading="lazy"
         width={1920}
         height={1080}
       />

@@ -6,6 +6,7 @@ import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import { Helmet } from 'react-helmet-async';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -144,11 +145,10 @@ const Wedding = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
-                <img 
+                <OptimizedImage
                   src="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
-                  alt="Beautiful wedding couple with perfect smiles" 
+                  alt="Beautiful wedding couple with perfect smiles"
                   className="w-full h-auto object-cover rounded-sm shadow-md"
-                  loading="lazy"
                 />
               </div>
               <div className="md:w-1/2">
