@@ -33,6 +33,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVimeoReady, setIsVimeoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -121,8 +122,15 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }, [isVisible, vimeoId, streamableUrl, shouldLoadVideo]);
   
   const renderVideoElement = () => {
-    // Always show poster image initially
-    if (!isVisible || !shouldLoadVideo) {
+    // Show solid background before Vimeo video is ready
+    if (vimeoId && (!isVisible || !shouldLoadVideo || !isVimeoReady)) {
+      return (
+        <div className="absolute inset-0 w-full h-full bg-gray-900" />
+      );
+    }
+    
+    // Always show poster image initially for non-Vimeo videos
+    if (!vimeoId && (!isVisible || !shouldLoadVideo)) {
       const fallbackPoster = posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png";
       console.log('Rendering poster image:', fallbackPoster);
       return (
@@ -148,6 +156,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           loop={true}
           background={true}
           controls={false}
+          onReady={() => setIsVimeoReady(true)}
         />
       );
     }
@@ -221,16 +230,17 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   return (
     <div ref={containerRef} className="absolute inset-0 w-full h-full">
-      {/* Loading background */}
+      {/* Solid background for hero sections */}
       <div 
         className={cn(
-          "absolute inset-0 w-full h-full bg-black z-0 transition-opacity duration-700",
-          isLoading ? "opacity-100" : "opacity-80"
+          "absolute inset-0 w-full h-full z-0 transition-opacity duration-700",
+          vimeoId ? "bg-gray-900" : "bg-black",
+          (vimeoId && isVimeoReady) || (!vimeoId && !isLoading) ? "opacity-0" : "opacity-100"
         )}
       />
       
-      {/* Loading placeholder with poster image */}
-      {(isLoading || !shouldLoadVideo) && (
+      {/* Loading placeholder with poster image (for non-Vimeo videos) */}
+      {!vimeoId && (isLoading || !shouldLoadVideo) && (
         <div className="absolute inset-0 w-full h-full z-5">
           <OptimizedImage
             src={posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"}
@@ -245,7 +255,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       {/* Video content */}
       <div className={cn(
         "absolute inset-0 w-full h-full z-10 overflow-hidden transition-opacity duration-700",
-        isLoading || !shouldLoadVideo ? "opacity-0" : "opacity-100",
+        vimeoId ? (isVimeoReady ? "opacity-100" : "opacity-0") : (isLoading || !shouldLoadVideo ? "opacity-0" : "opacity-100"),
         className
       )}>
         <div className="absolute inset-0 bg-black/60 z-10"></div>

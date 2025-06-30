@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -13,6 +14,7 @@ interface VimeoFacadeProps {
   loop?: boolean;
   background?: boolean;
   controls?: boolean;
+  onReady?: () => void;
 }
 
 const VimeoFacade: React.FC<VimeoFacadeProps> = ({
@@ -25,11 +27,14 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   loop = true,
   background = true,
   controls = false,
+  onReady,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [shouldAutoLoad, setShouldAutoLoad] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
   
   // Generate Vimeo thumbnail URL if not provided
   const defaultThumbnail = `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png`; // Use a default poster
@@ -72,6 +77,27 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     }
   }, [shouldAutoLoad, isIntersecting, background, isLoaded]);
   
+  // Handle iframe load event
+  useEffect(() => {
+    if (!isLoaded || !iframeRef.current) return;
+    
+    const iframe = iframeRef.current;
+    
+    const handleLoad = () => {
+      // Add a small delay to ensure video is actually ready
+      setTimeout(() => {
+        setIsVideoReady(true);
+        onReady?.();
+      }, 1500); // Wait 1.5 seconds for video to be ready
+    };
+    
+    iframe.addEventListener('load', handleLoad);
+    
+    return () => {
+      iframe.removeEventListener('load', handleLoad);
+    };
+  }, [isLoaded, onReady]);
+  
   const handleClick = () => {
     if (!isLoaded) {
       setIsLoaded(true);
@@ -89,6 +115,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     return (
       <div ref={containerRef} className={cn("relative w-full h-full", className)}>
         <iframe
+          ref={iframeRef}
           src={vimeoUrl}
           style={{
             position: 'absolute',
@@ -141,4 +168,4 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   );
 };
 
-export default VimeoFacade; 
+export default VimeoFacade;
