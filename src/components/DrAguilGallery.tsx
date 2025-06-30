@@ -1,15 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight,
-  Eye,
-  Smile,
-  Heart
-} from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 
@@ -18,6 +11,7 @@ interface DrAguilImageItem {
   alt: string;
   caption?: string;
   featured?: boolean;
+  fallbackSrc?: string;
 }
 
 interface DrAguilGalleryProps {
@@ -33,17 +27,20 @@ const defaultImages: DrAguilImageItem[] = [
   {
     src: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png',
     alt: 'Dr. Alexie Aguil explaining dental x-rays',
-    caption: 'Dr. Aguil reviewing patient scans'
+    caption: 'Dr. Aguil reviewing patient scans',
+    fallbackSrc: '/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png'
   },
   {
     src: '/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png',
     alt: 'Dr. Alexie Aguil with patient',
-    caption: 'Providing personalized consultations'
+    caption: 'Providing personalized consultations',
+    fallbackSrc: '/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png'
   },
   {
     src: '/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png',
     alt: 'Dr. Alexie Aguil portrait',
-    caption: 'Award-winning cosmetic dentist'
+    caption: 'Award-winning cosmetic dentist',
+    fallbackSrc: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png'
   }
 ];
 
@@ -55,6 +52,8 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
   className,
   compact = false
 }) => {
+  
+  console.log('DrAguilGallery rendering with images:', images);
   
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
@@ -72,24 +71,30 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           )}
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {images.map((image, index) => (
-              <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
-                <OptimizedImage
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-                  width={400}
-                  height={320}
-                  fallbackSrc="/placeholder.svg"
-                />
-                
-                {image.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-10">
-                    <p className="text-white text-sm font-medium">{image.caption}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+            {images.map((image, index) => {
+              console.log(`Rendering image ${index}:`, image.src);
+              return (
+                <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
+                  <OptimizedImage
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    width={400}
+                    height={320}
+                    fallbackSrc={image.fallbackSrc || '/placeholder.svg'}
+                    priority={index === 0}
+                    onLoad={() => console.log(`✅ Image ${index} loaded successfully`)}
+                    onError={() => console.error(`❌ Image ${index} failed to load:`, image.src)}
+                  />
+                  
+                  {image.caption && (
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-10">
+                      <p className="text-white text-sm font-medium">{image.caption}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
           
           {showButton && (

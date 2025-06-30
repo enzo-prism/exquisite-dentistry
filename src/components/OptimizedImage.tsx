@@ -46,6 +46,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [isVisible, setIsVisible] = useState(priority);
   const [error, setError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
+  const [fallbackAttempts, setFallbackAttempts] = useState(0);
   const imgRef = React.useRef<HTMLImageElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   
@@ -55,7 +56,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Validate image URL and provide fallback
   const getValidatedSrc = (imageSrc: string) => {
     if (!imageSrc) {
-      console.warn('OptimizedImage: No src provided');
+      console.warn('OptimizedImage: No src provided, using fallback');
       return fallbackSrc || '/placeholder.svg';
     }
     
@@ -70,17 +71,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
     
     return imageSrc;
-  };
-  
-  // Generate optimized paths for local images
-  const getOptimizedPath = (size?: string) => {
-    if (!isLocalImage) return getValidatedSrc(currentSrc);
-    
-    const filename = currentSrc.split('/').pop()?.split('.')[0];
-    if (!filename) return getValidatedSrc(currentSrc);
-    
-    const suffix = size || 'original';
-    return `/optimized/${filename}-${suffix}.webp`;
   };
   
   // Intersection Observer for lazy loading
@@ -109,93 +99,62 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     return () => observer.disconnect();
   }, [priority, isVisible]);
   
-  // Preload critical images
-  useEffect(() => {
-    if (priority && isLocalImage && !error) {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.type = 'image/webp';
-      link.href = getOptimizedPath('lg');
-      link.onload = () => console.log('Preloaded:', link.href);
-      link.onerror = () => console.warn('Failed to preload:', link.href);
-      document.head.appendChild(link);
-      
-      return () => {
-        if (document.head.contains(link)) {
-          document.head.removeChild(link);
-        }
-      };
-    }
-  }, [priority, currentSrc, isLocalImage, error]);
-  
   // Handle image load event
   const handleImageLoad = () => {
-    console.log('Image loaded successfully:', currentSrc);
+    console.log('✅ Image loaded successfully:', currentSrc);
     setIsLoaded(true);
     setError(false);
     onLoad?.();
   };
   
-  // Handle image error with fallback logic
+  // Handle image error with comprehensive fallback logic
   const handleImageError = () => {
-    console.warn('Image failed to load:', currentSrc);
+    console.warn('❌ Image failed to load:', currentSrc, 'Attempt:', fallbackAttempts);
     
-    // Try fallback src if provided and not already tried
-    if (fallbackSrc && currentSrc !== fallbackSrc && currentSrc !== '/placeholder.svg') {
-      console.log('Attempting fallback src:', fallbackSrc);
+    // Try different fallback strategies based on attempt count
+    if (fallbackAttempts === 0 && fallbackSrc && currentSrc !== fallbackSrc) {
+      console.log('🔄 Trying fallbackSrc:', fallbackSrc);
       setCurrentSrc(fallbackSrc);
+      setFallbackAttempts(1);
       return;
     }
     
-    // Try original src if we were trying optimized version
-    if (isLocalImage && currentSrc.includes('/optimized/')) {
-      console.log('Attempting original src:', src);
-      setCurrentSrc(src);
-      return;
-    }
-    
-    // Final fallback to placeholder
-    if (currentSrc !== '/placeholder.svg') {
-      console.log('Using placeholder.svg as final fallback');
+    if (fallbackAttempts === 1 && currentSrc !== '/placeholder.svg') {
+      console.log('🔄 Trying placeholder.svg');
       setCurrentSrc('/placeholder.svg');
+      setFallbackAttempts(2);
       return;
     }
     
     // All fallbacks failed
+    console.error('🚫 All image fallbacks failed for:', src);
     setError(true);
     onError?.();
   };
 
   // Reset state when src changes
   useEffect(() => {
+    console.log('🔄 Image src changed:', src);
     setCurrentSrc(src);
     setIsLoaded(false);
     setError(false);
+    setFallbackAttempts(0);
   }, [src]);
   
-  // Generate responsive srcset for better performance
-  const getSrcSet = () => {
-    if (!isLocalImage || error || !width) return undefined;
+  // Test image availability
+  useEffect(() => {
+    if (!currentSrc || !isVisible) return;
     
-    const sizes = [
-      { width: 320, suffix: 'sm' },
-      { width: 640, suffix: 'md' },
-      { width: 1024, suffix: 'lg' },
-      { width: 1920, suffix: 'xl' }
-    ];
-    
-    return sizes
-      .filter(size => width >= size.width * 0.5)
-      .map(size => `${getOptimizedPath(size.suffix)} ${size.width}w`)
-      .join(', ');
-  };
-  
-  // Determine sizes attribute for responsive images
-  const getSizes = () => {
-    if (!width || fill || !isLocalImage) return undefined;
-    return '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
-  };
+    console.log('🔍 Testing image availability:', currentSrc);
+    const testImg = new Image();
+    testImg.onload = () => {
+      console.log('✅ Image test passed:', currentSrc);
+    };
+    testImg.onerror = () => {
+      console.warn('⚠️ Image test failed:', currentSrc);
+    };
+    testImg.src = currentSrc;
+  }, [currentSrc, isVisible]);
 
   const validatedSrc = getValidatedSrc(currentSrc);
 
@@ -214,11 +173,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         aspectRatio: width && height ? `${width}/${height}` : undefined,
       }}
     >
-      {/* Placeholder while loading */}
+      {/* Loading placeholder */}
       {!isLoaded && !error && (
         <div 
           className={cn(
-            "absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center",
+            "absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center",
             fill ? 'w-full h-full' : ''
           )}
           style={{
@@ -226,53 +185,39 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
             height: fill ? '100%' : height,
           }}
         >
-          <div className="text-gray-400 text-xs">Loading...</div>
+          <div className="text-gray-500 text-xs">Loading...</div>
         </div>
       )}
       
       {/* Actual image - only render when visible or priority */}
       {(isVisible || priority) && !error && (
-        <picture>
-          {/* WebP source for modern browsers */}
-          {isLocalImage && !currentSrc.includes('/optimized/') && (
-            <source
-              type="image/webp"
-              srcSet={getSrcSet()}
-              sizes={getSizes()}
-            />
+        <img
+          ref={imgRef}
+          src={validatedSrc}
+          alt={alt}
+          width={fill ? undefined : width}
+          height={fill ? undefined : height}
+          loading={priority ? 'eager' : 'lazy'}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          className={cn(
+            'transition-opacity duration-300',
+            fill ? 'object-cover w-full h-full' : '',
+            isLoaded ? 'opacity-100' : 'opacity-0',
+            objectFit ? `object-${objectFit}` : ''
           )}
-          
-          {/* Fallback to original format */}
-          <img
-            ref={imgRef}
-            src={validatedSrc}
-            alt={alt}
-            width={fill ? undefined : width}
-            height={fill ? undefined : height}
-            loading={priority ? 'eager' : 'lazy'}
-            fetchPriority={priority ? 'high' : 'auto'}
-            decoding="async"
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            className={cn(
-              'transition-opacity duration-300',
-              fill ? 'object-cover w-full h-full' : '',
-              isLoaded ? 'opacity-100' : 'opacity-0',
-              objectFit ? `object-${objectFit}` : ''
-            )}
-            style={{
-              objectFit,
-            }}
-            {...props}
-          />
-        </picture>
+          style={{
+            objectFit,
+          }}
+          {...props}
+        />
       )}
       
       {/* Error fallback */}
       {error && (
         <div 
           className={cn(
-            "flex items-center justify-center bg-gray-100 text-gray-400 text-sm border border-dashed border-gray-300",
+            "flex items-center justify-center bg-gray-100 text-gray-500 text-sm border-2 border-dashed border-gray-300",
             fill ? 'w-full h-full' : ''
           )}
           style={{
@@ -281,8 +226,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           }}
         >
           <div className="text-center p-4">
-            <div className="text-gray-400 mb-1">⚠</div>
-            <div>{alt || 'Image unavailable'}</div>
+            <div className="text-gray-400 mb-2 text-lg">⚠</div>
+            <div className="text-xs">{alt || 'Image not available'}</div>
+            <div className="text-xs text-gray-400 mt-1">Failed to load</div>
           </div>
         </div>
       )}
