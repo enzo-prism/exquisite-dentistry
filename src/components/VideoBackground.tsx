@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -34,6 +35,11 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('VideoBackground props:', { youtubeId, streamableUrl, vimeoId, posterSrc });
+  }, [youtubeId, streamableUrl, vimeoId, posterSrc]);
   
   // Defer video loading until after initial page load
   useEffect(() => {
@@ -117,20 +123,21 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const renderVideoElement = () => {
     // Always show poster image initially
     if (!isVisible || !shouldLoadVideo) {
-      return posterSrc ? (
+      const fallbackPoster = posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png";
+      console.log('Rendering poster image:', fallbackPoster);
+      return (
         <OptimizedImage
-          src={posterSrc}
+          src={fallbackPoster}
           alt="Video poster"
           className="w-full h-full object-cover"
           width={1920}
           height={1080}
         />
-      ) : (
-        <div className="w-full h-full bg-black" />
       );
     }
     
     if (vimeoId) {
+      console.log('Rendering Vimeo video:', vimeoId);
       return (
         <VimeoFacade
           videoId={vimeoId}
@@ -223,10 +230,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       />
       
       {/* Loading placeholder with poster image */}
-      {(isLoading || !shouldLoadVideo) && posterSrc && (
+      {(isLoading || !shouldLoadVideo) && (
         <div className="absolute inset-0 w-full h-full z-5">
           <OptimizedImage
-            src={posterSrc}
+            src={posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"}
             alt="Video poster"
             className="w-full h-full object-cover opacity-30"
             width={1920}

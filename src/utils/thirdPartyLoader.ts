@@ -1,3 +1,4 @@
+
 // Extend Window interface for third-party scripts
 declare global {
   interface Window {
@@ -5,7 +6,6 @@ declare global {
     gtag: (...args: any[]) => void;
     hj: any;
     _hjSettings: any;
-    Vimeo: any;
   }
 }
 
@@ -152,4 +152,4 @@ export function initializeBirdEyeWidgets() {
   });
   
   widgets.forEach(widget => observer.observe(widget));
-} 
+}
