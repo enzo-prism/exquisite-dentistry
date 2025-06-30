@@ -1,3 +1,4 @@
+
 # Netlify configuration for performance optimization
 
 [build]
@@ -64,6 +65,19 @@
   for = "/*"
   [headers.values]
     Content-Encoding = "br, gzip"
+
+# Ensure WordPress admin URLs are not redirected (highest priority)
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/wp-admin/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/wp-login.php"
+  status = 200
+  force = false
 
 # Redirects for old URLs
 [[redirects]]
