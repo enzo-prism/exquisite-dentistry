@@ -74,12 +74,13 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {images.map((image, index) => (
               <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
-              <OptimizedImage
+                <OptimizedImage
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                   width={400}
                   height={320}
+                  fallbackSrc="/placeholder.svg"
                 />
                 
                 {image.caption && (

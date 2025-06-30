@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
@@ -76,6 +75,7 @@ const ClientExperienceSection: React.FC = () => {
                 className="w-full h-full object-cover"
                 width={600}
                 height={400}
+                fallbackSrc="/placeholder.svg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">

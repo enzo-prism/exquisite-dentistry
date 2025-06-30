@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
@@ -35,6 +34,7 @@ const Footer = () => {
                 className="h-12 w-auto"
                 objectFit="contain"
                 priority={true}
+                fallbackSrc="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">

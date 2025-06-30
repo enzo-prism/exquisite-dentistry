@@ -32,6 +32,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               className="w-full h-full object-cover"
               width={1920}
               height={600}
+              fallbackSrc="/placeholder.svg"
             />
             <div className="absolute inset-0 bg-black/60"></div>
           </div>

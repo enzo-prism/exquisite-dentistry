@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Star, MessageSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -98,6 +97,7 @@ const GoogleReviews = () => {
             className="h-8 object-contain"
             width={92}
             height={30}
+            fallbackSrc="/placeholder.svg"
           />
           <span className="text-lg font-medium">Reviews</span>
         </div>
@@ -132,6 +132,7 @@ const GoogleReviews = () => {
                     className="w-full h-full object-cover"
                     width={48}
                     height={48}
+                    fallbackSrc="/placeholder.svg"
                   />
                 </div>
               ) : (
@@ -169,6 +170,7 @@ const GoogleReviews = () => {
                 className="h-4 object-contain mr-1.5"
                 width={46}
                 height={15}
+                fallbackSrc="/placeholder.svg"
               />
               <span>Posted on Google</span>
             </div>

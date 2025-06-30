@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -136,6 +137,9 @@ const Navbar = () => {
                 className={isMobile ? 'h-6' : 'h-12'}
                 width={isMobile ? 120 : 240}
                 height={isMobile ? 24 : 48}
+                priority={true}
+                fallbackSrc="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                objectFit="contain"
               />
             </Link>
           </div>
