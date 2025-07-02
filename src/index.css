@@ -175,6 +175,23 @@
   .card-content {
     @apply p-6 pt-0;
   }
+
+  /* Section and Layout Components */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-black;
+  }
+  
+  .heading-sm {
+    @apply text-xl md:text-2xl font-semibold text-black;
+  }
+  
+  .paragraph {
+    @apply text-lg text-gray-600 leading-relaxed;
+  }
   
   /* Gold Accents */
   .gold-gradient {
