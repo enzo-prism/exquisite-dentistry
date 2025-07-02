@@ -2,11 +2,17 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import { CloseUpTransformation } from '@/data/closeUpTransformations';
 import OptimizedImage from '@/components/OptimizedImage';
 
+export interface CloseUpTransformationData {
+  id: string;
+  beforeImage: string;
+  afterImage: string;
+  description: string;
+}
+
 interface CloseUpTransformationCardProps {
-  transformation: CloseUpTransformation;
+  transformation: CloseUpTransformationData;
   className?: string;
 }
 
@@ -72,7 +78,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
   }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div className={cn("bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 group", className)}>
+    <div className={cn("bg-white shadow-md rounded-sm overflow-hidden group", className)}>
       <div 
         ref={containerRef}
         className="relative cursor-ew-resize select-none"
@@ -81,16 +87,18 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <AspectRatio ratio={16/9}>
-          <div className="relative w-full h-full overflow-hidden bg-gray-100">
+        <AspectRatio ratio={4/3}>
+          <div className="relative w-full h-full overflow-hidden">
             {/* After image (full background) */}
             <div className="absolute inset-0 w-full h-full">
               <OptimizedImage
                 src={transformation.afterImage}
-                alt={`After ${transformation.description}`}
-                className="w-full h-full object-cover object-center"
-                width={500}
-                height={281}
+                alt={`Dental transformation after - ${transformation.id}`}
+                className="w-full h-full object-cover"
+                width={400}
+                height={300}
+                objectFit="cover"
+                objectPosition="center center"
                 draggable={false}
               />
             </div>
@@ -104,10 +112,12 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
             >
               <OptimizedImage
                 src={transformation.beforeImage}
-                alt={`Before ${transformation.description}`}
-                className="w-full h-full object-cover object-center"
-                width={500}
-                height={281}
+                alt={`Dental transformation before - ${transformation.id}`}
+                className="w-full h-full object-cover"
+                width={400}
+                height={300}
+                objectFit="cover"
+                objectPosition="center center"
                 draggable={false}
               />
             </div>
@@ -117,27 +127,19 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
               className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg z-10"
               style={{ left: `${sliderPosition}%` }}
             >
-              {/* Refined slider handle */}
               <div className={cn(
-                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg border-2 border-gold/30 flex items-center justify-center cursor-ew-resize transition-transform duration-100",
+                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center cursor-ew-resize transition-transform duration-100",
                 (isHovering || isDragging) ? "scale-105" : "scale-100"
               )}>
-                {/* Elegant drag indicator */}
                 <div className="flex space-x-0.5">
-                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
-                  <div className="w-0.5 h-5 bg-gold rounded-full"></div>
+                  <div className="w-0.5 h-4 bg-gray-400 rounded-full"></div>
+                  <div className="w-0.5 h-4 bg-gray-400 rounded-full"></div>
                 </div>
               </div>
             </div>
           </div>
         </AspectRatio>
       </div>
-      
-      {transformation.description && (
-        <div className="p-4">
-          <p className="text-sm text-gray-600 leading-relaxed">{transformation.description}</p>
-        </div>
-      )}
     </div>
   );
 };

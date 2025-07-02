@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useCallback } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
@@ -98,6 +97,8 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 className="w-full h-full object-cover"
                 width={400}
                 height={300}
+                objectFit="cover"
+                objectPosition="center 30%"
                 draggable={false}
               />
             </div>
@@ -115,21 +116,21 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 className="w-full h-full object-cover"
                 width={400}
                 height={300}
+                objectFit="cover"
+                objectPosition="center 30%"
                 draggable={false}
               />
             </div>
 
-            {/* Smooth slider line */}
+            {/* Slider line and handle */}
             <div 
               className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg z-10"
               style={{ left: `${sliderPosition}%` }}
             >
-              {/* Refined slider handle */}
               <div className={cn(
                 "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center cursor-ew-resize transition-transform duration-100",
                 (isHovering || isDragging) ? "scale-105" : "scale-100"
               )}>
-                {/* Simple drag indicator */}
                 <div className="flex space-x-0.5">
                   <div className="w-0.5 h-4 bg-gray-400 rounded-full"></div>
                   <div className="w-0.5 h-4 bg-gray-400 rounded-full"></div>

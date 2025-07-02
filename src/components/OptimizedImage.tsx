@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -15,6 +14,7 @@ export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEl
   priority?: boolean;
   className?: string;
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  objectPosition?: string;
   placeholderColor?: string;
   formats?: ImageFormat[];
   onLoad?: () => void;
@@ -35,6 +35,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   priority = false,
   className = '',
   objectFit = 'cover',
+  objectPosition = 'center center',
   placeholderColor = 'transparent',
   formats = ['webp', 'original'],
   onLoad,
@@ -52,6 +53,17 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   
   // Check if the image is hosted on lovable-uploads
   const isLocalImage = src.includes('/lovable-uploads/');
+  
+  // Smart object positioning for dental photos
+  const getSmartObjectPosition = () => {
+    if (objectPosition !== 'center center') {
+      return objectPosition; // Use custom position if provided
+    }
+    
+    // Default positioning optimized for dental photos
+    // Focus slightly higher than center to capture smile area better
+    return 'center 30%';
+  };
   
   // Validate image URL and provide fallback
   const getValidatedSrc = (imageSrc: string) => {
@@ -157,6 +169,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   }, [currentSrc, isVisible]);
 
   const validatedSrc = getValidatedSrc(currentSrc);
+  const smartObjectPosition = getSmartObjectPosition();
 
   return (
     <div 
@@ -208,6 +221,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           )}
           style={{
             objectFit,
+            objectPosition: smartObjectPosition,
           }}
           {...props}
         />
