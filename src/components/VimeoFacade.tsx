@@ -30,7 +30,6 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   onReady,
 }) => {
   const [isLoaded, setIsLoaded] = useState(background); // Auto-load background videos
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   
   // Generate default thumbnail URL if not provided
@@ -44,10 +43,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     const iframe = iframeRef.current;
     
     const handleLoad = () => {
-      setTimeout(() => {
-        setIsVideoReady(true);
-        onReady?.();
-      }, 500); // Reduced delay
+      onReady?.();
     };
     
     iframe.addEventListener('load', handleLoad);
