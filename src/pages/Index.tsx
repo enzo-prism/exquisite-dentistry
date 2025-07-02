@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
@@ -70,80 +69,80 @@ const IndexPage: React.FC = () => {
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="h-6 w-6" />
-                  </div>
-                </div>
                 <OptimizedImage
                   src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png"
                   alt="Shannon Langhorne Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
+                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  </div>
+                </div>
               </div>
             </div>
             
             {/* Second Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="h-6 w-6" />
-                  </div>
-                </div>
                 <OptimizedImage
                   src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png"
                   alt="Taylor Vasek Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
+                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Third Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsThirdVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="h-6 w-6" />
-                  </div>
-                </div>
                 <OptimizedImage
                   src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png"
                   alt="Christian Fernandez Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
+                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Fourth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="h-6 w-6" />
-                  </div>
-                </div>
                 <OptimizedImage
                   src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png"
                   alt="Rob Talbert Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
+                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Fifth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-                  <div className="bg-gold/90 text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Play className="h-6 w-6" />
-                  </div>
-                </div>
                 <OptimizedImage
                   src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png"
                   alt="Patient Testimonial"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
+                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
