@@ -1,3 +1,4 @@
+
 /* Critical CSS - inline in HTML for fast first paint */
 @layer critical {
   * {
@@ -233,7 +234,7 @@
   }
   
   .category-button {
-    @apply px-3 py-2 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-colors min-h-[44px] md:min-h-auto;
+    @apply px-3 py-2 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-colors min-h-[44px];
   }
   
   /* Search Input Mobile-First */
