@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
-import OptimizedImage from '@/components/OptimizedImage';
 import { Card, CardContent } from '@/components/ui/card';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -136,22 +136,6 @@ const FrontTeethVeneersBlog = () => {
               ))}
             </div>
           </section>
-
-          {/* Image Section */}
-          <div className="mb-16">
-            <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-xl">
-              <OptimizedImage
-                src="/lovable-uploads/5453516e-5298-4daa-9f2c-f98804ddcd5e.png"
-                alt="Before and after front 4 teeth veneers transformation"
-                className="w-full h-full object-cover"
-                priority={true}
-                fallbackSrc="/placeholder.svg"
-              />
-            </div>
-            <p className="text-sm text-gray-600 text-center mt-4">
-              Example of front 4 teeth veneer transformation at Exquisite Dentistry
-            </p>
-          </div>
 
           {/* Key Considerations */}
           <section className="mb-16">
