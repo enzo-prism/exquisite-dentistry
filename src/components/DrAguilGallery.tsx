@@ -74,13 +74,13 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
             {images.map((image, index) => {
               console.log(`Rendering image ${index}:`, image.src);
               return (
-                <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group h-80">
+                <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group aspect-[4/3]">
                   <OptimizedImage
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                     width={400}
-                    height={320}
+                    height={300}
                     fallbackSrc={image.fallbackSrc || '/placeholder.svg'}
                     priority={index === 0}
                     onLoad={() => console.log(`✅ Image ${index} loaded successfully`)}
