@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
@@ -11,8 +12,11 @@ const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV4
 
 const FrontTeethVeneersBlog = () => {
   console.log('FrontTeethVeneersBlog component rendering');
+  const [contentLoaded, setContentLoaded] = useState(false);
   
   useEffect(() => {
+    console.log('FrontTeethVeneersBlog: Component mounted');
+    
     // Track component render with detailed context
     trackComponentRender('FrontTeethVeneersBlog', {
       path: '/choosing-veneers-for-the-front-4-teeth',
@@ -25,8 +29,23 @@ const FrontTeethVeneersBlog = () => {
     // Track content load success
     trackContentLoad('FrontTeethVeneersBlog content', true);
     
+    // Set content as loaded
+    setContentLoaded(true);
+    
     console.log('FrontTeethVeneersBlog: Component fully mounted and tracked');
   }, []);
+
+  // Handle image load success
+  const handleImageLoad = () => {
+    console.log('FrontTeethVeneersBlog: Hero image loaded successfully');
+    trackContentLoad('Hero image', true);
+  };
+
+  // Handle image load error
+  const handleImageError = () => {
+    console.error('FrontTeethVeneersBlog: Hero image failed to load');
+    trackContentLoad('Hero image', false, new Error('Hero image load failed'));
+  };
   
   const benefits = [
     "Transform your smile center with perfectly matched veneers",
@@ -82,6 +101,17 @@ const FrontTeethVeneersBlog = () => {
       description: "Custom veneers bonded permanently with color-matched cement"
     }
   ];
+
+  // Show loading state briefly
+  if (!contentLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-pulse">
+          <div className="w-12 h-12 bg-gold/20 rounded-full"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -163,6 +193,10 @@ const FrontTeethVeneersBlog = () => {
                 src="/lovable-uploads/5453516e-5298-4daa-9f2c-f98804ddcd5e.png"
                 alt="Before and after front 4 teeth veneers transformation"
                 className="w-full h-full object-cover"
+                priority={true}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                fallbackSrc="/placeholder.svg"
               />
             </div>
             <p className="text-sm text-gray-600 text-center mt-4">
@@ -377,4 +411,4 @@ const FrontTeethVeneersBlog = () => {
   );
 };
 
-export default FrontTeethVeneersBlog; 
+export default FrontTeethVeneersBlog;
