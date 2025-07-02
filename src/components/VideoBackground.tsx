@@ -31,14 +31,20 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [isVimeoReady, setIsVimeoReady] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
-  // Simplified loading - call onLoad immediately for hero sections
-  useEffect(() => {
-    if (onLoad) {
-      onLoad();
-    }
-  }, [onLoad]);
+  // Handle video ready state and smooth transition
+  const handleVideoReady = () => {
+    setIsVimeoReady(true);
+    // Delay showing video to ensure smooth transition
+    setTimeout(() => {
+      setShowVideo(true);
+      if (onLoad) {
+        onLoad();
+      }
+    }, 500);
+  };
   
   // Handle video playback for streamable videos
   useEffect(() => {
@@ -58,6 +64,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           playPromise
             .then(() => {
               console.log('Video playback started successfully');
+              handleVideoReady();
             })
             .catch(error => {
               console.error('Error playing video:', error);
@@ -84,7 +91,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           loop={true}
           background={true}
           controls={false}
-          onReady={() => setIsVimeoReady(true)}
+          onReady={handleVideoReady}
         />
       );
     }
@@ -138,6 +145,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             frameBorder="0"
             title="Video player"
             loading="lazy"
+            onLoad={handleVideoReady}
           />
         </div>
       );
@@ -168,6 +176,23 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   return (
     <div className="absolute inset-0 w-full h-full bg-black">
+      {/* Placeholder Image */}
+      <div 
+        className={cn(
+          "absolute inset-0 w-full h-full z-20 transition-opacity duration-1000",
+          showVideo ? "opacity-0 pointer-events-none" : "opacity-100"
+        )}
+      >
+        <OptimizedImage
+          src="/lovable-uploads/548b9e25-d837-4cea-a035-32be2b9af785.png"
+          alt="Loading placeholder"
+          className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+      </div>
+
       {/* Video content with black background */}
       <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden bg-black", className)}>
         {/* Dark overlay */}
@@ -175,7 +200,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         
         {/* Video container */}
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
-          <div className="w-full h-full overflow-hidden relative">
+          <div 
+            className={cn(
+              "w-full h-full overflow-hidden relative transition-opacity duration-1000",
+              showVideo ? "opacity-100" : "opacity-0"
+            )}
+          >
             {renderVideoElement()}
           </div>
         </div>
