@@ -1,50 +1,29 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import { Card, CardContent } from '@/components/ui/card';
-import { trackComponentRender, trackContentLoad, addBreadcrumb } from '@/lib/sentry';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const FrontTeethVeneersBlog = () => {
   console.log('FrontTeethVeneersBlog component rendering');
-  const [contentLoaded, setContentLoaded] = useState(false);
   
   useEffect(() => {
-    console.log('FrontTeethVeneersBlog: Component mounted');
-    
-    // Track component render with detailed context
-    trackComponentRender('FrontTeethVeneersBlog', {
-      path: '/choosing-veneers-for-the-front-4-teeth',
-      timestamp: new Date().toISOString()
-    });
-    
-    // Add breadcrumb for content loading
-    addBreadcrumb('FrontTeethVeneersBlog component mounted', 'component', 'info');
-    
-    // Track content load success
-    trackContentLoad('FrontTeethVeneersBlog content', true);
-    
-    // Set content as loaded
-    setContentLoaded(true);
-    
-    console.log('FrontTeethVeneersBlog: Component fully mounted and tracked');
+    console.log('FrontTeethVeneersBlog: Component mounted successfully');
   }, []);
 
   // Handle image load success
   const handleImageLoad = () => {
     console.log('FrontTeethVeneersBlog: Hero image loaded successfully');
-    trackContentLoad('Hero image', true);
   };
 
   // Handle image load error
   const handleImageError = () => {
     console.error('FrontTeethVeneersBlog: Hero image failed to load');
-    trackContentLoad('Hero image', false, new Error('Hero image load failed'));
   };
   
   const benefits = [
@@ -101,17 +80,6 @@ const FrontTeethVeneersBlog = () => {
       description: "Custom veneers bonded permanently with color-matched cement"
     }
   ];
-
-  // Show loading state briefly
-  if (!contentLoaded) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-pulse">
-          <div className="w-12 h-12 bg-gold/20 rounded-full"></div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
