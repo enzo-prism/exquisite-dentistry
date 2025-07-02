@@ -26,58 +26,26 @@ export default defineConfig(({ mode }) => ({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: mode === 'production',
         drop_debugger: true
       }
     },
-    // Enable chunking and code splitting
+    // Simplified chunking strategy
     rollupOptions: {
       output: {
         manualChunks: {
-          // Vendor chunks for better caching
+          // Only essential vendor chunks
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-select',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-tooltip'
-          ],
-          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority', 'date-fns'],
-          'framer': ['framer-motion'],
-          'charts': ['recharts']
-        },
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/').pop() : 'chunk';
-          return `js/[name]-${facadeModuleId}-[hash].js`;
-        },
-        assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) {
-            return `assets/[name]-[hash][extname]`;
-          }
-          
-          const info = assetInfo.name.split('.');
-          const extType = info[info.length - 1];
-          if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i.test(assetInfo.name)) {
-            return `images/[name]-[hash][extname]`;
-          }
-          if (extType === 'css') {
-            return `css/[name]-[hash][extname]`;
-          }
-          return `assets/[name]-[hash][extname]`;
+          'ui-vendor': ['lucide-react', 'framer-motion']
         }
       }
     },
     // Increase chunk size warning limit
     chunkSizeWarningLimit: 1000,
-    // Enable source maps for production debugging
-    sourcemap: false,
+    // Disable source maps for production to reduce bundle size
+    sourcemap: mode === 'development',
     // CSS code splitting
-    cssCodeSplit: true,
-    // Preload polyfill
-    polyfillModulePreload: true
+    cssCodeSplit: true
   },
   optimizeDeps: {
     // Pre-bundle dependencies for faster dev server startup

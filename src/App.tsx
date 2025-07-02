@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,8 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, lazy, Suspense, Component, ErrorInfo, ReactNode } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import * as Sentry from "@sentry/react";
-import { initSentry, trackPageView, trackComponentRender, captureErrorWithContext } from "@/lib/sentry";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -28,9 +27,7 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
-const SingleToothVeneersBlog = lazy(() => import("@/pages/SingleToothVeneersBlog"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
-const FrontTeethVeneersBlog = lazy(() => import("@/pages/FrontTeethVeneersBlog"));
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
@@ -54,13 +51,22 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
     
-    // Send error to Sentry with additional context
-    captureErrorWithContext(error, {
-      errorInfo,
-      componentStack: errorInfo.componentStack,
-      errorBoundary: true,
-      timestamp: new Date().toISOString()
-    });
+    // Try to send error to Sentry if available
+    try {
+      import('@/lib/sentry').then(({ captureErrorWithContext }) => {
+        captureErrorWithContext(error, {
+          errorInfo,
+          componentStack: errorInfo.componentStack,
+          errorBoundary: true,
+          timestamp: new Date().toISOString()
+        });
+      }).catch(() => {
+        // Sentry not available, just log
+        console.error('Sentry not available for error reporting');
+      });
+    } catch (sentryError) {
+      console.error('Failed to report error to Sentry:', sentryError);
+    }
   }
 
   render() {
@@ -99,8 +105,16 @@ const RouteAudit = () => {
   useEffect(() => {
     console.log('Current route:', location.pathname);
     
-    // Track page view in Sentry
-    trackPageView(location.pathname, location.search);
+    // Track page view in Sentry (if available)
+    try {
+      import('@/lib/sentry').then(({ trackPageView }) => {
+        trackPageView(location.pathname, location.search);
+      }).catch(() => {
+        // Sentry not available, continue without tracking
+      });
+    } catch (error) {
+      console.error('Failed to track page view:', error);
+    }
     
     const timer = setTimeout(() => {
       if (process.env.NODE_ENV === 'development') {
@@ -110,11 +124,6 @@ const RouteAudit = () => {
           console.groupEnd();
         }).catch(err => {
           console.error('Failed to load UI audit:', err);
-          captureErrorWithContext(err, {
-            route: location.pathname,
-            context: 'UI audit loading',
-            timestamp: new Date().toISOString()
-          });
         });
       }
     }, 500);
@@ -201,8 +210,6 @@ const AppRoutes = () => {
             <Route path="/choosing-veneers-for-the-front-4-teeth" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
             <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
             
-            {/* Remove the old individual blog post routes since they're now handled dynamically */}
-            
             <Route path="/privacy-policy" element={<Suspense fallback={<PageLoader />}>
               <PrivacyPolicy />
             </Suspense>} />
@@ -212,8 +219,6 @@ const AppRoutes = () => {
             <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoader />}>
               <HipaaCompliance />
             </Suspense>} />
-            
-
             
             {/* Zoom Whitening dedicated page */}
             <Route path="/services/zoom-whitening" element={
@@ -260,11 +265,15 @@ const App = () => {
   useEffect(() => {
     console.log('App component mounted');
     
-    // Initialize Sentry for error monitoring
-    initSentry();
-    
-    // Track app initialization
-    trackComponentRender('App');
+    // Initialize Sentry after React is ready
+    setTimeout(() => {
+      import('@/lib/sentry').then(({ initSentry, trackComponentRender }) => {
+        initSentry();
+        trackComponentRender('App');
+      }).catch(error => {
+        console.error('Failed to initialize Sentry:', error);
+      });
+    }, 500);
   }, []);
   
   return (

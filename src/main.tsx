@@ -1,29 +1,14 @@
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import { initializePerformanceOptimizations } from './utils/preloadResources';
-import { initializeThirdPartyScripts, initializeGoogleAnalytics, gtag } from './utils/thirdPartyLoader';
 
-// Initialize performance optimizations as early as possible
-initializePerformanceOptimizations();
-
-// Setup Google Analytics data layer
+// Setup basic data layer for analytics
 window.dataLayer = window.dataLayer || [];
-window.gtag = gtag;
-
-// Initialize third-party scripts (delayed loading)
-initializeThirdPartyScripts();
-
-// Use requestIdleCallback to defer non-critical initialization
-if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(() => {
-    // Initialize analytics after delay
-    setTimeout(() => {
-      initializeGoogleAnalytics();
-    }, 5000);
-  });
-}
+window.gtag = function gtag(...args: any[]) {
+  window.dataLayer.push(args);
+};
 
 const rootElement = document.getElementById('root');
 
@@ -33,4 +18,22 @@ if (rootElement) {
       <App />
     </StrictMode>,
   );
+  
+  // Defer non-critical initializations until after app is mounted
+  setTimeout(() => {
+    // Initialize performance optimizations after app load
+    import('./utils/preloadResources').then(({ initializePerformanceOptimizations }) => {
+      initializePerformanceOptimizations();
+    }).catch(console.error);
+    
+    // Initialize third-party scripts after delay
+    import('./utils/thirdPartyLoader').then(({ initializeThirdPartyScripts, initializeGoogleAnalytics }) => {
+      initializeThirdPartyScripts();
+      
+      // Initialize analytics after additional delay
+      setTimeout(() => {
+        initializeGoogleAnalytics();
+      }, 3000);
+    }).catch(console.error);
+  }, 1000);
 }

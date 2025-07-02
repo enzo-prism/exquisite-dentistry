@@ -1,4 +1,3 @@
-
 // Extend Window interface for third-party scripts
 declare global {
   interface Window {
@@ -10,7 +9,7 @@ declare global {
 }
 
 // Delay third-party scripts to improve initial page load
-const THIRD_PARTY_DELAY = 5000; // 5 seconds after page load
+const THIRD_PARTY_DELAY = 8000; // Increased delay to 8 seconds
 
 export interface ThirdPartyScript {
   name: string;
@@ -62,32 +61,40 @@ export function loadScript(script: ThirdPartyScript): Promise<void> {
   });
 }
 
-// Load all delayed scripts
+// Load all delayed scripts with better error handling
 export function loadDelayedScripts() {
   // Use requestIdleCallback if available
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(() => {
       DELAYED_SCRIPTS.forEach(script => {
-        loadScript(script).catch(console.error);
+        loadScript(script).catch(error => {
+          console.error(`Failed to load ${script.name}:`, error);
+        });
       });
     }, { timeout: THIRD_PARTY_DELAY });
   } else {
     // Fallback to setTimeout
     setTimeout(() => {
       DELAYED_SCRIPTS.forEach(script => {
-        loadScript(script).catch(console.error);
+        loadScript(script).catch(error => {
+          console.error(`Failed to load ${script.name}:`, error);
+        });
       });
     }, THIRD_PARTY_DELAY);
   }
 }
 
-// Initialize third-party scripts after page load
+// Initialize third-party scripts after page load with better error handling
 export function initializeThirdPartyScripts() {
-  // Wait for window load event
-  if (document.readyState === 'complete') {
-    loadDelayedScripts();
-  } else {
-    window.addEventListener('load', loadDelayedScripts);
+  try {
+    // Wait for window load event
+    if (document.readyState === 'complete') {
+      loadDelayedScripts();
+    } else {
+      window.addEventListener('load', loadDelayedScripts);
+    }
+  } catch (error) {
+    console.error('Failed to initialize third-party scripts:', error);
   }
 }
 
