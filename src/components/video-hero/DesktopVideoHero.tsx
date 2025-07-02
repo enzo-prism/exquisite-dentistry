@@ -15,7 +15,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center overflow-hidden bg-black">
       <VideoBackground
         vimeoId={vimeoId}
         onLoad={() => setIsVideoLoaded(true)}

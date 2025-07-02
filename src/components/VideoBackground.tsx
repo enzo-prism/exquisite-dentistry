@@ -158,7 +158,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   if (isContained) {
     return (
-      <div className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
+      <div className={cn("w-full overflow-hidden rounded-md shadow-lg bg-black", className)}>
         <AspectRatio ratio={aspectRatio}>
           {renderVideoElement()}
         </AspectRatio>
@@ -167,9 +167,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }
   
   return (
-    <div className="absolute inset-0 w-full h-full">
-      {/* Video content with simplified visibility logic */}
-      <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden", className)}>
+    <div className="absolute inset-0 w-full h-full bg-black">
+      {/* Video content with black background */}
+      <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden bg-black", className)}>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         
