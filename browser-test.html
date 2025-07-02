@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Content Test</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .loading { background-color: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>Blog Content Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        function addResult(message, type = 'loading') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+        
+        async function testPage(url, pageName) {
+            addResult(`Testing ${pageName} at ${url}...`);
+            
+            try {
+                const iframe = document.createElement('iframe');
+                iframe.src = url;
+                iframe.style.width = '1px';
+                iframe.style.height = '1px';
+                iframe.style.opacity = '0';
+                iframe.style.position = 'absolute';
+                document.body.appendChild(iframe);
+                
+                // Wait for iframe to load
+                await new Promise((resolve, reject) => {
+                    iframe.onload = resolve;
+                    iframe.onerror = reject;
+                    setTimeout(() => reject(new Error('Timeout')), 10000);
+                });
+                
+                // Check if content loaded
+                setTimeout(() => {
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        const h1Elements = iframeDoc.querySelectorAll('h1');
+                        const rootDiv = iframeDoc.getElementById('root');
+                        
+                        if (h1Elements.length > 0) {
+                            addResult(`✅ ${pageName}: Found ${h1Elements.length} H1 elements - "${h1Elements[0].textContent}"`, 'success');
+                        } else if (rootDiv && rootDiv.children.length > 0) {
+                            addResult(`⚠️ ${pageName}: Root div has content but no H1 found`, 'loading');
+                        } else {
+                            addResult(`❌ ${pageName}: No content found in root div`, 'error');
+                        }
+                        
+                        // Check for console errors
+                        const scripts = iframeDoc.querySelectorAll('script');
+                        addResult(`${pageName}: Found ${scripts.length} script tags`, 'loading');
+                        
+                    } catch (e) {
+                        addResult(`❌ ${pageName}: Error accessing iframe content - ${e.message}`, 'error');
+                    }
+                    
+                    document.body.removeChild(iframe);
+                }, 3000);
+                
+            } catch (error) {
+                addResult(`❌ ${pageName}: Failed to load - ${error.message}`, 'error');
+            }
+        }
+        
+        // Run tests
+        addResult('Starting tests...');
+        testPage('http://localhost:8080/services/zoom-whitening', 'Zoom Whitening');
+        setTimeout(() => {
+            testPage('http://localhost:8080/choosing-veneers-for-the-front-4-teeth', 'Front Teeth Veneers Blog');
+        }, 5000);
+    </script>
+</body>
+</html>

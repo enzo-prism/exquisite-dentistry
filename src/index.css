@@ -222,6 +222,10 @@
     @apply w-16 h-1 bg-gold mt-4;
   }
   
+  .separator-left {
+    @apply w-16 h-1 bg-gold mb-6;
+  }
+  
   /* Responsive Typography */
   .heading-responsive {
     @apply text-3xl md:text-4xl lg:text-5xl;

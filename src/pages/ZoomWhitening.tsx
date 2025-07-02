@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Clock, Shield, Sparkles, Star } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import { Card, CardContent } from '@/components/ui/card';
+import { trackComponentRender, trackContentLoad, addBreadcrumb } from '@/lib/sentry';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const ZoomWhitening = () => {
   console.log('ZoomWhitening component rendering');
+  
+  useEffect(() => {
+    // Track component render with detailed context
+    trackComponentRender('ZoomWhitening', {
+      path: '/services/zoom-whitening',
+      timestamp: new Date().toISOString()
+    });
+    
+    // Add breadcrumb for content loading
+    addBreadcrumb('ZoomWhitening component mounted', 'component', 'info');
+    
+    // Track content load success
+    trackContentLoad('ZoomWhitening content', true);
+    
+    console.log('ZoomWhitening: Component fully mounted and tracked');
+  }, []);
   
   const benefits = [
     {

@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, lazy, Suspense, Component, ErrorInfo, ReactNode } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import * as Sentry from "@sentry/react";
+import { initSentry, trackPageView, trackComponentRender, captureErrorWithContext } from "@/lib/sentry";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -50,6 +52,14 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
+    
+    // Send error to Sentry with additional context
+    captureErrorWithContext(error, {
+      errorInfo,
+      componentStack: errorInfo.componentStack,
+      errorBoundary: true,
+      timestamp: new Date().toISOString()
+    });
   }
 
   render() {
@@ -87,13 +97,24 @@ const RouteAudit = () => {
   
   useEffect(() => {
     console.log('Current route:', location.pathname);
+    
+    // Track page view in Sentry
+    trackPageView(location.pathname, location.search);
+    
     const timer = setTimeout(() => {
       if (process.env.NODE_ENV === 'development') {
         import('@/utils/uiAudit').then(({ logAuditResults }) => {
           console.group(`UI Audit for route: ${location.pathname}`);
           logAuditResults();
           console.groupEnd();
-        }).catch(err => console.error('Failed to load UI audit:', err));
+        }).catch(err => {
+          console.error('Failed to load UI audit:', err);
+          captureErrorWithContext(err, {
+            route: location.pathname,
+            context: 'UI audit loading',
+            timestamp: new Date().toISOString()
+          });
+        });
       }
     }, 500);
     
@@ -236,6 +257,12 @@ const AppRoutes = () => {
 const App = () => {
   useEffect(() => {
     console.log('App component mounted');
+    
+    // Initialize Sentry for error monitoring
+    initSentry();
+    
+    // Track app initialization
+    trackComponentRender('App');
   }, []);
   
   return (

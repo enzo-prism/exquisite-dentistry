@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import { Card, CardContent } from '@/components/ui/card';
+import { trackComponentRender, trackContentLoad, addBreadcrumb } from '@/lib/sentry';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const FrontTeethVeneersBlog = () => {
   console.log('FrontTeethVeneersBlog component rendering');
+  
+  useEffect(() => {
+    // Track component render with detailed context
+    trackComponentRender('FrontTeethVeneersBlog', {
+      path: '/choosing-veneers-for-the-front-4-teeth',
+      timestamp: new Date().toISOString()
+    });
+    
+    // Add breadcrumb for content loading
+    addBreadcrumb('FrontTeethVeneersBlog component mounted', 'component', 'info');
+    
+    // Track content load success
+    trackContentLoad('FrontTeethVeneersBlog content', true);
+    
+    console.log('FrontTeethVeneersBlog: Component fully mounted and tracked');
+  }, []);
   
   const benefits = [
     "Transform your smile center with perfectly matched veneers",
