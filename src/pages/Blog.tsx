@@ -29,40 +29,42 @@ const Blog = () => {
         <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles" />
       </Helmet>
 
-      <div className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gold/10 via-gold/5 to-white">
+      {/* Header Section - Mobile First */}
+      <div className="relative blog-header-spacing overflow-hidden bg-gradient-to-br from-gold/10 via-gold/5 to-white">
         <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-black">
+        <div className="relative z-10 max-w-7xl mx-auto mobile-optimized-padding text-center">
+          <h1 className="heading-lg mb-3 md:mb-4">
             Dental Blog
           </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+          <p className="paragraph max-w-2xl lg:max-w-3xl mx-auto">
             Expert insights, tips, and advice for optimal oral health and beautiful smiles
           </p>
         </div>
       </div>
 
+      {/* Main Content Section */}
       <section className="section-spacing bg-white">
         <div className="max-w-7xl mx-auto mobile-optimized-padding">
-          {/* Search and Filter */}
-          <div className="mb-8 md:mb-12 space-y-4">
+          {/* Search and Filter - Mobile First */}
+          <div className="search-filter-spacing space-y-4 md:space-y-6">
             {/* Search Bar */}
-            <div className="max-w-md mx-auto">
+            <div className="max-w-sm md:max-w-md mx-auto">
               <input
                 type="text"
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
+                className="search-input-mobile"
               />
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="category-filter-container">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`category-button ${
                     selectedCategory === category
                       ? 'bg-gold text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -74,16 +76,16 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Blog Posts Grid */}
+          {/* Blog Posts Grid - Mobile First */}
           {filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 blog-grid-spacing">
               {filteredPosts.map((post) => (
                 <BlogCard key={post.id} post={post} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">No articles found matching your criteria.</p>
+            <div className="text-center py-8 md:py-12">
+              <p className="text-gray-600 text-base md:text-lg">No articles found matching your criteria.</p>
             </div>
           )}
         </div>
