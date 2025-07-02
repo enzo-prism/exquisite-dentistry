@@ -29,53 +29,13 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   controls = false,
   onReady,
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const [shouldAutoLoad, setShouldAutoLoad] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(background); // Auto-load background videos
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   
-  // Generate Vimeo thumbnail URL if not provided
-  const defaultThumbnail = `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png`; // Use a default poster
+  // Generate default thumbnail URL if not provided
+  const defaultThumbnail = `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png`;
   const thumbnail = thumbnailUrl || defaultThumbnail;
-  
-  // Use Intersection Observer to detect when video is in viewport
-  useEffect(() => {
-    if (!background || !autoplay) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsIntersecting(true);
-            // Auto-load after a delay if in viewport and page is idle
-            if ('requestIdleCallback' in window) {
-              window.requestIdleCallback(() => {
-                setShouldAutoLoad(true);
-              }, { timeout: 3000 });
-            } else {
-              setTimeout(() => setShouldAutoLoad(true), 3000);
-            }
-          }
-        });
-      },
-      { rootMargin: '50px', threshold: 0.1 }
-    );
-    
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-    
-    return () => observer.disconnect();
-  }, [background, autoplay]);
-  
-  // Auto-load for background videos after delay
-  useEffect(() => {
-    if (shouldAutoLoad && isIntersecting && background && !isLoaded) {
-      setIsLoaded(true);
-    }
-  }, [shouldAutoLoad, isIntersecting, background, isLoaded]);
   
   // Handle iframe load event
   useEffect(() => {
@@ -84,11 +44,10 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     const iframe = iframeRef.current;
     
     const handleLoad = () => {
-      // Add a small delay to ensure video is actually ready
       setTimeout(() => {
         setIsVideoReady(true);
         onReady?.();
-      }, 1500); // Wait 1.5 seconds for video to be ready
+      }, 500); // Reduced delay
     };
     
     iframe.addEventListener('load', handleLoad);
@@ -113,7 +72,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   
   if (isLoaded) {
     return (
-      <div ref={containerRef} className={cn("relative w-full h-full", className)}>
+      <div className={cn("relative w-full h-full", className)}>
         <iframe
           ref={iframeRef}
           src={vimeoUrl}
@@ -135,7 +94,6 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   
   return (
     <div
-      ref={containerRef}
       className={cn(
         "relative w-full h-full cursor-pointer group overflow-hidden",
         className
@@ -158,11 +116,6 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
             <Play className="h-8 w-8" fill="currentColor" />
           </div>
         </div>
-      )}
-      
-      {/* Loading shimmer for background videos */}
-      {background && isIntersecting && !shouldAutoLoad && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
       )}
     </div>
   );

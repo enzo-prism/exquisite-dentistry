@@ -30,67 +30,19 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   onLoad
 }) => {
   const isMobile = useIsMobile();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [isVimeoReady, setIsVimeoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   
-  // Debug logging
+  // Simplified loading - call onLoad immediately for hero sections
   useEffect(() => {
-    console.log('VideoBackground props:', { youtubeId, streamableUrl, vimeoId, posterSrc });
-  }, [youtubeId, streamableUrl, vimeoId, posterSrc]);
-  
-  // Defer video loading until after initial page load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // Check if the page has been idle for a moment
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(() => {
-          setShouldLoadVideo(true);
-          setIsLoading(false);
-        }, { timeout: 2000 });
-      } else {
-        // Fallback for browsers without requestIdleCallback
-        setShouldLoadVideo(true);
-        setIsLoading(false);
-      }
-    }, 1000); // Wait 1 second before considering video load
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  // Intersection Observer for lazy loading videos
-  useEffect(() => {
-    if (!shouldLoadVideo) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            onLoad?.(); // Call onLoad callback if provided
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        rootMargin: '100px', // Start loading 100px before coming into view
-        threshold: 0.1
-      }
-    );
-    
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (onLoad) {
+      onLoad();
     }
-    
-    return () => observer.disconnect();
-  }, [onLoad, shouldLoadVideo]);
+  }, [onLoad]);
   
-  // Optimized video playback for streamable videos
+  // Handle video playback for streamable videos
   useEffect(() => {
-    if (!isVisible || !videoRef.current || !shouldLoadVideo || vimeoId) return;
+    if (!videoRef.current || !streamableUrl || vimeoId) return;
     
     const playVideo = async () => {
       try {
@@ -98,7 +50,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         if (!video) return;
         
         video.muted = true;
-        video.preload = 'metadata'; // Only load metadata initially
+        video.preload = 'metadata';
         
         const playPromise = video.play();
         
@@ -116,34 +68,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       }
     };
     
-    if (streamableUrl) {
-      playVideo();
-    }
-  }, [isVisible, vimeoId, streamableUrl, shouldLoadVideo]);
+    playVideo();
+  }, [streamableUrl, vimeoId]);
   
   const renderVideoElement = () => {
-    // Show solid background before Vimeo video is ready
-    if (vimeoId && (!isVisible || !shouldLoadVideo || !isVimeoReady)) {
-      return (
-        <div className="absolute inset-0 w-full h-full bg-gray-900" />
-      );
-    }
-    
-    // Always show poster image initially for non-Vimeo videos
-    if (!vimeoId && (!isVisible || !shouldLoadVideo)) {
-      const fallbackPoster = posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png";
-      console.log('Rendering poster image:', fallbackPoster);
-      return (
-        <OptimizedImage
-          src={fallbackPoster}
-          alt="Video poster"
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-        />
-      );
-    }
-    
     if (vimeoId) {
       console.log('Rendering Vimeo video:', vimeoId);
       return (
@@ -215,12 +143,22 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       );
     }
     
-    return null;
+    // Fallback to poster image
+    const fallbackPoster = posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png";
+    return (
+      <OptimizedImage
+        src={fallbackPoster}
+        alt="Video poster"
+        className="w-full h-full object-cover"
+        width={1920}
+        height={1080}
+      />
+    );
   };
   
   if (isContained) {
     return (
-      <div ref={containerRef} className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
+      <div className={cn("w-full overflow-hidden rounded-md shadow-lg", className)}>
         <AspectRatio ratio={aspectRatio}>
           {renderVideoElement()}
         </AspectRatio>
@@ -229,37 +167,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }
   
   return (
-    <div ref={containerRef} className="absolute inset-0 w-full h-full">
-      {/* Solid background for hero sections */}
-      <div 
-        className={cn(
-          "absolute inset-0 w-full h-full z-0 transition-opacity duration-700",
-          vimeoId ? "bg-gray-900" : "bg-black",
-          (vimeoId && isVimeoReady) || (!vimeoId && !isLoading) ? "opacity-0" : "opacity-100"
-        )}
-      />
-      
-      {/* Loading placeholder with poster image (for non-Vimeo videos) */}
-      {!vimeoId && (isLoading || !shouldLoadVideo) && (
-        <div className="absolute inset-0 w-full h-full z-5">
-          <OptimizedImage
-            src={posterSrc || "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"}
-            alt="Video poster"
-            className="w-full h-full object-cover opacity-30"
-            width={1920}
-            height={1080}
-          />
-        </div>
-      )}
-      
-      {/* Video content */}
-      <div className={cn(
-        "absolute inset-0 w-full h-full z-10 overflow-hidden transition-opacity duration-700",
-        vimeoId ? (isVimeoReady ? "opacity-100" : "opacity-0") : (isLoading || !shouldLoadVideo ? "opacity-0" : "opacity-100"),
-        className
-      )}>
+    <div className="absolute inset-0 w-full h-full">
+      {/* Video content with simplified visibility logic */}
+      <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden", className)}>
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         
+        {/* Video container */}
         <div className="absolute inset-0 flex items-center justify-center w-full h-full">
           <div className="w-full h-full overflow-hidden relative">
             {renderVideoElement()}
