@@ -15,7 +15,7 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-l-4 border-l-gold h-full flex flex-col">
-      <CardContent className="blog-card-padding flex-1 flex flex-col">
+      <CardContent className="blog-card-padding flex-1 flex flex-col pt-6 md:pt-8">
         <div className="flex flex-wrap items-center gap-2 md:gap-3 blog-meta-mobile">
           <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20 text-xs">
             {post.category}
