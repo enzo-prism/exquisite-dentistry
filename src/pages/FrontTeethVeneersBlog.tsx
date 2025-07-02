@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
@@ -10,22 +9,6 @@ import { Card, CardContent } from '@/components/ui/card';
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const FrontTeethVeneersBlog = () => {
-  console.log('FrontTeethVeneersBlog component rendering');
-  
-  useEffect(() => {
-    console.log('FrontTeethVeneersBlog: Component mounted successfully');
-  }, []);
-
-  // Handle image load success
-  const handleImageLoad = () => {
-    console.log('FrontTeethVeneersBlog: Hero image loaded successfully');
-  };
-
-  // Handle image load error
-  const handleImageError = () => {
-    console.error('FrontTeethVeneersBlog: Hero image failed to load');
-  };
-  
   const benefits = [
     "Transform your smile center with perfectly matched veneers",
     "Correct chips, cracks, gaps, and discoloration simultaneously",
@@ -162,8 +145,6 @@ const FrontTeethVeneersBlog = () => {
                 alt="Before and after front 4 teeth veneers transformation"
                 className="w-full h-full object-cover"
                 priority={true}
-                onLoad={handleImageLoad}
-                onError={handleImageError}
                 fallbackSrc="/placeholder.svg"
               />
             </div>
