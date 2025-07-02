@@ -134,7 +134,9 @@ const About = () => {
                   <OptimizedImage
                     src="https://i.ytimg.com/vi/Zlb9l_EqXjo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgVihMMA8=&rs=AOn4CLBszZ-tR93CsE3BOc8nPJJBAmqW4w"
                     alt="Dr. Alexie Aguil"
-                    className="w-full aspect-[3/4] object-cover rounded-sm shadow-md"
+                    objectFit="cover"
+                    objectPosition="center 20%"
+                    className="w-full aspect-[4/3] object-cover rounded-sm shadow-md"
                   />
                 </div>
                 <div className="w-full md:w-2/3 space-y-4">
