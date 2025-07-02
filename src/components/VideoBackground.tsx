@@ -186,9 +186,11 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         <OptimizedImage
           src="/lovable-uploads/548b9e25-d837-4cea-a035-32be2b9af785.png"
           alt="Loading placeholder"
-          className="w-full h-full object-cover"
+          className="w-full h-full"
           width={1920}
           height={1080}
+          objectFit="cover"
+          objectPosition="center center"
         />
         <div className="absolute inset-0 bg-black/50 z-10"></div>
       </div>
