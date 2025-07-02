@@ -32,7 +32,8 @@ const SingleToothVeneersBlog = lazy(() => import("@/pages/SingleToothVeneersBlog
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const FrontTeethVeneersBlog = lazy(() => import("@/pages/FrontTeethVeneersBlog"));
 
-
+// Add the new blog import
+const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
 
 // Error Boundary Component
 interface ErrorBoundaryState {
@@ -185,12 +186,23 @@ const AppRoutes = () => {
             <Route path="/smile-gallery" element={<Suspense fallback={<PageLoader />}>
               <SmileGallery />
             </Suspense>} />
+            
+            {/* Blog routes - Updated */}
             <Route path="/blog" element={<Suspense fallback={<PageLoader />}>
               <Blog />
             </Suspense>} />
-            <Route path="/blog/single-tooth-veneers-perfect-solutions" element={<Suspense fallback={<PageLoader />}>
-              <SingleToothVeneersBlog />
+            
+            {/* Dynamic blog post route */}
+            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}>
+              <BlogPost />
             </Suspense>} />
+            
+            {/* Legacy blog post redirects */}
+            <Route path="/choosing-veneers-for-the-front-4-teeth" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
+            <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
+            
+            {/* Remove the old individual blog post routes since they're now handled dynamically */}
+            
             <Route path="/privacy-policy" element={<Suspense fallback={<PageLoader />}>
               <PrivacyPolicy />
             </Suspense>} />
@@ -212,16 +224,6 @@ const AppRoutes = () => {
               </ErrorBoundary>
             } />
             <Route path="/services/zoom-whitening/" element={<Navigate to="/services/zoom-whitening" replace />} />
-            
-            {/* Front 4 Teeth Veneers Blog */}
-            <Route path="/choosing-veneers-for-the-front-4-teeth" element={
-              <ErrorBoundary>
-                <Suspense fallback={<PageLoader />}>
-                  <FrontTeethVeneersBlog />
-                </Suspense>
-              </ErrorBoundary>
-            } />
-            <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/choosing-veneers-for-the-front-4-teeth" replace />} />
             
             {/* Old website redirects based on top pages */}
             <Route path="/choosing-veneers-for-just-one-tooth/" element={<Navigate to="/services" replace />} />
