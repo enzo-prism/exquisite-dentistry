@@ -1,8 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-
-// Supported image formats
-type ImageFormat = 'original' | 'webp' | 'avif';
+import LoadingSkeleton from '@/components/ui/loading-skeleton';
 
 export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -20,11 +19,11 @@ export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEl
   onLoad?: () => void;
   onError?: () => void;
   fallbackSrc?: string;
+  loadingVariant?: 'elegant' | 'minimal' | 'skeleton';
 }
 
-/**
- * OptimizedImage - A high-performance component for optimized image loading
- */
+type ImageFormat = 'original' | 'webp' | 'avif';
+
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
@@ -41,6 +40,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   onLoad,
   onError,
   fallbackSrc,
+  loadingVariant = 'elegant',
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,34 +51,25 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const imgRef = React.useRef<HTMLImageElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   
-  // Check if the image is hosted on lovable-uploads
   const isLocalImage = src.includes('/lovable-uploads/');
   
-  // Smart object positioning for dental photos - only used as fallback
   const getSmartObjectPosition = () => {
-    // If objectPosition is explicitly set to something other than default, use it
     if (objectPosition !== 'center center') {
       return objectPosition;
     }
-    
-    // Only apply smart positioning if no explicit position is provided
-    // Default positioning optimized for dental photos
     return 'center 35%';
   };
   
-  // Validate image URL and provide fallback
   const getValidatedSrc = (imageSrc: string) => {
     if (!imageSrc) {
       console.warn('OptimizedImage: No src provided, using fallback');
       return fallbackSrc || '/placeholder.svg';
     }
     
-    // Ensure absolute URL for external images
     if (imageSrc.startsWith('http')) {
       return imageSrc;
     }
     
-    // Ensure leading slash for local images
     if (!imageSrc.startsWith('/')) {
       return `/${imageSrc}`;
     }
@@ -86,7 +77,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     return imageSrc;
   };
   
-  // Intersection Observer for lazy loading
   useEffect(() => {
     if (priority || isVisible) return;
     
@@ -112,7 +102,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     return () => observer.disconnect();
   }, [priority, isVisible]);
   
-  // Handle image load event
   const handleImageLoad = () => {
     console.log('✅ Image loaded successfully:', currentSrc);
     setIsLoaded(true);
@@ -120,11 +109,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     onLoad?.();
   };
   
-  // Handle image error with comprehensive fallback logic
   const handleImageError = () => {
     console.warn('❌ Image failed to load:', currentSrc, 'Attempt:', fallbackAttempts);
     
-    // Try different fallback strategies based on attempt count
     if (fallbackAttempts === 0 && fallbackSrc && currentSrc !== fallbackSrc) {
       console.log('🔄 Trying fallbackSrc:', fallbackSrc);
       setCurrentSrc(fallbackSrc);
@@ -139,13 +126,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       return;
     }
     
-    // All fallbacks failed
     console.error('🚫 All image fallbacks failed for:', src);
     setError(true);
     onError?.();
   };
 
-  // Reset state when src changes
   useEffect(() => {
     console.log('🔄 Image src changed:', src);
     setCurrentSrc(src);
@@ -154,7 +139,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     setFallbackAttempts(0);
   }, [src]);
   
-  // Test image availability
   useEffect(() => {
     if (!currentSrc || !isVisible) return;
     
@@ -172,11 +156,60 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const validatedSrc = getValidatedSrc(currentSrc);
   const finalObjectPosition = getSmartObjectPosition();
 
+  const renderLoadingState = () => {
+    if (loadingVariant === 'skeleton') {
+      return (
+        <LoadingSkeleton
+          variant="image"
+          className={cn(
+            fill ? 'w-full h-full' : '',
+            "absolute inset-0"
+          )}
+        />
+      );
+    }
+
+    if (loadingVariant === 'minimal') {
+      return (
+        <div 
+          className={cn(
+            "absolute inset-0 bg-black/5 flex items-center justify-center",
+            fill ? 'w-full h-full' : ''
+          )}
+          style={{
+            width: fill ? '100%' : width,
+            height: fill ? '100%' : height,
+          }}
+        >
+          <div className="w-2 h-2 bg-black/20 rounded-full animate-pulse" />
+        </div>
+      );
+    }
+
+    // Elegant loading (default)
+    return (
+      <div 
+        className={cn(
+          "absolute inset-0 bg-gradient-to-br from-black/3 via-black/5 to-black/8 flex items-center justify-center transition-opacity duration-300",
+          fill ? 'w-full h-full' : ''
+        )}
+        style={{
+          width: fill ? '100%' : width,
+          height: fill ? '100%' : height,
+        }}
+      >
+        <div className="flex flex-col items-center gap-2 opacity-60">
+          <div className="w-1 h-1 bg-black/30 rounded-full animate-pulse" />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div 
       ref={containerRef}
       className={cn(
-        'relative overflow-hidden',
+        'relative overflow-hidden transition-all duration-300',
         fill ? 'w-full h-full' : '',
         className
       )}
@@ -187,23 +220,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         aspectRatio: width && height ? `${width}/${height}` : undefined,
       }}
     >
-      {/* Loading placeholder */}
-      {!isLoaded && !error && (
-        <div 
-          className={cn(
-            "absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center",
-            fill ? 'w-full h-full' : ''
-          )}
-          style={{
-            width: fill ? '100%' : width,
-            height: fill ? '100%' : height,
-          }}
-        >
-          <div className="text-gray-500 text-xs">Loading...</div>
-        </div>
-      )}
+      {!isLoaded && !error && renderLoadingState()}
       
-      {/* Actual image - only render when visible or priority */}
       {(isVisible || priority) && !error && (
         <img
           ref={imgRef}
@@ -215,9 +233,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           onLoad={handleImageLoad}
           onError={handleImageError}
           className={cn(
-            'transition-opacity duration-300',
+            'transition-all duration-500 ease-out',
             fill ? 'object-cover w-full h-full' : '',
-            isLoaded ? 'opacity-100' : 'opacity-0',
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105',
             objectFit ? `object-${objectFit}` : ''
           )}
           style={{
@@ -228,11 +246,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
       
-      {/* Error fallback */}
       {error && (
         <div 
           className={cn(
-            "flex items-center justify-center bg-gray-100 text-gray-500 text-sm border-2 border-dashed border-gray-300",
+            "flex items-center justify-center bg-gradient-to-br from-black/5 to-black/10 text-black/40 text-sm border border-black/10 rounded-sm",
             fill ? 'w-full h-full' : ''
           )}
           style={{
@@ -241,9 +258,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           }}
         >
           <div className="text-center p-4">
-            <div className="text-gray-400 mb-2 text-lg">⚠</div>
-            <div className="text-xs">{alt || 'Image not available'}</div>
-            <div className="text-xs text-gray-400 mt-1">Failed to load</div>
+            <div className="text-black/20 mb-2 text-lg">⚬</div>
+            <div className="text-xs font-medium">{alt || 'Image unavailable'}</div>
           </div>
         </div>
       )}

@@ -78,11 +78,12 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                   <OptimizedImage
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-105"
                     width={400}
                     height={300}
                     fallbackSrc={image.fallbackSrc || '/placeholder.svg'}
                     priority={index === 0}
+                    loadingVariant="elegant"
                     onLoad={() => console.log(`✅ Image ${index} loaded successfully`)}
                     onError={() => console.error(`❌ Image ${index} failed to load:`, image.src)}
                   />

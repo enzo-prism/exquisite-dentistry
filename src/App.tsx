@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -134,16 +133,12 @@ const RouteAudit = () => {
   return null;
 };
 
-// Loading fallback component
-const PageLoader = () => {
+import PageLoader from '@/components/ui/page-loader';
+
+// Updated loading fallback component
+const PageLoaderComponent = () => {
   console.log('PageLoader rendering');
-  return (
-    <div className="flex items-center justify-center min-h-[60vh]">
-      <div className="animate-pulse">
-        <div className="w-12 h-12 bg-gold/20 rounded-full"></div>
-      </div>
-    </div>
-  );
+  return <PageLoader variant="minimal" message="Loading..." />;
 };
 
 const AppRoutes = () => {
@@ -161,48 +156,48 @@ const AppRoutes = () => {
       <main className="flex-grow">
         <ErrorBoundary>
           <Routes>
-            <Route path="/" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
               <Index />
             </Suspense>} />
-            <Route path="/about" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
               <About />
             </Suspense>} />
             <Route path="/about-us/about-dr-alexie-aguil/" element={<Navigate to="/about" replace />} />
             <Route path="/about-us" element={<Navigate to="/about" replace />} />
-            <Route path="/services" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
               <Services />
             </Suspense>} />
             <Route path="/services/general-dentistry/" element={<Navigate to="/services" replace />} />
-            <Route path="/client-experience" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
               <ClientExperience />
             </Suspense>} />
-            <Route path="/testimonials" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}>
               <Testimonials />
             </Suspense>} />
-            <Route path="/contact" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
               <Contact />
             </Suspense>} />
-            <Route path="/wedding" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
               <Wedding />
             </Suspense>} />
-            <Route path="/graduation" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}>
               <Graduation />
             </Suspense>} />
-            <Route path="/faqs" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}>
               <FAQs />
             </Suspense>} />
             <Route path="/faq" element={<Navigate to="/faqs" replace />} />
-            <Route path="/smile-gallery" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}>
               <SmileGallery />
             </Suspense>} />
             
             {/* Blog routes - Updated */}
-            <Route path="/blog" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
               <Blog />
             </Suspense>} />
             
             {/* Dynamic blog post route */}
-            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
               <BlogPost />
             </Suspense>} />
             
@@ -210,20 +205,20 @@ const AppRoutes = () => {
             <Route path="/choosing-veneers-for-the-front-4-teeth" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
             <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
             
-            <Route path="/privacy-policy" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
               <PrivacyPolicy />
             </Suspense>} />
-            <Route path="/terms-of-service" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}>
               <TermsOfService />
             </Suspense>} />
-            <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoader />}>
+            <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
               <HipaaCompliance />
             </Suspense>} />
             
             {/* Zoom Whitening dedicated page */}
             <Route path="/services/zoom-whitening" element={
               <ErrorBoundary>
-                <Suspense fallback={<PageLoader />}>
+                <Suspense fallback={<PageLoaderComponent />}>
                   <ZoomWhitening />
                 </Suspense>
               </ErrorBoundary>
@@ -250,7 +245,7 @@ const AppRoutes = () => {
             <Route path="/restoration-and-maintenance-for-dental-veneers/" element={<Navigate to="/services" replace />} />
             
             {/* Catch-all for any other old routes */}
-            <Route path="*" element={<Suspense fallback={<PageLoader />}>
+            <Route path="*" element={<Suspense fallback={<PageLoaderComponent />}>
               <NotFound />
             </Suspense>} />
           </Routes>
