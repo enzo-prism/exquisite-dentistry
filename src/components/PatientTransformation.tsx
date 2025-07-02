@@ -9,6 +9,8 @@ export interface PatientTransformationData {
   description?: string;
   beforeImage: string;
   afterImage: string;
+  afterObjectPosition?: string;
+  beforeObjectPosition?: string;
 }
 
 interface PatientTransformationCardProps {
@@ -98,7 +100,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 width={400}
                 height={300}
                 objectFit="cover"
-                objectPosition="center 30%"
+                objectPosition={patient.afterObjectPosition || "center 30%"}
                 draggable={false}
               />
             </div>
@@ -117,7 +119,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                 width={400}
                 height={300}
                 objectFit="cover"
-                objectPosition="center 30%"
+                objectPosition={patient.beforeObjectPosition || "center 30%"}
                 draggable={false}
               />
             </div>

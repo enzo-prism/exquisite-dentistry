@@ -54,15 +54,16 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Check if the image is hosted on lovable-uploads
   const isLocalImage = src.includes('/lovable-uploads/');
   
-  // Smart object positioning for dental photos
+  // Smart object positioning for dental photos - only used as fallback
   const getSmartObjectPosition = () => {
+    // If objectPosition is explicitly set to something other than default, use it
     if (objectPosition !== 'center center') {
-      return objectPosition; // Use custom position if provided
+      return objectPosition;
     }
     
+    // Only apply smart positioning if no explicit position is provided
     // Default positioning optimized for dental photos
-    // Focus slightly higher than center to capture smile area better
-    return 'center 30%';
+    return 'center 35%';
   };
   
   // Validate image URL and provide fallback
@@ -169,7 +170,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   }, [currentSrc, isVisible]);
 
   const validatedSrc = getValidatedSrc(currentSrc);
-  const smartObjectPosition = getSmartObjectPosition();
+  const finalObjectPosition = getSmartObjectPosition();
 
   return (
     <div 
@@ -221,7 +222,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           )}
           style={{
             objectFit,
-            objectPosition: smartObjectPosition,
+            objectPosition: finalObjectPosition,
           }}
           {...props}
         />
