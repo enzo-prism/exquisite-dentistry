@@ -17,9 +17,9 @@ export const initSentry = () => {
       // Development vs Production configuration
       environment: import.meta.env.MODE || "development",
       
-      // Performance monitoring
+      // Performance monitoring - using the correct integration for newer Sentry versions
       integrations: [
-        new Sentry.BrowserTracing({
+        Sentry.browserTracingIntegration({
           // Basic configuration without router instrumentation for now
         }),
       ],
