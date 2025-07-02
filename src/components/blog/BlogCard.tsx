@@ -5,7 +5,6 @@ import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Button from '@/components/Button';
-import OptimizedImage from '@/components/OptimizedImage';
 import { BlogPost } from '@/data/blogPosts';
 
 interface BlogCardProps {
@@ -15,34 +14,8 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-      <div className="relative h-48 bg-gradient-to-br from-gold/30 via-gold/10 to-gold/5">
-        {post.featuredImage ? (
-          <OptimizedImage
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-full object-cover"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-t from-gold/40 via-transparent to-gold/20">
-            <div className="relative z-10 h-full flex items-center justify-center">
-              <div className="text-center p-6">
-                <div className="w-14 h-14 mx-auto mb-3 bg-white/80 rounded-full flex items-center justify-center">
-                  <User size={28} className="text-gold" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {post.title.includes('Front 4') ? 'Front 4 Veneers' : 
-                   post.title.includes('Single') ? 'Single Tooth Veneers' : 
-                   'Dental Insights'}
-                </h3>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-      <CardContent className="p-6">
+    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-l-4 border-l-gold">
+      <CardContent className="p-8">
         <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
           <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20">
             {post.category}
@@ -56,12 +29,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
             <span>{post.readTime}</span>
           </div>
         </div>
-        <h3 className={`font-semibold mb-3 line-clamp-2 ${featured ? 'text-2xl' : 'text-xl'}`}>
+        
+        <h3 className={`font-semibold mb-4 line-clamp-2 text-gray-900 ${featured ? 'text-2xl' : 'text-xl'}`}>
           {post.title}
         </h3>
-        <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+        
+        <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3 text-base">
           {post.excerpt}
         </p>
+        
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <User size={16} />
