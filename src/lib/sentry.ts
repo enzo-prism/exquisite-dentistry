@@ -1,5 +1,5 @@
+
 import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
 
 // Initialize Sentry for error monitoring and performance tracking
 export const initSentry = () => {
@@ -19,7 +19,7 @@ export const initSentry = () => {
       
       // Performance monitoring
       integrations: [
-        new BrowserTracing({
+        new Sentry.BrowserTracing({
           // Basic configuration without router instrumentation for now
         }),
       ],
