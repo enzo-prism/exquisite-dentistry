@@ -163,7 +163,8 @@ const AppRoutes = () => {
             <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
               <About />
             </Suspense>} />
-            <Route path="/about-us/about-dr-alexie-aguil/" element={<Navigate to="/about" replace />} />
+            {/* Only keep fallback for non-trailing slash version that Netlify won't catch */}
+            <Route path="/about-us/about-dr-alexie-aguil" element={<Navigate to="/about" replace />} />
             <Route path="/about-us" element={<Navigate to="/about" replace />} />
             <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
               <Services />
