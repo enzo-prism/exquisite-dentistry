@@ -98,6 +98,7 @@ const queryClient = new QueryClient({
   },
 });
 
+// RouteAudit component
 const RouteAudit = () => {
   const location = useLocation();
   
@@ -191,7 +192,7 @@ const AppRoutes = () => {
               <SmileGallery />
             </Suspense>} />
             
-            {/* Blog routes - Updated */}
+            {/* Blog routes */}
             <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
               <Blog />
             </Suspense>} />
@@ -201,9 +202,9 @@ const AppRoutes = () => {
               <BlogPost />
             </Suspense>} />
             
-            {/* Legacy blog post redirects */}
+            {/* Only keep React Router redirects for URLs without trailing slashes that Netlify won't catch */}
             <Route path="/choosing-veneers-for-the-front-4-teeth" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
-            <Route path="/choosing-veneers-for-the-front-4-teeth/" element={<Navigate to="/blog/choosing-veneers-for-the-front-4-teeth" replace />} />
+            <Route path="/choosing-veneers-for-just-one-tooth" element={<Navigate to="/blog/single-tooth-veneers-perfect-solutions" replace />} />
             
             <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
               <PrivacyPolicy />
@@ -226,7 +227,6 @@ const AppRoutes = () => {
             <Route path="/services/zoom-whitening/" element={<Navigate to="/services/zoom-whitening" replace />} />
             
             {/* Old website redirects based on top pages */}
-            <Route path="/choosing-veneers-for-just-one-tooth/" element={<Navigate to="/services" replace />} />
             <Route path="/top-4-netflix-shows-to-explore-from-the-dentists-chair/" element={<Navigate to="/client-experience" replace />} />
             <Route path="/5-ways-to-improve-oral-care-while-youre-at-work/" element={<Navigate to="/faqs" replace />} />
             <Route path="/long-will-take-fix-crooked-teeth/" element={<Navigate to="/services" replace />} />
