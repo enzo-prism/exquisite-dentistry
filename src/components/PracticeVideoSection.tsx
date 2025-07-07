@@ -27,7 +27,7 @@ const PracticeVideoSection: React.FC = () => {
                 autoplay={true}
                 muted={true}
                 loop={true}
-                background={true}
+                background={false}
                 controls={false}
               />
             </div>
