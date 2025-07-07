@@ -377,7 +377,7 @@ const SingleToothVeneersBlog = () => {
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-4">
                 <Link to="/contact" className="flex items-center justify-center">
-                  Learn More
+                  Contact Our Dental Team
                 </Link>
               </Button>
             </div>

@@ -106,7 +106,7 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                   size="lg" 
                   className="group shadow-md hover:shadow-lg"
                 >
-                  Learn More About Dr. Aguil
+                  Meet Dr. Aguil - Our Expert Dentist
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>

@@ -1,53 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Flower } from 'lucide-react';
+import { GraduationCap, Heart, Flower } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
-import Button from '@/components/Button';
+import graduationOptimized from '@/assets/graduation-optimized.webp';
 
-const SeasonalTreatments: React.FC = () => {
+const SeasonalTreatments = () => {
   return (
-    <section className="bg-gradient-to-b from-black/5 to-white py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">LIFE'S SPECIAL MOMENTS</span>
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Special <span className="text-gold">Occasions</span>
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="inline-block text-sm text-secondary font-medium mb-3">SPECIAL MOMENTS</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-foreground leading-tight mb-6">
+            Perfect Your Smile for <span className="text-secondary">Life's Big Moments</span>
           </h2>
-          <div className="separator mx-auto"></div>
-          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-            Special services designed for life's important moments
+          <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Whether it's your wedding day or graduation, ensure your smile is picture-perfect for every special occasion
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Wedding Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <OptimizedImage
-                src="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
-                alt="Wedding couple smiling"
+                src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png"
+                alt="Beautiful bride with perfect wedding smile"
                 fill={true}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
-                  <Flower className="h-7 w-7 text-gold" />
+                  <Heart className="h-7 w-7 text-gold" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3">Wedding Smile Packages</h3>
-                <p className="text-center text-white/90 mb-6 max-w-md">
-                  Look your absolute best on your special day with our customized wedding smile treatments.
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3">Wedding Smile Preparation</h3>
+                <p className="text-center text-gray-200 mb-6 leading-relaxed">
+                  Look radiant on your special day with our comprehensive wedding smile makeover packages
                 </p>
-                <Link to="/wedding">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-white text-white hover:bg-white/10 group shadow-md"
-                  >
-                    Wedding Smile Guide
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
-                      <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </Button>
+                <Link to="/wedding" className="inline-flex">
+                  <div className="bg-gold hover:bg-gold/90 text-white px-6 py-3 rounded-sm font-medium transition-colors duration-300 shadow-lg hover:shadow-xl">
+                    Plan Your Perfect Smile
+                  </div>
                 </Link>
               </div>
             </div>
@@ -57,30 +50,25 @@ const SeasonalTreatments: React.FC = () => {
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <OptimizedImage
-                src="/lovable-uploads/b873d422-2613-49ad-b9ef-d12c878cf4f4.png"
-                alt="Graduates smiling"
+                src={graduationOptimized}
+                alt="Happy graduates celebrating their achievements with bright smiles"
                 fill={true}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                priority={false}
+                formats={['webp', 'original']}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Flower className="h-7 w-7 text-gold" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-semibold mb-3">Graduation Smile Treatment</h3>
-                <p className="text-center text-white/90 mb-6 max-w-md">
-                  Graduate with confidence with our quick, effective smile enhancement solutions.
+                <p className="text-center text-gray-200 mb-6 leading-relaxed">
+                  Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments
                 </p>
-                <Link to="/graduation">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-white text-white hover:bg-white/10 group shadow-md"
-                  >
-                    Graduation Smile Guide
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
-                      <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </Button>
+                <Link to="/graduation" className="inline-flex">
+                  <div className="bg-gold hover:bg-gold/90 text-white px-6 py-3 rounded-sm font-medium transition-colors duration-300 shadow-lg hover:shadow-xl">
+                    Get Graduation Ready
+                  </div>
                 </Link>
               </div>
             </div>

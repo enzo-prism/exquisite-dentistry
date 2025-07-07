@@ -29,7 +29,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   controls = false,
   onReady,
 }) => {
-  const [isLoaded, setIsLoaded] = useState(background); // Auto-load background videos
+  const [isLoaded, setIsLoaded] = useState(false); // All videos lazy load now
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   
   // Use the uploaded placeholder image as default for background videos

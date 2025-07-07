@@ -112,7 +112,7 @@ const Services = () => {
                         <div className="ml-4 flex-shrink-0">
                           <a href="https://exquisiteveneersla.com/" target="_blank" rel="noopener noreferrer">
                             <Button variant="outline" size="sm" className="text-xs border-gold text-gold hover:bg-gold/5">
-                              Learn More
+                              View Veneer Details
                             </Button>
                           </a>
                         </div>

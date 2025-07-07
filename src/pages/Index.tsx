@@ -44,7 +44,7 @@ const IndexPage: React.FC = () => {
           href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
         secondaryCta={{
-          text: "Learn More",
+          text: "Discover Our Practice",
           href: "/about"
         }}
       />

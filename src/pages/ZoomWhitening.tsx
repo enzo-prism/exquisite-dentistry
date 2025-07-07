@@ -315,7 +315,7 @@ const ZoomWhitening = () => {
                   size="lg"
                   onClick={() => window.location.href = '/contact'}
                 >
-                  Learn More
+                  View Our Contact Information
                 </Button>
               </div>
             </div>
