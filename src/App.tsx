@@ -27,6 +27,7 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
+const Veneers = lazy(() => import("@/pages/Veneers"));
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
@@ -217,6 +218,10 @@ const AppRoutes = () => {
               <HipaaCompliance />
             </Suspense>} />
             
+            {/* Veneers page */}
+            <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
+              <Veneers />
+            </Suspense>} />
             
             {/* Old website redirects based on top pages */}
             <Route path="/top-4-netflix-shows-to-explore-from-the-dentists-chair/" element={<Navigate to="/client-experience" replace />} />
