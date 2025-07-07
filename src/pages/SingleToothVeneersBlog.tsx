@@ -6,6 +6,7 @@ import { Calendar, Clock, ArrowLeft, User, CheckCircle, AlertCircle, Star } from
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Button from '@/components/Button';
+import VeneerCTA from '@/components/VeneerCTA';
 
 const SingleToothVeneersBlog = () => {
   return (
@@ -96,6 +97,8 @@ const SingleToothVeneersBlog = () => {
               At Exquisite Dentistry, Dr. Alexie Aguil specializes in creating custom single tooth veneers that 
               seamlessly blend with your natural smile, providing results that are both stunning and undetectable.
             </p>
+            
+            <VeneerCTA variant="inline" />
           </div>
 
           {/* What Are Single Tooth Veneers */}
@@ -193,6 +196,8 @@ const SingleToothVeneersBlog = () => {
               </Card>
             </div>
           </section>
+
+          <VeneerCTA variant="banner" />
 
           {/* The Process */}
           <section className="mb-12">
@@ -341,6 +346,16 @@ const SingleToothVeneersBlog = () => {
                   className="flex items-center justify-center"
                 >
                   Schedule Consultation
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                <a 
+                  href="https://exquisiteveneersla.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center"
+                >
+                  Explore Veneer Options
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-4">

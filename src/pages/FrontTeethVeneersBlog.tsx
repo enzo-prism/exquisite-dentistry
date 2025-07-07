@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import VeneerCTA from '@/components/VeneerCTA';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -109,6 +110,8 @@ const FrontTeethVeneersBlog = () => {
             <p className="text-xl leading-relaxed">
               When it comes to creating a stunning smile, your front four teeth—the central and lateral incisors—play the starring role. These teeth are the focal point of your smile and the first thing people notice when you speak or laugh. If you're considering porcelain veneers for these essential teeth, you're making a decision that can dramatically transform your appearance and boost your confidence.
             </p>
+            
+            <VeneerCTA variant="inline" />
           </div>
 
           {/* Why Front 4 Section */}
@@ -182,6 +185,8 @@ const FrontTeethVeneersBlog = () => {
               </ul>
             </div>
           </section>
+
+          <VeneerCTA variant="banner" />
 
           {/* Process Timeline */}
           <section className="mb-16">
@@ -305,6 +310,15 @@ const FrontTeethVeneersBlog = () => {
                 <Button size="lg">
                   Book Free Consultation
                   <ArrowRight size={16} className="ml-2" />
+                </Button>
+              </a>
+              <a href="https://exquisiteveneersla.com/" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-black"
+                >
+                  Explore Veneer Gallery
                 </Button>
               </a>
               <Link to="/smile-gallery">

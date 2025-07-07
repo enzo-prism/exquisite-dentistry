@@ -8,6 +8,7 @@ import BlogMeta from './BlogMeta';
 import RelatedPosts from './RelatedPosts';
 import FrontTeethVeneersBlog from '@/pages/FrontTeethVeneersBlog';
 import SingleToothVeneersBlog from '@/pages/SingleToothVeneersBlog';
+import VeneerCTA from '@/components/VeneerCTA';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -73,6 +74,11 @@ const BlogPost: React.FC = () => {
           <div className="prose prose-lg max-w-none">
             <p>This is a placeholder for the blog post content. In a real implementation, this would contain the full article content, which could be stored as markdown or rich text in the blog post data structure.</p>
           </div>
+          
+          {/* Show veneer CTA for cosmetic dentistry posts */}
+          {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
+            <VeneerCTA variant="banner" />
+          )}
           
           <RelatedPosts currentPost={post} />
         </div>
