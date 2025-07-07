@@ -2,10 +2,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageHeader from '@/components/PageHeader';
+import WebPageStructuredData from '@/components/WebPageStructuredData';
 
 const TermsOfService: React.FC = () => {
   return (
     <>
+      <WebPageStructuredData 
+        title="Terms of Service | Exquisite Dentistry Los Angeles"
+        description="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry in Los Angeles."
+        url="https://exquisitedentistryla.com/terms-of-service"
+        breadcrumbs={[{ name: 'Terms of Service', url: 'https://exquisitedentistryla.com/terms-of-service' }]}
+      />
       <Helmet>
         <title>Terms of Service | Exquisite Dentistry Los Angeles</title>
         <meta name="description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry in Los Angeles." />

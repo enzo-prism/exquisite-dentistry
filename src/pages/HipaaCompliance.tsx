@@ -2,10 +2,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageHeader from '@/components/PageHeader';
+import WebPageStructuredData from '@/components/WebPageStructuredData';
 
 const HipaaCompliance: React.FC = () => {
   return (
     <>
+      <WebPageStructuredData 
+        title="HIPAA Compliance | Patient Health Information Protection"
+        description="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations."
+        url="https://exquisitedentistryla.com/hipaa-compliance"
+        breadcrumbs={[{ name: 'HIPAA Compliance', url: 'https://exquisitedentistryla.com/hipaa-compliance' }]}
+      />
       <Helmet>
         <title>HIPAA Compliance | Patient Health Information Protection</title>
         <meta name="description" content="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations." />

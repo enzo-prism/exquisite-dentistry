@@ -2,10 +2,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageHeader from '@/components/PageHeader';
+import WebPageStructuredData from '@/components/WebPageStructuredData';
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <>
+      <WebPageStructuredData 
+        title="Privacy Policy | Exquisite Dentistry Los Angeles"
+        description="Read our privacy policy to understand how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations."
+        url="https://exquisitedentistryla.com/privacy-policy"
+        breadcrumbs={[{ name: 'Privacy Policy', url: 'https://exquisitedentistryla.com/privacy-policy' }]}
+      />
       <Helmet>
         <title>Privacy Policy | Exquisite Dentistry Los Angeles</title>
         <meta name="description" content="Read our privacy policy to understand how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />

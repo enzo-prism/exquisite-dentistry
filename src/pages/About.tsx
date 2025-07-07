@@ -10,6 +10,7 @@ import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
 import DoctorStructuredData from '@/components/DoctorStructuredData';
+import AboutPageStructuredData from '@/components/AboutPageStructuredData';
 
 const About = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const About = () => {
   return (
     <>
       <DoctorStructuredData />
+      <AboutPageStructuredData />
       <Helmet>
         <title>About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles</title>
         <meta name="description" content="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques. Experience personalized dental care." />
