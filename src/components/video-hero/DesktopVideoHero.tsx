@@ -4,18 +4,21 @@ import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import type { VideoHeroProps } from './video-hero-types';
+import { getHeroHeightClasses } from '@/utils/heroHeights';
 
 const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   vimeoId,
   title,
   subtitle,
   primaryCta,
-  secondaryCta
+  secondaryCta,
+  height = 'medium'
 }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const heightClasses = getHeroHeightClasses(height);
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center overflow-hidden bg-black">
+    <section className={cn("relative flex items-center overflow-hidden bg-black", heightClasses.desktop)}>
       <VideoBackground
         vimeoId={vimeoId}
         onLoad={() => setIsVideoLoaded(true)}
