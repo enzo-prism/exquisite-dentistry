@@ -54,10 +54,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const isLocalImage = src.includes('/lovable-uploads/');
   
   const getSmartObjectPosition = () => {
-    if (objectPosition !== 'center center') {
+    // Always use the explicitly passed objectPosition if provided
+    if (objectPosition && objectPosition !== 'center center') {
       return objectPosition;
     }
-    return 'center 35%';
+    // Only use smart positioning for default center values
+    return objectPosition === 'center center' ? 'center 35%' : (objectPosition || 'center center');
   };
   
   const getValidatedSrc = (imageSrc: string) => {
@@ -234,9 +236,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           onError={handleImageError}
           className={cn(
             'transition-all duration-500 ease-out',
-            fill ? 'object-cover w-full h-full' : '',
-            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105',
-            objectFit ? `object-${objectFit}` : ''
+            fill ? 'w-full h-full' : '',
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           )}
           style={{
             objectFit,

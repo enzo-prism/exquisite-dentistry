@@ -17,14 +17,14 @@ export interface ImageAlignmentResult {
  * Calculates optimal object positioning for image pairs to ensure proper alignment
  */
 export function calculateImageAlignment(imagePair: ImagePair): ImageAlignmentResult {
-  // Default positioning that works well for dental photos
-  const defaultPosition = "center 30%";
+  // Default centered positioning for dental photos
+  const defaultPosition = "center center";
   
-  // Use the same position for both images to ensure perfect alignment
+  // Use custom positions if provided, otherwise use default
   const beforePosition = imagePair.beforeObjectPosition || defaultPosition;
   const afterPosition = imagePair.afterObjectPosition || beforePosition;
   
-  // Ensure both images use identical positioning
+  // Ensure both images use identical positioning for perfect alignment
   const alignedPosition = beforePosition;
   
   return {
