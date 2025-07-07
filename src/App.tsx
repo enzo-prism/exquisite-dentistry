@@ -27,9 +27,9 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
-const ZoomWhitening = lazy(() => import("@/pages/ZoomWhiteningNew"));
+const ZoomWhitening = lazy(() => import("@/pages/ZoomWhiteningSimple"));
 const DiagnosticTest = lazy(() => import("@/pages/DiagnosticTest"));
-const PorcelainVeneers = lazy(() => import("@/pages/PorcelainVeneersNew"));
+const PorcelainVeneers = lazy(() => import("@/pages/PorcelainVeneersSimple"));
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
