@@ -27,7 +27,19 @@ const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
-const PorcelainVeneers = lazy(() => import("@/pages/PorcelainVeneers"));
+const PorcelainVeneers = lazy(() => {
+  console.log('Loading PorcelainVeneers component...');
+  return import("@/pages/PorcelainVeneers").then(
+    (module) => {
+      console.log('PorcelainVeneers loaded successfully:', module);
+      return module;
+    },
+    (error) => {
+      console.error('Failed to load PorcelainVeneers:', error);
+      throw error;
+    }
+  );
+});
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
