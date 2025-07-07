@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Button from '@/components/Button';
+import VideoHero from '@/components/VideoHero';
 import { ArrowRight, Check, Clock, Shield, Sparkles, Star } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
+import WebPageStructuredData from '@/components/WebPageStructuredData';
+import OfferStructuredData from '@/components/OfferStructuredData';
 import { Card, CardContent } from '@/components/ui/card';
 import { trackComponentRender, trackContentLoad, addBreadcrumb } from '@/lib/sentry';
 
@@ -115,188 +118,191 @@ const ZoomWhitening = () => {
         image="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png"
         priceRange="$$"
       />
+      <WebPageStructuredData
+        title="Zoom Teeth Whitening Los Angeles | Professional In-Office Whitening"
+        description="Get a brilliantly white smile in just 90 minutes with Zoom teeth whitening in Los Angeles. Professional in-office treatment that delivers up to 8 shades whiter teeth."
+        url="https://exquisitedentistryla.com/services/zoom-whitening"
+        pageType="WebPage"
+        breadcrumbs={[
+          { name: 'Services', url: 'https://exquisitedentistryla.com/services' },
+          { name: 'Zoom Whitening', url: 'https://exquisitedentistryla.com/services/zoom-whitening' }
+        ]}
+      />
+      <OfferStructuredData
+        offerName="Zoom Professional Whitening Treatment"
+        description="Transform your smile with our 90-minute Zoom whitening treatment. Get up to 8 shades whiter teeth in a single visit with our safe, professional-grade system."
+        category="Cosmetic Dentistry"
+        url="https://exquisitedentistryla.com/services/zoom-whitening"
+        priceCurrency="USD"
+      />
 
-      {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block text-sm text-gold font-medium mb-4">TRANSFORM YOUR SMILE TODAY</span>
-          <h1 className="text-5xl font-bold mb-6">
-            Professional <span className="text-gold">Zoom Whitening</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Get a brilliantly white smile in just 90 minutes with our advanced in-office Zoom teeth whitening treatment
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button size="lg">Book Your Whitening Session</Button>
-            </a>
-            <a href="tel:+13103935133">
-              <Button size="lg" variant="outline">Call (310) 393-5133</Button>
-            </a>
-          </div>
-        </div>
-      </section>
+      <VideoHero 
+        vimeoId="1076745525"
+        title={<>Professional <span className="text-gold">Zoom Whitening</span></>}
+        subtitle="Get a brilliantly white smile in just 90 minutes with our advanced in-office teeth whitening treatment."
+        primaryCta={{
+          text: "Book Your Whitening Session",
+          href: SCHEDULING_URL
+        }}
+        secondaryCta={{
+          text: "Learn More",
+          href: "tel:+13103935133"
+        }}
+        height="medium"
+        badgeText="TRANSFORM YOUR SMILE TODAY"
+      />
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm text-gold font-medium mb-3">WHY CHOOSE ZOOM</span>
-            <h2 className="text-4xl font-bold mb-4">The Gold Standard in Teeth Whitening</h2>
-            <div className="separator"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Zoom whitening is the #1 patient-requested professional whitening treatment, delivering dramatic results in a single visit.
-            </p>
-          </div>
+      <section className="section-container bg-gray-50">
+        <div className="text-center mb-12">
+          <span className="inline-block text-sm text-gold font-medium mb-3">WHY CHOOSE ZOOM</span>
+          <h2 className="heading-lg mb-4">The Gold Standard in Teeth Whitening</h2>
+          <div className="separator mx-auto"></div>
+          <p className="paragraph max-w-3xl mx-auto mt-6">
+            Zoom whitening is the #1 patient-requested professional whitening treatment, delivering dramatic results in a single visit.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center text-gold mb-4">
-                    {benefit.icon}
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {benefits.map((benefit, index) => (
+            <Card key={index} className="hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center text-gold mb-4">
+                  {benefit.icon}
+                </div>
+                <h3 className="heading-sm mb-2">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* Before/After Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block text-sm text-gold font-medium mb-3">REAL RESULTS</span>
-              <h2 className="text-4xl font-bold mb-6">See the Zoom Difference</h2>
-              <div className="separator-left mb-6"></div>
-              <p className="text-lg text-gray-600 mb-6">
-                Our patients consistently achieve remarkable whitening results with Zoom. The advanced LED light-activated technology breaks down even the most stubborn stains from coffee, wine, tea, and tobacco.
-              </p>
-              
-              <div className="bg-gold/10 p-6 rounded-lg mb-8">
-                <h3 className="font-semibold text-lg mb-3">What Zoom Whitening Treats:</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {['Coffee & tea stains', 'Wine discoloration', 'Tobacco stains', 'Age-related yellowing', 'Food stains', 'Medication discoloration'].map((item) => (
-                    <div key={item} className="flex items-center">
-                      <Check size={18} className="text-gold mr-2" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
+      <section className="section-container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <span className="inline-block text-sm text-gold font-medium">REAL RESULTS</span>
+            <h2 className="heading-lg">See the Zoom Difference</h2>
+            <div className="separator-left"></div>
+            <p className="paragraph">
+              Our patients consistently achieve remarkable whitening results with Zoom. The advanced LED light-activated technology breaks down even the most stubborn stains from coffee, wine, tea, and tobacco.
+            </p>
+            
+            <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold mb-8">
+              <h3 className="heading-sm mb-3">What Zoom Whitening Treats:</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {['Coffee & tea stains', 'Wine discoloration', 'Tobacco stains', 'Age-related yellowing', 'Food stains', 'Medication discoloration'].map((item) => (
+                  <div key={item} className="flex items-center">
+                    <Check size={18} className="text-gold mr-2" />
+                    <span className="text-black">{item}</span>
+                  </div>
+                ))}
               </div>
+            </div>
 
+            <div className="pt-4">
               <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg" 
-                  className="group"
-                >
+                <Button className="group">
                   Schedule Your Whitening
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
             </div>
-            
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
-                <OptimizedImage
-                  src="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png"
-                  alt="Zoom whitening results"
-                  className="w-full h-full object-cover"
-                />
+          </div>
+          
+          <div className="relative">
+            <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
+              <OptimizedImage
+                src="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png"
+                alt="Zoom whitening results"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-sm shadow-lg max-w-xs">
+              <div className="flex items-center mb-2">
+                <Star className="text-gold fill-gold" size={20} />
+                <Star className="text-gold fill-gold" size={20} />
+                <Star className="text-gold fill-gold" size={20} />
+                <Star className="text-gold fill-gold" size={20} />
+                <Star className="text-gold fill-gold" size={20} />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-lg max-w-xs">
-                <div className="flex items-center mb-2">
-                  <Star className="text-gold fill-gold" size={20} />
-                  <Star className="text-gold fill-gold" size={20} />
-                  <Star className="text-gold fill-gold" size={20} />
-                  <Star className="text-gold fill-gold" size={20} />
-                  <Star className="text-gold fill-gold" size={20} />
-                </div>
-                <p className="text-sm italic">"My teeth are 8 shades whiter! The results were immediate and amazing."</p>
-                <p className="text-xs text-gray-500 mt-2">- Sarah M., Zoom Patient</p>
-              </div>
+              <p className="text-sm italic text-black">"My teeth are 8 shades whiter! The results were immediate and amazing."</p>
+              <p className="text-xs text-gray-500 mt-2">- Sarah M., Zoom Patient</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm text-gold font-medium mb-3">THE PROCESS</span>
-            <h2 className="text-4xl font-bold mb-4">Your 90-Minute Transformation</h2>
-            <div className="separator"></div>
-          </div>
+      <section className="section-container bg-gray-50">
+        <div className="text-center mb-12">
+          <span className="inline-block text-sm text-gold font-medium mb-3">THE PROCESS</span>
+          <h2 className="heading-lg mb-4">Your 90-Minute Transformation</h2>
+          <div className="separator mx-auto"></div>
+        </div>
 
-          <div className="max-w-4xl mx-auto">
-            {processSteps.map((step, index) => (
-              <div key={index} className="flex items-start mb-8 last:mb-0">
-                <div className="flex-shrink-0 w-12 h-12 bg-gold text-white rounded-full flex items-center justify-center font-bold text-lg">
-                  {step.step}
-                </div>
-                <div className="ml-6">
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
-                </div>
+        <div className="max-w-4xl mx-auto">
+          {processSteps.map((step, index) => (
+            <div key={index} className="flex items-start mb-8 last:mb-0">
+              <div className="flex-shrink-0 w-12 h-12 bg-gold text-white rounded-full flex items-center justify-center font-bold text-lg">
+                {step.step}
               </div>
-            ))}
-          </div>
-
-          <div className="mt-12 bg-white p-8 rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-4 text-center">Ready for a Brighter Smile?</h3>
-            <p className="text-center text-gray-600 mb-6">
-              Join thousands of patients who have transformed their smiles with Zoom whitening at Exquisite Dentistry.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg">
-                  Book Your Session
-                </Button>
-              </a>
-              <a href="tel:+13103935133">
-                <Button size="lg" variant="outline">
-                  Call (310) 393-5133
-                </Button>
-              </a>
+              <div className="ml-6">
+                <h3 className="heading-sm mb-2">{step.title}</h3>
+                <p className="paragraph mb-0">{step.description}</p>
+              </div>
             </div>
+          ))}
+        </div>
+
+        <div className="mt-12 bg-white p-8 rounded-sm shadow-md border-0">
+          <h3 className="heading-sm text-center mb-4">Ready for a Brighter Smile?</h3>
+          <p className="paragraph text-center mb-6">
+            Join thousands of patients who have transformed their smiles with Zoom whitening at Exquisite Dentistry.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg">
+                Book Your Session
+              </Button>
+            </a>
+            <a href="tel:+13103935133">
+              <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/5">
+                Call (310) 393-5133
+              </Button>
+            </a>
           </div>
         </div>
       </section>
 
       {/* FAQs Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm text-gold font-medium mb-3">FREQUENTLY ASKED</span>
-            <h2 className="text-4xl font-bold mb-4">Zoom Whitening Questions</h2>
-            <div className="separator"></div>
-          </div>
+      <section className="section-container">
+        <div className="text-center mb-12 max-w-4xl mx-auto">
+          <span className="inline-block text-sm text-gold font-medium mb-3">FREQUENTLY ASKED</span>
+          <h2 className="heading-lg mb-4">Zoom Whitening Questions</h2>
+          <div className="separator mx-auto"></div>
+        </div>
 
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <Card key={index}>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="space-y-6 max-w-4xl mx-auto">
+          {faqs.map((faq, index) => (
+            <Card key={index} className="border-0 shadow-md">
+              <CardContent className="p-6">
+                <h3 className="heading-sm mb-3">{faq.question}</h3>
+                <p className="paragraph mb-0">{faq.answer}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black text-white">
+      <section className="py-24 bg-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Get Your <span className="text-gold">Brightest Smile</span> Today
           </h2>
-          <p className="text-xl mb-8 text-white/80">
+          <p className="text-xl mb-8 text-white/80 max-w-3xl mx-auto">
             Professional Zoom whitening delivers instant, dramatic results. Schedule your appointment now and walk out with a brilliantly white smile.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
