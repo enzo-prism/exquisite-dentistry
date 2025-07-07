@@ -1,99 +1,23 @@
-
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
-import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
+import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
-const services = [{
-  id: "cosmetic",
-  title: "Cosmetic Dentistry",
-  description: "Transform your smile with our comprehensive cosmetic dental services. We combine artistic vision with technical precision to create beautiful, natural-looking results that enhance your confidence.",
-  highlight: "Our signature smile makeovers are custom-designed to complement your facial features and achieve your aesthetic goals.",
-  icon: <Smile size={24} />,
-  image: "/lovable-uploads/33335962-b99c-4063-aa3c-96dfaf5215bb.png",
-  treatments: [{
-    name: "Porcelain Veneers",
-    details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance"
-  }, {
-    name: "Professional Teeth Whitening",
-    details: "Advanced in-office and take-home whitening systems for brilliantly white teeth"
-  }, {
-    name: "Smile Makeovers",
-    details: "Comprehensive treatment plans combining multiple procedures for total smile transformation"
-  }, {
-    name: "Cosmetic Bonding",
-    details: "Tooth-colored resin applied to repair chips, cracks, and discoloration"
-  }]
-}, {
-  id: "restorative",
-  title: "Restorative Dentistry",
-  description: "Restore function and aesthetics to damaged or missing teeth with our advanced restorative solutions. We focus on long-lasting results that look and feel completely natural.",
-  highlight: "Our metal-free restorations provide superior strength without compromising aesthetics.",
-  icon: <Wrench size={24} />,
-  image: "/lovable-uploads/cc4f1722-a37f-42b6-8438-6160759e3eb8.png",
-  treatments: [{
-    name: "Porcelain Crowns & Bridges",
-    details: "Beautiful, durable restorations to repair damaged teeth or replace missing teeth"
-  }, {
-    name: "Inlays & Onlays",
-    details: "Conservative alternatives to full crowns that preserve more of your natural tooth structure"
-  }, {
-    name: "Dental Implants",
-    details: "Permanent tooth replacement that looks, feels, and functions like natural teeth"
-  }, {
-    name: "Full & Partial Dentures",
-    details: "Removable appliances to replace multiple missing teeth and restore function"
-  }]
-}, {
-  id: "preventive",
-  title: "Preventive Care",
-  description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
-  highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
-  icon: <Shield size={24} />,
-  image: "/lovable-uploads/c876408e-2891-4863-9f01-e5d025c7c52f.png",
-  treatments: [{
-    name: "Comprehensive Exams",
-    details: "Thorough evaluation of your oral health, including teeth, gums, and supporting structures"
-  }, {
-    name: "Professional Cleaning",
-    details: "Removal of plaque and tartar to prevent cavities and gum disease"
-  }, {
-    name: "Digital X-Rays",
-    details: "Low-radiation imaging to detect issues not visible during a visual examination"
-  }, {
-    name: "Oral Cancer Screenings",
-    details: "Early detection of abnormal tissues that may indicate precancerous conditions"
-  }]
-}, {
-  id: "specialty",
-  title: "Specialty Services",
-  description: "Access specialized dental care without being referred elsewhere. Our comprehensive range of specialty services allows us to address complex dental issues with the same attention to comfort and quality.",
-  highlight: "Dr. Aguil's advanced training allows us to offer specialized care that many general practices cannot provide.",
-  icon: <Stethoscope size={24} />,
-  image: "/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png",
-  treatments: [{
-    name: "Invisalign® Clear Aligners",
-    details: "Discreet orthodontic treatment to straighten teeth without metal braces"
-  }, {
-    name: "Laser Gum Therapy",
-    details: "Minimally invasive treatment for gum disease and cosmetic gum procedures"
-  }, {
-    name: "Full Mouth Reconstruction",
-    details: "A comprehensive, holistic, and multi-layered dental treatment involving a series of procedures aimed at transforming your smile, restoring the functionality of your teeth, and enhancing the overall health of your mouth"
-  }]
-}];
-
-services.map((service, index) => {
-  if (service.id === "preventive") {
-    service.image = "/lovable-uploads/c876408e-2891-4863-9f01-e5d025c7c52f.png";
-  }
-});
-
-const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+// Icon mapping helper
+const getIcon = (iconName: string) => {
+  const icons = {
+    Smile: <Smile size={24} />,
+    Shield: <Shield size={24} />,
+    Wrench: <Wrench size={24} />,
+    Stethoscope: <Stethoscope size={24} />
+  };
+  return icons[iconName as keyof typeof icons] || <Smile size={24} />;
+};
 
 const Services = () => {
   useEffect(() => {
@@ -138,45 +62,61 @@ const Services = () => {
                 At Exquisite Dentistry, Dr. Alexie Aguil offers a comprehensive range of dental services utilizing the latest techniques and technology. From advanced cosmetic procedures to general and restorative treatments, we are committed to providing exceptional care tailored to your unique needs.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
-                {services.map((service, index) => <a key={service.id} href={`#${service.id}`} className="flex flex-col items-center text-center group">
+                {serviceCategories.map((service) => (
+                  <a key={service.id} href={`#${service.id}`} className="flex flex-col items-center text-center group">
                     <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
-                      {service.icon}
+                      {getIcon(service.iconName)}
                     </div>
                     <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
                       {service.title}
                     </span>
-                  </a>)}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {services.map((service, index) => <section key={service.id} id={service.id} className={cn("py-20", index % 2 === 1 ? "bg-gray-50" : "")}>
+      {serviceCategories.map((service, index) => (
+        <section key={service.id} id={service.id} className={cn("py-20", index % 2 === 1 ? "bg-gray-50" : "")}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className={cn("space-y-6", index % 2 === 1 ? "lg:order-2" : "")}>
                 <span className="inline-block text-sm text-gold font-medium">OUR SERVICES</span>
                 <h2 className="heading-lg">{service.title}</h2>
                 <div className="separator-left"></div>
-                <p className="paragraph">
-                  {service.description}
-                </p>
+                <p className="paragraph">{service.description}</p>
                 
-                {service.highlight && <div className="bg-gold/10 p-4 rounded-sm border-l-4 border-gold">
+                {service.highlight && (
+                  <div className="bg-gold/10 p-4 rounded-sm border-l-4 border-gold">
                     <p className="font-medium text-black">{service.highlight}</p>
-                  </div>}
+                  </div>
+                )}
                 
                 <div className="space-y-4 py-4">
-                  {service.treatments.map(treatment => <div key={treatment.name} className="flex">
-                      <div className="flex-shrink-0 mt-1">
-                        <Check size={18} className="text-gold" />
+                  {service.treatments.map(treatment => (
+                    <div key={treatment.name} className="flex justify-between items-start">
+                      <div className="flex flex-1">
+                        <div className="flex-shrink-0 mt-1">
+                          <Check size={18} className="text-gold" />
+                        </div>
+                        <div className="ml-3 flex-1">
+                          <h4 className="font-medium text-black">{treatment.name}</h4>
+                          <p className="text-sm text-black-light/80 mt-1">{treatment.details}</p>
+                        </div>
                       </div>
-                      <div className="ml-3">
-                        <h4 className="font-medium text-black">{treatment.name}</h4>
-                        <p className="text-sm text-black-light/80 mt-1">{treatment.details}</p>
-                      </div>
-                    </div>)}
+                      {treatment.hasDetailPage && treatment.slug && (
+                        <div className="ml-4 flex-shrink-0">
+                          <Link to={`/services/${treatment.slug}`}>
+                            <Button variant="outline" size="sm" className="text-xs border-gold text-gold hover:bg-gold/5">
+                              Learn More
+                            </Button>
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
                 
                 <div className="pt-4">
@@ -195,14 +135,15 @@ const Services = () => {
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                    {service.icon}
+                    {getIcon(service.iconName)}
                   </div>
                   <span className="text-xl font-medium text-black">{service.title}</span>
                 </div>
               </div>
             </div>
           </div>
-        </section>)}
+        </section>
+      ))}
 
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
