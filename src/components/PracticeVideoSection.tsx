@@ -18,7 +18,15 @@ const PracticeVideoSection: React.FC = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden relative">
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <div 
+              className="relative w-full"
+              style={{ 
+                paddingBottom: '56.25%',
+                aspectRatio: '16/9',
+                contain: 'layout style',
+                height: 0
+              }}
+            >
               <VimeoFacade
                 videoId="1076433847"
                 title="Exquisite Dentistry Practice Video"
