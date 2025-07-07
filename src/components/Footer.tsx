@@ -18,20 +18,35 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white" style={{height: '400px', contain: 'layout'}}>
+    <footer 
+      className="bg-gradient-to-b from-gray-900 to-black text-white"
+      style={{
+        minHeight: '400px',
+        contain: 'layout',
+        containIntrinsicSize: '100% 400px'
+      }}
+    >
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 h-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Practice Info */}
           <div className="lg:col-span-1">
-            <div className="mb-6 h-12 w-[200px] flex items-center">
+            <div 
+              className="mb-6 flex items-center"
+              style={{
+                width: '200px',
+                height: '48px',
+                contain: 'layout',
+                containIntrinsicSize: '200px 48px'
+              }}
+            >
               <OptimizedImage 
                 src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
                 alt="Exquisite Dentistry" 
                 width={200}
-                height={60}
-                className="h-12 w-auto max-w-[200px]"
+                height={48}
+                className="w-full h-full"
                 objectFit="contain"
                 priority={true}
                 fallbackSrc="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"

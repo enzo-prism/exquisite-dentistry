@@ -74,7 +74,8 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
         className={cn("relative w-full h-full", className)}
         style={{ 
           aspectRatio: '16/9',
-          contain: 'layout'
+          contain: 'layout',
+          containIntrinsicSize: '100% 56.25%'
         }}
       >
         <iframe
@@ -104,7 +105,8 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       )}
       style={{ 
         aspectRatio: '16/9',
-        contain: 'layout'
+        contain: 'layout',
+        containIntrinsicSize: '100% 56.25%'
       }}
       onClick={handleClick}
     >

@@ -220,8 +220,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         width: fill ? '100%' : width,
         height: fill ? '100%' : height,
         aspectRatio: width && height ? `${width}/${height}` : undefined,
-        minWidth: !fill && width ? width : undefined,
-        minHeight: !fill && height ? height : undefined,
         contain: 'layout',
         containIntrinsicSize: width && height ? `${width}px ${height}px` : undefined
       }}
