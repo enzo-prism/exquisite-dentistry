@@ -29,7 +29,7 @@ const PracticeVideoSection: React.FC = () => {
               <VimeoFacade
                 videoId="1076433847"
                 title="Exquisite Dentistry Practice Video"
-                thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
+                thumbnailUrl="/lovable-uploads/dr-aguil-banner-2024-m.webp"
                 className="absolute inset-0"
                 autoplay={true}
                 muted={true}
