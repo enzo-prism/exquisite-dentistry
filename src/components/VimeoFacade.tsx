@@ -114,9 +114,11 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       <OptimizedImage
         src={thumbnail}
         alt={`${title} thumbnail`}
-        className="w-full h-full object-cover"
+        className="w-full h-full"
         width={1920}
         height={1080}
+        objectPosition="center center"
+        objectFit="contain"
       />
       
       {/* Play button overlay (only for non-background videos) */}
