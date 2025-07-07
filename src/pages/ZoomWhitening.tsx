@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import { Zap, Clock, Shield, Star, CheckCircle } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
+import FAQPageStructuredData from '@/components/FAQPageStructuredData';
 
 const ZoomWhitening = () => {
   const benefits = [
@@ -97,6 +98,29 @@ const ZoomWhitening = () => {
         <meta name="description" content="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry." />
         <meta name="keywords" content="Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile" />
         <link rel="canonical" href="https://exquisitedentistryla.com/zoom-whitening" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry" />
+        <meta property="og:description" content="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry." />
+        <meta property="og:url" content="https://exquisitedentistryla.com/zoom-whitening" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Exquisite Dentistry" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Zoom Teeth Whitening Los Angeles | Professional Whitening" />
+        <meta name="twitter:description" content="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results." />
+        <meta name="twitter:image" content="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
+        
+        {/* Additional SEO Meta Tags */}
+        <meta name="geo.region" content="US-CA" />
+        <meta name="geo.placename" content="Los Angeles" />
+        <meta name="geo.position" content="34.0522;-118.2437" />
+        <meta name="ICBM" content="34.0522, -118.2437" />
       </Helmet>
 
       <WebPageStructuredData 
@@ -111,8 +135,11 @@ const ZoomWhitening = () => {
       <ServiceStructuredData 
         serviceName="Zoom Teeth Whitening"
         description="Professional teeth whitening treatment that delivers dramatic results in just one office visit, removing years of stains and discoloration."
-        url="https://exquisitedentistryla.com/zoom-whitening"
+        url="/zoom-whitening"
+        priceRange="$$-$$$"
       />
+
+      <FAQPageStructuredData faqs={faqs} />
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
