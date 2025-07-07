@@ -6,10 +6,25 @@ import Button from '@/components/Button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import VeneerCTA from '@/components/VeneerCTA';
+import BlogStructuredData from '@/components/BlogStructuredData';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const FrontTeethVeneersBlog = () => {
+  const blogPost = {
+    id: '1',
+    title: "Choosing Veneers for the Front 4 Teeth",
+    excerpt: "Your Complete Guide to Transforming Your Smile Zone - Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results.",
+    content: "front-4-veneers",
+    author: "Dr. Alexie Aguil",
+    date: "2024-12-15",
+    readTime: "15 min read",
+    category: "Cosmetic Dentistry",
+    tags: ["veneers", "front teeth", "smile zone", "porcelain veneers", "cosmetic dentistry"],
+    slug: "choosing-veneers-for-the-front-4-teeth",
+    featuredImage: "https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
+    published: true
+  };
   const benefits = [
     "Transform your smile center with perfectly matched veneers",
     "Correct chips, cracks, gaps, and discoloration simultaneously",
@@ -67,6 +82,7 @@ const FrontTeethVeneersBlog = () => {
 
   return (
     <>
+      <BlogStructuredData post={blogPost} />
       <Helmet>
         <title>Choosing Veneers for the Front 4 Teeth | Complete Smile Transformation Guide</title>
         <meta name="description" content="Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results. Expert insights from Dr. Alexie Aguil." />

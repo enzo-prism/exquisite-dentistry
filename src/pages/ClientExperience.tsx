@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
+import ClientExperienceStructuredData from '@/components/ClientExperienceStructuredData';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -64,6 +65,7 @@ const ClientExperience = () => {
 
   return (
     <>
+      <ClientExperienceStructuredData />
       <Helmet>
         <title>Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care</title>
         <meta name="description" content="Experience luxury dental care in Los Angeles with spa-like amenities, advanced technology, and personalized comfort. Redefining dental visits at Exquisite Dentistry." />

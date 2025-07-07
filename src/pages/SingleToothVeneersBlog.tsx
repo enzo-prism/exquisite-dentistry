@@ -7,10 +7,27 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Button from '@/components/Button';
 import VeneerCTA from '@/components/VeneerCTA';
+import BlogStructuredData from '@/components/BlogStructuredData';
 
 const SingleToothVeneersBlog = () => {
+  const blogPost = {
+    id: '2',
+    title: "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
+    excerpt: "Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.",
+    content: "single-tooth-veneers",
+    author: "Dr. Alexie Aguil",
+    date: "2025-06-19",
+    readTime: "6 min read",
+    category: "Cosmetic Dentistry",
+    tags: ["single tooth veneers", "porcelain veneers", "cosmetic dentistry", "smile makeover"],
+    slug: "single-tooth-veneers-perfect-solutions",
+    featuredImage: "https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
+    published: true
+  };
+
   return (
     <>
+      <BlogStructuredData post={blogPost} />
       <Helmet>
         <title>Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections | Exquisite Dentistry</title>
         <meta name="description" content="Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution." />

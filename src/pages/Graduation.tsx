@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
 import VideoHero from '@/components/VideoHero';
 import { Helmet } from 'react-helmet-async';
+import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -16,6 +17,7 @@ const Graduation = () => {
 
   return (
     <>
+      <GraduationServiceStructuredData />
       <Helmet>
         <title>Graduation Smile Makeover Los Angeles | Student Dental Packages</title>
         <meta name="description" content="Look your best for graduation photos with our quick cosmetic dental treatments in Los Angeles. Teeth whitening, bonding, and smile makeovers perfect for graduates. Book now!" />

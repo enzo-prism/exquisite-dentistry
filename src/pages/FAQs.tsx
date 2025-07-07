@@ -4,6 +4,7 @@ import VideoHero from '@/components/VideoHero';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
+import FAQPageStructuredData from '@/components/FAQPageStructuredData';
 
 // Scheduling URL constant - consistent across site
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -70,6 +71,7 @@ const FAQs = () => {
 
   return (
     <>
+      <FAQPageStructuredData faqs={faqs} />
       <Helmet>
         <title>Dental FAQ Los Angeles | Common Questions Answered</title>
         <meta name="description" content="Get answers to frequently asked questions about cosmetic dentistry, dental procedures, insurance, and what to expect at Exquisite Dentistry in Los Angeles." />
