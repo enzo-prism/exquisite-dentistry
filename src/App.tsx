@@ -9,6 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import ErrorFallback from "@/components/ErrorFallback";
 
 // Lazy load all routes for code splitting
 const Index = lazy(() => import("@/pages/Index"));
@@ -36,7 +37,13 @@ const PorcelainVeneers = lazy(() => {
     },
     (error) => {
       console.error('Failed to load PorcelainVeneers:', error);
-      throw error;
+      // Retry mechanism for failed module loads
+      return new Promise<typeof import("@/pages/PorcelainVeneers")>((resolve, reject) => {
+        setTimeout(() => {
+          console.log('Retrying PorcelainVeneers load...');
+          import("@/pages/PorcelainVeneers").then(resolve, reject);
+        }, 1000);
+      });
     }
   );
 });
