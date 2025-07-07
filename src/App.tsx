@@ -28,6 +28,7 @@ const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
+const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
@@ -221,6 +222,11 @@ const AppRoutes = () => {
             {/* Veneers page */}
             <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
               <Veneers />
+            </Suspense>} />
+            
+            {/* Zoom Whitening page */}
+            <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+              <ZoomWhitening />
             </Suspense>} />
             
             {/* Old website redirects based on top pages */}
