@@ -108,11 +108,11 @@ const Services = () => {
                       </div>
                       {treatment.hasDetailPage && treatment.slug && (
                         <div className="ml-4 flex-shrink-0">
-                          <Link to={`/services/${treatment.slug}`}>
+                          <a href="https://exquisiteveneersla.com/" target="_blank" rel="noopener noreferrer">
                             <Button variant="outline" size="sm" className="text-xs border-gold text-gold hover:bg-gold/5">
                               Learn More
                             </Button>
-                          </Link>
+                          </a>
                         </div>
                       )}
                     </div>
