@@ -26,6 +26,13 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Link = "</>;rel=canonical"
+
+# Canonical header for homepage
+[[headers]]
+  for = "/"
+  [headers.values]
+    Link = "<https://exquisitedentistryla.com/>;rel=canonical"
 
 # Fix MIME types for JavaScript modules
 [[headers]]

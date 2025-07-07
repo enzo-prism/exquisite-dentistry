@@ -1,2 +1,5 @@
+# Redirect index.html to clean URL
+/index.html    /    301
+
 # SPA redirect for client-side routing
 /*    /index.html   200
