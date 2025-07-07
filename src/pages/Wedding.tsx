@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import { Helmet } from 'react-helmet-async';
 import OptimizedImage from '@/components/OptimizedImage';
+import WeddingServiceStructuredData from '@/components/WeddingServiceStructuredData';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -17,6 +18,7 @@ const Wedding = () => {
 
   return (
     <>
+      <WeddingServiceStructuredData />
       <Helmet>
         <title>Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry</title>
         <meta name="description" content="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!" />

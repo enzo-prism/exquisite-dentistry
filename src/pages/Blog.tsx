@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
 import BlogCard from '@/components/blog/BlogCard';
+import BlogListingStructuredData from '@/components/BlogListingStructuredData';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -23,6 +24,7 @@ const Blog = () => {
 
   return (
     <>
+      <BlogListingStructuredData posts={allPosts} />
       <Helmet>
         <title>Dental Blog - Tips, Insights & Expert Advice | Exquisite Dentistry</title>
         <meta name="description" content="Stay informed with our dental blog featuring expert tips, treatment insights, and oral health advice from Dr. Alexie Aguil in Los Angeles." />

@@ -6,6 +6,8 @@ import VideoModal from '@/components/VideoModal';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
+import VideoTestimonialStructuredData from '@/components/VideoTestimonialStructuredData';
+import ReviewStructuredData from '@/components/ReviewStructuredData';
 
 const TestimonialsPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -16,6 +18,8 @@ const TestimonialsPage: React.FC = () => {
   
   return (
     <>
+      <VideoTestimonialStructuredData />
+      <ReviewStructuredData />
       <Helmet>
         <title>Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles</title>
         <meta name="description" content="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles." />

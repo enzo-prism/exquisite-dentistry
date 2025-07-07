@@ -7,6 +7,7 @@ import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor 
 import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
+import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -26,6 +27,7 @@ const Services = () => {
 
   return (
     <>
+      <ServiceCatalogStructuredData />
       <Helmet>
         <title>Cosmetic Dental Services Los Angeles | Veneers, Whitening & More</title>
         <meta name="description" content="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil." />

@@ -10,6 +10,7 @@ import { patientTransformations } from '@/data/patientTransformations';
 import PatientTransformationCard from '@/components/PatientTransformation';
 import { closeUpTransformations } from '@/data/closeUpTransformations';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
+import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const SmileGallery = () => {
 
   return (
     <>
+      <ImageGalleryStructuredData galleryType="smile-transformations" />
       <Helmet>
         <title>Before & After Smile Gallery Los Angeles | Real Patient Results</title>
         <meta name="description" content="View amazing before and after smile transformations from Exquisite Dentistry in Los Angeles. Real patient results from veneers, whitening, and cosmetic dental procedures." />
