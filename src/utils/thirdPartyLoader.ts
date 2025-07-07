@@ -30,6 +30,7 @@ const DELAYED_SCRIPTS: ThirdPartyScript[] = [
     name: 'hotjar',
     url: 'https://static.hotjar.com/c/hotjar-5272510.js?sv=6',
     async: true,
+    onLoad: () => initializeHotjar(),
   },
 ];
 
@@ -115,14 +116,17 @@ export function initializeGoogleAnalytics() {
   });
 }
 
-// Hotjar initialization
+// Hotjar initialization - called when script loads
 export function initializeHotjar() {
-  (function(h: any, o: any, t: string, j: string, a?: any, r?: any) {
-    h.hj = h.hj || function() {
-      (h.hj.q = h.hj.q || []).push(arguments);
+  try {
+    window.hj = window.hj || function() {
+      (window.hj.q = window.hj.q || []).push(arguments);
     };
-    h._hjSettings = { hjid: 5272510, hjsv: 6 };
-  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    window._hjSettings = { hjid: 5272510, hjsv: 6 };
+    console.log('HotJar tracking initialized');
+  } catch (error) {
+    console.error('Failed to initialize HotJar:', error);
+  }
 }
 
 // BirdEye widget facade
