@@ -1,7 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
+import { calculateImageAlignment, preloadImagePair, createResizeHandler } from '@/utils/imageAlignment';
 
 export interface PatientTransformationData {
   name: string;
@@ -25,7 +26,17 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [alignmentCalculated, setAlignmentCalculated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Calculate aligned positioning for both images
+  const alignment = calculateImageAlignment({
+    beforeImage: patient.beforeImage,
+    afterImage: patient.afterImage,
+    beforeObjectPosition: patient.beforeObjectPosition,
+    afterObjectPosition: patient.afterObjectPosition
+  });
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     setIsDragging(true);
@@ -63,6 +74,31 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
     setIsDragging(false);
   }, []);
 
+  // Preload and validate image pair
+  useEffect(() => {
+    preloadImagePair(patient.beforeImage, patient.afterImage)
+      .then(() => {
+        setImagesLoaded(true);
+        setAlignmentCalculated(true);
+      })
+      .catch((error) => {
+        console.warn('Failed to preload image pair:', error);
+        setImagesLoaded(true); // Still show images even if preload fails
+        setAlignmentCalculated(true);
+      });
+  }, [patient.beforeImage, patient.afterImage]);
+
+  // Handle resize events
+  useEffect(() => {
+    const resizeHandler = createResizeHandler(() => {
+      // Recalculate positioning on resize if needed
+      setAlignmentCalculated(true);
+    });
+    
+    window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, []);
+
   React.useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
@@ -91,38 +127,52 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
       >
         <AspectRatio ratio={4/3}>
           <div className="relative w-full h-full overflow-hidden">
-            {/* After image (full background) */}
-            <div className="absolute inset-0 w-full h-full">
-              <OptimizedImage
-                src={patient.afterImage}
-                alt={`${patient.name} after ${patient.procedure}`}
-                className="w-full h-full object-cover"
-                width={400}
-                height={300}
-                objectFit="cover"
-                objectPosition={patient.afterObjectPosition || "center 30%"}
-                draggable={false}
-              />
-            </div>
+            {/* Loading state */}
+            {!imagesLoaded && (
+              <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" />
+              </div>
+            )}
             
-            {/* Before image (clipped by slider position) */}
-            <div 
-              className="absolute inset-0 w-full h-full overflow-hidden"
-              style={{ 
-                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` 
-              }}
-            >
-              <OptimizedImage
-                src={patient.beforeImage}
-                alt={`${patient.name} before ${patient.procedure}`}
-                className="w-full h-full object-cover"
-                width={400}
-                height={300}
-                objectFit="cover"
-                objectPosition={patient.beforeObjectPosition || "center 30%"}
-                draggable={false}
-              />
-            </div>
+            {imagesLoaded && alignmentCalculated && (
+              <>
+                {/* After image (full background) */}
+                <div className="absolute inset-0 w-full h-full">
+                  <OptimizedImage
+                    src={patient.afterImage}
+                    alt={`${patient.name} after ${patient.procedure}`}
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={300}
+                    objectFit="cover"
+                    objectPosition={alignment.afterPosition}
+                    draggable={false}
+                    priority={true}
+                  />
+                </div>
+                
+                {/* Before image (clipped by slider position) */}
+                <div 
+                  className="absolute inset-0 w-full h-full overflow-hidden"
+                  style={{ 
+                    clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                    transform: 'translateZ(0)' // Force hardware acceleration for smoother clipping
+                  }}
+                >
+                  <OptimizedImage
+                    src={patient.beforeImage}
+                    alt={`${patient.name} before ${patient.procedure}`}
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={300}
+                    objectFit="cover"
+                    objectPosition={alignment.beforePosition}
+                    draggable={false}
+                    priority={true}
+                  />
+                </div>
+              </>
+            )}
 
             {/* Slider line and handle */}
             <div 

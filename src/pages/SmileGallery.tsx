@@ -45,7 +45,7 @@ const SmileGallery = () => {
 
       {/* Patient Stories Section */}
       <section className="bg-white py-10 md:py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-semibold mb-4">Patient Success Stories</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -53,8 +53,8 @@ const SmileGallery = () => {
             </p>
           </div>
           
-          {/* Patient transformations grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Patient transformations grid - standardized responsive breakpoints */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {patientTransformations.map((patient, index) => (
               <PatientTransformationCard key={`patient-${index}`} patient={patient} />
             ))}
@@ -62,9 +62,9 @@ const SmileGallery = () => {
         </div>
       </section>
 
-      {/* New Up Close Transformations Section */}
+      {/* Up Close Transformations Section */}
       <section className="bg-gray-50 py-12 md:py-20">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
@@ -73,7 +73,7 @@ const SmileGallery = () => {
             </p>
           </div>
           
-          {/* Close-up transformations grid */}
+          {/* Close-up transformations grid - standardized responsive breakpoints */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {closeUpTransformations.map((transformation) => (
               <CloseUpTransformationCard 

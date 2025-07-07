@@ -1,8 +1,9 @@
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
 import OptimizedImage from '@/components/OptimizedImage';
+import { calculateImageAlignment, preloadImagePair, createResizeHandler } from '@/utils/imageAlignment';
 
 export interface CloseUpTransformationData {
   id: string;
@@ -23,7 +24,17 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [alignmentCalculated, setAlignmentCalculated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Calculate aligned positioning for both images
+  const alignment = calculateImageAlignment({
+    beforeImage: transformation.beforeImage,
+    afterImage: transformation.afterImage,
+    beforeObjectPosition: "center 30%",
+    afterObjectPosition: "center 30%"
+  });
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     setIsDragging(true);
@@ -61,6 +72,30 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
     setIsDragging(false);
   }, []);
 
+  // Preload and validate image pair
+  useEffect(() => {
+    preloadImagePair(transformation.beforeImage, transformation.afterImage)
+      .then(() => {
+        setImagesLoaded(true);
+        setAlignmentCalculated(true);
+      })
+      .catch((error) => {
+        console.warn('Failed to preload image pair:', error);
+        setImagesLoaded(true);
+        setAlignmentCalculated(true);
+      });
+  }, [transformation.beforeImage, transformation.afterImage]);
+
+  // Handle resize events
+  useEffect(() => {
+    const resizeHandler = createResizeHandler(() => {
+      setAlignmentCalculated(true);
+    });
+    
+    window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, []);
+
   React.useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
@@ -89,38 +124,52 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
       >
         <AspectRatio ratio={4/3}>
           <div className="relative w-full h-full overflow-hidden">
-            {/* After image (full background) */}
-            <div className="absolute inset-0 w-full h-full">
-              <OptimizedImage
-                src={transformation.afterImage}
-                alt={`Dental transformation after - ${transformation.id}`}
-                className="w-full h-full object-cover"
-                width={400}
-                height={300}
-                objectFit="cover"
-                objectPosition="center center"
-                draggable={false}
-              />
-            </div>
+            {/* Loading state */}
+            {!imagesLoaded && (
+              <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" />
+              </div>
+            )}
             
-            {/* Before image (clipped by slider position) */}
-            <div 
-              className="absolute inset-0 w-full h-full overflow-hidden"
-              style={{ 
-                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` 
-              }}
-            >
-              <OptimizedImage
-                src={transformation.beforeImage}
-                alt={`Dental transformation before - ${transformation.id}`}
-                className="w-full h-full object-cover"
-                width={400}
-                height={300}
-                objectFit="cover"
-                objectPosition="center center"
-                draggable={false}
-              />
-            </div>
+            {imagesLoaded && alignmentCalculated && (
+              <>
+                {/* After image (full background) */}
+                <div className="absolute inset-0 w-full h-full">
+                  <OptimizedImage
+                    src={transformation.afterImage}
+                    alt={`Dental transformation after - ${transformation.id}`}
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={300}
+                    objectFit="cover"
+                    objectPosition={alignment.afterPosition}
+                    draggable={false}
+                    priority={true}
+                  />
+                </div>
+                
+                {/* Before image (clipped by slider position) */}
+                <div 
+                  className="absolute inset-0 w-full h-full overflow-hidden"
+                  style={{ 
+                    clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                    transform: 'translateZ(0)' // Force hardware acceleration
+                  }}
+                >
+                  <OptimizedImage
+                    src={transformation.beforeImage}
+                    alt={`Dental transformation before - ${transformation.id}`}
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={300}
+                    objectFit="cover"
+                    objectPosition={alignment.beforePosition}
+                    draggable={false}
+                    priority={true}
+                  />
+                </div>
+              </>
+            )}
 
             {/* Smooth slider line */}
             <div 
