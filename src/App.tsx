@@ -27,9 +27,6 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
-const ZoomWhitening = lazy(() => import("@/pages/ZoomWhiteningSimple"));
-const DiagnosticTest = lazy(() => import("@/pages/DiagnosticTest"));
-const PorcelainVeneers = lazy(() => import("@/pages/PorcelainVeneersSimple"));
 
 // Add the new blog import
 const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
@@ -220,29 +217,6 @@ const AppRoutes = () => {
               <HipaaCompliance />
             </Suspense>} />
             
-            {/* Service specific pages */}
-            <Route path="/services/zoom-whitening" element={
-              <ErrorBoundary>
-                <Suspense fallback={<PageLoaderComponent />}>
-                  <ZoomWhitening />
-                </Suspense>
-              </ErrorBoundary>
-            } />
-            <Route path="/services/zoom-whitening/" element={<Navigate to="/services/zoom-whitening" replace />} />
-            
-            <Route path="/services/porcelain-veneers" element={
-              <ErrorBoundary>
-                <Suspense fallback={<PageLoaderComponent />}>
-                  <PorcelainVeneers />
-                </Suspense>
-              </ErrorBoundary>
-            } />
-            <Route path="/services/porcelain-veneers/" element={<Navigate to="/services/porcelain-veneers" replace />} />
-            
-            {/* Diagnostic test page for troubleshooting */}
-            <Route path="/diagnostic-test" element={<Suspense fallback={<PageLoaderComponent />}>
-              <DiagnosticTest />
-            </Suspense>} />
             
             {/* Old website redirects based on top pages */}
             <Route path="/top-4-netflix-shows-to-explore-from-the-dentists-chair/" element={<Navigate to="/client-experience" replace />} />

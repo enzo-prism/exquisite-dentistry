@@ -26,9 +26,7 @@ export const serviceCategories: ServiceCategory[] = [
     treatments: [
       {
         name: "Porcelain Veneers",
-        details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance",
-        hasDetailPage: true,
-        slug: "porcelain-veneers"
+        details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance"
       },
       {
         name: "Professional Teeth Whitening",
