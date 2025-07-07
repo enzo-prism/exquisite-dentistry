@@ -222,8 +222,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         aspectRatio: width && height ? `${width}/${height}` : undefined,
         minWidth: !fill && width ? width : undefined,
         minHeight: !fill && height ? height : undefined,
-        contain: 'layout style',
-        willChange: 'auto'
+        contain: 'layout',
+        containIntrinsicSize: width && height ? `${width}px ${height}px` : undefined
       }}
     >
       {!isLoaded && !error && renderLoadingState()}
@@ -239,9 +239,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           onLoad={handleImageLoad}
           onError={handleImageError}
           className={cn(
-            'transition-all duration-500 ease-out',
+            'transition-opacity duration-300 ease-out',
             fill ? 'w-full h-full' : '',
-            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+            isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           style={{
             objectFit,

@@ -18,14 +18,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white min-h-[400px]" style={{contain: 'layout style'}}>
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white" style={{height: '400px', contain: 'layout'}}>
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 h-full">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 h-full">
           {/* Practice Info */}
           <div className="lg:col-span-1">
-            <div className="mb-6 h-12 w-[200px] flex items-center" style={{aspectRatio: '200/60'}}>
+            <div className="mb-6 h-12 w-[200px] flex items-center">
               <OptimizedImage 
                 src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
                 alt="Exquisite Dentistry" 

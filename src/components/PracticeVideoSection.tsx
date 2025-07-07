@@ -21,10 +21,9 @@ const PracticeVideoSection: React.FC = () => {
             <div 
               className="relative w-full"
               style={{ 
-                paddingBottom: '56.25%',
                 aspectRatio: '16/9',
-                contain: 'layout style',
-                height: 0
+                contain: 'layout',
+                height: 'auto'
               }}
             >
               <VimeoFacade
