@@ -9,7 +9,7 @@ declare global {
 }
 
 // Delay third-party scripts to improve initial page load
-const THIRD_PARTY_DELAY = 8000; // Increased delay to 8 seconds
+const THIRD_PARTY_DELAY = 3000; // Reduced delay to 3 seconds
 
 export interface ThirdPartyScript {
   name: string;
@@ -26,12 +26,7 @@ const DELAYED_SCRIPTS: ThirdPartyScript[] = [
     url: 'https://www.googletagmanager.com/gtag/js?id=G-2HKBYNRKYX',
     async: true,
   },
-  {
-    name: 'hotjar',
-    url: 'https://static.hotjar.com/c/hotjar-5272510.js?sv=6',
-    async: true,
-    onLoad: () => initializeHotjar(),
-  },
+  // Hotjar removed - now loaded directly in HTML for immediate initialization
 ];
 
 // Load a script dynamically
@@ -88,7 +83,12 @@ export function loadDelayedScripts() {
 // Initialize third-party scripts after page load with better error handling
 export function initializeThirdPartyScripts() {
   try {
-    // Wait for window load event
+    // Verify Hotjar initialization immediately
+    setTimeout(() => {
+      verifyHotjarInitialization();
+    }, 1000);
+    
+    // Wait for window load event for other scripts
     if (document.readyState === 'complete') {
       loadDelayedScripts();
     } else {
@@ -116,16 +116,33 @@ export function initializeGoogleAnalytics() {
   });
 }
 
-// Hotjar initialization - called when script loads
-export function initializeHotjar() {
+// Hotjar verification - check if loaded from HTML
+export function verifyHotjarInitialization() {
   try {
-    window.hj = window.hj || function() {
-      (window.hj.q = window.hj.q || []).push(arguments);
-    };
-    window._hjSettings = { hjid: 5272510, hjsv: 6 };
-    console.log('HotJar tracking initialized');
+    if (typeof window.hj === 'function' && window._hjSettings) {
+      console.log('✅ Hotjar tracking initialized successfully', {
+        hjid: window._hjSettings.hjid,
+        hjsv: window._hjSettings.hjsv,
+        timestamp: new Date().toISOString()
+      });
+      
+      // Test Hotjar functionality
+      window.hj('identify', { 
+        site_verification: true,
+        timestamp: Date.now()
+      });
+      
+      return true;
+    } else {
+      console.warn('⚠️ Hotjar not properly initialized', {
+        hj_exists: typeof window.hj,
+        settings_exists: !!window._hjSettings
+      });
+      return false;
+    }
   } catch (error) {
-    console.error('Failed to initialize HotJar:', error);
+    console.error('❌ Failed to verify Hotjar initialization:', error);
+    return false;
   }
 }
 
