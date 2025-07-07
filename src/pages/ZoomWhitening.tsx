@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Button from '@/components/Button';
 import { ArrowRight, Check, Clock, Shield, Sparkles, Star } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
+import ServiceStructuredData from '@/components/ServiceStructuredData';
 import { Card, CardContent } from '@/components/ui/card';
 import { trackComponentRender, trackContentLoad, addBreadcrumb } from '@/lib/sentry';
 
@@ -107,6 +108,13 @@ const ZoomWhitening = () => {
         <meta property="og:description" content="Transform your smile with Zoom professional teeth whitening. Get up to 8 shades whiter in just one visit at Exquisite Dentistry Los Angeles." />
         <link rel="canonical" href="https://exquisitedentistryla.com/services/zoom-whitening" />
       </Helmet>
+      <ServiceStructuredData 
+        serviceName="Zoom Teeth Whitening"
+        description="Professional in-office teeth whitening treatment that delivers up to 8 shades whiter teeth in just 90 minutes."
+        url="/services/zoom-whitening"
+        image="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png"
+        priceRange="$$"
+      />
 
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white">

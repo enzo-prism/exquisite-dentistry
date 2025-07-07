@@ -11,6 +11,7 @@ import VideoModal from '@/components/VideoModal';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
+import ReviewStructuredData from '@/components/ReviewStructuredData';
 import OptimizedImage from '@/components/OptimizedImage';
 
 const IndexPage: React.FC = () => {
@@ -33,6 +34,7 @@ const IndexPage: React.FC = () => {
         <link rel="canonical" href="https://exquisitedentistryla.com/" />
       </Helmet>
       <SeoStructuredData />
+      <ReviewStructuredData />
       
       <VideoHero 
         title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 

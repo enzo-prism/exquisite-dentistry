@@ -5,6 +5,7 @@ import { ArrowRight, Check, Smile, Clock, Star, ShieldCheck } from 'lucide-react
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import OptimizedImage from '@/components/OptimizedImage';
+import ServiceStructuredData from '@/components/ServiceStructuredData';
 import { SCHEDULING_URL } from '@/data/services';
 import { cn } from '@/lib/utils';
 
@@ -90,6 +91,13 @@ const PorcelainVeneers = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://exquisitedentistryla.com/services/porcelain-veneers" />
       </Helmet>
+      <ServiceStructuredData 
+        serviceName="Porcelain Veneers"
+        description="Transform your smile with custom-designed, ultra-thin porcelain shells that create naturally beautiful, perfectly aligned teeth."
+        url="/services/porcelain-veneers"
+        image="/lovable-uploads/33335962-b99c-4063-aa3c-96dfaf5215bb.png"
+        priceRange="$$$"
+      />
 
       <VideoHero 
         vimeoId="1076745525"

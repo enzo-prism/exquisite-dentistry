@@ -9,6 +9,7 @@ import RelatedPosts from './RelatedPosts';
 import FrontTeethVeneersBlog from '@/pages/FrontTeethVeneersBlog';
 import SingleToothVeneersBlog from '@/pages/SingleToothVeneersBlog';
 import VeneerCTA from '@/components/VeneerCTA';
+import BlogStructuredData from '@/components/BlogStructuredData';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,6 +37,7 @@ const BlogPost: React.FC = () => {
   // For new blog posts, render the dynamic template
   return (
     <>
+      <BlogStructuredData post={post} />
       <Helmet>
         <title>{post.seoTitle || post.title}</title>
         <meta name="description" content={post.seoDescription || post.excerpt} />
