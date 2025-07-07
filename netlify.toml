@@ -5,15 +5,15 @@
   command = "npm run build:prod"
   publish = "dist"
 
-# Enable asset optimization
+# Disable JS processing to prevent MIME type conflicts with Vite
 [build.processing]
   skip_processing = false
 [build.processing.css]
   bundle = true
   minify = true
 [build.processing.js]
-  bundle = true
-  minify = true
+  bundle = false
+  minify = false
 [build.processing.images]
   compress = true
 
@@ -26,6 +26,22 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Fix MIME types for JavaScript modules
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/*.mjs"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
 
 # Cache static assets for 1 year
 [[headers]]

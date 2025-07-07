@@ -157,19 +157,6 @@
     <!-- Preload module script for faster loading -->
     <link rel="modulepreload" href="/src/main.tsx">
     
-    <!-- Module preloading for critical service pages -->
-    <script>
-      // Preload critical service page modules to prevent loading failures
-      if ('link' in document.createElement('link')) {
-        const servicePages = ['/src/pages/PorcelainVeneers.tsx', '/src/pages/ZoomWhitening.tsx'];
-        servicePages.forEach(page => {
-          const link = document.createElement('link');
-          link.rel = 'modulepreload';
-          link.href = page;
-          document.head.appendChild(link);
-        });
-      }
-    </script>
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
