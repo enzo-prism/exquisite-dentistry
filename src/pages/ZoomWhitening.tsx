@@ -97,7 +97,7 @@ const ZoomWhitening = () => {
         <title>Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry</title>
         <meta name="description" content="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry." />
         <meta name="keywords" content="Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/zoom-whitening" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/zoom-whitening/" />
         
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry" />

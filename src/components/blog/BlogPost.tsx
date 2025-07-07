@@ -42,7 +42,7 @@ const BlogPost: React.FC = () => {
         <title>{post.seoTitle || post.title}</title>
         <meta name="description" content={post.seoDescription || post.excerpt} />
         {post.seoKeywords && <meta name="keywords" content={post.seoKeywords} />}
-        <link rel="canonical" href={`https://exquisitedentistryla.com/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://exquisitedentistryla.com/blog/${post.slug}/`} />
       </Helmet>
 
       {/* Header */}

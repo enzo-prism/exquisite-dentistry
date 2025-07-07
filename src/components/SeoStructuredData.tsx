@@ -9,8 +9,8 @@ const SeoStructuredData: React.FC = () => {
     alternateName: 'Exquisite Dentistry LA',
     description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, and smile makeovers.',
     image: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
-    '@id': 'https://exquisitedentistryla.com',
-    url: 'https://exquisitedentistryla.com',
+    '@id': 'https://exquisitedentistryla.com/',
+    url: 'https://exquisitedentistryla.com/',
     telephone: '(323) 272-2388',
     email: 'info@exquisitedentistryla.com',
     priceRange: '$$',
@@ -89,7 +89,7 @@ const SeoStructuredData: React.FC = () => {
       addressCountry: 'US'
     },
     telephone: '(323) 272-2388',
-    url: 'https://exquisitedentistryla.com/about',
+    url: 'https://exquisitedentistryla.com/about/',
     knowsAbout: [
       'Cosmetic Dentistry',
       'Porcelain Veneers',

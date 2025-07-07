@@ -32,6 +32,7 @@ const SingleToothVeneersBlog = () => {
         <title>Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections | Exquisite Dentistry</title>
         <meta name="description" content="Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution." />
         <meta name="keywords" content="single tooth veneers, porcelain veneers, cosmetic dentistry, smile makeover, dental veneers Los Angeles, tooth restoration" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/blog/single-tooth-veneers-perfect-solutions/" />
       </Helmet>
 
       {/* Header */}

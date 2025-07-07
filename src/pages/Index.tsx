@@ -30,8 +30,7 @@ const IndexPage: React.FC = () => {
         <meta property="og:title" content="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil" />
         <meta property="og:description" content="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:url" content="https://exquisitedentistryla.com" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/" />
+        <meta property="og:url" content="https://exquisitedentistryla.com/" />
       </Helmet>
       <SeoStructuredData />
       <ReviewStructuredData />

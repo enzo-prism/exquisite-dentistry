@@ -29,6 +29,7 @@ const Blog = () => {
         <title>Dental Blog - Tips, Insights & Expert Advice | Exquisite Dentistry</title>
         <meta name="description" content="Stay informed with our dental blog featuring expert tips, treatment insights, and oral health advice from Dr. Alexie Aguil in Los Angeles." />
         <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/blog/" />
       </Helmet>
 
       {/* Header Section - Mobile First */}

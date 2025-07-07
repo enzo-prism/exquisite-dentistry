@@ -25,7 +25,7 @@ const Graduation = () => {
         <meta property="og:title" content="Graduation Smile Makeover Los Angeles | Student Dental Packages" />
         <meta property="og:description" content="Look your best for graduation photos with quick cosmetic dental treatments including teeth whitening and smile makeovers." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/graduation" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/graduation/" />
       </Helmet>
 
       <div className="min-h-screen page-transition-in">

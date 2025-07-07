@@ -73,7 +73,7 @@ const ClientExperience = () => {
         <meta property="og:title" content="Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care" />
         <meta property="og:description" content="Experience luxury dental care with spa-like amenities, advanced technology, and personalized comfort at Exquisite Dentistry." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/client-experience" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/client-experience/" />
       </Helmet>
 
       <div className="min-h-screen page-transition-in">

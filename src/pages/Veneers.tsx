@@ -85,7 +85,7 @@ const Veneers = () => {
         <title>Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry</title>
         <meta name="description" content="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care at Exquisite Dentistry." />
         <meta name="keywords" content="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/veneers" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/veneers/" />
         
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry" />

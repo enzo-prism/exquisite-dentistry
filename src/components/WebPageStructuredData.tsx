@@ -28,7 +28,7 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
     isPartOf: {
       '@type': 'WebSite',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     provider: {
       '@type': 'DentistPractice',
@@ -55,7 +55,7 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com'
+        item: 'https://exquisitedentistryla.com/'
       },
       ...breadcrumbs.map((breadcrumb, index) => ({
         '@type': 'ListItem',

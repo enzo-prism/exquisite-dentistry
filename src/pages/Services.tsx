@@ -36,7 +36,7 @@ const Services = () => {
         <meta property="og:description" content="Comprehensive cosmetic dental services including porcelain veneers, teeth whitening, dental implants, and smile makeovers in Los Angeles." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/services" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/services/" />
       </Helmet>
       
       <VideoHero 
