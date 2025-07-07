@@ -1,5 +1,13 @@
+# Force HTTPS and canonical domain
+http://exquisitedentistryla.com/*    https://exquisitedentistryla.com/:splat    301!
+http://www.exquisitedentistryla.com/*    https://exquisitedentistryla.com/:splat    301!
+https://www.exquisitedentistryla.com/*    https://exquisitedentistryla.com/:splat    301!
+
 # Redirect index.html to clean URL
 /index.html    /    301
 
-# SPA redirect for client-side routing
+# Remove trailing slashes for consistency (optional - based on your preference)
+# Or keep trailing slashes consistently across all pages
+
+# SPA redirect for client-side routing (must be last)
 /*    /index.html   200
