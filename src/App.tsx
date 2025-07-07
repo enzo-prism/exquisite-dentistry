@@ -28,21 +28,55 @@ const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
+const DiagnosticTest = lazy(() => import("@/pages/DiagnosticTest"));
 const PorcelainVeneers = lazy(() => {
-  console.log('Loading PorcelainVeneers component...');
+  console.log('🔄 Loading PorcelainVeneers component...');
+  console.log('📍 Current URL:', window.location.href);
+  console.log('🌐 Environment:', process.env.NODE_ENV);
+  
   return import("@/pages/PorcelainVeneers").then(
     (module) => {
-      console.log('PorcelainVeneers loaded successfully:', module);
+      console.log('✅ PorcelainVeneers loaded successfully:', module);
+      console.log('🔍 Module exports:', Object.keys(module));
+      console.log('🧩 Default export:', module.default);
       return module;
     },
     (error) => {
-      console.error('Failed to load PorcelainVeneers:', error);
-      // Retry mechanism for failed module loads
+      console.error('❌ Failed to load PorcelainVeneers:', error);
+      console.error('📝 Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+        cause: error.cause
+      });
+      
+      // Enhanced retry mechanism with exponential backoff
       return new Promise<typeof import("@/pages/PorcelainVeneers")>((resolve, reject) => {
-        setTimeout(() => {
-          console.log('Retrying PorcelainVeneers load...');
-          import("@/pages/PorcelainVeneers").then(resolve, reject);
-        }, 1000);
+        let retryCount = 0;
+        const maxRetries = 3;
+        
+        const attemptRetry = () => {
+          retryCount++;
+          console.log(`🔄 Retry attempt ${retryCount}/${maxRetries} for PorcelainVeneers...`);
+          
+          import("@/pages/PorcelainVeneers").then(
+            (retryModule) => {
+              console.log(`✅ PorcelainVeneers loaded successfully on retry ${retryCount}:`, retryModule);
+              resolve(retryModule);
+            },
+            (retryError) => {
+              console.error(`❌ Retry ${retryCount} failed:`, retryError);
+              if (retryCount < maxRetries) {
+                setTimeout(attemptRetry, 1000 * Math.pow(2, retryCount - 1)); // Exponential backoff
+              } else {
+                console.error('🚫 All retry attempts failed. Rejecting...');
+                reject(retryError);
+              }
+            }
+          );
+        };
+        
+        setTimeout(attemptRetry, 1000);
       });
     }
   );
@@ -255,6 +289,11 @@ const AppRoutes = () => {
               </ErrorBoundary>
             } />
             <Route path="/services/porcelain-veneers/" element={<Navigate to="/services/porcelain-veneers" replace />} />
+            
+            {/* Diagnostic test page for troubleshooting */}
+            <Route path="/diagnostic-test" element={<Suspense fallback={<PageLoaderComponent />}>
+              <DiagnosticTest />
+            </Suspense>} />
             
             {/* Old website redirects based on top pages */}
             <Route path="/top-4-netflix-shows-to-explore-from-the-dentists-chair/" element={<Navigate to="/client-experience" replace />} />

@@ -16,12 +16,33 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   message = "We're having trouble loading this page. Please try again."
 }) => {
   const handleRetry = () => {
+    console.log('🔄 ErrorFallback: Retry requested', {
+      error: error?.message,
+      stack: error?.stack,
+      timestamp: new Date().toISOString(),
+      url: window.location.href
+    });
+    
     if (onRetry) {
       onRetry();
     } else {
       window.location.reload();
     }
   };
+
+  // Log error details for debugging
+  React.useEffect(() => {
+    if (error) {
+      console.error('🚨 ErrorFallback rendered with error:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+        url: window.location.href,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      });
+    }
+  }, [error]);
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center bg-gray-50">
