@@ -40,7 +40,12 @@ const SeasonalTreatments = () => {
           
           {/* Graduation Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
-            <div className="relative h-[400px] bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-100 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20">
+            <div className="relative h-[400px]">
+              <img 
+                src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
+                alt="Happy graduates with perfect smiles"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Flower className="h-7 w-7 text-gold" />
