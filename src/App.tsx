@@ -110,7 +110,7 @@ const RouteAudit = () => {
     // Track page view in Sentry (if available)
     try {
       import('@/lib/sentry').then(({ trackPageView }) => {
-        trackPageView(location.pathname, location.search);
+        trackPageView(location.pathname);
       }).catch(() => {
         // Sentry not available, continue without tracking
       });
@@ -265,9 +265,8 @@ const App = () => {
     
     // Initialize Sentry after React is ready
     setTimeout(() => {
-      import('@/lib/sentry').then(({ initSentry, trackComponentRender }) => {
+      import('@/lib/sentry').then(({ initSentry }) => {
         initSentry();
-        trackComponentRender('App');
       }).catch(error => {
         console.error('Failed to initialize Sentry:', error);
       });

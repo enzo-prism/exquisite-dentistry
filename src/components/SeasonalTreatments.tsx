@@ -25,7 +25,7 @@ const SeasonalTreatments = () => {
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Heart className="h-7 w-7 text-gold" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3">Wedding Smile Preparation</h3>
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center">Wedding Smile Preparation</h3>
                 <p className="text-center text-gray-200 mb-6 leading-relaxed">
                   Look radiant on your special day with our comprehensive wedding smile makeover packages
                 </p>
@@ -45,7 +45,7 @@ const SeasonalTreatments = () => {
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Flower className="h-7 w-7 text-gold" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3">Graduation Smile Treatment</h3>
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center">Graduation Smile Treatment</h3>
                 <p className="text-center text-gray-200 mb-6 leading-relaxed">
                   Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments
                 </p>
