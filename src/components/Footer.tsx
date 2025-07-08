@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 import Button from './Button';
-import OptimizedImage from './OptimizedImage';
+import ResponsiveLogo from './ResponsiveLogo';
 import { Separator } from './ui/separator';
 
 // Scheduling URL constant
@@ -41,16 +41,11 @@ const Footer = () => {
                 containIntrinsicSize: '200px 48px'
               }}
             >
-              <OptimizedImage 
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" 
+              <ResponsiveLogo 
+                type="main"
                 alt="Exquisite Dentistry" 
-                width={200}
-                height={48}
                 className="w-full h-full"
-                objectFit="contain"
-                priority={true}
-                fallbackSrc="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
-                loadingVariant="minimal"
+                priority={false}
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">

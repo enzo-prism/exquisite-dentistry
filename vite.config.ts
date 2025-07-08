@@ -27,7 +27,12 @@ export default defineConfig(({ mode }) => ({
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
-        drop_debugger: true
+        drop_debugger: true,
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : [],
+        unused: true
+      },
+      mangle: {
+        safari10: true
       }
     },
     // Simplified chunking strategy
@@ -36,7 +41,8 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // Only essential vendor chunks
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['lucide-react', 'framer-motion']
+          'ui-vendor': ['lucide-react', 'framer-motion'],
+          'sentry': ['@sentry/react']
         }
       }
     },
@@ -45,7 +51,9 @@ export default defineConfig(({ mode }) => ({
     // Disable source maps for production to reduce bundle size
     sourcemap: mode === 'development',
     // CSS code splitting
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    // CSS minification
+    cssMinify: true
   },
   optimizeDeps: {
     // Pre-bundle dependencies for faster dev server startup

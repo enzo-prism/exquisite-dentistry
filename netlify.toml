@@ -66,6 +66,41 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Cache PNG files
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache JPG/JPEG files
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache WebP files
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache SVG files
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache ICO files
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Cache images for 1 year
 [[headers]]
   for = "/lovable-uploads/*"
@@ -83,11 +118,51 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.ttf"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.eot"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache JSON files
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Cache XML files (sitemaps, etc)
+[[headers]]
+  for = "/*.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Cache Flock script
+[[headers]]
+  for = "/~flock.js"
+  [headers.values]
+    Cache-Control = "public, max-age=1800"
+
 # Enable compression
 [[headers]]
   for = "/*"
   [headers.values]
     Content-Encoding = "br, gzip"
+
+# Redirect index.html to root to fix canonical URL conflicts
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
 
 # Ensure WordPress admin URLs are not redirected (highest priority)
 [[redirects]]

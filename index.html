@@ -30,16 +30,43 @@
     <link rel="preconnect" href="https://player.vimeo.com">
     <link rel="dns-prefetch" href="//player.vimeo.com">
     
-    <!-- Hotjar Tracking Code for Primary -->
+    <!-- Preconnect to critical third-party origins -->
+    <link rel="preconnect" href="https://static.hotjar.com">
+    <link rel="preconnect" href="https://script.hotjar.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://static.cloudflareinsights.com">
+    
+    <!-- DNS prefetch for additional origins -->
+    <link rel="dns-prefetch" href="//static.hotjar.com">
+    <link rel="dns-prefetch" href="//script.hotjar.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//static.cloudflareinsights.com">
+    
+    <!-- Preload critical fonts to prevent layout shifts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/opensans/v36/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4taVQUwaEQbjB_mQ.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Hotjar Tracking Code for Primary - Deferred -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:5272510,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        // Defer Hotjar loading to improve performance
+        function loadHotjar() {
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:5272510,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        }
+        
+        // Load Hotjar after 3 seconds or when user interacts
+        setTimeout(loadHotjar, 3000);
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(function(event) {
+            document.addEventListener(event, function() {
+                loadHotjar();
+            }, { once: true, passive: true });
+        });
     </script>
     
     <!-- Optimized font loading with font-display: swap -->
@@ -65,6 +92,7 @@
     
     <!-- Preload critical images -->
     <link rel="preload" href="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png" as="image" type="image/png" fetchpriority="high">
+    <link rel="preload" href="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png" as="image" type="image/png" fetchpriority="high">
     
     <style>
       /* Hide the Lovable badge */
@@ -149,7 +177,88 @@
       /* Gold color variables */
       .text-gold { color: #D4AF37; }
       .bg-gold { background-color: #D4AF37; }
+      
+      /* Prevent layout shifts for images */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Reserve space for logo */
+      .logo-container {
+        width: 200px;
+        height: 48px;
+        display: inline-block;
+      }
+      
+      /* Footer layout stability */
+      footer {
+        contain: layout;
+        contain-intrinsic-size: 100% 400px;
+      }
+      
+      /* Critical styles for navbar */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        width: 100%;
+        background-color: #000000;
+        height: 80px;
+      }
+      
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0 24px;
+      }
+      
+      /* Critical typography */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      h3 { font-size: 1.5rem; }
+      
+      @media (min-width: 768px) {
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.875rem; }
+      }
+      
+      /* Critical container styles */
+      .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      
+      @media (min-width: 640px) {
+        .container { max-width: 640px; }
+      }
+      
+      @media (min-width: 768px) {
+        .container { max-width: 768px; }
+      }
+      
+      @media (min-width: 1024px) {
+        .container { max-width: 1024px; }
+      }
+      
+      @media (min-width: 1280px) {
+        .container { max-width: 1280px; }
+      }
     </style>
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
   </head>
 
   <body>
@@ -160,6 +269,10 @@
     
     <!-- Preload module script for faster loading -->
     <link rel="modulepreload" href="/src/main.tsx">
+    
+    <!-- Preload Vimeo Player API for hero video -->
+    <link rel="preconnect" href="https://f.vimeocdn.com">
+    <link rel="dns-prefetch" href="//f.vimeocdn.com">
     
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
