@@ -1,11 +1,14 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 
 const ReviewWidget = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [containerHeight, setContainerHeight] = useState(200);
+  const [hasError, setHasError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
   const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
@@ -31,6 +34,31 @@ const ReviewWidget = () => {
     return () => observer.disconnect();
   }, []);
 
+  // ResizeObserver to adapt to widget content height
+  useEffect(() => {
+    if (!isLoaded || !widgetRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const height = entry.contentRect.height;
+        if (height > 0) {
+          setContainerHeight(Math.max(height, 200));
+        }
+      }
+    });
+
+    resizeObserver.observe(widgetRef.current);
+    return () => resizeObserver.disconnect();
+  }, [isLoaded]);
+
+  // Retry mechanism for failed loads
+  const retryLoad = useCallback(() => {
+    setHasError(false);
+    setIsLoaded(false);
+    scriptLoadedRef.current = false;
+    setIsVisible(true);
+  }, []);
+
   useEffect(() => {
     if (!isVisible || scriptLoadedRef.current) return;
 
@@ -42,10 +70,12 @@ const ReviewWidget = () => {
     script.onload = () => {
       setIsLoaded(true);
       scriptLoadedRef.current = true;
+      setHasError(false);
     };
     
     script.onerror = () => {
       console.warn('Failed to load BirdEye widget');
+      setHasError(true);
       setIsLoaded(true); // Prevent infinite loading state
     };
 
@@ -62,16 +92,30 @@ const ReviewWidget = () => {
     <div 
       ref={containerRef}
       className={cn(
-        "w-full transition-opacity duration-300",
-        "min-h-[200px] max-h-[400px] overflow-hidden",
+        "w-full transition-all duration-500 ease-in-out",
+        "min-h-[200px] px-2 sm:px-4 md:px-6",
         !isLoaded && isVisible ? "animate-pulse bg-gray-100 rounded-lg" : ""
       )}
       style={{
-        contain: 'layout',
-        containIntrinsicSize: '100% 200px'
+        height: isLoaded ? `${containerHeight}px` : '200px',
+        contain: 'layout style'
       }}
     >
-      {!isLoaded && isVisible && (
+      {hasError && (
+        <div className="flex items-center justify-center h-[200px] bg-gray-50 rounded-lg border border-gray-200">
+          <div className="text-center space-y-3">
+            <p className="text-sm text-gray-500">Failed to load reviews</p>
+            <button 
+              onClick={retryLoad}
+              className="px-4 py-2 bg-gold text-white rounded-md hover:bg-gold/90 transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
+      
+      {!isLoaded && isVisible && !hasError && (
         <div className="flex items-center justify-center h-[200px] bg-gray-50 rounded-lg border border-gray-200">
           <div className="text-center space-y-3">
             <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
@@ -79,11 +123,13 @@ const ReviewWidget = () => {
           </div>
         </div>
       )}
+      
       <div 
+        ref={widgetRef}
         id="bf-revz-widget-987654321301115183"
         className={cn(
-          "transition-opacity duration-300",
-          isLoaded ? "opacity-100" : "opacity-0"
+          "transition-opacity duration-500 w-full",
+          isLoaded && !hasError ? "opacity-100" : "opacity-0"
         )}
       />
     </div>
