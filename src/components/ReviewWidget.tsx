@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
+import BrandLoader from './ui/brand-loader';
 
 const ReviewWidget = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -117,10 +118,12 @@ const ReviewWidget = () => {
       
       {!isLoaded && isVisible && !hasError && (
         <div className="flex items-center justify-center h-[200px] bg-gray-50 rounded-lg border border-gray-200">
-          <div className="text-center space-y-3">
-            <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <p className="text-sm text-gray-500">Loading reviews...</p>
-          </div>
+          <BrandLoader
+            variant="elegant"
+            size="md"
+            message="Loading Reviews"
+            subMessage="Fetching patient testimonials..."
+          />
         </div>
       )}
       

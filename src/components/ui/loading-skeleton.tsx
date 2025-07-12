@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
 interface LoadingSkeletonProps {
   className?: string;
@@ -15,8 +16,10 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   lines = 1,
   animate = true
 }) => {
+  const { ref } = useHardwareAcceleration();
+
   const baseClasses = cn(
-    "bg-gradient-to-r from-black/5 via-black/10 to-black/5 rounded-sm",
+    "bg-gradient-to-r from-gold/5 via-gold/10 to-gold/5 rounded-sm gpu-accelerated",
     animate && "animate-shimmer bg-[length:200%_100%]",
     className
   );
