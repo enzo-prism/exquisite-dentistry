@@ -1,9 +1,11 @@
+import { getOptimalImage, preloadFromRegistry } from './imageRegistry';
+
 // Critical resources that should be preloaded (WebP first)
 export const CRITICAL_RESOURCES = {
   images: [
-    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp', // Logo
-    '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.webp', // Nav logo
-    '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.webp', // Hero poster
+    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958', // Logo
+    '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f', // Nav logo  
+    '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6', // Hero poster
   ],
   fonts: [
     'https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2',
@@ -16,15 +18,31 @@ export function preloadCriticalResources() {
   // Only preload on initial load, not on navigation
   if (window.performance.navigation.type !== 0) return;
   
-  // Preload critical images
-  CRITICAL_RESOURCES.images.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    link.type = 'image/webp';
-    document.head.appendChild(link);
-  });
+  try {
+    // Use registry-based preloading for optimal format selection
+    preloadFromRegistry(CRITICAL_RESOURCES.images);
+  } catch (error) {
+    console.warn('Registry-based preloading failed, using fallback:', error);
+    
+    // Fallback to direct preloading
+    CRITICAL_RESOURCES.images.forEach(basePath => {
+      try {
+        const optimal = getOptimalImage(basePath);
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = optimal.src;
+        
+        if (optimal.src.endsWith('.webp')) {
+          link.type = 'image/webp';
+        }
+        
+        document.head.appendChild(link);
+      } catch (err) {
+        console.warn(`Failed to preload ${basePath}:`, err);
+      }
+    });
+  }
 }
 
 // Lazy load non-critical images

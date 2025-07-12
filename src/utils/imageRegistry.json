@@ -1,0 +1,97 @@
+{
+  "images": {
+    "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+      },
+      "preferred": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png",
+      "fallback": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+    },
+    "/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
+      },
+      "preferred": "/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png",
+      "fallback": "/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
+    },
+    "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
+      },
+      "preferred": "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png",
+      "fallback": "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
+    },
+    "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
+      },
+      "preferred": "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png",
+      "fallback": "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
+    },
+    "/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
+      },
+      "preferred": "/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png",
+      "fallback": "/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
+    },
+    "/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc": {
+      "formats": ["png"],
+      "paths": {
+        "png": "/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
+      },
+      "preferred": "/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png",
+      "fallback": "/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
+    },
+    "/lovable-uploads/dr-aguil-banner-2024-m": {
+      "formats": ["webp"],
+      "paths": {
+        "webp": "/lovable-uploads/dr-aguil-banner-2024-m.webp"
+      },
+      "preferred": "/lovable-uploads/dr-aguil-banner-2024-m.webp",
+      "fallback": null
+    },
+    "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop": {
+      "formats": ["png", "webp"],
+      "paths": {
+        "png": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png",
+        "webp": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp"
+      },
+      "preferred": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp",
+      "fallback": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png"
+    },
+    "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile": {
+      "formats": ["png", "webp"],
+      "paths": {
+        "png": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.png",
+        "webp": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp"
+      },
+      "preferred": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp",
+      "fallback": "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.png"
+    },
+    "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x": {
+      "formats": ["png", "webp"],
+      "paths": {
+        "png": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png",
+        "webp": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp"
+      },
+      "preferred": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp",
+      "fallback": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png"
+    },
+    "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile": {
+      "formats": ["png", "webp"],
+      "paths": {
+        "png": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.png",
+        "webp": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.webp"
+      },
+      "preferred": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.webp",
+      "fallback": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.png"
+    }
+  },
+  "lastUpdated": "2025-01-12T08:00:00.000Z"
+}

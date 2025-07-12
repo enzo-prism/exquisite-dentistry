@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import LoadingSkeleton from '@/components/ui/loading-skeleton';
 import { convertToWebP, supportsWebP } from '@/utils/webpConverter';
+import { getOptimalImage, imageExists } from '@/utils/imageRegistry';
 
 export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -52,6 +53,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [currentSrc, setCurrentSrc] = useState(src);
   const [fallbackAttempts, setFallbackAttempts] = useState(0);
   const [webpSupported, setWebpSupported] = useState<boolean | null>(null);
+  const [validatedSrcs, setValidatedSrcs] = useState<Set<string>>(new Set());
   const imgRef = React.useRef<HTMLImageElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   
@@ -60,15 +62,23 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     supportsWebP().then(setWebpSupported);
   }, []);
 
+  // Smart image source selection using registry
   const getOptimizedSrc = (imageSrc: string): string => {
     if (!imageSrc) return '';
     
-    // Always try WebP first if supported (unless already WebP)
-    if (webpSupported && !imageSrc.includes('.webp')) {
-      return convertToWebP(imageSrc);
+    try {
+      // Use registry for optimal image selection
+      const optimal = getOptimalImage(imageSrc, webpSupported && !forceWebP);
+      return optimal.src;
+    } catch (error) {
+      console.warn('Failed to get optimal image from registry, using fallback logic:', error);
+      
+      // Fallback to old logic if registry fails
+      if (webpSupported && !imageSrc.includes('.webp')) {
+        return convertToWebP(imageSrc);
+      }
+      return imageSrc;
     }
-    
-    return imageSrc;
   };
   
   const getSmartObjectPosition = () => {
@@ -129,39 +139,82 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     onLoad?.();
   };
   
-  const handleImageError = () => {
+  // Validate image existence before attempting to load
+  const validateImageSrc = async (imageSrc: string): Promise<boolean> => {
+    if (validatedSrcs.has(imageSrc)) return true;
+    
+    try {
+      const response = await fetch(imageSrc, { method: 'HEAD' });
+      if (response.ok) {
+        setValidatedSrcs(prev => new Set([...prev, imageSrc]));
+        return true;
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleImageError = async () => {
     console.warn('❌ Image failed to load:', currentSrc, 'Attempt:', fallbackAttempts);
     
-    // First try fallback to original format if WebP failed
-    if (fallbackAttempts === 0 && currentSrc.includes('.webp')) {
+    // Try registry-based fallback first
+    if (fallbackAttempts === 0) {
+      try {
+        const optimal = getOptimalImage(src, false); // Try non-WebP formats
+        if (optimal.fallback && optimal.fallback !== currentSrc) {
+          const isValid = await validateImageSrc(optimal.fallback);
+          if (isValid) {
+            console.log('🔄 Trying registry fallback:', optimal.fallback);
+            setCurrentSrc(optimal.fallback);
+            setFallbackAttempts(1);
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn('Registry fallback failed:', error);
+      }
+    }
+    
+    // Try WebP to original format conversion
+    if (fallbackAttempts <= 1 && currentSrc.includes('.webp')) {
       const originalSrc = currentSrc.replace(/\.webp$/i, '.png').replace(/\.png\.png$/i, '.png');
-      console.log('🔄 Trying original PNG format:', originalSrc);
-      setCurrentSrc(originalSrc);
-      setFallbackAttempts(1);
-      return;
+      const isValid = await validateImageSrc(originalSrc);
+      if (isValid) {
+        console.log('🔄 Trying original PNG format:', originalSrc);
+        setCurrentSrc(originalSrc);
+        setFallbackAttempts(2);
+        return;
+      }
     }
     
     // Try JPG if PNG failed
-    if (fallbackAttempts === 1 && currentSrc.includes('.png')) {
+    if (fallbackAttempts <= 2 && currentSrc.includes('.png')) {
       const jpgSrc = currentSrc.replace(/\.png$/i, '.jpg');
-      console.log('🔄 Trying JPG format:', jpgSrc);
-      setCurrentSrc(jpgSrc);
-      setFallbackAttempts(2);
-      return;
+      const isValid = await validateImageSrc(jpgSrc);
+      if (isValid) {
+        console.log('🔄 Trying JPG format:', jpgSrc);
+        setCurrentSrc(jpgSrc);
+        setFallbackAttempts(3);
+        return;
+      }
     }
     
     // Try provided fallback source
-    if (fallbackAttempts <= 2 && fallbackSrc && currentSrc !== fallbackSrc) {
-      console.log('🔄 Trying fallbackSrc:', fallbackSrc);
-      setCurrentSrc(fallbackSrc);
-      setFallbackAttempts(fallbackAttempts + 1);
-      return;
+    if (fallbackAttempts <= 3 && fallbackSrc && currentSrc !== fallbackSrc) {
+      const isValid = await validateImageSrc(fallbackSrc);
+      if (isValid) {
+        console.log('🔄 Trying fallbackSrc:', fallbackSrc);
+        setCurrentSrc(fallbackSrc);
+        setFallbackAttempts(4);
+        return;
+      }
     }
     
-    if (fallbackAttempts <= 3 && currentSrc !== '/placeholder.svg') {
+    if (fallbackAttempts <= 4 && currentSrc !== '/placeholder.svg') {
       console.log('🔄 Trying placeholder.svg');
       setCurrentSrc('/placeholder.svg');
-      setFallbackAttempts(fallbackAttempts + 1);
+      setFallbackAttempts(5);
       return;
     }
     

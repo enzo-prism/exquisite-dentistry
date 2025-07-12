@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "validate-images": "node scripts/validate-images.js",
+    "prebuild": "npm run validate-images"
+  }
+}
