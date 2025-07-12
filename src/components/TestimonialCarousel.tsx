@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
 interface Testimonial {
   id: number;
@@ -23,6 +24,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const { ref } = useHardwareAcceleration();
 
   const nextTestimonial = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -44,8 +46,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
   return (
     <div 
+      ref={ref}
       className={cn(
-        'w-full max-w-4xl mx-auto relative',
+        'w-full max-w-4xl mx-auto relative hardware-optimized',
         className
       )}
       onMouseEnter={() => setIsPaused(true)}
@@ -53,13 +56,13 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
     >
       <div className="overflow-hidden relative px-6 py-12">
         <div 
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          className="flex transition-transform duration-500 ease-in-out composite-layer"
+          style={{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }}
         >
           {testimonials.map((testimonial) => (
             <div 
               key={testimonial.id} 
-              className="w-full flex-shrink-0 px-6 text-center"
+              className="w-full flex-shrink-0 px-6 text-center gpu-layer"
             >
               <div className="flex justify-center pb-6">
                 {Array.from({ length: 5 }).map((_, index) => (
@@ -83,7 +86,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
       <button
         onClick={prevTestimonial}
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-black-light hover:text-gold bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-md transition-all duration-300"
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-black-light hover:text-gold bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-md smooth-animation gpu-accelerated"
         aria-label="Previous testimonial"
       >
         <ChevronLeft size={20} />
@@ -91,7 +94,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
       <button
         onClick={nextTestimonial}
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-black-light hover:text-gold bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-md transition-all duration-300"
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-black-light hover:text-gold bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-md smooth-animation gpu-accelerated"
         aria-label="Next testimonial"
       >
         <ChevronRight size={20} />
@@ -103,7 +106,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
             key={index}
             onClick={() => setActiveIndex(index)}
             className={cn(
-              'w-2.5 h-2.5 rounded-full transition-all duration-300',
+              'w-2.5 h-2.5 rounded-full transition-all duration-300 gpu-accelerated',
               index === activeIndex ? 'bg-gold w-8' : 'bg-gray-300'
             )}
             aria-label={`Go to testimonial ${index + 1}`}

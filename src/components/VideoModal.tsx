@@ -120,14 +120,14 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 animate-fade-in gpu-accelerated">
       <div 
         ref={modalRef} 
-        className="relative w-full max-w-4xl rounded-lg bg-black overflow-hidden shadow-2xl"
+        className="relative w-full max-w-4xl rounded-lg bg-black overflow-hidden shadow-2xl hardware-optimized"
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-white/20 transition-colors"
+          className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-white/20 smooth-animation"
           aria-label="Close video"
         >
           <X size={24} />
@@ -154,7 +154,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
           )}
           
           <iframe 
-            className="vimeo-player absolute inset-0 h-full w-full bg-black"
+            className="vimeo-player absolute inset-0 h-full w-full bg-black gpu-layer"
             src={`https://player.vimeo.com/video/${youtubeId}?autoplay=1&background=0&controls=0&autopause=0&player_id=0&app_id=58479&dnt=1&transparent=0`}
             title="Video player"
             frameBorder="0"
@@ -163,7 +163,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
           ></iframe>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 composite-layer">
           <div className="mb-2">
             <Progress value={progress} className="h-1 bg-gray-700">
               <div className="h-full bg-gold" style={{width: `${progress}%`}} />
@@ -173,14 +173,14 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
           <div className="flex items-center justify-between">
             <button 
               onClick={togglePlay}
-              className="flex items-center justify-center rounded-full bg-gold/90 hover:bg-gold p-2 text-white transition-colors"
+              className="flex items-center justify-center rounded-full bg-gold/90 hover:bg-gold p-2 text-white smooth-animation"
             >
               {isPlaying ? <Pause size={20} /> : <Play size={20} />}
             </button>
             
             <button
               onClick={toggleMute}
-              className="flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 p-2 text-white transition-colors"
+              className="flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 p-2 text-white smooth-animation"
             >
               {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
             </button>

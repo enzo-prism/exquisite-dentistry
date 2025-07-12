@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/hover-card";
 import { useIsMobile } from '@/hooks/use-mobile';
 import ResponsiveLogo from '@/components/ResponsiveLogo';
+import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
 interface NavLinkProps {
   to: string;

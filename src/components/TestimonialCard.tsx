@@ -2,6 +2,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
 export interface TestimonialType {
   id: number;
@@ -20,12 +21,16 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ testimonial, className }: TestimonialCardProps) => {
   const { content, name, title, rating } = testimonial;
+  const { ref } = useHardwareAcceleration();
   
   return (
-    <div className={cn(
-      'bg-white p-6 rounded-sm shadow-md transition-all duration-300 hover:shadow-lg',
-      className
-    )}>
+    <div 
+      ref={ref}
+      className={cn(
+        'bg-white p-6 rounded-sm shadow-md transition-all duration-300 hover:shadow-lg gpu-accelerated hover-lift',
+        className
+      )}
+    >
       <div className="flex mb-4">
         {Array.from({ length: 5 }).map((_, index) => (
           <Star 
