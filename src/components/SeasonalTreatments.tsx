@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GraduationCap, Heart, Flower } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 const SeasonalTreatments = () => {
   return (
@@ -21,10 +22,12 @@ const SeasonalTreatments = () => {
           {/* Wedding Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
-              <img 
-                src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.webp"
+              <OptimizedImage 
+                src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
                 alt="Beautiful bride with radiant smile"
                 className="absolute inset-0 w-full h-full object-cover"
+                priority={true}
+                loadingVariant="skeleton"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
@@ -46,10 +49,12 @@ const SeasonalTreatments = () => {
           {/* Graduation Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
-              <img 
-                src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.webp"
+              <OptimizedImage 
+                src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
                 alt="Happy graduates with perfect smiles"
                 className="absolute inset-0 w-full h-full object-cover"
+                priority={true}
+                loadingVariant="skeleton"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
