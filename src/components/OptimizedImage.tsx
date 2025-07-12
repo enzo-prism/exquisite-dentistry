@@ -63,8 +63,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const getOptimizedSrc = (imageSrc: string): string => {
     if (!imageSrc) return '';
     
-    // Always prefer WebP if supported and forceWebP is true
-    if (forceWebP && webpSupported) {
+    // Always try WebP first if supported (unless already WebP)
+    if (webpSupported && !imageSrc.includes('.webp')) {
       return convertToWebP(imageSrc);
     }
     
@@ -133,22 +133,32 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     console.warn('❌ Image failed to load:', currentSrc, 'Attempt:', fallbackAttempts);
     
     // First try fallback to original format if WebP failed
-    if (forceWebP && webpSupported && fallbackAttempts === 0 && currentSrc.includes('.webp')) {
-      const originalSrc = currentSrc.replace('.webp', '.png');
-      console.log('🔄 Trying original format:', originalSrc);
+    if (fallbackAttempts === 0 && currentSrc.includes('.webp')) {
+      const originalSrc = currentSrc.replace(/\.webp$/i, '.png').replace(/\.png\.png$/i, '.png');
+      console.log('🔄 Trying original PNG format:', originalSrc);
       setCurrentSrc(originalSrc);
       setFallbackAttempts(1);
       return;
     }
     
-    if (fallbackAttempts <= 1 && fallbackSrc && currentSrc !== fallbackSrc) {
+    // Try JPG if PNG failed
+    if (fallbackAttempts === 1 && currentSrc.includes('.png')) {
+      const jpgSrc = currentSrc.replace(/\.png$/i, '.jpg');
+      console.log('🔄 Trying JPG format:', jpgSrc);
+      setCurrentSrc(jpgSrc);
+      setFallbackAttempts(2);
+      return;
+    }
+    
+    // Try provided fallback source
+    if (fallbackAttempts <= 2 && fallbackSrc && currentSrc !== fallbackSrc) {
       console.log('🔄 Trying fallbackSrc:', fallbackSrc);
       setCurrentSrc(fallbackSrc);
       setFallbackAttempts(fallbackAttempts + 1);
       return;
     }
     
-    if (fallbackAttempts <= 2 && currentSrc !== '/placeholder.svg') {
+    if (fallbackAttempts <= 3 && currentSrc !== '/placeholder.svg') {
       console.log('🔄 Trying placeholder.svg');
       setCurrentSrc('/placeholder.svg');
       setFallbackAttempts(fallbackAttempts + 1);

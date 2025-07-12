@@ -15,6 +15,6 @@ export const YOUTUBE_VIDEOS = {
 
 // Poster images for video backgrounds
 export const VIDEO_POSTERS = {
-  hero: "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.webp",
-  practice: "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.webp"
+  hero: "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png",
+  practice: "/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
 } as const;

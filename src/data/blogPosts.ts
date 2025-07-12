@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '15 min read',
     category: 'Cosmetic Dentistry',
     tags: ['veneers', 'front teeth', 'smile zone', 'porcelain veneers', 'cosmetic dentistry'],
-    featuredImage: '/lovable-uploads/5453516e-5298-4daa-9f2c-f98804ddcd5e.webp',
+    featuredImage: '/lovable-uploads/5453516e-5298-4daa-9f2c-f98804ddcd5e.png',
     seoTitle: 'Choosing Veneers for the Front 4 Teeth | Complete Smile Transformation Guide',
     seoDescription: 'Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results. Expert insights from Dr. Alexie Aguil.',
     seoKeywords: 'veneers front 4 teeth, front teeth veneers, 4 veneers cost, smile zone veneers, upper front teeth veneers, porcelain veneers Los Angeles',

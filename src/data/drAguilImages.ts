@@ -4,7 +4,7 @@
 export const drAguilImages = {
   // Professional Portrait - Perfect for About page hero, team section
   professionalPortrait: {
-    src: '/lovable-uploads/e2d3dd68-6f1f-4361-8749-59f510dfbc6c.webp',
+    src: '/lovable-uploads/e2d3dd68-6f1f-4361-8749-59f510dfbc6c.png',
     alt: 'Dr. Alexie Aguil, DDS - Professional dental portrait in clinical setting',
     description: 'Dr. Aguil in professional dental attire with crossed arms, warm smile',
     usage: ['about-hero', 'team-section', 'professional-bio'],
@@ -14,7 +14,7 @@ export const drAguilImages = {
 
   // Digital Consultation - Modern technology showcase
   digitalConsultation: {
-    src: '/lovable-uploads/63fc4977-eb81-43be-af9a-48baa86296c2.webp',
+    src: '/lovable-uploads/63fc4977-eb81-43be-af9a-48baa86296c2.png',
     alt: 'Dr. Aguil using advanced digital technology for patient consultation',
     description: 'Dr. Aguil demonstrating digital dental technology with patient',
     usage: ['services-technology', 'consultation-process', 'modern-dentistry'],
@@ -24,7 +24,7 @@ export const drAguilImages = {
 
   // X-Ray Analysis - Educational/Expertise demonstration
   xrayExplanation: {
-    src: '/lovable-uploads/e5f3343d-b25b-4340-a728-57b8756ac156.webp',
+    src: '/lovable-uploads/e5f3343d-b25b-4340-a728-57b8756ac156.png',
     alt: 'Dr. Aguil explaining dental X-rays and treatment planning',
     description: 'Dr. Aguil pointing at dental X-rays, explaining treatment options',
     usage: ['diagnostic-services', 'education-content', 'expertise-showcase'],
@@ -34,7 +34,7 @@ export const drAguilImages = {
 
   // Patient Care - Human connection and comfort
   patientConsultation: {
-    src: '/lovable-uploads/cc21ce69-7e31-4fa0-851a-4ea17ff473a1.webp',
+    src: '/lovable-uploads/cc21ce69-7e31-4fa0-851a-4ea17ff473a1.png',
     alt: 'Dr. Aguil providing compassionate dental care to patient',
     description: 'Dr. Aguil smiling while treating patient, showing caring approach',
     usage: ['patient-experience', 'comfort-care', 'testimonial-sections'],
@@ -44,7 +44,7 @@ export const drAguilImages = {
 
   // Studio Portrait - Premium branding
   studioPortrait: {
-    src: '/lovable-uploads/bc828af8-ab4e-4c39-abbf-6934123e34dd.webp',
+    src: '/lovable-uploads/bc828af8-ab4e-4c39-abbf-6934123e34dd.png',
     alt: 'Dr. Aguil professional studio portrait',
     description: 'Clean studio portrait of Dr. Aguil in professional attire',
     usage: ['premium-branding', 'bio-headshot', 'marketing-materials'],
