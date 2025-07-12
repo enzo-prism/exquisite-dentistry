@@ -34,8 +34,8 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   
   // Use the uploaded placeholder image as default for background videos
   const defaultThumbnail = background ? 
-    `/lovable-uploads/256920f0-c51d-4074-a81d-e59e35b71946.png` : 
-    `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png`;
+  `/lovable-uploads/256920f0-c51d-4074-a81d-e59e35b71946.webp` : 
+  `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.webp`;
   const thumbnail = thumbnailUrl || defaultThumbnail;
   
   // Handle iframe load event

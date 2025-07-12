@@ -22,7 +22,7 @@ const SeasonalTreatments = () => {
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <img 
-                src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
+                src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.webp"
                 alt="Beautiful bride with radiant smile"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -47,7 +47,7 @@ const SeasonalTreatments = () => {
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
             <div className="relative h-[400px]">
               <img 
-                src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
+                src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.webp"
                 alt="Happy graduates with perfect smiles"
                 className="absolute inset-0 w-full h-full object-cover"
               />

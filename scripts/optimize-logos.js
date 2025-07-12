@@ -56,17 +56,21 @@ async function optimizeLogos() {
         
         console.log(`  Created ${size.suffix} PNG: ${size.width}x${size.height}`);
         
-        // WebP version
+        // WebP version (prioritized)
         const webpOutputPath = join(OUTPUT_DIR, `${logo.filename.replace('.png', '')}-${size.suffix}.webp`);
         await image
           .resize(size.width, size.height, {
             fit: 'inside',
             withoutEnlargement: true
           })
-          .webp({ quality: 90 })
+          .webp({ 
+            quality: 95,
+            effort: 6,
+            smartSubsample: true
+          })
           .toFile(webpOutputPath);
         
-        console.log(`  Created ${size.suffix} WebP: ${size.width}x${size.height}`);
+        console.log(`  ✨ Created ${size.suffix} WebP: ${size.width}x${size.height}`);
       }
     } catch (error) {
       console.error(`Error processing ${logo.filename}:`, error);

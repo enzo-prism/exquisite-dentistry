@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import LoadingSkeleton from '@/components/ui/loading-skeleton';
+import { convertToWebP, supportsWebP } from '@/utils/webpConverter';
 
 export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -20,6 +21,7 @@ export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEl
   onError?: () => void;
   fallbackSrc?: string;
   loadingVariant?: 'elegant' | 'minimal' | 'skeleton';
+  forceWebP?: boolean;
 }
 
 type ImageFormat = 'original' | 'webp' | 'avif';
@@ -41,6 +43,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   onError,
   fallbackSrc,
   loadingVariant = 'elegant',
+  forceWebP = false,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,10 +51,25 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [error, setError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [fallbackAttempts, setFallbackAttempts] = useState(0);
+  const [webpSupported, setWebpSupported] = useState<boolean | null>(null);
   const imgRef = React.useRef<HTMLImageElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   
-  const isLocalImage = src.includes('/lovable-uploads/');
+  // Check WebP support
+  useEffect(() => {
+    supportsWebP().then(setWebpSupported);
+  }, []);
+
+  const getOptimizedSrc = (imageSrc: string): string => {
+    if (!imageSrc) return '';
+    
+    // Always prefer WebP if supported and forceWebP is true
+    if (forceWebP && webpSupported) {
+      return convertToWebP(imageSrc);
+    }
+    
+    return imageSrc;
+  };
   
   const getSmartObjectPosition = () => {
     // Always use the explicitly passed objectPosition if provided
@@ -114,17 +132,26 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const handleImageError = () => {
     console.warn('❌ Image failed to load:', currentSrc, 'Attempt:', fallbackAttempts);
     
-    if (fallbackAttempts === 0 && fallbackSrc && currentSrc !== fallbackSrc) {
-      console.log('🔄 Trying fallbackSrc:', fallbackSrc);
-      setCurrentSrc(fallbackSrc);
+    // First try fallback to original format if WebP failed
+    if (forceWebP && webpSupported && fallbackAttempts === 0 && currentSrc.includes('.webp')) {
+      const originalSrc = currentSrc.replace('.webp', '.png');
+      console.log('🔄 Trying original format:', originalSrc);
+      setCurrentSrc(originalSrc);
       setFallbackAttempts(1);
       return;
     }
     
-    if (fallbackAttempts === 1 && currentSrc !== '/placeholder.svg') {
+    if (fallbackAttempts <= 1 && fallbackSrc && currentSrc !== fallbackSrc) {
+      console.log('🔄 Trying fallbackSrc:', fallbackSrc);
+      setCurrentSrc(fallbackSrc);
+      setFallbackAttempts(fallbackAttempts + 1);
+      return;
+    }
+    
+    if (fallbackAttempts <= 2 && currentSrc !== '/placeholder.svg') {
       console.log('🔄 Trying placeholder.svg');
       setCurrentSrc('/placeholder.svg');
-      setFallbackAttempts(2);
+      setFallbackAttempts(fallbackAttempts + 1);
       return;
     }
     
@@ -135,11 +162,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   useEffect(() => {
     console.log('🔄 Image src changed:', src);
-    setCurrentSrc(src);
+    const optimizedSrc = getOptimizedSrc(src);
+    setCurrentSrc(optimizedSrc);
     setIsLoaded(false);
     setError(false);
     setFallbackAttempts(0);
-  }, [src]);
+  }, [src, webpSupported]);
   
   useEffect(() => {
     if (!currentSrc || !isVisible) return;

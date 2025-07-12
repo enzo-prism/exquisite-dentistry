@@ -1,9 +1,9 @@
-// Critical resources that should be preloaded
+// Critical resources that should be preloaded (WebP first)
 export const CRITICAL_RESOURCES = {
   images: [
-    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png', // Logo
-    '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png', // Nav logo
-    '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png', // Hero poster
+    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp', // Logo
+    '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.webp', // Nav logo
+    '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.webp', // Hero poster
   ],
   fonts: [
     'https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2',
@@ -22,7 +22,7 @@ export function preloadCriticalResources() {
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
-    link.type = 'image/png';
+    link.type = 'image/webp';
     document.head.appendChild(link);
   });
 }
