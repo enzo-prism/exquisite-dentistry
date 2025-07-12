@@ -21,11 +21,12 @@ const SeasonalTreatments = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Wedding Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
-            <div className="relative h-[400px]">
+            <div className="relative aspect-[4/5] min-h-[400px]">
               <OptimizedImage 
                 src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
                 alt="Beautiful bride with radiant smile"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: 'center 20%' }}
                 priority={true}
                 loadingVariant="skeleton"
               />
@@ -48,11 +49,12 @@ const SeasonalTreatments = () => {
           
           {/* Graduation Card */}
           <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
-            <div className="relative h-[400px]">
+            <div className="relative aspect-[4/5] min-h-[400px]">
               <OptimizedImage 
                 src="/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png"
                 alt="Happy graduates with perfect smiles"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: 'center 30%' }}
                 priority={true}
                 loadingVariant="skeleton"
               />
