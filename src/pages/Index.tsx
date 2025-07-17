@@ -70,14 +70,7 @@ const IndexPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-12">
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
-                  alt="Shannon Langhorne Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-blue-400 via-purple-500 to-pink-400" onClick={() => setIsVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -88,14 +81,7 @@ const IndexPage: React.FC = () => {
             
             {/* Second Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
-                  alt="Taylor Vasek Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-400" onClick={() => setIsSecondVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -106,14 +92,7 @@ const IndexPage: React.FC = () => {
 
             {/* Third Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsThirdVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
-                  alt="Christian Fernandez Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-orange-400 via-red-500 to-pink-500" onClick={() => setIsThirdVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -124,14 +103,7 @@ const IndexPage: React.FC = () => {
 
             {/* Fourth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png"
-                  alt="Rob Talbert Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-500" onClick={() => setIsFourthVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -142,14 +114,7 @@ const IndexPage: React.FC = () => {
 
             {/* Fifth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/a478e28f-fd88-427c-b049-31f7d99099f1.png"
-                  alt="Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-rose-400 via-pink-400 to-purple-400" onClick={() => setIsFifthVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
