@@ -232,10 +232,12 @@ export default {
 				'mobile-gradient': {
 					'0%, 100%': {
 						transform: 'translateY(0%) scale(1)',
+						backgroundPosition: '0% 50%',
 						opacity: '0.6'
 					},
 					'50%': {
 						transform: 'translateY(-1%) scale(1.01)',
+						backgroundPosition: '100% 50%',
 						opacity: '0.8'
 					}
 				}
@@ -262,6 +264,8 @@ export default {
 				'sparkle-dance': 'sparkle-dance 30s linear infinite',
 				'depth-shimmer': 'depth-shimmer 18s cubic-bezier(0.4, 0, 0.2, 1) infinite',
 				'texture-breathe': 'texture-breathe 22s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				// Mobile optimized animation
+				'mobile-gradient': 'mobile-gradient 8s ease-in-out infinite',
 			},
 			transitionProperty: {
 				'width': 'width',
