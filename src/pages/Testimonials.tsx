@@ -55,7 +55,7 @@ const TestimonialsPage: React.FC = () => {
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
-                <OptimizedImage
+                <ImageComponent
                   src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png"
                   alt="Shannon Langhorne Patient Testimonial"
                   className="w-full h-full object-cover"
@@ -71,7 +71,7 @@ const TestimonialsPage: React.FC = () => {
             {/* Second Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
-                <OptimizedImage
+                <ImageComponent
                   src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png"
                   alt="Taylor Vasek Patient Testimonial"
                   className="w-full h-full object-cover"
@@ -87,7 +87,7 @@ const TestimonialsPage: React.FC = () => {
             {/* Third Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsThirdVideoModalOpen(true)}>
-                <OptimizedImage
+                <ImageComponent
                   src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png"
                   alt="Christian Fernandez Patient Testimonial"
                   className="w-full h-full object-cover"
@@ -103,7 +103,7 @@ const TestimonialsPage: React.FC = () => {
             {/* Fourth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
-                <OptimizedImage
+                <ImageComponent
                   src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png"
                   alt="Rob Talbert Patient Testimonial"
                   className="w-full h-full object-cover"
@@ -119,7 +119,7 @@ const TestimonialsPage: React.FC = () => {
             {/* Fifth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <OptimizedImage
+                <ImageComponent
                   src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png"
                   alt="Patient Testimonial"
                   className="w-full h-full object-cover"

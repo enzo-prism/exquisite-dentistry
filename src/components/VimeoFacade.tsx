@@ -111,7 +111,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       onClick={handleClick}
     >
       {/* Thumbnail */}
-      <OptimizedImage
+      <ImageComponent
         src={thumbnail}
         alt={`${title} thumbnail`}
         className="w-full h-full"

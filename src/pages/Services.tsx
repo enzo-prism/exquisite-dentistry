@@ -133,7 +133,7 @@ const Services = () => {
               
               <div className={cn("relative", index % 2 === 1 ? "lg:order-1" : "")}>
                 <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                  <OptimizedImage src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  <ImageComponent src={service.image} alt={service.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
@@ -241,7 +241,7 @@ const Services = () => {
           
           <div className="relative">
             <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-              <OptimizedImage
+              <ImageComponent
                 alt="Spa-like dental environment"
                 className="w-full h-full object-cover"
                 src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"

@@ -138,7 +138,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
               <>
                 {/* After image (full background) */}
                 <div className="absolute inset-0 w-full h-full">
-                  <OptimizedImage
+                  <ImageComponent
                     src={patient.afterImage}
                     alt={`${patient.name} after ${patient.procedure}`}
                     className="w-full h-full object-cover"
@@ -159,7 +159,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
                     transform: 'translateZ(0)' // Force hardware acceleration for smoother clipping
                   }}
                 >
-                  <OptimizedImage
+                  <ImageComponent
                     src={patient.beforeImage}
                     alt={`${patient.name} before ${patient.procedure}`}
                     className="w-full h-full object-cover"

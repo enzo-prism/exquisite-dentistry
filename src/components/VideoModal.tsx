@@ -136,7 +136,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
         <div className="relative aspect-video w-full">
           {!isLoaded && thumbnailUrl && (
             <div className="absolute inset-0 flex items-center justify-center bg-black">
-              <OptimizedImage
+              <ImageComponent
                 src={thumbnailUrl}
                 alt="Video thumbnail"
                 className="w-full h-full object-cover"

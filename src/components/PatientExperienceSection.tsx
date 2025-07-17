@@ -69,13 +69,13 @@ const ClientExperienceSection: React.FC = () => {
           
           <div className="space-y-6 md:space-y-8">
             <div className="relative rounded-sm overflow-hidden shadow-lg">
-              <OptimizedImage
+              <ImageComponent
                 src="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
                 alt="Dr. Aguil with patient"
                 className="w-full h-full object-cover"
                 width={600}
                 height={400}
-                fallbackSrc="/placeholder.svg"
+                
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
