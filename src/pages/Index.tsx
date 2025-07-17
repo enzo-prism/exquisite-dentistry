@@ -72,7 +72,7 @@ const IndexPage: React.FC = () => {
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
                 <ImageComponent
-                  src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png"
+                  src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
                   alt="Shannon Langhorne Patient Testimonial"
                   fill={true}
                   objectFit="cover"
@@ -90,7 +90,7 @@ const IndexPage: React.FC = () => {
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
                 <ImageComponent
-                  src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png"
+                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
                   alt="Taylor Vasek Patient Testimonial"
                   fill={true}
                   objectFit="cover"
@@ -108,7 +108,7 @@ const IndexPage: React.FC = () => {
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsThirdVideoModalOpen(true)}>
                 <ImageComponent
-                  src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png"
+                  src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
                   alt="Christian Fernandez Patient Testimonial"
                   fill={true}
                   objectFit="cover"
@@ -126,7 +126,7 @@ const IndexPage: React.FC = () => {
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
                 <ImageComponent
-                  src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png"
+                  src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png"
                   alt="Rob Talbert Patient Testimonial"
                   fill={true}
                   objectFit="cover"
@@ -144,7 +144,7 @@ const IndexPage: React.FC = () => {
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
                 <ImageComponent
-                  src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png"
+                  src="/lovable-uploads/a478e28f-fd88-427c-b049-31f7d99099f1.png"
                   alt="Patient Testimonial"
                   fill={true}
                   objectFit="cover"
