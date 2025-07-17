@@ -20,8 +20,8 @@ const DoctorIntroSection: React.FC = () => {
           <div className="relative">
             <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-full rounded-lg overflow-hidden shadow-2xl">
               <ImageComponent
-                src={drAguilImages.casualOfficePortrait.src}
-                alt={drAguilImages.casualOfficePortrait.alt}
+                src="/lovable-uploads/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa.png"
+                alt="Dr. Alexie Aguil, DDS - Professional portrait in dental office"
                 fill={true}
                 objectFit="cover"
                 objectPosition="center"
