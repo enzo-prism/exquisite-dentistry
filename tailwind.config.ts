@@ -126,6 +126,37 @@ export default {
 				'rotate-in': {
 					'0%': { opacity: '0', transform: 'rotate3d(0, 0, 1, -45deg) scale3d(0.9, 0.9, 1)' },
 					'100%': { opacity: '1', transform: 'rotate3d(0, 0, 1, 0deg) scale3d(1, 1, 1)' }
+				},
+				'gradient-move': {
+					'0%, 100%': { 
+						backgroundPosition: '0% 50%',
+						transform: 'scale3d(1, 1, 1)'
+					},
+					'50%': { 
+						backgroundPosition: '100% 50%',
+						transform: 'scale3d(1.02, 1.02, 1)'
+					}
+				},
+				'gradient-shift': {
+					'0%': { backgroundPosition: '0% 0%' },
+					'25%': { backgroundPosition: '100% 100%' },
+					'50%': { backgroundPosition: '0% 100%' },
+					'75%': { backgroundPosition: '100% 0%' },
+					'100%': { backgroundPosition: '0% 0%' }
+				},
+				'elegant-float': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
+						opacity: '0.9'
+					},
+					'33%': { 
+						transform: 'translate3d(10px, -5px, 0) scale3d(1.01, 1.01, 1)',
+						opacity: '1'
+					},
+					'66%': { 
+						transform: 'translate3d(-5px, 5px, 0) scale3d(0.99, 0.99, 1)',
+						opacity: '0.95'
+					}
 				}
 			},
 			animation: {
@@ -141,6 +172,9 @@ export default {
 				'slide-down': 'slide-down 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				'zoom-in': 'zoom-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				'rotate-in': 'rotate-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+				'gradient-move': 'gradient-move 12s ease-in-out infinite',
+				'gradient-shift': 'gradient-shift 16s ease-in-out infinite',
+				'elegant-float': 'elegant-float 20s ease-in-out infinite',
 			},
 			transitionProperty: {
 				'width': 'width',

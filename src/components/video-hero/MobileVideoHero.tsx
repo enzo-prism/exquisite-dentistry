@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
+import GradientBackground from '@/components/GradientBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import type { VideoHeroProps } from './video-hero-types';
 import { getHeroHeightClasses } from '@/utils/heroHeights';
@@ -12,20 +13,26 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   subtitle,
   primaryCta,
   secondaryCta,
-  height = 'medium'
+  height = 'medium',
+  useGradient = true
 }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const heightClasses = getHeroHeightClasses(height);
 
   return (
-    <section className={cn("relative flex items-center overflow-hidden bg-black", heightClasses.mobile)}>
-      <VideoBackground
-        vimeoId={vimeoId}
-        onLoad={() => setIsVideoLoaded(true)}
-        className="absolute inset-0 w-full h-full"
-      />
-      
-      <div className="absolute inset-0 bg-black/50 z-10" />
+    <section className={cn("relative flex items-center overflow-hidden bg-slate-900", heightClasses.mobile)}>
+      {useGradient ? (
+        <GradientBackground variant="dental" intensity="moderate" />
+      ) : (
+        <>
+          <VideoBackground
+            vimeoId={vimeoId}
+            onLoad={() => setIsVideoLoaded(true)}
+            className="absolute inset-0 w-full h-full"
+          />
+          <div className="absolute inset-0 bg-black/50 z-10" />
+        </>
+      )}
       
       <div className="relative z-20 text-white px-4 w-full max-w-lg sm:max-w-xl md:max-w-2xl">
         <h1 

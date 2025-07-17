@@ -26,4 +26,5 @@ export interface VideoHeroProps {
   alignment?: 'center' | 'left';
   scrollIndicator?: boolean;
   aspectRatio?: number;
+  useGradient?: boolean;
 }
