@@ -157,6 +157,77 @@ export default {
 						transform: 'translate3d(-5px, 5px, 0) scale3d(0.99, 0.99, 1)',
 						opacity: '0.95'
 					}
+				},
+				// Enhanced gradient animations with GPU acceleration
+				'gradient-flow': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0) scale(1)',
+						backgroundPosition: '0% 0%'
+					},
+					'25%': { 
+						transform: 'translate3d(1px, 0, 0) scale(1.002)',
+						backgroundPosition: '25% 25%'
+					},
+					'50%': { 
+						transform: 'translate3d(0, 1px, 0) scale(1)',
+						backgroundPosition: '50% 50%'
+					},
+					'75%': { 
+						transform: 'translate3d(-1px, 0, 0) scale(1.001)',
+						backgroundPosition: '75% 25%'
+					}
+				},
+				'golden-veins': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0) rotate(0deg)',
+						backgroundPosition: '0% 0%, 100% 100%'
+					},
+					'33%': { 
+						transform: 'translate3d(2px, -1px, 0) rotate(0.5deg)',
+						backgroundPosition: '33% 67%, 67% 33%'
+					},
+					'66%': { 
+						transform: 'translate3d(-1px, 2px, 0) rotate(-0.3deg)',
+						backgroundPosition: '66% 34%, 34% 66%'
+					}
+				},
+				'sparkle-dance': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0)',
+						backgroundPosition: '0px 0px, 150px 150px, 120px 120px, 90px 90px'
+					},
+					'25%': { 
+						transform: 'translate3d(0.5px, 0, 0)',
+						backgroundPosition: '25px 25px, 175px 125px, 95px 145px, 115px 65px'
+					},
+					'50%': { 
+						transform: 'translate3d(0, 0.5px, 0)',
+						backgroundPosition: '50px 50px, 100px 100px, 70px 170px, 140px 40px'
+					},
+					'75%': { 
+						transform: 'translate3d(-0.5px, 0, 0)',
+						backgroundPosition: '75px 25px, 125px 175px, 145px 95px, 65px 115px'
+					}
+				},
+				'depth-shimmer': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0)',
+						backgroundPosition: '0% 0%, 0% 0%'
+					},
+					'50%': { 
+						transform: 'translate3d(0, 0, 0)',
+						backgroundPosition: '100% 100%, 50% 50%'
+					}
+				},
+				'texture-breathe': {
+					'0%, 100%': { 
+						transform: 'translate3d(0, 0, 0) scale(1)',
+						opacity: '0.2'
+					},
+					'50%': { 
+						transform: 'translate3d(0, 0, 0) scale(1.001)',
+						opacity: '0.15'
+					}
 				}
 			},
 			animation: {
@@ -175,6 +246,12 @@ export default {
 				'gradient-move': 'gradient-move 12s ease-in-out infinite',
 				'gradient-shift': 'gradient-shift 16s ease-in-out infinite',
 				'elegant-float': 'elegant-float 20s ease-in-out infinite',
+				// GPU-optimized gradient animations
+				'gradient-flow': 'gradient-flow 20s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'golden-veins': 'golden-veins 25s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'sparkle-dance': 'sparkle-dance 30s linear infinite',
+				'depth-shimmer': 'depth-shimmer 18s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'texture-breathe': 'texture-breathe 22s cubic-bezier(0.4, 0, 0.2, 1) infinite',
 			},
 			transitionProperty: {
 				'width': 'width',
