@@ -176,19 +176,19 @@ const ImageComponent: React.FC<ImageProps> = ({
 
   const renderLoadingState = () => {
     if (loadingVariant === 'skeleton') {
-      return <LoadingSkeleton variant="image" className="absolute inset-0" />;
+      return <LoadingSkeleton variant="image" className="absolute inset-0 gpu-accelerated" />;
     }
 
     if (loadingVariant === 'minimal') {
       return (
-        <div className="absolute inset-0 bg-muted/20 flex items-center justify-center">
+        <div className="absolute inset-0 bg-muted/20 flex items-center justify-center gpu-accelerated">
           <div className="w-2 h-2 bg-muted-foreground/30 rounded-full animate-pulse" />
         </div>
       );
     }
 
     return (
-      <div className="absolute inset-0 bg-muted/10 flex items-center justify-center">
+      <div className="absolute inset-0 bg-muted/10 flex items-center justify-center shimmer-loading gpu-accelerated">
         <div className="w-1 h-1 bg-muted-foreground/20 rounded-full animate-pulse" />
       </div>
     );
@@ -227,8 +227,14 @@ const ImageComponent: React.FC<ImageProps> = ({
           width={dimensions.width}
           height={dimensions.height}
           loading={priority ? 'eager' : 'lazy'}
-          className={cn('transition-opacity duration-300', className)}
-          style={{ objectFit: 'contain', objectPosition: 'center', maxWidth: '100%', height: 'auto' }}
+          className={cn('transition-opacity duration-300 gpu-accelerated', className)}
+          style={{ 
+            objectFit: 'contain', 
+            objectPosition: 'center', 
+            maxWidth: '100%', 
+            height: 'auto',
+            transform: 'translateZ(0)'
+          }}
           {...props}
         />
       </picture>
@@ -255,11 +261,16 @@ const ImageComponent: React.FC<ImageProps> = ({
             onLoad={handleLoad}
             onError={handleError}
             className={cn(
-              'absolute inset-0 w-full h-full transition-opacity duration-300',
+              'absolute inset-0 w-full h-full transition-opacity duration-300 gpu-accelerated',
               isLoaded ? 'opacity-100' : 'opacity-0',
               className
             )}
-            style={{ objectFit, objectPosition }}
+            style={{ 
+              objectFit, 
+              objectPosition,
+              transform: 'translateZ(0)',
+              willChange: isLoaded ? 'auto' : 'opacity'
+            }}
             {...props}
           />
         )}
@@ -299,10 +310,16 @@ const ImageComponent: React.FC<ImageProps> = ({
           onLoad={handleLoad}
           onError={handleError}
           className={cn(
-            'transition-opacity duration-300',
+            'transition-opacity duration-300 gpu-accelerated image-fade-in',
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
-          style={{ objectFit, objectPosition, display: 'block' }}
+          style={{ 
+            objectFit, 
+            objectPosition, 
+            display: 'block',
+            transform: 'translateZ(0)',
+            willChange: isLoaded ? 'auto' : 'opacity'
+          }}
           {...props}
         />
       )}

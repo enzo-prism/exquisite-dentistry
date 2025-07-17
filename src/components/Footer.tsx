@@ -4,6 +4,8 @@ import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 import Button from './Button';
 import ImageComponent from './Image';
 import { Separator } from './ui/separator';
+import { motion } from 'framer-motion';
+import { useScrollAnimation } from '@/hooks/use-scroll-animations';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -16,10 +18,37 @@ const SOCIAL_URLS = {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { ref: footerRef } = useScrollAnimation({ 
+    animationClass: 'gpu-slide-in',
+    threshold: 0.1 
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
     <footer 
-      className="bg-gradient-to-b from-gray-900 to-black text-white"
+      ref={footerRef}
+      className="bg-gradient-to-b from-gray-900 to-black text-white gpu-accelerated"
       style={{
         minHeight: '400px',
         contain: 'layout',
@@ -29,9 +58,15 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {/* Practice Info */}
-          <div className="lg:col-span-1">
+          <motion.div className="lg:col-span-1" variants={itemVariants}>
             <div 
               className="mb-6 flex items-center"
               style={{
@@ -54,34 +89,43 @@ const Footer = () => {
               Providing exceptional dental care in the heart of Los Angeles with a focus on comfort, quality, and personalized treatment plans.
             </p>
             <div className="flex space-x-4">
-              <a 
+              <motion.a 
                 href={SOCIAL_URLS.INSTAGRAM} 
-                className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full" 
+                className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full micro-glow" 
                 aria-label="Follow us on Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Instagram size={20} />
-              </a>
-              <a 
+              </motion.a>
+              <motion.a 
                 href={SOCIAL_URLS.FACEBOOK} 
-                className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full" 
+                className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full micro-glow" 
                 aria-label="Follow us on Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Facebook size={20} />
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-xl font-semibold mb-6 text-gold">Practice</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors flex items-center group">
-                  <span className="group-hover:translate-x-1 transition-transform">Home</span>
+                <Link to="/" className="text-gray-300 hover:text-white transition-colors flex items-center group micro-lift">
+                  <motion.span 
+                    className="group-hover:translate-x-1 transition-transform"
+                    whileHover={{ x: 4 }}
+                  >
+                    Home
+                  </motion.span>
                 </Link>
               </li>
               <li>
@@ -115,10 +159,10 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Patient Resources */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-xl font-semibold mb-6 text-gold">Patient Resources</h3>
             <ul className="space-y-3">
               <li>
@@ -142,10 +186,10 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Information */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-xl font-semibold mb-6 text-gold">Visit Us</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
@@ -187,8 +231,8 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Bottom Section */}

@@ -15,6 +15,8 @@ import {
 import { useIsMobile } from '@/hooks/use-mobile';
 import ImageComponent from '@/components/Image';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
+import { motion, AnimatePresence } from 'framer-motion';
+import ScrollProgress from './ScrollProgress';
 
 interface NavLinkProps {
   to: string;
@@ -33,20 +35,32 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, isActive, hasDropdown }
             <RouterNavLink
               to={to}
               className={({ isActive: active }) =>
-                `text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 ${
+                `text-white hover:text-gold micro-lift transition-all duration-300 flex items-center gap-1 py-2 ${
                   active || isActive ? 'text-gold' : ''
                 }`
               }
             >
               {children}
-              <ChevronDown size={16} className="transition-transform group-hover:rotate-180" />
+              <motion.div
+                animate={{ rotate: 0 }}
+                whileHover={{ rotate: 180 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown size={16} />
+              </motion.div>
             </RouterNavLink>
           </div>
         </HoverCardTrigger>
-        <HoverCardContent className="w-auto p-0 bg-black border-gold">
-          <div className="py-2">
+        <HoverCardContent className="w-auto p-0 bg-black border-gold gpu-accelerated">
+          <motion.div 
+            className="py-2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
             <slot />
-          </div>
+          </motion.div>
         </HoverCardContent>
       </HoverCard>
     );
@@ -56,7 +70,7 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, isActive, hasDropdown }
     <RouterNavLink
       to={to}
       className={({ isActive: active }) =>
-        `text-white hover:text-gold transition-colors duration-200 py-2 ${
+        `text-white hover:text-gold micro-lift transition-all duration-300 py-2 ${
           active || isActive ? 'text-gold border-b-2 border-gold' : ''
         }`
       }
@@ -101,21 +115,32 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const { ref: navRef } = useHardwareAcceleration();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      const shouldBeScrolled = window.scrollY > 50;
+      if (shouldBeScrolled !== scrolled) {
+        setScrolled(shouldBeScrolled);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    let ticking = false;
+    const handleScrollThrottled = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-  }, []);
+
+    window.addEventListener('scroll', handleScrollThrottled, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScrollThrottled);
+    };
+  }, [scrolled]);
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -126,21 +151,37 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full bg-black transition-all duration-200 ${scrolled ? 'shadow-md' : ''}`}>
-      <div className="mx-auto px-6 max-w-7xl">
-        <div className="flex h-20 items-center justify-between">
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-              <ImageComponent
-                src=""
-                alt="Exquisite Dentistry Logo"
-                className={isMobile ? 'h-6' : 'h-12'}
-                logoType="alt"
-                responsive
-                priority
-              />
-            </Link>
-          </div>
+    <>
+      <ScrollProgress />
+      <motion.header 
+        ref={navRef}
+        className={`navbar-morph sticky top-0 z-50 w-full ${scrolled ? 'navbar-morphed' : 'bg-black'}`}
+        initial={false}
+        animate={{
+          backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)',
+          backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 1)'
+        }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+      >
+        <div className="mx-auto px-6 max-w-7xl">
+          <div className="flex h-20 items-center justify-between">
+            <div className="flex-shrink-0">
+              <Link to="/" className="flex items-center micro-scale" onClick={() => setIsOpen(false)}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ImageComponent
+                    src=""
+                    alt="Exquisite Dentistry Logo"
+                    className={isMobile ? 'h-6' : 'h-12'}
+                    logoType="alt"
+                    responsive
+                    priority
+                  />
+                </motion.div>
+              </Link>
+            </div>
           
           <div className="hidden md:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
@@ -195,39 +236,67 @@ const Navbar = () => {
               </HoverCard>
             </nav>
             
-            <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90 rounded-none px-6">
-              <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                Book an Appointment
-              </a>
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90 rounded-none px-6 micro-glow">
+                <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
+                  Book an Appointment
+                </a>
+              </Button>
+            </motion.div>
           </div>
           
           <div className="md:hidden">
-            <button
+            <motion.button
               type="button"
-              className="text-white hover:text-gold focus:outline-none"
+              className="text-white hover:text-gold focus:outline-none micro-scale"
               onClick={toggleMobileMenu}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
+              whileTap={{ scale: 0.9 }}
             >
               <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="h-6 w-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="h-6 w-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
       </div>
       
-      {/* Mobile menu */}
-      <div
-        id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-[100vh] bg-black shadow-lg' : 'max-h-0'
-        }`}
-      >
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="mobile-menu"
+              className="md:hidden bg-black shadow-lg gpu-accelerated"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
         <nav className="px-4 pt-2 pb-4 space-y-1">
           <MobileNavLink to="/" onClick={closeMobileMenu}>Home</MobileNavLink>
           <MobileNavLink to="/about" onClick={closeMobileMenu}>About</MobileNavLink>
@@ -257,9 +326,12 @@ const Navbar = () => {
               </a>
             </Button>
           </div>
-        </nav>
-      </div>
-    </header>
+            </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+    </>
   );
 };
 
