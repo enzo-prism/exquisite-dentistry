@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Award, Users, Star, CheckCircle } from 'lucide-react';
 import ImageComponent from '@/components/Image';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
-import { useIsMobile, useIsTablet } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface DrAguilImageItem {
   src: string;
@@ -29,6 +29,7 @@ const defaultImages: DrAguilImageItem[] = [
     src: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png',
     alt: 'Dr. Alexie Aguil explaining dental x-rays',
     caption: 'Dr. Aguil reviewing patient scans',
+    featured: true,
     fallbackSrc: '/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png'
   },
   {
@@ -39,160 +40,187 @@ const defaultImages: DrAguilImageItem[] = [
   }
 ];
 
+const achievements = [
+  { icon: Award, label: 'Board Certified', value: 'Cosmetic Dentistry' },
+  { icon: Users, label: 'Happy Patients', value: '2,500+' },
+  { icon: Star, label: 'Years Experience', value: '15+' },
+  { icon: CheckCircle, label: 'Success Rate', value: '98%' }
+];
+
+const highlights = [
+  'Precision-crafted smile transformations',
+  'Advanced cosmetic dentistry techniques',
+  'Personalized treatment planning',
+  'Comfortable, anxiety-free experience'
+];
+
 const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
   title = "Meet Dr. Alexie Aguil",
-  subtitle = "Exquisite Dentistry's founder and renowned cosmetic dentist serving Los Angeles",
+  subtitle = "Transforming smiles with precision, artistry, and compassionate care",
   images = defaultImages,
   showButton = true,
   className,
   compact = false
 }) => {
   const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  // Mobile-first: Show only 1 image on mobile, 2 on tablet, all on desktop
-  const visibleImages = isMobile ? [images[currentImageIndex]] : isTablet ? images.slice(0, 2) : images;
-  
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-  
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-  
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const featuredImage = images.find(img => img.featured) || images[0];
+
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("w-full", className)}>
           {!compact && (
-            <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-              <span className="inline-block text-xs sm:text-sm text-gold font-medium mb-2 sm:mb-3 tracking-wide">
+            <div className="text-center mb-12 lg:mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 text-gold rounded-full text-sm font-medium mb-4">
+                <Award className="w-4 h-4" />
                 EXQUISITE DENTISTRY
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 leading-tight">
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 {title}
               </h2>
-              <div className="separator mx-auto"></div>
-              <p className="text-gray-600 mt-4 sm:mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 {subtitle}
               </p>
             </div>
           )}
-          
-          {/* Mobile: Single image with navigation */}
-          {isMobile && images.length > 1 ? (
-            <div className="relative">
-              <div className="grid grid-cols-1 gap-4">
-                {visibleImages.map((image, index) => (
-                  <div key={currentImageIndex} className="relative overflow-hidden rounded-lg shadow-lg group">
-                    {/* Mobile: Portrait aspect ratio for better mobile viewing */}
-                    <div className="aspect-[3/4] sm:aspect-[4/3]">
-                      <ImageComponent
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover transform transition-all duration-500 group-active:scale-95"
-                        width={400}
-                        height={533}
-                        priority={index === 0}
-                        loadingVariant="elegant"
-                      />
-                    </div>
-                    
-                    {image.caption && (
-                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10">
-                        <p className="text-white text-xs sm:text-sm font-medium leading-snug">
-                          {image.caption}
-                        </p>
+
+          {/* Main content layout */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left side - Content */}
+            <div className="space-y-8">
+              {/* Achievement stats */}
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-gold/10 rounded-lg flex items-center justify-center">
+                        <achievement.icon className="w-4 h-4 text-gold" />
                       </div>
-                    )}
+                      <span className="text-sm text-gray-600 font-medium">{achievement.label}</span>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                      {achievement.value}
+                    </div>
                   </div>
                 ))}
               </div>
-              
-              {/* Mobile navigation buttons */}
-              <div className="flex justify-between items-center mt-4">
-                <button
-                  onClick={prevImage}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="w-5 h-5 text-gray-600" />
-                </button>
-                
-                <div className="flex space-x-2">
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={cn(
-                        "w-2 h-2 rounded-full transition-colors",
-                        currentImageIndex === index ? "bg-gold" : "bg-gray-300"
-                      )}
-                      aria-label={`View image ${index + 1}`}
-                    />
+
+              {/* Highlights */}
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">Why Choose Dr. Aguil?</h3>
+                <div className="space-y-4">
+                  {highlights.map((highlight, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 leading-relaxed">{highlight}</span>
+                    </div>
                   ))}
                 </div>
-                
-                <button
-                  onClick={nextImage}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-600" />
-                </button>
               </div>
+
+              {/* CTA */}
+              {showButton && (
+                <div className="pt-4">
+                  <Link to="/about">
+                    <Button 
+                      size="lg"
+                      className="w-full sm:w-auto bg-gradient-to-r from-gold to-yellow-500 hover:from-yellow-500 hover:to-gold text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-base font-semibold"
+                    >
+                      Learn More About Dr. Aguil
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
-          ) : (
-            /* Tablet and Desktop: Grid layout */
-            <div className={cn(
-              "grid gap-4 sm:gap-6 lg:gap-8",
-              isTablet ? "grid-cols-2" : isMobile ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            )}>
-              {visibleImages.map((image, index) => (
-                <div key={index} className="relative overflow-hidden rounded-lg shadow-lg group">
-                  {/* Responsive aspect ratios */}
-                  <div className="aspect-[3/4] sm:aspect-[4/3]">
+
+            {/* Right side - Images */}
+            <div className="relative">
+              {/* Main featured image */}
+              <div className="relative">
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
+                  <ImageComponent
+                    src={featuredImage.src}
+                    alt={featuredImage.alt}
+                    className="w-full h-full object-cover"
+                    width={500}
+                    height={625}
+                    priority
+                    loadingVariant="elegant"
+                  />
+                  
+                  {/* Floating info card */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
+                        <Star className="w-6 h-6 text-gold" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900">Dr. Alexie Aguil</div>
+                        <div className="text-sm text-gray-600">Cosmetic Dentistry Specialist</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Secondary images */}
+                {images.length > 1 && (
+                  <div className="absolute -bottom-8 -right-8 hidden lg:block">
+                    <div className="grid grid-cols-2 gap-3">
+                      {images.slice(1, 3).map((image, index) => (
+                        <div 
+                          key={index} 
+                          className="w-24 h-24 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                          onClick={() => setActiveImageIndex(index + 1)}
+                        >
+                          <ImageComponent
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-full object-cover"
+                            width={96}
+                            height={96}
+                            loadingVariant="elegant"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full opacity-20"></div>
+              <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-br from-primary to-blue-500 rounded-full opacity-15"></div>
+            </div>
+          </div>
+
+          {/* Mobile image gallery */}
+          {isMobile && images.length > 1 && (
+            <div className="mt-12 lg:hidden">
+              <div className="flex gap-3 overflow-x-auto pb-4">
+                {images.map((image, index) => (
+                  <div 
+                    key={index}
+                    className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden shadow-md"
+                  >
                     <ImageComponent
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-105"
-                      width={400}
-                      height={isMobile ? 533 : 300}
-                      priority={index === 0}
+                      className="w-full h-full object-cover"
+                      width={80}
+                      height={80}
                       loadingVariant="elegant"
                     />
                   </div>
-                  
-                  {image.caption && (
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10">
-                      <p className="text-white text-xs sm:text-sm font-medium leading-snug">
-                        {image.caption}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-          
-          {showButton && (
-            <div className="mt-8 sm:mt-12 text-center">
-              <Link to="/about">
-                <Button 
-                  variant="outline" 
-                  size={isMobile ? "default" : "lg"}
-                  className={cn(
-                    "group shadow-md hover:shadow-lg transition-all",
-                    isMobile && "w-full sm:w-auto px-8 py-3 text-base"
-                  )}
-                >
-                  <span className="hidden sm:inline">Meet Dr. Aguil - Our Expert Dentist</span>
-                  <span className="sm:hidden">Meet Dr. Aguil</span>
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+                ))}
+              </div>
             </div>
           )}
         </div>
