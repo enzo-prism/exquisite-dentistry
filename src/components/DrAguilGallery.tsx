@@ -35,12 +35,6 @@ const defaultImages: DrAguilImageItem[] = [
     alt: 'Dr. Alexie Aguil with patient',
     caption: 'Providing personalized consultations',
     fallbackSrc: '/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png'
-  },
-  {
-    src: '/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png',
-    alt: 'Dr. Alexie Aguil portrait',
-    caption: 'Award-winning cosmetic dentist',
-    fallbackSrc: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png'
   }
 ];
 
