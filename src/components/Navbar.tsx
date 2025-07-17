@@ -225,7 +225,7 @@ const Navbar = () => {
       <div
         id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-screen bg-black shadow-lg' : 'max-h-0'
+          isOpen ? 'max-h-[100vh] bg-black shadow-lg' : 'max-h-0'
         }`}
       >
         <nav className="px-4 pt-2 pb-4 space-y-1">

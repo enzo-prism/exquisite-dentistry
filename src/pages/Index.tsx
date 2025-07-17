@@ -57,7 +57,7 @@ const IndexPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block text-sm text-gold font-medium mb-3">TESTIMONIALS</span>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
               Client <span className="text-gold">Reviews</span>
             </h2>
             <div className="separator mx-auto"></div>
@@ -67,18 +67,20 @@ const IndexPage: React.FC = () => {
           </div>
           
           {/* Video Testimonials */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-12">
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
               <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
                 <ImageComponent
                   src="/lovable-uploads/4b013eb9-025b-4762-9fd9-3e1ed6e76587.png"
                   alt="Shannon Langhorne Patient Testimonial"
-                  className="w-full h-full object-cover"
+                  fill={true}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
                   </div>
                 </div>
               </div>
@@ -90,11 +92,13 @@ const IndexPage: React.FC = () => {
                 <ImageComponent
                   src="/lovable-uploads/94b33bca-4e9c-4e37-9028-82ebe5b81ccf.png"
                   alt="Taylor Vasek Patient Testimonial"
-                  className="w-full h-full object-cover"
+                  fill={true}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
                   </div>
                 </div>
               </div>
@@ -106,11 +110,13 @@ const IndexPage: React.FC = () => {
                 <ImageComponent
                   src="/lovable-uploads/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa.png"
                   alt="Christian Fernandez Patient Testimonial"
-                  className="w-full h-full object-cover"
+                  fill={true}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
                   </div>
                 </div>
               </div>
@@ -122,11 +128,13 @@ const IndexPage: React.FC = () => {
                 <ImageComponent
                   src="/lovable-uploads/44218c1b-5e06-4f02-aed6-b32ab5eca52e.png"
                   alt="Rob Talbert Patient Testimonial"
-                  className="w-full h-full object-cover"
+                  fill={true}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
                   </div>
                 </div>
               </div>
@@ -138,11 +146,13 @@ const IndexPage: React.FC = () => {
                 <ImageComponent
                   src="/lovable-uploads/160f389c-fa93-49f1-ac68-847dedda16fc.png"
                   alt="Patient Testimonial"
-                  className="w-full h-full object-cover"
+                  fill={true}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
+                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
                   </div>
                 </div>
               </div>

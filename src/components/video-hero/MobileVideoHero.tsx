@@ -27,7 +27,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
       
       <div className="absolute inset-0 bg-black/50 z-10" />
       
-      <div className="relative z-20 text-white px-4 max-w-sm">
+      <div className="relative z-20 text-white px-4 w-full max-w-lg sm:max-w-xl md:max-w-2xl">
         <h1 
           className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-left"
           style={{ 
