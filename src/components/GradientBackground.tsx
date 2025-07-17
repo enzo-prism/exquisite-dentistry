@@ -18,22 +18,22 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
     // Performance optimizations
     const performanceClasses = 'gpu-accelerated will-change-auto transform-gpu';
     
-    // Gradient variants with dental/medical theme
+    // Elegant black, gold, white gradient variants
     const gradientVariants = {
       dental: {
-        subtle: 'bg-gradient-to-br from-slate-900 via-blue-900/80 to-slate-800',
-        moderate: 'bg-gradient-to-br from-slate-900 via-blue-900/90 via-indigo-900/70 to-slate-800',
-        vibrant: 'bg-gradient-to-br from-slate-900 via-blue-900 via-indigo-900/80 via-blue-800/60 to-slate-800'
+        subtle: 'bg-gradient-to-br from-black via-black/95 via-amber-900/20 to-black',
+        moderate: 'bg-gradient-to-br from-black via-black/90 via-amber-800/30 via-white/5 to-black',
+        vibrant: 'bg-gradient-to-br from-black via-amber-900/40 via-amber-700/25 via-white/10 to-black'
       },
       luxury: {
-        subtle: 'bg-gradient-to-br from-gray-900 via-slate-800/80 to-gray-900',
-        moderate: 'bg-gradient-to-br from-gray-900 via-slate-800/90 via-gray-700/70 to-gray-900',
-        vibrant: 'bg-gradient-to-br from-gray-900 via-slate-800 via-gray-700/80 via-slate-600/60 to-gray-900'
+        subtle: 'bg-gradient-to-br from-black via-black/95 via-yellow-600/15 to-black',
+        moderate: 'bg-gradient-to-br from-black via-black/90 via-yellow-600/25 via-amber-200/8 to-black',
+        vibrant: 'bg-gradient-to-br from-black via-yellow-600/35 via-amber-400/20 via-white/12 to-black'
       },
       elegant: {
-        subtle: 'bg-gradient-to-br from-slate-900 via-gray-800/80 to-slate-900',
-        moderate: 'bg-gradient-to-br from-slate-900 via-gray-800/90 via-slate-700/70 to-slate-900',
-        vibrant: 'bg-gradient-to-br from-slate-900 via-gray-800 via-slate-700/80 via-gray-600/60 to-slate-900'
+        subtle: 'bg-gradient-to-br from-black via-black/95 via-amber-800/10 to-black',
+        moderate: 'bg-gradient-to-br from-black via-black/90 via-amber-700/20 via-slate-100/6 to-black',
+        vibrant: 'bg-gradient-to-br from-black via-amber-800/30 via-amber-600/18 via-white/8 to-black'
       }
     };
 
@@ -69,13 +69,13 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         }}
       />
       
-      {/* Secondary Animated Layer */}
+      {/* Gold Shimmer Layer */}
       <div 
         className={cn(
-          'absolute inset-0 w-full h-full opacity-60 animate-gradient-shift',
-          variant === 'dental' && 'bg-gradient-to-tr from-blue-900/30 via-transparent via-indigo-800/20 to-blue-900/30',
-          variant === 'luxury' && 'bg-gradient-to-tr from-gray-700/30 via-transparent via-slate-600/20 to-gray-700/30',
-          variant === 'elegant' && 'bg-gradient-to-tr from-slate-700/30 via-transparent via-gray-600/20 to-slate-700/30'
+          'absolute inset-0 w-full h-full opacity-40 animate-gradient-shift',
+          variant === 'dental' && 'bg-gradient-to-tr from-amber-600/20 via-transparent via-yellow-500/15 to-amber-700/20',
+          variant === 'luxury' && 'bg-gradient-to-tr from-yellow-500/25 via-transparent via-amber-400/20 to-yellow-600/25',
+          variant === 'elegant' && 'bg-gradient-to-tr from-amber-700/15 via-transparent via-amber-500/12 to-amber-800/15'
         )}
         style={{
           backgroundSize: '400% 400%',
@@ -83,8 +83,17 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         }}
       />
       
-      {/* Subtle Overlay */}
-      <div className={getOverlayClasses()} />
+      {/* White Highlight Layer */}
+      <div 
+        className={cn(
+          'absolute inset-0 w-full h-full opacity-30 animate-elegant-float',
+          'bg-gradient-to-tl from-white/5 via-transparent via-white/8 to-white/3'
+        )}
+        style={{
+          backgroundSize: '200% 200%',
+          willChange: 'background-position'
+        }}
+      />
       
       {/* Accessibility fallback */}
       <div 
