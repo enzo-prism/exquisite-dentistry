@@ -89,8 +89,8 @@ const About = () => {
                 <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
                   <div className="aspect-[3/4] overflow-hidden rounded-sm">
                     <ImageComponent
-                      src="/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png"
-                      alt="Dr. Alexie Aguil"
+                      src="/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png"
+                      alt="Dr. Alexie Aguil - Premium business portrait"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -136,8 +136,8 @@ const About = () => {
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="w-full md:w-1/3">
                   <ImageComponent
-                    src="https://i.ytimg.com/vi/Zlb9l_EqXjo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgVihMMA8=&rs=AOn4CLBszZ-tR93CsE3BOc8nPJJBAmqW4w"
-                    alt="Dr. Alexie Aguil"
+                    src="/lovable-uploads/fc6628ee-e664-4138-9abd-756dbcfc9889.png"
+                    alt="Dr. Alexie Aguil in dental scrubs"
                     objectFit="cover"
                     objectPosition="center 20%"
                     className="w-full aspect-[4/3] object-cover rounded-sm shadow-md"

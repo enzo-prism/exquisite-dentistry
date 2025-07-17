@@ -26,20 +26,20 @@ interface DrAguilGalleryProps {
 
 const defaultImages: DrAguilImageItem[] = [
   {
-    src: '/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png', // NEW: Business Portrait
+    src: '/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png', // NEW: Premium Business Portrait
     alt: 'Dr. Alexie Aguil - Premium business portrait',
     caption: 'Dr. Aguil - Excellence in cosmetic dentistry',
     featured: true,
   },
   {
-    src: '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png', // NEW: Clinical Portrait B&W
-    alt: 'Dr. Aguil artistic clinical portrait',
-    caption: 'Artistry meets clinical excellence',
+    src: '/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png', // NEW: Clinical Portrait B&W
+    alt: 'Dr. Aguil clinical portrait in dental office',
+    caption: 'Professional excellence in dental care',
     featured: false,
   },
   {
-    src: '/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png', // NEW: Casual Office
-    alt: 'Dr. Aguil in his dental office',
+    src: '/lovable-uploads/fc6628ee-e664-4138-9abd-756dbcfc9889.png', // NEW: Casual Office Portrait
+    alt: 'Dr. Aguil in his dental office wearing scrubs',
     caption: 'Comfortable, personalized care',
     featured: false,
   },

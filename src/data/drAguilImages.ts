@@ -14,7 +14,7 @@ export const drAguilImages = {
 
   // NEW: Professional Studio Portrait - Premium business headshot
   businessPortrait: {
-    src: '/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png',
+    src: '/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png',
     alt: 'Dr. Alexie Aguil, DDS - Premium business portrait with professional smile',
     description: 'Elegant studio portrait of Dr. Aguil in professional business attire',
     usage: ['about-hero', 'homepage-hero', 'premium-branding', 'leadership'],
@@ -24,19 +24,19 @@ export const drAguilImages = {
 
   // NEW: Black & White Clinical Portrait - Artistic professional shot
   clinicalPortrait: {
-    src: '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png',
-    alt: 'Dr. Alexie Aguil, DDS - Artistic black and white clinical portrait',
-    description: 'Sophisticated B&W portrait showcasing Dr. Aguil\'s clinical expertise',
-    usage: ['about-expertise', 'clinical-excellence', 'artistic-branding'],
-    aspectRatio: '4:5',
-    quality: 'artistic-grade'
+    src: '/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png',
+    alt: 'Dr. Alexie Aguil, DDS - Professional clinical portrait in dental setting',
+    description: 'Professional black and white portrait of Dr. Aguil in dental office environment',
+    usage: ['clinical-excellence', 'professional-bio', 'about-section'],
+    aspectRatio: '3:4',
+    quality: 'high-resolution'
   },
 
   // NEW: Casual Office Portrait - Approachable and friendly
   casualOfficePortrait: {
-    src: '/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png',
-    alt: 'Dr. Alexie Aguil, DDS - Friendly office portrait in dental setting',
-    description: 'Warm, approachable portrait of Dr. Aguil in his office environment',
+    src: '/lovable-uploads/fc6628ee-e664-4138-9abd-756dbcfc9889.png',
+    alt: 'Dr. Alexie Aguil, DDS - Friendly office portrait in dental scrubs',
+    description: 'Warm, approachable portrait of Dr. Aguil in dental scrubs in his office',
     usage: ['homepage-doctor-section', 'about-personality', 'patient-comfort'],
     aspectRatio: '4:5',
     quality: 'high-resolution'
