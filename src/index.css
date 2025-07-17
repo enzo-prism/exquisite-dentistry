@@ -422,9 +422,10 @@
   }
   
   /* Optimize mobile gradient animation */
-  .animate-\[mobile-gradient_8s_ease-in-out_infinite\] {
-    animation: mobile-gradient 6s ease-in-out infinite;
+  .animate-mobile-gradient {
+    animation: mobile-gradient 8s ease-in-out infinite;
     will-change: transform, background-position, opacity;
+    background-size: 200% 200% !important;
   }
 }
 

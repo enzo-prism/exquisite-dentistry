@@ -120,9 +120,9 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         <div 
           className={cn(
             "absolute inset-0 w-full h-full",
-            "bg-gradient-to-br from-amber-500/8 via-transparent to-slate-700/10",
+            "bg-gradient-to-br from-amber-500/12 via-transparent to-slate-700/15",
             !prefersReducedMotion && 'animate-mobile-gradient',
-            "mix-blend-soft-light opacity-60"
+            "mix-blend-soft-light"
           )}
           style={{
             backgroundSize: '200% 200%',
