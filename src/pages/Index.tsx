@@ -8,6 +8,7 @@ import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
 import VideoModal from '@/components/VideoModal';
+import DoctorIntroSection from '@/components/DoctorIntroSection';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
@@ -50,6 +51,7 @@ const IndexPage: React.FC = () => {
       />
       <SeasonalTreatments />
       <PracticeVideoSection />
+      <DoctorIntroSection />
       <ServicesSection />
       <ClientExperienceSection />
       <DrAguilGallery />

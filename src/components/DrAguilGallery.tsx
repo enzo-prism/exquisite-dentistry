@@ -26,18 +26,29 @@ interface DrAguilGalleryProps {
 
 const defaultImages: DrAguilImageItem[] = [
   {
-    src: '/lovable-uploads/8632f149-3a68-4157-809c-902a92a3f3a6.png',
-    alt: 'Dr. Alexie Aguil explaining dental x-rays',
-    caption: 'Dr. Aguil reviewing patient scans',
+    src: '/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png', // NEW: Business Portrait
+    alt: 'Dr. Alexie Aguil - Premium business portrait',
+    caption: 'Dr. Aguil - Excellence in cosmetic dentistry',
     featured: true,
-    fallbackSrc: '/lovable-uploads/a88d0fa1-399a-4043-ba91-b3a84e19149a.png'
   },
   {
-    src: '/lovable-uploads/087a65dd-859a-4356-a682-58793125626f.png',
-    alt: 'Dr. Alexie Aguil with patient',
-    caption: 'Providing personalized consultations',
-    fallbackSrc: '/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png'
-  }
+    src: '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png', // NEW: Clinical Portrait B&W
+    alt: 'Dr. Aguil artistic clinical portrait',
+    caption: 'Artistry meets clinical excellence',
+    featured: false,
+  },
+  {
+    src: '/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png', // NEW: Casual Office
+    alt: 'Dr. Aguil in his dental office',
+    caption: 'Comfortable, personalized care',
+    featured: false,
+  },
+  {
+    src: '/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png', // NEW: Smile Close-up
+    alt: 'Dr. Aguil beautiful smile showcase',
+    caption: 'Beautiful results, beautiful smiles',
+    featured: false,
+  },
 ];
 
 const achievements = [
