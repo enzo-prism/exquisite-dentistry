@@ -68,14 +68,12 @@ const ClientExperienceSection: React.FC = () => {
           </div>
           
           <div className="space-y-6 md:space-y-8">
-            <div className="relative rounded-sm overflow-hidden shadow-lg">
+            <div className="relative rounded-sm overflow-hidden shadow-lg min-h-[300px] md:min-h-[400px]">
               <ImageComponent
                 src="/lovable-uploads/ec227844-ca39-4434-94c0-0ff12a8f6a3a.png"
                 alt="Dr. Aguil with patient"
                 className="w-full h-full object-cover"
-                width={600}
-                height={400}
-                
+                fill={true}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
