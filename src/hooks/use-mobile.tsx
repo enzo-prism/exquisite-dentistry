@@ -1,11 +1,11 @@
 
 import * as React from "react"
 
-// Define breakpoints for different screen sizes
+// Define breakpoints for different screen sizes with buffer zones
 export const BREAKPOINTS = {
-  MOBILE: 640,  // sm in tailwind
-  TABLET: 768,  // md in tailwind
-  DESKTOP: 1024 // lg in tailwind
+  MOBILE: 768,  // md in tailwind - increased for better mobile detection
+  TABLET: 1024,  // lg in tailwind
+  DESKTOP: 1280 // xl in tailwind
 }
 
 export function useIsMobile() {

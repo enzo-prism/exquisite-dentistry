@@ -395,9 +395,11 @@
 }
 
 /* Performance optimizations for mobile */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   html {
     scroll-padding-top: 80px;
+    min-height: 100vh;
+    min-height: 100svh; /* Safari mobile viewport */
   }
   
   :root {
@@ -407,12 +409,22 @@
   body, #root {
     overflow-x: hidden;
     width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
   }
   
-  /* Reduce animations on mobile for better performance */
-  * {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
+  /* Disable heavy animations on mobile for better performance */
+  .animate-\[golden-veins_25s_ease-in-out_infinite\],
+  .animate-\[sparkle-dance_30s_linear_infinite\],
+  .animate-\[depth-shimmer_18s_ease-in-out_infinite\],
+  .animate-\[texture-breathe_22s_ease-in-out_infinite\] {
+    animation: none !important;
+  }
+  
+  /* Optimize mobile gradient animation */
+  .animate-\[mobile-gradient_8s_ease-in-out_infinite\] {
+    animation-duration: 6s;
+    animation-timing-function: ease-in-out;
   }
 }
 

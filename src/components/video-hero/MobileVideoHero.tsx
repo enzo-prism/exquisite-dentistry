@@ -20,7 +20,16 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   const heightClasses = getHeroHeightClasses(height);
 
   return (
-    <section className={cn("relative flex items-center overflow-hidden bg-slate-900", heightClasses.mobile)}>
+    <section 
+      className={cn(
+        "relative flex items-center justify-center overflow-hidden bg-slate-900", 
+        heightClasses.mobile,
+        "supports-[height:100dvh]:min-h-[100dvh] supports-[height:100svh]:min-h-[100svh]"
+      )}
+      style={{
+        minHeight: '100svh' // Safari mobile viewport, fallback handled by CSS
+      }}
+    >
       {useGradient ? (
         <GradientBackground variant="dental" intensity="moderate" />
       ) : (
@@ -34,9 +43,9 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         </>
       )}
       
-      <div className="relative z-20 text-white px-4 w-full max-w-lg sm:max-w-xl md:max-w-2xl">
+      <div className="relative z-20 text-white px-6 w-full max-w-sm mx-auto text-center">
         <h1 
-          className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-left"
+          className="text-3xl font-bold mb-6 leading-tight"
           style={{ 
             willChange: 'auto',
             contain: 'layout style'
@@ -47,7 +56,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-sm sm:text-base mb-6 text-white/90 leading-relaxed text-left"
+            className="text-base mb-8 text-white/90 leading-relaxed"
             style={{ 
               contain: 'layout'
             }}
@@ -56,7 +65,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           </p>
         )}
         
-        <div className="flex justify-start">
+        <div className="flex justify-center">
           <HeroCtaButtons 
             primaryCta={primaryCta}
             secondaryCta={secondaryCta}

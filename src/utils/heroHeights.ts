@@ -17,7 +17,7 @@ export function getHeroHeightClasses(height: HeroHeight = 'medium'): HeightClass
       desktop: 'min-h-[60vh] md:min-h-[65vh] lg:min-h-[70vh]'
     },
     medium: {
-      mobile: 'h-[60vh] min-h-[450px] max-h-[600px]',
+      mobile: 'min-h-[100vh] max-h-[100vh]',
       desktop: 'min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh]'
     },
     large: {

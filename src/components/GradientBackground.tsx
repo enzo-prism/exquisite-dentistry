@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface GradientBackgroundProps {
   className?: string;
@@ -13,10 +14,11 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
   intensity = 'moderate'
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   // Check for reduced motion preference
   const prefersReducedMotion = typeof window !== 'undefined' && 
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.matchMedia('(prefers-reduced-motion: reduce').matches;
 
   const getGradientClasses = () => {
     const baseClasses = 'absolute inset-0 w-full h-full';
@@ -99,6 +101,42 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
     );
   };
 
+  // Simplified mobile version for better performance
+  if (isMobile) {
+    return (
+      <div 
+        ref={containerRef}
+        className={cn("absolute inset-0 w-full h-full", className)}
+        role="presentation"
+        aria-hidden="true"
+      >
+        {/* Simplified Primary Gradient for Mobile */}
+        <div className={cn(
+          "absolute inset-0 w-full h-full",
+          "bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95"
+        )} />
+        
+        {/* Single Subtle Animation Layer for Mobile */}
+        <div 
+          className={cn(
+            "absolute inset-0 w-full h-full",
+            "bg-gradient-to-br from-amber-500/8 via-transparent to-slate-700/10",
+            !prefersReducedMotion && 'animate-[mobile-gradient_8s_ease-in-out_infinite]',
+            "mix-blend-soft-light opacity-60"
+          )}
+        />
+        
+        {/* Accessibility fallback */}
+        <div 
+          className="absolute inset-0 bg-slate-900 opacity-0"
+          style={{ display: 'none' }}
+          aria-hidden="true"
+        />
+      </div>
+    );
+  }
+
+  // Full desktop version with all effects
   return (
     <div ref={containerRef} className="absolute inset-0 w-full h-full">
       {/* Primary Gradient Layer with Advanced GPU Acceleration */}

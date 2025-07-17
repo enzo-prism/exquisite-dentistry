@@ -228,6 +228,16 @@ export default {
 						transform: 'translate3d(0, 0, 0) scale(1.001)',
 						opacity: '0.15'
 					}
+				},
+				'mobile-gradient': {
+					'0%, 100%': {
+						transform: 'translateY(0%) scale(1)',
+						opacity: '0.6'
+					},
+					'50%': {
+						transform: 'translateY(-1%) scale(1.01)',
+						opacity: '0.8'
+					}
 				}
 			},
 			animation: {
