@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
-import DrAguilGallery from '@/components/DrAguilGallery';
 import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
@@ -54,7 +53,6 @@ const IndexPage: React.FC = () => {
       <DoctorIntroSection />
       <ServicesSection />
       <ClientExperienceSection />
-      <DrAguilGallery />
       <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
