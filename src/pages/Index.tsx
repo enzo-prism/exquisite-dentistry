@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
@@ -13,6 +13,7 @@ import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
 import ImageComponent from '@/components/Image';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 const IndexPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -20,6 +21,69 @@ const IndexPage: React.FC = () => {
   const [isThirdVideoModalOpen, setIsThirdVideoModalOpen] = useState(false);
   const [isFourthVideoModalOpen, setIsFourthVideoModalOpen] = useState(false);
   const [isFifthVideoModalOpen, setIsFifthVideoModalOpen] = useState(false);
+
+  // Scroll progress for animations
+  const { scrollYProgress } = useScroll();
+  const yProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        duration: 0.6
+      }
+    }
+  };
+
+  const cardHoverVariants = {
+    hover: {
+      scale: 1.05,
+      y: -8,
+      rotateY: 5,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  };
+
+  const playButtonVariants = {
+    hover: {
+      scale: 1.2,
+      rotate: 360,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 15
+      }
+    },
+    tap: {
+      scale: 0.95
+    }
+  };
 
   return (
     <>
@@ -36,99 +100,272 @@ const IndexPage: React.FC = () => {
       <SeoStructuredData />
       <ReviewStructuredData />
       
-      <VideoHero 
-        title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
-        subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
-        primaryCta={{
-          text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-        }}
-        secondaryCta={{
-          text: "Discover Our Practice",
-          href: "/about"
-        }}
-      />
-      <SeasonalTreatments />
-      <PracticeVideoSection />
-      <DoctorIntroSection />
-      <ServicesSection />
-      <ClientExperienceSection />
-      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <VideoHero 
+          title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
+          subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
+          primaryCta={{
+            text: "Schedule a Consultation",
+            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          }}
+          secondaryCta={{
+            text: "Discover Our Practice",
+            href: "/about"
+          }}
+        />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ willChange: 'transform' }}
+      >
+        <SeasonalTreatments />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{ willChange: 'transform' }}
+      >
+        <PracticeVideoSection />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+        style={{ willChange: 'transform' }}
+      >
+        <DoctorIntroSection />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ willChange: 'transform' }}
+      >
+        <ServicesSection />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{ willChange: 'transform' }}
+      >
+        <ClientExperienceSection />
+      </motion.div>
+      <motion.section 
+        className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{ willChange: 'transform' }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block text-sm text-gold font-medium mb-3">TESTIMONIALS</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <motion.span 
+              className="inline-block text-sm text-gold font-medium mb-3"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              TESTIMONIALS
+            </motion.span>
+            <motion.h2 
+              className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Client <span className="text-gold">Reviews</span>
-            </h2>
-            <div className="separator mx-auto"></div>
-            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.div 
+              className="separator mx-auto"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            />
+            <motion.p 
+              className="text-gray-600 mt-6 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
               See what our clients are saying about their experience at Exquisite Dentistry
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
           
           {/* Video Testimonials */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-12">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {/* First Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+            <motion.div 
+              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
+              variants={itemVariants}
+              whileHover={cardHoverVariants.hover}
+              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+            >
               <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" onClick={() => setIsVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                <motion.div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
+                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
+                >
+                  <motion.div 
+                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
+                    variants={playButtonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{ willChange: 'transform' }}
+                  >
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
             
             {/* Second Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+            <motion.div 
+              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
+              variants={itemVariants}
+              whileHover={cardHoverVariants.hover}
+              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+            >
               <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-teal-50 via-emerald-100 to-green-50" onClick={() => setIsSecondVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                <motion.div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
+                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
+                >
+                  <motion.div 
+                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
+                    variants={playButtonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{ willChange: 'transform' }}
+                  >
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Third Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+            <motion.div 
+              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
+              variants={itemVariants}
+              whileHover={cardHoverVariants.hover}
+              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+            >
               <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-rose-100 via-pink-50 to-red-50" onClick={() => setIsThirdVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                <motion.div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
+                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
+                >
+                  <motion.div 
+                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
+                    variants={playButtonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{ willChange: 'transform' }}
+                  >
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Fourth Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+            <motion.div 
+              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
+              variants={itemVariants}
+              whileHover={cardHoverVariants.hover}
+              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+            >
               <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-50" onClick={() => setIsFourthVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                <motion.div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
+                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
+                >
+                  <motion.div 
+                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
+                    variants={playButtonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{ willChange: 'transform' }}
+                  >
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Fifth Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+            <motion.div 
+              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
+              variants={itemVariants}
+              whileHover={cardHoverVariants.hover}
+              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+            >
               <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-purple-100 via-violet-50 to-pink-100" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
+                <motion.div 
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
+                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
+                >
+                  <motion.div 
+                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
+                    variants={playButtonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{ willChange: 'transform' }}
+                  >
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
+          <motion.div 
+            className="bg-white shadow-lg rounded-sm border border-gray-100 p-8"
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            style={{ willChange: 'transform' }}
+          >
             <ReviewWidget />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       <VideoModal
         youtubeId="1082192427"
