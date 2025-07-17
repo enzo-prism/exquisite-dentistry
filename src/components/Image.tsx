@@ -181,15 +181,15 @@ const ImageComponent: React.FC<ImageProps> = ({
 
     if (loadingVariant === 'minimal') {
       return (
-        <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
-          <div className="w-2 h-2 bg-black/20 rounded-full animate-pulse" />
+        <div className="absolute inset-0 bg-muted/20 flex items-center justify-center">
+          <div className="w-2 h-2 bg-muted-foreground/30 rounded-full animate-pulse" />
         </div>
       );
     }
 
     return (
-      <div className="absolute inset-0 bg-gradient-to-br from-black/3 via-black/5 to-black/8 flex items-center justify-center">
-        <div className="w-1 h-1 bg-black/30 rounded-full animate-pulse" />
+      <div className="absolute inset-0 bg-muted/10 flex items-center justify-center">
+        <div className="w-1 h-1 bg-muted-foreground/20 rounded-full animate-pulse" />
       </div>
     );
   };
@@ -265,9 +265,9 @@ const ImageComponent: React.FC<ImageProps> = ({
         )}
         
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/5 to-black/10 text-black/40 text-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-muted/10 text-muted-foreground/60 text-sm">
             <div className="text-center p-4">
-              <div className="text-black/20 mb-2">⚬</div>
+              <div className="text-muted-foreground/40 mb-2">⚬</div>
               <div className="text-xs font-medium">{alt}</div>
             </div>
           </div>
@@ -308,9 +308,9 @@ const ImageComponent: React.FC<ImageProps> = ({
       )}
       
       {error && (
-        <div className="flex items-center justify-center bg-gradient-to-br from-black/5 to-black/10 text-black/40 text-sm w-full h-full">
+        <div className="flex items-center justify-center bg-muted/10 text-muted-foreground/60 text-sm w-full h-full">
           <div className="text-center p-4">
-            <div className="text-black/20 mb-2">⚬</div>
+            <div className="text-muted-foreground/40 mb-2">⚬</div>
             <div className="text-xs font-medium">{alt}</div>
           </div>
         </div>
