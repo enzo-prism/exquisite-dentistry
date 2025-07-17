@@ -70,7 +70,7 @@ const IndexPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-12">
             {/* First Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-slate-100 via-stone-50 to-amber-50" onClick={() => setIsVideoModalOpen(true)}>
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" onClick={() => setIsVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -81,7 +81,7 @@ const IndexPage: React.FC = () => {
             
             {/* Second Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50" onClick={() => setIsSecondVideoModalOpen(true)}>
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-teal-50 via-emerald-100 to-green-50" onClick={() => setIsSecondVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -92,7 +92,7 @@ const IndexPage: React.FC = () => {
 
             {/* Third Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50" onClick={() => setIsThirdVideoModalOpen(true)}>
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-rose-100 via-pink-50 to-red-50" onClick={() => setIsThirdVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -103,7 +103,7 @@ const IndexPage: React.FC = () => {
 
             {/* Fourth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50" onClick={() => setIsFourthVideoModalOpen(true)}>
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-50" onClick={() => setIsFourthVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
@@ -114,7 +114,7 @@ const IndexPage: React.FC = () => {
 
             {/* Fifth Video Testimonial */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50" onClick={() => setIsFifthVideoModalOpen(true)}>
+              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-purple-100 via-violet-50 to-pink-100" onClick={() => setIsFifthVideoModalOpen(true)}>
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
                   <div className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg min-h-[44px] min-w-[44px]">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
