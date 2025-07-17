@@ -149,11 +149,11 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                   <ImageComponent
                     src={featuredImage.src}
                     alt={featuredImage.alt}
-                    className="w-full h-full object-cover"
-                    width={500}
-                    height={625}
+                    fill={true}
                     priority
                     loadingVariant="elegant"
+                    objectFit="cover"
+                    objectPosition="center"
                   />
                   
                   {/* Floating info card */}
@@ -183,10 +183,10 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                           <ImageComponent
                             src={image.src}
                             alt={image.alt}
-                            className="w-full h-full object-cover"
-                            width={96}
-                            height={96}
+                            fill={true}
                             loadingVariant="elegant"
+                            objectFit="cover"
+                            objectPosition="center"
                           />
                         </div>
                       ))}
@@ -213,10 +213,10 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                     <ImageComponent
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover"
-                      width={80}
-                      height={80}
+                      fill={true}
                       loadingVariant="elegant"
+                      objectFit="cover"
+                      objectPosition="center"
                     />
                   </div>
                 ))}

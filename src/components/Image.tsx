@@ -236,13 +236,54 @@ const ImageComponent: React.FC<ImageProps> = ({
   }
 
   // Regular image rendering
+  if (fill) {
+    // When fill is true, render just the img without a container div
+    return (
+      <>
+        {!isLoaded && !error && (
+          <div className="absolute inset-0">
+            {renderLoadingState()}
+          </div>
+        )}
+        
+        {(isVisible || priority) && !error && (
+          <img
+            ref={imgRef}
+            src={currentSrc}
+            alt={alt}
+            loading={priority ? 'eager' : 'lazy'}
+            onLoad={handleLoad}
+            onError={handleError}
+            className={cn(
+              'absolute inset-0 w-full h-full transition-opacity duration-300',
+              isLoaded ? 'opacity-100' : 'opacity-0',
+              className
+            )}
+            style={{ objectFit, objectPosition }}
+            {...props}
+          />
+        )}
+        
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/5 to-black/10 text-black/40 text-sm">
+            <div className="text-center p-4">
+              <div className="text-black/20 mb-2">⚬</div>
+              <div className="text-xs font-medium">{alt}</div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  // When fill is false, use explicit dimensions without conflicting CSS
   return (
     <div
       ref={containerRef}
-      className={cn('relative overflow-hidden', fill ? 'w-full h-full' : '', className)}
+      className={cn('relative overflow-hidden', className)}
       style={{
-        width: fill ? '100%' : dimensions.width,
-        height: fill ? '100%' : dimensions.height,
+        width: dimensions.width,
+        height: dimensions.height,
       }}
     >
       {!isLoaded && !error && renderLoadingState()}
@@ -252,17 +293,16 @@ const ImageComponent: React.FC<ImageProps> = ({
           ref={imgRef}
           src={currentSrc}
           alt={alt}
-          width={fill ? undefined : dimensions.width}
-          height={fill ? undefined : dimensions.height}
+          width={dimensions.width}
+          height={dimensions.height}
           loading={priority ? 'eager' : 'lazy'}
           onLoad={handleLoad}
           onError={handleError}
           className={cn(
             'transition-opacity duration-300',
-            fill ? 'w-full h-full' : '',
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
-          style={{ objectFit, objectPosition }}
+          style={{ objectFit, objectPosition, display: 'block' }}
           {...props}
         />
       )}
