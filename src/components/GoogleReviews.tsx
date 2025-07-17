@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Star, MessageSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/Button';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 interface GoogleReview {
   author_name: string;

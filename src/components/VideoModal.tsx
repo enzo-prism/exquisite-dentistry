@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 interface VideoModalProps {
   youtubeId: string;

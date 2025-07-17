@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 interface PageHeaderProps {
   title: string;
@@ -26,13 +26,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       {bgImage && (
         <>
           <div className="absolute inset-0 z-0">
-            <OptimizedImage
+            <ImageComponent
               src={bgImage}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full"
               width={1920}
               height={600}
-              fallbackSrc="/placeholder.svg"
+              fill
             />
             <div className="absolute inset-0 bg-black/60"></div>
           </div>

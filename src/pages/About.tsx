@@ -8,7 +8,7 @@ import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import DoctorStructuredData from '@/components/DoctorStructuredData';
 import AboutPageStructuredData from '@/components/AboutPageStructuredData';
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import VideoHero from '@/components/VideoHero';
 import { Helmet } from 'react-helmet-async';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';

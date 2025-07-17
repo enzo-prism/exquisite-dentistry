@@ -2,7 +2,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import { calculateImageAlignment, preloadImagePair, createResizeHandler } from '@/utils/imageAlignment';
 
 export interface CloseUpTransformationData {
@@ -135,7 +135,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
               <>
                 {/* After image (full background) */}
                 <div className="absolute inset-0 w-full h-full">
-                  <OptimizedImage
+                  <ImageComponent
                     src={transformation.afterImage}
                     alt={`Dental transformation after - ${transformation.id}`}
                     className="w-full h-full object-cover"
@@ -156,7 +156,7 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
                     transform: 'translateZ(0)' // Force hardware acceleration
                   }}
                 >
-                  <OptimizedImage
+                  <ImageComponent
                     src={transformation.beforeImage}
                     alt={`Dental transformation before - ${transformation.id}`}
                     className="w-full h-full object-cover"

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 interface VimeoFacadeProps {
   videoId: string;

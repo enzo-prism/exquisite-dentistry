@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 const IndexPage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);

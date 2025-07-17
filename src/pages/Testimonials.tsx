@@ -5,7 +5,7 @@ import VideoHero from '@/components/VideoHero';
 import VideoModal from '@/components/VideoModal';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import VideoTestimonialStructuredData from '@/components/VideoTestimonialStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
 

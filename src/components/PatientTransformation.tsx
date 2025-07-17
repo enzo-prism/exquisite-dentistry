@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import { calculateImageAlignment, preloadImagePair, createResizeHandler } from '@/utils/imageAlignment';
 
 export interface PatientTransformationData {

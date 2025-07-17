@@ -13,7 +13,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { useIsMobile } from '@/hooks/use-mobile';
-import ResponsiveLogo from '@/components/ResponsiveLogo';
+import ImageComponent from '@/components/Image';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
 interface NavLinkProps {
@@ -131,11 +131,13 @@ const Navbar = () => {
         <div className="flex h-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-              <ResponsiveLogo
-                type="alt"
+              <ImageComponent
+                src=""
                 alt="Exquisite Dentistry Logo"
                 className={isMobile ? 'h-6' : 'h-12'}
-                priority={true}
+                logoType="alt"
+                responsive
+                priority
               />
             </Link>
           </div>

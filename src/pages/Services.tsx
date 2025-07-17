@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
 

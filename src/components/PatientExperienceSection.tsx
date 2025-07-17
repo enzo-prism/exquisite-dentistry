@@ -2,7 +2,7 @@ import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import Button from '@/components/Button';
 import { Link } from 'react-router-dom';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 

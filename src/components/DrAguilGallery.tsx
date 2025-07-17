@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import OptimizedImage from '@/components/OptimizedImage';
+import ImageComponent from '@/components/Image';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 
@@ -75,13 +75,13 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
               console.log(`Rendering image ${index}:`, image.src);
               return (
                 <div key={index} className="relative overflow-hidden rounded-sm shadow-lg group aspect-[4/3]">
-                  <OptimizedImage
+                  <ImageComponent
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-105"
                     width={400}
                     height={300}
-                    fallbackSrc={image.fallbackSrc || '/placeholder.svg'}
+                    
                     priority={index === 0}
                     loadingVariant="elegant"
                     onLoad={() => console.log(`✅ Image ${index} loaded successfully`)}
