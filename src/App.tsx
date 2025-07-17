@@ -137,6 +137,8 @@ const RouteAudit = () => {
 };
 
 import PageLoader from '@/components/ui/page-loader';
+import PageTransition from '@/components/ui/page-transition';
+import ScrollProgress from '@/components/ScrollProgress';
 
 // Updated loading fallback component
 const PageLoaderComponent = () => {
@@ -153,11 +155,13 @@ const AppRoutes = () => {
   
   return (
     <>
+      <ScrollProgress />
       <ScrollToTop />
       <RouteAudit />
       <Navbar />
       <main className="flex-grow">
         <ErrorBoundary>
+          <PageTransition>
           <Routes>
             <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
               <Index />
@@ -252,6 +256,7 @@ const AppRoutes = () => {
               <NotFound />
             </Suspense>} />
           </Routes>
+          </PageTransition>
         </ErrorBoundary>
       </main>
       <Footer />

@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
+import { usePerformanceMonitor } from '@/hooks/use-performance-monitor';
 
 interface LoadingSkeletonProps {
   className?: string;
@@ -17,10 +18,17 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   animate = true
 }) => {
   const { ref } = useHardwareAcceleration();
+  const { optimizedSettings } = usePerformanceMonitor();
+
+  const getAnimationClass = () => {
+    if (!animate) return '';
+    if (optimizedSettings.reduceAnimations) return 'animate-pulse';
+    return 'animate-shimmer-enhanced bg-[length:200%_100%]';
+  };
 
   const baseClasses = cn(
-    "bg-gradient-to-r from-gold/5 via-gold/10 to-gold/5 rounded-sm gpu-accelerated",
-    animate && "animate-shimmer bg-[length:200%_100%]",
+    "bg-gradient-to-r from-gold/5 via-gold/12 to-gold/5 rounded-sm gpu-accelerated transition-smooth",
+    getAnimationClass(),
     className
   );
 

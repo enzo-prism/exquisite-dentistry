@@ -13,7 +13,7 @@ export const CRITICAL_RESOURCES = {
   ]
 };
 
-// Preload critical resources
+// Enhanced preload with GPU acceleration hints
 export function preloadCriticalResources() {
   // Only preload on initial load, not on navigation
   if (window.performance.navigation.type !== 0) return;
@@ -24,7 +24,7 @@ export function preloadCriticalResources() {
   } catch (error) {
     console.warn('Registry-based preloading failed, using fallback:', error);
     
-    // Fallback to direct preloading
+    // Fallback to direct preloading with GPU hints
     CRITICAL_RESOURCES.images.forEach(basePath => {
       try {
         const optimal = getOptimalImage(basePath);
@@ -37,12 +37,27 @@ export function preloadCriticalResources() {
           link.type = 'image/webp';
         }
         
+        // Add GPU acceleration hint for faster decoding
+        link.setAttribute('decoding', 'async');
+        link.setAttribute('fetchpriority', 'high');
+        
         document.head.appendChild(link);
       } catch (err) {
         console.warn(`Failed to preload ${basePath}:`, err);
       }
     });
   }
+  
+  // Preload critical fonts with display swap for smooth loading
+  CRITICAL_RESOURCES.fonts.forEach(fontUrl => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'font';
+    link.type = 'font/woff2';
+    link.href = fontUrl;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  });
 }
 
 // Lazy load non-critical images
