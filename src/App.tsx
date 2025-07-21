@@ -177,19 +177,6 @@ const AppRoutes = () => {
         <ErrorBoundary>
           <PageTransition>
           <Routes>
-            {/* Add fallback route for sitemap.xml in case it hits React Router */}
-            <Route path="/sitemap.xml" element={
-              <div>
-                <script dangerouslySetInnerHTML={{
-                  __html: `
-                    console.error('❌ sitemap.xml hit React Router! Redirecting to static file...');
-                    window.location.replace('/sitemap.xml');
-                  `
-                }} />
-                Redirecting to sitemap...
-              </div>
-            } />
-            
             <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
               <Index />
             </Suspense>} />
