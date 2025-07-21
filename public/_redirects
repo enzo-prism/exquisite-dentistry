@@ -1,8 +1,6 @@
 
-# Static files served directly (MUST BE FIRST)
-/sitemap.xml    /sitemap.xml    200
-/robots.txt     /robots.txt     200
-/favicon.ico    /favicon.ico    200
+# Static files exclusion pattern (MUST BE FIRST)
+# DO NOT redirect static files - let Netlify serve them directly
 
 # WordPress admin URLs
 /wp-admin/*     /wp-admin/:splat    200
@@ -25,5 +23,6 @@
 # Other redirects
 /about-us/*     /about              301
 
-# SPA catch-all (MUST BE LAST)
-/*              /index.html         200
+# SPA catch-all with static file exclusion (MUST BE LAST)
+# This excludes sitemap.xml, robots.txt, favicon.ico from SPA routing
+!/sitemap.xml !/robots.txt !/favicon.ico /*    /index.html    200

@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ErrorFallback from "@/components/ErrorFallback";
+import NavigationDebugger from "@/components/NavigationDebugger";
 
 // Lazy load all routes for code splitting
 const Index = lazy(() => import("@/pages/Index"));
@@ -151,6 +152,18 @@ const AppRoutes = () => {
   
   useEffect(() => {
     console.log('AppRoutes rendering, pathname:', location.pathname);
+    
+    // Initialize network debugging in development
+    if (process.env.NODE_ENV === 'development') {
+      import('@/utils/networkDebugger').then(({ initNetworkDebugger, testSitemapAccess }) => {
+        initNetworkDebugger();
+        
+        // Test sitemap access after a short delay
+        setTimeout(() => {
+          testSitemapAccess();
+        }, 2000);
+      }).catch(console.error);
+    }
   }, [location.pathname]);
   
   return (
@@ -158,11 +171,25 @@ const AppRoutes = () => {
       <ScrollProgress />
       <ScrollToTop />
       <RouteAudit />
+      <NavigationDebugger />
       <Navbar />
       <main className="flex-grow">
         <ErrorBoundary>
           <PageTransition>
           <Routes>
+            {/* Add fallback route for sitemap.xml in case it hits React Router */}
+            <Route path="/sitemap.xml" element={
+              <div>
+                <script dangerouslySetInnerHTML={{
+                  __html: `
+                    console.error('❌ sitemap.xml hit React Router! Redirecting to static file...');
+                    window.location.replace('/sitemap.xml');
+                  `
+                }} />
+                Redirecting to sitemap...
+              </div>
+            } />
+            
             <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
               <Index />
             </Suspense>} />
