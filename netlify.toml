@@ -1,4 +1,5 @@
 
+
 # Netlify configuration for performance optimization
 
 [build]
@@ -16,146 +17,6 @@
   minify = false
 [build.processing.images]
   compress = true
-
-# Headers for caching and security
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Link = "</>;rel=canonical"
-
-# Canonical header for homepage
-[[headers]]
-  for = "/"
-  [headers.values]
-    Link = "<https://exquisitedentistryla.com/>;rel=canonical"
-
-# Fix MIME types for JavaScript modules
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/*.mjs"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/assets/*.js"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-# Cache static assets for 1 year
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache PNG files
-[[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache JPG/JPEG files
-[[headers]]
-  for = "/*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache WebP files
-[[headers]]
-  for = "/*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache SVG files
-[[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache ICO files
-[[headers]]
-  for = "/*.ico"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache images for 1 year
-[[headers]]
-  for = "/lovable-uploads/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/optimized/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache fonts
-[[headers]]
-  for = "/*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.woff"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.ttf"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.eot"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache JSON files
-[[headers]]
-  for = "/*.json"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-# Cache XML files (sitemaps, etc)
-[[headers]]
-  for = "/*.xml"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-# Cache Flock script
-[[headers]]
-  for = "/~flock.js"
-  [headers.values]
-    Cache-Control = "public, max-age=1800"
-
-# Enable compression
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Encoding = "br, gzip"
 
 # REDIRECTS - processed in order, first match wins
 
@@ -188,25 +49,6 @@
 [[redirects]]
   from = "/wp-login.php"
   to = "/wp-login.php"
-  status = 200
-  force = false
-
-# Static files - serve directly (CRITICAL: must be before SPA catch-all)
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/robots.txt"
-  to = "/robots.txt"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/favicon.ico"
-  to = "/favicon.ico"
   status = 200
   force = false
 
