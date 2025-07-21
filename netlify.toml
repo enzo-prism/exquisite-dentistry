@@ -17,9 +17,8 @@
 [build.processing.images]
   compress = true
 
-# REDIRECTS - processed in order, first match wins
+# ESSENTIAL REDIRECTS ONLY - Force HTTPS and canonical domain
 
-# Force HTTPS and canonical domain
 [[redirects]]
   from = "http://exquisitedentistryla.com/*"
   to = "https://exquisitedentistryla.com/:splat"
@@ -37,76 +36,6 @@
   to = "https://exquisitedentistryla.com/:splat"
   status = 301
   force = true
-
-# Ensure WordPress admin URLs are not redirected (highest priority)
-[[redirects]]
-  from = "/wp-admin/*"
-  to = "/wp-admin/:splat"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/wp-login.php"
-  to = "/wp-login.php"
-  status = 200
-  force = false
-
-# Redirect index.html to clean URL
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-  force = true
-
-# Blog URL consistency - redirect trailing slash versions to non-trailing slash
-[[redirects]]
-  from = "/blog/choosing-veneers-for-the-front-4-teeth/"
-  to = "/blog/choosing-veneers-for-the-front-4-teeth"
-  status = 301
-
-[[redirects]]
-  from = "/blog/single-tooth-veneers-perfect-solutions/"
-  to = "/blog/single-tooth-veneers-perfect-solutions"
-  status = 301
-
-[[redirects]]
-  from = "/blog/netflix-streaming-during-dental-procedures/"
-  to = "/blog/netflix-streaming-during-dental-procedures"
-  status = 301
-
-[[redirects]]
-  from = "/blog/2-front-teeth-veneers-cost-los-angeles/"
-  to = "/blog/2-front-teeth-veneers-cost-los-angeles"
-  status = 301
-
-[[redirects]]
-  from = "/blog/4-front-teeth-veneers-cost-los-angeles/"
-  to = "/blog/4-front-teeth-veneers-cost-los-angeles"
-  status = 301
-
-# Legacy blog post redirects
-[[redirects]]
-  from = "/choosing-veneers-for-the-front-4-teeth/"
-  to = "/blog/choosing-veneers-for-the-front-4-teeth"
-  status = 301
-
-[[redirects]]
-  from = "/choosing-veneers-for-just-one-tooth/"
-  to = "/blog/single-tooth-veneers-perfect-solutions"
-  status = 301
-
-# Other redirects for old URLs
-[[redirects]]
-  from = "/about-us/*"
-  to = "/about"
-  status = 301
-
-# SPA redirect for client-side routing - EXCLUDE static files
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["!sitemap.xml", "!robots.txt", "!favicon.ico", "!*.xml", "!*.txt", "!*.ico"]}
 
 # Enable Netlify plugins for optimization
 [[plugins]]
