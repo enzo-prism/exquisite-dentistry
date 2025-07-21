@@ -17,26 +17,6 @@
 [build.processing.images]
   compress = true
 
-# ESSENTIAL REDIRECTS ONLY - Force HTTPS and canonical domain
-
-[[redirects]]
-  from = "http://exquisitedentistryla.com/*"
-  to = "https://exquisitedentistryla.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "http://www.exquisitedentistryla.com/*"
-  to = "https://exquisitedentistryla.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.exquisitedentistryla.com/*"
-  to = "https://exquisitedentistryla.com/:splat"
-  status = 301
-  force = true
-
 # Enable Netlify plugins for optimization
 [[plugins]]
   package = "netlify-plugin-image-optim"

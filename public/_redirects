@@ -4,26 +4,5 @@
 /robots.txt     /robots.txt     200!
 /favicon.ico    /favicon.ico    200!
 
-# WordPress admin URLs
-/wp-admin/*     /wp-admin/:splat    200
-/wp-login.php   /wp-login.php       200
-
-# Clean URL redirects
-/index.html     /                   301
-
-# Blog URL consistency
-/blog/choosing-veneers-for-the-front-4-teeth/           /blog/choosing-veneers-for-the-front-4-teeth            301
-/blog/single-tooth-veneers-perfect-solutions/           /blog/single-tooth-veneers-perfect-solutions            301
-/blog/netflix-streaming-during-dental-procedures/       /blog/netflix-streaming-during-dental-procedures        301
-/blog/2-front-teeth-veneers-cost-los-angeles/           /blog/2-front-teeth-veneers-cost-los-angeles            301
-/blog/4-front-teeth-veneers-cost-los-angeles/           /blog/4-front-teeth-veneers-cost-los-angeles            301
-
-# Legacy blog redirects
-/choosing-veneers-for-the-front-4-teeth/                /blog/choosing-veneers-for-the-front-4-teeth            301
-/choosing-veneers-for-just-one-tooth/                   /blog/single-tooth-veneers-perfect-solutions            301
-
-# Other redirects
-/about-us/*     /about              301
-
 # SPA catch-all for all other routes (MUST BE LAST)
 /*              /index.html         200

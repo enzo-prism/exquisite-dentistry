@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 import { getPostBySlug } from '@/data/blogPosts';
@@ -16,17 +16,16 @@ const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   
   if (!slug) {
-    return <Navigate to="/blog" replace />;
+    return <div>No slug provided</div>;
   }
 
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <div>Post not found</div>;
   }
 
   // For existing blog posts, render the existing components
-  // This allows for a gradual migration while maintaining current functionality
   if (post.content === 'front-4-veneers') {
     return <FrontTeethVeneersBlog />;
   }
@@ -88,7 +87,6 @@ const BlogPost: React.FC = () => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Render HTML content directly for new posts */}
           {post.content.trim().startsWith('<div') || post.content.trim().includes('<h') ? (
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           ) : (
@@ -97,14 +95,12 @@ const BlogPost: React.FC = () => {
             </div>
           )}
           
-          {/* Strategic Internal Linking Widget */}
           <InternalLinkingWidget 
             currentPage={`/blog/${post.slug}`}
             context={getContext()}
             variant="expanded"
           />
           
-          {/* Show veneer CTA for cosmetic dentistry posts */}
           {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
             <VeneerCTA variant="banner" />
           )}
