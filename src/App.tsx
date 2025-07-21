@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 
 import Navbar from "@/components/Navbar";
@@ -76,7 +76,7 @@ const AppRoutes = () => {
   const isSitemapPage = location.pathname === '/sitemap' || location.pathname === '/sitemap.xml';
 
   // Set proper content type for XML sitemap route
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.pathname === '/sitemap.xml') {
       // This is a hint for the browser, actual content-type is handled by server config
       document.title = 'XML Sitemap';
