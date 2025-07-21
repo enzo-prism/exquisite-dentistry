@@ -73,8 +73,8 @@ const BlogPost: React.FC = () => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Render HTML content directly for new posts */}
-          {post.content.startsWith('<div') ? (
+          {/* Render HTML content directly for new posts - fixed detection logic */}
+          {post.content.trim().startsWith('<div') || post.content.trim().includes('<h') ? (
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           ) : (
             <div className="prose prose-lg max-w-none">

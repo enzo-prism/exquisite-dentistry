@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: string;
   title: string;
@@ -59,8 +58,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Relax and Binge Netflix\'s Hottest Shows During Your Cosmetic Dentistry Visit',
     slug: 'netflix-streaming-during-dental-procedures',
     excerpt: 'Turn your dental anxiety into entertainment bliss! Discover how streaming Netflix during cosmetic procedures at Exquisite Dentistry creates a spa-like experience while achieving your perfect smile.',
-    content: `
-      <div class="prose prose-lg max-w-none">
+    content: `<div class="prose prose-lg max-w-none">
         <p class="text-xl text-gray-600 leading-relaxed mb-8">
           Are you searching for a <strong>cosmetic dentist</strong> who turns a routine dental procedure into a spa-like escape? If dental anxiety has kept you from achieving that perfect smile, it's time to discover a new way to experience dentistry. At Exquisite Dentistry, we specialize in <strong>comfortable patient experiences</strong> that let you sit back, relax, and enjoy the latest Netflix hits right from the dental chair. Imagine transforming your veneers, teeth whitening, or smile makeover appointment into a mini binge-watching session—sounds dreamy, right?
         </p>
@@ -131,8 +129,7 @@ export const blogPosts: BlogPost[] = [
         <p class="text-sm text-gray-500 italic">
           Keywords: cosmetic dentist, comfortable patient experience, entertainment during dental procedure, Netflix in dentist office, relaxing cosmetic dentistry
         </p>
-      </div>
-    `,
+      </div>`,
     author: 'Dr. Alexie Aguil',
     authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
     date: 'July 21, 2025',
