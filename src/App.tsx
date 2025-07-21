@@ -152,8 +152,7 @@ const XmlSitemap = () => {
   </url>
 </urlset>`;
 
-  // Set content type header for XML
-  document.contentType = 'application/xml';
+  // Note: Content type cannot be set in React component
   
   return (
     <div
