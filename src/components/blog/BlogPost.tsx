@@ -73,9 +73,14 @@ const BlogPost: React.FC = () => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="prose prose-lg max-w-none">
-            <p>This is a placeholder for the blog post content. In a real implementation, this would contain the full article content, which could be stored as markdown or rich text in the blog post data structure.</p>
-          </div>
+          {/* Render HTML content directly for new posts */}
+          {post.content.startsWith('<div') ? (
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          ) : (
+            <div className="prose prose-lg max-w-none">
+              <p>This is a placeholder for the blog post content. In a real implementation, this would contain the full article content, which could be stored as markdown or rich text in the blog post data structure.</p>
+            </div>
+          )}
           
           {/* Show veneer CTA for cosmetic dentistry posts */}
           {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
