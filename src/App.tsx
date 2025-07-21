@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,6 +44,7 @@ const Sitemap = lazy(() => import("@/pages/Sitemap"));
 import PageLoader from '@/components/ui/page-loader';
 import PageTransition from '@/components/ui/page-transition';
 import ScrollProgress from '@/components/ScrollProgress';
+import { generateXmlSitemap } from '@/utils/sitemapGenerator';
 
 const PageLoaderComponent = () => {
   return <PageLoader variant="minimal" message="Loading..." />;
@@ -52,117 +52,21 @@ const PageLoaderComponent = () => {
 
 // XML Sitemap component for serving XML content
 const XmlSitemap = () => {
-  const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://exquisitedentistryla.com/</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/about</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/services</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/client-experience</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/testimonials</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/contact</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/wedding</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/graduation</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/faqs</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/smile-gallery</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/privacy-policy</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/terms-of-service</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/hipaa-compliance</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/blog</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/veneers</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://exquisitedentistryla.com/zoom-whitening</loc>
-    <lastmod>2025-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>`;
+  const xmlContent = generateXmlSitemap();
 
-  // Note: Content type cannot be set in React component
-  
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: xmlContent }}
+    <pre
       style={{ 
         fontFamily: 'monospace',
         whiteSpace: 'pre-wrap',
         padding: '20px',
-        backgroundColor: '#f5f5f5'
+        backgroundColor: '#f5f5f5',
+        border: 'none',
+        margin: 0,
+        fontSize: '12px',
+        lineHeight: '1.4'
       }}
+      dangerouslySetInnerHTML={{ __html: xmlContent }}
     />
   );
 };
@@ -170,6 +74,14 @@ const XmlSitemap = () => {
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap' || location.pathname === '/sitemap.xml';
+
+  // Set proper content type for XML sitemap route
+  React.useEffect(() => {
+    if (location.pathname === '/sitemap.xml') {
+      // This is a hint for the browser, actual content-type is handled by server config
+      document.title = 'XML Sitemap';
+    }
+  }, [location.pathname]);
 
   return (
     <>
