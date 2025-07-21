@@ -1,9 +1,8 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -40,6 +39,8 @@ const queryClient = new QueryClient({
   },
 });
 
+const Sitemap = lazy(() => import("@/pages/Sitemap"));
+
 import PageLoader from '@/components/ui/page-loader';
 import PageTransition from '@/components/ui/page-transition';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -49,72 +50,81 @@ const PageLoaderComponent = () => {
 };
 
 const AppRoutes = () => {
+  const location = useLocation();
+  const isSitemapPage = location.pathname === '/sitemap';
+
   return (
     <>
-      <ScrollProgress />
-      <ScrollToTop />
-      <Navbar />
+      {!isSitemapPage && <ScrollProgress />}
+      {!isSitemapPage && <ScrollToTop />}
+      {!isSitemapPage && <Navbar />}
       <main className="flex-grow">
-        <PageTransition>
+        {!isSitemapPage ? (
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Index />
+              </Suspense>} />
+              <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
+                <About />
+              </Suspense>} />
+              <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Services />
+              </Suspense>} />
+              <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ClientExperience />
+              </Suspense>} />
+              <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Testimonials />
+              </Suspense>} />
+              <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Contact />
+              </Suspense>} />
+              <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Wedding />
+              </Suspense>} />
+              <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Graduation />
+              </Suspense>} />
+              <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}>
+                <FAQs />
+              </Suspense>} />
+              <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SmileGallery />
+              </Suspense>} />
+              
+              <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Blog />
+              </Suspense>} />
+              <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+                <BlogPost />
+              </Suspense>} />
+              
+              <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
+                <PrivacyPolicy />
+              </Suspense>} />
+              <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TermsOfService />
+              </Suspense>} />
+              <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
+                <HipaaCompliance />
+              </Suspense>} />
+              
+              <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Veneers />
+              </Suspense>} />
+              <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ZoomWhitening />
+              </Suspense>} />
+            </Routes>
+          </PageTransition>
+        ) : (
           <Routes>
-            <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Index />
-            </Suspense>} />
-            <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
-              <About />
-            </Suspense>} />
-            <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Services />
-            </Suspense>} />
-            <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
-              <ClientExperience />
-            </Suspense>} />
-            <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Testimonials />
-            </Suspense>} />
-            <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Contact />
-            </Suspense>} />
-            <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Wedding />
-            </Suspense>} />
-            <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Graduation />
-            </Suspense>} />
-            <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}>
-              <FAQs />
-            </Suspense>} />
-            <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}>
-              <SmileGallery />
-            </Suspense>} />
-            
-            <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Blog />
-            </Suspense>} />
-            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
-              <BlogPost />
-            </Suspense>} />
-            
-            <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
-              <PrivacyPolicy />
-            </Suspense>} />
-            <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}>
-              <TermsOfService />
-            </Suspense>} />
-            <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
-              <HipaaCompliance />
-            </Suspense>} />
-            
-            <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
-              <Veneers />
-            </Suspense>} />
-            <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
-              <ZoomWhitening />
-            </Suspense>} />
+            <Route path="/sitemap" element={<Sitemap />} />
           </Routes>
-        </PageTransition>
+        )}
       </main>
-      <Footer />
+      {!isSitemapPage && <Footer />}
     </>
   );
 };
