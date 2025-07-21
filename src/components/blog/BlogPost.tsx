@@ -10,6 +10,7 @@ import FrontTeethVeneersBlog from '@/pages/FrontTeethVeneersBlog';
 import SingleToothVeneersBlog from '@/pages/SingleToothVeneersBlog';
 import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -33,6 +34,20 @@ const BlogPost: React.FC = () => {
   if (post.content === 'single-tooth-veneers') {
     return <SingleToothVeneersBlog />;
   }
+
+  // Determine context for internal linking widget
+  const getContext = () => {
+    if (post.tags?.includes('veneer cost') || post.tags?.includes('2 front teeth veneers') || post.tags?.includes('4 front teeth veneers')) {
+      return 'cost';
+    }
+    if (post.tags?.includes('veneers') || post.tags?.includes('porcelain veneers')) {
+      return 'veneer';
+    }
+    if (post.tags?.includes('patient comfort') || post.tags?.includes('entertainment')) {
+      return 'experience';
+    }
+    return 'general';
+  };
 
   // For new blog posts, render the dynamic template
   return (
@@ -73,7 +88,7 @@ const BlogPost: React.FC = () => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Render HTML content directly for new posts - fixed detection logic */}
+          {/* Render HTML content directly for new posts */}
           {post.content.trim().startsWith('<div') || post.content.trim().includes('<h') ? (
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           ) : (
@@ -81,6 +96,13 @@ const BlogPost: React.FC = () => {
               <p>This is a placeholder for the blog post content. In a real implementation, this would contain the full article content, which could be stored as markdown or rich text in the blog post data structure.</p>
             </div>
           )}
+          
+          {/* Strategic Internal Linking Widget */}
+          <InternalLinkingWidget 
+            currentPage={`/blog/${post.slug}`}
+            context={getContext()}
+            variant="expanded"
+          />
           
           {/* Show veneer CTA for cosmetic dentistry posts */}
           {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
