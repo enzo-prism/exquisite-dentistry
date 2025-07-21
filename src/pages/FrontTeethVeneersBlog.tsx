@@ -89,7 +89,7 @@ const FrontTeethVeneersBlog = () => {
         <meta name="keywords" content="veneers front 4 teeth, front teeth veneers, 4 veneers cost, smile zone veneers, upper front teeth veneers, porcelain veneers Los Angeles" />
         <meta property="og:title" content="Choosing Veneers for the Front 4 Teeth | Expert Guide" />
         <meta property="og:description" content="Transform your smile with veneers for your front 4 teeth. Learn about the process, benefits, and what to expect from this popular cosmetic dentistry treatment." />
-        <link rel="canonical" href="https://exquisitedentistryla.com/blog/choosing-veneers-for-the-front-4-teeth/" />
+        <link rel="canonical" href="https://exquisitedentistryla.com/blog/choosing-veneers-for-the-front-4-teeth" />
       </Helmet>
 
       {/* Hero Section */}

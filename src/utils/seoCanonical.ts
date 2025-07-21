@@ -16,10 +16,10 @@ export class CanonicalManager {
   private static readonly BASE_URL = 'https://exquisitedentistryla.com';
   
   /**
-   * Generate canonical URL for blog posts
+   * Generate canonical URL for blog posts (without trailing slash)
    */
   static getBlogPostCanonical({ slug }: BlogPostCanonicalOptions): string {
-    return `${this.BASE_URL}/blog/${slug}/`;
+    return `${this.BASE_URL}/blog/${slug}`;
   }
   
   /**
@@ -27,9 +27,8 @@ export class CanonicalManager {
    * Always points to page 1 (the canonical version)
    */
   static getPaginatedCanonical({ basePath }: PaginatedCanonicalOptions): string {
-    // For paginated content, canonical should always point to page 1
     const cleanPath = basePath.startsWith('/') ? basePath : `/${basePath}`;
-    return `${this.BASE_URL}${cleanPath}/`;
+    return `${this.BASE_URL}${cleanPath}`;
   }
   
   /**
@@ -38,7 +37,7 @@ export class CanonicalManager {
    */
   static getFilteredCanonical(basePath: string): string {
     const cleanPath = basePath.startsWith('/') ? basePath : `/${basePath}`;
-    return `${this.BASE_URL}${cleanPath}/`;
+    return `${this.BASE_URL}${cleanPath}`;
   }
   
   /**
@@ -68,6 +67,11 @@ export class CanonicalManager {
       
       // Should not have fragments
       if (parsedUrl.hash) return false;
+      
+      // Blog URLs should not have trailing slashes
+      if (parsedUrl.pathname.startsWith('/blog/') && parsedUrl.pathname.endsWith('/') && parsedUrl.pathname.length > 6) {
+        return false;
+      }
       
       return true;
     } catch {
@@ -188,4 +192,4 @@ export const detectDuplicateContentRisks = (currentUrl: string): string[] => {
   } catch {
     return ['Invalid URL format'];
   }
-}; 
+};

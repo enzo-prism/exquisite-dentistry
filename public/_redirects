@@ -1,3 +1,4 @@
+
 # Force HTTPS and canonical domain
 http://exquisitedentistryla.com/*    https://exquisitedentistryla.com/:splat    301!
 http://www.exquisitedentistryla.com/*    https://exquisitedentistryla.com/:splat    301!
@@ -6,8 +7,23 @@ https://www.exquisitedentistryla.com/*    https://exquisitedentistryla.com/:spla
 # Redirect index.html to clean URL
 /index.html    /    301
 
-# Remove trailing slashes for consistency (optional - based on your preference)
-# Or keep trailing slashes consistently across all pages
+# Blog URL consistency - redirect trailing slash versions to non-trailing slash
+/blog/choosing-veneers-for-the-front-4-teeth/    /blog/choosing-veneers-for-the-front-4-teeth    301
+/blog/single-tooth-veneers-perfect-solutions/    /blog/single-tooth-veneers-perfect-solutions    301
+/blog/netflix-streaming-during-dental-procedures/    /blog/netflix-streaming-during-dental-procedures    301
+/blog/2-front-teeth-veneers-cost-los-angeles/    /blog/2-front-teeth-veneers-cost-los-angeles    301
+/blog/4-front-teeth-veneers-cost-los-angeles/    /blog/4-front-teeth-veneers-cost-los-angeles    301
+
+# Legacy blog post redirects
+/choosing-veneers-for-the-front-4-teeth/    /blog/choosing-veneers-for-the-front-4-teeth    301
+/choosing-veneers-for-just-one-tooth/    /blog/single-tooth-veneers-perfect-solutions    301
+
+# Other redirects for old URLs
+/about-us/*    /about    301
+
+# Ensure WordPress admin URLs are not redirected (highest priority)
+/wp-admin/*    /wp-admin/:splat    200
+/wp-login.php    /wp-login.php    200
 
 # SPA redirect for client-side routing (must be last)
 /*    /index.html   200
