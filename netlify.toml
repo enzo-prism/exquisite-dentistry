@@ -1,5 +1,4 @@
 
-
 # Netlify configuration for performance optimization
 
 [build]
@@ -49,25 +48,6 @@
 [[redirects]]
   from = "/wp-login.php"
   to = "/wp-login.php"
-  status = 200
-  force = false
-
-# Static files - serve directly (CRITICAL: must be before SPA catch-all)
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/robots.txt"
-  to = "/robots.txt"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/favicon.ico"
-  to = "/favicon.ico"
   status = 200
   force = false
 
@@ -121,11 +101,12 @@
   to = "/about"
   status = 301
 
-# SPA redirect for client-side routing (MUST BE LAST)
+# SPA redirect for client-side routing - EXCLUDE static files
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  conditions = {Role = ["!sitemap.xml", "!robots.txt", "!favicon.ico", "!*.xml", "!*.txt", "!*.ico"]}
 
 # Enable Netlify plugins for optimization
 [[plugins]]
@@ -141,4 +122,3 @@
   [plugins.inputs]
     minify = true
     extract = true 
-
