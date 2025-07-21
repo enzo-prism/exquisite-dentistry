@@ -9,7 +9,7 @@ export const initNetworkDebugger = () => {
   
   window.fetch = async (...args) => {
     const [input, init] = args;
-    const url = typeof input === 'string' ? input : input.url;
+    const url = typeof input === 'string' ? input : input instanceof Request ? input.url : input.href;
     
     // Special logging for static files
     const isStaticFile = url.includes('sitemap.xml') || url.includes('robots.txt') || url.includes('favicon.ico');
