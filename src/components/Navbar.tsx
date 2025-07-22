@@ -196,7 +196,7 @@ const Navbar = () => {
             />
             
             {/* Menu Panel */}
-            <div className="relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20" style={{ minHeight: '100vh', minHeight: '100dvh' }}>              
+            <div className="relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20" style={{ minHeight: '100dvh' }}>              
               {/* Navigation Links - Scrollable Area */}
               <div className="flex-1 overflow-y-auto px-4 py-4">
                 <nav className="space-y-1">
