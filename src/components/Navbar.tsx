@@ -199,12 +199,12 @@ const Navbar = () => {
             <div className="relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20" style={{ minHeight: '100dvh' }}>              
               {/* Navigation Links - Scrollable Area */}
               <div className="flex-1 overflow-y-auto px-4 py-4">
-                <nav className="space-y-1">
+                <nav className="flex flex-col w-full">
                   {navLinks.map((link) => (
                     <Link
                       key={link.to}
                       to={link.to}
-                      className="block py-3 px-4 text-base text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md border-b border-white/10"
+                      className="w-full block py-3 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md border-b border-white/10"
                       onClick={closeMobileMenu}
                     >
                       {link.label}
@@ -212,7 +212,7 @@ const Navbar = () => {
                   ))}
                   
                   {/* Clients Section */}
-                  <div className="border-b border-white/10">
+                  <div className="w-full border-b border-white/10 mb-1">
                     <button
                       className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
                       onClick={() => toggleDropdown('clients')}
@@ -227,12 +227,12 @@ const Navbar = () => {
                     </button>
                     
                     {openDropdown === 'clients' && (
-                      <div className="bg-black/50 rounded-md ml-4 mb-2">
+                      <div className="w-full bg-black/50 rounded-md ml-4 mb-2">
                         {clientsDropdown.map((item) => (
                           <Link
                             key={item.to}
                             to={item.to}
-                            className="block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
+                            className="w-full block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
                             onClick={closeMobileMenu}
                           >
                             {item.label}
@@ -243,7 +243,7 @@ const Navbar = () => {
                   </div>
                   
                   {/* More Section */}
-                  <div className="border-b border-white/10">
+                  <div className="w-full border-b border-white/10 mb-1">
                     <button
                       className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
                       onClick={() => toggleDropdown('more')}
@@ -258,12 +258,12 @@ const Navbar = () => {
                     </button>
                     
                     {openDropdown === 'more' && (
-                      <div className="bg-black/50 rounded-md ml-4 mb-2">
+                      <div className="w-full bg-black/50 rounded-md ml-4 mb-2">
                         {moreDropdown.map((item) => (
                           <Link
                             key={item.to}
                             to={item.to}
-                            className="block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
+                            className="w-full block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
                             onClick={closeMobileMenu}
                           >
                             {item.label}
