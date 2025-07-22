@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -80,88 +80,25 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
 
     const selectedGradient = gradientVariants[variant][intensity];
     
-    // Advanced animation system with staggered timing
+    // Advanced animation system with staggered timing - responsive optimization
     const animationClasses = cn(
       !prefersReducedMotion && 'animate-[gradient-flow_20s_ease-in-out_infinite]',
-      prefersReducedMotion && 'animate-none'
+      prefersReducedMotion && 'animate-none',
+      // Reduce animation intensity on mobile for performance
+      isMobile && 'sm:animate-[gradient-flow_25s_ease-in-out_infinite]'
     );
     
     return cn(baseClasses, performanceClasses, selectedGradient, animationClasses);
   };
 
-  const getOverlayClasses = () => {
-    const overlayIntensity = {
-      subtle: 'bg-black/20',
-      moderate: 'bg-black/30', 
-      vibrant: 'bg-black/40'
-    };
-    
-    return cn(
-      'absolute inset-0 w-full h-full animate-elegant-float',
-      overlayIntensity[intensity]
-    );
-  };
-
-  // Enhanced mobile version with better visibility
-  if (isMobile) {
-    return (
-      <div 
-        ref={containerRef}
-        className={cn("absolute inset-0 w-full h-full", className)}
-        role="presentation"
-        aria-hidden="true"
-      >
-        {/* Enhanced Primary Gradient for Mobile - More Visible */}
-        <div className={cn(
-          "absolute inset-0 w-full h-full",
-          "bg-gradient-to-br from-slate-900/98 via-slate-800/85 to-slate-900/92"
-        )} />
-        
-        {/* Enhanced Gold Gradient Layer with Better Visibility */}
-        <div 
-          className={cn(
-            "absolute inset-0 w-full h-full",
-            "bg-gradient-to-br from-amber-500/28 via-amber-600/18 via-transparent to-amber-700/22",
-            !prefersReducedMotion && 'animate-enhanced-mobile-gradient',
-            "mix-blend-overlay"
-          )}
-          style={{
-            backgroundSize: '300% 300%',
-            willChange: 'transform, background-position, opacity'
-          }}
-        />
-        
-        {/* Third Radial Gradient Layer for Depth */}
-        <div 
-          className={cn(
-            "absolute inset-0 w-full h-full",
-            "bg-[radial-gradient(ellipse_at_60%_40%,rgb(217_119_6_/_0.15),transparent_70%)]",
-            !prefersReducedMotion && 'animate-mobile-radial-pulse',
-            "mix-blend-multiply opacity-80"
-          )}
-          style={{
-            willChange: 'opacity, transform'
-          }}
-        />
-        
-        {/* Accessibility fallback */}
-        <div 
-          className="absolute inset-0 bg-slate-900 opacity-0"
-          style={{ display: 'none' }}
-          aria-hidden="true"
-        />
-      </div>
-    );
-  }
-
-  // Full desktop version with all effects
+  // Unified complex background rendering for all devices
   return (
-    <div ref={containerRef} className="absolute inset-0 w-full h-full">
+    <div ref={containerRef} className={cn("absolute inset-0 w-full h-full", className)} role="presentation" aria-hidden="true">
       {/* Primary Gradient Layer with Advanced GPU Acceleration */}
       <div 
         className={getGradientClasses()}
         style={{
-          backgroundSize: '400% 400%',
+          backgroundSize: isMobile ? '300% 300%' : '400% 400%',
           willChange: 'transform',
           isolation: 'isolate',
           transform: 'translateZ(0)',
@@ -175,16 +112,21 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
           'absolute inset-0 w-full h-full isolation-isolate',
           !prefersReducedMotion && 'animate-[golden-veins_25s_ease-in-out_infinite]',
           prefersReducedMotion && 'opacity-60',
-          variant === 'dental' && 'opacity-50',
-          variant === 'luxury' && 'opacity-65', 
-          variant === 'elegant' && 'opacity-45'
+          // Responsive opacity adjustments
+          isMobile && 'opacity-40 sm:opacity-50',
+          !isMobile && variant === 'dental' && 'opacity-50',
+          !isMobile && variant === 'luxury' && 'opacity-65', 
+          !isMobile && variant === 'elegant' && 'opacity-45',
+          isMobile && variant === 'dental' && 'opacity-35',
+          isMobile && variant === 'luxury' && 'opacity-45', 
+          isMobile && variant === 'elegant' && 'opacity-30'
         )}
         style={{
           background: `
             conic-gradient(from 45deg at 20% 80%, rgba(217, 119, 6, 0.15) 0deg, transparent 90deg, transparent 270deg, rgba(245, 158, 11, 0.1) 360deg),
             conic-gradient(from 225deg at 80% 20%, rgba(245, 158, 11, 0.12) 0deg, transparent 120deg, transparent 240deg, rgba(217, 119, 6, 0.08) 360deg)
           `,
-          backgroundSize: '300% 300%, 250% 250%',
+          backgroundSize: isMobile ? '250% 250%, 200% 200%' : '300% 300%, 250% 250%',
           willChange: 'transform',
           transform: 'translateZ(0)',
           animationDelay: '3s'
@@ -196,7 +138,8 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         className={cn(
           'absolute inset-0 w-full h-full isolation-isolate',
           !prefersReducedMotion && 'animate-[sparkle-dance_30s_linear_infinite]',
-          'opacity-40'
+          // Responsive opacity for performance
+          isMobile ? 'opacity-25' : 'opacity-40'
         )}
         style={{
           background: `
@@ -205,7 +148,7 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
             radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 2px),
             radial-gradient(circle at 30% 80%, rgba(217, 119, 6, 0.1) 1px, transparent 2px)
           `,
-          backgroundSize: '100px 100px, 150px 150px, 120px 120px, 90px 90px',
+          backgroundSize: isMobile ? '80px 80px, 120px 120px, 100px 100px, 70px 70px' : '100px 100px, 150px 150px, 120px 120px, 90px 90px',
           willChange: 'transform',
           transform: 'translateZ(0)',
           animationDelay: '5s'
@@ -217,16 +160,20 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         className={cn(
           'absolute inset-0 w-full h-full isolation-isolate',
           !prefersReducedMotion && 'animate-[depth-shimmer_18s_ease-in-out_infinite]',
-          variant === 'dental' && 'opacity-35',
-          variant === 'luxury' && 'opacity-45',
-          variant === 'elegant' && 'opacity-30'
+          // Responsive opacity based on variant and device
+          isMobile && variant === 'dental' && 'opacity-25',
+          isMobile && variant === 'luxury' && 'opacity-30',
+          isMobile && variant === 'elegant' && 'opacity-20',
+          !isMobile && variant === 'dental' && 'opacity-35',
+          !isMobile && variant === 'luxury' && 'opacity-45',
+          !isMobile && variant === 'elegant' && 'opacity-30'
         )}
         style={{
           background: `
             linear-gradient(135deg, transparent 30%, rgba(245, 158, 11, 0.08) 50%, transparent 70%),
             radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 70%)
           `,
-          backgroundSize: '200% 200%, 300% 300%',
+          backgroundSize: isMobile ? '150% 150%, 250% 250%' : '200% 200%, 300% 300%',
           willChange: 'transform',
           transform: 'translateZ(0)',
           animationDelay: '8s'
@@ -236,7 +183,8 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
       {/* Premium Texture Overlay */}
       <div 
         className={cn(
-          'absolute inset-0 w-full h-full isolation-isolate opacity-20',
+          'absolute inset-0 w-full h-full isolation-isolate',
+          isMobile ? 'opacity-10' : 'opacity-20',
           !prefersReducedMotion && 'animate-[texture-breathe_22s_ease-in-out_infinite]'
         )}
         style={{
@@ -256,7 +204,7 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
       
       {/* Accessibility fallback */}
       <div 
-        className={cn('absolute inset-0 bg-slate-900', className)}
+        className="absolute inset-0 bg-slate-900"
         style={{ display: 'none' }}
         aria-hidden="true"
       />

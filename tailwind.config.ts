@@ -240,6 +240,29 @@ export default {
 						backgroundPosition: '100% 50%',
 						opacity: '0.8'
 					}
+				},
+				// Added missing animations that were referenced in mobile code
+				'enhanced-mobile-gradient': {
+					'0%, 100%': {
+						transform: 'translate3d(0, 0, 0) scale(1)',
+						backgroundPosition: '0% 0%',
+						opacity: '0.6'
+					},
+					'50%': {
+						transform: 'translate3d(0, 2px, 0) scale(1.005)',
+						backgroundPosition: '100% 100%',
+						opacity: '0.8'
+					}
+				},
+				'mobile-radial-pulse': {
+					'0%, 100%': {
+						transform: 'translate3d(0, 0, 0) scale(1)',
+						opacity: '0.8'
+					},
+					'50%': {
+						transform: 'translate3d(0, 0, 0) scale(1.02)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
@@ -264,8 +287,10 @@ export default {
 				'sparkle-dance': 'sparkle-dance 30s linear infinite',
 				'depth-shimmer': 'depth-shimmer 18s cubic-bezier(0.4, 0, 0.2, 1) infinite',
 				'texture-breathe': 'texture-breathe 22s cubic-bezier(0.4, 0, 0.2, 1) infinite',
-				// Mobile optimized animation
+				// Mobile optimized animations
 				'mobile-gradient': 'mobile-gradient 8s ease-in-out infinite',
+				'enhanced-mobile-gradient': 'enhanced-mobile-gradient 12s ease-in-out infinite',
+				'mobile-radial-pulse': 'mobile-radial-pulse 6s ease-in-out infinite',
 			},
 			transitionProperty: {
 				'width': 'width',
