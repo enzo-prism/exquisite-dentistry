@@ -4,11 +4,11 @@
 
 /* Custom CSS Variables for Theme Colors */
 :root {
-  /* Gold Palette */
-  --gold: 47 87% 61%;
-  --gold-light: 47 95% 75%;
-  --gold-dark: 43 75% 45%;
-  --gold-muted: 47 45% 85%;
+  /* Gold Palette - Fixed to use proper gold HSL instead of bright yellow */
+  --gold: 38 23% 50%; /* Converted from #9A8360 */
+  --gold-light: 42 30% 65%; /* Lighter version of gold */
+  --gold-dark: 35 20% 40%; /* Darker version of gold */
+  --gold-muted: 40 15% 85%; /* Muted gold for backgrounds */
   
   /* Dental Professional Colors */
   --dental-blue: 208 100% 25%;
@@ -31,17 +31,17 @@
   --warning: 45 93% 47%;
   --error: 0 72% 51%;
   
-  /* Theme Variables */
+  /* Theme Variables - Updated to use proper gold */
   --background: 0 0% 100%;
   --foreground: 215 25% 27%;
   --card: 0 0% 100%;
   --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
   --popover-foreground: 215 25% 27%;
-  --primary: 47 87% 61%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 215 10% 85%;
-  --secondary-foreground: 215 25% 27%;
+  --primary: 38 23% 50%; /* Fixed to match gold */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 38 23% 50%; /* Fixed to match gold instead of gray */
+  --secondary-foreground: 0 0% 100%;
   --muted: 215 10% 85%;
   --muted-foreground: 215 16% 47%;
   --accent: 215 10% 85%;
@@ -50,7 +50,7 @@
   --destructive-foreground: 0 0% 100%;
   --border: 215 10% 85%;
   --input: 215 10% 85%;
-  --ring: 47 87% 61%;
+  --ring: 38 23% 50%; /* Fixed to match gold */
   --radius: 0.5rem;
 }
 
@@ -61,9 +61,9 @@
   --card-foreground: 0 0% 100%;
   --popover: 215 25% 27%;
   --popover-foreground: 0 0% 100%;
-  --primary: 47 87% 61%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 215 16% 47%;
+  --primary: 38 23% 50%; /* Fixed to match gold */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 38 28% 55%; /* Slightly lighter gold for dark theme */
   --secondary-foreground: 0 0% 100%;
   --muted: 215 16% 47%;
   --muted-foreground: 215 10% 85%;
@@ -73,7 +73,7 @@
   --destructive-foreground: 0 0% 100%;
   --border: 215 16% 47%;
   --input: 215 16% 47%;
-  --ring: 47 87% 61%;
+  --ring: 38 23% 50%; /* Fixed to match gold */
 }
 
 * {
