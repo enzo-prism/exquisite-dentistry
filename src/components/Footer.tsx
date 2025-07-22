@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 import Button from './Button';
-import ImageComponent from './Image';
 import { Separator } from './ui/separator';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/use-scroll-animations';
@@ -71,19 +70,35 @@ const Footer = () => {
               className="mb-6 flex items-center"
               style={{
                 width: '200px',
-                height: '48px',
+                height: '37px',
                 contain: 'layout',
-                containIntrinsicSize: '200px 48px'
+                containIntrinsicSize: '200px 37px'
               }}
             >
-              <ImageComponent 
-                src=""
-                alt="Exquisite Dentistry" 
-                className="w-full h-full"
-                logoType="main"
-                responsive
-                priority={false}
-              />
+              <picture>
+                {/* WebP sources */}
+                <source 
+                  srcSet="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp" 
+                  type="image/webp" 
+                />
+                
+                {/* PNG fallback */}
+                <source 
+                  srcSet="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png" 
+                  type="image/png" 
+                />
+                
+                {/* Final img fallback */}
+                <img
+                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                  alt="Exquisite Dentistry"
+                  className="w-full h-full"
+                  style={{ 
+                    objectFit: 'contain',
+                    objectPosition: 'left center'
+                  }}
+                />
+              </picture>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Providing exceptional dental care in the heart of Los Angeles with a focus on comfort, quality, and personalized treatment plans.

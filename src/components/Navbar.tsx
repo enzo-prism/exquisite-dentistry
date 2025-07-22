@@ -80,14 +80,43 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0 z-50">
               <Link to="/" onClick={closeMobileMenu}>
-                <ImageComponent
-                  src=""
-                  alt="Exquisite Dentistry Logo"
-                  className="h-8 md:h-12"
-                  logoType="alt"
-                  responsive
-                  priority
-                />
+                <picture>
+                  {/* WebP sources with proper sizes */}
+                  <source 
+                    media="(max-width: 768px)" 
+                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.webp" 
+                    type="image/webp" 
+                  />
+                  <source 
+                    media="(min-width: 769px)" 
+                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp" 
+                    type="image/webp" 
+                  />
+                  
+                  {/* PNG fallbacks */}
+                  <source 
+                    media="(max-width: 768px)" 
+                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.png" 
+                    type="image/png" 
+                  />
+                  <source 
+                    media="(min-width: 769px)" 
+                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png" 
+                    type="image/png" 
+                  />
+                  
+                  {/* Final fallback img */}
+                  <img
+                    src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
+                    alt="Exquisite Dentistry Logo"
+                    className="h-6 md:h-12 w-auto max-w-none"
+                    loading="eager"
+                    style={{ 
+                      objectFit: 'contain',
+                      objectPosition: 'center'
+                    }}
+                  />
+                </picture>
               </Link>
             </div>
           
