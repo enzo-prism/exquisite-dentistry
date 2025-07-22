@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ReviewWidget from '@/components/ReviewWidget';
 import VideoHero from '@/components/VideoHero';
-import VideoModal from '@/components/VideoModal';
-import { Button } from '@/components/ui/button';
-import { Play } from 'lucide-react';
-import ImageComponent from '@/components/Image';
+import VideoTestimonial from '@/components/VideoTestimonial';
 import VideoTestimonialStructuredData from '@/components/VideoTestimonialStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
+import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const TestimonialsPage: React.FC = () => {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
-  const [isThirdVideoModalOpen, setIsThirdVideoModalOpen] = useState(false);
-  const [isFourthVideoModalOpen, setIsFourthVideoModalOpen] = useState(false);
-  const [isFifthVideoModalOpen, setIsFifthVideoModalOpen] = useState(false);
-  
   return (
     <>
       <VideoTestimonialStructuredData />
@@ -50,97 +43,37 @@ const TestimonialsPage: React.FC = () => {
             <div className="separator mx-auto"></div>
           </div>
           
-          {/* Featured Video Testimonials */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
-            {/* First Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsVideoModalOpen(true)}>
-              <ImageComponent
-                src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
-                alt="Shannon Langhorne Patient Testimonial"
-                fill={true}
-                objectFit="cover"
-                objectPosition="center"
-              />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Video Testimonials Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <VideoTestimonial
+              vimeoId={VIDEO_TESTIMONIALS.shannon.vimeoId}
+              thumbnailUrl={VIDEO_TESTIMONIALS.shannon.thumbnailUrl}
+              title={VIDEO_TESTIMONIALS.shannon.title}
+            />
             
-            {/* Second Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsSecondVideoModalOpen(true)}>
-              <ImageComponent
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
-                alt="Taylor Vasek Patient Testimonial"
-                fill={true}
-                objectFit="cover"
-                objectPosition="center"
-              />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VideoTestimonial
+              vimeoId={VIDEO_TESTIMONIALS.taylor.vimeoId}
+              thumbnailUrl={VIDEO_TESTIMONIALS.taylor.thumbnailUrl}
+              title={VIDEO_TESTIMONIALS.taylor.title}
+            />
 
-            {/* Third Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsThirdVideoModalOpen(true)}>
-              <ImageComponent
-                src="/lovable-uploads/9b312c68-79f9-4cbe-b6a4-7028b9470bbf.png"
-                alt="Christian Fernandez Patient Testimonial"
-                fill={true}
-                objectFit="cover"
-                objectPosition="center"
-              />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VideoTestimonial
+              vimeoId={VIDEO_TESTIMONIALS.christian.vimeoId}
+              thumbnailUrl={VIDEO_TESTIMONIALS.christian.thumbnailUrl}
+              title={VIDEO_TESTIMONIALS.christian.title}
+            />
 
-            {/* Fourth Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFourthVideoModalOpen(true)}>
-              <ImageComponent
-                src="/lovable-uploads/7738901f-6840-4eaf-beed-66eccb335723.png"
-                alt="Rob Talbert Patient Testimonial"
-                fill={true}
-                objectFit="cover"
-                objectPosition="center"
-              />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VideoTestimonial
+              vimeoId={VIDEO_TESTIMONIALS.rob.vimeoId}
+              thumbnailUrl={VIDEO_TESTIMONIALS.rob.thumbnailUrl}
+              title={VIDEO_TESTIMONIALS.rob.title}
+            />
 
-            {/* Fifth Video Testimonial */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative aspect-video cursor-pointer group" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <ImageComponent
-                  src="/lovable-uploads/a478e28f-fd88-427c-b049-31f7d99099f1.png"
-                  alt="Patient Testimonial"
-                  fill={true}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10">
-                  <div className="bg-gold text-white rounded-full p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="h-6 w-6 ml-1" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VideoTestimonial
+              vimeoId={VIDEO_TESTIMONIALS.patient5.vimeoId}
+              thumbnailUrl={VIDEO_TESTIMONIALS.patient5.thumbnailUrl}
+              title={VIDEO_TESTIMONIALS.patient5.title}
+            />
           </div>
           
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
@@ -148,41 +81,6 @@ const TestimonialsPage: React.FC = () => {
           </div>
         </div>
       </section>
-      
-      <VideoModal
-        youtubeId="1082192427"
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-      
-      <VideoModal
-        youtubeId="1082192501"
-        isOpen={isSecondVideoModalOpen}
-        onClose={() => setIsSecondVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088876675"
-        isOpen={isThirdVideoModalOpen}
-        onClose={() => setIsThirdVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088877336"
-        isOpen={isFourthVideoModalOpen}
-        onClose={() => setIsFourthVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088878160"
-        isOpen={isFifthVideoModalOpen}
-        onClose={() => setIsFifthVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
     </>
   );
 };
