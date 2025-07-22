@@ -1,3 +1,4 @@
+
 /* Critical CSS - inline in HTML for fast first paint */
 @layer critical {
   * {
@@ -421,11 +422,16 @@
     animation: none !important;
   }
   
-  /* Optimize mobile gradient animation */
-  .animate-mobile-gradient {
-    animation: mobile-gradient 8s ease-in-out infinite;
+  /* Enhanced mobile gradient animations */
+  .animate-enhanced-mobile-gradient {
+    animation: enhanced-mobile-gradient 12s ease-in-out infinite;
     will-change: transform, background-position, opacity;
-    background-size: 200% 200% !important;
+    background-size: 300% 300% !important;
+  }
+  
+  .animate-mobile-radial-pulse {
+    animation: mobile-radial-pulse 8s ease-in-out infinite;
+    will-change: opacity, transform;
   }
 }
 
@@ -467,6 +473,37 @@
 @keyframes slideIn {
   from { transform: translateX(-20px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
+}
+
+/* Enhanced Mobile Gradient Animations */
+@keyframes enhanced-mobile-gradient {
+  0%, 100% {
+    background-position: 0% 0%;
+    opacity: 0.8;
+  }
+  25% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 50% 100%;
+    opacity: 0.9;
+  }
+  75% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-radial-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
 }
 
 /* Touch Utilities */
@@ -758,6 +795,11 @@
     transform: none;
     opacity: 1;
     transition: none;
+  }
+  
+  .animate-enhanced-mobile-gradient,
+  .animate-mobile-radial-pulse {
+    animation: none !important;
   }
 }
 

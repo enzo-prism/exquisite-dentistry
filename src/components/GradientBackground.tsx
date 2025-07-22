@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -101,7 +102,7 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
     );
   };
 
-  // Simplified mobile version for better performance
+  // Enhanced mobile version with better visibility
   if (isMobile) {
     return (
       <div 
@@ -110,23 +111,36 @@ const GradientBackground: React.FC<GradientBackgroundProps> = ({
         role="presentation"
         aria-hidden="true"
       >
-        {/* Simplified Primary Gradient for Mobile */}
+        {/* Enhanced Primary Gradient for Mobile - More Visible */}
         <div className={cn(
           "absolute inset-0 w-full h-full",
-          "bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95"
+          "bg-gradient-to-br from-slate-900/98 via-slate-800/85 to-slate-900/92"
         )} />
         
-        {/* Single Subtle Animation Layer for Mobile */}
+        {/* Enhanced Gold Gradient Layer with Better Visibility */}
         <div 
           className={cn(
             "absolute inset-0 w-full h-full",
-            "bg-gradient-to-br from-amber-500/12 via-transparent to-slate-700/15",
-            !prefersReducedMotion && 'animate-mobile-gradient',
-            "mix-blend-soft-light"
+            "bg-gradient-to-br from-amber-500/28 via-amber-600/18 via-transparent to-amber-700/22",
+            !prefersReducedMotion && 'animate-enhanced-mobile-gradient',
+            "mix-blend-overlay"
           )}
           style={{
-            backgroundSize: '200% 200%',
+            backgroundSize: '300% 300%',
             willChange: 'transform, background-position, opacity'
+          }}
+        />
+        
+        {/* Third Radial Gradient Layer for Depth */}
+        <div 
+          className={cn(
+            "absolute inset-0 w-full h-full",
+            "bg-[radial-gradient(ellipse_at_60%_40%,rgb(217_119_6_/_0.15),transparent_70%)]",
+            !prefersReducedMotion && 'animate-mobile-radial-pulse',
+            "mix-blend-multiply opacity-80"
+          )}
+          style={{
+            willChange: 'opacity, transform'
           }}
         />
         
