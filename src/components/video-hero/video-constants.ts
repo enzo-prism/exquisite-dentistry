@@ -31,6 +31,12 @@ export const VIDEO_TESTIMONIALS = {
   }
 } as const;
 
+// YouTube video constants (added for compatibility)
+export const YOUTUBE_VIDEOS = {
+  practice: "W3GDynIsi6s",
+  testimonial: "BMd3Y-Ma8nM"
+};
+
 // Poster images for video backgrounds
 export const VIDEO_POSTERS = {
   hero: "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import { Helmet } from 'react-helmet-async';
@@ -6,22 +6,17 @@ import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
-import VideoModal from '@/components/VideoModal';
+import VideoTestimonial from '@/components/VideoTestimonial';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
 import ImageComponent from '@/components/Image';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const IndexPage: React.FC = () => {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [isSecondVideoModalOpen, setIsSecondVideoModalOpen] = useState(false);
-  const [isThirdVideoModalOpen, setIsThirdVideoModalOpen] = useState(false);
-  const [isFourthVideoModalOpen, setIsFourthVideoModalOpen] = useState(false);
-  const [isFifthVideoModalOpen, setIsFifthVideoModalOpen] = useState(false);
-
   // Scroll progress for animations
   const { scrollYProgress } = useScroll();
   const yProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -54,34 +49,6 @@ const IndexPage: React.FC = () => {
         damping: 15,
         duration: 0.6
       }
-    }
-  };
-
-  const cardHoverVariants = {
-    hover: {
-      scale: 1.05,
-      y: -8,
-      rotateY: 5,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20
-      }
-    }
-  };
-
-  const playButtonVariants = {
-    hover: {
-      scale: 1.2,
-      rotate: 360,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 15
-      }
-    },
-    tap: {
-      scale: 0.95
     }
   };
 
@@ -228,129 +195,44 @@ const IndexPage: React.FC = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {/* First Video Testimonial */}
-            <motion.div 
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
-              variants={itemVariants}
-              whileHover={cardHoverVariants.hover}
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-            >
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100" onClick={() => setIsVideoModalOpen(true)}>
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
-                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
-                >
-                  <motion.div 
-                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
-                    variants={playButtonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </motion.div>
-                </motion.div>
-              </div>
+            <motion.div variants={itemVariants}>
+              <VideoTestimonial
+                vimeoId={VIDEO_TESTIMONIALS.shannon.vimeoId}
+                thumbnailUrl={VIDEO_TESTIMONIALS.shannon.thumbnailUrl}
+                title={VIDEO_TESTIMONIALS.shannon.title}
+              />
             </motion.div>
             
-            {/* Second Video Testimonial */}
-            <motion.div 
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
-              variants={itemVariants}
-              whileHover={cardHoverVariants.hover}
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-            >
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-teal-50 via-emerald-100 to-green-50" onClick={() => setIsSecondVideoModalOpen(true)}>
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
-                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
-                >
-                  <motion.div 
-                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
-                    variants={playButtonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </motion.div>
-                </motion.div>
-              </div>
+            <motion.div variants={itemVariants}>
+              <VideoTestimonial
+                vimeoId={VIDEO_TESTIMONIALS.taylor.vimeoId}
+                thumbnailUrl={VIDEO_TESTIMONIALS.taylor.thumbnailUrl}
+                title={VIDEO_TESTIMONIALS.taylor.title}
+              />
             </motion.div>
 
-            {/* Third Video Testimonial */}
-            <motion.div 
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
-              variants={itemVariants}
-              whileHover={cardHoverVariants.hover}
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-            >
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-rose-100 via-pink-50 to-red-50" onClick={() => setIsThirdVideoModalOpen(true)}>
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
-                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
-                >
-                  <motion.div 
-                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
-                    variants={playButtonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </motion.div>
-                </motion.div>
-              </div>
+            <motion.div variants={itemVariants}>
+              <VideoTestimonial
+                vimeoId={VIDEO_TESTIMONIALS.christian.vimeoId}
+                thumbnailUrl={VIDEO_TESTIMONIALS.christian.thumbnailUrl}
+                title={VIDEO_TESTIMONIALS.christian.title}
+              />
             </motion.div>
 
-            {/* Fourth Video Testimonial */}
-            <motion.div 
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
-              variants={itemVariants}
-              whileHover={cardHoverVariants.hover}
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-            >
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-50" onClick={() => setIsFourthVideoModalOpen(true)}>
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
-                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
-                >
-                  <motion.div 
-                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
-                    variants={playButtonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </motion.div>
-                </motion.div>
-              </div>
+            <motion.div variants={itemVariants}>
+              <VideoTestimonial
+                vimeoId={VIDEO_TESTIMONIALS.rob.vimeoId}
+                thumbnailUrl={VIDEO_TESTIMONIALS.rob.thumbnailUrl}
+                title={VIDEO_TESTIMONIALS.rob.title}
+              />
             </motion.div>
 
-            {/* Fifth Video Testimonial */}
-            <motion.div 
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-lg"
-              variants={itemVariants}
-              whileHover={cardHoverVariants.hover}
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-            >
-              <div className="relative aspect-video cursor-pointer group bg-gradient-to-br from-purple-100 via-violet-50 to-pink-100" onClick={() => setIsFifthVideoModalOpen(true)}>
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300 z-10"
-                  whileHover={{ background: "rgba(0, 0, 0, 0.6)" }}
-                >
-                  <motion.div 
-                    className="bg-gold text-white rounded-full p-3 sm:p-4 flex items-center justify-center shadow-lg min-h-[44px] min-w-[44px]"
-                    variants={playButtonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ willChange: 'transform' }}
-                  >
-                    <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-1" fill="currentColor" />
-                  </motion.div>
-                </motion.div>
-              </div>
+            <motion.div variants={itemVariants}>
+              <VideoTestimonial
+                vimeoId={VIDEO_TESTIMONIALS.patient5.vimeoId}
+                thumbnailUrl={VIDEO_TESTIMONIALS.patient5.thumbnailUrl}
+                title={VIDEO_TESTIMONIALS.patient5.title}
+              />
             </motion.div>
           </motion.div>
 
@@ -366,41 +248,6 @@ const IndexPage: React.FC = () => {
           </motion.div>
         </div>
       </motion.section>
-      
-      <VideoModal
-        youtubeId="1082192427"
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-      
-      <VideoModal
-        youtubeId="1082192501"
-        isOpen={isSecondVideoModalOpen}
-        onClose={() => setIsSecondVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088876675"
-        isOpen={isThirdVideoModalOpen}
-        onClose={() => setIsThirdVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088877336"
-        isOpen={isFourthVideoModalOpen}
-        onClose={() => setIsFourthVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
-
-      <VideoModal
-        youtubeId="1088878160"
-        isOpen={isFifthVideoModalOpen}
-        onClose={() => setIsFifthVideoModalOpen(false)}
-        thumbnailUrl="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP___yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      />
     </>
   );
 };

@@ -26,6 +26,6 @@ const VideoHero: React.FC<VideoHeroProps> = (props) => {
   return <DesktopVideoHero {...enhancedProps} />;
 };
 
-export { YOUTUBE_VIDEOS } from './video-hero/video-constants';
+export { VIDEO_TESTIMONIALS, YOUTUBE_VIDEOS } from './video-hero/video-constants';
 export type { VideoHeroProps } from './video-hero/video-hero-types';
 export default VideoHero;
