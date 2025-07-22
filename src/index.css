@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,22 +13,24 @@
   
   /* Dental Professional Colors */
   --dental-blue: 208 100% 25%;
-  --dental-blue-light: 208 85% 45%;
-  --dental-teal: 170 75% 41%;
-  --dental-navy: 222 47% 11%;
+  --dental-teal: 180 100% 25%;
+  --dental-mint: 160 100% 75%;
   
-  /* Neutral Grays */
-  --slate: 215 16% 47%;
-  --slate-light: 215 16% 65%;
-  --slate-dark: 215 25% 27%;
-  --slate-muted: 215 10% 85%;
-  
-  /* Accent Colors */
-  --cream: 42 78% 95%;
-  --warm-gray: 35 12% 89%;
+  /* Neutral Palette */
+  --neutral-50: 210 20% 98%;
+  --neutral-100: 220 14% 96%;
+  --neutral-200: 220 13% 91%;
+  --neutral-300: 216 12% 84%;
+  --neutral-400: 218 11% 65%;
+  --neutral-500: 220 9% 46%;
+  --neutral-600: 215 14% 34%;
+  --neutral-700: 217 19% 27%;
+  --neutral-800: 215 28% 17%;
+  --neutral-900: 221 39% 11%;
   
   /* Status Colors */
   --success: 142 76% 36%;
+  --info: 217 91% 60%;
   --warning: 45 93% 47%;
   --error: 0 72% 51%;
   
@@ -54,6 +57,7 @@
   --radius: 0.5rem;
 }
 
+/* Dark theme variables */
 .dark {
   --background: 215 25% 27%;
   --foreground: 0 0% 100%;
@@ -69,7 +73,7 @@
   --muted-foreground: 215 10% 85%;
   --accent: 215 16% 47%;
   --accent-foreground: 0 0% 100%;
-  --destructive: 0 62% 30%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   --border: 215 16% 47%;
   --input: 215 16% 47%;
@@ -77,206 +81,103 @@
 }
 
 * {
-  @apply border-border;
-}
-
-body {
-  @apply bg-background text-foreground;
-}
-
-/* CSS Resets and Base Styles */
-*, *::before, *::after {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  /* Ensure body doesn't get locked accidentally */
-  overflow-y: auto !important;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
-/* Mobile scroll optimizations */
-@media (max-width: 640px) {
-  html {
-    scroll-padding-top: 80px;
-    /* Ensure mobile scrolling is always enabled */
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-    /* Prevent iOS scroll bounce issues */
-    position: relative;
+/* Mobile Touch Optimizations */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  /* Prevent zoom on form inputs on iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    font-size: 16px;
   }
   
-  body {
-    /* Force scrolling to always be available */
-    overflow-y: auto !important;
-    min-height: 100vh;
-    min-height: 100dvh;
-    min-height: 100svh;
-    /* Prevent position fixed issues on mobile */
-    position: relative;
-  }
-  
-  /* Prevent scroll lock conflicts */
-  body[style*="overflow: hidden"] {
-    overflow-y: auto !important;
-  }
-  
-  /* Enhanced mobile typography */
-  h1 {
-    font-size: 2.25rem; /* 36px */
-    line-height: 2.5rem; /* 40px */
-  }
-  
-  h2 {
-    font-size: 1.875rem; /* 30px */
-    line-height: 2.25rem; /* 36px */
-  }
-  
-  /* Better mobile spacing */
-  .mobile-optimized-padding {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  
-  /* Mobile-specific scroll debugging */
-  .scroll-debug {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 5px;
-    font-size: 12px;
-    z-index: 9999;
-  }
-  
-  /* Selective animation disabling - keep important ones */
-  .animate-\[golden-veins_25s_ease-in-out_infinite\],
-  .animate-\[sparkle-dance_30s_linear_infinite\],
-  .animate-\[depth-shimmer_18s_ease-in-out_infinite\],
-  .animate-\[surface-ripple_8s_ease-in-out_infinite\] {
-    animation: none !important;
-  }
-  
-  /* Reduce will-change usage on mobile */
-  * {
-    will-change: auto !important;
-  }
-  
-  /* Only allow will-change on actively animating elements */
-  .is-animating {
-    will-change: transform, opacity;
+  /* Better tap targets */
+  button, 
+  .btn,
+  a[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
-/* Debug helper for scroll issues */
-.scroll-test {
-  height: 200vh;
-  background: linear-gradient(to bottom, red, blue);
-}
-
-/* Color Utilities */
-.text-gold { color: hsl(var(--gold)); }
-.bg-gold { background-color: hsl(var(--gold)); }
-.border-gold { border-color: hsl(var(--gold)); }
-.text-gold-dark { color: hsl(var(--gold-dark)); }
-.bg-gold-dark { background-color: hsl(var(--gold-dark)); }
-.text-dental-blue { color: hsl(var(--dental-blue)); }
-.bg-dental-blue { background-color: hsl(var(--dental-blue)); }
-.text-dental-navy { color: hsl(var(--dental-navy)); }
-.bg-dental-navy { background-color: hsl(var(--dental-navy)); }
-
-/* Custom Animations */
-@keyframes golden-veins {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-  25% { transform: translateY(-20px) rotate(2deg); opacity: 0.6; }
-  50% { transform: translateY(-10px) rotate(-1deg); opacity: 0.8; }
-  75% { transform: translateY(-30px) rotate(1deg); opacity: 0.4; }
-}
-
-@keyframes sparkle-dance {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
-  33% { transform: scale(1.2) rotate(120deg); opacity: 0.8; }
-  66% { transform: scale(0.8) rotate(240deg); opacity: 0.6; }
-}
-
-@keyframes depth-shimmer {
-  0%, 100% { transform: translateZ(0) rotateY(0deg); opacity: 0.2; }
-  50% { transform: translateZ(10px) rotateY(180deg); opacity: 0.7; }
-}
-
-@keyframes surface-ripple {
-  0% { transform: scale(1) translateZ(0); opacity: 0.3; }
-  50% { transform: scale(1.05) translateZ(5px); opacity: 0.6; }
-  100% { transform: scale(1) translateZ(0); opacity: 0.3; }
-}
-
-/* Utility Classes */
-.hardware-optimized {
-  transform: translateZ(0);
+/* Utility classes for performance and animations */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
-.gpu-accelerated {
-  transform: translateZ(0);
+.will-change-auto {
+  will-change: auto;
+}
+
+.will-change-transform {
   will-change: transform;
 }
 
-.gpu-layer {
-  transform: translateZ(0);
-  isolation: isolate;
+.contain-layout {
+  contain: layout;
 }
 
-.composite-layer {
-  will-change: transform;
-  transform: translateZ(0);
+.contain-paint {
+  contain: paint;
 }
 
-.smooth-animation {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Focus management for accessibility */
+.focus-visible:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }
 
-/* Separator Styling */
-.separator {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-light)));
-  border-radius: 2px;
-  position: relative;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --ring: 0 0% 0%;
+  }
+  
+  .dark {
+    --ring: 0 0% 100%;
+  }
 }
 
-.separator::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: hsl(var(--gold));
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Accessibility */
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -284,42 +185,23 @@ body {
   }
 }
 
-/* Print Styles */
-@media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-  
-  a, a:visited {
-    text-decoration: underline;
-  }
-  
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-  
-  .no-print {
-    display: none !important;
-  }
+/* Gold color utility classes */
+.text-gold {
+  color: hsl(var(--gold));
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.bg-gold {
+  background-color: hsl(var(--gold));
 }
 
-::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+.border-gold {
+  border-color: hsl(var(--gold));
 }
 
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--gold));
-  border-radius: 4px;
+.hover\:text-gold:hover {
+  color: hsl(var(--gold));
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--gold-dark));
+.hover\:bg-gold\/90:hover {
+  background-color: hsl(var(--gold) / 0.9);
 }
