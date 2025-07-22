@@ -3,7 +3,7 @@ import * as React from "react"
 
 // Define breakpoints for different screen sizes with buffer zones
 export const BREAKPOINTS = {
-  MOBILE: 640,  // sm in tailwind - reduced for better mobile content
+  MOBILE: 768,  // Changed to match Tailwind's md breakpoint
   TABLET: 1024,  // lg in tailwind
   DESKTOP: 1280 // xl in tailwind
 }
@@ -15,7 +15,9 @@ export function useIsMobile() {
     const mql = window.matchMedia(`(max-width: ${BREAKPOINTS.MOBILE - 1}px)`)
     
     const onChange = () => {
-      setIsMobile(window.innerWidth < BREAKPOINTS.MOBILE)
+      const newIsMobile = window.innerWidth < BREAKPOINTS.MOBILE
+      console.log('Mobile detection changed:', newIsMobile, 'width:', window.innerWidth)
+      setIsMobile(newIsMobile)
     }
     
     mql.addEventListener("change", onChange)

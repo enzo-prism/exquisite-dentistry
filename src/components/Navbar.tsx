@@ -44,6 +44,7 @@ const Navbar = () => {
   // Close mobile menu when switching to desktop
   useEffect(() => {
     if (!isMobile && isMobileMenuOpen) {
+      console.log('Closing mobile menu due to desktop switch');
       setIsMobileMenuOpen(false);
     }
   }, [isMobile, isMobileMenuOpen]);
@@ -52,20 +53,30 @@ const Navbar = () => {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      console.log('Mobile menu opened - body scroll disabled');
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      console.log('Mobile menu closed - body scroll enabled');
     }
     
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
+    console.log('Toggling mobile menu from', isMobileMenuOpen, 'to', !isMobileMenuOpen);
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const closeMobileMenu = () => {
+    console.log('Closing mobile menu');
     setIsMobileMenuOpen(false);
   };
 
@@ -74,7 +85,7 @@ const Navbar = () => {
       <ScrollProgress />
       <motion.header 
         ref={navRef}
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-40 w-full transition-all duration-300 isolate ${
           scrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/10' : 'bg-black'
         }`}
         initial={false}
@@ -115,13 +126,13 @@ const Navbar = () => {
             />
           </div>
         </div>
-        
-        {/* Mobile Navigation */}
-        <MobileNavigation 
-          isOpen={isMobileMenuOpen}
-          onClose={closeMobileMenu}
-        />
       </motion.header>
+      
+      {/* Mobile Navigation - moved outside header to prevent z-index issues */}
+      <MobileNavigation 
+        isOpen={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+      />
     </>
   );
 };

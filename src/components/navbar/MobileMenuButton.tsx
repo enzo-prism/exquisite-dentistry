@@ -9,10 +9,14 @@ interface MobileMenuButtonProps {
 }
 
 const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({ isOpen, onClick }) => {
+  React.useEffect(() => {
+    console.log('Mobile menu button state:', isOpen);
+  }, [isOpen]);
+
   return (
     <button
       type="button"
-      className="md:hidden p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-black rounded-md transition-colors touch-manipulation"
+      className="md:hidden p-4 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-black rounded-md transition-colors touch-manipulation z-50"
       onClick={onClick}
       aria-expanded={isOpen}
       aria-controls="mobile-menu"

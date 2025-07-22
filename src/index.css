@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -95,7 +94,7 @@ body {
   line-height: 1.6;
 }
 
-/* Mobile Touch Optimizations */
+/* Mobile Touch Optimizations - Enhanced */
 .touch-manipulation {
   touch-action: manipulation;
   -webkit-touch-callout: none;
@@ -104,14 +103,22 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .touch-pan-y {
   touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Mobile-specific styles */
-@media (max-width: 768px) {
+/* Mobile Navigation Specific Fixes */
+@media (max-width: 767px) {
+  /* Ensure mobile navigation is always above everything */
+  .mobile-nav-container {
+    z-index: 9999 !important;
+    isolation: isolate;
+  }
+  
   /* Prevent zoom on form inputs on iOS */
   input[type="text"],
   input[type="email"],
@@ -121,15 +128,40 @@ body {
     font-size: 16px;
   }
   
-  /* Better tap targets */
+  /* Better tap targets - minimum 44px */
   button, 
   .btn,
-  a[role="button"] {
+  a[role="button"],
+  [class*="touch-manipulation"] {
     min-height: 44px;
     min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
+  }
+  
+  /* Mobile menu specific styling */
+  .mobile-menu-item {
+    min-height: 48px;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    touch-action: manipulation;
+  }
+  
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Desktop Navigation - hide on mobile */
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none !important;
   }
 }
 
@@ -156,10 +188,20 @@ body {
   contain: paint;
 }
 
-/* Focus management for accessibility */
+/* Focus management for accessibility - Enhanced */
 .focus-visible:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+}
+
+/* Mobile-specific focus styles */
+@media (max-width: 767px) {
+  button:focus,
+  a:focus,
+  [tabindex]:focus {
+    outline: 3px solid hsl(var(--gold));
+    outline-offset: 2px;
+  }
 }
 
 /* High contrast mode support */
