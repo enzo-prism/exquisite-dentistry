@@ -1,9 +1,10 @@
+
 import { getOptimalImage, preloadFromRegistry } from './imageRegistry';
 
-// Critical resources that should be preloaded (WebP first) - Updated with new logo
+// Critical resources that should be preloaded (WebP first) - Using working logo temporarily
 export const CRITICAL_RESOURCES = {
   images: [
-    '/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155', // New logo
+    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958', // Temporary working logo
     '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6', // Hero poster
   ],
   fonts: [

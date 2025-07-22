@@ -75,30 +75,15 @@ const Footer = () => {
                 containIntrinsicSize: '200px 37px'
               }}
             >
-              <picture>
-                {/* WebP sources */}
-                <source 
-                  srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.webp" 
-                  type="image/webp" 
-                />
-                
-                {/* PNG fallback */}
-                <source 
-                  srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.png" 
-                  type="image/png" 
-                />
-                
-                {/* Final img fallback */}
-                <img
-                  src="/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155.png"
-                  alt="Exquisite Dentistry"
-                  className="w-full h-full"
-                  style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'left center'
-                  }}
-                />
-              </picture>
+              <img
+                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                alt="Exquisite Dentistry"
+                className="w-full h-full"
+                style={{ 
+                  objectFit: 'contain',
+                  objectPosition: 'left center'
+                }}
+              />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Providing exceptional dental care in the heart of Los Angeles with a focus on comfort, quality, and personalized treatment plans.
