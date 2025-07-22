@@ -37,6 +37,7 @@ const Navbar = () => {
   // Close mobile menu when clicking outside or on links
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
   };
 
   // Toggle dropdown menus
@@ -176,7 +177,7 @@ const Navbar = () => {
           
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-3 text-white hover:text-gold focus:outline-none z-50"
+              className="md:hidden p-3 text-white hover:text-gold focus:outline-none z-[110]"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -187,96 +188,95 @@ const Navbar = () => {
 
         {/* Mobile Navigation - Full Screen Overlay */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-40 md:hidden">
+          <div className="fixed inset-0 z-[100] md:hidden">
             {/* Backdrop */}
             <div 
-              className="absolute inset-0 bg-black/80" 
+              className="absolute inset-0 bg-black/90" 
               onClick={closeMobileMenu}
             />
             
             {/* Menu Panel */}
-            <div className="relative h-full w-full bg-black flex flex-col">
-              {/* Spacer for header */}
-              <div className="h-16 sm:h-20" />
-              
-              {/* Navigation Links */}
-              <nav className="flex-1 px-4 py-6">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="block py-4 px-4 text-lg text-white hover:text-gold hover:bg-white/10 transition-colors border-b border-white/10"
-                    onClick={closeMobileMenu}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                
-                {/* Clients Section */}
-                <div className="border-b border-white/10">
-                  <button
-                    className="w-full flex items-center justify-between py-4 px-4 text-lg text-white hover:text-gold transition-colors"
-                    onClick={() => toggleDropdown('clients')}
-                  >
-                    Clients
-                    <ChevronDown 
-                      size={20} 
-                      className={`transition-transform duration-200 ${
-                        openDropdown === 'clients' ? 'rotate-180' : ''
-                      }`} 
-                    />
-                  </button>
+            <div className="relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20" style={{ minHeight: '100vh', minHeight: '100dvh' }}>              
+              {/* Navigation Links - Scrollable Area */}
+              <div className="flex-1 overflow-y-auto px-4 py-4">
+                <nav className="space-y-1">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className="block py-3 px-4 text-base text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md border-b border-white/10"
+                      onClick={closeMobileMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
                   
-                  {openDropdown === 'clients' && (
-                    <div className="bg-black/50">
-                      {clientsDropdown.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          className="block py-3 px-8 text-white hover:text-gold hover:bg-white/10 transition-colors"
-                          onClick={closeMobileMenu}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                
-                {/* More Section */}
-                <div className="border-b border-white/10">
-                  <button
-                    className="w-full flex items-center justify-between py-4 px-4 text-lg text-white hover:text-gold transition-colors"
-                    onClick={() => toggleDropdown('more')}
-                  >
-                    More
-                    <ChevronDown 
-                      size={20} 
-                      className={`transition-transform duration-200 ${
-                        openDropdown === 'more' ? 'rotate-180' : ''
-                      }`} 
-                    />
-                  </button>
+                  {/* Clients Section */}
+                  <div className="border-b border-white/10">
+                    <button
+                      className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
+                      onClick={() => toggleDropdown('clients')}
+                    >
+                      Clients
+                      <ChevronDown 
+                        size={18} 
+                        className={`transition-transform duration-200 ${
+                          openDropdown === 'clients' ? 'rotate-180' : ''
+                        }`} 
+                      />
+                    </button>
+                    
+                    {openDropdown === 'clients' && (
+                      <div className="bg-black/50 rounded-md ml-4 mb-2">
+                        {clientsDropdown.map((item) => (
+                          <Link
+                            key={item.to}
+                            to={item.to}
+                            className="block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
+                            onClick={closeMobileMenu}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   
-                  {openDropdown === 'more' && (
-                    <div className="bg-black/50">
-                      {moreDropdown.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          className="block py-3 px-8 text-white hover:text-gold hover:bg-white/10 transition-colors"
-                          onClick={closeMobileMenu}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </nav>
+                  {/* More Section */}
+                  <div className="border-b border-white/10">
+                    <button
+                      className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
+                      onClick={() => toggleDropdown('more')}
+                    >
+                      More
+                      <ChevronDown 
+                        size={18} 
+                        className={`transition-transform duration-200 ${
+                          openDropdown === 'more' ? 'rotate-180' : ''
+                        }`} 
+                      />
+                    </button>
+                    
+                    {openDropdown === 'more' && (
+                      <div className="bg-black/50 rounded-md ml-4 mb-2">
+                        {moreDropdown.map((item) => (
+                          <Link
+                            key={item.to}
+                            to={item.to}
+                            className="block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
+                            onClick={closeMobileMenu}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </nav>
+              </div>
               
-              {/* CTA Button - Mobile */}
-              <div className="p-6 border-t border-white/10">
+              {/* CTA Button - Mobile - Fixed at bottom */}
+              <div className="flex-shrink-0 p-4 border-t border-white/10 bg-black/95" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
                 <Button 
                   asChild 
                   size="lg" 
