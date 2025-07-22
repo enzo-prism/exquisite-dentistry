@@ -396,7 +396,7 @@
 }
 
 /* Performance optimizations for mobile */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   html {
     scroll-padding-top: 80px;
     min-height: 100vh;
@@ -414,7 +414,24 @@
     min-height: 100svh;
   }
   
-  /* Disable heavy animations on mobile for better performance */
+  /* Enhanced mobile typography */
+  h1 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+  }
+  
+  h2 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+  }
+  
+  /* Better mobile spacing */
+  .mobile-optimized-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* Selective animation disabling - keep important ones */
   .animate-\[golden-veins_25s_ease-in-out_infinite\],
   .animate-\[sparkle-dance_30s_linear_infinite\],
   .animate-\[depth-shimmer_18s_ease-in-out_infinite\],

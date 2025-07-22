@@ -43,9 +43,9 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         </>
       )}
       
-      <div className="relative z-20 text-white px-6 w-full max-w-sm mx-auto text-center">
+      <div className="relative z-20 text-white px-6 w-full max-w-lg mx-auto text-center">
         <h1 
-          className="text-3xl font-bold mb-6 leading-tight"
+          className="text-4xl sm:text-5xl font-bold mb-8 leading-tight"
           style={{ 
             willChange: 'auto',
             contain: 'layout style'
@@ -56,7 +56,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-base mb-8 text-white/90 leading-relaxed"
+            className="text-lg sm:text-xl mb-10 text-white/90 leading-relaxed max-w-md mx-auto"
             style={{ 
               contain: 'layout'
             }}

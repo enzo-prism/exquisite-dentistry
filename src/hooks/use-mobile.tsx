@@ -3,7 +3,7 @@ import * as React from "react"
 
 // Define breakpoints for different screen sizes with buffer zones
 export const BREAKPOINTS = {
-  MOBILE: 768,  // md in tailwind - increased for better mobile detection
+  MOBILE: 640,  // sm in tailwind - reduced for better mobile content
   TABLET: 1024,  // lg in tailwind
   DESKTOP: 1280 // xl in tailwind
 }
