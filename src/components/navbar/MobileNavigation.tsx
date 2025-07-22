@@ -87,7 +87,6 @@ const MobileNavigation: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               ease: 'easeInOut'
             }}
             style={{ 
-              minHeight: '100vh',
               minHeight: '100dvh',
               willChange: 'transform'
             }}
