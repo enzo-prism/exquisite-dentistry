@@ -1,3 +1,4 @@
+
 import React from 'react';
 import VimeoFacade from './VimeoFacade';
 
@@ -17,20 +18,13 @@ const PracticeVideoSection: React.FC = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden relative">
-            <div 
-              className="relative w-full"
-              style={{ 
-                aspectRatio: '16/9',
-                contain: 'layout',
-                height: 'auto'
-              }}
-            >
+          <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
+            <div className="relative w-full aspect-video">
               <VimeoFacade
                 videoId="1076433847"
                 title="Exquisite Dentistry Practice Video"
                 thumbnailUrl="/lovable-uploads/dr-aguil-banner-2024-m.webp"
-                className="absolute inset-0"
+                className="w-full h-full"
                 autoplay={true}
                 muted={true}
                 loop={true}

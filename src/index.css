@@ -144,3 +144,11 @@ body {
 .hover\:bg-gold\/90:hover {
   background-color: hsl(var(--gold) / 0.9);
 }
+
+/* Separator decorative element */
+.separator {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
+  border-radius: 2px;
+}
