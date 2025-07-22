@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
@@ -11,6 +10,43 @@ interface VideoModalProps {
   thumbnailUrl?: string;
 }
 
+// Global scroll lock manager to prevent conflicts
+class ScrollLockManager {
+  private static instance: ScrollLockManager;
+  private lockCount = 0;
+  private originalOverflow = '';
+
+  static getInstance() {
+    if (!ScrollLockManager.instance) {
+      ScrollLockManager.instance = new ScrollLockManager();
+    }
+    return ScrollLockManager.instance;
+  }
+
+  lock() {
+    if (this.lockCount === 0) {
+      this.originalOverflow = document.body.style.overflow || '';
+      document.body.style.overflow = 'hidden';
+      console.log('Scroll locked');
+    }
+    this.lockCount++;
+  }
+
+  unlock() {
+    this.lockCount = Math.max(0, this.lockCount - 1);
+    if (this.lockCount === 0) {
+      document.body.style.overflow = this.originalOverflow;
+      console.log('Scroll unlocked');
+    }
+  }
+
+  forceUnlock() {
+    this.lockCount = 0;
+    document.body.style.overflow = this.originalOverflow;
+    console.log('Scroll force unlocked');
+  }
+}
+
 const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thumbnailUrl }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,7 +54,9 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
   const [isMuted, setIsMuted] = useState(false);
   const [player, setPlayer] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const scrollLockManager = ScrollLockManager.getInstance();
 
+  // Enhanced scroll management with proper cleanup
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -31,17 +69,29 @@ const VideoModal: React.FC<VideoModalProps> = ({ youtubeId, isOpen, onClose, thu
     };
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      scrollLockManager.lock();
       document.addEventListener('keydown', handleKeyDown);
       document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      scrollLockManager.unlock();
     }
 
+    // Cleanup function with force unlock as fallback
     return () => {
-      document.body.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('mousedown', handleClickOutside);
+      if (isOpen) {
+        scrollLockManager.unlock();
+      }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, scrollLockManager]);
+
+  // Force unlock on component unmount
+  useEffect(() => {
+    return () => {
+      scrollLockManager.forceUnlock();
+    };
+  }, [scrollLockManager]);
 
   // Initialize Vimeo player when modal opens
   useEffect(() => {

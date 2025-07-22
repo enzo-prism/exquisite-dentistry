@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 
 interface PerformanceMetrics {
@@ -18,20 +19,32 @@ export const usePerformanceMonitor = () => {
   const frameCount = useRef(0);
   const lastTime = useRef(performance.now());
   const rafId = useRef<number>();
+  const isMobile = useRef(window.innerWidth < 768);
 
   useEffect(() => {
-    // FPS Monitoring
+    // Update mobile detection
+    const handleResize = () => {
+      isMobile.current = window.innerWidth < 768;
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    // Reduced FPS monitoring for mobile to prevent scroll interference
     const measureFPS = () => {
       frameCount.current++;
       const currentTime = performance.now();
       
-      if (currentTime - lastTime.current >= 1000) {
+      // Less frequent updates on mobile
+      const updateInterval = isMobile.current ? 2000 : 1000;
+      
+      if (currentTime - lastTime.current >= updateInterval) {
         const fps = Math.round((frameCount.current * 1000) / (currentTime - lastTime.current));
         
         setMetrics(prev => ({
           ...prev,
           fps,
-          isLowEnd: fps < 30
+          // Less aggressive low-end detection on mobile
+          isLowEnd: isMobile.current ? fps < 20 : fps < 30
         }));
         
         frameCount.current = 0;
@@ -43,7 +56,7 @@ export const usePerformanceMonitor = () => {
 
     rafId.current = requestAnimationFrame(measureFPS);
 
-    // Memory monitoring (if available)
+    // Memory monitoring (less frequent on mobile)
     if ('memory' in performance) {
       const updateMemory = () => {
         const memory = (performance as any).memory;
@@ -53,8 +66,15 @@ export const usePerformanceMonitor = () => {
         }));
       };
       
-      const memoryInterval = setInterval(updateMemory, 5000);
-      return () => clearInterval(memoryInterval);
+      const memoryInterval = setInterval(updateMemory, isMobile.current ? 10000 : 5000);
+      
+      return () => {
+        clearInterval(memoryInterval);
+        window.removeEventListener('resize', handleResize);
+        if (rafId.current) {
+          cancelAnimationFrame(rafId.current);
+        }
+      };
     }
 
     // Connection speed detection
@@ -69,6 +89,7 @@ export const usePerformanceMonitor = () => {
     }
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
       }
@@ -76,11 +97,11 @@ export const usePerformanceMonitor = () => {
   }, []);
 
   const getOptimizedSettings = () => ({
-    enableHeavyAnimations: metrics.fps > 45 && !metrics.isLowEnd,
-    enableParallax: metrics.fps > 50,
-    enableComplexTransitions: metrics.fps > 40,
+    enableHeavyAnimations: metrics.fps > (isMobile.current ? 30 : 45) && !metrics.isLowEnd,
+    enableParallax: metrics.fps > (isMobile.current ? 35 : 50),
+    enableComplexTransitions: metrics.fps > (isMobile.current ? 25 : 40),
     reduceAnimations: metrics.isLowEnd || metrics.connectionSpeed === 'slow',
-    maxConcurrentAnimations: metrics.isLowEnd ? 2 : 6
+    maxConcurrentAnimations: metrics.isLowEnd ? (isMobile.current ? 1 : 2) : (isMobile.current ? 3 : 6)
   });
 
   return {

@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 
 interface PerformanceMetrics {
@@ -9,73 +10,100 @@ interface PerformanceMetrics {
 export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(enabled: boolean = true) => {
   const elementRef = useRef<T>(null);
   const metricsRef = useRef<PerformanceMetrics>({});
+  const isMobile = useRef(window.innerWidth < 768);
 
   useEffect(() => {
     if (!enabled || !elementRef.current) return;
 
     const element = elementRef.current;
     
-    // Apply GPU acceleration
-    element.style.transform = 'translateZ(0)';
-    element.style.backfaceVisibility = 'hidden';
-    element.style.perspective = '1000px';
+    // More conservative GPU acceleration on mobile
+    if (isMobile.current) {
+      // Minimal GPU acceleration for mobile
+      element.style.transform = 'translateZ(0)';
+      element.style.backfaceVisibility = 'hidden';
+      // Skip perspective on mobile to reduce GPU load
+    } else {
+      // Full GPU acceleration for desktop
+      element.style.transform = 'translateZ(0)';
+      element.style.backfaceVisibility = 'hidden';
+      element.style.perspective = '1000px';
+    }
 
-    // Dynamic will-change management
+    // Conservative will-change management
     const applyWillChange = () => {
-      element.style.willChange = 'transform, opacity';
+      // Only apply will-change when absolutely necessary
+      if (!isMobile.current || element.classList.contains('is-animating')) {
+        element.style.willChange = 'transform, opacity';
+      }
     };
 
     const removeWillChange = () => {
       element.style.willChange = 'auto';
     };
 
-    // Apply will-change on interaction start
+    // Apply will-change on interaction start (less aggressive on mobile)
     const handleInteractionStart = () => {
+      element.classList.add('is-animating');
       applyWillChange();
     };
 
-    // Remove will-change after interaction
+    // Remove will-change after interaction (faster removal on mobile)
     const handleInteractionEnd = () => {
-      setTimeout(removeWillChange, 300);
+      element.classList.remove('is-animating');
+      const delay = isMobile.current ? 100 : 300;
+      setTimeout(removeWillChange, delay);
     };
 
-    // Add event listeners
-    element.addEventListener('mouseenter', handleInteractionStart);
-    element.addEventListener('mouseleave', handleInteractionEnd);
-    element.addEventListener('touchstart', handleInteractionStart);
-    element.addEventListener('transitionend', handleInteractionEnd);
-    element.addEventListener('animationend', handleInteractionEnd);
+    // Add event listeners (passive on mobile for better scroll performance)
+    const options = isMobile.current ? { passive: true } : {};
+    element.addEventListener('mouseenter', handleInteractionStart, options);
+    element.addEventListener('mouseleave', handleInteractionEnd, options);
+    element.addEventListener('touchstart', handleInteractionStart, options);
+    element.addEventListener('transitionend', handleInteractionEnd, options);
+    element.addEventListener('animationend', handleInteractionEnd, options);
 
-    // Performance monitoring
+    // Performance monitoring (reduced frequency on mobile)
     const monitorPerformance = () => {
-      if ('memory' in performance) {
-        // @ts-ignore - Chrome specific API
+      if ('memory' in performance && !isMobile.current) {
+        // @ts-ignore - Chrome specific API, skip on mobile
         metricsRef.current.gpuMemory = performance.memory?.usedJSHeapSize;
       }
 
-      // Monitor frame rate using requestAnimationFrame
+      // Monitor frame rate using requestAnimationFrame (less frequent on mobile)
       let frames = 0;
       let lastTime = performance.now();
+      let rafId: number;
       
       const countFrames = () => {
         frames++;
         const currentTime = performance.now();
         
-        if (currentTime - lastTime >= 1000) {
+        const interval = isMobile.current ? 2000 : 1000;
+        
+        if (currentTime - lastTime >= interval) {
           metricsRef.current.frameRate = frames;
           frames = 0;
           lastTime = currentTime;
         }
         
-        requestAnimationFrame(countFrames);
+        if (enabled) {
+          rafId = requestAnimationFrame(countFrames);
+        }
       };
       
       if (enabled) {
-        requestAnimationFrame(countFrames);
+        rafId = requestAnimationFrame(countFrames);
       }
+      
+      return () => {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+      };
     };
 
-    monitorPerformance();
+    const cleanupPerformance = monitorPerformance();
 
     return () => {
       element.removeEventListener('mouseenter', handleInteractionStart);
@@ -88,7 +116,15 @@ export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(
       element.style.transform = '';
       element.style.willChange = '';
       element.style.backfaceVisibility = '';
-      element.style.perspective = '';
+      if (!isMobile.current) {
+        element.style.perspective = '';
+      }
+      
+      element.classList.remove('is-animating');
+      
+      if (cleanupPerformance) {
+        cleanupPerformance();
+      }
     };
   }, [enabled]);
 
@@ -99,10 +135,12 @@ export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(
 };
 
 export const useAdaptiveLoading = () => {
+  const isMobile = window.innerWidth < 768;
+  
   const getDeviceCapabilities = () => {
     // Check device memory (Chrome only)
     // @ts-ignore
-    const deviceMemory = navigator.deviceMemory || 4;
+    const deviceMemory = navigator.deviceMemory || (isMobile ? 2 : 4);
     
     // Check connection type
     // @ts-ignore
@@ -110,15 +148,16 @@ export const useAdaptiveLoading = () => {
     const effectiveType = connection?.effectiveType || '4g';
     
     // Check hardware concurrency
-    const cores = navigator.hardwareConcurrency || 2;
+    const cores = navigator.hardwareConcurrency || (isMobile ? 2 : 4);
     
     return {
       memory: deviceMemory,
       connection: effectiveType,
       cores,
-      isHighEnd: deviceMemory >= 8 && cores >= 4,
+      isMobile,
+      isHighEnd: deviceMemory >= 8 && cores >= 4 && !isMobile,
       isMidRange: deviceMemory >= 4 && cores >= 2,
-      isLowEnd: deviceMemory < 4 || cores < 2
+      isLowEnd: deviceMemory < 4 || cores < 2 || (isMobile && deviceMemory < 3)
     };
   };
 
@@ -135,11 +174,11 @@ export const useAdaptiveLoading = () => {
       };
     } else if (capabilities.isMidRange) {
       return {
-        enableGPUAcceleration: true,
-        enableComplexAnimations: true,
+        enableGPUAcceleration: !isMobile,
+        enableComplexAnimations: !isMobile,
         enableHeavyEffects: false,
-        imageQuality: 'medium',
-        maxAnimationsPerView: 6
+        imageQuality: isMobile ? 'low' : 'medium',
+        maxAnimationsPerView: isMobile ? 3 : 6
       };
     } else {
       return {
@@ -147,7 +186,7 @@ export const useAdaptiveLoading = () => {
         enableComplexAnimations: false,
         enableHeavyEffects: false,
         imageQuality: 'low',
-        maxAnimationsPerView: 3
+        maxAnimationsPerView: isMobile ? 2 : 3
       };
     }
   };
