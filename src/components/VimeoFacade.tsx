@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import ImageComponent from '@/components/Image';
 
 interface VimeoFacadeProps {
   videoId: string;
@@ -31,12 +30,6 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false); // All videos lazy load now
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
-  
-  // Use the uploaded placeholder image as default for background videos
-  const defaultThumbnail = background ? 
-  `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png` : 
-  `/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png`;
-  const thumbnail = thumbnailUrl || defaultThumbnail;
   
   // Handle iframe load event
   useEffect(() => {
@@ -110,20 +103,38 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       }}
       onClick={handleClick}
     >
-      {/* Thumbnail - Fixed for mobile display */}
-      <ImageComponent
-        src={thumbnail}
-        alt={`${title} thumbnail`}
-        className="w-full h-full object-cover"
-        width={800}
-        height={450}
-        objectPosition="center center"
-        objectFit="cover"
-      />
+      {/* Beautiful Gradient Thumbnail */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Primary gradient layer */}
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background: `
+              radial-gradient(ellipse at 50% 30%, hsl(var(--gold-light) / 0.4) 0%, transparent 70%),
+              radial-gradient(ellipse at 80% 70%, hsl(var(--gold) / 0.3) 0%, transparent 60%),
+              linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(215 25% 27%) 50%, hsl(220 39% 11%) 100%)
+            `
+          }}
+        />
+        
+        {/* Secondary depth layer */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-80"
+          style={{
+            background: `
+              radial-gradient(circle at 30% 80%, hsl(var(--gold) / 0.2) 0%, transparent 50%),
+              linear-gradient(45deg, transparent 30%, hsl(var(--gold-light) / 0.1) 50%, transparent 70%)
+            `
+          }}
+        />
+        
+        {/* Subtle overlay for depth */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-transparent via-black/10 to-black/20" />
+      </div>
       
       {/* Play button overlay (only for non-background videos) */}
       {!background && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
           <div className="bg-gold/90 text-white rounded-full p-3 sm:p-4 group-hover:scale-110 transition-transform min-h-[44px] min-w-[44px] flex items-center justify-center">
             <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-0.5" fill="currentColor" />
           </div>
