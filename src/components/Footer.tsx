@@ -78,19 +78,19 @@ const Footer = () => {
               <picture>
                 {/* WebP sources */}
                 <source 
-                  srcSet="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp" 
+                  srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.webp" 
                   type="image/webp" 
                 />
                 
                 {/* PNG fallback */}
                 <source 
-                  srcSet="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png" 
+                  srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.png" 
                   type="image/png" 
                 />
                 
                 {/* Final img fallback */}
                 <img
-                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                  src="/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155.png"
                   alt="Exquisite Dentistry"
                   className="w-full h-full"
                   style={{ 

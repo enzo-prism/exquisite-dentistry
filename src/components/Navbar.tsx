@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -84,30 +83,30 @@ const Navbar = () => {
                   {/* WebP sources with proper sizes */}
                   <source 
                     media="(max-width: 768px)" 
-                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.webp" 
+                    srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.webp" 
                     type="image/webp" 
                   />
                   <source 
                     media="(min-width: 769px)" 
-                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp" 
+                    srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop-2x.webp" 
                     type="image/webp" 
                   />
                   
                   {/* PNG fallbacks */}
                   <source 
                     media="(max-width: 768px)" 
-                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.png" 
+                    srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.png" 
                     type="image/png" 
                   />
                   <source 
                     media="(min-width: 769px)" 
-                    srcSet="/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png" 
+                    srcSet="/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop-2x.png" 
                     type="image/png" 
                   />
                   
                   {/* Final fallback img */}
                   <img
-                    src="/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png"
+                    src="/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155.png"
                     alt="Exquisite Dentistry Logo"
                     className="h-6 md:h-12 w-auto max-w-none"
                     loading="eager"

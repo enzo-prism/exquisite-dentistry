@@ -1,10 +1,9 @@
 import { getOptimalImage, preloadFromRegistry } from './imageRegistry';
 
-// Critical resources that should be preloaded (WebP first)
+// Critical resources that should be preloaded (WebP first) - Updated with new logo
 export const CRITICAL_RESOURCES = {
   images: [
-    '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958', // Logo
-    '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f', // Nav logo  
+    '/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155', // New logo
     '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6', // Hero poster
   ],
   fonts: [
@@ -116,4 +115,4 @@ export function initializePerformanceOptimizations() {
   } else {
     setupLazyImageLoading();
   }
-} 
+}

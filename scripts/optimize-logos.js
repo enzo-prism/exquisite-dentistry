@@ -1,3 +1,4 @@
+
 import sharp from 'sharp';
 import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
@@ -5,20 +6,14 @@ import { join } from 'path';
 const LOGOS_DIR = 'public/lovable-uploads';
 const OUTPUT_DIR = 'public/optimized/logos';
 
-// Logo files that need optimization
+// Logo files that need optimization - Updated with new logo
 const LOGO_FILES = [
   {
-    filename: 'fd45d438-10a2-4bde-9162-a38816b28958.png',
+    filename: '8101a102-f008-4fc6-ab3a-e2b64a9b1155.png',
     sizes: [
       { width: 200, height: 37, suffix: 'desktop' }, // For desktop navbar and footer
-      { width: 120, height: 22, suffix: 'mobile' }   // For mobile navbar
-    ]
-  },
-  {
-    filename: '9e823f53-f866-40f9-a3e2-78373640ee8f.png',
-    sizes: [
-      { width: 240, height: 48, suffix: 'desktop-2x' }, // For high DPI screens
-      { width: 120, height: 24, suffix: 'mobile' }      // For mobile
+      { width: 120, height: 22, suffix: 'mobile' },   // For mobile navbar
+      { width: 240, height: 48, suffix: 'desktop-2x' } // For high DPI screens
     ]
   }
 ];

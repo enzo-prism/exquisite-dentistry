@@ -21,14 +21,14 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 // Logo sources configuration
 const LOGO_SOURCES = {
   main: {
-    desktop: { webp: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp', png: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png', width: 200, height: 37 },
-    mobile: { webp: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp', png: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.png', width: 120, height: 22 },
-    fallback: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png'
+    desktop: { webp: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.webp', png: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop.png', width: 200, height: 37 },
+    mobile: { webp: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.webp', png: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.png', width: 120, height: 22 },
+    fallback: '/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155.png'
   },
   alt: {
-    desktop: { webp: '/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp', png: '/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png', width: 240, height: 48 },
-    mobile: { webp: '/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.webp', png: '/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-mobile.png', width: 120, height: 24 },
-    fallback: '/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f.png'
+    desktop: { webp: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop-2x.webp', png: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-desktop-2x.png', width: 240, height: 48 },
+    mobile: { webp: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.webp', png: '/optimized/logos/8101a102-f008-4fc6-ab3a-e2b64a9b1155-mobile.png', width: 120, height: 24 },
+    fallback: '/lovable-uploads/8101a102-f008-4fc6-ab3a-e2b64a9b1155.png'
   }
 };
 
