@@ -1,138 +1,301 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import ImageComponent from '@/components/Image';
 import ScrollProgress from './ScrollProgress';
-import DesktopNavigation from './navbar/DesktopNavigation';
-import MobileNavigation from './navbar/MobileNavigation';
-import MobileMenuButton from './navbar/MobileMenuButton';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const isMobile = useIsMobile();
-  const { ref: navRef } = useHardwareAcceleration();
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const shouldBeScrolled = window.scrollY > 50;
-      if (shouldBeScrolled !== scrolled) {
-        setScrolled(shouldBeScrolled);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
-    let ticking = false;
-    const handleScrollThrottled = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    window.addEventListener('scroll', handleScrollThrottled, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScrollThrottled);
-    };
-  }, [scrolled]);
-
-  // Close mobile menu when switching to desktop
-  useEffect(() => {
-    if (!isMobile && isMobileMenuOpen) {
-      console.log('Closing mobile menu due to desktop switch');
-      setIsMobileMenuOpen(false);
-    }
-  }, [isMobile, isMobileMenuOpen]);
-
-  // Prevent body scroll when mobile menu is open
+  // Handle body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      console.log('Mobile menu opened - body scroll disabled');
     } else {
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      console.log('Mobile menu closed - body scroll enabled');
     }
     
     return () => {
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
     };
   }, [isMobileMenuOpen]);
 
-  const toggleMobileMenu = () => {
-    console.log('Toggling mobile menu from', isMobileMenuOpen, 'to', !isMobileMenuOpen);
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
+  // Close mobile menu when clicking outside or on links
   const closeMobileMenu = () => {
-    console.log('Closing mobile menu');
     setIsMobileMenuOpen(false);
   };
+
+  // Toggle dropdown menus
+  const toggleDropdown = (dropdown: string) => {
+    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+  };
+
+  // Navigation links data
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/services', label: 'Services' },
+    { to: '/blog', label: 'Blog' },
+  ];
+
+  const clientsDropdown = [
+    { to: '/smile-gallery', label: 'Smile Gallery' },
+    { to: '/testimonials', label: 'Testimonials' },
+    { to: '/client-experience', label: 'Client Experience' },
+  ];
+
+  const moreDropdown = [
+    { to: '/faqs', label: 'FAQs' },
+    { to: '/contact', label: 'Contact' },
+  ];
 
   return (
     <>
       <ScrollProgress />
-      <motion.header 
-        ref={navRef}
-        className={`sticky top-0 z-40 w-full transition-all duration-300 isolate ${
-          scrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/10' : 'bg-black'
+      <header 
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+          scrolled 
+            ? 'bg-black/90 backdrop-blur-md border-b border-white/10' 
+            : 'bg-black'
         }`}
-        initial={false}
-        animate={{
-          backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)',
-          backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 1)'
-        }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <div className="mx-auto px-4 sm:px-6 max-w-7xl">
           <div className="flex h-16 sm:h-20 items-center justify-between">
+            
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ImageComponent
-                    src=""
-                    alt="Exquisite Dentistry Logo"
-                    className={isMobile ? 'h-8' : 'h-12'}
-                    logoType="alt"
-                    responsive
-                    priority
-                  />
-                </motion.div>
+            <div className="flex-shrink-0 z-50">
+              <Link to="/" onClick={closeMobileMenu}>
+                <ImageComponent
+                  src=""
+                  alt="Exquisite Dentistry Logo"
+                  className="h-8 md:h-12"
+                  logoType="alt"
+                  responsive
+                  priority
+                />
               </Link>
             </div>
           
             {/* Desktop Navigation */}
-            <DesktopNavigation />
+            <nav className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-white hover:text-gold transition-colors duration-200 py-2 px-2"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              
+              {/* Clients Dropdown - Desktop */}
+              <div className="relative group">
+                <button 
+                  className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  onMouseEnter={() => setOpenDropdown('clients')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  Clients
+                  <ChevronDown size={16} />
+                </button>
+                
+                {openDropdown === 'clients' && (
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-48 bg-black border border-gold rounded-md shadow-lg z-50"
+                    onMouseEnter={() => setOpenDropdown('clients')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    {clientsDropdown.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className="block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* More Dropdown - Desktop */}
+              <div className="relative group">
+                <button 
+                  className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  onMouseEnter={() => setOpenDropdown('more')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  More
+                  <ChevronDown size={16} />
+                </button>
+                
+                {openDropdown === 'more' && (
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-48 bg-black border border-gold rounded-md shadow-lg z-50"
+                    onMouseEnter={() => setOpenDropdown('more')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    {moreDropdown.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className="block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* CTA Button - Desktop */}
+              <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90">
+                <a 
+                  href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Book an Appointment
+                </a>
+              </Button>
+            </nav>
           
             {/* Mobile Menu Button */}
-            <MobileMenuButton 
-              isOpen={isMobileMenuOpen}
-              onClick={toggleMobileMenu}
-            />
+            <button
+              className="md:hidden p-3 text-white hover:text-gold focus:outline-none z-50"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
-      </motion.header>
-      
-      {/* Mobile Navigation - moved outside header to prevent z-index issues */}
-      <MobileNavigation 
-        isOpen={isMobileMenuOpen}
-        onClose={closeMobileMenu}
-      />
+
+        {/* Mobile Navigation - Full Screen Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-40 md:hidden">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/80" 
+              onClick={closeMobileMenu}
+            />
+            
+            {/* Menu Panel */}
+            <div className="relative h-full w-full bg-black flex flex-col">
+              {/* Spacer for header */}
+              <div className="h-16 sm:h-20" />
+              
+              {/* Navigation Links */}
+              <nav className="flex-1 px-4 py-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="block py-4 px-4 text-lg text-white hover:text-gold hover:bg-white/10 transition-colors border-b border-white/10"
+                    onClick={closeMobileMenu}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                
+                {/* Clients Section */}
+                <div className="border-b border-white/10">
+                  <button
+                    className="w-full flex items-center justify-between py-4 px-4 text-lg text-white hover:text-gold transition-colors"
+                    onClick={() => toggleDropdown('clients')}
+                  >
+                    Clients
+                    <ChevronDown 
+                      size={20} 
+                      className={`transition-transform duration-200 ${
+                        openDropdown === 'clients' ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </button>
+                  
+                  {openDropdown === 'clients' && (
+                    <div className="bg-black/50">
+                      {clientsDropdown.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className="block py-3 px-8 text-white hover:text-gold hover:bg-white/10 transition-colors"
+                          onClick={closeMobileMenu}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                {/* More Section */}
+                <div className="border-b border-white/10">
+                  <button
+                    className="w-full flex items-center justify-between py-4 px-4 text-lg text-white hover:text-gold transition-colors"
+                    onClick={() => toggleDropdown('more')}
+                  >
+                    More
+                    <ChevronDown 
+                      size={20} 
+                      className={`transition-transform duration-200 ${
+                        openDropdown === 'more' ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </button>
+                  
+                  {openDropdown === 'more' && (
+                    <div className="bg-black/50">
+                      {moreDropdown.map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className="block py-3 px-8 text-white hover:text-gold hover:bg-white/10 transition-colors"
+                          onClick={closeMobileMenu}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </nav>
+              
+              {/* CTA Button - Mobile */}
+              <div className="p-6 border-t border-white/10">
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="w-full bg-gold text-white hover:bg-gold/90"
+                >
+                  <a 
+                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={closeMobileMenu}
+                  >
+                    Book an Appointment
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
     </>
   );
 };
