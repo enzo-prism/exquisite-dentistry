@@ -3,7 +3,6 @@ declare global {
   interface Window {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
-    google_tag_manager: any;
     hj: any;
     _hjSettings: any;
   }
@@ -22,8 +21,8 @@ export interface ThirdPartyScript {
 
 // List of third-party scripts to delay
 const DELAYED_SCRIPTS: ThirdPartyScript[] = [
-  // GTM is now loaded directly in HTML head for immediate initialization
-  // Additional GTM-managed scripts can be added here if needed for delayed loading
+  // GA4 is now loaded directly in HTML head for immediate initialization
+  // Additional analytics scripts can be added here if needed for delayed loading
 ];
 
 // Load a script dynamically
@@ -96,21 +95,21 @@ export function initializeThirdPartyScripts() {
   }
 }
 
-// Google Tag Manager wrapper
+// Google Analytics wrapper
 export function gtag(...args: any[]) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(args);
 }
 
-// Initialize GTM dataLayer if needed (GTM script loads from HTML)
+// Initialize Google Analytics if needed (GA4 script loads from HTML)
 export function initializeGoogleAnalytics() {
-  // GTM is now initialized directly in HTML head
-  // This function can be used for additional GTM configuration if needed
+  // GA4 is now initialized directly in HTML head
+  // This function can be used for additional GA4 configuration if needed
   window.dataLayer = window.dataLayer || [];
   
   // Optional: Push additional configuration to dataLayer
   window.dataLayer.push({
-    event: 'gtm_loaded',
+    event: 'ga4_loaded',
     page_title: document.title,
     page_location: window.location.href,
   });
