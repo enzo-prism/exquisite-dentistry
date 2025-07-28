@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useResponsiveScaling } from '@/hooks/use-responsive-scaling';
 
 interface VimeoFacadeProps {
   videoId: string;
@@ -30,6 +31,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(background); // Background videos load immediately, others lazy load
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const scaling = useResponsiveScaling();
   
   // Handle iframe load event
   useEffect(() => {
@@ -80,8 +82,8 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: '300%',
-            height: '300%',
+            width: scaling.width,
+            height: scaling.height,
             transform: 'translate(-50%, -50%)'
           } : {
             position: 'absolute',
