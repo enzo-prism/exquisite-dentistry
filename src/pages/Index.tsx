@@ -6,7 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
-import VideoTestimonial from '@/components/VideoTestimonial';
+import TestimonialThumbnail from '@/components/TestimonialThumbnail';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
@@ -196,45 +196,15 @@ const IndexPage: React.FC = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.div variants={itemVariants}>
-              <VideoTestimonial
-                vimeoId={VIDEO_TESTIMONIALS.shannon.vimeoId}
-                thumbnailUrl={VIDEO_TESTIMONIALS.shannon.thumbnailUrl}
-                title={VIDEO_TESTIMONIALS.shannon.title}
-              />
-            </motion.div>
-            
-            <motion.div variants={itemVariants}>
-              <VideoTestimonial
-                vimeoId={VIDEO_TESTIMONIALS.taylor.vimeoId}
-                thumbnailUrl={VIDEO_TESTIMONIALS.taylor.thumbnailUrl}
-                title={VIDEO_TESTIMONIALS.taylor.title}
-              />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <VideoTestimonial
-                vimeoId={VIDEO_TESTIMONIALS.christian.vimeoId}
-                thumbnailUrl={VIDEO_TESTIMONIALS.christian.thumbnailUrl}
-                title={VIDEO_TESTIMONIALS.christian.title}
-              />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <VideoTestimonial
-                vimeoId={VIDEO_TESTIMONIALS.rob.vimeoId}
-                thumbnailUrl={VIDEO_TESTIMONIALS.rob.thumbnailUrl}
-                title={VIDEO_TESTIMONIALS.rob.title}
-              />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <VideoTestimonial
-                vimeoId={VIDEO_TESTIMONIALS.patient5.vimeoId}
-                thumbnailUrl={VIDEO_TESTIMONIALS.patient5.thumbnailUrl}
-                title={VIDEO_TESTIMONIALS.patient5.title}
-              />
-            </motion.div>
+            {VIDEO_TESTIMONIALS.map((testimonial, index) => (
+              <motion.div key={testimonial.vimeoId} variants={itemVariants}>
+                <TestimonialThumbnail
+                  vimeoId={testimonial.vimeoId}
+                  thumbnailUrl={testimonial.thumbnailUrl}
+                  title={testimonial.title}
+                />
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.div 

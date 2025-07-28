@@ -45,35 +45,14 @@ const TestimonialsPage: React.FC = () => {
           
           {/* Video Testimonials Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {VIDEO_TESTIMONIALS.map((testimonial) => (
             <VideoTestimonial
-              vimeoId={VIDEO_TESTIMONIALS.shannon.vimeoId}
-              thumbnailUrl={VIDEO_TESTIMONIALS.shannon.thumbnailUrl}
-              title={VIDEO_TESTIMONIALS.shannon.title}
+              key={testimonial.vimeoId}
+              vimeoId={testimonial.vimeoId}
+              thumbnailUrl={testimonial.thumbnailUrl}
+              title={testimonial.title}
             />
-            
-            <VideoTestimonial
-              vimeoId={VIDEO_TESTIMONIALS.taylor.vimeoId}
-              thumbnailUrl={VIDEO_TESTIMONIALS.taylor.thumbnailUrl}
-              title={VIDEO_TESTIMONIALS.taylor.title}
-            />
-
-            <VideoTestimonial
-              vimeoId={VIDEO_TESTIMONIALS.christian.vimeoId}
-              thumbnailUrl={VIDEO_TESTIMONIALS.christian.thumbnailUrl}
-              title={VIDEO_TESTIMONIALS.christian.title}
-            />
-
-            <VideoTestimonial
-              vimeoId={VIDEO_TESTIMONIALS.rob.vimeoId}
-              thumbnailUrl={VIDEO_TESTIMONIALS.rob.thumbnailUrl}
-              title={VIDEO_TESTIMONIALS.rob.title}
-            />
-
-            <VideoTestimonial
-              vimeoId={VIDEO_TESTIMONIALS.patient5.vimeoId}
-              thumbnailUrl={VIDEO_TESTIMONIALS.patient5.thumbnailUrl}
-              title={VIDEO_TESTIMONIALS.patient5.title}
-            />
+          ))}
           </div>
           
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
