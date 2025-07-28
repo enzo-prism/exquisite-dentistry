@@ -14,7 +14,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   primaryCta,
   secondaryCta,
   height = 'medium',
-  useGradient = true
+  useGradient = false
 }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const heightClasses = getHeroHeightClasses(height);
