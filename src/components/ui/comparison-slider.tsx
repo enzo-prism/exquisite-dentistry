@@ -141,18 +141,13 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
             style={{ left: `${sliderPosition}%` }}
           />
           
-          {/* Labels */}
+          {/* Dynamic Label */}
           <div className={cn(
-            "absolute top-2 left-2 px-2 py-1 bg-black/70 text-white text-xs rounded transition-opacity duration-200",
-            isHovering || isDragging ? "opacity-100" : "opacity-0"
+            "absolute top-2 px-2 py-1 bg-black/70 text-white text-xs rounded transition-all duration-300",
+            isHovering || isDragging ? "opacity-100" : "opacity-0",
+            sliderPosition > 50 ? "left-2" : "right-2"
           )}>
-            Before
-          </div>
-          <div className={cn(
-            "absolute top-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded transition-opacity duration-200",
-            isHovering || isDragging ? "opacity-100" : "opacity-0"
-          )}>
-            After
+            {sliderPosition > 50 ? "Before" : "After"}
           </div>
         </>
       )}
