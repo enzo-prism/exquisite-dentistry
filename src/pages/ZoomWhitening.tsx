@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import PageHeader from '@/components/PageHeader';
+import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Button from '@/components/Button';
@@ -143,10 +143,18 @@ const ZoomWhitening = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <PageHeader 
+        <VideoHero 
           title="Zoom Teeth Whitening"
           subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
-          className="bg-gradient-to-br from-background via-background to-secondary/5"
+          primaryCta={{
+            text: "Schedule Whitening",
+            onClick: () => window.open('https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null', '_blank')
+          }}
+          secondaryCta={{
+            text: "Contact Us",
+            href: "/contact"
+          }}
+          height="medium"
         />
 
         {/* Introduction */}
