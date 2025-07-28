@@ -30,6 +30,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   onReady,
 }) => {
   const [isLoaded, setIsLoaded] = useState(background); // Background videos load immediately, others lazy load
+  const [imageError, setImageError] = useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const scaling = useResponsiveScaling();
   
@@ -116,13 +117,14 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     >
       {/* Thumbnail Image or Gradient Fallback */}
       <div className="absolute inset-0 w-full h-full">
-        {thumbnailUrl ? (
+        {thumbnailUrl && !imageError ? (
           <>
             {/* Custom thumbnail image */}
             <img 
               src={thumbnailUrl} 
               alt={title}
               className="absolute inset-0 w-full h-full object-cover"
+              onError={() => setImageError(true)}
             />
             {/* Subtle overlay for better play button visibility */}
             <div className="absolute inset-0 w-full h-full bg-black/20" />
