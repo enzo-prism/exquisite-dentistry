@@ -114,33 +114,48 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
       }}
       onClick={handleClick}
     >
-      {/* Beautiful Gradient Thumbnail */}
+      {/* Thumbnail Image or Gradient Fallback */}
       <div className="absolute inset-0 w-full h-full">
-        {/* Primary gradient layer */}
-        <div 
-          className="absolute inset-0 w-full h-full"
-          style={{
-            background: `
-              radial-gradient(ellipse at 50% 30%, hsl(var(--gold-light) / 0.4) 0%, transparent 70%),
-              radial-gradient(ellipse at 80% 70%, hsl(var(--gold) / 0.3) 0%, transparent 60%),
-              linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(215 25% 27%) 50%, hsl(220 39% 11%) 100%)
-            `
-          }}
-        />
-        
-        {/* Secondary depth layer */}
-        <div 
-          className="absolute inset-0 w-full h-full opacity-80"
-          style={{
-            background: `
-              radial-gradient(circle at 30% 80%, hsl(var(--gold) / 0.2) 0%, transparent 50%),
-              linear-gradient(45deg, transparent 30%, hsl(var(--gold-light) / 0.1) 50%, transparent 70%)
-            `
-          }}
-        />
-        
-        {/* Subtle overlay for depth */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-transparent via-black/10 to-black/20" />
+        {thumbnailUrl ? (
+          <>
+            {/* Custom thumbnail image */}
+            <img 
+              src={thumbnailUrl} 
+              alt={title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Subtle overlay for better play button visibility */}
+            <div className="absolute inset-0 w-full h-full bg-black/20" />
+          </>
+        ) : (
+          <>
+            {/* Fallback gradient when no thumbnail provided */}
+            <div 
+              className="absolute inset-0 w-full h-full"
+              style={{
+                background: `
+                  radial-gradient(ellipse at 50% 30%, hsl(var(--gold-light) / 0.4) 0%, transparent 70%),
+                  radial-gradient(ellipse at 80% 70%, hsl(var(--gold) / 0.3) 0%, transparent 60%),
+                  linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(215 25% 27%) 50%, hsl(220 39% 11%) 100%)
+                `
+              }}
+            />
+            
+            {/* Secondary depth layer */}
+            <div 
+              className="absolute inset-0 w-full h-full opacity-80"
+              style={{
+                background: `
+                  radial-gradient(circle at 30% 80%, hsl(var(--gold) / 0.2) 0%, transparent 50%),
+                  linear-gradient(45deg, transparent 30%, hsl(var(--gold-light) / 0.1) 50%, transparent 70%)
+                `
+              }}
+            />
+            
+            {/* Subtle overlay for depth */}
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-transparent via-black/10 to-black/20" />
+          </>
+        )}
       </div>
       
       {/* Play button overlay (only for non-background videos) */}
