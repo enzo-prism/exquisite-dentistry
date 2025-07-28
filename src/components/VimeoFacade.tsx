@@ -65,7 +65,9 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     return (
       <div 
         className={cn("relative w-full h-full", className)}
-        style={{ 
+        style={background ? { 
+          contain: 'layout'
+        } : { 
           aspectRatio: '16/9',
           contain: 'layout',
           containIntrinsicSize: '100% 56.25%'
@@ -74,7 +76,17 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
         <iframe
           ref={iframeRef}
           src={vimeoUrl}
-          style={{
+          style={background ? {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '100vw',
+            height: '100vh',
+            minWidth: '100%',
+            minHeight: '100%',
+            transform: 'translate(-50%, -50%)',
+            objectFit: 'cover'
+          } : {
             position: 'absolute',
             top: 0,
             left: 0,
