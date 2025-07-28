@@ -58,7 +58,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   const vimeoUrl = `https://player.vimeo.com/video/${videoId}?` + 
     `badge=0&autopause=0&autoplay=${autoplay ? 1 : 0}&muted=${muted ? 1 : 0}` +
     `&controls=${controls ? 1 : 0}&title=0&byline=0&portrait=0` +
-    `&background=${background ? 1 : 0}&loop=${loop ? 1 : 0}` +
+    `&background=${background ? 1 : 0}&loop=${loop ? 1 : 0}&responsive=1` +
     `&player_id=0&app_id=58479&quality=auto`;
   
   if (isLoaded) {
@@ -78,15 +78,11 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
           src={vimeoUrl}
           style={background ? {
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '200%', // Much larger scale for mobile to ensure full coverage
-            height: '200%',
-            minWidth: '200%',
-            minHeight: '200%',
-            transform: 'translate(-50%, -50%)',
-            maxWidth: 'none',
-            maxHeight: 'none'
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
           } : {
             position: 'absolute',
             top: 0,
