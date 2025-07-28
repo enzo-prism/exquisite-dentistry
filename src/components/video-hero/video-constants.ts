@@ -6,27 +6,27 @@ export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 export const VIDEO_TESTIMONIALS = [
   {
     vimeoId: "1082192427",
-    thumbnailUrl: "/lovable-uploads/review 1 Shannon.webp",
+    thumbnailUrl: "/lovable-uploads/review%201%20Shannon.webp",
     title: "Shannon Langhorne Patient Testimonial"
   },
   {
     vimeoId: "1082192501",
-    thumbnailUrl: "/lovable-uploads/review 2 Taylor.webp", 
+    thumbnailUrl: "/lovable-uploads/review%202%20Taylor.webp", 
     title: "Taylor Vasek Patient Testimonial"
   },
   {
     vimeoId: "1088876675",
-    thumbnailUrl: "/lovable-uploads/review 3 christian.webp",
+    thumbnailUrl: "/lovable-uploads/review%203%20christian.webp",
     title: "Christian Fernandez Patient Testimonial"
   },
   {
     vimeoId: "1088877336",
-    thumbnailUrl: "/lovable-uploads/review 4 Rob.webp",
+    thumbnailUrl: "/lovable-uploads/review%204%20Rob.webp",
     title: "Rob Talbert Patient Testimonial"
   },
   {
     vimeoId: "1088878160",
-    thumbnailUrl: "/lovable-uploads/review 5.webp",
+    thumbnailUrl: "/lovable-uploads/review%205.webp",
     title: "Patient Testimonial"
   }
 ] as const;
