@@ -143,7 +143,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
           
           {/* Dynamic Centered Label */}
           <div className={cn(
-            "absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/70 text-white text-sm rounded transition-all duration-300",
+            "absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/70 text-white text-sm rounded transition-all duration-300",
             isHovering || isDragging ? "opacity-100" : "opacity-0"
           )}>
             {sliderPosition > 50 ? "Before" : "After"}
