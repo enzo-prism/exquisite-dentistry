@@ -6,27 +6,27 @@ export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 export const VIDEO_TESTIMONIALS = [
   {
     vimeoId: "1082192427",
-    thumbnailUrl: "/lovable-uploads/review%201%20Shannon.webp",
+    thumbnailUrl: "/lovable-uploads/f88acd79-6f67-4a5b-a586-6b67cd9f154f.png",
     title: "Shannon Langhorne Patient Testimonial"
   },
   {
     vimeoId: "1082192501",
-    thumbnailUrl: "/lovable-uploads/review%202%20Taylor.webp", 
+    thumbnailUrl: "/lovable-uploads/42773f00-4b49-4cbf-ab77-d2f56c5afdb8.png", 
     title: "Taylor Vasek Patient Testimonial"
   },
   {
     vimeoId: "1088876675",
-    thumbnailUrl: "/lovable-uploads/review%203%20christian.webp",
+    thumbnailUrl: "/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png",
     title: "Christian Fernandez Patient Testimonial"
   },
   {
     vimeoId: "1088877336",
-    thumbnailUrl: "/lovable-uploads/review%204%20Rob.webp",
+    thumbnailUrl: "/lovable-uploads/99e29243-ed25-4827-b344-04ab0981acae.png",
     title: "Rob Talbert Patient Testimonial"
   },
   {
     vimeoId: "1088878160",
-    thumbnailUrl: "/lovable-uploads/review%205.webp",
+    thumbnailUrl: "/lovable-uploads/a21508d3-d058-400c-b7ce-30b4cdaf9a01.png",
     title: "Patient Testimonial"
   }
 ] as const;
