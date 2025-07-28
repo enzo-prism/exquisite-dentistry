@@ -78,12 +78,11 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
           src={vimeoUrl}
           style={background ? {
             position: 'absolute',
-            top: 0,
+            top: '50%',
             left: '50%',
-            width: 'auto',
-            height: '100%',
-            minWidth: '100%',
-            transform: 'translateX(-50%)'
+            width: '300%',
+            height: '300%',
+            transform: 'translate(-50%, -50%)'
           } : {
             position: 'absolute',
             top: 0,
