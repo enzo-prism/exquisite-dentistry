@@ -80,12 +80,13 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: '120%',
-            height: '120%',
-            minWidth: '120%',
-            minHeight: '120%',
+            width: '200%', // Much larger scale for mobile to ensure full coverage
+            height: '200%',
+            minWidth: '200%',
+            minHeight: '200%',
             transform: 'translate(-50%, -50%)',
-            objectFit: 'cover'
+            maxWidth: 'none',
+            maxHeight: 'none'
           } : {
             position: 'absolute',
             top: 0,
