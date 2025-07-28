@@ -6,27 +6,27 @@ export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 export const VIDEO_TESTIMONIALS = {
   shannon: {
     vimeoId: "1082192427",
-    thumbnailUrl: "/lovable-uploads/e8549036-473f-407a-8c8b-58d4efd41300.png",
+    thumbnailUrl: "/lovable-uploads/2a2add42-9603-4324-85a5-fd56e72c250f.png",
     title: "Shannon Langhorne Patient Testimonial"
   },
   taylor: {
     vimeoId: "1082192501",
-    thumbnailUrl: "/lovable-uploads/4c09912f-01b4-4c1b-bf67-a0a2a5501ae2.png", 
+    thumbnailUrl: "/lovable-uploads/bf03611a-af7c-4cef-8cb7-30940864a436.png", 
     title: "Taylor Vasek Patient Testimonial"
   },
   christian: {
     vimeoId: "1088876675",
-    thumbnailUrl: "/lovable-uploads/3ab289ce-7721-4356-9938-a73a3661f0ed.png",
+    thumbnailUrl: "/lovable-uploads/2b45d18d-0cb1-4c57-93bf-036d39abdd09.png",
     title: "Christian Fernandez Patient Testimonial"
   },
   rob: {
     vimeoId: "1088877336",
-    thumbnailUrl: "/lovable-uploads/c5bd571e-a143-4606-936c-a67a3a42dc60.png",
+    thumbnailUrl: "/lovable-uploads/f02e130e-c4ef-4e51-b0fc-d9f60b2ff191.png",
     title: "Rob Talbert Patient Testimonial"
   },
   patient5: {
     vimeoId: "1088878160",
-    thumbnailUrl: "/lovable-uploads/a9f7b953-6bfe-4103-a217-cdb9cb19ed30.png",
+    thumbnailUrl: "/lovable-uploads/f9cfc2b1-dffc-482a-9c87-74368f6b3d7d.png",
     title: "Patient Testimonial"
   }
 } as const;
