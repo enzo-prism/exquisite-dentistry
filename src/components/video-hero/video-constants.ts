@@ -1,6 +1,6 @@
 
 // Default Vimeo video ID for hero sections
-export const DEFAULT_HERO_VIMEO_ID = "1076433847";
+export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 
 // Video testimonials configuration - All using Vimeo IDs
 export const VIDEO_TESTIMONIALS = {

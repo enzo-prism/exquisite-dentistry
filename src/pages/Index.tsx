@@ -83,6 +83,7 @@ const IndexPage: React.FC = () => {
             text: "Discover Our Practice",
             href: "/about"
           }}
+          useGradient={false}
         />
       </motion.div>
       
