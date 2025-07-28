@@ -23,7 +23,7 @@ const PracticeVideoSection: React.FC = () => {
               <VimeoFacade
                 videoId="1076433847"
                 title="Exquisite Dentistry Practice Video"
-                thumbnailUrl="/lovable-uploads/38f200f7-a50b-4c2c-b576-589713feabdf.png"
+                thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
                 className="w-full h-full"
                 autoplay={true}
                 muted={true}
