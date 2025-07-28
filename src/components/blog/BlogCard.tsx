@@ -15,26 +15,26 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-l-4 border-l-gold h-full flex flex-col">
-      <CardContent className="blog-card-padding flex-1 flex flex-col pt-6 md:pt-8">
-        <div className="flex flex-wrap items-center gap-2 md:gap-3 blog-meta-mobile">
-          <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20 text-xs">
+      <CardContent className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
+        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm text-gray-600 mb-3 md:mb-4">
+          <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20 text-xs md:text-sm">
             {post.category}
           </Badge>
           <div className="flex items-center gap-1">
-            <Calendar size={12} className="md:w-4 md:h-4" />
+            <Calendar size={12} className="md:w-4 md:h-4 text-gold" />
             <span>{post.date}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Clock size={12} className="md:w-4 md:h-4" />
+            <Clock size={12} className="md:w-4 md:h-4 text-gold" />
             <span>{post.readTime}</span>
           </div>
         </div>
         
-        <h3 className={`blog-card-title ${featured ? 'md:text-2xl' : ''}`}>
+        <h3 className={`text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-3 md:mb-4 line-clamp-2 hover:text-gold transition-colors leading-tight ${featured ? 'md:text-2xl lg:text-3xl' : ''}`}>
           {post.title}
         </h3>
         
-        <p className="blog-card-excerpt flex-1">
+        <p className="text-sm md:text-base text-gray-600 leading-relaxed line-clamp-3 flex-1 mb-4 md:mb-6">
           {post.excerpt}
         </p>
         
