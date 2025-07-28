@@ -28,7 +28,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   controls = false,
   onReady,
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false); // All videos lazy load now
+  const [isLoaded, setIsLoaded] = useState(background); // Background videos load immediately, others lazy load
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   
   // Handle iframe load event
