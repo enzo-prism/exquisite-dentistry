@@ -5,6 +5,8 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
+import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Scheduling URL constant - consistent across site
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -71,17 +73,18 @@ const FAQs = () => {
 
   return (
     <>
-      <FAQPageStructuredData faqs={faqs} />
-      <Helmet>
-        <title>Dental FAQ Los Angeles | Common Questions Answered</title>
-        <meta name="description" content="Get answers to frequently asked questions about cosmetic dentistry, dental procedures, insurance, and what to expect at Exquisite Dentistry in Los Angeles." />
-        <meta name="keywords" content="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions" />
-        <meta property="og:title" content="Dental FAQ Los Angeles | Common Questions Answered" />
-        <meta property="og:description" content="Get answers to frequently asked questions about cosmetic dentistry, procedures, insurance, and appointments at Exquisite Dentistry." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/faqs/" />
-      </Helmet>
+      <SEOMetaTags
+        title="Dental FAQ Los Angeles | Common Questions Answered"
+        description="Get answers to frequently asked questions about cosmetic dentistry, dental procedures, insurance, and what to expect at Exquisite Dentistry in Los Angeles."
+        keywords="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions"
+        canonical="https://exquisitedentistryla.com/faqs"
+        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
+      
+      <FAQStructuredData 
+        faqs={faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} 
+        about="Exquisite Dentistry Services and Appointments" 
+      />
 
       <div className="min-h-screen page-transition-in">
         <VideoHero

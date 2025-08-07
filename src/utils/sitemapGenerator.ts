@@ -12,6 +12,17 @@ export const generateSitemapData = (): SitemapUrl[] => {
   const baseUrl = 'https://exquisitedentistryla.com';
   const currentDate = new Date().toISOString().split('T')[0];
   
+  // Function to get realistic last modified dates
+  const getLastModified = (path: string): string => {
+    if (path.includes('/services') || path.includes('/veneers') || path.includes('/zoom-whitening')) {
+      return new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    }
+    if (path.includes('/about') || path.includes('/contact')) {
+      return new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    }
+    return new Date(Date.now() - Math.random() * 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  };
+  
   // Static pages with optimized priorities and frequencies
   const staticPages: SitemapUrl[] = [
     {
@@ -22,31 +33,31 @@ export const generateSitemapData = (): SitemapUrl[] => {
     },
     {
       loc: `${baseUrl}/about`,
-      lastmod: currentDate,
+      lastmod: getLastModified('/about'),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/services`,
-      lastmod: currentDate,
+      lastmod: getLastModified('/services'),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/contact`,
-      lastmod: currentDate,
+      lastmod: getLastModified('/contact'),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/veneers`,
-      lastmod: currentDate,
+      lastmod: getLastModified('/veneers'),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: `${baseUrl}/zoom-whitening`,
-      lastmod: currentDate,
+      lastmod: getLastModified('/zoom-whitening'),
       changefreq: 'monthly',
       priority: 0.8
     },

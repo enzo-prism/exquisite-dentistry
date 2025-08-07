@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
+import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -28,16 +30,30 @@ const Services = () => {
   return (
     <>
       <ServiceCatalogStructuredData />
-      <Helmet>
-        <title>Cosmetic Dental Services Los Angeles | Veneers, Whitening & More</title>
-        <meta name="description" content="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil." />
-        <meta name="keywords" content="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills" />
-        <meta property="og:title" content="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More" />
-        <meta property="og:description" content="Comprehensive cosmetic dental services including porcelain veneers, teeth whitening, dental implants, and smile makeovers in Los Angeles." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/services/" />
-      </Helmet>
+      
+      <SEOMetaTags
+        title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
+        description="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil."
+        keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
+        canonical="https://exquisitedentistryla.com/services"
+        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
+
+      {/* Add structured data for key services */}
+      <MedicalProcedureStructuredData
+        procedureName="Cosmetic Dental Services"
+        description="Comprehensive cosmetic dentistry services including porcelain veneers, teeth whitening, dental implants, and complete smile makeovers"
+        url="/services"
+        procedureType="Cosmetic Dental Procedures"
+        bodyLocation="Oral and Dental System"
+        benefits={[
+          "Enhanced smile aesthetics",
+          "Improved confidence",
+          "Long-lasting results",
+          "Natural appearance"
+        ]}
+        priceRange="$500-$5,000+ depending on procedure"
+      />
       
       <VideoHero 
         vimeoId="1076745525"

@@ -8,6 +8,9 @@ import { Check, Star, Clock, Shield, Sparkles } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
+import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
+import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 const Veneers = () => {
   const benefits = [
@@ -81,35 +84,47 @@ const Veneers = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry</title>
-        <meta name="description" content="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care at Exquisite Dentistry." />
-        <meta name="keywords" content="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/veneers/" />
-        
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry" />
-        <meta property="og:description" content="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care at Exquisite Dentistry." />
-        <meta property="og:url" content="https://exquisitedentistryla.com/veneers" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Exquisite Dentistry" />
-        <meta property="og:locale" content="en_US" />
-        
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Porcelain Veneers Los Angeles | Custom Smile Makeovers" />
-        <meta name="twitter:description" content="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care." />
-        <meta name="twitter:image" content="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        
-        {/* Additional SEO Meta Tags */}
-        <meta name="geo.region" content="US-CA" />
-        <meta name="geo.placename" content="Los Angeles" />
-        <meta name="geo.position" content="34.0522;-118.2437" />
-        <meta name="ICBM" content="34.0522, -118.2437" />
-      </Helmet>
+      <SEOMetaTags
+        title="Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry"
+        description="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care at Exquisite Dentistry."
+        keywords="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers"
+        canonical="https://exquisitedentistryla.com/veneers"
+        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
+
+      <MedicalProcedureStructuredData
+        procedureName="Porcelain Veneers"
+        description="Custom-designed ultra-thin porcelain shells bonded to the front surface of teeth to improve appearance, creating a beautiful and natural-looking smile transformation."
+        url="/veneers"
+        image="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        procedureType="Cosmetic Dental Procedure"
+        bodyLocation="Oral and Dental System"
+        preparation={[
+          "Comprehensive consultation and examination",
+          "Digital impressions and smile design",
+          "Color matching to existing teeth"
+        ]}
+        steps={[
+          { name: "Consultation & Design", description: "Comprehensive evaluation and digital smile design to visualize your new smile" },
+          { name: "Preparation", description: "Minimal tooth preparation and precise impressions for custom fabrication" },
+          { name: "Fabrication", description: "Expert craftsmen create your custom veneers using premium porcelain materials" },
+          { name: "Placement", description: "Precise bonding and final adjustments to achieve your perfect smile" }
+        ]}
+        followupCare={[
+          "Regular dental cleanings and checkups",
+          "Avoid using teeth as tools",
+          "Consider nightguard if teeth grinding occurs"
+        ]}
+        benefits={[
+          "Instant smile transformation",
+          "Natural-looking results",
+          "Long-lasting durability",
+          "Stain-resistant surface"
+        ]}
+        duration="2-3 appointments over 2-3 weeks"
+        recoveryTime="Immediate return to normal activities"
+        priceRange="$1,500-$3,000 per tooth"
+      />
 
       <WebPageStructuredData 
         title="Porcelain Veneers Los Angeles"
@@ -120,14 +135,7 @@ const Veneers = () => {
         ]}
       />
 
-      <ServiceStructuredData 
-        serviceName="Porcelain Veneers"
-        description="Custom-designed porcelain shells that cover the front surface of teeth to improve appearance, creating a beautiful and natural-looking smile transformation."
-        url="/veneers"
-        priceRange="$$$-$$$$"
-      />
-
-      <FAQPageStructuredData faqs={faqs} />
+      <FAQStructuredData faqs={faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} about="Porcelain Veneers" />
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}

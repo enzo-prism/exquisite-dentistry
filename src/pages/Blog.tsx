@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogListingStructuredData from '@/components/BlogListingStructuredData';
+import SEOMetaTags from '@/components/seo/SEOMetaTags';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -25,12 +26,14 @@ const Blog = () => {
   return (
     <>
       <BlogListingStructuredData posts={allPosts} />
-      <Helmet>
-        <title>Dental Blog - Tips, Insights & Expert Advice | Exquisite Dentistry</title>
-        <meta name="description" content="Stay informed with our dental blog featuring expert tips, treatment insights, and oral health advice from Dr. Alexie Aguil in Los Angeles." />
-        <meta name="keywords" content="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/blog/" />
-      </Helmet>
+      
+      <SEOMetaTags
+        title="Dental Blog - Tips, Insights & Expert Advice | Exquisite Dentistry"
+        description="Stay informed with our dental blog featuring expert tips, treatment insights, and oral health advice from Dr. Alexie Aguil in Los Angeles."
+        keywords="dental blog, oral health tips, cosmetic dentistry advice, single tooth veneers, dental care Los Angeles"
+        canonical="https://exquisitedentistryla.com/blog"
+        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
 
       {/* Header Section - Mobile First */}
       <div className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-br from-gold/10 via-gold/5 to-white">
