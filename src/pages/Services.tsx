@@ -74,6 +74,14 @@ const Services = () => {
                     </span>
                   </a>
                 ))}
+                <a href="#invisalign" className="flex flex-col items-center text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
+                    {getIcon('Smile')}
+                  </div>
+                  <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
+                    Invisalign
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -146,6 +154,78 @@ const Services = () => {
           </div>
         </section>
       ))}
+
+      {/* Invisalign Section */}
+      <section id="invisalign" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <span className="inline-block text-sm text-gold font-medium">CLEAR ALIGNERS</span>
+              <h2 className="heading-lg">Invisalign Treatment</h2>
+              <div className="separator-left"></div>
+              <p className="paragraph">
+                Straighten your teeth discreetly with Invisalign clear aligners. Our advanced digital treatment planning ensures precise, comfortable results that fit seamlessly into your lifestyle.
+              </p>
+              
+              <div className="space-y-4 py-4">
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Nearly Invisible</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Clear aligners that are virtually undetectable when worn</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Removable Convenience</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Eat, drink, brush, and floss normally throughout treatment</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Comfortable Design</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Smooth plastic with no metal brackets, wires, or sharp edges</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Predictable Results</h4>
+                    <p className="text-sm text-black-light/80 mt-1">3D digital planning shows your expected results before treatment begins</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="pt-4">
+                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="group">
+                    Schedule Invisalign Consultation
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
+                <ImageComponent
+                  src="/lovable-uploads/5b91a198-792a-46b2-ae37-2e31cf9d6c5a.png"
+                  alt="Invisalign clear aligners treatment process demonstration"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
+                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                  {getIcon('Smile')}
+                </div>
+                <span className="text-xl font-medium text-black">Invisalign</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

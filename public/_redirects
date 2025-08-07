@@ -4,5 +4,29 @@
 /robots.txt     /robots.txt     200!
 /favicon.ico    /favicon.ico    200!
 
+# SPECIFIC redirects first (before wildcards)
+/hollywood-cosmetic-dentist.html /services 301
+/dentist-west-hollywood.html /about 301  
+/invisalign-los-angeles.html /services#invisalign 301
+/invisalign.html /services#invisalign 301
+/z-test_value.html / 301
+
+# Pattern-based catch-alls for other locations
+/*-dentist.html /services 301
+/*-cosmetic-dentist* /services 301
+/*-veneers* /veneers 301
+/*-whitening* /zoom-whitening 301
+/dentist-* /about 301
+
+# Fallback for missed location pages
+/*beach* / 301
+/*hills* / 301
+/*hollywood* / 301
+
+# Domain-level redirects LAST (wildcards)
+http://m.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+https://m.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+
 # SPA catch-all for all other routes (MUST BE LAST)
 /*              /index.html         200

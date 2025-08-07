@@ -33,6 +33,11 @@ if (rootElement) {
       // Initialize analytics after additional delay
       setTimeout(() => {
         initializeGoogleAnalytics();
+        
+        // Initialize redirect tracking after analytics is ready
+        import('./utils/redirectTracker').then(({ initializeRedirectTracking }) => {
+          initializeRedirectTracking();
+        }).catch(console.error);
       }, 3000);
     }).catch(console.error);
   }, 1000);
