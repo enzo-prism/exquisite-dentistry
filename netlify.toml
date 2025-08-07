@@ -30,4 +30,119 @@
   package = "netlify-plugin-inline-critical-css"
   [plugins.inputs]
     minify = true
-    extract = true 
+    extract = true
+
+# REDIRECT RULES - Consolidated from _redirects file
+# Order matters: specific → patterns → wildcards → SPA fallback (LAST)
+
+# Static files - serve directly with force flag (MUST BE FIRST)
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.ico"
+  status = 200
+  force = true
+
+# SPECIFIC redirects for GSC 404 errors (CRITICAL - must be first)
+[[redirects]]
+  from = "/hollywood-cosmetic-dentist.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/dentist-west-hollywood.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/invisalign-los-angeles.html"
+  to = "/services#invisalign"
+  status = 301
+
+[[redirects]]
+  from = "/invisalign.html"
+  to = "/services#invisalign"
+  status = 301
+
+[[redirects]]
+  from = "/z-test_value.html"
+  to = "/"
+  status = 301
+
+# Pattern-based catch-alls for other locations
+[[redirects]]
+  from = "/*-dentist.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/*-cosmetic-dentist*"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/*-veneers*"
+  to = "/veneers"
+  status = 301
+
+[[redirects]]
+  from = "/*-whitening*"
+  to = "/zoom-whitening"
+  status = 301
+
+[[redirects]]
+  from = "/dentist-*"
+  to = "/about"
+  status = 301
+
+# Fallback for missed location pages
+[[redirects]]
+  from = "/*beach*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/*hills*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/*hollywood*"
+  to = "/"
+  status = 301
+
+# Domain-level redirects (with force flag)
+[[redirects]]
+  from = "http://m.exquisitedentistryla.com/*"
+  to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://m.exquisitedentistryla.com/*"
+  to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://exquisitedentistryla.com/*"
+  to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+# SPA catch-all for all other routes (MUST BE LAST)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
