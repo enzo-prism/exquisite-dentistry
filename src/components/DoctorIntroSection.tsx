@@ -13,71 +13,61 @@ const DoctorIntroSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-12 md:py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image Section */}
-          <div className="relative">
-            <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-full rounded-lg overflow-hidden shadow-2xl">
-              <ImageComponent
-                src="/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png"
-                alt="Dr. Alexie Aguil, DDS - Professional portrait in dental office"
-                fill={true}
-                objectFit="cover"
-                objectPosition="center"
-                priority={true}
-              />
-            </div>
-            {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-xl p-6 hidden md:block">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gold">15+</div>
-                <div className="text-sm text-gray-600">Years of Excellence</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="lg:pl-8">
-            <div className="inline-block text-sm text-gold font-medium mb-3">MEET YOUR DENTIST</div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6">
-              Dr. Alexie <span className="text-gold">Aguil</span>
+        {/* Mobile First Design */}
+        <div className="space-y-8 md:space-y-12 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center lg:space-y-0">
+          
+          {/* Content Section - Mobile First */}
+          <div className="text-center lg:text-left lg:order-2">
+            <div className="inline-block text-xs sm:text-sm text-gold font-medium mb-2 sm:mb-3">EXQUISITE DENTISTRY</div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 sm:mb-6">
+              Meet Dr. Alexie <span className="text-gold">Aguil</span>
             </h2>
-            <div className="separator mb-6"></div>
+            <div className="separator mx-auto lg:mx-0 mb-4 sm:mb-6"></div>
             
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Transforming smiles with precision, artistry, and compassionate care
+            </p>
+
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               With over 15 years of experience in cosmetic dentistry, Dr. Aguil has transformed thousands of smiles 
               using the latest techniques and technology. His commitment to excellence and patient comfort has made 
               him one of Los Angeles' most trusted cosmetic dentists.
             </p>
 
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Dr. Aguil specializes in porcelain veneers, smile makeovers, and advanced cosmetic procedures, 
-              combining artistry with precision to deliver exceptional results that exceed expectations.
-            </p>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="text-center">
-                    <div className="bg-gold/10 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                      <IconComponent className="h-5 w-5 text-gold" />
-                    </div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                );
-              })}
+            {/* Mobile Stats - 2x2 Grid */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-sm mx-auto lg:max-w-none">
+              {[
+                { label: 'Board Certified', value: 'Cosmetic Dentistry' },
+                { label: 'Happy Patients', value: '2,500+' },
+                { label: 'Years Experience', value: '15+' },
+                { label: 'Success Rate', value: '98%' }
+              ].map((stat, index) => (
+                <div key={index} className="text-center p-3 sm:p-4 bg-gold/5 rounded-lg">
+                  <div className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">{stat.label}</div>
+                </div>
+              ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Why Choose Section - Mobile Optimized */}
+            <div className="mb-6 sm:mb-8 text-center lg:text-left">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-900">Why Choose Dr. Aguil?</h3>
+              <ul className="space-y-2 text-sm sm:text-base text-gray-600 max-w-md mx-auto lg:mx-0">
+                <li>• Precision-crafted smile transformations</li>
+                <li>• Advanced cosmetic dentistry techniques</li>
+                <li>• Personalized treatment planning</li>
+                <li>• Comfortable, anxiety-free experience</li>
+              </ul>
+            </div>
+
+            {/* CTA Buttons - Mobile Optimized */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-gold hover:bg-gold/90 text-white px-8 py-3"
+                className="bg-gold hover:bg-gold/90 text-white px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
               >
                 <a href="/about">Learn More About Dr. Aguil</a>
               </Button>
@@ -85,12 +75,33 @@ const DoctorIntroSection: React.FC = () => {
                 variant="outline" 
                 size="lg" 
                 asChild
-                className="border-gold text-gold hover:bg-gold hover:text-white px-8 py-3"
+                className="border-gold text-gold hover:bg-gold hover:text-white px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
               >
                 <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null">
                   Schedule Consultation
                 </a>
               </Button>
+            </div>
+          </div>
+
+          {/* Image Section - Mobile Optimized */}
+          <div className="relative lg:order-1">
+            <div className="relative aspect-[4/5] sm:aspect-[3/4] max-w-xs sm:max-w-sm mx-auto lg:max-w-full rounded-lg overflow-hidden shadow-2xl">
+              <ImageComponent
+                src="/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png"
+                alt="Dr. Alexie Aguil - Premium business portrait"
+                fill={true}
+                objectFit="cover"
+                objectPosition="center"
+                priority={true}
+              />
+            </div>
+            {/* Floating Stats Card - Hidden on mobile, visible on larger screens */}
+            <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-xl p-4 hidden lg:block">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gold">15+</div>
+                <div className="text-xs text-gray-600">Years of Excellence</div>
+              </div>
             </div>
           </div>
         </div>

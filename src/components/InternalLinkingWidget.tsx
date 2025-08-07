@@ -135,7 +135,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'blog':
         return <ArrowRight className="w-4 h-4 text-blue-500" />;
       case 'experience':
-        return <ArrowRight className="w-4 h-4 text-purple-500" />;
+        return <ArrowRight className="w-4 h-4 text-gold" />;
       default:
         return <ArrowRight className="w-4 h-4 text-gray-500" />;
     }

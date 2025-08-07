@@ -233,3 +233,30 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Fix potential purple color issues from browser defaults */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  color: hsl(var(--gold));
+}
+
+/* Blog page specific fixes */
+.blog-link {
+  color: hsl(var(--foreground));
+}
+
+.blog-link:visited {
+  color: hsl(var(--foreground));
+}
+
+.blog-link:hover {
+  color: hsl(var(--gold));
+}
