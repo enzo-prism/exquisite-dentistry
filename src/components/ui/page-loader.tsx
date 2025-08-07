@@ -29,7 +29,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({
   if (variant === 'branded') {
     return (
       <div className={cn(
-        "flex items-center justify-center min-h-[60vh] bg-gradient-to-b from-white to-gray-50/50",
+        "flex items-center justify-center min-h-[50vh] md:min-h-[60vh] bg-gradient-to-b from-background to-background/95",
         className
       )}>
         <BrandLoader
@@ -45,7 +45,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({
   // Minimal variant
   return (
     <div className={cn(
-      "flex items-center justify-center min-h-[40vh]",
+      "flex items-center justify-center min-h-[30vh] md:min-h-[40vh] bg-background",
       className
     )}>
       <BrandLoader variant="elegant" size="md" message={message} />

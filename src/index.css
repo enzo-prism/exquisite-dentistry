@@ -204,6 +204,33 @@ body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
+
+  /* Prevent purple backgrounds on mobile loading states */
+  body, #root, .min-h-screen, [data-loading] {
+    background-color: hsl(var(--background)) !important;
+  }
+
+  /* Fix any potential purple background issues on gradients */
+  div[class*="bg-gradient"], 
+  div[class*="from-"], 
+  div[class*="to-"],
+  .bg-primary,
+  .bg-secondary {
+    background-color: hsl(var(--background)) !important;
+  }
+
+  /* Ensure proper loader backgrounds */
+  .mobile-loader-fix,
+  .page-loader,
+  .brand-loader {
+    background-color: hsl(var(--background)) !important;
+  }
+
+  /* Touch manipulation for better mobile interaction */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Performance optimizations */
