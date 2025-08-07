@@ -98,7 +98,7 @@ const Navbar = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-white hover:text-gold transition-colors duration-200 py-2 px-2"
+                  className="navbar-link text-white hover:text-gold transition-colors duration-200 py-2 px-2"
                 >
                   {link.label}
                 </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
               {/* Clients Dropdown - Desktop */}
               <div className="relative group">
                 <button 
-                  className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
                   onMouseEnter={() => setOpenDropdown('clients')}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
@@ -125,7 +125,7 @@ const Navbar = () => {
                       <Link
                         key={item.to}
                         to={item.to}
-                        className="block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                        className="navbar-link block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
                       >
                         {item.label}
                       </Link>
@@ -137,7 +137,7 @@ const Navbar = () => {
               {/* More Dropdown - Desktop */}
               <div className="relative group">
                 <button 
-                  className="text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
                   onMouseEnter={() => setOpenDropdown('more')}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
@@ -155,7 +155,7 @@ const Navbar = () => {
                       <Link
                         key={item.to}
                         to={item.to}
-                        className="block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                        className="navbar-link block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
                       >
                         {item.label}
                       </Link>

@@ -261,6 +261,20 @@ body {
   overflow: hidden;
 }
 
+/* Navbar Specific Styles - High Specificity */
+.navbar-link {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.navbar-link:hover {
+  color: hsl(var(--gold)) !important;
+}
+
+.navbar-link:visited {
+  color: #ffffff !important;
+}
+
 /* Fix potential purple color issues from browser defaults */
 a {
   color: inherit;
