@@ -15,6 +15,8 @@ import ReviewStructuredData from '@/components/ReviewStructuredData';
 import ImageComponent from '@/components/Image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
+import FloatingActionButton from '@/components/mobile/FloatingActionButton';
+import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
 
 const IndexPage: React.FC = () => {
   // Scroll progress for animations
@@ -219,6 +221,9 @@ const IndexPage: React.FC = () => {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Mobile Floating Action Button */}
+      <FloatingActionButton />
     </>
   );
 };
