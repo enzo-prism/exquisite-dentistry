@@ -17,7 +17,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
 
   return (
     <Card 
-      className={`group relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform hover:-translate-y-2 hover:scale-[1.02] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
+      className={`group relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform hover:-translate-y-1 hover:scale-[1.01] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -51,7 +51,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         </div>
       )}
       
-      <CardContent className="p-6 md:p-8 space-y-4 relative z-10 flex-1 flex flex-col">
+      <CardContent className="p-4 md:p-6 space-y-4 relative z-10 flex-1 flex flex-col">
         {/* Enhanced Meta Information */}
         <div className="flex flex-wrap items-center gap-3 text-sm">
           <Badge 
@@ -71,14 +71,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         </div>
 
         {/* Enhanced Title */}
-        <h3 className={`text-xl md:text-2xl font-bold text-card-foreground transition-all duration-300 line-clamp-2 leading-tight flex-grow ${featured ? 'lg:text-3xl' : ''}`}>
+        <h3 className={`text-lg md:text-xl font-bold text-card-foreground transition-all duration-300 leading-tight blog-card-title ${featured ? 'xl:text-2xl' : ''}`}>
           <span className="bg-gradient-to-r from-foreground to-foreground group-hover:from-gold group-hover:to-gold/80 bg-clip-text group-hover:text-transparent transition-all duration-300">
             {post.title}
           </span>
         </h3>
 
         {/* Enhanced Excerpt */}
-        <p className="text-muted-foreground line-clamp-3 leading-relaxed text-base flex-grow">
+        <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow blog-card-excerpt">
           {post.excerpt}
         </p>
 
