@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, User, Sparkles, Eye } from 'lucide-react';
+import { Calendar, ArrowRight, User, Sparkles, Eye, FileText } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -39,7 +39,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="p-6 bg-gold/10 rounded-full backdrop-blur-sm border border-gold/20">
-            <Clock className="w-8 h-8 text-gold" />
+            <FileText className="w-8 h-8 text-gold" />
           </div>
         </div>
         
@@ -65,7 +65,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
             <span className="font-medium">{post.date}</span>
           </div>
           <div className="flex items-center gap-1 text-muted-foreground">
-            <Clock className="w-3 h-3" />
             <span className="font-medium">{post.readTime}</span>
           </div>
         </div>
