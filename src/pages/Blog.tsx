@@ -281,7 +281,13 @@ const Blog = () => {
                         setSearchTerm('');
                         setSelectedCategory(null);
                       }}
-                      className="mt-4 px-6 py-2 bg-gold text-white rounded-full hover:bg-gold/90 transition-colors"
+                      className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium touch-manipulation rounded-full"
+                      style={{
+                        minHeight: '44px',
+                        padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem)',
+                        fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
+                      }}
+                      aria-label="Clear all search filters"
                     >
                       Clear filters
                     </button>
