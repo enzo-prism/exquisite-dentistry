@@ -164,6 +164,17 @@ body {
   touch-action: manipulation;
 }
 
+/* Enhanced mobile text contrast */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-text-shadow {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+  }
+  
+  .mobile-overlay-strong {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%);
+  }
+}
+
 /* Hardware Acceleration Classes */
 .gpu-accelerated {
   will-change: transform, opacity;

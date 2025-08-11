@@ -39,16 +39,17 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
             onLoad={() => setIsVideoLoaded(true)}
             className="absolute inset-0 w-full h-full"
           />
-          <div className="absolute inset-0 bg-black/50 z-10" />
+          <div className="absolute inset-0 bg-black/70 md:bg-black/50 z-10" />
         </>
       )}
       
       <div className="relative z-20 text-white px-6 w-full max-w-lg mx-auto text-center">
         <h1 
-          className="text-4xl sm:text-5xl font-bold mb-8 leading-tight"
+          className="text-4xl sm:text-5xl font-bold mb-8 leading-tight mobile-text-shadow"
           style={{ 
             willChange: 'auto',
-            contain: 'layout style'
+            contain: 'layout style',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6)'
           }}
         >
           {title}
@@ -56,9 +57,10 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-lg sm:text-xl mb-10 text-white/90 leading-relaxed max-w-md mx-auto"
+            className="text-lg sm:text-xl mb-10 text-white/95 md:text-white/90 leading-relaxed max-w-md mx-auto mobile-text-shadow"
             style={{ 
-              contain: 'layout'
+              contain: 'layout',
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6)'
             }}
           >
             {subtitle}

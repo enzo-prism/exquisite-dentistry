@@ -31,12 +31,12 @@ const SeasonalTreatments = () => {
                 priority
                 loadingVariant="skeleton"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-center text-white p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent md:from-black/80 md:via-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Heart className="h-7 w-7 text-gold" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center">Wedding Smile Preparation</h3>
-                <p className="text-center text-gray-200 mb-6 leading-relaxed">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center mobile-text-shadow" style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)' }}>Wedding Smile Preparation</h3>
+                <p className="text-center text-white/95 md:text-gray-200 mb-6 leading-relaxed mobile-text-shadow" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.7)' }}>
                   Look radiant on your special day with our comprehensive wedding smile makeover packages
                 </p>
                 <Link to="/wedding" className="inline-flex">
@@ -60,12 +60,12 @@ const SeasonalTreatments = () => {
                 priority
                 loadingVariant="skeleton"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-center text-white p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent md:from-black/80 md:via-black/40 flex flex-col items-center justify-center text-white p-8">
                 <div className="w-16 h-16 rounded-full bg-gold/30 flex items-center justify-center mb-6 shadow-lg">
                   <Flower className="h-7 w-7 text-gold" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center">Graduation Smile Treatment</h3>
-                <p className="text-center text-gray-200 mb-6 leading-relaxed">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-center mobile-text-shadow" style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)' }}>Graduation Smile Treatment</h3>
+                <p className="text-center text-white/95 md:text-gray-200 mb-6 leading-relaxed mobile-text-shadow" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.7)' }}>
                   Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments
                 </p>
                 <Link to="/graduation" className="inline-flex">
