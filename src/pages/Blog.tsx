@@ -68,32 +68,159 @@ const Blog = () => {
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 
-      {/* Enhanced Header Section */}
+      {/* Enhanced Mobile-Perfect Hero Section */}
       <header 
         ref={headerRef}
-        className="relative py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-background/95"
+        className="relative overflow-hidden"
+        style={{ paddingTop: 'clamp(3rem, 8vw, 7rem)', paddingBottom: 'clamp(3rem, 8vw, 7rem)' }}
       >
-        {/* Multi-layer Background */}
+        {/* Optimized Multi-layer Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-gold/25 via-gold/10 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/20"></div>
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl opacity-60"></div>
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-2xl opacity-40"></div>
+          {/* Primary gradient layer */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-secondary/[0.08] to-accent/[0.04]"></div>
+          {/* Depth gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-background/70"></div>
+          {/* Animated orbs - optimized for mobile */}
+          <div className="absolute top-0 left-1/4 bg-primary/[0.06] rounded-full blur-3xl animate-pulse will-change-transform"
+               style={{ 
+                 width: 'clamp(12rem, 25vw, 24rem)', 
+                 height: 'clamp(12rem, 25vw, 24rem)' 
+               }}></div>
+          <div className="absolute bottom-0 right-1/4 bg-secondary/[0.06] rounded-full blur-2xl animate-pulse delay-1000 will-change-transform"
+               style={{ 
+                 width: 'clamp(8rem, 20vw, 16rem)', 
+                 height: 'clamp(8rem, 20vw, 16rem)' 
+               }}></div>
         </div>
         
+        {/* Content Container */}
         <div className={`relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex items-center justify-center mb-6 md:mb-8">
-            <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-gold mr-3 animate-pulse" />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-foreground via-foreground to-gold bg-clip-text text-transparent">
-              Dental Blog
-            </h1>
-            <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-gold ml-3 animate-pulse" />
+          
+          {/* Hero Title - Fluid Typography */}
+          <div className="mb-6 md:mb-8 lg:mb-10">
+            <div className="flex items-center justify-center mb-4 md:mb-6">
+              <Sparkles className="text-primary animate-pulse" 
+                       style={{ 
+                         width: 'clamp(1.5rem, 4vw, 2.5rem)', 
+                         height: 'clamp(1.5rem, 4vw, 2.5rem)',
+                         marginRight: 'clamp(0.5rem, 2vw, 1rem)'
+                       }} />
+              <h1 className="font-bold bg-gradient-to-r from-foreground via-secondary to-primary bg-clip-text text-transparent leading-[0.9]"
+                  style={{ 
+                    fontSize: 'clamp(2.25rem, 7vw + 0.5rem, 4.5rem)',
+                    letterSpacing: '-0.02em'
+                  }}>
+                Dental Blog
+              </h1>
+              <Sparkles className="text-primary animate-pulse" 
+                       style={{ 
+                         width: 'clamp(1.5rem, 4vw, 2.5rem)', 
+                         height: 'clamp(1.5rem, 4vw, 2.5rem)',
+                         marginLeft: 'clamp(0.5rem, 2vw, 1rem)'
+                       }} />
+            </div>
+            
+            {/* Subtitle with Perfect Responsive Scaling */}
+            <p className="text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light"
+               style={{ 
+                 fontSize: 'clamp(1rem, 3vw + 0.25rem, 1.5rem)',
+                 lineHeight: '1.6'
+               }}>
+              Expert insights, cutting-edge techniques, and personalized advice for your perfect smile journey
+            </p>
+            
+            {/* Supporting Text */}
+            <div className="mt-4 md:mt-6 text-muted-foreground/80"
+                 style={{ 
+                   fontSize: 'clamp(0.875rem, 2vw + 0.25rem, 1.125rem)'
+                 }}>
+              Discover the latest in cosmetic dentistry and oral health
+            </div>
           </div>
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light">
-            Expert insights, cutting-edge techniques, and personalized advice for your perfect smile journey
-          </p>
-          <div className="mt-6 md:mt-8 text-sm md:text-base text-muted-foreground/80">
-            Discover the latest in cosmetic dentistry and oral health
+
+          {/* Enhanced Search and Category Section */}
+          <div className="space-y-6 md:space-y-8">
+            {/* Premium Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500"></div>
+                <div className={`relative backdrop-blur-md bg-card/80 border border-border/30 rounded-2xl shadow-lg hover:shadow-xl focus-within:shadow-xl transition-all duration-300 ${isSearchFocused ? 'scale-[1.02] border-border/50' : ''}`}>
+                  <Search className="absolute left-4 md:left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground flex-shrink-0" 
+                          style={{ 
+                            width: 'clamp(1.25rem, 3vw, 1.5rem)', 
+                            height: 'clamp(1.25rem, 3vw, 1.5rem)' 
+                          }} />
+                  <input
+                    type="text"
+                    placeholder="Search articles, tips, and insights..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setIsSearchFocused(false)}
+                    className="w-full bg-transparent placeholder-muted-foreground/70 text-foreground focus:outline-none rounded-2xl transition-all duration-300"
+                    style={{ 
+                      paddingLeft: 'clamp(3rem, 8vw, 4rem)',
+                      paddingRight: 'clamp(1rem, 4vw, 1.5rem)',
+                      paddingTop: 'clamp(1rem, 3vw, 1.25rem)',
+                      paddingBottom: 'clamp(1rem, 3vw, 1.25rem)',
+                      fontSize: 'clamp(0.875rem, 2.5vw + 0.25rem, 1.125rem)'
+                    }}
+                    aria-label="Search blog articles"
+                  />
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 p-1.5 hover:bg-muted/50 rounded-full transition-colors flex-shrink-0"
+                      aria-label="Clear search"
+                    >
+                      <span className="text-muted-foreground" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>×</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Category Pills with Perfect Mobile UX */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation ${
+                  selectedCategory === null
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105'
+                    : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
+                }`}
+                style={{
+                  minHeight: '44px',
+                  padding: 'clamp(0.625rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem)',
+                  fontSize: 'clamp(0.75rem, 2vw + 0.25rem, 0.875rem)'
+                }}
+                aria-pressed={selectedCategory === null}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Filter style={{ width: 'clamp(0.875rem, 2vw, 1rem)', height: 'clamp(0.875rem, 2vw, 1rem)' }} />
+                  All Articles
+                </span>
+              </button>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation capitalize ${
+                    selectedCategory === category
+                      ? 'bg-secondary text-secondary-foreground shadow-lg shadow-secondary/25 scale-105'
+                      : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
+                  }`}
+                  style={{
+                    minHeight: '44px',
+                    padding: 'clamp(0.625rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem)',
+                    fontSize: 'clamp(0.75rem, 2vw + 0.25rem, 0.875rem)'
+                  }}
+                  aria-pressed={selectedCategory === category}
+                >
+                  <span className="relative z-10">{category}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </header>
