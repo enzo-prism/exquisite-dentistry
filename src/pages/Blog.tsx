@@ -226,79 +226,34 @@ const Blog = () => {
         </div>
       </header>
 
-      {/* Enhanced Main Content Section */}
-      <main className="py-20 md:py-24 lg:py-28 bg-background">
+      {/* Streamlined Main Content Section */}
+      <main className="py-12 md:py-16 lg:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
             <PageLoader variant="minimal" message="Loading articles..." />
           ) : (
             <>
-              {/* Enhanced Search and Filter Interface */}
-              <div className="mb-12 md:mb-16 lg:mb-20 space-y-6 md:space-y-8">
-                {/* Glassmorphism Search Bar */}
-                <div className="max-w-2xl mx-auto relative">
-                  <div className={`relative backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-2xl border border-white/20 transition-all duration-300 ${isSearchFocused ? 'scale-105 shadow-2xl ring-2 ring-gold/30' : 'shadow-lg'}`}>
-                    <Search className="absolute left-4 md:left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 md:w-6 md:h-6" />
-                    <input
-                      type="text"
-                      placeholder="Search articles, tips, and insights..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      onFocus={() => setIsSearchFocused(true)}
-                      onBlur={() => setIsSearchFocused(false)}
-                      className="w-full pl-12 md:pl-16 pr-6 py-4 md:py-5 text-base md:text-lg bg-transparent placeholder-muted-foreground/70 text-foreground focus:outline-none rounded-2xl"
-                    />
-                    {searchTerm && (
-                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                        <button
-                          onClick={() => setSearchTerm('')}
-                          className="p-1 hover:bg-white/20 rounded-full transition-colors"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Enhanced Category Pills */}
-                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                  <button
-                    onClick={() => setSelectedCategory(null)}
-                    className={`group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium rounded-full transition-all duration-300 min-h-[48px] md:min-h-[52px] touch-manipulation relative overflow-hidden ${
-                      selectedCategory === null
-                        ? 'bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg scale-105'
-                        : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:shadow-md hover:scale-105 hover:text-foreground'
-                    }`}
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      <Filter className="w-4 h-4" />
-                      All Articles
-                    </span>
-                    {selectedCategory === null && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent opacity-50"></div>
-                    )}
-                  </button>
-                  {categories.map((category) => (
+              {/* Results Counter */}
+              <div className="text-center mb-8 md:mb-12">
+                <p className="text-muted-foreground">
+                  {filteredPosts.length === 1 
+                    ? '1 article found' 
+                    : `${filteredPosts.length} articles found`}
+                  {(searchTerm || selectedCategory) && (
                     <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium rounded-full transition-all duration-300 min-h-[48px] md:min-h-[52px] touch-manipulation relative overflow-hidden ${
-                        selectedCategory === category
-                          ? 'bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg scale-105'
-                          : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:shadow-md hover:scale-105 hover:text-foreground'
-                      }`}
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedCategory(null);
+                      }}
+                      className="ml-2 text-primary hover:text-primary/80 underline text-sm"
                     >
-                      <span className="relative z-10">{category}</span>
-                      {selectedCategory === category && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent opacity-50"></div>
-                      )}
+                      Clear filters
                     </button>
-                  ))}
-                </div>
+                  )}
+                </p>
               </div>
 
-              {/* Enhanced Blog Posts Grid */}
+              {/* Blog Posts Grid */}
               {filteredPosts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
                   {filteredPosts.map((post, index) => (
