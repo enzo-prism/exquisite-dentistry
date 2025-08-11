@@ -188,6 +188,15 @@ body {
   transform: translateZ(0);
 }
 
+/* Text shadow utilities */
+.text-shadow-strong {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.text-shadow-medium {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
 .gpu-layer {
   transform: translate3d(0, 0, 0);
   will-change: transform;
