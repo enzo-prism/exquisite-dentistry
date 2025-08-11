@@ -15,8 +15,8 @@ export const specialMoments = [
     description: 'Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments',
     buttonText: 'Get Graduation Ready',
     buttonLink: '/graduation',
-    imageSrc: '/lovable-uploads/graduation%20smile.webp',
-    imageAlt: 'Happy graduate with perfect smile - ready for new beginnings',
+    imageSrc: '/lovable-uploads/db3a686f-e8b8-4b68-b129-61f397983827.png',
+    imageAlt: 'Group of happy graduates with perfect white smiles in caps and gowns - graduation dental makeover success',
     icon: GraduationCap
   }
 ];
