@@ -1,26 +1,83 @@
 import React from 'react';
-import SpecialMomentCard from './SpecialMomentCard';
+import SimpleMomentCard from './SimpleMomentCard';
 import { specialMoments } from '../data/specialMoments';
 
 const SeasonalTreatments = () => {
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-block text-sm text-secondary font-medium mb-3">SPECIAL MOMENTS</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-foreground leading-tight mb-6">
-            Perfect Your Smile for <span className="text-secondary">Life's Big Moments</span>
+    <section 
+      style={{
+        padding: '4rem 0',
+        backgroundColor: 'hsl(var(--background))',
+      }}
+    >
+      <div 
+        style={{
+          maxWidth: '80rem',
+          margin: '0 auto',
+          padding: '0 1rem',
+        }}
+      >
+        <div 
+          style={{
+            textAlign: 'center',
+            maxWidth: '48rem',
+            margin: '0 auto 4rem auto',
+          }}
+        >
+          <span 
+            style={{
+              display: 'inline-block',
+              fontSize: '0.875rem',
+              color: 'hsl(var(--secondary))',
+              fontWeight: '500',
+              marginBottom: '0.75rem',
+              letterSpacing: '0.05em',
+            }}
+          >
+            SPECIAL MOMENTS
+          </span>
+          <h2 
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: '600',
+              color: 'hsl(var(--foreground))',
+              lineHeight: '1.25',
+              marginBottom: '1.5rem',
+            }}
+          >
+            Perfect Your Smile for <span style={{ color: 'hsl(var(--secondary))' }}>Life's Big Moments</span>
           </h2>
-          <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <div 
+            style={{
+              width: '6rem',
+              height: '0.25rem',
+              backgroundColor: 'hsl(var(--secondary))',
+              margin: '0 auto 1.5rem auto',
+            }}
+          ></div>
+          <p 
+            style={{
+              fontSize: '1.125rem',
+              color: 'hsl(var(--muted-foreground))',
+              lineHeight: '1.75',
+            }}
+          >
             Whether it's your wedding day or graduation, ensure your smile is picture-perfect for every special occasion
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {specialMoments.map((moment) => (
-            <SpecialMomentCard 
-              key={moment.id}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '2rem',
+            maxWidth: '64rem',
+            margin: '0 auto',
+          }}
+        >
+          {specialMoments.map((moment, index) => (
+            <SimpleMomentCard 
+              key={index}
               title={moment.title}
               description={moment.description}
               buttonText={moment.buttonText}
