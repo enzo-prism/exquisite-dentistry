@@ -69,114 +69,7 @@ const IndexPage: React.FC = () => {
       <SeoStructuredData />
       <ReviewStructuredData />
       
-      {/* SEO-Rich Content Section */}
-      <section className="relative z-10 bg-background py-16">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Los Angeles' Premier Cosmetic Dentist - Dr. Alexie Aguil
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Transform your smile with award-winning cosmetic dentistry in Beverly Hills. 
-                Dr. Alexie Aguil specializes in porcelain veneers, teeth whitening, dental implants, 
-                and complete smile makeovers using the latest technology and artistic expertise.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-3xl font-semibold text-foreground mb-4">
-                  Why Choose Exquisite Dentistry?
-                </h2>
-                <p className="text-muted-foreground mb-4">
-                  Located in the heart of Beverly Hills, our practice combines advanced dental 
-                  technology with artistic vision to create stunning, natural-looking smile 
-                  transformations. Dr. Aguil's expertise in cosmetic dentistry has made her 
-                  the trusted choice for patients throughout Los Angeles, West Hollywood, 
-                  Santa Monica, and surrounding areas.
-                </p>
-                <p className="text-muted-foreground">
-                  With over a decade of experience and thousands of successful treatments, 
-                  Dr. Aguil understands that every smile is unique. She takes time to listen 
-                  to your goals and creates personalized treatment plans that enhance your 
-                  natural beauty while improving oral health and function.
-                </p>
-              </div>
-              
-              <div>
-                <h2 className="text-3xl font-semibold text-foreground mb-4">
-                  Our Signature Services
-                </h2>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Porcelain Veneers:</strong> Ultra-thin, custom-crafted shells 
-                      that create perfect, Hollywood-worthy smiles
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Professional Teeth Whitening:</strong> Safe, effective treatments 
-                      that brighten teeth up to 8 shades in one visit
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Dental Implants:</strong> Permanent solutions for missing teeth 
-                      that look and feel completely natural
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Invisalign:</strong> Discreet clear aligners that straighten 
-                      teeth without the appearance of traditional braces
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="bg-card p-8 rounded-lg border">
-              <h2 className="text-3xl font-semibold text-foreground mb-4 text-center">
-                Advanced Technology for Superior Results
-              </h2>
-              <p className="text-muted-foreground text-center mb-6">
-                Our Beverly Hills practice features cutting-edge dental technology including 
-                digital X-rays, 3D imaging, computer-guided treatment planning, and same-day 
-                crown technology. This advanced equipment allows for more precise diagnoses, 
-                comfortable treatments, and exceptional results.
-              </p>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <h3 className="font-semibold text-foreground mb-2">Digital Smile Design</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Preview your new smile before treatment begins with advanced imaging technology
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-2">Minimally Invasive</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Preserve more natural tooth structure while achieving beautiful results
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-2">Comfort Focused</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Spa-like environment with sedation options for anxious patients
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <VideoHero 
+      <VideoHero
         title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
         subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
         primaryCta={{
@@ -322,6 +215,113 @@ const IndexPage: React.FC = () => {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* SEO-Rich Content Section */}
+      <section className="relative z-10 bg-background py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Los Angeles' Premier Cosmetic Dentist - Dr. Alexie Aguil
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Transform your smile with award-winning cosmetic dentistry in Beverly Hills. 
+                Dr. Alexie Aguil specializes in porcelain veneers, teeth whitening, dental implants, 
+                and complete smile makeovers using the latest technology and artistic expertise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-3xl font-semibold text-foreground mb-4">
+                  Why Choose Exquisite Dentistry?
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Located in the heart of Beverly Hills, our practice combines advanced dental 
+                  technology with artistic vision to create stunning, natural-looking smile 
+                  transformations. Dr. Aguil's expertise in cosmetic dentistry has made her 
+                  the trusted choice for patients throughout Los Angeles, West Hollywood, 
+                  Santa Monica, and surrounding areas.
+                </p>
+                <p className="text-muted-foreground">
+                  With over a decade of experience and thousands of successful treatments, 
+                  Dr. Aguil understands that every smile is unique. She takes time to listen 
+                  to your goals and creates personalized treatment plans that enhance your 
+                  natural beauty while improving oral health and function.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-3xl font-semibold text-foreground mb-4">
+                  Our Signature Services
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="text-gold mr-2">•</span>
+                    <div>
+                      <strong>Porcelain Veneers:</strong> Ultra-thin, custom-crafted shells 
+                      that create perfect, Hollywood-worthy smiles
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gold mr-2">•</span>
+                    <div>
+                      <strong>Professional Teeth Whitening:</strong> Safe, effective treatments 
+                      that brighten teeth up to 8 shades in one visit
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gold mr-2">•</span>
+                    <div>
+                      <strong>Dental Implants:</strong> Permanent solutions for missing teeth 
+                      that look and feel completely natural
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gold mr-2">•</span>
+                    <div>
+                      <strong>Invisalign:</strong> Discreet clear aligners that straighten 
+                      teeth without the appearance of traditional braces
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="bg-card p-8 rounded-lg border">
+              <h3 className="text-3xl font-semibold text-foreground mb-4 text-center">
+                Advanced Technology for Superior Results
+              </h3>
+              <p className="text-muted-foreground text-center mb-6">
+                Our Beverly Hills practice features cutting-edge dental technology including 
+                digital X-rays, 3D imaging, computer-guided treatment planning, and same-day 
+                crown technology. This advanced equipment allows for more precise diagnoses, 
+                comfortable treatments, and exceptional results.
+              </p>
+              <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Digital Smile Design</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Preview your new smile before treatment begins with advanced imaging technology
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Minimally Invasive</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Preserve more natural tooth structure while achieving beautiful results
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Comfort Focused</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Spa-like environment with sedation options for anxious patients
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Mobile Floating Action Button */}
       <FloatingActionButton />
