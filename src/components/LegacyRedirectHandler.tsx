@@ -35,7 +35,12 @@ const LegacyRedirectHandler = () => {
     const currentPath = location.pathname + location.search + location.hash;
     
     // Exclude valid React Router paths from redirects to prevent loops
-    const validRoutes = ['/blog/', '/services', '/about', '/contact', '/veneers', '/testimonials', '/graduation', '/wedding'];
+    const validRoutes = [
+      '/blog/', '/services', '/about', '/contact', '/veneers', '/testimonials', 
+      '/graduation', '/wedding', '/faqs', '/smile-gallery', '/client-experience',
+      '/zoom-whitening', '/privacy-policy', '/terms-of-service', '/hipaa-compliance',
+      '/sitemap'
+    ];
     const isValidRoute = validRoutes.some(route => currentPath.startsWith(route));
     
     if (isValidRoute) {

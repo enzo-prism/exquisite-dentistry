@@ -22,11 +22,9 @@ export const useBlogCardAnimation = (index: number, options: BlogAnimationOption
       return;
     }
 
-    // Reset animation state on route changes
-    const resetAnimation = () => {
-      setIsVisible(false);
-      setHasAnimated(false);
-    };
+    // Reset animation state on route changes - key fix for animation conflicts
+    setIsVisible(false);
+    setHasAnimated(false);
 
     let animationTimer: NodeJS.Timeout;
     
@@ -48,9 +46,11 @@ export const useBlogCardAnimation = (index: number, options: BlogAnimationOption
 
     return () => {
       observer.disconnect();
-      if (animationTimer) clearTimeout(animationTimer);
+      if (animationTimer) {
+        clearTimeout(animationTimer);
+      }
     };
-  }, [index, staggerDelay, threshold, rootMargin, isSlowConnection, isReducedMotion, hasAnimated]);
+  }, [index, staggerDelay, threshold, rootMargin, isSlowConnection, isReducedMotion]);
 
   return {
     ref: elementRef,

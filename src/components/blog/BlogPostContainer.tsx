@@ -1,8 +1,16 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { ArrowLeft } from 'lucide-react';
 import { BlogPost, getPostBySlug } from '@/data/blogPosts';
 import PageLoader from '@/components/ui/page-loader';
 import { toast } from 'sonner';
+import BlogMeta from './BlogMeta';
+import RelatedPosts from './RelatedPosts';
+import VeneerCTA from '@/components/VeneerCTA';
+import BlogStructuredData from '@/components/BlogStructuredData';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import BlogErrorBoundary from './BlogErrorBoundary';
 
 // Lazy load specific blog components with proper error boundaries
 const FrontTeethVeneersBlog = React.lazy(() => import('@/pages/FrontTeethVeneersBlog'));
@@ -13,10 +21,8 @@ interface BlogPostContainerProps {
 }
 
 const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
-  const [loadingComponent, setLoadingComponent] = useState(false);
-  
-  // Handle specific blog post components
-  if (post.content === 'FrontTeethVeneersBlog') {
+  // Handle component-based blog posts
+  if (post.content === 'front-4-veneers') {
     return (
       <Suspense fallback={<PageLoader />}>
         <FrontTeethVeneersBlog />
@@ -24,7 +30,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
     );
   }
   
-  if (post.content === 'SingleToothVeneersBlog') {
+  if (post.content === 'single-tooth-veneers') {
     return (
       <Suspense fallback={<PageLoader />}>
         <SingleToothVeneersBlog />
@@ -32,25 +38,80 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
     );
   }
 
-  // Handle dynamic content rendering
-  if (typeof post.content === 'string' && 
-      (post.content.startsWith('<div') || post.content.includes('<h'))) {
-    return (
-      <div 
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-    );
-  }
-
-  // Fallback for other content types
+  // For other posts, render the full blog template
   return (
-    <div className="prose prose-lg max-w-none">
-      <p className="text-muted-foreground">
-        Content for this blog post is being prepared. Please check back soon.
-      </p>
-    </div>
+    <>
+      <BlogStructuredData post={post} />
+      <Helmet>
+        <title>{post.seoTitle || post.title}</title>
+        <meta name="description" content={post.seoDescription || post.excerpt} />
+        {post.seoKeywords && <meta name="keywords" content={post.seoKeywords} />}
+        <link rel="canonical" href={`https://exquisitedentistryla.com/blog/${post.slug}/`} />
+      </Helmet>
+
+      {/* Header */}
+      <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Link to="/blog" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
+              <ArrowLeft size={20} />
+              Back to Blog
+            </Link>
+            
+            <div className="mb-8">
+              <BlogMeta post={post} showTags={true} />
+            </div>
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black leading-tight">
+              {post.title}
+            </h1>
+            
+            <p className="text-xl text-gray-600 leading-relaxed">
+              {post.excerpt}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <article className="py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          {/* Render HTML content safely */}
+          <div 
+            className="prose prose-lg max-w-none mb-8"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+          
+          <InternalLinkingWidget 
+            currentPage={`/blog/${post.slug}`}
+            context={getContext(post)}
+            variant="expanded"
+          />
+          
+          {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
+            <VeneerCTA variant="banner" />
+          )}
+          
+          <RelatedPosts currentPost={post} />
+        </div>
+      </article>
+    </>
   );
+};
+
+// Helper function to determine context for internal linking
+const getContext = (post: BlogPost) => {
+  if (post.tags?.includes('veneer cost') || post.tags?.includes('2 front teeth veneers') || post.tags?.includes('4 front teeth veneers')) {
+    return 'cost';
+  }
+  if (post.tags?.includes('veneers') || post.tags?.includes('porcelain veneers')) {
+    return 'veneer';
+  }
+  if (post.tags?.includes('patient comfort') || post.tags?.includes('entertainment')) {
+    return 'experience';
+  }
+  return 'general';
 };
 
 const BlogPostContainer: React.FC = () => {
@@ -94,7 +155,11 @@ const BlogPostContainer: React.FC = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  return <BlogPostContent post={post} />;
+  return (
+    <BlogErrorBoundary>
+      <BlogPostContent post={post} />
+    </BlogErrorBoundary>
+  );
 };
 
 export default BlogPostContainer;
