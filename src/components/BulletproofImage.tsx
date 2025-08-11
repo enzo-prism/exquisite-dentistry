@@ -11,7 +11,7 @@ const BulletproofImage: React.FC<BulletproofImageProps> = ({
   src, 
   alt, 
   className = "",
-  fallbackSrc = '/lovable-uploads/2ab6ba69-7000-4368-9ec8-1264ebe5cee1.png'
+  fallbackSrc = '/lovable-uploads/graduation%20smile.webp'
 }) => {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const img = e.currentTarget;
