@@ -21,9 +21,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Featured Badge */}
+      {/* Featured Badge - Repositioned to avoid content conflicts */}
       {featured && (
-        <div className="absolute top-4 left-4 z-20">
+        <div className="absolute top-4 right-4 z-10">
           <Badge className="bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg border-0">
             <Sparkles className="w-3 h-3 mr-1" />
             Featured
@@ -44,14 +44,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
-          {/* View Icon on Hover */}
-          <div className={`absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          {/* View Icon on Hover - Positioned to avoid featured badge conflict */}
+          <div className={`absolute ${featured ? 'top-4 left-4' : 'top-4 right-4'} p-2 bg-white/20 backdrop-blur-sm rounded-full transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <Eye className="w-4 h-4 text-white" />
           </div>
         </div>
       )}
       
-      <CardContent className="p-4 md:p-6 space-y-4 relative z-10 flex-1 flex flex-col">
+      <CardContent className="p-4 md:p-6 space-y-4 relative flex-1 flex flex-col">
         {/* Enhanced Meta Information */}
         <div className="flex flex-wrap items-center gap-3 text-sm">
           <Badge 
