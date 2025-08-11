@@ -54,9 +54,18 @@ export const useScrollToTop = () => {
   const scrollManager = ScrollStateManager.getInstance();
 
   useEffect(() => {
-    // Small delay to ensure page content is ready
+    // Debounce scroll operations and add route-specific handling
     const timeoutId = setTimeout(() => {
-      scrollManager.scrollToTop(false);
+      // Special handling for blog routes to prevent conflicts
+      if (pathname.startsWith('/blog/') && pathname !== '/blog') {
+        // For individual blog posts, use smooth scroll with longer delay
+        setTimeout(() => {
+          scrollManager.scrollToTop(true);
+        }, 100);
+      } else {
+        // For other routes, use instant scroll
+        scrollManager.scrollToTop(false);
+      }
     }, 50);
 
     return () => {

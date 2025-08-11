@@ -18,15 +18,24 @@ export const useBlogCardAnimation = (index: number, options: BlogAnimationOption
     const element = elementRef.current;
     if (!element || isReducedMotion) {
       setIsVisible(true);
+      setHasAnimated(true);
       return;
     }
 
+    // Reset animation state on route changes
+    const resetAnimation = () => {
+      setIsVisible(false);
+      setHasAnimated(false);
+    };
+
+    let animationTimer: NodeJS.Timeout;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting && !hasAnimated) {
           const delay = isSlowConnection ? staggerDelay * 0.5 : staggerDelay;
-          setTimeout(() => {
+          animationTimer = setTimeout(() => {
             setIsVisible(true);
             setHasAnimated(true);
           }, index * delay);
@@ -39,6 +48,7 @@ export const useBlogCardAnimation = (index: number, options: BlogAnimationOption
 
     return () => {
       observer.disconnect();
+      if (animationTimer) clearTimeout(animationTimer);
     };
   }, [index, staggerDelay, threshold, rootMargin, isSlowConnection, isReducedMotion, hasAnimated]);
 

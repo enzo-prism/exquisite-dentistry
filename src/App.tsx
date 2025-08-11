@@ -28,7 +28,7 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
-const BlogPost = lazy(() => import("@/components/blog/BlogPost"));
+const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 
 // Create a client
 const queryClient = new QueryClient({
@@ -129,7 +129,7 @@ const AppRoutes = () => {
                 <Blog />
               </Suspense>} />
               <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
-                <BlogPost />
+                <BlogPostContainer />
               </Suspense>} />
               
               <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>

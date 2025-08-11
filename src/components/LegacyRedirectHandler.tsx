@@ -18,7 +18,7 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/z-test_value.html', to: '/', exact: true },
   
   // Pattern-based redirects (order matters - specific to general)
-  { from: 'veneers', to: '/veneers' },
+  { from: 'old-veneers', to: '/veneers' }, // Changed to avoid conflict with valid routes
   { from: 'whitening', to: '/zoom-whitening' },
   { from: 'cosmetic-dentist', to: '/services' },
   { from: 'dentist-', to: '/about' },
@@ -34,6 +34,15 @@ const LegacyRedirectHandler = () => {
   useEffect(() => {
     const currentPath = location.pathname + location.search + location.hash;
     
+    // Exclude valid React Router paths from redirects to prevent loops
+    const validRoutes = ['/blog/', '/services', '/about', '/contact', '/veneers', '/testimonials', '/graduation', '/wedding'];
+    const isValidRoute = validRoutes.some(route => currentPath.startsWith(route));
+    
+    if (isValidRoute) {
+      console.log(`Skipping redirect for valid route: ${currentPath}`);
+      return;
+    }
+    
     // Check for exact matches first
     const exactMatch = LEGACY_REDIRECTS.find(
       rule => rule.exact && rule.from === location.pathname
@@ -46,7 +55,7 @@ const LegacyRedirectHandler = () => {
       return;
     }
     
-    // Check for pattern matches
+    // Check for pattern matches (more restrictive now)
     const patternMatch = LEGACY_REDIRECTS.find(
       rule => !rule.exact && currentPath.toLowerCase().includes(rule.from.toLowerCase())
     );
