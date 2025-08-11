@@ -206,11 +206,11 @@ const Blog = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation capitalize ${
-                    selectedCategory === category
-                      ? 'bg-secondary text-secondary-foreground shadow-lg shadow-secondary/25 scale-105'
-                      : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
-                  }`}
+                   className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation capitalize ${
+                     selectedCategory === category
+                       ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105'
+                       : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
+                   }`}
                   style={{
                     minHeight: '44px',
                     padding: 'clamp(0.625rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem)',

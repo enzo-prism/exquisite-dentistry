@@ -35,9 +35,8 @@ export default {
 					dark: '#7D6A4D',
 				},
 				secondary: {
-					light: '#9A8360', // Changed to match gold.DEFAULT
-					DEFAULT: '#9A8360', // Changed to match gold.DEFAULT
-					dark: '#9A8360', // Changed to match gold.DEFAULT
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				black: {
 					light: '#2A2A2A',
