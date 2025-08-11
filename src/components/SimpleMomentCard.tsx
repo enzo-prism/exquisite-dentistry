@@ -58,7 +58,7 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
             width: '4rem',
             height: '4rem',
             borderRadius: '50%',
-            backgroundColor: 'rgba(212, 175, 55, 0.3)',
+            backgroundColor: 'hsla(38, 23%, 50%, 0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -66,7 +66,7 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
           }}
         >
-          <Icon style={{ width: '1.75rem', height: '1.75rem', color: '#d4af37' }} />
+          <Icon style={{ width: '1.75rem', height: '1.75rem', color: 'hsl(38, 23%, 50%)' }} />
         </div>
         
         <h3 
@@ -95,7 +95,7 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
         <Link to={buttonLink}>
           <button
             style={{
-              backgroundColor: '#d4af37',
+              backgroundColor: 'hsl(38, 23%, 50%)',
               color: 'white',
               padding: '0.75rem 1.5rem',
               borderRadius: '2px',
@@ -107,8 +107,8 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
               minHeight: '44px',
               boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
             }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#c4a037'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#d4af37'}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'hsl(38, 21%, 42%)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'hsl(38, 23%, 50%)'}
           >
             {buttonText}
           </button>
