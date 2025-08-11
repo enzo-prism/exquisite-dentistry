@@ -275,6 +275,119 @@ body {
   color: #ffffff !important;
 }
 
+/* Blog Page Enhanced Animations */
+.blog-card-enter {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.blog-card-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-header-fade {
+  animation: blogHeaderFade 0.8s ease-out forwards;
+}
+
+@keyframes blogHeaderFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blog Card Hover Effects */
+.blog-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Enhanced Search Bar */
+.search-glow {
+  position: relative;
+}
+
+.search-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, transparent, hsl(var(--gold) / 0.3), transparent);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.search-glow:focus-within::before {
+  opacity: 1;
+}
+
+/* Category Pills Animation */
+.category-pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.category-pill:hover::before {
+  left: 100%;
+}
+
+/* Performance Optimizations */
+.gpu-layer {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.performance-optimized {
+  contain: layout style paint;
+}
+
+/* Mobile Touch Optimizations */
+@media (max-width: 768px) {
+  .touch-optimized {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .blog-card-hover:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .blog-card-enter,
+  .blog-card-enter-active,
+  .blog-header-fade,
+  .blog-card-hover {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Fix potential purple color issues from browser defaults */
 a {
   color: inherit;

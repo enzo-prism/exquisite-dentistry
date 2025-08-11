@@ -1,10 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, User, Sparkles, Eye } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { BlogPost } from '@/data/blogPosts';
 
 interface BlogCardProps {
@@ -13,40 +13,114 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-l-4 border-l-gold h-full flex flex-col">
-      <CardContent className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
-        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm text-gray-600 mb-3 md:mb-4">
-          <Badge variant="secondary" className="bg-gold/10 text-gold border-gold/20 text-xs md:text-sm">
-            {post.category}
+    <Card 
+      className={`group relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform hover:-translate-y-2 hover:scale-[1.02] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute top-4 left-4 z-20">
+          <Badge className="bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg border-0">
+            <Sparkles className="w-3 h-3 mr-1" />
+            Featured
           </Badge>
-          <div className="flex items-center gap-1">
-            <Calendar size={12} className="md:w-4 md:h-4 text-gold" />
-            <span>{post.date}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock size={12} className="md:w-4 md:h-4 text-gold" />
-            <span>{post.readTime}</span>
+        </div>
+      )}
+      
+      {/* Hover Glow Effect */}
+      <div className={`absolute inset-0 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+      
+      {/* Featured Image */}
+      {post.featuredImage && (
+        <div className="aspect-[16/10] w-full overflow-hidden bg-muted relative">
+          <img
+            src={post.featuredImage}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          
+          {/* View Icon on Hover */}
+          <div className={`absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <Eye className="w-4 h-4 text-white" />
           </div>
         </div>
-        
-        <h3 className={`text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-3 md:mb-4 line-clamp-2 hover:text-gold transition-colors leading-tight ${featured ? 'md:text-2xl lg:text-3xl' : ''}`}>
-          {post.title}
+      )}
+      
+      <CardContent className="p-6 md:p-8 space-y-4 relative z-10 flex-1 flex flex-col">
+        {/* Enhanced Meta Information */}
+        <div className="flex flex-wrap items-center gap-3 text-sm">
+          <Badge 
+            variant="outline" 
+            className="text-xs font-medium bg-muted/50 border-muted-foreground/20 text-muted-foreground hover:bg-gold/10 hover:border-gold/30 hover:text-gold transition-all duration-200"
+          >
+            {post.category}
+          </Badge>
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <Calendar className="w-3 h-3" />
+            <span className="font-medium">{post.date}</span>
+          </div>
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <Clock className="w-3 h-3" />
+            <span className="font-medium">{post.readTime}</span>
+          </div>
+        </div>
+
+        {/* Enhanced Title */}
+        <h3 className={`text-xl md:text-2xl font-bold text-card-foreground transition-all duration-300 line-clamp-2 leading-tight flex-grow ${featured ? 'lg:text-3xl' : ''}`}>
+          <span className="bg-gradient-to-r from-foreground to-foreground group-hover:from-gold group-hover:to-gold/80 bg-clip-text group-hover:text-transparent transition-all duration-300">
+            {post.title}
+          </span>
         </h3>
-        
-        <p className="text-sm md:text-base text-gray-600 leading-relaxed line-clamp-3 flex-1 mb-4 md:mb-6">
+
+        {/* Enhanced Excerpt */}
+        <p className="text-muted-foreground line-clamp-3 leading-relaxed text-base flex-grow">
           {post.excerpt}
         </p>
-        
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-auto">
-          <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500">
-            <User size={14} className="md:w-4 md:h-4" />
-            <span>{post.author}</span>
+
+        {/* Tags Preview */}
+        {post.tags && post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {post.tags.slice(0, 3).map((tag, index) => (
+              <span 
+                key={index}
+                className="px-3 py-1 text-xs bg-muted/60 text-muted-foreground rounded-full hover:bg-gold/10 hover:text-gold transition-colors duration-200"
+              >
+                #{tag}
+              </span>
+            ))}
+            {post.tags.length > 3 && (
+              <span className="px-3 py-1 text-xs text-muted-foreground">
+                +{post.tags.length - 3} more
+              </span>
+            )}
           </div>
-          <Link to={`/blog/${post.slug}`} className="self-start sm:self-auto">
-            <Button variant="outline" size="sm" className="group text-xs md:text-sm min-h-[44px] md:min-h-auto">
-              Read More
-              <ArrowRight size={12} className="md:w-4 md:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+        )}
+
+        {/* Enhanced Author and CTA */}
+        <div className="flex items-center justify-between pt-4 border-t border-border/30 mt-auto">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-gold/20 to-gold/10 rounded-full flex items-center justify-center">
+              <User className="w-4 h-4 text-gold" />
+            </div>
+            <div>
+              <span className="text-sm font-medium text-foreground">{post.author}</span>
+              <div className="text-xs text-muted-foreground">Dental Expert</div>
+            </div>
+          </div>
+          
+          <Link to={`/blog/${post.slug}`} className="group/link">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="group/btn bg-background/50 hover:bg-gold hover:text-white hover:border-gold transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[44px] md:min-h-auto"
+            >
+              <span className="font-medium">Read More</span>
+              <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
             </Button>
           </Link>
         </div>
