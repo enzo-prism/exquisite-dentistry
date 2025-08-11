@@ -28,7 +28,7 @@ export const specialMoments: SpecialMoment[] = [
     description: 'Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments',
     buttonText: 'Get Graduation Ready',
     buttonLink: '/graduation',
-    imageSrc: '/lovable-uploads/graduation smile.webp',
+    imageSrc: '/lovable-uploads/graduation%20smile.webp',
     imageAlt: 'Happy graduate with perfect smile - ready for new beginnings',
     icon: GraduationCap
   }

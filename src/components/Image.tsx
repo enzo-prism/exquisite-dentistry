@@ -73,6 +73,14 @@ const ImageComponent: React.FC<ImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // URL encode image paths to handle special characters
+  const encodeImagePath = (path: string): string => {
+    const parts = path.split('/');
+    const filename = parts[parts.length - 1];
+    const encodedFilename = encodeURIComponent(filename).replace(/%2E/g, '.');
+    return parts.slice(0, -1).join('/') + '/' + encodedFilename;
+  };
+
   // Generate sources based on image type
   const generateSources = async () => {
     if (logoType && responsive) {
@@ -88,18 +96,20 @@ const ImageComponent: React.FC<ImageProps> = ({
 
     // Regular image - try WebP first if supported
     const supportsWebP = await checkWebPSupport();
+    const encodedSrc = encodeImagePath(src);
+    
     if (supportsWebP && !src.includes('.webp')) {
-      const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+      const webpSrc = encodedSrc.replace(/\.(png|jpg|jpeg)$/i, '.webp');
       return {
         primary: webpSrc,
-        fallback: src,
+        fallback: encodedSrc,
         dimensions: { width, height }
       };
     }
 
     return {
-      primary: src,
-      fallback: src.replace(/\.webp$/i, '.png'),
+      primary: encodedSrc,
+      fallback: encodedSrc.replace(/\.webp$/i, '.png'),
       dimensions: { width, height }
     };
   };
