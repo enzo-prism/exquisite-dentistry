@@ -6,8 +6,8 @@ export const specialMoments = [
     description: 'Look radiant on your special day with our comprehensive wedding smile makeover packages',
     buttonText: 'Plan Your Perfect Smile',
     buttonLink: '/wedding',
-    imageSrc: '/lovable-uploads/Dr. Alexie with painting from patient.webp',
-    imageAlt: 'Laughing bride with perfect white smile holding bouquet - wedding day dental makeover results',
+    imageSrc: '/lovable-uploads/db73e0ac-a7a9-48d3-80e9-5c0a700b2a31.png',
+    imageAlt: 'Joyful bride laughing with perfect white smile on wedding day - professional dental makeover results',
     icon: Heart
   },
   {
