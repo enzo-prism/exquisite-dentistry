@@ -106,71 +106,31 @@
     <link rel="preload" href="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png" as="image" type="image/png" fetchpriority="high">
     
     <style>
-      /* Hide the Lovable badge */
-      .gptengineer-select-ux-container {
-        display: none !important;
-      }
-      
-      /* Critical CSS for above-the-fold content */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
+      .gptengineer-select-ux-container { display: none !important; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+        font-family: 'Open Sans', system-ui, sans-serif;
         background-color: #f9fafb;
         color: #1a1a1a;
         overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
       }
-      
-      /* Prevent layout shift */
       .video-hero-container {
         height: 60vh;
         background-color: #1a1a1a;
         contain: layout;
-        contain-intrinsic-size: 100% 60vh;
       }
-      
-      @media (min-width: 768px) {
-        .video-hero-container {
-          height: 80vh;
-          contain-intrinsic-size: 100% 80vh;
-        }
-      }
-      
-      @media (min-width: 1024px) {
-        .video-hero-container {
-          height: 100vh;
-          contain-intrinsic-size: 100% 100vh;
-        }
-      }
-      
-      /* Loading skeleton styles */
+      @media (min-width: 768px) { .video-hero-container { height: 80vh; } }
+      @media (min-width: 1024px) { .video-hero-container { height: 100vh; } }
       .skeleton {
         background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
         background-size: 200% 100%;
         animation: loading 1.5s infinite;
       }
-      
-      @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
-      
-      /* Prevent FOUC */
+      @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
       .no-js { visibility: hidden; opacity: 0; }
-      
-      /* Critical button styles */
       .btn-primary {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
         padding: 0.75rem 1.5rem;
         background-color: #D4AF37;
         color: white;
@@ -179,91 +139,28 @@
         text-decoration: none;
         transition: all 0.2s;
       }
-      
-      .btn-primary:hover {
-        background-color: #B8941F;
-        transform: translateY(-1px);
-      }
-      
-      /* Gold color variables */
+      .btn-primary:hover { background-color: #B8941F; transform: translateY(-1px); }
       .text-gold { color: #D4AF37; }
       .bg-gold { background-color: #D4AF37; }
-      
-      /* Prevent layout shifts for images */
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      
-      /* Reserve space for logo */
-      .logo-container {
-        width: 200px;
-        height: 48px;
-        display: inline-block;
-      }
-      
-      /* Footer layout stability */
-      footer {
-        contain: layout;
-        contain-intrinsic-size: 100% 400px;
-      }
-      
-      /* Critical styles for navbar */
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        width: 100%;
-        background-color: #000000;
-        height: 80px;
-      }
-      
-      nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 100%;
-        padding: 0 24px;
-      }
-      
-      /* Critical typography */
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-        font-weight: 600;
-        line-height: 1.2;
-      }
-      
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 2rem; }
-      h3 { font-size: 1.5rem; }
-      
-      @media (min-width: 768px) {
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 1.875rem; }
-      }
-      
-      /* Critical container styles */
-      .container {
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 16px;
-      }
-      
-      @media (min-width: 640px) {
-        .container { max-width: 640px; }
-      }
-      
-      @media (min-width: 768px) {
-        .container { max-width: 768px; }
-      }
-      
-      @media (min-width: 1024px) {
-        .container { max-width: 1024px; }
-      }
-      
-      @media (min-width: 1280px) {
-        .container { max-width: 1280px; }
+      img { max-width: 100%; height: auto; }
+      header { position: sticky; top: 0; z-index: 50; width: 100%; background-color: #000000; height: 80px; }
+      nav { display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 24px; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 600; line-height: 1.2; }
+      h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.5rem; }
+      @media (min-width: 768px) { h1 { font-size: 3.5rem; } h2 { font-size: 2.5rem; } h3 { font-size: 1.875rem; } }
+      .container { width: 100%; margin: 0 auto; padding: 0 16px; }
+      @media (min-width: 640px) { .container { max-width: 640px; } }
+      @media (min-width: 768px) { .container { max-width: 768px; } }
+      @media (min-width: 1024px) { .container { max-width: 1024px; } }
+      @media (min-width: 1280px) { .container { max-width: 1280px; } }
+      .visually-hidden {
+        position: absolute !important;
+        clip: rect(1px, 1px, 1px, 1px) !important;
+        padding: 0 !important;
+        border: 0 !important;
+        height: 1px !important;
+        width: 1px !important;
+        overflow: hidden !important;
       }
     </style>
     
@@ -273,40 +170,114 @@
   </head>
 
   <body>
-    <!-- Static H1 for SEO crawlers - hidden from users but visible to search engines -->
-    <h1 style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
-      Best Cosmetic Dentist Los Angeles | Transform Your Smile with Dr. Alexie Aguil at Exquisite Dentistry
-    </h1>
-    
-    <!-- Static SEO content for crawlers - hidden from users but indexed by search engines -->
-    <div style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
-      <h2>Premier Cosmetic Dentistry in Los Angeles and Beverly Hills</h2>
-      <p>Dr. Alexie Aguil provides exceptional cosmetic dentistry services in Los Angeles, Beverly Hills, and surrounding areas. With over 15 years of experience in transformative dental care, Dr. Aguil specializes in creating beautiful, natural-looking smiles that enhance confidence and oral health. Our state-of-the-art practice combines advanced dental technology with artistic precision to deliver outstanding results for every patient.</p>
+    <!-- Comprehensive SEO Content for Search Engines -->
+    <noscript>
+      <div style="max-width: 1200px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <header>
+          <h1>Best Cosmetic Dentist in Los Angeles - Dr. Alexie Aguil | Exquisite Dentistry</h1>
+          <p style="font-size: 18px; margin: 20px 0;">Transform your smile with Los Angeles' premier cosmetic dentist. Dr. Alexie Aguil specializes in porcelain veneers, teeth whitening, dental implants, and complete smile makeovers in Beverly Hills.</p>
+        </header>
+
+        <section style="margin: 40px 0;">
+          <h2>About Dr. Alexie Aguil - Leading Cosmetic Dentist in Los Angeles</h2>
+          <p>Dr. Alexie Aguil is a highly respected cosmetic dentist serving Los Angeles, Beverly Hills, and surrounding areas. With over a decade of experience in advanced cosmetic dentistry, Dr. Aguil has earned a reputation for creating stunning, natural-looking smile transformations that enhance both appearance and confidence.</p>
+          
+          <p>Educated at prestigious dental institutions and continuously trained in the latest cosmetic dental techniques, Dr. Aguil combines artistic vision with cutting-edge technology to deliver exceptional results. Her practice philosophy centers on understanding each patient's unique needs and creating personalized treatment plans that achieve their dream smile.</p>
+          
+          <p>Dr. Aguil is particularly renowned for her expertise in porcelain veneers, often called the "Hollywood smile" treatment, which has made her a sought-after dentist among celebrities, professionals, and anyone seeking a perfect smile in Los Angeles.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Comprehensive Cosmetic Dental Services in Beverly Hills</h2>
+          
+          <h3>Porcelain Veneers - The Ultimate Smile Makeover</h3>
+          <p>Our porcelain veneer treatments are among the most popular cosmetic dental procedures in Los Angeles. These ultra-thin, custom-crafted shells are bonded to the front of teeth to correct imperfections such as chips, gaps, stains, and misalignment. Dr. Aguil uses only premium materials and advanced digital imaging to ensure perfect fit, color, and shape for a natural-looking transformation.</p>
+          
+          <h3>Professional Teeth Whitening</h3>
+          <p>Achieve a brighter, whiter smile with our professional teeth whitening treatments. We offer both in-office power whitening sessions that can lighten teeth up to 8 shades in one visit, and custom take-home whitening kits for gradual, convenient treatment. Our whitening treatments are safe, effective, and designed to minimize sensitivity.</p>
+          
+          <h3>Dental Implants and Restoration</h3>
+          <p>Replace missing teeth with natural-looking dental implants. Dr. Aguil works with leading oral surgeons to provide comprehensive implant solutions, from single tooth replacement to full mouth reconstruction. Our implant-supported crowns, bridges, and dentures restore both function and aesthetics for a complete smile transformation.</p>
+          
+          <h3>Invisalign Clear Aligners</h3>
+          <p>Straighten your teeth discreetly with Invisalign clear aligners. As a certified Invisalign provider, Dr. Aguil creates custom treatment plans using advanced 3D imaging technology. Invisalign is perfect for busy professionals and adults who want to improve their smile without the appearance of traditional braces.</p>
+          
+          <h3>Dental Crowns and Bridges</h3>
+          <p>Restore damaged teeth with beautiful, durable dental crowns. Our all-ceramic crowns are crafted to match your natural teeth perfectly. For multiple missing teeth, dental bridges provide an excellent solution that restores both function and appearance while preventing adjacent teeth from shifting.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Advanced Technology and Techniques</h2>
+          <p>Exquisite Dentistry utilizes the latest dental technology to ensure precise, comfortable, and efficient treatments. Our Beverly Hills practice features digital X-rays, 3D imaging, computer-guided treatment planning, and same-day crown technology. This advanced equipment allows Dr. Aguil to provide more accurate diagnoses and superior treatment outcomes.</p>
+          
+          <p>We also employ minimally invasive techniques that preserve more of your natural tooth structure while achieving excellent cosmetic results. Digital smile design technology allows patients to preview their new smile before treatment begins, ensuring complete satisfaction with the final results.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Patient Experience and Comfort</h2>
+          <p>At Exquisite Dentistry, we understand that dental visits can cause anxiety for some patients. Our Beverly Hills practice is designed to provide a calming, spa-like environment where patients feel relaxed and comfortable. We offer sedation options for anxious patients and take time to explain each procedure thoroughly.</p>
+          
+          <p>Our team is dedicated to providing exceptional patient care from the initial consultation through follow-up visits. We work with patients to develop treatment plans that fit their budget and timeline, often offering flexible payment options and working with insurance providers.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Serving Los Angeles, Beverly Hills, and Surrounding Areas</h2>
+          <p>Conveniently located in Beverly Hills, Exquisite Dentistry serves patients throughout Los Angeles County, including West Hollywood, Santa Monica, Culver City, Century City, Brentwood, and Westwood. Our central location makes it easy for busy professionals and families to access world-class cosmetic dental care.</p>
+          
+          <p>We welcome patients from all over Southern California who are seeking the highest quality cosmetic dental treatments. Many of our patients travel from Orange County, Ventura County, and beyond to experience Dr. Aguil's exceptional care and results.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Schedule Your Consultation Today</h2>
+          <p>Ready to transform your smile? Contact Exquisite Dentistry today to schedule your personal consultation with Dr. Alexie Aguil. During your visit, we'll discuss your smile goals, examine your teeth, and create a customized treatment plan designed to achieve your perfect smile.</p>
+          
+          <p>Call us at (323) 928-1223 or visit our Beverly Hills office to learn more about how cosmetic dentistry can enhance your confidence and quality of life. We look forward to helping you achieve the beautiful, healthy smile you deserve.</p>
+        </section>
+
+        <section style="margin: 40px 0;">
+          <h2>Frequently Asked Questions</h2>
+          
+          <h3>How long do porcelain veneers last?</h3>
+          <p>With proper care, porcelain veneers typically last 10-15 years or longer. Dr. Aguil uses high-quality materials and precise techniques to ensure the longevity of your veneers. Regular dental checkups and good oral hygiene help maximize their lifespan.</p>
+          
+          <h3>Is teeth whitening safe?</h3>
+          <p>Professional teeth whitening performed by Dr. Aguil is completely safe when done properly. We use proven whitening agents and custom techniques to minimize sensitivity while achieving optimal results. Professional whitening is much safer and more effective than over-the-counter products.</p>
+          
+          <h3>How much does a smile makeover cost?</h3>
+          <p>The cost of a smile makeover varies depending on the treatments needed to achieve your goals. During your consultation, Dr. Aguil will provide a detailed treatment plan with transparent pricing. We offer financing options to make your dream smile affordable.</p>
+          
+          <h3>Do you accept insurance?</h3>
+          <p>We work with most major dental insurance plans and will help maximize your benefits. Our team will verify your coverage and explain what treatments are covered. We also offer flexible payment plans for cosmetic procedures not covered by insurance.</p>
+        </section>
+
+        <footer style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #ddd;">
+          <h3>Contact Information</h3>
+          <p><strong>Exquisite Dentistry - Dr. Alexie Aguil</strong></p>
+          <p>Beverly Hills, Los Angeles, CA</p>
+          <p>Phone: (323) 928-1223</p>
+          <p>Email: info@exquisitedentistryla.com</p>
+          <p>Website: https://exquisitedentistryla.com</p>
+          
+          <p style="margin-top: 20px;"><strong>Office Hours:</strong></p>
+          <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+          <p>Saturday: 8:00 AM - 4:00 PM</p>
+          <p>Sunday: Closed</p>
+          
+          <p style="margin-top: 20px;">Serving Los Angeles, Beverly Hills, West Hollywood, Santa Monica, Century City, Culver City, Brentwood, Westwood, and surrounding areas with premier cosmetic dental care.</p>
+        </footer>
+      </div>
+    </noscript>
+
+    <!-- Enhanced SEO content for crawlers -->
+    <div class="visually-hidden">
+      <h1>Dr. Alexie Aguil - Premier Cosmetic Dentist in Los Angeles and Beverly Hills</h1>
+      <p>Experience the artistry of cosmetic dentistry with Dr. Alexie Aguil, Los Angeles' most trusted cosmetic dentist. Specializing in porcelain veneers, professional teeth whitening, dental implants, Invisalign, and complete smile makeovers for patients throughout Beverly Hills, West Hollywood, Santa Monica, and greater Los Angeles area.</p>
       
-      <h3>Comprehensive Cosmetic Dental Services</h3>
-      <p>Exquisite Dentistry offers a complete range of cosmetic dental treatments designed to transform your smile:</p>
-      <ul>
-        <li>Porcelain Veneers - Custom-designed ultra-thin shells that create perfect, natural-looking teeth</li>
-        <li>Dental Implants - Permanent tooth replacement solutions using titanium implants and porcelain crowns</li>
-        <li>Professional Teeth Whitening - In-office and take-home whitening systems for brighter, whiter smiles</li>
-        <li>Smile Makeovers - Comprehensive aesthetic dental transformations combining multiple treatments</li>
-        <li>Dental Crowns and Bridges - High-quality restorations that restore function and beauty</li>
-        <li>Invisalign Clear Aligners - Discreet orthodontic treatment for straighter teeth</li>
-        <li>Composite Bonding - Conservative tooth reshaping and color correction</li>
-        <li>Gum Contouring - Laser gum reshaping for improved smile proportions</li>
-      </ul>
+      <h2>Award-Winning Cosmetic Dental Practice</h2>
+      <p>Exquisite Dentistry has earned recognition as one of Los Angeles' leading cosmetic dental practices. Dr. Aguil's commitment to excellence, combined with state-of-the-art technology and personalized patient care, has made our Beverly Hills practice the destination for smile transformations. We serve discerning patients who demand the highest quality cosmetic dental treatments available in Southern California.</p>
       
-      <h3>Why Choose Dr. Alexie Aguil for Your Cosmetic Dentistry</h3>
-      <p>Dr. Aguil is recognized as one of Los Angeles's leading cosmetic dentists, known for exceptional attention to detail and personalized patient care. Our Beverly Hills location provides a luxurious, comfortable environment where patients receive individualized treatment plans tailored to their specific goals and needs. We use only the highest quality materials and latest techniques to ensure long-lasting, beautiful results.</p>
-      
-      <h3>Advanced Technology and Techniques</h3>
-      <p>Our practice utilizes cutting-edge dental technology including digital smile design, 3D imaging, laser dentistry, and computer-guided implant placement. These advanced tools allow Dr. Aguil to provide precise, predictable results while maximizing patient comfort and minimizing treatment time.</p>
-      
-      <h3>Patient-Centered Approach</h3>
-      <p>At Exquisite Dentistry, we believe every patient deserves a beautiful, healthy smile. Our team takes time to understand your aesthetic goals and concerns, providing detailed consultations and treatment planning. We work with patients to create stunning smile transformations that look natural and enhance facial harmony.</p>
-      
-      <h3>Location and Accessibility</h3>
-      <p>Conveniently located in Beverly Hills, we serve patients throughout Los Angeles County including West Hollywood, Santa Monica, Culver City, and surrounding communities. Our modern facility features the latest dental equipment and maintains the highest standards of sterilization and safety.</p>
+      <h3>Comprehensive Smile Makeover Services</h3>
+      <p>Our full-service cosmetic dental practice offers everything needed for complete smile transformations, including porcelain veneers, professional teeth whitening, dental implants, Invisalign clear aligners, dental crowns, dental bridges, gum contouring, and full mouth reconstruction. Each treatment is customized to achieve natural-looking, beautiful results that enhance facial aesthetics and boost confidence.</p>
     </div>
     
     <div id="root" class="no-js"></div>
