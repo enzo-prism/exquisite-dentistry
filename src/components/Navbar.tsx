@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import ImageComponent from '@/components/Image';
 import ScrollProgress from './ScrollProgress';
+import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [originalBodyOverflow, setOriginalBodyOverflow] = useState<string>('');
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const lastMenuLinkRef = useRef<HTMLButtonElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -20,24 +26,98 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle body scroll when mobile menu is open
+  // Enhanced body scroll management with position preservation
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Store original state and scroll position
+      setOriginalBodyOverflow(document.body.style.overflow);
+      setScrollPosition(window.scrollY);
+      
+      // Prevent scrolling
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = '';
+      // Restore original state and scroll position
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      
+      // Restore scroll position smoothly
+      if (scrollPosition > 0) {
+        window.scrollTo(0, scrollPosition);
+      }
     }
     
     return () => {
+      // Cleanup on unmount
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     };
+  }, [isMobileMenuOpen, originalBodyOverflow, scrollPosition]);
+
+  // Handle window resize to close mobile menu on desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [isMobileMenuOpen]);
 
-  // Close mobile menu when clicking outside or on links
-  const closeMobileMenu = () => {
+  // Enhanced mobile menu close with focus restoration
+  const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
-  };
+    
+    // Restore focus to menu button when closing
+    setTimeout(() => {
+      menuButtonRef.current?.focus();
+    }, 100);
+  }, []);
+
+  // Focus management for accessibility
+  const handleMenuOpen = useCallback(() => {
+    setIsMobileMenuOpen(true);
+    
+    // Focus first menu item after opening
+    setTimeout(() => {
+      firstMenuLinkRef.current?.focus();
+    }, 100);
+  }, []);
+
+  // Keyboard navigation handler
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (!isMobileMenuOpen) return;
+    
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+    }
+    
+    // Tab trap logic
+    if (e.key === 'Tab') {
+      const focusableElements = document.querySelectorAll(
+        '[data-mobile-menu] a, [data-mobile-menu] button'
+      );
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    }
+  }, [isMobileMenuOpen, closeMobileMenu]);
 
   // Toggle dropdown menus
   const toggleDropdown = (dropdown: string) => {
@@ -176,128 +256,276 @@ const Navbar = () => {
               </Button>
             </nav>
           
-            {/* Mobile Menu Button */}
+            {/* Enhanced Mobile Menu Button */}
             <button
-              className="md:hidden p-3 text-white hover:text-gold focus:outline-none z-[110]"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              ref={menuButtonRef}
+              className="md:hidden relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform"
+              style={{ 
+                minWidth: '48px', 
+                minHeight: '48px',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={isMobileMenuOpen ? closeMobileMenu : handleMenuOpen}
+              onKeyDown={handleKeyDown}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <span className="sr-only">
+                {isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              </span>
+              <div className="transform transition-transform duration-200 hover:scale-110">
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </div>
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation - Full Screen Overlay */}
+        {/* Enhanced Mobile Navigation with Swipe Support */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-[100] md:hidden">
-            {/* Backdrop */}
+          <div 
+            className="fixed inset-0 z-[110] md:hidden"
+            id="mobile-menu"
+            data-mobile-menu
+            onKeyDown={handleKeyDown}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-menu-title"
+          >
+            {/* Enhanced Backdrop with Animation */}
             <div 
-              className="absolute inset-0 bg-black/90" 
+              className="absolute inset-0 bg-black/95 backdrop-blur-sm animate-fade-in" 
               onClick={closeMobileMenu}
+              onTouchStart={(e) => e.stopPropagation()}
+              style={{ WebkitTapHighlightColor: 'transparent' }}
             />
             
-            {/* Menu Panel */}
-            <div className="relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20" style={{ minHeight: '100dvh' }}>              
-              {/* Navigation Links - Scrollable Area */}
-              <div className="flex-1 overflow-y-auto px-4 py-4">
-                <nav className="flex flex-col w-full">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      className="w-full block py-3 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md border-b border-white/10"
-                      onClick={closeMobileMenu}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                  
-                  {/* Clients Section */}
-                  <div className="w-full border-b border-white/10 mb-1">
-                    <button
-                      className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
-                      onClick={() => toggleDropdown('clients')}
-                    >
-                      Clients
-                      <ChevronDown 
-                        size={18} 
-                        className={`transition-transform duration-200 ${
-                          openDropdown === 'clients' ? 'rotate-180' : ''
-                        }`} 
-                      />
-                    </button>
-                    
-                    {openDropdown === 'clients' && (
-                      <div className="w-full bg-black/50 rounded-md ml-4 mb-2">
-                        {clientsDropdown.map((item) => (
-                          <Link
-                            key={item.to}
-                            to={item.to}
-                            className="w-full block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
-                            onClick={closeMobileMenu}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* More Section */}
-                  <div className="w-full border-b border-white/10 mb-1">
-                    <button
-                      className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:text-gold transition-colors"
-                      onClick={() => toggleDropdown('more')}
-                    >
-                      More
-                      <ChevronDown 
-                        size={18} 
-                        className={`transition-transform duration-200 ${
-                          openDropdown === 'more' ? 'rotate-180' : ''
-                        }`} 
-                      />
-                    </button>
-                    
-                    {openDropdown === 'more' && (
-                      <div className="w-full bg-black/50 rounded-md ml-4 mb-2">
-                        {moreDropdown.map((item) => (
-                          <Link
-                            key={item.to}
-                            to={item.to}
-                            className="w-full block py-2 px-4 text-sm text-white hover:text-gold hover:bg-white/10 transition-colors rounded-md"
-                            onClick={closeMobileMenu}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </nav>
-              </div>
-              
-              {/* CTA Button - Mobile - Fixed at bottom */}
-              <div className="flex-shrink-0 p-4 border-t border-white/10 bg-black/95" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
-                <Button 
-                  asChild 
-                  size="lg" 
-                  className="w-full bg-gold text-white hover:bg-gold/90"
-                >
-                  <a 
-                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    onClick={closeMobileMenu}
-                  >
-                    Book an Appointment
-                  </a>
-                </Button>
-              </div>
-            </div>
+            {/* Enhanced Menu Panel with Swipe Support */}
+            <MobileMenuPanel 
+              onClose={closeMobileMenu}
+              navLinks={navLinks}
+              clientsDropdown={clientsDropdown}
+              moreDropdown={moreDropdown}
+              openDropdown={openDropdown}
+              toggleDropdown={toggleDropdown}
+              firstMenuLinkRef={firstMenuLinkRef}
+              lastMenuLinkRef={lastMenuLinkRef}
+            />
           </div>
         )}
       </header>
     </>
+  );
+};
+
+// Enhanced Mobile Menu Panel Component with Swipe Support
+const MobileMenuPanel = ({ 
+  onClose, 
+  navLinks, 
+  clientsDropdown, 
+  moreDropdown, 
+  openDropdown, 
+  toggleDropdown,
+  firstMenuLinkRef,
+  lastMenuLinkRef
+}: {
+  onClose: () => void;
+  navLinks: Array<{ to: string; label: string }>;
+  clientsDropdown: Array<{ to: string; label: string }>;
+  moreDropdown: Array<{ to: string; label: string }>;
+  openDropdown: string | null;
+  toggleDropdown: (dropdown: string) => void;
+  firstMenuLinkRef: React.RefObject<HTMLAnchorElement>;
+  lastMenuLinkRef: React.RefObject<HTMLButtonElement>;
+}) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  
+  // Swipe gesture support
+  const { ref: swipeRef, gestureState } = useSwipeGestures({
+    onSwipeLeft: () => {
+      onClose();
+    },
+    threshold: 100
+  });
+
+  // Calculate deltaX for swipe visual feedback
+  const deltaX = gestureState.currentX - gestureState.startX;
+
+  // Combine refs for swipe functionality
+  useEffect(() => {
+    if (panelRef.current && swipeRef.current) {
+      swipeRef.current = panelRef.current;
+    }
+  }, []);
+
+  return (
+    <div 
+      ref={panelRef}
+      className={`relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20 transform transition-transform duration-300 will-change-transform ${
+        gestureState.isDragging ? 'transition-none' : ''
+      }`}
+      style={{ 
+        minHeight: '100dvh',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        transform: gestureState.isDragging && deltaX < 0 
+          ? `translateX(${Math.min(0, deltaX)}px)` 
+          : 'translateX(0)'
+      }}
+    >
+      <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
+      
+      {/* Navigation Links - Scrollable Area */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 scroll-smooth">
+        <nav className="flex flex-col w-full" role="navigation">
+          {navLinks.map((link, index) => (
+            <Link
+              key={link.to}
+              ref={index === 0 ? firstMenuLinkRef : undefined}
+              to={link.to}
+              className="w-full block py-4 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              style={{ 
+                minHeight: '48px',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={onClose}
+              tabIndex={0}
+            >
+              <span className="font-medium">{link.label}</span>
+            </Link>
+          ))}
+          
+          {/* Clients Section */}
+          <div className="w-full border-b border-white/10 mb-1">
+            <button
+              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              style={{ 
+                minHeight: '48px',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={() => toggleDropdown('clients')}
+              aria-expanded={openDropdown === 'clients'}
+              aria-controls="clients-submenu"
+            >
+              <span className="font-medium">Clients</span>
+              <ChevronDown 
+                size={18} 
+                className={`transition-transform duration-300 ${
+                  openDropdown === 'clients' ? 'rotate-180' : ''
+                }`} 
+              />
+            </button>
+            
+            {openDropdown === 'clients' && (
+              <div 
+                id="clients-submenu"
+                className="w-full bg-black/50 rounded-md ml-4 mb-2 animate-accordion-down"
+                role="region"
+                aria-labelledby="clients-button"
+              >
+                {clientsDropdown.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    style={{ 
+                      minHeight: '44px',
+                      WebkitTapHighlightColor: 'transparent'
+                    }}
+                    onClick={onClose}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* More Section */}
+          <div className="w-full border-b border-white/10 mb-1">
+            <button
+              ref={lastMenuLinkRef}
+              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              style={{ 
+                minHeight: '48px',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={() => toggleDropdown('more')}
+              aria-expanded={openDropdown === 'more'}
+              aria-controls="more-submenu"
+            >
+              <span className="font-medium">More</span>
+              <ChevronDown 
+                size={18} 
+                className={`transition-transform duration-300 ${
+                  openDropdown === 'more' ? 'rotate-180' : ''
+                }`} 
+              />
+            </button>
+            
+            {openDropdown === 'more' && (
+              <div 
+                id="more-submenu"
+                className="w-full bg-black/50 rounded-md ml-4 mb-2 animate-accordion-down"
+                role="region"
+                aria-labelledby="more-button"
+              >
+                {moreDropdown.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    style={{ 
+                      minHeight: '44px',
+                      WebkitTapHighlightColor: 'transparent'
+                    }}
+                    onClick={onClose}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </nav>
+      </div>
+      
+      {/* Enhanced CTA Button - Mobile - Fixed at bottom */}
+      <div 
+        className="flex-shrink-0 p-4 border-t border-white/10 bg-black/95" 
+        style={{ 
+          paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 20px))'
+        }}
+      >
+        <Button 
+          asChild 
+          size="lg" 
+          className="w-full bg-gold text-white hover:bg-gold/90 active:bg-gold/80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
+          style={{ 
+            minHeight: '48px',
+            WebkitTapHighlightColor: 'transparent'
+          }}
+        >
+          <a 
+            href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={onClose}
+          >
+            Book an Appointment
+          </a>
+        </Button>
+      </div>
+      
+      {/* Swipe Indicator */}
+      {gestureState.isDragging && deltaX < -50 && (
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/60 animate-pulse">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">Swipe to close</span>
+            <ChevronDown className="rotate-90" size={16} />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
