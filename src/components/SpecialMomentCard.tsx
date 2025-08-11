@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
-import SpecialMomentImage from './SpecialMomentImage';
+import ResponsiveSpecialMomentImage from './ResponsiveSpecialMomentImage';
 
 interface SpecialMomentCardProps {
   title: string;
@@ -25,25 +25,36 @@ const SpecialMomentCard: React.FC<SpecialMomentCardProps> = ({
   iconBgColor = "bg-gold/30"
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-sm shadow-lg group transform transition-transform hover:scale-[1.01] duration-300">
-      <div className="relative aspect-[4/5] min-h-[400px] md:min-h-[500px]">
-        <SpecialMomentImage 
+    <div className="relative overflow-hidden rounded-sm shadow-lg group">
+      {/* Mobile-optimized container with flexible height */}
+      <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+        <ResponsiveSpecialMomentImage 
           src={imageSrc}
           alt={imageAlt}
           className="absolute inset-0 w-full h-full rounded-sm"
+          priority={true}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col items-center justify-center text-white p-6 md:p-8">
-          <div className={`w-14 h-14 md:w-16 md:h-16 rounded-full ${iconBgColor} flex items-center justify-center mb-4 md:mb-6 shadow-lg`}>
-            <Icon className="h-6 w-6 md:h-7 md:w-7 text-gold" />
+        
+        {/* Mobile-optimized overlay with better performance */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col items-center justify-center text-white p-4 sm:p-6 md:p-8">
+          {/* Responsive icon */}
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full ${iconBgColor} flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg`}>
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-gold" />
           </div>
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-3 text-center">
+          
+          {/* Responsive typography */}
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-2 sm:mb-3 text-center leading-tight">
             {title}
           </h3>
-          <p className="text-center text-white/95 mb-6 leading-relaxed text-sm md:text-base max-w-sm">
+          
+          {/* Mobile-optimized description */}
+          <p className="text-center text-white/95 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base max-w-xs sm:max-w-sm px-2">
             {description}
           </p>
+          
+          {/* Touch-optimized button */}
           <Link to={buttonLink} className="inline-flex">
-            <div className="bg-gold hover:bg-gold/90 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-sm font-medium transition-colors duration-300 shadow-lg hover:shadow-xl text-sm md:text-base">
+            <div className="bg-gold hover:bg-gold/90 active:bg-gold/80 text-white px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-sm font-medium transition-colors duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base min-h-[44px] flex items-center justify-center">
               {buttonText}
             </div>
           </Link>
