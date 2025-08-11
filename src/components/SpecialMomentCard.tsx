@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
-import ResponsiveSpecialMomentImage from './ResponsiveSpecialMomentImage';
+import SimpleSpecialMomentImage from './SimpleSpecialMomentImage';
 
 interface SpecialMomentCardProps {
   title: string;
@@ -26,13 +26,12 @@ const SpecialMomentCard: React.FC<SpecialMomentCardProps> = ({
 }) => {
   return (
     <div className="relative overflow-hidden rounded-sm shadow-lg group">
-      {/* Mobile-optimized container with flexible height */}
-      <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
-        <ResponsiveSpecialMomentImage 
+      {/* Responsive container with aspect ratio */}
+      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/6]">
+        <SimpleSpecialMomentImage 
           src={imageSrc}
           alt={imageAlt}
           className="absolute inset-0 w-full h-full rounded-sm"
-          priority={true}
         />
         
         {/* Mobile-optimized overlay with better performance */}
