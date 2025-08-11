@@ -34,24 +34,24 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
       {/* Hover Glow Effect */}
       <div className={`absolute inset-0 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
       
-      {/* Featured Image */}
-      {post.featuredImage && (
-        <div className="aspect-[16/10] w-full overflow-hidden bg-muted relative">
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          {/* View Icon on Hover - Positioned to avoid featured badge conflict */}
-          <div className={`absolute ${featured ? 'top-4 left-4' : 'top-4 right-4'} p-2 bg-white/20 backdrop-blur-sm rounded-full transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <Eye className="w-4 h-4 text-white" />
+      {/* Enhanced Header with Category-Based Gradient */}
+      <div className="aspect-[16/10] w-full overflow-hidden relative bg-gradient-to-br from-gold/20 via-gold/10 to-background border-b border-border/30">
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="p-6 bg-gold/10 rounded-full backdrop-blur-sm border border-gold/20">
+            <Clock className="w-8 h-8 text-gold" />
           </div>
         </div>
-      )}
+        
+        {/* Category indicator in corner */}
+        <div className="absolute bottom-4 left-4">
+          <Badge className="bg-gold/20 text-gold border-gold/30 backdrop-blur-sm">
+            {post.category}
+          </Badge>
+        </div>
+      </div>
       
-      <CardContent className="p-4 md:p-6 space-y-4 relative flex-1 flex flex-col">
+      <CardContent className="p-6 md:p-8 space-y-5 relative flex-1 flex flex-col">
         {/* Enhanced Meta Information */}
         <div className="flex flex-wrap items-center gap-3 text-sm">
           <Badge 
@@ -71,14 +71,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         </div>
 
         {/* Enhanced Title */}
-        <h3 className={`text-lg md:text-xl font-bold text-card-foreground transition-all duration-300 leading-tight blog-card-title ${featured ? 'xl:text-2xl' : ''}`}>
+        <h3 className={`text-xl md:text-2xl font-bold text-card-foreground transition-all duration-300 leading-tight blog-card-title ${featured ? 'xl:text-3xl' : ''}`}>
           <span className="bg-gradient-to-r from-foreground to-foreground group-hover:from-gold group-hover:to-gold/80 bg-clip-text group-hover:text-transparent transition-all duration-300">
             {post.title}
           </span>
         </h3>
 
         {/* Enhanced Excerpt */}
-        <p className="text-muted-foreground leading-relaxed text-sm md:text-base flex-grow blog-card-excerpt">
+        <p className="text-muted-foreground leading-relaxed text-base md:text-lg flex-grow blog-card-excerpt">
           {post.excerpt}
         </p>
 
