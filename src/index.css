@@ -213,9 +213,7 @@ body {
   /* Fix any potential purple background issues on gradients */
   div[class*="bg-gradient"], 
   div[class*="from-"], 
-  div[class*="to-"],
-  .bg-primary,
-  .bg-secondary {
+  div[class*="to-"] {
     background-color: hsl(var(--background)) !important;
   }
 
