@@ -68,71 +68,72 @@ const Blog = () => {
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 
-      {/* Enhanced Mobile-Perfect Hero Section */}
+      {/* Mobile-Perfect Hero Section - Fixed Typography */}
       <header 
         ref={headerRef}
         className="relative overflow-hidden"
-        style={{ paddingTop: 'clamp(3rem, 8vw, 7rem)', paddingBottom: 'clamp(3rem, 8vw, 7rem)' }}
+        style={{ 
+          paddingTop: 'clamp(3rem, 8vh, 6rem)', 
+          paddingBottom: 'clamp(3rem, 8vh, 6rem)',
+          minHeight: 'clamp(400px, 60vh, 600px)'
+        }}
       >
-        {/* Optimized Multi-layer Background */}
+        {/* Simplified Background for Better Performance */}
         <div className="absolute inset-0">
-          {/* Primary gradient layer */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-secondary/[0.08] to-accent/[0.04]"></div>
-          {/* Depth gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-background/70"></div>
-          {/* Animated orbs - optimized for mobile */}
-          <div className="absolute top-0 left-1/4 bg-primary/[0.06] rounded-full blur-3xl animate-pulse will-change-transform"
-               style={{ 
-                 width: 'clamp(12rem, 25vw, 24rem)', 
-                 height: 'clamp(12rem, 25vw, 24rem)' 
-               }}></div>
-          <div className="absolute bottom-0 right-1/4 bg-secondary/[0.06] rounded-full blur-2xl animate-pulse delay-1000 will-change-transform"
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-background to-secondary/[0.02]"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/95"></div>
+          {/* Single optimized decoration */}
+          <div className="absolute top-1/4 right-1/3 bg-primary/[0.04] rounded-full blur-3xl opacity-60"
                style={{ 
                  width: 'clamp(8rem, 20vw, 16rem)', 
                  height: 'clamp(8rem, 20vw, 16rem)' 
                }}></div>
         </div>
         
-        {/* Content Container */}
-        <div className={`relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Optimized Content Container */}
+        <div className={`relative z-10 max-w-6xl mx-auto text-center transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+             style={{ padding: 'clamp(1rem, 4vw, 2rem)' }}>
           
-          {/* Hero Title - Fluid Typography */}
-          <div className="mb-6 md:mb-8 lg:mb-10">
-            <div className="flex items-center justify-center mb-4 md:mb-6">
-              <Sparkles className="text-primary animate-pulse" 
+          {/* Fixed Typography System */}
+          <div style={{ marginBottom: 'clamp(2rem, 6vw, 4rem)' }}>
+            {/* Title with Conservative Scaling */}
+            <div className="flex items-center justify-center flex-wrap gap-2 mb-4">
+              <Sparkles className="text-primary flex-shrink-0" 
                        style={{ 
-                         width: 'clamp(1.5rem, 4vw, 2.5rem)', 
-                         height: 'clamp(1.5rem, 4vw, 2.5rem)',
-                         marginRight: 'clamp(0.5rem, 2vw, 1rem)'
+                         width: 'clamp(1.25rem, 3vw, 1.75rem)', 
+                         height: 'clamp(1.25rem, 3vw, 1.75rem)'
                        }} />
-              <h1 className="font-bold bg-gradient-to-r from-foreground via-secondary to-primary bg-clip-text text-transparent leading-[0.9]"
+              <h1 className="font-bold bg-gradient-to-r from-foreground via-secondary to-primary bg-clip-text text-transparent text-center"
                   style={{ 
-                    fontSize: 'clamp(2.25rem, 7vw + 0.5rem, 4.5rem)',
-                    letterSpacing: '-0.02em'
+                    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
+                    lineHeight: 'clamp(1.1, 1.1, 1.2)',
+                    letterSpacing: '-0.015em',
+                    wordBreak: 'keep-all'
                   }}>
                 Dental Blog
               </h1>
-              <Sparkles className="text-primary animate-pulse" 
+              <Sparkles className="text-primary flex-shrink-0" 
                        style={{ 
-                         width: 'clamp(1.5rem, 4vw, 2.5rem)', 
-                         height: 'clamp(1.5rem, 4vw, 2.5rem)',
-                         marginLeft: 'clamp(0.5rem, 2vw, 1rem)'
+                         width: 'clamp(1.25rem, 3vw, 1.75rem)', 
+                         height: 'clamp(1.25rem, 3vw, 1.75rem)'
                        }} />
             </div>
             
-            {/* Subtitle with Perfect Responsive Scaling */}
-            <p className="text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light"
+            {/* Subtitle with Better Line Height */}
+            <p className="text-muted-foreground max-w-4xl mx-auto font-light"
                style={{ 
-                 fontSize: 'clamp(1rem, 3vw + 0.25rem, 1.5rem)',
-                 lineHeight: '1.6'
+                 fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)',
+                 lineHeight: 'clamp(1.4, 1.5, 1.6)',
+                 marginBottom: 'clamp(1rem, 3vw, 1.5rem)'
                }}>
               Expert insights, cutting-edge techniques, and personalized advice for your perfect smile journey
             </p>
             
-            {/* Supporting Text */}
-            <div className="mt-4 md:mt-6 text-muted-foreground/80"
+            {/* Supporting Text with Better Spacing */}
+            <div className="text-muted-foreground/80"
                  style={{ 
-                   fontSize: 'clamp(0.875rem, 2vw + 0.25rem, 1.125rem)'
+                   fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+                   lineHeight: '1.5'
                  }}>
               Discover the latest in cosmetic dentistry and oral health
             </div>
