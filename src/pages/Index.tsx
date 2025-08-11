@@ -69,25 +69,19 @@ const IndexPage: React.FC = () => {
       <SeoStructuredData />
       <ReviewStructuredData />
       
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <VideoHero 
-          title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
-          subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
-          primaryCta={{
-            text: "Schedule a Consultation",
-            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-          }}
-          secondaryCta={{
-            text: "Discover Our Practice",
-            href: "/about"
-          }}
-          useGradient={false}
-        />
-      </motion.div>
+      <VideoHero 
+        title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
+        subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
+        primaryCta={{
+          text: "Schedule a Consultation",
+          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+        }}
+        secondaryCta={{
+          text: "Discover Our Practice",
+          href: "/about"
+        }}
+        useGradient={false}
+      />
       
       <motion.div
         initial={{ opacity: 0 }}
