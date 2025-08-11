@@ -18,7 +18,7 @@ export const specialMoments: SpecialMoment[] = [
     description: 'Look radiant on your special day with our comprehensive wedding smile makeover packages',
     buttonText: 'Plan Your Perfect Smile',
     buttonLink: '/wedding',
-    imageSrc: '/lovable-uploads/c196ed70-82dd-480f-b40d-760be7e2b38f.png',
+    imageSrc: '/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png',
     imageAlt: 'Radiant bride with genuine laugh and perfect wedding day smile - professional dental makeover results',
     icon: Heart
   },
@@ -28,7 +28,7 @@ export const specialMoments: SpecialMoment[] = [
     description: 'Celebrate your achievements with confidence - get graduation-ready with our smile enhancement treatments',
     buttonText: 'Get Graduation Ready',
     buttonLink: '/graduation',
-    imageSrc: '/lovable-uploads/graduation smile.webp',
+    imageSrc: '/lovable-uploads/graduation%20smile.webp',
     imageAlt: 'Happy graduate with perfect smile - ready for new beginnings',
     icon: GraduationCap
   }

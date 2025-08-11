@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
-import SimpleSpecialMomentImage from './SimpleSpecialMomentImage';
+import BulletproofImage from './BulletproofImage';
 
 interface SpecialMomentCardProps {
   title: string;
@@ -28,7 +28,7 @@ const SpecialMomentCard: React.FC<SpecialMomentCardProps> = ({
     <div className="relative overflow-hidden rounded-sm shadow-lg group">
       {/* Responsive container with aspect ratio */}
       <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/6]">
-        <SimpleSpecialMomentImage 
+        <BulletproofImage 
           src={imageSrc}
           alt={imageAlt}
           className="absolute inset-0 w-full h-full rounded-sm"
