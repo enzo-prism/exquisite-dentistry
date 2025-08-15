@@ -17,6 +17,11 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/invisalign.html', to: '/services#invisalign', exact: true },
   { from: '/z-test_value.html', to: '/', exact: true },
   
+  // Google-indexed URLs that need redirects
+  { from: '/about-us/about-dr-alexie-aguil/', to: '/about', exact: true },
+  { from: '/5-healthy-habits-for-your-teeth/', to: '/blog', exact: true },
+  { from: '/about-us/', to: '/about', exact: true },
+  
   // Pattern-based redirects (order matters - specific to general)
   { from: 'old-veneers', to: '/veneers' }, // Changed to avoid conflict with valid routes
   { from: 'whitening', to: '/zoom-whitening' },

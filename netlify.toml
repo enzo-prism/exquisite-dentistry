@@ -80,6 +80,22 @@
   to = "/"
   status = 301
 
+# Google-indexed URLs that need redirects
+[[redirects]]
+  from = "/about-us/about-dr-alexie-aguil/"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/5-healthy-habits-for-your-teeth/"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/about-us/"
+  to = "/about"
+  status = 301
+
 # Pattern-based catch-alls for other locations
 [[redirects]]
   from = "/*-dentist.html"
