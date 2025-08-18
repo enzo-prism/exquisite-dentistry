@@ -453,3 +453,55 @@ a:hover {
 .blog-link:hover {
   color: hsl(var(--gold));
 }
+
+/* Missing animation classes for scroll animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gpu-slide-in {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gpu-slide-in.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.scale-in.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Mobile-specific animation adjustments */
+@media (max-width: 768px) {
+  .fade-in,
+  .gpu-slide-in,
+  .scale-in {
+    /* Faster animations on mobile for better perceived performance */
+    transition-duration: 0.3s;
+  }
+  
+  /* Ensure animations work even when GPU acceleration is disabled */
+  .fade-in.in-view,
+  .gpu-slide-in.in-view,
+  .scale-in.in-view {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+}
