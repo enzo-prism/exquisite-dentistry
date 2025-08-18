@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
-import SEOMetaTags from '@/components/seo/SEOMetaTags';
+
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 
 // Icon mapping helper
@@ -33,7 +33,7 @@ const Services = () => {
       
       <PageSEO 
         title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
-        description="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil."
+        description="Explore our cosmetic and restorative services—porcelain veneers, teeth whitening, Invisalign, crowns and implants—tailored to your goals in Los Angeles."
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
         path="/services"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

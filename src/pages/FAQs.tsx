@@ -5,7 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
-import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import PageSEO from '@/components/seo/PageSEO';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Scheduling URL constant - consistent across site
@@ -73,11 +73,11 @@ const FAQs = () => {
 
   return (
     <>
-      <SEOMetaTags
+      <PageSEO
         title="Dental FAQ Los Angeles | Common Questions Answered"
-        description="Get answers to frequently asked questions about cosmetic dentistry, dental procedures, insurance, and what to expect at Exquisite Dentistry in Los Angeles."
+        description="Frequently asked questions about cosmetic dentistry, porcelain veneers, teeth whitening, and dental treatments at Exquisite Dentistry in Beverly Hills."
         keywords="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions"
-        canonical="https://exquisitedentistryla.com/faqs"
+        path="/faqs"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
       

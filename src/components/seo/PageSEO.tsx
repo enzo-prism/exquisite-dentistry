@@ -5,7 +5,7 @@ const BASE_URL = 'https://exquisitedentistryla.com';
 
 interface PageSEOProps {
   title: string;
-  description: string;
+  description: string; // REQUIRED - no default allowed
   path?: string;
   keywords?: string;
   ogImage?: string;
@@ -16,6 +16,38 @@ interface PageSEOProps {
   noindex?: boolean;
   nofollow?: boolean;
 }
+
+// Sanitize meta description
+const toMeta = (input: string, max = 155) => {
+  const text = (input || "")
+    .replace(/<[^>]+>/g, " ")     // strip HTML
+    .replace(/\s+/g, " ")
+    .replace(/["<>]/g, "")
+    .trim();
+  if (text.length <= max) return text;
+  return text.slice(0, max).replace(/\s+\S*$/, "");
+};
+
+// Dev-time duplicate detection
+const trackMeta = (url: string, desc: string) => {
+  if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+    // @ts-ignore
+    window.__metaTracker = window.__metaTracker || new Map();
+    // @ts-ignore
+    const seen = window.__metaTracker;
+    const key = (desc || "").trim().toLowerCase();
+    const arr = seen.get(key) || [];
+    arr.push(url);
+    seen.set(key, arr);
+    
+    // Report duplicates
+    for (const [descKey, urls] of seen) {
+      if (urls.length > 1) {
+        console.warn("Duplicate meta description detected:", descKey, "on URLs:", urls);
+      }
+    }
+  }
+};
 
 export const PageSEO: React.FC<PageSEOProps> = ({
   title,
@@ -55,11 +87,21 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   };
 
   const canonicalUrl = buildCanonicalUrl(path);
+  const sanitizedDescription = toMeta(description);
 
-  // Runtime guard to prevent duplicate canonicals
+  // Dev tracking
+  if (process.env.NODE_ENV !== 'production') {
+    trackMeta(canonicalUrl, sanitizedDescription);
+  }
+
+  // Runtime guards to prevent duplicates
   const shouldRenderCanonical = 
     typeof document === 'undefined' || 
     !document.querySelector('link[rel="canonical"]');
+    
+  const shouldRenderDescription =
+    typeof document === 'undefined' ||
+    !document.querySelector('meta[name="description"]');
 
   const robotsContent = [
     noindex ? 'noindex' : 'index',
@@ -70,7 +112,7 @@ export const PageSEO: React.FC<PageSEOProps> = ({
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{title}</title>
-      <meta name="description" content={description} />
+      {shouldRenderDescription && <meta name="description" content={sanitizedDescription} />}
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={robotsContent} />
       
@@ -81,14 +123,14 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={sanitizedDescription} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="Exquisite Dentistry" />
       
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={sanitizedDescription} />
       <meta name="twitter:image" content={ogImage} />
       
       {/* Article specific meta tags */}

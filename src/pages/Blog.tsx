@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogListingStructuredData from '@/components/BlogListingStructuredData';
-import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import PageSEO from '@/components/seo/PageSEO';
 import PageLoader from '@/components/ui/page-loader';
 import VideoHero from '@/components/VideoHero';
 import { usePerformance } from '@/hooks/use-performance';
@@ -45,11 +45,11 @@ const Blog = () => {
     <div className="min-h-screen bg-background">
       <BlogListingStructuredData posts={allPosts} />
       
-      <SEOMetaTags
+      <PageSEO
         title="Dental Blog | Expert Insights & Latest Techniques | Exquisite Dentistry"
-        description="Discover the latest in cosmetic dentistry, oral health tips, and expert insights from Dr. Alexie Aguil. Stay informed about cutting-edge dental techniques and personalized care."
+        description="Expert dental insights, tips, and the latest cosmetic dentistry techniques from Dr. Alexie Aguil. Learn about veneers, whitening, and smile makeovers."
         keywords="dental blog, cosmetic dentistry, oral health, dental tips, Dr. Alexie Aguil, dental expert insights, Beverly Hills dentist"
-        canonical="https://exquisitedentistryla.com/blog"
+        path="/blog"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 

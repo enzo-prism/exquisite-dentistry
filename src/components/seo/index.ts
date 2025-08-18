@@ -5,5 +5,5 @@ export { default as ImageGalleryStructuredData } from './ImageGalleryStructuredD
 export { default as MedicalProcedureStructuredData } from './MedicalProcedureStructuredData';
 export { default as OptimizedImage } from './OptimizedImage';
 export { default as PerformanceOptimizer } from './PerformanceOptimizer';
-export { default as SEOMetaTags } from './SEOMetaTags';
+
 export { default as SEOProvider } from './SEOProvider';

@@ -34,7 +34,7 @@ const StaticSitemap = () => {
     <>
       <Helmet>
         <title>Site Map | Exquisite Dentistry</title>
-        <meta name="description" content="Complete site navigation for Exquisite Dentistry - find all our pages including services, treatments, patient resources, and dental care information." />
+        
         
         <meta name="robots" content="index, follow" />
       </Helmet>

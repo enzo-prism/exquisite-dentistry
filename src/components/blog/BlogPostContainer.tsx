@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import { ArrowLeft } from 'lucide-react';
 import { BlogPost, getPostBySlug } from '@/data/blogPosts';
 import PageLoader from '@/components/ui/page-loader';
@@ -42,12 +43,15 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   return (
     <>
       <BlogStructuredData post={post} />
-      <Helmet>
-        <title>{post.seoTitle || post.title}</title>
-        <meta name="description" content={post.seoDescription || post.excerpt} />
-        {post.seoKeywords && <meta name="keywords" content={post.seoKeywords} />}
-        
-      </Helmet>
+      <PageSEO
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.excerpt}
+        keywords={post.seoKeywords}
+        path={`/blog/${post.slug}`}
+        ogType="article"
+        articleAuthor={post.author}
+        articlePublishedTime={new Date(post.date).toISOString()}
+      />
 
       {/* Header */}
       <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -9,7 +10,6 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
-import SEOMetaTags from '@/components/seo/SEOMetaTags';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 const Veneers = () => {
@@ -84,11 +84,11 @@ const Veneers = () => {
 
   return (
     <>
-      <SEOMetaTags
+      <PageSEO
         title="Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry"
-        description="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care at Exquisite Dentistry."
+        description="Custom porcelain veneers designed for a natural, brighter smile. Precise planning, minimal prep and beautiful results from our Los Angeles practice."
         keywords="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers"
-        canonical="https://exquisitedentistryla.com/veneers"
+        path="/veneers"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 

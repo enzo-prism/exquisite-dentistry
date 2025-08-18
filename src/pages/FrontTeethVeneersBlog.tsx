@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
 import ArticleStructuredData from '@/components/seo/ArticleStructuredData';
-import SEOMetaTags from '@/components/seo/SEOMetaTags';
+
 import { PageSEO } from '@/components/seo/PageSEO';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
