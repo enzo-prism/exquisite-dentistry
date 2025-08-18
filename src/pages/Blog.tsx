@@ -51,8 +51,11 @@ const Blog = () => {
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 
-      {/* Hero Section with proper navbar offset */}
-      <header className="pt-16 sm:pt-20 py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted/20">
+      {/* Navbar offset spacer */}
+      <div className="h-16 sm:h-20"></div>
+      
+      {/* Hero Section - Clean spacing */}
+      <header className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted/20">
         
         {/* Content Container */}
         <div className="container mx-auto px-4 text-center max-w-4xl">
