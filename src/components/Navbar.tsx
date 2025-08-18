@@ -185,22 +185,20 @@ const Navbar = () => {
               ))}
               
               {/* Clients Dropdown - Desktop */}
-              <div className="relative group">
+              <div 
+                className="relative group"
+                onMouseEnter={() => setOpenDropdown('clients')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
                 <button 
                   className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
-                  onMouseEnter={() => setOpenDropdown('clients')}
-                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   Clients
                   <ChevronDown size={16} />
                 </button>
                 
                 {openDropdown === 'clients' && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-48 bg-black border border-gold rounded-md shadow-lg z-50"
-                    onMouseEnter={() => setOpenDropdown('clients')}
-                    onMouseLeave={() => setOpenDropdown(null)}
-                  >
+                  <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
                     {clientsDropdown.map((item) => (
                       <Link
                         key={item.to}
@@ -215,22 +213,20 @@ const Navbar = () => {
               </div>
 
               {/* More Dropdown - Desktop */}
-              <div className="relative group">
+              <div 
+                className="relative group"
+                onMouseEnter={() => setOpenDropdown('more')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
                 <button 
                   className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
-                  onMouseEnter={() => setOpenDropdown('more')}
-                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   More
                   <ChevronDown size={16} />
                 </button>
                 
                 {openDropdown === 'more' && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-48 bg-black border border-gold rounded-md shadow-lg z-50"
-                    onMouseEnter={() => setOpenDropdown('more')}
-                    onMouseLeave={() => setOpenDropdown(null)}
-                  >
+                  <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
                     {moreDropdown.map((item) => (
                       <Link
                         key={item.to}
