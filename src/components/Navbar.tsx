@@ -129,7 +129,6 @@ const Navbar = () => {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/services', label: 'Services' },
-    { to: '/blog', label: 'Blog' },
   ];
 
   const clientsDropdown = [
@@ -141,6 +140,7 @@ const Navbar = () => {
   const moreDropdown = [
     { to: '/faqs', label: 'FAQs' },
     { to: '/contact', label: 'Contact' },
+    { to: '/blog', label: 'Blog' },
   ];
 
   return (
