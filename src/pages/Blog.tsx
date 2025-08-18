@@ -1,19 +1,17 @@
 
-import React, { useState, useMemo, Suspense, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogListingStructuredData from '@/components/BlogListingStructuredData';
 import SEOMetaTags from '@/components/seo/SEOMetaTags';
 import PageLoader from '@/components/ui/page-loader';
-import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/use-scroll-animations';
 import { usePerformance } from '@/hooks/use-performance';
 import { Search, Filter, Sparkles } from 'lucide-react';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
   const allPosts = useMemo(() => getPublishedPosts(), []);
@@ -32,29 +30,14 @@ const Blog = () => {
     });
   }, [allPosts, selectedCategory, searchTerm]);
 
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({
-    threshold: 0.2,
-    triggerOnce: true,
-    animationClass: 'fade-in'
-  });
-
-  const { triggerAnimation, getItemProps } = useStaggeredAnimation(
-    filteredPosts.length,
-    isSlowConnection ? 50 : 100,
-    'scale-in'
-  );
-
+  // Simplified loading without complex animations
   useEffect(() => {
-    // Simulate loading for smooth entrance
     const timer = setTimeout(() => {
       setIsLoading(false);
-      filteredPosts.forEach((_, index) => {
-        setTimeout(() => triggerAnimation(index), index * (isSlowConnection ? 50 : 100));
-      });
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [filteredPosts, triggerAnimation, isSlowConnection]);
+  }, [filteredPosts]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,157 +51,80 @@ const Blog = () => {
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 
-      {/* Mobile-Perfect Hero Section - Fixed Typography */}
-      <header 
-        ref={headerRef}
-        className="relative overflow-hidden"
-        style={{ 
-          paddingTop: 'clamp(3rem, 8vh, 6rem)', 
-          paddingBottom: 'clamp(3rem, 8vh, 6rem)',
-          minHeight: 'clamp(400px, 60vh, 600px)'
-        }}
-      >
-        {/* Simplified Background for Better Performance */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-background to-secondary/[0.02]"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/95"></div>
-          {/* Single optimized decoration */}
-          <div className="absolute top-1/4 right-1/3 bg-primary/[0.04] rounded-full blur-3xl opacity-60"
-               style={{ 
-                 width: 'clamp(8rem, 20vw, 16rem)', 
-                 height: 'clamp(8rem, 20vw, 16rem)' 
-               }}></div>
-        </div>
+      {/* Simplified Hero Section */}
+      <header className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted/20">
         
-        {/* Optimized Content Container */}
-        <div className={`relative z-10 max-w-6xl mx-auto text-center transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-             style={{ padding: 'clamp(1rem, 4vw, 2rem)' }}>
+        {/* Content Container */}
+        <div className="container mx-auto px-4 text-center max-w-4xl">
           
-          {/* Fixed Typography System */}
-          <div style={{ marginBottom: 'clamp(2rem, 6vw, 4rem)' }}>
-            {/* Title with Conservative Scaling */}
-            <div className="flex items-center justify-center flex-wrap gap-2 mb-4">
-              <Sparkles className="text-primary flex-shrink-0" 
-                       style={{ 
-                         width: 'clamp(1.25rem, 3vw, 1.75rem)', 
-                         height: 'clamp(1.25rem, 3vw, 1.75rem)'
-                       }} />
-              <h1 className="font-bold bg-gradient-to-r from-foreground via-secondary to-primary bg-clip-text text-transparent text-center"
-                  style={{ 
-                    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
-                    lineHeight: 'clamp(1.1, 1.1, 1.2)',
-                    letterSpacing: '-0.015em',
-                    wordBreak: 'keep-all'
-                  }}>
+          {/* Title Section */}
+          <div className="mb-12">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Sparkles className="w-6 h-6 text-primary" />
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
                 Dental Blog
               </h1>
-              <Sparkles className="text-primary flex-shrink-0" 
-                       style={{ 
-                         width: 'clamp(1.25rem, 3vw, 1.75rem)', 
-                         height: 'clamp(1.25rem, 3vw, 1.75rem)'
-                       }} />
+              <Sparkles className="w-6 h-6 text-primary" />
             </div>
             
-            {/* Subtitle with Better Line Height */}
-            <p className="text-muted-foreground max-w-4xl mx-auto font-light"
-               style={{ 
-                 fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)',
-                 lineHeight: 'clamp(1.4, 1.5, 1.6)',
-                 marginBottom: 'clamp(1rem, 3vw, 1.5rem)'
-               }}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
               Expert insights, cutting-edge techniques, and personalized advice for your perfect smile journey
             </p>
             
-            {/* Supporting Text with Better Spacing */}
-            <div className="text-muted-foreground/80"
-                 style={{ 
-                   fontSize: 'clamp(0.8rem, 2vw, 1rem)',
-                   lineHeight: '1.5'
-                 }}>
+            <p className="text-base text-muted-foreground/80">
               Discover the latest in cosmetic dentistry and oral health
-            </div>
+            </p>
           </div>
 
-          {/* Enhanced Search and Category Section */}
-          <div className="space-y-6 md:space-y-8">
-            {/* Premium Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500"></div>
-                <div className={`relative backdrop-blur-md bg-card/80 border border-border/30 rounded-2xl shadow-lg hover:shadow-xl focus-within:shadow-xl transition-all duration-300 ${isSearchFocused ? 'scale-[1.02] border-border/50' : ''}`}>
-                  <Search className="absolute left-4 md:left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground flex-shrink-0" 
-                          style={{ 
-                            width: 'clamp(1.25rem, 3vw, 1.5rem)', 
-                            height: 'clamp(1.25rem, 3vw, 1.5rem)' 
-                          }} />
-                  <input
-                    type="text"
-                    placeholder="Search articles, tips, and insights..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => setIsSearchFocused(false)}
-                    className="w-full bg-transparent placeholder-muted-foreground/70 text-foreground focus:outline-none rounded-2xl transition-all duration-300"
-                    style={{ 
-                      paddingLeft: 'clamp(3rem, 8vw, 4rem)',
-                      paddingRight: 'clamp(1rem, 4vw, 1.5rem)',
-                      paddingTop: 'clamp(1rem, 3vw, 1.25rem)',
-                      paddingBottom: 'clamp(1rem, 3vw, 1.25rem)',
-                      fontSize: 'clamp(0.875rem, 2.5vw + 0.25rem, 1.125rem)'
-                    }}
-                    aria-label="Search blog articles"
-                  />
-                  {searchTerm && (
-                    <button
-                      onClick={() => setSearchTerm('')}
-                      className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 p-1.5 hover:bg-muted/50 rounded-full transition-colors flex-shrink-0"
-                      aria-label="Clear search"
-                    >
-                      <span className="text-muted-foreground" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>×</span>
-                    </button>
-                  )}
-                </div>
+          {/* Search and Filters */}
+          <div className="space-y-8">
+            {/* Simple Search Bar */}
+            <div className="max-w-md mx-auto">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label="Clear search"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Enhanced Category Pills with Perfect Mobile UX */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {/* Simple Category Filters */}
+            <div className="flex flex-wrap justify-center gap-2">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === null
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105'
-                    : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
                 }`}
-                style={{
-                  minHeight: '44px',
-                  padding: 'clamp(0.625rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem)',
-                  fontSize: 'clamp(0.75rem, 2vw + 0.25rem, 0.875rem)'
-                }}
-                aria-pressed={selectedCategory === null}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Filter style={{ width: 'clamp(0.875rem, 2vw, 1rem)', height: 'clamp(0.875rem, 2vw, 1rem)' }} />
-                  All Articles
-                </span>
+                <Filter className="w-4 h-4 inline mr-2" />
+                All Articles
               </button>
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                   className={`group relative overflow-hidden font-medium rounded-full transition-all duration-300 touch-manipulation capitalize ${
-                     selectedCategory === category
-                       ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105'
-                       : 'bg-card/70 backdrop-blur-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:scale-105 border border-border/40 hover:border-border/60'
-                   }`}
-                  style={{
-                    minHeight: '44px',
-                    padding: 'clamp(0.625rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem)',
-                    fontSize: 'clamp(0.75rem, 2vw + 0.25rem, 0.875rem)'
-                  }}
-                  aria-pressed={selectedCategory === category}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors capitalize ${
+                    selectedCategory === category
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                  }`}
                 >
-                  <span className="relative z-10">{category}</span>
+                  {category}
                 </button>
               ))}
             </div>
@@ -257,11 +163,7 @@ const Blog = () => {
               {filteredPosts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
                   {filteredPosts.map((post, index) => (
-                    <div
-                      key={post.id}
-                      {...getItemProps(index)}
-                      className="transform transition-all duration-500"
-                    >
+                    <div key={post.id} className="transform transition-all duration-300 hover:scale-105">
                       <BlogCard post={post} featured={index === 0} />
                     </div>
                   ))}
@@ -281,12 +183,7 @@ const Blog = () => {
                         setSearchTerm('');
                         setSelectedCategory(null);
                       }}
-                      className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium touch-manipulation rounded-full"
-                      style={{
-                        minHeight: '44px',
-                        padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem)',
-                        fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
-                      }}
+                      className="mt-4 px-6 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium rounded-full"
                       aria-label="Clear all search filters"
                     >
                       Clear filters
