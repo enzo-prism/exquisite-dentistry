@@ -90,31 +90,62 @@ const Blog = () => {
               )}
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap justify-center gap-3">
+            {/* Enhanced Category Filter Pills */}
+            <div className="flex flex-wrap justify-center gap-2.5">
               <button
                 onClick={() => setSelectedCategory(null)}
                 className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                  "group relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ease-out",
+                  "border-2 transform active:scale-95",
+                  "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background",
                   selectedCategory === null 
-                    ? "bg-primary text-primary-foreground" 
-                    : "bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80"
+                    ? [
+                        "bg-gradient-to-r from-primary via-primary to-primary/90",
+                        "text-primary-foreground border-primary",
+                        "shadow-lg shadow-primary/25",
+                        "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
+                        "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                      ]
+                    : [
+                        "bg-background text-muted-foreground border-border",
+                        "hover:bg-primary/5 hover:text-foreground hover:border-primary/30 hover:shadow-md hover:scale-102",
+                        "hover:shadow-primary/10 active:bg-primary/10"
+                      ]
                 )}
               >
-                All Articles
+                <span className="relative z-10">All Articles</span>
+                {selectedCategory === null && (
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent animate-pulse-subtle" />
+                )}
               </button>
+              
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                    "group relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ease-out",
+                    "border-2 transform active:scale-95",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background",
                     selectedCategory === category 
-                      ? "bg-primary text-primary-foreground" 
-                      : "bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80"
+                      ? [
+                          "bg-gradient-to-r from-primary via-primary to-primary/90",
+                          "text-primary-foreground border-primary",
+                          "shadow-lg shadow-primary/25",
+                          "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
+                          "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                        ]
+                      : [
+                          "bg-background text-muted-foreground border-border",
+                          "hover:bg-primary/5 hover:text-foreground hover:border-primary/30 hover:shadow-md hover:scale-102",
+                          "hover:shadow-primary/10 active:bg-primary/10"
+                        ]
                   )}
                 >
-                  {category}
+                  <span className="relative z-10 capitalize">{category}</span>
+                  {selectedCategory === category && (
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent animate-pulse-subtle" />
+                  )}
                 </button>
               ))}
             </div>
