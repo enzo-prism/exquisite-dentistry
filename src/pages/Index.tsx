@@ -60,9 +60,8 @@ const IndexPage: React.FC = () => {
         title="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil"
         description="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area. Book your consultation today!"
         keywords="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry"
-        path="/"
+        path=""
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
-        skipCanonical={false}
       />
       <SeoStructuredData />
       <ReviewStructuredData />

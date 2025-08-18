@@ -50,7 +50,6 @@ const Contact = () => {
         description="Contact Exquisite Dentistry in Los Angeles to schedule your cosmetic dental consultation. Located at 6227 Wilshire Blvd. Call (323) 272-2388 or book online today."
         keywords="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd"
         path="/contact"
-        skipCanonical={true}
       />
       <SeoStructuredData />
       <ContactPageStructuredData />

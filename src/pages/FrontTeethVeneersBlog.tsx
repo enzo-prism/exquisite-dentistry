@@ -9,6 +9,7 @@ import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
 import ArticleStructuredData from '@/components/seo/ArticleStructuredData';
 import SEOMetaTags from '@/components/seo/SEOMetaTags';
+import { PageSEO } from '@/components/seo/PageSEO';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -84,15 +85,16 @@ const FrontTeethVeneersBlog = () => {
 
   return (
     <>
+      <PageSEO 
+        title="Choosing Veneers for the Front 4 Teeth | Complete Smile Transformation Guide"
+        description="Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results. Expert insights from Dr. Alexie Aguil."
+        keywords="veneers front 4 teeth, front teeth veneers, 4 veneers cost, smile zone veneers, upper front teeth veneers, porcelain veneers Los Angeles"
+        path="/blog/front-teeth-veneers-complete-guide"
+        ogType="article"
+        articleAuthor="Dr. Alexie Aguil"
+        articlePublishedTime="2024-12-15T00:00:00Z"
+      />
       <BlogStructuredData post={blogPost} />
-      <Helmet>
-        <title>Choosing Veneers for the Front 4 Teeth | Complete Smile Transformation Guide</title>
-        <meta name="description" content="Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results. Expert insights from Dr. Alexie Aguil." />
-        <meta name="keywords" content="veneers front 4 teeth, front teeth veneers, 4 veneers cost, smile zone veneers, upper front teeth veneers, porcelain veneers Los Angeles" />
-        <meta property="og:title" content="Choosing Veneers for the Front 4 Teeth | Expert Guide" />
-        <meta property="og:description" content="Transform your smile with veneers for your front 4 teeth. Learn about the process, benefits, and what to expect from this popular cosmetic dentistry treatment." />
-        <link rel="canonical" href="https://exquisitedentistryla.com/blog/choosing-veneers-for-the-front-4-teeth" />
-      </Helmet>
 
       {/* Hero Section */}
       <section className="relative py-16 bg-gradient-to-b from-gray-50 to-white">

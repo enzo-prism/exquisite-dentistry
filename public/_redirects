@@ -39,6 +39,10 @@
 /terms-of-service /terms-of-service/ 301
 /hipaa-compliance /hipaa-compliance/ 301
 
+# Additional edge redirect patterns for canonical enforcement
+http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+
 # SPECIFIC redirects first (before wildcards)
 /hollywood-cosmetic-dentist.html /services/ 301
 /dentist-west-hollywood.html /about/ 301  

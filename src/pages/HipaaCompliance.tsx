@@ -1,28 +1,25 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 
 const HipaaCompliance: React.FC = () => {
   return (
     <>
+      <PageSEO 
+        title="HIPAA Compliance | Patient Health Information Protection"
+        description="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations."
+        keywords="HIPAA compliance, health information privacy, patient data protection, medical records security, dental office compliance"
+        path="/hipaa-compliance"
+      />
       <WebPageStructuredData 
         title="HIPAA Compliance | Patient Health Information Protection"
         description="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations."
-        url="https://exquisitedentistryla.com/hipaa-compliance"
-        breadcrumbs={[{ name: 'HIPAA Compliance', url: 'https://exquisitedentistryla.com/hipaa-compliance' }]}
+        url="https://exquisitedentistryla.com/hipaa-compliance/"
+        breadcrumbs={[{ name: 'HIPAA Compliance', url: 'https://exquisitedentistryla.com/hipaa-compliance/' }]}
       />
-      <Helmet>
-        <title>HIPAA Compliance | Patient Health Information Protection</title>
-        <meta name="description" content="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations." />
-        <meta name="keywords" content="HIPAA compliance, health information privacy, patient data protection, medical records security, dental office compliance" />
-        <meta property="og:title" content="HIPAA Compliance | Patient Health Information Protection" />
-        <meta property="og:description" content="Learn how Exquisite Dentistry protects your health information privacy and security in accordance with HIPAA regulations." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/hipaa-compliance/" />
-      </Helmet>
 
       <PageHeader 
         title="HIPAA Compliance"

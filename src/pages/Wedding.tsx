@@ -25,7 +25,6 @@ const Wedding = () => {
         keywords="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides"
         path="/wedding"
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
-        skipCanonical={true}
       />
 
       <div className="min-h-screen page-transition-in">

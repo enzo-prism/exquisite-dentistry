@@ -23,7 +23,6 @@ const Graduation = () => {
         description="Look your best for graduation photos with our quick cosmetic dental treatments in Los Angeles. Teeth whitening, bonding, and smile makeovers perfect for graduates. Book now!"
         keywords="graduation smile makeover, student dental packages, graduation teeth whitening, quick cosmetic dentistry, student discounts dental, graduation photo smile"
         path="/graduation"
-        skipCanonical={true}
       />
 
       <div className="min-h-screen page-transition-in">

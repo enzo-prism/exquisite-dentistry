@@ -21,7 +21,7 @@ const TermsOfService: React.FC = () => {
         <meta property="og:description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry." />
         <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/terms-of-service/" />
+        
       </Helmet>
 
       <PageHeader 

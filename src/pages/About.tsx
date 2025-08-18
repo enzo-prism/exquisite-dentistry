@@ -26,7 +26,6 @@ const About = () => {
         description="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques. Experience personalized dental care."
         keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"
         path="/about"
-        skipCanonical={true}
       />
 
       {/* Hero Section with VideoHero */}

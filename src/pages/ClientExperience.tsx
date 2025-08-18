@@ -8,6 +8,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import ClientExperienceStructuredData from '@/components/ClientExperienceStructuredData';
+import { PageSEO } from '@/components/seo/PageSEO';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -65,16 +66,13 @@ const ClientExperience = () => {
 
   return (
     <>
+      <PageSEO 
+        title="Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care"
+        description="Experience luxury dental care in Los Angeles with spa-like amenities, advanced technology, and personalized comfort. Redefining dental visits at Exquisite Dentistry."
+        keywords="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa"
+        path="/client-experience"
+      />
       <ClientExperienceStructuredData />
-      <Helmet>
-        <title>Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care</title>
-        <meta name="description" content="Experience luxury dental care in Los Angeles with spa-like amenities, advanced technology, and personalized comfort. Redefining dental visits at Exquisite Dentistry." />
-        <meta name="keywords" content="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa" />
-        <meta property="og:title" content="Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care" />
-        <meta property="og:description" content="Experience luxury dental care with spa-like amenities, advanced technology, and personalized comfort at Exquisite Dentistry." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/client-experience/" />
-      </Helmet>
 
       <div className="min-h-screen page-transition-in">
         <VideoHero

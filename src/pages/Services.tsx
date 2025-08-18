@@ -31,13 +31,12 @@ const Services = () => {
     <>
       <ServiceCatalogStructuredData />
       
-      <PageSEO
+      <PageSEO 
         title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
         description="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil."
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
         path="/services"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
-        skipCanonical={true}
       />
 
       {/* Add structured data for key services */}

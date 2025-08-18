@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useCanonical } from '@/hooks/use-canonical';
+
+const BASE_URL = 'https://exquisitedentistryla.com';
 
 interface PageSEOProps {
   title: string;
@@ -14,7 +15,6 @@ interface PageSEOProps {
   articleAuthor?: string;
   noindex?: boolean;
   nofollow?: boolean;
-  skipCanonical?: boolean; // Skip canonical injection if static HTML handles it
 }
 
 export const PageSEO: React.FC<PageSEOProps> = ({
@@ -28,10 +28,38 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   articleModifiedTime,
   articleAuthor,
   noindex = false,
-  nofollow = false,
-  skipCanonical = false
+  nofollow = false
 }) => {
-  const canonicalUrl = useCanonical({ path });
+  // Build canonical URL with trailing slash policy
+  const buildCanonicalUrl = (inputPath: string) => {
+    // Start with base URL
+    let url = BASE_URL;
+    
+    // Add path if provided
+    if (inputPath) {
+      // Ensure path starts with /
+      const cleanPath = inputPath.startsWith('/') ? inputPath : `/${inputPath}`;
+      url += cleanPath;
+    }
+    
+    // Enforce trailing slash policy (non-root pages get trailing slash)
+    if (url === BASE_URL) {
+      // Root URL should not have trailing slash
+      return url;
+    } else if (!url.endsWith('/')) {
+      // All non-root pages should have trailing slash
+      return url + '/';
+    }
+    
+    return url;
+  };
+
+  const canonicalUrl = buildCanonicalUrl(path);
+
+  // Runtime guard to prevent duplicate canonicals
+  const shouldRenderCanonical = 
+    typeof document === 'undefined' || 
+    !document.querySelector('link[rel="canonical"]');
 
   const robotsContent = [
     noindex ? 'noindex' : 'index',
@@ -46,8 +74,8 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={robotsContent} />
       
-      {/* Canonical URL - Only inject if not handled by static HTML */}
-      {!skipCanonical && <link rel="canonical" href={canonicalUrl} />}
+      {/* Canonical URL - Single source of truth with runtime guard */}
+      {shouldRenderCanonical && <link rel="canonical" href={canonicalUrl} />}
       
       {/* Open Graph Meta Tags */}
       <meta property="og:url" content={canonicalUrl} />

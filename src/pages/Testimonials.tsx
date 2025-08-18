@@ -19,7 +19,7 @@ const TestimonialsPage: React.FC = () => {
         keywords="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews"
         path="/testimonials"
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
-        skipCanonical={true}
+        
       />
       
       <VideoHero 
