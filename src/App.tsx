@@ -28,6 +28,8 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
+const CaseStudies = lazy(() => import("@/pages/CaseStudies"));
+const ChristianCaseStudy = lazy(() => import("@/pages/ChristianCaseStudy"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 // Create a client
@@ -145,6 +147,13 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ZoomWhitening />
+              </Suspense>} />
+              
+              <Route path="/case-studies" element={<Suspense fallback={<PageLoaderComponent />}>
+                <CaseStudies />
+              </Suspense>} />
+              <Route path="/case-studies/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ChristianCaseStudy />
               </Suspense>} />
             </Routes>
           </PageTransition>

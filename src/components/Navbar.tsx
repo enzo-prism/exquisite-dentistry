@@ -132,6 +132,7 @@ const Navbar = () => {
   ];
 
   const clientsDropdown = [
+    { to: '/case-studies', label: 'Case Studies' },
     { to: '/smile-gallery', label: 'Smile Gallery' },
     { to: '/testimonials', label: 'Testimonials' },
     { to: '/client-experience', label: 'Client Experience' },
