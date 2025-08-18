@@ -42,8 +42,15 @@
 /*hollywood* / 301
 
 # Domain-level redirects LAST (wildcards)
+# Redirect www to non-www (CRITICAL for canonical URLs)
+https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+http://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+
+# Redirect mobile domains
 http://m.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 https://m.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
+
+# Redirect HTTP to HTTPS
 http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 
 # SPA catch-all for all other routes (MUST BE LAST)
