@@ -51,8 +51,8 @@ const Blog = () => {
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 
-      {/* Simplified Hero Section */}
-      <header className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted/20">
+      {/* Hero Section with proper navbar offset */}
+      <header className="pt-16 sm:pt-20 py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted/20">
         
         {/* Content Container */}
         <div className="container mx-auto px-4 text-center max-w-4xl">
@@ -132,9 +132,9 @@ const Blog = () => {
         </div>
       </header>
 
-      {/* Streamlined Main Content Section */}
-      <main className="py-12 md:py-16 lg:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main Content Section - No overlapping */}
+      <main className="bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
           {isLoading ? (
             <PageLoader variant="minimal" message="Loading articles..." />
           ) : (
@@ -159,11 +159,11 @@ const Blog = () => {
                 </p>
               </div>
 
-              {/* Blog Posts Grid */}
+              {/* Blog Posts Grid - Fixed key issue */}
               {filteredPosts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
                   {filteredPosts.map((post, index) => (
-                    <div key={post.id} className="transform transition-all duration-300 hover:scale-105">
+                    <div key={`blog-post-${post.id}-${index}`} className="transform transition-all duration-300 hover:scale-105">
                       <BlogCard post={post} featured={index === 0} />
                     </div>
                   ))}
