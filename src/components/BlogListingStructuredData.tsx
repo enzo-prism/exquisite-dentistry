@@ -12,7 +12,7 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
     '@type': 'Blog',
     name: 'Exquisite Dentistry Blog',
     description: 'Expert insights, tips, and advice for optimal oral health and beautiful smiles from Dr. Alexie Aguil',
-    url: 'https://exquisitedentistryla.com/blog',
+    url: 'https://exquisitedentistryla.com/blog/',
     publisher: {
       '@type': 'Organization',
       name: 'Exquisite Dentistry',
@@ -24,7 +24,7 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
     author: {
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
-      url: 'https://exquisitedentistryla.com/about'
+      url: 'https://exquisitedentistryla.com/about/'
     },
     inLanguage: 'en-US',
     about: {
@@ -61,7 +61,7 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://exquisitedentistryla.com/blog'
+        item: 'https://exquisitedentistryla.com/blog/'
       }
     ]
   };

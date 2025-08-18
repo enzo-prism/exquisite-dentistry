@@ -7,7 +7,7 @@ const ContactPageStructuredData: React.FC = () => {
     '@type': 'ContactPage',
     name: 'Contact Exquisite Dentistry Los Angeles',
     description: 'Contact Exquisite Dentistry in Los Angeles to schedule your cosmetic dental consultation. Located at 6227 Wilshire Blvd.',
-    url: 'https://exquisitedentistryla.com/contact',
+    url: 'https://exquisitedentistryla.com/contact/',
     mainEntity: {
       '@type': 'DentistPractice',
       name: 'Exquisite Dentistry',
@@ -47,7 +47,7 @@ const ContactPageStructuredData: React.FC = () => {
     isPartOf: {
       '@type': 'WebSite',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     inLanguage: 'en-US'
   };
@@ -60,13 +60,13 @@ const ContactPageStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com'
+        item: 'https://exquisitedentistryla.com/'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Contact',
-        item: 'https://exquisitedentistryla.com/contact'
+        item: 'https://exquisitedentistryla.com/contact/'
       }
     ]
   };

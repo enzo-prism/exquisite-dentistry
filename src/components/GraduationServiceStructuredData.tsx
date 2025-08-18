@@ -7,7 +7,7 @@ const GraduationServiceStructuredData: React.FC = () => {
     '@type': 'MedicalProcedure',
     name: 'Graduation Smile Makeover',
     description: 'Quick cosmetic dental treatments designed specifically for graduates to look their best in graduation photos and celebrations',
-    url: 'https://exquisitedentistryla.com/graduation',
+    url: 'https://exquisitedentistryla.com/graduation/',
     provider: {
       '@type': 'DentistPractice',
       name: 'Exquisite Dentistry',
@@ -75,13 +75,13 @@ const GraduationServiceStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com'
+        item: 'https://exquisitedentistryla.com/'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Graduation Smile Makeover',
-        item: 'https://exquisitedentistryla.com/graduation'
+        item: 'https://exquisitedentistryla.com/graduation/'
       }
     ]
   };

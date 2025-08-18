@@ -7,7 +7,7 @@ const AboutPageStructuredData: React.FC = () => {
     '@type': 'AboutPage',
     name: 'About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles',
     description: 'Meet Dr. Alexie Aguil, Los Angeles leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques.',
-    url: 'https://exquisitedentistryla.com/about',
+    url: 'https://exquisitedentistryla.com/about/',
     mainEntity: {
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
@@ -47,12 +47,12 @@ const AboutPageStructuredData: React.FC = () => {
         }
       ],
       telephone: '(323) 272-2388',
-      url: 'https://exquisitedentistryla.com/about'
+      url: 'https://exquisitedentistryla.com/about/'
     },
     isPartOf: {
       '@type': 'WebSite',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     inLanguage: 'en-US'
   };
@@ -65,13 +65,13 @@ const AboutPageStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com'
+        item: 'https://exquisitedentistryla.com/'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About',
-        item: 'https://exquisitedentistryla.com/about'
+        item: 'https://exquisitedentistryla.com/about/'
       }
     ]
   };

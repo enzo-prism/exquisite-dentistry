@@ -57,7 +57,7 @@ const FAQPageStructuredData: React.FC<FAQPageStructuredDataProps> = ({ faqs }) =
         '@type': 'ListItem',
         position: 2,
         name: 'FAQs',
-        item: 'https://exquisitedentistryla.com/faqs'
+        item: 'https://exquisitedentistryla.com/faqs/'
       }
     ]
   };

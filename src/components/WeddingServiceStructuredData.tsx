@@ -7,7 +7,7 @@ const WeddingServiceStructuredData: React.FC = () => {
     '@type': 'Service',
     name: 'Wedding Smile Makeover',
     description: 'Specialized bridal dentistry packages designed for brides, grooms, and wedding parties to achieve the perfect wedding day smile',
-    url: 'https://exquisitedentistryla.com/wedding',
+    url: 'https://exquisitedentistryla.com/wedding/',
     image: 'https://exquisitedentistryla.com/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png',
     provider: {
       '@type': 'DentistPractice',
@@ -71,7 +71,7 @@ const WeddingServiceStructuredData: React.FC = () => {
     '@type': 'Event',
     name: 'Wedding Smile Consultation',
     description: 'Free consultation for wedding smile makeover planning and timeline discussion',
-    url: 'https://exquisitedentistryla.com/wedding',
+    url: 'https://exquisitedentistryla.com/wedding/',
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
@@ -89,7 +89,7 @@ const WeddingServiceStructuredData: React.FC = () => {
     organizer: {
       '@type': 'Organization',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     isAccessibleForFree: true,
     audience: {

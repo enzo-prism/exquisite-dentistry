@@ -8,7 +8,7 @@ const ClientExperienceStructuredData: React.FC = () => {
     name: 'Exquisite Dentistry',
     alternateName: 'Exquisite Dentistry LA',
     description: 'Luxury dental practice offering spa-like comfort and advanced cosmetic dentistry in Los Angeles',
-    url: 'https://exquisitedentistryla.com/client-experience',
+    url: 'https://exquisitedentistryla.com/client-experience/',
     image: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     address: {
       '@type': 'PostalAddress',
@@ -107,13 +107,13 @@ const ClientExperienceStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com'
+        item: 'https://exquisitedentistryla.com/'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Client Experience',
-        item: 'https://exquisitedentistryla.com/client-experience'
+        item: 'https://exquisitedentistryla.com/client-experience/'
       }
     ]
   };

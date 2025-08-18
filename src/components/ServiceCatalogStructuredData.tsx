@@ -7,11 +7,11 @@ const ServiceCatalogStructuredData: React.FC = () => {
     '@type': 'ItemList',
     name: 'Dental Services Catalog',
     description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
-    url: 'https://exquisitedentistryla.com/services',
+    url: 'https://exquisitedentistryla.com/services/',
     provider: {
       '@type': 'DentistPractice',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     itemListElement: [
       {
@@ -21,7 +21,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Porcelain Veneers',
           description: 'Ultra-thin porcelain shells designed to cover the front surface of teeth for a perfect smile transformation',
-          url: 'https://exquisitedentistryla.com/porcelain-veneers',
+          url: 'https://exquisitedentistryla.com/veneers/',
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -36,7 +36,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Teeth Whitening',
           description: 'Professional teeth whitening treatments for a brighter, more confident smile',
-          url: 'https://exquisitedentistryla.com/zoom-whitening',
+          url: 'https://exquisitedentistryla.com/zoom-whitening/',
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',

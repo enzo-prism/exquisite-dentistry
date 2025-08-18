@@ -37,6 +37,7 @@ const Services = () => {
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
         path="/services"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        skipCanonical={true}
       />
 
       {/* Add structured data for key services */}

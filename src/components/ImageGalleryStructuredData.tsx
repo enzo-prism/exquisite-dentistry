@@ -23,7 +23,7 @@ const ImageGalleryStructuredData: React.FC<ImageGalleryStructuredDataProps> = ({
       ? 'Before and After Gallery'
       : 'Dental Gallery',
     description: 'Real patient transformations showcasing the exceptional results achieved at Exquisite Dentistry in Los Angeles',
-    url: 'https://exquisitedentistryla.com/smile-gallery',
+    url: 'https://exquisitedentistryla.com/smile-gallery/',
     provider: {
       '@type': 'DentistPractice',
       name: 'Exquisite Dentistry',
@@ -73,7 +73,7 @@ const ImageGalleryStructuredData: React.FC<ImageGalleryStructuredDataProps> = ({
         '@type': 'ListItem',
         position: 2,
         name: 'Smile Gallery',
-        item: 'https://exquisitedentistryla.com/smile-gallery'
+        item: 'https://exquisitedentistryla.com/smile-gallery/'
       }
     ]
   };

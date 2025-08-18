@@ -16,7 +16,7 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
     author: {
       '@type': 'Person',
       name: post.author,
-      url: 'https://exquisitedentistryla.com/about'
+      url: 'https://exquisitedentistryla.com/about/'
     },
     publisher: {
       '@type': 'Organization',
@@ -42,7 +42,7 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
     isPartOf: {
       '@type': 'Blog',
       name: 'Exquisite Dentistry Blog',
-      url: 'https://exquisitedentistryla.com/blog'
+      url: 'https://exquisitedentistryla.com/blog/'
     }
   };
 

@@ -9,11 +9,11 @@ const DoctorStructuredData: React.FC = () => {
     jobTitle: 'Cosmetic Dentist',
     description: 'Leading cosmetic dentist in Los Angeles with over 15 years of experience specializing in smile transformations, porcelain veneers, and advanced dental techniques.',
     image: 'https://exquisitedentistryla.com/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png',
-    url: 'https://exquisitedentistryla.com/about',
+    url: 'https://exquisitedentistryla.com/about/',
     worksFor: {
       '@type': 'DentistPractice',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com'
+      url: 'https://exquisitedentistryla.com/'
     },
     address: {
       '@type': 'PostalAddress',

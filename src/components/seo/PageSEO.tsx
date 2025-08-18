@@ -14,6 +14,7 @@ interface PageSEOProps {
   articleAuthor?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  skipCanonical?: boolean; // Skip canonical injection if static HTML handles it
 }
 
 export const PageSEO: React.FC<PageSEOProps> = ({
@@ -27,7 +28,8 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   articleModifiedTime,
   articleAuthor,
   noindex = false,
-  nofollow = false
+  nofollow = false,
+  skipCanonical = false
 }) => {
   const canonicalUrl = useCanonical({ path });
 
@@ -44,8 +46,8 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={robotsContent} />
       
-      {/* Canonical URL - Single source of truth */}
-      <link rel="canonical" href={canonicalUrl} />
+      {/* Canonical URL - Only inject if not handled by static HTML */}
+      {!skipCanonical && <link rel="canonical" href={canonicalUrl} />}
       
       {/* Open Graph Meta Tags */}
       <meta property="og:url" content={canonicalUrl} />
