@@ -185,6 +185,11 @@ const Footer = () => {
                   <span className="group-hover:translate-x-1 transition-transform">Graduation Ready</span>
                 </Link>
               </li>
+              <li>
+                <Link to="/sitemap" className="text-gray-300 hover:text-white transition-colors flex items-center group">
+                  <span className="group-hover:translate-x-1 transition-transform">Site Map</span>
+                </Link>
+              </li>
             </ul>
           </motion.div>
 
@@ -252,6 +257,9 @@ const Footer = () => {
               <Link to="/hipaa-compliance" className="text-gray-400 hover:text-white transition-colors">
                 HIPAA Compliance
               </Link>
+              <a href="/sitemap.xml" className="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                XML Sitemap
+              </a>
             </div>
           </div>
         </div>

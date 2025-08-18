@@ -28,8 +28,8 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
+const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
-
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,8 +39,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-const Sitemap = lazy(() => import("@/pages/Sitemap"));
 
 import PageLoader from '@/components/ui/page-loader';
 import PageTransition from '@/components/ui/page-transition';
@@ -152,7 +150,9 @@ const AppRoutes = () => {
           </PageTransition>
         ) : (
           <Routes>
-            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/sitemap" element={<Suspense fallback={<PageLoaderComponent />}>
+              <StaticSitemap />
+            </Suspense>} />
             <Route path="/sitemap.xml" element={<XmlSitemap />} />
           </Routes>
         )}
