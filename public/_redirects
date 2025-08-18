@@ -1,21 +1,21 @@
-# Static HTML pages for SEO crawlers with JS disabled
-/about              /about.html             200
-/services           /services.html          200
-/contact            /contact.html           200
-/veneers            /veneers.html           200
-/testimonials       /testimonials.html      200
-/blog               /blog.html              200
-/smile-gallery      /smile-gallery.html     200
-/client-experience  /client-experience.html 200
-/faqs               /faqs.html              200
-/wedding            /wedding.html           200
-/graduation         /graduation.html        200
-/zoom-whitening     /zoom-whitening.html    200
-/privacy-policy     /privacy-policy.html    200
-/terms-of-service   /terms-of-service.html  200
-/hipaa-compliance   /hipaa-compliance.html  200
-/blog/front-teeth-veneers-complete-guide /front-teeth-veneers-complete-guide.html 200
-/blog/single-tooth-veneers-guide /single-tooth-veneers-guide.html 200
+# Static HTML pages for SEO crawlers with JS disabled - with force flag
+/about              /about.html             200!
+/services           /services.html          200!
+/contact            /contact.html           200!
+/veneers            /veneers.html           200!
+/testimonials       /testimonials.html      200!
+/blog               /blog.html              200!
+/smile-gallery      /smile-gallery.html     200!
+/client-experience  /client-experience.html 200!
+/faqs               /faqs.html              200!
+/wedding            /wedding.html           200!
+/graduation         /graduation.html        200!
+/zoom-whitening     /zoom-whitening.html    200!
+/privacy-policy     /privacy-policy.html    200!
+/terms-of-service   /terms-of-service.html  200!
+/hipaa-compliance   /hipaa-compliance.html  200!
+/blog/front-teeth-veneers-complete-guide /front-teeth-veneers-complete-guide.html 200!
+/blog/single-tooth-veneers-guide /single-tooth-veneers-guide.html 200!
 
 # Static files - serve directly with force flag
 /sitemap.xml        /sitemap.xml            200!
