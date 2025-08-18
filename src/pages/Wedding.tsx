@@ -5,7 +5,7 @@ import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
 import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import ImageComponent from '@/components/Image';
 import WeddingServiceStructuredData from '@/components/WeddingServiceStructuredData';
 
@@ -19,16 +19,13 @@ const Wedding = () => {
   return (
     <>
       <WeddingServiceStructuredData />
-      <Helmet>
-        <title>Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry</title>
-        <meta name="description" content="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!" />
-        <meta name="keywords" content="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides" />
-        <meta property="og:title" content="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry" />
-        <meta property="og:description" content="Get the perfect wedding smile with specialized bridal dentistry packages including teeth whitening, veneers, and smile makeovers." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/wedding/" />
-      </Helmet>
+      <PageSEO 
+        title="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry"
+        description="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!"
+        keywords="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides"
+        path="/wedding"
+        ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
 
       <div className="min-h-screen page-transition-in">
         <VideoHero

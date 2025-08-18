@@ -1,7 +1,7 @@
 import React from 'react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
@@ -56,16 +56,13 @@ const IndexPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil</title>
-        <link rel="canonical" href="https://exquisitedentistryla.com/" />
-        <meta name="description" content="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area. Book your consultation today!" />
-        <meta name="keywords" content="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry" />
-        <meta property="og:title" content="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil" />
-        <meta property="og:description" content="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:url" content="https://exquisitedentistryla.com/" />
-      </Helmet>
+      <PageSEO 
+        title="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil"
+        description="Transform your smile with Los Angeles' premier cosmetic dentist Dr. Alexie Aguil. Specializing in veneers, teeth whitening, and smile makeovers in Beverly Hills area. Book your consultation today!"
+        keywords="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry"
+        path="/"
+        ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
       <SeoStructuredData />
       <ReviewStructuredData />
       

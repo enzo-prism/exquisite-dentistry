@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import Button from '@/components/Button';
 import VideoHero from '@/components/VideoHero';
@@ -31,11 +31,11 @@ const Services = () => {
     <>
       <ServiceCatalogStructuredData />
       
-      <SEOMetaTags
+      <PageSEO
         title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
         description="Comprehensive cosmetic dental services in Los Angeles including porcelain veneers, teeth whitening, dental implants, crowns, and smile makeovers. Premium dental care by Dr. Alexie Aguil."
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
-        canonical="https://exquisitedentistryla.com/services"
+        path="/services"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
 

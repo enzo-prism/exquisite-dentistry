@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
 import Button from '@/components/Button';
@@ -21,15 +21,12 @@ const About = () => {
     <>
       <DoctorStructuredData />
       <AboutPageStructuredData />
-      <Helmet>
-        <title>About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles</title>
-        <meta name="description" content="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques. Experience personalized dental care." />
-        <meta name="keywords" content="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist" />
-        <meta property="og:title" content="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles" />
-        <meta property="og:description" content="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations and advanced dental techniques." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/about/" />
-      </Helmet>
+      <PageSEO 
+        title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"
+        description="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques. Experience personalized dental care."
+        keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"
+        path="/about"
+      />
 
       {/* Hero Section with VideoHero */}
       <VideoHero

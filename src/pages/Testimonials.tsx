@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import ReviewWidget from '@/components/ReviewWidget';
 import VideoHero from '@/components/VideoHero';
 import VideoTestimonial from '@/components/VideoTestimonial';
@@ -13,16 +13,13 @@ const TestimonialsPage: React.FC = () => {
     <>
       <VideoTestimonialStructuredData />
       <ReviewStructuredData />
-      <Helmet>
-        <title>Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles</title>
-        <meta name="description" content="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles." />
-        <meta name="keywords" content="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews" />
-        <meta property="og:title" content="Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles" />
-        <meta property="og:description" content="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/testimonials/" />
-      </Helmet>
+      <PageSEO 
+        title="Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles"
+        description="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles."
+        keywords="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews"
+        path="/testimonials"
+        ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+      />
       
       <VideoHero 
         title="Client Testimonials"

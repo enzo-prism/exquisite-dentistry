@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import VideoHero from '@/components/VideoHero';
-import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -18,15 +18,12 @@ const Graduation = () => {
   return (
     <>
       <GraduationServiceStructuredData />
-      <Helmet>
-        <title>Graduation Smile Makeover Los Angeles | Student Dental Packages</title>
-        <meta name="description" content="Look your best for graduation photos with our quick cosmetic dental treatments in Los Angeles. Teeth whitening, bonding, and smile makeovers perfect for graduates. Book now!" />
-        <meta name="keywords" content="graduation smile makeover, student dental packages, graduation teeth whitening, quick cosmetic dentistry, student discounts dental, graduation photo smile" />
-        <meta property="og:title" content="Graduation Smile Makeover Los Angeles | Student Dental Packages" />
-        <meta property="og:description" content="Look your best for graduation photos with quick cosmetic dental treatments including teeth whitening and smile makeovers." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://exquisitedentistryla.com/graduation/" />
-      </Helmet>
+      <PageSEO 
+        title="Graduation Smile Makeover Los Angeles | Student Dental Packages"
+        description="Look your best for graduation photos with our quick cosmetic dental treatments in Los Angeles. Teeth whitening, bonding, and smile makeovers perfect for graduates. Book now!"
+        keywords="graduation smile makeover, student dental packages, graduation teeth whitening, quick cosmetic dentistry, student discounts dental, graduation photo smile"
+        path="/graduation"
+      />
 
       <div className="min-h-screen page-transition-in">
         <VideoHero

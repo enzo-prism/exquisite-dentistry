@@ -22,10 +22,12 @@ export const useCanonical = (options: UseCanonicalOptions = {}) => {
       url += cleanPath;
     }
     
-    // Handle trailing slash consistency
-    if (removeTrailingSlash && url.endsWith('/') && url !== BASE_URL) {
-      url = url.slice(0, -1);
-    } else if (!removeTrailingSlash && !url.endsWith('/')) {
+    // Enforce trailing slash policy (with trailing slash for non-root pages)
+    if (url === BASE_URL) {
+      // Root URL should not have trailing slash
+      url = BASE_URL;
+    } else if (!url.endsWith('/')) {
+      // All non-root pages should have trailing slash
       url += '/';
     }
     
