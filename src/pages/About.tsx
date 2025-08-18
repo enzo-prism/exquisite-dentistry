@@ -23,7 +23,7 @@ const About = () => {
       <AboutPageStructuredData />
       <PageSEO 
         title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"
-        description="Meet Dr. Alexie Aguil, Los Angeles' leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques. Experience personalized dental care."
+        description="Meet Dr. Alexie Aguil and our team. We combine modern cosmetic techniques with gentle, personalized care to create natural, long-lasting smiles in Los Angeles."
         keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"
         path="/about"
       />

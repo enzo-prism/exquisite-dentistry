@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 
@@ -13,16 +14,12 @@ const PrivacyPolicy: React.FC = () => {
         url="https://exquisitedentistryla.com/privacy-policy"
         breadcrumbs={[{ name: 'Privacy Policy', url: 'https://exquisitedentistryla.com/privacy-policy' }]}
       />
-      <Helmet>
-        <title>Privacy Policy | Exquisite Dentistry Los Angeles</title>
-        <meta name="description" content="Read our privacy policy to understand how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />
-        <meta name="keywords" content="dental privacy policy, HIPAA compliance, patient information protection, dental office privacy, health information security" />
-        <meta property="og:title" content="Privacy Policy | Exquisite Dentistry Los Angeles" />
-        <meta property="og:description" content="Learn how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        
-      </Helmet>
+      <PageSEO
+        title="Privacy Policy | Exquisite Dentistry Los Angeles"
+        description="Privacy Policy for Exquisite Dentistry Los Angeles. Learn how we protect and handle your personal and medical information in our Beverly Hills practice."
+        keywords="dental privacy policy, HIPAA compliance, patient information protection, dental office privacy, health information security"
+        path="/privacy-policy"
+      />
 
       <PageHeader 
         title="Privacy Policy"

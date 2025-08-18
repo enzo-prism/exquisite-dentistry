@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, User, CheckCircle, AlertCircle, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -28,12 +29,13 @@ const SingleToothVeneersBlog = () => {
   return (
     <>
       <BlogStructuredData post={blogPost} />
-      <Helmet>
-        <title>Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections | Exquisite Dentistry</title>
-        <meta name="description" content="Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution." />
-        <meta name="keywords" content="single tooth veneers, porcelain veneers, cosmetic dentistry, smile makeover, dental veneers Los Angeles, tooth restoration" />
-        
-      </Helmet>
+      <PageSEO
+        title="Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections | Exquisite Dentistry"
+        description="Expert guide to single tooth veneers by Dr. Alexie Aguil. Learn when single tooth veneers are the right choice and what to expect from the treatment."
+        keywords="single tooth veneers, porcelain veneers, cosmetic dentistry, smile makeover, dental veneers Los Angeles, tooth restoration"
+        path="/single-tooth-veneers-guide"
+        ogType="article"
+      />
 
       {/* Header */}
       <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">

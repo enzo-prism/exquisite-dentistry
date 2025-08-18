@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import PageSEO from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 
@@ -13,16 +14,12 @@ const TermsOfService: React.FC = () => {
         url="https://exquisitedentistryla.com/terms-of-service"
         breadcrumbs={[{ name: 'Terms of Service', url: 'https://exquisitedentistryla.com/terms-of-service' }]}
       />
-      <Helmet>
-        <title>Terms of Service | Exquisite Dentistry Los Angeles</title>
-        <meta name="description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry in Los Angeles." />
-        <meta name="keywords" content="dental terms of service, appointment policy, payment terms, patient responsibilities, dental office policies" />
-        <meta property="og:title" content="Terms of Service | Exquisite Dentistry Los Angeles" />
-        <meta property="og:description" content="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry." />
-        <meta property="og:image" content="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png" />
-        <meta property="og:type" content="website" />
-        
-      </Helmet>
+      <PageSEO
+        title="Terms of Service | Exquisite Dentistry Los Angeles"
+        description="Terms of Service for Exquisite Dentistry Los Angeles. Review our terms and conditions for dental services in our Beverly Hills practice."
+        keywords="dental terms of service, appointment policy, payment terms, patient responsibilities, dental office policies"
+        path="/terms-of-service"
+      />
 
       <PageHeader 
         title="Terms of Service"
