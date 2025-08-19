@@ -83,8 +83,8 @@ const CaseStudiesPage: React.FC = () => {
                       <ul className="space-y-2">
                         {caseStudy.keyTakeaways.map((takeaway, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="text-gold mt-1">•</span>
-                            <span className="text-sm">{takeaway}</span>
+                            <span className="text-gold text-sm leading-none mt-[0.125rem]">•</span>
+                            <span className="text-sm leading-relaxed">{takeaway}</span>
                           </li>
                         ))}
                       </ul>
