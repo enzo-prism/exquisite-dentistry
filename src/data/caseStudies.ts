@@ -194,7 +194,7 @@ export const caseStudies: CaseStudy[] = [
     shortDescription: 'For Shannon, going to the dentist used to be just another appointment on the calendar. That changed the first time she visited Exquisite Dentistry where it feels like walking into a spa.',
     videoId: '3O6FuKufvL4',
     videoType: 'youtube',
-    thumbnailUrl: 'https://img.youtube.com/vi/3O6FuKufvL4/maxresdefault.jpg',
+    thumbnailUrl: '/lovable-uploads/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995.png',
     location: 'Los Angeles, CA',
     goal: 'Finding dental care that feels comfortable and relaxing, like a spa experience',
     keyTakeaways: [
