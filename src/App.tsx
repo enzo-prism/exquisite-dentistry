@@ -30,6 +30,7 @@ const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const CaseStudies = lazy(() => import("@/pages/CaseStudies"));
 const ChristianCaseStudy = lazy(() => import("@/pages/ChristianCaseStudy"));
+const TaylorCaseStudy = lazy(() => import("@/pages/TaylorCaseStudy"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 // Create a client
@@ -152,8 +153,11 @@ const AppRoutes = () => {
               <Route path="/case-studies" element={<Suspense fallback={<PageLoaderComponent />}>
                 <CaseStudies />
               </Suspense>} />
-              <Route path="/case-studies/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+              <Route path="/case-studies/christian-fernandez" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ChristianCaseStudy />
+              </Suspense>} />
+              <Route path="/case-studies/taylor-vasek" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TaylorCaseStudy />
               </Suspense>} />
             </Routes>
           </PageTransition>

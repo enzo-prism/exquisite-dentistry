@@ -107,5 +107,82 @@ export const caseStudies: CaseStudy[] = [
       description: 'See how Christian gained everyday confidence with a straighter smile at Exquisite Dentistry in Los Angeles. Watch her video testimonial and learn our approach.',
       keywords: 'smile transformation Los Angeles, teeth straightening case study, cosmetic dentistry results, patient testimonial, Dr. Alexie Aguil'
     }
+  },
+  {
+    id: 'taylor-vasek',
+    slug: 'taylor-vasek',
+    patientName: 'Taylor Vasek',
+    title: 'Taylor Vasek\'s Story — From "No Dentist" to Looking Forward to Every Visit',
+    shortDescription: 'After moving to Los Angeles, Taylor needed a new dentist he could trust. From the moment he walked in, the experience felt different: warm faces, easy check-in, and a relaxed energy that made dental visits something to enjoy.',
+    videoId: 'dpd6glBbZVU',
+    videoType: 'youtube',
+    location: 'Los Angeles, CA',
+    goal: 'Finding a new dentist after moving to LA who provides comfortable, trustworthy care',
+    keyTakeaways: [
+      'People first: A friendly, attentive team that treats you like a person, not a time slot.',
+      'Modern comfort: Entertainment at the chair (hello, Netflix) to keep anxiety low and the visit flying by.',
+      'The overall vibe: Welcoming, unrushed, and refreshingly human — more like visiting people you trust than "going to the dentist."'
+    ],
+    quotes: [
+      {
+        text: 'I didn\'t have a dentist — I\'d already moved out here — and the difference between Exquisite and the other ones that I\'ve gone to… it doesn\'t really feel like an appointment.',
+        context: 'About the experience difference'
+      },
+      {
+        text: 'You can watch Netflix. The staff — the people here — is just really wonderful. Makes it easy to enjoy.',
+        context: 'About the comfort and staff'
+      },
+      {
+        text: 'It doesn\'t really feel like an appointment — it\'s kind of like a fun hangout.',
+        context: 'About the overall atmosphere'
+      }
+    ],
+    whyChoseUs: [
+      {
+        title: 'People First',
+        description: 'A friendly, attentive team that treats you like a person, not a time slot.'
+      },
+      {
+        title: 'Modern Comfort',
+        description: 'Entertainment at the chair (hello, Netflix) to keep anxiety low and the visit flying by.'
+      },
+      {
+        title: 'The Overall Vibe',
+        description: 'Welcoming, unrushed, and refreshingly human — more like visiting people you trust.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Dental Experience',
+        description: 'Found a dental office that feels more like visiting trusted friends than "going to the dentist."'
+      },
+      {
+        category: 'Anxiety Level',
+        description: 'Dental anxiety replaced with actual enjoyment and anticipation.'
+      },
+      {
+        category: 'Routine Care',
+        description: 'Discovered that routine care can be comfortable, entertaining, and stress-free.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do you really have Netflix at the dental chair?',
+        answer: 'Yes! We provide entertainment options including Netflix to help you relax and enjoy your visit.'
+      },
+      {
+        question: 'What makes your office different from other dental practices?',
+        answer: 'We focus on creating a welcoming, personal atmosphere where patients feel like valued people, not just appointments.'
+      },
+      {
+        question: 'How do you help patients with dental anxiety?',
+        answer: 'Through our comfortable environment, entertainment options, and genuinely caring staff who take time to make you feel at ease.'
+      }
+    ],
+    seo: {
+      title: 'Taylor Vasek\'s Story | Patient Experience | Exquisite Dentistry Los Angeles',
+      description: 'See how Taylor found the perfect dentist after moving to LA. Watch his testimonial about Netflix at the chair and why dental visits became fun hangouts at Exquisite Dentistry.',
+      keywords: 'dental patient story Los Angeles, comfortable dentist LA, Netflix dental chair, patient testimonial Los Angeles, anxiety-free dental care'
+    }
   }
 ];
