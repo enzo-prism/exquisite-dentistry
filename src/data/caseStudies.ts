@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     shortDescription: 'After moving to Los Angeles, Taylor needed a new dentist he could trust. From the moment he walked in, the experience felt different: warm faces, easy check-in, and a relaxed energy that made dental visits something to enjoy.',
     videoId: 'dpd6glBbZVU',
     videoType: 'youtube',
-    thumbnailUrl: 'https://img.youtube.com/vi/dpd6glBbZVU/maxresdefault.jpg',
+    thumbnailUrl: '/lovable-uploads/8b7b3e48-76a3-4f37-91e3-2b3a8c681841.png',
     location: 'Los Angeles, CA',
     goal: 'Finding a new dentist after moving to LA who provides comfortable, trustworthy care',
     keyTakeaways: [
