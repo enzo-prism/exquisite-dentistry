@@ -46,6 +46,7 @@ const TaylorCaseStudy: React.FC = () => {
             <YouTubeEmbed
               videoId={caseStudy.videoId}
               title={caseStudy.title}
+              thumbnailUrl={caseStudy.thumbnailUrl}
               className="w-full max-w-3xl mx-auto"
             />
           </div>
