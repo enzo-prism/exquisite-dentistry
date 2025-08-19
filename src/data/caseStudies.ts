@@ -185,5 +185,79 @@ export const caseStudies: CaseStudy[] = [
       description: 'See how Taylor found the perfect dentist after moving to LA. Watch his testimonial about Netflix at the chair and why dental visits became fun hangouts at Exquisite Dentistry.',
       keywords: 'dental patient story Los Angeles, comfortable dentist LA, Netflix dental chair, patient testimonial Los Angeles, anxiety-free dental care'
     }
+  },
+  {
+    id: 'shannon-langhorne',
+    slug: 'shannon-langhorne',
+    patientName: 'Shannon Langhorne',
+    title: 'Shannon Langhorne\'s Story — A Dental Visit That Feels Like Stepping Into a Spa',
+    shortDescription: 'For Shannon, going to the dentist used to be just another appointment on the calendar. That changed the first time she visited Exquisite Dentistry where it feels like walking into a spa.',
+    videoId: '3O6FuKufvL4',
+    videoType: 'youtube',
+    thumbnailUrl: 'https://img.youtube.com/vi/3O6FuKufvL4/maxresdefault.jpg',
+    location: 'Los Angeles, CA',
+    goal: 'Finding dental care that feels comfortable and relaxing, like a spa experience',
+    keyTakeaways: [
+      'Spa-like environment: Calm, welcoming, and designed to put patients at ease.',
+      'Friendly faces: A team that makes you feel cared for from the moment you arrive.',
+      'Confidence boost: Results that leave you smiling more — and feeling proud of it.'
+    ],
+    quotes: [
+      {
+        text: 'I like coming here because it feels like I\'m walking into a spa… everyone\'s friendly, they\'re smiling, Dr. Lexi\'s excited to see me.',
+        context: 'About the spa-like atmosphere'
+      },
+      {
+        text: 'I come here and it\'s always a nice, relaxing vibe. I just feel more confident about my smile than I have before.',
+        context: 'About confidence and relaxation'
+      }
+    ],
+    whyChoseUs: [
+      {
+        title: 'Spa-like Environment',
+        description: 'Calm, welcoming, and designed to put patients at ease.'
+      },
+      {
+        title: 'Friendly Faces',
+        description: 'A team that makes you feel cared for from the moment you arrive.'
+      },
+      {
+        title: 'Confidence Boost',
+        description: 'Results that leave you smiling more — and feeling proud of it.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Dental Experience',
+        description: 'Dental visits went from something to check off the list to something she looked forward to.'
+      },
+      {
+        category: 'Atmosphere',
+        description: 'Every detail felt intentional — from genuine smiles to Dr. Lexi\'s excitement to see her.'
+      },
+      {
+        category: 'Confidence',
+        description: 'Shannon feels more confident about her smile than ever before.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What makes your office feel like a spa?',
+        answer: 'We focus on creating a calm, welcoming environment with friendly staff and a relaxing atmosphere that puts patients at ease from the moment they arrive.'
+      },
+      {
+        question: 'How do you help patients feel comfortable during visits?',
+        answer: 'Our team greets every patient with genuine care and excitement. We believe that positive energy and intentional details make all the difference in your experience.'
+      },
+      {
+        question: 'Can dental care really boost confidence?',
+        answer: 'Absolutely! When you love your smile and feel cared for during the process, it naturally increases your confidence and makes you want to smile more.'
+      }
+    ],
+    seo: {
+      title: 'Shannon Langhorne\'s Story | Spa-Like Dental Experience | Exquisite Dentistry Los Angeles',
+      description: 'See how Shannon found a dental office that feels like a spa at Exquisite Dentistry in Los Angeles. Watch her testimonial about the relaxing atmosphere and confidence boost.',
+      keywords: 'spa-like dental office Los Angeles, relaxing dentist LA, comfortable dental care, patient testimonial Los Angeles, confidence boost dental'
+    }
   }
 ];
