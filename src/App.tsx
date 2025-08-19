@@ -154,14 +154,8 @@ const AppRoutes = () => {
               <Route path="/case-studies" element={<Suspense fallback={<PageLoaderComponent />}>
                 <CaseStudies />
               </Suspense>} />
-              <Route path="/case-studies/christian-fernandez" element={<Suspense fallback={<PageLoaderComponent />}>
+              <Route path="/case-studies/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ChristianCaseStudy />
-              </Suspense>} />
-              <Route path="/case-studies/taylor-vasek" element={<Suspense fallback={<PageLoaderComponent />}>
-                <TaylorCaseStudy />
-              </Suspense>} />
-              <Route path="/case-studies/shannon-langhorne" element={<Suspense fallback={<PageLoaderComponent />}>
-                <ShannonCaseStudy />
               </Suspense>} />
             </Routes>
           </PageTransition>
