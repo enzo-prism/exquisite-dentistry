@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Exquisite Dentistry Los Angeles | Dr. Alexie Aguil | Beverly Hills Cosmetic Dentist</title>
+    
+    <!-- Mobile web app meta tags for iPhone -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Exquisite Dentistry" />
     
     <meta name="author" content="Exquisite Dentistry" />
 
@@ -108,11 +114,27 @@
     <style>
       .gptengineer-select-ux-container { display: none !important; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
+      html {
+        background-color: #000000;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+      }
       body {
         font-family: 'Open Sans', system-ui, sans-serif;
         background-color: #f9fafb;
         color: #1a1a1a;
         overflow-x: hidden;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        /* Ensure no colored background shows on iPhone */
+        position: relative;
+      }
+      /* iPhone safe area support */
+      @supports (padding: max(0px)) {
+        body {
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+        }
       }
       .video-hero-container {
         height: 60vh;
