@@ -8,6 +8,7 @@ import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import ImageComponent from '@/components/Image';
 import WeddingServiceStructuredData from '@/components/WeddingServiceStructuredData';
+import BusinessStructuredData from '@/components/BusinessStructuredData';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -19,6 +20,7 @@ const Wedding = () => {
   return (
     <>
       <WeddingServiceStructuredData />
+      <BusinessStructuredData />
       <PageSEO 
         title="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry"
         description="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!"

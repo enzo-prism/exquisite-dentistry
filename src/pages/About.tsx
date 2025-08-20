@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import DoctorStructuredData from '@/components/DoctorStructuredData';
 import AboutPageStructuredData from '@/components/AboutPageStructuredData';
+import BusinessStructuredData from '@/components/BusinessStructuredData';
 
 const About = () => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const About = () => {
   return (
     <>
       <DoctorStructuredData />
+      <BusinessStructuredData />
       <AboutPageStructuredData />
       <PageSEO 
         title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"

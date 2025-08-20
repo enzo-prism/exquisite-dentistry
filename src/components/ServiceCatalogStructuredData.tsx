@@ -5,11 +5,14 @@ const ServiceCatalogStructuredData: React.FC = () => {
   const serviceCatalogData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
+    '@id': 'https://exquisitedentistryla.com/services/#catalog',
     name: 'Dental Services Catalog',
     description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
     url: 'https://exquisitedentistryla.com/services/',
+    numberOfItems: 6,
     provider: {
       '@type': 'DentistPractice',
+      '@id': 'https://exquisitedentistryla.com/#business',
       name: 'Exquisite Dentistry',
       url: 'https://exquisitedentistryla.com/'
     },
@@ -51,6 +54,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Dental Implants',
           description: 'Permanent tooth replacement solution using titanium implants for natural-looking results',
+          url: 'https://exquisitedentistryla.com/services/',
           category: 'Restorative Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -65,6 +69,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Invisalign Clear Aligners',
           description: 'Discreet orthodontic treatment using clear, removable aligners to straighten teeth',
+          url: 'https://exquisitedentistryla.com/services/',
           category: 'Orthodontics',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -79,6 +84,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Dental Crowns',
           description: 'Custom-made caps that cover damaged or decayed teeth to restore function and appearance',
+          url: 'https://exquisitedentistryla.com/services/',
           category: 'Restorative Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -93,6 +99,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Smile Makeover',
           description: 'Comprehensive cosmetic dental treatment combining multiple procedures for complete smile transformation',
+          url: 'https://exquisitedentistryla.com/services/',
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',

@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
-
+import BusinessStructuredData from '@/components/BusinessStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 
 // Icon mapping helper
@@ -30,8 +30,9 @@ const Services = () => {
   return (
     <>
       <ServiceCatalogStructuredData />
+      <BusinessStructuredData />
       
-      <PageSEO 
+      <PageSEO
         title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
         description="Explore our cosmetic and restorative services—porcelain veneers, teeth whitening, Invisalign, crowns and implants—tailored to your goals in Los Angeles."
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"

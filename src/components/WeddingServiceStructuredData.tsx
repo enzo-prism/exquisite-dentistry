@@ -69,9 +69,12 @@ const WeddingServiceStructuredData: React.FC = () => {
   const eventData = {
     '@context': 'https://schema.org',
     '@type': 'Event',
+    '@id': 'https://exquisitedentistryla.com/wedding/#consultation',
     name: 'Wedding Smile Consultation',
     description: 'Free consultation for wedding smile makeover planning and timeline discussion',
     url: 'https://exquisitedentistryla.com/wedding/',
+    startDate: '2024-01-01T09:00:00-08:00',
+    endDate: '2025-12-31T17:00:00-08:00',
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {

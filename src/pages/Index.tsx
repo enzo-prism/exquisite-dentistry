@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import SeoStructuredData from '@/components/SeoStructuredData';
 import ReviewStructuredData from '@/components/ReviewStructuredData';
+import BusinessStructuredData from '@/components/BusinessStructuredData';
 import ImageComponent from '@/components/Image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
@@ -64,6 +65,7 @@ const IndexPage: React.FC = () => {
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
       <SeoStructuredData />
+      <BusinessStructuredData />
       <ReviewStructuredData />
       
       <VideoHero

@@ -8,6 +8,7 @@ import { Zap, Clock, Shield, Star, CheckCircle } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
+import BusinessStructuredData from '@/components/BusinessStructuredData';
 
 const ZoomWhitening = () => {
   const benefits = [
@@ -93,7 +94,9 @@ const ZoomWhitening = () => {
 
   return (
     <>
-      <PageSEO 
+      <BusinessStructuredData />
+      
+      <PageSEO
         title="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry"
         description="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry."
         keywords="Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile"
