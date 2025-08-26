@@ -7,7 +7,7 @@ import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor 
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
-import ServiceCatalogStructuredData from '@/components/ServiceCatalogStructuredData';
+
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 
@@ -40,9 +40,6 @@ const Services = () => {
           description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
           url: 'https://exquisitedentistryla.com/services/',
           numberOfItems: 6,
-          provider: {
-            '@id': 'https://exquisitedentistryla.com/#business'
-          },
           itemListElement: [
             {
               '@type': 'ListItem',
@@ -52,7 +49,13 @@ const Services = () => {
                 name: 'Porcelain Veneers',
                 description: 'Ultra-thin porcelain shells designed to cover the front surface of teeth for a perfect smile transformation',
                 url: 'https://exquisitedentistryla.com/veneers/',
-                category: 'Cosmetic Dentistry'
+                category: 'Cosmetic Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             },
             {
@@ -63,7 +66,13 @@ const Services = () => {
                 name: 'Teeth Whitening',
                 description: 'Professional teeth whitening treatments for a brighter, more confident smile',
                 url: 'https://exquisitedentistryla.com/zoom-whitening/',
-                category: 'Cosmetic Dentistry'
+                category: 'Cosmetic Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             },
             {
@@ -74,7 +83,13 @@ const Services = () => {
                 name: 'Dental Implants',
                 description: 'Permanent tooth replacement solution using titanium implants for natural-looking results',
                 url: 'https://exquisitedentistryla.com/services/',
-                category: 'Restorative Dentistry'
+                category: 'Restorative Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             },
             {
@@ -85,7 +100,13 @@ const Services = () => {
                 name: 'Invisalign Clear Aligners',
                 description: 'Discreet orthodontic treatment using clear, removable aligners to straighten teeth',
                 url: 'https://exquisitedentistryla.com/services/',
-                category: 'Orthodontics'
+                category: 'Orthodontics',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             },
             {
@@ -96,7 +117,13 @@ const Services = () => {
                 name: 'Dental Crowns',
                 description: 'Custom-made caps that cover damaged or decayed teeth to restore function and appearance',
                 url: 'https://exquisitedentistryla.com/services/',
-                category: 'Restorative Dentistry'
+                category: 'Restorative Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             },
             {
@@ -107,7 +134,13 @@ const Services = () => {
                 name: 'Smile Makeover',
                 description: 'Comprehensive cosmetic dental treatment combining multiple procedures for complete smile transformation',
                 url: 'https://exquisitedentistryla.com/services/',
-                category: 'Cosmetic Dentistry'
+                category: 'Cosmetic Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
               }
             }
           ]
