@@ -259,5 +259,95 @@ export const caseStudies: CaseStudy[] = [
       description: 'See how Shannon found a dental office that feels like a spa at Exquisite Dentistry in Los Angeles. Watch her testimonial about the relaxing atmosphere and confidence boost.',
       keywords: 'spa-like dental office Los Angeles, relaxing dentist LA, comfortable dental care, patient testimonial Los Angeles, confidence boost dental'
     }
+  },
+  {
+    id: 'anxiety-to-ease',
+    slug: 'anxiety-to-ease',
+    patientName: 'Real Patients',
+    title: 'From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA',
+    shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
+    videoId: 'U32NScY_qCQ',
+    videoType: 'youtube',
+    thumbnailUrl: '/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
+    location: 'West Hollywood / Beverly Grove, Los Angeles',
+    goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
+    keyTakeaways: [
+      'Warm welcome, zero rush — You\'re greeted by name and never feel like "just another appointment."',
+      'Sensory calm — A warm blanket, noise-canceling headphones, Netflix, and subtle aromatherapy to lower stress.',
+      'Transparent care — What we\'re doing, why it matters, and what it will feel like explained in plain language.'
+    ],
+    quotes: [
+      {
+        text: 'They give you a bottle of water… a warm blanket… headphones… and you can watch Netflix.',
+        context: 'About comfort amenities'
+      },
+      {
+        text: 'I love the essential oils. I love being greeted at the front. I love the staff.',
+        context: 'About the welcoming atmosphere'
+      },
+      {
+        text: 'Exquisite Dentistry is the best dentist office I\'ve ever been to.',
+        context: 'Overall experience'
+      },
+      {
+        text: 'Tears of joy… it changed her life forever.',
+        context: 'Doctor\'s note about patient transformation'
+      }
+    ],
+    whyChoseUs: [
+      {
+        title: 'Environment Signals Safety',
+        description: 'Small comforts reduce cortisol, making dentistry feel approachable.'
+      },
+      {
+        title: 'Communication Reduces Uncertainty',
+        description: 'When you know the "what & why," fear gives way to trust.'
+      },
+      {
+        title: 'Details Compound',
+        description: 'Calm mind + gentle hands + meticulous technique = consistently great outcomes.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Anxiety → Ease',
+        description: 'Patients report feeling calm, cared for, and in control throughout treatment.'
+      },
+      {
+        category: 'Completed Care',
+        description: 'With comfort and clarity, people actually finish the plan they start.'
+      },
+      {
+        category: 'Confidence On Display',
+        description: 'Smile improvements that patients are proud to show — from healthier gums to aligned, luminous teeth.'
+      },
+      {
+        category: 'Better Habits',
+        description: 'Clear at-home guidance leads to easier maintenance between visits.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What\'s a comfort consult?',
+        answer: 'A short, judgment-free visit where we understand your goals, explain options, and show you exactly how we keep you comfortable.'
+      },
+      {
+        question: 'I\'m anxious about pain. Can you really make this easy?',
+        answer: 'Yes. From numbing choices and gentle techniques to blankets, headphones, and Netflix — we\'ve designed every detail to lower stress.'
+      },
+      {
+        question: 'Do you offer Invisalign?',
+        answer: 'We do. After a comprehensive evaluation, we\'ll let you know if Invisalign is a good fit and map out your smile plan.'
+      },
+      {
+        question: 'Do you work with my insurance?',
+        answer: 'We\'ll help you understand benefits and provide a transparent estimate before treatment.'
+      }
+    ],
+    seo: {
+      title: 'Case Study: From Dental Anxiety to Ease | Exquisite Dentistry LA',
+      description: 'How Exquisite Dentistry LA turns anxiety into comfort — warm blankets, essential oils, and Netflix — delivering confidence-building results patients love. Watch real patient stories.',
+      keywords: 'dental anxiety Los Angeles, comfort dentistry LA, anxiety-free dental care, patient testimonials Los Angeles, spa-like dental office'
+    }
   }
 ];

@@ -11,7 +11,7 @@ import VimeoFacade from '@/components/VimeoFacade';
 import { ArrowLeft, CheckCircle, Heart, Star, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const ChristianCaseStudyPage: React.FC = () => {
+const CaseStudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const caseStudy = caseStudies.find(cs => cs.slug === slug);
   
@@ -59,9 +59,11 @@ const ChristianCaseStudyPage: React.FC = () => {
       <section className="py-12 bg-muted/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Watch Christian's Story</h2>
+            <h2 className="text-2xl font-semibold mb-4">Watch {caseStudy.patientName}'s Story</h2>
             <p className="text-muted-foreground">
-              Hear how the experience changed her confidence and why she recommends the team.
+              {caseStudy.patientName === 'Real Patients' 
+                ? 'Hear how our patients transformed their dental experience from anxiety to ease.'
+                : 'Hear how the experience changed their confidence and why they recommend the team.'}
             </p>
           </div>
           
@@ -124,7 +126,7 @@ const ChristianCaseStudyPage: React.FC = () => {
             
             {/* Patient Quotes */}
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gold">Christian's Experience</h3>
+              <h3 className="text-xl font-semibold text-gold">{caseStudy.patientName}'s Experience</h3>
               {caseStudy.quotes.map((quote, index) => (
                 <blockquote key={index} className="border-l-4 border-gold pl-6 py-4 bg-muted/50 rounded-r-lg">
                   <p className="text-lg italic mb-2">"{quote.text}"</p>
@@ -141,7 +143,7 @@ const ChristianCaseStudyPage: React.FC = () => {
       {/* Why She Chose Us */}
       <section className="py-16 bg-muted/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold text-center mb-12">Why Christian Chose Us</h2>
+          <h2 className="text-3xl font-semibold text-center mb-12">Why {caseStudy.patientName === 'Real Patients' ? 'Patients Choose' : caseStudy.patientName + ' Chose'} Us</h2>
           
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {caseStudy.whyChoseUs.map((reason, index) => {
@@ -262,4 +264,4 @@ const ChristianCaseStudyPage: React.FC = () => {
   );
 };
 
-export default ChristianCaseStudyPage;
+export default CaseStudyPage;
