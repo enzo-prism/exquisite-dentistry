@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import ConversionButton from '@/components/ConversionButton';
 import { Star, Award, Users, Clock } from 'lucide-react';
 import ImageComponent from '@/components/Image';
 import { drAguilImages } from '@/data/drAguilImages';
@@ -71,16 +72,14 @@ const DoctorIntroSection: React.FC = () => {
               >
                 <a href="/about">Learn More About Dr. Aguil</a>
               </Button>
-              <Button 
+              <ConversionButton 
                 variant="outline" 
                 size="lg" 
-                asChild
                 className="border-gold text-gold hover:bg-gold hover:text-white px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
+                href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
               >
-                <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null">
-                  Schedule Consultation
-                </a>
-              </Button>
+                Schedule Consultation
+              </ConversionButton>
             </div>
           </div>
 

@@ -58,6 +58,23 @@
       gtag('config', 'G-1MZGF2XNB5');
       gtag('config', 'G-RECCC1K9GK');
       gtag('config', 'AW-11373090310');
+
+      // Helper function for Google Ads conversion tracking
+      function gtagSendEvent(url) {
+        var callback = function () {
+          if (typeof url === 'string') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'ads_conversion_Submit_lead_form_1', {
+          'event_callback': callback,
+          'event_timeout': 2000
+        });
+        return false;
+      }
+      
+      // Make function globally available
+      window.gtagSendEvent = gtagSendEvent;
     </script>
     
     <!-- Preload critical fonts to prevent layout shifts -->

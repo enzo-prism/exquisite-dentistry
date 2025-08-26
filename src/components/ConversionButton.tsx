@@ -1,0 +1,112 @@
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { gtagSendEvent } from '@/utils/googleAdsTracking';
+import { cn } from '@/lib/utils';
+
+interface ConversionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  size?: "default" | "sm" | "lg" | "icon";
+  asChild?: boolean;
+  href?: string;
+  target?: string;
+  rel?: string;
+  children: React.ReactNode;
+  className?: string;
+  trackConversion?: boolean;
+}
+
+/**
+ * Enhanced Button component that automatically tracks Google Ads conversions
+ * for consultation booking links and important CTAs
+ */
+const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonProps>(
+  ({ 
+    variant = "default", 
+    size = "default", 
+    asChild = false,
+    href,
+    target,
+    rel,
+    children, 
+    className,
+    trackConversion = true,
+    onClick,
+    ...props 
+  }, ref) => {
+    
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      // Track conversion if enabled and href is provided
+      if (trackConversion && href) {
+        e.preventDefault();
+        
+        // Send conversion event and handle navigation
+        const tracked = gtagSendEvent(href);
+        
+        // If tracking failed, navigate immediately
+        if (!tracked) {
+          if (target === '_blank') {
+            window.open(href, '_blank', rel || 'noopener noreferrer');
+          } else {
+            window.location.href = href;
+          }
+        }
+      }
+      
+      // Call original onClick if provided
+      if (onClick) {
+        onClick(e);
+      }
+    };
+
+    // If asChild is true and href is provided, render as anchor with tracking
+    if (asChild && href) {
+      return (
+        <Button 
+          asChild={false}
+          variant={variant}
+          size={size}
+          className={className}
+          onClick={handleClick}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Button>
+      );
+    }
+
+    // If href is provided but not asChild, render as button with tracking
+    if (href) {
+      return (
+        <Button 
+          variant={variant}
+          size={size}
+          className={className}
+          onClick={handleClick}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Button>
+      );
+    }
+
+    // Regular button without href
+    return (
+      <Button
+        variant={variant}
+        size={size}
+        className={className}
+        onClick={onClick}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  }
+);
+
+ConversionButton.displayName = "ConversionButton";
+
+export default ConversionButton;

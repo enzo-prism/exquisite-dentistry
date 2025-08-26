@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import ConversionButton from '@/components/ConversionButton';
 import ImageComponent from '@/components/Image';
 import ScrollProgress from './ScrollProgress';
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
@@ -242,15 +243,15 @@ const Navbar = () => {
               </div>
               
               {/* CTA Button - Desktop */}
-              <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90">
-                <a 
-                  href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Book an Appointment
-                </a>
-              </Button>
+              <ConversionButton 
+                size="lg" 
+                className="bg-gold text-white hover:bg-gold/90"
+                href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book an Appointment
+              </ConversionButton>
             </nav>
           
             {/* Enhanced Mobile Menu Button */}
@@ -493,24 +494,20 @@ const MobileMenuPanel = ({
           paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 20px))'
         }}
       >
-        <Button 
-          asChild 
+        <ConversionButton 
           size="lg" 
           className="w-full bg-gold text-white hover:bg-gold/90 active:bg-gold/80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
+          href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ 
             minHeight: '48px',
             WebkitTapHighlightColor: 'transparent'
           }}
+          onClick={onClose}
         >
-          <a 
-            href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={onClose}
-          >
-            Book an Appointment
-          </a>
-        </Button>
+          Book an Appointment
+        </ConversionButton>
       </div>
       
       {/* Swipe Indicator */}

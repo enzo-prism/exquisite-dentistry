@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useTouchOptimization } from '@/hooks/use-mobile-gestures';
 import { motion, AnimatePresence } from 'framer-motion';
+import { gtagSendEvent } from '@/utils/googleAdsTracking';
 
 interface FloatingActionButtonProps {
   className?: string;
@@ -54,7 +55,8 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
       icon: Calendar,
       label: 'Schedule',
       href: 'https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
-      color: 'bg-gold hover:bg-gold-dark'
+      color: 'bg-gold hover:bg-gold-dark',
+      trackConversion: true
     }
   ];
 
@@ -124,7 +126,13 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
                   getTouchTargetClasses('md'),
                   action.color
                 )}
-                onClick={() => setIsExpanded(false)}
+                onClick={(e) => {
+                  if (action.trackConversion) {
+                    e.preventDefault();
+                    gtagSendEvent(action.href);
+                  }
+                  setIsExpanded(false);
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >

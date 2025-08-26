@@ -2,6 +2,9 @@
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Button from '@/components/Button';
+import ConversionButton from '@/components/ConversionButton';
+import PhoneLink from '@/components/PhoneLink';
+import { trackFormSubmission } from '@/utils/googleAdsTracking';
 import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
@@ -34,12 +37,33 @@ const Contact = () => {
     script.async = true;
     document.head.appendChild(script);
 
+    // Listen for Typeform submission events
+    const handleTypeformSubmit = () => {
+      trackFormSubmission('contact_form');
+    };
+
+    // Add event listener for Typeform submissions
+    window.addEventListener('message', (e) => {
+      if (e.data.type === 'form_submit' && e.origin === 'https://form.typeform.com') {
+        handleTypeformSubmit();
+      }
+    });
+
+    const messageHandler = (e: MessageEvent) => {
+      if (e.data.type === 'form_submit' && e.origin === 'https://form.typeform.com') {
+        handleTypeformSubmit();
+      }
+    };
+    window.addEventListener('message', messageHandler);
+
     return () => {
       // Cleanup script on unmount
       const existingScript = document.querySelector('script[src="//embed.typeform.com/next/embed.js"]');
       if (existingScript) {
         document.head.removeChild(existingScript);
       }
+      // Remove message listener
+      window.removeEventListener('message', messageHandler);
     };
   }, []);
 
@@ -80,7 +104,9 @@ const Contact = () => {
                         <Phone size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Phone</h3>
-                          <p className="text-white/80">(323) 272-2388</p>
+                          <PhoneLink phoneNumber="(323) 272-2388" className="text-white/80 hover:text-gold transition-colors">
+                            (323) 272-2388
+                          </PhoneLink>
                         </div>
                       </div>
                       
@@ -200,9 +226,15 @@ const Contact = () => {
               <p className="text-xl text-white/80 mb-12 font-light">
                 Schedule your visit today and experience the Exquisite Dentistry difference.
               </p>
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="px-8 py-3.5">Book Appointment</Button>
-              </a>
+              <ConversionButton 
+                size="lg" 
+                className="px-8 py-3.5"
+                href={SCHEDULING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book Appointment
+              </ConversionButton>
             </div>
           </div>
         </section>
