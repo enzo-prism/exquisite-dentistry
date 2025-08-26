@@ -42,7 +42,7 @@ export const caseStudies: CaseStudy[] = [
     shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
     videoId: 'U32NScY_qCQ',
     videoType: 'youtube',
-    thumbnailUrl: '/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
+    thumbnailUrl: '/lovable-uploads/5e86bd09-59b8-479e-93a7-18bd8484a8cd.png',
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
     keyTakeaways: [
