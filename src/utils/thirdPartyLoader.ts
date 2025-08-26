@@ -113,6 +113,9 @@ export function initializeGoogleAnalytics() {
     page_title: document.title,
     page_location: window.location.href,
   });
+  
+  // Initialize Google Ads tracking
+  gtag('config', 'AW-11373090310');
 }
 
 // Hotjar verification - check if loaded from HTML
