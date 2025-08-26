@@ -147,7 +147,17 @@ export function logValidationErrors(schemaType: string, result: ValidationResult
  */
 export function getCanonicalUrl(path: string): string {
   const baseUrl = 'https://exquisitedentistryla.com';
+  
+  // Handle root path
+  if (!path || path === '/' || path === '') {
+    return `${baseUrl}/`;
+  }
+  
+  // Ensure path starts with /
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  
+  // Add trailing slash for consistency
   const pathWithSlash = cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`;
+  
   return `${baseUrl}${pathWithSlash}`;
 }

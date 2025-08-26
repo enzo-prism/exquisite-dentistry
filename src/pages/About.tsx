@@ -9,9 +9,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
-import DoctorStructuredData from '@/components/DoctorStructuredData';
-import AboutPageStructuredData from '@/components/AboutPageStructuredData';
-import BusinessStructuredData from '@/components/BusinessStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const About = () => {
   useEffect(() => {
@@ -20,9 +19,29 @@ const About = () => {
 
   return (
     <>
-      <DoctorStructuredData />
-      <AboutPageStructuredData />
-      <PageSEO 
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeDoctor={true}
+        includeWebsite={true}
+        additionalSchemas={[{
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          '@id': getCanonicalUrl('/about#page'),
+          name: 'About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles',
+          description: 'Meet Dr. Alexie Aguil and our team. We combine modern cosmetic techniques with gentle, personalized care to create natural, long-lasting smiles in Los Angeles.',
+          url: getCanonicalUrl('/about'),
+          isPartOf: {
+            '@id': 'https://exquisitedentistryla.com/#website'
+          },
+          about: {
+            '@id': 'https://exquisitedentistryla.com/#doctor'
+          },
+          mainEntity: {
+            '@id': 'https://exquisitedentistryla.com/#doctor'
+          }
+        }]}
+      />
+      <PageSEO
         title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"
         description="Meet Dr. Alexie Aguil and our team. We combine modern cosmetic techniques with gentle, personalized care to create natural, long-lasting smiles in Los Angeles."
         keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"

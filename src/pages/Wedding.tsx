@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import ImageComponent from '@/components/Image';
-import WeddingServiceStructuredData from '@/components/WeddingServiceStructuredData';
-import BusinessStructuredData from '@/components/BusinessStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
@@ -19,8 +19,29 @@ const Wedding = () => {
 
   return (
     <>
-      <WeddingServiceStructuredData />
-      <PageSEO 
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeWebsite={true}
+        additionalSchemas={[{
+          '@context': 'https://schema.org',
+          '@type': 'MedicalProcedure',
+          name: 'Wedding Smile Makeover',
+          description: 'Comprehensive cosmetic dental treatment designed to create the perfect smile for your wedding day',
+          url: getCanonicalUrl('/wedding'),
+          category: 'Cosmetic Dentistry',
+          bodyLocation: {
+            '@type': 'BodySystem',
+            name: 'Oral and Dental System'
+          },
+          provider: {
+            '@id': 'https://exquisitedentistryla.com/#business'
+          },
+          performer: {
+            '@id': 'https://exquisitedentistryla.com/#doctor'
+          }
+        }]}
+      />
+      <PageSEO
         title="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry"
         description="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!"
         keywords="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides"

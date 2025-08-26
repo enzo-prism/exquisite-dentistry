@@ -4,16 +4,74 @@ import PageSEO from '@/components/seo/PageSEO';
 import ReviewWidget from '@/components/ReviewWidget';
 import VideoHero from '@/components/VideoHero';
 import VideoTestimonial from '@/components/VideoTestimonial';
-import VideoTestimonialStructuredData from '@/components/VideoTestimonialStructuredData';
-import ReviewStructuredData from '@/components/ReviewStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const TestimonialsPage: React.FC = () => {
   return (
     <>
-      <VideoTestimonialStructuredData />
-      <ReviewStructuredData />
-      <PageSEO 
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeReviews={true}
+        includeWebsite={true}
+        additionalSchemas={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            '@id': getCanonicalUrl('/testimonials#page'),
+            name: 'Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles',
+            description: 'Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles',
+            url: getCanonicalUrl('/testimonials'),
+            isPartOf: {
+              '@id': 'https://exquisitedentistryla.com/#website'
+            },
+            about: {
+              '@id': 'https://exquisitedentistryla.com/#business'
+            }
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Video Testimonials',
+            description: 'Collection of patient video testimonials for Exquisite Dentistry',
+            numberOfItems: 6,
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                item: {
+                  '@type': 'VideoObject',
+                  name: 'Shannon Patient Testimonial',
+                  description: 'Shannon shares her experience with Dr. Aguil and Exquisite Dentistry',
+                  embedUrl: 'https://player.vimeo.com/video/1076745522'
+                }
+              },
+              {
+                '@type': 'ListItem', 
+                position: 2,
+                item: {
+                  '@type': 'VideoObject',
+                  name: 'Taylor Patient Testimonial',
+                  description: 'Taylor discusses her smile transformation at Exquisite Dentistry',
+                  embedUrl: 'https://player.vimeo.com/video/1076745520'
+                }
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                item: {
+                  '@type': 'VideoObject',
+                  name: 'Christian Patient Testimonial', 
+                  description: 'Christian shares his positive experience with cosmetic dentistry',
+                  embedUrl: 'https://player.vimeo.com/video/1076745519'
+                }
+              }
+            ]
+          }
+        ]}
+      />
+      <PageSEO
         title="Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles"
         description="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles."
         keywords="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews"

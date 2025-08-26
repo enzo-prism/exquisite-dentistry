@@ -8,7 +8,8 @@ import { Zap, Clock, Shield, Star, CheckCircle } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
-import BusinessStructuredData from '@/components/BusinessStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const ZoomWhitening = () => {
   const benefits = [
@@ -94,8 +95,30 @@ const ZoomWhitening = () => {
 
   return (
     <>
-      
-      
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeWebsite={true}
+        additionalSchemas={[{
+          '@context': 'https://schema.org',
+          '@type': 'MedicalProcedure',
+          name: 'Zoom Teeth Whitening',
+          description: 'Professional in-office teeth whitening treatment using advanced Zoom technology for immediate, dramatic results',
+          url: getCanonicalUrl('/zoom-whitening'),
+          category: 'Cosmetic Dentistry',
+          bodyLocation: {
+            '@type': 'BodySystem',
+            name: 'Oral and Dental System'
+          },
+          provider: {
+            '@id': 'https://exquisitedentistryla.com/#business'
+          },
+          performer: {
+            '@id': 'https://exquisitedentistryla.com/#doctor'
+          },
+          priceRange: '$300-$600',
+          expectedPrognosis: 'Teeth become 3-8 shades whiter in one appointment'
+        }]}
+      />
       <PageSEO
         title="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry"
         description="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry."

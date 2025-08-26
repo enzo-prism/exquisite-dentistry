@@ -9,8 +9,8 @@ import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import PageSEO from '@/components/seo/PageSEO';
-import SeoStructuredData from '@/components/SeoStructuredData';
-import ContactPageStructuredData from '@/components/ContactPageStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -69,13 +69,33 @@ const Contact = () => {
 
   return (
     <>
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeWebsite={true}
+        additionalSchemas={[{
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          '@id': getCanonicalUrl('/contact#page'),
+          name: 'Contact Exquisite Dentistry | Schedule Your Consultation Today',
+          description: 'Contact Dr. Alexie Aguil and the team at Exquisite Dentistry. Schedule your consultation for cosmetic dentistry in Los Angeles. Call (323) 272-2388.',
+          url: getCanonicalUrl('/contact'),
+          isPartOf: {
+            '@id': 'https://exquisitedentistryla.com/#website'
+          },
+          about: {
+            '@id': 'https://exquisitedentistryla.com/#business'
+          },
+          mainEntity: {
+            '@id': 'https://exquisitedentistryla.com/#business'
+          }
+        }]}
+      />
       <PageSEO 
         title="Contact Exquisite Dentistry Los Angeles | Schedule Your Appointment"
         description="Schedule an appointment with Exquisite Dentistry in Los Angeles. Call (323) 272-2388 or book online. Easy parking and convenient hours."
         keywords="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd"
         path="/contact"
       />
-      <ContactPageStructuredData />
 
       <div className="min-h-screen overflow-hidden">
         {/* Hero Section with Full Video Background */}

@@ -10,9 +10,7 @@ import TestimonialThumbnail from '@/components/TestimonialThumbnail';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
-import SeoStructuredData from '@/components/SeoStructuredData';
-import ReviewStructuredData from '@/components/ReviewStructuredData';
-import BusinessStructuredData from '@/components/BusinessStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import ImageComponent from '@/components/Image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
@@ -57,6 +55,12 @@ const IndexPage: React.FC = () => {
 
   return (
     <>
+      <MasterStructuredData 
+        includeBusiness={true}
+        includeDoctor={true}
+        includeWebsite={true}
+        includeReviews={true}
+      />
       <PageSEO 
         title="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil"
         description="Cosmetic and restorative dentistry in Los Angeles by Dr. Alexie Aguil—veneers, whitening, Invisalign and more. Concierge care and comfortable visits."
@@ -64,8 +68,6 @@ const IndexPage: React.FC = () => {
         path=""
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
-      <BusinessStructuredData />
-      <ReviewStructuredData />
       
       <VideoHero
         title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
