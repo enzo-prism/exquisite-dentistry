@@ -75,7 +75,6 @@ const Contact = () => {
         keywords="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd"
         path="/contact"
       />
-      <SeoStructuredData />
       <ContactPageStructuredData />
 
       <div className="min-h-screen overflow-hidden">

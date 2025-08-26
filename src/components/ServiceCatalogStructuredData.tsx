@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { validateItemList, logValidationErrors, getCanonicalUrl } from '@/utils/schemaValidation';
 
 const ServiceCatalogStructuredData: React.FC = () => {
   const serviceCatalogData = {
@@ -8,13 +9,13 @@ const ServiceCatalogStructuredData: React.FC = () => {
     '@id': 'https://exquisitedentistryla.com/services/#catalog',
     name: 'Dental Services Catalog',
     description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
-    url: 'https://exquisitedentistryla.com/services/',
+    url: getCanonicalUrl('/services'),
     numberOfItems: 6,
     provider: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       '@id': 'https://exquisitedentistryla.com/#business',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com/'
+      url: getCanonicalUrl('/')
     },
     itemListElement: [
       {
@@ -24,7 +25,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Porcelain Veneers',
           description: 'Ultra-thin porcelain shells designed to cover the front surface of teeth for a perfect smile transformation',
-          url: 'https://exquisitedentistryla.com/veneers/',
+          url: getCanonicalUrl('/veneers'),
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -39,7 +40,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Teeth Whitening',
           description: 'Professional teeth whitening treatments for a brighter, more confident smile',
-          url: 'https://exquisitedentistryla.com/zoom-whitening/',
+          url: getCanonicalUrl('/zoom-whitening'),
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -54,7 +55,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Dental Implants',
           description: 'Permanent tooth replacement solution using titanium implants for natural-looking results',
-          url: 'https://exquisitedentistryla.com/services/',
+          url: getCanonicalUrl('/services'),
           category: 'Restorative Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -69,7 +70,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Invisalign Clear Aligners',
           description: 'Discreet orthodontic treatment using clear, removable aligners to straighten teeth',
-          url: 'https://exquisitedentistryla.com/services/',
+          url: getCanonicalUrl('/services'),
           category: 'Orthodontics',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -84,7 +85,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Dental Crowns',
           description: 'Custom-made caps that cover damaged or decayed teeth to restore function and appearance',
-          url: 'https://exquisitedentistryla.com/services/',
+          url: getCanonicalUrl('/services'),
           category: 'Restorative Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -99,7 +100,7 @@ const ServiceCatalogStructuredData: React.FC = () => {
           '@type': 'MedicalProcedure',
           name: 'Smile Makeover',
           description: 'Comprehensive cosmetic dental treatment combining multiple procedures for complete smile transformation',
-          url: 'https://exquisitedentistryla.com/services/',
+          url: getCanonicalUrl('/services'),
           category: 'Cosmetic Dentistry',
           bodyLocation: {
             '@type': 'BodySystem',
@@ -109,6 +110,10 @@ const ServiceCatalogStructuredData: React.FC = () => {
       }
     ]
   };
+
+  // Validate schema in development
+  const validationResult = validateItemList(serviceCatalogData);
+  logValidationErrors('ServiceCatalogStructuredData', validationResult);
 
   return (
     <Helmet>

@@ -31,7 +31,7 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({
       }
     })),
     provider: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',

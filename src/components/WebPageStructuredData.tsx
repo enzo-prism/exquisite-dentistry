@@ -31,7 +31,7 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
       url: 'https://exquisitedentistryla.com/'
     },
     provider: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',

@@ -1,5 +1,6 @@
 // Export all SEO components for easy importing
 export { default as ArticleStructuredData } from './ArticleStructuredData';
+export { default as ConsolidatedStructuredData } from './ConsolidatedStructuredData';
 export { default as FAQStructuredData } from './FAQStructuredData';
 export { default as ImageGalleryStructuredData } from './ImageGalleryStructuredData';
 export { default as MedicalProcedureStructuredData } from './MedicalProcedureStructuredData';

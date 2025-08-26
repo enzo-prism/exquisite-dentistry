@@ -64,7 +64,6 @@ const IndexPage: React.FC = () => {
         path=""
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
-      <SeoStructuredData />
       <BusinessStructuredData />
       <ReviewStructuredData />
       

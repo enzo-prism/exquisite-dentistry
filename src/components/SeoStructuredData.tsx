@@ -1,19 +1,20 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { validateLocalBusiness, logValidationErrors, getCanonicalUrl } from '@/utils/schemaValidation';
 
 const SeoStructuredData: React.FC = () => {
   const practiceData = {
     '@context': 'https://schema.org',
-    '@type': 'DentistPractice',
+    '@type': ['LocalBusiness', 'Dentist'],
     name: 'Exquisite Dentistry',
     alternateName: 'Exquisite Dentistry LA',
     description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, and smile makeovers.',
     image: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     '@id': 'https://exquisitedentistryla.com/',
-    url: 'https://exquisitedentistryla.com/',
+    url: getCanonicalUrl('/'),
     telephone: '(323) 272-2388',
     email: 'info@exquisitedentistryla.com',
-    priceRange: '$$',
+    priceRange: '$$$',
     paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
     currenciesAccepted: 'USD',
     address: {
@@ -77,7 +78,7 @@ const SeoStructuredData: React.FC = () => {
     name: 'Dr. Alexie Aguil',
     jobTitle: 'Cosmetic Dentist',
     worksFor: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry'
     },
     address: {
@@ -89,7 +90,7 @@ const SeoStructuredData: React.FC = () => {
       addressCountry: 'US'
     },
     telephone: '(323) 272-2388',
-    url: 'https://exquisitedentistryla.com/about/',
+    url: getCanonicalUrl('/about'),
     knowsAbout: [
       'Cosmetic Dentistry',
       'Porcelain Veneers',
@@ -98,6 +99,10 @@ const SeoStructuredData: React.FC = () => {
       'Dental Implants'
     ]
   };
+
+  // Validate schemas in development
+  const practiceValidation = validateLocalBusiness(practiceData);
+  logValidationErrors('SeoStructuredData - Practice', practiceValidation);
 
   return (
     <Helmet>

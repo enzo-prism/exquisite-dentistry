@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const AboutPageStructuredData: React.FC = () => {
   const aboutPageData = {
@@ -7,14 +8,14 @@ const AboutPageStructuredData: React.FC = () => {
     '@type': 'AboutPage',
     name: 'About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles',
     description: 'Meet Dr. Alexie Aguil, Los Angeles leading cosmetic dentist with expertise in smile transformations, porcelain veneers, and advanced dental techniques.',
-    url: 'https://exquisitedentistryla.com/about/',
+    url: getCanonicalUrl('/about'),
     mainEntity: {
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
-      jobTitle: 'Cosmetic Dentist',
+      jobTitle: 'Dentist',
       description: 'Leading cosmetic dentist in Los Angeles specializing in smile transformations and advanced dental techniques',
       worksFor: {
-        '@type': 'DentistPractice',
+        '@type': ['LocalBusiness', 'Dentist'],
         name: 'Exquisite Dentistry',
         address: {
           '@type': 'PostalAddress',
@@ -47,7 +48,7 @@ const AboutPageStructuredData: React.FC = () => {
         }
       ],
       telephone: '(323) 272-2388',
-      url: 'https://exquisitedentistryla.com/about/'
+      url: getCanonicalUrl('/about')
     },
     isPartOf: {
       '@type': 'WebSite',
@@ -65,13 +66,13 @@ const AboutPageStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com/'
+        item: getCanonicalUrl('/')
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About',
-        item: 'https://exquisitedentistryla.com/about/'
+        item: getCanonicalUrl('/about')
       }
     ]
   };

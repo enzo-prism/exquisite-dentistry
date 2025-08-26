@@ -24,7 +24,7 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     url: `https://exquisitedentistryla.com${url}`,
     image: image || 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     provider: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',

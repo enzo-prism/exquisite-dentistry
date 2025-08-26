@@ -30,7 +30,6 @@ const Services = () => {
   return (
     <>
       <ServiceCatalogStructuredData />
-      <BusinessStructuredData />
       
       <PageSEO
         title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"

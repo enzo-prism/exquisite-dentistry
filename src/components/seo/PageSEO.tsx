@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const BASE_URL = 'https://exquisitedentistryla.com';
 

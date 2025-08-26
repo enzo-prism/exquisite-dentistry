@@ -1,13 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { validateLocalBusiness, logValidationErrors, getCanonicalUrl } from '@/utils/schemaValidation';
 
 const BusinessStructuredData: React.FC = () => {
   const businessData = {
     '@context': 'https://schema.org',
-    '@type': 'DentistPractice',
+    '@type': ['LocalBusiness', 'Dentist'],
     '@id': 'https://exquisitedentistryla.com/#business',
     name: 'Exquisite Dentistry',
-    url: 'https://exquisitedentistryla.com/',
+    url: getCanonicalUrl('/'),
     description: 'Premier cosmetic dentistry practice in Los Angeles specializing in veneers, teeth whitening, and smile makeovers',
     address: {
       '@type': 'PostalAddress',
@@ -19,14 +20,24 @@ const BusinessStructuredData: React.FC = () => {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 34.0622,
-      longitude: -118.3417
+      latitude: 34.063844,
+      longitude: -118.3650287
     },
     telephone: '(323) 272-2388',
     email: 'info@exquisitedentistryla.com',
-    openingHours: [
-      'Mo-Fr 08:00-17:00',
-      'Sa 09:00-15:00'
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '09:00',
+        closes: '15:00'
+      }
     ],
     priceRange: '$$$',
     paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
@@ -35,13 +46,15 @@ const BusinessStructuredData: React.FC = () => {
     founder: {
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
-      jobTitle: 'Cosmetic Dentist'
+      jobTitle: 'Dentist',
+      speciality: 'Cosmetic Dentistry'
     },
-    employee: {
+    employee: [{
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
-      jobTitle: 'Cosmetic Dentist'
-    },
+      jobTitle: 'Dentist',
+      speciality: 'Cosmetic Dentistry'
+    }],
     logo: {
       '@type': 'ImageObject',
       url: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
@@ -62,19 +75,31 @@ const BusinessStructuredData: React.FC = () => {
     ],
     availableService: [
       {
-        '@type': 'MedicalTherapy',
-        name: 'Porcelain Veneers'
+        '@type': 'MedicalProcedure',
+        name: 'Porcelain Veneers',
+        category: 'Cosmetic Dentistry'
       },
       {
-        '@type': 'MedicalTherapy',
-        name: 'Teeth Whitening'
+        '@type': 'MedicalProcedure',
+        name: 'Teeth Whitening',
+        category: 'Cosmetic Dentistry'
       },
       {
-        '@type': 'MedicalTherapy',
-        name: 'Smile Makeover'
+        '@type': 'MedicalProcedure',
+        name: 'Smile Makeover',
+        category: 'Cosmetic Dentistry'
       }
-    ]
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      reviewCount: '50+'
+    }
   };
+
+  // Validate schema in development
+  const validationResult = validateLocalBusiness(businessData);
+  logValidationErrors('BusinessStructuredData', validationResult);
 
   return (
     <Helmet>

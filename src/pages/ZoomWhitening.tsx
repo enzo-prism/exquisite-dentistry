@@ -94,7 +94,7 @@ const ZoomWhitening = () => {
 
   return (
     <>
-      <BusinessStructuredData />
+      
       
       <PageSEO
         title="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry"

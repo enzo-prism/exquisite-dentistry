@@ -21,7 +21,6 @@ const About = () => {
   return (
     <>
       <DoctorStructuredData />
-      <BusinessStructuredData />
       <AboutPageStructuredData />
       <PageSEO 
         title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"

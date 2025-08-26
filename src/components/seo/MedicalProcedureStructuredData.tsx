@@ -59,7 +59,7 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
     ...(recoveryTime && { recoveryTime: recoveryTime }),
     ...(priceRange && { priceRange: priceRange }),
     provider: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',
@@ -77,7 +77,7 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
       name: 'Dr. Alexie Aguil',
       jobTitle: 'Cosmetic Dentist',
       worksFor: {
-        '@type': 'DentistPractice',
+        '@type': ['LocalBusiness', 'Dentist'],
         name: 'Exquisite Dentistry'
       }
     }

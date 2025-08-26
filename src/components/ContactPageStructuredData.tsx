@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const ContactPageStructuredData: React.FC = () => {
   const contactPageData = {
@@ -7,9 +8,9 @@ const ContactPageStructuredData: React.FC = () => {
     '@type': 'ContactPage',
     name: 'Contact Exquisite Dentistry Los Angeles',
     description: 'Contact Exquisite Dentistry in Los Angeles to schedule your cosmetic dental consultation. Located at 6227 Wilshire Blvd.',
-    url: 'https://exquisitedentistryla.com/contact/',
+    url: getCanonicalUrl('/contact'),
     mainEntity: {
-      '@type': 'DentistPractice',
+      '@type': ['LocalBusiness', 'Dentist'],
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',
@@ -60,13 +61,13 @@ const ContactPageStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com/'
+        item: getCanonicalUrl('/')
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Contact',
-        item: 'https://exquisitedentistryla.com/contact/'
+        item: getCanonicalUrl('/contact')
       }
     ]
   };
