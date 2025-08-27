@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
 
@@ -9,6 +9,8 @@ interface BrandLoaderProps {
   subMessage?: string;
   className?: string;
   showLogo?: boolean;
+  timeout?: number; // Timeout in milliseconds
+  onTimeout?: () => void;
 }
 
 const BrandLoader: React.FC<BrandLoaderProps> = ({
@@ -17,9 +19,38 @@ const BrandLoader: React.FC<BrandLoaderProps> = ({
   message,
   subMessage,
   className,
-  showLogo = false
+  showLogo = false,
+  timeout = 30000, // 30 second default timeout
+  onTimeout
 }) => {
   const { ref } = useHardwareAcceleration();
+  const [isTimedOut, setIsTimedOut] = useState(false);
+
+  useEffect(() => {
+    if (timeout > 0) {
+      const timer = setTimeout(() => {
+        setIsTimedOut(true);
+        onTimeout?.();
+      }, timeout);
+
+      return () => clearTimeout(timer);
+    }
+  }, [timeout, onTimeout]);
+
+  if (isTimedOut) {
+    return (
+      <div className={cn("flex flex-col items-center justify-center p-6 text-center", className)}>
+        <div className="text-amber-600 mb-2">⚠️</div>
+        <p className="text-sm text-gray-600">Loading is taking longer than expected</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-3 px-4 py-2 text-xs bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+        >
+          Refresh Page
+        </button>
+      </div>
+    );
+  }
 
   const sizeClasses = {
     sm: 'w-4 h-4',

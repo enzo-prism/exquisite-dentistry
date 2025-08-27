@@ -34,8 +34,8 @@ export const usePerformanceMonitor = () => {
       frameCount.current++;
       const currentTime = performance.now();
       
-      // Less frequent updates on mobile
-      const updateInterval = isMobile.current ? 2000 : 1000;
+      // Much less frequent updates on mobile to prevent scroll jank
+      const updateInterval = isMobile.current ? 5000 : 2000;
       
       if (currentTime - lastTime.current >= updateInterval) {
         const fps = Math.round((frameCount.current * 1000) / (currentTime - lastTime.current));

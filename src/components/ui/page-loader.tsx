@@ -7,12 +7,16 @@ interface PageLoaderProps {
   variant?: 'minimal' | 'branded' | 'hero';
   message?: string;
   className?: string;
+  timeout?: number;
+  onTimeout?: () => void;
 }
 
 const PageLoader: React.FC<PageLoaderProps> = ({
   variant = 'minimal',
   message,
-  className
+  className,
+  timeout = 30000,
+  onTimeout
 }) => {
   if (variant === 'hero') {
     return (
@@ -22,6 +26,8 @@ const PageLoader: React.FC<PageLoaderProps> = ({
         message="Preparing Your Experience"
         subMessage="Loading beautiful content..."
         className={className}
+        timeout={timeout}
+        onTimeout={onTimeout}
       />
     );
   }
@@ -37,6 +43,8 @@ const PageLoader: React.FC<PageLoaderProps> = ({
           size="lg"
           message={message || "Loading Content"}
           subMessage="Please wait while we prepare your experience..."
+          timeout={timeout}
+          onTimeout={onTimeout}
         />
       </div>
     );
@@ -48,7 +56,13 @@ const PageLoader: React.FC<PageLoaderProps> = ({
       "flex items-center justify-center min-h-[30vh] md:min-h-[40vh] bg-background",
       className
     )}>
-      <BrandLoader variant="elegant" size="md" message={message} />
+      <BrandLoader 
+        variant="elegant" 
+        size="md" 
+        message={message} 
+        timeout={timeout}
+        onTimeout={onTimeout}
+      />
     </div>
   );
 };

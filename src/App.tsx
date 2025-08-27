@@ -3,8 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { useSectionFix } from "@/hooks/use-section-fix";
+import { setupErrorReduction } from "@/utils/errorReduction";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -75,6 +77,9 @@ const XmlSitemap = () => {
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap' || location.pathname === '/sitemap.xml';
+  
+  // Fix section gaps and background consistency
+  useSectionFix(300);
 
   // Set proper content type for XML sitemap route
   useEffect(() => {
@@ -172,6 +177,11 @@ const AppRoutes = () => {
 };
 
 const App = () => {
+  // Initialize error reduction on app start
+  React.useEffect(() => {
+    setupErrorReduction();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
