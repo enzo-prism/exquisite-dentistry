@@ -380,7 +380,7 @@ const MobileMenuPanel = ({
               key={link.to}
               ref={index === 0 ? firstMenuLinkRef : undefined}
               to={link.to}
-              className="w-full block py-4 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              className="navbar-link w-full block py-4 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
