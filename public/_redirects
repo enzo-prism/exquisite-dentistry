@@ -74,5 +74,10 @@ https://m.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301
 # Redirect HTTP to HTTPS
 http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 
+# Case Studies to Transformation Stories redirects (SEO preservation)
+/case-studies /transformation-stories/ 301
+/case-studies/ /transformation-stories/ 301
+/case-studies/* /transformation-stories/:splat 301
+
 # SPA catch-all for all other routes (MUST BE LAST)
 /*              /index.html         200

@@ -1,25 +1,25 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
-import CaseStudyStructuredData from '@/components/CaseStudyStructuredData';
+import TransformationStoryStructuredData from '@/components/TransformationStoryStructuredData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { caseStudies } from '@/data/caseStudies';
+import { transformationStories } from '@/data/transformationStories';
 import YouTubeEmbed from '@/components/YouTubeEmbed';
 import VimeoFacade from '@/components/VimeoFacade';
 import { ArrowLeft, CheckCircle, Heart, Star, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const CaseStudyPage: React.FC = () => {
+const TransformationStoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const caseStudy = caseStudies.find(cs => cs.slug === slug);
+  const caseStudy = transformationStories.find(cs => cs.slug === slug);
   
   if (!caseStudy) {
-    return <Navigate to="/case-studies" replace />;
+    return <Navigate to="/transformation-stories" replace />;
   }
   
-  const canonicalUrl = `https://exquisitedentistryla.com/case-studies/${caseStudy.slug}/`;
+  const canonicalUrl = `https://exquisitedentistryla.com/transformation-stories/${caseStudy.slug}/`;
   
   return (
     <>
@@ -27,28 +27,28 @@ const CaseStudyPage: React.FC = () => {
         title={caseStudy.seo.title}
         description={caseStudy.seo.description}
         keywords={caseStudy.seo.keywords}
-        path={`/case-studies/${caseStudy.slug}`}
+        path={`/transformation-stories/${caseStudy.slug}`}
         ogImage={caseStudy.thumbnailUrl || "/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"}
         ogType="article"
       />
       
-      <CaseStudyStructuredData caseStudy={caseStudy} canonicalUrl={canonicalUrl} />
+      <TransformationStoryStructuredData transformationStory={caseStudy} canonicalUrl={canonicalUrl} />
       
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-background to-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <Link 
-              to="/case-studies" 
+              to="/transformation-stories" 
               className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors"
             >
               <ArrowLeft size={16} />
-              Back to Case Studies
+              Back to Transformation Stories
             </Link>
           </div>
           
           <div className="text-center max-w-4xl mx-auto">
-            <span className="inline-block text-sm text-gold font-medium mb-3">CASE STUDY</span>
+            <span className="inline-block text-sm text-gold font-medium mb-3">TRANSFORMATION STORY</span>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{caseStudy.title}</h1>
             <p className="text-xl text-muted-foreground mb-8">{caseStudy.shortDescription}</p>
           </div>
@@ -264,4 +264,4 @@ const CaseStudyPage: React.FC = () => {
   );
 };
 
-export default CaseStudyPage;
+export default TransformationStoryPage;

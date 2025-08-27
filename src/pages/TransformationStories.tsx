@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Button } from '@/components/ui/button';
-import { caseStudies } from '@/data/caseStudies';
+import { transformationStories } from '@/data/transformationStories';
 import YouTubeEmbed from '@/components/YouTubeEmbed';
 import VimeoFacade from '@/components/VimeoFacade';
 
-const CaseStudiesPage: React.FC = () => {
+const TransformationStoriesPage: React.FC = () => {
   return (
     <>
       <PageSEO 
-        title="Patient Case Studies | Exquisite Dentistry Los Angeles"
-        description="Explore real patient transformation stories and smile makeover case studies from Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. See actual results."
-        keywords="dental case studies Los Angeles, smile transformation stories, cosmetic dentistry results, before after dental work, patient success stories"
-        path="/case-studies"
+        title="Patient Transformation Stories | Exquisite Dentistry Los Angeles"
+        description="Explore real patient transformation stories and smile makeover journeys from Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. See actual results."
+        keywords="dental transformation stories Los Angeles, smile transformation journeys, cosmetic dentistry results, before after dental work, patient success stories"
+        path="/transformation-stories"
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
       
       <VideoHero 
-        title="Patient Case Studies"
+        title="Patient Transformation Stories"
         subtitle="Real patients, real transformations, real stories of confidence and care"
         primaryCta={{
           text: "Schedule a Consultation",
@@ -34,7 +34,7 @@ const CaseStudiesPage: React.FC = () => {
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-sm text-gold font-medium mb-3">CASE STUDIES</span>
+            <span className="inline-block text-sm text-gold font-medium mb-3">TRANSFORMATION STORIES</span>
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               Transformation Stories
             </h2>
@@ -44,9 +44,9 @@ const CaseStudiesPage: React.FC = () => {
             <div className="separator mx-auto mt-6"></div>
           </div>
           
-          {/* Case Studies Grid */}
+          {/* Transformation Stories Grid */}
           <div className="grid gap-12 mb-16">
-            {caseStudies.map((caseStudy) => (
+            {transformationStories.map((caseStudy) => (
               <div key={caseStudy.id} className="bg-card rounded-lg shadow-lg overflow-hidden">
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   {/* Video Section */}
@@ -100,7 +100,7 @@ const CaseStudiesPage: React.FC = () => {
                     {/* CTA */}
                     <div className="pt-4">
                       <Button asChild className="bg-gold text-white hover:bg-gold/90">
-                        <Link to={`/case-studies/${caseStudy.slug}`}>
+                        <Link to={`/transformation-stories/${caseStudy.slug}`}>
                           Read Full Story
                         </Link>
                       </Button>
@@ -141,4 +141,4 @@ const CaseStudiesPage: React.FC = () => {
   );
 };
 
-export default CaseStudiesPage;
+export default TransformationStoriesPage;

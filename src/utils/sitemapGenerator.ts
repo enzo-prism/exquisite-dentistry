@@ -1,5 +1,6 @@
 
 import { getPublishedPosts } from '@/data/blogPosts';
+import { transformationStories } from '@/data/transformationStories';
 
 export interface SitemapUrl {
   loc: string;
@@ -120,6 +121,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: currentDate,
       changefreq: 'yearly',
       priority: 0.3
+    },
+    {
+      loc: `${baseUrl}/transformation-stories`,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: 0.8
     }
   ];
 
@@ -142,7 +149,15 @@ export const generateSitemapData = (): SitemapUrl[] => {
     };
   });
 
-  return [...staticPages, ...blogPages].sort((a, b) => b.priority - a.priority);
+  // Dynamic transformation story pages
+  const transformationStoryPages: SitemapUrl[] = transformationStories.map(story => ({
+    loc: `${baseUrl}/transformation-stories/${story.slug}`,
+    lastmod: currentDate,
+    changefreq: 'monthly' as const,
+    priority: 0.7
+  }));
+
+  return [...staticPages, ...blogPages, ...transformationStoryPages].sort((a, b) => b.priority - a.priority);
 };
 
 export const generateXmlSitemap = (): string => {

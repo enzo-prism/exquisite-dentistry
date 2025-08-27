@@ -1,14 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import type { CaseStudy } from '@/data/caseStudies';
+import type { TransformationStory } from '@/data/transformationStories';
 
-interface CaseStudyStructuredDataProps {
-  caseStudy: CaseStudy;
+interface TransformationStoryStructuredDataProps {
+  transformationStory: TransformationStory;
   canonicalUrl: string;
 }
 
-const CaseStudyStructuredData: React.FC<CaseStudyStructuredDataProps> = ({
-  caseStudy,
+const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredDataProps> = ({
+  transformationStory: caseStudy,
   canonicalUrl
 }) => {
   const structuredData = {
@@ -87,4 +87,4 @@ const CaseStudyStructuredData: React.FC<CaseStudyStructuredDataProps> = ({
   );
 };
 
-export default CaseStudyStructuredData;
+export default TransformationStoryStructuredData;

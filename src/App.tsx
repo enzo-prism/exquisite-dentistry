@@ -28,8 +28,8 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
-const CaseStudies = lazy(() => import("@/pages/CaseStudies"));
-const CaseStudyPage = lazy(() => import("@/pages/CaseStudyPage"));
+const TransformationStories = lazy(() => import("@/pages/TransformationStories"));
+const TransformationStoryPage = lazy(() => import("@/pages/TransformationStoryPage"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 // Create a client
@@ -149,11 +149,11 @@ const AppRoutes = () => {
                 <ZoomWhitening />
               </Suspense>} />
               
-              <Route path="/case-studies" element={<Suspense fallback={<PageLoaderComponent />}>
-                <CaseStudies />
+              <Route path="/transformation-stories" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TransformationStories />
               </Suspense>} />
-              <Route path="/case-studies/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
-                <CaseStudyPage />
+              <Route path="/transformation-stories/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TransformationStoryPage />
               </Suspense>} />
             </Routes>
           </PageTransition>

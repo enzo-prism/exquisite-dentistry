@@ -1,4 +1,4 @@
-export interface CaseStudy {
+export interface TransformationStory {
   id: string;
   slug: string;
   patientName: string;
@@ -33,7 +33,7 @@ export interface CaseStudy {
   };
 }
 
-export const caseStudies: CaseStudy[] = [
+export const transformationStories: TransformationStory[] = [
   {
     id: 'anxiety-to-ease',
     slug: 'anxiety-to-ease',
@@ -119,7 +119,7 @@ export const caseStudies: CaseStudy[] = [
       }
     ],
     seo: {
-      title: 'Case Study: From Dental Anxiety to Ease | Exquisite Dentistry LA',
+      title: 'Transformation Story: From Dental Anxiety to Ease | Exquisite Dentistry LA',
       description: 'How Exquisite Dentistry LA turns anxiety into comfort — warm blankets, essential oils, and Netflix — delivering confidence-building results patients love. Watch real patient stories.',
       keywords: 'dental anxiety Los Angeles, comfort dentistry LA, anxiety-free dental care, patient testimonials Los Angeles, spa-like dental office'
     }

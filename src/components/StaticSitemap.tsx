@@ -16,7 +16,7 @@ const StaticSitemap = () => {
       ['/veneers', '/zoom-whitening'].some(path => url.loc.endsWith(path))
     ),
     experience: sitemapData.filter(url => 
-      ['/smile-gallery', '/testimonials', '/client-experience'].some(path => url.loc.endsWith(path))
+      ['/smile-gallery', '/testimonials', '/client-experience', '/transformation-stories'].some(path => url.loc.endsWith(path))
     ),
     special: sitemapData.filter(url => 
       ['/wedding', '/graduation'].some(path => url.loc.endsWith(path))
@@ -276,6 +276,7 @@ const getPageTitle = (url: string): string => {
     '/smile-gallery': 'Smile Gallery',
     '/testimonials': 'Testimonials',
     '/client-experience': 'Client Experience',
+    '/transformation-stories': 'Transformation Stories',
     '/blog': 'Blog',
     '/faqs': 'FAQs',
     '/wedding': 'Wedding Smiles',
