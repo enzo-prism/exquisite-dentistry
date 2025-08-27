@@ -10,6 +10,8 @@ import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
+import TopicClusterWidget from '@/components/TopicClusterWidget';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -464,6 +466,145 @@ const Services = () => {
                 "We believe that exceptional dental care should be a comfortable, stress-free experience from start to finish."
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Topic Clusters Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Explore Treatment Options
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover comprehensive solutions for your smile goals
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <TopicClusterWidget
+              title="Smile Makeover Hub"
+              description="Complete transformation solutions"
+              centralHub={{
+                title: "Complete Smile Makeover",
+                href: "/services#cosmetic",
+                description: "Transform your entire smile with our comprehensive approach",
+                type: "service"
+              }}
+              spokes={[
+                {
+                  title: "Porcelain Veneers",
+                  href: "/veneers",
+                  description: "Perfect teeth in just visits",
+                  type: "service",
+                  featured: true
+                },
+                {
+                  title: "Teeth Whitening",
+                  href: "/zoom-whitening",
+                  description: "Professional brightening treatment",
+                  type: "service"
+                },
+                {
+                  title: "Before & After Gallery",
+                  href: "/smile-gallery",
+                  description: "See real transformation results",
+                  type: "gallery"
+                },
+                {
+                  title: "Patient Stories",
+                  href: "/testimonials",
+                  description: "Hear from transformed patients",
+                  type: "testimonial"
+                }
+              ]}
+            />
+
+            <TopicClusterWidget
+              title="Special Occasions"
+              description="Perfect smile for life's moments"
+              centralHub={{
+                title: "Wedding & Graduation Prep",
+                href: "/wedding",
+                description: "Look your absolute best for special occasions",
+                type: "special"
+              }}
+              spokes={[
+                {
+                  title: "Wedding Smiles",
+                  href: "/wedding",
+                  description: "Perfect smile for your big day",
+                  type: "special",
+                  featured: true
+                },
+                {
+                  title: "Graduation Ready",
+                  href: "/graduation", 
+                  description: "Confident smile for photos",
+                  type: "special"
+                },
+                {
+                  title: "Quick Solutions",
+                  href: "/veneers",
+                  description: "Fast results for tight timelines",
+                  type: "service"
+                },
+                {
+                  title: "Timeline Planning",
+                  href: "/contact",
+                  description: "Plan your treatment schedule",
+                  type: "consultation"
+                }
+              ]}
+            />
+
+            <TopicClusterWidget
+              title="Orthodontic Solutions"
+              description="Straighter teeth, better confidence"
+              centralHub={{
+                title: "Invisalign Treatment",
+                href: "/services#invisalign",
+                description: "Discreet teeth straightening with clear aligners",
+                type: "service"
+              }}
+              spokes={[
+                {
+                  title: "Invisalign vs Braces",
+                  href: "/blog/invisalign-clear-advantage-over-traditional-braces",
+                  description: "Compare your options",
+                  type: "blog",
+                  featured: true
+                },
+                {
+                  title: "Student Discounts",
+                  href: "/graduation",
+                  description: "Special rates for students",
+                  type: "special"
+                },
+                {
+                  title: "Treatment Gallery",
+                  href: "/smile-gallery",
+                  description: "Before & after results",
+                  type: "gallery"
+                },
+                {
+                  title: "Free Consultation",
+                  href: "/contact",
+                  description: "Get your custom plan",
+                  type: "consultation"
+                }
+              ]}
+            />
+          </div>
+
+          <div className="mt-12">
+            <InternalLinkingWidget 
+              context="general" 
+              variant="expanded"
+              title="Start Your Smile Journey"
+              currentPage="/services"
+            />
           </div>
         </div>
       </section>

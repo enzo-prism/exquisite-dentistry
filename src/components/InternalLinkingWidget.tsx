@@ -1,25 +1,31 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, Sparkles, Calendar, Heart, FileText, Camera } from 'lucide-react';
 
 interface LinkItem {
   title: string;
   href: string;
   description: string;
-  category: 'service' | 'blog' | 'experience';
+  category: 'service' | 'blog' | 'experience' | 'consultation' | 'gallery' | 'special';
+  priority?: number;
+  seasonal?: boolean;
 }
 
 interface InternalLinkingWidgetProps {
   currentPage?: string;
-  context?: 'veneer' | 'cost' | 'experience' | 'general';
-  variant?: 'compact' | 'expanded';
+  context?: 'veneer' | 'cost' | 'experience' | 'general' | 'orthodontics' | 'whitening' | 'wedding' | 'graduation' | 'consultation' | 'invisalign';
+  variant?: 'compact' | 'expanded' | 'sidebar';
+  className?: string;
+  title?: string;
 }
 
 const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({ 
   currentPage = '', 
   context = 'general',
-  variant = 'compact' 
+  variant = 'compact',
+  className,
+  title
 }) => {
   const getContextualLinks = (): LinkItem[] => {
     switch (context) {
@@ -29,25 +35,200 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             title: 'Porcelain Veneers Service',
             href: '/veneers',
             description: 'Complete veneer treatments and smile transformations',
-            category: 'service'
+            category: 'service',
+            priority: 1
           },
           {
             title: 'Single Tooth Veneers Guide',
             href: '/blog/single-tooth-veneers-perfect-solutions',
             description: 'Perfect solutions for individual tooth improvements',
-            category: 'blog'
+            category: 'blog',
+            priority: 2
           },
           {
             title: '2 Front Teeth Veneers Cost',
             href: '/blog/2-front-teeth-veneers-cost-los-angeles',
             description: 'Transparent pricing for targeted improvements',
-            category: 'blog'
+            category: 'blog',
+            priority: 3
           },
           {
-            title: '4 Front Teeth Veneers Investment',
-            href: '/blog/4-front-teeth-veneers-cost-los-angeles',
-            description: 'Complete smile zone transformation guide',
-            category: 'blog'
+            title: 'Wedding Smile Makeover',
+            href: '/wedding',
+            description: 'Perfect veneers for your special day',
+            category: 'special',
+            priority: 4,
+            seasonal: true
+          },
+          {
+            title: 'Smile Gallery',
+            href: '/smile-gallery',
+            description: 'See real veneer transformations',
+            category: 'gallery',
+            priority: 5
+          }
+        ];
+      
+      case 'orthodontics':
+      case 'invisalign':
+        return [
+          {
+            title: 'Invisalign Treatment',
+            href: '/services#invisalign',
+            description: 'Clear aligners for discreet teeth straightening',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Invisalign vs Braces Blog',
+            href: '/blog/invisalign-clear-advantage-over-traditional-braces',
+            description: 'Why Invisalign has advantages over traditional braces',
+            category: 'blog',
+            priority: 2
+          },
+          {
+            title: 'Patient Testimonials',
+            href: '/testimonials',
+            description: 'Stories from Invisalign patients',
+            category: 'experience',
+            priority: 3
+          },
+          {
+            title: 'Graduation Smile Prep',
+            href: '/graduation',
+            description: 'Straighten your smile before graduation',
+            category: 'special',
+            priority: 4,
+            seasonal: true
+          }
+        ];
+      
+      case 'whitening':
+        return [
+          {
+            title: 'Zoom Whitening Service',
+            href: '/zoom-whitening',
+            description: 'Professional teeth whitening treatments',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Veneers vs Whitening',
+            href: '/veneers',
+            description: 'Compare whitening with veneer options',
+            category: 'service',
+            priority: 2
+          },
+          {
+            title: 'Wedding Whitening',
+            href: '/wedding',
+            description: 'Brighten your smile for your wedding day',
+            category: 'special',
+            priority: 3,
+            seasonal: true
+          },
+          {
+            title: 'Client Experience',
+            href: '/client-experience',
+            description: 'Comfortable whitening experience',
+            category: 'experience',
+            priority: 4
+          }
+        ];
+      
+      case 'wedding':
+        return [
+          {
+            title: 'Wedding Smile Makeover',
+            href: '/wedding',
+            description: 'Complete smile transformation for your special day',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Porcelain Veneers',
+            href: '/veneers',
+            description: 'Perfect teeth for your wedding photos',
+            category: 'service',
+            priority: 2
+          },
+          {
+            title: 'Teeth Whitening',
+            href: '/zoom-whitening',
+            description: 'Brighten your smile for the big day',
+            category: 'service',
+            priority: 3
+          },
+          {
+            title: 'Before & After Gallery',
+            href: '/smile-gallery',
+            description: 'Wedding smile transformations',
+            category: 'gallery',
+            priority: 4
+          }
+        ];
+      
+      case 'graduation':
+        return [
+          {
+            title: 'Graduation Smile Package',
+            href: '/graduation',
+            description: 'Look your best for graduation photos',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Quick Smile Fixes',
+            href: '/veneers',
+            description: 'Fast solutions for immediate results',
+            category: 'service',
+            priority: 2
+          },
+          {
+            title: 'Invisalign for Students',
+            href: '/services#invisalign',
+            description: 'Discreet treatment during school',
+            category: 'service',
+            priority: 3
+          },
+          {
+            title: 'Student Success Stories',
+            href: '/testimonials',
+            description: 'Graduation transformations',
+            category: 'experience',
+            priority: 4
+          }
+        ];
+      
+      case 'consultation':
+        return [
+          {
+            title: 'What to Expect',
+            href: '/client-experience',
+            description: 'Your first visit experience',
+            category: 'experience',
+            priority: 1
+          },
+          {
+            title: 'Our Services',
+            href: '/services',
+            description: 'Complete range of treatments',
+            category: 'service',
+            priority: 2
+          },
+          {
+            title: 'Patient Stories',
+            href: '/testimonials',
+            description: 'Hear from our satisfied patients',
+            category: 'experience',
+            priority: 3
+          },
+          {
+            title: 'Smile Gallery',
+            href: '/smile-gallery',
+            description: 'See actual patient results',
+            category: 'gallery',
+            priority: 4
           }
         ];
       
@@ -57,19 +238,29 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             title: 'Financing Options',
             href: '/contact',
             description: 'Flexible payment plans and consultation scheduling',
-            category: 'service'
+            category: 'consultation',
+            priority: 1
           },
           {
             title: 'Netflix During Procedures',
             href: '/blog/netflix-streaming-during-dental-procedures',
             description: 'Comfortable, entertainment-focused dental experience',
-            category: 'blog'
+            category: 'blog',
+            priority: 2
           },
           {
-            title: 'Client Experience',
-            href: '/client-experience',
-            description: 'What to expect during your transformation',
-            category: 'experience'
+            title: 'Value of Investment',
+            href: '/about',
+            description: 'Why quality dentistry matters',
+            category: 'experience',
+            priority: 3
+          },
+          {
+            title: 'Free Consultation',
+            href: '/contact',
+            description: 'Get personalized treatment planning',
+            category: 'consultation',
+            priority: 4
           }
         ];
       
@@ -79,25 +270,38 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             title: 'Smile Gallery',
             href: '/smile-gallery',
             description: 'Before & after transformations from real patients',
-            category: 'experience'
+            category: 'gallery',
+            priority: 1
           },
           {
             title: 'Patient Testimonials',
             href: '/testimonials',
             description: 'Stories from satisfied patients',
-            category: 'experience'
+            category: 'experience',
+            priority: 2
           },
           {
             title: 'Wedding Smile Prep',
             href: '/wedding',
             description: 'Perfect smile for your special day',
-            category: 'service'
+            category: 'special',
+            priority: 3,
+            seasonal: true
           },
           {
             title: 'Graduation Smile',
             href: '/graduation',
             description: 'Look your best for graduation photos',
-            category: 'service'
+            category: 'special',
+            priority: 4,
+            seasonal: true
+          },
+          {
+            title: 'Transformation Stories',
+            href: '/transformation-stories',
+            description: 'Complete patient journey stories',
+            category: 'experience',
+            priority: 5
           }
         ];
       
@@ -107,35 +311,55 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             title: 'Our Services',
             href: '/services',
             description: 'Complete cosmetic dentistry treatments',
-            category: 'service'
+            category: 'service',
+            priority: 1
           },
           {
             title: 'About Dr. Aguil',
             href: '/about',
             description: 'Meet your expert cosmetic dentist',
-            category: 'experience'
+            category: 'experience',
+            priority: 2
           },
           {
-            title: 'Blog & Resources',
-            href: '/blog',
-            description: 'Latest insights and dental guides',
-            category: 'blog'
+            title: 'Patient Gallery',
+            href: '/smile-gallery',
+            description: 'Real transformation results',
+            category: 'gallery',
+            priority: 3
+          },
+          {
+            title: 'Schedule Consultation',
+            href: '/contact',
+            description: 'Begin your smile transformation',
+            category: 'consultation',
+            priority: 4
           }
         ];
     }
   };
 
-  const links = getContextualLinks().filter(link => !currentPage.includes(link.href));
-  const displayLinks = variant === 'compact' ? links.slice(0, 3) : links;
+  const links = getContextualLinks()
+    .filter(link => !currentPage.includes(link.href))
+    .sort((a, b) => (a.priority || 99) - (b.priority || 99));
+  
+  const displayLinks = variant === 'compact' ? links.slice(0, 3) : 
+                      variant === 'sidebar' ? links.slice(0, 4) : links;
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'service':
         return <Star className="w-4 h-4 text-gold" />;
       case 'blog':
-        return <ArrowRight className="w-4 h-4 text-blue-500" />;
+        return <FileText className="w-4 h-4 text-blue-500" />;
       case 'experience':
-        return <ArrowRight className="w-4 h-4 text-gold" />;
+        return <Heart className="w-4 h-4 text-red-500" />;
+      case 'consultation':
+        return <Calendar className="w-4 h-4 text-green-600" />;
+      case 'gallery':
+        return <Camera className="w-4 h-4 text-purple-600" />;
+      case 'special':
+        return <Sparkles className="w-4 h-4 text-pink-500" />;
       default:
         return <ArrowRight className="w-4 h-4 text-gray-500" />;
     }
@@ -143,16 +367,33 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
 
   if (displayLinks.length === 0) return null;
 
+  const getContextTitle = () => {
+    if (title) return title;
+    
+    switch (context) {
+      case 'veneer': return 'Related Veneer Information';
+      case 'orthodontics':
+      case 'invisalign': return 'Invisalign & Orthodontic Resources';
+      case 'whitening': return 'Teeth Whitening Options';
+      case 'wedding': return 'Wedding Smile Solutions';
+      case 'graduation': return 'Graduation Smile Prep';
+      case 'consultation': return 'Your Next Steps';
+      case 'cost': return 'Investment & Financing';
+      case 'experience': return 'Explore More Experiences';
+      default: return 'Helpful Resources';
+    }
+  };
+
   return (
-    <div className="bg-gradient-to-r from-gold/5 to-gold/10 rounded-lg p-6 my-8">
+    <div className={`bg-gradient-to-r from-gold/5 to-gold/10 rounded-lg p-6 my-8 ${className || ''}`}>
       <h3 className="text-lg font-semibold mb-4 text-gray-900">
-        {context === 'veneer' ? 'Related Veneer Information' :
-         context === 'cost' ? 'Next Steps & Resources' :
-         context === 'experience' ? 'Explore More Experiences' :
-         'Helpful Resources'}
+        {getContextTitle()}
       </h3>
       
-      <div className={`grid gap-3 ${variant === 'expanded' ? 'md:grid-cols-2' : ''}`}>
+      <div className={`grid gap-3 ${
+        variant === 'expanded' ? 'md:grid-cols-2' : 
+        variant === 'sidebar' ? 'grid-cols-1' : ''
+      }`}>
         {displayLinks.map((link, index) => (
           <Link
             key={index}
@@ -163,9 +404,16 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
               {getCategoryIcon(link.category)}
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
-                {link.title}
-              </h4>
+              <div className="flex items-center gap-2">
+                <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
+                  {link.title}
+                </h4>
+                {link.seasonal && (
+                  <span className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
+                    Seasonal
+                  </span>
+                )}
+              </div>
               <p className="text-sm text-gray-600 mt-1">
                 {link.description}
               </p>

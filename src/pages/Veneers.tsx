@@ -11,6 +11,8 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQPageStructuredData from '@/components/FAQPageStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import ServiceRecommendation from '@/components/ServiceRecommendation';
 
 const Veneers = () => {
   const benefits = [
@@ -263,6 +265,44 @@ const Veneers = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+
+            {/* Internal Linking and Service Recommendations */}
+            <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-8">
+              <InternalLinkingWidget 
+                context="veneer" 
+                variant="expanded"
+                currentPage="/veneers"
+              />
+              <ServiceRecommendation
+                currentService="Porcelain Veneers"
+                context="complement"
+                recommendations={[
+                  {
+                    title: "Teeth Whitening",
+                    href: "/zoom-whitening",
+                    description: "Perfect your veneer results with professional whitening",
+                    duration: "1 hour",
+                    popularity: 75,
+                    combination: true
+                  },
+                  {
+                    title: "Gum Contouring",
+                    href: "/services#cosmetic",
+                    description: "Frame your veneers with perfect gum lines",
+                    duration: "30-60 min",
+                    popularity: 45
+                  },
+                  {
+                    title: "Smile Makeover",
+                    href: "/services#cosmetic",
+                    description: "Complete transformation with multiple procedures",
+                    duration: "Multiple visits",
+                    popularity: 60,
+                    priceRange: "$5K-15K"
+                  }
+                ]}
+              />
             </div>
           </div>
         </section>
