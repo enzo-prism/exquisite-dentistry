@@ -424,7 +424,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                     className="navbar-link w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -471,7 +471,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="navbar-link w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
