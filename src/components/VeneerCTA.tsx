@@ -49,12 +49,12 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
             <p className="text-gray-600 mb-4">
               Discover our complete veneer gallery, detailed pricing, and exclusive content on our dedicated veneer site.
             </p>
-            <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="border-gold text-gold hover:bg-gold/10">
+            <Button asChild variant="outline">
+              <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
                 Visit Exquisite Veneers LA
                 <ExternalLink size={16} className="ml-2" />
-              </Button>
-            </a>
+              </a>
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -75,18 +75,18 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
           Explore our comprehensive veneer gallery, detailed treatment options, and exclusive pricing on our dedicated veneer site.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="default">
+          <Button asChild size="lg" variant="default">
+            <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
               Explore Veneer Options
               <ArrowRight size={16} className="ml-2" />
-            </Button>
-          </a>
-          <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="lg">
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
               View Veneer Gallery
               <ExternalLink size={16} className="ml-2" />
-            </Button>
-          </a>
+            </a>
+          </Button>
         </div>
       </div>
     </div>
