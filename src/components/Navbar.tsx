@@ -273,7 +273,7 @@ const Navbar = () => {
                 {isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               </span>
               <div className="transform transition-transform duration-200 hover:scale-110">
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
               </div>
             </button>
           </div>
