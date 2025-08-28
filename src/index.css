@@ -314,6 +314,14 @@ body {
   color: #ffffff !important;
 }
 
+.navbar-link:active {
+  color: #ffffff !important;
+}
+
+.navbar-link:focus {
+  color: #ffffff !important;
+}
+
 /* Blog Page Enhanced Animations */
 .blog-card-enter {
   opacity: 0;
