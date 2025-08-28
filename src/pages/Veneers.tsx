@@ -186,7 +186,7 @@ const Veneers = () => {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="text-center border-0 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <Card key={`benefit-${benefit.title.replace(/[^a-zA-Z0-9]/g, '')}`} className="text-center border-0 shadow-sm hover:shadow-md transition-shadow duration-300">
                   <CardContent className="pt-8 pb-6">
                     <div className="flex justify-center mb-4">
                       {benefit.icon}
@@ -219,7 +219,7 @@ const Veneers = () => {
             <div className="max-w-4xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8">
                 {process.map((step, index) => (
-                  <div key={index} className="flex gap-6">
+                  <div key={`process-step-${step.step}`} className="flex gap-6">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center">
                         <span className="text-2xl font-bold text-secondary">{step.step}</span>
@@ -255,7 +255,7 @@ const Veneers = () => {
             <div className="max-w-3xl mx-auto">
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionItem key={`veneer-faq-${index}-${faq.question.slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')}`} value={`item-${index}`}>
                     <AccordionTrigger className="text-left">
                       {faq.question}
                     </AccordionTrigger>

@@ -101,7 +101,7 @@ const FAQs = () => {
             <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 space-y-6">
               {faqs.map((faq, index) => (
                 <div
-                  key={index}
+                  key={`faq-${faq.question.slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')}-${index}`}
                   className="border-b border-gray-100 last:border-0"
                 >
                   <button

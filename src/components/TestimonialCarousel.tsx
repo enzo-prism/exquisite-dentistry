@@ -85,12 +85,12 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
               className="w-full flex-shrink-0 px-6 text-center gpu-layer"
             >
               <div className="flex justify-center pb-6">
-                {Array.from({ length: 5 }).map((_, index) => (
+                {Array.from({ length: 5 }).map((_, starIndex) => (
                   <Star 
-                    key={index} 
+                    key={`star-${testimonial.id}-${starIndex}`}
                     size={20} 
                     className={cn(
-                      index < testimonial.stars ? 'text-gold fill-gold' : 'text-gray-300'
+                      starIndex < testimonial.stars ? 'text-gold fill-gold' : 'text-gray-300'
                     )}
                   />
                 ))}
@@ -137,9 +137,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
       </button>
 
       <div className="flex justify-center space-x-2 mt-6">
-        {testimonials.map((_, index) => (
+        {testimonials.map((testimonial, index) => (
           <button
-            key={index}
+            key={`dot-${testimonial.id}`}
             onClick={() => setActiveIndex(index)}
             className={cn(
               'rounded-full transition-all duration-300 gpu-accelerated mobile-touch-feedback',

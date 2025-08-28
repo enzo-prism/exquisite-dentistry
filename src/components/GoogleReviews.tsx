@@ -115,7 +115,7 @@ const GoogleReviews = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {reviews.map((review, index) => (
           <div 
-            key={index} 
+            key={`review-${review.author_name}-${review.time}`}
             className={cn(
               "bg-white rounded-sm shadow-md p-8 opacity-0",
               index % 2 === 0 ? "animate-fade-in-left" : "animate-fade-in-right"
@@ -149,7 +149,7 @@ const GoogleReviews = () => {
             <div className="flex mb-4">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star 
-                  key={i} 
+                  key={`star-${review.author_name}-${i}`}
                   size={16} 
                   className={cn(
                     i < review.rating ? "text-gold fill-gold" : "text-gray-300",

@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
+import { useEventListener } from './use-cleanup-effect';
 
 /**
  * Custom hook to automatically fix section gaps and background inconsistencies
@@ -18,17 +19,14 @@ export function useSectionFix(delay: number = 500) {
       fixBackgroundConsistency();
     }, delay);
     
-    // Perform another check on window resize
-    const handleResize = () => {
-      checkForSectionGaps();
-      fixBackgroundConsistency();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('resize', handleResize);
     };
   }, [delay]);
+
+  // Use safe event listener hook for resize handling
+  useEventListener('resize', () => {
+    checkForSectionGaps();
+    fixBackgroundConsistency();
+  });
 }

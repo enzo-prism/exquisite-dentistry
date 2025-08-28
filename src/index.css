@@ -257,6 +257,30 @@ body {
   content-visibility: auto;
 }
 
+/* Enhanced performance for animations */
+.will-change-auto {
+  will-change: auto;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Optimize heavy animations for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .heavy-animation {
+    animation-duration: 0.2s;
+  }
+  
+  .complex-transform {
+    transform: none;
+  }
+}
+
 /* Smooth scrolling with reduced motion support */
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -463,6 +487,46 @@ a:hover {
 /* Blog page specific fixes */
 .blog-link {
   color: hsl(var(--foreground));
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enhanced focus styles for better accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 6px;
 }
 
 .blog-link:visited {

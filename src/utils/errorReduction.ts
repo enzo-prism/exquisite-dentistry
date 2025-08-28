@@ -13,10 +13,17 @@ export const setupErrorReduction = () => {
     if (
       message.includes('Warning: React does not recognize') ||
       message.includes('Warning: Failed prop type') ||
-      message.includes('Warning: Each child in a list should have a unique') ||
-      message.includes('Warning: validateDOMNesting')
+      message.includes('Warning: validateDOMNesting') ||
+      message.includes('ResizeObserver loop limit exceeded') ||
+      message.includes('Non-passive event listener')
     ) {
       console.warn(...args);
+      return;
+    }
+    
+    // Keep key warnings as errors since they can cause actual issues
+    if (message.includes('Warning: Each child in a list should have a unique')) {
+      originalConsoleError(...args);
       return;
     }
     
