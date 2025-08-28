@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useResponsiveScaling } from '@/hooks/use-responsive-scaling';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { VIDEO_ASPECT_RATIO, VIDEO_CONTAINER_CONSTRAINTS } from '@/components/video-hero/video-aspect-ratio';
 
 interface VimeoFacadeProps {
   videoId: string;
@@ -65,54 +67,48 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     `&player_id=0&app_id=58479&quality=auto`;
   
   if (isLoaded) {
+    if (background) {
+      return (
+        <div className={cn("relative w-full h-full", className)}>
+          <iframe
+            ref={iframeRef}
+            src={vimeoUrl}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: scaling.width,
+              height: scaling.height,
+              transform: 'translate(-50%, -50%)'
+            }}
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            title={title}
+            loading="lazy"
+          />
+        </div>
+      );
+    }
+    
     return (
-      <div 
-        className={cn("relative w-full h-full", className)}
-        style={background ? { 
-          contain: 'layout'
-        } : { 
-          aspectRatio: '16/9',
-          contain: 'layout',
-          containIntrinsicSize: '100% 56.25%'
-        }}
-      >
+      <AspectRatio ratio={VIDEO_ASPECT_RATIO} className={cn("relative w-full", className)}>
         <iframe
           ref={iframeRef}
           src={vimeoUrl}
-          style={background ? {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: scaling.width,
-            height: scaling.height,
-            transform: 'translate(-50%, -50%)'
-          } : {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          }}
+          className="absolute inset-0 w-full h-full"
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           title={title}
           loading="lazy"
         />
-      </div>
+      </AspectRatio>
     );
   }
   
   return (
-    <div
-      className={cn(
-        "relative w-full h-full cursor-pointer group overflow-hidden",
-        className
-      )}
-      style={{ 
-        aspectRatio: '16/9',
-        contain: 'layout',
-        containIntrinsicSize: '100% 56.25%'
-      }}
+    <AspectRatio 
+      ratio={VIDEO_ASPECT_RATIO} 
+      className={cn("relative w-full cursor-pointer group overflow-hidden", className)}
       onClick={handleClick}
     >
       {/* Thumbnail Image or Gradient Fallback */}
@@ -168,7 +164,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </AspectRatio>
   );
 };
 
