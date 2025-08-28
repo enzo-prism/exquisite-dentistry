@@ -310,6 +310,29 @@ body {
   text-decoration: none !important;
 }
 
+/* Universal Button Text Override - Ensure all buttons have white text */
+button,
+[data-radix-slot],
+a > button,
+.button-wrapper button,
+button[data-radix-slot],
+a[data-radix-slot] {
+  color: #ffffff !important;
+}
+
+/* Specific overrides for button variants */
+button:not(.link-variant),
+[data-radix-slot]:not(.link-variant) {
+  color: #ffffff !important;
+}
+
+/* Override any inherited text colors from parent elements */
+a > button,
+a[data-radix-slot] {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
 /* Blog Page Enhanced Animations */
 .blog-card-enter {
   opacity: 0;
