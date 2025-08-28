@@ -99,7 +99,7 @@ const TransformationStoriesPage: React.FC = () => {
                     
                     {/* CTA */}
                     <div className="pt-4">
-                      <Button asChild variant="default">
+                      <Button asChild variant="default" className="text-white">
                         <Link to={`/transformation-stories/${caseStudy.slug}`}>
                           Read Full Story
                         </Link>
