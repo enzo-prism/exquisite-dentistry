@@ -358,7 +358,7 @@ export const transformationStories: TransformationStory[] = [
     shortDescription: 'Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.',
     videoId: '1088877336',
     videoType: 'vimeo',
-    thumbnailUrl: '/lovable-uploads/254a9f08-39bf-4d85-91e5-ca54e3e8bb34.png',
+    thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
     location: 'Los Angeles, CA',
     goal: 'From stress to ease — and a routine he actually looks forward to',
     keyTakeaways: [

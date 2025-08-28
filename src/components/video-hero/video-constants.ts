@@ -21,7 +21,7 @@ export const VIDEO_TESTIMONIALS = [
   },
   {
     vimeoId: "1088877336",
-    thumbnailUrl: "/lovable-uploads/254a9f08-39bf-4d85-91e5-ca54e3e8bb34.png",
+    thumbnailUrl: "/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png",
     title: "Rob Talbert Patient Testimonial"
   },
   {
