@@ -488,91 +488,82 @@ a:hover {
   transform: scale(1);
 }
 
-/* ==== BUTTON SYSTEM REBUILD ==== */
-/* Comprehensive button styling with proper CSS architecture */
+/* ==== SIMPLIFIED BUTTON SYSTEM ==== */
+/* Only gold and black backgrounds allowed, always with white text */
 
-/* Reset all button text colors to use semantic tokens */
-button {
-  color: inherit;
-}
-
-/* PRIMARY/DEFAULT BUTTONS - Gold background with white text */
-button:where([class*="bg-primary"]),
-button:where([class*="bg-gold"]) {
+/* DEFAULT BUTTONS - Gold background with white text */
+.button-variant-default,
+button[class*="bg-primary"],
+button[class*="bg-gold"],
+[data-radix-slot][class*="bg-primary"],
+[data-radix-slot][class*="bg-gold"] {
   background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  color: white !important;
 }
 
-button:where([class*="bg-primary"]):hover,
-button:where([class*="bg-gold"]):hover {
+.button-variant-default:hover,
+button[class*="bg-primary"]:hover,
+button[class*="bg-gold"]:hover,
+[data-radix-slot][class*="bg-primary"]:hover,
+[data-radix-slot][class*="bg-gold"]:hover {
   background-color: hsl(var(--primary) / 0.9) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  color: white !important;
 }
 
-/* OUTLINE BUTTONS - Gold border with gold text, white text on hover */
-button:where([class*="border-primary"]):not([class*="bg-primary"]),
-button:where([class*="border-gold"]):not([class*="bg-gold"]) {
+/* BLACK BUTTONS - Black background with white text */
+.button-variant-black,
+button[class*="bg-black"],
+[data-radix-slot][class*="bg-black"] {
+  background-color: hsl(0 0% 0%) !important;
+  color: white !important;
+}
+
+.button-variant-black:hover,
+button[class*="bg-black"]:hover,
+[data-radix-slot][class*="bg-black"]:hover {
+  background-color: hsl(0 0% 0% / 0.9) !important;
+  color: white !important;
+}
+
+/* OUTLINE BUTTONS - Gold border, gold text, becomes gold background with white text on hover */
+.button-variant-outline,
+button[class*="border-primary"]:not([class*="bg-"]),
+button[class*="border-gold"]:not([class*="bg-"]),
+[data-radix-slot][class*="border-primary"]:not([class*="bg-"]),
+[data-radix-slot][class*="border-gold"]:not([class*="bg-"]) {
   border-color: hsl(var(--primary)) !important;
   color: hsl(var(--primary)) !important;
   background-color: transparent !important;
 }
 
-button:where([class*="border-primary"]):not([class*="bg-primary"]):hover,
-button:where([class*="border-gold"]):not([class*="bg-gold"]):hover {
+.button-variant-outline:hover,
+button[class*="border-primary"]:not([class*="bg-"]):hover,
+button[class*="border-gold"]:not([class*="bg-"]):hover,
+[data-radix-slot][class*="border-primary"]:not([class*="bg-"]):hover,
+[data-radix-slot][class*="border-gold"]:not([class*="bg-"]):hover {
   background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  color: white !important;
 }
 
 /* LINK BUTTONS - Gold text */
-button:where([class*="text-primary"]),
-button:where([class*="text-gold"]) {
-  color: hsl(var(--primary)) !important;
-}
-
-/* ==== ASCHILD COMPONENT FIXES ==== */
-/* Ensure Button asChild components don't inherit link colors */
-[data-radix-slot] {
-  color: inherit !important;
-}
-
-/* Fix buttons inside links (asChild pattern) */
-a > button:where([class*="bg-primary"]),
-a > button:where([class*="bg-gold"]),
-a [data-radix-slot]:where([class*="bg-primary"]),
-a [data-radix-slot]:where([class*="bg-gold"]) {
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
-}
-
-a > button:where([class*="bg-primary"]):hover,
-a > button:where([class*="bg-gold"]):hover,
-a [data-radix-slot]:where([class*="bg-primary"]):hover,
-a [data-radix-slot]:where([class*="bg-gold"]):hover {
-  background-color: hsl(var(--primary) / 0.9) !important;
-  color: hsl(var(--primary-foreground)) !important;
-}
-
-/* Fix outline buttons inside links */
-a > button:where([class*="border-primary"]):not([class*="bg-primary"]),
-a > button:where([class*="border-gold"]):not([class*="bg-gold"]),
-a [data-radix-slot]:where([class*="border-primary"]):not([class*="bg-primary"]),
-a [data-radix-slot]:where([class*="border-gold"]):not([class*="bg-gold"]) {
-  border-color: hsl(var(--primary)) !important;
+.button-variant-link,
+button[class*="text-primary"],
+button[class*="text-gold"],
+[data-radix-slot][class*="text-primary"],
+[data-radix-slot][class*="text-gold"] {
   color: hsl(var(--primary)) !important;
   background-color: transparent !important;
 }
 
-a > button:where([class*="border-primary"]):not([class*="bg-primary"]):hover,
-a > button:where([class*="border-gold"]):not([class*="bg-gold"]):hover,
-a [data-radix-slot]:where([class*="border-primary"]):not([class*="bg-primary"]):hover,
-a [data-radix-slot]:where([class*="border-gold"]):not([class*="bg-gold"]):hover {
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+/* Fix for buttons inside links (asChild pattern) */
+a > button,
+a > [data-radix-slot] {
+  text-decoration: none !important;
 }
 
-/* ==== ACCESSIBILITY & CONTRAST ==== */
-/* Ensure proper contrast for all button states */
-button:focus-visible {
+/* Ensure proper focus states */
+button:focus-visible,
+[data-radix-slot]:focus-visible {
   outline: 2px solid hsl(var(--ring)) !important;
   outline-offset: 2px !important;
 }

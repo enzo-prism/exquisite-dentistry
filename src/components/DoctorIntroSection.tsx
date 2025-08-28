@@ -68,14 +68,14 @@ const DoctorIntroSection: React.FC = () => {
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-gold hover:bg-gold/90 text-white px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
+                className="px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
               >
                 <a href="/about">Learn More About Dr. Aguil</a>
               </Button>
               <ConversionButton 
                 variant="outline" 
                 size="lg" 
-                className="border-gold text-gold hover:bg-gold hover:text-white px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
+                className="px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
                 href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
               >
                 Schedule Consultation

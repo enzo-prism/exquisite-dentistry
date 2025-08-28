@@ -200,7 +200,7 @@ const Services = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {serviceCategories.map((service) => (
                   <a key={service.id} href={`#${service.id}`} className="flex flex-col items-center text-center group">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                       {getIcon(service.iconName)}
                     </div>
                     <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
@@ -209,7 +209,7 @@ const Services = () => {
                   </a>
                 ))}
                 <a href="#invisalign" className="flex flex-col items-center text-center group">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                     {getIcon('Smile')}
                   </div>
                   <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">

@@ -53,7 +53,7 @@ const SpecialMomentCard: React.FC<SpecialMomentCardProps> = ({
           
           {/* Touch-optimized button */}
           <Link to={buttonLink} className="inline-flex">
-            <div className="bg-gold hover:bg-gold/90 active:bg-gold/80 text-white px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-sm font-medium transition-colors duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base min-h-[44px] flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-sm font-medium transition-colors duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base min-h-[44px] flex items-center justify-center">
               {buttonText}
             </div>
           </Link>

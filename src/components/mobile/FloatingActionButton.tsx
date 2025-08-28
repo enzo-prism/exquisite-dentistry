@@ -55,7 +55,7 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
       icon: Calendar,
       label: 'Schedule',
       href: 'https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
-      color: 'bg-gold hover:bg-gold-dark',
+      color: 'bg-primary hover:bg-primary/90 text-primary-foreground',
       trackConversion: true
     }
   ];

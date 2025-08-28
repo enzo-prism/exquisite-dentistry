@@ -245,7 +245,7 @@ const Navbar = () => {
               {/* CTA Button - Desktop */}
               <ConversionButton 
                 size="lg" 
-                className="bg-gold text-white hover:bg-gold/90"
+                variant="default"
                 href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -496,7 +496,8 @@ const MobileMenuPanel = ({
       >
         <ConversionButton 
           size="lg" 
-          className="w-full bg-gold text-white hover:bg-gold/90 active:bg-gold/80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
+          className="w-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
+          variant="default"
           href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
           target="_blank"
           rel="noopener noreferrer"
