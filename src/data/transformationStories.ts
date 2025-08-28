@@ -125,6 +125,88 @@ export const transformationStories: TransformationStory[] = [
     }
   },
   {
+    id: 'rob-talbert',
+    slug: 'rob-talbert',
+    patientName: 'Rob Talbert',
+    title: 'Rob Talbert\'s Story — "It doesn\'t even feel like going to the dentist"',
+    shortDescription: 'Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.',
+    videoId: '1088877336',
+    videoType: 'vimeo',
+    thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
+    location: 'Los Angeles, CA',
+    goal: 'From stress to ease — and a routine he actually looks forward to',
+    keyTakeaways: [
+      'Calm, spa-like experience: "the environment\'s great…super calming, relaxing."',
+      'Personal relationship with the doctor: Rob says the doctor remembers him and what\'s happening in his life, which signals continuity and trust.',
+      'Net feeling: "It doesn\'t feel like coming to the dentist." (friction removed → higher visit compliance).'
+    ],
+    quotes: [
+      {
+        text: 'The environment\'s great—it\'s super calming and relaxing.',
+        context: 'About the spa-like atmosphere'
+      },
+      {
+        text: 'My dentist remembers me—what\'s going on in my life.',
+        context: 'About personal continuity'
+      },
+      {
+        text: 'It doesn\'t feel like coming to the dentist.',
+        context: 'About the overall experience'
+      }
+    ],
+    whyChoseUs: [
+      {
+        title: 'A Calming Environment',
+        description: 'From the moment he arrives, the pace slows. The atmosphere is quiet and relaxing, designed to help patients breathe easier.'
+      },
+      {
+        title: 'Personal Continuity',
+        description: 'Dr. Aguil remembers Rob—his preferences, his priorities, and what\'s going on in his life—so every visit starts with context and trust.'
+      },
+      {
+        title: 'Comfort-First Care',
+        description: 'Clear explanations, gentle technique, and modern technology help keep visits efficient and low-stress, with options for anxious patients when needed.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'From tense to relaxed',
+        description: 'The setting and team shifted Rob\'s mindset; appointments went from something to endure to something simple to do.'
+      },
+      {
+        category: 'From one-off to consistent',
+        description: 'When a visit "doesn\'t feel like the dentist," it\'s easy to keep up a healthy routine.'
+      },
+      {
+        category: 'From uncertain to confident',
+        description: 'Feeling known and cared for translated into confidence in his smile—and in the plan behind it.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What makes the environment so calming?',
+        answer: 'We\'ve designed every detail to create a spa-like atmosphere that helps you breathe easier from the moment you arrive.'
+      },
+      {
+        question: 'How do you build personal relationships with patients?',
+        answer: 'Dr. Aguil takes time to know you as a person—your preferences, priorities, and what\'s happening in your life—so every visit feels personal and connected.'
+      },
+      {
+        question: 'What if I have dental anxiety?',
+        answer: 'Our comfort-first approach includes clear explanations, gentle techniques, and modern technology, with special options for anxious patients to ensure you feel at ease.'
+      },
+      {
+        question: 'How do you maintain consistent care?',
+        answer: 'By creating an experience that doesn\'t feel like traditional dentistry, patients naturally maintain their oral health routine and look forward to visits.'
+      }
+    ],
+    seo: {
+      title: 'Rob Talbert\'s Story | Comfort-First Dental Care | Exquisite Dentistry Los Angeles',
+      description: 'See how Rob found dental care that doesn\'t feel like the dentist at Exquisite Dentistry in Los Angeles. Watch his testimonial about the calming environment and personal care.',
+      keywords: 'comfortable dental care Los Angeles, spa-like dentist LA, personal dental relationship, Rob Talbert testimonial, Dr. Alexie Aguil, anxiety-free dental visits'
+    }
+  },
+  {
     id: 'christian-fernandez',
     slug: 'christian-fernandez',
     patientName: 'Christian Fernandez',
@@ -348,88 +430,6 @@ export const transformationStories: TransformationStory[] = [
       title: 'Shannon Langhorne\'s Story | Spa-Like Dental Experience | Exquisite Dentistry Los Angeles',
       description: 'See how Shannon found a dental office that feels like a spa at Exquisite Dentistry in Los Angeles. Watch her testimonial about the relaxing atmosphere and confidence boost.',
       keywords: 'spa-like dental office Los Angeles, relaxing dentist LA, comfortable dental care, patient testimonial Los Angeles, confidence boost dental'
-    }
-  },
-  {
-    id: 'rob-talbert',
-    slug: 'rob-talbert',
-    patientName: 'Rob Talbert',
-    title: 'Rob Talbert\'s Story — "It doesn\'t even feel like going to the dentist"',
-    shortDescription: 'Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.',
-    videoId: '1088877336',
-    videoType: 'vimeo',
-    thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
-    location: 'Los Angeles, CA',
-    goal: 'From stress to ease — and a routine he actually looks forward to',
-    keyTakeaways: [
-      'Calm, spa-like experience: "the environment\'s great…super calming, relaxing."',
-      'Personal relationship with the doctor: Rob says the doctor remembers him and what\'s happening in his life, which signals continuity and trust.',
-      'Net feeling: "It doesn\'t feel like coming to the dentist." (friction removed → higher visit compliance).'
-    ],
-    quotes: [
-      {
-        text: 'The environment\'s great—it\'s super calming and relaxing.',
-        context: 'About the spa-like atmosphere'
-      },
-      {
-        text: 'My dentist remembers me—what\'s going on in my life.',
-        context: 'About personal continuity'
-      },
-      {
-        text: 'It doesn\'t feel like coming to the dentist.',
-        context: 'About the overall experience'
-      }
-    ],
-    whyChoseUs: [
-      {
-        title: 'A Calming Environment',
-        description: 'From the moment he arrives, the pace slows. The atmosphere is quiet and relaxing, designed to help patients breathe easier.'
-      },
-      {
-        title: 'Personal Continuity',
-        description: 'Dr. Aguil remembers Rob—his preferences, his priorities, and what\'s going on in his life—so every visit starts with context and trust.'
-      },
-      {
-        title: 'Comfort-First Care',
-        description: 'Clear explanations, gentle technique, and modern technology help keep visits efficient and low-stress, with options for anxious patients when needed.'
-      }
-    ],
-    whatChanged: [
-      {
-        category: 'From tense to relaxed',
-        description: 'The setting and team shifted Rob\'s mindset; appointments went from something to endure to something simple to do.'
-      },
-      {
-        category: 'From one-off to consistent',
-        description: 'When a visit "doesn\'t feel like the dentist," it\'s easy to keep up a healthy routine.'
-      },
-      {
-        category: 'From uncertain to confident',
-        description: 'Feeling known and cared for translated into confidence in his smile—and in the plan behind it.'
-      }
-    ],
-    faqs: [
-      {
-        question: 'What makes the environment so calming?',
-        answer: 'We\'ve designed every detail to create a spa-like atmosphere that helps you breathe easier from the moment you arrive.'
-      },
-      {
-        question: 'How do you build personal relationships with patients?',
-        answer: 'Dr. Aguil takes time to know you as a person—your preferences, priorities, and what\'s happening in your life—so every visit feels personal and connected.'
-      },
-      {
-        question: 'What if I have dental anxiety?',
-        answer: 'Our comfort-first approach includes clear explanations, gentle techniques, and modern technology, with special options for anxious patients to ensure you feel at ease.'
-      },
-      {
-        question: 'How do you maintain consistent care?',
-        answer: 'By creating an experience that doesn\'t feel like traditional dentistry, patients naturally maintain their oral health routine and look forward to visits.'
-      }
-    ],
-    seo: {
-      title: 'Rob Talbert\'s Story | Comfort-First Dental Care | Exquisite Dentistry Los Angeles',
-      description: 'See how Rob found dental care that doesn\'t feel like the dentist at Exquisite Dentistry in Los Angeles. Watch his testimonial about the calming environment and personal care.',
-      keywords: 'comfortable dental care Los Angeles, spa-like dentist LA, personal dental relationship, Rob Talbert testimonial, Dr. Alexie Aguil, anxiety-free dental visits'
     }
   }
 ];
