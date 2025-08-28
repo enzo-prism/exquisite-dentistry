@@ -43,7 +43,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <Button 
             variant="outline" 
             size="sm"
-            className="border-gold text-black hover:bg-gold/5 group smooth-animation"
+            className="border-gold text-black hover:bg-gold/5 hover:text-black group smooth-animation"
           >
             View {title} Details
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2 transition-transform group-hover:translate-x-1">
