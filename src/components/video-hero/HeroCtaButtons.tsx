@@ -40,7 +40,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         variant="default"
         size={buttonSize}
         onClick={primaryCta.onClick}
-        className={`group shadow-lg hover:shadow-xl transition-all duration-300 ${isMobile ? 'w-full' : ''}`}
+        className={`group ${isMobile ? 'w-full' : ''}`}
       >
         {primaryCta.text}
         <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
