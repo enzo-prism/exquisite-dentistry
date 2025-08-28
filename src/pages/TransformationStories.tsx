@@ -99,7 +99,7 @@ const TransformationStoriesPage: React.FC = () => {
                     
                     {/* CTA */}
                     <div className="pt-4">
-                      <Button asChild className="bg-gold text-white hover:bg-gold/90">
+                      <Button asChild variant="default">
                         <Link to={`/transformation-stories/${caseStudy.slug}`}>
                           Read Full Story
                         </Link>
@@ -119,7 +119,7 @@ const TransformationStoriesPage: React.FC = () => {
               we'll meet you where you are and guide you step-by-step.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90">
+              <Button asChild size="lg" variant="default">
                 <a 
                   href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                   target="_blank"

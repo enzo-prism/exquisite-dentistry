@@ -76,13 +76,13 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-gold text-white hover:bg-gold/90">
+            <Button size="lg" variant="default">
               Explore Veneer Options
               <ArrowRight size={16} className="ml-2" />
             </Button>
           </a>
           <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="lg" className="border-gold text-gold hover:bg-gold/10">
+            <Button variant="outline" size="lg">
               View Veneer Gallery
               <ExternalLink size={16} className="ml-2" />
             </Button>

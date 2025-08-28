@@ -243,7 +243,7 @@ const TransformationStoryPage: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-gold text-white hover:bg-gold/90">
+            <Button asChild size="lg" variant="default">
               <a 
                 href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                 target="_blank"
