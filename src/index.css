@@ -488,35 +488,42 @@ a:hover {
   transform: scale(1);
 }
 
-/* Button Specificity Fixes */
-button[class*="bg-gold"] {
+/* Button Text Color Fixes - Comprehensive Solution */
+/* Ensure all default/gold buttons have white text */
+button:where(.bg-gold),
+button:where([data-variant="default"]),
+.bg-gold button,
+a .bg-gold,
+[data-radix-slot] .bg-gold {
   color: white !important;
 }
 
-button[class*="bg-gold"]:hover {
+/* Fix asChild button color inheritance */
+button[data-asChild="true"],
+[data-radix-slot] button,
+a > button {
+  color: inherit !important;
+}
+
+/* Ensure outline buttons maintain proper colors */
+button:where(.border-gold):not(.bg-gold) {
+  color: hsl(var(--gold)) !important;
+}
+
+button:where(.border-gold):not(.bg-gold):hover {
+  color: white !important;
+  background-color: hsl(var(--gold)) !important;
+}
+
+/* Fix Button asChild with links */
+a > button:where(.bg-gold),
+[data-radix-slot]:where(.bg-gold) {
   color: white !important;
 }
 
-/* Fix asChild button inheritance issues */
-a > button[class*="bg-gold"] {
-  color: white !important;
-}
-
-a > button[class*="bg-gold"]:hover {
-  color: white !important;
-}
-
-/* Ensure button text colors override link colors */
-.btn-primary,
-button[data-variant="default"],
-button[class*="variant-default"] {
-  color: white !important;
-}
-
-.btn-primary:hover,
-button[data-variant="default"]:hover,
-button[class*="variant-default"]:hover {
-  color: white !important;
+/* Prevent link colors from affecting buttons */
+a button:not(.text-inherit) {
+  color: inherit !important;
 }
 
 /* Mobile-specific animation adjustments */

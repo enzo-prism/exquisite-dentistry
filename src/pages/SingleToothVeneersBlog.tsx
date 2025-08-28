@@ -358,7 +358,7 @@ const SingleToothVeneersBlog = () => {
               the perfect solution. Schedule a consultation with Dr. Alexie Aguil to explore your options.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="gold" size="lg" className="text-lg px-8 py-4">
+              <Button variant="default" size="lg" className="text-lg px-8 py-4">
                 <a 
                   href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
                   target="_blank" 
