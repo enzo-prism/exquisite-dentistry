@@ -76,9 +76,9 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
       {secondaryCta && (
         <Link to={secondaryCta.href} className={isMobile ? "w-full sm:w-auto" : ""}>
           <Button 
-            variant="outline" 
+            variant="black" 
             size={buttonSize}
-            className={`border-white text-black hover:bg-white/10 hover:text-black group ${isMobile ? 'w-full' : ''}`}
+            className={`group ${isMobile ? 'w-full' : ''}`}
           >
             {secondaryCta.text}
             <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
