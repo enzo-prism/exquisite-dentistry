@@ -300,26 +300,14 @@ body {
   }
 }
 
-/* Navbar Specific Styles - High Specificity */
-.navbar-link {
-  color: #ffffff !important;
-  text-decoration: none !important;
-}
-
-.navbar-link:hover {
-  color: hsl(var(--gold)) !important;
-}
-
+/* Navbar Specific Styles - Force All White Text */
+.navbar-link,
+.navbar-link:hover,
+.navbar-link:active,
+.navbar-link:focus,
 .navbar-link:visited {
   color: #ffffff !important;
-}
-
-.navbar-link:active {
-  color: #ffffff !important;
-}
-
-.navbar-link:focus {
-  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 /* Blog Page Enhanced Animations */

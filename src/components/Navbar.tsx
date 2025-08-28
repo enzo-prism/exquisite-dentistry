@@ -180,7 +180,7 @@ const Navbar = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="navbar-link text-white hover:text-gold transition-colors duration-200 py-2 px-2"
+                  className="navbar-link text-white transition-colors duration-200 py-2 px-2"
                 >
                   {link.label}
                 </Link>
@@ -193,7 +193,7 @@ const Navbar = () => {
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <button 
-                  className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
                 >
                   Clients
                   <ChevronDown size={16} />
@@ -202,13 +202,13 @@ const Navbar = () => {
                 {openDropdown === 'clients' && (
                   <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
                     {clientsDropdown.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="navbar-link block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
-                      >
-                        {item.label}
-                      </Link>
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                        >
+                          {item.label}
+                        </Link>
                     ))}
                   </div>
                 )}
@@ -221,7 +221,7 @@ const Navbar = () => {
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <button 
-                  className="navbar-link text-white hover:text-gold transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
                 >
                   More
                   <ChevronDown size={16} />
@@ -230,13 +230,13 @@ const Navbar = () => {
                 {openDropdown === 'more' && (
                   <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
                     {moreDropdown.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="navbar-link block px-4 py-2 text-white hover:text-gold hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
-                      >
-                        {item.label}
-                      </Link>
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                        >
+                          {item.label}
+                        </Link>
                     ))}
                   </div>
                 )}
@@ -380,7 +380,7 @@ const MobileMenuPanel = ({
               key={link.to}
               ref={index === 0 ? firstMenuLinkRef : undefined}
               to={link.to}
-              className="navbar-link w-full block py-4 px-4 mb-1 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              className="navbar-link w-full block py-4 px-4 mb-1 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -395,7 +395,7 @@ const MobileMenuPanel = ({
           {/* Clients Section */}
           <div className="w-full border-b border-white/10 mb-1">
             <button
-              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -424,7 +424,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                     className="navbar-link w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                     className="navbar-link w-full block py-3 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -442,7 +442,7 @@ const MobileMenuPanel = ({
           <div className="w-full border-b border-white/10 mb-1">
             <button
               ref={lastMenuLinkRef}
-              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -471,7 +471,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="navbar-link w-full block py-3 px-4 text-sm text-white hover:text-gold hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="navbar-link w-full block py-3 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
