@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Users, Star, CheckCircle } from 'lucide-react';
 import ImageComponent from '@/components/Image';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 

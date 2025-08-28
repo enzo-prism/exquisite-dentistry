@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';

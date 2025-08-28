@@ -48,7 +48,7 @@
   --muted: 215 10% 85%;
   --muted-foreground: 215 16% 47%;
   --accent: 215 10% 85%;
-  --accent-foreground: 215 25% 27%;
+  --accent-foreground: 0 0% 100%; /* Fixed to white for proper contrast */
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   --border: 215 10% 85%;
@@ -486,6 +486,37 @@ a:hover {
 .scale-in.in-view {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Button Specificity Fixes */
+button[class*="bg-gold"] {
+  color: white !important;
+}
+
+button[class*="bg-gold"]:hover {
+  color: white !important;
+}
+
+/* Fix asChild button inheritance issues */
+a > button[class*="bg-gold"] {
+  color: white !important;
+}
+
+a > button[class*="bg-gold"]:hover {
+  color: white !important;
+}
+
+/* Ensure button text colors override link colors */
+.btn-primary,
+button[data-variant="default"],
+button[class*="variant-default"] {
+  color: white !important;
+}
+
+.btn-primary:hover,
+button[data-variant="default"]:hover,
+button[class*="variant-default"]:hover {
+  color: white !important;
 }
 
 /* Mobile-specific animation adjustments */

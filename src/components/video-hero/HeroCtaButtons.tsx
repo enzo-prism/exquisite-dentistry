@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 // Scheduling URL constant
@@ -35,12 +35,12 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
     // If no href is provided, use the default scheduling URL
     const buttonHref = primaryCta.href || SCHEDULING_URL;
 
-    const ButtonContent = () => (
+  const ButtonContent = () => (
       <Button 
+        variant="default"
         size={buttonSize}
         onClick={primaryCta.onClick}
-        fullWidth={isMobile}
-        className="group shadow-lg hover:shadow-xl transition-all duration-300"
+        className={`group shadow-lg hover:shadow-xl transition-all duration-300 ${isMobile ? 'w-full' : ''}`}
       >
         {primaryCta.text}
         <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -78,8 +78,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           <Button 
             variant="outline" 
             size={buttonSize}
-            className="border-white text-white hover:bg-white/10 group"
-            fullWidth={isMobile}
+            className={`border-white text-white hover:bg-white/10 group ${isMobile ? 'w-full' : ''}`}
           >
             {secondaryCta.text}
             <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />

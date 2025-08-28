@@ -1,6 +1,6 @@
 import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import ImageComponent from '@/components/Image';
 

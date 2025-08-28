@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 import DrAguilGallery from '@/components/DrAguilGallery';
 import { Card, CardContent } from '@/components/ui/card';
@@ -301,7 +301,7 @@ const About = () => {
               Schedule your consultation with Dr. Aguil today and take the first step towards the smile you've always wanted.
             </p>
             <Link to="/contact">
-              <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+              <Button size="lg" className="animate-pulse-subtle">Book an Appointment</Button>
             </Link>
           </div>
         </div>

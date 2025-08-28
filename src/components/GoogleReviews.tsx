@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, MessageSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import ImageComponent from '@/components/Image';
 
 interface GoogleReview {

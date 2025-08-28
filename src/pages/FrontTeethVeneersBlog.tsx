@@ -2,7 +2,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import VeneerCTA from '@/components/VeneerCTA';

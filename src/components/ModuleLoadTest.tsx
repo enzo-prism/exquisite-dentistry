@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 
 interface ModuleTestProps {
   modulePath: string;

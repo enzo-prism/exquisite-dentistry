@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
 import PhoneLink from '@/components/PhoneLink';
 import { trackFormSubmission } from '@/utils/googleAdsTracking';

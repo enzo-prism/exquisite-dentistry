@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Headphones, Clock, Sofa, Calendar, ArrowRight } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
 import { YOUTUBE_VIDEOS } from '@/components/VideoHero';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
@@ -199,7 +199,7 @@ const ClientExperience = () => {
                 Book your visit today and discover how comfortable and rewarding dental care can be at our Wilshire Boulevard location.
               </p>
               <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="xl" className="animate-pulse-subtle">Book an Appointment</Button>
+                <Button size="lg" className="animate-pulse-subtle">Book an Appointment</Button>
               </a>
             </div>
           </div>

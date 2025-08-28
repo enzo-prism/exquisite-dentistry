@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
@@ -318,7 +318,7 @@ const Wedding = () => {
                 Book your wedding smile consultation today and walk down the aisle with the confidence that comes from knowing your smile is absolutely perfect.
               </p>
               <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="xl">Book Your Wedding Consultation</Button>
+                <Button size="lg">Book Your Wedding Consultation</Button>
               </a>
             </div>
           </div>

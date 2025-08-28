@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import VideoHero from '@/components/VideoHero';
