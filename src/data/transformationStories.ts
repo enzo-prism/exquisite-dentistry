@@ -376,7 +376,7 @@ export const transformationStories: TransformationStory[] = [
     ],
     quotes: [
       {
-        text: 'I like coming here because it feels like I\'m walking into a spa… everyone\'s friendly, they\'re smiling, Dr. Lexi\'s excited to see me.',
+        text: 'I like coming here because it feels like I\'m walking into a spa… everyone\'s friendly, they\'re smiling, Dr. Aguil\'s excited to see me.',
         context: 'About the spa-like atmosphere'
       },
       {
@@ -405,7 +405,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Atmosphere',
-        description: 'Every detail felt intentional — from genuine smiles to Dr. Lexi\'s excitement to see her.'
+        description: 'Every detail felt intentional — from genuine smiles to Dr. Aguil\'s excitement to see her.'
       },
       {
         category: 'Confidence',
