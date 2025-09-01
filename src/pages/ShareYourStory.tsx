@@ -173,7 +173,7 @@ const ShareYourStory = () => {
                 variant="default"
                 size="lg"
                 className="w-full"
-                href="https://form.typeform.com/written-testimonial"
+                href="https://fxuqp40sseh.typeform.com/to/noSwdJPG"
                 target="_blank"
                 rel="noopener noreferrer"
                 trackConversion={true}
@@ -217,7 +217,7 @@ const ShareYourStory = () => {
                 variant="default"
                 size="lg"
                 className="w-full"
-                href="https://form.typeform.com/video-testimonial"
+                href="https://fxuqp40sseh.typeform.com/to/pqnIKFYQ"
                 target="_blank"
                 rel="noopener noreferrer"
                 trackConversion={true}
