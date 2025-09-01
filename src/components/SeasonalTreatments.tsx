@@ -7,7 +7,7 @@ const SeasonalTreatments = () => {
     <section 
       style={{
         padding: '4rem 0',
-        backgroundColor: 'hsl(var(--background))',
+        backgroundColor: 'hsl(var(--muted))',
       }}
     >
       <div 

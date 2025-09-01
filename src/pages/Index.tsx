@@ -84,16 +84,6 @@ const IndexPage: React.FC = () => {
       />
       
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ willChange: 'transform' }}
-      >
-        <SeasonalTreatments />
-      </motion.div>
-      
-      <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -121,6 +111,16 @@ const IndexPage: React.FC = () => {
         style={{ willChange: 'transform' }}
       >
         <ServicesSection />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ willChange: 'transform' }}
+      >
+        <SeasonalTreatments />
       </motion.div>
       
       <motion.div
