@@ -32,6 +32,7 @@ const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const TransformationStories = lazy(() => import("@/pages/TransformationStories"));
 const TransformationStoryPage = lazy(() => import("@/pages/TransformationStoryPage"));
+const ShareYourStory = lazy(() => import("@/pages/ShareYourStory"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 // Create a client
@@ -159,6 +160,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/transformation-stories/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
                 <TransformationStoryPage />
+              </Suspense>} />
+              <Route path="/share-your-story" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ShareYourStory />
               </Suspense>} />
             </Routes>
           </PageTransition>

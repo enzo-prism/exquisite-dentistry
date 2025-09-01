@@ -141,6 +141,7 @@ const Navbar = () => {
 
   const moreDropdown = [
     { to: '/faqs', label: 'FAQs' },
+    { to: '/share-your-story', label: 'Share Your Story' },
     { to: '/contact', label: 'Contact' },
     { to: '/blog', label: 'Blog' },
   ];
