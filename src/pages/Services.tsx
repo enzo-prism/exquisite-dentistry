@@ -278,12 +278,6 @@ const Services = () => {
                 <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
                   <ImageComponent src={service.image} alt={service.title} className="w-full h-full object-cover" />
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                    {getIcon(service.iconName)}
-                  </div>
-                  <span className="text-xl font-medium text-black">{service.title}</span>
-                </div>
               </div>
             </div>
           </div>
