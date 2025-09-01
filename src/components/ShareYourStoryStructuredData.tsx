@@ -67,12 +67,12 @@ const ShareYourStoryStructuredData: React.FC = () => {
       {
         '@type': 'SubmitAction',
         name: 'Submit Written Testimonial',
-        target: 'https://form.typeform.com/written-testimonial'
+        target: 'https://fxuqp40sseh.typeform.com/to/noSwdJPG'
       },
       {
         '@type': 'SubmitAction',
         name: 'Submit Video Testimonial', 
-        target: 'https://form.typeform.com/video-testimonial'
+        target: 'https://fxuqp40sseh.typeform.com/to/pqnIKFYQ'
       }
     ]
   };
