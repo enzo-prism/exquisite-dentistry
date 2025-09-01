@@ -356,12 +356,6 @@ const Services = () => {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                  {getIcon('Smile')}
-                </div>
-                <span className="text-xl font-medium text-black">Invisalign</span>
-              </div>
             </div>
           </div>
         </div>
