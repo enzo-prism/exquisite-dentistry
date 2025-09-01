@@ -8,6 +8,7 @@ import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
 import TestimonialThumbnail from '@/components/TestimonialThumbnail';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
+import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -131,6 +132,16 @@ const IndexPage: React.FC = () => {
         style={{ willChange: 'transform' }}
       >
         <ClientExperienceSection />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+        style={{ willChange: 'transform' }}
+      >
+        <SmileGalleryPreview />
       </motion.div>
       <motion.section 
         className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white"
