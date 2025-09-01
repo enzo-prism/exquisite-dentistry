@@ -408,65 +408,71 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
-            <span className="inline-block text-sm text-gold font-medium">CLIENT EXPERIENCE</span>
-            <h2 className="heading-lg">Exceptional Comfort & Care</h2>
-            <div className="separator-left"></div>
-            <p className="paragraph">
-              At Exquisite Dentistry, we've reimagined what a dental visit can be. Our spa-like environment features amenities designed for your ultimate comfort:
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Soft lighting and warm blankets</p>
-              </div>
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Noise-canceling headphones</p>
-              </div>
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Aromatherapy</p>
-              </div>
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Private treatment rooms</p>
-              </div>
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Entertainment options during procedures</p>
-              </div>
-              <div className="flex items-start">
-                <Check size={24} className="text-gold flex-shrink-0 mt-1" />
-                <p className="ml-3">Hot lemongrass towels after treatment</p>
-              </div>
-            </div>
-            
-            <div className="pt-4">
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button className="group">
-                  Experience Our Difference
-                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </a>
-            </div>
-          </div>
-          
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-              <ImageComponent
-                alt="Spa-like dental environment"
-                className="w-full h-full object-cover"
-                src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
-              <p className="text-black-light italic text-sm">
-                "We believe that exceptional dental care should be a comfortable, stress-free experience from start to finish."
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <span className="inline-block text-sm text-gold font-medium">CLIENT EXPERIENCE</span>
+              <h2 className="heading-lg">Exceptional Comfort & Care</h2>
+              <div className="separator-left"></div>
+              <p className="paragraph">
+                At Exquisite Dentistry, we've reimagined what a dental visit can be. Our spa-like environment features amenities designed for your ultimate comfort:
               </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Spa-Like Amenities</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Soft lighting and warm blankets for ultimate comfort</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Noise-Canceling Experience</h4>
+                    <p className="text-sm text-black-light/80 mt-1">High-quality headphones to help you relax during treatment</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Aromatherapy & Wellness</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Calming scents and hot lemongrass towels after treatment</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <Check size={18} className="text-gold mt-1 flex-shrink-0" />
+                  <div className="ml-3">
+                    <h4 className="font-medium text-black">Private Treatment Rooms</h4>
+                    <p className="text-sm text-black-light/80 mt-1">Comfortable, private spaces with entertainment options</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="pt-4">
+                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                  <Button className="group">
+                    Experience Our Difference
+                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
+                <ImageComponent
+                  alt="Spa-like dental environment"
+                  className="w-full h-full object-cover"
+                  src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
+                <p className="text-black-light italic text-sm">
+                  "We believe that exceptional dental care should be a comfortable, stress-free experience from start to finish."
+                </p>
+              </div>
             </div>
           </div>
         </div>
