@@ -344,15 +344,17 @@ const Services = () => {
             </div>
             
             <div className="relative">
-              <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                <VimeoFacade
-                  videoId="1114914495"
-                  title="Invisalign Treatment at Exquisite Dentistry"
-                  className="w-full h-full"
-                  background={false}
-                  autoplay={false}
-                  controls={true}
-                />
+              <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
+                <div className="relative w-full aspect-video">
+                  <VimeoFacade
+                    videoId="1114914495"
+                    title="Invisalign Treatment at Exquisite Dentistry"
+                    className="w-full h-full"
+                    background={false}
+                    autoplay={false}
+                    controls={true}
+                  />
+                </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
                 <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
