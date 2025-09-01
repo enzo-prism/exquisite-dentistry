@@ -108,6 +108,16 @@ const IndexPage: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+        style={{ willChange: 'transform' }}
+      >
+        <SmileGalleryPreview />
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{ willChange: 'transform' }}
       >
@@ -134,15 +144,6 @@ const IndexPage: React.FC = () => {
         <ClientExperienceSection />
       </motion.div>
       
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-        style={{ willChange: 'transform' }}
-      >
-        <SmileGalleryPreview />
-      </motion.div>
       <motion.section 
         className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white"
         initial={{ opacity: 0 }}

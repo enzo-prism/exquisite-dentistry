@@ -16,7 +16,7 @@ const SmileGalleryPreview: React.FC = () => {
   const featuredCloseUps = closeUpTransformations.slice(0, 2);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
