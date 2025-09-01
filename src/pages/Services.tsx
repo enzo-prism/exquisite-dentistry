@@ -6,7 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
-import YouTubeEmbed from '@/components/YouTubeEmbed';
+import VimeoFacade from '@/components/VimeoFacade';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -345,10 +345,13 @@ const Services = () => {
             
             <div className="relative">
               <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                <YouTubeEmbed
-                  videoId="XFLzKUnHivw"
+                <VimeoFacade
+                  videoId="1114914495"
                   title="Invisalign Treatment at Exquisite Dentistry"
                   className="w-full h-full"
+                  background={false}
+                  autoplay={false}
+                  controls={true}
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 flex items-center space-x-4">
