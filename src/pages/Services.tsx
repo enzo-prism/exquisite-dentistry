@@ -352,6 +352,7 @@ const Services = () => {
                      className="w-full h-full"
                      background={false}
                      autoplay={false}
+                     muted={false}
                      controls={true}
                      thumbnailUrl="/lovable-uploads/77e54716-bd1f-4933-a6e9-a2e31367a263.png"
                    />
