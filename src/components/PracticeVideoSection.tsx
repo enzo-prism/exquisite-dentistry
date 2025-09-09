@@ -1,6 +1,6 @@
 
 import React from 'react';
-import CustomVideoPlayer from './CustomVideoPlayer';
+import UniversalVideoPlayer from './UniversalVideoPlayer';
 
 const PracticeVideoSection: React.FC = () => {
   return (
@@ -19,14 +19,13 @@ const PracticeVideoSection: React.FC = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-            <div className="relative w-full aspect-video">
-            <CustomVideoPlayer
+            <UniversalVideoPlayer
+              platform="vimeo"
               videoId="1076433847"
               title="Exquisite Dentistry Practice Video"
               thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
               className="w-full h-full"
             />
-            </div>
           </div>
         </div>
       </div>

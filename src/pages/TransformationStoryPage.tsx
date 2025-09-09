@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { transformationStories } from '@/data/transformationStories';
-import YouTubeEmbed from '@/components/YouTubeEmbed';
-import VimeoFacade from '@/components/VimeoFacade';
+import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
 import { ArrowLeft, CheckCircle, Heart, Star, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -68,23 +67,13 @@ const TransformationStoryPage: React.FC = () => {
           </div>
           
           <div className="max-w-3xl mx-auto">
-            {caseStudy.videoType === 'youtube' ? (
-              <YouTubeEmbed
-                videoId={caseStudy.videoId}
-                title={caseStudy.title}
-                thumbnailUrl={caseStudy.thumbnailUrl}
-                className="w-full"
-              />
-            ) : (
-              <VimeoFacade
-                videoId={caseStudy.videoId}
-                title={caseStudy.title}
-                thumbnailUrl={caseStudy.thumbnailUrl}
-                background={false}
-                controls={true}
-                className="w-full"
-              />
-            )}
+            <UniversalVideoPlayer
+              platform={caseStudy.videoType === 'youtube' ? 'youtube' : 'vimeo'}
+              videoId={caseStudy.videoId}
+              title={caseStudy.title}
+              thumbnailUrl={caseStudy.thumbnailUrl}
+              className="w-full"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import VimeoFacade from './VimeoFacade';
+import UniversalVideoPlayer from './UniversalVideoPlayer';
 import { cn } from '@/lib/utils';
 
 interface VideoTestimonialProps {
@@ -18,19 +18,14 @@ const VideoTestimonial: React.FC<VideoTestimonialProps> = ({
 }) => {
   return (
     <div className={cn("bg-gray-50 rounded-lg overflow-hidden shadow-lg", className)}>
-      <div className="relative aspect-video">
-        <VimeoFacade
-          videoId={vimeoId}
-          title={title}
-          thumbnailUrl={thumbnailUrl}
-          className="w-full h-full"
-          autoplay={true}
-          muted={true}
-          loop={false}
-          background={false}
-          controls={true}
-        />
-      </div>
+      <UniversalVideoPlayer
+        platform="vimeo"
+        videoId={vimeoId}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+        className="w-full h-full"
+        autoplay={true}
+      />
     </div>
   );
 };

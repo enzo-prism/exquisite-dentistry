@@ -6,7 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
-import VimeoFacade from '@/components/VimeoFacade';
+import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -339,18 +339,13 @@ const Services = () => {
             
             <div className="relative">
               <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-                <div className="relative w-full aspect-video">
-                  <VimeoFacade
-                     videoId="1114914495"
-                     title="Invisalign Treatment at Exquisite Dentistry"
-                     className="w-full h-full"
-                     background={false}
-                     autoplay={false}
-                     muted={false}
-                     controls={true}
-                     thumbnailUrl="/lovable-uploads/77e54716-bd1f-4933-a6e9-a2e31367a263.png"
-                   />
-                </div>
+                <UniversalVideoPlayer
+                  platform="vimeo"
+                  videoId="1114914495"
+                  title="Invisalign Treatment at Exquisite Dentistry"
+                  thumbnailUrl="/lovable-uploads/77e54716-bd1f-4933-a6e9-a2e31367a263.png"
+                  className="w-full h-full"
+                />
               </div>
             </div>
           </div>

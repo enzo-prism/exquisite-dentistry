@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import VimeoFacade from './VimeoFacade';
+import UniversalVideoPlayer from './UniversalVideoPlayer';
 
 interface VideoBackgroundProps {
   youtubeId?: string;
@@ -67,15 +67,23 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     if (vimeoId) {
       console.log('Rendering Vimeo video:', vimeoId);
       return (
-        <VimeoFacade
-          videoId={vimeoId}
-          thumbnailUrl={posterSrc}
-          className="w-full h-full"
-          autoplay={true}
-          muted={true}
-          loop={true}
-          background={true}
-          controls={false}
+        <iframe
+          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&controls=0&loop=1&title=0&byline=0&portrait=0&background=1`}
+          className="absolute inset-0 w-full h-full"
+          style={{ 
+            width: '140%',
+            height: '140%',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            maxWidth: 'none',
+            maxHeight: 'none'
+          }}
+          frameBorder="0"
+          allow="autoplay; fullscreen"
+          title="Background video"
+          onLoad={() => onLoad?.()}
         />
       );
     }

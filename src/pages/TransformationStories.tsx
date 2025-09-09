@@ -4,8 +4,7 @@ import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Button } from '@/components/ui/button';
 import { transformationStories } from '@/data/transformationStories';
-import YouTubeEmbed from '@/components/YouTubeEmbed';
-import VimeoFacade from '@/components/VimeoFacade';
+import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
 
 const TransformationStoriesPage: React.FC = () => {
   return (
@@ -51,23 +50,13 @@ const TransformationStoriesPage: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   {/* Video Section */}
                   <div className="space-y-4">
-                    {caseStudy.videoType === 'youtube' ? (
-                      <YouTubeEmbed
-                        videoId={caseStudy.videoId}
-                        title={caseStudy.title}
-                        thumbnailUrl={caseStudy.thumbnailUrl}
-                        className="w-full"
-                      />
-                    ) : (
-                      <VimeoFacade
-                        videoId={caseStudy.videoId}
-                        title={caseStudy.title}
-                        thumbnailUrl={caseStudy.thumbnailUrl}
-                        background={false}
-                        controls={true}
-                        className="w-full"
-                      />
-                    )}
+                    <UniversalVideoPlayer
+                      platform={caseStudy.videoType === 'youtube' ? 'youtube' : 'vimeo'}
+                      videoId={caseStudy.videoId}
+                      title={caseStudy.title}
+                      thumbnailUrl={caseStudy.thumbnailUrl}
+                      className="w-full"
+                    />
                   </div>
                   
                   {/* Content Section */}
