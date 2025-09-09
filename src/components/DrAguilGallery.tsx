@@ -88,35 +88,35 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("w-full", className)}>
           {!compact && (
-            <div className="text-center mb-12 lg:mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 text-gold rounded-full text-sm font-medium mb-4">
-                <Award className="w-4 h-4" />
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gold/10 text-gold rounded-full text-sm sm:text-base font-medium mb-6">
+                <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                 EXQUISITE DENTISTRY
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 {title}
               </h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 {subtitle}
               </p>
             </div>
           )}
 
           {/* Main content layout */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left side - Content */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Achievement stats */}
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-4 lg:gap-6">
                 {achievements.map((achievement, index) => (
-                  <div key={index} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 bg-gold/10 rounded-lg flex items-center justify-center">
-                        <achievement.icon className="w-4 h-4 text-gold" />
+                  <div key={index} className="bg-white rounded-xl p-6 sm:p-6 lg:p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 sm:w-8 sm:h-8 bg-gold/10 rounded-lg flex items-center justify-center">
+                        <achievement.icon className="w-5 h-5 sm:w-4 sm:h-4 text-gold" />
                       </div>
-                      <span className="text-sm text-gray-600 font-medium">{achievement.label}</span>
+                      <span className="text-sm sm:text-sm lg:text-base text-gray-600 font-medium">{achievement.label}</span>
                     </div>
-                    <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                    <div className="text-2xl sm:text-xl lg:text-2xl font-bold text-gray-900">
                       {achievement.value}
                     </div>
                   </div>
@@ -124,13 +124,13 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
               </div>
 
               {/* Highlights */}
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">Why Choose Dr. Aguil?</h3>
-                <div className="space-y-4">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-6">Why Choose Dr. Aguil?</h3>
+                <div className="space-y-4 sm:space-y-5">
                   {highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 leading-relaxed">{highlight}</span>
+                    <div key={index} className="flex items-start gap-3 sm:gap-4">
+                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-gold mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 text-sm sm:text-base leading-relaxed">{highlight}</span>
                     </div>
                   ))}
                 </div>
@@ -168,14 +168,14 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                   />
                   
                   {/* Floating info card */}
-                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
-                        <Star className="w-6 h-6 text-gold" />
+                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 sm:p-5 shadow-lg">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gold/10 rounded-full flex items-center justify-center">
+                        <Star className="w-6 h-6 sm:w-7 sm:h-7 text-gold" />
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-900">Dr. Alexie Aguil</div>
-                        <div className="text-sm text-gray-600">Cosmetic Dentistry Specialist</div>
+                        <div className="font-semibold text-gray-900 text-sm sm:text-base">Dr. Alexie Aguil</div>
+                        <div className="text-xs sm:text-sm text-gray-600">Cosmetic Dentistry Specialist</div>
                       </div>
                     </div>
                   </div>
@@ -214,12 +214,12 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
 
           {/* Mobile image gallery */}
           {isMobile && images.length > 1 && (
-            <div className="mt-12 lg:hidden">
-              <div className="flex gap-3 overflow-x-auto pb-4">
+            <div className="mt-8 sm:mt-12 lg:hidden">
+              <div className="flex gap-4 overflow-x-auto pb-4 px-1">
                 {images.map((image, index) => (
                   <div 
                     key={index}
-                    className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden shadow-md"
+                    className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
                     <ImageComponent
                       src={image.src}
