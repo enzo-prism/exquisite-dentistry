@@ -63,87 +63,121 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   useEffect(() => {
     if (!showVideo || typeof window === 'undefined') return;
 
-    const loadVimeoAPI = async () => {
+    let mounted = true;
+
+    const loadVimeoAPI = () => {
       if (window.Vimeo) {
-        initializePlayer();
+        setTimeout(initializePlayer, 100);
         return;
       }
 
-      try {
-        const script = document.createElement('script');
-        script.src = 'https://player.vimeo.com/api/player.js';
-        script.onload = () => initializePlayer();
-        script.onerror = () => setState(prev => ({ ...prev, error: 'Failed to load video player' }));
-        document.head.appendChild(script);
-      } catch (error) {
-        setState(prev => ({ ...prev, error: 'Failed to initialize video player' }));
-      }
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.onload = () => setTimeout(initializePlayer, 100);
+      script.onerror = () => {
+        if (mounted) {
+          setState(prev => ({ ...prev, error: 'Failed to load video player' }));
+        }
+      };
+      document.head.appendChild(script);
     };
 
     const initializePlayer = () => {
-      if (!iframeRef.current || !window.Vimeo) return;
+      if (!mounted || !iframeRef.current || !window.Vimeo || playerRef.current) return;
 
       try {
         playerRef.current = new window.Vimeo.Player(iframeRef.current);
 
         // Set up event listeners
         playerRef.current.on('loaded', () => {
+          if (!mounted) return;
           setState(prev => ({ ...prev, isLoaded: true }));
-          playerRef.current?.getDuration().then((duration: number) => {
-            setState(prev => ({ ...prev, duration }));
-          });
-          playerRef.current?.getVolume().then((volume: number) => {
-            setState(prev => ({ ...prev, volume }));
-          });
+          
+          // Get initial video state
+          Promise.all([
+            playerRef.current?.getDuration(),
+            playerRef.current?.getVolume()
+          ]).then(([duration, volume]) => {
+            if (mounted) {
+              setState(prev => ({ ...prev, duration: duration || 0, volume: volume || 0.8 }));
+            }
+          }).catch(console.warn);
         });
 
         playerRef.current.on('play', () => {
-          setState(prev => ({ ...prev, isPlaying: true }));
-          resetHideTimer();
+          if (mounted) {
+            setState(prev => ({ ...prev, isPlaying: true }));
+            resetHideTimer();
+          }
         });
 
         playerRef.current.on('pause', () => {
-          setState(prev => ({ ...prev, isPlaying: false }));
-          setControlsVisible(true);
+          if (mounted) {
+            setState(prev => ({ ...prev, isPlaying: false }));
+            setControlsVisible(true);
+          }
         });
 
         playerRef.current.on('timeupdate', (data: { seconds: number }) => {
-          setState(prev => ({ ...prev, currentTime: data.seconds }));
+          if (mounted) {
+            setState(prev => ({ ...prev, currentTime: data.seconds }));
+          }
         });
 
         playerRef.current.on('volumechange', (data: { volume: number }) => {
-          setState(prev => ({ ...prev, volume: data.volume }));
+          if (mounted) {
+            setState(prev => ({ ...prev, volume: data.volume }));
+          }
         });
 
-        // Auto-play the video
-        playerRef.current.play().catch(() => {
-          setState(prev => ({ ...prev, error: 'Video failed to play' }));
+        playerRef.current.on('error', (error: any) => {
+          console.warn('Vimeo player error:', error);
+          if (mounted) {
+            setState(prev => ({ ...prev, error: 'Video failed to load' }));
+          }
         });
+
       } catch (error) {
-        setState(prev => ({ ...prev, error: 'Failed to initialize video player' }));
+        console.warn('Failed to initialize Vimeo player:', error);
+        if (mounted) {
+          setState(prev => ({ ...prev, error: 'Failed to initialize video player' }));
+        }
       }
     };
 
     loadVimeoAPI();
 
     return () => {
+      mounted = false;
       if (hideTimer.current) {
         clearTimeout(hideTimer.current);
       }
       if (playerRef.current) {
-        playerRef.current.destroy();
+        try {
+          playerRef.current.destroy();
+        } catch (error) {
+          console.warn('Error destroying player:', error);
+        }
+        playerRef.current = null;
       }
     };
   }, [showVideo, resetHideTimer]);
 
   // Control functions
-  const togglePlayPause = useCallback(() => {
-    if (!playerRef.current) return;
+  const togglePlayPause = useCallback(async () => {
+    if (!playerRef.current) {
+      console.warn('Player not initialized');
+      return;
+    }
     
-    if (state.isPlaying) {
-      playerRef.current.pause();
-    } else {
-      playerRef.current.play();
+    try {
+      if (state.isPlaying) {
+        await playerRef.current.pause();
+      } else {
+        await playerRef.current.play();
+      }
+    } catch (error) {
+      console.warn('Error toggling play/pause:', error);
     }
   }, [state.isPlaying]);
 
@@ -223,26 +257,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     );
   }
 
-  // Show loading state
-  if (!state.isLoaded) {
-    return (
-      <div className={cn("relative w-full aspect-video bg-black rounded-sm overflow-hidden", className)}>
-        <iframe
-          ref={iframeRef}
-          src={`https://player.vimeo.com/video/${videoId}?controls=0&title=0&byline=0&portrait=0&background=1`}
-          className="absolute inset-0 w-full h-full"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          title={title}
-        />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <LoadingSkeleton className="w-16 h-16 rounded-full" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div 
       className={cn("relative w-full aspect-video bg-black rounded-sm overflow-hidden group", className)}
@@ -250,6 +264,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       onMouseEnter={showControls}
       onTouchStart={showControls}
     >
+      {/* Single iframe element */}
       <iframe
         ref={iframeRef}
         src={`https://player.vimeo.com/video/${videoId}?controls=0&title=0&byline=0&portrait=0&background=1`}
@@ -259,6 +274,16 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         allowFullScreen
         title={title}
       />
+
+      {/* Loading overlay */}
+      {!state.isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
+          <div className="flex flex-col items-center gap-4">
+            <LoadingSkeleton className="w-12 h-12 rounded-full" />
+            <span className="text-white text-sm">Loading video...</span>
+          </div>
+        </div>
+      )}
 
       {/* Custom Controls Overlay */}
       <div
