@@ -34,7 +34,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
     const mutedParam = muted ? '1' : '0';
     
     if (platform === 'vimeo') {
-      return `https://player.vimeo.com/video/${videoId}?autoplay=${autoplayParam}&muted=${mutedParam}&controls=1&title=0&byline=0&portrait=0`;
+      return `https://player.vimeo.com/video/${videoId}?autoplay=${autoplayParam}&muted=${mutedParam}&controls=1&title=0&byline=0&portrait=0&autopause=0`;
     } else {
       return `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayParam}&muted=${mutedParam}&controls=1&rel=0&modestbranding=1&showinfo=0`;
     }
