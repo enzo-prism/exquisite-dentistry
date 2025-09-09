@@ -8,9 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Check, Star, Clock, Shield, Sparkles } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
-import FAQPageStructuredData from '@/components/FAQPageStructuredData';
-import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 

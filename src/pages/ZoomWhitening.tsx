@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Zap, Clock, Shield, Star, CheckCircle } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
-import FAQPageStructuredData from '@/components/FAQPageStructuredData';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
@@ -143,7 +143,10 @@ const ZoomWhitening = () => {
         priceRange="$$-$$$"
       />
 
-      <FAQPageStructuredData faqs={faqs} />
+      <FAQStructuredData 
+        faqs={faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} 
+        about="Zoom Teeth Whitening Services" 
+      />
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}

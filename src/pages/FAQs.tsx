@@ -1,12 +1,15 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import VideoHero from '@/components/VideoHero';
-import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Helmet } from 'react-helmet-async';
-import FAQPageStructuredData from '@/components/FAQPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // Scheduling URL constant - consistent across site
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
@@ -61,15 +64,9 @@ const faqs: FAQ[] = [
 ];
 
 const FAQs = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
 
   return (
     <>
@@ -98,37 +95,25 @@ const FAQs = () => {
 
         <section className="py-16 px-4 -mt-32 relative z-20">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white shadow-xl rounded-sm p-8 md:p-12 space-y-6">
-              {faqs.map((faq, index) => (
-                <div
-                  key={`faq-${faq.question.slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')}-${index}`}
-                  className="border-b border-gray-100 last:border-0"
-                >
-                  <button
-                    className="w-full text-left py-6 flex justify-between items-start gap-4"
-                    onClick={() => toggleFaq(index)}
-                    aria-expanded={openFaq === index}
+            <div className="bg-white shadow-xl rounded-sm p-8 md:p-12">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                  <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`}
+                    className="border-b border-gray-100 last:border-0"
                   >
-                    <h3 className="font-medium text-lg leading-tight">{faq.question}</h3>
-                    <ChevronDown 
-                      className={cn(
-                        "flex-shrink-0 w-5 h-5 mt-1 text-gold transition-transform duration-200",
-                        openFaq === index ? "transform rotate-180" : ""
-                      )} 
-                    />
-                  </button>
-                  <div 
-                    className={cn(
-                      "overflow-hidden transition-all duration-200",
-                      openFaq === index ? "max-h-[500px] pb-6" : "max-h-0"
-                    )}
-                  >
-                    <div className="text-black-light/80 whitespace-pre-line">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                    <AccordionTrigger className="py-6 text-left font-medium text-lg leading-tight hover:no-underline group">
+                      <span className="flex-1 text-left pr-4">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-6 pt-0">
+                      <div className="text-black-light/80 whitespace-pre-line leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>
