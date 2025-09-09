@@ -359,8 +359,7 @@ a[data-radix-slot] {
 
 /* Accordion Text Color Override - Fix white text issue on FAQ accordions */
 [data-radix-collection-item] button[data-state],
-button[aria-expanded],
-[role="button"][aria-expanded] {
+[data-radix-accordion-trigger] {
   color: hsl(var(--foreground)) !important;
 }
 
