@@ -9,6 +9,7 @@ interface UniversalVideoPlayerProps {
   title: string;
   thumbnailUrl: string;
   autoplay?: boolean;
+  muted?: boolean;
   className?: string;
 }
 
@@ -18,6 +19,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   title,
   thumbnailUrl,
   autoplay = false,
+  muted = false,
   className
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,11 +31,12 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
 
   const getEmbedUrl = () => {
     const autoplayParam = autoplay ? '1' : '0';
+    const mutedParam = muted ? '1' : '0';
     
     if (platform === 'vimeo') {
-      return `https://player.vimeo.com/video/${videoId}?autoplay=${autoplayParam}&muted=1&controls=1&title=0&byline=0&portrait=0`;
+      return `https://player.vimeo.com/video/${videoId}?autoplay=${autoplayParam}&muted=${mutedParam}&controls=1&title=0&byline=0&portrait=0`;
     } else {
-      return `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayParam}&muted=1&controls=1&rel=0&modestbranding=1&showinfo=0`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayParam}&muted=${mutedParam}&controls=1&rel=0&modestbranding=1&showinfo=0`;
     }
   };
 
