@@ -78,14 +78,14 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
   const featuredImage = images.find(img => img.featured) || images[0];
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+    <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden isolation">
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 z-0 opacity-3 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl transform-gpu"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl transform-gpu"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("w-full", className)}>
           {!compact && (
             <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -153,7 +153,7 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
             </div>
 
             {/* Right side - Images */}
-            <div className="relative">
+            <div className="relative z-20">
               {/* Main featured image */}
               <div className="relative">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
@@ -168,7 +168,7 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
                   />
                   
                   {/* Floating info card */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 sm:p-5 shadow-lg">
+                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-30 bg-white sm:bg-white/95 sm:backdrop-blur-sm rounded-xl p-4 sm:p-5 shadow-lg">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gold/10 rounded-full flex items-center justify-center">
                         <Star className="w-6 h-6 sm:w-7 sm:h-7 text-gold" />
@@ -183,7 +183,7 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
 
                 {/* Secondary images */}
                 {images.length > 1 && (
-                  <div className="absolute -bottom-8 -right-8 hidden lg:block">
+                  <div className="absolute -bottom-8 -right-8 z-25 hidden lg:block">
                     <div className="grid grid-cols-2 gap-3">
                       {images.slice(1, 3).map((image, index) => (
                         <div 
@@ -207,8 +207,8 @@ const DrAguilGallery: React.FC<DrAguilGalleryProps> = ({
               </div>
 
               {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-br from-primary to-blue-500 rounded-full opacity-15"></div>
+              <div className="absolute -top-4 -left-4 z-5 w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full opacity-20 pointer-events-none transform-gpu"></div>
+              <div className="absolute -bottom-6 -right-6 z-5 w-20 h-20 bg-gradient-to-br from-primary to-blue-500 rounded-full opacity-15 pointer-events-none transform-gpu"></div>
             </div>
           </div>
 
