@@ -41,14 +41,14 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   const scaling = useResponsiveScaling();
   
   // Use Vimeo Player API for custom controls
-  const vimeoPlayer = useVimeoPlayer({
+  const vimeoPlayer = useVimeoPlayer(customControls ? {
     videoId,
-    autoplay: customControls ? false : autoplay, // Don't autoplay with custom controls
+    autoplay: false, // User-initiated playback for custom controls
     muted,
     loop,
-    controls: customControls ? false : controls, // Disable native controls if using custom
-    background: background && !customControls, // Background mode incompatible with custom controls
-  });
+    controls: false,
+    background: false,
+  } : null);
   
   // Handle iframe load event
   useEffect(() => {
@@ -70,6 +70,14 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   const handleClick = () => {
     if (!isLoaded) {
       setIsLoaded(true);
+      // For custom controls, ensure iframe ref is ready
+      if (customControls && vimeoPlayer?.iframeRef) {
+        setTimeout(() => {
+          if (iframeRef.current && vimeoPlayer.iframeRef) {
+            vimeoPlayer.iframeRef.current = iframeRef.current;
+          }
+        }, 100);
+      }
     }
   };
   
@@ -111,7 +119,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     return (
       <AspectRatio ratio={VIDEO_ASPECT_RATIO} className={cn("relative w-full", className)}>
         <iframe
-          ref={customControls ? vimeoPlayer.iframeRef : iframeRef}
+          ref={iframeRef}
           src={vimeoUrl}
           className="absolute inset-0 w-full h-full"
           frameBorder="0"
@@ -121,7 +129,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
         />
         
         {/* Custom video controls overlay */}
-        {customControls && (
+        {customControls && vimeoPlayer && (
           <CustomVideoControls
             isPlaying={vimeoPlayer.state.isPlaying}
             currentTime={vimeoPlayer.state.currentTime}

@@ -24,69 +24,87 @@ interface VimeoPlayerState {
   isLoaded: boolean;
 }
 
-export const useVimeoPlayer = (options: VimeoPlayerOptions) => {
+export const useVimeoPlayer = (options: VimeoPlayerOptions | null) => {
   const playerRef = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const initializationTimeoutRef = useRef<NodeJS.Timeout>();
   
   const [state, setState] = useState<VimeoPlayerState>({
     isPlaying: false,
     duration: 0,
     currentTime: 0,
     volume: 1,
-    isMuted: options.muted || false,
+    isMuted: options?.muted || false,
     isLoaded: false,
   });
 
   // Load Vimeo Player API
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !options) return;
 
     const loadVimeoAPI = () => {
       if (window.Vimeo) {
-        initializePlayer();
+        schedulePlayerInitialization();
         return;
       }
 
       const script = document.createElement('script');
       script.src = 'https://player.vimeo.com/api/player.js';
-      script.onload = initializePlayer;
+      script.onload = schedulePlayerInitialization;
+      script.onerror = () => console.warn('Failed to load Vimeo Player API');
       document.head.appendChild(script);
     };
 
-    const initializePlayer = () => {
-      if (!iframeRef.current || !window.Vimeo) return;
-
-      playerRef.current = new window.Vimeo.Player(iframeRef.current);
+    const schedulePlayerInitialization = () => {
+      // Clear any existing timeout
+      if (initializationTimeoutRef.current) {
+        clearTimeout(initializationTimeoutRef.current);
+      }
       
-      // Set up event listeners
-      playerRef.current.on('loaded', () => {
-        setState(prev => ({ ...prev, isLoaded: true }));
-        updatePlayerState();
-      });
+      // Wait for iframe to be ready
+      initializationTimeoutRef.current = setTimeout(() => {
+        initializePlayer();
+      }, 500);
+    };
 
-      playerRef.current.on('play', () => {
-        setState(prev => ({ ...prev, isPlaying: true }));
-      });
+    const initializePlayer = () => {
+      if (!iframeRef.current || !window.Vimeo || playerRef.current) return;
 
-      playerRef.current.on('pause', () => {
-        setState(prev => ({ ...prev, isPlaying: false }));
-      });
+      try {
+        playerRef.current = new window.Vimeo.Player(iframeRef.current);
+        
+        // Set up event listeners
+        playerRef.current.on('loaded', () => {
+          setState(prev => ({ ...prev, isLoaded: true }));
+          updatePlayerState();
+        });
 
-      playerRef.current.on('timeupdate', (data: VimeoPlayerData) => {
-        setState(prev => ({
-          ...prev,
-          currentTime: data.seconds,
-          duration: data.duration,
-        }));
-      });
+        playerRef.current.on('play', () => {
+          setState(prev => ({ ...prev, isPlaying: true }));
+        });
 
-      playerRef.current.on('volumechange', (data: { volume: number }) => {
-        setState(prev => ({
-          ...prev,
-          volume: data.volume,
-          isMuted: data.volume === 0,
-        }));
-      });
+        playerRef.current.on('pause', () => {
+          setState(prev => ({ ...prev, isPlaying: false }));
+        });
+
+        playerRef.current.on('timeupdate', (data: VimeoPlayerData) => {
+          setState(prev => ({
+            ...prev,
+            currentTime: data.seconds,
+            duration: data.duration,
+          }));
+        });
+
+        playerRef.current.on('volumechange', (data: { volume: number }) => {
+          setState(prev => ({
+            ...prev,
+            volume: data.volume,
+            isMuted: data.volume === 0,
+          }));
+        });
+      } catch (error) {
+        console.warn('Failed to initialize Vimeo player:', error);
+      }
     };
 
     const updatePlayerState = async () => {
@@ -113,11 +131,19 @@ export const useVimeoPlayer = (options: VimeoPlayerOptions) => {
     loadVimeoAPI();
 
     return () => {
+      if (initializationTimeoutRef.current) {
+        clearTimeout(initializationTimeoutRef.current);
+      }
       if (playerRef.current) {
-        playerRef.current.destroy?.();
+        try {
+          playerRef.current.destroy?.();
+        } catch (error) {
+          console.warn('Error destroying Vimeo player:', error);
+        }
+        playerRef.current = null;
       }
     };
-  }, [options.videoId]);
+  }, [options?.videoId]);
 
   const play = useCallback(async () => {
     if (!playerRef.current) return;

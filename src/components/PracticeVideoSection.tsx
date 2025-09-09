@@ -26,7 +26,7 @@ const PracticeVideoSection: React.FC = () => {
               thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
               className="w-full h-full"
               autoplay={false}
-              muted={false}
+              muted={true}
               loop={true}
               background={false}
               controls={false}
