@@ -103,7 +103,7 @@ const FAQs = () => {
                     value={`item-${index}`}
                     className="border-b border-gray-100 last:border-0"
                   >
-                    <AccordionTrigger className="py-6 text-left font-medium text-lg leading-tight hover:no-underline group">
+                    <AccordionTrigger className="py-6 text-left font-medium text-lg leading-tight hover:no-underline group text-gray-900 hover:text-gold">
                       <span className="flex-1 text-left pr-4">{faq.question}</span>
                     </AccordionTrigger>
                     <AccordionContent className="pb-6 pt-0">
