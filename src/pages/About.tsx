@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
-import DrAguilGallery from '@/components/DrAguilGallery';
+
 import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
@@ -272,23 +272,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Image Gallery - with showButton prop set to false to hide the Learn More button */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <span className="inline-block text-sm text-secondary font-medium mb-3">GALLERY</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-6">
-              Dr. Aguil in Action
-            </h2>
-            <div className="h-1 w-20 bg-secondary rounded-full mx-auto mb-8"></div>
-            <p className="text-lg text-black-light">
-              See Dr. Aguil's commitment to excellence through glimpses of his practice and patient care.
-            </p>
-          </div>
-
-          <DrAguilGallery showButton={false} />
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-black">
