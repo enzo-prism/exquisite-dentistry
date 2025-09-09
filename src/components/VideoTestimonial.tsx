@@ -16,6 +16,28 @@ const VideoTestimonial: React.FC<VideoTestimonialProps> = ({
   title,
   className
 }) => {
+  const handleVideoStart = () => {
+    // Track video engagement for analytics
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'video_start', {
+        event_category: 'testimonial',
+        event_label: title,
+        video_id: vimeoId
+      });
+    }
+  };
+
+  const handleVideoEnd = () => {
+    // Track video completion for analytics
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'video_complete', {
+        event_category: 'testimonial',
+        event_label: title,
+        video_id: vimeoId
+      });
+    }
+  };
+
   return (
     <div className={cn("bg-gray-50 rounded-lg overflow-hidden shadow-lg", className)}>
       <UniversalVideoPlayer
@@ -24,7 +46,9 @@ const VideoTestimonial: React.FC<VideoTestimonialProps> = ({
         title={title}
         thumbnailUrl={thumbnailUrl}
         className="w-full h-full"
-        autoplay={true}
+        useSDK={true}
+        onVideoStart={handleVideoStart}
+        onVideoEnd={handleVideoEnd}
       />
     </div>
   );

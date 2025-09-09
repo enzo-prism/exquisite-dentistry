@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Play } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import VimeoPlayerSDK from './VimeoPlayerSDK';
 
 interface UniversalVideoPlayerProps {
   platform: 'vimeo' | 'youtube';
@@ -11,6 +12,10 @@ interface UniversalVideoPlayerProps {
   autoplay?: boolean;
   muted?: boolean;
   className?: string;
+  useSDK?: boolean;
+  onVideoStart?: () => void;
+  onVideoEnd?: () => void;
+  onProgress?: (percent: number) => void;
 }
 
 const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
@@ -20,8 +25,29 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   thumbnailUrl,
   autoplay = false,
   muted = false,
-  className
+  className,
+  useSDK = false,
+  onVideoStart,
+  onVideoEnd,
+  onProgress
 }) => {
+  // Use SDK for Vimeo when requested, otherwise fall back to iframe
+  if (platform === 'vimeo' && useSDK) {
+    return (
+      <VimeoPlayerSDK
+        videoId={videoId}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+        autoplay={autoplay}
+        muted={muted}
+        className={className}
+        onVideoStart={onVideoStart}
+        onVideoEnd={onVideoEnd}
+        onProgress={onProgress}
+      />
+    );
+  }
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
 
