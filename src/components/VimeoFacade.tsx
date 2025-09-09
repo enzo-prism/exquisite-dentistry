@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { useResponsiveScaling } from '@/hooks/use-responsive-scaling';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { VIDEO_ASPECT_RATIO, VIDEO_CONTAINER_CONSTRAINTS } from '@/components/video-hero/video-aspect-ratio';
+import { useVimeoPlayer } from '@/hooks/use-vimeo-player';
+import CustomVideoControls from '@/components/ui/custom-video-controls';
 
 interface VimeoFacadeProps {
   videoId: string;
@@ -16,6 +18,7 @@ interface VimeoFacadeProps {
   loop?: boolean;
   background?: boolean;
   controls?: boolean;
+  customControls?: boolean;
   onReady?: () => void;
 }
 
@@ -29,12 +32,23 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   loop = true,
   background = true,
   controls = false,
+  customControls = false,
   onReady,
 }) => {
   const [isLoaded, setIsLoaded] = useState(background); // Background videos load immediately, others lazy load
   const [imageError, setImageError] = useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const scaling = useResponsiveScaling();
+  
+  // Use Vimeo Player API for custom controls
+  const vimeoPlayer = useVimeoPlayer({
+    videoId,
+    autoplay: customControls ? false : autoplay, // Don't autoplay with custom controls
+    muted,
+    loop,
+    controls: customControls ? false : controls, // Disable native controls if using custom
+    background: background && !customControls, // Background mode incompatible with custom controls
+  });
   
   // Handle iframe load event
   useEffect(() => {
@@ -60,18 +74,22 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
   };
   
   // Build Vimeo URL with parameters
+  const effectiveAutoplay = customControls ? false : autoplay;
+  const effectiveControls = customControls ? false : controls;
+  const effectiveBackground = background && !customControls;
+  
   const vimeoUrl = `https://player.vimeo.com/video/${videoId}?` + 
-    `badge=0&autopause=0&autoplay=${autoplay ? 1 : 0}&muted=${muted ? 1 : 0}` +
-    `&controls=${controls ? 1 : 0}&title=0&byline=0&portrait=0` +
-    `&background=${background ? 1 : 0}&loop=${loop ? 1 : 0}&responsive=1` +
-    `&player_id=0&app_id=58479&quality=auto`;
+    `badge=0&autopause=0&autoplay=${effectiveAutoplay ? 1 : 0}&muted=${muted ? 1 : 0}` +
+    `&controls=${effectiveControls ? 1 : 0}&title=0&byline=0&portrait=0` +
+    `&background=${effectiveBackground ? 1 : 0}&loop=${loop ? 1 : 0}&responsive=1` +
+    `&player_id=0&app_id=58479&quality=auto&api=1`;
   
   if (isLoaded) {
-    if (background) {
+    if (effectiveBackground) {
       return (
         <div className={cn("relative w-full h-full", className)}>
           <iframe
-            ref={iframeRef}
+            ref={customControls ? vimeoPlayer.iframeRef : iframeRef}
             src={vimeoUrl}
             style={{
               position: 'absolute',
@@ -93,7 +111,7 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
     return (
       <AspectRatio ratio={VIDEO_ASPECT_RATIO} className={cn("relative w-full", className)}>
         <iframe
-          ref={iframeRef}
+          ref={customControls ? vimeoPlayer.iframeRef : iframeRef}
           src={vimeoUrl}
           className="absolute inset-0 w-full h-full"
           frameBorder="0"
@@ -101,6 +119,29 @@ const VimeoFacade: React.FC<VimeoFacadeProps> = ({
           title={title}
           loading="lazy"
         />
+        
+        {/* Custom video controls overlay */}
+        {customControls && (
+          <CustomVideoControls
+            isPlaying={vimeoPlayer.state.isPlaying}
+            currentTime={vimeoPlayer.state.currentTime}
+            duration={vimeoPlayer.state.duration}
+            volume={vimeoPlayer.state.volume}
+            isMuted={vimeoPlayer.state.isMuted}
+            isLoaded={vimeoPlayer.state.isLoaded}
+            onPlayPause={() => {
+              if (vimeoPlayer.state.isPlaying) {
+                vimeoPlayer.controls.pause();
+              } else {
+                vimeoPlayer.controls.play();
+              }
+            }}
+            onSeek={vimeoPlayer.controls.seekTo}
+            onVolumeChange={vimeoPlayer.controls.setVolume}
+            onToggleMute={vimeoPlayer.controls.toggleMute}
+            onFullscreen={vimeoPlayer.controls.toggleFullscreen}
+          />
+        )}
       </AspectRatio>
     );
   }

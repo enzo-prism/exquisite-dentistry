@@ -20,17 +20,18 @@ const PracticeVideoSection: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
             <div className="relative w-full aspect-video">
-              <VimeoFacade
-                videoId="1076433847"
-                title="Exquisite Dentistry Practice Video"
-                thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
-                className="w-full h-full"
-                autoplay={true}
-                muted={true}
-                loop={true}
-                background={false}
-                controls={false}
-              />
+            <VimeoFacade
+              videoId="1076433847"
+              title="Exquisite Dentistry Practice Video"
+              thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
+              className="w-full h-full"
+              autoplay={false}
+              muted={false}
+              loop={true}
+              background={false}
+              controls={false}
+              customControls={true}
+            />
             </div>
           </div>
         </div>
