@@ -96,29 +96,24 @@ const FAQs = () => {
         <section className="py-16 px-4 -mt-32 relative z-20">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white shadow-xl rounded-sm p-8 md:p-12">
-              <div className="faq-accordion-override">
-                <Accordion type="single" collapsible className="w-full space-y-4">
-                  {faqs.map((faq, index) => (
-                    <AccordionItem 
-                      key={index} 
-                      value={`item-${index}`}
-                      className="border-b border-gray-100 last:border-0"
-                    >
-                      <AccordionTrigger 
-                        className="py-6 text-left font-medium text-lg leading-tight hover:no-underline group"
-                        style={{ color: 'hsl(var(--foreground)) !important' }}
-                      >
-                        <span className="flex-1 text-left pr-4">{faq.question}</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="pb-6 pt-0">
-                        <div className="text-black-light/80 whitespace-pre-line leading-relaxed">
-                          {faq.answer}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                  <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`}
+                    className="border-b border-gray-100 last:border-0"
+                  >
+                    <AccordionTrigger className="py-6 text-left font-medium text-lg leading-tight hover:no-underline group">
+                      <span className="flex-1 text-left pr-4">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-6 pt-0">
+                      <div className="text-black-light/80 whitespace-pre-line leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>

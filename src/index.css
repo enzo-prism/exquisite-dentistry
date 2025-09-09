@@ -357,6 +357,13 @@ a[data-radix-slot] {
   text-decoration: none !important;
 }
 
+/* Accordion Text Color Override - Fix white text issue on FAQ accordions */
+[data-radix-collection-item] button[data-state],
+button[aria-expanded],
+[role="button"][aria-expanded] {
+  color: hsl(var(--foreground)) !important;
+}
+
 /* Blog Page Enhanced Animations */
 .blog-card-enter {
   opacity: 0;
