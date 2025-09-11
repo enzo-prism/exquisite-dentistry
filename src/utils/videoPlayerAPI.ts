@@ -39,27 +39,43 @@ export class VideoPlayerAPI {
     if (!this.iframe) return;
 
     const handleMessage = (event: MessageEvent) => {
-      // Only accept messages from trusted video platforms
+      // Only accept messages from trusted video platforms and from the correct iframe
       const allowedOrigins = [
         'https://player.vimeo.com',
         'https://www.youtube.com'
       ];
       
       if (!allowedOrigins.some(origin => event.origin === origin)) return;
+      
+      // Verify the message comes from our iframe
+      if (event.source !== this.iframe?.contentWindow) return;
+
+      let eventData: any;
+      try {
+        // Parse event data (some platforms send strings, others send objects)
+        eventData = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+      } catch {
+        // If parsing fails, try using raw data
+        eventData = event.data;
+      }
 
       // Handle ready state for different platforms
-      if (this.platform === 'vimeo' && event.data?.event === 'ready') {
+      if (this.platform === 'vimeo' && eventData?.event === 'ready') {
+        console.log('Vimeo player ready');
         this.isReady = true;
         this.processMessageQueue();
         this.onReadyCallback?.();
         if (this.shouldAutoPlay) {
+          console.log('Auto-playing Vimeo video');
           this.play();
         }
-      } else if (this.platform === 'youtube' && event.data?.event === 'onReady') {
+      } else if (this.platform === 'youtube' && eventData?.event === 'onReady') {
+        console.log('YouTube player ready');
         this.isReady = true;
         this.processMessageQueue();
         this.onReadyCallback?.();
         if (this.shouldAutoPlay) {
+          console.log('Auto-playing YouTube video');
           this.play();
         }
       }
@@ -129,7 +145,11 @@ export class VideoPlayerAPI {
     }
 
     if (postMessageData) {
-      this.iframe.contentWindow.postMessage(JSON.stringify(postMessageData), '*');
+      // Use proper target origin for security
+      const targetOrigin = this.platform === 'vimeo' 
+        ? 'https://player.vimeo.com' 
+        : 'https://www.youtube.com';
+      this.iframe.contentWindow.postMessage(JSON.stringify(postMessageData), targetOrigin);
     }
   }
 
@@ -193,7 +213,7 @@ export function createEmbedUrl(
   });
 
   if (platform === 'vimeo') {
-    baseParams.append('background', '1');
+    // Remove background=1 to fix audio issues and allow proper controls
     baseParams.append('transparent', '0');
     baseParams.append('autopause', '0');
     baseParams.append('responsive', '1');

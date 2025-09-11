@@ -91,8 +91,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       onVideoStart?.();
       resetControlsTimeout();
       
-      // Simulate loading time for smooth transition
-      setTimeout(() => setIsLoading(false), 800);
+      // Set shouldAutoPlay to trigger playback when iframe is ready
+      if (playerAPIRef.current) {
+        playerAPIRef.current.setShouldAutoPlay(true);
+        playerAPIRef.current.setOnReady(() => {
+          console.log('Player ready, setting loading to false');
+          setIsLoading(false);
+        });
+      }
     } else {
       // Video is already playing, use API to play
       playerAPIRef.current?.play();
@@ -220,6 +226,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
               ref={(el) => {
                 iframeRef.current = el;
                 if (el && playerAPIRef.current) {
+                  console.log('Setting iframe on player API');
                   playerAPIRef.current.setIframe(el);
                 }
               }}
