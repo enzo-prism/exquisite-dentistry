@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { Play, Pause, Volume2, VolumeX, Maximize, Loader2 } from 'lucide-react';
+import { Play, Pause, Maximize, Loader2 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import { VideoPlayerAPI, createEmbedUrl, isMobileDevice } from '@/utils/videoPlayerAPI';
-import MobileAudioPrompt from '@/components/ui/mobile-audio-prompt';
+import { VideoPlayerAPI, createEmbedUrl } from '@/utils/videoPlayerAPI';
 
 interface CustomVideoPlayerProps {
   platform: 'vimeo' | 'youtube';
@@ -31,14 +30,10 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   overlayMode = 'default'
 }) => {
   const isSafe = overlayMode === 'safe';
-  const [isMobile] = useState(() => isMobileDevice());
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(isMobile ? true : (muted || false)); // Force muted on mobile
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [imageError, setImageError] = useState(false);
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const [showAudioPrompt, setShowAudioPrompt] = useState(isMobile && !hasPlayedOnce); // Show immediately on mobile
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
@@ -65,16 +60,16 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
   }, []);
 
-  // Create dynamic embed URL based on current state
+  // Create dynamic embed URL - always unmuted for testimonial videos
   const embedUrl = useMemo(() => {
     if (!isPlaying) return '';
     
     return createEmbedUrl(platform, videoId, {
       autoplay: false,
-      muted: isMuted,
+      muted: false, // Always unmuted for testimonial videos
       enableJSAPI: true
     });
-  }, [platform, videoId, isPlaying, isMuted]);
+  }, [platform, videoId, isPlaying]);
 
   // Initialize player API
   useEffect(() => {
@@ -92,10 +87,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }
       });
       
-      playerAPIRef.current.setOnMuteChange((muted) => {
-        setIsMuted(muted);
-      });
-      
       playerAPIRef.current.setOnEnded(() => {
         setIsPlaying(false);
         setShowControls(true);
@@ -109,12 +100,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   }, [platform, onVideoEnd]);
 
   const handlePlay = useCallback(() => {
-    // Show audio prompt immediately on mobile when attempting to play for the first time
-    if (isMobile && !hasPlayedOnce && !showAudioPrompt) {
-      setShowAudioPrompt(true);
-      return;
-    }
-    
     if (!isPlaying) {
       setIsLoading(true);
       setIsPlaying(true);
@@ -125,7 +110,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       if (playerAPIRef.current) {
         playerAPIRef.current.setShouldAutoPlay(true);
         playerAPIRef.current.setOnReady(() => {
-          console.log('Player ready, setting loading to false');
           setIsLoading(false);
         });
       }
@@ -133,7 +117,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       // Video is already playing, use API to play
       playerAPIRef.current?.play();
     }
-  }, [isPlaying, isMobile, hasPlayedOnce, showAudioPrompt, onVideoStart, resetControlsTimeout]);
+  }, [isPlaying, onVideoStart, resetControlsTimeout]);
 
   const handlePause = useCallback(() => {
     if (isPlaying && playerAPIRef.current) {
@@ -152,54 +136,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       }
     }
   }, [isPlaying]);
-
-  const toggleMute = useCallback(() => {
-    const newMutedState = !isMuted;
-    setIsMuted(newMutedState);
-    
-    // Handle mobile audio activation
-    if (isMobile && newMutedState === false && isPlaying) {
-      setShowAudioPrompt(true);
-      return;
-    }
-    
-    // Use API to control mute state
-    if (playerAPIRef.current && isPlaying) {
-      if (newMutedState) {
-        playerAPIRef.current.mute();
-      } else {
-        playerAPIRef.current.unmute();
-      }
-    }
-    
-    resetControlsTimeout();
-  }, [isMuted, isMobile, isPlaying, resetControlsTimeout]);
-
-  const handleAudioEnable = useCallback(() => {
-    setShowAudioPrompt(false);
-    setHasPlayedOnce(true);
-    
-    // Synchronous audio enable: Start video with audio immediately within user tap
-    setIsLoading(true);
-    setIsPlaying(true);
-    setIsMuted(false); // Set unmuted before iframe creation
-    onVideoStart?.();
-    resetControlsTimeout();
-    
-    // Set shouldAutoPlay to trigger playback when iframe is ready
-    if (playerAPIRef.current) {
-      playerAPIRef.current.setShouldAutoPlay(true);
-      playerAPIRef.current.setOnReady(() => {
-        console.log('Player ready with audio enabled');
-        setIsLoading(false);
-      });
-    }
-  }, [onVideoStart, resetControlsTimeout]);
-
-  const handleAudioPromptDismiss = useCallback(() => {
-    setShowAudioPrompt(false);
-    setIsMuted(true); // Keep it muted if user dismisses
-  }, []);
 
   const handleFullscreen = useCallback(() => {
     if (containerRef.current) {
@@ -224,7 +160,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     resetControlsTimeout();
   }, [resetControlsTimeout]);
 
-  // Keyboard controls
+  // Keyboard controls (removed mute functionality)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!containerRef.current?.contains(document.activeElement)) return;
@@ -233,10 +169,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         case 'Space':
           e.preventDefault();
           handleContainerClick();
-          break;
-        case 'KeyM':
-          e.preventDefault();
-          toggleMute();
           break;
         case 'KeyF':
           e.preventDefault();
@@ -247,7 +179,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleContainerClick, toggleMute, handleFullscreen]);
+  }, [handleContainerClick, handleFullscreen]);
 
   return (
     <AspectRatio 
@@ -274,7 +206,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
               ref={(el) => {
                 iframeRef.current = el;
                 if (el && playerAPIRef.current) {
-                  console.log('Setting iframe on player API');
                   playerAPIRef.current.setIframe(el);
                 }
               }}
@@ -373,21 +304,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                           <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
                         )}
                       </button>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleMute();
-                        }}
-                        className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                        aria-label={isMuted ? 'Unmute' : 'Mute'}
-                      >
-                        {isMuted ? (
-                          <VolumeX className="h-5 w-5" />
-                        ) : (
-                          <Volume2 className="h-5 w-5" />
-                        )}
-                      </button>
                     </div>
 
                     {/* Right controls */}
@@ -425,21 +341,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        toggleMute();
-                      }}
-                      className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                      aria-label={isMuted ? 'Unmute' : 'Mute'}
-                    >
-                      {isMuted ? (
-                        <VolumeX className="h-5 w-5" />
-                      ) : (
-                        <Volume2 className="h-5 w-5" />
-                      )}
-                    </button>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
                         handleFullscreen();
                       }}
                       className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
@@ -469,21 +370,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                         <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
                       )}
                     </button>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleMute();
-                      }}
-                      className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                      aria-label={isMuted ? 'Unmute' : 'Mute'}
-                    >
-                      {isMuted ? (
-                        <VolumeX className="h-5 w-5" />
-                      ) : (
-                        <Volume2 className="h-5 w-5" />
-                      )}
-                    </button>
                   </div>
 
                   {/* Right controls */}
@@ -502,20 +388,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             )}
           </div>
         )}
-
-          {/* Click indicator for mobile */}
-          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-none md:backdrop-blur-sm text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none md:hidden">
-            Tap to {isPlaying ? 'pause' : 'play'}
-          </div>
         </div>
-
-        {/* Mobile Audio Prompt */}
-        <MobileAudioPrompt
-          isVisible={showAudioPrompt}
-          isMuted={isMuted}
-          onAudioEnable={handleAudioEnable}
-          onDismiss={handleAudioPromptDismiss}
-        />
       </div>
     </AspectRatio>
   );
