@@ -109,6 +109,12 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   }, [platform, onVideoEnd]);
 
   const handlePlay = useCallback(() => {
+    // Show audio prompt immediately on mobile when attempting to play for the first time
+    if (isMobile && !hasPlayedOnce && !showAudioPrompt) {
+      setShowAudioPrompt(true);
+      return;
+    }
+    
     if (!isPlaying) {
       setIsLoading(true);
       setIsPlaying(true);
@@ -127,7 +133,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       // Video is already playing, use API to play
       playerAPIRef.current?.play();
     }
-  }, [isPlaying, onVideoStart, resetControlsTimeout]);
+  }, [isPlaying, isMobile, hasPlayedOnce, showAudioPrompt, onVideoStart, resetControlsTimeout]);
 
   const handlePause = useCallback(() => {
     if (isPlaying && playerAPIRef.current) {
@@ -171,19 +177,24 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
   const handleAudioEnable = useCallback(() => {
     setShowAudioPrompt(false);
-    setIsMuted(false);
     setHasPlayedOnce(true);
     
-    // Synchronous audio enable for mobile - must happen within user tap
+    // Synchronous audio enable: Start video with audio immediately within user tap
+    setIsLoading(true);
+    setIsPlaying(true);
+    setIsMuted(false); // Set unmuted before iframe creation
+    onVideoStart?.();
+    resetControlsTimeout();
+    
+    // Set shouldAutoPlay to trigger playback when iframe is ready
     if (playerAPIRef.current) {
-      playerAPIRef.current.unmute();
-      playerAPIRef.current.setVolume(1);
-      if (!isPlaying) {
-        playerAPIRef.current.play();
-        setIsPlaying(true);
-      }
+      playerAPIRef.current.setShouldAutoPlay(true);
+      playerAPIRef.current.setOnReady(() => {
+        console.log('Player ready with audio enabled');
+        setIsLoading(false);
+      });
     }
-  }, [isPlaying]);
+  }, [onVideoStart, resetControlsTimeout]);
 
   const handleAudioPromptDismiss = useCallback(() => {
     setShowAudioPrompt(false);
