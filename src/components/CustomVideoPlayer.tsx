@@ -249,7 +249,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           >
             {/* Top gradient for better control visibility */}
             {isSafe ? (
-              <div className="hidden md:block absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
+              <div className="hidden lg:block absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
             ) : (
               <div className="absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
             )}
@@ -258,7 +258,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             {isSafe ? (
               <>
                 {/* Desktop gradient + controls */}
-                <div className="hidden md:block absolute bottom-0 left-0 right-0 h-12 md:h-24 bg-gradient-to-t from-black/80 to-transparent allow-gradient-transparency">
+                <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-12 md:h-24 bg-gradient-to-t from-black/80 to-transparent allow-gradient-transparency">
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto">
                     {/* Left controls */}
                     <div className="flex items-center gap-3 pointer-events-auto">
@@ -307,8 +307,8 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                   </div>
                 </div>
 
-                {/* Mobile compact control pill */}
-                <div className="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-auto">
+                {/* Mobile + Tablet compact control pill */}
+                <div className="lg:hidden absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-auto">
                   <div className="flex items-center gap-2 bg-black/60 text-white rounded-full px-3 py-2 shadow-lg backdrop-blur-xs">
                     <button
                       onClick={(e) => {
