@@ -34,6 +34,7 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
         title={title}
         thumbnailUrl={thumbnailUrl}
         className="w-full h-full"
+        showIframeImmediately={true}
         onVideoStart={handleVideoStart}
       />
     </div>

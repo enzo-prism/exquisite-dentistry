@@ -11,6 +11,7 @@ interface UniversalVideoPlayerProps {
   autoplay?: boolean;
   muted?: boolean;
   className?: string;
+  showIframeImmediately?: boolean;
   onVideoStart?: () => void;
   onVideoEnd?: () => void;
 }
@@ -23,17 +24,25 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   autoplay = false,
   muted = false,
   className,
+  showIframeImmediately = false,
   onVideoStart,
   onVideoEnd
 }) => {
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(showIframeImmediately);
   const [imageError, setImageError] = useState(false);
 
   const handlePlay = () => {
     setIsPlaying(true);
     onVideoStart?.();
   };
+
+  // Trigger onVideoStart immediately if showing iframe on load
+  React.useEffect(() => {
+    if (showIframeImmediately) {
+      onVideoStart?.();
+    }
+  }, [showIframeImmediately, onVideoStart]);
 
   const getEmbedUrl = () => {
     const autoplayParam = autoplay ? '1' : '0';
