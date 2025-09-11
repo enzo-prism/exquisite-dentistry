@@ -47,6 +47,7 @@ const VideoTestimonial: React.FC<VideoTestimonialProps> = ({
         thumbnailUrl={thumbnailUrl}
         className="w-full h-full"
         useCustomControls={true}
+        overlayMode="safe"
         onVideoStart={handleVideoStart}
         onVideoEnd={handleVideoEnd}
       />

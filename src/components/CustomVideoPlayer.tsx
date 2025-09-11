@@ -13,6 +13,7 @@ interface CustomVideoPlayerProps {
   muted?: boolean;
   onVideoStart?: () => void;
   onVideoEnd?: () => void;
+  overlayMode?: 'default' | 'safe';
 }
 
 const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
@@ -24,8 +25,10 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   autoplay = false,
   muted = true,
   onVideoStart,
-  onVideoEnd
+  onVideoEnd,
+  overlayMode = 'default'
 }) => {
+  const isSafe = overlayMode === 'safe';
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(muted);
   const [isLoading, setIsLoading] = useState(false);
@@ -173,7 +176,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         }}
       >
         {/* Video containment wrapper */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden" style={isSafe ? { contain: 'paint' } : undefined}>
           {/* Video iframe or thumbnail */}
           {isPlaying ? (
             <iframe
@@ -238,63 +241,168 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         {isPlaying && (
           <div 
             className={cn(
-              "absolute inset-0 z-20 pointer-events-none isolate transition-opacity duration-300",
+              "absolute inset-0 z-20 pointer-events-none transition-opacity duration-300",
+              !isSafe && "isolate",
               showControls ? "opacity-100" : "opacity-0"
             )}
             style={{ willChange: 'opacity' }}
           >
             {/* Top gradient for better control visibility */}
-            <div className="absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
+            {isSafe ? (
+              <div className="hidden md:block absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
+            ) : (
+              <div className="absolute top-0 left-0 right-0 h-8 md:h-20 bg-gradient-to-b from-black/60 to-transparent allow-gradient-transparency pointer-events-none" />
+            )}
             
-            {/* Bottom gradient and controls */}
-            <div className="absolute bottom-0 left-0 right-0 h-12 md:h-24 bg-gradient-to-t from-black/80 to-transparent allow-gradient-transparency">
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto">
-                {/* Left controls */}
-                <div className="flex items-center gap-3 pointer-events-auto">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleContainerClick();
-                    }}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                    aria-label={isPlaying ? 'Pause' : 'Play'}
-                  >
-                    {isPlaying ? (
-                      <Pause className="h-5 w-5" fill="currentColor" />
-                    ) : (
-                      <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
-                    )}
-                  </button>
+            {/* Bottom area */}
+            {isSafe ? (
+              <>
+                {/* Desktop gradient + controls */}
+                <div className="hidden md:block absolute bottom-0 left-0 right-0 h-12 md:h-24 bg-gradient-to-t from-black/80 to-transparent allow-gradient-transparency">
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto">
+                    {/* Left controls */}
+                    <div className="flex items-center gap-3 pointer-events-auto">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleContainerClick();
+                        }}
+                        className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                        aria-label={isPlaying ? 'Pause' : 'Play'}
+                      >
+                        {isPlaying ? (
+                          <Pause className="h-5 w-5" fill="currentColor" />
+                        ) : (
+                          <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+                        )}
+                      </button>
 
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMute();
-                    }}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                    aria-label={isMuted ? 'Unmute' : 'Mute'}
-                  >
-                    {isMuted ? (
-                      <VolumeX className="h-5 w-5" />
-                    ) : (
-                      <Volume2 className="h-5 w-5" />
-                    )}
-                  </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleMute();
+                        }}
+                        className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                        aria-label={isMuted ? 'Unmute' : 'Mute'}
+                      >
+                        {isMuted ? (
+                          <VolumeX className="h-5 w-5" />
+                        ) : (
+                          <Volume2 className="h-5 w-5" />
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Right controls */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleFullscreen();
+                      }}
+                      className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label="Fullscreen"
+                    >
+                      <Maximize className="h-5 w-5" />
+                    </button>
+                  </div>
                 </div>
 
-                {/* Right controls */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleFullscreen();
-                  }}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
-                  aria-label="Fullscreen"
-                >
-                  <Maximize className="h-5 w-5" />
-                </button>
+                {/* Mobile compact control pill */}
+                <div className="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-auto">
+                  <div className="flex items-center gap-2 bg-black/60 text-white rounded-full px-3 py-2 shadow-lg backdrop-blur-xs">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleContainerClick();
+                      }}
+                      className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label={isPlaying ? 'Pause' : 'Play'}
+                    >
+                      {isPlaying ? (
+                        <Pause className="h-5 w-5" fill="currentColor" />
+                      ) : (
+                        <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleMute();
+                      }}
+                      className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label={isMuted ? 'Unmute' : 'Mute'}
+                    >
+                      {isMuted ? (
+                        <VolumeX className="h-5 w-5" />
+                      ) : (
+                        <Volume2 className="h-5 w-5" />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleFullscreen();
+                      }}
+                      className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label="Fullscreen"
+                    >
+                      <Maximize className="h-5 w-5" />
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="absolute bottom-0 left-0 right-0 h-12 md:h-24 bg-gradient-to-t from-black/80 to-transparent allow-gradient-transparency">
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto">
+                  {/* Left controls */}
+                  <div className="flex items-center gap-3 pointer-events-auto">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleContainerClick();
+                      }}
+                      className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label={isPlaying ? 'Pause' : 'Play'}
+                    >
+                      {isPlaying ? (
+                        <Pause className="h-5 w-5" fill="currentColor" />
+                      ) : (
+                        <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleMute();
+                      }}
+                      className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                      aria-label={isMuted ? 'Unmute' : 'Mute'}
+                    >
+                      {isMuted ? (
+                        <VolumeX className="h-5 w-5" />
+                      ) : (
+                        <Volume2 className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Right controls */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleFullscreen();
+                    }}
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50 pointer-events-auto"
+                    aria-label="Fullscreen"
+                  >
+                    <Maximize className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
 

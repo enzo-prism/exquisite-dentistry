@@ -36,6 +36,7 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
         className="w-full h-full"
         showIframeImmediately={true}
         useCustomControls={true}
+        overlayMode="safe"
         onVideoStart={handleVideoStart}
       />
     </div>

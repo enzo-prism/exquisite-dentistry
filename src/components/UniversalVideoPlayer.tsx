@@ -16,6 +16,7 @@ interface UniversalVideoPlayerProps {
   useCustomControls?: boolean; // New prop for custom controls
   onVideoStart?: () => void;
   onVideoEnd?: () => void;
+  overlayMode?: 'default' | 'safe';
 }
 
 const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
@@ -29,7 +30,8 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   showIframeImmediately = false,
   useCustomControls = false, // Default to false for backward compatibility
   onVideoStart,
-  onVideoEnd
+  onVideoEnd,
+  overlayMode = 'default'
 }) => {
 
   // Use custom player if requested
@@ -45,6 +47,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
         className={className}
         onVideoStart={onVideoStart}
         onVideoEnd={onVideoEnd}
+        overlayMode={overlayMode}
       />
     );
   }
