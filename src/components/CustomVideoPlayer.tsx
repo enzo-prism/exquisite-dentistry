@@ -169,13 +169,11 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         role="button"
         aria-label={isPlaying ? 'Pause video' : 'Play video'}
         style={{
-          position: 'relative',
-          containIntrinsicSize: '100% 56.25%', // 16:9 aspect ratio
-          contain: 'layout size'
+          position: 'relative'
         }}
       >
         {/* Video containment wrapper */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ contain: 'layout size style' }}>
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Video iframe or thumbnail */}
           {isPlaying ? (
             <iframe
@@ -188,7 +186,11 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 maxHeight: '100%',
                 objectFit: 'contain',
                 transformOrigin: 'center',
-                pointerEvents: showControls ? 'none' : 'auto' // Prevent touch conflicts when controls shown
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)',
+                backfaceVisibility: 'hidden',
+                willChange: 'transform',
+                pointerEvents: showControls ? 'none' : 'auto'
               }}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
@@ -226,7 +228,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         {/* Loading overlay */}
         {isLoading && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-30">
-            <div className="bg-black/80 backdrop-blur-sm rounded-full p-4">
+            <div className="bg-black/80 backdrop-blur-none md:backdrop-blur-sm rounded-full p-4">
               <Loader2 className="h-8 w-8 text-gold animate-spin" />
             </div>
           </div>
@@ -239,12 +241,13 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
               "absolute inset-0 z-20 transition-opacity duration-300",
               showControls ? "opacity-100" : "opacity-0"
             )}
+            style={{ willChange: 'opacity' }}
           >
             {/* Top gradient for better control visibility */}
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-12 md:h-20 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
             
             {/* Bottom gradient and controls */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 h-16 md:h-24 bg-gradient-to-t from-black/80 to-transparent">
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                 {/* Left controls */}
                 <div className="flex items-center gap-3">
@@ -253,7 +256,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                       e.stopPropagation();
                       handleContainerClick();
                     }}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
                     aria-label={isPlaying ? 'Pause' : 'Play'}
                   >
                     {isPlaying ? (
@@ -268,7 +271,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                       e.stopPropagation();
                       toggleMute();
                     }}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
                     aria-label={isMuted ? 'Unmute' : 'Mute'}
                   >
                     {isMuted ? (
@@ -285,7 +288,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                     e.stopPropagation();
                     handleFullscreen();
                   }}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-none md:backdrop-blur-sm text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
                   aria-label="Fullscreen"
                 >
                   <Maximize className="h-5 w-5" />
@@ -296,7 +299,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         )}
 
           {/* Click indicator for mobile */}
-          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none md:hidden">
+          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-none md:backdrop-blur-sm text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none md:hidden">
             Tap to {isPlaying ? 'pause' : 'play'}
           </div>
         </div>
