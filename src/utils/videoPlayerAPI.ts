@@ -37,6 +37,8 @@ export class VideoPlayerAPI {
     }
     
     this.removeMessageListener = this.setupMessageListener();
+    // Proactively set up API event listeners/handshake
+    this.setupAPIEventListeners();
   }
 
   setShouldAutoPlay(shouldAutoPlay: boolean) {
@@ -66,7 +68,8 @@ export class VideoPlayerAPI {
       // Only accept messages from trusted video platforms and from the correct iframe
       const allowedOrigins = [
         'https://player.vimeo.com',
-        'https://www.youtube.com'
+        'https://www.youtube.com',
+        'https://www.youtube-nocookie.com'
       ];
       
       if (!allowedOrigins.some(origin => event.origin === origin)) return;
@@ -87,6 +90,8 @@ export class VideoPlayerAPI {
       if (this.platform === 'vimeo' && eventData?.event === 'ready') {
         console.log('Vimeo player ready');
         this.isReady = true;
+        // Ensure event subscriptions are established
+        this.setupAPIEventListeners();
         this.processMessageQueue();
         this.onReadyCallback?.();
         if (this.shouldAutoPlay) {
@@ -96,6 +101,8 @@ export class VideoPlayerAPI {
       } else if (this.platform === 'youtube' && eventData?.event === 'onReady') {
         console.log('YouTube player ready');
         this.isReady = true;
+        // Ensure event subscriptions are established
+        this.setupAPIEventListeners();
         this.processMessageQueue();
         this.onReadyCallback?.();
         if (this.shouldAutoPlay) {
@@ -110,12 +117,12 @@ export class VideoPlayerAPI {
           this.onPlayChange?.(true);
         } else if (eventData?.event === 'pause') {
           this.onPlayChange?.(false);
-        } else if (eventData?.event === 'ended') {
+        } else if (eventData?.event === 'ended' || eventData?.event === 'finish') {
           this.onPlayChange?.(false);
           this.onEnded?.();
-        } else if (eventData?.event === 'volumechange') {
+        } else if (eventData?.event === 'volumechange' || eventData?.event === 'volume') {
           // Vimeo sends volume as 0-1, 0 is muted
-          const isMuted = eventData?.data?.volume === 0;
+          const isMuted = eventData?.data?.volume === 0 || eventData?.volume === 0;
           this.onMuteChange?.(isMuted);
         }
       }
