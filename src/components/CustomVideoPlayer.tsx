@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, Loader2 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import { VideoPlayerAPI, createStaticEmbedUrl, isMobileDevice } from '@/utils/videoPlayerAPI';
+import MobileAudioPrompt from '@/components/ui/mobile-audio-prompt';
 
 interface CustomVideoPlayerProps {
   platform: 'vimeo' | 'youtube';
@@ -34,9 +36,13 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [showAudioPrompt, setShowAudioPrompt] = useState(false);
+  const [isMobile] = useState(() => isMobileDevice());
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
+  const playerAPIRef = useRef<VideoPlayerAPI | null>(null);
+  const staticEmbedUrlRef = useRef<string>('');
 
   // Auto-hide controls after inactivity
   const resetControlsTimeout = useCallback(() => {
@@ -59,56 +65,87 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
   }, []);
 
-  const getEmbedUrl = useCallback(() => {
-    const baseParams = new URLSearchParams({
-      autoplay: isPlaying ? '1' : '0',
-      muted: isMuted ? '1' : '0',
-      controls: '0', // Hide all platform controls
-      title: '0',
-      byline: '0',
-      portrait: '0',
-    });
-
-    if (platform === 'vimeo') {
-      baseParams.append('background', '1'); // Remove all Vimeo branding
-      baseParams.append('transparent', '0');
-      baseParams.append('autopause', '0');
-      baseParams.append('responsive', '1'); // Enable responsive behavior
-      baseParams.append('playsinline', '1'); // Better mobile behavior
-      return `https://player.vimeo.com/video/${videoId}?${baseParams.toString()}`;
-    } else {
-      baseParams.append('rel', '0');
-      baseParams.append('modestbranding', '1');
-      baseParams.append('showinfo', '0');
-      baseParams.append('iv_load_policy', '3');
-      baseParams.append('cc_load_policy', '0');
-      baseParams.append('playsinline', '1'); // Better mobile behavior
-      return `https://www.youtube.com/embed/${videoId}?${baseParams.toString()}`;
+  // Initialize static embed URL and player API
+  useEffect(() => {
+    if (!staticEmbedUrlRef.current) {
+      staticEmbedUrlRef.current = createStaticEmbedUrl(platform, videoId, {
+        autoplay: false,
+        muted: true,
+        enableJSAPI: true
+      });
     }
-  }, [videoId, platform, isPlaying, isMuted]);
+    
+    if (!playerAPIRef.current) {
+      playerAPIRef.current = new VideoPlayerAPI(platform);
+    }
+    
+    return () => {
+      playerAPIRef.current?.destroy();
+    };
+  }, [platform, videoId]);
 
   const handlePlay = useCallback(() => {
-    setIsLoading(true);
-    setIsPlaying(true);
-    onVideoStart?.();
-    resetControlsTimeout();
-    
-    // Simulate loading time for smooth transition
-    setTimeout(() => setIsLoading(false), 800);
-  }, [onVideoStart, resetControlsTimeout]);
+    if (!isPlaying) {
+      setIsLoading(true);
+      setIsPlaying(true);
+      onVideoStart?.();
+      resetControlsTimeout();
+      
+      // Simulate loading time for smooth transition
+      setTimeout(() => setIsLoading(false), 800);
+    } else {
+      // Video is already playing, use API to play
+      playerAPIRef.current?.play();
+    }
+  }, [isPlaying, onVideoStart, resetControlsTimeout]);
 
   const handlePause = useCallback(() => {
-    setIsPlaying(false);
-    setShowControls(true);
-    if (controlsTimeoutRef.current) {
-      clearTimeout(controlsTimeoutRef.current);
+    if (isPlaying && playerAPIRef.current) {
+      // Use API to pause without recreating iframe
+      playerAPIRef.current.pause();
+    } else {
+      // Initial state management
+      setIsPlaying(false);
+      setShowControls(true);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    }
+  }, [isPlaying]);
+
+  const toggleMute = useCallback(() => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    
+    // Handle mobile audio activation
+    if (isMobile && newMutedState === false && isPlaying) {
+      setShowAudioPrompt(true);
+      return;
+    }
+    
+    // Use API to control mute state
+    if (playerAPIRef.current && isPlaying) {
+      if (newMutedState) {
+        playerAPIRef.current.mute();
+      } else {
+        playerAPIRef.current.unmute();
+      }
+    }
+    
+    resetControlsTimeout();
+  }, [isMuted, isMobile, isPlaying, resetControlsTimeout]);
+
+  const handleAudioEnable = useCallback(() => {
+    setShowAudioPrompt(false);
+    if (playerAPIRef.current) {
+      playerAPIRef.current.unmute();
     }
   }, []);
 
-  const toggleMute = useCallback(() => {
-    setIsMuted(prev => !prev);
-    resetControlsTimeout();
-  }, [resetControlsTimeout]);
+  const handleAudioPromptDismiss = useCallback(() => {
+    setShowAudioPrompt(false);
+    setIsMuted(true); // Keep it muted if user dismisses
+  }, []);
 
   const handleFullscreen = useCallback(() => {
     if (containerRef.current) {
@@ -180,8 +217,13 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           {/* Video iframe or thumbnail */}
           {isPlaying ? (
             <iframe
-              ref={iframeRef}
-              src={getEmbedUrl()}
+              ref={(el) => {
+                iframeRef.current = el;
+                if (el && playerAPIRef.current) {
+                  playerAPIRef.current.setIframe(el);
+                }
+              }}
+              src={staticEmbedUrlRef.current}
               title={title}
               className="absolute inset-0 w-full h-full"
                 style={{
@@ -411,6 +453,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             Tap to {isPlaying ? 'pause' : 'play'}
           </div>
         </div>
+
+        {/* Mobile Audio Prompt */}
+        <MobileAudioPrompt
+          isVisible={showAudioPrompt}
+          isMuted={isMuted}
+          onAudioEnable={handleAudioEnable}
+          onDismiss={handleAudioPromptDismiss}
+        />
       </div>
     </AspectRatio>
   );
