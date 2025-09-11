@@ -17,6 +17,10 @@ export class VideoPlayerAPI {
   private isReady = false;
   private shouldAutoPlay = false;
   private onReadyCallback?: () => void;
+  private onPlayChange?: (playing: boolean) => void;
+  private onMuteChange?: (muted: boolean) => void;
+  private onEnded?: () => void;
+  private removeMessageListener?: () => void;
 
   constructor(platform: 'vimeo' | 'youtube') {
     this.platform = platform;
@@ -24,7 +28,15 @@ export class VideoPlayerAPI {
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
-    this.setupMessageListener();
+    this.isReady = false;
+    this.messageQueue = [];
+    
+    // Remove previous listener if exists
+    if (this.removeMessageListener) {
+      this.removeMessageListener();
+    }
+    
+    this.removeMessageListener = this.setupMessageListener();
   }
 
   setShouldAutoPlay(shouldAutoPlay: boolean) {
@@ -33,6 +45,18 @@ export class VideoPlayerAPI {
 
   setOnReady(callback: () => void) {
     this.onReadyCallback = callback;
+  }
+
+  setOnPlayChange(callback: (playing: boolean) => void) {
+    this.onPlayChange = callback;
+  }
+
+  setOnMuteChange(callback: (muted: boolean) => void) {
+    this.onMuteChange = callback;
+  }
+
+  setOnEnded(callback: () => void) {
+    this.onEnded = callback;
   }
 
   private setupMessageListener() {
@@ -77,6 +101,35 @@ export class VideoPlayerAPI {
         if (this.shouldAutoPlay) {
           console.log('Auto-playing YouTube video');
           this.play();
+        }
+      }
+      
+      // Handle playback state changes for Vimeo
+      if (this.platform === 'vimeo') {
+        if (eventData?.event === 'play') {
+          this.onPlayChange?.(true);
+        } else if (eventData?.event === 'pause') {
+          this.onPlayChange?.(false);
+        } else if (eventData?.event === 'ended') {
+          this.onPlayChange?.(false);
+          this.onEnded?.();
+        } else if (eventData?.event === 'volumechange') {
+          // Vimeo sends volume as 0-1, 0 is muted
+          const isMuted = eventData?.data?.volume === 0;
+          this.onMuteChange?.(isMuted);
+        }
+      }
+      
+      // Handle playback state changes for YouTube
+      if (this.platform === 'youtube' && eventData?.event === 'onStateChange') {
+        const state = eventData?.data;
+        if (state === 1) { // Playing
+          this.onPlayChange?.(true);
+        } else if (state === 2) { // Paused
+          this.onPlayChange?.(false);
+        } else if (state === 0) { // Ended
+          this.onPlayChange?.(false);
+          this.onEnded?.();
         }
       }
     };
@@ -174,9 +227,17 @@ export class VideoPlayerAPI {
   }
 
   destroy() {
+    if (this.removeMessageListener) {
+      this.removeMessageListener();
+      this.removeMessageListener = undefined;
+    }
     this.iframe = null;
     this.isReady = false;
     this.messageQueue = [];
+    this.onReadyCallback = undefined;
+    this.onPlayChange = undefined;
+    this.onMuteChange = undefined;
+    this.onEnded = undefined;
   }
 }
 

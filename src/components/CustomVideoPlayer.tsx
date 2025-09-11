@@ -79,12 +79,33 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   useEffect(() => {
     if (!playerAPIRef.current) {
       playerAPIRef.current = new VideoPlayerAPI(platform);
+      
+      // Set up callbacks to sync UI state with player
+      playerAPIRef.current.setOnPlayChange((playing) => {
+        setIsPlaying(playing);
+        if (!playing) {
+          setShowControls(true);
+          if (controlsTimeoutRef.current) {
+            clearTimeout(controlsTimeoutRef.current);
+          }
+        }
+      });
+      
+      playerAPIRef.current.setOnMuteChange((muted) => {
+        setIsMuted(muted);
+      });
+      
+      playerAPIRef.current.setOnEnded(() => {
+        setIsPlaying(false);
+        setShowControls(true);
+        onVideoEnd?.();
+      });
     }
     
     return () => {
       playerAPIRef.current?.destroy();
     };
-  }, [platform]);
+  }, [platform, onVideoEnd]);
 
   const handlePlay = useCallback(() => {
     if (!isPlaying) {
@@ -111,6 +132,10 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     if (isPlaying && playerAPIRef.current) {
       // Use API to pause without recreating iframe
       playerAPIRef.current.pause();
+      setIsPlaying(false);
+      if (playerAPIRef.current) {
+        playerAPIRef.current.setShouldAutoPlay(false);
+      }
     } else {
       // Initial state management
       setIsPlaying(false);
@@ -145,6 +170,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
   const handleAudioEnable = useCallback(() => {
     setShowAudioPrompt(false);
+    setIsMuted(false);
     if (playerAPIRef.current) {
       playerAPIRef.current.unmute();
     }
