@@ -25,6 +25,7 @@ const PracticeVideoSection: React.FC = () => {
               title="Exquisite Dentistry Practice Video"
               thumbnailUrl="/lovable-uploads/45895aca-ec41-480b-b5a3-b4261464edef.png"
               className="w-full h-full"
+              useCustomControls={true}
               onVideoStart={() => {
                 if (typeof (window as any).gtag !== 'undefined') {
                   (window as any).gtag('event', 'video_start', {

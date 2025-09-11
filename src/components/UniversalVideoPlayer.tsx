@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Play } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import CustomVideoPlayer from './CustomVideoPlayer';
 
 interface UniversalVideoPlayerProps {
   platform: 'vimeo' | 'youtube';
@@ -12,6 +13,7 @@ interface UniversalVideoPlayerProps {
   muted?: boolean;
   className?: string;
   showIframeImmediately?: boolean;
+  useCustomControls?: boolean; // New prop for custom controls
   onVideoStart?: () => void;
   onVideoEnd?: () => void;
 }
@@ -25,9 +27,27 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   muted = false,
   className,
   showIframeImmediately = false,
+  useCustomControls = false, // Default to false for backward compatibility
   onVideoStart,
   onVideoEnd
 }) => {
+
+  // Use custom player if requested
+  if (useCustomControls) {
+    return (
+      <CustomVideoPlayer
+        platform={platform}
+        videoId={videoId}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+        autoplay={showIframeImmediately || autoplay}
+        muted={muted}
+        className={className}
+        onVideoStart={onVideoStart}
+        onVideoEnd={onVideoEnd}
+      />
+    );
+  }
 
   const [isPlaying, setIsPlaying] = useState(showIframeImmediately);
   const [imageError, setImageError] = useState(false);
