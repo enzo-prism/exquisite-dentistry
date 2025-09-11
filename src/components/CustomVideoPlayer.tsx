@@ -31,13 +31,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   overlayMode = 'default'
 }) => {
   const isSafe = overlayMode === 'safe';
+  const [isMobile] = useState(() => isMobileDevice());
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(muted);
+  const [isMuted, setIsMuted] = useState(isMobile ? true : (muted || false)); // Force muted on mobile
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [imageError, setImageError] = useState(false);
-  const [showAudioPrompt, setShowAudioPrompt] = useState(false);
-  const [isMobile] = useState(() => isMobileDevice());
+  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
+  const [showAudioPrompt, setShowAudioPrompt] = useState(isMobile && !hasPlayedOnce); // Show immediately on mobile
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
@@ -171,10 +172,18 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const handleAudioEnable = useCallback(() => {
     setShowAudioPrompt(false);
     setIsMuted(false);
+    setHasPlayedOnce(true);
+    
+    // Synchronous audio enable for mobile - must happen within user tap
     if (playerAPIRef.current) {
       playerAPIRef.current.unmute();
+      playerAPIRef.current.setVolume(1);
+      if (!isPlaying) {
+        playerAPIRef.current.play();
+        setIsPlaying(true);
+      }
     }
-  }, []);
+  }, [isPlaying]);
 
   const handleAudioPromptDismiss = useCallback(() => {
     setShowAudioPrompt(false);

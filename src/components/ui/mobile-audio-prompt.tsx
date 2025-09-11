@@ -20,11 +20,17 @@ const MobileAudioPrompt: React.FC<MobileAudioPromptProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={cn(
-      "absolute inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4",
-      className
-    )}>
-      <div className="bg-white rounded-lg shadow-xl max-w-sm mx-auto p-6 text-center">
+    <div 
+      className={cn(
+        "absolute inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4",
+        className
+      )}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div 
+        className="bg-white rounded-lg shadow-xl max-w-sm mx-auto p-6 text-center"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-center mb-4">
           {isMuted ? (
             <VolumeX className="h-12 w-12 text-gray-400" />
@@ -43,14 +49,20 @@ const MobileAudioPrompt: React.FC<MobileAudioPromptProps> = ({
         
         <div className="flex gap-3">
           <button
-            onClick={onDismiss}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDismiss();
+            }}
             className="flex-1 px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
           >
             Keep Muted
           </button>
           
           <button
-            onClick={onAudioEnable}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAudioEnable();
+            }}
             className="flex-1 px-4 py-2 bg-gold text-white rounded-md hover:bg-gold/90 transition-colors font-medium"
           >
             Enable Audio

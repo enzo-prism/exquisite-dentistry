@@ -140,6 +140,26 @@ export class VideoPlayerAPI {
     return () => window.removeEventListener('message', handleMessage);
   }
 
+  private setupAPIEventListeners() {
+    if (!this.iframe?.contentWindow) return;
+
+    if (this.platform === 'vimeo') {
+      // Subscribe to Vimeo events using direct postMessage
+      this.iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'play' }), '*');
+      this.iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'pause' }), '*');
+      this.iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'ended' }), '*');
+      this.iframe.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: 'volumechange' }), '*');
+    } else if (this.platform === 'youtube') {
+      // YouTube API handshake using direct postMessage
+      this.iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening' }), '*');
+      this.iframe.contentWindow.postMessage(JSON.stringify({ 
+        event: 'command', 
+        func: 'addEventListener', 
+        args: ['onStateChange'] 
+      }), '*');
+    }
+  }
+
   private processMessageQueue() {
     while (this.messageQueue.length > 0) {
       const message = this.messageQueue.shift();
