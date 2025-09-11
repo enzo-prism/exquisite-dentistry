@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, Loader2 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
@@ -25,7 +25,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   thumbnailUrl,
   className,
   autoplay = false,
-  muted = true,
+  muted = false,
   onVideoStart,
   onVideoEnd,
   overlayMode = 'default'
@@ -42,7 +42,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
   const playerAPIRef = useRef<VideoPlayerAPI | null>(null);
-  const staticEmbedUrlRef = useRef<string>('');
 
   // Auto-hide controls after inactivity
   const resetControlsTimeout = useCallback(() => {
@@ -65,16 +64,19 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     };
   }, []);
 
-  // Initialize static embed URL and player API
-  useEffect(() => {
-    if (!staticEmbedUrlRef.current) {
-      staticEmbedUrlRef.current = createEmbedUrl(platform, videoId, {
-        autoplay: false,
-        muted: true,
-        enableJSAPI: true
-      });
-    }
+  // Create dynamic embed URL based on current state
+  const embedUrl = useMemo(() => {
+    if (!isPlaying) return '';
     
+    return createEmbedUrl(platform, videoId, {
+      autoplay: false,
+      muted: isMuted,
+      enableJSAPI: true
+    });
+  }, [platform, videoId, isPlaying, isMuted]);
+
+  // Initialize player API
+  useEffect(() => {
     if (!playerAPIRef.current) {
       playerAPIRef.current = new VideoPlayerAPI(platform);
     }
@@ -82,7 +84,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     return () => {
       playerAPIRef.current?.destroy();
     };
-  }, [platform, videoId]);
+  }, [platform]);
 
   const handlePlay = useCallback(() => {
     if (!isPlaying) {
@@ -230,7 +232,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                   playerAPIRef.current.setIframe(el);
                 }
               }}
-              src={staticEmbedUrlRef.current}
+              src={embedUrl}
               title={title}
               className="absolute inset-0 w-full h-full"
                 style={{
