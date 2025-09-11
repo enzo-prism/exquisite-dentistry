@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, Loader2 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import { VideoPlayerAPI, createStaticEmbedUrl, isMobileDevice } from '@/utils/videoPlayerAPI';
+import { VideoPlayerAPI, createEmbedUrl, isMobileDevice } from '@/utils/videoPlayerAPI';
 import MobileAudioPrompt from '@/components/ui/mobile-audio-prompt';
 
 interface CustomVideoPlayerProps {
@@ -68,7 +68,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   // Initialize static embed URL and player API
   useEffect(() => {
     if (!staticEmbedUrlRef.current) {
-      staticEmbedUrlRef.current = createStaticEmbedUrl(platform, videoId, {
+      staticEmbedUrlRef.current = createEmbedUrl(platform, videoId, {
         autoplay: false,
         muted: true,
         enableJSAPI: true

@@ -15,6 +15,8 @@ export class VideoPlayerAPI {
   private platform: 'vimeo' | 'youtube';
   private messageQueue: VideoPlayerMessage[] = [];
   private isReady = false;
+  private shouldAutoPlay = false;
+  private onReadyCallback?: () => void;
 
   constructor(platform: 'vimeo' | 'youtube') {
     this.platform = platform;
@@ -23,6 +25,14 @@ export class VideoPlayerAPI {
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
     this.setupMessageListener();
+  }
+
+  setShouldAutoPlay(shouldAutoPlay: boolean) {
+    this.shouldAutoPlay = shouldAutoPlay;
+  }
+
+  setOnReady(callback: () => void) {
+    this.onReadyCallback = callback;
   }
 
   private setupMessageListener() {
@@ -41,9 +51,17 @@ export class VideoPlayerAPI {
       if (this.platform === 'vimeo' && event.data?.event === 'ready') {
         this.isReady = true;
         this.processMessageQueue();
+        this.onReadyCallback?.();
+        if (this.shouldAutoPlay) {
+          this.play();
+        }
       } else if (this.platform === 'youtube' && event.data?.event === 'onReady') {
         this.isReady = true;
         this.processMessageQueue();
+        this.onReadyCallback?.();
+        if (this.shouldAutoPlay) {
+          this.play();
+        }
       }
     };
 
@@ -148,8 +166,8 @@ export function isMobileDevice(): boolean {
          (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
 }
 
-// Utility to create static embed URL (no state dependencies)
-export function createStaticEmbedUrl(
+// Utility to create embed URL with dynamic autoplay support
+export function createEmbedUrl(
   platform: 'vimeo' | 'youtube',
   videoId: string,
   options: {
