@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Play } from 'lucide-react';
+import React from 'react';
+import UniversalVideoPlayer from './UniversalVideoPlayer';
 import { cn } from '@/lib/utils';
 
 interface TestimonialThumbnailProps {
@@ -15,49 +15,27 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
   title,
   className
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  const handleClick = () => {
-    setIsLoaded(true);
+  const handleVideoStart = () => {
+    // Track video engagement for analytics
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'video_start', {
+        event_category: 'testimonial_thumbnail',
+        event_label: title,
+        video_id: vimeoId
+      });
+    }
   };
-
-  const vimeoUrl = `https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&autoplay=1&muted=1&controls=1&title=0&byline=0&portrait=0&background=0&loop=0&responsive=1&player_id=0&app_id=58479&quality=auto`;
-
-  if (isLoaded) {
-    return (
-      <div className={cn("bg-gray-50 rounded-lg overflow-hidden shadow-lg", className)}>
-        <div className="relative aspect-video">
-          <iframe
-            src={vimeoUrl}
-            className="absolute inset-0 w-full h-full"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            title={title}
-            loading="lazy"
-          />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={cn("bg-gray-50 rounded-lg overflow-hidden shadow-lg", className)}>
-      <div 
-        className="relative aspect-video cursor-pointer group"
-        onClick={handleClick}
-      >
-        <img 
-          src={thumbnailUrl} 
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-          <div className="bg-primary/90 text-primary-foreground rounded-full p-3 sm:p-4 group-hover:scale-110 transition-transform min-h-[44px] min-w-[44px] flex items-center justify-center">
-            <Play className="h-5 w-5 sm:h-6 sm:w-6 ml-0.5" fill="currentColor" />
-          </div>
-        </div>
-      </div>
+      <UniversalVideoPlayer
+        platform="vimeo"
+        videoId={vimeoId}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+        className="w-full h-full"
+        onVideoStart={handleVideoStart}
+      />
     </div>
   );
 };
