@@ -70,6 +70,8 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       baseParams.append('background', '1'); // Remove all Vimeo branding
       baseParams.append('transparent', '0');
       baseParams.append('autopause', '0');
+      baseParams.append('responsive', '1'); // Enable responsive behavior
+      baseParams.append('playsinline', '1'); // Better mobile behavior
       return `https://player.vimeo.com/video/${videoId}?${baseParams.toString()}`;
     } else {
       baseParams.append('rel', '0');
@@ -77,6 +79,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       baseParams.append('showinfo', '0');
       baseParams.append('iv_load_policy', '3');
       baseParams.append('cc_load_policy', '0');
+      baseParams.append('playsinline', '1'); // Better mobile behavior
       return `https://www.youtube.com/embed/${videoId}?${baseParams.toString()}`;
     }
   }, [videoId, platform, isPlaying, isMuted]);
@@ -165,19 +168,33 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         tabIndex={0}
         role="button"
         aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        style={{
+          position: 'relative',
+          containIntrinsicSize: '100% 56.25%', // 16:9 aspect ratio
+          contain: 'layout size'
+        }}
       >
-        {/* Video iframe or thumbnail */}
-        {isPlaying ? (
-          <iframe
-            ref={iframeRef}
-            src={getEmbedUrl()}
-            title={title}
-            className="absolute inset-0 w-full h-full"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-          />
-        ) : (
+        {/* Video containment wrapper */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ contain: 'layout size style' }}>
+          {/* Video iframe or thumbnail */}
+          {isPlaying ? (
+            <iframe
+              ref={iframeRef}
+              src={getEmbedUrl()}
+              title={title}
+              className="absolute inset-0 w-full h-full"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                transformOrigin: 'center',
+                pointerEvents: showControls ? 'none' : 'auto' // Prevent touch conflicts when controls shown
+              }}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+            />
+          ) : (
           <>
             {/* Thumbnail */}
             {thumbnailUrl && !imageError && (
@@ -278,9 +295,10 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           </div>
         )}
 
-        {/* Click indicator for mobile */}
-        <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none md:hidden">
-          Tap to {isPlaying ? 'pause' : 'play'}
+          {/* Click indicator for mobile */}
+          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none md:hidden">
+            Tap to {isPlaying ? 'pause' : 'play'}
+          </div>
         </div>
       </div>
     </AspectRatio>
