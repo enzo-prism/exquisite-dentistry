@@ -231,9 +231,9 @@ body {
   }
 
   /* Fix any potential purple background issues on gradients */
-  div[class*="bg-gradient"], 
-  div[class*="from-"], 
-  div[class*="to-"] {
+  div[class*="bg-gradient"]:not(.allow-gradient-transparency), 
+  div[class*="from-"]:not(.allow-gradient-transparency), 
+  div[class*="to-"]:not(.allow-gradient-transparency) {
     background-color: hsl(var(--background)) !important;
   }
 
