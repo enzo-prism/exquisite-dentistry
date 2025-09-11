@@ -26,7 +26,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   onVideoStart,
   onVideoEnd
 }) => {
-  const [isPlaying, setIsPlaying] = useState(autoplay);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(muted);
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
