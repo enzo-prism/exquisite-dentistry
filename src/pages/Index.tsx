@@ -6,7 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
-import TestimonialThumbnail from '@/components/TestimonialThumbnail';
+import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { Button } from '@/components/ui/button';
@@ -206,9 +206,8 @@ const IndexPage: React.FC = () => {
           >
             {VIDEO_TESTIMONIALS.map((testimonial, index) => (
               <motion.div key={testimonial.vimeoId} variants={itemVariants}>
-                <TestimonialThumbnail
+                <SimpleTestimonialEmbed
                   vimeoId={testimonial.vimeoId}
-                  thumbnailUrl={testimonial.thumbnailUrl}
                   title={testimonial.title}
                 />
               </motion.div>

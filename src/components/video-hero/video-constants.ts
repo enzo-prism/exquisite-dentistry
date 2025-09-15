@@ -15,9 +15,9 @@ export const VIDEO_TESTIMONIALS = [
     title: "Taylor Vasek Patient Testimonial"
   },
   {
-    vimeoId: "1088876675",
+    vimeoId: "1076745525",
     thumbnailUrl: "/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png",
-    title: "Christian Fernandez Patient Testimonial"
+    title: "Exquisite Dentistry Testimonial _ Christian Fernandez"
   },
   {
     vimeoId: "1088877336",
