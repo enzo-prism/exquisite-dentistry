@@ -4,7 +4,7 @@ import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Button } from '@/components/ui/button';
 import { transformationStories } from '@/data/transformationStories';
-import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
+import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
 
 const TransformationStoriesPage: React.FC = () => {
   return (
@@ -50,11 +50,9 @@ const TransformationStoriesPage: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   {/* Video Section */}
                   <div className="space-y-4">
-                    <UniversalVideoPlayer
-                      platform={caseStudy.videoType === 'youtube' ? 'youtube' : 'vimeo'}
-                      videoId={caseStudy.videoId}
+                    <SimpleTransformationEmbed
+                      vimeoId={caseStudy.videoId}
                       title={caseStudy.title}
-                      thumbnailUrl={caseStudy.thumbnailUrl}
                       className="w-full"
                     />
                   </div>
