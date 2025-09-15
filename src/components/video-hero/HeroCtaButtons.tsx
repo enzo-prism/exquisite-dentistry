@@ -12,6 +12,8 @@ interface CtaButtonsProps {
     text: string;
     href?: string;
     onClick?: () => void;
+    target?: string;
+    rel?: string;
   };
   secondaryCta?: {
     text: string;
@@ -52,8 +54,8 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
       return (
         <a 
           href={buttonHref} 
-          target="_blank" 
-          rel="noopener noreferrer"
+          target={primaryCta.target || "_blank"} 
+          rel={primaryCta.rel || "noopener noreferrer"}
           className={primaryButtonClass}
         >
           <ButtonContent />

@@ -181,8 +181,9 @@ const Services = () => {
         primaryCta={{
           text: "Book an Appointment",
           href: SCHEDULING_URL,
-          onClick: () => window.open(SCHEDULING_URL, '_blank')
-        }} 
+          target: "_blank",
+          rel: "noopener noreferrer"
+        }}
         overlayColor="gradient" 
         height="medium" 
         badgeText="EXCEPTIONAL DENTAL CARE" 

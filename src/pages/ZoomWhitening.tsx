@@ -155,7 +155,9 @@ const ZoomWhitening = () => {
           subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
           primaryCta={{
             text: "Schedule Whitening",
-            onClick: () => window.open('https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null', '_blank')
+            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            target: "_blank",
+            rel: "noopener noreferrer"
           }}
           secondaryCta={{
             text: "Contact Us",
@@ -321,9 +323,15 @@ const ZoomWhitening = () => {
                 <Button 
                   variant="default" 
                   size="lg"
-                  onClick={() => window.open('https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null', '_blank')}
+                  asChild
                 >
-                  Schedule Whitening
+                  <a 
+                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule Whitening
+                  </a>
                 </Button>
                 <Button 
                   variant="outline" 

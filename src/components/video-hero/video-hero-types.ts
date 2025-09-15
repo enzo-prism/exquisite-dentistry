@@ -13,6 +13,8 @@ export interface VideoHeroProps {
     text: string;
     href?: string;
     onClick?: () => void;
+    target?: string;
+    rel?: string;
   };
   secondaryCta?: {
     text: string;

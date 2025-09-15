@@ -145,7 +145,9 @@ const Veneers = () => {
           subtitle="Transform your smile with custom-crafted porcelain veneers designed to enhance your natural beauty"
           primaryCta={{
             text: "Schedule Consultation",
-            onClick: () => window.open('https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null', '_blank')
+            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            target: "_blank",
+            rel: "noopener noreferrer"
           }}
           secondaryCta={{
             text: "Contact Us",
@@ -321,9 +323,15 @@ const Veneers = () => {
                 <Button 
                   variant="default" 
                   size="lg"
-                  onClick={() => window.open('https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null', '_blank')}
+                  asChild
                 >
-                  Schedule Consultation
+                  <a 
+                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule Consultation
+                  </a>
                 </Button>
                 <Button 
                   variant="outline" 
