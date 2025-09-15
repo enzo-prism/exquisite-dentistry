@@ -14,19 +14,19 @@ declare global {
  * Call it in response to an action that should navigate to a URL.
  * Based on Google Ads conversion tracking snippet.
  */
-export function gtagSendEvent(url?: string): boolean {
+export function gtagSendEvent(url?: string, target?: string): boolean {
   // Ensure gtag is available
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available, redirecting immediately');
     if (url) {
-      window.location.href = url;
+      navigateToUrl(url, target);
     }
     return false;
   }
 
   const callback = function () {
     if (typeof url === 'string') {
-      window.location.href = url;
+      navigateToUrl(url, target);
     }
   };
 
@@ -51,9 +51,30 @@ export function gtagSendEvent(url?: string): boolean {
     console.error('Error sending Google Ads conversion event:', error);
     // Fallback: redirect immediately if tracking fails
     if (url) {
-      window.location.href = url;
+      navigateToUrl(url, target);
     }
     return false;
+  }
+}
+
+/**
+ * Helper function to navigate to URL with proper target handling
+ */
+function navigateToUrl(url: string, target?: string): void {
+  try {
+    if (target === '_blank') {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!newWindow) {
+        console.warn('Popup blocked, falling back to same tab navigation');
+        window.location.href = url;
+      }
+    } else {
+      window.location.href = url;
+    }
+  } catch (error) {
+    console.error('Error navigating to URL:', error);
+    // Final fallback
+    window.location.href = url;
   }
 }
 

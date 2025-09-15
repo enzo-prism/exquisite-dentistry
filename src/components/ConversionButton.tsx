@@ -39,16 +39,35 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
       if (trackConversion && href) {
         e.preventDefault();
         
-        // Send conversion event and handle navigation
-        const tracked = gtagSendEvent(href);
-        
-        // If tracking failed, navigate immediately
-        if (!tracked) {
-          if (target === '_blank') {
-            window.open(href, '_blank', rel || 'noopener noreferrer');
-          } else {
-            window.location.href = href;
+        // For new tab navigation, open immediately to avoid popup blockers
+        if (target === '_blank') {
+          try {
+            const newWindow = window.open(href, '_blank', rel || 'noopener,noreferrer');
+            if (newWindow) {
+              // Window opened successfully, send tracking event without callback
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', 'ads_conversion_Submit_lead_form_1', {
+                  'value': 1.0,
+                  'currency': 'USD',
+                  'custom_parameters': {
+                    'conversion_type': 'consultation_booking',
+                    'source_page': window.location.pathname,
+                    'timestamp': new Date().toISOString()
+                  }
+                });
+                console.log('Google Ads conversion event sent for new tab');
+              }
+            } else {
+              console.warn('Popup blocked, using fallback tracking navigation');
+              gtagSendEvent(href, target);
+            }
+          } catch (error) {
+            console.error('Error opening new tab:', error);
+            gtagSendEvent(href, target);
           }
+        } else {
+          // Same tab navigation - use tracking with callback
+          gtagSendEvent(href, target);
         }
       }
       
