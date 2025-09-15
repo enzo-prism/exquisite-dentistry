@@ -49,8 +49,8 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /invisalign-los-angeles.html /services/#invisalign 301
 /invisalign.html /services/#invisalign 301
 /z-test_value.html / 301
-/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
-/blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
+/5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301
+/blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301
 
 # High-traffic missing URLs from Google Search Console
 /blog/single-tooth-veneers-perfect-solutions /blog/single-tooth-veneers-guide 301
