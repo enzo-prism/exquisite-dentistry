@@ -18,17 +18,17 @@ const PracticeVideoSection: React.FC = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-            <div className="relative w-full aspect-video">
+            <div style={{padding: '56.25% 0 0 0', position: 'relative'}}>
               <iframe
-                src="https://player.vimeo.com/video/1076433847?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                width="100%"
-                height="100%"
+                src="https://player.vimeo.com/video/1076433847?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1"
                 frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                title="Exquisite Dentistry Practice Video"
-                className="absolute inset-0 w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
+                title="Exquisite Dentistry Dental Spa"
               ></iframe>
             </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
           </div>
         </div>
       </div>
