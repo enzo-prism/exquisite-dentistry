@@ -77,6 +77,8 @@ const DoctorIntroSection: React.FC = () => {
                 size="lg" 
                 className="px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
                 href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Schedule Consultation
               </ConversionButton>
