@@ -21,6 +21,10 @@ mkdir -p public/optimized
 echo "Optimizing images..."
 node scripts/optimize-images.js
 
+# Generate fresh sitemap with all dynamic content
+echo "Generating sitemap..."
+node scripts/generate-sitemap.js
+
 # Build the application with production optimizations
 echo "Building application..."
 npm run build
