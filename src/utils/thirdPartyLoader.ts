@@ -121,6 +121,16 @@ export function initializeGoogleAnalytics() {
   import('./googleAdsTracking').then(({ initializeGoogleAdsTracking }) => {
     initializeGoogleAdsTracking();
   }).catch(console.error);
+  
+  // Initialize UTM tracking
+  import('./utmTracking').then(({ initializeUTMTracking }) => {
+    initializeUTMTracking();
+  }).catch(console.error);
+  
+  // Initialize analytics validation in development
+  import('./analyticsValidation').then(({ initializeAnalyticsValidation }) => {
+    initializeAnalyticsValidation();
+  }).catch(console.error);
 }
 
 // Hotjar verification - check if loaded from HTML

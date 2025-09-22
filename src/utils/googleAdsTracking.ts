@@ -88,14 +88,25 @@ export function trackPhoneClick(phoneNumber: string): void {
   }
 
   try {
+    // Enhanced phone click tracking with more detailed attribution
     window.gtag('event', 'phone_click', {
       'event_category': 'engagement',
       'event_label': phoneNumber,
+      'value': 1,
       'custom_parameters': {
         'conversion_type': 'phone_contact',
         'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString()
+        'timestamp': new Date().toISOString(),
+        'user_agent': navigator.userAgent.substring(0, 100),
+        'referrer': document.referrer || 'direct'
       }
+    });
+
+    // Also track as potential Google Ads conversion
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-11373090310/phone_click',
+      'value': 1.0,
+      'currency': 'USD'
     });
 
     console.log('Phone click tracked:', phoneNumber);
@@ -105,29 +116,121 @@ export function trackPhoneClick(phoneNumber: string): void {
 }
 
 /**
+ * Track SMS clicks separately
+ */
+export function trackSMSClick(phoneNumber: string): void {
+  if (typeof window.gtag !== 'function') {
+    console.warn('Google Analytics gtag not available for SMS tracking');
+    return;
+  }
+
+  try {
+    window.gtag('event', 'sms_click', {
+      'event_category': 'engagement',
+      'event_label': phoneNumber,
+      'custom_parameters': {
+        'conversion_type': 'sms_contact',
+        'source_page': window.location.pathname,
+        'timestamp': new Date().toISOString()
+      }
+    });
+
+    console.log('SMS click tracked:', phoneNumber);
+  } catch (error) {
+    console.error('Error tracking SMS click:', error);
+  }
+}
+
+/**
  * Track form submissions as conversions
  */
-export function trackFormSubmission(formType: string): void {
+export function trackFormSubmission(formType: string, additionalData?: Record<string, any>): void {
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for form tracking');
     return;
   }
 
   try {
+    // Enhanced form submission tracking
     window.gtag('event', 'form_submission', {
       'event_category': 'engagement',
       'event_label': formType,
+      'value': 1,
       'custom_parameters': {
         'conversion_type': 'form_submission',
         'form_type': formType,
+        'source_page': window.location.pathname,
+        'timestamp': new Date().toISOString(),
+        'user_agent': navigator.userAgent.substring(0, 100),
+        'referrer': document.referrer || 'direct',
+        ...additionalData
+      }
+    });
+
+    // Also track as Google Ads conversion
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-11373090310/form_submission',
+      'value': 1.0,
+      'currency': 'USD'
+    });
+
+    console.log('Form submission tracked:', formType, additionalData);
+  } catch (error) {
+    console.error('Error tracking form submission:', error);
+  }
+}
+
+/**
+ * Track CTA button clicks
+ */
+export function trackCTAClick(ctaType: string, ctaText: string): void {
+  if (typeof window.gtag !== 'function') {
+    console.warn('Google Analytics gtag not available for CTA tracking');
+    return;
+  }
+
+  try {
+    window.gtag('event', 'cta_click', {
+      'event_category': 'engagement',
+      'event_label': `${ctaType}: ${ctaText}`,
+      'custom_parameters': {
+        'conversion_type': 'cta_interaction',
+        'cta_type': ctaType,
+        'cta_text': ctaText,
         'source_page': window.location.pathname,
         'timestamp': new Date().toISOString()
       }
     });
 
-    console.log('Form submission tracked:', formType);
+    console.log('CTA click tracked:', ctaType, ctaText);
   } catch (error) {
-    console.error('Error tracking form submission:', error);
+    console.error('Error tracking CTA click:', error);
+  }
+}
+
+/**
+ * Track service page views with enhanced attribution
+ */
+export function trackServicePageView(serviceName: string): void {
+  if (typeof window.gtag !== 'function') {
+    console.warn('Google Analytics gtag not available for service tracking');
+    return;
+  }
+
+  try {
+    window.gtag('event', 'service_page_view', {
+      'event_category': 'page_view',
+      'event_label': serviceName,
+      'custom_parameters': {
+        'service_name': serviceName,
+        'source_page': window.location.pathname,
+        'timestamp': new Date().toISOString()
+      }
+    });
+
+    console.log('Service page view tracked:', serviceName);
+  } catch (error) {
+    console.error('Error tracking service page view:', error);
   }
 }
 
