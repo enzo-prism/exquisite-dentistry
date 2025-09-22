@@ -142,7 +142,7 @@ const Veneers = () => {
         {/* Hero Section */}
         <VideoHero 
           title={<>Custom Porcelain Veneers - <span className="text-gold">Hollywood-Quality Smile Makeovers</span></>}
-          subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Beverly Hills smiles world-famous."
+          subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous."
           primaryCta={{
             text: "Schedule Veneer Consultation",
             href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
@@ -162,7 +162,7 @@ const Veneers = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                The Art of Smile Perfection - Beverly Hills Veneer Mastery
+                The Art of Smile Perfection - Los Angeles Veneer Mastery
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Our porcelain veneers represent the pinnacle of cosmetic dental artistry—ultra-thin shells of premium porcelain that are meticulously crafted to transform your smile while preserving your natural tooth structure. Unlike mass-produced alternatives, each veneer is individually designed by Dr. Aguil using advanced digital technology and hand-finished by master ceramists to achieve the perfect blend of strength, beauty, and luminosity that characterizes a truly exceptional smile.

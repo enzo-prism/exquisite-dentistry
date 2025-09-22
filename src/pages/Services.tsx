@@ -177,7 +177,7 @@ const Services = () => {
       <VideoHero 
         vimeoId="1076745525"
         title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
-        subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Beverly Hills practice combines artistic vision with cutting-edge technology to deliver exceptional results." 
+        subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
           text: "Explore Treatment Options",
           href: SCHEDULING_URL,
@@ -197,7 +197,7 @@ const Services = () => {
               <h2 className="heading-lg mb-4 sm:mb-6">Where Technology Meets Artistry - Comprehensive Dental Excellence</h2>
               <div className="separator"></div>
               <p className="paragraph mb-6 sm:mb-8">
-                Our Beverly Hills practice offers the complete spectrum of modern dentistry, from life-changing cosmetic transformations to advanced restorative procedures. Dr. Aguil's mastery of both traditional techniques and cutting-edge innovations ensures that every treatment delivers exceptional results. Whether you're seeking a subtle enhancement or a complete smile makeover, we provide personalized care that exceeds the highest standards of excellence.
+                Our Los Angeles practice near Beverly Hills offers the complete spectrum of modern dentistry, from life-changing cosmetic transformations to advanced restorative procedures. Dr. Aguil's mastery of both traditional techniques and cutting-edge innovations ensures that every treatment delivers exceptional results. Whether you're seeking a subtle enhancement or a complete smile makeover, we provide personalized care that exceeds the highest standards of excellence.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {serviceCategories.map((service) => (

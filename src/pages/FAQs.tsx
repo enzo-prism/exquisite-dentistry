@@ -86,7 +86,7 @@ const FAQs = () => {
       <div className="min-h-screen page-transition-in">
         <VideoHero
           title={<>Your Dental Questions Answered - <span className="text-gold">Patient Care Guide</span></>}
-          subtitle="Get comprehensive answers about our Beverly Hills practice, treatment procedures, insurance coverage, and what to expect during your luxury dental experience."
+          subtitle="Get comprehensive answers about our Los Angeles practice near Beverly Hills, treatment procedures, insurance coverage, and what to expect during your luxury dental experience."
           primaryCta={{ text: "Schedule Your First Visit", href: SCHEDULING_URL }}
           badgeText="PATIENT GUIDANCE"
           height="medium"

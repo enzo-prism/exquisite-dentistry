@@ -71,8 +71,8 @@ const IndexPage: React.FC = () => {
       />
       
       <VideoHero
-        title={<>Beverly Hills' Premier <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="Transform your smile at Los Angeles' most trusted cosmetic dentistry practice. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil." 
+        title={<>Los Angeles' Premier <span className="text-gold">Cosmetic Dentist</span></>} 
+        subtitle="Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil." 
         primaryCta={{
           text: "Schedule a Consultation",
           href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
@@ -233,10 +233,10 @@ const IndexPage: React.FC = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Where Celebrity Smiles Are Made - Beverly Hills Excellence
+                Where Celebrity Smiles Are Made - Los Angeles Excellence
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Located in the heart of Beverly Hills, Exquisite Dentistry is where A-list celebrities, industry executives, and discerning patients come for unparalleled cosmetic dental artistry. Dr. Alexie Aguil's exclusive practice combines cutting-edge technology with old-world craftsmanship to create the stunning, natural-looking smiles that define Hollywood glamour.
+                Located in Los Angeles near Beverly Hills, Exquisite Dentistry is where A-list celebrities, industry executives, and discerning patients come for unparalleled cosmetic dental artistry. Dr. Alexie Aguil's exclusive practice combines cutting-edge technology with old-world craftsmanship to create the stunning, natural-looking smiles that define Hollywood glamour.
               </p>
             </div>
             
@@ -246,7 +246,7 @@ const IndexPage: React.FC = () => {
                   Why Choose Exquisite Dentistry?
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Located in the heart of Beverly Hills, our practice combines advanced dental 
+                  Located in Los Angeles, conveniently serving Beverly Hills and the surrounding area, our practice combines advanced dental 
                   technology with artistic vision to create stunning, natural-looking smile 
                   transformations. Dr. Aguil's expertise in cosmetic dentistry has made her 
                   the trusted choice for patients throughout Los Angeles, West Hollywood, 
@@ -302,7 +302,7 @@ const IndexPage: React.FC = () => {
                 Advanced Technology for Superior Results
               </h3>
               <p className="text-muted-foreground text-center mb-6">
-                Our Beverly Hills practice features cutting-edge dental technology including 
+                Our Los Angeles practice near Beverly Hills features cutting-edge dental technology including 
                 digital X-rays, 3D imaging, computer-guided treatment planning, and same-day 
                 crown technology. This advanced equipment allows for more precise diagnoses, 
                 comfortable treatments, and exceptional results.
