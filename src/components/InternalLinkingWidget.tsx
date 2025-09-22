@@ -57,7 +57,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/wedding',
             description: 'Perfect veneers for your special day',
             category: 'special',
-            priority: 4,
+            priority: 6,
             seasonal: true
           },
           {
@@ -98,7 +98,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/graduation',
             description: 'Straighten your smile before graduation',
             category: 'special',
-            priority: 4,
+            priority: 6,
             seasonal: true
           }
         ];
@@ -124,7 +124,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/wedding',
             description: 'Brighten your smile for your wedding day',
             category: 'special',
-            priority: 3,
+            priority: 5,
             seasonal: true
           },
           {
@@ -285,7 +285,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/wedding',
             description: 'Perfect smile for your special day',
             category: 'special',
-            priority: 3,
+            priority: 5,
             seasonal: true
           },
           {
@@ -293,7 +293,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/graduation',
             description: 'Look your best for graduation photos',
             category: 'special',
-            priority: 4,
+            priority: 6,
             seasonal: true
           },
           {
@@ -343,7 +343,12 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     .filter(link => !currentPage.includes(link.href))
     .sort((a, b) => (a.priority || 99) - (b.priority || 99));
   
-  const displayLinks = variant === 'compact' ? links.slice(0, 3) : 
+  // Filter out seasonal/special links for compact variant to reduce over-promotion
+  const filteredLinks = variant === 'compact' 
+    ? links.filter(link => !link.seasonal && link.category !== 'special')
+    : links;
+  
+  const displayLinks = variant === 'compact' ? filteredLinks.slice(0, 3) : 
                       variant === 'sidebar' ? links.slice(0, 4) : links;
 
   const getCategoryIcon = (category: string) => {

@@ -179,6 +179,9 @@ const Wedding = () => {
                 <p className="text-lg text-black-light mb-6">
                   Your wedding day is one of the most photographed days of your life. Every smile, every laugh, every moment of joy will be captured forever. Our specialized wedding smile treatments ensure that your confidence shines through in every photo, creating memories you'll treasure for a lifetime.
                 </p>
+                <p className="text-md text-gray-500 mb-6">
+                  Serving couples getting married at premier Los Angeles venues including The Beverly Hills Hotel, Chateau Marmont, The London West Hollywood, Vibiana, and throughout Beverly Hills, West Hollywood, and Santa Monica.
+                </p>
                 <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                   <Button>Schedule Your Wedding Smile Consultation</Button>
                 </a>
@@ -302,6 +305,58 @@ const Wedding = () => {
                 <h3 className="text-xl font-medium mb-3">Guaranteed Results</h3>
                 <p className="text-black-light">
                   We're committed to ensuring you're completely satisfied with your smile transformation before your wedding day.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Wedding Smile FAQ Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Wedding Smile Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Everything you need to know about perfecting your smile for your wedding day
+              </p>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  How far in advance should I start my wedding smile treatment?
+                </h3>
+                <p className="text-gray-600">
+                  We recommend starting 6-12 months before your wedding for major transformations like veneers or orthodontics. For teeth whitening, 2-4 weeks is sufficient. We work with your wedding timeline to ensure perfect results.
+                </p>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  What if I need emergency dental work before my wedding?
+                </h3>
+                <p className="text-gray-600">
+                  Dr. Aguil offers priority scheduling for wedding emergencies. We understand the stress of last-minute dental issues and provide same-day solutions to ensure your smile is perfect for your special day.
+                </p>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Do you work with couples planning destination weddings?
+                </h3>
+                <p className="text-gray-600">
+                  Absolutely! Many of our Beverly Hills clients are planning weddings in Napa Valley, Big Sur, Hawaii, and international destinations. We coordinate treatment timelines to be completed well before your travel date.
+                </p>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Can you coordinate treatment for both bride and groom?
+                </h3>
+                <p className="text-gray-600">
+                  Yes! We offer couple packages and can schedule complementary appointments. Many grooms opt for teeth whitening or minor cosmetic adjustments to look their best alongside their bride.
                 </p>
               </div>
             </div>

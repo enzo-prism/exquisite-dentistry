@@ -143,6 +143,9 @@ const Graduation = () => {
                 <p className="text-lg text-black-light mb-6">
                   Your graduation photos will be cherished for a lifetime. Our specialized dental treatments ensure your smile is as bright and confident as your future. From quick touch-ups to comprehensive smile makeovers, we have solutions that fit your timeline and budget.
                 </p>
+                <p className="text-md text-gray-500 mb-6">
+                  Perfect timing for UCLA (June), USC (May), LMU (May), and local high school graduations throughout Los Angeles County. We coordinate with your academic schedule for stress-free treatment.
+                </p>
                 <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                   <Button>Schedule Your Grad Smile Consultation</Button>
                 </a>
@@ -227,6 +230,76 @@ const Graduation = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Graduation Smile FAQ Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Graduation Smile Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Common questions about perfecting your smile for graduation
+              </p>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  How soon before graduation should I start treatment?
+                </h3>
+                <p className="text-gray-600">
+                  For quick fixes like teeth whitening or bonding, 2-4 weeks is perfect. For more comprehensive treatments like veneers, start 2-3 months before your ceremony to allow for proper healing and adjustments.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Do you offer student discounts for graduation treatments?
+                </h3>
+                <p className="text-gray-600">
+                  Yes! We understand the financial considerations for students and recent graduates. We offer special graduation packages and flexible payment plans to make your perfect smile affordable.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Can I schedule around my final exams and graduation events?
+                </h3>
+                <p className="text-gray-600">
+                  Absolutely! We work around your academic schedule, offering early morning and evening appointments. Our Beverly Hills location is convenient for UCLA, USC, and other LA area students.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  What if I'm starting a new job after graduation?
+                </h3>
+                <p className="text-gray-600">
+                  Perfect timing! Many graduates invest in their smile as they transition to their professional careers. A confident smile is a valuable asset in job interviews and your new workplace.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-gradient-to-r from-gray-50 to-white py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Ready to Graduate with Confidence?
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Your achievement deserves to be celebrated with a smile you're proud of. Schedule your graduation smile consultation today.
+            </p>
+            <Button 
+              size="lg" 
+              className="bg-gold hover:bg-gold-dark text-white px-8 py-4 text-lg font-semibold"
+              onClick={() => window.open(SCHEDULING_URL, '_blank')}
+            >
+              Book Your Graduation Smile Consultation
+            </Button>
           </div>
         </section>
       </div>

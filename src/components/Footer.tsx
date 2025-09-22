@@ -181,21 +181,28 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/wedding" className="text-gray-300 hover:text-white transition-colors flex items-center group">
-                  <span className="group-hover:translate-x-1 transition-transform">Wedding Smiles</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/graduation" className="text-gray-300 hover:text-white transition-colors flex items-center group">
-                  <span className="group-hover:translate-x-1 transition-transform">Graduation Ready</span>
-                </Link>
-              </li>
-              <li>
                 <Link to="/sitemap" className="text-gray-300 hover:text-white transition-colors flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform">Site Map</span>
                 </Link>
               </li>
             </ul>
+            
+            {/* Special Services - Separated Section */}
+            <div className="mt-8 pt-6 border-t border-gray-800">
+              <h4 className="text-lg font-medium mb-4 text-gray-400">Special Services</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/wedding" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Wedding Smiles</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/graduation" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Graduation Ready</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </motion.div>
 
           {/* Contact Information */}
