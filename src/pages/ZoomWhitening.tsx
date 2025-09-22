@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +10,7 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const ZoomWhitening = () => {
@@ -336,10 +338,22 @@ const ZoomWhitening = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  onClick={() => window.location.href = '/contact'}
+                  asChild
                 >
-                  View Our Contact Information
+                  <Link to="/contact">
+                    Contact Us
+                  </Link>
                 </Button>
+              </div>
+
+              {/* Additional Internal Links near CTA */}
+              <div className="mt-12 pt-8 border-t border-muted">
+                <InternalLinkingWidget 
+                  context="whitening" 
+                  variant="compact"
+                  currentPage="/zoom-whitening"
+                  title="Explore Related Services"
+                />
               </div>
             </div>
           </div>

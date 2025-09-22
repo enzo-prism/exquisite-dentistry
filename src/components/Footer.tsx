@@ -1,19 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from './ui/separator';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/use-scroll-animations';
+import PhoneLink from '@/components/PhoneLink';
+import { 
+  PHONE_NUMBER_DISPLAY, 
+  EMAIL, 
+  ADDRESS, 
+  SOCIAL_MEDIA, 
+  BUSINESS_HOURS 
+} from '@/constants/contact';
+import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
-
-// Social media URLs
-const SOCIAL_URLS = {
-  FACEBOOK: "https://www.facebook.com/ExquisiteDentistry/",
-  INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/"
-};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -90,7 +93,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <motion.a 
-                href={SOCIAL_URLS.INSTAGRAM} 
+                href={generateUTMUrl(SOCIAL_MEDIA.instagram, UTM_PARAMETERS.socialMedia.instagram)} 
                 className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full micro-glow" 
                 aria-label="Follow us on Instagram"
                 target="_blank"
@@ -101,7 +104,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </motion.a>
               <motion.a 
-                href={SOCIAL_URLS.FACEBOOK} 
+                href={generateUTMUrl(SOCIAL_MEDIA.facebook, UTM_PARAMETERS.socialMedia.facebook)} 
                 className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full micro-glow" 
                 aria-label="Follow us on Facebook"
                 target="_blank"
@@ -110,6 +113,17 @@ const Footer = () => {
                 whileTap={{ scale: 0.9 }}
               >
                 <Facebook size={20} />
+              </motion.a>
+              <motion.a 
+                href={generateUTMUrl(SOCIAL_MEDIA.youtube, UTM_PARAMETERS.socialMedia.youtube)} 
+                className="bg-gray-800 hover:bg-gold transition-colors p-3 rounded-full micro-glow" 
+                aria-label="Follow us on YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Youtube size={20} />
               </motion.a>
             </div>
           </motion.div>
@@ -213,7 +227,14 @@ const Footer = () => {
                 <MapPin size={20} className="text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-white font-medium">Our Location</p>
-                  <p className="text-gray-300">6227 Wilshire Blvd<br />Los Angeles, CA 90048</p>
+                  <a 
+                    href={generateUTMUrl('https://maps.google.com/maps?q=6227+Wilshire+Blvd,+Los+Angeles,+CA+90048', UTM_PARAMETERS.googleBusinessProfile)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {ADDRESS}
+                  </a>
                 </div>
               </div>
               
@@ -221,9 +242,12 @@ const Footer = () => {
                 <Phone size={20} className="text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-white font-medium">Call Us</p>
-                  <a href="tel:+13232722388" className="text-gray-300 hover:text-white transition-colors">
-                    (323) 272-2388
-                  </a>
+                  <PhoneLink 
+                    phoneNumber={PHONE_NUMBER_DISPLAY} 
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {PHONE_NUMBER_DISPLAY}
+                  </PhoneLink>
                 </div>
               </div>
               
@@ -231,8 +255,8 @@ const Footer = () => {
                 <Mail size={20} className="text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-white font-medium">Email Us</p>
-                  <a href="mailto:info@exquisitedentistryla.com" className="text-gray-300 hover:text-white transition-colors">
-                    info@exquisitedentistryla.com
+                  <a href={`mailto:${EMAIL}`} className="text-gray-300 hover:text-white transition-colors">
+                    {EMAIL}
                   </a>
                 </div>
               </div>
@@ -242,8 +266,13 @@ const Footer = () => {
                 <div>
                   <p className="text-white font-medium">Office Hours</p>
                   <div className="text-gray-300 text-sm space-y-1">
-                    <div>Mon-Thu: 8AM-6PM</div>
-                    <div>Fri-Sun: Closed</div>
+                    <div>{BUSINESS_HOURS.monday}</div>
+                    <div>{BUSINESS_HOURS.tuesday}</div>
+                    <div>{BUSINESS_HOURS.wednesday}</div>
+                    <div>{BUSINESS_HOURS.thursday}</div>
+                    <div>{BUSINESS_HOURS.friday}</div>
+                    <div>{BUSINESS_HOURS.saturday}</div>
+                    <div>{BUSINESS_HOURS.sunday}</div>
                   </div>
                 </div>
               </div>

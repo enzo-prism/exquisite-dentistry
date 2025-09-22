@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -334,10 +335,22 @@ const Veneers = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  onClick={() => window.location.href = '/contact'}
+                  asChild
                 >
-                  Contact Us
+                  <Link to="/contact">
+                    Contact Us
+                  </Link>
                 </Button>
+              </div>
+
+              {/* Additional Internal Links near CTA */}
+              <div className="mt-12 pt-8 border-t border-muted">
+                <InternalLinkingWidget 
+                  context="veneer" 
+                  variant="compact"
+                  currentPage="/veneers"
+                  title="Explore Related Services"
+                />
               </div>
             </div>
           </div>

@@ -265,13 +265,18 @@ const Services = () => {
                   ))}
                 </div>
                 
-                <div className="pt-4">
+                 <div className="pt-4 flex flex-col gap-3">
                   <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="group">
                       Schedule a Consultation
                       <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </a>
+                  <Link to="/contact">
+                    <Button variant="outline" size="sm">
+                      Contact Us
+                    </Button>
+                  </Link>
                 </div>
               </div>
               
