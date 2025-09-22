@@ -240,7 +240,7 @@ const TransformationStoryPage: React.FC = () => {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href="tel:(323) 272-2388">
+              <a href="tel:+13232722388">
                 Call the Office
               </a>
             </Button>

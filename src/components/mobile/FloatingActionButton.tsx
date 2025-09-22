@@ -36,13 +36,13 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
     {
       icon: Phone,
       label: 'Call Now',
-      href: 'tel:+13104752828',
+      href: 'tel:+13232722388',
       color: 'bg-green-500 hover:bg-green-600'
     },
     {
       icon: MessageSquare,
       label: 'Text Us',
-      href: 'sms:+13104752828',
+      href: 'sms:+13232722388',
       color: 'bg-blue-500 hover:bg-blue-600'
     },
     {
