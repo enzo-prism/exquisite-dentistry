@@ -42,8 +42,8 @@ const Wedding = () => {
         }]}
       />
       <PageSEO
-        title="Wedding Smile Makeover Los Angeles | Perfect Bridal Dentistry"
-        description="Get the perfect wedding smile with our specialized bridal dentistry packages in Los Angeles. Teeth whitening, veneers, and smile makeovers for your special day. Book consultation!"
+        title="Bridal Smile Makeover LA | Perfect Wedding Dentistry"
+        description="Perfect bridal smile makeovers in Los Angeles. Quick treatments before your big day: whitening, veneers, bonding. Book your bridal consultation!"
         keywords="wedding smile makeover, bridal dentistry Los Angeles, wedding teeth whitening, bridal veneers, perfect wedding smile, cosmetic dentistry for brides"
         path="/wedding"
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

@@ -86,8 +86,8 @@ const Veneers = () => {
   return (
     <>
       <PageSEO
-        title="Porcelain Veneers Los Angeles | Custom Smile Makeovers | Exquisite Dentistry"
-        description="Custom porcelain veneers designed for a natural, brighter smile. Precise planning, minimal prep and beautiful results from our Los Angeles practice."
+        title="Porcelain Veneers Los Angeles | Custom Smile Design"
+        description="Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available."
         keywords="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers"
         path="/veneers"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

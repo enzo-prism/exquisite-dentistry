@@ -26,8 +26,8 @@ const SmileGallery = () => {
       <MasterStructuredData includeBusiness={true} />
       <ImageGalleryStructuredData galleryType="smile-transformations" />
       <PageSEO
-        title="Before & After Smile Gallery Los Angeles | Real Patient Results"
-        description="View stunning before and after photos of smile transformations by Dr. Alexie Aguil. See real results from porcelain veneers and cosmetic dental treatments."
+        title="Before & After Gallery | LA Smile Transformations"
+        description="View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA."
         keywords="smile gallery Los Angeles, before after dental photos, smile transformation results, porcelain veneers before after, cosmetic dentistry results, patient transformations"
         path="/smile-gallery"
       />

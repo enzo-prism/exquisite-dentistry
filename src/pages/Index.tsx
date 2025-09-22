@@ -63,8 +63,8 @@ const IndexPage: React.FC = () => {
         includeReviews={true}
       />
       <PageSEO 
-        title="Best Cosmetic Dentist Los Angeles | Exquisite Dentistry Dr. Alexie Aguil"
-        description="Cosmetic and restorative dentistry in Los Angeles by Dr. Alexie Aguil—veneers, whitening, Invisalign and more. Concierge care and comfortable visits."
+        title="Los Angeles Premier Cosmetic Dentist | Dr. Aguil"
+        description="Transform your smile with Los Angeles' most trusted cosmetic dentist. Dr. Aguil delivers Hollywood-quality results in a spa-like setting. Book today!"
         keywords="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry"
         path=""
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

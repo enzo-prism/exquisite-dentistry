@@ -42,8 +42,8 @@ const About = () => {
         }]}
       />
       <PageSEO
-        title="About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles"
-        description="Meet Dr. Alexie Aguil and our team. We combine modern cosmetic techniques with gentle, personalized care to create natural, long-lasting smiles in Los Angeles."
+        title="Dr. Alexie Aguil | Award-Winning LA Cosmetic Dentist"
+        description="Meet Dr. Alexie Aguil, Los Angeles' award-winning cosmetic dentist with 15+ years creating celebrity smiles. Artistic vision meets gentle care."
         keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"
         path="/about"
       />

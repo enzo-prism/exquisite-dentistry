@@ -151,8 +151,8 @@ const Services = () => {
       />
       
       <PageSEO
-        title="Cosmetic Dental Services Los Angeles | Veneers, Whitening & More"
-        description="Explore our cosmetic and restorative services—porcelain veneers, teeth whitening, Invisalign, crowns and implants—tailored to your goals in Los Angeles."
+        title="Cosmetic Dentistry LA | Veneers, Whitening, Implants"
+        description="Complete cosmetic dentistry in LA: porcelain veneers, Zoom whitening, Invisalign & implants. Advanced techniques, natural results. Call today!"
         keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
         path="/services"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

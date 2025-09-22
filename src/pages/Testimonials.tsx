@@ -72,8 +72,8 @@ const TestimonialsPage: React.FC = () => {
         ]}
       />
       <PageSEO
-        title="Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles"
-        description="Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Real results, real smiles."
+        title="Patient Reviews LA | Real Cosmetic Dentistry Results"
+        description="Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles."
         keywords="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews"
         path="/testimonials"
         ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

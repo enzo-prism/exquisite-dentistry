@@ -91,8 +91,8 @@ const Contact = () => {
         }]}
       />
       <PageSEO 
-        title="Contact Exquisite Dentistry Los Angeles | Schedule Your Appointment"
-        description="Schedule an appointment with Exquisite Dentistry in Los Angeles. Call (323) 272-2388 or book online. Easy parking and convenient hours."
+        title="Schedule Appointment | Exquisite Dentistry LA"
+        description="Schedule your consultation with Dr. Aguil in Los Angeles. Convenient Wilshire Blvd location, flexible hours. Call (323) 272-2388 or book online!"
         keywords="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd"
         path="/contact"
       />

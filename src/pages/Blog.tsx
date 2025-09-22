@@ -48,8 +48,8 @@ const Blog = () => {
       <BlogListingStructuredData posts={allPosts} />
       
       <PageSEO
-        title="Dental Blog | Expert Insights & Latest Techniques | Exquisite Dentistry"
-        description="Expert dental insights, tips, and the latest cosmetic dentistry techniques from Dr. Alexie Aguil. Learn about veneers, whitening, and smile makeovers."
+        title="Dental Expert Insights | LA Cosmetic Dentistry Blog"
+        description="Expert dental insights from Dr. Aguil. Learn about veneers, whitening, oral health tips, and the latest cosmetic dentistry innovations in LA."
         keywords="dental blog, cosmetic dentistry, oral health, dental tips, Dr. Alexie Aguil, dental expert insights, Beverly Hills dentist"
         path="/blog"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

@@ -19,8 +19,8 @@ const Graduation = () => {
     <>
       <GraduationServiceStructuredData />
       <PageSEO 
-        title="Graduation Smile Makeover Los Angeles | Student Dental Packages"
-        description="Look your best for graduation photos with our quick cosmetic dental treatments in Los Angeles. Teeth whitening, bonding, and smile makeovers perfect for graduates. Book now!"
+        title="Graduation Smile Prep LA | Student Dental Packages"
+        description="Graduate with confidence! Quick cosmetic dental treatments in LA: whitening, bonding, minor adjustments. Student-friendly packages available."
         keywords="graduation smile makeover, student dental packages, graduation teeth whitening, quick cosmetic dentistry, student discounts dental, graduation photo smile"
         path="/graduation"
       />

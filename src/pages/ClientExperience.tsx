@@ -67,8 +67,8 @@ const ClientExperience = () => {
   return (
     <>
       <PageSEO 
-        title="Luxury Dental Experience Los Angeles | Spa-Like Comfort & Care"
-        description="Experience luxury dental care in Los Angeles with spa-like amenities, advanced technology, and personalized comfort. Redefining dental visits at Exquisite Dentistry."
+        title="Luxury Dental Spa LA | Comfort-Focused Dentistry"
+        description="Experience luxury dental care in LA with spa amenities, sedation options, and personalized comfort. Redefining dental visits for anxious patients."
         keywords="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa"
         path="/client-experience"
       />

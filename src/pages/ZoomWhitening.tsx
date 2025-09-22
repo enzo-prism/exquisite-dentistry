@@ -120,8 +120,8 @@ const ZoomWhitening = () => {
         }]}
       />
       <PageSEO
-        title="Zoom Teeth Whitening Los Angeles | Professional Whitening | Exquisite Dentistry"
-        description="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results at Exquisite Dentistry."
+        title="Zoom Whitening LA | Professional Teeth Whitening"
+        description="Professional Zoom whitening in LA brightens teeth 8+ shades in one visit. Safe, effective, immediate results. Special offers available now!"
         keywords="Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile"
         path="/zoom-whitening"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
