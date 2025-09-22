@@ -10,6 +10,7 @@ import VideoHero from '@/components/VideoHero';
 import { usePerformance } from '@/hooks/use-performance';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -43,6 +44,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <MasterStructuredData includeBusiness={true} includeWebsite={true} />
       <BlogListingStructuredData posts={allPosts} />
       
       <PageSEO

@@ -36,25 +36,14 @@ const OfferStructuredData: React.FC<OfferStructuredDataProps> = ({
     ...(validFrom && { validFrom: validFrom }),
     ...(validThrough && { validThrough: validThrough }),
     seller: {
-      '@type': 'DentistPractice',
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     itemOffered: {
       '@type': 'Service',
       name: offerName,
       description: description,
       provider: {
-        '@type': 'DentistPractice',
-        name: 'Exquisite Dentistry'
+        '@id': 'https://exquisitedentistryla.com/#business'
       }
     },
     availability: 'https://schema.org/InStock',

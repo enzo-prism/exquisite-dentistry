@@ -11,9 +11,7 @@ const DoctorStructuredData: React.FC = () => {
     image: 'https://exquisitedentistryla.com/lovable-uploads/2c190bb5-bec9-4315-b3d6-242677c1a66d.png',
     url: 'https://exquisitedentistryla.com/about/',
     worksFor: {
-      '@type': 'DentistPractice',
-      name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com/'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     address: {
       '@type': 'PostalAddress',

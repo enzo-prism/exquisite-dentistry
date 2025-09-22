@@ -12,6 +12,7 @@ import PatientTransformationCard from '@/components/PatientTransformation';
 import { closeUpTransformations } from '@/data/closeUpTransformations';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const SmileGallery = () => {
 
   return (
     <>
+      <MasterStructuredData includeBusiness={true} />
       <ImageGalleryStructuredData galleryType="smile-transformations" />
       <PageSEO
         title="Before & After Smile Gallery Los Angeles | Real Patient Results"

@@ -106,7 +106,9 @@ export const MASTER_BUSINESS_ENTITY = {
   logo: 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png',
   sameAs: [
     'https://www.instagram.com/exquisitedentistryLA',
-    'https://www.facebook.com/exquisitedentistryLA'
+    'https://www.facebook.com/exquisitedentistryLA',
+    'https://www.yelp.com/biz/exquisite-dentistry-los-angeles',
+    'https://maps.google.com/ExquisiteDentistryLA'
   ]
 };
 

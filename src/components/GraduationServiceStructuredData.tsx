@@ -9,17 +9,7 @@ const GraduationServiceStructuredData: React.FC = () => {
     description: 'Quick cosmetic dental treatments designed specifically for graduates to look their best in graduation photos and celebrations',
     url: 'https://exquisitedentistryla.com/graduation/',
     provider: {
-      '@type': 'DentistPractice',
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     procedureType: 'Cosmetic Dentistry',
     bodyLocation: {
@@ -46,8 +36,7 @@ const GraduationServiceStructuredData: React.FC = () => {
       '@type': 'Service',
       name: 'Graduation Smile Makeover',
       provider: {
-        '@type': 'DentistPractice',
-        name: 'Exquisite Dentistry'
+        '@id': 'https://exquisitedentistryla.com/#business'
       }
     },
     availableAtOrFrom: {

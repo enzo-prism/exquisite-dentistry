@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
-import ClientExperienceStructuredData from '@/components/ClientExperienceStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { PageSEO } from '@/components/seo/PageSEO';
 
 // Scheduling URL constant
@@ -72,7 +72,18 @@ const ClientExperience = () => {
         keywords="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa"
         path="/client-experience"
       />
-      <ClientExperienceStructuredData />
+      <MasterStructuredData 
+        includeBusiness={true} 
+        additionalSchemas={[{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Luxury Dental Experience',
+          description: 'Comprehensive dental care delivered in a spa-like environment with advanced technology and personalized comfort',
+          provider: { '@id': 'https://exquisitedentistryla.com/#business' },
+          serviceType: 'Luxury Dental Care',
+          areaServed: { '@type': 'City', name: 'Los Angeles' }
+        }]} 
+      />
 
       <div className="min-h-screen page-transition-in">
         <VideoHero

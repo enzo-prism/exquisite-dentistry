@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 const ClientExperienceStructuredData: React.FC = () => {
   const organizationData = {
     '@context': 'https://schema.org',
-    '@type': 'DentistPractice',
+    '@type': ['LocalBusiness', 'Dentist'],
     name: 'Exquisite Dentistry',
     alternateName: 'Exquisite Dentistry LA',
     description: 'Luxury dental practice offering spa-like comfort and advanced cosmetic dentistry in Los Angeles',
@@ -77,8 +77,7 @@ const ClientExperienceStructuredData: React.FC = () => {
     name: 'Luxury Dental Experience',
     description: 'Comprehensive dental care delivered in a spa-like environment with advanced technology and personalized comfort',
     provider: {
-      '@type': 'DentistPractice',
-      name: 'Exquisite Dentistry'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     serviceType: 'Luxury Dental Care',
     areaServed: {

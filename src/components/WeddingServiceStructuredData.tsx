@@ -10,17 +10,7 @@ const WeddingServiceStructuredData: React.FC = () => {
     url: 'https://exquisitedentistryla.com/wedding/',
     image: 'https://exquisitedentistryla.com/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png',
     provider: {
-      '@type': 'DentistPractice',
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     serviceType: 'Wedding Dentistry',
     category: 'Cosmetic Dentistry',
