@@ -141,17 +141,17 @@ const Veneers = () => {
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <VideoHero 
-          title="Porcelain Veneers"
-          subtitle="Transform your smile with custom-crafted porcelain veneers designed to enhance your natural beauty"
+          title={<>Custom Porcelain Veneers - <span className="text-gold">Hollywood-Quality Smile Makeovers</span></>}
+          subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Beverly Hills smiles world-famous."
           primaryCta={{
-            text: "Schedule Consultation",
+            text: "Schedule Veneer Consultation",
             href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
             target: "_blank",
             rel: "noopener noreferrer"
           }}
           secondaryCta={{
-            text: "Contact Us",
-            href: "/contact"
+            text: "View Before & After Gallery",
+            href: "/smile-gallery"
           }}
           height="medium"
         />
@@ -162,12 +162,10 @@ const Veneers = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Your Perfect Smile Awaits
+                The Art of Smile Perfection - Beverly Hills Veneer Mastery
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Porcelain veneers are ultra-thin, custom-made shells that cover the front surface of your teeth, 
-                instantly transforming your smile. Our expertly crafted veneers correct imperfections while 
-                maintaining the natural beauty and strength of your teeth.
+                Our porcelain veneers represent the pinnacle of cosmetic dental artistry—ultra-thin shells of premium porcelain that are meticulously crafted to transform your smile while preserving your natural tooth structure. Unlike mass-produced alternatives, each veneer is individually designed by Dr. Aguil using advanced digital technology and hand-finished by master ceramists to achieve the perfect blend of strength, beauty, and luminosity that characterizes a truly exceptional smile.
               </p>
             </div>
           </div>

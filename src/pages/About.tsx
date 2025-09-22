@@ -50,14 +50,14 @@ const About = () => {
 
       {/* Hero Section with VideoHero */}
       <VideoHero
-        title={<>Meet Dr. Alexie <span className="text-gold">Aguil</span></>}
-        subtitle="Discover the passion, expertise, and commitment behind Exquisite Dentistry and Dr. Aguil's approach to exceptional dental care."
+        title={<>Meet Dr. Alexie Aguil - <span className="text-gold">Award-Winning Cosmetic Dentist</span></>}
+        subtitle="Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years."
         primaryCta={{ 
-          text: "Schedule a Consultation" 
+          text: "Schedule a Personal Consultation" 
         }}
-        secondaryCta={{ text: "Explore Services", href: "/services" }}
+        secondaryCta={{ text: "View Credentials", href: "/services" }}
         height="medium"
-        badgeText="ABOUT US"
+        badgeText="MEET THE DOCTOR"
         scrollIndicator={true}
       />
 
@@ -68,19 +68,19 @@ const About = () => {
             {/* Content Column */}
             <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
-                A Unique Approach to Cosmetic Dentistry
+                The Artist Behind Beverly Hills' Most Beautiful Smiles
               </h2>
               
               <p className="text-base sm:text-lg text-black-light">
-                At Exquisite Dentistry, Dr. Alexie Aguil has reimagined what a dental visit can be. His patient-centric approach ensures that each patient receives not only exceptional clinical care but also a comfortable, personalized experience.
+                Dr. Alexie Aguil didn't just become a dentist—he became an artist who happens to work in dentistry. His Beverly Hills practice represents the pinnacle of cosmetic dental artistry, where each smile is meticulously crafted as a unique work of art. Dr. Aguil's philosophy centers on the belief that exceptional dentistry requires both technical mastery and an artist's eye for beauty, proportion, and harmony.
               </p>
               
               <p className="text-base sm:text-lg text-black-light">
-                With over 15 years of experience and extensive training in advanced cosmetic techniques, Dr. Aguil brings artistry and precision to every smile transformation. He has worked with numerous celebrities, professionals, and patients seeking the highest quality dental care.
+                Trained at prestigious institutions and mentored by the world's leading cosmetic dentists, Dr. Aguil has spent over 15 years perfecting techniques that preserve maximum tooth structure while achieving dramatic aesthetic improvements. His celebrity clientele includes A-list actors, musicians, and industry leaders who trust him with their most valuable asset—their smile.
               </p>
               
               <p className="text-base sm:text-lg text-black-light">
-                Dr. Aguil's commitment to continuing education and investment in cutting-edge technology ensures that his patients benefit from the latest advancements in dental science and techniques.
+                Beyond his technical expertise, Dr. Aguil is known for his meticulous attention to detail and commitment to patient comfort. His practice features a spa-like environment with amenities typically found in five-star resorts, because he believes that exceptional dental care should be delivered in an atmosphere of luxury and relaxation.
               </p>
               
               <div className="pt-4 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">

@@ -176,17 +176,17 @@ const Services = () => {
       
       <VideoHero 
         vimeoId="1076745525"
-        title={<>Our <span className="text-gold">Services</span></>} 
-        subtitle="Exquisite Dentistry offers a complete range of cosmetic, restorative, and general dental services in Los Angeles." 
+        title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
+        subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Beverly Hills practice combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
-          text: "Book an Appointment",
+          text: "Explore Treatment Options",
           href: SCHEDULING_URL,
           target: "_blank",
           rel: "noopener noreferrer"
         }}
         overlayColor="gradient" 
         height="medium" 
-        badgeText="EXCEPTIONAL DENTAL CARE" 
+        badgeText="COMPREHENSIVE DENTAL EXCELLENCE" 
         scrollIndicator={false} 
       />
 
@@ -194,10 +194,10 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white shadow-xl rounded-sm p-6 sm:p-8 md:p-12 lg:p-16">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="heading-lg mb-4 sm:mb-6">Excellence in Every Aspect of Dental Care</h2>
+              <h2 className="heading-lg mb-4 sm:mb-6">Where Technology Meets Artistry - Comprehensive Dental Excellence</h2>
               <div className="separator"></div>
               <p className="paragraph mb-6 sm:mb-8">
-                At Exquisite Dentistry, Dr. Alexie Aguil offers a comprehensive range of dental services utilizing the latest techniques and technology. From advanced cosmetic procedures to general and restorative treatments, we are committed to providing exceptional care tailored to your unique needs.
+                Our Beverly Hills practice offers the complete spectrum of modern dentistry, from life-changing cosmetic transformations to advanced restorative procedures. Dr. Aguil's mastery of both traditional techniques and cutting-edge innovations ensures that every treatment delivers exceptional results. Whether you're seeking a subtle enhancement or a complete smile makeover, we provide personalized care that exceeds the highest standards of excellence.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {serviceCategories.map((service) => (

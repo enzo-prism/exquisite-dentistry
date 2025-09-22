@@ -55,10 +55,10 @@ const Blog = () => {
 
       {/* Hero Section */}
       <VideoHero
-        title={<>Dental <span className="text-primary">Blog</span></>}
-        subtitle="Expert insights, cutting-edge techniques, and personalized advice for your perfect smile journey"
+        title={<>Expert Dental Insights & <span className="text-primary">Patient Education</span></>}
+        subtitle="Stay informed with the latest in cosmetic dentistry, oral health innovations, and expert guidance from Dr. Alexie Aguil and our Beverly Hills dental team."
         height="medium"
-        badgeText="DENTAL BLOG"
+        badgeText="EXPERT INSIGHTS"
         scrollIndicator={true}
       />
 
@@ -67,7 +67,7 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="text-lg text-muted-foreground mb-8">
-              Discover the latest in cosmetic dentistry and oral health
+              Access exclusive insights from Beverly Hills' leading cosmetic dentist, featuring advanced treatment techniques, patient success stories, and the latest innovations in dental care.
             </p>
 
             {/* Search Bar */}

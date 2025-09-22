@@ -71,15 +71,15 @@ const IndexPage: React.FC = () => {
       />
       
       <VideoHero
-        title={<>Welcome to <span className="text-gold">Exquisite Dentistry</span></>} 
-        subtitle="Experience world-class cosmetic dentistry in Los Angeles with Dr. Alexie Aguil." 
+        title={<>Beverly Hills' Premier <span className="text-gold">Cosmetic Dentist</span></>} 
+        subtitle="Transform your smile at Los Angeles' most trusted cosmetic dentistry practice. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil." 
         primaryCta={{
           text: "Schedule a Consultation",
           href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
         secondaryCta={{
-          text: "Discover Our Practice",
-          href: "/about"
+          text: "View Smile Gallery",
+          href: "/smile-gallery"
         }}
         useGradient={false}
       />
@@ -233,12 +233,10 @@ const IndexPage: React.FC = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Los Angeles' Premier Cosmetic Dentist - Dr. Alexie Aguil
+                Where Celebrity Smiles Are Made - Beverly Hills Excellence
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Transform your smile with award-winning cosmetic dentistry in Beverly Hills. 
-                Dr. Alexie Aguil specializes in porcelain veneers, teeth whitening, dental implants, 
-                and complete smile makeovers using the latest technology and artistic expertise.
+                Located in the heart of Beverly Hills, Exquisite Dentistry is where A-list celebrities, industry executives, and discerning patients come for unparalleled cosmetic dental artistry. Dr. Alexie Aguil's exclusive practice combines cutting-edge technology with old-world craftsmanship to create the stunning, natural-looking smiles that define Hollywood glamour.
               </p>
             </div>
             

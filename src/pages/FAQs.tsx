@@ -85,10 +85,10 @@ const FAQs = () => {
 
       <div className="min-h-screen page-transition-in">
         <VideoHero
-          title={<>Frequently Asked <span className="text-gold">Questions</span></>}
-          subtitle="Everything you need to know about your visit to Exquisite Dentistry."
-          primaryCta={{ text: "Schedule a Visit", href: SCHEDULING_URL }}
-          badgeText="GET ANSWERS"
+          title={<>Your Dental Questions Answered - <span className="text-gold">Patient Care Guide</span></>}
+          subtitle="Get comprehensive answers about our Beverly Hills practice, treatment procedures, insurance coverage, and what to expect during your luxury dental experience."
+          primaryCta={{ text: "Schedule Your First Visit", href: SCHEDULING_URL }}
+          badgeText="PATIENT GUIDANCE"
           height="medium"
           scrollIndicator={false}
         />
