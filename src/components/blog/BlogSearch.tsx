@@ -75,7 +75,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({
           onClick={() => onCategoryChange(null)}
           className={`category-pill group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium rounded-full transition-all duration-300 min-h-[48px] md:min-h-[52px] touch-manipulation relative overflow-hidden ${
             selectedCategory === null
-              ? 'bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg scale-105'
+              ? 'bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground border-primary shadow-lg scale-105 [text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]'
               : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:shadow-md hover:scale-105 hover:text-foreground'
           }`}
         >
@@ -94,7 +94,7 @@ const BlogSearch: React.FC<BlogSearchProps> = ({
             onClick={() => onCategoryChange(category)}
             className={`category-pill group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium rounded-full transition-all duration-300 min-h-[48px] md:min-h-[52px] touch-manipulation relative overflow-hidden ${
               selectedCategory === category
-                ? 'bg-gradient-to-r from-gold to-gold/80 text-white shadow-lg scale-105'
+                ? 'bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground border-primary shadow-lg scale-105 [text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]'
                 : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:shadow-md hover:scale-105 hover:text-foreground'
             }`}
           >

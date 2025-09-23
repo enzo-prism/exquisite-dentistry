@@ -106,6 +106,7 @@ const Blog = () => {
                         "text-primary-foreground border-primary",
                         "shadow-lg shadow-primary/25",
                         "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
+                        "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
                         "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
                       ]
                     : [
@@ -135,6 +136,7 @@ const Blog = () => {
                           "text-primary-foreground border-primary",
                           "shadow-lg shadow-primary/25",
                           "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
+                          "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
                           "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
                         ]
                       : [
