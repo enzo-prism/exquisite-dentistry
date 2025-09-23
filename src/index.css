@@ -543,6 +543,12 @@ textarea:focus-visible {
   color: hsl(var(--gold));
 }
 
+/* Blog filter pills explicit white text styling */
+.blog-filter-selected-text {
+  color: white !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
 /* Missing animation classes for scroll animations */
 .fade-in {
   opacity: 0;

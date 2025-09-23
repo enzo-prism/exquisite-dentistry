@@ -103,7 +103,7 @@ const Blog = () => {
                   selectedCategory === null 
                     ? [
                         "bg-gradient-to-r from-primary via-primary to-primary/90",
-                        "text-primary-foreground border-primary",
+                        "text-white blog-filter-selected-text border-primary",
                         "shadow-lg shadow-primary/25",
                         "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
                         "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
@@ -133,7 +133,7 @@ const Blog = () => {
                     selectedCategory === category 
                       ? [
                           "bg-gradient-to-r from-primary via-primary to-primary/90",
-                          "text-primary-foreground border-primary",
+                          "text-white blog-filter-selected-text border-primary",
                           "shadow-lg shadow-primary/25",
                           "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
                           "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
