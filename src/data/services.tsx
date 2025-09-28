@@ -22,7 +22,7 @@ export const serviceCategories: ServiceCategory[] = [
     description: "Transform your smile with our comprehensive cosmetic dental services. We combine artistic vision with technical precision to create beautiful, natural-looking results that enhance your confidence.",
     highlight: "Our signature smile makeovers are custom-designed to complement your facial features and achieve your aesthetic goals.",
     iconName: "Smile",
-    image: "/lovable-uploads/33335962-b99c-4063-aa3c-96dfaf5215bb.png",
+    image: "/lovable-uploads/cosmetic-dentistry.webp",
     treatments: [
       {
         name: "Porcelain Veneers",
@@ -48,7 +48,7 @@ export const serviceCategories: ServiceCategory[] = [
     description: "Restore function and aesthetics to damaged or missing teeth with our advanced restorative solutions. We focus on long-lasting results that look and feel completely natural.",
     highlight: "Our metal-free restorations provide superior strength without compromising aesthetics.",
     iconName: "Wrench",
-    image: "/lovable-uploads/cc4f1722-a37f-42b6-8438-6160759e3eb8.png",
+    image: "/lovable-uploads/restorative-dentistry.webp",
     treatments: [
       {
         name: "Porcelain Crowns & Bridges",
@@ -74,7 +74,7 @@ export const serviceCategories: ServiceCategory[] = [
     description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
     highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
     iconName: "Shield",
-    image: "/lovable-uploads/c876408e-2891-4863-9f01-e5d025c7c52f.png",
+    image: "/lovable-uploads/preventive-care.webp",
     treatments: [
       {
         name: "Comprehensive Exams",
@@ -100,7 +100,7 @@ export const serviceCategories: ServiceCategory[] = [
     description: "Access specialized dental care without being referred elsewhere. Our comprehensive range of specialty services allows us to address complex dental issues with the same attention to comfort and quality.",
     highlight: "Dr. Aguil's advanced training allows us to offer specialized care that many general practices cannot provide.",
     iconName: "Stethoscope",
-    image: "/lovable-uploads/a174d17a-ee21-411d-9034-2dfe2fa0dcd3.png",
+    image: "/lovable-uploads/specialty-services.webp",
     treatments: [
       {
         name: "Invisalign® Clear Aligners",
