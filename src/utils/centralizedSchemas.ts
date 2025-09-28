@@ -103,7 +103,7 @@ export const MASTER_BUSINESS_ENTITY = {
     'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     'https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png'
   ],
-  logo: 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png',
+  logo: 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp',
   sameAs: [
     'https://www.instagram.com/exquisitedentistryLA',
     'https://www.facebook.com/exquisitedentistryLA',

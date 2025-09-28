@@ -24,7 +24,7 @@ export const drAguilImages = {
 
   // NEW: Black & White Clinical Portrait - Artistic professional shot
   clinicalPortrait: {
-    src: '/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png',
+    src: '/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp',
     alt: 'Dr. Alexie Aguil, DDS - Professional clinical portrait in dental setting',
     description: 'Professional black and white portrait of Dr. Aguil in dental office environment',
     usage: ['clinical-excellence', 'professional-bio', 'about-section'],

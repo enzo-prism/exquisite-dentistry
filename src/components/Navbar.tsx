@@ -162,7 +162,7 @@ const Navbar = () => {
             <div className="flex-shrink-0 z-50">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
-                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
                   alt="Exquisite Dentistry Logo"
                   className="h-6 md:h-12 w-auto max-w-none"
                   loading="eager"

@@ -79,7 +79,7 @@ const Footer = () => {
               }}
             >
               <img
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
                 alt="Exquisite Dentistry"
                 className="w-full h-full"
                 style={{ 

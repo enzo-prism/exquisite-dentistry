@@ -70,7 +70,7 @@ const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredD
       "name": "Exquisite Dentistry",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+        "url": "https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
       }
     }
   };

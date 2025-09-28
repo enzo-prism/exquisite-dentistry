@@ -1,12 +1,22 @@
 {
   "images": {
     "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958": {
-      "formats": ["png"],
+      "formats": ["webp", "png"],
       "paths": {
+        "webp": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp",
         "png": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
       },
-      "preferred": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png",
+      "preferred": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp",
       "fallback": "/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+    },
+    "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0": {
+      "formats": ["webp", "png"],
+      "paths": {
+        "webp": "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
+        "png": "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png"
+      },
+      "preferred": "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
+      "fallback": "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.png"
     },
     "/lovable-uploads/9e823f53-f866-40f9-a3e2-78373640ee8f": {
       "formats": ["png"],
