@@ -15,7 +15,7 @@ export const patientTransformations: PatientTransformation[] = [
     name: "Brittany",
     procedure: "Porcelain Veneers",
     beforeImage: "/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.webp",
-    afterImage: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.png",
+    afterImage: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.webp",
     description: "Complete smile transformation with porcelain veneers",
     beforeObjectPosition: "center 35%",
     afterObjectPosition: "center 35%"
@@ -24,7 +24,7 @@ export const patientTransformations: PatientTransformation[] = [
     name: "Ryan",
     procedure: "Invisalign & Whitening",
     beforeImage: "/lovable-uploads/8e2e1684-e2b2-4ebe-81de-ffec0bb4c801.webp",
-    afterImage: "/lovable-uploads/4820b0df-82b4-4e9b-9724-b8d1f720712b.png",
+    afterImage: "/lovable-uploads/4820b0df-82b4-4e9b-9724-b8d1f720712b.webp",
     description: "Alignment correction and professional whitening",
     beforeObjectPosition: "center 25%",
     afterObjectPosition: "center 25%"
@@ -42,7 +42,7 @@ export const patientTransformations: PatientTransformation[] = [
     name: "Brian",
     procedure: "Dental Implants",
     beforeImage: "/lovable-uploads/e29f50ba-aebe-42e9-b82c-1fd4fe0dbccb.webp",
-    afterImage: "/lovable-uploads/4a8dedf8-1a60-4e9a-9c1f-91c1a1c96c92.png",
+    afterImage: "/lovable-uploads/4a8dedf8-1a60-4e9a-9c1f-91c1a1c96c92.webp",
     beforeObjectPosition: "center 30%",
     afterObjectPosition: "center 30%"
   },
@@ -50,7 +50,7 @@ export const patientTransformations: PatientTransformation[] = [
     name: "Jessica",
     procedure: "Porcelain Veneers",
     beforeImage: "/lovable-uploads/c4eb9134-7e7d-4dc3-ab3a-abf2fc453302.webp",
-    afterImage: "/lovable-uploads/3a42dad4-7415-4cdc-aaad-8186717434d4.png",
+    afterImage: "/lovable-uploads/3a42dad4-7415-4cdc-aaad-8186717434d4.webp",
     beforeObjectPosition: "center 20%",
     afterObjectPosition: "center 20%"
   },
