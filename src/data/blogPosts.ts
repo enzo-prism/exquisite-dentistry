@@ -121,8 +121,8 @@ export const blogPosts: BlogPost[] = [
         <div class="bg-secondary/10 p-6 rounded-lg mt-8">
           <p class="text-center text-lg font-semibold mb-4">Want noticeable results without clunky, noticeable braces?</p>
           <div class="text-center">
-            <a href="/contact" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">Reach out today</a>
-            <p class="mt-2 text-sm">to schedule an appointment. The difference between Invisalign versus braces is clear!</p>
+            <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">Schedule consultation today</a>
+            <p class="mt-2 text-sm">The difference between Invisalign versus braces is clear!</p>
           </div>
         </div>
       </div>`,
@@ -246,7 +246,7 @@ export const blogPosts: BlogPost[] = [
         <div class="bg-primary/10 p-6 rounded-lg mt-8">
           <p class="text-center text-lg font-semibold mb-4">If you feel you are at risk for oral cancer, it's time to get proactive about your health.</p>
           <div class="text-center">
-            <a href="/contact" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">Contact us today</a>
+            <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">Schedule screening today</a>
             <p class="mt-2 text-sm">for your annual oral cancer screening consultation.</p>
           </div>
         </div>
@@ -367,7 +367,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mb-6">
-          Don't let dental jitters hold you back from your dream smile. <a href="/contact" class="text-gold hover:text-gold/80 underline">Schedule a consultation today</a> and experience the difference—complete with Netflix's hottest shows. Your perfect, stress-free smile awaits!
+          Don't let dental jitters hold you back from your dream smile. <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold/80 underline">Schedule a consultation today</a> and experience the difference—complete with Netflix's hottest shows. Your perfect, stress-free smile awaits!
         </p>
 
         <p class="text-sm text-gray-500 italic">
@@ -743,7 +743,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mb-6">
-          <a href="/contact" class="text-gold hover:text-gold/80 underline">Schedule your consultation today</a> to receive personalized pricing for your 4 front teeth veneers and experience the difference of comfort-focused cosmetic dentistry!
+          <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold/80 underline">Schedule your consultation today</a> to receive personalized pricing for your 4 front teeth veneers and experience the difference of comfort-focused cosmetic dentistry!
         </p>
 
         <div class="bg-gold/10 p-6 rounded-lg mb-6">
