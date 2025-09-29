@@ -228,7 +228,7 @@ const Footer = () => {
                 <div>
                   <p className="text-white font-medium">Our Location</p>
                   <a 
-                    href={generateUTMUrl('https://maps.google.com/maps?q=6227+Wilshire+Blvd,+Los+Angeles,+CA+90048', UTM_PARAMETERS.googleBusinessProfile)}
+                    href={generateUTMUrl('https://maps.app.goo.gl/7g618h7918tzp9f79', UTM_PARAMETERS.googleBusinessProfile)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors"
