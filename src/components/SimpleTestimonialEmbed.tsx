@@ -1,29 +1,43 @@
 import React from 'react';
+import UniversalVideoPlayer from './UniversalVideoPlayer';
+import { cn } from '@/lib/utils';
 
 interface SimpleTestimonialEmbedProps {
   vimeoId: string;
+  thumbnailUrl: string;
   title: string;
   className?: string;
 }
 
 const SimpleTestimonialEmbed: React.FC<SimpleTestimonialEmbedProps> = ({
   vimeoId,
+  thumbnailUrl,
   title,
   className = ""
 }) => {
+  const handleVideoStart = () => {
+    // Track video engagement for analytics
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'video_start', {
+        event_category: 'homepage_testimonial',
+        event_label: title,
+        video_id: vimeoId
+      });
+    }
+  };
+
   return (
-    <div className={`bg-gray-50 rounded-lg overflow-hidden shadow-lg ${className}`}>
-      <div style={{padding: '56.25% 0 0 0', position: 'relative'}}>
-        <iframe
-          src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&loop=1`}
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-          title={title}
-        ></iframe>
-      </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
+    <div className={cn("bg-gray-50 rounded-lg overflow-hidden shadow-lg", className)}>
+      <UniversalVideoPlayer
+        platform="vimeo"
+        videoId={vimeoId}
+        title={title}
+        thumbnailUrl={thumbnailUrl}
+        className="w-full h-full"
+        useCustomControls={true}
+        overlayMode="safe"
+        onVideoStart={handleVideoStart}
+      />
     </div>
   );
 };

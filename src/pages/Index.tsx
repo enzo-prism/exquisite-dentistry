@@ -208,6 +208,7 @@ const IndexPage: React.FC = () => {
               <motion.div key={testimonial.vimeoId} variants={itemVariants}>
                 <SimpleTestimonialEmbed
                   vimeoId={testimonial.vimeoId}
+                  thumbnailUrl={testimonial.thumbnailUrl}
                   title={testimonial.title}
                 />
               </motion.div>
