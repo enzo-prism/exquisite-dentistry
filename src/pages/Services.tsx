@@ -179,11 +179,12 @@ const Services = () => {
         title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
         subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
-          text: "Explore Treatment Options",
+          text: "Book Appointment",
           href: SCHEDULING_URL,
           target: "_blank",
           rel: "noopener noreferrer"
         }}
+        secondaryCta={{ text: "View Smile Gallery", href: "/smile-gallery" }}
         overlayColor="gradient" 
         height="medium" 
         badgeText="COMPREHENSIVE DENTAL EXCELLENCE" 
