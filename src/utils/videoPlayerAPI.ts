@@ -305,6 +305,7 @@ export function createEmbedUrl(
     baseParams.append('transparent', '0');
     baseParams.append('autopause', '0');
     baseParams.append('responsive', '1');
+    baseParams.append('outro', '0'); // Hide end screen overlay ("More from..." videos)
     if (enableJSAPI) {
       baseParams.append('api', '1');
     }
