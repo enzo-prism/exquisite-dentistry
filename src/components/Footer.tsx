@@ -266,13 +266,13 @@ const Footer = () => {
                 <div>
                   <p className="text-white font-medium">Office Hours</p>
                   <div className="text-gray-300 text-sm space-y-1">
-                    <div>{BUSINESS_HOURS.monday}</div>
-                    <div>{BUSINESS_HOURS.tuesday}</div>
-                    <div>{BUSINESS_HOURS.wednesday}</div>
-                    <div>{BUSINESS_HOURS.thursday}</div>
-                    <div>{BUSINESS_HOURS.friday}</div>
-                    <div>{BUSINESS_HOURS.saturday}</div>
-                    <div>{BUSINESS_HOURS.sunday}</div>
+                    <div><span className="text-gold">Mon:</span> {BUSINESS_HOURS.monday}</div>
+                    <div><span className="text-gold">Tue:</span> {BUSINESS_HOURS.tuesday}</div>
+                    <div><span className="text-gold">Wed:</span> {BUSINESS_HOURS.wednesday}</div>
+                    <div><span className="text-gold">Thu:</span> {BUSINESS_HOURS.thursday}</div>
+                    <div><span className="text-gold">Fri:</span> {BUSINESS_HOURS.friday}</div>
+                    <div><span className="text-gold">Sat:</span> {BUSINESS_HOURS.saturday}</div>
+                    <div><span className="text-gold">Sun:</span> {BUSINESS_HOURS.sunday}</div>
                   </div>
                 </div>
               </div>
