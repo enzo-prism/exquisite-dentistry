@@ -55,7 +55,7 @@ const About = () => {
         primaryCta={{ 
           text: "Schedule a Personal Consultation" 
         }}
-        secondaryCta={{ text: "View Credentials", href: "/services" }}
+        secondaryCta={{ text: "View Services", href: "/services" }}
         height="medium"
         badgeText="MEET THE DOCTOR"
         scrollIndicator={true}
