@@ -67,7 +67,8 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     return createEmbedUrl(platform, videoId, {
       autoplay: false,
       muted: false, // Always unmuted for testimonial videos
-      enableJSAPI: true
+      enableJSAPI: true,
+      loop: true // Enable auto-looping to prevent Vimeo end screen
     });
   }, [platform, videoId, isPlaying]);
 

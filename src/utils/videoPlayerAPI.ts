@@ -282,12 +282,14 @@ export function createEmbedUrl(
     autoplay?: boolean;
     muted?: boolean;
     enableJSAPI?: boolean;
+    loop?: boolean;
   } = {}
 ): string {
   const {
     autoplay = false,
     muted = true,
-    enableJSAPI = true
+    enableJSAPI = true,
+    loop = false
   } = options;
 
   const baseParams = new URLSearchParams({
@@ -306,6 +308,7 @@ export function createEmbedUrl(
     baseParams.append('autopause', '0');
     baseParams.append('responsive', '1');
     baseParams.append('outro', '0'); // Hide end screen overlay ("More from..." videos)
+    baseParams.append('loop', loop ? '1' : '0'); // Enable auto-looping to prevent end screen
     if (enableJSAPI) {
       baseParams.append('api', '1');
     }
