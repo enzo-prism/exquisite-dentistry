@@ -283,13 +283,6 @@ const IndexPage: React.FC = () => {
                   <li className="flex items-start">
                     <span className="text-gold mr-2">•</span>
                     <div>
-                      <strong>Dental Implants:</strong> Permanent solutions for missing teeth 
-                      that look and feel completely natural
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
                       <strong>Invisalign:</strong> Discreet clear aligners that straighten 
                       teeth without the appearance of traditional braces
                     </div>
