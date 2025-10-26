@@ -239,10 +239,10 @@ export const transformationStories: TransformationStory[] = [
     title: 'From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA',
     shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
     video: {
-      src: 'https://videos-hazel-eta.vercel.app/patient-testimonial-exquisite-dentistry.mp4',
-      poster: 'https://videos-hazel-eta.vercel.app/trailer-thumbnail.png'
+      src: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761503257/testimonial-painting_omnjcj.mp4',
+      poster: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png'
     },
-    thumbnailUrl: '/lovable-uploads/5e86bd09-59b8-479e-93a7-18bd8484a8cd.png',
+    thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png',
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
     keyTakeaways: [
