@@ -15,7 +15,8 @@ import {
   Monitor,
   Sparkles,
   Palette,
-  Cpu
+  Cpu,
+  Bot
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
@@ -94,6 +95,40 @@ const Services = () => {
       title: 'Invisalign®',
       description: 'Discreet clear aligners shaped by digital precision for confident results.',
       Icon: Sparkles
+    }
+  ];
+
+  type TechnologyHighlight = {
+    title: string;
+    description: string;
+    Icon?: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
+    iconLabel?: string;
+  };
+
+  const technologyHighlights: TechnologyHighlight[] = [
+    {
+      title: 'Intraoral Cameras',
+      description:
+        'High-definition intraoral cameras allow us to show you exactly what we see, helping you understand your treatment needs and options.',
+      Icon: Camera
+    },
+    {
+      title: 'Digital X-Rays',
+      description:
+        'Digital radiography provides immediate, high-quality images with significantly reduced radiation exposure compared to traditional x-rays.',
+      Icon: Monitor
+    },
+    {
+      title: 'Invisalign iTero Scanner',
+      description:
+        'Our advanced 3D scanner creates precise digital impressions without the discomfort of traditional methods, improving treatment planning and results.',
+      iconLabel: '3D'
+    },
+    {
+      title: 'Pearl AI Diagnostics',
+      description:
+        'Pearl AI analyzes radiographs in real time to highlight potential areas of concern, supporting accurate diagnoses and proactive treatment planning.',
+      Icon: Bot
     }
   ];
 
@@ -495,44 +530,59 @@ const Services = () => {
 
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-sm text-gold font-medium mb-3">ADVANCED TECHNOLOGY</span>
-            <h2 className="heading-lg mb-6">Cutting-Edge Dental Equipment</h2>
-            <div className="separator"></div>
-            <p className="paragraph">
-              We utilize state-of-the-art technology to enhance precision, efficiency, and comfort during your dental treatment.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-16 items-center">
+            <div className="space-y-10">
+              <div className="space-y-5">
+                <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+                  <span className="block h-2 w-2 rounded-full bg-gold"></span>
+                  Advanced Technology
+                </span>
+                <h2 className="heading-lg">Cutting-Edge Dental Equipment</h2>
+                <div className="separator-left"></div>
+                <p className="paragraph">
+                  We utilize state-of-the-art technology to enhance precision, efficiency, and comfort during your dental treatment.
+                </p>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-sm shadow-md">
-              <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
-                <Camera size={32} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {technologyHighlights.map((highlight) => (
+                  <div
+                    key={highlight.title}
+                    className="group h-full rounded-2xl border border-black/5 bg-white/90 p-6 shadow-[0_24px_48px_-28px_rgba(15,23,42,0.45)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_32px_64px_-32px_rgba(15,23,42,0.45)]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                      {highlight.Icon ? (
+                        <highlight.Icon className="h-6 w-6" strokeWidth={1.5} />
+                      ) : (
+                        <span className="text-sm font-semibold uppercase tracking-[0.3em]">{highlight.iconLabel}</span>
+                      )}
+                    </div>
+                    <h3 className="mt-5 text-lg font-semibold text-black">{highlight.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-black-light/80">{highlight.description}</p>
+                  </div>
+                ))}
               </div>
-              <h3 className="heading-sm mb-4">Intraoral Cameras</h3>
-              <p className="text-black-light/80">
-                High-definition intraoral cameras allow us to show you exactly what we see, helping you understand your treatment needs and options.
-              </p>
             </div>
-            
-            <div className="bg-white p-8 rounded-sm shadow-md">
-              <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
-                <Monitor size={32} />
+
+            <div>
+              <div className="mx-auto max-w-xl xl:max-w-none">
+                <div className="relative">
+                  <div className="pointer-events-none absolute -inset-8 -translate-y-6 rounded-[36px] bg-gradient-to-br from-gold/35 via-gold/15 to-transparent opacity-70 blur-3xl"></div>
+                  <div className="relative rounded-[32px] border border-gold/30 bg-gradient-to-br from-black/90 via-black to-black p-[1.5px] shadow-[0_45px_90px_-40px_rgba(12,7,0,0.75)]">
+                    <div className="pointer-events-none absolute left-6 top-6 z-10 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur">
+                      <span className="h-2 w-2 rounded-full bg-gold" />
+                      Pearl AI in Action
+                    </div>
+                    <PracticeVideoPlayer
+                      source="https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761506806/pearl_ai_ctiswr.mp4"
+                      poster="/placeholder.svg"
+                      title="Pearl AI Technology Overview"
+                      className="!rounded-[30px] !bg-black"
+                      appearance="minimal"
+                    />
+                  </div>
+                </div>
               </div>
-              <h3 className="heading-sm mb-4">Digital X-Rays</h3>
-              <p className="text-black-light/80">
-                Digital radiography provides immediate, high-quality images with significantly reduced radiation exposure compared to traditional x-rays.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-sm shadow-md">
-              <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
-                <span className="text-2xl font-bold">3D</span>
-              </div>
-              <h3 className="heading-sm mb-4">Invisalign iTero scanner</h3>
-              <p className="text-black-light/80">
-                Our advanced 3D scanner creates precise digital impressions without the discomfort of traditional methods, improving treatment planning and results.
-              </p>
             </div>
           </div>
         </div>
