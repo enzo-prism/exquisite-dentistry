@@ -1,30 +1,37 @@
 import React from 'react';
+import PracticeVideoPlayer from './PracticeVideoPlayer';
+
+type VideoAppearance = 'elevated' | 'minimal';
 
 interface SimpleTransformationEmbedProps {
-  vimeoId: string;
+  source: string;
   title: string;
+  poster?: string;
   className?: string;
+  appearance?: VideoAppearance;
+  loop?: boolean;
 }
 
 const SimpleTransformationEmbed: React.FC<SimpleTransformationEmbedProps> = ({
-  vimeoId,
+  source,
   title,
-  className = ""
+  poster,
+  className,
+  appearance = 'elevated',
+  loop = false
 }) => {
+  const fallbackPoster = 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png';
+  const resolvedPoster = poster || fallbackPoster;
+
   return (
-    <div className={`bg-gray-50 rounded-lg overflow-hidden shadow-lg ${className}`}>
-      <div style={{padding: '56.25% 0 0 0', position: 'relative'}}>
-        <iframe
-          src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&loop=1`}
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-          title={title}
-        ></iframe>
-      </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
-    </div>
+    <PracticeVideoPlayer
+      source={source}
+      poster={resolvedPoster}
+      title={title}
+      className={className}
+      appearance={appearance}
+      loop={loop}
+    />
   );
 };
 
