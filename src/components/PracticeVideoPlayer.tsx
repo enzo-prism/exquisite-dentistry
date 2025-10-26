@@ -8,13 +8,21 @@ interface PracticeVideoPlayerProps {
   poster: string;
   title: string;
   className?: string;
+  onVideoStart?: () => void;
+  onVideoEnd?: () => void;
+  loop?: boolean;
+  appearance?: 'elevated' | 'minimal';
 }
 
 const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
   source,
   poster,
   title,
-  className
+  className,
+  onVideoStart,
+  onVideoEnd,
+  loop = false,
+  appearance = 'elevated'
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -66,6 +74,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
       setIsPlaying(true);
       setIsLoading(false);
       resetControlsTimeout();
+      onVideoStart?.();
     };
     const handlePause = () => {
       setIsPlaying(false);
@@ -82,6 +91,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
       setIsPlaying(false);
       setShowControls(true);
       clearControlsTimeout();
+      onVideoEnd?.();
     };
 
     video.addEventListener('play', handlePlay);
@@ -99,7 +109,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
       video.removeEventListener('canplay', handleCanPlay);
       video.removeEventListener('ended', handleEnded);
     };
-  }, [resetControlsTimeout]);
+  }, [onVideoEnd, onVideoStart, resetControlsTimeout]);
 
   const handlePlay = useCallback(() => {
     const video = videoRef.current;
@@ -166,13 +176,16 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     syncFromVideo();
   }, [syncFromVideo]);
 
+  const appearanceClasses =
+    appearance === 'minimal'
+      ? 'relative overflow-hidden rounded-lg bg-black group shadow-lg'
+      : 'relative overflow-hidden rounded-lg shadow-2xl border border-white/40 backdrop-blur-sm bg-white/5 before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none group';
+
   return (
     <AspectRatio
       ratio={16 / 9}
       className={cn(
-        'relative overflow-hidden rounded-lg shadow-2xl border border-white/40 backdrop-blur-sm bg-white/5',
-        'before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none',
-        'group',
+        appearanceClasses,
         className
       )}
     >
@@ -192,6 +205,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
           className="absolute inset-0 h-full w-full object-cover"
           poster={poster}
           preload="none"
+          loop={loop}
           controls={false}
           playsInline
           title={title}
