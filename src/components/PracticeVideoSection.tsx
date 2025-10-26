@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import PracticeVideoPlayer from './PracticeVideoPlayer';
 
 const PRACTICE_VIDEO = {
   source: 'https://videos-hazel-eta.vercel.app/trailer.mp4',
@@ -24,21 +24,11 @@ const PracticeVideoSection: React.FC = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-            <AspectRatio ratio={16 / 9} className="bg-black">
-              <video
-                controls
-                preload="none"
-                poster={PRACTICE_VIDEO.poster}
-                className="absolute inset-0 h-full w-full object-cover"
-                playsInline
-                title={PRACTICE_VIDEO.title}
-              >
-                <source src={PRACTICE_VIDEO.source} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </AspectRatio>
-          </div>
+          <PracticeVideoPlayer
+            source={PRACTICE_VIDEO.source}
+            poster={PRACTICE_VIDEO.poster}
+            title={PRACTICE_VIDEO.title}
+          />
         </div>
       </div>
     </section>
