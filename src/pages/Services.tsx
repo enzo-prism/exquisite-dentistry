@@ -10,6 +10,7 @@ import {
   Stethoscope,
   ArrowRight,
   Check,
+  ExternalLink,
   Camera,
   Monitor,
   Sparkles,
@@ -452,11 +453,22 @@ const Services = () => {
                 </div>
               </div>
               
-              <div className="pt-4">
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="group">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button className="group w-full sm:w-auto">
                     Schedule Invisalign Consultation
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </a>
+                <a
+                  href="https://providerbio.invisalign.com/sv/381345#start"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button variant="outline" className="group w-full sm:w-auto">
+                    Sample Results
+                    <ExternalLink size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </a>
               </div>
