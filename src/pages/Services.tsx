@@ -3,7 +3,19 @@ import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
-import { Smile, Shield, Wrench, Stethoscope, ArrowRight, Check, Camera, Monitor } from 'lucide-react';
+import {
+  Smile,
+  Shield,
+  Wrench,
+  Stethoscope,
+  ArrowRight,
+  Check,
+  Camera,
+  Monitor,
+  Sparkles,
+  Palette,
+  Cpu
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
@@ -29,6 +41,60 @@ const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const differentiators = [
+    {
+      title: 'Artistic Smile Design',
+      description:
+        'Preview your transformation with digital smile design that harmonizes with your facial features.',
+      Icon: Palette
+    },
+    {
+      title: 'Precision-Driven Technology',
+      description:
+        '3D imaging, iTero scanning, and meticulous planning deliver accurate, comfortable treatment journeys.',
+      Icon: Cpu
+    },
+    {
+      title: 'Elevated Patient Experience',
+      description:
+        'Relaxing amenities and compassionate care create a spa-like visit tailored to your comfort.',
+      Icon: Sparkles
+    }
+  ];
+
+  const serviceNavigation = [
+    {
+      id: 'cosmetic',
+      title: 'Cosmetic Dentistry',
+      description: 'Signature veneers, whitening, and bespoke smile makeovers crafted for you.',
+      Icon: Smile
+    },
+    {
+      id: 'restorative',
+      title: 'Restorative Dentistry',
+      description: 'Full-mouth rehabilitation, crowns, implants, and tooth-colored restorations.',
+      Icon: Wrench
+    },
+    {
+      id: 'preventive',
+      title: 'Preventive Care',
+      description: 'Comprehensive exams, cleanings, and proactive screenings to protect your smile.',
+      Icon: Shield
+    },
+    {
+      id: 'specialty',
+      title: 'Specialty Services',
+      description: 'Laser therapies, full-mouth reconstruction, and advanced clinical expertise.',
+      Icon: Stethoscope
+    },
+    {
+      id: 'invisalign',
+      title: 'Invisalign®',
+      description: 'Discreet clear aligners shaped by digital precision for confident results.',
+      Icon: Sparkles
+    }
+  ];
 
   return (
     <>
@@ -191,34 +257,83 @@ const Services = () => {
         scrollIndicator={false} 
       />
 
-      <section className="-mt-16 sm:-mt-24 md:-mt-32 relative z-20 mb-16 sm:mb-20 md:mb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-xl rounded-sm p-6 sm:p-8 md:p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="heading-lg mb-4 sm:mb-6">Where Technology Meets Artistry - Comprehensive Dental Excellence</h2>
-              <div className="separator"></div>
-              <p className="paragraph mb-6 sm:mb-8">
-                Our Los Angeles practice near Beverly Hills offers the complete spectrum of modern dentistry, from life-changing cosmetic transformations to advanced restorative procedures. Dr. Aguil's mastery of both traditional techniques and cutting-edge innovations ensures that every treatment delivers exceptional results. Whether you're seeking a subtle enhancement or a complete smile makeover, we provide personalized care that exceeds the highest standards of excellence.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
-                {serviceCategories.map((service) => (
-                  <a key={service.id} href={`#${service.id}`} className="flex flex-col items-center text-center group">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                      {getIcon(service.iconName)}
+      <section className="relative -mt-16 sm:-mt-24 md:-mt-32 z-20 mb-16 sm:mb-20 md:mb-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f8fafc] via-white to-[#edf2f7]" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-20 -left-10 h-48 w-48 rounded-full bg-gold/20 blur-3xl opacity-60" aria-hidden="true" />
+          <div className="absolute bottom-[-6rem] right-[-4rem] h-64 w-64 rounded-full bg-primary/10 blur-3xl opacity-50" aria-hidden="true" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 shadow-2xl backdrop-blur-sm">
+            <div className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-gold/30 blur-3xl opacity-60" aria-hidden="true" />
+            <div className="relative grid gap-12 lg:grid-cols-[1.2fr,1fr] p-6 sm:p-10 lg:p-14">
+              <div className="space-y-8">
+                <div className="space-y-4 max-w-2xl">
+                  <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-[0.4em] uppercase text-gold">
+                    Signature Care Journey
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-black tracking-tight">
+                    Where Technology Meets Artistry
+                  </h2>
+                  <p className="text-base sm:text-lg text-black-light/80 leading-relaxed">
+                    Our Los Angeles practice near Beverly Hills delivers the complete spectrum of modern dentistry—from transformative aesthetics to comprehensive restorative solutions. Dr. Aguil blends time-honored techniques with the latest innovations, ensuring each experience is as precise and personal as it is beautiful.
+                  </p>
+                </div>
+
+                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                  {differentiators.map(({ title, description, Icon }) => (
+                    <div
+                      key={title}
+                      className="rounded-2xl border border-black/5 bg-white/80 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/15 text-gold">
+                          <Icon size={20} />
+                        </div>
+                        <h3 className="text-base font-semibold text-black">{title}</h3>
+                      </div>
+                      <p className="mt-3 text-sm text-black-light/80 leading-relaxed">{description}</p>
                     </div>
-                    <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
-                      {service.title}
-                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button className="group w-full sm:w-auto">
+                      Schedule a Consultation
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
+                  <Link to="/contact" className="w-full sm:w-auto">
+                    <Button variant="outline" className="w-full sm:w-auto">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {serviceNavigation.map(({ id, title, description, Icon }) => (
+                  <a
+                    key={id}
+                    href={`#${id}`}
+                    className="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-2xl"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-gold group-hover:text-white">
+                        <Icon size={22} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-black">{title}</h3>
+                        <p className="mt-2 text-sm text-black-light/80 leading-relaxed">{description}</p>
+                      </div>
+                    </div>
+                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-gold">
+                      Explore {title}
+                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                    </div>
                   </a>
                 ))}
-                <a href="#invisalign" className="flex flex-col items-center text-center group">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                    {getIcon('Smile')}
-                  </div>
-                  <span className="font-medium text-black group-hover:text-gold transition-colors duration-300 text-sm sm:text-base">
-                    Invisalign
-                  </span>
-                </a>
               </div>
             </div>
           </div>
