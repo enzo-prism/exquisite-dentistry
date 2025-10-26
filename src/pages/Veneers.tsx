@@ -256,7 +256,7 @@ const Veneers = () => {
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={`veneer-faq-${index}-${faq.question.slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')}`} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
+                    <AccordionTrigger textClassName="text-left">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent>

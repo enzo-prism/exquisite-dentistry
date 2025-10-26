@@ -297,7 +297,7 @@ const ZoomWhitening = () => {
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
+                    <AccordionTrigger textClassName="text-left">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent>

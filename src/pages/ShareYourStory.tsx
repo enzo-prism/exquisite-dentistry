@@ -330,7 +330,11 @@ const ShareYourStory = () => {
                 value={`item-${index}`}
                 className="border border-gray-200 rounded-lg px-6 bg-white"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:no-underline py-4">
+                <AccordionTrigger
+                  className="py-4 hover:no-underline"
+                  textClassName="text-left text-lg font-semibold text-gray-900"
+                  iconClassName="text-gray-400"
+                >
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 pb-4 leading-relaxed">

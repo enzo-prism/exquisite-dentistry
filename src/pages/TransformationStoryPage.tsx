@@ -238,7 +238,7 @@ const TransformationStoryPage: React.FC = () => {
           <Accordion type="single" collapsible className="mb-16">
             {caseStudy.faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-medium">
+                <AccordionTrigger textClassName="text-left font-medium">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
