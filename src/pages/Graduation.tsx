@@ -8,7 +8,7 @@ import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
 
-const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Graduation = () => {
   useEffect(() => {

@@ -90,7 +90,7 @@ const About = () => {
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
+                <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="group w-full sm:w-auto">
                     Schedule a Consultation
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -184,7 +184,7 @@ const About = () => {
                   </ul>
                   
                   <div className="pt-4">
-                    <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
+                    <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" size="sm" className="group">
                         Schedule With Dr. Aguil
                         <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -283,7 +283,7 @@ const About = () => {
             <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
               Schedule your consultation with Dr. Aguil today and take the first step towards the smile you've always wanted.
             </p>
-            <a href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
+            <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="animate-pulse-subtle">Book an Appointment</Button>
             </a>
           </div>

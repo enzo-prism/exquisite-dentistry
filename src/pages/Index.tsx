@@ -75,7 +75,7 @@ const IndexPage: React.FC = () => {
         subtitle="Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil." 
         primaryCta={{
           text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
         secondaryCta={{
           text: "View Smile Gallery",

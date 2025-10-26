@@ -246,7 +246,7 @@ const Navbar = () => {
               <ConversionButton 
                 size="lg" 
                 variant="default"
-                href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -498,7 +498,7 @@ const MobileMenuPanel = ({
           size="lg" 
           className="w-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
           variant="default"
-          href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
           target="_blank"
           rel="noopener noreferrer"
           style={{ 

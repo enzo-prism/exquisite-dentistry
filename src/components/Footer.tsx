@@ -16,7 +16,7 @@ import {
 import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
 
 // Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

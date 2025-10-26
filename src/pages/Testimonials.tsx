@@ -85,7 +85,7 @@ const TestimonialsPage: React.FC = () => {
         subtitle="See what our clients are saying about their experience at Exquisite Dentistry"
         primaryCta={{
           text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
       />
       

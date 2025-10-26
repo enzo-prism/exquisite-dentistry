@@ -11,7 +11,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { PageSEO } from '@/components/seo/PageSEO';
 
 // Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 interface AmenityProps {
   title: string;

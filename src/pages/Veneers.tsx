@@ -146,7 +146,7 @@ const Veneers = () => {
           subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous."
           primaryCta={{
             text: "Schedule Veneer Consultation",
-            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
             target: "_blank",
             rel: "noopener noreferrer"
           }}
@@ -325,7 +325,7 @@ const Veneers = () => {
                   asChild
                 >
                   <a 
-                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
