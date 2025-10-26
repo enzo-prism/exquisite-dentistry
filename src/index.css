@@ -324,7 +324,7 @@ body {
   }
 }
 
-/* Navbar Specific Styles - Force All White Text */
+/* Navbar Specific Styles - Ensure white text regardless of link state */
 .navbar-link,
 .navbar-link:hover,
 .navbar-link:active,
@@ -332,35 +332,6 @@ body {
 .navbar-link:visited {
   color: #ffffff !important;
   text-decoration: none !important;
-}
-
-/* Universal Button Text Override - Ensure all buttons have white text */
-button,
-[data-radix-slot],
-a > button,
-.button-wrapper button,
-button[data-radix-slot],
-a[data-radix-slot] {
-  color: #ffffff !important;
-}
-
-/* Specific overrides for button variants */
-button:not(.link-variant),
-[data-radix-slot]:not(.link-variant) {
-  color: #ffffff !important;
-}
-
-/* Override any inherited text colors from parent elements */
-a > button,
-a[data-radix-slot] {
-  color: #ffffff !important;
-  text-decoration: none !important;
-}
-
-/* Accordion Text Color Override - Fix white text issue on FAQ accordions */
-[data-radix-collection-item] button[data-state],
-[data-radix-accordion-trigger] {
-  color: hsl(var(--foreground)) !important;
 }
 
 /* Blog Page Enhanced Animations */
