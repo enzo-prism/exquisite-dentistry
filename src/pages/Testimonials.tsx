@@ -103,10 +103,8 @@ const TestimonialsPage: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {VIDEO_TESTIMONIALS.map((testimonial) => (
             <VideoTestimonial
-              key={testimonial.vimeoId}
-              vimeoId={testimonial.vimeoId}
-              thumbnailUrl={testimonial.thumbnailUrl}
-              title={testimonial.title}
+              key={testimonial.id}
+              testimonial={testimonial}
             />
           ))}
           </div>

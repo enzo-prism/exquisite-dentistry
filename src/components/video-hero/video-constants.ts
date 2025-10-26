@@ -2,34 +2,74 @@
 // Default Vimeo video ID for hero sections
 export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 
-// Video testimonials - simplified array format
-export const VIDEO_TESTIMONIALS = [
+export type VideoTestimonialItem =
+  | {
+      id: string;
+      type: 'vimeo';
+      vimeoId: string;
+      thumbnailUrl: string;
+      title: string;
+    }
+  | {
+      id: string;
+      type: 'file';
+      videoUrl: string;
+      thumbnailUrl: string;
+      title: string;
+    };
+
+// Video testimonials - supports Vimeo embeds and hosted MP4 videos
+export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
   {
-    vimeoId: "1082192427",
-    thumbnailUrl: "/lovable-uploads/f88acd79-6f67-4a5b-a586-6b67cd9f154f.png",
-    title: "Shannon Langhorne Patient Testimonial"
+    id: 'brandon-patient-testimonial',
+    type: 'file',
+    videoUrl: 'https://videos-hazel-eta.vercel.app/brandon.mp4',
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/brandon-thumbnail.png',
+    title: 'Brandon Patient Testimonial'
   },
   {
-    vimeoId: "1082192501",
-    thumbnailUrl: "/lovable-uploads/42773f00-4b49-4cbf-ab77-d2f56c5afdb8.png", 
-    title: "Taylor Vasek Patient Testimonial"
+    id: 'virginia-patient-testimonial',
+    type: 'file',
+    videoUrl: 'https://videos-hazel-eta.vercel.app/virginia.mp4',
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png',
+    title: 'Virginia Patient Testimonial'
   },
   {
-    vimeoId: "1076745525",
-    thumbnailUrl: "/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png",
-    title: "Exquisite Dentistry Testimonial _ Christian Fernandez"
+    id: '1082192427',
+    type: 'vimeo',
+    vimeoId: '1082192427',
+    thumbnailUrl: '/lovable-uploads/f88acd79-6f67-4a5b-a586-6b67cd9f154f.png',
+    title: 'Shannon Langhorne Patient Testimonial'
   },
   {
-    vimeoId: "1088877336",
-    thumbnailUrl: "/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png",
-    title: "Rob Talbert Patient Testimonial"
+    id: '1082192501',
+    type: 'vimeo',
+    vimeoId: '1082192501',
+    thumbnailUrl: '/lovable-uploads/42773f00-4b49-4cbf-ab77-d2f56c5afdb8.png',
+    title: 'Taylor Vasek Patient Testimonial'
   },
   {
-    vimeoId: "1088878160",
-    thumbnailUrl: "/lovable-uploads/a21508d3-d058-400c-b7ce-30b4cdaf9a01.png",
-    title: "Patient Testimonial"
+    id: '1076745525',
+    type: 'vimeo',
+    vimeoId: '1076745525',
+    thumbnailUrl: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png',
+    title: 'Exquisite Dentistry Testimonial _ Christian Fernandez'
+  },
+  {
+    id: '1088877336',
+    type: 'vimeo',
+    vimeoId: '1088877336',
+    thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
+    title: 'Rob Talbert Patient Testimonial'
+  },
+  {
+    id: '1088878160',
+    type: 'vimeo',
+    vimeoId: '1088878160',
+    thumbnailUrl: '/lovable-uploads/a21508d3-d058-400c-b7ce-30b4cdaf9a01.png',
+    title: 'Patient Testimonial'
   }
-] as const;
+];
 
 // YouTube video constants (added for compatibility)
 export const YOUTUBE_VIDEOS = {

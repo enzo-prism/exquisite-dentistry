@@ -205,11 +205,9 @@ const IndexPage: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             {VIDEO_TESTIMONIALS.map((testimonial, index) => (
-              <motion.div key={testimonial.vimeoId} variants={itemVariants}>
+              <motion.div key={testimonial.id} variants={itemVariants}>
                 <SimpleTestimonialEmbed
-                  vimeoId={testimonial.vimeoId}
-                  thumbnailUrl={testimonial.thumbnailUrl}
-                  title={testimonial.title}
+                  testimonial={testimonial}
                 />
               </motion.div>
             ))}
