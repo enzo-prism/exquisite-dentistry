@@ -222,38 +222,43 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
         {isPlaying && (
           <div
             className={cn(
-              'absolute inset-0 z-20 pointer-events-none transition-opacity duration-300',
-              showControls ? 'opacity-100' : 'opacity-0'
+              'absolute inset-0 z-20 flex items-end justify-center transition-opacity duration-300',
+              showControls ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
             )}
+            onMouseMove={(event) => {
+              event.stopPropagation();
+              handleMouseMove();
+            }}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleTogglePlay();
+            }}
           >
-            <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 to-transparent">
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto">
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleTogglePlay();
-                  }}
-                  className="bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
-                  aria-label={isPlaying ? 'Pause video' : 'Play video'}
-                >
-                  {isPlaying ? (
-                    <Pause className="h-5 w-5" fill="currentColor" />
-                  ) : (
-                    <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
-                  )}
-                </button>
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleFullscreen();
-                  }}
-                  className="bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
-                  aria-label="Fullscreen"
-                >
-                  <Maximize className="h-5 w-5" />
-                </button>
-              </div>
+            <div className="mb-5 flex w-full max-w-[240px] items-center justify-between rounded-full bg-black/70 px-5 py-2.5 shadow-lg backdrop-blur-md">
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleTogglePlay();
+                }}
+                className="bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                aria-label={isPlaying ? 'Pause video' : 'Play video'}
+              >
+                {isPlaying ? (
+                  <Pause className="h-5 w-5" fill="currentColor" />
+                ) : (
+                  <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+                )}
+              </button>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleFullscreen();
+                }}
+                className="bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                aria-label="Fullscreen"
+              >
+                <Maximize className="h-5 w-5" />
+              </button>
             </div>
           </div>
         )}
