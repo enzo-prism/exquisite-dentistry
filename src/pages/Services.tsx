@@ -575,10 +575,14 @@ const Services = () => {
                     </div>
                     <PracticeVideoPlayer
                       source="https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761506806/pearl_ai_ctiswr.mp4"
-                      poster="/placeholder.svg"
+                      poster="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761507329/pearl-thumbnail_ijmlov.png"
                       title="Pearl AI Technology Overview"
                       className="!rounded-[30px] !bg-black"
                       appearance="minimal"
+                      loop
+                      autoPlay
+                      muted
+                      passive
                     />
                   </div>
                 </div>
