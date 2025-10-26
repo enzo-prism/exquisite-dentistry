@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
-import UniversalVideoPlayer from '@/components/UniversalVideoPlayer';
+import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -462,14 +462,18 @@ const Services = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-                <UniversalVideoPlayer
-                  platform="vimeo"
-                  videoId="1114914495"
+            <div className="relative group">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-6 rounded-[36px] bg-gradient-to-br from-gold/30 via-gold/10 to-transparent opacity-50 blur-3xl transition duration-500 group-hover:opacity-80"
+              />
+              <div className="relative rounded-[28px] border border-gold/40 bg-gradient-to-br from-gold/20 via-black/80 to-black/90 p-[1.5px] shadow-[0_30px_60px_-20px_rgba(154,131,96,0.45)]">
+                <PracticeVideoPlayer
+                  source="https://videos-hazel-eta.vercel.app/invisalign.mp4"
+                  poster="/lovable-uploads/77e54716-bd1f-4933-a6e9-a2e31367a263.png"
                   title="Invisalign Treatment at Exquisite Dentistry"
-                  thumbnailUrl="/lovable-uploads/77e54716-bd1f-4933-a6e9-a2e31367a263.png"
-                  className="w-full h-full"
+                  className="!rounded-[26px] !bg-black !shadow-none"
+                  appearance="minimal"
                 />
               </div>
             </div>
