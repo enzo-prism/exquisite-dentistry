@@ -443,6 +443,79 @@ a[data-radix-slot] {
   left: 100%;
 }
 
+/* Icon halo styles for services page */
+.icon-orb {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  isolation: isolate;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon-orb::before,
+.icon-orb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.icon-orb::before {
+  background: radial-gradient(circle at 30% 30%, hsl(var(--gold) / 0.25), transparent 70%);
+  opacity: 0.85;
+}
+
+.icon-orb::after {
+  inset: 0.15rem;
+  border: 1px solid hsl(var(--gold) / 0.4);
+  box-shadow: inset 0 0 0 1px hsl(var(--gold) / 0.15);
+  opacity: 0.9;
+}
+
+.icon-orb--gold {
+  color: hsl(var(--gold));
+  text-shadow: 0 4px 12px hsl(var(--gold) / 0.45);
+}
+
+.icon-orb--interactive {
+  color: hsl(var(--primary));
+}
+
+.icon-orb--interactive::before {
+  background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.25), transparent 70%);
+}
+
+.icon-orb--interactive::after {
+  border-color: hsl(var(--primary) / 0.35);
+  box-shadow: inset 0 0 0 1px hsl(var(--primary) / 0.15);
+}
+
+.group:hover .icon-orb--interactive {
+  color: hsl(var(--gold-light));
+  transform: translateY(-1px);
+}
+
+.group:hover .icon-orb--interactive::before {
+  background: radial-gradient(circle at 50% 50%, hsl(var(--gold) / 0.55), transparent 75%);
+  opacity: 1;
+}
+
+.group:hover .icon-orb--interactive::after {
+  border-color: hsl(var(--gold) / 0.55);
+  box-shadow: inset 0 0 0 1px hsl(var(--gold) / 0.2), 0 8px 20px hsl(var(--gold) / 0.25);
+}
+
+.group:hover .icon-orb--interactive svg {
+  transform: scale(1.05);
+}
+
 /* Performance Optimizations */
 .gpu-layer {
   transform: translateZ(0);
