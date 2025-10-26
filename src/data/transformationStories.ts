@@ -37,6 +37,78 @@ export interface TransformationStory {
 
 export const transformationStories: TransformationStory[] = [
   {
+    id: 'virginia-art-of-a-smile',
+    slug: 'virginia',
+    patientName: 'Virginia',
+    title: 'The Art of a Smile: Virginia’s Story at Exquisite Dentistry LA',
+    shortDescription: 'Where precision meets artistry — and every detail reflects the person behind the smile.',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/virginia.mp4',
+      poster: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png'
+    },
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png',
+    location: 'Los Angeles / Beverly Grove',
+    goal: 'A confident, natural-looking smile that reflects who she is',
+    keyTakeaways: [
+      'Attentive artistry — Dr. Aguil listens closely, notices what matters, and brings that vision to life.',
+      'Ease through empathy — Calm tone, clear communication, and genuine care replace dental stress with trust.',
+      'A true partnership — Every decision is explained, every step designed around comfort and confidence.'
+    ],
+    quotes: [
+      {
+        text: 'Dr. Aguil is just an amazing person. He’s very attentive and has a way of putting me at ease. He was able to give me the smile that I was actually asking for. So he absolutely is an artist.',
+        context: 'Virginia, Exquisite Dentistry patient'
+      }
+    ],
+    whyChoseUs: [
+      {
+        title: 'Attentive Listening Builds Trust',
+        description: 'When your doctor truly hears you, treatment feels collaborative — not clinical.'
+      },
+      {
+        title: 'Artistry Meets Precision',
+        description: 'Beyond technique, Dr. Aguil designs smiles that fit facial harmony, personality, and emotion.'
+      },
+      {
+        title: 'Comfort Transforms Confidence',
+        description: 'When you’re relaxed in the chair, you show up differently in your life — smiling freely and often.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Tension → Trust',
+        description: 'Virginia felt safe, seen, and understood throughout care.'
+      },
+      {
+        category: 'Desire → Design',
+        description: 'She left with the exact smile she envisioned — balanced, bright, unmistakably hers.'
+      },
+      {
+        category: 'Patient → Partner',
+        description: 'Her journey shows what happens when dentistry becomes collaboration, not correction.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'How does Dr. Aguil tailor a smile design to fit me?',
+        answer: 'Every transformation starts with a conversation about who you are, what you want to see, and how you want to feel. Dr. Aguil maps out each detail so the final smile reflects your personality.'
+      },
+      {
+        question: 'What helps make the experience feel so calming?',
+        answer: 'Clear communication, a relaxed tone, and thoughtful amenities keep you comfortable at every step, so the focus stays on enjoying the process—not stressing about it.'
+      },
+      {
+        question: 'Can I be involved in every decision during treatment?',
+        answer: 'Yes. We explain each recommendation, check in on your comfort, and make adjustments together so you feel like a partner in your care.'
+      }
+    ],
+    seo: {
+      title: 'Virginia’s Smile Transformation Story | Exquisite Dentistry LA',
+      description: 'See how Virginia partnered with Dr. Aguil for a detail-driven smile transformation at Exquisite Dentistry in Los Angeles. Watch the video and explore her journey.',
+      keywords: 'Virginia dental transformation, smile design Los Angeles, Exquisite Dentistry testimonial, artistic cosmetic dentistry LA'
+    }
+  },
+  {
     id: 'anxiety-to-ease',
     slug: 'anxiety-to-ease',
     patientName: 'Real Patients',

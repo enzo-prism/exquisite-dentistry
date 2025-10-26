@@ -58,9 +58,9 @@ const TransformationStoryPage: React.FC = () => {
       <section className="py-12 bg-muted/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Watch {caseStudy.patientName}'s Story</h2>
+            <h2 className="text-2xl font-semibold mb-4">🎥 Watch {caseStudy.patientName}'s Story</h2>
             <p className="text-muted-foreground">
-              {caseStudy.patientName === 'Real Patients' 
+              {caseStudy.patientName === 'Real Patients'
                 ? 'Hear how our patients transformed their dental experience from anxiety to ease.'
                 : 'Hear how the experience changed their confidence and why they recommend the team.'}
             </p>
@@ -181,17 +181,17 @@ const TransformationStoryPage: React.FC = () => {
             <div className="text-center">
               <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">1</div>
               <h3 className="font-semibold mb-2">Listen First</h3>
-              <p className="text-sm text-muted-foreground">Understand goals and design a custom smile plan.</p>
+              <p className="text-sm text-muted-foreground">Every transformation starts with understanding the person behind the smile.</p>
             </div>
             <div className="text-center">
               <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">2</div>
-              <h3 className="font-semibold mb-2">Comfort-Driven Care</h3>
-              <p className="text-sm text-muted-foreground">Friendly guidance, clear next steps, and check-ins throughout.</p>
+              <h3 className="font-semibold mb-2">Design with Intent</h3>
+              <p className="text-sm text-muted-foreground">Blend facial aesthetics, function, and artistry for a natural result.</p>
             </div>
             <div className="text-center">
               <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">3</div>
-              <h3 className="font-semibold mb-2">Results & Support</h3>
-              <p className="text-sm text-muted-foreground">Ongoing follow-up so your smile looks great and you feel confident.</p>
+              <h3 className="font-semibold mb-2">Deliver with Care</h3>
+              <p className="text-sm text-muted-foreground">Gentle, precise treatment and follow-through so confidence lasts long after the appointment.</p>
             </div>
           </div>
           
@@ -226,18 +226,17 @@ const TransformationStoryPage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-semibold mb-4">Thinking About Your Own Smile?</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Whether you want a straighter look, a confidence boost, or a complete smile refresh, 
-            we'll meet you where you are and guide you step-by-step.
+            Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity — every step of the way.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="default">
-              <a 
+              <a
                 href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book a Consultation
+                👉 Book a Consultation
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
