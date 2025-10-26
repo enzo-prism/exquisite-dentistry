@@ -13,16 +13,55 @@ import { Link } from 'react-router-dom';
 const TransformationStoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const caseStudy = transformationStories.find(cs => cs.slug === slug);
-  
+
   if (!caseStudy) {
     return <Navigate to="/transformation-stories" replace />;
   }
-  
+
   const canonicalUrl = `https://exquisitedentistryla.com/transformation-stories/${caseStudy.slug}/`;
-  
+
+  const videoSectionTitle = caseStudy.videoSection?.title ?? `🎥 Watch ${caseStudy.patientName}'s Story`;
+  const defaultVideoDescription =
+    caseStudy.patientName === 'Real Patients'
+      ? 'Hear how our patients transformed their dental experience from anxiety to ease.'
+      : 'Hear how the experience changed their confidence and why they recommend the team.';
+  const videoSectionDescription = caseStudy.videoSection?.description ?? defaultVideoDescription;
+
+  const defaultApproach = [
+    {
+      title: 'Listen First',
+      description: 'Every transformation starts with understanding the person behind the smile.'
+    },
+    {
+      title: 'Design with Intent',
+      description: 'Blend facial aesthetics, function, and artistry for a natural result.'
+    },
+    {
+      title: 'Deliver with Care',
+      description:
+        'Gentle, precise treatment and follow-through so confidence lasts long after the appointment.'
+    }
+  ];
+  const approachItems = caseStudy.approach ?? defaultApproach;
+
+  const finalCta = {
+    heading: caseStudy.finalCta?.heading ?? 'Thinking About Your Own Smile?',
+    description:
+      caseStudy.finalCta?.description ??
+      'Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity — every step of the way.',
+    primaryCtaText: caseStudy.finalCta?.primaryCtaText ?? '👉 Book a Consultation',
+    primaryCtaHref:
+      caseStudy.finalCta?.primaryCtaHref ??
+      'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+    secondaryCtaText: caseStudy.finalCta?.secondaryCtaText ?? 'Call the Office',
+    secondaryCtaHref: caseStudy.finalCta?.secondaryCtaHref ?? 'tel:+13232722388'
+  } as const;
+
+  const isExternalLink = (href?: string) => Boolean(href && href.startsWith('http'));
+
   return (
     <>
-      <PageSEO 
+      <PageSEO
         title={caseStudy.seo.title}
         description={caseStudy.seo.description}
         keywords={caseStudy.seo.keywords}
@@ -58,14 +97,10 @@ const TransformationStoryPage: React.FC = () => {
       <section className="py-12 bg-muted/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4">🎥 Watch {caseStudy.patientName}'s Story</h2>
-            <p className="text-muted-foreground">
-              {caseStudy.patientName === 'Real Patients'
-                ? 'Hear how our patients transformed their dental experience from anxiety to ease.'
-                : 'Hear how the experience changed their confidence and why they recommend the team.'}
-            </p>
+            <h2 className="text-2xl font-semibold mb-4">{videoSectionTitle}</h2>
+            <p className="text-muted-foreground">{videoSectionDescription}</p>
           </div>
-          
+
            <div className="max-w-3xl mx-auto">
             <SimpleTransformationEmbed
               source={caseStudy.video.src}
@@ -176,25 +211,19 @@ const TransformationStoryPage: React.FC = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-semibold mb-4">Our Approach (At a Glance)</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">1</div>
-              <h3 className="font-semibold mb-2">Listen First</h3>
-              <p className="text-sm text-muted-foreground">Every transformation starts with understanding the person behind the smile.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">2</div>
-              <h3 className="font-semibold mb-2">Design with Intent</h3>
-              <p className="text-sm text-muted-foreground">Blend facial aesthetics, function, and artistry for a natural result.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">3</div>
-              <h3 className="font-semibold mb-2">Deliver with Care</h3>
-              <p className="text-sm text-muted-foreground">Gentle, precise treatment and follow-through so confidence lasts long after the appointment.</p>
-            </div>
+            {approachItems.map((item, index) => (
+              <div className="text-center" key={item.title}>
+                <div className="bg-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                  {index + 1}
+                </div>
+                <h3 className="font-semibold mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
           </div>
-          
+
           <div className="text-center text-sm text-muted-foreground italic">
             Every smile is unique. Your plan will be tailored to your goals and lifestyle. Individual results may vary.
           </div>
@@ -224,26 +253,32 @@ const TransformationStoryPage: React.FC = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-gold/10 to-gold/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-semibold mb-4">Thinking About Your Own Smile?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity — every step of the way.
-          </p>
+          <h2 className="text-3xl font-semibold mb-4">{finalCta.heading}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{finalCta.description}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="default">
-              <a
-                href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                👉 Book a Consultation
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="tel:+13232722388">
-                Call the Office
-              </a>
-            </Button>
+            {finalCta.primaryCtaHref && finalCta.primaryCtaText && (
+              <Button asChild size="lg" variant="default">
+                <a
+                  href={finalCta.primaryCtaHref}
+                  target={isExternalLink(finalCta.primaryCtaHref) ? '_blank' : undefined}
+                  rel={isExternalLink(finalCta.primaryCtaHref) ? 'noopener noreferrer' : undefined}
+                >
+                  {finalCta.primaryCtaText}
+                </a>
+              </Button>
+            )}
+            {finalCta.secondaryCtaHref && finalCta.secondaryCtaText && (
+              <Button asChild variant="outline" size="lg">
+                <a
+                  href={finalCta.secondaryCtaHref}
+                  target={isExternalLink(finalCta.secondaryCtaHref) ? '_blank' : undefined}
+                  rel={isExternalLink(finalCta.secondaryCtaHref) ? 'noopener noreferrer' : undefined}
+                >
+                  {finalCta.secondaryCtaText}
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </section>

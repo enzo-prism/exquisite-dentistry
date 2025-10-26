@@ -16,6 +16,10 @@ export interface TransformationStory {
     text: string;
     context?: string;
   }>;
+  videoSection?: {
+    title?: string;
+    description?: string;
+  };
   whyChoseUs: Array<{
     title: string;
     description: string;
@@ -24,10 +28,22 @@ export interface TransformationStory {
     category: string;
     description: string;
   }>;
+  approach?: Array<{
+    title: string;
+    description: string;
+  }>;
   faqs: Array<{
     question: string;
     answer: string;
   }>;
+  finalCta?: {
+    heading?: string;
+    description?: string;
+    primaryCtaText?: string;
+    primaryCtaHref?: string;
+    secondaryCtaText?: string;
+    secondaryCtaHref?: string;
+  };
   seo: {
     title: string;
     description: string;
@@ -36,6 +52,114 @@ export interface TransformationStory {
 }
 
 export const transformationStories: TransformationStory[] = [
+  {
+    id: 'brandon-gray',
+    slug: 'brandon-gray',
+    patientName: 'Brandon Gray',
+    title: 'From Fear to Family: Brandon Gray’s Experience with Dr. Agil at Exquisite Dentistry LA',
+    shortDescription:
+      'A dental visit that feels more like catching up with friends — and results that make you want to smile.',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/brandon.mp4',
+      poster: 'https://videos-hazel-eta.vercel.app/brandon-thumbnail.png'
+    },
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/brandon-thumbnail.png',
+    location: 'West Hollywood / Beverly Grove, Los Angeles',
+    goal: 'Overcome fear of the dentist and feel comfortable in the chair',
+    keyTakeaways: [
+      'Feels like family — not a clinic.',
+      'Friendly, professional, reassuring. “They’re super friendly and make it feel like a family here.”',
+      'Fun, comfortable experience. A visit that replaces fear with ease — and ends with a smile you’re proud to show.'
+    ],
+    quotes: [
+      {
+        text:
+          'A lot of people are afraid to go to the dentist or dread going, but Dr. Agil and his staff are super friendly and they make it feel like it’s a family here. So it’s a whole fun experience — and you walk out with a great smile.',
+        context: 'Brandon Gray, on how Exquisite Dentistry changed his perception of dental care'
+      }
+    ],
+    videoSection: {
+      title: 'Watch Brandon’s Story',
+      description:
+        'Hear how Brandon went from dreading dental visits to actually looking forward to them, thanks to Dr. Agil and his caring team.'
+    },
+    whyChoseUs: [
+      {
+        title: 'Comfort meets compassion',
+        description:
+          'From your first greeting to the final polish, Dr. Agil’s team blends warmth, humor, and expertise to make every appointment feel human.'
+      },
+      {
+        title: 'Experience that builds trust',
+        description: 'Personal attention, clear communication, and consistent care turn anxiety into ease.'
+      },
+      {
+        title: 'Smiles built to last',
+        description: 'Beyond a single visit — lasting confidence and better dental habits start here.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Fear → Ease',
+        description: 'Replaced anxiety with calm through genuine care and empathy.'
+      },
+      {
+        category: 'Appointments → Experiences',
+        description: 'Visits became something to look forward to — not avoid.'
+      },
+      {
+        category: 'Results → Confidence',
+        description: 'Left every appointment smiling, both literally and emotionally.'
+      }
+    ],
+    approach: [
+      {
+        title: 'Listen First',
+        description: 'We understand your goals, your fears, and your comfort needs before any treatment begins.'
+      },
+      {
+        title: 'Comfort-Driven Care',
+        description: 'Friendly faces, relaxed energy, and step-by-step communication keep you at ease.'
+      },
+      {
+        title: 'Results & Support',
+        description: 'You leave with a confident smile — and the know-how to maintain it.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'How does Dr. Agil help patients who are nervous about the dentist?',
+        answer:
+          'Every visit starts with a conversation about what makes you uneasy. From there, we tailor the experience with kindness, humor, and calming amenities so you feel like you’re surrounded by friends.'
+      },
+      {
+        question: 'What makes an appointment feel more like catching up than a clinical visit?',
+        answer:
+          'Brandon describes the team as warm, familiar faces who remember your story, check in on how you’re feeling, and keep the atmosphere relaxed from start to finish.'
+      },
+      {
+        question: 'Can I really look forward to going to the dentist?',
+        answer:
+          'Yes. When genuine care replaces judgment and every step is explained in plain language, fear fades. Patients tell us they leave smiling — and excited for the next visit.'
+      }
+    ],
+    finalCta: {
+      heading: 'Thinking About Your Own Smile?',
+      description:
+        'Whether you’ve avoided the dentist for years or just want a place that feels different — Dr. Agil and the Exquisite Dentistry team are here to change how you feel about dental care.',
+      primaryCtaText: 'Book a Comfort Consultation',
+      primaryCtaHref: 'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      secondaryCtaText: 'Call the Office',
+      secondaryCtaHref: 'tel:+13232722388'
+    },
+    seo: {
+      title: 'Brandon Gray’s Transformation Story | Exquisite Dentistry LA',
+      description:
+        'See how Brandon Gray went from fearing dental visits to feeling like part of the family at Exquisite Dentistry in Los Angeles. Watch his story and discover our comfort-driven approach.',
+      keywords:
+        'Brandon Gray dental story, fear-free dentist Los Angeles, Exquisite Dentistry testimonial, comfort dentistry LA, Dr. Agil patient experience'
+    }
+  },
   {
     id: 'virginia-art-of-a-smile',
     slug: 'virginia',
