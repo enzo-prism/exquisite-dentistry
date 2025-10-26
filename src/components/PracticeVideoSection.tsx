@@ -1,5 +1,12 @@
 
 import React from 'react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+
+const PRACTICE_VIDEO = {
+  source: 'https://videos-hazel-eta.vercel.app/trailer.mp4',
+  poster: 'https://videos-hazel-eta.vercel.app/trailer-thumbnail.png',
+  title: 'Discover Exquisite Dentistry'
+};
 
 const PracticeVideoSection: React.FC = () => {
   return (
@@ -18,17 +25,19 @@ const PracticeVideoSection: React.FC = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 overflow-hidden">
-            <div style={{padding: '56.25% 0 0 0', position: 'relative'}}>
-              <iframe
-                src="https://player.vimeo.com/video/1076433847?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                frameBorder="0"
-                allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-                title="Exquisite Dentistry Dental Spa"
-              ></iframe>
-            </div>
-            <script src="https://player.vimeo.com/api/player.js"></script>
+            <AspectRatio ratio={16 / 9} className="bg-black">
+              <video
+                controls
+                preload="none"
+                poster={PRACTICE_VIDEO.poster}
+                className="absolute inset-0 h-full w-full object-cover"
+                playsInline
+                title={PRACTICE_VIDEO.title}
+              >
+                <source src={PRACTICE_VIDEO.source} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </AspectRatio>
           </div>
         </div>
       </div>
