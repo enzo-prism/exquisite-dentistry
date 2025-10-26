@@ -157,7 +157,7 @@ const ZoomWhitening = () => {
           subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
           primaryCta={{
             text: "Schedule Whitening",
-            href: "https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
             target: "_blank",
             rel: "noopener noreferrer"
           }}
@@ -328,7 +328,7 @@ const ZoomWhitening = () => {
                   asChild
                 >
                   <a 
-                    href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

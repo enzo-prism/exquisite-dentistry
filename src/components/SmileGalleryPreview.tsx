@@ -138,7 +138,7 @@ const SmileGalleryPreview: React.FC = () => {
                 className="group"
               >
                 <a 
-                  href="https://scheduling.simplifeye.co/#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
