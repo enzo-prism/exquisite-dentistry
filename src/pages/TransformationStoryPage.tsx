@@ -68,7 +68,8 @@ const TransformationStoryPage: React.FC = () => {
           
            <div className="max-w-3xl mx-auto">
             <SimpleTransformationEmbed
-              vimeoId={caseStudy.videoId}
+              source={caseStudy.video.src}
+              poster={caseStudy.video.poster || caseStudy.thumbnailUrl}
               title={caseStudy.title}
               className="w-full"
             />

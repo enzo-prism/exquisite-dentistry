@@ -51,7 +51,8 @@ const TransformationStoriesPage: React.FC = () => {
                   {/* Video Section */}
                   <div className="space-y-4">
                     <SimpleTransformationEmbed
-                      vimeoId={caseStudy.videoId}
+                      source={caseStudy.video.src}
+                      poster={caseStudy.video.poster || caseStudy.thumbnailUrl}
                       title={caseStudy.title}
                       className="w-full"
                     />

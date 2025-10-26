@@ -54,17 +54,24 @@ const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredD
     }
   };
 
+  const fallbackThumbnail = 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png';
+  const rawThumbnail = caseStudy.video.poster || caseStudy.thumbnailUrl;
+  const thumbnailUrl = rawThumbnail
+    ? rawThumbnail.startsWith('http')
+      ? rawThumbnail
+      : `https://exquisitedentistryla.com${rawThumbnail}`
+    : fallbackThumbnail;
+
   const videoStructuredData = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": caseStudy.title,
     "description": caseStudy.shortDescription,
-    "thumbnailUrl": caseStudy.thumbnailUrl || `https://img.youtube.com/vi/${caseStudy.videoId}/maxresdefault.jpg`,
+    "thumbnailUrl": thumbnailUrl,
     "uploadDate": "2024-01-01",
     "duration": "PT3M",
-    "embedUrl": caseStudy.videoType === 'youtube' 
-      ? `https://www.youtube.com/embed/${caseStudy.videoId}`
-      : `https://player.vimeo.com/video/${caseStudy.videoId}`,
+    "contentUrl": caseStudy.video.src,
+    "embedUrl": caseStudy.video.src,
     "publisher": {
       "@type": "Organization",
       "name": "Exquisite Dentistry",

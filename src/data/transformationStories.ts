@@ -4,8 +4,10 @@ export interface TransformationStory {
   patientName: string;
   title: string;
   shortDescription: string;
-  videoId: string;
-  videoType: 'youtube' | 'vimeo';
+  video: {
+    src: string;
+    poster?: string;
+  };
   thumbnailUrl?: string;
   location: string;
   goal: string;
@@ -40,8 +42,10 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Real Patients',
     title: 'From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA',
     shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
-    videoId: '1082192658',
-    videoType: 'vimeo',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/patient-testimonial-exquisite-dentistry.mp4',
+      poster: 'https://videos-hazel-eta.vercel.app/trailer-thumbnail.png'
+    },
     thumbnailUrl: '/lovable-uploads/5e86bd09-59b8-479e-93a7-18bd8484a8cd.png',
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
@@ -130,8 +134,10 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Rob Talbert',
     title: 'Rob Talbert\'s Story — "It doesn\'t even feel like going to the dentist"',
     shortDescription: 'Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.',
-    videoId: '1082192452',
-    videoType: 'vimeo',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/rob.mp4',
+      poster: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png'
+    },
     thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
     location: 'Los Angeles, CA',
     goal: 'From stress to ease — and a routine he actually looks forward to',
@@ -212,8 +218,10 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Christian Fernandez',
     title: 'Christian Fernandez — A Confidence-Boosting Smile Story',
     shortDescription: 'Christian came to Exquisite Dentistry wanting to feel great about her smile every day. After her smile-straightening journey with our team, she left feeling more confident, cared for, and part of the Exquisite Dentistry family.',
-    videoId: '1082192388',
-    videoType: 'vimeo',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/christian.mp4',
+      poster: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png'
+    },
     thumbnailUrl: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png',
     location: 'Los Angeles, CA',
     goal: 'A straighter, better-looking smile — and the confidence that comes with it',
@@ -286,8 +294,10 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Taylor Vasek',
     title: 'Taylor Vasek\'s Story — From "No Dentist" to Looking Forward to Every Visit',
     shortDescription: 'After moving to Los Angeles, Taylor needed a new dentist he could trust. From the moment he walked in, the experience felt different: warm faces, easy check-in, and a relaxed energy that made dental visits something to enjoy.',
-    videoId: '1082192501',
-    videoType: 'vimeo',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/taylor.mp4',
+      poster: '/lovable-uploads/8b7b3e48-76a3-4f37-91e3-2b3a8c681841.png'
+    },
     thumbnailUrl: '/lovable-uploads/8b7b3e48-76a3-4f37-91e3-2b3a8c681841.png',
     location: 'Los Angeles, CA',
     goal: 'Finding a new dentist after moving to LA who provides comfortable, trustworthy care',
@@ -364,8 +374,10 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Shannon Langhorne',
     title: 'Shannon Langhorne\'s Story — A Dental Visit That Feels Like Stepping Into a Spa',
     shortDescription: 'For Shannon, going to the dentist used to be just another appointment on the calendar. That changed the first time she visited Exquisite Dentistry where it feels like walking into a spa.',
-    videoId: '1082192427',
-    videoType: 'vimeo',
+    video: {
+      src: 'https://videos-hazel-eta.vercel.app/shannon.mp4',
+      poster: '/lovable-uploads/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995.png'
+    },
     thumbnailUrl: '/lovable-uploads/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995.png',
     location: 'Los Angeles, CA',
     goal: 'Finding dental care that feels comfortable and relaxing, like a spa experience',
