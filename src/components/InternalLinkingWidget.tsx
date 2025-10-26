@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Sparkles, Calendar, Heart, FileText, Camera } from 'lucide-react';
+import { SCHEDULING_URL } from '@/data/services';
 
 interface LinkItem {
   title: string;
@@ -330,7 +331,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Schedule Consultation',
-            href: '/contact',
+            href: SCHEDULING_URL,
             description: 'Begin your smile transformation',
             category: 'consultation',
             priority: 4
@@ -399,33 +400,53 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         variant === 'expanded' ? 'md:grid-cols-2' : 
         variant === 'sidebar' ? 'grid-cols-1' : ''
       }`}>
-        {displayLinks.map((link, index) => (
-          <Link
-            key={index}
-            to={link.href}
-            className="flex items-start gap-3 p-3 bg-white rounded-md hover:bg-gray-50 transition-colors group"
-          >
-            <div className="flex-shrink-0 mt-1">
-              {getCategoryIcon(link.category)}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
-                  {link.title}
-                </h4>
-                {link.seasonal && (
-                  <span className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
-                    Seasonal
-                  </span>
-                )}
+        {displayLinks.map((link, index) => {
+          const isExternal = /^https?:\/\//.test(link.href);
+          const linkClassName = 'flex items-start gap-3 p-3 bg-white rounded-md hover:bg-gray-50 transition-colors group';
+          const linkContent = (
+            <>
+              <div className="flex-shrink-0 mt-1">
+                {getCategoryIcon(link.category)}
               </div>
-              <p className="text-sm text-gray-600 mt-1">
-                {link.description}
-              </p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-gold transition-colors flex-shrink-0 mt-1" />
-          </Link>
-        ))}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
+                    {link.title}
+                  </h4>
+                  {link.seasonal && (
+                    <span className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
+                      Seasonal
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mt-1">
+                  {link.description}
+                </p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-gold transition-colors flex-shrink-0 mt-1" />
+            </>
+          );
+
+          if (isExternal) {
+            return (
+              <a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClassName}
+              >
+                {linkContent}
+              </a>
+            );
+          }
+
+          return (
+            <Link key={index} to={link.href} className={linkClassName}>
+              {linkContent}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
