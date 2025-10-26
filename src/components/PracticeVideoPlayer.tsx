@@ -11,6 +11,9 @@ interface PracticeVideoPlayerProps {
   onVideoStart?: () => void;
   onVideoEnd?: () => void;
   loop?: boolean;
+  autoPlay?: boolean;
+  muted?: boolean;
+  passive?: boolean;
   appearance?: 'elevated' | 'minimal';
 }
 
@@ -22,6 +25,9 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
   onVideoStart,
   onVideoEnd,
   loop = false,
+  autoPlay = false,
+  muted = false,
+  passive = false,
   appearance = 'elevated'
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,6 +35,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isReady, setIsReady] = useState(false);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
 
   const clearControlsTimeout = () => {
@@ -61,6 +68,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     setIsPlaying(!video.paused && !video.ended);
     setIsLoading(video.readyState < 3 && !video.paused);
     setShowControls(true);
+    setIsReady(video.readyState >= 2);
     if (!video.paused) {
       resetControlsTimeout();
     }
@@ -86,6 +94,13 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     };
     const handleCanPlay = () => {
       setIsLoading(false);
+      setIsReady(true);
+      if (autoPlay && video.paused) {
+        const playPromise = video.play();
+        if (playPromise) {
+          playPromise.catch(() => undefined);
+        }
+      }
     };
     const handleEnded = () => {
       setIsPlaying(false);
@@ -99,6 +114,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     video.addEventListener('waiting', handleWaiting);
     video.addEventListener('playing', handleCanPlay);
     video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadeddata', handleCanPlay);
     video.addEventListener('ended', handleEnded);
 
     return () => {
@@ -107,9 +123,10 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
       video.removeEventListener('waiting', handleWaiting);
       video.removeEventListener('playing', handleCanPlay);
       video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadeddata', handleCanPlay);
       video.removeEventListener('ended', handleEnded);
     };
-  }, [onVideoEnd, onVideoStart, resetControlsTimeout]);
+  }, [autoPlay, onVideoEnd, onVideoStart, resetControlsTimeout]);
 
   const handlePlay = useCallback(() => {
     const video = videoRef.current;
@@ -176,10 +193,27 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     syncFromVideo();
   }, [syncFromVideo]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = muted;
+    if (autoPlay && video.paused) {
+      const playPromise = video.play();
+      if (playPromise) {
+        playPromise.catch(() => undefined);
+      }
+    }
+  }, [autoPlay, muted]);
+
   const appearanceClasses =
     appearance === 'minimal'
       ? 'relative overflow-hidden rounded-lg bg-black group shadow-lg'
       : 'relative overflow-hidden rounded-lg shadow-2xl border border-white/40 backdrop-blur-sm bg-white/5 before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none group';
+
+  const isInteractive = !passive;
+
+  const preloadValue = autoPlay ? 'auto' : 'none';
 
   return (
     <AspectRatio
@@ -191,30 +225,54 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
     >
       <div
         ref={containerRef}
-        className="relative w-full h-full bg-black overflow-hidden cursor-pointer"
-        onClick={handleTogglePlay}
-        onMouseMove={handleMouseMove}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        className={cn(
+          'relative w-full h-full bg-black overflow-hidden',
+          isInteractive ? 'cursor-pointer' : 'cursor-default'
+        )}
+        onClick={isInteractive ? handleTogglePlay : undefined}
+        onMouseMove={isInteractive ? handleMouseMove : undefined}
+        onKeyDown={isInteractive ? handleKeyDown : undefined}
+        tabIndex={isInteractive ? 0 : -1}
+        role={isInteractive ? 'button' : undefined}
+        aria-label={isInteractive ? (isPlaying ? 'Pause video' : 'Play video') : undefined}
         style={{ borderRadius: 'inherit' }}
       >
+        {!isReady && (
+          <img
+            src={poster}
+            alt={`${title} preview`}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+        )}
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className={cn(
+            'absolute inset-0 h-full w-full object-cover transition-opacity duration-300',
+            !isReady ? 'opacity-0' : 'opacity-100'
+          )}
           poster={poster}
-          preload="none"
+          preload={preloadValue}
           loop={loop}
           controls={false}
           playsInline
+          autoPlay={autoPlay}
+          muted={muted}
           title={title}
         >
           <source src={source} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        {!isPlaying && (
+        {!isInteractive && isLoading && (
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center z-30">
+            <div className="bg-black/80 rounded-full p-4 shadow-xl">
+              <Loader2 className="h-8 w-8 text-gold animate-spin" />
+            </div>
+          </div>
+        )}
+
+        {isInteractive && !isPlaying && (
           <>
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -225,7 +283,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
           </>
         )}
 
-        {isLoading && (
+        {isInteractive && isLoading && (
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] flex items-center justify-center z-30">
             <div className="bg-black/70 rounded-full p-4 shadow-xl">
               <Loader2 className="h-8 w-8 text-gold animate-spin" />
@@ -233,7 +291,7 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
           </div>
         )}
 
-        {isPlaying && (
+        {isInteractive && isPlaying && (
           <div
             className={cn(
               'absolute inset-0 z-20 flex items-end justify-center transition-opacity duration-300',
