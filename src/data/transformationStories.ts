@@ -55,6 +55,118 @@ export interface TransformationStory {
 
 export const transformationStories: TransformationStory[] = [
   {
+    id: 'nick-invisalign',
+    slug: 'nick-invisalign',
+    patientName: 'Nick',
+    title:
+      'Confidence in Every Smile: Nick’s Invisalign Journey with Dr. Alexie Aguil at Exquisite Dentistry LA',
+    shortDescription:
+      'A lifetime of hiding his smile — until Invisalign with Dr. Aguil gave him the confidence to show it off.',
+    video: {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761590081/Nick_homviy.mp4',
+      poster: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png'
+    },
+    thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png',
+    location: 'Los Angeles, CA',
+    goal: 'Improve smile alignment and self-confidence with Invisalign',
+    keyTakeaways: [
+      'A smile that changed everything — “I’ve been concerned with my teeth my whole life… the work Dr. Aguil did has impacted my life significantly.”',
+      'Confidence through care — every visit focused on trust, comfort, and self-esteem.',
+      'A fantastic experience — what started as concern ended as confidence with results that feel as good as they look.'
+    ],
+    quotes: [
+      {
+        text:
+          'I’ve been concerned with my teeth my whole life. Dr. Alexie Aguil told me that Invisalign would help. The work that he’s done on my teeth and my smile has impacted my life significantly. I’m happier with my smile, I’m more confident. The experience was fantastic.',
+        context:
+          'Nick, on how Invisalign with Dr. Alexie Aguil at Exquisite Dentistry LA changed his confidence and comfort with his smile.'
+      }
+    ],
+    videoSection: {
+      title: 'Watch Nick’s Story',
+      description:
+        'Hear how Invisalign treatment with Dr. Alexie Aguil transformed not only Nick’s teeth, but his self-confidence and happiness.'
+    },
+    whyChoseUs: [
+      {
+        title: 'Expert guidance, personal care',
+        description:
+          'Dr. Aguil didn’t just recommend Invisalign — he mapped out a clear, step-by-step plan that made the process easy to trust.'
+      },
+      {
+        title: 'Confidence built in every visit',
+        description:
+          'With genuine reassurance and expertise, the team turned years of hesitation into steady progress — and joy.'
+      },
+      {
+        title: 'Results that speak for themselves',
+        description:
+          'From alignment to confidence, Nick’s transformation shows how modern dentistry can change how you feel about yourself.'
+      }
+    ],
+    whatChanged: [
+      {
+        category: 'Insecurity → Confidence',
+        description: 'From hiding his smile to showing it proudly in every photo.'
+      },
+      {
+        category: 'Concern → Clarity',
+        description:
+          'Invisalign gave Nick a simple, transparent plan — and visible progress that kept him motivated.'
+      },
+      {
+        category: 'Smile Goals → Life Change',
+        description: 'The results went beyond teeth — they reshaped how he sees himself.'
+      }
+    ],
+    approach: [
+      {
+        title: 'Listen First',
+        description: 'We take time to understand what’s held you back and what you want to change.'
+      },
+      {
+        title: 'Tailor the Plan',
+        description: 'Custom Invisalign treatment designed for your goals, timeline, and lifestyle.'
+      },
+      {
+        title: 'Support You All the Way',
+        description: 'From first tray to final reveal — every step is guided by care and communication.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'How long does Invisalign take to show results?',
+        answer: 'Every case is unique — but many patients begin to see visible improvement in just a few months.'
+      },
+      {
+        question: 'Does Invisalign hurt?',
+        answer: 'Most patients describe it as gentle pressure — and our team is here to make every adjustment comfortable.'
+      },
+      {
+        question: 'Is Invisalign right for me?',
+        answer:
+          'If you’ve ever wanted straighter teeth without the look of braces, a consultation with Dr. Alexie Aguil can help you find out.'
+      }
+    ],
+    finalCta: {
+      heading: 'Thinking About Your Own Smile?',
+      description:
+        'If you’ve ever held back your smile — or want results that feel as natural as they look — Dr. Alexie Aguil and the Exquisite Dentistry LA team are ready to help you start your own transformation.',
+      primaryCtaText: 'Book an Invisalign Consultation',
+      primaryCtaHref:
+        'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      secondaryCtaText: 'Call the Office',
+      secondaryCtaHref: 'tel:+13232722388'
+    },
+    seo: {
+      title: 'Nick’s Invisalign Transformation Story | Exquisite Dentistry LA',
+      description:
+        'Follow Nick’s Invisalign journey with Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Watch how a confident smile replaced years of hiding.',
+      keywords:
+        'Nick Invisalign story, Invisalign Los Angeles testimonial, Exquisite Dentistry transformation, Dr. Alexie Aguil Invisalign, smile confidence LA'
+    }
+  },
+  {
     id: 'brandon-gray',
     slug: 'brandon-gray',
     patientName: 'Brandon Gray',
