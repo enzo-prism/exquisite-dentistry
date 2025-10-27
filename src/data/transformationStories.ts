@@ -58,7 +58,7 @@ export const transformationStories: TransformationStory[] = [
     id: 'brandon-gray',
     slug: 'brandon-gray',
     patientName: 'Brandon Gray',
-    title: 'From Fear to Family: Brandon Gray’s Experience with Dr. Agil at Exquisite Dentistry LA',
+    title: 'From Fear to Family: Brandon Gray’s Experience with Dr. Aguil at Exquisite Dentistry LA',
     shortDescription:
       'A dental visit that feels more like catching up with friends — and results that make you want to smile.',
     video: {
@@ -76,20 +76,20 @@ export const transformationStories: TransformationStory[] = [
     quotes: [
       {
         text:
-          'A lot of people are afraid to go to the dentist or dread going, but Dr. Agil and his staff are super friendly and they make it feel like it’s a family here. So it’s a whole fun experience — and you walk out with a great smile.',
+          'A lot of people are afraid to go to the dentist or dread going, but Dr. Aguil and his staff are super friendly and they make it feel like it’s a family here. So it’s a whole fun experience — and you walk out with a great smile.',
         context: 'Brandon Gray, on how Exquisite Dentistry changed his perception of dental care'
       }
     ],
     videoSection: {
       title: 'Watch Brandon’s Story',
       description:
-        'Hear how Brandon went from dreading dental visits to actually looking forward to them, thanks to Dr. Agil and his caring team.'
+          'Hear how Brandon went from dreading dental visits to actually looking forward to them, thanks to Dr. Aguil and his caring team.'
     },
     whyChoseUs: [
       {
         title: 'Comfort meets compassion',
         description:
-          'From your first greeting to the final polish, Dr. Agil’s team blends warmth, humor, and expertise to make every appointment feel human.'
+          'From your first greeting to the final polish, Dr. Aguil’s team blends warmth, humor, and expertise to make every appointment feel human.'
       },
       {
         title: 'Experience that builds trust',
@@ -130,7 +130,7 @@ export const transformationStories: TransformationStory[] = [
     ],
     faqs: [
       {
-        question: 'How does Dr. Agil help patients who are nervous about the dentist?',
+        question: 'How does Dr. Aguil help patients who are nervous about the dentist?',
         answer:
           'Every visit starts with a conversation about what makes you uneasy. From there, we tailor the experience with kindness, humor, and calming amenities so you feel like you’re surrounded by friends.'
       },
@@ -148,7 +148,7 @@ export const transformationStories: TransformationStory[] = [
     finalCta: {
       heading: 'Thinking About Your Own Smile?',
       description:
-        'Whether you’ve avoided the dentist for years or just want a place that feels different — Dr. Agil and the Exquisite Dentistry team are here to change how you feel about dental care.',
+        'Whether you’ve avoided the dentist for years or just want a place that feels different — Dr. Aguil and the Exquisite Dentistry team are here to change how you feel about dental care.',
       primaryCtaText: 'Book a Comfort Consultation',
       primaryCtaHref: 'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
       secondaryCtaText: 'Call the Office',
@@ -159,7 +159,7 @@ export const transformationStories: TransformationStory[] = [
       description:
         'See how Brandon Gray went from fearing dental visits to feeling like part of the family at Exquisite Dentistry in Los Angeles. Watch his story and discover our comfort-driven approach.',
       keywords:
-        'Brandon Gray dental story, fear-free dentist Los Angeles, Exquisite Dentistry testimonial, comfort dentistry LA, Dr. Agil patient experience'
+        'Brandon Gray dental story, fear-free dentist Los Angeles, Exquisite Dentistry testimonial, comfort dentistry LA, Dr. Aguil patient experience'
     }
   },
   {
