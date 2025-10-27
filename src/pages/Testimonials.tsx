@@ -10,6 +10,38 @@ import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const TestimonialsPage: React.FC = () => {
   const totalTestimonials = VIDEO_TESTIMONIALS.length;
+  const SITE_BASE_URL = 'https://exquisitedentistryla.com';
+
+  const toAbsoluteUrl = (url: string) => {
+    if (!url) return undefined;
+    return url.startsWith('http') ? url : `${SITE_BASE_URL}${url}`;
+  };
+
+  const videoSchemaItems = VIDEO_TESTIMONIALS.map((testimonial, index) => {
+    const baseVideoObject: Record<string, unknown> = {
+      '@type': 'VideoObject',
+      name: testimonial.title,
+      description: `${testimonial.title} from Exquisite Dentistry LA`
+    };
+
+    const thumbnailUrl = toAbsoluteUrl(testimonial.thumbnailUrl);
+    if (thumbnailUrl) {
+      baseVideoObject.thumbnailUrl = thumbnailUrl;
+    }
+
+    if (testimonial.type === 'vimeo') {
+      baseVideoObject.embedUrl = `https://player.vimeo.com/video/${testimonial.vimeoId}`;
+      baseVideoObject.contentUrl = `https://vimeo.com/${testimonial.vimeoId}`;
+    } else {
+      baseVideoObject.contentUrl = testimonial.videoUrl;
+    }
+
+    return {
+      '@type': 'ListItem',
+      position: index + 1,
+      item: baseVideoObject
+    };
+  });
 
   return (
     <>
@@ -38,38 +70,7 @@ const TestimonialsPage: React.FC = () => {
             name: 'Video Testimonials',
             description: 'Collection of patient video testimonials for Exquisite Dentistry',
             numberOfItems: totalTestimonials,
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                item: {
-                  '@type': 'VideoObject',
-                  name: 'Shannon Patient Testimonial',
-                  description: 'Shannon shares her experience with Dr. Aguil and Exquisite Dentistry',
-                  embedUrl: 'https://player.vimeo.com/video/1076745522'
-                }
-              },
-              {
-                '@type': 'ListItem', 
-                position: 2,
-                item: {
-                  '@type': 'VideoObject',
-                  name: 'Taylor Patient Testimonial',
-                  description: 'Taylor discusses her smile transformation at Exquisite Dentistry',
-                  embedUrl: 'https://player.vimeo.com/video/1076745520'
-                }
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                item: {
-                  '@type': 'VideoObject',
-                  name: 'Christian Patient Testimonial', 
-                  description: 'Christian shares his positive experience with cosmetic dentistry',
-                  embedUrl: 'https://player.vimeo.com/video/1076745519'
-                }
-              }
-            ]
+            itemListElement: videoSchemaItems
           }
         ]}
       />

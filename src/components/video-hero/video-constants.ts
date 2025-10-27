@@ -27,6 +27,14 @@ export const ANXIETY_TO_EASE_TESTIMONIAL: VideoTestimonialItem = {
   title: 'From Anxiety to Ease Patient Testimonial'
 };
 
+export const NICK_SMILE_TESTIMONIAL: VideoTestimonialItem = {
+  id: 'nick-patient-testimonial',
+  type: 'file',
+  videoUrl: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761590081/Nick_homviy.mp4',
+  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png',
+  title: 'Nick Invisalign Transformation Testimonial'
+};
+
 export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
   {
     id: 'brandon-patient-testimonial',
@@ -42,6 +50,7 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     thumbnailUrl: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png',
     title: 'Virginia Patient Testimonial'
   },
+  NICK_SMILE_TESTIMONIAL,
   {
     id: '1082192427',
     type: 'vimeo',
