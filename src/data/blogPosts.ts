@@ -19,6 +19,105 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '6',
+    title: '5 Healthy Habits For Your Teeth',
+    slug: 'healthy-habits-for-your-teeth',
+    excerpt: 'Adopt five daily habits—from brushing technique to routine dental visits—that protect your smile, boost your confidence, and support whole-body wellness.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          A confident smile is always within reach when you make oral hygiene part of your everyday routine. By pairing consistent at-home care with mindful lifestyle choices, you can prevent common dental problems and enjoy teeth that stay bright, strong, and healthy for years to come.
+        </p>
+
+        <p class="mb-6">
+          At Exquisite Dentistry, Dr. Alexie Aguil has helped West Hollywood patients build healthy habits since 2006. His approach focuses on elevating your overall health while giving you a smile that radiates confidence. These five dentist-approved habits will keep your teeth and gums at their best between visits.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">1. Build Good Brushing Habits</h2>
+
+        <p class="mb-6">
+          Brushing twice a day seems simple, but technique and tools matter. We recommend <strong>Philips Sonicare</strong> electric toothbrushes because their sonic technology removes plaque efficiently without aggressive scrubbing. Angle the bristles toward the gumline, apply light pressure, and let the brush glide slowly over every surface—including the backs of your teeth and any wisdom teeth that remain.
+        </p>
+
+        <ul class="mb-6 list-disc pl-6 space-y-2">
+          <li><strong>Technique:</strong> Keep the bristles at a 45° angle, moving methodically so the longer filaments reach between teeth.</li>
+          <li><strong>Timing:</strong> Follow the "2 by 2" rule—two full minutes, twice a day—for a complete clean.</li>
+          <li><strong>Tools:</strong> Pair your brush with a natural healing toothpaste and mouth rinse, such as Dental Herb Company's Tooth and Gum Paste and Tonic, and replace brush heads every three months.</li>
+        </ul>
+
+        <div class="bg-primary/10 p-6 rounded-lg my-8">
+          <h3 class="text-lg font-bold mb-4 text-center">Restore Your Smile's Brilliance</h3>
+          <p class="text-center mb-4">With your smile the best it's ever looked, your confidence will be at an all-time high</p>
+          <div class="text-center">
+            <p class="font-semibold mb-2">CONTACT EXQUISITE DENTISTRY</p>
+            <p class="text-xl font-bold mb-2">(323) 272-2388</p>
+            <p class="text-sm">Call to schedule your cosmetic dentist appointment and experience true luxury.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">2. Floss Daily</h2>
+
+        <p class="mb-6">
+          No toothbrush can reach the tight spaces where plaque loves to hide. Flossing once a day removes debris along the gumline before it hardens into tartar, helping you avoid cavities, gum disease, and bone loss. Think of flossing as a simple investment that preserves your smile—and helps you spend less time in the dental chair overall.
+        </p>
+
+        <p class="mb-6">
+          Need help staying consistent? Keep floss picks in your bag, desk drawer, or car so you're prepared wherever the day takes you. When flossing becomes automatic, your gums stay healthy and your breath stays fresh.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">3. Limit Snacks Between Meals</h2>
+
+        <p class="mb-6">
+          Frequent snacking—especially on sugary or starchy treats—feeds cavity-causing bacteria. Swap packaged snacks for crunchy fruits and vegetables that stimulate saliva, neutralize acids, and naturally clean tooth surfaces. If you indulge in a sweet pick-me-up, brush soon afterward or use a disposable toothbrush to keep decay at bay.
+        </p>
+
+        <p class="mb-6">
+          Tip from Dr. Aguil: stash a few travel-friendly brushes or sugar-free xylitol mints in your purse, gym bag, or office drawer. Small adjustments make it easy to protect your teeth on busy days.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">4. Stay Away From Tobacco, Vaping, and Marijuana</h2>
+
+        <p class="mb-6">
+          Tobacco products and vaping devices increase your risk for gum disease, tooth decay, and oral cancer. Many smokeless products even contain sugar-based sweeteners that accelerate cavities. Cannabis smoke can irritate gum tissues and lead to dry mouth, making it harder for your body to protect itself. For a vibrant smile and optimal health, steer clear of tobacco and cannabis altogether.
+        </p>
+
+        <p class="mb-6">
+          If you're ready to quit, our team can connect you with supportive resources and create a personalized prevention plan that keeps your oral health on track.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">5. Keep Up With Regular Check-Ups and Cleanings</h2>
+
+        <p class="mb-6">
+          Even the best home care routine can't remove every trace of plaque. Schedule professional cleanings at least twice a year so we can polish away buildup, monitor your gum health, and spot concerns before they become painful or costly. Settle into our spa-like dental chairs with a warm blanket, noise-canceling headphones, and your favorite Netflix show—it's self-care with dazzling results.
+        </p>
+
+        <p class="mb-6">
+          During your visit, explore advanced services like <a href="/services" class="text-primary hover:text-primary/80 underline">porcelain veneers</a>, <a href="/invisalign" class="text-primary hover:text-primary/80 underline">Invisalign</a>, <a href="/zoom-whitening" class="text-primary hover:text-primary/80 underline">laser teeth whitening</a>, and <a href="/services" class="text-primary hover:text-primary/80 underline">pain-free sedation dentistry</a>. We're here to make every aspect of your smile journey relaxing, luxurious, and tailored to your goals.
+        </p>
+
+        <div class="bg-secondary/10 p-6 rounded-lg mt-10">
+          <p class="text-center text-lg font-semibold mb-3">Ready to build habits that keep your smile radiant?</p>
+          <div class="text-center space-y-2">
+            <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-lg shadow-md hover:bg-primary/90 transition-colors">Schedule your wellness visit</a>
+            <p class="text-sm text-gray-600">Let our concierge team design a preventive care plan that fits your lifestyle.</p>
+          </div>
+        </div>
+
+        <p class="mt-8 text-gray-600">
+          At Exquisite Dentistry, we prioritize lasting relationships, total-body wellness, and smiles that glow from the inside out. Stay consistent with these five habits, and you'll always have a reason to share your confident, healthy grin.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'August 20, 2025',
+    readTime: '8 min read',
+    category: 'Oral Health',
+    tags: ['oral hygiene', 'healthy habits', 'preventive care', 'brushing tips', 'flossing'],
+    seoTitle: '5 Healthy Habits For Your Teeth | Preventive Dentistry Tips Los Angeles',
+    seoDescription: 'Discover five dentist-approved habits to protect your smile: proper brushing, daily flossing, smart snacking, tobacco-free living, and regular cleanings with Exquisite Dentistry in West Hollywood.',
+    seoKeywords: 'healthy dental habits, oral hygiene tips, brushing technique, flossing daily, preventive dentistry Los Angeles, West Hollywood dentist',
+    published: true
+  },
+  {
     id: '1',
     title: 'Why Invisalign Has a Clear Advantage Over Traditional Braces',
     slug: 'invisalign-clear-advantage-over-traditional-braces',
