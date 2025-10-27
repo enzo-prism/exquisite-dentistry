@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const SingleToothVeneersBlog = () => {
   const blogPost = {
@@ -359,9 +360,9 @@ const SingleToothVeneersBlog = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg" className="text-lg px-8 py-4">
-                <a 
-                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" 
-                  target="_blank" 
+                <a
+                  href={SCHEDULING_URL}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center"
                 >

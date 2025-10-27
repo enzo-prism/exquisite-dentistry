@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Sparkles, Calendar, Eye, Shield } from 'lucide-react';
@@ -10,8 +9,7 @@ import BlogStructuredData from '@/components/BlogStructuredData';
 import ArticleStructuredData from '@/components/seo/ArticleStructuredData';
 
 import { PageSEO } from '@/components/seo/PageSEO';
-
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const FrontTeethVeneersBlog = () => {
   const blogPost = {
