@@ -19,6 +19,105 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '10',
+    title: 'A Dentist for Adults in Los Angeles',
+    slug: 'dentist-for-adults-los-angeles',
+    excerpt:
+      'Experience a spa-inspired dental visit designed exclusively for adults with concierge comforts, comprehensive care, and cosmetic enhancements in West Hollywood.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          You deserve to visit a dentist who understands your lifestyle, anticipates your needs, and makes every appointment feel effortless. While pediatric offices excel at caring for families, Exquisite Dentistry was created specifically for adults who expect personalized attention, modern technology, and a soothing atmosphere from start to finish.
+        </p>
+
+        <p class="mb-6">
+          From the moment you arrive at our West Hollywood studio, you’ll be greeted by name, offered chilled water or herbal tea, and invited to settle into a tranquil lounge filled with soft lighting and relaxing aromas. When it’s time for your visit, you’ll slip into a comfortable treatment chair, choose your favorite music or Netflix show, and wrap up in a cozy blanket while we take care of the rest.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
+          <h3 class="text-lg font-semibold text-center mb-3">Restore Your Smile’s Brilliance</h3>
+          <p class="text-center mb-4">With your smile the best it’s ever looked, your confidence will be at an all-time high.</p>
+          <div class="text-center space-y-1">
+            <p class="font-semibold uppercase tracking-wide">Contact Exquisite Dentistry</p>
+            <p class="text-2xl font-bold">(323) 272-2388</p>
+            <p class="text-sm">Call to schedule your cosmetic dentist appointment and experience true luxury.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Make Dental Visits Part of Your Healthy Lifestyle</h2>
+        <p class="mb-6">
+          Maintaining whole-body wellness takes more than clean eating and consistent workouts—it also means staying on schedule with your medical and dental checkups. Just as you commit to yoga classes, strength training, or mindful nutrition, prioritizing routine dental visits protects both your oral health and overall vitality.
+        </p>
+
+        <p class="mb-6">
+          Seeing an adult-focused dentist in Los Angeles helps you spot potential issues before they become urgent problems. Preventive visits allow us to catch small changes, recommend conservative treatments, and keep you smiling confidently without the stress of last-minute emergencies.
+        </p>
+
+        <div class="bg-secondary/10 border border-secondary/20 p-6 rounded-xl my-8">
+          <p class="text-center text-lg font-semibold mb-3">Schedule your appointment at Exquisite Dentistry in West Hollywood.</p>
+          <div class="text-center space-y-2">
+            <a href="tel:13232722388" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Call (323) 272-2388</a>
+            <a href="/contact" class="block text-primary hover:text-primary/80 underline">Request your visit online</a>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">It All Starts with Comprehensive Care</h2>
+        <p class="mb-6">
+          Your teeth, gums, and oral tissues play a vital role in your overall health. Regular exams, digital diagnostics, and professional cleanings give us the insight we need to protect your smile and support the rest of your body. Our team can even guide you through <a href="/cosmetic-dentistry" class="text-primary hover:text-primary/80 underline">cosmetic dentistry</a> upgrades like Zoom laser teeth whitening or porcelain veneers when you’re ready to elevate your look.
+        </p>
+
+        <p class="mb-6">
+          Whether you’re focused on preventive care, planning a smile makeover, or simply want a calm environment for routine visits, we customize every appointment to your goals and comfort level.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Expect a More Comfortable Experience</h2>
+        <p class="mb-6">
+          Dr. Aguil and our concierge team pioneered the “dental spa” model in Los Angeles. Relax into plush chairs, slip on noise-canceling headphones, and stream your favorite entertainment while we deliver meticulous care. Warm blankets, thoughtful amenities, and genuine hospitality transform traditional dentistry into something you’ll look forward to.
+        </p>
+
+        <p class="mb-6">
+          Every detail—from aromatherapy and beverage service to advanced technology—was designed to ensure you feel supported, pampered, and confident throughout your visit.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Feel Good, Look Great</h2>
+        <p class="mb-6">
+          Routine visits keep your mouth healthy, but they also unlock cosmetic possibilities that enhance how you look and feel every day. Your smile is one of the first things people notice, and we offer personalized treatments to help it shine.
+        </p>
+
+        <ul class="list-disc pl-6 space-y-3 mb-8">
+          <li><strong>Dental veneers:</strong> Custom porcelain crafted to deliver a luminous, natural appearance.</li>
+          <li><strong>Invisalign treatment:</strong> Discreet, removable aligners that fit your lifestyle and let you eat whatever you love.</li>
+          <li><strong>Laser teeth whitening:</strong> Zoom technology brightens your smile by up to eight shades in a single visit.</li>
+        </ul>
+
+        <p class="mb-6">
+          Have questions before you begin? Our specialists walk you through every option, answer your concerns, and build a treatment roadmap that reflects your vision.
+        </p>
+
+        <div class="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8">
+          <h3 class="text-lg font-semibold text-center mb-2">Experience World-Class Adult Dentistry</h3>
+          <p class="text-center text-muted-foreground mb-4">Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> or <a href="/contact" class="text-primary hover:text-primary/80 underline">schedule your appointment</a> to discover spa-level comfort at Exquisite Dentistry.</p>
+          <p class="text-center text-sm text-gray-600">Serving West Hollywood, Beverly Hills, and the greater Los Angeles area.</p>
+        </div>
+
+        <p class="mb-6">
+          When you’re ready for an elevated approach to oral care, our adult-focused practice is here to help you feel refreshed, confident, and cared for at every visit.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'October 20, 2025',
+    readTime: '8 min read',
+    category: 'Patient Experience',
+    tags: ['adult dentistry', 'luxury dentistry', 'Los Angeles dentist', 'patient comfort', 'cosmetic dentistry'],
+    seoTitle: 'Dentist for Adults in Los Angeles | Exquisite Dentistry',
+    seoDescription:
+      'Discover Exquisite Dentistry’s spa-inspired approach to adult dental care in Los Angeles with concierge comforts, preventive checkups, and cosmetic upgrades.',
+    seoKeywords:
+      'dentist for adults Los Angeles, adult dentistry West Hollywood, luxury dental spa LA, cosmetic dentist Los Angeles, Exquisite Dentistry',
+    published: true
+  },
+  {
     id: '9',
     title: '6 Early Signs of Oral Cancer',
     slug: 'early-signs-of-oral-cancer',
