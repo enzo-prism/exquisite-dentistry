@@ -19,6 +19,108 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '9',
+    title: '6 Early Signs of Oral Cancer',
+    slug: 'early-signs-of-oral-cancer',
+    excerpt: 'Learn how to recognize six early warning signs of oral cancer and why proactive screenings with Exquisite Dentistry keep you protected.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          Great dentistry goes beyond polishing your smile—it safeguards your whole-body health. When oral cancer is detected early, treatment is more comfortable, less invasive, and far more successful. Knowing what to watch for (and partnering with a dentist who screens routinely) can make all the difference.
+        </p>
+
+        <p class="mb-6">
+          At Exquisite Dentistry of Los Angeles, Dr. Alexie Aguil uses the advanced <strong>VELscope Vx</strong> to illuminate cellular changes that are invisible to the naked eye. This technology allows us to identify potential trouble areas before they progress, keeping you on the path to lifelong wellness.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">The Dangers of Oral Cancer</h2>
+        <p class="mb-6">
+          According to the <a href="https://www.nidcr.nih.gov" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 underline">National Institute of Dental and Craniofacial Research</a>, nearly 8,000 people in the United States lose their lives each year to oral cancer and related complications. Early detection dramatically improves outcomes, often preventing disfiguring surgeries and stopping the disease before it becomes life-threatening.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
+          <h3 class="text-lg font-semibold mb-3 text-center">Restore Your Smile’s Brilliance</h3>
+          <p class="text-center mb-3">With your smile the best it’s ever looked, your confidence will be at an all-time high.</p>
+          <div class="text-center space-y-1">
+            <p class="font-semibold uppercase tracking-wide">Contact Exquisite Dentistry</p>
+            <p class="text-2xl font-bold">(323) 272-2388</p>
+            <p class="text-sm">Call to schedule your cosmetic dentist appointment and experience true luxury.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Top Oral Cancer Signs and Symptoms</h2>
+        <p class="mb-6">
+          If you notice any of the following changes, connect with your dentist right away. Dr. Aguil recommends keeping these six warning signs top of mind between professional screenings.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">1. Sores, Lumps, or Thick Patches</h3>
+        <p class="mb-6">
+          Oral cancer can develop anywhere inside the mouth—on the tongue, lips, throat, pharynx, larynx, or salivary glands. Swollen, eroded, or unusually thickened tissue (especially on the lips and gums) deserves immediate attention.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">2. Red or White Lesions</h3>
+        <p class="mb-6">
+          Velvety red, white, or speckled patches on the lips or inside the mouth are common early indicators of cancerous change. Persistent sores on the mouth, neck, or face that bleed easily or refuse to heal should always be evaluated.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">3. Bleeding or Numbness</h3>
+        <p class="mb-6">
+          Unexplained bleeding, numbness, or tingling in the mouth can signal abnormal cell activity. You may also experience tenderness or a total loss of sensation in the face, neck, or jaw area.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">4. Ongoing Throat Soreness</h3>
+        <p class="mb-6">
+          Lingering hoarseness, voice changes, or the feeling that something is caught in your throat may point to tumors forming in the back of the mouth. Don’t dismiss these symptoms—schedule a screening instead.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">5. Pain in the Ear or Jaw</h3>
+        <p class="mb-6">
+          Discomfort near the jaw joint or the back of the tongue, especially when chewing, speaking, or swallowing, can be an early sign of oral cancer. Ear pain isolated to one side (without hearing loss) is another red flag.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3">6. Loose Teeth</h3>
+        <p class="mb-6">
+          Teeth that suddenly feel loose—without injury or gum disease—warrant professional evaluation. Oral cancer can weaken the supporting tissues and bone, compromising otherwise healthy teeth.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">The Best Defense: Routine Screenings</h2>
+        <p class="mb-6">
+          While symptom awareness is vital, proactive screenings are the most reliable protection. Our VELscope Vx technology reveals concerns before they become visible, allowing us to intervene early and keep you confidently smiling.
+        </p>
+
+        <div class="bg-secondary/10 border border-secondary/20 p-6 rounded-xl my-8">
+          <p class="text-center text-lg font-semibold mb-3">Take charge of your long-term health with a quick oral cancer screening.</p>
+          <div class="text-center space-y-2">
+            <a
+              href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors"
+            >
+              Schedule your oral cancer screening
+            </a>
+            <p class="text-sm text-gray-600">Our concierge team will help you book a convenient visit that fits your lifestyle.</p>
+          </div>
+        </div>
+
+        <p class="mb-6">
+          Ready for peace of mind? <a href="/contact" class="text-primary hover:text-primary/80 underline">Contact our West Hollywood studio</a> or call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> to schedule your screening. With cutting-edge diagnostics and a luxurious patient experience, Exquisite Dentistry makes preventive care effortless.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'September 26, 2025',
+    readTime: '7 min read',
+    category: 'Oral Health',
+    tags: ['oral cancer', 'preventive care', 'oral health', 'cancer screening', 'wellness'],
+    seoTitle: '6 Early Signs of Oral Cancer | Oral Cancer Screening in Los Angeles',
+    seoDescription:
+      'Spot the six early signs of oral cancer and learn how Exquisite Dentistry in Los Angeles uses VELscope technology to deliver proactive, life-saving screenings.',
+    seoKeywords:
+      'oral cancer signs, oral cancer screening Los Angeles, VELscope dentist LA, oral cancer symptoms, Dr. Alexie Aguil',
+    published: true
+  },
+  {
     id: '8',
     title: '5 Ways to Improve Oral Care While You’re at Work',
     slug: 'improve-oral-care-at-work',
