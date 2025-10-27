@@ -19,6 +19,81 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '8',
+    title: '5 Ways to Improve Oral Care While You’re at Work',
+    slug: 'improve-oral-care-at-work',
+    excerpt: 'Turn your workday into an opportunity for better oral health with five dentist-approved strategies for brushing, flossing, and staying confident on the job.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          Protecting your teeth as an adult takes intention—especially during the hours you spend away from home. A thoughtful workday routine can keep your smile bright, help you avoid unexpected dental visits, and make sure every meeting or conversation starts with fresh confidence.
+        </p>
+
+        <p class="mb-6">
+          At Exquisite Dentistry, Dr. Alexie Aguil and our West Hollywood team help busy professionals create practical habits that fit real life. These five simple steps make brushing at work feel effortless, so you can maintain the same luxury-level care you expect from our studio while you’re on the clock.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">1. Stick to the Same Time Every Day</h2>
+        <p class="mb-6">
+          Decide whether you’ll freshen up after lunch, your afternoon latte, or a sweet pick-me-up. Adding a recurring reminder to your calendar or phone helps make your new ritual automatic. Consistency keeps plaque under control and prevents coffee or snack stains from lingering.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">2. Prepare Your Tools</h2>
+        <p class="mb-6">
+          Put together a compact oral care kit with a toothbrush, travel-sized toothpaste, floss, and a small bottle of mouthwash. Store everything in a sleek pouch or desk drawer so it’s easy to grab before you head to the restroom. Disposable mini-brushes are a smart backup for busy days or business trips.
+        </p>
+
+        <div class="bg-primary/10 p-6 rounded-lg my-10">
+          <h3 class="text-lg font-bold mb-4 text-center">Restore Your Smile’s Brilliance</h3>
+          <p class="text-center mb-4">With your smile the best it’s ever looked, your confidence will be at an all-time high</p>
+          <div class="text-center space-y-1">
+            <p class="font-semibold uppercase tracking-wide">Contact Exquisite Dentistry</p>
+            <p class="text-2xl font-bold">(323) 272-2388</p>
+            <p class="text-sm">Call to schedule your cosmetic dentist appointment and experience true luxury.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">3. Use the Buddy System</h2>
+        <p class="mb-6">
+          Feel awkward being the only one brushing? Invite a coworker to join you. Having an accountability partner turns the habit into a shared wellness moment—and could even inspire an office-wide teeth-cleaning movement.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">4. Be Considerate</h2>
+        <p class="mb-6">
+          Keep your routine tasteful and tidy. Reserve brushing, rinsing, and flossing for the restroom, toss used floss in the trash (not the toilet), and wipe the sink before you leave. A quick cleanup shows respect for your colleagues while keeping the space fresh for the next person.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">5. Stay Strong</h2>
+        <p class="mb-6">
+          If you ever feel self-conscious, remind yourself why you started. You’re protecting your smile, preventing cavities, and investing in long-term health. Stick with the habit and it will soon feel as natural as grabbing your morning coffee.
+        </p>
+
+        <p class="mb-6">
+          Brushing and flossing at work is only the beginning. Pair your new routine with <a href="/contact" class="text-primary hover:text-primary/80 underline">semi-annual cleanings</a> to keep your gums healthy and your enamel strong. At Exquisite Dentistry, we combine cutting-edge technology with spa-level comforts to make every visit exceptional.
+        </p>
+
+        <p class="mb-6">
+          Ready for next-level care? Explore <a href="/zoom-whitening" class="text-primary hover:text-primary/80 underline">laser teeth whitening</a>, <a href="/invisalign" class="text-primary hover:text-primary/80 underline">Invisalign clear aligners</a>, <a href="/services" class="text-primary hover:text-primary/80 underline">comfortable sedation dentistry</a>, and other cosmetic solutions designed to help your smile shine.
+        </p>
+
+        <div class="bg-secondary/10 border border-secondary/20 p-6 rounded-lg">
+          <p class="text-center text-lg font-semibold mb-3">Contact Exquisite Dentistry today for a consultation. We can’t wait to meet you!</p>
+          <div class="text-center">
+            <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule your visit</a>
+          </div>
+        </div>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'September 12, 2025',
+    readTime: '6 min read',
+    category: 'Oral Health',
+    tags: ['oral hygiene', 'workplace brushing', 'healthy habits', 'dental tips', 'cosmetic dentistry'],
+    seoTitle: '5 Ways to Improve Oral Care at Work | Exquisite Dentistry Tips',
+    seoDescription: 'Discover five practical ways to upgrade your oral care routine while you’re at work, from timing your brushings to prepping a hygiene kit—courtesy of Exquisite Dentistry in West Hollywood.',
+    seoKeywords: 'oral care at work, brushing teeth at work, workplace oral hygiene, dental tips for professionals, Exquisite Dentistry blog',
+    published: true
+  },
+  {
     id: '7',
     title: '5 Reasons to Get Dental Implants',
     slug: 'reasons-to-get-dental-implants',
