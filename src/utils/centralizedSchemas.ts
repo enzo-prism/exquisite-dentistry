@@ -4,9 +4,10 @@
  */
 
 import { getCanonicalUrl } from './schemaValidation';
+import type { JsonLd, LocalBusinessSchema } from './schemaValidation';
 
 // Master business entity - single source of truth
-export const MASTER_BUSINESS_ENTITY = {
+export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@type': ['LocalBusiness', 'Dentist'],
   '@id': 'https://exquisitedentistryla.com/#business',
   name: 'Exquisite Dentistry',
@@ -113,7 +114,7 @@ export const MASTER_BUSINESS_ENTITY = {
 };
 
 // Master doctor entity
-export const MASTER_DOCTOR_ENTITY = {
+export const MASTER_DOCTOR_ENTITY: JsonLd = {
   '@type': 'Person',
   '@id': 'https://exquisitedentistryla.com/#doctor',
   name: 'Dr. Alexie Aguil',
@@ -163,7 +164,7 @@ export const MASTER_DOCTOR_ENTITY = {
 };
 
 // Website schema
-export const WEBSITE_ENTITY = {
+export const WEBSITE_ENTITY: JsonLd = {
   '@type': 'WebSite',
   '@id': 'https://exquisitedentistryla.com/#website',
   name: 'Exquisite Dentistry',
@@ -182,7 +183,7 @@ export const WEBSITE_ENTITY = {
 };
 
 // Common review aggregation data
-export const REVIEW_AGGREGATE_DATA = {
+export const REVIEW_AGGREGATE_DATA: JsonLd = {
   '@type': 'AggregateRating',
   ratingValue: 4.9,
   reviewCount: 127,
@@ -193,7 +194,7 @@ export const REVIEW_AGGREGATE_DATA = {
 /**
  * Generate consistent business reference for use in other schemas
  */
-export function getBusinessReference() {
+export function getBusinessReference(): JsonLd {
   return {
     '@id': 'https://exquisitedentistryla.com/#business'
   };
@@ -202,7 +203,7 @@ export function getBusinessReference() {
 /**
  * Generate consistent doctor reference for use in other schemas
  */
-export function getDoctorReference() {
+export function getDoctorReference(): JsonLd {
   return {
     '@id': 'https://exquisitedentistryla.com/#doctor'
   };
@@ -211,7 +212,7 @@ export function getDoctorReference() {
 /**
  * Generate website reference for use in other schemas
  */
-export function getWebsiteReference() {
+export function getWebsiteReference(): JsonLd {
   return {
     '@id': 'https://exquisitedentistryla.com/#website'
   };
@@ -236,19 +237,22 @@ export const SCHEMA_TYPES = {
 /**
  * Duplicate detection utility
  */
-export function detectSchemaDuplicates(schemas: any[]): string[] {
+export function detectSchemaDuplicates(schemas: JsonLd[]): string[] {
   const typeCount: Record<string, number> = {};
   const warnings: string[] = [];
 
   schemas.forEach(schema => {
-    const type = Array.isArray(schema['@type']) 
-      ? schema['@type'].join(',') 
-      : schema['@type'];
-    
-    typeCount[type] = (typeCount[type] || 0) + 1;
-    
-    if (typeCount[type] > 1) {
-      warnings.push(`Duplicate schema type detected: ${type}`);
+    const rawType = schema['@type'];
+    const normalizedType = Array.isArray(rawType)
+      ? rawType.join(',')
+      : typeof rawType === 'string'
+        ? rawType
+        : 'unknown';
+
+    typeCount[normalizedType] = (typeCount[normalizedType] || 0) + 1;
+
+    if (typeCount[normalizedType] > 1) {
+      warnings.push(`Duplicate schema type detected: ${normalizedType}`);
     }
   });
 

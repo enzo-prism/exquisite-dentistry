@@ -35,7 +35,7 @@ export function createCLSPreventionStyles(options: CLSPreventionOptions) {
 /**
  * Higher-order component for wrapping components with CLS prevention
  */
-export function withCLSPrevention<T extends Record<string, any>>(
+export function withCLSPrevention<T extends object>(
   Component: React.ComponentType<T>,
   preventionOptions: CLSPreventionOptions
 ): React.ComponentType<T> {
@@ -72,14 +72,27 @@ export function createSkeletonPlaceholder(
 /**
  * Observer for monitoring layout shifts
  */
-export function createLayoutShiftObserver(callback: (entries: PerformanceEntry[]) => void) {
+type LayoutShiftEntry = PerformanceEntry & {
+  value: number;
+  hadRecentInput: boolean;
+};
+
+const isLayoutShiftEntry = (entry: PerformanceEntry): entry is LayoutShiftEntry => {
+  return (
+    typeof (entry as Partial<LayoutShiftEntry>).value === 'number' &&
+    typeof (entry as Partial<LayoutShiftEntry>).hadRecentInput === 'boolean'
+  );
+};
+
+export function createLayoutShiftObserver(callback: (entries: LayoutShiftEntry[]) => void) {
   if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
     return null;
   }
 
   try {
     const observer = new PerformanceObserver((list) => {
-      callback(list.getEntries());
+      const entries = list.getEntries().filter(isLayoutShiftEntry);
+      callback(entries);
     });
 
     observer.observe({ type: 'layout-shift', buffered: true });
@@ -93,12 +106,12 @@ export function createLayoutShiftObserver(callback: (entries: PerformanceEntry[]
 /**
  * Calculate CLS score from layout shift entries
  */
-export function calculateCLSScore(entries: PerformanceEntry[]): number {
+export function calculateCLSScore(entries: LayoutShiftEntry[]): number {
   let clsScore = 0;
   let sessionWindow = 0;
   let sessionGap = 0;
 
-  entries.forEach((entry: any) => {
+  entries.forEach((entry) => {
     // Only count layout shifts without recent user input
     if (!entry.hadRecentInput) {
       if (sessionGap > 1000 || sessionWindow > 5000) {

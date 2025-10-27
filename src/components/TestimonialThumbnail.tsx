@@ -17,8 +17,8 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
 }) => {
   const handleVideoStart = () => {
     // Track video engagement for analytics
-    if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('event', 'video_start', {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'video_start', {
         event_category: 'testimonial_thumbnail',
         event_label: title,
         video_id: vimeoId

@@ -6,8 +6,16 @@
 const originalConsoleError = console.error;
 
 export const setupErrorReduction = () => {
-  console.error = (...args: any[]) => {
-    const message = args[0]?.toString() || '';
+  console.error = (...args: unknown[]) => {
+    const [firstArg] = args;
+    const message =
+      typeof firstArg === 'string'
+        ? firstArg
+        : firstArg instanceof Error
+          ? firstArg.message
+          : String(firstArg ?? '');
+    const warnArgs = args as Parameters<typeof console.warn>;
+    const errorArgs = args as Parameters<typeof console.error>;
     
     // Convert non-critical React warnings to warnings instead of errors
     if (
@@ -17,7 +25,7 @@ export const setupErrorReduction = () => {
       message.includes('ResizeObserver loop limit exceeded') ||
       message.includes('Non-passive event listener')
     ) {
-      console.warn(...args);
+      console.warn(...warnArgs);
       return;
     }
     
@@ -34,12 +42,12 @@ export const setupErrorReduction = () => {
       message.includes('locomotive') ||
       message.includes('ScrollTrigger')
     ) {
-      console.warn('Third-party library message:', ...args);
+      console.warn('Third-party library message:', ...warnArgs);
       return;
     }
-    
+
     // Allow critical errors through
-    originalConsoleError(...args);
+    originalConsoleError(...errorArgs);
   };
 };
 

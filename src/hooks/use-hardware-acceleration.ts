@@ -7,12 +7,36 @@ interface PerformanceMetrics {
   paintTime?: number;
 }
 
+type PerformanceWithMemory = Performance & {
+  memory?: {
+    usedJSHeapSize: number;
+    jsHeapSizeLimit: number;
+  };
+};
+
+type NetworkInformationLike = {
+  effectiveType?: string;
+  saveData?: boolean;
+};
+
+type ExtendedNavigator = Navigator & {
+  deviceMemory?: number;
+  connection?: NetworkInformationLike;
+  mozConnection?: NetworkInformationLike;
+  webkitConnection?: NetworkInformationLike;
+  hardwareConcurrency?: number;
+};
+
 export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(enabled: boolean = true) => {
   const elementRef = useRef<T>(null);
   const metricsRef = useRef<PerformanceMetrics>({});
-  const isMobile = useRef(window.innerWidth < 768);
+  const isMobile = useRef(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined') {
+      return;
+    }
+
     if (!enabled || !elementRef.current) return;
 
     const element = elementRef.current;
@@ -65,9 +89,12 @@ export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(
 
     // Performance monitoring (reduced frequency on mobile)
     const monitorPerformance = () => {
-      if ('memory' in performance && !isMobile.current) {
-        // @ts-ignore - Chrome specific API, skip on mobile
-        metricsRef.current.gpuMemory = performance.memory?.usedJSHeapSize;
+      if (typeof performance !== 'undefined' && !isMobile.current) {
+        const performanceWithMemory = performance as PerformanceWithMemory;
+        const memoryInfo = performanceWithMemory.memory;
+        if (memoryInfo) {
+          metricsRef.current.gpuMemory = memoryInfo.usedJSHeapSize;
+        }
       }
 
       // Monitor frame rate using requestAnimationFrame (less frequent on mobile)
@@ -88,12 +115,12 @@ export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(
         }
         
         if (enabled) {
-          rafId = requestAnimationFrame(countFrames);
+          rafId = window.requestAnimationFrame(countFrames);
         }
       };
       
       if (enabled) {
-        rafId = requestAnimationFrame(countFrames);
+        rafId = window.requestAnimationFrame(countFrames);
       }
       
       return () => {
@@ -135,20 +162,19 @@ export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(
 };
 
 export const useAdaptiveLoading = () => {
-  const isMobile = window.innerWidth < 768;
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  const nav = (typeof navigator !== 'undefined' ? navigator : undefined) as ExtendedNavigator | undefined;
   
   const getDeviceCapabilities = () => {
     // Check device memory (Chrome only)
-    // @ts-ignore
-    const deviceMemory = navigator.deviceMemory || (isMobile ? 2 : 4);
+    const deviceMemory = nav?.deviceMemory ?? (isMobile ? 2 : 4);
     
     // Check connection type
-    // @ts-ignore
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const connection = nav?.connection || nav?.mozConnection || nav?.webkitConnection;
     const effectiveType = connection?.effectiveType || '4g';
     
     // Check hardware concurrency
-    const cores = navigator.hardwareConcurrency || (isMobile ? 2 : 4);
+    const cores = nav?.hardwareConcurrency || (isMobile ? 2 : 4);
     
     return {
       memory: deviceMemory,

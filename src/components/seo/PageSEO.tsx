@@ -32,9 +32,7 @@ const toMeta = (input: string, max = 155) => {
 // Dev-time duplicate detection
 const trackMeta = (url: string, desc: string) => {
   if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
-    // @ts-ignore
-    window.__metaTracker = window.__metaTracker || new Map();
-    // @ts-ignore
+    window.__metaTracker = window.__metaTracker || new Map<string, string[]>();
     const seen = window.__metaTracker;
     const key = (desc || "").trim().toLowerCase();
     const arr = seen.get(key) || [];
@@ -42,7 +40,7 @@ const trackMeta = (url: string, desc: string) => {
     seen.set(key, arr);
     
     // Report duplicates
-    for (const [descKey, urls] of seen) {
+    for (const [descKey, urls] of seen.entries()) {
       if (urls.length > 1) {
         console.warn("Duplicate meta description detected:", descKey, "on URLs:", urls);
       }

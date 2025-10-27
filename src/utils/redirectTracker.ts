@@ -1,13 +1,5 @@
-// Redirect tracking utility for legacy URL analytics
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
-
 export function trackLegacyRedirect(fromUrl?: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     const referrer = fromUrl || document.referrer;
     
     // Only track if coming from Google or other search engines

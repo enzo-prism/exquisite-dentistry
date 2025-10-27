@@ -3,14 +3,6 @@
  * Provides comprehensive validation and debugging for GA4 and conversion tracking
  */
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-    gtagSendEvent: (url?: string) => boolean;
-  }
-}
-
 // Debug mode flag - set to true for development
 const DEBUG_MODE = process.env.NODE_ENV === 'development';
 
@@ -34,6 +26,12 @@ export function validateGoogleAnalytics(): ValidationResult {
     warnings: [],
     info: []
   };
+
+  if (typeof window === 'undefined') {
+    result.isValid = false;
+    result.errors.push('Window is not available for analytics validation');
+    return result;
+  }
 
   // Check if gtag is available
   if (typeof window.gtag !== 'function') {
@@ -73,6 +71,13 @@ export function testEventFiring(): Promise<ValidationResult> {
       info: []
     };
 
+    if (typeof window === 'undefined') {
+      result.isValid = false;
+      result.errors.push('Cannot test events - window not available');
+      resolve(result);
+      return;
+    }
+
     if (typeof window.gtag !== 'function') {
       result.isValid = false;
       result.errors.push('Cannot test events - gtag not available');
@@ -82,12 +87,14 @@ export function testEventFiring(): Promise<ValidationResult> {
 
     try {
       // Test basic event
+      const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent.substring(0, 100) : 'unknown';
+
       window.gtag('event', 'analytics_validation_test', {
         event_category: 'validation',
         event_label: 'test_event',
         custom_parameters: {
           test_timestamp: new Date().toISOString(),
-          user_agent: navigator.userAgent.substring(0, 100)
+          user_agent: userAgent
         }
       });
 
@@ -139,6 +146,12 @@ export function validatePageTracking(): ValidationResult {
     warnings: [],
     info: []
   };
+
+  if (typeof document === 'undefined') {
+    result.isValid = false;
+    result.errors.push('Document not available for page tracking validation');
+    return result;
+  }
 
   // Check page title
   if (!document.title || document.title.trim() === '') {

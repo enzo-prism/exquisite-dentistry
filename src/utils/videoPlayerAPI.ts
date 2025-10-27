@@ -62,35 +62,74 @@ export class VideoPlayerAPI {
   }
 
   private setupMessageListener() {
-    if (!this.iframe) return;
+    if (!this.iframe || typeof window === 'undefined') return;
+
+    const parseEventData = (raw: unknown): Record<string, unknown> | null => {
+      if (typeof raw === 'string') {
+        try {
+          const parsed = JSON.parse(raw);
+          if (typeof parsed === 'object' && parsed !== null) {
+            return parsed as Record<string, unknown>;
+          }
+        } catch {
+          return null;
+        }
+        return null;
+      }
+
+      if (typeof raw === 'object' && raw !== null) {
+        return raw as Record<string, unknown>;
+      }
+
+      return null;
+    };
+
+    const getString = (source: Record<string, unknown>, key: string): string | undefined => {
+      const value = source[key];
+      return typeof value === 'string' ? value : undefined;
+    };
+
+    const getNumber = (source: Record<string, unknown>, key: string): number | undefined => {
+      const value = source[key];
+      return typeof value === 'number' ? value : undefined;
+    };
 
     const handleMessage = (event: MessageEvent) => {
-      // Only accept messages from trusted video platforms and from the correct iframe
       const allowedOrigins = [
         'https://player.vimeo.com',
         'https://www.youtube.com',
         'https://www.youtube-nocookie.com'
       ];
-      
-      if (!allowedOrigins.some(origin => event.origin === origin)) return;
-      
-      // Verify the message comes from our iframe
-      if (event.source !== this.iframe?.contentWindow) return;
 
-      let eventData: any;
-      try {
-        // Parse event data (some platforms send strings, others send objects)
-        eventData = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-      } catch {
-        // If parsing fails, try using raw data
-        eventData = event.data;
+      if (!allowedOrigins.includes(event.origin)) {
+        return;
       }
 
-      // Handle ready state for different platforms
-      if (this.platform === 'vimeo' && eventData?.event === 'ready') {
+      if (event.source !== this.iframe?.contentWindow) {
+        return;
+      }
+
+      let eventData = parseEventData(event.data);
+      if (!eventData && typeof event.data === 'string') {
+        eventData = { event: event.data };
+      }
+
+      if (!eventData) {
+        return;
+      }
+
+      const eventType = getString(eventData, 'event');
+      const payload = eventData['data'];
+      const payloadObject =
+        typeof payload === 'object' && payload !== null ? (payload as Record<string, unknown>) : undefined;
+      const volumeFromPayload = payloadObject ? getNumber(payloadObject, 'volume') : undefined;
+      const directVolume = getNumber(eventData, 'volume');
+      const resolvedVolume = volumeFromPayload ?? directVolume;
+      const youtubeState = typeof payload === 'number' ? payload : undefined;
+
+      if (this.platform === 'vimeo' && eventType === 'ready') {
         console.log('Vimeo player ready');
         this.isReady = true;
-        // Ensure event subscriptions are established
         this.setupAPIEventListeners();
         this.processMessageQueue();
         this.onReadyCallback?.();
@@ -98,10 +137,9 @@ export class VideoPlayerAPI {
           console.log('Auto-playing Vimeo video');
           this.play();
         }
-      } else if (this.platform === 'youtube' && eventData?.event === 'onReady') {
+      } else if (this.platform === 'youtube' && eventType === 'onReady') {
         console.log('YouTube player ready');
         this.isReady = true;
-        // Ensure event subscriptions are established
         this.setupAPIEventListeners();
         this.processMessageQueue();
         this.onReadyCallback?.();
@@ -110,31 +148,26 @@ export class VideoPlayerAPI {
           this.play();
         }
       }
-      
-      // Handle playback state changes for Vimeo
+
       if (this.platform === 'vimeo') {
-        if (eventData?.event === 'play') {
+        if (eventType === 'play') {
           this.onPlayChange?.(true);
-        } else if (eventData?.event === 'pause') {
+        } else if (eventType === 'pause') {
           this.onPlayChange?.(false);
-        } else if (eventData?.event === 'ended' || eventData?.event === 'finish') {
+        } else if (eventType === 'ended' || eventType === 'finish') {
           this.onPlayChange?.(false);
           this.onEnded?.();
-        } else if (eventData?.event === 'volumechange' || eventData?.event === 'volume') {
-          // Vimeo sends volume as 0-1, 0 is muted
-          const isMuted = eventData?.data?.volume === 0 || eventData?.volume === 0;
-          this.onMuteChange?.(isMuted);
+        } else if (eventType === 'volumechange' || eventType === 'volume') {
+          this.onMuteChange?.(resolvedVolume === 0);
         }
       }
-      
-      // Handle playback state changes for YouTube
-      if (this.platform === 'youtube' && eventData?.event === 'onStateChange') {
-        const state = eventData?.data;
-        if (state === 1) { // Playing
+
+      if (this.platform === 'youtube' && eventType === 'onStateChange') {
+        if (youtubeState === 1) {
           this.onPlayChange?.(true);
-        } else if (state === 2) { // Paused
+        } else if (youtubeState === 2) {
           this.onPlayChange?.(false);
-        } else if (state === 0) { // Ended
+        } else if (youtubeState === 0) {
           this.onPlayChange?.(false);
           this.onEnded?.();
         }
@@ -142,8 +175,7 @@ export class VideoPlayerAPI {
     };
 
     window.addEventListener('message', handleMessage);
-    
-    // Cleanup function
+
     return () => window.removeEventListener('message', handleMessage);
   }
 
@@ -184,7 +216,7 @@ export class VideoPlayerAPI {
       return;
     }
 
-    let postMessageData: any;
+    let postMessageData: Record<string, unknown> | undefined;
 
     if (this.platform === 'vimeo') {
       switch (message.type) {
@@ -201,7 +233,7 @@ export class VideoPlayerAPI {
           postMessageData = { method: 'setVolume', value: 1 };
           break;
         case 'setVolume':
-          postMessageData = { method: 'setVolume', value: message.value || 0.5 };
+          postMessageData = { method: 'setVolume', value: message.value ?? 0.5 };
           break;
       }
     } else if (this.platform === 'youtube') {
@@ -219,7 +251,7 @@ export class VideoPlayerAPI {
           postMessageData = { event: 'command', func: 'unMute' };
           break;
         case 'setVolume':
-          postMessageData = { event: 'command', func: 'setVolume', args: [message.value || 50] };
+          postMessageData = { event: 'command', func: 'setVolume', args: [message.value ?? 50] };
           break;
       }
     }
@@ -270,8 +302,14 @@ export class VideoPlayerAPI {
 
 // Utility to check if device is mobile
 export function isMobileDevice(): boolean {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-         (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+  if (typeof navigator === 'undefined') {
+    return false;
+  }
+
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    (typeof navigator.maxTouchPoints === 'number' && navigator.maxTouchPoints > 1)
+  );
 }
 
 // Utility to create embed URL with dynamic autoplay support
@@ -321,7 +359,9 @@ export function createEmbedUrl(
     baseParams.append('cc_load_policy', '0');
     if (enableJSAPI) {
       baseParams.append('enablejsapi', '1');
-      baseParams.append('origin', window.location.origin);
+      if (typeof window !== 'undefined') {
+        baseParams.append('origin', window.location.origin);
+      }
     }
     return `https://www.youtube.com/embed/${videoId}?${baseParams.toString()}`;
   }

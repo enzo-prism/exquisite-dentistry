@@ -17,14 +17,35 @@ const ResponsiveSpecialMomentImage: React.FC<ResponsiveSpecialMomentImageProps> 
   const [hasError, setHasError] = useState(false);
   const [isVisible, setIsVisible] = useState(priority);
   const [currentSrc, setCurrentSrc] = useState<string>('');
-  const imgRef = useRef<HTMLImageElement>(null);
+  const [deviceInfo, setDeviceInfo] = useState({
+    isMobile: false,
+    isSlowConnection: false
+  });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Detect mobile device and connection
-  const isMobile = window.innerWidth < 768;
-  const isSlowConnection = 'connection' in navigator && 
-    (navigator as any).connection?.effectiveType === 'slow-2g' ||
-    (navigator as any).connection?.effectiveType === '2g';
+  const { isMobile, isSlowConnection } = deviceInfo;
+
+  // Detect mobile device and network conditions in the browser
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return;
+    }
+
+    const updateDeviceInfo = () => {
+      const effectiveType = navigator.connection?.effectiveType;
+      setDeviceInfo({
+        isMobile: window.innerWidth < 768,
+        isSlowConnection: effectiveType === 'slow-2g' || effectiveType === '2g'
+      });
+    };
+
+    updateDeviceInfo();
+    window.addEventListener('resize', updateDeviceInfo);
+
+    return () => {
+      window.removeEventListener('resize', updateDeviceInfo);
+    };
+  }, []);
 
   // Intersection Observer for lazy loading (only if not priority)
   useEffect(() => {
@@ -123,7 +144,6 @@ const ResponsiveSpecialMomentImage: React.FC<ResponsiveSpecialMomentImageProps> 
       {!isLoaded && renderLoading()}
       {currentSrc && (
         <img
-          ref={imgRef}
           src={currentSrc}
           alt={alt}
           className={`w-full h-full object-cover transition-opacity duration-300 ${

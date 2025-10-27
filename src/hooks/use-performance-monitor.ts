@@ -1,6 +1,24 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+type PerformanceMemory = {
+  usedJSHeapSize: number;
+  jsHeapSizeLimit: number;
+};
+
+type PerformanceWithMemory = Performance & {
+  memory?: PerformanceMemory;
+};
+
+type NetworkInformationLike = {
+  effectiveType?: string;
+  saveData?: boolean;
+};
+
+type ExtendedNavigator = Navigator & {
+  connection?: NetworkInformationLike;
+};
+
 interface PerformanceMetrics {
   fps: number;
   memoryUsage: number;
@@ -17,11 +35,15 @@ export const usePerformanceMonitor = () => {
   });
 
   const frameCount = useRef(0);
-  const lastTime = useRef(performance.now());
+  const lastTime = useRef(typeof performance !== 'undefined' ? performance.now() : 0);
   const rafId = useRef<number>();
-  const isMobile = useRef(window.innerWidth < 768);
+  const isMobile = useRef(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof performance === 'undefined') {
+      return;
+    }
+
     // Update mobile detection
     const handleResize = () => {
       isMobile.current = window.innerWidth < 768;
@@ -51,47 +73,47 @@ export const usePerformanceMonitor = () => {
         lastTime.current = currentTime;
       }
       
-      rafId.current = requestAnimationFrame(measureFPS);
+      rafId.current = window.requestAnimationFrame(measureFPS);
     };
 
-    rafId.current = requestAnimationFrame(measureFPS);
+    rafId.current = window.requestAnimationFrame(measureFPS);
 
-    // Memory monitoring (less frequent on mobile)
-    if ('memory' in performance) {
+    let memoryInterval: number | undefined;
+    const performanceWithMemory = performance as PerformanceWithMemory;
+
+    if (performanceWithMemory.memory) {
       const updateMemory = () => {
-        const memory = (performance as any).memory;
+        const memory = performanceWithMemory.memory;
+        if (!memory) return;
+
         setMetrics(prev => ({
           ...prev,
           memoryUsage: memory.usedJSHeapSize / memory.jsHeapSizeLimit
         }));
       };
-      
-      const memoryInterval = setInterval(updateMemory, isMobile.current ? 10000 : 5000);
-      
-      return () => {
-        clearInterval(memoryInterval);
-        window.removeEventListener('resize', handleResize);
-        if (rafId.current) {
-          cancelAnimationFrame(rafId.current);
-        }
-      };
+
+      memoryInterval = window.setInterval(updateMemory, isMobile.current ? 10000 : 5000);
     }
 
-    // Connection speed detection
-    if ('connection' in navigator) {
-      const connection = (navigator as any).connection;
-      const speed = connection.effectiveType === '4g' || connection.effectiveType === '3g' ? 'fast' : 'slow';
-      
-      setMetrics(prev => ({
-        ...prev,
-        connectionSpeed: speed
-      }));
+    if (typeof navigator !== 'undefined') {
+      const nav = navigator as ExtendedNavigator;
+      const connection = nav.connection;
+      if (connection?.effectiveType) {
+        const speed = connection.effectiveType === '4g' || connection.effectiveType === '3g' ? 'fast' : 'slow';
+        setMetrics(prev => ({
+          ...prev,
+          connectionSpeed: speed
+        }));
+      }
     }
 
     return () => {
       window.removeEventListener('resize', handleResize);
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
+      }
+      if (memoryInterval) {
+        clearInterval(memoryInterval);
       }
     };
   }, []);

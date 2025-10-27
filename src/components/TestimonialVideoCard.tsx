@@ -25,8 +25,8 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
     if (hasTrackedStartRef.current) return;
     hasTrackedStartRef.current = true;
 
-    if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('event', 'video_start', {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'video_start', {
         event_category: analyticsCategory,
         event_label: testimonial.title,
         video_id: videoId
@@ -37,8 +37,8 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
   const handleVideoEnd = React.useCallback(() => {
     if (!trackCompletion) return;
 
-    if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('event', 'video_complete', {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'video_complete', {
         event_category: analyticsCategory,
         event_label: testimonial.title,
         video_id: videoId

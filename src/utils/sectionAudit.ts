@@ -89,7 +89,7 @@ export const balanceSectionPadding = (): void => {
 
 // For debugging - add to window object
 if (typeof window !== 'undefined') {
-  (window as any).checkForSectionGaps = checkForSectionGaps;
-  (window as any).fixBackgroundConsistency = fixBackgroundConsistency;
-  (window as any).balanceSectionPadding = balanceSectionPadding;
+  window.checkForSectionGaps = checkForSectionGaps;
+  window.fixBackgroundConsistency = fixBackgroundConsistency;
+  window.balanceSectionPadding = balanceSectionPadding;
 }

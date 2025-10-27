@@ -1,20 +1,19 @@
 // Google Ads Conversion Tracking Utility
 // Based on the conversion snippet provided by Google Ads
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-    gtagSendEvent: (url?: string) => boolean;
-  }
-}
-
 /**
  * Helper function to delay opening a URL until a gtag event is sent.
  * Call it in response to an action that should navigate to a URL.
  * Based on Google Ads conversion tracking snippet.
  */
 export function gtagSendEvent(url?: string, target?: string): boolean {
+  if (typeof window === 'undefined') {
+    if (url) {
+      console.warn('Window is not available; cannot delay navigation for conversion tracking.');
+    }
+    return false;
+  }
+
   // Ensure gtag is available
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available, redirecting immediately');
@@ -61,6 +60,10 @@ export function gtagSendEvent(url?: string, target?: string): boolean {
  * Helper function to navigate to URL with proper target handling
  */
 function navigateToUrl(url: string, target?: string): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   try {
     if (target === '_blank') {
       const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
@@ -82,6 +85,10 @@ function navigateToUrl(url: string, target?: string): void {
  * Track phone number clicks as potential conversions
  */
 export function trackPhoneClick(phoneNumber: string): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for phone tracking');
     return;
@@ -97,8 +104,8 @@ export function trackPhoneClick(phoneNumber: string): void {
         'conversion_type': 'phone_contact',
         'source_page': window.location.pathname,
         'timestamp': new Date().toISOString(),
-        'user_agent': navigator.userAgent.substring(0, 100),
-        'referrer': document.referrer || 'direct'
+        'user_agent': typeof navigator !== 'undefined' ? navigator.userAgent.substring(0, 100) : 'unknown',
+        'referrer': typeof document !== 'undefined' ? document.referrer || 'direct' : 'direct'
       }
     });
 
@@ -119,6 +126,10 @@ export function trackPhoneClick(phoneNumber: string): void {
  * Track SMS clicks separately
  */
 export function trackSMSClick(phoneNumber: string): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for SMS tracking');
     return;
@@ -144,7 +155,11 @@ export function trackSMSClick(phoneNumber: string): void {
 /**
  * Track form submissions as conversions
  */
-export function trackFormSubmission(formType: string, additionalData?: Record<string, any>): void {
+export function trackFormSubmission(formType: string, additionalData?: Record<string, unknown>): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for form tracking');
     return;
@@ -161,8 +176,8 @@ export function trackFormSubmission(formType: string, additionalData?: Record<st
         'form_type': formType,
         'source_page': window.location.pathname,
         'timestamp': new Date().toISOString(),
-        'user_agent': navigator.userAgent.substring(0, 100),
-        'referrer': document.referrer || 'direct',
+        'user_agent': typeof navigator !== 'undefined' ? navigator.userAgent.substring(0, 100) : 'unknown',
+        'referrer': typeof document !== 'undefined' ? document.referrer || 'direct' : 'direct',
         ...additionalData
       }
     });
@@ -184,6 +199,10 @@ export function trackFormSubmission(formType: string, additionalData?: Record<st
  * Track CTA button clicks
  */
 export function trackCTAClick(ctaType: string, ctaText: string): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for CTA tracking');
     return;

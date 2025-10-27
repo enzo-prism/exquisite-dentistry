@@ -1,6 +1,20 @@
 
 import { useEffect, useState } from 'react';
 
+type NetworkInformationLike = {
+  effectiveType?: string;
+  saveData?: boolean;
+  addEventListener?: (type: string, listener: () => void) => void;
+  removeEventListener?: (type: string, listener: () => void) => void;
+};
+
+type ExtendedNavigator = Navigator & {
+  connection?: NetworkInformationLike;
+  mozConnection?: NetworkInformationLike;
+  webkitConnection?: NetworkInformationLike;
+  deviceMemory?: number;
+};
+
 interface PerformanceMetrics {
   isSlowConnection: boolean;
   isReducedMotion: boolean;
@@ -17,21 +31,26 @@ export function usePerformance(): PerformanceMetrics {
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return;
+    }
+
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const isReducedMotion = mediaQuery.matches;
 
     // Check connection speed
-    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
-    const isSlowConnection = connection ? 
-      (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.saveData) : 
+    const nav = navigator as ExtendedNavigator;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+    const isSlowConnection = connection ?
+      (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.saveData === true) :
       false;
 
     // Get device memory if available
-    const deviceMemory = (navigator as any).deviceMemory;
+    const deviceMemory = nav.deviceMemory;
 
     // Get connection type
-    const connectionType = connection ? connection.effectiveType : 'unknown';
+    const connectionType = connection?.effectiveType ?? 'unknown';
 
     setMetrics({
       isSlowConnection,
@@ -51,12 +70,12 @@ export function usePerformance(): PerformanceMetrics {
       }
     };
 
-    if (connection) {
+    if (connection?.addEventListener) {
       connection.addEventListener('change', handleConnectionChange);
     }
 
     return () => {
-      if (connection) {
+      if (connection?.removeEventListener) {
         connection.removeEventListener('change', handleConnectionChange);
       }
     };

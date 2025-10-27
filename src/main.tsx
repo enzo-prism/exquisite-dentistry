@@ -6,8 +6,8 @@ import App from './App.tsx';
 
 // Setup basic data layer for analytics
 window.dataLayer = window.dataLayer || [];
-window.gtag = function gtag(...args: any[]) {
-  window.dataLayer.push(args);
+window.gtag = function gtag(...args: unknown[]) {
+  window.dataLayer!.push(args);
 };
 
 const rootElement = document.getElementById('root');

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { validateLocalBusiness, logValidationErrors, getCanonicalUrl } from '@/utils/schemaValidation';
+import type { JsonLd, LocalBusinessSchema } from '@/utils/schemaValidation';
 
 interface ConsolidatedStructuredDataProps {
   pageType?: 'home' | 'about' | 'services' | 'contact' | 'testimonials' | 'other';
@@ -18,7 +19,7 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
   includeServices = false
 }) => {
   // Main business entity - single source of truth
-  const businessData: any = {
+  const businessData: LocalBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'Dentist'],
     '@id': 'https://exquisitedentistryla.com/#business',
@@ -115,7 +116,7 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
   }
 
   // Website entity
-  const websiteData = {
+  const websiteData: JsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': 'https://exquisitedentistryla.com/#website',
@@ -136,7 +137,7 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
   };
 
   // Reviews data (if requested)
-  const reviewsData = includeReviews ? [
+  const reviewsData: JsonLd[] = includeReviews ? [
     {
       '@context': 'https://schema.org',
       '@type': 'Review',

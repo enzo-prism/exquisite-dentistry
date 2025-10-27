@@ -8,13 +8,14 @@ import {
   detectSchemaDuplicates
 } from '@/utils/centralizedSchemas';
 import { validateLocalBusiness, validateJsonLd, logValidationErrors } from '@/utils/schemaValidation';
+import type { JsonLd, LocalBusinessSchema } from '@/utils/schemaValidation';
 
 interface MasterStructuredDataProps {
   includeBusiness?: boolean;
   includeDoctor?: boolean;
   includeWebsite?: boolean;
   includeReviews?: boolean;
-  additionalSchemas?: any[];
+  additionalSchemas?: JsonLd[];
 }
 
 /**
@@ -28,7 +29,7 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
   includeReviews = false,
   additionalSchemas = []
 }) => {
-  const schemas: any[] = [];
+  const schemas: JsonLd[] = [];
 
   // Add business entity
   if (includeBusiness) {
@@ -60,7 +61,7 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
       logValidationErrors(`Schema[${index}]`, validationResult);
       
       if (schema['@type'] === 'LocalBusiness' || (Array.isArray(schema['@type']) && schema['@type'].includes('LocalBusiness'))) {
-        const businessValidation = validateLocalBusiness(schema);
+        const businessValidation = validateLocalBusiness(schema as LocalBusinessSchema);
         logValidationErrors('BusinessSchema', businessValidation);
       }
     });

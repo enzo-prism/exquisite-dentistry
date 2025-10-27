@@ -1,15 +1,5 @@
 import { BIRDEYE_WIDGET_SCRIPT_SRC, BIRDEYE_WIDGET_CONTAINER_ID } from '@/constants/urls';
 
-// Extend Window interface for third-party scripts
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-    hj: any;
-    _hjSettings: any;
-  }
-}
-
 // Delay third-party scripts to improve initial page load
 const THIRD_PARTY_DELAY = 3000; // Reduced delay to 3 seconds
 
@@ -29,6 +19,10 @@ const DELAYED_SCRIPTS: ThirdPartyScript[] = [
 
 // Load a script dynamically
 export function loadScript(script: ThirdPartyScript): Promise<void> {
+  if (typeof document === 'undefined') {
+    return Promise.reject(new Error('Document is not available to load scripts'));
+  }
+
   return new Promise((resolve, reject) => {
     // Check if script already exists
     if (document.querySelector(`script[data-name="${script.name}"]`)) {
@@ -57,6 +51,10 @@ export function loadScript(script: ThirdPartyScript): Promise<void> {
 
 // Load all delayed scripts with better error handling
 export function loadDelayedScripts() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   // Use requestIdleCallback if available
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(() => {
@@ -80,6 +78,10 @@ export function loadDelayedScripts() {
 
 // Initialize third-party scripts after page load with better error handling
 export function initializeThirdPartyScripts() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+
   try {
     // Verify Hotjar initialization immediately
     setTimeout(() => {
@@ -98,13 +100,21 @@ export function initializeThirdPartyScripts() {
 }
 
 // Google Analytics wrapper
-export function gtag(...args: any[]) {
+export function gtag(...args: unknown[]) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+  window.dataLayer!.push(args);
 }
 
 // Initialize Google Analytics if needed (GA4 script loads from HTML)
 export function initializeGoogleAnalytics() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+
   // GA4 is now initialized directly in HTML head
   // This function can be used for additional GA4 configuration if needed
   window.dataLayer = window.dataLayer || [];
@@ -138,6 +148,10 @@ export function initializeGoogleAnalytics() {
 // Hotjar verification - check if loaded from HTML
 export function verifyHotjarInitialization() {
   try {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
     if (typeof window.hj === 'function' && window._hjSettings) {
       console.log('✅ Hotjar tracking initialized successfully', {
         hjid: window._hjSettings.hjid,
@@ -167,6 +181,10 @@ export function verifyHotjarInitialization() {
 
 // BirdEye widget facade
 export function loadBirdEyeWidget(containerId: string) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -188,6 +206,10 @@ export function loadBirdEyeWidget(containerId: string) {
 
 // Lazy load BirdEye widgets on intersection
 export function initializeBirdEyeWidgets() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
   const widgets = document.querySelectorAll('[data-birdeye-widget]');
   
   if (!widgets.length) return;

@@ -34,6 +34,21 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   overlayMode = 'default'
 }) => {
 
+  const [isPlaying, setIsPlaying] = useState(showIframeImmediately);
+  const [imageError, setImageError] = useState(false);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    onVideoStart?.();
+  };
+
+  // Trigger onVideoStart immediately if showing iframe on load
+  React.useEffect(() => {
+    if (showIframeImmediately) {
+      onVideoStart?.();
+    }
+  }, [showIframeImmediately, onVideoStart]);
+
   // Use custom player if requested
   if (useCustomControls) {
     return (
@@ -51,21 +66,6 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
       />
     );
   }
-
-  const [isPlaying, setIsPlaying] = useState(showIframeImmediately);
-  const [imageError, setImageError] = useState(false);
-
-  const handlePlay = () => {
-    setIsPlaying(true);
-    onVideoStart?.();
-  };
-
-  // Trigger onVideoStart immediately if showing iframe on load
-  React.useEffect(() => {
-    if (showIframeImmediately) {
-      onVideoStart?.();
-    }
-  }, [showIframeImmediately, onVideoStart]);
 
   const getEmbedUrl = () => {
     const autoplayParam = autoplay ? '1' : '0';

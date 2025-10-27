@@ -15,27 +15,60 @@ interface ValidationResult {
   warnings: ValidationError[];
 }
 
+export type JsonLd = Record<string, unknown>;
+
+interface PostalAddress {
+  streetAddress?: string;
+  [key: string]: unknown;
+}
+
+interface GeoCoordinatesSchema {
+  latitude?: number;
+  longitude?: number;
+  [key: string]: unknown;
+}
+
+export interface LocalBusinessSchema extends JsonLd {
+  name?: string;
+  address?: PostalAddress;
+  telephone?: string;
+  url?: string;
+  openingHours?: unknown;
+  openingHoursSpecification?: unknown;
+  priceRange?: string;
+  geo?: GeoCoordinatesSchema;
+}
+
+interface ItemListEntry extends JsonLd {
+  position?: number | string;
+  item?: JsonLd;
+}
+
+export interface ItemListSchema extends JsonLd {
+  itemListElement?: ItemListEntry[];
+}
+
 /**
  * Validates LocalBusiness structured data
  */
-export function validateLocalBusiness(data: any): ValidationResult {
+export function validateLocalBusiness(data: LocalBusinessSchema): ValidationResult {
   const errors: ValidationError[] = [];
   const warnings: ValidationError[] = [];
 
   // Required fields
-  if (!data.name) {
+  if (typeof data.name !== 'string' || data.name.trim() === '') {
     errors.push({ field: 'name', error: 'Name is required', severity: 'error' });
   }
 
-  if (!data.address || !data.address.streetAddress) {
+  if (!data.address || typeof data.address.streetAddress !== 'string' || data.address.streetAddress.trim() === '') {
     errors.push({ field: 'address.streetAddress', error: 'Street address is required', severity: 'error' });
   }
 
-  if (!data.telephone) {
+  if (typeof data.telephone !== 'string' || data.telephone.trim() === '') {
     errors.push({ field: 'telephone', error: 'Telephone is required', severity: 'error' });
   }
 
-  if (!data.url) {
+  if (typeof data.url !== 'string' || data.url.trim() === '') {
     errors.push({ field: 'url', error: 'URL is required', severity: 'error' });
   }
 
@@ -48,7 +81,11 @@ export function validateLocalBusiness(data: any): ValidationResult {
     warnings.push({ field: 'priceRange', error: 'Price range is recommended', severity: 'warning' });
   }
 
-  if (!data.geo || !data.geo.latitude || !data.geo.longitude) {
+  if (
+    !data.geo ||
+    typeof data.geo.latitude !== 'number' ||
+    typeof data.geo.longitude !== 'number'
+  ) {
     warnings.push({ field: 'geo', error: 'Geographic coordinates are recommended', severity: 'warning' });
   }
 
@@ -62,20 +99,27 @@ export function validateLocalBusiness(data: any): ValidationResult {
 /**
  * Validates ItemList structured data for carousels
  */
-export function validateItemList(data: any): ValidationResult {
+export function validateItemList(data: ItemListSchema): ValidationResult {
   const errors: ValidationError[] = [];
   const warnings: ValidationError[] = [];
 
   if (!data.itemListElement || !Array.isArray(data.itemListElement)) {
     errors.push({ field: 'itemListElement', error: 'itemListElement array is required', severity: 'error' });
   } else {
-    data.itemListElement.forEach((item: any, index: number) => {
-      if (!item['@type'] || item['@type'] !== 'ListItem') {
+    data.itemListElement.forEach((item, index) => {
+      const itemType = item['@type'];
+      const isListItem =
+        itemType === 'ListItem' ||
+        (Array.isArray(itemType) && itemType.includes('ListItem'));
+
+      if (!isListItem) {
         errors.push({ field: `itemListElement[${index}].@type`, error: 'Must be ListItem', severity: 'error' });
       }
-      if (!item.position) {
+
+      if (item.position === undefined) {
         errors.push({ field: `itemListElement[${index}].position`, error: 'Position is required', severity: 'error' });
       }
+
       if (!item.item) {
         errors.push({ field: `itemListElement[${index}].item`, error: 'Item is required', severity: 'error' });
       }
@@ -92,20 +136,28 @@ export function validateItemList(data: any): ValidationResult {
 /**
  * General JSON-LD validation
  */
-export function validateJsonLd(data: any): ValidationResult {
+export function validateJsonLd(data: JsonLd): ValidationResult {
   const errors: ValidationError[] = [];
   const warnings: ValidationError[] = [];
 
-  if (!data['@context']) {
+  const context = data['@context'];
+  if (
+    (typeof context !== 'string' || context.trim() === '') &&
+    !Array.isArray(context)
+  ) {
     errors.push({ field: '@context', error: '@context is required', severity: 'error' });
   }
 
-  if (!data['@type']) {
+  const type = data['@type'];
+  if (
+    (typeof type !== 'string' || type.trim() === '') &&
+    (!Array.isArray(type) || type.length === 0)
+  ) {
     errors.push({ field: '@type', error: '@type is required', severity: 'error' });
   }
 
   // URL validation
-  if (data.url && !isValidUrl(data.url)) {
+  if (typeof data.url === 'string' && !isValidUrl(data.url)) {
     errors.push({ field: 'url', error: 'Invalid URL format', severity: 'error' });
   }
 

@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTouchOptimization } from '@/hooks/use-mobile-gestures';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -9,6 +9,7 @@ interface CollapsibleSectionProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  onToggle?: (isOpen: boolean) => void;
   className?: string;
   headerClassName?: string;
   contentClassName?: string;
@@ -21,6 +22,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   title,
   children,
   defaultOpen = false,
+  onToggle,
   className,
   headerClassName,
   contentClassName,
@@ -31,6 +33,10 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const isMobile = useIsMobile();
   const { getTouchTargetClasses } = useTouchOptimization();
+
+  useEffect(() => {
+    setIsOpen(defaultOpen);
+  }, [defaultOpen]);
 
   // If mobileOnly is true and we're not on mobile, render normally without collapsing
   if (mobileOnly && !isMobile) {
@@ -48,7 +54,11 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   }
 
   const toggleSection = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prevState => {
+      const nextState = !prevState;
+      onToggle?.(nextState);
+      return nextState;
+    });
   };
 
   const contentVariants = {
@@ -141,29 +151,32 @@ export const CollapsibleAccordion: React.FC<CollapsibleAccordionProps> = ({
 }) => {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set());
 
-  const handleToggle = (index: number) => {
-    if (allowMultiple) {
-      const newOpenItems = new Set(openItems);
-      if (newOpenItems.has(index)) {
-        newOpenItems.delete(index);
-      } else {
-        newOpenItems.add(index);
+  const handleToggle = (index: number, isOpening: boolean) => {
+    setOpenItems(prevItems => {
+      const nextItems = new Set(prevItems);
+
+      if (allowMultiple) {
+        if (isOpening) {
+          nextItems.add(index);
+        } else {
+          nextItems.delete(index);
+        }
+        return nextItems;
       }
-      setOpenItems(newOpenItems);
-    } else {
-      setOpenItems(openItems.has(index) ? new Set() : new Set([index]));
-    }
+
+      return isOpening ? new Set([index]) : new Set();
+    });
   };
 
   return (
     <div className={cn('divide-y divide-gray-200', className)}>
       {React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child) && child.type === CollapsibleSection) {
+        if (React.isValidElement<CollapsibleSectionProps>(child) && child.type === CollapsibleSection) {
           return React.cloneElement(child, {
             ...child.props,
             defaultOpen: openItems.has(index),
-            onToggle: () => handleToggle(index)
-          } as any);
+            onToggle: (isOpen: boolean) => handleToggle(index, isOpen)
+          });
         }
         return child;
       })}

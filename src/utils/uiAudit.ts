@@ -191,6 +191,6 @@ export const logAuditResults = () => {
 
 // Add debugging functions to window for easy access from the browser console
 if (typeof window !== 'undefined') {
-  (window as any).runUIAudit = runUIAudit;
-  (window as any).logAuditResults = logAuditResults;
+  window.runUIAudit = runUIAudit;
+  window.logAuditResults = logAuditResults;
 }

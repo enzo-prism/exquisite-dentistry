@@ -5,6 +5,7 @@
 
 import { validateLocalBusiness, validateItemList, validateJsonLd } from './schemaValidation';
 import { MASTER_BUSINESS_ENTITY, MASTER_DOCTOR_ENTITY, detectSchemaDuplicates } from './centralizedSchemas';
+import type { JsonLd, ItemListSchema, LocalBusinessSchema } from './schemaValidation';
 
 /**
  * Run comprehensive schema validation tests
@@ -25,7 +26,7 @@ export function runSchemaValidationTests(): void {
   console.log('Doctor Entity Validation:', doctorValidation);
 
   // Test duplicate detection
-  const testSchemas = [
+  const testSchemas: JsonLd[] = [
     { '@type': 'LocalBusiness', name: 'Test 1' },
     { '@type': 'LocalBusiness', name: 'Test 2' },
     { '@type': 'Person', name: 'Test 3' }
@@ -39,7 +40,7 @@ export function runSchemaValidationTests(): void {
 /**
  * Validate page-specific schemas
  */
-export function validatePageSchemas(pageName: string, schemas: any[]): void {
+export function validatePageSchemas(pageName: string, schemas: JsonLd[]): void {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
@@ -48,17 +49,25 @@ export function validatePageSchemas(pageName: string, schemas: any[]): void {
 
   schemas.forEach((schema, index) => {
     const validation = validateJsonLd(schema);
-    console.log(`Schema ${index + 1} (${schema['@type']}):`, validation);
+    const schemaType = schema['@type'];
+    const schemaTypeLabel = Array.isArray(schemaType)
+      ? schemaType.join(', ')
+      : typeof schemaType === 'string'
+        ? schemaType
+        : 'unknown';
 
-    // Additional validation for specific types
-    if (schema['@type'] === 'LocalBusiness' || 
-        (Array.isArray(schema['@type']) && schema['@type'].includes('LocalBusiness'))) {
-      const businessValidation = validateLocalBusiness(schema);
+    console.log(`Schema ${index + 1} (${schemaTypeLabel}):`, validation);
+
+    if (
+      schemaType === 'LocalBusiness' ||
+      (Array.isArray(schemaType) && schemaType.includes('LocalBusiness'))
+    ) {
+      const businessValidation = validateLocalBusiness(schema as LocalBusinessSchema);
       console.log(`Business Schema ${index + 1}:`, businessValidation);
     }
 
-    if (schema['@type'] === 'ItemList') {
-      const itemListValidation = validateItemList(schema);
+    if (schemaType === 'ItemList') {
+      const itemListValidation = validateItemList(schema as ItemListSchema);
       console.log(`ItemList Schema ${index + 1}:`, itemListValidation);
     }
   });
@@ -75,30 +84,31 @@ export function validatePageSchemas(pageName: string, schemas: any[]): void {
 /**
  * URL consistency checker
  */
-export function checkUrlConsistency(schemas: any[]): string[] {
+export function checkUrlConsistency(schemas: JsonLd[]): string[] {
   const issues: string[] = [];
   const baseUrl = 'https://exquisitedentistryla.com';
 
   schemas.forEach((schema, index) => {
-    if (schema.url) {
-      if (!schema.url.startsWith(baseUrl)) {
+    const schemaUrl = typeof schema['url'] === 'string' ? schema['url'] : undefined;
+
+    if (schemaUrl) {
+      if (!schemaUrl.startsWith(baseUrl)) {
         issues.push(`Schema ${index + 1}: URL should start with ${baseUrl}`);
       }
-      
-      if (schema.url.includes('http://')) {
+
+      if (schemaUrl.includes('http://')) {
         issues.push(`Schema ${index + 1}: URL should use HTTPS`);
       }
-      
-      // Check for trailing slash consistency
-      if (schema.url !== baseUrl + '/' && !schema.url.endsWith('/')) {
+
+      if (schemaUrl !== `${baseUrl}/` && !schemaUrl.endsWith('/')) {
         issues.push(`Schema ${index + 1}: URL should end with trailing slash for consistency`);
       }
     }
 
-    if (schema['@id']) {
-      if (!schema['@id'].startsWith(baseUrl)) {
-        issues.push(`Schema ${index + 1}: @id should start with ${baseUrl}`);
-      }
+    const schemaId = typeof schema['@id'] === 'string' ? schema['@id'] : undefined;
+
+    if (schemaId && !schemaId.startsWith(baseUrl)) {
+      issues.push(`Schema ${index + 1}: @id should start with ${baseUrl}`);
     }
   });
 
@@ -108,11 +118,11 @@ export function checkUrlConsistency(schemas: any[]): string[] {
 /**
  * Schema completeness checker
  */
-export function checkSchemaCompleteness(schema: any, requiredFields: string[]): string[] {
+export function checkSchemaCompleteness(schema: JsonLd, requiredFields: string[]): string[] {
   const missing: string[] = [];
 
   requiredFields.forEach(field => {
-    if (!schema[field]) {
+    if (schema[field] === undefined || schema[field] === null) {
       missing.push(field);
     }
   });
@@ -123,7 +133,7 @@ export function checkSchemaCompleteness(schema: any, requiredFields: string[]): 
 /**
  * Development helper to log all validation results
  */
-export function logValidationSummary(pageName: string, schemas: any[]): void {
+export function logValidationSummary(pageName: string, schemas: JsonLd[]): void {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
@@ -132,7 +142,18 @@ export function logValidationSummary(pageName: string, schemas: any[]): void {
 
   console.log(`Total schemas: ${schemas.length}`);
   
-  const schemaTypes = schemas.map(s => s['@type']).join(', ');
+  const schemaTypes = schemas
+    .map(schema => {
+      const type = schema['@type'];
+      if (Array.isArray(type)) {
+        return type.join(', ');
+      }
+      if (typeof type === 'string') {
+        return type;
+      }
+      return 'unknown';
+    })
+    .join(', ');
   console.log(`Schema types: ${schemaTypes}`);
 
   const urlIssues = checkUrlConsistency(schemas);
