@@ -116,7 +116,7 @@ const ImageComponent: React.FC<ImageProps> = ({
 
     return {
       primary: encodedSrc,
-      fallback: encodedSrc.replace(/\.webp$/i, '.png'),
+      fallback: encodedSrc,
       dimensions: { width, height }
     };
   };
