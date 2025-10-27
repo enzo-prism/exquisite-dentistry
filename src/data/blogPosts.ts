@@ -19,6 +19,76 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '11',
+    title: 'Adjusting to Invisalign While Starting a New Job',
+    slug: 'adjusting-to-invisalign-while-starting-new-job',
+    excerpt:
+      'Learn practical strategies to stay comfortable, consistent, and confident with Invisalign while you navigate the first weeks of a new job.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          Starting a new job is exciting—but pairing that transition with the first days of Invisalign can feel like a lot to juggle. With a thoughtful plan, you can keep your smile on track and remain focused on making a standout impression in your new role.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Why Timing Matters</h2>
+        <p class="mb-6">
+          If you can, begin Invisalign one to two weeks before your first day at work. This gives you space to adjust to the pressure of new aligners while you are still at home. By the time orientation rolls around, you will already have a rhythm for removing, cleaning, and reseating your trays—so you can devote your attention to learning the ropes at the office.
+        </p>
+        <p class="mb-6">
+          When treatment and career transitions overlap unexpectedly, communicate with your orthodontic team. We can map out aligner changes to avoid major adjustments on big meeting days and provide tips tailored to your work schedule.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Managing Discomfort on Busy Days</h2>
+        <p class="mb-6">
+          It is normal to feel tenderness during the first 48 hours of a new aligner set. Pack orthodontic wax, over-the-counter pain relievers, and a refillable water bottle in your work bag so you are prepared for any soreness between onboarding sessions. Staying hydrated helps reduce dry mouth, freshens breath, and keeps you speaking clearly while the aligners settle in place.
+        </p>
+        <p class="mb-6">
+          Plan soft, nourishing meals for your workday lunches. Yogurt, smoothies, soups, and soft proteins are easy on your teeth and gums, letting you fuel up without increasing discomfort. You will be back to enjoying your regular favorites once your mouth acclimates.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Build a Confident Routine</h2>
+        <p class="mb-6">
+          Consistency is the secret to Invisalign success—aligners should stay in for 20–22 hours each day. Set calendar reminders to pop your trays back in after meals, and create a small oral care kit for your desk that includes a travel toothbrush, toothpaste, and aligner case. A quick clean after lunch keeps your trays clear and odor-free for afternoon meetings.
+        </p>
+        <p class="mb-6">
+          Layer in a nighttime ritual that includes brushing, flossing, and gently cleaning aligners before bed. After a week or two, the process becomes second nature, freeing up mental energy so you can focus fully on your new responsibilities.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10">
+          <h3 class="text-lg font-semibold text-center mb-3">Personalized Invisalign Guidance</h3>
+          <p class="text-center mb-4">Our concierge orthodontic team in West Hollywood crafts treatment plans around your lifestyle so your smile transformation fits seamlessly into your work routine.</p>
+          <div class="text-center space-y-2">
+            <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Request your Invisalign consultation</a>
+            <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Bring Your Best Self to Work</h2>
+        <p class="mb-6">
+          Every new job comes with a learning curve, and Invisalign is no different. Give yourself grace, celebrate small milestones—like nailing your first presentation while staying on track with aligner wear—and remember that these temporary adjustments lead to long-term confidence.
+        </p>
+        <p class="mb-6">
+          When questions pop up, lean on the experts at Exquisite Dentistry. We are here to offer scheduling flexibility, comfort tips, and encouragement so you can keep smiling through every career move.
+        </p>
+
+        <p class="mt-8">
+          Ready to align your smile with your professional goals? <a href="/contact" class="text-primary hover:text-primary/80 underline">Contact our team</a> to start your Invisalign journey today.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'November 4, 2025',
+    readTime: '6 min read',
+    category: 'Orthodontics',
+    tags: ['Invisalign', 'new job', 'orthodontic tips', 'career transitions', 'aligner care'],
+    seoTitle: 'Adjusting to Invisalign While Starting a New Job | Exquisite Dentistry',
+    seoDescription:
+      'Discover expert tips for managing Invisalign during the first weeks of a new job, from timing aligner changes to building a workplace-friendly routine.',
+    seoKeywords:
+      'Invisalign new job tips, starting Invisalign before new job, aligner discomfort relief, Invisalign routine for professionals, Exquisite Dentistry Invisalign',
+    published: true
+  },
+  {
     id: '10',
     title: 'A Dentist for Adults in Los Angeles',
     slug: 'dentist-for-adults-los-angeles',
