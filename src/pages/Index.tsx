@@ -14,9 +14,36 @@ import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import ImageComponent from '@/components/Image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
+import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
+import { transformationStories } from '@/data/transformationStories';
 import FloatingActionButton from '@/components/mobile/FloatingActionButton';
 import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
+
+const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
+  const thumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
+  const isVimeo = story.video.src.includes('vimeo.com');
+
+  if (isVimeo) {
+    const match = story.video.src.match(/video\/(\d+)/);
+    const vimeoId = match?.[1] ?? story.id;
+
+    return {
+      id: `${story.id}-testimonial`,
+      type: 'vimeo',
+      vimeoId,
+      thumbnailUrl,
+      title: story.title
+    };
+  }
+
+  return {
+    id: `${story.id}-testimonial`,
+    type: 'file',
+    videoUrl: story.video.src,
+    thumbnailUrl,
+    title: story.title
+  };
+});
 
 const IndexPage: React.FC = () => {
   // Scroll progress for animations
@@ -53,6 +80,8 @@ const IndexPage: React.FC = () => {
       }
     }
   };
+
+  const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
 
   return (
     <>
@@ -198,19 +227,27 @@ const IndexPage: React.FC = () => {
           
           {/* Video Testimonials */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-12"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {VIDEO_TESTIMONIALS.map((testimonial, index) => (
-              <motion.div key={testimonial.id} variants={itemVariants}>
-                <SimpleTestimonialEmbed
-                  testimonial={testimonial}
-                />
-              </motion.div>
-            ))}
+            {HOMEPAGE_TESTIMONIALS.map((testimonial, index) => {
+              const isCenteredSolo = totalTestimonials % 2 === 1 && index === totalTestimonials - 1;
+              return (
+                <motion.div
+                  key={testimonial.id}
+                  variants={itemVariants}
+                  className={`h-full ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
+                >
+                  <SimpleTestimonialEmbed
+                    testimonial={testimonial}
+                    className="h-full"
+                  />
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <motion.div 

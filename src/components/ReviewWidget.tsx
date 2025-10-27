@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
+import { BIRDEYE_WIDGET_SCRIPT_SRC, BIRDEYE_WIDGET_CONTAINER_ID } from '@/constants/urls';
 import BrandLoader from './ui/brand-loader';
 
 const ReviewWidget = () => {
@@ -58,6 +59,9 @@ const ReviewWidget = () => {
     setIsLoaded(false);
     scriptLoadedRef.current = false;
     setIsVisible(true);
+    if (widgetRef.current) {
+      widgetRef.current.innerHTML = '';
+    }
   }, []);
 
   useEffect(() => {
@@ -65,7 +69,7 @@ const ReviewWidget = () => {
 
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://birdeye.com/embed/v7/173163061159627/11/987654321301115183';
+    script.src = BIRDEYE_WIDGET_SCRIPT_SRC;
     script.async = true;
     
     script.onload = () => {
@@ -129,7 +133,7 @@ const ReviewWidget = () => {
       
       <div 
         ref={widgetRef}
-        id="bf-revz-widget-987654321301115183"
+        id={BIRDEYE_WIDGET_CONTAINER_ID}
         className={cn(
           "transition-opacity duration-500 w-full",
           isLoaded && !hasError ? "opacity-100" : "opacity-0"

@@ -9,6 +9,8 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const TestimonialsPage: React.FC = () => {
+  const totalTestimonials = VIDEO_TESTIMONIALS.length;
+
   return (
     <>
       <MasterStructuredData 
@@ -35,7 +37,7 @@ const TestimonialsPage: React.FC = () => {
             '@type': 'ItemList',
             name: 'Video Testimonials',
             description: 'Collection of patient video testimonials for Exquisite Dentistry',
-            numberOfItems: 6,
+            numberOfItems: totalTestimonials,
             itemListElement: [
               {
                 '@type': 'ListItem',
@@ -100,13 +102,21 @@ const TestimonialsPage: React.FC = () => {
           </div>
           
           {/* Video Testimonials Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {VIDEO_TESTIMONIALS.map((testimonial) => (
-            <VideoTestimonial
-              key={testimonial.id}
-              testimonial={testimonial}
-            />
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+            {VIDEO_TESTIMONIALS.map((testimonial, index) => {
+              const isCenteredSolo = totalTestimonials % 2 === 1 && index === totalTestimonials - 1;
+              return (
+                <div
+                  key={testimonial.id}
+                  className={`h-full ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
+                >
+                  <VideoTestimonial
+                    testimonial={testimonial}
+                    className="h-full"
+                  />
+                </div>
+              );
+            })}
           </div>
           
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">

@@ -1,3 +1,5 @@
+import { BIRDEYE_WIDGET_SCRIPT_SRC, BIRDEYE_WIDGET_CONTAINER_ID } from '@/constants/urls';
+
 // Extend Window interface for third-party scripts
 declare global {
   interface Window {
@@ -165,14 +167,23 @@ export function verifyHotjarInitialization() {
 
 // BirdEye widget facade
 export function loadBirdEyeWidget(containerId: string) {
-  const script = document.createElement('script');
-  script.src = `https://widgets-v7.birdeye.com/api/widgets?bid=173...&wno=11`;
-  script.async = true;
-  
   const container = document.getElementById(containerId);
-  if (container) {
-    container.appendChild(script);
+  if (!container) return;
+
+  if (container.querySelector(`#${BIRDEYE_WIDGET_CONTAINER_ID}`)) {
+    return;
   }
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = BIRDEYE_WIDGET_SCRIPT_SRC;
+  script.async = true;
+
+  const widget = document.createElement('div');
+  widget.id = BIRDEYE_WIDGET_CONTAINER_ID;
+
+  container.appendChild(script);
+  container.appendChild(widget);
 }
 
 // Lazy load BirdEye widgets on intersection

@@ -782,7 +782,7 @@ const Services = () => {
                 },
                 {
                   title: "Free Consultation",
-                  href: "/contact",
+                  href: SCHEDULING_URL,
                   description: "Get your custom plan",
                   type: "consultation"
                 }

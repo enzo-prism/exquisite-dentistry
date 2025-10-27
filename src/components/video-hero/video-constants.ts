@@ -19,6 +19,14 @@ export type VideoTestimonialItem =
     };
 
 // Video testimonials - supports Vimeo embeds and hosted MP4 videos
+export const ANXIETY_TO_EASE_TESTIMONIAL: VideoTestimonialItem = {
+  id: 'anxiety-to-ease-testimonial',
+  type: 'file',
+  videoUrl: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761503257/testimonial-painting_omnjcj.mp4',
+  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png',
+  title: 'From Anxiety to Ease Patient Testimonial'
+};
+
 export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
   {
     id: 'brandon-patient-testimonial',
@@ -62,13 +70,7 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
     title: 'Rob Talbert Patient Testimonial'
   },
-  {
-    id: '1088878160',
-    type: 'vimeo',
-    vimeoId: '1088878160',
-    thumbnailUrl: '/lovable-uploads/a21508d3-d058-400c-b7ce-30b4cdaf9a01.png',
-    title: 'Patient Testimonial'
-  }
+  ANXIETY_TO_EASE_TESTIMONIAL
 ];
 
 // YouTube video constants (added for compatibility)

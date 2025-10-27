@@ -1,3 +1,5 @@
+import { ANXIETY_TO_EASE_TESTIMONIAL } from '@/components/video-hero/video-constants';
+
 export interface TransformationStory {
   id: string;
   slug: string;
@@ -239,10 +241,12 @@ export const transformationStories: TransformationStory[] = [
     title: 'From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA',
     shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
     video: {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761503257/testimonial-painting_omnjcj.mp4',
-      poster: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png'
+      src: ANXIETY_TO_EASE_TESTIMONIAL.type === 'file' 
+        ? ANXIETY_TO_EASE_TESTIMONIAL.videoUrl 
+        : `https://player.vimeo.com/video/${ANXIETY_TO_EASE_TESTIMONIAL.vimeoId}`,
+      poster: ANXIETY_TO_EASE_TESTIMONIAL.thumbnailUrl
     },
-    thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png',
+    thumbnailUrl: ANXIETY_TO_EASE_TESTIMONIAL.thumbnailUrl,
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
     keyTakeaways: [

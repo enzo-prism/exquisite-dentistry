@@ -1,3 +1,5 @@
+import { SCHEDULING_URL } from '@/constants/urls';
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -57,7 +59,7 @@ export const blogPosts: BlogPost[] = [
           <h3 class="text-lg font-semibold text-center mb-3">Personalized Invisalign Guidance</h3>
           <p class="text-center mb-4">Our concierge orthodontic team in West Hollywood crafts treatment plans around your lifestyle so your smile transformation fits seamlessly into your work routine.</p>
           <div class="text-center space-y-2">
-            <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Request your Invisalign consultation</a>
+            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Request your Invisalign consultation</a>
             <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
           </div>
         </div>
@@ -71,7 +73,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mt-8">
-          Ready to align your smile with your professional goals? <a href="/contact" class="text-primary hover:text-primary/80 underline">Contact our team</a> to start your Invisalign journey today.
+          Ready to align your smile with your professional goals? <a href="${SCHEDULING_URL}" class="text-primary hover:text-primary/80 underline">Contact our team</a> to start your Invisalign journey today.
         </p>
       </div>`,
     author: 'Dr. Alexie Aguil',
@@ -126,7 +128,7 @@ export const blogPosts: BlogPost[] = [
           <p class="text-center text-lg font-semibold mb-3">Schedule your appointment at Exquisite Dentistry in West Hollywood.</p>
           <div class="text-center space-y-2">
             <a href="tel:13232722388" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Call (323) 272-2388</a>
-            <a href="/contact" class="block text-primary hover:text-primary/80 underline">Request your visit online</a>
+            <a href="${SCHEDULING_URL}" class="block text-primary hover:text-primary/80 underline">Request your visit online</a>
           </div>
         </div>
 
@@ -165,7 +167,7 @@ export const blogPosts: BlogPost[] = [
 
         <div class="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-2">Experience World-Class Adult Dentistry</h3>
-          <p class="text-center text-muted-foreground mb-4">Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> or <a href="/contact" class="text-primary hover:text-primary/80 underline">schedule your appointment</a> to discover spa-level comfort at Exquisite Dentistry.</p>
+          <p class="text-center text-muted-foreground mb-4">Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> or <a href="${SCHEDULING_URL}" class="text-primary hover:text-primary/80 underline">schedule your appointment</a> to discover spa-level comfort at Exquisite Dentistry.</p>
           <p class="text-center text-sm text-gray-600">Serving West Hollywood, Beverly Hills, and the greater Los Angeles area.</p>
         </div>
 
@@ -272,7 +274,7 @@ export const blogPosts: BlogPost[] = [
         </div>
 
         <p class="mb-6">
-          Ready for peace of mind? <a href="/contact" class="text-primary hover:text-primary/80 underline">Contact our West Hollywood studio</a> or call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> to schedule your screening. With cutting-edge diagnostics and a luxurious patient experience, Exquisite Dentistry makes preventive care effortless.
+          Ready for peace of mind? <a href="${SCHEDULING_URL}" class="text-primary hover:text-primary/80 underline">Contact our West Hollywood studio</a> or call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> to schedule your screening. With cutting-edge diagnostics and a luxurious patient experience, Exquisite Dentistry makes preventive care effortless.
         </p>
       </div>`,
     author: 'Dr. Alexie Aguil',
@@ -339,7 +341,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mb-6">
-          Brushing and flossing at work is only the beginning. Pair your new routine with <a href="/contact" class="text-primary hover:text-primary/80 underline">semi-annual cleanings</a> to keep your gums healthy and your enamel strong. At Exquisite Dentistry, we combine cutting-edge technology with spa-level comforts to make every visit exceptional.
+          Brushing and flossing at work is only the beginning. Pair your new routine with <a href="${SCHEDULING_URL}" class="text-primary hover:text-primary/80 underline">semi-annual cleanings</a> to keep your gums healthy and your enamel strong. At Exquisite Dentistry, we combine cutting-edge technology with spa-level comforts to make every visit exceptional.
         </p>
 
         <p class="mb-6">
@@ -399,7 +401,7 @@ export const blogPosts: BlogPost[] = [
             Experience concierge-level implant care in a calm, luxurious environment complete with Netflix streaming and spa-like amenities.
           </p>
           <div class="text-center">
-            <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-full bg-primary hover:bg-primary/90 transition-colors duration-300">Schedule an implant consultation</a>
+            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-full bg-primary hover:bg-primary/90 transition-colors duration-300">Schedule an implant consultation</a>
           </div>
         </div>
 
@@ -438,7 +440,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mb-6">
-          Ready to discover how implants can transform your smile? <a href="/contact" class="text-primary hover:text-primary/80 underline">Contact us</a> to schedule a personalized consultation and explore a restorative plan tailored to your lifestyle.
+          Ready to discover how implants can transform your smile? <a href="${SCHEDULING_URL}" class="text-primary hover:text-primary/80 underline">Contact us</a> to schedule a personalized consultation and explore a restorative plan tailored to your lifestyle.
         </p>
 
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl">
@@ -1068,7 +1070,7 @@ export const blogPosts: BlogPost[] = [
         </p>
 
         <p class="mb-6">
-          <a href="/contact" class="text-gold hover:text-gold/80 underline">Schedule your consultation today</a> to get personalized pricing for your 2 front teeth veneers and discover why our patients love their transformation experience—complete with entertainment!
+          <a href="${SCHEDULING_URL}" class="text-gold hover:text-gold/80 underline">Schedule your consultation today</a> to get personalized pricing for your 2 front teeth veneers and discover why our patients love their transformation experience—complete with entertainment!
         </p>
 
         <div class="bg-gold/10 p-6 rounded-lg mb-6">

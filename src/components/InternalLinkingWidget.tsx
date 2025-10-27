@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Sparkles, Calendar, Heart, FileText, Camera } from 'lucide-react';
-import { SCHEDULING_URL } from '@/data/services';
+import { SCHEDULING_URL } from '@/constants/urls';
+import { cn } from '@/lib/utils';
 
 interface LinkItem {
   title: string;
@@ -237,7 +238,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Financing Options',
-            href: '/contact',
+            href: SCHEDULING_URL,
             description: 'Flexible payment plans and consultation scheduling',
             category: 'consultation',
             priority: 1
@@ -258,7 +259,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Free Consultation',
-            href: '/contact',
+            href: SCHEDULING_URL,
             description: 'Get personalized treatment planning',
             category: 'consultation',
             priority: 4
@@ -390,40 +391,58 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     }
   };
 
+  const containerClasses = cn(
+    'bg-gradient-to-r from-gold/5 via-gold/10 to-white rounded-xl p-6 my-8 shadow-sm border border-gold/15',
+    className
+  );
+
+  const gridClasses = cn(
+    'grid gap-4',
+    variant === 'sidebar' ? 'grid-cols-1' :
+    variant === 'compact' ? 'grid-cols-1' :
+    'grid-cols-1 sm:grid-cols-2'
+  );
+
+  const cardClasses = 'group flex h-full flex-col gap-3 rounded-lg border border-white/60 bg-white/95 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:shadow-md';
+  const iconWrapperClasses = 'flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold';
+  const seasonalBadgeClasses = 'text-xs bg-gold/15 text-gold/90 px-2 py-1 rounded-full font-medium uppercase tracking-wide';
+
   return (
-    <div className={`bg-gradient-to-r from-gold/5 to-gold/10 rounded-lg p-6 my-8 ${className || ''}`}>
+    <div className={containerClasses}>
       <h3 className="text-lg font-semibold mb-4 text-gray-900">
         {getContextTitle()}
       </h3>
       
-      <div className={`grid gap-3 ${
-        variant === 'expanded' ? 'md:grid-cols-2' : 
-        variant === 'sidebar' ? 'grid-cols-1' : ''
-      }`}>
+      <div className={gridClasses}>
         {displayLinks.map((link, index) => {
           const isExternal = /^https?:\/\//.test(link.href);
-          const linkClassName = 'flex items-start gap-3 p-3 bg-white rounded-md hover:bg-gray-50 transition-colors group';
+          const linkClassName = cardClasses;
           const linkContent = (
             <>
-              <div className="flex-shrink-0 mt-1">
-                {getCategoryIcon(link.category)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
-                    {link.title}
-                  </h4>
-                  {link.seasonal && (
-                    <span className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
-                      Seasonal
-                    </span>
-                  )}
+              <div className="flex items-start gap-3">
+                <span className={iconWrapperClasses}>
+                  {getCategoryIcon(link.category)}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="text-base font-semibold text-gray-900 transition-colors group-hover:text-gold">
+                      {link.title}
+                    </h4>
+                    {link.seasonal && (
+                      <span className={seasonalBadgeClasses}>
+                        Seasonal
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                    {link.description}
+                  </p>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  {link.description}
-                </p>
               </div>
-              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-gold transition-colors flex-shrink-0 mt-1" />
+              <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors group-hover:text-gold/80">
+                Explore
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
             </>
           );
 
