@@ -302,9 +302,9 @@ const Services = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 shadow-2xl backdrop-blur-sm">
             <div className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-gold/30 blur-3xl opacity-60" aria-hidden="true" />
-            <div className="relative grid gap-12 lg:grid-cols-[1.2fr,1fr] p-6 sm:p-10 lg:p-14">
-              <div className="space-y-8">
-                <div className="space-y-4 max-w-2xl">
+            <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] p-6 sm:p-10 lg:p-14">
+              <div className="flex flex-col gap-10">
+                <div className="space-y-5 max-w-2xl">
                   <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-[0.4em] uppercase text-gold">
                     Signature Care Journey
                   </span>
@@ -316,19 +316,19 @@ const Services = () => {
                   </p>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-4 sm:grid-cols-2">
                   {differentiators.map(({ title, description, Icon }) => (
                     <div
                       key={title}
-                      className="flex h-full flex-col justify-between gap-4 rounded-2xl border border-black/5 bg-white/85 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                      className="flex h-full flex-col gap-3 rounded-2xl border border-gold/20 bg-white/90 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-xl"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="icon-orb icon-orb--gold">
-                          <Icon size={20} className="relative z-10" />
-                        </div>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">
+                        <Icon size={20} className="relative z-10" />
+                      </span>
+                      <div>
                         <h3 className="text-base font-semibold text-black">{title}</h3>
+                        <p className="mt-2 text-sm text-black-light/80 leading-relaxed">{description}</p>
                       </div>
-                      <p className="text-sm text-black-light/80 leading-relaxed">{description}</p>
                     </div>
                   ))}
                 </div>
@@ -348,33 +348,44 @@ const Services = () => {
                 </div>
               </div>
 
-              <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
-                {serviceNavigation.map(({ id, title, description, Icon }) => (
-                  <a
-                    key={id}
-                    href={`#${id}`}
-                    className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-black/5 bg-white/95 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-2xl"
-                  >
-                    <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
+                <div className="rounded-3xl border border-white/50 bg-gradient-to-br from-white/60 via-white/40 to-gold/20 p-6 sm:p-8 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.35)]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-black">
+                    Guided Paths to Your Ideal Smile
+                  </h3>
+                  <p className="mt-3 text-sm sm:text-base text-black-light/80 leading-relaxed">
+                    Explore comprehensive services tailored to your needs—from artistry-driven cosmetic enhancements to advanced restorative care and precision orthodontics.
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {serviceNavigation.map(({ id, title, description, Icon }, index) => (
+                    <a
+                      key={id}
+                      href={`#${id}`}
+                      className={cn(
+                        "group relative flex flex-col gap-4 rounded-2xl border border-black/5 bg-white/95 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-2xl",
+                        index === serviceNavigation.length - 1 ? "sm:col-span-2" : ""
+                      )}
+                    >
                       <div className="flex items-start gap-4">
-                        <div className="icon-orb icon-orb--interactive">
+                        <span className="icon-orb icon-orb--interactive">
                           <Icon
                             size={22}
                             className="relative z-10 transition-transform duration-300 group-hover:scale-105"
                           />
-                        </div>
+                        </span>
                         <div>
                           <h3 className="text-lg font-semibold text-black">{title}</h3>
                           <p className="mt-2 text-sm text-black-light/80 leading-relaxed">{description}</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-gold">
-                      Explore {title}
-                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </a>
-                ))}
+                      <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-gold">
+                        Explore {title}
+                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
