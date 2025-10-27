@@ -73,6 +73,13 @@ const ImageComponent: React.FC<ImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Ensure fill images skip lazy observer and render immediately
+  useEffect(() => {
+    if (fill && !isVisible) {
+      setIsVisible(true);
+    }
+  }, [fill, isVisible]);
+
   // URL encode image paths to handle special characters
   const encodeImagePath = (path: string): string => {
     const parts = path.split('/');
