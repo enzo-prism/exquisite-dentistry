@@ -1,4 +1,4 @@
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULING_URL } from '../constants/urls';
 
 export interface BlogPost {
   id: string;

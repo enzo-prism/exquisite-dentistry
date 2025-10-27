@@ -1,6 +1,6 @@
 
-import { getPublishedPosts } from '@/data/blogPosts';
-import { transformationStories } from '@/data/transformationStories';
+import { getPublishedPosts } from '../data/blogPosts';
+import { transformationStories } from '../data/transformationStories';
 
 export interface SitemapUrl {
   loc: string;
@@ -9,20 +9,27 @@ export interface SitemapUrl {
   priority: number;
 }
 
+const DAY_IN_MS = 24 * 60 * 60 * 1000;
+
+const hashString = (value: string): number => {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+};
+
+const getStableLastModified = (path: string, maxDaysAgo: number, referenceDate: Date): string => {
+  const offset = hashString(path) % Math.max(maxDaysAgo, 1);
+  const computedDate = new Date(referenceDate.getTime() - offset * DAY_IN_MS);
+  return computedDate.toISOString().split('T')[0];
+};
+
 export const generateSitemapData = (): SitemapUrl[] => {
   const baseUrl = 'https://exquisitedentistryla.com';
-  const currentDate = new Date().toISOString().split('T')[0];
-  
-  // Function to get realistic last modified dates
-  const getLastModified = (path: string): string => {
-    if (path.includes('/services') || path.includes('/veneers') || path.includes('/zoom-whitening')) {
-      return new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    }
-    if (path.includes('/about') || path.includes('/contact')) {
-      return new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    }
-    return new Date(Date.now() - Math.random() * 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-  };
+  const now = new Date();
+  const currentDate = now.toISOString().split('T')[0];
   
   // Static pages with optimized priorities and frequencies
   const staticPages: SitemapUrl[] = [
@@ -34,31 +41,31 @@ export const generateSitemapData = (): SitemapUrl[] => {
     },
     {
       loc: `${baseUrl}/about`,
-      lastmod: getLastModified('/about'),
+      lastmod: getStableLastModified('/about', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/services`,
-      lastmod: getLastModified('/services'),
+      lastmod: getStableLastModified('/services', 14, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/contact`,
-      lastmod: getLastModified('/contact'),
+      lastmod: getStableLastModified('/contact', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: `${baseUrl}/veneers`,
-      lastmod: getLastModified('/veneers'),
+      lastmod: getStableLastModified('/veneers', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: `${baseUrl}/zoom-whitening`,
-      lastmod: getLastModified('/zoom-whitening'),
+      lastmod: getStableLastModified('/zoom-whitening', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },

@@ -48,36 +48,14 @@ const queryClient = new QueryClient({
 import PageLoader from '@/components/ui/page-loader';
 import PageTransition from '@/components/ui/page-transition';
 import ScrollProgress from '@/components/ScrollProgress';
-import { generateXmlSitemap } from '@/utils/sitemapGenerator';
 
 const PageLoaderComponent = () => {
   return <PageLoader variant="minimal" message="Loading..." />;
 };
 
-// XML Sitemap component for serving XML content
-const XmlSitemap = () => {
-  const xmlContent = generateXmlSitemap();
-
-  return (
-    <pre
-      style={{ 
-        fontFamily: 'monospace',
-        whiteSpace: 'pre-wrap',
-        padding: '20px',
-        backgroundColor: '#f5f5f5',
-        border: 'none',
-        margin: 0,
-        fontSize: '12px',
-        lineHeight: '1.4'
-      }}
-      dangerouslySetInnerHTML={{ __html: xmlContent }}
-    />
-  );
-};
-
 const AppRoutes = () => {
   const location = useLocation();
-  const isSitemapPage = location.pathname === '/sitemap' || location.pathname === '/sitemap.xml';
+  const isSitemapPage = location.pathname === '/sitemap';
   
   // Fix section gaps and background consistency
   useSectionFix(300);
@@ -170,8 +148,7 @@ const AppRoutes = () => {
           <Routes>
             <Route path="/sitemap" element={<Suspense fallback={<PageLoaderComponent />}>
               <StaticSitemap />
-            </Suspense>} />
-            <Route path="/sitemap.xml" element={<XmlSitemap />} />
+          </Suspense>} />
           </Routes>
         )}
       </main>

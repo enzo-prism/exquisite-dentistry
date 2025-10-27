@@ -1,4 +1,4 @@
-import { ANXIETY_TO_EASE_TESTIMONIAL } from '@/components/video-hero/video-constants';
+import { ANXIETY_TO_EASE_TESTIMONIAL } from '../components/video-hero/video-constants';
 
 export interface TransformationStory {
   id: string;
