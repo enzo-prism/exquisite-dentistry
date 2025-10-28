@@ -188,6 +188,24 @@
   force = true
 
 [[redirects]]
+  from = "/invisalign"
+  to = "/services/#invisalign"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/single-tooth-veneers-guide/"
+  to = "/blog/single-tooth-veneers-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/front-teeth-veneers-complete-guide/"
+  to = "/blog/front-teeth-veneers-complete-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/index.html"
   to = "/"
   status = 301

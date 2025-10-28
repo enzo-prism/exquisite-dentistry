@@ -1,6 +1,7 @@
 
 import { getPublishedPosts } from '../data/blogPosts';
 import { transformationStories } from '../data/transformationStories';
+import { getCanonicalUrl } from './schemaValidation';
 
 export interface SitemapUrl {
   loc: string;
@@ -27,110 +28,109 @@ const getStableLastModified = (path: string, maxDaysAgo: number, referenceDate: 
 };
 
 export const generateSitemapData = (): SitemapUrl[] => {
-  const baseUrl = 'https://exquisitedentistryla.com';
   const now = new Date();
   const currentDate = now.toISOString().split('T')[0];
   
   // Static pages with optimized priorities and frequencies
   const staticPages: SitemapUrl[] = [
     {
-      loc: `${baseUrl}/`,
+      loc: getCanonicalUrl('/'),
       lastmod: currentDate,
       changefreq: 'weekly',
       priority: 1.0
     },
     {
-      loc: `${baseUrl}/about`,
+      loc: getCanonicalUrl('/about'),
       lastmod: getStableLastModified('/about', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      loc: `${baseUrl}/services`,
+      loc: getCanonicalUrl('/services'),
       lastmod: getStableLastModified('/services', 14, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      loc: `${baseUrl}/contact`,
+      loc: getCanonicalUrl('/contact'),
       lastmod: getStableLastModified('/contact', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      loc: `${baseUrl}/veneers`,
+      loc: getCanonicalUrl('/veneers'),
       lastmod: getStableLastModified('/veneers', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/zoom-whitening`,
+      loc: getCanonicalUrl('/zoom-whitening'),
       lastmod: getStableLastModified('/zoom-whitening', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/testimonials`,
+      loc: getCanonicalUrl('/testimonials'),
       lastmod: currentDate,
       changefreq: 'weekly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/client-experience`,
+      loc: getCanonicalUrl('/client-experience'),
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/smile-gallery`,
+      loc: getCanonicalUrl('/smile-gallery'),
       lastmod: currentDate,
       changefreq: 'weekly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/faqs`,
+      loc: getCanonicalUrl('/faqs'),
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/blog`,
+      loc: getCanonicalUrl('/blog'),
       lastmod: currentDate,
       changefreq: 'weekly',
       priority: 0.8
     },
     {
-      loc: `${baseUrl}/wedding`,
+      loc: getCanonicalUrl('/wedding'),
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.7
     },
     {
-      loc: `${baseUrl}/graduation`,
+      loc: getCanonicalUrl('/graduation'),
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.7
     },
     {
-      loc: `${baseUrl}/privacy-policy`,
+      loc: getCanonicalUrl('/privacy-policy'),
       lastmod: currentDate,
       changefreq: 'yearly',
       priority: 0.3
     },
     {
-      loc: `${baseUrl}/terms-of-service`,
+      loc: getCanonicalUrl('/terms-of-service'),
       lastmod: currentDate,
       changefreq: 'yearly',
       priority: 0.3
     },
     {
-      loc: `${baseUrl}/hipaa-compliance`,
+      loc: getCanonicalUrl('/hipaa-compliance'),
       lastmod: currentDate,
       changefreq: 'yearly',
       priority: 0.3
     },
     {
-      loc: `${baseUrl}/transformation-stories`,
+      loc: getCanonicalUrl('/transformation-stories'),
       lastmod: currentDate,
       changefreq: 'weekly',
       priority: 0.8
@@ -149,7 +149,7 @@ export const generateSitemapData = (): SitemapUrl[] => {
                            post.slug.includes('cost');
     
     return {
-      loc: `${baseUrl}/blog/${post.slug}`,
+      loc: getCanonicalUrl(`/blog/${post.slug}`),
       lastmod: postDate,
       changefreq: 'monthly' as const,
       priority: isHighValuePost ? 0.8 : 0.7
@@ -158,7 +158,7 @@ export const generateSitemapData = (): SitemapUrl[] => {
 
   // Dynamic transformation story pages
   const transformationStoryPages: SitemapUrl[] = transformationStories.map(story => ({
-    loc: `${baseUrl}/transformation-stories/${story.slug}`,
+    loc: getCanonicalUrl(`/transformation-stories/${story.slug}`),
     lastmod: currentDate,
     changefreq: 'monthly' as const,
     priority: 0.7

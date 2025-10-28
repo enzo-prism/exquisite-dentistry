@@ -71,7 +71,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       latitude: 34.0622,
       longitude: -118.3567
     },
-    geoRadius: '25000'
+    geoRadius: 25000
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

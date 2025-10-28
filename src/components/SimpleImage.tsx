@@ -13,7 +13,7 @@ const SimpleImage: React.FC<SimpleImageProps> = ({ src, alt, className = "" }) =
       alt={alt}
       className={className}
       onError={(e) => {
-        e.currentTarget.src = '/lovable-uploads/graduation%20smile.webp';
+        e.currentTarget.src = '/lovable-uploads/graduation-smile.webp';
       }}
       style={{ objectFit: 'cover', width: '100%', height: '100%' }}
     />
