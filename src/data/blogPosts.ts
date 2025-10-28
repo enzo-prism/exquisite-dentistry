@@ -685,7 +685,7 @@ export const blogPosts: BlogPost[] = [
     published: true
   },
   {
-    id: '2',
+    id: '12',
     title: 'Why Female Smokers are at a High Risk for Oral Cancer: Unpacking the Dangers',
     slug: 'female-smokers-high-risk-oral-cancer-dangers',
     excerpt: 'Learn why female smokers face heightened oral cancer risks compared to men. Discover the dangers of tobacco use, HPV connections, and essential preventative measures for optimal oral health.',
@@ -810,7 +810,7 @@ export const blogPosts: BlogPost[] = [
     published: true
   },
   {
-    id: '3',
+    id: '13',
     title: 'Choosing Veneers for the Front 4 Teeth: Complete Smile Transformation Guide',
     slug: 'choosing-veneers-for-the-front-4-teeth',
     excerpt: 'Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results.',
@@ -828,7 +828,7 @@ export const blogPosts: BlogPost[] = [
     published: true
   },
   {
-    id: '2',
+    id: '14',
     title: 'Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections',
     slug: 'single-tooth-veneers-perfect-solutions',
     excerpt: 'Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.',
@@ -845,7 +845,7 @@ export const blogPosts: BlogPost[] = [
     published: true
   },
   {
-    id: '3',
+    id: '15',
     title: 'Relax and Binge Netflix\'s Hottest Shows During Your Cosmetic Dentistry Visit',
     slug: 'netflix-streaming-during-dental-procedures',
     excerpt: 'Turn your dental anxiety into entertainment bliss! Discover how streaming Netflix during cosmetic procedures at Exquisite Dentistry creates a spa-like experience while achieving your perfect smile.',
@@ -1337,14 +1337,26 @@ export const getPostsByTag = (tag: string): BlogPost[] => {
 };
 
 export const getRelatedPosts = (currentPost: BlogPost, limit: number = 3): BlogPost[] => {
-  return blogPosts
-    .filter(post => 
-      post.id !== currentPost.id && 
-      post.published && 
-      (post.category === currentPost.category || 
-       post.tags.some(tag => currentPost.tags.includes(tag)))
-    )
-    .slice(0, limit);
+  const relatedCandidates = blogPosts.filter(post => {
+    if (!post.published) return false;
+    if (post.slug === currentPost.slug) return false;
+
+    const sharesCategory = post.category === currentPost.category;
+    const sharesTag = post.tags.some(tag => currentPost.tags.includes(tag));
+    return sharesCategory || sharesTag;
+  });
+
+  const uniqueBySlug: BlogPost[] = [];
+  const seen = new Set<string>();
+
+  relatedCandidates.forEach(post => {
+    if (!seen.has(post.slug)) {
+      seen.add(post.slug);
+      uniqueBySlug.push(post);
+    }
+  });
+
+  return uniqueBySlug.slice(0, limit);
 };
 
 export const getAllCategories = (): string[] => {

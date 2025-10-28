@@ -108,7 +108,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
       <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
       <div className="grid gap-4 mb-12">
         {relatedPosts.map((post) => (
-          <Link key={post.id} to={`/blog/${post.slug}`} className="group">
+          <Link key={post.slug} to={`/blog/${post.slug}`} className="group">
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold group-hover:text-gold transition-colors">
