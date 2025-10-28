@@ -1,6 +1,5 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogListingStructuredData from '@/components/BlogListingStructuredData';
@@ -42,14 +41,36 @@ const Blog = () => {
     return () => clearTimeout(timer);
   }, [filteredPosts]);
 
+  const { seoTitle, seoDescription } = useMemo(() => {
+    const resultCountText = filteredPosts.length === 1 ? '1 article' : `${filteredPosts.length} articles`;
+    if (searchTerm.trim()) {
+      return {
+        seoTitle: `Search results for "${searchTerm}" | Exquisite Dentistry Blog`,
+        seoDescription: `Review ${resultCountText} matching "${searchTerm}" from Exquisite Dentistry’s Los Angeles cosmetic dental experts covering treatments, technology, and patient care.`
+      };
+    }
+
+    if (selectedCategory) {
+      return {
+        seoTitle: `${selectedCategory} Articles & Guides | Exquisite Dentistry Blog`,
+        seoDescription: `Explore ${resultCountText} on ${selectedCategory.toLowerCase()} from Dr. Aguil’s Los Angeles cosmetic dentistry team, featuring expert techniques and patient insights.`
+      };
+    }
+
+    return {
+      seoTitle: 'Los Angeles Cosmetic Dentistry Blog | Expert Insights & Techniques',
+      seoDescription: 'Stay current with Exquisite Dentistry’s Los Angeles cosmetic dental insights. Discover veneers, whitening breakthroughs, patient stories, and advanced oral health techniques.'
+    };
+  }, [filteredPosts.length, searchTerm, selectedCategory]);
+
   return (
     <div className="min-h-screen bg-background">
       <MasterStructuredData includeBusiness={true} includeWebsite={true} />
       <BlogListingStructuredData posts={allPosts} />
       
       <PageSEO
-        title="Dental Expert Insights | LA Cosmetic Dentistry Blog"
-        description="Expert dental insights from Dr. Aguil. Learn about veneers, whitening, oral health tips, and the latest cosmetic dentistry innovations in LA."
+        title={seoTitle}
+        description={seoDescription}
         keywords="dental blog, cosmetic dentistry, oral health, dental tips, Dr. Alexie Aguil, dental expert insights, Beverly Hills dentist"
         path="/blog"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"

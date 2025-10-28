@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { 
-  MASTER_BUSINESS_ENTITY, 
-  MASTER_DOCTOR_ENTITY, 
+import {
+  MASTER_BUSINESS_ENTITY,
+  MASTER_DOCTOR_ENTITY,
   WEBSITE_ENTITY,
   REVIEW_AGGREGATE_DATA,
   detectSchemaDuplicates
@@ -17,6 +17,22 @@ interface MasterStructuredDataProps {
   includeReviews?: boolean;
   additionalSchemas?: JsonLd[];
 }
+
+const SCHEMA_ORG_CONTEXT = 'https://schema.org';
+
+const ensureSchemaOrgContext = (schema: JsonLd): JsonLd => {
+  const context = schema['@context'];
+  const hasContext =
+    (typeof context === 'string' && context.trim().length > 0) ||
+    (Array.isArray(context) && context.length > 0);
+
+  return hasContext
+    ? schema
+    : {
+        '@context': SCHEMA_ORG_CONTEXT,
+        ...schema
+      };
+};
 
 /**
  * Master structured data component - single source of truth
@@ -54,19 +70,21 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
   // Add additional schemas
   schemas.push(...additionalSchemas);
 
+  const normalizedSchemas = schemas.map(ensureSchemaOrgContext);
+
   // Validate schemas and detect duplicates
   if (process.env.NODE_ENV === 'development') {
-    schemas.forEach((schema, index) => {
+    normalizedSchemas.forEach((schema, index) => {
       const validationResult = validateJsonLd(schema);
       logValidationErrors(`Schema[${index}]`, validationResult);
-      
+
       if (schema['@type'] === 'LocalBusiness' || (Array.isArray(schema['@type']) && schema['@type'].includes('LocalBusiness'))) {
         const businessValidation = validateLocalBusiness(schema as LocalBusinessSchema);
         logValidationErrors('BusinessSchema', businessValidation);
       }
     });
 
-    const duplicateWarnings = detectSchemaDuplicates(schemas);
+    const duplicateWarnings = detectSchemaDuplicates(normalizedSchemas);
     if (duplicateWarnings.length > 0) {
       console.warn('🔍 Schema duplication detected:', duplicateWarnings);
     }
@@ -74,9 +92,9 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
 
   return (
     <Helmet>
-      {schemas.map((schema, index) => (
-        <script 
-          key={index} 
+      {normalizedSchemas.map((schema, index) => (
+        <script
+          key={index}
           type="application/ld+json"
         >
           {JSON.stringify(schema)}

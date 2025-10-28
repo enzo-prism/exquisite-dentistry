@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { generateSitemapData } from '@/utils/sitemapGenerator';
 import { CANONICAL_URLS } from '@/hooks/use-canonical';
+import PageSEO from '@/components/seo/PageSEO';
 
 const StaticSitemap = () => {
   const sitemapData = generateSitemapData();
@@ -32,12 +32,12 @@ const StaticSitemap = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Site Map | Exquisite Dentistry</title>
-        
-        
-        <meta name="robots" content="index, follow" />
-      </Helmet>
+      <PageSEO
+        title="Website Directory & Sitemap | Exquisite Dentistry LA"
+        description="Explore every page of Exquisite Dentistry in Los Angeles. Jump to cosmetic dentistry services, patient resources, testimonials, and legal policies from one organized sitemap."
+        path="/sitemap"
+        keywords="Exquisite Dentistry sitemap, dental site map, Los Angeles cosmetic dentist pages, patient resources"
+      />
 
       <div className="min-h-screen bg-gradient-subtle">
         <div className="container mx-auto px-4 py-16">

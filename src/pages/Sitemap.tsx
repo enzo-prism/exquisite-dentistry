@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { generateSitemapData } from '@/utils/sitemapGenerator';
+import PageSEO from '@/components/seo/PageSEO';
 
 const Sitemap = () => {
   const sitemapData = generateSitemapData();
@@ -28,7 +29,14 @@ const Sitemap = () => {
   };
 
   return (
-    <div style={{
+    <>
+      <PageSEO
+        title="Website Directory & Sitemap | Exquisite Dentistry LA"
+        description="Browse every page on Exquisite Dentistry’s website including cosmetic services, patient resources, legal policies, and blog content."
+        path="/sitemap"
+        keywords="Exquisite Dentistry sitemap, dental website directory, Los Angeles dentist site map"
+      />
+      <div style={{
       fontFamily: 'system-ui, -apple-system, sans-serif',
       maxWidth: '800px',
       margin: '0 auto',
@@ -162,6 +170,7 @@ const Sitemap = () => {
         </p>
       </footer>
     </div>
+    </>
   );
 };
 

@@ -146,6 +146,18 @@
   force = true
 
 [[redirects]]
+  from = "http://www.exquisitedentistryla.com/*"
+  to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.exquisitedentistryla.com/*"
+  to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "https://m.exquisitedentistryla.com/*"
   to = "https://exquisitedentistryla.com/:splat"
   status = 301
@@ -154,6 +166,48 @@
 [[redirects]]
   from = "http://exquisitedentistryla.com/*"
   to = "https://exquisitedentistryla.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/front-teeth-veneers-complete-guide.html"
+  to = "/blog/front-teeth-veneers-complete-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/single-tooth-veneers-guide.html"
+  to = "/blog/single-tooth-veneers-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/:page.html"
+  to = "/:page/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemap"
+  to = "/sitemap/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
   status = 301
   force = true
 

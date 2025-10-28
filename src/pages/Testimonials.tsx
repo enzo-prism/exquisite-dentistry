@@ -9,8 +9,9 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 
 const TestimonialsPage: React.FC = () => {
-  const totalTestimonials = VIDEO_TESTIMONIALS.length;
   const SITE_BASE_URL = 'https://exquisitedentistryla.com';
+  const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
+  const totalTestimonials = VIDEO_TESTIMONIALS.length;
 
   const toAbsoluteUrl = (url: string) => {
     if (!url) return undefined;
@@ -21,7 +22,19 @@ const TestimonialsPage: React.FC = () => {
     const baseVideoObject: Record<string, unknown> = {
       '@type': 'VideoObject',
       name: testimonial.title,
-      description: `${testimonial.title} from Exquisite Dentistry LA`
+      description: `${testimonial.title} from Exquisite Dentistry LA`,
+      uploadDate: testimonial.uploadDate,
+      duration: testimonial.duration,
+      url: `${SITE_BASE_URL}/testimonials/#${testimonial.id}`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Exquisite Dentistry',
+        url: SITE_BASE_URL,
+        logo: {
+          '@type': 'ImageObject',
+          url: LOGO_URL
+        }
+      }
     };
 
     const thumbnailUrl = toAbsoluteUrl(testimonial.thumbnailUrl);
