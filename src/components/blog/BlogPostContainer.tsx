@@ -81,11 +81,10 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Render HTML content safely */}
-          <div 
-            className="prose prose-lg max-w-none mb-8"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {/* Render HTML content with Tailwind typography */}
+          <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
+            <article dangerouslySetInnerHTML={{ __html: post.content }} />
+          </div>
           
           <InternalLinkingWidget 
             currentPage={`/blog/${post.slug}`}
