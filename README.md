@@ -60,6 +60,21 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
+## Managing Blog Content
+
+Legacy WordPress blog posts are stored as plain text exports inside `Blog-Content/exq_dental_blog_posts`.  
+Run the generator below to rebuild the TypeScript dataset whenever new files are added or existing posts are updated:
+
+```sh
+npm run generate:blog
+```
+
+This command hydrates `src/data/generatedBlogPosts.ts`, which is merged with the hand-crafted articles in `src/data/blogPosts.ts`. Re-run `npm run build` afterwards to refresh the sitemap and feeds.
+
+### Blog Typography
+
+Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin. Customize headings, paragraphs, and links by updating the `.prose` utility overrides in `src/index.css`. Avoid reintroducing the legacy `.blog-content` class—new typography adjustments should rely on Tailwind prose modifiers (e.g., `prose-lg`, `prose-neutral`) so component CTAs and widgets retain consistent spacing.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/03495860-0dae-47cc-9f99-6dca02a2f426) and click on Share -> Publish.
