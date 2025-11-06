@@ -27,6 +27,47 @@ const getStableLastModified = (path: string, maxDaysAgo: number, referenceDate: 
   return computedDate.toISOString().split('T')[0];
 };
 
+type StatFn = (path: string) => { mtime: Date };
+type ResolveFn = (...segments: string[]) => string;
+type FsModule = { statSync: StatFn };
+type PathModule = { resolve: ResolveFn };
+
+let statSync: StatFn | null = null;
+let resolvePath: ResolveFn | null = null;
+
+if (typeof window === 'undefined') {
+  try {
+    const req = eval('require') as (module: string) => unknown;
+    const fsModule = req('fs') as FsModule;
+    const pathModule = req('path') as PathModule;
+    statSync = fsModule.statSync;
+    resolvePath = pathModule.resolve;
+  } catch (error) {
+    statSync = null;
+    resolvePath = null;
+  }
+}
+
+const getFileLastModified = (relativePath: string, fallbackDays: number, referenceDate: Date): string => {
+  const fallback = getStableLastModified(relativePath, fallbackDays, referenceDate);
+
+  if (!statSync || !resolvePath) {
+    return fallback;
+  }
+
+  try {
+    const filePath = resolvePath(process.cwd(), relativePath);
+    const stats = statSync(filePath);
+    const modified = stats.mtime;
+    if (modified.getTime() > referenceDate.getTime()) {
+      return referenceDate.toISOString().split('T')[0];
+    }
+    return modified.toISOString().split('T')[0];
+  } catch (error) {
+    return fallback;
+  }
+};
+
 export const generateSitemapData = (): SitemapUrl[] => {
   const now = new Date();
   const currentDate = now.toISOString().split('T')[0];
@@ -35,103 +76,139 @@ export const generateSitemapData = (): SitemapUrl[] => {
   const staticPages: SitemapUrl[] = [
     {
       loc: getCanonicalUrl('/'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/Index.tsx', 7, now),
       changefreq: 'weekly',
       priority: 1.0
     },
     {
       loc: getCanonicalUrl('/about'),
-      lastmod: getStableLastModified('/about', 30, now),
+      lastmod: getFileLastModified('src/pages/About.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: getCanonicalUrl('/services'),
-      lastmod: getStableLastModified('/services', 14, now),
+      lastmod: getFileLastModified('src/pages/Services.tsx', 14, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: getCanonicalUrl('/contact'),
-      lastmod: getStableLastModified('/contact', 30, now),
+      lastmod: getFileLastModified('src/pages/Contact.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
     {
       loc: getCanonicalUrl('/veneers'),
-      lastmod: getStableLastModified('/veneers', 14, now),
+      lastmod: getFileLastModified('src/pages/Veneers.tsx', 14, now),
       changefreq: 'monthly',
       priority: 0.8
+    },
+    {
+      loc: getCanonicalUrl('/veneers-los-angeles'),
+      lastmod: getFileLastModified('src/pages/VeneersLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.9
     },
     {
       loc: getCanonicalUrl('/zoom-whitening'),
-      lastmod: getStableLastModified('/zoom-whitening', 14, now),
+      lastmod: getFileLastModified('src/pages/ZoomWhitening.tsx', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
+      loc: getCanonicalUrl('/teeth-whitening'),
+      lastmod: getFileLastModified('src/pages/TeethWhitening.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/invisalign'),
+      lastmod: getFileLastModified('src/pages/Invisalign.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/dental-implants'),
+      lastmod: getFileLastModified('src/pages/DentalImplants.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/cosmetic-dentistry'),
+      lastmod: getFileLastModified('src/pages/CosmeticDentistry.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/emergency-dentist'),
+      lastmod: getFileLastModified('src/pages/EmergencyDentist.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
       loc: getCanonicalUrl('/testimonials'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/Testimonials.tsx', 14, now),
       changefreq: 'weekly',
       priority: 0.8
     },
     {
       loc: getCanonicalUrl('/client-experience'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/ClientExperience.tsx', 14, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: getCanonicalUrl('/smile-gallery'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/SmileGallery.tsx', 7, now),
       changefreq: 'weekly',
       priority: 0.8
     },
     {
       loc: getCanonicalUrl('/faqs'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/FAQs.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.8
     },
     {
       loc: getCanonicalUrl('/blog'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/Blog.tsx', 14, now),
       changefreq: 'weekly',
       priority: 0.8
     },
     {
       loc: getCanonicalUrl('/wedding'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/Wedding.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.7
     },
     {
       loc: getCanonicalUrl('/graduation'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/Graduation.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.7
     },
     {
       loc: getCanonicalUrl('/privacy-policy'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/PrivacyPolicy.tsx', 90, now),
       changefreq: 'yearly',
       priority: 0.3
     },
     {
       loc: getCanonicalUrl('/terms-of-service'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/TermsOfService.tsx', 90, now),
       changefreq: 'yearly',
       priority: 0.3
     },
     {
       loc: getCanonicalUrl('/hipaa-compliance'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/HipaaCompliance.tsx', 180, now),
       changefreq: 'yearly',
       priority: 0.3
     },
     {
       loc: getCanonicalUrl('/transformation-stories'),
-      lastmod: currentDate,
+      lastmod: getFileLastModified('src/pages/TransformationStories.tsx', 30, now),
       changefreq: 'weekly',
       priority: 0.8
     }

@@ -41,6 +41,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 1
           },
           {
+            title: 'Veneers Los Angeles',
+            href: '/veneers-los-angeles',
+            description: 'Handcrafted veneers tailored to LA lifestyles',
+            category: 'service',
+            priority: 1
+          },
+          {
             title: 'Single Tooth Veneers Guide',
             href: '/blog/single-tooth-veneers-perfect-solutions',
             description: 'Perfect solutions for individual tooth improvements',
@@ -76,7 +83,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Invisalign Treatment',
-            href: '/services#invisalign',
+            href: '/invisalign',
             description: 'Clear aligners for discreet teeth straightening',
             category: 'service',
             priority: 1
@@ -108,18 +115,25 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'whitening':
         return [
           {
-            title: 'Zoom Whitening Service',
-            href: '/zoom-whitening',
-            description: 'Professional teeth whitening treatments',
+            title: 'Teeth Whitening Service',
+            href: '/teeth-whitening',
+            description: 'Professional teeth whitening programs',
             category: 'service',
             priority: 1
+          },
+          {
+            title: 'Zoom Whitening',
+            href: '/zoom-whitening',
+            description: 'In-office treatment for instant brightness',
+            category: 'service',
+            priority: 2
           },
           {
             title: 'Veneers vs Whitening',
             href: '/veneers',
             description: 'Compare whitening with veneer options',
             category: 'service',
-            priority: 2
+            priority: 3
           },
           {
             title: 'Wedding Whitening',
@@ -188,7 +202,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Invisalign for Students',
-            href: '/services#invisalign',
+            href: '/invisalign',
             description: 'Discreet treatment during school',
             category: 'service',
             priority: 3

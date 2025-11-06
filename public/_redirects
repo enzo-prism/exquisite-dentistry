@@ -3,6 +3,7 @@
 /services           /services.html          200!
 /contact            /contact.html           200!
 /veneers            /veneers.html           200!
+/veneers-los-angeles /veneers-los-angeles.html 200!
 /testimonials       /testimonials.html      200!
 /blog               /blog.html              200!
 /smile-gallery      /smile-gallery.html     200!
@@ -11,6 +12,11 @@
 /wedding            /wedding.html           200!
 /graduation         /graduation.html        200!
 /zoom-whitening     /zoom-whitening.html    200!
+/teeth-whitening    /teeth-whitening.html   200!
+/invisalign         /invisalign.html        200!
+/dental-implants    /dental-implants.html   200!
+/cosmetic-dentistry /cosmetic-dentistry.html 200!
+/emergency-dentist  /emergency-dentist.html 200!
 /privacy-policy     /privacy-policy.html    200!
 /terms-of-service   /terms-of-service.html  200!
 /hipaa-compliance   /hipaa-compliance.html  200!
@@ -27,6 +33,7 @@
 /services /services/ 301
 /contact /contact/ 301
 /veneers /veneers/ 301
+/veneers-los-angeles /veneers-los-angeles/ 301
 /testimonials /testimonials/ 301
 /blog /blog/ 301
 /smile-gallery /smile-gallery/ 301
@@ -35,6 +42,11 @@
 /wedding /wedding/ 301
 /graduation /graduation/ 301
 /zoom-whitening /zoom-whitening/ 301
+/teeth-whitening /teeth-whitening/ 301
+/invisalign /invisalign/ 301
+/dental-implants /dental-implants/ 301
+/cosmetic-dentistry /cosmetic-dentistry/ 301
+/emergency-dentist /emergency-dentist/ 301
 /privacy-policy /privacy-policy/ 301
 /terms-of-service /terms-of-service/ 301
 /hipaa-compliance /hipaa-compliance/ 301
@@ -46,8 +58,13 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 # SPECIFIC redirects first (before wildcards)
 /hollywood-cosmetic-dentist.html /services/ 301
 /dentist-west-hollywood.html /about/ 301  
-/invisalign-los-angeles.html /services/#invisalign 301
-/invisalign.html /services/#invisalign 301
+/invisalign-los-angeles.html /invisalign/ 301
+/invisalign.html /invisalign/ 301
+/teeth-whitening.html /teeth-whitening/ 301
+/dental-implants.html /dental-implants/ 301
+/cosmetic-dentistry.html /cosmetic-dentistry/ 301
+/emergency-dentist.html /emergency-dentist/ 301
+/veneers-los-angeles.html /veneers-los-angeles/ 301
 /z-test_value.html / 301
 /5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301
 /blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301

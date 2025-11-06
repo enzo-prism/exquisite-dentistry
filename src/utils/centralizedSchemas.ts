@@ -97,6 +97,27 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
           '@type': 'MedicalProcedure',
           name: 'Invisalign'
         }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Teeth Whitening'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Dental Implants'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'MedicalProcedure',
+          name: 'Emergency Dental Care'
+        }
       }
     ]
   },

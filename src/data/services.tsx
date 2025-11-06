@@ -5,6 +5,7 @@ export interface ServiceTreatment {
   details: string;
   hasDetailPage?: boolean;
   slug?: string;
+  ctaLabel?: string;
 }
 
 export interface ServiceCategory {
@@ -28,11 +29,24 @@ export const serviceCategories: ServiceCategory[] = [
     treatments: [
       {
         name: "Porcelain Veneers",
-        details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance"
+        details: "Custom-designed porcelain shells that cover the front surface of teeth to improve appearance",
+        hasDetailPage: true,
+        slug: "/veneers",
+        ctaLabel: "Explore Veneers"
+      },
+      {
+        name: "Los Angeles Veneer Design",
+        details: "Handcrafted smile transformations tailored to LA lifestyles and on-camera confidence",
+        hasDetailPage: true,
+        slug: "/veneers-los-angeles",
+        ctaLabel: "Veneers in Los Angeles"
       },
       {
         name: "Professional Teeth Whitening",
-        details: "Advanced in-office and take-home whitening systems for brilliantly white teeth"
+        details: "Advanced in-office and take-home whitening systems for brilliantly white teeth",
+        hasDetailPage: true,
+        slug: "/teeth-whitening",
+        ctaLabel: "Teeth Whitening Options"
       },
       {
         name: "Smile Makeovers",
@@ -62,7 +76,10 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: "Dental Implants",
-        details: "Permanent tooth replacement that looks, feels, and functions like natural teeth"
+        details: "Permanent tooth replacement that looks, feels, and functions like natural teeth",
+        hasDetailPage: true,
+        slug: "/dental-implants",
+        ctaLabel: "Learn About Implants"
       },
       {
         name: "Full & Partial Dentures",
@@ -106,7 +123,10 @@ export const serviceCategories: ServiceCategory[] = [
     treatments: [
       {
         name: "Invisalign® Clear Aligners",
-        details: "Discreet orthodontic treatment to straighten teeth without metal braces"
+        details: "Discreet orthodontic treatment to straighten teeth without metal braces",
+        hasDetailPage: true,
+        slug: "/invisalign",
+        ctaLabel: "Invisalign Details"
       },
       {
         name: "Laser Gum Therapy",
@@ -115,6 +135,13 @@ export const serviceCategories: ServiceCategory[] = [
       {
         name: "Full Mouth Reconstruction",
         details: "A comprehensive, holistic, and multi-layered dental treatment involving a series of procedures aimed at transforming your smile, restoring the functionality of your teeth, and enhancing the overall health of your mouth"
+      },
+      {
+        name: "Emergency Dentistry",
+        details: "Same-day care for toothaches, fractures, and trauma with after-hours support",
+        hasDetailPage: true,
+        slug: "/emergency-dentist",
+        ctaLabel: "Emergency Dentist Info"
       }
     ]
   }

@@ -30,6 +30,12 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
+const Invisalign = lazy(() => import("@/pages/Invisalign"));
+const VeneersLosAngeles = lazy(() => import("@/pages/VeneersLosAngeles"));
+const TeethWhitening = lazy(() => import("@/pages/TeethWhitening"));
+const DentalImplants = lazy(() => import("@/pages/DentalImplants"));
+const CosmeticDentistry = lazy(() => import("@/pages/CosmeticDentistry"));
+const EmergencyDentist = lazy(() => import("@/pages/EmergencyDentist"));
 const TransformationStories = lazy(() => import("@/pages/TransformationStories"));
 const TransformationStoryPage = lazy(() => import("@/pages/TransformationStoryPage"));
 const ShareYourStory = lazy(() => import("@/pages/ShareYourStory"));
@@ -129,8 +135,26 @@ const AppRoutes = () => {
               <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Veneers />
               </Suspense>} />
+              <Route path="/veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersLosAngeles />
+              </Suspense>} />
               <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ZoomWhitening />
+              </Suspense>} />
+              <Route path="/invisalign" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Invisalign />
+              </Suspense>} />
+              <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhitening />
+              </Suspense>} />
+              <Route path="/dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalImplants />
+              </Suspense>} />
+              <Route path="/cosmetic-dentistry" element={<Suspense fallback={<PageLoaderComponent />}>
+                <CosmeticDentistry />
+              </Suspense>} />
+              <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <EmergencyDentist />
               </Suspense>} />
               
               <Route path="/transformation-stories" element={<Suspense fallback={<PageLoaderComponent />}>

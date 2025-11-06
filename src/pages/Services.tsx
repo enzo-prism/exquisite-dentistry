@@ -144,7 +144,7 @@ const Services = () => {
           name: 'Dental Services Catalog',
           description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
           url: 'https://exquisitedentistryla.com/services/',
-          numberOfItems: 6,
+          numberOfItems: 8,
           itemListElement: [
             {
               '@type': 'ListItem',
@@ -168,9 +168,9 @@ const Services = () => {
               position: 2,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Teeth Whitening',
-                description: 'Professional teeth whitening treatments for a brighter, more confident smile',
-                url: 'https://exquisitedentistryla.com/zoom-whitening/',
+                name: 'Veneers Los Angeles',
+                description: 'Handcrafted porcelain veneer designs tailored to Los Angeles lifestyles and on-camera needs',
+                url: 'https://exquisitedentistryla.com/veneers-los-angeles/',
                 category: 'Cosmetic Dentistry',
                 provider: {
                   '@id': 'https://exquisitedentistryla.com/#business'
@@ -185,10 +185,10 @@ const Services = () => {
               position: 3,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Dental Implants',
-                description: 'Permanent tooth replacement solution using titanium implants for natural-looking results',
-                url: 'https://exquisitedentistryla.com/services/',
-                category: 'Restorative Dentistry',
+                name: 'Teeth Whitening',
+                description: 'Professional teeth whitening treatments for a brighter, more confident smile',
+                url: 'https://exquisitedentistryla.com/teeth-whitening/',
+                category: 'Cosmetic Dentistry',
                 provider: {
                   '@id': 'https://exquisitedentistryla.com/#business'
                 },
@@ -202,10 +202,10 @@ const Services = () => {
               position: 4,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Invisalign Clear Aligners',
-                description: 'Discreet orthodontic treatment using clear, removable aligners to straighten teeth',
-                url: 'https://exquisitedentistryla.com/services/',
-                category: 'Orthodontics',
+                name: 'Zoom Whitening',
+                description: 'In-office Zoom whitening that brightens teeth multiple shades in one comfortable visit',
+                url: 'https://exquisitedentistryla.com/zoom-whitening/',
+                category: 'Cosmetic Dentistry',
                 provider: {
                   '@id': 'https://exquisitedentistryla.com/#business'
                 },
@@ -219,9 +219,9 @@ const Services = () => {
               position: 5,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Dental Crowns',
-                description: 'Custom-made caps that cover damaged or decayed teeth to restore function and appearance',
-                url: 'https://exquisitedentistryla.com/services/',
+                name: 'Dental Implants',
+                description: 'Permanent tooth replacement solution using titanium or zirconia implants for natural-looking results',
+                url: 'https://exquisitedentistryla.com/dental-implants/',
                 category: 'Restorative Dentistry',
                 provider: {
                   '@id': 'https://exquisitedentistryla.com/#business'
@@ -236,10 +236,44 @@ const Services = () => {
               position: 6,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Smile Makeover',
-                description: 'Comprehensive cosmetic dental treatment combining multiple procedures for complete smile transformation',
-                url: 'https://exquisitedentistryla.com/services/',
+                name: 'Invisalign Clear Aligners',
+                description: 'Discreet orthodontic treatment using clear, removable aligners to straighten teeth',
+                url: 'https://exquisitedentistryla.com/invisalign/',
+                category: 'Orthodontics',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
+              }
+            },
+            {
+              '@type': 'ListItem',
+              position: 7,
+              item: {
+                '@type': 'MedicalProcedure',
+                name: 'Cosmetic Dentistry',
+                description: 'Integrated cosmetic dentistry plans combining veneers, bonding, whitening, and alignment',
+                url: 'https://exquisitedentistryla.com/cosmetic-dentistry/',
                 category: 'Cosmetic Dentistry',
+                provider: {
+                  '@id': 'https://exquisitedentistryla.com/#business'
+                },
+                performer: {
+                  '@id': 'https://exquisitedentistryla.com/#doctor'
+                }
+              }
+            },
+            {
+              '@type': 'ListItem',
+              position: 8,
+              item: {
+                '@type': 'MedicalProcedure',
+                name: 'Emergency Dental Care',
+                description: 'Same-day emergency dentistry for toothaches, fractures, infections, and trauma',
+                url: 'https://exquisitedentistryla.com/emergency-dentist/',
+                category: 'Emergency & Urgent Dental Care',
                 provider: {
                   '@id': 'https://exquisitedentistryla.com/#business'
                 },
@@ -422,11 +456,11 @@ const Services = () => {
                       </div>
                       {treatment.hasDetailPage && treatment.slug && (
                         <div className="ml-4 flex-shrink-0">
-                          <a href="https://exquisiteveneersla.com/" target="_blank" rel="noopener noreferrer">
+                          <Link to={treatment.slug}>
                             <Button variant="outline" size="sm" className="text-xs border-gold text-gold hover:bg-gold/5">
-                              View Veneer Details
+                              {treatment.ctaLabel || 'Learn More'}
                             </Button>
-                          </a>
+                          </Link>
                         </div>
                       )}
                     </div>

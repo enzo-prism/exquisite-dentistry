@@ -215,6 +215,31 @@ const Footer = () => {
                     <span className="group-hover:translate-x-1 transition-transform">Graduation Ready</span>
                   </Link>
                 </li>
+                <li>
+                  <Link to="/invisalign" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Invisalign® Clear Aligners</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/teeth-whitening" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Teeth Whitening</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dental-implants" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Dental Implants</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/cosmetic-dentistry" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Cosmetic Dentistry</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/emergency-dentist" className="text-gray-400 hover:text-gray-300 transition-colors flex items-center group text-sm">
+                    <span className="group-hover:translate-x-1 transition-transform">Emergency Dentist</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </motion.div>

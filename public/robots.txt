@@ -20,6 +20,25 @@ Disallow: /api/
 Disallow: /*?utm_*
 Disallow: /*?fbclid=*
 Disallow: /*?gclid=*
+Disallow: /*?replytocom=*
+Disallow: /*?share=*
+Disallow: /*?amp=*
+Disallow: /*?p=*
+Disallow: /*?s=*
+Disallow: /*?attachment_id=*
+Disallow: /*?orderby=*
+Disallow: /*?filter=*
+Disallow: /category/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /archives/
+Disallow: /blog/*/attachment/
+Disallow: /*/amp/
+Disallow: /*/feed/
+Disallow: /wp-json/
+Disallow: /wp-admin/
+Disallow: /feed/
+Disallow: /*?*
 
 # Enhanced crawling for important content
 Allow: /blog/

@@ -12,7 +12,16 @@ const Sitemap = () => {
       ['/', '/about', '/services', '/contact'].some(path => url.loc.endsWith(path))
     ),
     services: sitemapData.filter(url => 
-      ['/veneers', '/zoom-whitening'].some(path => url.loc.endsWith(path))
+      [
+        '/veneers',
+        '/veneers-los-angeles',
+        '/zoom-whitening',
+        '/teeth-whitening',
+        '/invisalign',
+        '/dental-implants',
+        '/cosmetic-dentistry',
+        '/emergency-dentist'
+      ].some(path => url.loc.endsWith(path))
     ),
     experience: sitemapData.filter(url => 
       ['/client-experience', '/testimonials', '/smile-gallery', '/faqs'].some(path => url.loc.endsWith(path))
@@ -183,7 +192,13 @@ const getPageTitle = (url: string): string => {
     '/services': 'Our Services',
     '/contact': 'Contact Us',
     '/veneers': 'Porcelain Veneers',
+    '/veneers-los-angeles': 'Veneers Los Angeles',
     '/zoom-whitening': 'Zoom Whitening',
+    '/teeth-whitening': 'Teeth Whitening',
+    '/invisalign': 'Invisalign',
+    '/dental-implants': 'Dental Implants',
+    '/cosmetic-dentistry': 'Cosmetic Dentistry',
+    '/emergency-dentist': 'Emergency Dentist',
     '/testimonials': 'Patient Testimonials',
     '/client-experience': 'Client Experience',
     '/smile-gallery': 'Smile Gallery',

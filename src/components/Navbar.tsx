@@ -129,7 +129,18 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
-    { to: '/services', label: 'Services' },
+  ];
+
+  const servicesDropdown = [
+    { to: '/services', label: 'Services Overview' },
+    { to: '/invisalign', label: 'Invisalign' },
+    { to: '/veneers', label: 'Porcelain Veneers' },
+    { to: '/veneers-los-angeles', label: 'Veneers Los Angeles' },
+    { to: '/teeth-whitening', label: 'Teeth Whitening' },
+    { to: '/zoom-whitening', label: 'Zoom Whitening' },
+    { to: '/dental-implants', label: 'Dental Implants' },
+    { to: '/cosmetic-dentistry', label: 'Cosmetic Dentistry' },
+    { to: '/emergency-dentist', label: 'Emergency Dentist' },
   ];
 
   const clientsDropdown = [
@@ -185,6 +196,34 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Services Dropdown - Desktop */}
+              <div 
+                className="relative group"
+                onMouseEnter={() => setOpenDropdown('services')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button 
+                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+                >
+                  Services
+                  <ChevronDown size={16} />
+                </button>
+                
+                {openDropdown === 'services' && (
+                  <div className="absolute top-full left-0 w-56 bg-black border border-gold rounded-md shadow-lg z-50">
+                    {servicesDropdown.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               
               {/* Clients Dropdown - Desktop */}
               <div 
@@ -302,6 +341,7 @@ const Navbar = () => {
             <MobileMenuPanel 
               onClose={closeMobileMenu}
               navLinks={navLinks}
+              servicesDropdown={servicesDropdown}
               clientsDropdown={clientsDropdown}
               moreDropdown={moreDropdown}
               openDropdown={openDropdown}
@@ -320,6 +360,7 @@ const Navbar = () => {
 const MobileMenuPanel = ({ 
   onClose, 
   navLinks, 
+  servicesDropdown,
   clientsDropdown, 
   moreDropdown, 
   openDropdown, 
@@ -330,6 +371,7 @@ const MobileMenuPanel = ({
   onClose: () => void;
   navLinks: Array<{ to: string; label: string }>;
   clientsDropdown: Array<{ to: string; label: string }>;
+  servicesDropdown: Array<{ to: string; label: string }>;
   moreDropdown: Array<{ to: string; label: string }>;
   openDropdown: string | null;
   toggleDropdown: (dropdown: string) => void;
@@ -391,6 +433,38 @@ const MobileMenuPanel = ({
               <span className="font-medium">{link.label}</span>
             </Link>
           ))}
+          
+          {/* Services Section */}
+          <div className="w-full border-b border-white/10 mb-1">
+            <button
+              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              style={{ 
+                minHeight: '48px',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={() => toggleDropdown('services')}
+            >
+              <span className="font-medium">Services</span>
+              <ChevronDown 
+                size={18} 
+                className={`transition-transform duration-200 ${openDropdown === 'services' ? 'rotate-180 text-gold' : ''}`} 
+              />
+            </button>
+            {openDropdown === 'services' && (
+              <div className="mt-1 space-y-1 pb-2">
+                {servicesDropdown.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={onClose}
+                    className="block py-3 px-6 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors rounded-md"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           
           {/* Clients Section */}
           <div className="w-full border-b border-white/10 mb-1">
