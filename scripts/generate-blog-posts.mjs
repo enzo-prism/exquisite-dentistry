@@ -13,6 +13,15 @@
 
 import { promises as fs } from 'fs';
 import path from 'path';
+import { marked } from 'marked';
+
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+  smartypants: true,
+  mangle: false,
+  headerIds: false
+});
 
 const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, 'Blog-Content', 'exq_dental_blog_posts');
@@ -63,14 +72,6 @@ const STOPWORDS = new Set([
   'very'
 ]);
 
-const escapeHtml = (value) =>
-  value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-
 const sentenceCase = (text) => {
   if (!text) return text;
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -101,143 +102,34 @@ const createExcerpt = (text) => {
   return excerpt.length > 260 ? `${excerpt.slice(0, 257)}…` : excerpt;
 };
 
-const extractExcerpt = (raw) => {
-  const blocks = raw
-    .split(/\n\s*\n/)
-    .map((block) => block.trim())
-    .filter(Boolean);
-
-  for (const block of blocks) {
-    const lines = block.split('\n').map((line) => line.trim()).filter(Boolean);
-    if (lines.length === 0) continue;
-    const firstLine = lines[0];
-
-    if (looksLikeHeading(firstLine)) {
-      if (lines.length > 1) {
-        const remainder = lines.slice(1).join(' ').replace(/\s+/g, ' ').trim();
-        if (remainder) {
-          return createExcerpt(remainder);
-        }
-      }
-      continue;
-    }
-    if (/^(\d+[\).]|\-|\•)/.test(firstLine)) continue;
-
-    const normalized = block.replace(/\s+/g, ' ').trim();
-    if (normalized) {
-      return createExcerpt(normalized);
-    }
-  }
-
-  const fallback = blocks[0] ? blocks[0].replace(/\s+/g, ' ').trim() : raw.replace(/\s+/g, ' ').trim();
-  return createExcerpt(fallback);
-};
-
 const computeReadTime = (text) => {
   const words = text.trim().split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 200));
   return `${minutes} min read`;
 };
+const stripHtml = (html) =>
+  html
+    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 
-const looksLikeHeading = (text) => {
-  if (!text) return false;
-  if (text.length > 100) return false;
-  const cleaned = text.replace(/[“”"’',]/g, '');
-  const words = cleaned.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return false;
-  if (words.length === 1) {
-    return /^[A-Z]/.test(words[0]);
-  }
-  if (words.length <= 2) {
-    return text === text.toUpperCase() && /[A-Z]/.test(text);
-  }
-  const capitalized = words.filter((word) => {
-    const candidate = word.replace(/^[^A-Za-z]+/, '').replace(/[^A-Za-z]+$/, '');
-    return /^[A-Z]/.test(candidate);
-  });
-  return capitalized.length / words.length >= 0.6;
-};
-
-const parseContent = (raw) => {
-  const rawLines = raw.split('\n');
-
-  const parts = [];
-  let paragraphBuffer = '';
-  let listBuffer = [];
-  let prevBlank = true;
-  let pendingNumberedList = false;
-
-  const flushParagraph = () => {
-    if (!paragraphBuffer.trim()) {
-      paragraphBuffer = '';
-      return;
+const extractExcerpt = (rawMarkdown) => {
+  const tokens = marked.lexer(rawMarkdown);
+  for (const token of tokens) {
+    if (token.type === 'paragraph' && token.text?.trim()) {
+      const inlineHtml = marked.parseInline(token.text);
+      return createExcerpt(stripHtml(inlineHtml));
     }
-    parts.push(`<p>${escapeHtml(paragraphBuffer.trim())}</p>`);
-    paragraphBuffer = '';
-  };
-
-  const flushList = () => {
-    if (listBuffer.length === 0) return;
-    const items = listBuffer.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
-    parts.push(`<ul>${items}</ul>`);
-    listBuffer = [];
-  };
-
-  for (const line of rawLines) {
-    const trimmed = line.trim();
-
-    if (!trimmed) {
-      flushParagraph();
-      flushList();
-      pendingNumberedList = false;
-      prevBlank = true;
-      continue;
-    }
-
-    if (/^[-•]/.test(line)) {
-      flushParagraph();
-      listBuffer.push(line.replace(/^[-•]\s*/, '').trim());
-      prevBlank = false;
-      continue;
-    }
-
-    const numberedMatch = trimmed.match(/^(\d+)[\)\.]\s*(.+)$/);
-    if (numberedMatch) {
-      flushParagraph();
-      flushList();
-      parts.push(
-        `<h3>${escapeHtml(`${numberedMatch[1]}. ${numberedMatch[2].trim()}`)}</h3>`
-      );
-      pendingNumberedList = true;
-      prevBlank = false;
-      continue;
-    }
-
-    if (listBuffer.length) {
-      flushList();
-    }
-
-    const headingCandidate =
-      !paragraphBuffer && !pendingNumberedList && looksLikeHeading(trimmed);
-    if (headingCandidate) {
-      parts.push(`<h2>${escapeHtml(trimmed)}</h2>`);
-      prevBlank = false;
-      continue;
-    }
-
-    paragraphBuffer = paragraphBuffer ? `${paragraphBuffer} ${trimmed}` : trimmed;
-    prevBlank = false;
-    pendingNumberedList = false;
-
-    if (/[.!?]"?$/.test(trimmed)) {
-      flushParagraph();
+    if (token.type === 'list' && token.items?.length) {
+      const inlineHtml = marked.parseInline(token.items[0].text);
+      return createExcerpt(stripHtml(inlineHtml));
     }
   }
 
-  flushParagraph();
-  flushList();
-
-  return parts.join('\n        ');
+  const fallbackHtml = marked.parse(rawMarkdown);
+  return createExcerpt(stripHtml(fallbackHtml));
 };
 
 const slugToTags = (slug) => {
@@ -263,9 +155,30 @@ const buildPostObject = async (fileName, existingSlugs) => {
   const stat = await fs.stat(filePath);
   const raw = await fs.readFile(filePath, 'utf-8');
 
-  const [titleLine, ...rest] = raw.split('\n');
-  const title = titleLine.replace(/^Title:\s*/i, '').trim();
-  const body = rest.join('\n').trim();
+  const lines = raw.split(/\r?\n/);
+  let idx = 0;
+  while (idx < lines.length && !lines[idx].trim()) {
+    idx += 1;
+  }
+
+  if (idx >= lines.length) {
+    return null;
+  }
+
+  let titleLine = lines[idx].trim();
+  let title = '';
+  if (/^Title:\s*/i.test(titleLine)) {
+    title = titleLine.replace(/^Title:\s*/i, '').trim();
+    idx += 1;
+  } else if (/^#+\s+/.test(titleLine)) {
+    title = titleLine.replace(/^#+\s+/, '').trim();
+    idx += 1;
+  } else {
+    title = sentenceCase(slug.replace(/[-_]+/g, ' '));
+    idx += 1;
+  }
+
+  const body = lines.slice(idx).join('\n').trim();
 
   if (!title || !body) {
     return null;
@@ -274,8 +187,8 @@ const buildPostObject = async (fileName, existingSlugs) => {
   const excerpt = extractExcerpt(body);
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
-  const readTime = computeReadTime(body);
-  const contentHtml = parseContent(body);
+  const htmlContent = marked.parse(body).trim();
+  const readTime = computeReadTime(stripHtml(htmlContent));
   const date = formatDate(stat.mtime);
 
   return {
@@ -284,7 +197,7 @@ const buildPostObject = async (fileName, existingSlugs) => {
     slug,
     excerpt,
     content: `<div class="prose prose-lg max-w-none">
-        ${contentHtml}
+        ${htmlContent}
       </div>`,
     author: AUTHOR,
     authorBio: AUTHOR_BIO,
