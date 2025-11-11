@@ -266,28 +266,69 @@ const baseBlogPosts: BlogPost[] = [
     title: '5 Healthy Habits For Your Teeth',
     slug: 'healthy-habits-for-your-teeth',
     sourceSlug: '5-healthy-habits-for-your-teeth',
-    excerpt: 'Adopt five daily habits—from brushing technique to routine dental visits—that protect your smile, boost your confidence, and support whole-body wellness.',
+    excerpt:
+      'Five dentist-approved habits—from mindful brushing to smart snacking—that keep your smile bright, healthy, and confident every day.',
     content: `<div class="prose prose-lg max-w-none">
+        <p class="text-sm text-gray-500">By Dr. Alexie Aguil | Exquisite Dentistry, Los Angeles • Updated: November 2025 • 5 min read</p>
+
+        <h2>🦷 5 Simple Habits for a Healthier, Brighter Smile</h2>
         <p>
-          Healthy teeth start with simple daily habits. These five steps keep your smile bright and your gums strong.
+          A confident smile doesn’t happen by accident—it’s built one routine at a time. These five habits prevent cavities, gum disease, and discoloration so your teeth stay strong and camera-ready.
         </p>
 
-        <ol class="list-decimal pl-6 space-y-2">
-          <li><strong>Brush gently:</strong> Spend two minutes brushing twice a day with a soft brush.</li>
-          <li><strong>Floss daily:</strong> Clean between teeth to remove plaque your toothbrush misses.</li>
-          <li><strong>Snack smart:</strong> Choose crisp fruits, vegetables, nuts, and cheese over sugary treats.</li>
-          <li><strong>Skip tobacco and vaping:</strong> They stain teeth and raise your risk of gum disease and oral cancer.</li>
-          <li><strong>See your dentist regularly:</strong> Professional cleanings catch small issues before they become painful.</li>
-        </ol>
+        <h3>1. Brush Smarter, Not Harder</h3>
+        <p>Technique matters more than pressure. Try this:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Use the right brush:</strong> Electric brushes like Philips Sonicare do the work for you.</li>
+          <li><strong>Perfect your angle:</strong> Aim bristles toward the gumline and glide—no scrubbing.</li>
+          <li><strong>Follow the 2x2 rule:</strong> Brush two minutes, twice a day.</li>
+          <li><strong>Swap brush heads every 3 months:</strong> Fresh bristles clean better.</li>
+          <li><strong>Choose nourishing pastes:</strong> Dental Herb Company’s Tooth &amp; Gum Paste and Tonic support gum health.</li>
+        </ul>
+        <p class="bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 text-sm">
+          ✅ Pro tip: Light pressure protects enamel—pressing hard can actually scrub it away.
+        </p>
 
-        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
-          <h3 class="text-lg font-semibold text-center mb-3">Need support building new habits?</h3>
-          <p class="text-center mb-4">Our team loves helping patients create routines that work.</p>
-          <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule a wellness visit</a>
-            <p class="text-sm text-gray-600">Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> for personalized advice.</p>
-          </div>
+        <h3>2. Don’t Skip the Floss</h3>
+        <p>
+          Brushing cleans only about 60% of each tooth. Daily flossing—or water flossing—removes plaque between teeth and along the gumline, preventing tartar, inflammation, and bad breath.
+        </p>
+
+        <h3>3. Snack Less, Smile More</h3>
+        <p>
+          Frequent sugary or starchy snacks feed cavity-causing bacteria. Limit sweets between meals, choose crunchy fruits, veggies, or nuts, and rinse with water (or brush) after indulging. Keep a travel brush or disposable toothbrushes in your bag for quick freshness.
+        </p>
+
+        <h3>4. Skip the Smoke and the Vape</h3>
+        <p>
+          Smoking, vaping, and marijuana all impact oral health. Smokers are four times more likely to develop gum disease, while vaping dries out the mouth and exposes gums to chemicals. Avoiding them protects gum tissue and keeps your smile bright.
+        </p>
+
+        <h3>5. See Your Dentist Twice a Year</h3>
+        <p>
+          Professional cleanings remove buildup home care can’t. Twice-yearly visits polish away stains, prevent cavities, and keep your oral health—and confidence—at its peak. At Exquisite Dentistry, cleanings feel restorative with Netflix, noise-canceling headphones, aromatherapy, and a warm blanket.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-3">
+          <h3 class="text-lg font-semibold">Ready for a healthier smile?</h3>
+          <p>Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> or book online.</p>
+          <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule a consultation</a>
         </div>
+
+        <h3>Transform Your Smile with Exquisite Dentistry</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>✨ Porcelain Veneers – flawless symmetry and brightness</li>
+          <li>🦷 Invisalign® Clear Aligners – discreet alignment</li>
+          <li>🌟 Laser Teeth Whitening – instant brilliance</li>
+          <li>💎 Smile Makeovers &amp; Full-Mouth Reconstruction</li>
+        </ul>
+
+        <h3>Related Reads</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><a href="/blog/improve-oral-care-at-work" class="text-primary hover:text-primary/80 underline">5 Ways to Improve Oral Care While You’re at Work →</a></li>
+          <li><a href="/blog/early-signs-of-oral-cancer" class="text-primary hover:text-primary/80 underline">6 Early Signs of Oral Cancer →</a></li>
+          <li><a href="/blog/all-about-veneers-for-teeth" class="text-primary hover:text-primary/80 underline">All About Veneers for Teeth →</a></li>
+        </ul>
       </div>`,
     author: 'Dr. Alexie Aguil',
     authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',

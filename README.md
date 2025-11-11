@@ -71,6 +71,8 @@ npm run generate:blog
 
 This command hydrates `src/data/generatedBlogPosts.ts`, which is merged with the hand-crafted articles in `src/data/blogPosts.ts`. Re-run `npm run build` afterwards to refresh the sitemap and feeds.
 
+> Duplicate guardrails: The generator automatically normalizes titles (e.g., strips filler words such as “guide”, “comparison”, etc.) and hashes post content. If a new export matches an existing canonical title or body, it is skipped and logged. Rename the file or update the copy only when you truly intend to replace the prior article.
+
 ### Blog Typography
 
 Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin. Customize headings, paragraphs, and links by updating the `.prose` utility overrides in `src/index.css`. Avoid reintroducing the legacy `.blog-content` class—new typography adjustments should rely on Tailwind prose modifiers (e.g., `prose-lg`, `prose-neutral`) so component CTAs and widgets retain consistent spacing.

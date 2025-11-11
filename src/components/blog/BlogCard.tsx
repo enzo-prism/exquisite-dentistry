@@ -16,11 +16,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Card 
-      className={`group relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform hover:-translate-y-1 hover:scale-[1.01] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <Link to={`/blog/${post.slug}`} className="block h-full group">
+      <Card 
+        className={`relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform group-hover:-translate-y-1 group-hover:scale-[1.01] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
       {/* Featured Badge - Repositioned to avoid content conflicts */}
       {featured && (
         <div className="absolute top-4 right-4 z-10">
@@ -112,19 +113,18 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
             </div>
           </div>
           
-          <Link to={`/blog/${post.slug}`} className="group/link">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="group/btn bg-background/50 hover:bg-gold hover:text-white hover:border-gold transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[44px] md:min-h-auto"
-            >
-              <span className="font-medium">Read More</span>
-              <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
-            </Button>
-          </Link>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="group/btn bg-background/50 hover:bg-gold hover:text-white hover:border-gold transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[44px] md:min-h-auto"
+          >
+            <span className="font-medium">Read More</span>
+            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
+          </Button>
         </div>
       </CardContent>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 

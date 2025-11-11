@@ -145,17 +145,79 @@ const slugToTags = (slug) => {
     .filter((token) => token.length > 2 && !STOPWORDS.has(token));
 };
 
+const CANONICAL_STOPWORDS = new Set([
+  'the',
+  'and',
+  'for',
+  'with',
+  'your',
+  'that',
+  'this',
+  'have',
+  'from',
+  'into',
+  'about',
+  'what',
+  'when',
+  'will',
+  'why',
+  'some',
+  'more',
+  'than',
+  'best',
+  'guide',
+  'ultimate',
+  'comparison',
+  'review',
+  'complete',
+  'los',
+  'angeles',
+  '2020',
+  '2021',
+  '2022',
+  '2023',
+  '2024',
+  '2025',
+  'shaping',
+  'teeth',
+  'smile',
+  'dentistry'
+]);
+
+const canonicalizeTitle = (title) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, ' ')
+    .split(/\s+/)
+    .filter(token => token && !CANONICAL_STOPWORDS.has(token))
+    .join('-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
+const hashContent = (text) => {
+  let hash = 0;
+  for (let i = 0; i < text.length; i += 1) {
+    hash = (hash << 5) - hash + text.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash;
+};
+
 const loadExistingIdentifiers = async () => {
   const baseContent = await fs.readFile(BASE_BLOG_FILE, 'utf-8');
 
   const slugRegex = /(?<![A-Za-z])slug:\s*'([^']+)'/g;
   const sourceSlugRegex = /sourceSlug:\s*'([^']+)'/g;
   const titleRegex = /(?<![A-Za-z])title:\s*'([^']+)'/g;
+  const contentRegex = /content:\s*`([^`]+)`/g;
 
   const identifiers = {
     slugs: new Set(),
     sourceSlugs: new Set(),
-    titles: new Set()
+    titles: new Set(),
+    canonicalTitles: new Set(),
+    contentHashes: new Set()
   };
 
   let match;
@@ -168,7 +230,19 @@ const loadExistingIdentifiers = async () => {
   }
 
   while ((match = titleRegex.exec(baseContent))) {
-    identifiers.titles.add(normalizeTitle(match[1]));
+    const normalized = normalizeTitle(match[1]);
+    identifiers.titles.add(normalized);
+    const canonical = canonicalizeTitle(match[1]);
+    if (canonical) {
+      identifiers.canonicalTitles.add(canonical);
+    }
+  }
+
+  while ((match = contentRegex.exec(baseContent))) {
+    const cleaned = stripHtml(match[1] || '').toLowerCase();
+    if (cleaned) {
+      identifiers.contentHashes.add(hashContent(cleaned));
+    }
   }
 
   return identifiers;
@@ -225,7 +299,8 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
   }
 
   const normalizedTitle = normalizeTitle(title);
-  if (dedupeState.titles.has(normalizedTitle)) {
+  const canonicalTitle = canonicalizeTitle(title);
+  if (dedupeState.titles.has(normalizedTitle) || (canonicalTitle && dedupeState.canonicalTitles.has(canonicalTitle))) {
     return null;
   }
 
@@ -233,12 +308,23 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
   const htmlContent = marked.parse(body).trim();
+  const cleanedContent = stripHtml(htmlContent).toLowerCase();
+  const contentHash = hashContent(cleanedContent.slice(0, 5000));
+
+  if (dedupeState.contentHashes.has(contentHash)) {
+    return null;
+  }
+
   const readTime = computeReadTime(stripHtml(htmlContent));
   const distributedDate = pickDistributedDate(index, total);
   const date = formatDate(distributedDate);
 
   dedupeState.slugs.add(slug);
   dedupeState.titles.add(normalizedTitle);
+  if (canonicalTitle) {
+    dedupeState.canonicalTitles.add(canonicalTitle);
+  }
+  dedupeState.contentHashes.add(contentHash);
 
   return {
     id: slug,
@@ -296,7 +382,9 @@ const main = async () => {
     const dedupeState = {
       slugs: new Set(identifiers.slugs),
       sourceSlugs: new Set(identifiers.sourceSlugs),
-      titles: new Set(identifiers.titles)
+      titles: new Set(identifiers.titles),
+      canonicalTitles: new Set(identifiers.canonicalTitles),
+      contentHashes: new Set(identifiers.contentHashes)
     };
 
     const posts = [];

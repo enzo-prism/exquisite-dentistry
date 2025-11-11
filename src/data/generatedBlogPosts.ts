@@ -879,30 +879,6 @@ export const generatedBlogPosts: BlogPost[] = [
 },
 
   {
-  "id": "the-best-long-term-cosmetic-dentistry-solutions",
-  "title": "The Best Long-Term Cosmetic Dentistry Solutions",
-  "slug": "the-best-long-term-cosmetic-dentistry-solutions",
-  "excerpt": "Are you feeling self-conscious about your smile?  You’re not alone.",
-  "content": "<div class=\"prose prose-lg max-w-none\">\n        <h2>Long-Term Cosmetic Dentistry Solutions: Balancing Beauty and Functionality</h2>\n<p>Are you feeling self-conscious about your smile? You’re not alone. Many individuals experience dissatisfaction with their smile due to issues like misalignment, cracks, chips, or discoloration of teeth. These cosmetic concerns can lead to oral health issues such as gum infections, jaw discomfort, and difficulty with chewing. That’s when long-term cosmetic dentistry solutions come in. What Is the Solution? Cosmetic dentistry offers effective solutions to address these problems, enhances the appearance of your teeth, and promotes overall oral health and well-being. Long-term cosmetic dentistry solutions include:</p>\n<h3>Veneers</h3>\n<h3>Crowns</h3>\n<p>Tooth bonding Dental implants and bridges Invisalign Tooth-colored fillings At Exquisite Dentistry, we prioritize resolving existing dental issues and restoring your smile, boosting your confidence and self-esteem.</p>\n<h3>Comprehensive Dental Assessment</h3>\n<p>When considering cosmetic dental solutions, it’s important to consider your whole mouth, not just the problem area(s). Our examination includes evaluating all teeth and existing restorations, conducting cavity checks, taking digital X-rays, and creating a digital blueprint to track any tooth movement over time, ensuring optimal alignment and health. We also recommend an oral cancer screening at least once a year, which can be easily combined with your periodic exam and cleaning. Following your comprehensive assessment, we’ll discuss your goals and explore potential treatment options tailored to your needs. If you’re seeking solutions for misalignment, discoloration, or irregularities in your teeth, we offer a range of advanced options, including Invisalign, professional teeth whitening, and veneers to address chipped, crooked, or discolored teeth.</p>\n<h2>Keeping You Comfortable Every Step of The Way</h2>\n<p>We understand that fear of discomfort during cosmetic procedures can be a significant barrier for many individuals. At Exquisite Dentistry, we believe that a serene and relaxing atmosphere can help alleviate anxiety and make your dental experience more enjoyable, which is why we prioritize your comfort by creating a spa-like environment in our offices. At our West Hollywood office, we offer various sedation methods and a relaxing environment to help take the anxiety out of our dental procedures and put you at ease.</p>\n<h3>Contact</h3>\n<p>us today for your cosmetic dentistry consultation. Let us give you a smile that will make you feel as good as you look.</p>\n      </div>",
-  "author": "Dr. Alexie Aguil",
-  "authorBio": "With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.",
-  "date": "April 16, 2024",
-  "readTime": "2 min read",
-  "category": "Cosmetic Dentistry",
-  "tags": [
-    "long",
-    "term",
-    "cosmetic",
-    "dentistry",
-    "solutions"
-  ],
-  "seoTitle": "The Best Long-Term Cosmetic Dentistry Solutions",
-  "seoDescription": "Are you feeling self-conscious about your smile?  You’re not alone.",
-  "seoKeywords": "long, term, cosmetic, dentistry, solutions",
-  "published": true
-},
-
-  {
   "id": "the-best-teeth-straightening-for-adults",
   "title": "The Best Teeth Straightening for Adults",
   "slug": "the-best-teeth-straightening-for-adults",
