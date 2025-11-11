@@ -84,7 +84,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
           asChild={false}
           variant={variant}
           size={size}
-          className={className}
+          className={cn("group", className)}
           onClick={handleClick}
           ref={ref}
           {...props}
@@ -100,7 +100,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
         <Button 
           variant={variant}
           size={size}
-          className={className}
+          className={cn("group", className)}
           onClick={handleClick}
           ref={ref}
           {...props}
@@ -115,7 +115,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
       <Button
         variant={variant}
         size={size}
-        className={className}
+        className={cn("group", className)}
         onClick={onClick}
         ref={ref}
         {...props}

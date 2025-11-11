@@ -164,6 +164,63 @@ body {
   touch-action: manipulation;
 }
 
+/* Premium CTA sheen effect */
+.cta-glow {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cta-glow::before {
+  content: "";
+  position: absolute;
+  inset: -150% auto -150% -60%;
+  width: 45%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transform: translate3d(0, 0, 0) skewX(-18deg);
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-glow::before {
+    transition: none;
+    transform: translate3d(0, 0, 0) skewX(-18deg);
+  }
+
+  .cta-glow:hover::before,
+  .cta-glow:focus-visible::before {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) skewX(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta-glow:hover::before,
+  .cta-glow:focus-visible::before {
+    opacity: 1;
+    transform: translate3d(260%, 0, 0) skewX(-18deg);
+  }
+}
+
+.button-static,
+.button-static:hover,
+.button-static:focus-visible {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.button-static::before {
+  display: none !important;
+}
+
 /* Blog typographic defaults */
 .prose {
   @apply text-gray-800 leading-relaxed;

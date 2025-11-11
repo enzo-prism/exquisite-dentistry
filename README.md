@@ -104,6 +104,16 @@ npm run preview
 
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
+## Button & CTA Hover System
+
+Primary CTAs share a single interaction model so motion feels consistent across hero sections, the navbar, and conversion widgets:
+
+- `src/components/ui/button.tsx` centralizes the lift/scale transition, `cta-glow` sheen, and `motion-safe` guards. Prefer the `Button` component (or `ConversionButton`) over ad-hoc `<button>` elements so you get the premium hover treatment for free.
+- The sheen effect lives in `src/index.css` (`.cta-glow`). Keep CTA containers `relative`/`overflow-hidden` to allow the pseudo-element sweep. Adjust opacity or speed there if you need a quieter animation for new campaigns.
+- Wrap icons inside CTA buttons with a `group` and add `transition-transform duration-300 group-hover:translate-x-1.5` so arrow nudges stay synchronized with the button lift. See `HeroCtaButtons` and `ConversionButton` for working patterns.
+- When a button must remain static (e.g., pagination controls or compact toolbars), append the `.button-static` helper class; it suppresses the glow, shadow, and transform without creating a new variant.
+- Respect reduced-motion preferences when introducing new micro-interactions. Use `motion-safe:` utilities and verify the `prefers-reduced-motion` media queries in `src/index.css` still provide a color-only fallback.
+
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

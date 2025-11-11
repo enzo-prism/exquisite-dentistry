@@ -117,20 +117,40 @@ const EmergencyDentist = () => {
       <FAQStructuredData faqs={faqs} about="Emergency Dentist Los Angeles" />
 
       <div className="min-h-screen bg-background">
-        <VideoHero
-          title="Emergency Dentist Los Angeles"
-          subtitle="Immediate, compassionate care when dental emergencies disrupt your day."
-          primaryCta={{
-            text: "Book an Appointment",
+      <VideoHero
+        title="Emergency Dentist Los Angeles"
+        subtitle="Immediate, compassionate care when dental emergencies disrupt your day."
+        primaryCta={{
+          text: "Book an Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
-            rel: "noopener noreferrer"
-          }}
-          height="medium"
-        />
+          rel: "noopener noreferrer"
+        }}
+        height="medium"
+      />
 
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
+      <section className="-mt-8 sm:-mt-14 relative z-20">
+        <div className="container mx-auto px-4">
+          <div className="bg-white border border-border/60 shadow-xl rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Our Location</p>
+              <address className="not-italic text-xl text-foreground mt-3 leading-relaxed">
+                6227 Wilshire Blvd<br />
+                Los Angeles, CA 90048
+              </address>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Call Us</p>
+              <a href="tel:+13232722388" className="text-3xl font-semibold text-foreground mt-3 block">
+                (323) 272-2388
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Urgent Dental Care</span>
               <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">

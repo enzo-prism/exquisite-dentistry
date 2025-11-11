@@ -6,17 +6,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 ease-out motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary !text-white hover:bg-primary/90 hover:!text-white",
-        black: "bg-black !text-white hover:bg-black/90 hover:!text-white",
+        default: "cta-glow bg-primary !text-white shadow-md hover:bg-primary/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
+        black: "cta-glow bg-black !text-white shadow-md hover:bg-black/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
         outline: "border border-primary bg-transparent text-primary hover:bg-primary hover:!text-white",
         link: "text-primary underline-offset-4 hover:underline link-variant",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary !text-white hover:bg-secondary/80 hover:!text-white",
-        destructive: "bg-destructive !text-white hover:bg-destructive/90 hover:!text-white",
+        secondary: "cta-glow bg-secondary !text-white shadow-md hover:bg-secondary/80 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
+        destructive: "cta-glow bg-destructive !text-white shadow-md hover:bg-destructive/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
       },
       size: {
         default: "h-10 px-4 py-2",

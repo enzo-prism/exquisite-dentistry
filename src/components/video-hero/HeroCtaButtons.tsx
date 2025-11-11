@@ -37,7 +37,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
     // If no href is provided, use the default scheduling URL
     const buttonHref = primaryCta.href || SCHEDULING_URL;
 
-  const ButtonContent = () => (
+    const ButtonContent = () => (
       <Button 
         variant="default"
         size={buttonSize}
@@ -45,7 +45,10 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         className={`group ${isMobile ? 'w-full' : ''}`}
       >
         {primaryCta.text}
-        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+        <ArrowRight 
+          size={16} 
+          className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
+        />
       </Button>
     );
 
@@ -83,7 +86,10 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             className={`group ${isMobile ? 'w-full' : ''}`}
           >
             {secondaryCta.text}
-            <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+            <ArrowRight 
+              size={16} 
+              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
+            />
           </Button>
         </Link>
       )}
@@ -92,4 +98,3 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
 };
 
 export default HeroCtaButtons;
-
