@@ -21,6 +21,7 @@ const SOCIAL_URLS = {
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -31,7 +32,11 @@ const Contact = () => {
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({
+    email: ''
+  });
   const formSectionRef = useRef<HTMLDivElement | null>(null);
+  const nameFieldRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,21 +57,54 @@ const Contact = () => {
       ...prev,
       [name]: value
     }));
+
+    if (name === 'email' && fieldErrors.email) {
+      setFieldErrors((prev) => ({ ...prev, email: '' }));
+    }
   };
 
   const handleHoneypotChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHoneypot(event.target.value);
   };
 
+  const centerElementInViewport = (element: HTMLElement) => {
+    if (typeof window === 'undefined') return;
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    const elementHeight = rect.height || element.offsetHeight || 0;
+    const targetPosition = rect.top + window.scrollY - viewportHeight / 2 + elementHeight / 2;
+    window.scrollTo({
+      top: Math.max(targetPosition, 0),
+      behavior: 'smooth'
+    });
+  };
+
   const handleScrollToForm = () => {
-    if (formSectionRef.current) {
-      formSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const targetElement = nameFieldRef.current || formSectionRef.current;
+    if (!targetElement) return;
+
+    if (typeof window === 'undefined' || typeof window.scrollTo !== 'function') {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
     }
+
+    centerElementInViewport(targetElement);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formStatus === 'submitting') return;
+
+    const trimmedEmail = formState.email.trim();
+    if (!EMAIL_PATTERN.test(trimmedEmail)) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        email: 'Please enter a valid email address (example: name@domain.com).'
+      }));
+      setFormStatus('error');
+      setFeedback('Please correct the highlighted fields and try again.');
+      return;
+    }
 
     setFormStatus('submitting');
     setFeedback('');
@@ -83,7 +121,7 @@ const Contact = () => {
     try {
       const formData = new FormData();
       formData.append('name', formState.name.trim());
-      formData.append('email', formState.email.trim());
+      formData.append('email', trimmedEmail);
       formData.append('message', formState.message.trim());
 
       const response = await fetch(FORM_ENDPOINT, {
@@ -102,6 +140,7 @@ const Contact = () => {
       setFeedback('Thanks for reaching out! We will respond shortly.');
       setFormState({ name: '', email: '', message: '' });
       setHoneypot('');
+      setFieldErrors({ email: '' });
       trackFormSubmission('contact_form');
     } catch (error) {
       console.error('Contact form submission failed', error);
@@ -232,7 +271,7 @@ const Contact = () => {
                   <div ref={formSectionRef} className="col-span-2 p-8 sm:p-10 lg:p-14" id="contact-form">
                     <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                     <p className="text-gray-600 mb-10">
-                      Have a question about treatment options, financing, or scheduling? Share a few details below and our concierge team will follow up within one business day.
+                      Have a question about treatment options, financing, or scheduling? Share a few details below and our team will follow up via email.
                     </p>
                     <form
                       action={FORM_ENDPOINT}
@@ -267,6 +306,7 @@ const Contact = () => {
                             required
                             placeholder="Full name"
                             autoComplete="name"
+                            ref={nameFieldRef}
                             className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
                           />
                         </div>
@@ -284,8 +324,19 @@ const Contact = () => {
                             required
                             placeholder="you@example.com"
                             autoComplete="email"
-                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
+                            aria-invalid={Boolean(fieldErrors.email)}
+                            aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+                            className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow ${
+                              fieldErrors.email
+                                ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
+                                : 'border border-gray-200 focus:ring-gold focus:border-gold'
+                            }`}
                           />
+                          {fieldErrors.email && (
+                            <p id="email-error" className="mt-2 text-sm text-red-600">
+                              {fieldErrors.email}
+                            </p>
+                          )}
                         </div>
                       </div>
 
