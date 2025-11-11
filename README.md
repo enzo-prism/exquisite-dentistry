@@ -136,6 +136,15 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - Posters should live in `/public/optimized` or `/public/lovable-uploads` and be exported as WebP when possible for better paint times.
 - If you introduce a completely static hero, pass `useGradient` or your own background classes so the text still has adequate contrast; CTA components inherit the global hover/sheens automatically.
 
+## Contact & Lead Capture Playbook
+
+- **Contact hero CTA** – the `/contact` hero now exposes a “Send Us a Message” button (see `src/pages/Contact.tsx`) that calls `handleScrollToForm`, which simply `scrollIntoView`s the form container. Reuse this pattern for other long pages by attaching a `ref` to the destination block instead of hardcoding anchor hashes (keeps smooth scrolling + offset logic in React).
+- **Form provider** – contact submissions are routed through Formspree (`https://formspree.io/f/xkgknpkl`). The page builds a `FormData` payload manually so we can keep local state, show inline success/error copy, and still POST to Formspree’s endpoint. Swap the URL or add hidden metadata fields directly in `handleSubmit`—no Netlify attributes remain.
+- **Spam + analytics guards** – a lightweight honeypot field (`bot-field`) short circuits obvious spam while still returning a “success” UI, and `trackFormSubmission('contact_form')` fires on every confirmed submission so Google Ads conversion tracking stays aligned. Preserve both hooks if you add new form variants.
+- **Field styling** – inputs share Tailwind classes for spacing + focus states (`focus:ring-2 focus:ring-gold`). Keep the grid wrapper `grid-cols-1 md:grid-cols-2` so name/email pair on tablet/desktop while stacking on mobile. Message textarea is fixed at six rows and uses `resize-none` to avoid layout jumps.
+- **Hours + address single source of truth** – the contact page mirrors the `BUSINESS_HOURS` array from `src/constants/contact.ts`. Update that file once to keep the hero sidebar, footer, and any future Schema.org blocks consistent.
+- **Regression checklist** – when editing the page, run `npm run lint` plus a manual pass of (1) hero CTA scroll, (2) successful Formspree submission (watch for a 200 response), and (3) mobile viewport in devtools to confirm the grid collapses cleanly. Add those notes to PR descriptions so future contributors know what was validated.
+
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
@@ -20,52 +20,95 @@ const SOCIAL_URLS = {
 
 // Scheduling URL constant
 const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 
 const Contact = () => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [honeypot, setHoneypot] = useState('');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [feedback, setFeedback] = useState('');
+  const formSectionRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Check and fix any section gaps
-    setTimeout(() => {
+    const gapCheckTimeout = setTimeout(() => {
       checkForSectionGaps();
       fixBackgroundConsistency();
     }, 500);
 
-    // Load Typeform script
-    const script = document.createElement('script');
-    script.src = '//embed.typeform.com/next/embed.js';
-    script.async = true;
-    document.head.appendChild(script);
-
-    // Listen for Typeform submission events
-    const handleTypeformSubmit = () => {
-      trackFormSubmission('contact_form');
-    };
-
-    // Add event listener for Typeform submissions
-    window.addEventListener('message', (e) => {
-      if (e.data.type === 'form_submit' && e.origin === 'https://form.typeform.com') {
-        handleTypeformSubmit();
-      }
-    });
-
-    const messageHandler = (e: MessageEvent) => {
-      if (e.data.type === 'form_submit' && e.origin === 'https://form.typeform.com') {
-        handleTypeformSubmit();
-      }
-    };
-    window.addEventListener('message', messageHandler);
-
     return () => {
-      // Cleanup script on unmount
-      const existingScript = document.querySelector('script[src="//embed.typeform.com/next/embed.js"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-      // Remove message listener
-      window.removeEventListener('message', messageHandler);
+      clearTimeout(gapCheckTimeout);
     };
   }, []);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleHoneypotChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHoneypot(event.target.value);
+  };
+
+  const handleScrollToForm = () => {
+    if (formSectionRef.current) {
+      formSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (formStatus === 'submitting') return;
+
+    setFormStatus('submitting');
+    setFeedback('');
+
+    // If honeypot is filled, silently succeed
+    if (honeypot) {
+      setFormStatus('success');
+      setFeedback('Thanks for reaching out! We will respond shortly.');
+      setFormState({ name: '', email: '', message: '' });
+      setHoneypot('');
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append('name', formState.name.trim());
+      formData.append('email', formState.email.trim());
+      formData.append('message', formState.message.trim());
+
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: formData
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      setFormStatus('success');
+      setFeedback('Thanks for reaching out! We will respond shortly.');
+      setFormState({ name: '', email: '', message: '' });
+      setHoneypot('');
+      trackFormSubmission('contact_form');
+    } catch (error) {
+      console.error('Contact form submission failed', error);
+      setFormStatus('error');
+      setFeedback('Something went wrong. Please try again or call us at (323) 272-2388.');
+    }
+  };
 
   return (
     <>
@@ -108,6 +151,19 @@ const Contact = () => {
             scrollIndicator={false}
             className="absolute inset-0 h-full"
           />
+
+          <div className="relative z-30 px-4 sm:px-6 lg:px-8 pt-16 pb-6">
+            <div className="max-w-7xl mx-auto flex justify-center">
+              <Button
+                type="button"
+                size="lg"
+                onClick={handleScrollToForm}
+                className="w-full sm:w-auto px-10 py-6 uppercase tracking-wide"
+              >
+                Send Us a Message
+              </Button>
+            </div>
+          </div>
           
           {/* Floating Contact Card - positioned to allow video background behind */}
           <div className="relative z-30 flex items-center justify-center min-h-screen py-20">
@@ -181,13 +237,100 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  {/* Typeform Embed */}
-                  <div className="col-span-2 p-10 lg:p-14">
-                    <h2 className="text-2xl font-semibold mb-10">Send Us a Message</h2>
-                    
-                    <div className="w-full" style={{ height: '600px' }}>
-                      <div data-tf-live="01JX3KQBQ1TW64FY4G46QAJ6WX" style={{ width: '100%', height: '100%' }}></div>
-                    </div>
+                  {/* Direct Contact Form */}
+                  <div ref={formSectionRef} className="col-span-2 p-8 sm:p-10 lg:p-14" id="contact-form">
+                    <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
+                    <p className="text-gray-600 mb-10">
+                      Have a question about treatment options, financing, or scheduling? Share a few details below and our concierge team will follow up within one business day.
+                    </p>
+                    <form
+                      action={FORM_ENDPOINT}
+                      method="POST"
+                      noValidate
+                      onSubmit={handleSubmit}
+                      className="space-y-8"
+                    >
+                      <div className="hidden">
+                        <label htmlFor="bot-field">
+                          Don't fill this out if you&apos;re human:
+                          <input
+                            id="bot-field"
+                            name="bot-field"
+                            value={honeypot}
+                            onChange={handleHoneypotChange}
+                          />
+                        </label>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="flex flex-col text-left">
+                          <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
+                            Name
+                          </label>
+                          <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="Full name"
+                            autoComplete="name"
+                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
+                          />
+                        </div>
+
+                        <div className="flex flex-col text-left">
+                          <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
+                            Email
+                          </label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formState.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="you@example.com"
+                            autoComplete="email"
+                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col text-left">
+                        <label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formState.message}
+                          onChange={handleChange}
+                          required
+                          rows={6}
+                          placeholder="Tell us how we can help..."
+                          className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow resize-none"
+                        />
+                      </div>
+
+                      <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 space-y-4 lg:space-y-0">
+                        <Button
+                          type="submit"
+                          size="lg"
+                          disabled={formStatus === 'submitting'}
+                          className="w-full lg:w-auto px-10 py-6 text-base tracking-wide uppercase"
+                        >
+                          {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                        </Button>
+                        <p
+                          className={`text-sm ${formStatus === 'success' ? 'text-emerald-600' : formStatus === 'error' ? 'text-red-600' : 'text-gray-500'}`}
+                          aria-live="polite"
+                        >
+                          {feedback || 'We typically reply within one business day.'}
+                        </p>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
