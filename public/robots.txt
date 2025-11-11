@@ -38,7 +38,6 @@ Disallow: /*/feed/
 Disallow: /wp-json/
 Disallow: /wp-admin/
 Disallow: /feed/
-Disallow: /*?*
 
 # Enhanced crawling for important content
 Allow: /blog/

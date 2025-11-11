@@ -132,16 +132,18 @@ const EmergencyDentist = () => {
       <section className="-mt-8 sm:-mt-14 relative z-20">
         <div className="container mx-auto px-4">
           <div className="bg-white border border-border/60 shadow-xl rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div>
+            <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
               <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Our Location</p>
               <address className="not-italic text-xl text-foreground mt-3 leading-relaxed">
-                6227 Wilshire Blvd<br />
-                Los Angeles, CA 90048
+                <span itemProp="streetAddress">6227 Wilshire Blvd</span><br />
+                <span>
+                  <span itemProp="addressLocality">Los Angeles</span>, <span itemProp="addressRegion">CA</span> <span itemProp="postalCode">90048</span>
+                </span>
               </address>
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Call Us</p>
-              <a href="tel:+13232722388" className="text-3xl font-semibold text-foreground mt-3 block">
+              <a href="tel:+13232722388" itemProp="telephone" className="text-3xl font-semibold text-foreground mt-3 block">
                 (323) 272-2388
               </a>
             </div>

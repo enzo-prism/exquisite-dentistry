@@ -36,6 +36,10 @@ npm i
 npm run dev
 ```
 
+### Environment variables
+
+Copy `.env.example` to `.env` and fill in the values (currently just `VITE_GSC_VERIFICATION` for Google Search Console). The Vite dev server picks up changes automatically, but rebuild before deploying so the verification meta tag ships with the correct token.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
@@ -98,7 +102,10 @@ npm run lint
 # 3. Build the production bundle
 npm run build
 
-# 4. (Optional) Smoke test the built site locally
+# 4. Verify SEO-critical tags (canonical, OG, JSON-LD) on the public emergency page
+npm run check:seo
+
+# 5. (Optional) Smoke test the built site locally
 npm run preview
 ```
 
@@ -113,6 +120,21 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - Wrap icons inside CTA buttons with a `group` and add `transition-transform duration-300 group-hover:translate-x-1.5` so arrow nudges stay synchronized with the button lift. See `HeroCtaButtons` and `ConversionButton` for working patterns.
 - When a button must remain static (e.g., pagination controls or compact toolbars), append the `.button-static` helper class; it suppresses the glow, shadow, and transform without creating a new variant.
 - Respect reduced-motion preferences when introducing new micro-interactions. Use `motion-safe:` utilities and verify the `prefers-reduced-motion` media queries in `src/index.css` still provide a color-only fallback.
+
+## SEO Operations
+
+- **Google Search Console** – populate `VITE_GSC_VERIFICATION` in `.env` (see `.env.example`) so the `<meta name="google-site-verification">` value is injected during Vite’s HTML compile. Re-run `npm run build` and redeploy after updating the token so ownership checks stay valid.
+- **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
+- **Hero media** – `VideoHero` automatically drops down to a static poster for reduced-motion, slow connections, and mobile-first hero renders. Provide a high-resolution `posterSrc` whenever you introduce a new hero; rely on `disableVideo`/`preferStaticOnMobile` props to force static imagery for SEO-critical pages.
+- **Structured data** – the centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx` include map links, service channels, and service areas. Update those files when address or offerings change to keep LocalBusiness signals aligned.
+- **Automated checks** – run `npm run check:seo` after `npm run build` to confirm the generated HTML still includes canonical, Open Graph, and JSON-LD blocks. The script inspects `dist/index.html` and fails fast if key tags disappear.
+
+## Hero Media Guidelines
+
+- Prefer supplying `posterSrc` when using `VideoHero`; this image automatically becomes the fallback for reduced-motion, slow-connection, or mobile visitors. Without a poster the component drops back to the gradient background.
+- Use `disableVideo` to force a static hero (e.g., when LCP budgets are tight) or `preferStaticOnMobile` to keep autoplay video on desktop only.
+- Posters should live in `/public/optimized` or `/public/lovable-uploads` and be exported as WebP when possible for better paint times.
+- If you introduce a completely static hero, pass `useGradient` or your own background classes so the text still has adequate contrast; CTA components inherit the global hover/sheens automatically.
 
 ## I want to use a custom domain - is that possible?
 

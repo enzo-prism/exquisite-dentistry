@@ -6,6 +6,8 @@
 import { getCanonicalUrl } from './schemaValidation';
 import type { JsonLd, LocalBusinessSchema } from './schemaValidation';
 
+const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
+
 // Master business entity - single source of truth
 export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@type': ['LocalBusiness', 'Dentist'],
@@ -32,6 +34,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     latitude: 34.0622,
     longitude: -118.3567
   },
+  hasMap: GOOGLE_MAPS_URL,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -130,7 +133,8 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     'https://www.instagram.com/exquisitedentistryLA',
     'https://www.facebook.com/exquisitedentistryLA',
     'https://www.yelp.com/biz/exquisite-dentistry-los-angeles',
-    'https://maps.google.com/ExquisiteDentistryLA'
+    'https://maps.google.com/ExquisiteDentistryLA',
+    GOOGLE_MAPS_URL
   ]
 };
 

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
 import GradientBackground from '@/components/GradientBackground';
@@ -9,15 +9,17 @@ import { getHeroHeightClasses } from '@/utils/heroHeights';
 
 const MobileVideoHero: React.FC<VideoHeroProps> = ({
   vimeoId,
+  posterSrc,
   title,
   subtitle,
   primaryCta,
   secondaryCta,
   height = 'medium',
-  useGradient = false
+  useGradient = false,
+  disableVideo = false
 }) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const heightClasses = getHeroHeightClasses(height);
+  const shouldRenderVideo = !disableVideo && !useGradient;
 
   return (
     <section 
@@ -32,15 +34,33 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
     >
       {useGradient ? (
         <GradientBackground variant="dental" intensity="moderate" />
-      ) : (
+      ) : shouldRenderVideo ? (
         <>
           <VideoBackground
             vimeoId={vimeoId}
-            onLoad={() => setIsVideoLoaded(true)}
+            posterSrc={posterSrc}
             className="absolute inset-0 w-full h-full"
           />
           <div className="absolute inset-0 bg-black/70 md:bg-black/50 z-10" />
         </>
+      ) : (
+        <div className="absolute inset-0">
+          {posterSrc ? (
+            <>
+              <img
+                src={posterSrc}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/70 md:bg-black/50" />
+            </>
+          ) : (
+            <GradientBackground variant="dental" intensity="moderate" />
+          )}
+        </div>
       )}
       
       <div className="relative z-20 text-white px-6 w-full max-w-lg mx-auto text-center">

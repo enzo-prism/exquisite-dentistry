@@ -148,7 +148,6 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       )}
       
       {/* Additional Meta Tags */}
-      <meta name="format-detection" content="telephone=no" />
       <meta name="theme-color" content="#1e40af" />
       <meta name="geo.region" content="US-CA" />
       <meta name="geo.placename" content="Los Angeles" />

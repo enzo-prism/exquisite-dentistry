@@ -19,6 +19,7 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
+    serviceType: serviceName,
     name: serviceName,
     description: description,
     url: `https://exquisitedentistryla.com${url}`,
@@ -43,6 +44,27 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     },
     ...(priceRange && { priceRange }),
     category: 'Cosmetic Dentistry',
+    areaServed: [
+      { '@type': 'City', name: 'Los Angeles' },
+      { '@type': 'City', name: 'Beverly Hills' },
+      { '@type': 'City', name: 'West Hollywood' }
+    ],
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceLocation: {
+        '@type': 'Place',
+        name: 'Exquisite Dentistry',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '6227 Wilshire Blvd',
+          addressLocality: 'Los Angeles',
+          addressRegion: 'CA',
+          postalCode: '90048',
+          addressCountry: 'US'
+        }
+      },
+      servicePhone: '(323) 272-2388'
+    },
     bodyLocation: {
       '@type': 'BodySystem',
       name: 'Oral and Dental System'

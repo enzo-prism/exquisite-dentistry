@@ -29,4 +29,6 @@ export interface VideoHeroProps {
   scrollIndicator?: boolean;
   aspectRatio?: number;
   useGradient?: boolean;
+  disableVideo?: boolean;
+  preferStaticOnMobile?: boolean;
 }
