@@ -146,24 +146,15 @@ const Contact = () => {
           <VideoHero
             title={<>Contact <span className="text-gold">Us</span></>}
             subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
+            primaryCta={{
+              text: 'Send Us a Message',
+              onClick: handleScrollToForm
+            }}
             height="large"
             badgeText="REACH OUT"
             scrollIndicator={false}
             className="absolute inset-0 h-full"
           />
-
-          <div className="relative z-30 px-4 sm:px-6 lg:px-8 pt-16 pb-6">
-            <div className="max-w-7xl mx-auto flex justify-center">
-              <Button
-                type="button"
-                size="lg"
-                onClick={handleScrollToForm}
-                className="w-full sm:w-auto px-10 py-6 uppercase tracking-wide"
-              >
-                Send Us a Message
-              </Button>
-            </div>
-          </div>
           
           {/* Floating Contact Card - positioned to allow video background behind */}
           <div className="relative z-30 flex items-center justify-center min-h-screen py-20">

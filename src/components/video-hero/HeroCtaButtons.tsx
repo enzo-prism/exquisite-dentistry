@@ -34,14 +34,16 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   const renderPrimaryButton = () => {
     if (!primaryCta) return null;
 
-    // If no href is provided, use the default scheduling URL
-    const buttonHref = primaryCta.href || SCHEDULING_URL;
+    const hasCustomHref = typeof primaryCta.href === 'string' && primaryCta.href.trim().length > 0;
+    const shouldRenderStandaloneButton = Boolean(primaryCta.onClick && !hasCustomHref);
+    const buttonHref = hasCustomHref ? primaryCta.href! : SCHEDULING_URL;
 
     const ButtonContent = () => (
       <Button 
         variant="default"
         size={buttonSize}
         onClick={primaryCta.onClick}
+        type="button"
         className={`group ${isMobile ? 'w-full' : ''}`}
       >
         {primaryCta.text}
@@ -51,6 +53,14 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         />
       </Button>
     );
+
+    if (shouldRenderStandaloneButton) {
+      return (
+        <div className={primaryButtonClass}>
+          <ButtonContent />
+        </div>
+      );
+    }
 
     // If it's an external link or scheduling URL
     if (buttonHref.startsWith('http')) {
