@@ -2,6 +2,7 @@ export interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  sourceSlug?: string;
   excerpt: string;
   content: string;
   author: string;

@@ -12,6 +12,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const ZoomWhitening = () => {
   const benefits = [
@@ -156,14 +157,10 @@ const ZoomWhitening = () => {
           title="Zoom Teeth Whitening"
           subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
           primaryCta={{
-            text: "Schedule Whitening",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "Contact Us",
-            href: "/contact"
           }}
           height="medium"
         />

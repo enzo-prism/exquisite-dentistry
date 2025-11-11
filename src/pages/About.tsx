@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus } from 'lucide-react';
+import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus, Sparkles, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 
@@ -11,11 +11,29 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const introHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
+  const introParagraph = useRevealOnScroll({ delayClass: 'reveal-delay-200' });
+  const doctorText = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
+  const doctorImage = useRevealOnScroll({ animation: 'skew', delayClass: 'reveal-delay-200' });
+  const philosophyCards = [
+    useRevealOnScroll({ delayClass: 'reveal-delay-100' }),
+    useRevealOnScroll({ delayClass: 'reveal-delay-200' }),
+    useRevealOnScroll({ delayClass: 'reveal-delay-300' })
+  ];
+  const techHeading = useRevealOnScroll();
+  const techCards = [
+    useRevealOnScroll({ delayClass: 'reveal-delay-100', animation: 'scale' }),
+    useRevealOnScroll({ delayClass: 'reveal-delay-200', animation: 'scale' })
+  ];
+  const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
+  const ctaBlock = useRevealOnScroll({ animation: 'scale' });
 
   return (
     <>
@@ -66,7 +84,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col-reverse lg:flex-row gap-8 sm:gap-12 items-center">
             {/* Content Column */}
-            <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
+            <div ref={doctorText.ref} className={`w-full lg:w-1/2 space-y-4 sm:space-y-6 ${doctorText.animationClass}`}>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
                 The Artist Behind Beverly Hills' Most Beautiful Smiles
               </h2>
@@ -100,7 +118,7 @@ const About = () => {
             </div>
             
             {/* Image Column */}
-            <div className="w-full lg:w-1/2">
+            <div ref={doctorImage.ref} className={`w-full lg:w-1/2 ${doctorImage.animationClass}`}>
               <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-full">
                 {/* Main Image with Frame */}
                 <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
@@ -137,13 +155,13 @@ const About = () => {
       {/* Dr. Aguil's Expertise */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <div ref={introHeading.ref} className={`text-center max-w-3xl mx-auto mb-12 md:mb-16 ${introHeading.animationClass}`}>
             <span className="inline-block text-sm text-secondary font-medium mb-3">EXPERTISE</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-6">
               Meet Dr. Alexie Aguil
             </h2>
             <div className="h-1 w-20 bg-secondary rounded-full mx-auto mb-8"></div>
-            <p className="text-lg text-black-light">
+            <p ref={introParagraph.ref} className={`text-lg text-black-light ${introParagraph.animationClass}`}>
               With exceptional skills, training, and a commitment to excellence, Dr. Aguil delivers world-class cosmetic and restorative dentistry.
             </p>
           </div>
@@ -210,7 +228,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-white shadow-md rounded-sm border-none">
+            <Card ref={philosophyCards[0].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[0].animationClass}`}>
               <CardContent className="p-6">
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -226,7 +244,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-white shadow-md rounded-sm border-none">
+            <Card ref={philosophyCards[1].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[1].animationClass}`}>
               <CardContent className="p-6">
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -241,7 +259,7 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-white shadow-md rounded-sm border-none">
+            <Card ref={philosophyCards[2].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[2].animationClass}`}>
               <CardContent className="p-6">
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -258,7 +276,51 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section ref={techHeading.ref} className={`py-16 md:py-24 bg-black text-white ${techHeading.animationClass}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block text-xs tracking-[0.32em] text-gold font-semibold mb-3">TECHNOLOGY</span>
+            <h2 className="text-3xl md:text-4xl font-sans font-semibold mb-4">Precision Tools, Human Touch</h2>
+            <p className="text-white/80">
+              From Pearl AI diagnostics to the iTero Element 5D scanner, every piece of technology in our studio is selected to make care more
+              accurate, more comfortable, and more collaborative.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div ref={techCards[0].ref} className={`bg-white/5 rounded-2xl border border-white/10 p-6 space-y-4 hover:border-gold/30 transition ${techCards[0].animationClass}`}>
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                <Sparkles className="w-6 h-6 animate-pulse-sparkle" />
+              </div>
+              <h3 className="text-xl font-semibold">iTero 3D Scanning</h3>
+              <p className="text-white/80">
+                Mess-free digital impressions capture every angle of your smile for Invisalign, veneers, crowns, and more.
+                The scan uploads instantly so you can preview results with Dr. Aguil in real time.
+              </p>
+              <Link to="/itero-scanner" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
+                Learn about the iTero scanner
+                <ArrowRight size={16} className="ml-1" />
+              </Link>
+            </div>
+            <div ref={techCards[1].ref} className={`bg-white/5 rounded-2xl border border-white/10 p-6 space-y-4 hover:border-gold/30 transition ${techCards[1].animationClass}`}>
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                <Cpu className="w-6 h-6 animate-pulse-sparkle" />
+              </div>
+              <h3 className="text-xl font-semibold">Pearl AI Diagnostics</h3>
+              <p className="text-white/80">
+                Artificial intelligence reviews every radiograph alongside Dr. Aguil, highlighting microfractures, incipient decay, and bone changes
+                so treatment stays proactive and precise.
+              </p>
+              <Link to="/services#technology" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
+                Explore our technology suite
+                <ArrowRight size={16} className="ml-1" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={reviewsHeading.ref} className={`py-16 md:py-24 bg-gray-50 ${reviewsHeading.animationClass}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
@@ -274,7 +336,7 @@ const About = () => {
 
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-black">
+      <section ref={ctaBlock.ref} className={`py-16 md:py-24 bg-black ${ctaBlock.animationClass}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">

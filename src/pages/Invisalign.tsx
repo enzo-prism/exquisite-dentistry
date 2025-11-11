@@ -13,6 +13,8 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
+import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 
 const Invisalign = () => {
   const benefits = [
@@ -145,14 +147,10 @@ const Invisalign = () => {
           title="Invisalign® Clear Aligners"
           subtitle="Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles."
           primaryCta={{
-            text: "Start Your Smile Scan",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "Virtual Invisalign Consult",
-            href: "/contact"
           }}
           height="medium"
         />
@@ -171,12 +169,79 @@ const Invisalign = () => {
                 Dr. Alexie Aguil plans every movement with iTero digital scans, so you can preview results before wearing your first tray.
                 We map treatment around filming schedules, launch events, red-carpet appearances, and long production days, ensuring your smile journey enhances—not interrupts—your Los Angeles lifestyle.
               </p>
+              <div className="mt-8 rounded-2xl border border-secondary/30 bg-secondary/5 p-6 text-center">
+                <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-2">Powered by iTero 3D Scanning</p>
+                <p className="text-muted-foreground">
+                  Every Invisalign plan begins with a{' '}
+                  <Link to="/itero-scanner" className="text-secondary underline-offset-4 hover:underline">
+                    high-definition iTero scan
+                  </Link>
+                  , delivering digital impressions that sync instantly with ClinCheck for faster trays and more predictable movement.
+                </p>
+              </div>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Whether you are preparing for a major career milestone, recovering from years of grinding, or pursuing a healthier bite after veneers,
                 Invisalign aligners deliver precise movements without the brackets and wires of traditional orthodontics.
                 You will swap to a fresh set of trays every 7 to 10 days, meeting virtually or in-person for progress checks that keep you on track.
                 When paired with cosmetic finishing touches like whitening or edge recontouring, Invisalign becomes the centerpiece of a full smile glow-up.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-8">
+              <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-lg">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-secondary">Transformation Story</p>
+                <h2 className="mt-3 text-3xl font-bold text-foreground">
+                  Confidence in Every Smile: Nick’s Invisalign Journey
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  A lifetime of hiding his smile—until Invisalign with Dr. Aguil gave him the confidence to show it off.
+                </p>
+                <div className="mt-6 space-y-4 text-sm text-foreground">
+                  <div>
+                    <p className="font-semibold uppercase tracking-[0.3em] text-secondary mb-2">Key Takeaways</p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-2">
+                        <span className="text-secondary">•</span>
+                        <span>“I’ve been concerned with my teeth my whole life… the work Dr. Aguil did has impacted my life significantly.”</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-secondary">•</span>
+                        <span>Confidence through care—every visit focused on trust, comfort, and self-esteem.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-secondary">•</span>
+                        <span>What started as concern ended as confidence with results that feel as good as they look.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <blockquote className="rounded-2xl bg-muted/50 p-6 text-base italic text-foreground">
+                    “I’ve been concerned with my teeth my whole life. Dr. Alexie Aguil told me that Invisalign would help. The work that he’s done on my teeth and my smile has impacted my life significantly. I’m happier with my smile, I’m more confident. The experience was fantastic.”
+                  </blockquote>
+                  <Button size="lg" asChild className="w-full sm:w-auto">
+                    <Link to="/transformation-stories/nick-invisalign">Read Full Story</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="rounded-3xl border border-secondary/30 bg-secondary/5 p-8 text-center flex flex-col">
+                <PracticeVideoPlayer
+                  source="https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761590081/Nick_homviy.mp4"
+                  poster="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png"
+                  title="Nick’s Invisalign Story"
+                  className="!rounded-2xl !bg-black mb-6"
+                  appearance="minimal"
+                />
+                <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-4">Confidence Video Spotlight</p>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Watch Nick describe how Invisalign changed the way he shows up at work, in photos, and on camera.
+                </p>
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/transformation-stories/nick-invisalign">See Nick’s Journey</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
@@ -244,17 +309,23 @@ const Invisalign = () => {
                 <p className="text-muted-foreground mb-6">
                   A clear roadmap keeps your treatment efficient and empowers you to maintain momentum while juggling Los Angeles life.
                 </p>
-                <div className="space-y-6">
-                  {milestones.map((milestone) => (
-                    <div key={milestone.step} className="relative pl-12">
-                      <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full border border-secondary flex items-center justify-center font-semibold text-secondary">
-                        {milestone.step}
+                <ol className="relative border-l border-secondary/20 pl-6">
+                  {milestones.map((milestone, index) => (
+                    <li
+                      key={milestone.step}
+                      className={`relative pl-6 ${index !== milestones.length - 1 ? 'pb-10' : ''}`}
+                    >
+                      <div className="absolute -left-6 top-0 flex items-center justify-center w-12 h-12 rounded-full border-2 border-secondary bg-white text-secondary font-semibold text-sm">
+                        {String(index + 1).padStart(2, '0')}
                       </div>
-                      <h4 className="text-lg font-semibold text-foreground mb-2">{milestone.title}</h4>
-                      <p className="text-muted-foreground leading-relaxed">{milestone.description}</p>
-                    </div>
+                      <span className="inline-flex items-center rounded-full bg-secondary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-secondary">
+                        {milestone.step}
+                      </span>
+                      <h4 className="mt-3 text-lg font-semibold text-foreground">{milestone.title}</h4>
+                      <p className="mt-2 text-muted-foreground leading-relaxed">{milestone.description}</p>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </div>
             </div>
           </div>

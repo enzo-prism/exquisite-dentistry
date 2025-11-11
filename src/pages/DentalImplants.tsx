@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const DentalImplants = () => {
   const implantAdvantages = [
@@ -129,14 +130,10 @@ const DentalImplants = () => {
           title="Dental Implants Los Angeles"
           subtitle="Rebuild your smile with precision-engineered implants and luxury-level care."
           primaryCta={{
-            text: "Schedule Implant Consultation",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "Learn About Financing",
-            href: "/contact"
           }}
           height="medium"
         />

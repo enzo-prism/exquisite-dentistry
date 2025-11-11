@@ -79,6 +79,29 @@ Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin
 
 Simply open [Lovable](https://lovable.dev/projects/03495860-0dae-47cc-9f99-6dca02a2f426) and click on Share -> Publish.
 
+## Local Build & QA Checklist
+
+Keep releases consistent by running the following commands before opening a pull request or publishing:
+
+```sh
+# Install dependencies (one time per machine)
+npm install
+
+# 1. Generate blog data (only if Blog-Content changes)
+npm run generate:blog
+
+# 2. Lint for TypeScript/React issues
+npm run lint
+
+# 3. Build the production bundle
+npm run build
+
+# 4. (Optional) Smoke test the built site locally
+npm run preview
+```
+
+`npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
+
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

@@ -7,6 +7,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '11',
     title: 'Adjusting to Invisalign While Starting a New Job',
     slug: 'adjusting-to-invisalign-while-starting-new-job',
+    sourceSlug: 'adjusting-to-invisalign-while-starting-a-new-job',
     excerpt:
       'Learn practical strategies to stay comfortable, consistent, and confident with Invisalign while you navigate the first weeks of a new job.',
     content: `<div class="prose prose-lg max-w-none">
@@ -70,6 +71,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '10',
     title: 'A Dentist for Adults in Los Angeles',
     slug: 'dentist-for-adults-los-angeles',
+    sourceSlug: 'a-dentist-for-adults-in-los-angeles',
     excerpt:
       'Experience a spa-inspired dental visit designed exclusively for adults with concierge comforts, comprehensive care, and cosmetic enhancements in West Hollywood.',
     content: `<div class="prose prose-lg max-w-none">
@@ -123,6 +125,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '9',
     title: '6 Early Signs of Oral Cancer',
     slug: 'early-signs-of-oral-cancer',
+    sourceSlug: '6-early-signs-of-oral-cancer',
     excerpt: 'Learn how to recognize six early warning signs of oral cancer and why proactive screenings with Exquisite Dentistry keep you protected.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -174,6 +177,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '8',
     title: '5 Ways to Improve Oral Care While You’re at Work',
     slug: 'improve-oral-care-at-work',
+    sourceSlug: '5-ways-to-improve-oral-care-while-youre-at-work',
     excerpt: 'Turn your workday into an opportunity for better oral health with five dentist-approved strategies for brushing, flossing, and staying confident on the job.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -219,6 +223,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '7',
     title: '5 Reasons to Get Dental Implants',
     slug: 'reasons-to-get-dental-implants',
+    sourceSlug: '5-reasons-to-get-dental-implants',
     excerpt: 'Discover the top five reasons dental implants are a natural, long-lasting solution that protects your oral health, keeps you comfortable, and restores confidence—plus when bridges may be the right alternative.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -260,6 +265,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '6',
     title: '5 Healthy Habits For Your Teeth',
     slug: 'healthy-habits-for-your-teeth',
+    sourceSlug: '5-healthy-habits-for-your-teeth',
     excerpt: 'Adopt five daily habits—from brushing technique to routine dental visits—that protect your smile, boost your confidence, and support whole-body wellness.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -298,6 +304,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '1',
     title: 'Why Invisalign Has a Clear Advantage Over Traditional Braces',
     slug: 'invisalign-clear-advantage-over-traditional-braces',
+    sourceSlug: 'why-invisalign-has-a-clear-advantage-over-traditional-braces',
     excerpt: 'Discover why Invisalign revolutionizes teeth straightening with clear aligners, offering superior design, no food restrictions, faster results, and unmatched confidence compared to traditional metal braces.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -339,6 +346,7 @@ const baseBlogPosts: BlogPost[] = [
     id: '12',
     title: 'Why Female Smokers are at a High Risk for Oral Cancer: Unpacking the Dangers',
     slug: 'female-smokers-high-risk-oral-cancer-dangers',
+    sourceSlug: 'why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers',
     excerpt: 'Learn why female smokers face heightened oral cancer risks compared to men. Discover the dangers of tobacco use, HPV connections, and essential preventative measures for optimal oral health.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
@@ -539,9 +547,41 @@ const parseDate = (value: string): number => {
   return Number.isNaN(parsed) ? 0 : parsed;
 };
 
-export const blogPosts: BlogPost[] = [...baseBlogPosts, ...generatedBlogPosts].sort(
-  (a, b) => parseDate(b.date) - parseDate(a.date)
-);
+const normalizeTitle = (value: string): string => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+const buildBlogPosts = (): BlogPost[] => {
+  const slugSet = new Set<string>();
+  const aliasSet = new Set<string>();
+  const titleSet = new Set<string>();
+  const merged: BlogPost[] = [];
+
+  const tryAddPost = (post: BlogPost) => {
+    const normalizedTitle = normalizeTitle(post.title);
+
+    if (slugSet.has(post.slug)) return;
+    if (aliasSet.has(post.slug)) return;
+    if (titleSet.has(normalizedTitle)) return;
+
+    merged.push(post);
+    slugSet.add(post.slug);
+    titleSet.add(normalizedTitle);
+
+    if (post.sourceSlug) {
+      aliasSet.add(post.sourceSlug);
+    }
+  };
+
+  [...baseBlogPosts, ...generatedBlogPosts].forEach(tryAddPost);
+
+  return merged.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+};
+
+export const blogPosts: BlogPost[] = buildBlogPosts();
 
 export const getPublishedPosts = (): BlogPost[] => {
   return blogPosts.filter(post => post.published);

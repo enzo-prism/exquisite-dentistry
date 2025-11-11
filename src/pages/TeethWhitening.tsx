@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const TeethWhitening = () => {
   const whiteningPrograms = [
@@ -100,14 +101,10 @@ const TeethWhitening = () => {
           title="Teeth Whitening Los Angeles"
           subtitle="Three luminous whitening paths designed for fast-paced LA lives."
           primaryCta={{
-            text: "Book Whitening Visit",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "Compare Whitening Plans",
-            href: "/contact"
           }}
           height="medium"
         />

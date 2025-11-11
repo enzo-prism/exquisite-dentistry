@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const CosmeticDentistry = () => {
   const pillars = [
@@ -119,14 +120,10 @@ const CosmeticDentistry = () => {
           title="Cosmetic Dentistry Los Angeles"
           subtitle="Curated smile transformations for tastemakers, entrepreneurs, and artists."
           primaryCta={{
-            text: "Design Your Smile",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "View Smile Gallery",
-            href: "/smile-gallery"
           }}
           height="medium"
         />

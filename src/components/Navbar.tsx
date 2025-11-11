@@ -135,7 +135,6 @@ const Navbar = () => {
     { to: '/services', label: 'Services Overview' },
     { to: '/invisalign', label: 'Invisalign' },
     { to: '/veneers', label: 'Porcelain Veneers' },
-    { to: '/veneers-los-angeles', label: 'Veneers Los Angeles' },
     { to: '/teeth-whitening', label: 'Teeth Whitening' },
     { to: '/zoom-whitening', label: 'Zoom Whitening' },
     { to: '/dental-implants', label: 'Dental Implants' },

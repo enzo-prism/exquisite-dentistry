@@ -19,6 +19,7 @@ const StaticSitemap = () => {
         '/zoom-whitening',
         '/teeth-whitening',
         '/invisalign',
+        '/itero-scanner',
         '/dental-implants',
         '/cosmetic-dentistry',
         '/emergency-dentist'
@@ -285,6 +286,7 @@ const getPageTitle = (url: string): string => {
     '/zoom-whitening': 'Zoom Whitening',
     '/teeth-whitening': 'Teeth Whitening',
     '/invisalign': 'Invisalign',
+    '/itero-scanner': 'iTero Scanner',
     '/dental-implants': 'Dental Implants',
     '/cosmetic-dentistry': 'Cosmetic Dentistry',
     '/emergency-dentist': 'Emergency Dentist',

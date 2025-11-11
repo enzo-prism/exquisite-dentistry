@@ -77,6 +77,12 @@ const sentenceCase = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
+const normalizeTitle = (text) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
 const formatDate = (date) =>
   date.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -139,20 +145,54 @@ const slugToTags = (slug) => {
     .filter((token) => token.length > 2 && !STOPWORDS.has(token));
 };
 
-const loadExistingSlugs = async () => {
+const loadExistingIdentifiers = async () => {
   const baseContent = await fs.readFile(BASE_BLOG_FILE, 'utf-8');
-  const slugMatches = baseContent.match(/slug:\s*'([^']+)'/g) || [];
-  return new Set(slugMatches.map((match) => match.replace(/slug:\s*'([^']+)'/, '$1')));
+
+  const slugRegex = /(?<![A-Za-z])slug:\s*'([^']+)'/g;
+  const sourceSlugRegex = /sourceSlug:\s*'([^']+)'/g;
+  const titleRegex = /(?<![A-Za-z])title:\s*'([^']+)'/g;
+
+  const identifiers = {
+    slugs: new Set(),
+    sourceSlugs: new Set(),
+    titles: new Set()
+  };
+
+  let match;
+  while ((match = slugRegex.exec(baseContent))) {
+    identifiers.slugs.add(match[1]);
+  }
+
+  while ((match = sourceSlugRegex.exec(baseContent))) {
+    identifiers.sourceSlugs.add(match[1]);
+  }
+
+  while ((match = titleRegex.exec(baseContent))) {
+    identifiers.titles.add(normalizeTitle(match[1]));
+  }
+
+  return identifiers;
 };
 
-const buildPostObject = async (fileName, existingSlugs) => {
+const MIN_DATE = new Date('2020-01-01');
+const MAX_DATE = new Date('2025-11-08');
+
+const pickDistributedDate = (index, total) => {
+  const minTime = MIN_DATE.getTime();
+  const maxTime = MAX_DATE.getTime();
+  if (total <= 1) return new Date(maxTime);
+  const ratio = index / (total - 1);
+  const timestamp = minTime + ratio * (maxTime - minTime);
+  return new Date(timestamp);
+};
+
+const buildPostObject = async (fileName, dedupeState, index, total) => {
   const slug = fileName.replace(/\.txt$/i, '');
-  if (existingSlugs.has(slug)) {
+  if (dedupeState.slugs.has(slug) || dedupeState.sourceSlugs.has(slug)) {
     return null;
   }
 
   const filePath = path.join(CONTENT_DIR, fileName);
-  const stat = await fs.stat(filePath);
   const raw = await fs.readFile(filePath, 'utf-8');
 
   const lines = raw.split(/\r?\n/);
@@ -184,12 +224,21 @@ const buildPostObject = async (fileName, existingSlugs) => {
     return null;
   }
 
+  const normalizedTitle = normalizeTitle(title);
+  if (dedupeState.titles.has(normalizedTitle)) {
+    return null;
+  }
+
   const excerpt = extractExcerpt(body);
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
   const htmlContent = marked.parse(body).trim();
   const readTime = computeReadTime(stripHtml(htmlContent));
-  const date = formatDate(stat.mtime);
+  const distributedDate = pickDistributedDate(index, total);
+  const date = formatDate(distributedDate);
+
+  dedupeState.slugs.add(slug);
+  dedupeState.titles.add(normalizedTitle);
 
   return {
     id: slug,
@@ -243,11 +292,21 @@ const main = async () => {
       return;
     }
 
-    const existingSlugs = await loadExistingSlugs();
+    const identifiers = await loadExistingIdentifiers();
+    const dedupeState = {
+      slugs: new Set(identifiers.slugs),
+      sourceSlugs: new Set(identifiers.sourceSlugs),
+      titles: new Set(identifiers.titles)
+    };
+
     const posts = [];
 
-    for (const fileName of txtFiles.sort()) {
-      const post = await buildPostObject(fileName, existingSlugs);
+    const sortedFiles = txtFiles.sort();
+    const totalFiles = sortedFiles.length;
+
+    for (let i = 0; i < sortedFiles.length; i += 1) {
+      const fileName = sortedFiles[i];
+      const post = await buildPostObject(fileName, dedupeState, i, totalFiles);
       if (post) {
         posts.push(post);
       }

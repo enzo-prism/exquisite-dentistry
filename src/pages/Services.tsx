@@ -103,26 +103,28 @@ const Services = () => {
     description: string;
     Icon?: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
     iconLabel?: string;
+    cta?: {
+      label: string;
+      href: string;
+    };
   };
 
   const technologyHighlights: TechnologyHighlight[] = [
     {
-      title: 'Intraoral Cameras',
+      title: 'iTero 3D Scanner',
       description:
-        'High-definition intraoral cameras allow us to show you exactly what we see, helping you understand your treatment needs and options.',
-      Icon: Camera
+        'Our advanced iTero 3D imaging system captures thousands of detailed images per second to create a precise digital model of your teeth. Enjoy faster, more comfortable scans and hyper-accurate Invisalign or cosmetic treatment planning.',
+      iconLabel: '3D',
+      cta: {
+        label: 'Learn More',
+        href: '/itero-scanner'
+      }
     },
     {
       title: 'Digital X-Rays',
       description:
         'Digital radiography provides immediate, high-quality images with significantly reduced radiation exposure compared to traditional x-rays.',
       Icon: Monitor
-    },
-    {
-      title: 'Invisalign iTero Scanner',
-      description:
-        'Our advanced 3D scanner creates precise digital impressions without the discomfort of traditional methods, improving treatment planning and results.',
-      iconLabel: '3D'
     },
     {
       title: 'Pearl AI Diagnostics',
@@ -315,12 +317,11 @@ const Services = () => {
         title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
         subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
-          text: "Book Appointment",
+          text: "Book an Appointment",
           href: SCHEDULING_URL,
           target: "_blank",
           rel: "noopener noreferrer"
         }}
-        secondaryCta={{ text: "View Smile Gallery", href: "/smile-gallery" }}
         overlayColor="gradient" 
         height="medium" 
         badgeText="COMPREHENSIVE DENTAL EXCELLENCE" 
@@ -582,7 +583,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-50">
+      <section id="technology" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-16 items-center">
             <div className="space-y-10">
@@ -613,6 +614,15 @@ const Services = () => {
                     </div>
                     <h3 className="mt-5 text-lg font-semibold text-black">{highlight.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-black-light/80">{highlight.description}</p>
+                    {highlight.cta && (
+                      <Link
+                        to={highlight.cta.href}
+                        className="mt-4 inline-flex items-center text-sm font-semibold text-gold hover:text-gold/80 transition-colors"
+                      >
+                        {highlight.cta.label}
+                        <ArrowRight size={16} className="ml-1" />
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>
@@ -623,11 +633,11 @@ const Services = () => {
                 <div className="relative">
                   <div className="pointer-events-none absolute -inset-8 -translate-y-6 rounded-[36px] bg-gradient-to-br from-gold/35 via-gold/15 to-transparent opacity-70 blur-3xl"></div>
                   <div className="relative rounded-[32px] border border-gold/30 bg-gradient-to-br from-black/90 via-black to-black p-[1.5px] shadow-[0_45px_90px_-40px_rgba(12,7,0,0.75)]">
-                    <div className="pointer-events-none absolute left-6 top-6 z-10 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur">
-                      <span className="h-2 w-2 rounded-full bg-gold" />
-                      Pearl AI in Action
-                    </div>
-                    <PracticeVideoPlayer
+                  <div className="pointer-events-none absolute left-6 top-6 z-10 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur">
+                    <span className="h-2 w-2 rounded-full bg-gold" />
+                    Pearl AI in Action
+                  </div>
+                  <PracticeVideoPlayer
                       source="https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761506806/pearl_ai_ctiswr.mp4"
                       poster="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761507329/pearl-thumbnail_ijmlov.png"
                       title="Pearl AI Technology Overview"
@@ -636,12 +646,18 @@ const Services = () => {
                       loop
                       autoPlay
                       muted
-                      passive
-                    />
-                  </div>
+                    passive
+                  />
                 </div>
+                <p className="mt-4 text-xs uppercase tracking-[0.35em] text-white/60 text-center">
+                  our tech helps you see what the dentist sees
+                </p>
+                <p className="mt-4 text-sm text-gold text-center uppercase tracking-[0.35em]">
+                  tech lets you see what our dentist sees
+                </p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>

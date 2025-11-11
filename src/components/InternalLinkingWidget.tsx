@@ -89,18 +89,25 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 1
           },
           {
+            title: 'iTero 3D Scanner',
+            href: '/itero-scanner',
+            description: 'See how digital impressions accelerate Invisalign planning',
+            category: 'service',
+            priority: 2
+          },
+          {
             title: 'Invisalign vs Braces Blog',
             href: '/blog/invisalign-clear-advantage-over-traditional-braces',
             description: 'Why Invisalign has advantages over traditional braces',
             category: 'blog',
-            priority: 2
+            priority: 3
           },
           {
             title: 'Patient Testimonials',
             href: '/testimonials',
             description: 'Stories from Invisalign patients',
             category: 'experience',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Graduation Smile Prep',

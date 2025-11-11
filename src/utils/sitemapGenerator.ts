@@ -129,6 +129,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/itero-scanner'),
+      lastmod: getFileLastModified('src/pages/IteroScanner.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.75
+    },
+    {
       loc: getCanonicalUrl('/dental-implants'),
       lastmod: getFileLastModified('src/pages/DentalImplants.tsx', 14, now),
       changefreq: 'monthly',

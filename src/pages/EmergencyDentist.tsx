@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const EmergencyDentist = () => {
   const rapidResponse = [
@@ -120,12 +121,10 @@ const EmergencyDentist = () => {
           title="Emergency Dentist Los Angeles"
           subtitle="Immediate, compassionate care when dental emergencies disrupt your day."
           primaryCta={{
-            text: "Call for Immediate Help",
-            href: "tel:+13232722388"
-          }}
-          secondaryCta={{
-            text: "Message Our Team",
-            href: "/contact"
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
+            target: "_blank",
+            rel: "noopener noreferrer"
           }}
           height="medium"
         />

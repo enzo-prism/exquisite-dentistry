@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const Veneers = () => {
   const benefits = [
@@ -145,14 +146,10 @@ const Veneers = () => {
           title={<>Custom Porcelain Veneers - <span className="text-gold">Hollywood-Quality Smile Makeovers</span></>}
           subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous."
           primaryCta={{
-            text: "Schedule Veneer Consultation",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
+            text: "Book an Appointment",
+            href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"
-          }}
-          secondaryCta={{
-            text: "View Before & After Gallery",
-            href: "/smile-gallery"
           }}
           height="medium"
         />
