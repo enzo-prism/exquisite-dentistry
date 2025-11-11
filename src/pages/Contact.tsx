@@ -370,12 +370,14 @@ const Contact = () => {
                         >
                           {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
                         </Button>
-                        <p
-                          className={`text-sm ${formStatus === 'success' ? 'text-emerald-600' : formStatus === 'error' ? 'text-red-600' : 'text-gray-500'}`}
-                          aria-live="polite"
-                        >
-                          {feedback || 'We typically reply within one business day.'}
-                        </p>
+                        {feedback && (
+                          <p
+                            className={`text-sm ${formStatus === 'success' ? 'text-emerald-600' : formStatus === 'error' ? 'text-red-600' : 'text-gray-500'}`}
+                            aria-live="polite"
+                          >
+                            {feedback}
+                          </p>
+                        )}
                       </div>
                     </form>
                   </div>
