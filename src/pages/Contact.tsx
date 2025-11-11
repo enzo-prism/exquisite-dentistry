@@ -227,10 +227,15 @@ const Contact = () => {
                         <MapPin size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Address</h3>
-                          <p className="text-white/80">
+                          <a
+                            href="https://maps.app.goo.gl/uZPw5AKARk8HuNh9A"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white/80 hover:text-gold transition-colors inline-block"
+                          >
                             6227 Wilshire Blvd<br />
                             Los Angeles, CA 90048
-                          </p>
+                          </a>
                         </div>
                       </div>
                       
