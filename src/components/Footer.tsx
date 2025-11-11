@@ -289,15 +289,13 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <Clock size={20} className="text-gold mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-white font-medium">Office Hours</p>
-                  <div className="text-gray-300 text-sm space-y-1">
-                    <div><span className="text-gold">Mon:</span> {BUSINESS_HOURS.monday}</div>
-                    <div><span className="text-gold">Tue:</span> {BUSINESS_HOURS.tuesday}</div>
-                    <div><span className="text-gold">Wed:</span> {BUSINESS_HOURS.wednesday}</div>
-                    <div><span className="text-gold">Thu:</span> {BUSINESS_HOURS.thursday}</div>
-                    <div><span className="text-gold">Fri:</span> {BUSINESS_HOURS.friday}</div>
-                    <div><span className="text-gold">Sat:</span> {BUSINESS_HOURS.saturday}</div>
-                    <div><span className="text-gold">Sun:</span> {BUSINESS_HOURS.sunday}</div>
+                  <p className="text-white font-medium">Hours</p>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    {BUSINESS_HOURS.map(({ label, value }) => (
+                      <div key={label}>
+                        <span className="text-gold">{label}:</span> {value}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

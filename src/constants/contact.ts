@@ -17,13 +17,10 @@ export const SOCIAL_MEDIA = {
   youtube: 'https://www.youtube.com/@exquisitedentistryla'
 } as const;
 
-// Business hours
-export const BUSINESS_HOURS = {
-  monday: '8:00 AM - 6:00 PM',
-  tuesday: '8:00 AM - 6:00 PM',
-  wednesday: '8:00 AM - 6:00 PM',
-  thursday: '8:00 AM - 6:00 PM',
-  friday: '8:00 AM - 5:00 PM',
-  saturday: 'By Appointment',
-  sunday: 'Closed'
-} as const;
+// Business hours (matches footer presentation)
+export const BUSINESS_HOURS = [
+  { label: 'Monday-Thursday', value: '8AM-6PM' },
+  { label: 'Friday', value: 'Closed' },
+  { label: 'Saturday', value: 'Closed' },
+  { label: 'Sunday', value: 'Closed' }
+] as const;
