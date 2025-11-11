@@ -34,6 +34,23 @@ npm run dev          # Vite dev server @ http://localhost:5173
 - `npm run build:prod` = `optimize:images` + `vite build`. Use this for Netlify parity or whenever you add media under `public/lovable-uploads/`. The optimizer writes WebP derivatives into `public/optimized/`; never commit `dist/`.
 - The Sharp script skips files that already have an optimized counterpart, so rerunning it is safe but can take a couple minutes on large batches. Keep an eye on git status afterwards—no changes should appear because optimized files live under `public/`.
 
+## Manual QA Scenarios
+
+After the automated steps pass, run through the high-impact UX flows below. These catch regressions that lint/build cannot.
+
+1. **Contact Hero CTA**
+   - Visit `/contact`, click “Send Us a Message” on desktop + mobile widths.
+   - Confirm the viewport centers the *Name* field and focus remains on the form card (hero button uses smooth scrolling logic based on element refs).
+2. **Formspree submission**
+   - Enter a valid email (format validation now blocks malformed addresses).
+   - Submit and ensure the inline success message appears and the Formspree dashboard receives the entry.
+   - Try an invalid email (`user@`) to confirm the red helper text displays and submission is blocked.
+3. **Map & contact links**
+   - Click the address block; it should open `https://maps.app.goo.gl/uZPw5AKARk8HuNh9A` in a new tab.
+   - Tap the phone CTA on mobile to ensure `tel:` links still function.
+4. **Hero/CTA parity**
+   - Run `npm run preview`, load key marketing pages (Home, Services, Testimonials) to verify hero buttons still open the default scheduling link unless overridden.
+
 ## Form & Analytics Notes
 
 - Form submissions hit Formspree (`https://formspree.io/f/xkgknpkl`). If you clone this workflow for other forms, you only need to swap the endpoint string and ensure `trackFormSubmission('contact_form')` fires after success.
@@ -52,5 +69,6 @@ npm run dev          # Vite dev server @ http://localhost:5173
 | `sharp` fails to install | Install libvips (`brew install vips` or `apt install libvips-dev`) and rerun `npm install`. |
 | ESLint exits with React Hook dependency warnings | Address upstream, or suppress per-file only with a short inline justification. |
 | Puppeteer test hangs | Ensure `npm run dev` or `npm run preview` is running on port 5173/4173 before invoking `node test-browser.js`. |
+| Formspree returns 403 | The endpoint rate-limits unknown origins. Ensure your dev build runs on `http://localhost:5173` or configure the Formspree project to trust your domain. |
 
 Keep this document up to date whenever you add new build steps, scripts, or verification tooling so future contributors can follow a single source of truth.
