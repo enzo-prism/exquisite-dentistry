@@ -69,7 +69,7 @@ const Tour = () => {
       <section className="bg-black text-white py-16 sm:py-24 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <h1 ref={heroHeading.ref} className={`text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight ${heroHeading.animationClass}`}>
-            Gallery
+            Office Gallery
           </h1>
           <p className="text-white/70 text-base sm:text-lg">
             Take a virtual tour of the 5 star interior design of Exquisite Dentistry
