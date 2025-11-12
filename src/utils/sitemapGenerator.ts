@@ -35,7 +35,11 @@ type PathModule = { resolve: ResolveFn };
 let statSync: StatFn | null = null;
 let resolvePath: ResolveFn | null = null;
 
-if (typeof window !== 'undefined') {
+const hasWindow =
+  typeof globalThis !== 'undefined' &&
+  typeof (globalThis as { window?: unknown }).window !== 'undefined';
+
+if (hasWindow) {
   statSync = null;
   resolvePath = null;
 } else {

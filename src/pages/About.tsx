@@ -18,22 +18,22 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const introHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const introParagraph = useRevealOnScroll({ delayClass: 'reveal-delay-200' });
-  const doctorText = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const doctorImage = useRevealOnScroll({ animation: 'skew', delayClass: 'reveal-delay-200' });
+  const introHeading = useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-100' });
+  const introParagraph = useRevealOnScroll<HTMLParagraphElement>({ delayClass: 'reveal-delay-200' });
+  const doctorText = useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-100' });
+  const doctorImage = useRevealOnScroll<HTMLDivElement>({ animation: 'skew', delayClass: 'reveal-delay-200' });
   const philosophyCards = [
-    useRevealOnScroll({ delayClass: 'reveal-delay-100' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-200' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-300' })
+    useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-100' }),
+    useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-200' }),
+    useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-300' })
   ];
-  const techHeading = useRevealOnScroll();
+  const techHeading = useRevealOnScroll<HTMLElement>();
   const techCards = [
-    useRevealOnScroll({ delayClass: 'reveal-delay-100', animation: 'scale' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-200', animation: 'scale' })
+    useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-100', animation: 'scale' }),
+    useRevealOnScroll<HTMLDivElement>({ delayClass: 'reveal-delay-200', animation: 'scale' })
   ];
-  const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const ctaBlock = useRevealOnScroll({ animation: 'scale' });
+  const reviewsHeading = useRevealOnScroll<HTMLElement>({ delayClass: 'reveal-delay-100' });
+  const ctaBlock = useRevealOnScroll<HTMLElement>({ animation: 'scale' });
   const patientImages = [
     {
       src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.21_AM_ptqbrm.png',

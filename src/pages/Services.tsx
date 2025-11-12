@@ -18,6 +18,7 @@ import {
   Cpu,
   Bot
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
@@ -101,7 +102,7 @@ const Services = () => {
   type TechnologyHighlight = {
     title: string;
     description: string;
-    Icon?: React.ComponentType<{ className?: string; size?: string | number; strokeWidth?: number }>;
+    Icon?: LucideIcon;
     iconLabel?: string;
     cta?: {
       label: string;
