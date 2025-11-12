@@ -112,6 +112,8 @@ npm run preview
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
+>
+> Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
 
 ## Layout Utilities
 
