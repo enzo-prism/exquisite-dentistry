@@ -401,7 +401,7 @@ const MobileMenuPanel = ({
   return (
     <div 
       ref={panelRef}
-      className={`relative h-full w-full bg-black flex flex-col pt-16 sm:pt-20 transform transition-transform duration-300 will-change-transform ${
+      className={`relative h-full w-full bg-black flex flex-col pt-10 sm:pt-12 pb-6 sm:pb-8 transform transition-transform duration-300 will-change-transform ${
         gestureState.isDragging ? 'transition-none' : ''
       }`}
       style={{ 
@@ -415,14 +415,18 @@ const MobileMenuPanel = ({
       <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
       
       {/* Navigation Links - Scrollable Area */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 scroll-smooth">
-        <nav className="flex flex-col w-full" role="navigation">
+      <div className="px-4">
+        <nav 
+          className="flex flex-col w-full gap-1.5 overflow-y-auto pr-1 scroll-smooth"
+          role="navigation"
+          style={{ maxHeight: 'min(70vh, calc(100dvh - 240px))' }}
+        >
           {navLinks.map((link, index) => (
             <Link
               key={link.to}
               ref={index === 0 ? firstMenuLinkRef : undefined}
               to={link.to}
-              className="navbar-link w-full block py-4 px-4 mb-1 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md border-b border-white/10 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              className="navbar-link w-full block py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -435,9 +439,9 @@ const MobileMenuPanel = ({
           ))}
           
           {/* Services Section */}
-          <div className="w-full border-b border-white/10 mb-1">
+          <div className="w-full border-b border-white/10 pb-1">
             <button
-              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -451,13 +455,13 @@ const MobileMenuPanel = ({
               />
             </button>
             {openDropdown === 'services' && (
-              <div className="mt-1 space-y-1 pb-2">
+              <div className="mt-1 space-y-1.5 pb-1">
                 {servicesDropdown.map((item) => (
                   <Link
                     key={item.to}
                     to={item.to}
                     onClick={onClose}
-                    className="block py-3 px-6 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors rounded-md"
+                    className="block py-2.5 px-6 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors rounded-md"
                   >
                     {item.label}
                   </Link>
@@ -467,9 +471,9 @@ const MobileMenuPanel = ({
           </div>
           
           {/* Clients Section */}
-          <div className="w-full border-b border-white/10 mb-1">
+          <div className="w-full border-b border-white/10 pb-1">
             <button
-              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -498,7 +502,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                     className="navbar-link w-full block py-3 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                     className="navbar-link w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -513,10 +517,10 @@ const MobileMenuPanel = ({
           </div>
           
           {/* More Section */}
-          <div className="w-full border-b border-white/10 mb-1">
+          <div className="w-full border-b border-white/10 pb-1">
             <button
               ref={lastMenuLinkRef}
-              className="w-full flex items-center justify-between py-4 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
+              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
@@ -545,7 +549,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="navbar-link w-full block py-3 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="navbar-link w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -563,7 +567,7 @@ const MobileMenuPanel = ({
       
       {/* Enhanced CTA Button - Mobile - Fixed at bottom */}
       <div 
-        className="flex-shrink-0 p-4 border-t border-white/10 bg-black/95" 
+        className="flex-shrink-0 mt-auto p-4 border-t border-white/10 bg-black/95" 
         style={{ 
           paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 20px))'
         }}
