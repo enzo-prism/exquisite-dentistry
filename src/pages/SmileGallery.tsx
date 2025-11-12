@@ -14,6 +14,7 @@ import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { SCHEDULING_URL } from '@/constants/urls';
+import ImageComponent from '@/components/Image';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -103,6 +104,55 @@ const SmileGallery = () => {
                 className="animate-fade-in"
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-24 border-t border-gray-100">
+        <div className="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+          <div className="space-y-5">
+            <span className="text-sm font-semibold tracking-[0.35em] text-gold uppercase">THE ARTISTS BEHIND THE SMILES</span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-black">Dr. Alexie & Master Ceramist Wilson</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Every transformation you see above started with Dr. Alexie&rsquo;s chairside vision and Wilson&rsquo;s meticulous craftsmanship.
+              The duo collaborates on shade, shape, and texture so your veneers, implants, or bonding look luminous on camera and in person.
+            </p>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 rounded-full bg-gold" />
+                <span>Hand-layered ceramics that mimic natural enamel gradients.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 rounded-full bg-gold" />
+                <span>Custom smile design sessions guided by the same technology in our gallery.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 rounded-full bg-gold" />
+                <span>One-on-one delivery appointments so every detail is refined in real time.</span>
+              </li>
+            </ul>
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Link to="/about">
+                <Button className="w-full sm:w-auto">Meet Dr. Alexie</Button>
+              </Link>
+              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="w-full sm:w-auto">
+                  Book Your Reveal
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="rounded-3xl overflow-hidden border border-gray-200 shadow-xl">
+              <ImageComponent
+                src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964432/Screenshot_2025-11-12_at_8.15.13_AM_lycfrz.png"
+                alt="Dr. Alexie and Wilson reviewing a smile design together"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-sm text-gray-500 text-center">
+              Precision happens when the doctor and ceramist design every case side by side.
+            </p>
           </div>
         </div>
       </section>

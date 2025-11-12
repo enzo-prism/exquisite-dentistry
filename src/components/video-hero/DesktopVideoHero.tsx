@@ -6,6 +6,7 @@ import GradientBackground from '@/components/GradientBackground';
 import HeroCtaButtons from './HeroCtaButtons';
 import type { VideoHeroProps } from './video-hero-types';
 import { getHeroHeightClasses } from '@/utils/heroHeights';
+import { Link } from 'react-router-dom';
 
 const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   vimeoId,
@@ -82,6 +83,12 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
             secondaryCta={secondaryCta}
           />
         </div>
+        <Link
+          to="/testimonials"
+          className="mt-4 inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
+        >
+          5-star experience · 200+ Google reviews · 100+ Yelp reviews
+        </Link>
       </div>
     </section>
   );

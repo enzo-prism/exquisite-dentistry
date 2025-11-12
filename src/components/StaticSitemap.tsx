@@ -10,7 +10,7 @@ const StaticSitemap = () => {
   // Group URLs by category for better organization
   const groupedUrls = {
     main: sitemapData.filter(url => 
-      ['/', '/about', '/services', '/contact'].some(path => url.loc.endsWith(path))
+      ['/', '/about', '/tour', '/services', '/contact'].some(path => url.loc.endsWith(path))
     ),
     treatments: sitemapData.filter(url => 
       [

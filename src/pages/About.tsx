@@ -34,6 +34,35 @@ const About = () => {
   ];
   const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
   const ctaBlock = useRevealOnScroll({ animation: 'scale' });
+  const patientImages = [
+    {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.21_AM_ptqbrm.png',
+      alt: 'Dr. Alexie Aguil celebrating a smile reveal with a patient',
+      caption: 'Celebrating a just-completed smile transformation.'
+    },
+    {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_900,w_900/v1762964431/Screenshot_2025-11-12_at_8.16.21_AM_ptqbrm.png',
+      alt: 'Dr. Aguil sharing a candid moment with a happy patient',
+      caption: 'Human moments that show how personal every makeover feels.'
+    }
+  ];
+  const soloPortraits = [
+    {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
+      alt: 'Studio portrait of Dr. Alexie Aguil',
+      caption: 'Studio portrait highlighting Dr. Aguil’s meticulous style.'
+    },
+    {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_face,h_1100,w_850/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
+      alt: 'Dr. Aguil smiling inside the Beverly Hills studio',
+      caption: 'A candid smile from inside the Beverly Hills studio.'
+    },
+    {
+      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_950,w_950/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
+      alt: 'Close-up portrait of Dr. Aguil',
+      caption: 'Close-up portrait that emphasizes calm, confident care.'
+    }
+  ];
 
   return (
     <>
@@ -119,33 +148,52 @@ const About = () => {
             
             {/* Image Column */}
             <div ref={doctorImage.ref} className={`w-full lg:w-1/2 ${doctorImage.animationClass}`}>
-              <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-full">
-                {/* Main Image with Frame */}
-                <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
-                  <div className="aspect-[3/4] overflow-hidden rounded-sm">
-                    <ImageComponent
-                      src="/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png"
-                      alt="Dr. Alexie Aguil - Premium business portrait"
-                      className="w-full h-full object-contain"
-                    />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="relative mx-auto max-w-sm sm:max-w-full lg:max-w-full sm:col-span-2">
+                  {/* Main Image with Frame */}
+                  <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
+                    <div className="aspect-[3/4] overflow-hidden rounded-sm">
+                      <ImageComponent
+                        src="/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png"
+                        alt="Dr. Alexie Aguil - Premium business portrait"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
                   </div>
-                </div>
-                
-                {/* Award Badge */}
-                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 md:-bottom-8 md:-left-8 z-20 bg-white rounded-sm shadow-xl p-3 sm:p-4 max-w-[180px] sm:max-w-[200px]">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Award size={18} className="text-secondary flex-shrink-0" />
-                    <span className="text-xs sm:text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
+                  
+                  {/* Award Badge */}
+                  <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 md:-bottom-8 md:-left-8 z-20 bg-white rounded-sm shadow-xl p-3 sm:p-4 max-w-[180px] sm:max-w-[200px]">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Award size={18} className="text-secondary flex-shrink-0" />
+                      <span className="text-xs sm:text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
+                    </div>
+                    <p className="text-xs text-black-light">
+                      Top provider in Beverly Hills & West Hollywood
+                    </p>
                   </div>
-                  <p className="text-xs text-black-light">
-                    Top provider in Beverly Hills & West Hollywood
-                  </p>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute top-6 sm:top-8 -right-3 sm:-right-4 w-16 sm:w-20 h-16 sm:h-20 bg-secondary/10 rounded-full filter blur-xl"></div>
+                  <div className="absolute -bottom-8 sm:-bottom-10 right-12 sm:right-16 w-24 sm:w-32 h-24 sm:h-32 bg-secondary/10 rounded-full filter blur-xl"></div>
+                  <div className="absolute -z-10 -top-4 sm:-top-6 -left-4 sm:-left-6 w-full h-full border-2 border-secondary/30 rounded-sm"></div>
                 </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute top-6 sm:top-8 -right-3 sm:-right-4 w-16 sm:w-20 h-16 sm:h-20 bg-secondary/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -bottom-8 sm:-bottom-10 right-12 sm:right-16 w-24 sm:w-32 h-24 sm:h-32 bg-secondary/10 rounded-full filter blur-xl"></div>
-                <div className="absolute -z-10 -top-4 sm:-top-6 -left-4 sm:-left-6 w-full h-full border-2 border-secondary/30 rounded-sm"></div>
+
+                {patientImages.map((image) => (
+                  <div
+                    key={image.src}
+                    className="bg-white/90 border border-secondary/10 rounded-sm shadow-lg p-3 flex flex-col gap-3"
+                  >
+                    <div className="aspect-[4/5] rounded-sm overflow-hidden">
+                      <ImageComponent
+                        src={image.src}
+                        alt={image.alt}
+                        objectFit="cover"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-black-light">{image.caption}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -170,13 +218,24 @@ const About = () => {
             <div className="bg-white p-8 rounded-sm shadow-md">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="w-full md:w-1/3">
-                  <ImageComponent
-                    src="/lovable-uploads/fc6628ee-e664-4138-9abd-756dbcfc9889.png"
-                    alt="Dr. Alexie Aguil in dental scrubs"
-                    objectFit="cover"
-                    objectPosition="center 20%"
-                    className="w-full aspect-[4/3] object-cover rounded-sm shadow-md"
-                  />
+                  <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
+                    {soloPortraits.map((image) => (
+                      <div
+                        key={image.src}
+                        className="bg-gray-50 rounded-sm shadow-sm border border-gray-100 p-2 flex flex-col"
+                      >
+                        <div className="aspect-[3/4] rounded-sm overflow-hidden">
+                          <ImageComponent
+                            src={image.src}
+                            alt={image.alt}
+                            objectFit="cover"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <p className="text-xs text-black-light mt-2">{image.caption}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="w-full md:w-2/3 space-y-4">
                   <h3 className="text-2xl font-semibold text-black">Dr. Alexie Aguil</h3>

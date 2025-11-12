@@ -34,12 +34,22 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   const containerClass = isMobile ? "flex flex-col sm:flex-row gap-4" : "flex flex-wrap items-center gap-4";
   const primaryButtonClass = isMobile ? "w-full sm:w-auto" : "";
 
+  const handleHashClick = (hash: string) => (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    event.preventDefault();
+    const targetId = hash.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const renderPrimaryButton = () => {
     if (!primaryCta) return null;
 
     const hasCustomHref = typeof primaryCta.href === 'string' && primaryCta.href.trim().length > 0;
     const shouldRenderStandaloneButton = Boolean(primaryCta.onClick && !hasCustomHref);
     const buttonHref = hasCustomHref ? primaryCta.href! : SCHEDULING_URL;
+    const isHashLink = buttonHref.startsWith('#');
 
     const ButtonContent = () => (
       <Button 
@@ -61,6 +71,26 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
       return (
         <div className={primaryButtonClass}>
           <ButtonContent />
+        </div>
+      );
+    }
+
+    if (isHashLink) {
+      return (
+        <div className={primaryButtonClass}>
+          <Button 
+            variant="default"
+            size={buttonSize}
+            onClick={handleHashClick(buttonHref)}
+            type="button"
+            className={`group ${isMobile ? 'w-full' : ''}`}
+          >
+            {primaryCta.text}
+            <ArrowRight 
+              size={16} 
+              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
+            />
+          </Button>
         </div>
       );
     }
@@ -95,6 +125,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         const shouldRenderStandaloneButton = Boolean(secondaryCta.onClick && !hasHref);
         const buttonHref = hasHref ? secondaryCta.href! : undefined;
         const wrapperClass = isMobile ? "w-full sm:w-auto" : "";
+        const isHashLink = buttonHref?.startsWith('#');
 
         const ButtonContent = () => (
           <Button 
@@ -122,6 +153,26 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
 
         if (!buttonHref) {
           return null;
+        }
+
+        if (isHashLink) {
+          return (
+            <div className={wrapperClass}>
+              <Button 
+                variant="black" 
+                size={buttonSize}
+                className={`group ${isMobile ? 'w-full' : ''}`}
+                onClick={handleHashClick(buttonHref)}
+                type="button"
+              >
+                {secondaryCta.text}
+                <ArrowRight 
+                  size={16} 
+                  className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
+                />
+              </Button>
+            </div>
+          );
         }
 
         if (buttonHref.startsWith('http')) {

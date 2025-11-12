@@ -603,6 +603,17 @@ const Services = () => {
                 </p>
               </div>
 
+              <div className="rounded-3xl border border-gold/20 bg-white shadow-xl overflow-hidden">
+                <ImageComponent
+                  src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964429/Screenshot_2025-11-12_at_8.18.28_AM_wenlrt.png"
+                  alt="iTero 3D scanner ready for a digital impression at Exquisite Dentistry"
+                  className="w-full h-full object-cover"
+                />
+                <div className="p-5 text-sm text-black-light/80">
+                  The iTero Element 5D scanner captures a complete 3D model without traditional trays, keeping diagnostics fast, clean, and comfortable.
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {technologyHighlights.map((highlight) => (
                   <div

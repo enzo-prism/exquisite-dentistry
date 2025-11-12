@@ -16,6 +16,7 @@ import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
 // Lazy load all routes for code splitting
 const Index = lazy(() => import("@/pages/Index"));
 const About = lazy(() => import("@/pages/About"));
+const Tour = lazy(() => import("@/pages/Tour"));
 const Services = lazy(() => import("@/pages/Services"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -90,6 +91,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
                 <About />
+              </Suspense>} />
+              <Route path="/tour" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Tour />
               </Suspense>} />
               <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Services />

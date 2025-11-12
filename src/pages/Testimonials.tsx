@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import PageSEO from '@/components/seo/PageSEO';
 import ReviewWidget from '@/components/ReviewWidget';
 import VideoHero from '@/components/VideoHero';
@@ -7,6 +9,8 @@ import VideoTestimonial from '@/components/VideoTestimonial';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
+import FeaturedReviewWall from '@/components/FeaturedReviewWall';
+import { featuredReviews } from '@/data/featuredReviews';
 
 const TestimonialsPage: React.FC = () => {
   const SITE_BASE_URL = 'https://exquisitedentistryla.com';
@@ -96,10 +100,15 @@ const TestimonialsPage: React.FC = () => {
         
       />
       
+      <div id="top"></div>
       <VideoHero 
         title="Client Testimonials"
         subtitle="See what our clients are saying about their experience at Exquisite Dentistry"
         primaryCta={{
+          text: "Read Testimonials",
+          href: "#five-star-proof"
+        }}
+        secondaryCta={{
           text: "Schedule a Consultation",
           href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
@@ -132,7 +141,49 @@ const TestimonialsPage: React.FC = () => {
               );
             })}
           </div>
+          <div className="flex justify-center mb-16">
+            <Link
+              to="/transformation-stories"
+              className="inline-flex items-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition"
+            >
+              View Transformation Stories
+              <ArrowRight size={16} className="ml-2" />
+            </Link>
+          </div>
           
+          <div id="five-star-proof" className="space-y-8">
+            <div className="text-center max-w-4xl mx-auto space-y-4">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-gold">
+                5-STAR PROOF
+              </span>
+              <h3 className="text-3xl md:text-4xl font-semibold text-black">Why Angelenos Stay With Us Year After Year</h3>
+              <p className="text-black-light/80 text-base md:text-lg">
+                200+ Google reviews and 100+ Yelp reviews rave about the gentle care, cutting-edge technology, and anxiety-free experience our team delivers daily.
+                Browse their words, then book your own visit.
+              </p>
+            </div>
+          </div>
+
+          <FeaturedReviewWall reviews={featuredReviews} />
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <a
+              href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-black px-6 py-3 text-white text-sm font-semibold hover:bg-black/90 transition">
+                Schedule Your Visit
+              </button>
+            </a>
+            <a href="tel:+13236592912" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition">
+                Call The Concierge
+              </button>
+            </a>
+          </div>
+
           <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
             <ReviewWidget />
           </div>

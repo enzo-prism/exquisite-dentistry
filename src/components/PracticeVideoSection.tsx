@@ -1,6 +1,8 @@
 
 import React from 'react';
 import PracticeVideoPlayer from './PracticeVideoPlayer';
+import ClientReviewCarousel from './ClientReviewCarousel';
+import { featuredReviews } from '@/data/featuredReviews';
 
 const PRACTICE_VIDEO = {
   source: 'https://videos-hazel-eta.vercel.app/trailer.mp4',
@@ -30,6 +32,8 @@ const PracticeVideoSection: React.FC = () => {
             title={PRACTICE_VIDEO.title}
           />
         </div>
+        <ClientReviewCarousel reviews={featuredReviews.slice(0, 6)} variant="compact" />
+
       </div>
     </section>
   );
