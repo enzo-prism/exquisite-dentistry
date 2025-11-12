@@ -129,7 +129,7 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
-    { to: '/tour', label: 'Studio Tour' },
+    { to: '/tour', label: 'Virtual Tour' },
   ];
 
   const servicesDropdown = [
@@ -401,7 +401,7 @@ const MobileMenuPanel = ({
   return (
     <div 
       ref={panelRef}
-      className={`relative h-full w-full bg-black flex flex-col pt-10 sm:pt-12 pb-6 sm:pb-8 transform transition-transform duration-300 will-change-transform ${
+      className={`relative h-full w-full bg-black flex flex-col pt-12 sm:pt-14 pb-6 sm:pb-8 transform transition-transform duration-300 will-change-transform ${
         gestureState.isDragging ? 'transition-none' : ''
       }`}
       style={{ 

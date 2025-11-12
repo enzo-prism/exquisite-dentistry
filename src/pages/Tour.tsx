@@ -23,6 +23,17 @@ const studioImages = [
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.41_AM_nk055e.png', alt: 'Luxe beverage station second angle', aspectClass: 'aspect-[4/3]' }
 ];
 
+const getImageIdentifier = (src: string) => {
+  const withoutQuery = src.split('?')[0];
+  const parts = withoutQuery.split('/');
+  return parts[parts.length - 1] ?? withoutQuery;
+};
+
+const uniqueStudioImages = studioImages.filter((image, index, self) => {
+  const identifier = getImageIdentifier(image.src);
+  return self.findIndex((item) => getImageIdentifier(item.src) === identifier) === index;
+});
+
 const Tour = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,7 +89,7 @@ const Tour = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 [column-fill:_balance]">
-            {studioImages.map((image) => (
+            {uniqueStudioImages.map((image) => (
               <div
                 key={image.src}
                 className="break-inside-avoid-column rounded-3xl border border-black/5 bg-white shadow-[0_25px_60px_-35px_rgba(15,23,42,0.25)] overflow-hidden"
