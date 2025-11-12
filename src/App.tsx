@@ -7,14 +7,18 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
+import useRoutePrefetch from "@/hooks/use-route-prefetch";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
+import RouteSkeleton from "@/components/skeletons/RouteSkeleton";
+import PageTransition from '@/components/ui/page-transition';
+import ScrollProgress from '@/components/ScrollProgress';
+import Index from '@/pages/Index';
 
-// Lazy load all routes for code splitting
-const Index = lazy(() => import("@/pages/Index"));
+// Lazy load subsequent routes for code splitting
 const About = lazy(() => import("@/pages/About"));
 const Tour = lazy(() => import("@/pages/Tour"));
 const Services = lazy(() => import("@/pages/Services"));
@@ -53,17 +57,19 @@ const queryClient = new QueryClient({
   },
 });
 
-import PageLoader from '@/components/ui/page-loader';
-import PageTransition from '@/components/ui/page-transition';
-import ScrollProgress from '@/components/ScrollProgress';
-
-const PageLoaderComponent = () => {
-  return <PageLoader variant="minimal" message="Loading..." />;
-};
+const withRouteSkeleton = (
+  Component: React.LazyExoticComponent<React.ComponentType<Record<string, unknown>>>,
+  props: React.ComponentProps<typeof RouteSkeleton>
+) => (
+  <Suspense fallback={<RouteSkeleton {...props} />}>
+    <Component />
+  </Suspense>
+);
 
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap';
+  useRoutePrefetch();
   
   // Fix section gaps and background consistency
   useSectionFix(300);
@@ -86,101 +92,232 @@ const AppRoutes = () => {
         {!isSitemapPage ? (
           <PageTransition>
             <Routes>
-              <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Index />
-              </Suspense>} />
-              <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
-                <About />
-              </Suspense>} />
-              <Route path="/tour" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Tour />
-              </Suspense>} />
-              <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Services />
-              </Suspense>} />
-              <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
-                <ClientExperience />
-              </Suspense>} />
-              <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Testimonials />
-              </Suspense>} />
-              <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Contact />
-              </Suspense>} />
-              <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Wedding />
-              </Suspense>} />
-              <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Graduation />
-              </Suspense>} />
-              <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}>
-                <FAQs />
-              </Suspense>} />
-              <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}>
-                <SmileGallery />
-              </Suspense>} />
+              <Route path="/" element={<Index />} />
+              <Route
+                path="/about"
+                element={withRouteSkeleton(About, {
+                  title: 'About Exquisite Dentistry',
+                  description: 'Meet Dr. Aguil and explore our Beverly Hills studio.',
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/tour"
+                element={withRouteSkeleton(Tour, {
+                  title: 'Office Gallery',
+                  description: 'Step inside our private suites and finishing studio.',
+                  variant: 'gallery'
+                })}
+              />
+              <Route
+                path="/services"
+                element={withRouteSkeleton(Services, {
+                  title: 'Cosmetic & restorative dentistry services',
+                  description: 'Full-smile makeovers, Invisalign, whitening, and more.'
+                })}
+              />
+              <Route
+                path="/client-experience"
+                element={withRouteSkeleton(ClientExperience, {
+                  title: 'Client Experience',
+                  description: 'See how we pair five-star hospitality with dentistry.'
+                })}
+              />
+              <Route
+                path="/testimonials"
+                element={withRouteSkeleton(Testimonials, {
+                  title: 'Client Testimonials',
+                  description: 'Real stories from our Beverly Hills patients.',
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/contact"
+                element={withRouteSkeleton(Contact, {
+                  title: 'Contact Exquisite Dentistry',
+                  description: 'Call, text, or schedule your private consultation.',
+                  showCTA: false,
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/wedding"
+                element={withRouteSkeleton(Wedding, {
+                  title: 'Wedding Smile Plan',
+                  description: 'Timeline-driven cosmetic plans for events.'
+                })}
+              />
+              <Route
+                path="/graduation"
+                element={withRouteSkeleton(Graduation, {
+                  title: 'Graduation Smile Plan',
+                  description: 'Seasonal cosmetic packages for grads.'
+                })}
+              />
+              <Route
+                path="/faqs"
+                element={withRouteSkeleton(FAQs, {
+                  title: 'FAQs',
+                  description: 'Answers to smile planning, financing, and care questions.',
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/smile-gallery"
+                element={withRouteSkeleton(SmileGallery, {
+                  title: 'Smile Gallery',
+                  description: 'Before-and-after transformations.',
+                  variant: 'gallery'
+                })}
+              />
               
-              <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Blog />
-              </Suspense>} />
-              <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
-                <BlogPostContainer />
-              </Suspense>} />
+              <Route
+                path="/blog"
+                element={withRouteSkeleton(Blog, {
+                  title: 'Exquisite Dentistry Blog',
+                  description: 'Guides on veneers, whitening, and smile maintenance.',
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/blog/:slug"
+                element={withRouteSkeleton(BlogPostContainer, {
+                  title: 'Loading article',
+                  description: 'Preparing detailed insights.',
+                  variant: 'article'
+                })}
+              />
               
-              <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
-                <PrivacyPolicy />
-              </Suspense>} />
-              <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}>
-                <TermsOfService />
-              </Suspense>} />
-              <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
-                <HipaaCompliance />
-              </Suspense>} />
+              <Route
+                path="/privacy-policy"
+                element={withRouteSkeleton(PrivacyPolicy, {
+                  title: 'Privacy Policy',
+                  description: 'How we secure patient information.',
+                  showCTA: false,
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/terms-of-service"
+                element={withRouteSkeleton(TermsOfService, {
+                  title: 'Terms of Service',
+                  description: 'Understand the terms for using our site.',
+                  showCTA: false,
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/hipaa-compliance"
+                element={withRouteSkeleton(HipaaCompliance, {
+                  title: 'HIPAA Compliance',
+                  description: 'Our safeguards for healthcare data.',
+                  showCTA: false,
+                  variant: 'article'
+                })}
+              />
               
-              <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Veneers />
-              </Suspense>} />
-              <Route path="/veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
-                <VeneersLosAngeles />
-              </Suspense>} />
-              <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
-                <ZoomWhitening />
-              </Suspense>} />
-              <Route path="/invisalign" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Invisalign />
-              </Suspense>} />
-              <Route path="/itero-scanner" element={<Suspense fallback={<PageLoaderComponent />}>
-                <IteroScanner />
-              </Suspense>} />
-              <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
-                <TeethWhitening />
-              </Suspense>} />
-              <Route path="/dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
-                <DentalImplants />
-              </Suspense>} />
-              <Route path="/cosmetic-dentistry" element={<Suspense fallback={<PageLoaderComponent />}>
-                <CosmeticDentistry />
-              </Suspense>} />
-              <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
-                <EmergencyDentist />
-              </Suspense>} />
+              <Route
+                path="/veneers"
+                element={withRouteSkeleton(Veneers, {
+                  title: 'Porcelain Veneers',
+                  description: 'Custom treatment plans for camera-ready smiles.'
+                })}
+              />
+              <Route
+                path="/veneers-los-angeles"
+                element={withRouteSkeleton(VeneersLosAngeles, {
+                  title: 'LA Veneers Studio',
+                  description: 'Tailored veneer experiences for Angelenos.'
+                })}
+              />
+              <Route
+                path="/zoom-whitening"
+                element={withRouteSkeleton(ZoomWhitening, {
+                  title: 'Zoom Whitening',
+                  description: 'Accelerated whitening protocols.'
+                })}
+              />
+              <Route
+                path="/invisalign"
+                element={withRouteSkeleton(Invisalign, {
+                  title: 'Invisalign',
+                  description: 'Discreet aligner therapy with concierge visits.'
+                })}
+              />
+              <Route
+                path="/itero-scanner"
+                element={withRouteSkeleton(IteroScanner, {
+                  title: 'iTero Scanner',
+                  description: 'Precision scans for aligners and veneers.',
+                  showCTA: false
+                })}
+              />
+              <Route
+                path="/teeth-whitening"
+                element={withRouteSkeleton(TeethWhitening, {
+                  title: 'Teeth Whitening',
+                  description: 'At-home and in-studio whitening plans.'
+                })}
+              />
+              <Route
+                path="/dental-implants"
+                element={withRouteSkeleton(DentalImplants, {
+                  title: 'Dental Implants',
+                  description: 'Smile restorations that feel natural.'
+                })}
+              />
+              <Route
+                path="/cosmetic-dentistry"
+                element={withRouteSkeleton(CosmeticDentistry, {
+                  title: 'Cosmetic Dentistry',
+                  description: 'Layered treatments for total-smile glow-ups.'
+                })}
+              />
+              <Route
+                path="/emergency-dentist"
+                element={withRouteSkeleton(EmergencyDentist, {
+                  title: 'Emergency Dentist',
+                  description: 'Same-day support for urgent smile concerns.'
+                })}
+              />
               
-              <Route path="/transformation-stories" element={<Suspense fallback={<PageLoaderComponent />}>
-                <TransformationStories />
-              </Suspense>} />
-              <Route path="/transformation-stories/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
-                <TransformationStoryPage />
-              </Suspense>} />
-              <Route path="/share-your-story" element={<Suspense fallback={<PageLoaderComponent />}>
-                <ShareYourStory />
-              </Suspense>} />
+              <Route
+                path="/transformation-stories"
+                element={withRouteSkeleton(TransformationStories, {
+                  title: 'Transformation Stories',
+                  description: 'Behind-the-scenes of our favorite glow-ups.',
+                  variant: 'gallery'
+                })}
+              />
+              <Route
+                path="/transformation-stories/:slug"
+                element={withRouteSkeleton(TransformationStoryPage, {
+                  title: 'Transformation Story',
+                  description: 'Previewing the featured journey.',
+                  variant: 'article'
+                })}
+              />
+              <Route
+                path="/share-your-story"
+                element={withRouteSkeleton(ShareYourStory, {
+                  title: 'Share Your Story',
+                  description: 'Tell us about your goals before visiting.',
+                  variant: 'article'
+                })}
+              />
             </Routes>
           </PageTransition>
         ) : (
           <Routes>
-            <Route path="/sitemap" element={<Suspense fallback={<PageLoaderComponent />}>
-              <StaticSitemap />
-          </Suspense>} />
+            <Route
+              path="/sitemap"
+              element={withRouteSkeleton(StaticSitemap, {
+                title: 'Sitemap',
+                description: 'Indexing all public-facing pages.',
+                showCTA: false,
+                variant: 'article'
+              })}
+            />
           </Routes>
         )}
       </main>

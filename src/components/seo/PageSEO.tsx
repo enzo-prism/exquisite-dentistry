@@ -2,8 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
-const BASE_URL = 'https://exquisitedentistryla.com';
-
 interface PageSEOProps {
   title: string;
   description: string; // REQUIRED - no default allowed
@@ -61,31 +59,7 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   noindex = false,
   nofollow = false
 }) => {
-  // Build canonical URL with trailing slash policy
-  const buildCanonicalUrl = (inputPath: string) => {
-    // Start with base URL
-    let url = BASE_URL;
-    
-    // Add path if provided
-    if (inputPath) {
-      // Ensure path starts with /
-      const cleanPath = inputPath.startsWith('/') ? inputPath : `/${inputPath}`;
-      url += cleanPath;
-    }
-    
-    // Enforce trailing slash policy (non-root pages get trailing slash)
-    if (url === BASE_URL) {
-      // Root URL should not have trailing slash
-      return url;
-    } else if (!url.endsWith('/')) {
-      // All non-root pages should have trailing slash
-      return url + '/';
-    }
-    
-    return url;
-  };
-
-  const canonicalUrl = buildCanonicalUrl(path);
+  const canonicalUrl = getCanonicalUrl(path || '/');
   const sanitizedDescription = toMeta(description);
 
   // Dev tracking

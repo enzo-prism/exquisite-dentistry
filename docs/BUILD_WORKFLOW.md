@@ -24,14 +24,14 @@ npm run dev          # Vite dev server @ http://localhost:5173
 | --- | --- | --- |
 | 1 | `npm run generate:blog` | Only when files inside `Blog-Content/` change. |
 | 2 | `npm run lint` | ESLint (TS + React Hooks). Add `-- --fix` to auto-fix style issues. |
-| 3 | `npm run build` | Standard Vite production bundle, writes to `dist/`. |
+| 3 | `npm run build` | Builds Vite assets **and** prerenders priority routes via `react-snap` so crawlers get HTML. |
 | 4 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
 | 5 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
 | 6 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
 
 ## Image & Asset Pipeline
 
-- `npm run build:prod` = `optimize:images` + `vite build`. Use this for Netlify parity or whenever you add media under `public/lovable-uploads/`. The optimizer writes WebP derivatives into `public/optimized/`; never commit `dist/`.
+- `npm run build:prod` = `optimize:images` + `vite build` + prerender. Use this for Netlify parity or whenever you add media under `public/lovable-uploads/`. The optimizer writes WebP derivatives into `public/optimized/`; never commit `dist/`.
 - The Sharp script skips files that already have an optimized counterpart, so rerunning it is safe but can take a couple minutes on large batches. Keep an eye on git status afterwards—no changes should appear because optimized files live under `public/`.
 
 ## Manual QA Scenarios
