@@ -114,6 +114,8 @@ npm run preview
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
+>
+> Need the canonical + sitemap checklist? See `docs/SEO_OPERATIONS.md`.
 
 ## Layout Utilities
 

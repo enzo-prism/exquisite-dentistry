@@ -49,6 +49,7 @@ Quick rules:
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
 - **Suspense fallbacks**: `withRouteSkeleton` in `src/App.tsx` renders semantic skeletons instead of spinners. When adding routes, supply meaningful titles/descriptions so prerender + crawlers always see real markup.
 - **Route prefetch**: `useRoutePrefetch` warms next-hop bundles. Extend the loader lists when adding high-traffic routes so navigation stays instant.
+- **Sitemap & canonical playbook**: When touching SEO-critical code, skim `docs/SEO_OPERATIONS.md` for the canonical policy, sitemap steps, and verification checklist.
 
 ## Testing Expectations
 
