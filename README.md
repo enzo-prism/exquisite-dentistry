@@ -116,6 +116,8 @@ npm run preview
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
 >
 > Need the canonical + sitemap checklist? See `docs/SEO_OPERATIONS.md`.
+>
+> Deploying via Lovable? Follow `docs/LOVABLE_DEPLOYMENT.md` for the strict build + prerender checklist.
 
 ## Layout Utilities
 

@@ -29,6 +29,8 @@ npm run dev          # Vite dev server @ http://localhost:5173
 | 5 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
 | 6 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
 
+> Lovable.dev runs the same `npm run lint` + `npm run build` pipeline. See `docs/LOVABLE_DEPLOYMENT.md` for the strict deploy checklist.
+
 ## Image & Asset Pipeline
 
 - `npm run build:prod` = `optimize:images` + `vite build` + prerender. Use this for Netlify parity or whenever you add media under `public/lovable-uploads/`. The optimizer writes WebP derivatives into `public/optimized/`; never commit `dist/`.
