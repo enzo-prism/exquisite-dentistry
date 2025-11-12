@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { BlogPost, getRelatedPosts } from '@/data/blogPosts';
+import { getRelatedPosts } from '@/data/blogPosts';
+import { BlogPost } from '@/data/blogTypes';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 

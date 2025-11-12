@@ -2,7 +2,7 @@
 import React from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { BlogPost } from '@/data/blogPosts';
+import { BlogPost } from '@/data/blogTypes';
 
 interface BlogMetaProps {
   post: BlogPost;

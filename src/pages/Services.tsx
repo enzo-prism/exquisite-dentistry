@@ -101,7 +101,7 @@ const Services = () => {
   type TechnologyHighlight = {
     title: string;
     description: string;
-    Icon?: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
+    Icon?: React.ComponentType<{ className?: string; size?: string | number; strokeWidth?: number }>;
     iconLabel?: string;
     cta?: {
       label: string;
