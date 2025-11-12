@@ -25,27 +25,27 @@ const ClientExperience = () => {
     {
       title: "Spa Arrival Ritual",
       description: "Warm lavender towels, curated playlists, and sparkling refreshers ease you in before treatment begins.",
-      icon: <Sparkles size={22} />
+      icon: <Sparkles size={20} />
     },
     {
       title: "Convenient Scheduling",
       description: "Same-day emergency appointments, early morning/lunchtime slots, and family block appointments.",
-      icon: <Calendar size={24} />
+      icon: <Calendar size={20} />
     },
     {
       title: "24/7 Online Booking",
       description: "Book appointments anytime, day or night, through our convenient online scheduling system.",
-      icon: <Clock size={24} />
+      icon: <Clock size={20} />
     },
     {
       title: "Entertainment Options",
       description: "Stream your favorite shows or music during treatment to help you relax and enjoy your visit.",
-      icon: <Headphones size={24} />
+      icon: <Headphones size={20} />
     },
     {
       title: "Entertainment Studio",
       description: "Watch Netflix, Apple TV, or curated meditations with noise-canceling headphones and ceiling screens.",
-      icon: <Film size={22} />
+      icon: <Film size={20} />
     }
   ];
 
@@ -180,7 +180,7 @@ const ClientExperience = () => {
                       key={item.title}
                       className="snap-center min-w-[260px] sm:min-w-[280px] lg:min-w-[320px] p-6 rounded-2xl border border-black/5 shadow-sm bg-white flex flex-col gap-4"
                     >
-                      <div className="w-12 h-12 rounded-full bg-gold/10 text-gold flex items.center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 text-gold flex items-center justify-center flex-shrink-0">
                         {item.icon}
                       </div>
                       <div>
