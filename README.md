@@ -117,6 +117,7 @@ npm run preview
 
 - Use the shared `.section-container` helper (defined in `src/index.css`) to constrain long-form sections. It centers content, caps width at ~1200px, and applies responsive horizontal padding via `clamp()` so mobile layouts never hug the viewport edges.
 - Each major section should include `py-16 md:py-24` on the `<section>` element, then wrap inner grids or stacks in a `<div className="section-container">`. This keeps vertical rhythm consistent while letting you alternate backgrounds (white, gray, black) for visual variety.
+- When designing carousels (e.g., Comfort Menu, Comfort Highlights), use the built-in gradient hint classes sparingly. On mobile, hide the fades entirely with `hidden md:block` so overlays never cover card content.
 - When you need a tighter column, nest a `max-w-3xl mx-auto text-center` block inside the section container rather than hardcoding margins. That pattern already ships on `/client-experience`, `/about`, `/services`, and blog landing pages—reuse it whenever you add storytelling blocks.
 
 ## Button & CTA Hover System
@@ -153,6 +154,7 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - **Hours + address single source of truth** – the contact page mirrors the `BUSINESS_HOURS` array from `src/constants/contact.ts`. Update that file once to keep the hero sidebar, footer, and any future Schema.org blocks consistent.
 - **Optional phone field** – the UI exposes a non-required `phone` input that only gets appended to the Formspree payload when populated. When wiring up new fields follow the same pattern (trim, check for content, then `formData.append`) so empty strings never overwrite CRM data downstream.
 - **Regression checklist** – when editing the page, run `npm run lint` plus a manual pass of (1) hero CTA scroll, (2) successful Formspree submission (watch for a 200 response), and (3) mobile viewport in devtools to confirm the grid collapses cleanly. Add those notes to PR descriptions so future contributors know what was validated.
+- **Carousels & overlays** – when you convert a grid to a horizontal snap carousel, add gradient hints only on larger screens (`hidden md:block`) and match the gradient color to the section background (for dark sections use `from-black/80`). This avoids the “white curtain” effect we fixed on the Comfort Menu.
 
 ## I want to use a custom domain - is that possible?
 
