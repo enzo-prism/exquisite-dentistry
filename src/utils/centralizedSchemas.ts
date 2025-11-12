@@ -131,7 +131,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   logo: 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp',
   sameAs: [
     'https://www.instagram.com/exquisitedentistryLA',
-    'https://www.facebook.com/exquisitedentistryLA',
+    'https://www.facebook.com/ExquisiteDentistry',
     'https://www.yelp.com/biz/exquisite-dentistry-los-angeles',
     'https://maps.google.com/ExquisiteDentistryLA',
     GOOGLE_MAPS_URL

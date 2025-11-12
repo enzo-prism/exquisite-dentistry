@@ -130,7 +130,7 @@ const DentalImplants = () => {
           title="Dental Implants Los Angeles"
           subtitle="Rebuild your smile with precision-engineered implants and luxury-level care."
           primaryCta={{
-            text: "Book an Appointment",
+            text: "Book a Dental Implant Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"

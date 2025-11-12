@@ -13,8 +13,8 @@ export const ADDRESS = '6227 Wilshire Blvd, Los Angeles, CA 90048';
 // Social media URLs
 export const SOCIAL_MEDIA = {
   instagram: 'https://www.instagram.com/exquisitedentistryla/',
-  facebook: 'https://www.facebook.com/exquisitedentistryla',
-  youtube: 'https://www.youtube.com/@exquisitedentistryla'
+  facebook: 'https://www.facebook.com/ExquisiteDentistry',
+  youtube: 'https://www.youtube.com/@exquisitedentistryla7390'
 } as const;
 
 // Business hours (matches footer presentation)

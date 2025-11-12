@@ -101,7 +101,7 @@ const TeethWhitening = () => {
           title="Teeth Whitening Los Angeles"
           subtitle="Three luminous whitening paths designed for fast-paced LA lives."
           primaryCta={{
-            text: "Book an Appointment",
+            text: "Book a Teeth Whitening Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"

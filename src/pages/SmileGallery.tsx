@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ import { closeUpTransformations } from '@/data/closeUpTransformations';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { SCHEDULING_URL } from '@/constants/urls';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -20,6 +21,14 @@ const SmileGallery = () => {
   }, []);
   
   const { isMobile } = useBreakpoint();
+  const sliderSectionRef = useRef<HTMLElement | null>(null);
+
+  const handleViewGallery = () => {
+    sliderSectionRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   return (
     <>
@@ -34,11 +43,18 @@ const SmileGallery = () => {
 
       {/* Hero Section with VideoHero */}
       <VideoHero 
-        title={<>Smile <span className="text-gold">Transformations</span></>} 
+        title={<>Smile <span className="text-gold">Gallery</span></>} 
         subtitle="See the incredible results our patients have achieved with our expert dental care." 
         primaryCta={{
-          text: "Schedule a Consultation"
-        }} 
+          text: "View Gallery",
+          onClick: handleViewGallery
+        }}
+        secondaryCta={{
+          text: "Schedule a Consultation",
+          href: SCHEDULING_URL,
+          target: "_blank",
+          rel: "noopener noreferrer"
+        }}
         height="medium" 
         badgeText="SMILE GALLERY" 
         scrollIndicator={true} 
@@ -48,9 +64,9 @@ const SmileGallery = () => {
       <section className="bg-white py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold mb-4">Patient Success Stories</h2>
+            <h2 className="text-3xl font-semibold mb-4">Client Smile Transformations</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Real transformations from our patients who trusted us with their smiles
+              Real transformations from our clients who trusted us with their smiles
             </p>
           </div>
           
@@ -64,7 +80,11 @@ const SmileGallery = () => {
       </section>
 
       {/* Up Close Transformations Section */}
-      <section className="bg-gray-50 py-12 md:py-20">
+      <section
+        className="bg-gray-50 py-12 md:py-20"
+        ref={sliderSectionRef}
+        id="smile-gallery-sliders"
+      >
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>

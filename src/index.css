@@ -145,6 +145,23 @@ body {
   background-color: hsl(var(--gold) / 0.9);
 }
 
+/* Section container utility */
+.section-container {
+  max-width: min(90vw, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    max-width: 1240px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
 /* Separator decorative element */
 .separator {
   width: 60px;

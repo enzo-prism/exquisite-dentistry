@@ -17,7 +17,10 @@ interface CtaButtonsProps {
   };
   secondaryCta?: {
     text: string;
-    href: string;
+    href?: string;
+    onClick?: () => void;
+    target?: string;
+    rel?: string;
   };
   isMobile?: boolean;
 }
@@ -87,13 +90,19 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   return (
     <div className={containerClass}>
       {renderPrimaryButton()}
-      
-      {secondaryCta && (
-        <Link to={secondaryCta.href} className={isMobile ? "w-full sm:w-auto" : ""}>
+      {secondaryCta && (() => {
+        const hasHref = typeof secondaryCta.href === 'string' && secondaryCta.href.trim().length > 0;
+        const shouldRenderStandaloneButton = Boolean(secondaryCta.onClick && !hasHref);
+        const buttonHref = hasHref ? secondaryCta.href! : undefined;
+        const wrapperClass = isMobile ? "w-full sm:w-auto" : "";
+
+        const ButtonContent = () => (
           <Button 
             variant="black" 
             size={buttonSize}
             className={`group ${isMobile ? 'w-full' : ''}`}
+            onClick={secondaryCta.onClick}
+            type="button"
           >
             {secondaryCta.text}
             <ArrowRight 
@@ -101,8 +110,39 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
             />
           </Button>
-        </Link>
-      )}
+        );
+
+        if (shouldRenderStandaloneButton) {
+          return (
+            <div className={wrapperClass}>
+              <ButtonContent />
+            </div>
+          );
+        }
+
+        if (!buttonHref) {
+          return null;
+        }
+
+        if (buttonHref.startsWith('http')) {
+          return (
+            <a 
+              href={buttonHref} 
+              target={secondaryCta.target || "_blank"} 
+              rel={secondaryCta.rel || "noopener noreferrer"}
+              className={wrapperClass}
+            >
+              <ButtonContent />
+            </a>
+          );
+        }
+
+        return (
+          <Link to={buttonHref} className={wrapperClass}>
+            <ButtonContent />
+          </Link>
+        );
+      })()}
     </div>
   );
 };

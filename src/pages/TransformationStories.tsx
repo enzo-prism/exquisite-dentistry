@@ -18,15 +18,15 @@ const TransformationStoriesPage: React.FC = () => {
       />
       
       <VideoHero 
-        title="Patient Transformation Stories"
-        subtitle="Real patients, real transformations, real stories of confidence and care"
+        title="Client Transformation Stories"
+        subtitle="Real clients, real transformations, real stories of confidence and care"
         primaryCta={{
-          text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          text: "View Stories",
+          href: "/transformation-stories#stories"
         }}
         secondaryCta={{
-          text: "View Smile Gallery",
-          href: "/smile-gallery"
+          text: "Schedule a Consultation",
+          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
         }}
       />
       

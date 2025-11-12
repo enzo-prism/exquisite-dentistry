@@ -68,7 +68,7 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
     ],
     sameAs: [
       'https://www.instagram.com/exquisitedentistryla/',
-      'https://www.facebook.com/exquisitedentistryla'
+      'https://www.facebook.com/ExquisiteDentistry'
     ],
     founder: {
       '@type': 'Person',

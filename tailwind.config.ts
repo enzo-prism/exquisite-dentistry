@@ -109,8 +109,8 @@ export default {
 					'50%': { transform: 'translate3d(0, -10px, 0)' }
 				},
 				'pulse-subtle': {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.85' }
+					'0%, 100%': { transform: 'scale3d(1, 1, 1)', opacity: '1' },
+					'50%': { transform: 'scale3d(1.015, 1.015, 1)', opacity: '1' }
 				},
 				'slide-up': {
 					'0%': { opacity: '0', transform: 'translate3d(0, 20px, 0)' },

@@ -120,7 +120,7 @@ const CosmeticDentistry = () => {
           title="Cosmetic Dentistry Los Angeles"
           subtitle="Curated smile transformations for tastemakers, entrepreneurs, and artists."
           primaryCta={{
-            text: "Book an Appointment",
+            text: "Book a Cosmetic Dentistry Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"

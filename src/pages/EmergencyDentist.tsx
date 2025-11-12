@@ -121,9 +121,9 @@ const EmergencyDentist = () => {
         title="Emergency Dentist Los Angeles"
         subtitle="Immediate, compassionate care when dental emergencies disrupt your day."
         primaryCta={{
-          text: "Book an Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
+          text: "Book an Emergency Dental Appointment",
+          href: SCHEDULING_URL,
+          target: "_blank",
           rel: "noopener noreferrer"
         }}
         height="medium"

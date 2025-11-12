@@ -18,7 +18,10 @@ export interface VideoHeroProps {
   };
   secondaryCta?: {
     text: string;
-    href: string;
+    href?: string;
+    onClick?: () => void;
+    target?: string;
+    rel?: string;
   };
   overlayColor?: 'dark' | 'light' | 'gradient' | 'none';
   className?: string;

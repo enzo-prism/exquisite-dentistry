@@ -28,7 +28,7 @@ const SmileGalleryPreview: React.FC = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
             <Camera className="w-4 h-4" />
-            Real Results from Real Patients
+            Real Results from Real Clients
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -38,7 +38,7 @@ const SmileGalleryPreview: React.FC = () => {
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover the life-changing transformations our patients have experienced. 
+            Discover the life-changing transformations our clients have experienced. 
             From subtle enhancements to complete smile makeovers, see the dramatic 
             before and after results that speak for themselves.
           </p>
@@ -53,7 +53,7 @@ const SmileGalleryPreview: React.FC = () => {
           className="mb-16"
         >
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Patient Success Stories
+            Client Smile Transformations
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredPatients.map((patient, index) => (

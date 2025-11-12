@@ -147,7 +147,7 @@ const Invisalign = () => {
           title="Invisalign® Clear Aligners"
           subtitle="Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles."
           primaryCta={{
-            text: "Book an Appointment",
+            text: "Book an Invisalign Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"

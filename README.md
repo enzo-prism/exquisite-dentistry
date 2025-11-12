@@ -113,6 +113,12 @@ npm run preview
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 
+## Layout Utilities
+
+- Use the shared `.section-container` helper (defined in `src/index.css`) to constrain long-form sections. It centers content, caps width at ~1200px, and applies responsive horizontal padding via `clamp()` so mobile layouts never hug the viewport edges.
+- Each major section should include `py-16 md:py-24` on the `<section>` element, then wrap inner grids or stacks in a `<div className="section-container">`. This keeps vertical rhythm consistent while letting you alternate backgrounds (white, gray, black) for visual variety.
+- When you need a tighter column, nest a `max-w-3xl mx-auto text-center` block inside the section container rather than hardcoding margins. That pattern already ships on `/client-experience`, `/about`, `/services`, and blog landing pages—reuse it whenever you add storytelling blocks.
+
 ## Button & CTA Hover System
 
 Primary CTAs share a single interaction model so motion feels consistent across hero sections, the navbar, and conversion widgets:

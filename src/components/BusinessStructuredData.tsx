@@ -66,7 +66,7 @@ const BusinessStructuredData: React.FC = () => {
     ],
     sameAs: [
       'https://www.instagram.com/exquisitedentistryla/',
-      'https://www.facebook.com/exquisitedentistryla'
+      'https://www.facebook.com/ExquisiteDentistry'
     ],
     medicalSpecialty: [
       'Cosmetic Dentistry',

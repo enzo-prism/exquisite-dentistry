@@ -157,7 +157,7 @@ const ZoomWhitening = () => {
           title="Zoom Teeth Whitening"
           subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
           primaryCta={{
-            text: "Book an Appointment",
+            text: "Book a Zoom Whitening Appointment",
             href: SCHEDULING_URL,
             target: "_blank",
             rel: "noopener noreferrer"

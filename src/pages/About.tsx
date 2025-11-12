@@ -346,7 +346,7 @@ const About = () => {
               Schedule your consultation with Dr. Aguil today and take the first step towards the smile you've always wanted.
             </p>
             <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="animate-pulse-subtle">Book an Appointment</Button>
+              <Button size="lg" className="motion-safe:animate-pulse-subtle">Book an Appointment</Button>
             </a>
           </div>
         </div>

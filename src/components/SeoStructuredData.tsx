@@ -39,7 +39,7 @@ const SeoStructuredData: React.FC = () => {
       }
     ],
     sameAs: [
-      'https://www.facebook.com/ExquisiteDentistry/',
+      'https://www.facebook.com/ExquisiteDentistry',
       'https://www.instagram.com/exquisitedentistryla/',
       'https://exquisiteveneersla.com/'
     ],

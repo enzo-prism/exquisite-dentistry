@@ -317,10 +317,14 @@ const Services = () => {
         title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
         subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
-          text: "Book an Appointment",
+          text: "Book a Dental Services Appointment",
           href: SCHEDULING_URL,
           target: "_blank",
           rel: "noopener noreferrer"
+        }}
+        secondaryCta={{
+          text: "View Smile Gallery",
+          href: "/smile-gallery"
         }}
         overlayColor="gradient" 
         height="medium" 
@@ -881,7 +885,7 @@ const Services = () => {
               Schedule your consultation today and discover how our comprehensive dental services can enhance your smile and oral health.
             </p>
             <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button size="lg">Book an Appointment</Button>
+              <Button size="lg">Book a Dental Services Appointment</Button>
             </a>
           </div>
         </div>
