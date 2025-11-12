@@ -2,6 +2,8 @@ import { SCHEDULING_URL } from '../constants/urls';
 import type { BlogPost } from './blogTypes';
 import { generatedBlogPosts } from './generatedBlogPosts';
 
+export type { BlogPost };
+
 const baseBlogPosts: BlogPost[] = [
   {
     id: '11',

@@ -20,7 +20,7 @@ export const useRevealOnScroll = ({
   delayClass,
   animation = 'up'
 }: RevealOptions = {}) => {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | HTMLHeadingElement | HTMLParagraphElement | null>(null);
   const [isVisible, setIsVisible] = useState(prefersReducedMotion());
 
   useEffect(() => {

@@ -29,19 +29,23 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
 
     return {
       id: `${story.id}-testimonial`,
-      type: 'vimeo',
+      type: 'vimeo' as const,
       vimeoId,
       thumbnailUrl,
-      title: story.title
+      title: story.title,
+      uploadDate: '2024-01-01',
+      duration: 'PT2M0S'
     };
   }
 
   return {
     id: `${story.id}-testimonial`,
-    type: 'file',
+    type: 'file' as const,
     videoUrl: story.video.src,
     thumbnailUrl,
-    title: story.title
+    title: story.title,
+    uploadDate: '2024-01-01',
+    duration: 'PT2M0S'
   };
 });
 

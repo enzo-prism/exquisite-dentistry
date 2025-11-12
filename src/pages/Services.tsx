@@ -3,6 +3,7 @@ import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
+import type { LucideIcon } from 'lucide-react';
 import {
   Smile,
   Shield,
@@ -101,7 +102,7 @@ const Services = () => {
   type TechnologyHighlight = {
     title: string;
     description: string;
-    Icon?: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
+    Icon?: LucideIcon;
     iconLabel?: string;
     cta?: {
       label: string;
