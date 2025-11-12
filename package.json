@@ -5,16 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run prerender",
+    "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.js",
-    "build:prod": "npm run optimize:images && vite build && npm run prerender",
+    "build:prod": "npm run optimize:images && vite build",
     "generate:blog": "node scripts/generate-blog-posts.mjs",
-    "check:seo": "node scripts/seo-smoke.mjs",
-    "prerender": "react-snap",
-    "postinstall": "patch-package"
+    "check:seo": "node scripts/seo-smoke.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -88,39 +86,12 @@
     "globals": "^15.9.0",
     "lovable-tagger": "^1.1.7",
     "marked": "^12.0.2",
-    "patch-package": "^8.0.1",
     "postcss": "^8.4.47",
-    "puppeteer": "^22.11.0",
-    "react-snap": "^1.23.0",
     "sharp": "^0.33.0",
     "tailwindcss": "^3.4.11",
     "terser": "^5.24.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
-  },
-  "overrides": {
-    "puppeteer": "^22.11.0"
-  },
-  "reactSnap": {
-    "source": "dist",
-    "crawl": false,
-    "include": [
-      "/",
-      "/about",
-      "/services",
-      "/tour",
-      "/zoom-whitening",
-      "/smile-gallery",
-      "/contact",
-      "/blog",
-      "/veneers",
-      "/dental-implants"
-    ],
-    "skipThirdPartyRequests": true,
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ]
   }
 }

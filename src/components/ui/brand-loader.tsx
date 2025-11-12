@@ -20,7 +20,7 @@ const BrandLoader: React.FC<BrandLoaderProps> = ({
   subMessage,
   className,
   showLogo = false,
-  timeout = 3000, // reduce default timeout to keep loaders brief
+  timeout = 30000, // 30 second default timeout
   onTimeout
 }) => {
   const { ref } = useHardwareAcceleration();

@@ -33,8 +33,8 @@ Quick rules:
 | --- | --- | --- |
 | `npm run dev` | Any interactive work | Hot reload; picks up `.env`. |
 | `npm run lint` | Before every PR/push | ESLint (TS + React Hooks). Add `-- --fix` when safe. |
-| `npm run build` | Mandatory gate | Builds Vite assets **and** prerenders priority routes via `react-snap`. |
-| `npm run build:prod` | Media/launch parity | Optimizes images, builds, then prerenders (Netlify parity). |
+| `npm run build` | Mandatory gate | Vite production bundle → `dist/`. |
+| `npm run build:prod` | Media/launch parity | Runs Sharp optimizer + build. Mirrors Netlify. |
 | `npm run preview` | Manual QA | Serves `dist/` on `http://localhost:4173`. |
 | `npm run generate:blog` | After editing `Blog-Content/` | Rebuilds `src/data/generatedBlogPosts.ts`. |
 | `npm run check:seo` | Before launch | Ensures canonical + JSON-LD tags exist in build. |
@@ -47,10 +47,6 @@ Quick rules:
 - **Blog updates**: Drop markdown/text exports into `Blog-Content/exq_dental_blog_posts`, run `npm run generate:blog`, and commit the regenerated file.
 - **Animations/perf**: Hooks like `use-mobile-gestures`, `use-hardware-acceleration`, and `use-performance-monitor` already throttle effects on mobile. Prefer reusing them instead of reinventing scroll/gesture logic.
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
-- **Suspense fallbacks**: `withRouteSkeleton` in `src/App.tsx` renders semantic skeletons instead of spinners. When adding routes, supply meaningful titles/descriptions so prerender + crawlers always see real markup.
-- **Route prefetch**: `useRoutePrefetch` warms next-hop bundles. Extend the loader lists when adding high-traffic routes so navigation stays instant.
-- **Lovable deploys**: Before pushing, follow `docs/LOVABLE_DEPLOYMENT.md` so the remote `npm run lint && npm run build` pipeline passes on the first try.
-- **Sitemap & canonical playbook**: When touching SEO-critical code, skim `docs/SEO_OPERATIONS.md` for the canonical policy, sitemap steps, and verification checklist.
 
 ## Testing Expectations
 

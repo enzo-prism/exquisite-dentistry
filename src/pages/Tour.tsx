@@ -39,7 +39,7 @@ const Tour = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const heroHeading = useRevealOnScroll<HTMLHeadingElement>({ delayClass: 'reveal-delay-100' });
+  const heroHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
   const galleryReveal = useRevealOnScroll({ animation: 'scale', delayClass: 'reveal-delay-100' });
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost } from '@/data/blogTypes';
+import { BlogPost } from '@/data/blogPosts';
 
 interface BlogListingStructuredDataProps {
   posts: BlogPost[];

@@ -13,14 +13,14 @@ const prefersReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export const useRevealOnScroll = <T extends HTMLElement = HTMLElement>({
+export const useRevealOnScroll = ({
   threshold = 0.15,
   rootMargin = '0px',
   once = true,
   delayClass,
   animation = 'up'
 }: RevealOptions = {}) => {
-  const ref = useRef<T | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(prefersReducedMotion());
 
   useEffect(() => {

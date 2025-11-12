@@ -22,8 +22,6 @@ import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
 const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
   const thumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
   const isVimeo = story.video.src.includes('vimeo.com');
-  const uploadDate = new Date().toISOString();
-  const defaultDuration = 'PT60S';
 
   if (isVimeo) {
     const match = story.video.src.match(/video\/(\d+)/);
@@ -34,9 +32,7 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
       type: 'vimeo',
       vimeoId,
       thumbnailUrl,
-      title: story.title,
-      uploadDate,
-      duration: defaultDuration
+      title: story.title
     };
   }
 
@@ -45,9 +41,7 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
     type: 'file',
     videoUrl: story.video.src,
     thumbnailUrl,
-    title: story.title,
-    uploadDate,
-    duration: defaultDuration
+    title: story.title
   };
 });
 

@@ -35,14 +35,7 @@ type PathModule = { resolve: ResolveFn };
 let statSync: StatFn | null = null;
 let resolvePath: ResolveFn | null = null;
 
-const hasWindow =
-  typeof globalThis !== 'undefined' &&
-  typeof (globalThis as { window?: unknown }).window !== 'undefined';
-
-if (hasWindow) {
-  statSync = null;
-  resolvePath = null;
-} else {
+if (typeof window === 'undefined') {
   try {
     const req = eval('require') as (module: string) => unknown;
     const fsModule = req('fs') as FsModule;

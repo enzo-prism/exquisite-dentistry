@@ -99,7 +99,7 @@ npm run generate:blog
 # 2. Lint for TypeScript/React issues
 npm run lint
 
-# 3. Build + prerender the production bundle
+# 3. Build the production bundle
 npm run build
 
 # 4. Verify SEO-critical tags (canonical, OG, JSON-LD) on the public emergency page
@@ -109,15 +109,11 @@ npm run check:seo
 npm run preview
 ```
 
-`npm run build:prod` mirrors the Netlify pipeline by optimizing images first and then prerendering the key routes via `react-snap`; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
+`npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
->
-> Need the canonical + sitemap checklist? See `docs/SEO_OPERATIONS.md`.
->
-> Deploying via Lovable? Follow `docs/LOVABLE_DEPLOYMENT.md` for the strict build + prerender checklist.
 
 ## Layout Utilities
 
