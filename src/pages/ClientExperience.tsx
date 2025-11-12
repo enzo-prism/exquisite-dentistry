@@ -170,90 +170,104 @@ const ClientExperience = () => {
                 Every suite, playlist, and aromatic touch has been intentionally chosen to deliver full-sensory calm while we deliver clinical excellence.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {comfortHighlights.map((item) => (
-                <div key={item.title} className="p-6 rounded-2xl border border-black/5 shadow-sm hover:-translate-y-1 transition-transform bg-white">
-                  <div className="w-12 h-12 rounded-full bg-gold/10 text-gold flex items-center justify-center mb-4">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-black-light/80 text-sm leading-relaxed">{item.description}</p>
+            <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="pointer-events-none absolute inset-y-0 left-4 w-8 bg-gradient-to-r from-white to-transparent hidden sm:block" />
+              <div className="pointer-events-none absolute inset-y-0 right-4 w-8 bg-gradient-to-l from-white to-transparent hidden sm:block" />
+              <div className="overflow-x-auto snap-x snap-mandatory">
+                <div className="flex gap-4 sm:gap-6">
+                  {comfortHighlights.map((item) => (
+                    <div
+                      key={item.title}
+                      className="snap-center min-w-[260px] sm:min-w-[280px] lg:min-w-[320px] p-6 rounded-2xl border border-black/5 shadow-sm bg-white flex flex-col gap-4"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gold/10 text-gold flex items.center justify-center">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                        <p className="text-black-light/80 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Journey */}
         <section className="py-16 md:py-24 bg-gray-50">
-          <div className="section-container space-y-10">
+          <div className="section-container space-y-12">
             <div className="max-w-3xl mx-auto text-center">
               <span className="inline-block text-sm text-gold font-medium mb-3">Your Visit</span>
               <h2 className="heading-lg mb-4">A Guided Journey From Arrival to Reveal</h2>
               <p className="paragraph">Every stage is choreographed with transparency, calm, and concierge-level service.</p>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
-              {experienceJourney.map((step, index) => (
-                <div key={step.title} className="relative bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-                  <div className="absolute -top-4 left-6 w-10 h-10 rounded-full bg-gold text-black flex items-center justify-center font-semibold">
-                    {index + 1}
-                  </div>
-                  <div className="pt-6">
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+            <div className="relative max-w-5xl mx-auto">
+              <div className="hidden lg:block absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {experienceJourney.map((step, index) => (
+                  <div key={step.title} className="relative bg-white rounded-2xl p-6 border border-black/5 shadow-sm w-full max-w-md mx-auto">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-gold text-black flex items-center justify-center font-semibold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.35em] text-black-light/60">Stage {index + 1}</p>
+                        <h3 className="text-xl font-semibold">{step.title}</h3>
+                      </div>
+                    </div>
                     <p className="text-sm text-gold font-medium mb-3">{step.summary}</p>
                     <p className="text-sm text-black-light/80 mb-4">{step.details}</p>
-                    <div className="text-sm font-semibold text-black">Concierge Tip</div>
-                    <p className="text-sm text-black-light/70">{step.tip}</p>
+                    <div className="rounded-lg bg-gray-50 p-4 border border-gray-100">
+                      <div className="text-xs uppercase tracking-[0.35em] text-black-light/60 mb-1">Concierge Tip</div>
+                      <p className="text-sm text-black-light/80">{step.tip}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Immersive media + testimonials */}
         <section className="py-16 md:py-24 bg-white">
-          <div className="section-container grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="space-y-6">
-              <span className="inline-block text-sm text-gold font-medium">Immersive Care in Action</span>
-              <h2 className="heading-lg">See How We Combine Technology + Calm</h2>
-              <p className="paragraph">
-                From first scans to final polish, we narrate every step so you always feel informed and in control. Here’s how a typical smile session flows.
-              </p>
-              <div className="rounded-3xl border border-black/5 bg-gray-50 p-6 space-y-4">
+          <div className="section-container space-y-12">
+            <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="space-y-6">
+                <span className="inline-block text-sm text-gold font-medium">Immersive Care in Action</span>
+                <h2 className="heading-lg">See How We Combine Technology + Calm</h2>
+                <p className="paragraph">
+                  From first scans to final polish, we narrate every step so you always feel informed and in control. Here’s how a typical smile session flows.
+                </p>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="p-4 rounded-2xl bg-white shadow-sm">
-                    <p className="text-sm font-semibold text-black">Digital Preview Suite</p>
-                    <p className="text-sm text-black-light/80 mt-2">iTero scans + 3D rendering let you visualize movements before we begin.</p>
-                  </div>
-                  <div className="p-4 rounded-2xl bg-white shadow-sm">
-                    <p className="text-sm font-semibold text-black">Comfort Signals</p>
-                    <p className="text-sm text-black-light/80 mt-2">Hand-held pause buttons and real-time updates ensure you guide the pace.</p>
-                  </div>
-                  <div className="p-4 rounded-2xl bg-white shadow-sm">
-                    <p className="text-sm font-semibold text-black">Finish & Glow</p>
-                    <p className="text-sm text-black-light/80 mt-2">Custom lip hydration, take-home care kits, and text follow-ups complete the visit.</p>
-                  </div>
-                  <div className="p-4 rounded-2xl bg-white shadow-sm">
-                    <p className="text-sm font-semibold text-black">On-Call Support</p>
-                    <p className="text-sm text-black-light/80 mt-2">24/7 concierge texting keeps you connected to Dr. Aguil’s team.</p>
-                  </div>
+                  {[
+                    { title: 'Digital Preview Suite', body: 'iTero scans + 3D rendering let you visualize movements before we begin.' },
+                    { title: 'Comfort Signals', body: 'Hand-held pause buttons and real-time updates ensure you guide the pace.' },
+                    { title: 'Finish & Glow', body: 'Custom lip hydration, take-home care kits, and text follow-ups complete the visit.' },
+                    { title: 'On-Call Support', body: '24/7 concierge texting keeps you connected to Dr. Aguil’s team.' }
+                  ].map((item) => (
+                    <div key={item.title} className="p-4 rounded-2xl bg-gray-50 border border-gray-100 shadow-sm">
+                      <p className="text-sm font-semibold text-black">{item.title}</p>
+                      <p className="text-sm text-black-light/80 mt-2">{item.body}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="bg-black text-white rounded-3xl p-6 space-y-6">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="text-gold" size={24} />
-                <p className="text-sm uppercase tracking-[0.35em] text-gold/80">Client Notes</p>
-              </div>
-              <div className="space-y-5 overflow-x-auto snap-x sm:snap-none flex sm:flex-col gap-4 pb-2">
-                {testimonials.map((item) => (
-                  <div key={item.name} className="snap-center min-w-[260px] bg-white/5 border border-white/10 rounded-2xl p-4 space-y-3">
-                    <p className="text-white/90 text-sm leading-relaxed">“{item.quote.replace(/(^“|”$)/g, '')}”</p>
-                    <div className="text-xs uppercase tracking-widest text-gold">{item.service}</div>
-                    <div className="text-sm text-white/70">{item.name}</div>
-                  </div>
-                ))}
+              <div className="bg-black text-white rounded-3xl p-6 space-y-6">
+                <div className="flex items-center gap-3">
+                  <ShieldCheck className="text-gold" size={24} />
+                  <p className="text-sm uppercase tracking-[0.35em] text-gold/80">Client Notes</p>
+                </div>
+                <div className="grid gap-4">
+                  {testimonials.map((item) => (
+                    <div key={item.name} className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-3">
+                      <p className="text-white/90 text-sm leading-relaxed">“{item.quote.replace(/(^“|”$)/g, '')}”</p>
+                      <div className="text-xs uppercase tracking-widest text-gold">{item.service}</div>
+                      <div className="text-sm text-white/70">{item.name}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -272,8 +286,8 @@ const ClientExperience = () => {
               </p>
             </div>
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black/80 via-black/30 to-transparent hidden md:block" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black/80 via-black/30 to-transparent hidden md:block" />
               <div className="overflow-x-auto -mx-4 px-4 snap-x snap-mandatory">
                 <div className="flex gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
                   {comfortMenu.map((item) => (

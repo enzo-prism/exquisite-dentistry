@@ -27,6 +27,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
   const [honeypot, setHoneypot] = useState('');
@@ -113,7 +114,7 @@ const Contact = () => {
     if (honeypot) {
       setFormStatus('success');
       setFeedback('Thanks for reaching out! We will respond shortly.');
-      setFormState({ name: '', email: '', message: '' });
+      setFormState({ name: '', email: '', phone: '', message: '' });
       setHoneypot('');
       return;
     }
@@ -123,6 +124,10 @@ const Contact = () => {
       formData.append('name', formState.name.trim());
       formData.append('email', trimmedEmail);
       formData.append('message', formState.message.trim());
+      const trimmedPhone = formState.phone.trim();
+      if (trimmedPhone) {
+        formData.append('phone', trimmedPhone);
+      }
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -138,7 +143,7 @@ const Contact = () => {
 
       setFormStatus('success');
       setFeedback('Thanks for reaching out! We will respond shortly.');
-      setFormState({ name: '', email: '', message: '' });
+      setFormState({ name: '', email: '', phone: '', message: '' });
       setHoneypot('');
       setFieldErrors({ email: '' });
       trackFormSubmission('contact_form');
@@ -342,6 +347,21 @@ const Contact = () => {
                               {fieldErrors.email}
                             </p>
                           )}
+                        </div>
+                        <div className="flex flex-col text-left md:col-span-2">
+                          <label htmlFor="phone" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
+                            Phone (optional)
+                          </label>
+                          <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            value={formState.phone}
+                            onChange={handleChange}
+                            placeholder="(323) 555-0123"
+                            autoComplete="tel"
+                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
+                          />
                         </div>
                       </div>
 
