@@ -93,11 +93,6 @@ export const PageSEO: React.FC<PageSEOProps> = ({
     trackMeta(canonicalUrl, sanitizedDescription);
   }
 
-  // Runtime guards to prevent duplicates
-  const shouldRenderCanonical = 
-    typeof document === 'undefined' || 
-    !document.querySelector('link[rel="canonical"]');
-    
   const shouldRenderDescription =
     typeof document === 'undefined' ||
     !document.querySelector('meta[name="description"]');
@@ -115,8 +110,13 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={robotsContent} />
       
-      {/* Canonical URL - Single source of truth with runtime guard */}
-      {shouldRenderCanonical && <link rel="canonical" href={canonicalUrl} />}
+      {/* Canonical URL */}
+      <link
+        key="canonical"
+        rel="canonical"
+        href={canonicalUrl}
+        data-helmet="canonical"
+      />
       
       {/* Open Graph Meta Tags */}
       <meta property="og:url" content={canonicalUrl} />
