@@ -137,10 +137,16 @@ const Navbar = () => {
     { to: '/invisalign', label: 'Invisalign' },
     { to: '/veneers', label: 'Porcelain Veneers' },
     { to: '/teeth-whitening', label: 'Teeth Whitening' },
+    { to: '/teeth-cleaning', label: 'Teeth Cleaning' },
     { to: '/zoom-whitening', label: 'Zoom Whitening' },
     { to: '/dental-implants', label: 'Dental Implants' },
+    { to: '/dental-crowns', label: 'Dental Crowns' },
+    { to: '/dental-bridge', label: 'Dental Bridge' },
+    { to: '/root-canal', label: 'Root Canal Therapy' },
     { to: '/cosmetic-dentistry', label: 'Cosmetic Dentistry' },
     { to: '/emergency-dentist', label: 'Emergency Dentist' },
+    { to: '/pain-free-dentistry', label: 'Pain-Free Dentistry' },
+    { to: '/oral-cancer-screening', label: 'Oral Cancer Screening' },
   ];
 
   const clientsDropdown = [
@@ -154,6 +160,9 @@ const Navbar = () => {
     { to: '/faqs', label: 'FAQs' },
     { to: '/contact', label: 'Contact' },
     { to: '/blog', label: 'Blog' },
+    { to: '/west-hollywood-dentist', label: 'West Hollywood Dentist' },
+    { to: '/beverly-hills-dentist', label: 'Beverly Hills Dentist' },
+    { to: '/culver-city-dentist', label: 'Culver City Dentist' },
   ];
 
   return (

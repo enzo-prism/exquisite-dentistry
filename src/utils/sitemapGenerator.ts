@@ -35,7 +35,7 @@ type PathModule = { resolve: ResolveFn };
 let statSync: StatFn | null = null;
 let resolvePath: ResolveFn | null = null;
 
-const isServerSide = typeof globalThis !== 'undefined' && !(globalThis as any).window;
+const isServerSide = typeof globalThis !== 'undefined' && typeof (globalThis as { window?: unknown }).window === 'undefined';
 
 if (isServerSide) {
   try {
@@ -125,6 +125,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.8
     },
     {
+      loc: getCanonicalUrl('/teeth-cleaning'),
+      lastmod: getFileLastModified('src/pages/TeethCleaning.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
       loc: getCanonicalUrl('/teeth-whitening'),
       lastmod: getFileLastModified('src/pages/TeethWhitening.tsx', 7, now),
       changefreq: 'monthly',
@@ -149,6 +155,18 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/dental-bridge'),
+      lastmod: getFileLastModified('src/pages/DentalBridge.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.75
+    },
+    {
+      loc: getCanonicalUrl('/dental-crowns'),
+      lastmod: getFileLastModified('src/pages/DentalCrowns.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
       loc: getCanonicalUrl('/cosmetic-dentistry'),
       lastmod: getFileLastModified('src/pages/CosmeticDentistry.tsx', 14, now),
       changefreq: 'monthly',
@@ -159,6 +177,24 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: getFileLastModified('src/pages/EmergencyDentist.tsx', 7, now),
       changefreq: 'monthly',
       priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/root-canal'),
+      lastmod: getFileLastModified('src/pages/RootCanal.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.75
+    },
+    {
+      loc: getCanonicalUrl('/pain-free-dentistry'),
+      lastmod: getFileLastModified('src/pages/PainFreeDentistry.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.75
+    },
+    {
+      loc: getCanonicalUrl('/oral-cancer-screening'),
+      lastmod: getFileLastModified('src/pages/OralCancerScreening.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.75
     },
     {
       loc: getCanonicalUrl('/testimonials'),
@@ -225,6 +261,54 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: getFileLastModified('src/pages/TransformationStories.tsx', 30, now),
       changefreq: 'weekly',
       priority: 0.8
+    },
+    {
+      loc: getCanonicalUrl('/west-hollywood-dentist'),
+      lastmod: getFileLastModified('src/pages/WestHollywoodDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    {
+      loc: getCanonicalUrl('/beverly-hills-dentist'),
+      lastmod: getFileLastModified('src/pages/BeverlyHillsDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    {
+      loc: getCanonicalUrl('/culver-city-dentist'),
+      lastmod: getFileLastModified('src/pages/CulverCityDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/west-la-dentist'),
+      lastmod: getFileLastModified('src/pages/WestLADentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/bel-air-dentist'),
+      lastmod: getFileLastModified('src/pages/BelAirDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/90048-dentist'),
+      lastmod: getFileLastModified('src/pages/Zip90048Dentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/melrose-dentist'),
+      lastmod: getFileLastModified('src/pages/MelroseDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/westwood-dentist'),
+      lastmod: getFileLastModified('src/pages/WestwoodDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
     }
   ];
 

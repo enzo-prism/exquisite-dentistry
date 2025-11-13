@@ -99,17 +99,25 @@ npm run generate:blog
 # 2. Lint for TypeScript/React issues
 npm run lint
 
-# 3. Build the production bundle
+# 3. Validate content quality (services + geo pages)
+npm run test:content
+
+# 4. Build the production bundle
 npm run build
 
-# 4. Verify SEO-critical tags (canonical, OG, JSON-LD) on the public emergency page
+# 5. Verify SEO-critical tags (canonical, OG, JSON-LD) on the public emergency page
 npm run check:seo
 
-# 5. (Optional) Smoke test the built site locally
+# 6. (Optional) Smoke test the built site locally
 npm run preview
+
+# 7. Redirect regression test (requires `netlify dev` running separately)
+npm run test:redirects
 ```
 
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
+
+> Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >

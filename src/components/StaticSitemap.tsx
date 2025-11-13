@@ -18,11 +18,29 @@ const StaticSitemap = () => {
         '/veneers-los-angeles',
         '/zoom-whitening',
         '/teeth-whitening',
+        '/teeth-cleaning',
         '/invisalign',
         '/itero-scanner',
         '/dental-implants',
+        '/dental-crowns',
+        '/dental-bridge',
+        '/root-canal',
+        '/pain-free-dentistry',
+        '/oral-cancer-screening',
         '/cosmetic-dentistry',
         '/emergency-dentist'
+      ].some(path => url.loc.endsWith(path))
+    ),
+    locations: sitemapData.filter(url =>
+      [
+        '/west-hollywood-dentist',
+        '/beverly-hills-dentist',
+        '/culver-city-dentist',
+        '/west-la-dentist',
+        '/bel-air-dentist',
+        '/90048-dentist',
+        '/melrose-dentist',
+        '/westwood-dentist'
       ].some(path => url.loc.endsWith(path))
     ),
     experience: sitemapData.filter(url => 
@@ -69,6 +87,30 @@ const StaticSitemap = () => {
                 </h2>
                 <ul className="space-y-2">
                   {groupedUrls.main.map((url) => (
+                    <li key={url.loc}>
+                      <Link 
+                        to={url.loc.replace('https://exquisitedentistryla.com', '')}
+                        className="text-primary hover:text-gold transition-colors duration-200 flex items-center justify-between group"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform">
+                          {getPageTitle(url.loc)}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          Priority: {url.priority}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Locations */}
+              <section className="bg-card p-6 rounded-lg shadow-sm border">
+                <h2 className="text-xl font-semibold text-gold mb-4 flex items-center">
+                  📍 Location Guides
+                </h2>
+                <ul className="space-y-2">
+                  {groupedUrls.locations.map((url) => (
                     <li key={url.loc}>
                       <Link 
                         to={url.loc.replace('https://exquisitedentistryla.com', '')}
@@ -285,11 +327,17 @@ const getPageTitle = (url: string): string => {
     '/veneers-los-angeles': 'Veneers Los Angeles',
     '/zoom-whitening': 'Zoom Whitening',
     '/teeth-whitening': 'Teeth Whitening',
+    '/teeth-cleaning': 'Teeth Cleaning',
     '/invisalign': 'Invisalign',
     '/itero-scanner': 'iTero Scanner',
     '/dental-implants': 'Dental Implants',
+    '/dental-bridge': 'Dental Bridge',
+    '/dental-crowns': 'Dental Crowns',
     '/cosmetic-dentistry': 'Cosmetic Dentistry',
     '/emergency-dentist': 'Emergency Dentist',
+    '/root-canal': 'Root Canal Therapy',
+    '/pain-free-dentistry': 'Pain-Free Dentistry',
+    '/oral-cancer-screening': 'Oral Cancer Screening',
     '/smile-gallery': 'Smile Gallery',
     '/testimonials': 'Testimonials',
     '/client-experience': 'Client Experience',
@@ -300,7 +348,15 @@ const getPageTitle = (url: string): string => {
     '/graduation': 'Graduation Ready',
     '/privacy-policy': 'Privacy Policy',
     '/terms-of-service': 'Terms of Service',
-    '/hipaa-compliance': 'HIPAA Compliance'
+    '/hipaa-compliance': 'HIPAA Compliance',
+    '/west-hollywood-dentist': 'West Hollywood Dentist',
+    '/beverly-hills-dentist': 'Beverly Hills Dentist',
+    '/culver-city-dentist': 'Culver City Dentist',
+    '/west-la-dentist': 'West LA Dentist',
+    '/bel-air-dentist': 'Bel Air Dentist',
+    '/90048-dentist': '90048 Dentist',
+    '/melrose-dentist': 'Melrose Dentist',
+    '/westwood-dentist': 'Westwood Dentist'
   };
   return titleMap[path] || path;
 };
