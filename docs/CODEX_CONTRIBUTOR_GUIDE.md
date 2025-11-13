@@ -47,6 +47,9 @@ Quick rules:
 - **Blog updates**: Drop markdown/text exports into `Blog-Content/exq_dental_blog_posts`, run `npm run generate:blog`, and commit the regenerated file.
 - **Animations/perf**: Hooks like `use-mobile-gestures`, `use-hardware-acceleration`, and `use-performance-monitor` already throttle effects on mobile. Prefer reusing them instead of reinventing scroll/gesture logic.
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
+  - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
+  - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
+- **Static fallbacks**: `npm run generate:fallbacks` runs automatically inside `npm run build`. It renders service + geo routes into `public/<slug>.html` and fails if canonical/meta/schema/H1 are missing. If you touch those configs, feel free to re-run the generator manually and spot-check the resulting HTML.
 
 ## Testing Expectations
 
@@ -62,6 +65,13 @@ Run the extras when applicable:
 - `npm run build:prod`: any time you touch assets or need Netlify parity.
 - `npm run preview`: visual QA for layout shifts, mobile nav, etc.
 - `node test-browser.js`: after starting `npm run dev` or `npm run preview` when verifying high-traffic flows (e.g., `/services/zoom-whitening`).
+- `_redirects` / canonical work: 
+  ```sh
+  npx netlify dev --dir public --port 8888   # serves static fallbacks + Netlify-style rewrites
+  npm run test:redirects
+  npm run test:content
+  ```
+  The redirect harness only passes when Netlify’s dev server is running from `public/`, so skip the Vite dev server for this test.
 
 ## Known Pitfalls
 
