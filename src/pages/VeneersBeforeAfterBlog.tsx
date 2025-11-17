@@ -60,10 +60,8 @@ const VeneersBeforeAfterBlog = () => {
       />
 
       <article className="bg-white">
-        <header className="relative py-16 md:py-24 bg-gradient-to-br from-gold/10 via-white to-white">
-          <div className="pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent" aria-hidden="true" />
-          </div>
+        <header className="relative py-16 md:py-24 pb-12 overflow-hidden bg-gradient-to-br from-gold/10 via-white to-white">
+          <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent" aria-hidden="true" />
           <div className="relative z-10 max-w-4xl mx-auto px-4">
             <Link
               to="/blog"
