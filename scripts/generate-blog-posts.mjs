@@ -121,6 +121,36 @@ const stripHtml = (html) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+const tokenizeHeading = (value = '') =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(token => token.length > 2);
+
+const shouldRemoveHeading = (headingText, title) => {
+  const headingTokens = tokenizeHeading(headingText);
+  const titleTokens = tokenizeHeading(title);
+  if (!headingTokens.length || !titleTokens.length) return false;
+
+  const overlap = headingTokens.filter(token => titleTokens.includes(token)).length;
+  const coverage = overlap / Math.max(titleTokens.length, 1);
+  return coverage >= 0.6;
+};
+
+const stripDuplicateHeading = (html, title) => {
+  const headingRegex = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i;
+  const match = headingRegex.exec(html);
+  if (!match) return html;
+
+  const headingText = stripHtml(match[1]);
+  if (!shouldRemoveHeading(headingText, title)) {
+    return html;
+  }
+
+  return `${html.slice(0, match.index)}${html.slice(match.index + match[0].length)}`.trim();
+};
+
 const extractExcerpt = (rawMarkdown) => {
   const tokens = marked.lexer(rawMarkdown);
   for (const token of tokens) {
@@ -307,8 +337,9 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
   const excerpt = extractExcerpt(body);
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
-  const htmlContent = marked.parse(body).trim();
-  const cleanedContent = stripHtml(htmlContent).toLowerCase();
+  const rawHtmlContent = marked.parse(body).trim();
+  const htmlContentBody = stripDuplicateHeading(rawHtmlContent, title);
+  const cleanedContent = stripHtml(htmlContentBody).toLowerCase();
   const contentHash = hashContent(cleanedContent.slice(0, 5000));
 
   if (dedupeState.contentHashes.has(contentHash)) {
@@ -332,7 +363,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     slug,
     excerpt,
     content: `<div class="prose prose-lg max-w-none">
-        ${htmlContent}
+        ${htmlContentBody}
       </div>`,
     author: AUTHOR,
     authorBio: AUTHOR_BIO,

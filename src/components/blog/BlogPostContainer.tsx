@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState, useMemo } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
@@ -12,6 +12,7 @@ import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import BlogErrorBoundary from './BlogErrorBoundary';
+import { sanitizeBlogHtml } from '@/utils/blogContent';
 
 // Lazy load specific blog components with proper error boundaries
 const FrontTeethVeneersBlog = React.lazy(() => import('@/pages/FrontTeethVeneersBlog'));
@@ -22,6 +23,8 @@ interface BlogPostContainerProps {
 }
 
 const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
+  const sanitizedContent = useMemo(() => sanitizeBlogHtml(post), [post]);
+
   // Handle component-based blog posts
   if (post.content === 'front-4-veneers') {
     return (
@@ -83,7 +86,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
         <div className="max-w-4xl mx-auto px-4">
           {/* Render HTML content with Tailwind typography */}
           <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
-            <article dangerouslySetInnerHTML={{ __html: post.content }} />
+            <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
           </div>
           
           <InternalLinkingWidget 
