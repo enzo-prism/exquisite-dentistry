@@ -9,8 +9,10 @@ import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import BlogMeta from '@/components/blog/BlogMeta';
+import type { BlogPost } from '@/data/blogPosts';
 
-const blogPost = {
+const blogPost: BlogPost = {
   id: 'veneers-before-after-los-angeles',
   title: 'Veneers Before and After in Los Angeles: Real Cases, Real Results (2025 Guide)',
   slug: 'veneers-before-after-los-angeles',
@@ -41,6 +43,7 @@ const VeneersBeforeAfterBlog = () => {
   }, []);
 
   const closeUpHighlights = useMemo(() => closeUpTransformations.slice(0, 3), []);
+  const sectionContainer = 'max-w-5xl mx-auto px-4';
 
   return (
     <>
@@ -57,13 +60,22 @@ const VeneersBeforeAfterBlog = () => {
       />
 
       <article className="bg-white">
-        <header className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-24">
-          <div className="max-w-5xl mx-auto px-4">
-            <p className="text-sm font-semibold text-primary mb-4">2025 Cosmetic Report</p>
+        <header className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/10 via-white to-white">
+          <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent" aria-hidden="true" />
+          <div className="relative z-10 max-w-4xl mx-auto px-4">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6 text-sm font-semibold"
+            >
+              ← Back to Blog
+            </Link>
+            <div className="mb-6">
+              <BlogMeta post={blogPost} showTags />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
               Veneers Before and After in Los Angeles: Real Cases, Real Results
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl">
+            <p className="text-xl text-gray-600">
               If you are searching for "veneers before and after LA" you want proof, not promises. These carefully
               anonymized visuals show exactly what porcelain veneers and comprehensive smile design can deliver in Los
               Angeles without sharing personal stories or private details.
@@ -71,55 +83,57 @@ const VeneersBeforeAfterBlog = () => {
           </div>
         </header>
 
-        <section className="max-w-5xl mx-auto px-4 py-12 md:py-16 space-y-10">
-          <div>
-            <h2 className="text-3xl font-semibold mb-4">Why Before-and-After Veneer Photos Matter</h2>
-            <p className="text-gray-600 mb-6">
-              You should see the work before you trust a cosmetic dentist. The gallery proves whether the artistry is
-              natural, balanced, and modern—not exaggerated or overdone.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Proof over promises',
-                  text: 'Anyone can make claims. Real photos confirm finish, proportions, and polish.'
-                },
-                {
-                  title: 'Understand stylistic fit',
-                  text: 'Each practice has an aesthetic. The Exquisite Dentistry look is refined, luminous, and natural-forward.'
-                },
-                {
-                  title: 'Evaluate micro-details',
-                  text: 'Look for translucency, smooth smile arcs, and gum harmony—the subtle cues of premium veneers.'
-                }
-              ].map(item => (
-                <div key={item.title} className="bg-slate-50 rounded-lg p-6 border border-slate-100">
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-600">{item.text}</p>
-                </div>
-              ))}
+        <section className={`${sectionContainer} py-12 md:py-16`}>
+          <div className="space-y-12">
+            <div>
+              <h2 className="text-3xl font-semibold mb-4">Why Before-and-After Veneer Photos Matter</h2>
+              <p className="text-gray-600 mb-6 max-w-3xl">
+                You should see the work before you trust a cosmetic dentist. The gallery proves whether the artistry is
+                natural, balanced, and modern—not exaggerated or overdone.
+              </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: 'Proof over promises',
+                    text: 'Anyone can make claims. Real photos confirm finish, proportions, and polish.'
+                  },
+                  {
+                    title: 'Understand stylistic fit',
+                    text: 'Each practice has an aesthetic. The Exquisite Dentistry look is refined, luminous, and natural-forward.'
+                  },
+                  {
+                    title: 'Evaluate micro-details',
+                    text: 'Look for translucency, smooth smile arcs, and gum harmony—the subtle cues of premium veneers.'
+                  }
+                ].map(item => (
+                  <div key={item.title} className="bg-slate-50 rounded-lg p-6 border border-slate-100 h-full">
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <h2 className="text-3xl font-semibold mb-4">What Porcelain Veneers Can Improve</h2>
-            <p className="text-gray-600 mb-4">
-              Without referencing any individual patient, the smile gallery already proves veneers can handle the most
-              common cosmetic priorities.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>Whiter, brighter enamel that stays stable for years</li>
-                <li>Smoother, more uniform tooth edges and contours</li>
-                <li>Improved width, fullness, and midline alignment</li>
-                <li>Visually corrected spacing, minor rotation, and uneven angling</li>
-              </ul>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>Custom color palettes ranging from soft ivory to high-gloss white</li>
-                <li>Balanced left-to-right proportions that feel intentional</li>
-                <li>Cleaner gumline transitions for a healthier frame</li>
-                <li>Lifelike texture that reflects light like natural enamel</li>
-              </ul>
+            <div>
+              <h2 className="text-3xl font-semibold mb-4">What Porcelain Veneers Can Improve</h2>
+              <p className="text-gray-600 mb-4 max-w-3xl">
+                Without referencing any individual patient, the smile gallery already proves veneers can handle the most
+                common cosmetic priorities.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Whiter, brighter enamel that stays stable for years</li>
+                  <li>Smoother, more uniform tooth edges and contours</li>
+                  <li>Improved width, fullness, and midline alignment</li>
+                  <li>Visually corrected spacing, minor rotation, and uneven angling</li>
+                </ul>
+                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Custom color palettes ranging from soft ivory to high-gloss white</li>
+                  <li>Balanced left-to-right proportions that feel intentional</li>
+                  <li>Cleaner gumline transitions for a healthier frame</li>
+                  <li>Lifelike texture that reflects light like natural enamel</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
