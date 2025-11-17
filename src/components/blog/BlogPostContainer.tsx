@@ -17,6 +17,7 @@ import { sanitizeBlogHtml } from '@/utils/blogContent';
 // Lazy load specific blog components with proper error boundaries
 const FrontTeethVeneersBlog = React.lazy(() => import('@/pages/FrontTeethVeneersBlog'));
 const SingleToothVeneersBlog = React.lazy(() => import('@/pages/SingleToothVeneersBlog'));
+const VeneersBeforeAfterBlog = React.lazy(() => import('@/pages/VeneersBeforeAfterBlog'));
 
 interface BlogPostContainerProps {
   post: BlogPost;
@@ -38,6 +39,14 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
     return (
       <Suspense fallback={<PageLoader />}>
         <SingleToothVeneersBlog />
+      </Suspense>
+    );
+  }
+
+  if (post.content === 'veneers-before-after-guide') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <VeneersBeforeAfterBlog />
       </Suspense>
     );
   }

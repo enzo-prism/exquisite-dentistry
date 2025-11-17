@@ -6,6 +6,27 @@ export type { BlogPost };
 
 const baseBlogPosts: BlogPost[] = [
   {
+    id: '18',
+    title: 'Veneers Before and After in Los Angeles: Real Cases, Real Results (2025 Guide)',
+    slug: 'veneers-before-after-los-angeles',
+    excerpt:
+      'See real porcelain veneer transformations from Los Angeles without hype or patient stories. This 2025 guide explains what veneers fix, what to look for in before-and-after photos, and how to plan your own smile.',
+    content: 'veneers-before-after-guide',
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'November 20, 2025',
+    readTime: '11 min read',
+    category: 'Cosmetic Dentistry',
+    tags: ['porcelain veneers', 'veneers before after', 'smile gallery', 'cosmetic dentistry', 'veneers los angeles'],
+    seoTitle: 'Veneers Before & After in Los Angeles | Real Results 2025 Guide',
+    seoDescription:
+      'Honest 2025 guide showing porcelain veneer before-and-after transformations in Los Angeles. Learn what veneers can fix, how to evaluate real cases, and how to plan your own smile.',
+    seoKeywords:
+      'veneers before after los angeles, porcelain veneers results LA, smile gallery veneers, cosmetic dentist Beverly Hills, veneers transformation photos',
+    published: true
+  },
+  {
     id: '17',
     title: "Porcelain Veneers in Los Angeles: Your No-BS 2025 Buyer's Guide",
     slug: 'porcelain-veneers-los-angeles-buyers-guide',
