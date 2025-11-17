@@ -14,10 +14,10 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import BlogErrorBoundary from './BlogErrorBoundary';
 import { sanitizeBlogHtml } from '@/utils/blogContent';
 
-// Lazy load specific blog components with proper error boundaries
+// Lazy load specific-blog components
 const FrontTeethVeneersBlog = React.lazy(() => import('@/pages/FrontTeethVeneersBlog'));
 const SingleToothVeneersBlog = React.lazy(() => import('@/pages/SingleToothVeneersBlog'));
-const VeneersBeforeAfterBlog = React.lazy(() => import('@/pages/VeneersBeforeAfterBlog'));
+const VeneersBeforeAfterContent = React.lazy(() => import('@/components/blog/VeneersBeforeAfterContent'));
 
 interface BlogPostContainerProps {
   post: BlogPost;
@@ -39,14 +39,6 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
     return (
       <Suspense fallback={<PageLoader />}>
         <SingleToothVeneersBlog />
-      </Suspense>
-    );
-  }
-
-  if (post.content === 'veneers-before-after-guide') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <VeneersBeforeAfterBlog />
       </Suspense>
     );
   }
@@ -93,10 +85,15 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Render HTML content with Tailwind typography */}
-          <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
-            <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
-          </div>
+          {post.content === 'veneers-before-after-guide' ? (
+            <Suspense fallback={<PageLoader />}>
+              <VeneersBeforeAfterContent />
+            </Suspense>
+          ) : (
+            <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
+              <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+            </div>
+          )}
           
           <InternalLinkingWidget 
             currentPage={`/blog/${post.slug}`}
