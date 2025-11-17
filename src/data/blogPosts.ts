@@ -6,6 +6,166 @@ export type { BlogPost };
 
 const baseBlogPosts: BlogPost[] = [
   {
+    id: '17',
+    title: "Porcelain Veneers in Los Angeles: Your No-BS 2025 Buyer's Guide",
+    slug: 'porcelain-veneers-los-angeles-buyers-guide',
+    excerpt:
+      'Get straight answers about porcelain veneers in Los Angeles including candidacy, real 2025 pricing, veneer counts, process timelines, and how to choose between porcelain, composite, and crowns.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p>
+          If you are seriously searching for <em>"veneers Los Angeles"</em> or <em>"porcelain veneers Beverly Hills"</em>, you are already past casual browsing. You need real numbers, honest expectations, and a clear path with a doctor who respects the investment you are about to make.
+        </p>
+        <p>
+          This 2025 guide answers the biggest questions Dr. Alexie Aguil hears from high-performing patients every week so you can decide—in a fully informed way—if porcelain veneers belong in your next chapter.
+        </p>
+
+        <hr />
+
+        <h2>1. What Exactly Are Porcelain Veneers?</h2>
+        <p>
+          Veneers are ultra-thin ceramic shells that bond to the front of your teeth to permanently change color, size, or shape without covering the entire tooth like a crown. They correct discoloration, chips, narrow laterals, gaps, and mildly crooked edges in the smile zone while reflecting light like healthy enamel.
+          <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" rel="noreferrer">[1]</a>
+        </p>
+        <ul>
+          <li>Ideal for stains that do not respond to whitening</li>
+          <li>Strengthen worn edges and close small gaps</li>
+          <li>Create proportional, camera-ready symmetry without braces in select cases</li>
+        </ul>
+
+        <h2>2. Are You a Good Candidate?</h2>
+        <p>
+          Veneers thrive when teeth and gums are healthy, you are ready for a non-reversible solution, and you understand that a small amount of enamel is reshaped for natural results. Expect 10-15+ years of longevity with meticulous care and night guard protection if you clench.
+          <a href="https://maplewooddental.com/long-term-durability-of-dental-veneers-what-you-need-to-know-2/" rel="noreferrer">[2]</a>
+        </p>
+        <p>
+          Candidates with active gum disease, major bite problems, or untreated decay require foundational care first—and heavy grinders must be willing to wear protection.
+          <a href="https://southsidedds.com/ada-library/veneers" rel="noreferrer">[3]</a>
+        </p>
+
+        <h2>3. Porcelain vs. Composite vs. Crowns</h2>
+        <p>
+          <strong>Porcelain veneers</strong> in Los Angeles typically range from $1,000-$2,500+ per tooth depending on experience, lab partnership, and complexity, lasting 10-15 years or longer with excellent care.
+          <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
+          <a href="https://laurelsmilesdentalcare.com/blog/can-porcelain-veneers-last-30-years-listen-from-a-dentist-in-laurel/" rel="noreferrer">[5]</a>
+          They resist stains better than natural enamel.
+          <a href="https://my.clevelandclinic.org/health/treatments/23522-dental-veneers" rel="noreferrer">[6]</a>
+        </p>
+        <p>
+          <strong>Composite veneers</strong> cost less ($250-$1,500 per tooth) but typically last 5-7 years and stain faster.
+          <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
+          Crowns cover the entire tooth and are reserved for teeth that need structural reinforcement rather than cosmetic resurfacing.
+          <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" rel="noreferrer">[1]</a>
+        </p>
+        <p>
+          Thinking about dental tourism? Aggressively prepped "Turkey teeth" often require five-figure repairs because teeth were shaved too aggressively and the bite was never calibrated.
+          <a href="https://www.thesun.co.uk/fabulous/34503847/turkey-teeth-side-effects/" rel="noreferrer">[7]</a>
+        </p>
+
+        <h2>4. How Many Veneers Do You Need?</h2>
+        <p>
+          The right number depends on how many teeth show when you smile:
+        </p>
+        <ul>
+          <li><strong>2 veneers:</strong> strategic fixes for a dark central incisor or peg laterals.</li>
+          <li><strong>4 veneers:</strong> harmonizes the front teeth when you want balanced symmetry without a full spread.</li>
+          <li><strong>6-8 veneers:</strong> standard "smile zone" makeover for clients who show more teeth when laughing.</li>
+          <li><strong>10+ veneers:</strong> full upper makeover for dramatic transformations.</li>
+        </ul>
+        <p>
+          Dive deeper into our
+          <a href="/blog/2-front-teeth-veneers-cost-los-angeles">2 front teeth</a>
+          and
+          <a href="/blog/4-front-teeth-veneers-cost-los-angeles">4 front teeth</a>
+          pricing guides for real case breakdowns.
+        </p>
+
+        <h2>5. Real 2025 Pricing in Los Angeles</h2>
+        <p>
+          Expect porcelain veneers in LA or Beverly Hills to fall between <strong>$950 and $2,500+ per tooth</strong>, with total investments ranging from high four figures for two veneers to $15,000-$30,000+ for a full upper smile makeover.
+          <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
+          <a href="https://www.pearldentalgroup.com/blog/porcelain-veneer-cost-guide/" rel="noreferrer">[9]</a>
+        </p>
+        <p>
+          Fees reflect doctor training, lab artistry, pre-treatment requirements (whitening, gum sculpting, Invisalign), and whether you choose layered ceramics or monolithic options. Most patients leverage staged treatment or third-party financing to pace the investment.
+          <a href="https://www.cosmopolitan.com/style-beauty/beauty/a64981163/what-are-dental-veneers/" rel="noreferrer">[10]</a>
+        </p>
+
+        <h2>6. The Veneer Process with a Beverly Hills-adjacent Practice</h2>
+        <ol>
+          <li><strong>Comprehensive consultation:</strong> records, bite analysis, and candidacy review so veneers are appropriate.
+            <a href="https://southsidedds.com/ada-library/veneers" rel="noreferrer">[3]</a>
+          </li>
+          <li><strong>Smile design:</strong> digital previews and provisional bonding make sure your new smile matches your face.</li>
+          <li><strong>Conservative prep & temporaries:</strong> enamel reshaping is minimal; you leave with attractive temporaries, not peg teeth.</li>
+          <li><strong>Delivery day:</strong> each veneer is tried in, refined, and bonded for seamless color and bite.</li>
+          <li><strong>Follow-up & night guard:</strong> final polish plus protective guard for grinders.
+            <a href="https://southsidedds.com/ada-library/veneers" rel="noreferrer">[3]</a>
+          </li>
+        </ol>
+
+        <h2>7. Longevity & Maintenance</h2>
+        <p>
+          Porcelain veneers routinely last 10-15 years and frequently exceed 20 with meticulous hygiene, professional cleanings, non-abrasive toothpaste, healthy habits, and a protective night guard when needed.
+          <a href="https://maplewooddental.com/long-term-durability-of-dental-veneers-what-you-need-to-know-2/" rel="noreferrer">[2]</a>
+          <a href="https://admaine.com/services/pdfs/improveveneers.pdf" rel="noreferrer">[11]</a>
+          <a href="https://clearchoicedental.com.au/blogs/exploring-the-long-term-advantages-and-lasting-benefits-of-dental-veneers/" rel="noreferrer">[12]</a>
+          <a href="https://www.hillsborovillagedental.com/post/how-lifestyle-choices-and-habits-affect-veneer-longevity" rel="noreferrer">[13]</a>
+        </p>
+
+        <h2>8. Straight Answers to Common Fears</h2>
+        <ul>
+          <li><strong>"Will my teeth be shaved down to stubs?"</strong> No. Modern cosmetic protocols remove only enough enamel for a flush fit.</li>
+          <li><strong>"Will my veneers look fake?"</strong> Custom layering, texture, and artist-built translucency mimic real enamel, not opaque blocks.</li>
+          <li><strong>"Will it hurt?"</strong> Local anesthetic keeps you comfortable; mild post-visit soreness is temporary.</li>
+          <li><strong>"Are veneers bad for my teeth?"</strong> Not when planned conservatively on healthy teeth and maintained long term.
+            <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" rel="noreferrer">[1]</a>
+          </li>
+        </ul>
+
+        <h2>9. Why Patients Choose Exquisite Dentistry</h2>
+        <ul>
+          <li>Doctor-led design that factors in your lip line, facial symmetry, and professional goals</li>
+          <li>Premium labs and ceramics engineered for shade stability and longevity</li>
+          <li>Spa-inspired comforts, from Netflix streaming to warm blankets, for appointments that feel indulgent</li>
+          <li>Transparent timelines, pricing, and alternative treatment paths before you commit</li>
+        </ul>
+
+        <h2>10. FAQs for 2025</h2>
+        <p><strong>Can I veneer just one tooth?</strong> Yes, but expect a recommendation for the matching tooth if color differences are extreme.</p>
+        <p><strong>Can veneers fix crooked teeth?</strong> They camouflage mild misalignment; Invisalign handles larger movements before veneers.</p>
+        <p><strong>Do veneers stain?</strong> Quality porcelain resists stains, but surrounding teeth and gums can still change color.
+          <a href="https://my.clevelandclinic.org/health/treatments/23522-dental-veneers" rel="noreferrer">[6]</a>
+        </p>
+        <p><strong>Can I bleach veneers later?</strong> No. Veneers do not respond to whitening, so plan your target shade at the start.</p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10 text-center space-y-4">
+          <h3 class="text-2xl font-semibold">Transform Your Smile with Porcelain Veneers</h3>
+          <p>Schedule a one-on-one consultation with Dr. Alexie Aguil to plan the exact veneer count, cost, and timeline that fits your lifestyle.</p>
+          <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
+            Book a Veneer Consultation
+          </a>
+          <p class="text-sm text-gray-600">Prefer a conversation first? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+        </div>
+
+        <p>
+          Ready to move beyond Google rabbit holes? A comprehensive consultation at our West Hollywood practice delivers the personalized plan, cost clarity, and smile preview you need to make a confident decision.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'November 12, 2025',
+    readTime: '12 min read',
+    category: 'Cosmetic Dentistry',
+    tags: ['porcelain veneers', 'veneers los angeles', 'cosmetic dentistry', 'veneers cost', 'smile makeover', 'buyer guide'],
+    seoTitle: "Porcelain Veneers in Los Angeles: No-BS 2025 Buyer's Guide",
+    seoDescription:
+      'Honest 2025 guide to porcelain veneers in Los Angeles covering candidacy, porcelain vs composite, real pricing, veneer counts, longevity, fear-busting FAQs, and how Dr. Aguil designs natural results.',
+    seoKeywords:
+      'porcelain veneers los angeles, veneers buyers guide 2025, cosmetic dentist Beverly Hills, veneer cost LA, how many veneers do I need, Dr. Alexie Aguil veneers',
+    published: true
+  },
+  {
     id: '11',
     title: 'Adjusting to Invisalign While Starting a New Job',
     slug: 'adjusting-to-invisalign-while-starting-new-job',
