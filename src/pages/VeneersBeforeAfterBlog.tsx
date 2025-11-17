@@ -60,8 +60,10 @@ const VeneersBeforeAfterBlog = () => {
       />
 
       <article className="bg-white">
-        <header className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/10 via-white to-white">
-          <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent" aria-hidden="true" />
+        <header className="relative py-16 md:py-24 bg-gradient-to-br from-gold/10 via-white to-white">
+          <div className="pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-r from-gold/20 to-transparent" aria-hidden="true" />
+          </div>
           <div className="relative z-10 max-w-4xl mx-auto px-4">
             <Link
               to="/blog"
@@ -69,13 +71,13 @@ const VeneersBeforeAfterBlog = () => {
             >
               ← Back to Blog
             </Link>
-            <div className="mb-6">
+            <div className="mb-8">
               <BlogMeta post={blogPost} showTags />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
               Veneers Before and After in Los Angeles: Real Cases, Real Results
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 max-w-3xl">
               If you are searching for "veneers before and after LA" you want proof, not promises. These carefully
               anonymized visuals show exactly what porcelain veneers and comprehensive smile design can deliver in Los
               Angeles without sharing personal stories or private details.
