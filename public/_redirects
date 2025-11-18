@@ -1,46 +1,46 @@
 # Static HTML pages for SEO crawlers with JS disabled - with force flag
-/about              /about.html             200!
-/services           /services.html          200!
-/contact            /contact.html           200!
-/veneers            /veneers.html           200!
+/about /about.html 200!
+/services /services.html 200!
+/contact /contact.html 200!
+/veneers /veneers.html 200!
 /veneers-los-angeles /veneers-los-angeles.html 200!
-/testimonials       /testimonials.html      200!
-/blog               /blog.html              200!
-/smile-gallery      /smile-gallery.html     200!
-/client-experience  /client-experience.html 200!
-/faqs               /faqs.html              200!
-/wedding            /wedding.html           200!
-/graduation         /graduation.html        200!
-/zoom-whitening     /zoom-whitening.html    200!
-/teeth-whitening    /teeth-whitening.html   200!
-/invisalign         /invisalign.html        200!
-/dental-implants    /dental-implants.html   200!
-/teeth-cleaning     /teeth-cleaning.html    200!
-/root-canal         /root-canal.html        200!
-/dental-bridge      /dental-bridge.html     200!
-/dental-crowns      /dental-crowns.html     200!
+/testimonials /testimonials.html 200!
+/blog /blog.html 200!
+/smile-gallery /smile-gallery.html 200!
+/client-experience /client-experience.html 200!
+/faqs /faqs.html 200!
+/wedding /wedding.html 200!
+/graduation /graduation.html 200!
+/zoom-whitening /zoom-whitening.html 200!
+/teeth-whitening /teeth-whitening.html 200!
+/invisalign /invisalign.html 200!
+/dental-implants /dental-implants.html 200!
+/teeth-cleaning /teeth-cleaning.html 200!
+/root-canal /root-canal.html 200!
+/dental-bridge /dental-bridge.html 200!
+/dental-crowns /dental-crowns.html 200!
 /pain-free-dentistry /pain-free-dentistry.html 200!
 /oral-cancer-screening /oral-cancer-screening.html 200!
 /west-hollywood-dentist /west-hollywood-dentist.html 200!
 /beverly-hills-dentist /beverly-hills-dentist.html 200!
 /culver-city-dentist /culver-city-dentist.html 200!
-/west-la-dentist    /west-la-dentist.html   200!
-/bel-air-dentist    /bel-air-dentist.html   200!
-/90048-dentist      /90048-dentist.html     200!
-/melrose-dentist    /melrose-dentist.html   200!
-/westwood-dentist   /westwood-dentist.html  200!
+/west-la-dentist /west-la-dentist.html 200!
+/bel-air-dentist /bel-air-dentist.html 200!
+/90048-dentist /90048-dentist.html 200!
+/melrose-dentist /melrose-dentist.html 200!
+/westwood-dentist /westwood-dentist.html 200!
 /cosmetic-dentistry /cosmetic-dentistry.html 200!
-/emergency-dentist  /emergency-dentist.html 200!
-/privacy-policy     /privacy-policy.html    200!
-/terms-of-service   /terms-of-service.html  200!
-/hipaa-compliance   /hipaa-compliance.html  200!
+/emergency-dentist /emergency-dentist.html 200!
+/privacy-policy /privacy-policy.html 200!
+/terms-of-service /terms-of-service.html 200!
+/hipaa-compliance /hipaa-compliance.html 200!
 /blog/front-teeth-veneers-complete-guide /front-teeth-veneers-complete-guide.html 200!
 /blog/single-tooth-veneers-guide /single-tooth-veneers-guide.html 200!
 
 # Static files - serve directly with force flag
-/sitemap.xml        /sitemap.xml            200!
-/robots.txt         /robots.txt             200!
-/favicon.ico        /favicon.ico            200!
+/sitemap.xml /sitemap.xml 200!
+/robots.txt /robots.txt 200!
+/favicon.ico /favicon.ico 200!
 
 # Trailing slash consistency (enforce trailing slash policy)
 /about /about/ 301
@@ -85,7 +85,7 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 
 # SPECIFIC redirects first (before wildcards)
 /hollywood-cosmetic-dentist.html /services/ 301
-/dentist-west-hollywood.html /about/ 301  
+/dentist-west-hollywood.html /about/ 301
 /invisalign-los-angeles.html /invisalign/ 301
 /invisalign.html /invisalign/ 301
 /teeth-whitening.html /teeth-whitening/ 301
@@ -94,17 +94,17 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /emergency-dentist.html /emergency-dentist/ 301
 /veneers-los-angeles.html /veneers-los-angeles/ 301
 /z-test_value.html / 301
-/5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301
-/blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog 301
+/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
+/blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
 
 # High-traffic missing URLs from Google Search Console
-/blog/single-tooth-veneers-perfect-solutions /blog/single-tooth-veneers-guide 301
-/choosing-veneers-for-the-front-4-teeth/ /blog/front-teeth-veneers-complete-guide 301
-/choosing-veneers-for-the-front-4-teeth /blog/front-teeth-veneers-complete-guide 301
+/blog/single-tooth-veneers-perfect-solutions /blog/single-tooth-veneers-guide/ 301
+/choosing-veneers-for-the-front-4-teeth/ /blog/front-teeth-veneers-complete-guide/ 301
+/choosing-veneers-for-the-front-4-teeth /blog/front-teeth-veneers-complete-guide/ 301
 /about-us/about-dr-alexie-aguil/ /about/ 301
 /cosmetic-dentist-redondo-beach-ca/ /west-la-dentist/ 301
-/choosing-veneers-for-just-one-tooth/ /blog/single-tooth-veneers-guide 301
-/blog/2-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide 301
+/choosing-veneers-for-just-one-tooth/ /blog/single-tooth-veneers-guide/ 301
+/blog/2-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide/ 301
 /the-shapes-and-styles-of-dental-veneers/ /veneers/ 301
 /services/dental-crowns/ /dental-crowns/ 301
 /services/dental-crowns /dental-crowns/ 301
@@ -141,28 +141,28 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /long-will-take-fix-crooked-teeth/1000 /invisalign/ 301
 /long-will-take-fix-crooked-teeth//1000 /invisalign/ 301
 /long-will-take-fix-crooked-teeth/:splat /invisalign/ 301
-/blog/4-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide 301
+/blog/4-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide/ 301
 /our-practice/ /about/ 301
-/the-material-options-for-dental-veneers/ /blog/the-material-options-for-dental-veneers 301
-/the-material-options-for-dental-veneers/1000 /blog/the-material-options-for-dental-veneers 301
-/the-material-options-for-dental-veneers//1000 /blog/the-material-options-for-dental-veneers 301
-/the-material-options-for-dental-veneers/:splat /blog/the-material-options-for-dental-veneers 301
-/the-shapes-and-styles-of-dental-veneers/ /blog/the-shapes-and-styles-of-dental-veneers 301
-/the-shapes-and-styles-of-dental-veneers/1000 /blog/the-shapes-and-styles-of-dental-veneers 301
-/the-shapes-and-styles-of-dental-veneers//1000 /blog/the-shapes-and-styles-of-dental-veneers 301
-/the-shapes-and-styles-of-dental-veneers/:splat /blog/the-shapes-and-styles-of-dental-veneers 301
-/what-to-do-if-youve-chipped-a-tooth/ /blog/what-to-do-if-youve-chipped-a-tooth 301
-/what-to-do-if-youve-chipped-a-tooth/1000 /blog/what-to-do-if-youve-chipped-a-tooth 301
-/what-to-do-if-youve-chipped-a-tooth//1000 /blog/what-to-do-if-youve-chipped-a-tooth 301
-/what-to-do-if-youve-chipped-a-tooth/:splat /blog/what-to-do-if-youve-chipped-a-tooth 301
-/marijuana-use-increases-risk-gum-disease/ /blog/marijuana-use-increases-risk-gum-disease 301
-/marijuana-use-increases-risk-gum-disease/?no_redirect=true /blog/marijuana-use-increases-risk-gum-disease 301
-/marijuana-use-increases-risk-gum-disease//1000 /blog/marijuana-use-increases-risk-gum-disease 301
-/recommendations-to-work-flossing-into-your-daily-routine/ /blog/recommendations-to-work-flossing-into-your-daily-routine 301
-/female-smokers-are-at-a-higher-risk-of-oral-cancer/ /blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers 301
-/a-dentist-for-adults-in-los-angeles/ /blog/dentist-for-adults-los-angeles 301
-/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/ /blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age 301
-/the-best-long-term-cosmetic-dentistry-solutions/ /blog/long-term-cosmetic-dentistry-solutions 301
+/the-material-options-for-dental-veneers/ /blog/the-material-options-for-dental-veneers/ 301
+/the-material-options-for-dental-veneers/1000 /blog/the-material-options-for-dental-veneers/ 301
+/the-material-options-for-dental-veneers//1000 /blog/the-material-options-for-dental-veneers/ 301
+/the-material-options-for-dental-veneers/:splat /blog/the-material-options-for-dental-veneers/ 301
+/the-shapes-and-styles-of-dental-veneers/ /blog/the-shapes-and-styles-of-dental-veneers/ 301
+/the-shapes-and-styles-of-dental-veneers/1000 /blog/the-shapes-and-styles-of-dental-veneers/ 301
+/the-shapes-and-styles-of-dental-veneers//1000 /blog/the-shapes-and-styles-of-dental-veneers/ 301
+/the-shapes-and-styles-of-dental-veneers/:splat /blog/the-shapes-and-styles-of-dental-veneers/ 301
+/what-to-do-if-youve-chipped-a-tooth/ /blog/what-to-do-if-youve-chipped-a-tooth/ 301
+/what-to-do-if-youve-chipped-a-tooth/1000 /blog/what-to-do-if-youve-chipped-a-tooth/ 301
+/what-to-do-if-youve-chipped-a-tooth//1000 /blog/what-to-do-if-youve-chipped-a-tooth/ 301
+/what-to-do-if-youve-chipped-a-tooth/:splat /blog/what-to-do-if-youve-chipped-a-tooth/ 301
+/marijuana-use-increases-risk-gum-disease/ /blog/marijuana-use-increases-risk-gum-disease/ 301
+/marijuana-use-increases-risk-gum-disease/?no_redirect=true /blog/marijuana-use-increases-risk-gum-disease/ 301
+/marijuana-use-increases-risk-gum-disease//1000 /blog/marijuana-use-increases-risk-gum-disease/ 301
+/recommendations-to-work-flossing-into-your-daily-routine/ /blog/recommendations-to-work-flossing-into-your-daily-routine/ 301
+/female-smokers-are-at-a-higher-risk-of-oral-cancer/ /blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers/ 301
+/a-dentist-for-adults-in-los-angeles/ /blog/dentist-for-adults-los-angeles/ 301
+/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/ /blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/ 301
+/the-best-long-term-cosmetic-dentistry-solutions/ /blog/long-term-cosmetic-dentistry-solutions/ 301
 /the-best-teeth-straightening-for-adults/ /invisalign/ 301
 /high-end-dentistry/ /cosmetic-dentistry/ 301
 /high-end-dentistry/1000 /cosmetic-dentistry/ 301
@@ -196,11 +196,11 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /culver-city-dentist /culver-city-dentist/ 301
 
 # Pattern-based catch-alls for other locations
-/*-dentist.html /services 301
-/*-cosmetic-dentist* /services 301
-/*-veneers* /veneers 301
-/*-whitening* /zoom-whitening 301
-/dentist-* /about 301
+/*-dentist.html /services/ 301
+/*-cosmetic-dentist* /services/ 301
+/*-veneers* /veneers/ 301
+/*-whitening* /zoom-whitening/ 301
+/dentist-* /about/ 301
 
 # Fallback for missed location pages
 /*beach* / 301
@@ -225,4 +225,4 @@ http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 /case-studies/* /transformation-stories/:splat 301
 
 # SPA catch-all for all other routes (MUST BE LAST)
-/*              /index.html         200
+/* /index.html 200

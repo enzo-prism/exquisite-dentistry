@@ -57,22 +57,22 @@
 # SPECIFIC redirects for GSC 404 errors (CRITICAL - must be first)
 [[redirects]]
   from = "/hollywood-cosmetic-dentist.html"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/dentist-west-hollywood.html"
-  to = "/about"
+  to = "/about/"
   status = 301
 
 [[redirects]]
   from = "/invisalign-los-angeles.html"
-  to = "/services#invisalign"
+  to = "/services/#invisalign"
   status = 301
 
 [[redirects]]
   from = "/invisalign.html"
-  to = "/services#invisalign"
+  to = "/services/#invisalign"
   status = 301
 
 [[redirects]]
@@ -83,43 +83,43 @@
 # Google-indexed URLs that need redirects
 [[redirects]]
   from = "/about-us/about-dr-alexie-aguil/"
-  to = "/about"
+  to = "/about/"
   status = 301
 
 [[redirects]]
   from = "/5-healthy-habits-for-your-teeth/"
-  to = "/blog"
+  to = "/blog/"
   status = 301
 
 [[redirects]]
   from = "/about-us/"
-  to = "/about"
+  to = "/about/"
   status = 301
 
 # Pattern-based catch-alls for other locations
 [[redirects]]
   from = "/*-dentist.html"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/*-cosmetic-dentist*"
-  to = "/services"
+  to = "/services/"
   status = 301
 
 [[redirects]]
   from = "/*-veneers*"
-  to = "/veneers"
+  to = "/veneers/"
   status = 301
 
 [[redirects]]
   from = "/*-whitening*"
-  to = "/zoom-whitening"
+  to = "/zoom-whitening/"
   status = 301
 
 [[redirects]]
   from = "/dentist-*"
-  to = "/about"
+  to = "/about/"
   status = 301
 
 # Fallback for missed location pages

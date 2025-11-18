@@ -48,7 +48,7 @@ const ContactPageStructuredData: React.FC = () => {
     isPartOf: {
       '@type': 'WebSite',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com/'
+      url: getCanonicalUrl('/')
     },
     inLanguage: 'en-US'
   };

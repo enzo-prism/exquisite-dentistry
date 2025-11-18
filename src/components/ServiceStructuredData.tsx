@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface ServiceStructuredDataProps {
   serviceName: string;
@@ -9,6 +10,23 @@ interface ServiceStructuredDataProps {
   priceRange?: string;
 }
 
+const normalizeUrl = (value: string): string => {
+  if (!value) {
+    return getCanonicalUrl('/');
+  }
+
+  try {
+    if (value.startsWith('http://') || value.startsWith('https://')) {
+      const parsed = new URL(value);
+      return getCanonicalUrl(parsed.pathname || '/');
+    }
+  } catch {
+    // Ignore parse errors and fall through
+  }
+
+  return getCanonicalUrl(value);
+};
+
 const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({ 
   serviceName, 
   description, 
@@ -16,13 +34,14 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
   image,
   priceRange 
 }) => {
+  const canonicalUrl = normalizeUrl(url);
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     serviceType: serviceName,
     name: serviceName,
     description: description,
-    url: `https://exquisitedentistryla.com${url}`,
+    url: canonicalUrl,
     image: image || 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     provider: {
       '@type': ['LocalBusiness', 'Dentist'],

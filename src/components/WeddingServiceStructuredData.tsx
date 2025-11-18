@@ -1,13 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const WeddingServiceStructuredData: React.FC = () => {
+  const weddingCanonical = getCanonicalUrl('/wedding');
+
   const weddingServiceData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Wedding Smile Makeover',
     description: 'Specialized bridal dentistry packages designed for brides, grooms, and wedding parties to achieve the perfect wedding day smile',
-    url: 'https://exquisitedentistryla.com/wedding/',
+    url: weddingCanonical,
     image: 'https://exquisitedentistryla.com/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png',
     provider: {
       '@id': 'https://exquisitedentistryla.com/#business'
@@ -59,10 +62,10 @@ const WeddingServiceStructuredData: React.FC = () => {
   const eventData = {
     '@context': 'https://schema.org',
     '@type': 'Event',
-    '@id': 'https://exquisitedentistryla.com/wedding/#consultation',
+    '@id': `${weddingCanonical}#consultation`,
     name: 'Wedding Smile Consultation',
     description: 'Free consultation for wedding smile makeover planning and timeline discussion',
-    url: 'https://exquisitedentistryla.com/wedding/',
+    url: weddingCanonical,
     startDate: '2024-01-01T09:00:00-08:00',
     endDate: '2025-12-31T17:00:00-08:00',
     eventStatus: 'https://schema.org/EventScheduled',
@@ -82,7 +85,7 @@ const WeddingServiceStructuredData: React.FC = () => {
     organizer: {
       '@type': 'Organization',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com/'
+      url: getCanonicalUrl('/')
     },
     isAccessibleForFree: true,
     audience: {

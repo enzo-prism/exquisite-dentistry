@@ -1,4 +1,5 @@
 import { CANONICAL_URLS } from '@/hooks/use-canonical';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface BlogPostCanonicalOptions {
   slug: string;
@@ -19,7 +20,7 @@ export class CanonicalManager {
    * Generate canonical URL for blog posts (without trailing slash)
    */
   static getBlogPostCanonical({ slug }: BlogPostCanonicalOptions): string {
-    return `${this.BASE_URL}/blog/${slug}`;
+    return getCanonicalUrl(`/blog/${slug}`);
   }
   
   /**
@@ -28,7 +29,7 @@ export class CanonicalManager {
    */
   static getPaginatedCanonical({ basePath }: PaginatedCanonicalOptions): string {
     const cleanPath = basePath.startsWith('/') ? basePath : `/${basePath}`;
-    return `${this.BASE_URL}${cleanPath}`;
+    return getCanonicalUrl(cleanPath);
   }
   
   /**
@@ -37,14 +38,15 @@ export class CanonicalManager {
    */
   static getFilteredCanonical(basePath: string): string {
     const cleanPath = basePath.startsWith('/') ? basePath : `/${basePath}`;
-    return `${this.BASE_URL}${cleanPath}`;
+    return getCanonicalUrl(cleanPath);
   }
   
   /**
    * Handle cross-domain canonical scenarios
    */
   static getCrossDomainCanonical(primaryDomain: string, path: string): string {
-    return `${primaryDomain}${path}`;
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    return `${primaryDomain}${cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`}`;
   }
   
   /**
@@ -101,11 +103,11 @@ export class CanonicalManager {
     return [
       {
         hreflang: 'en-US',
-        href: `${this.BASE_URL}${currentPath}`
+        href: getCanonicalUrl(currentPath)
       },
       {
         hreflang: 'x-default',
-        href: `${this.BASE_URL}${currentPath}`
+        href: getCanonicalUrl(currentPath)
       }
     ];
   }
@@ -115,7 +117,7 @@ export class CanonicalManager {
    */
   static getMobileCanonical(desktopPath: string): string {
     // For mobile-first indexing, canonical should point to the main URL
-    return `${this.BASE_URL}${desktopPath}`;
+    return getCanonicalUrl(desktopPath);
   }
 }
 

@@ -9,6 +9,7 @@ import { transformationStories } from '@/data/transformationStories';
 import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
 import { ArrowLeft, CheckCircle, Heart, Star, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const TransformationStoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,7 +19,7 @@ const TransformationStoryPage: React.FC = () => {
     return <Navigate to="/transformation-stories" replace />;
   }
 
-  const canonicalUrl = `https://exquisitedentistryla.com/transformation-stories/${caseStudy.slug}/`;
+  const canonicalUrl = getCanonicalUrl(`/transformation-stories/${caseStudy.slug}`);
 
   const videoSectionTitle = caseStudy.videoSection?.title ?? `🎥 Watch ${caseStudy.patientName}'s Story`;
   const defaultVideoDescription =

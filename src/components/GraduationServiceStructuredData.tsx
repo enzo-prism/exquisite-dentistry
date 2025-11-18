@@ -1,13 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const GraduationServiceStructuredData: React.FC = () => {
+  const graduationCanonical = getCanonicalUrl('/graduation');
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     name: 'Graduation Smile Makeover',
     description: 'Quick cosmetic dental treatments designed specifically for graduates to look their best in graduation photos and celebrations',
-    url: 'https://exquisitedentistryla.com/graduation/',
+    url: graduationCanonical,
     provider: {
       '@id': 'https://exquisitedentistryla.com/#business'
     },
@@ -64,13 +66,13 @@ const GraduationServiceStructuredData: React.FC = () => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com/'
+        item: getCanonicalUrl('/')
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Graduation Smile Makeover',
-        item: 'https://exquisitedentistryla.com/graduation/'
+        item: graduationCanonical
       }
     ]
   };

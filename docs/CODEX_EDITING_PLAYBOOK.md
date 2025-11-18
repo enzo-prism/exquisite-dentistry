@@ -68,7 +68,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 
 ### 3.5 Automation Scripts
 - `scripts/generate-sitemap.js` + `src/utils/sitemapGenerator.ts` build sitemap XML consumed by `public/sitemap.xml`.
-- `scripts/validate-canonicals.js` / `scripts/validate-images.js` spot broken canonical URLs or missing optimized assets—run them before large SEO/media pushes.
+- `scripts/validate-canonicals.ts` / `scripts/validate-images.js` spot broken canonical URLs or missing optimized assets—run them before large SEO/media pushes.
 - `test-browser.js` is a Puppeteer smoke test for top traffic routes (expects a dev/preview server).
 
 ---

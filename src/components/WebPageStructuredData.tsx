@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface WebPageStructuredDataProps {
   title: string;
@@ -12,6 +13,23 @@ interface WebPageStructuredDataProps {
   }>;
 }
 
+const normalizeUrl = (value: string): string => {
+  if (!value) {
+    return getCanonicalUrl('/');
+  }
+
+  try {
+    if (value.startsWith('http://') || value.startsWith('https://')) {
+      const parsed = new URL(value);
+      return getCanonicalUrl(parsed.pathname || '/');
+    }
+  } catch {
+    // Ignore parse errors and fall through to default behavior
+  }
+
+  return getCanonicalUrl(value);
+};
+
 const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({ 
   title, 
   description, 
@@ -19,16 +37,17 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
   pageType = 'WebPage',
   breadcrumbs = []
 }) => {
+  const canonicalUrl = normalizeUrl(url);
   const webPageData = {
     '@context': 'https://schema.org',
     '@type': pageType,
     name: title,
     description: description,
-    url: url,
+    url: canonicalUrl,
     isPartOf: {
       '@type': 'WebSite',
       name: 'Exquisite Dentistry',
-      url: 'https://exquisitedentistryla.com/'
+      url: getCanonicalUrl('/')
     },
     provider: {
       '@type': ['LocalBusiness', 'Dentist'],
@@ -55,13 +74,13 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://exquisitedentistryla.com/'
+        item: getCanonicalUrl('/')
       },
       ...breadcrumbs.map((breadcrumb, index) => ({
         '@type': 'ListItem',
         position: index + 2,
         name: breadcrumb.name,
-        item: breadcrumb.url
+        item: normalizeUrl(breadcrumb.url)
       }))
     ]
   } : null;
