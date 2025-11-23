@@ -651,7 +651,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "age"
   ],
   "seoTitle": "Maintaining Oral Wellness As You Age",
-  "seoDescription": "Actor Anthony Hopkins once ironically stated, \u201cGetting old ain\u2019t for the faint of heart. \u201d How true that is!",
+  "seoDescription": "Learn how aging affects your teeth and gums, plus practical daily habits to keep your smile strong, comfortable, and healthy over time.",
   "seoKeywords": "maintaining, oral, wellness, you, age",
   "published": true
 },
@@ -728,7 +728,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "older"
   ],
   "seoTitle": "Oral Wellness with Age: How to Protect Your Teeth as You Grow Older",
-  "seoDescription": "Actor Anthony Hopkins once ironically stated, \u201cGetting old ain\u2019t for the faint of heart. \u201d How true that is!",
+  "seoDescription": "Explore long-term strategies for protecting your teeth as you get older—from preventive cleanings to restorative options when issues show up.",
   "seoKeywords": "oral, wellness, age, how, protect, teeth, you, grow, older",
   "published": true
 },

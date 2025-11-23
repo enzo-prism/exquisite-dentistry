@@ -36,6 +36,7 @@
 /hipaa-compliance /hipaa-compliance.html 200!
 /blog/front-teeth-veneers-complete-guide /front-teeth-veneers-complete-guide.html 200!
 /blog/single-tooth-veneers-guide /single-tooth-veneers-guide.html 200!
+/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/ /blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day 301
 
 # Static files - serve directly with force flag
 /sitemap.xml /sitemap.xml 200!
@@ -98,6 +99,8 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
 
 # High-traffic missing URLs from Google Search Console
+/single-tooth-veneers-guide/ /blog/single-tooth-veneers-guide 301
+/single-tooth-veneers-guide /blog/single-tooth-veneers-guide 301
 /blog/single-tooth-veneers-perfect-solutions /blog/single-tooth-veneers-guide/ 301
 /choosing-veneers-for-the-front-4-teeth/ /blog/front-teeth-veneers-complete-guide/ 301
 /choosing-veneers-for-the-front-4-teeth /blog/front-teeth-veneers-complete-guide/ 301
