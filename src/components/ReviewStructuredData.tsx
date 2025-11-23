@@ -7,9 +7,7 @@ const ReviewStructuredData: React.FC = () => {
     '@type': 'AggregateRating',
     '@id': 'https://exquisitedentistryla.com/#reviews',
     itemReviewed: {
-      '@type': ['LocalBusiness', 'Dentist'],
-      '@id': 'https://exquisitedentistryla.com/#business',
-      name: 'Exquisite Dentistry'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     ratingValue: '4.9',
     reviewCount: '150',
@@ -23,9 +21,7 @@ const ReviewStructuredData: React.FC = () => {
       '@type': 'Review',
       '@id': 'https://exquisitedentistryla.com/#review-shannon',
       itemReviewed: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        '@id': 'https://exquisitedentistryla.com/#business',
-        name: 'Exquisite Dentistry'
+        '@id': 'https://exquisitedentistryla.com/#business'
       },
       author: {
         '@type': 'Person',
@@ -44,9 +40,7 @@ const ReviewStructuredData: React.FC = () => {
       '@type': 'Review',
       '@id': 'https://exquisitedentistryla.com/#review-taylor',
       itemReviewed: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        '@id': 'https://exquisitedentistryla.com/#business',
-        name: 'Exquisite Dentistry'
+        '@id': 'https://exquisitedentistryla.com/#business'
       },
       author: {
         '@type': 'Person',
@@ -65,9 +59,7 @@ const ReviewStructuredData: React.FC = () => {
       '@type': 'Review',
       '@id': 'https://exquisitedentistryla.com/#review-christian',
       itemReviewed: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        '@id': 'https://exquisitedentistryla.com/#business',
-        name: 'Exquisite Dentistry'
+        '@id': 'https://exquisitedentistryla.com/#business'
       },
       author: {
         '@type': 'Person',

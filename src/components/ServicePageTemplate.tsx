@@ -53,9 +53,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
     description: config.seo.description,
     url: canonicalUrl,
     provider: {
-      "@type": "Dentist",
-      name: "Exquisite Dentistry",
-      url: "https://exquisitedentistryla.com"
+      "@id": "https://exquisitedentistryla.com/#business"
     }
   };
 

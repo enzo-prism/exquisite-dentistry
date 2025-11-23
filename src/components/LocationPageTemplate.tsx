@@ -11,13 +11,6 @@ interface LocationPageTemplateProps {
   config: LocationPageConfig;
 }
 
-const BUSINESS_ADDRESS = {
-  streetAddress: "6227 Wilshire Blvd",
-  addressLocality: "Los Angeles",
-  addressRegion: "CA",
-  postalCode: "90048",
-  addressCountry: "US"
-};
 
 const MIN_WORD_COUNT = 150;
 
@@ -53,31 +46,12 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Dentist",
-    name: `Exquisite Dentistry – ${config.cityLabel}`,
+    "@type": "WebPage",
+    name: config.seo.title,
     url: canonicalUrl,
-    telephone: "+1-323-272-2388",
-    address: {
-      "@type": "PostalAddress",
-      ...BUSINESS_ADDRESS,
-      addressLocality: config.cityLabel
-    },
-    areaServed: config.cityLabel,
-    sameAs: ["https://www.instagram.com/exquisitedentistryla/", "https://www.facebook.com/ExquisiteDentistry"],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        opens: "08:00",
-        closes: "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Friday"],
-        opens: "08:00",
-        closes: "16:00"
-      }
-    ]
+    about: {
+      "@id": "https://exquisitedentistryla.com/#business"
+    }
   };
 
   return (

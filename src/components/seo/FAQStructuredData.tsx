@@ -31,17 +31,7 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({
       }
     })),
     provider: {
-      '@type': ['LocalBusiness', 'Dentist'],
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388'
+      '@id': 'https://exquisitedentistryla.com/#business'
     }
   };
 
