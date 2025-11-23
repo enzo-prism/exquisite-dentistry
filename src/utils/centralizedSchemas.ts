@@ -16,10 +16,10 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   name: 'Exquisite Dentistry',
   alternateName: 'Exquisite Dentistry Los Angeles',
   description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
-  url: getCanonicalUrl('/'),
-  telephone: '(323) 272-2388',
+  url: 'https://exquisitedentistryla.com/',
+  telephone: '+1-323-272-2388',
   email: 'info@exquisitedentistryla.com',
-  priceRange: '$$$',
+  priceRange: '$$',
   currenciesAccepted: 'USD',
   paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
   address: {
@@ -41,13 +41,19 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
       opens: '08:00',
-      closes: '17:00'
+      closes: '18:00'
     },
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: 'Friday',
       opens: '08:00',
       closes: '16:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '09:00',
+      closes: '14:00'
     }
   ],
   areaServed: [
