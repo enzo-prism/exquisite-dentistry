@@ -80,12 +80,18 @@ const EmergencyDentist = () => {
         includeWebsite={true}
         additionalSchemas={[{
           '@context': 'https://schema.org',
-          '@type': ['MedicalBusiness', 'Dentist'],
-          name: 'Emergency Dentist Los Angeles',
-          description: 'Emergency dental services in Los Angeles offering same-day care for toothaches, fractures, infections, and dental trauma.',
+          '@type': 'WebPage',
+          '@id': getCanonicalUrl('/emergency-dentist') + '#webpage',
           url: getCanonicalUrl('/emergency-dentist'),
-          areaServed: ['Los Angeles', 'Beverly Hills', 'West Hollywood'],
-          openingHours: 'Mo,Tu,We,Th 08:00-19:00 Sa 08:00-14:00'
+          name: 'Emergency Dentist Los Angeles | Same-Day Dental Care',
+          description: 'Emergency dental services in Los Angeles offering same-day care for toothaches, fractures, infections, and dental trauma.',
+          isPartOf: {
+            '@id': 'https://exquisitedentistryla.com/#website'
+          },
+          about: {
+            '@id': 'https://exquisitedentistryla.com/#business'
+          },
+          specialty: 'Emergency Dental Care'
         }]}
       />
 

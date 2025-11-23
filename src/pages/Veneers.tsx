@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
@@ -7,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Clock, Shield, Sparkles } from 'lucide-react';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
@@ -14,6 +14,7 @@ import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStr
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const Veneers = () => {
   const benefits = [
@@ -87,6 +88,11 @@ const Veneers = () => {
 
   return (
     <>
+      <MasterStructuredData
+        includeBusiness={true}
+        includeWebsite={true}
+      />
+
       <PageSEO
         title="Porcelain Veneers Los Angeles | Custom Smile Design"
         description="Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available."
