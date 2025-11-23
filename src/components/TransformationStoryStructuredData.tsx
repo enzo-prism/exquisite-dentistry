@@ -13,19 +13,14 @@ const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredD
 }) => {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Exquisite Dentistry",
-    "description": "Cosmetic and restorative dentistry in Los Angeles",
-    "url": "https://exquisitedentistryla.com",
-    "telephone": "(323) 272-2388",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Los Angeles",
-      "addressLocality": "Los Angeles",
-      "addressRegion": "CA",
-      "addressCountry": "US"
+    "@type": "WebPage",
+    name: caseStudy.title,
+    description: caseStudy.shortDescription,
+    url: canonicalUrl,
+    about: {
+      "@id": "https://exquisitedentistryla.com/#business"
     },
-    "review": {
+    mainEntity: {
       "@type": "Review",
       "author": {
         "@type": "Person",
@@ -37,20 +32,6 @@ const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredD
         "ratingValue": "5",
         "bestRating": "5"
       }
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Dental Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "MedicalProcedure",
-            "name": "Smile Transformation",
-            "description": "Comprehensive smile enhancement and teeth straightening"
-          }
-        }
-      ]
     }
   };
 

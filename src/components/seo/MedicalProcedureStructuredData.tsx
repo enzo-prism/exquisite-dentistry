@@ -59,27 +59,10 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
     ...(recoveryTime && { recoveryTime: recoveryTime }),
     ...(priceRange && { priceRange: priceRange }),
     provider: {
-      '@type': ['LocalBusiness', 'Dentist'],
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388',
-      url: 'https://exquisitedentistryla.com'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     performer: {
-      '@type': 'Person',
-      name: 'Dr. Alexie Aguil',
-      jobTitle: 'Cosmetic Dentist',
-      worksFor: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        name: 'Exquisite Dentistry'
-      }
+      '@id': 'https://exquisitedentistryla.com/#doctor'
     }
   };
 

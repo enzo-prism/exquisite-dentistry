@@ -13,18 +13,7 @@ const ShareYourStoryStructuredData: React.FC = () => {
       name: 'Patient Story Submission Program',
       description: 'A program that rewards patients for sharing their dental transformation stories to help future patients make informed decisions.',
       provider: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        name: 'Exquisite Dentistry',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '6227 Wilshire Blvd',
-          addressLocality: 'Los Angeles',
-          addressRegion: 'CA',
-          postalCode: '90048',
-          addressCountry: 'US'
-        },
-        telephone: '(323) 272-2388',
-        url: 'https://exquisitedentistry.com'
+        '@id': 'https://exquisitedentistryla.com/#business'
       },
       offers: [
         {

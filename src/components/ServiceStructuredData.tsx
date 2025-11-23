@@ -44,17 +44,7 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     url: canonicalUrl,
     image: image || 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     provider: {
-      '@type': ['LocalBusiness', 'Dentist'],
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
-      },
-      telephone: '(323) 272-2388'
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     performer: {
       '@type': 'Person',
@@ -71,16 +61,7 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceLocation: {
-        '@type': 'Place',
-        name: 'Exquisite Dentistry',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '6227 Wilshire Blvd',
-          addressLocality: 'Los Angeles',
-          addressRegion: 'CA',
-          postalCode: '90048',
-          addressCountry: 'US'
-        }
+        '@id': 'https://exquisitedentistryla.com/#business'
       },
       servicePhone: '(323) 272-2388'
     },
