@@ -10,6 +10,7 @@ const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@
 
 // Master business entity - single source of truth
 export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
+  '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'Dentist'],
   '@id': 'https://exquisitedentistryla.com/#business',
   name: 'Exquisite Dentistry',

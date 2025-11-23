@@ -76,15 +76,18 @@ const CosmeticDentistry = () => {
         includeWebsite={true}
         additionalSchemas={[{
           '@context': 'https://schema.org',
-          '@type': 'MedicalBusiness',
-          name: 'Cosmetic Dentistry Los Angeles',
-          description: 'Luxury cosmetic dentistry in Los Angeles offering veneers, Invisalign, whitening, bonding, and smile makeovers tailored to individual brands.',
+          '@type': 'WebPage',
+          '@id': getCanonicalUrl('/cosmetic-dentistry') + '#webpage',
           url: getCanonicalUrl('/cosmetic-dentistry'),
-          parentOrganization: {
+          name: 'Cosmetic Dentistry Los Angeles | Luxury Smile Makeovers',
+          description: 'Luxury cosmetic dentistry in Los Angeles offering veneers, Invisalign, whitening, bonding, and smile makeovers tailored to individual brands.',
+          isPartOf: {
+            '@id': 'https://exquisitedentistryla.com/#website'
+          },
+          about: {
             '@id': 'https://exquisitedentistryla.com/#business'
           },
-          medicalSpecialty: ['CosmeticDentistry', 'SmileDesign'],
-          areaServed: ['Los Angeles', 'Beverly Hills', 'West Hollywood']
+          specialty: 'Cosmetic Dentistry'
         }]}
       />
 
