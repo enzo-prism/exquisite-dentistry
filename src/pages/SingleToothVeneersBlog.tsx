@@ -31,11 +31,13 @@ const SingleToothVeneersBlog = () => {
     <>
       <BlogStructuredData post={blogPost} />
       <PageSEO
-        title="Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections | Exquisite Dentistry"
-        description="Expert guide to single tooth veneers by Dr. Alexie Aguil. Learn when single tooth veneers are the right choice and what to expect from the treatment."
+        title="Single Tooth Veneers LA | When & Why Guide"
+        description="Expert guide to single tooth veneers by Dr. Alexie Aguil. Learn when single tooth veneers are the right choice and what to expect from the treatment process."
         keywords="single tooth veneers, porcelain veneers, cosmetic dentistry, smile makeover, dental veneers Los Angeles, tooth restoration"
-        path="/single-tooth-veneers-guide"
+        path="/blog/single-tooth-veneers-perfect-solutions"
         ogType="article"
+        articleAuthor="Dr. Alexie Aguil"
+        articlePublishedTime="2025-06-19T00:00:00Z"
       />
 
       {/* Header */}
