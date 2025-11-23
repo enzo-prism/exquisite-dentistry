@@ -99,8 +99,10 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 /blog/5-ways-to-improve-oral-care-while-youre-at-work/ /blog/ 301
 
 # High-traffic missing URLs from Google Search Console
-/single-tooth-veneers-guide/ /blog/single-tooth-veneers-guide 301
-/single-tooth-veneers-guide /blog/single-tooth-veneers-guide 301
+/single-tooth-veneers-guide /blog/single-tooth-veneers-guide/ 301
+/single-tooth-veneers-guide/ /blog/single-tooth-veneers-guide/ 301
+https://www.exquisitedentistryla.com/single-tooth-veneers-guide https://exquisitedentistryla.com/blog/single-tooth-veneers-guide/ 301
+https://www.exquisitedentistryla.com/single-tooth-veneers-guide/ https://exquisitedentistryla.com/blog/single-tooth-veneers-guide/ 301
 /blog/single-tooth-veneers-perfect-solutions /blog/single-tooth-veneers-guide/ 301
 /choosing-veneers-for-the-front-4-teeth/ /blog/front-teeth-veneers-complete-guide/ 301
 /choosing-veneers-for-the-front-4-teeth /blog/front-teeth-veneers-complete-guide/ 301

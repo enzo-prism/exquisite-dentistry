@@ -64,6 +64,11 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   const normalizedPath = path === undefined ? '/' : path || '/';
   const canonicalUrl = getCanonicalUrl(normalizedPath);
   const sanitizedDescription = toMeta(description);
+  
+  // Differentiate title from H1 by adding brand suffix
+  const brandSuffix = 'Exquisite Dentistry Los Angeles';
+  const shouldAppendBrand = !title.toLowerCase().includes('exquisite dentistry');
+  const fullTitle = shouldAppendBrand ? `${title} | ${brandSuffix}` : title;
 
   // Dev tracking
   if (process.env.NODE_ENV !== 'production') {
@@ -82,7 +87,7 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   return (
     <Helmet>
       {/* Primary Meta Tags */}
-      <title>{title}</title>
+      <title>{fullTitle}</title>
       {shouldRenderDescription && <meta name="description" content={sanitizedDescription} />}
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={robotsContent} />
@@ -98,14 +103,14 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {/* Open Graph Meta Tags */}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={sanitizedDescription} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="Exquisite Dentistry" />
       
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={sanitizedDescription} />
       <meta name="twitter:image" content={ogImage} />
       
