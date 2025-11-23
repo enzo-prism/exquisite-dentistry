@@ -13,18 +13,18 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'Dentist', 'MedicalBusiness'],
   '@id': 'https://exquisitedentistryla.com/#business',
-  name: 'Exquisite Dentistry',
-  alternateName: 'Exquisite Dentistry Los Angeles',
+  name: 'Exquisite Dentistry Los Angeles',
+  alternateName: 'Exquisite Dentistry',
   description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
   url: 'https://exquisitedentistryla.com/',
   telephone: '+1-323-272-2388',
   email: 'info@exquisitedentistryla.com',
-  priceRange: '$$',
+  priceRange: '$$$',
   currenciesAccepted: 'USD',
   paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '6227 Wilshire Blvd',
+    streetAddress: '6222 Wilshire Blvd Suite 101',
     addressLocality: 'Los Angeles',
     addressRegion: 'CA',
     postalCode: '90048',
@@ -32,8 +32,8 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 34.0622,
-    longitude: -118.3567
+    latitude: 34.064851,
+    longitude: -118.370092
   },
   hasMap: GOOGLE_MAPS_URL,
   openingHoursSpecification: [
@@ -41,18 +41,12 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
       opens: '08:00',
-      closes: '18:00'
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Friday',
-      opens: '08:00',
-      closes: '16:00'
+      closes: '19:00'
     },
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: 'Saturday',
-      opens: '09:00',
+      opens: '08:00',
       closes: '14:00'
     }
   ],
@@ -78,8 +72,8 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     '@type': 'GeoCircle',
     geoMidpoint: {
       '@type': 'GeoCoordinates',
-      latitude: 34.0622,
-      longitude: -118.3567
+      latitude: 34.064851,
+      longitude: -118.370092
     },
     geoRadius: 25000
   },
@@ -112,13 +106,6 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'MedicalProcedure',
-          name: 'Teeth Whitening'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
           name: 'Dental Implants'
         }
       },
@@ -132,16 +119,16 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     ]
   },
   image: [
+    'https://exquisitedentistryla.com/lovable-uploads/dr-aguil-banner-2024-m.webp',
     'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     'https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png'
   ],
-  logo: 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp',
+  logo: 'https://exquisitedentistryla.com/lovable-uploads/dr-aguil-banner-2024-m.webp',
   sameAs: [
-    'https://www.instagram.com/exquisitedentistryLA',
-    'https://www.facebook.com/ExquisiteDentistry',
-    'https://www.yelp.com/biz/exquisite-dentistry-los-angeles',
-    'https://maps.google.com/ExquisiteDentistryLA',
-    GOOGLE_MAPS_URL
+    'https://www.google.com/maps/place/Exquisite+Dentistry',
+    'https://www.facebook.com/exquisitedentistryla',
+    'https://www.instagram.com/exquisitedentistryla/',
+    'https://www.yelp.com/biz/exquisite-dentistry-los-angeles-3'
   ]
 };
 

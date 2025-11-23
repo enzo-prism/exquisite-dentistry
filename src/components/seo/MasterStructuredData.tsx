@@ -37,6 +37,7 @@ const ensureSchemaOrgContext = (schema: JsonLd): JsonLd => {
 /**
  * Master structured data component - single source of truth
  * Prevents duplication and ensures consistency across all pages
+ * Uses @graph pattern to ensure only one LocalBusiness entity exists
  */
 const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
   includeBusiness = true,
@@ -45,36 +46,40 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
   includeReviews = false,
   additionalSchemas = []
 }) => {
-  const schemas: JsonLd[] = [];
+  const graphEntities: JsonLd[] = [];
 
-  // Add business entity
+  // Add business entity (always first in graph if included)
   if (includeBusiness) {
     const businessWithReviews = includeReviews ? {
       ...MASTER_BUSINESS_ENTITY,
       aggregateRating: REVIEW_AGGREGATE_DATA
     } : MASTER_BUSINESS_ENTITY;
     
-    schemas.push(businessWithReviews);
-  }
-
-  // Add doctor entity
-  if (includeDoctor) {
-    schemas.push(MASTER_DOCTOR_ENTITY);
+    graphEntities.push(businessWithReviews);
   }
 
   // Add website entity
   if (includeWebsite) {
-    schemas.push(WEBSITE_ENTITY);
+    graphEntities.push(WEBSITE_ENTITY);
   }
 
-  // Add additional schemas
-  schemas.push(...additionalSchemas);
+  // Add doctor entity
+  if (includeDoctor) {
+    graphEntities.push(MASTER_DOCTOR_ENTITY);
+  }
 
-  const normalizedSchemas = schemas.map(ensureSchemaOrgContext);
+  // Add additional schemas (must NOT contain LocalBusiness/Dentist/MedicalBusiness types)
+  graphEntities.push(...additionalSchemas);
+
+  // Create @graph wrapper
+  const schemaGraph = {
+    '@context': SCHEMA_ORG_CONTEXT,
+    '@graph': graphEntities.map(ensureSchemaOrgContext)
+  };
 
   // Validate schemas and detect duplicates
   if (process.env.NODE_ENV === 'development') {
-    normalizedSchemas.forEach((schema, index) => {
+    graphEntities.forEach((schema, index) => {
       const validationResult = validateJsonLd(schema);
       logValidationErrors(`Schema[${index}]`, validationResult);
 
@@ -84,7 +89,7 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
       }
     });
 
-    const duplicateWarnings = detectSchemaDuplicates(normalizedSchemas);
+    const duplicateWarnings = detectSchemaDuplicates(graphEntities);
     if (duplicateWarnings.length > 0) {
       console.warn('🔍 Schema duplication detected:', duplicateWarnings);
     }
@@ -92,14 +97,9 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
 
   return (
     <Helmet>
-      {normalizedSchemas.map((schema, index) => (
-        <script
-          key={index}
-          type="application/ld+json"
-        >
-          {JSON.stringify(schema)}
-        </script>
-      ))}
+      <script type="application/ld+json">
+        {JSON.stringify(schemaGraph)}
+      </script>
     </Helmet>
   );
 };
