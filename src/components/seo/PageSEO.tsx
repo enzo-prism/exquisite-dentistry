@@ -29,6 +29,12 @@ const toMeta = (input: string, max = 155) => {
   return text.slice(0, max).replace(/\s+\S*$/, "");
 };
 
+// Truncate title to max length without breaking words
+const truncateTitle = (input: string, max = 70) => {
+  if (input.length <= max) return input;
+  return input.slice(0, max).replace(/\s+\S*$/, "").trim();
+};
+
 // Dev-time duplicate detection
 const trackMeta = (url: string, desc: string) => {
   if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
@@ -69,7 +75,21 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   const brandSuffix = 'Exquisite Dentistry Los Angeles';
   const lowerTitle = title.toLowerCase();
   const shouldAppendBrand = !lowerTitle.includes('exquisite dentistry');
-  const fullTitle = shouldAppendBrand ? `${title} | ${brandSuffix}` : title;
+  
+  let fullTitle: string;
+  if (shouldAppendBrand) {
+    const separator = ' | ';
+    const maxTitleLength = 70 - separator.length - brandSuffix.length;
+    const truncatedTitle = title.length > maxTitleLength 
+      ? truncateTitle(title, maxTitleLength)
+      : title;
+    fullTitle = `${truncatedTitle}${separator}${brandSuffix}`;
+  } else {
+    fullTitle = title;
+  }
+  
+  // Final safety check: ensure total length is within limit
+  fullTitle = truncateTitle(fullTitle, 70);
 
   return (
     <Helmet>
