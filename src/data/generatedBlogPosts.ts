@@ -964,7 +964,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "good",
     "investment"
   ],
-  "seoTitle": "Top LA Cosmetic Dentist Answers Your Questions: Are Veneers a Good Investment?",
+  "seoTitle": "Are Veneers Worth It? Expert Guide",
   "seoDescription": "Are you looking to enhance your smile and boost your confidence?  Dental veneers offer the best solution that can transform the appearance of your teeth, addressing issues such as discoloration, chipping, misalignment, and irregularities in shape.",
   "seoKeywords": "top, cosmetic, dentist, answers, questions, are, veneers, good, investment",
   "published": true
@@ -991,7 +991,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "good",
     "investment"
   ],
-  "seoTitle": "Top LA Cosmetic Dentist Answers Your Questions: Is Invisalign a Good Investment?",
+  "seoTitle": "Is Invisalign Worth It? LA Dentist",
   "seoDescription": "has revolutionized orthodontic treatment with its stunning results and discreet and convenient approach.  As the leading teeth straightening system, Invisalign can deliver a gorgeous smile for adults and teens seeking either small aesthetic changes or major\u2026",
   "seoKeywords": "top, cosmetic, dentist, answers, questions, invisalign, good, investment",
   "published": true
