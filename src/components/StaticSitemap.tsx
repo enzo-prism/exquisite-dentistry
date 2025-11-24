@@ -58,6 +58,13 @@ const StaticSitemap = () => {
     )
   };
 
+  const legacyRedirects = [
+    {
+      to: '/blog/choosing-veneers-for-the-front-4-teeth/',
+      label: 'Choosing Veneers for the Front 4 Teeth (redirect)'
+    }
+  ];
+
   return (
     <>
       <PageSEO
@@ -268,6 +275,32 @@ const StaticSitemap = () => {
                       <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
                         <span>Updated: {new Date(url.lastmod).toLocaleDateString()}</span>
                         <span>Priority: {url.priority}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Legacy Links (Redirects) */}
+            {legacyRedirects.length > 0 && (
+              <section className="bg-card p-6 rounded-lg shadow-sm border mb-8">
+                <h2 className="text-2xl font-semibold text-gold mb-6 flex items-center">
+                  🔗 Legacy Links
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {legacyRedirects.map((item) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      className="p-4 border rounded-lg hover:border-gold transition-colors duration-200 group"
+                    >
+                      <h3 className="font-medium text-primary group-hover:text-gold transition-colors">
+                        {item.label}
+                      </h3>
+                      <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
+                        <span>Redirects to updated article</span>
+                        <span>301</span>
                       </div>
                     </Link>
                   ))}
