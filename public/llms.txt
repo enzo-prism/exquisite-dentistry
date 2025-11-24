@@ -1,5 +1,5 @@
-# LLM Crawling Policy for Exquisite Dentistry
-# This file signals permission for LLM and AI crawlers to index publicly available content.
+LLM Crawling Policy for Exquisite Dentistry
+This file signals permission for LLM and AI crawlers to index publicly available content.
 
 User-agent: *
 Allow: /
