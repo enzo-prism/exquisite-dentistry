@@ -13,6 +13,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { drAguilImages } from '@/data/drAguilImages';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
+import PracticeVideoSection from '@/components/PracticeVideoSection';
 
 const About = () => {
   useEffect(() => {
@@ -34,7 +35,6 @@ const About = () => {
     useRevealOnScroll({ delayClass: 'reveal-delay-200', animation: 'scale' })
   ];
   const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const ctaBlock = useRevealOnScroll({ animation: 'scale' });
   const mainPortrait = drAguilImages.professionalPortrait;
   const getAspectRatio = (ratio?: string, fallback = '4 / 5') => {
     if (!ratio) return fallback;
@@ -393,6 +393,8 @@ const About = () => {
           <ReviewWidget />
         </div>
       </section>
+
+      <PracticeVideoSection />
     </>
   );
 };
