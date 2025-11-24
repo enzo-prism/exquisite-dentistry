@@ -299,12 +299,8 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <Card ref={philosophyCards[0].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[0].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m7 11 2-2-2-2" />
-                    <path d="M11 13h4" />
-                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                  </svg>
+                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
+                  🤝
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Personalized Treatment</h3>
                 <p className="text-black-light">
@@ -315,11 +311,8 @@ const About = () => {
             
             <Card ref={philosophyCards[1].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[1].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                    <path d="m9 12 2 2 4-4" />
-                  </svg>
+                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
+                  🏅
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Exceptional Quality</h3>
                 <p className="text-black-light">
@@ -330,10 +323,8 @@ const About = () => {
             
             <Card ref={philosophyCards[2].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[2].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  </svg>
+                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
+                  🧘‍♂️
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Patient Comfort</h3>
                 <p className="text-black-light">
@@ -400,24 +391,6 @@ const About = () => {
             </p>
           </div>
           <ReviewWidget />
-        </div>
-      </section>
-
-
-      {/* CTA Section */}
-      <section ref={ctaBlock.ref} className={`py-16 md:py-24 bg-black ${ctaBlock.animationClass}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Ready to Experience <span className="text-secondary">Exceptional Dental Care?</span>
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-              Schedule your consultation with Dr. Aguil today and take the first step towards the smile you've always wanted.
-            </p>
-            <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="motion-safe:animate-pulse-subtle">Book an Appointment</Button>
-            </a>
-          </div>
         </div>
       </section>
     </>
