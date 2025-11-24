@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Calendar, Clock, MapPin, UserPlus, Sparkles, Cpu } from 'lucide-react';
+import { ArrowRight, Award, Clock, UserPlus, Sparkles, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { drAguilImages } from '@/data/drAguilImages';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 
 const About = () => {
@@ -34,33 +35,30 @@ const About = () => {
   ];
   const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
   const ctaBlock = useRevealOnScroll({ animation: 'scale' });
+  const mainPortrait = drAguilImages.professionalPortrait;
+  const getAspectRatio = (ratio?: string, fallback = '4 / 5') => {
+    if (!ratio) return fallback;
+    const [w, h] = ratio.split(':').map(Number);
+    if (!Number.isFinite(w) || !Number.isFinite(h) || h === 0) return fallback;
+    return `${w} / ${h}`;
+  };
   const patientImages = [
     {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.21_AM_ptqbrm.png',
-      alt: 'Dr. Alexie Aguil celebrating a smile reveal with a patient',
-      caption: 'Celebrating a just-completed smile transformation.'
+      src: drAguilImages.patientConsultation.src,
+      alt: drAguilImages.patientConsultation.alt,
+      aspectRatio: drAguilImages.patientConsultation.aspectRatio
     },
     {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_900,w_900/v1762964431/Screenshot_2025-11-12_at_8.16.21_AM_ptqbrm.png',
-      alt: 'Dr. Aguil sharing a candid moment with a happy patient',
-      caption: 'Human moments that show how personal every makeover feels.'
+      src: drAguilImages.digitalConsultation.src,
+      alt: drAguilImages.digitalConsultation.alt,
+      aspectRatio: drAguilImages.digitalConsultation.aspectRatio
     }
   ];
   const soloPortraits = [
     {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
-      alt: 'Studio portrait of Dr. Alexie Aguil',
-      caption: 'Studio portrait highlighting Dr. Aguil’s meticulous style.'
-    },
-    {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_face,h_1100,w_850/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
-      alt: 'Dr. Aguil smiling inside the Beverly Hills studio',
-      caption: 'A candid smile from inside the Beverly Hills studio.'
-    },
-    {
-      src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_950,w_950/v1762964432/Screenshot_2025-11-12_at_8.16.03_AM_lktwxr.png',
-      alt: 'Close-up portrait of Dr. Aguil',
-      caption: 'Close-up portrait that emphasizes calm, confident care.'
+      src: drAguilImages.clinicalPortrait.src,
+      alt: drAguilImages.clinicalPortrait.alt,
+      aspectRatio: drAguilImages.clinicalPortrait.aspectRatio
     }
   ];
 
@@ -111,87 +109,102 @@ const About = () => {
       {/* Dr. Aguil Introduction */}
       <section className="py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col-reverse lg:flex-row gap-8 sm:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Content Column */}
-            <div ref={doctorText.ref} className={`w-full lg:w-1/2 space-y-4 sm:space-y-6 ${doctorText.animationClass}`}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
-                The Artist Behind Beverly Hills' Most Beautiful Smiles
-              </h2>
-              
-              <p className="text-base sm:text-lg text-black-light">
-                Dr. Alexie Aguil didn't just become a dentist—he became an artist who happens to work in dentistry. His Beverly Hills practice represents the pinnacle of cosmetic dental artistry, where each smile is meticulously crafted as a unique work of art. Dr. Aguil's philosophy centers on the belief that exceptional dentistry requires both technical mastery and an artist's eye for beauty, proportion, and harmony.
-              </p>
-              
-              <p className="text-base sm:text-lg text-black-light">
-                Trained at prestigious institutions and mentored by the world's leading cosmetic dentists, Dr. Aguil has spent over 15 years perfecting techniques that preserve maximum tooth structure while achieving dramatic aesthetic improvements. His celebrity clientele includes A-list actors, musicians, and industry leaders who trust him with their most valuable asset—their smile.
-              </p>
-              
-              <p className="text-base sm:text-lg text-black-light">
-                Beyond his technical expertise, Dr. Aguil is known for his meticulous attention to detail and commitment to patient comfort. His practice features a spa-like environment with amenities typically found in five-star resorts, because he believes that exceptional dental care should be delivered in an atmosphere of luxury and relaxation.
-              </p>
-              
-              <div className="pt-4 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                <Link to="/services">
-                  <Button className="group w-full sm:w-auto">
+            <div
+              ref={doctorText.ref}
+              className={`space-y-5 sm:space-y-6 ${doctorText.animationClass}`}
+            >
+              <div className="space-y-3">
+                <span className="inline-block text-xs font-semibold tracking-[0.18em] text-secondary">MEET THE DOCTOR</span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
+                  The Artist Behind Beverly Hills' Most Beautiful Smiles
+                </h2>
+              </div>
+
+              <div className="space-y-4 text-base sm:text-lg text-black-light">
+                <p>
+                  Dr. Alexie Aguil didn't just become a dentist—he became an artist who happens to work in dentistry. His Beverly Hills practice represents the pinnacle of cosmetic dental artistry, where each smile is meticulously crafted as a unique work of art. Dr. Aguil's philosophy centers on the belief that exceptional dentistry requires both technical mastery and an artist's eye for beauty, proportion, and harmony.
+                </p>
+                
+                <p>
+                  Trained at prestigious institutions and mentored by the world's leading cosmetic dentists, Dr. Aguil has spent over 15 years perfecting techniques that preserve maximum tooth structure while achieving dramatic aesthetic improvements. His celebrity clientele includes A-list actors, musicians, and industry leaders who trust him with their most valuable asset—their smile.
+                </p>
+                
+                <p>
+                  Beyond his technical expertise, Dr. Aguil is known for his meticulous attention to detail and commitment to patient comfort. His practice features a spa-like environment with amenities typically found in five-star resorts, because he believes that exceptional dental care should be delivered in an atmosphere of luxury and relaxation.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link to="/services" className="w-full sm:w-auto">
+                  <Button className="w-full sm:w-auto justify-center">
                     Explore Our Services
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </Link>
-                <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="group w-full sm:w-auto">
+                <a
+                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button variant="outline" className="w-full sm:w-auto justify-center">
                     Schedule a Consultation
-                    <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </a>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 rounded-md border border-gray-200 bg-gray-50 px-4 py-3">
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-gray-200">
+                    <Award size={18} className="text-secondary" />
+                  </div>
+                  <div className="text-sm">
+                    <p className="font-semibold text-black">Invisalign Lifetime Achievement</p>
+                    <p className="text-black-light">Top provider in Beverly Hills & West Hollywood</p>
+                  </div>
+                </div>
               </div>
             </div>
             
             {/* Image Column */}
-            <div ref={doctorImage.ref} className={`w-full lg:w-1/2 ${doctorImage.animationClass}`}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative mx-auto max-w-sm sm:max-w-full lg:max-w-full sm:col-span-2">
-                  {/* Main Image with Frame */}
-                  <div className="relative z-10 bg-white p-2 sm:p-3 rounded-sm shadow-xl">
-                    <div className="aspect-[3/4] overflow-hidden rounded-sm">
-                      <ImageComponent
-                        src="/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png"
-                        alt="Dr. Alexie Aguil - Premium business portrait"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
+            <div
+              ref={doctorImage.ref}
+              className={`space-y-4 ${doctorImage.animationClass}`}
+            >
+              <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                <div className="col-span-2 rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm">
+                  <div
+                    className="relative w-full"
+                    style={{ aspectRatio: getAspectRatio(mainPortrait.aspectRatio, '3 / 4') }}
+                  >
+                    <ImageComponent
+                      src={mainPortrait.src}
+                      alt={mainPortrait.alt}
+                      fill
+                      objectFit="cover"
+                    />
                   </div>
-                  
-                  {/* Award Badge */}
-                  <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 md:-bottom-8 md:-left-8 z-20 bg-white rounded-sm shadow-xl p-3 sm:p-4 max-w-[180px] sm:max-w-[200px]">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Award size={18} className="text-secondary flex-shrink-0" />
-                      <span className="text-xs sm:text-sm font-medium text-black">Invisalign Lifetime Achievement</span>
-                    </div>
-                    <p className="text-xs text-black-light">
-                      Top provider in Beverly Hills & West Hollywood
-                    </p>
-                  </div>
-                  
-                  {/* Decorative Elements */}
-                  <div className="absolute top-6 sm:top-8 -right-3 sm:-right-4 w-16 sm:w-20 h-16 sm:h-20 bg-secondary/10 rounded-full filter blur-xl"></div>
-                  <div className="absolute -bottom-8 sm:-bottom-10 right-12 sm:right-16 w-24 sm:w-32 h-24 sm:h-32 bg-secondary/10 rounded-full filter blur-xl"></div>
-                  <div className="absolute -z-10 -top-4 sm:-top-6 -left-4 sm:-left-6 w-full h-full border-2 border-secondary/30 rounded-sm"></div>
                 </div>
 
                 {patientImages.map((image) => (
                   <div
                     key={image.src}
-                    className="bg-white/90 border border-secondary/10 rounded-sm shadow-lg p-3 flex flex-col gap-3"
+                    className="rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm"
                   >
-                    <div className="aspect-[4/5] rounded-sm overflow-hidden">
+                    <div
+                      className="relative w-full"
+                      style={{ aspectRatio: getAspectRatio(image.aspectRatio) }}
+                    >
                       <ImageComponent
                         src={image.src}
                         alt={image.alt}
+                        fill
                         objectFit="cover"
-                        className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-sm text-black-light">{image.caption}</p>
                   </div>
                 ))}
               </div>
@@ -205,70 +218,67 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={introHeading.ref} className={`text-center max-w-3xl mx-auto mb-12 md:mb-16 ${introHeading.animationClass}`}>
             <span className="inline-block text-sm text-secondary font-medium mb-3">EXPERTISE</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-4">
               Meet Dr. Alexie Aguil
             </h2>
-            <div className="h-1 w-20 bg-secondary rounded-full mx-auto mb-8"></div>
             <p ref={introParagraph.ref} className={`text-lg text-black-light ${introParagraph.animationClass}`}>
               With exceptional skills, training, and a commitment to excellence, Dr. Aguil delivers world-class cosmetic and restorative dentistry.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white p-8 rounded-sm shadow-md">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-full md:w-1/3">
-                  <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
-                    {soloPortraits.map((image) => (
-                      <div
-                        key={image.src}
-                        className="bg-gray-50 rounded-sm shadow-sm border border-gray-100 p-2 flex flex-col"
-                      >
-                        <div className="aspect-[3/4] rounded-sm overflow-hidden">
-                          <ImageComponent
-                            src={image.src}
-                            alt={image.alt}
-                            objectFit="cover"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <p className="text-xs text-black-light mt-2">{image.caption}</p>
-                      </div>
-                    ))}
-                  </div>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start max-w-5xl mx-auto">
+            <div className="space-y-4">
+              <div className="rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm">
+                <div
+                  className="relative w-full"
+                  style={{ aspectRatio: getAspectRatio(soloPortraits[0].aspectRatio, '3 / 4') }}
+                >
+                  <ImageComponent
+                    src={soloPortraits[0].src}
+                    alt={soloPortraits[0].alt}
+                    fill
+                    objectFit="cover"
+                  />
                 </div>
-                <div className="w-full md:w-2/3 space-y-4">
-                  <h3 className="text-2xl font-semibold text-black">Dr. Alexie Aguil</h3>
-                  <p className="text-secondary font-medium">Founder & Lead Dentist</p>
-                  
-                  <p className="text-lg text-black-light">
-                    With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.
-                  </p>
-                  
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2">
-                      <Award size={20} className="text-secondary flex-shrink-0 mt-1" />
-                      <span>Invisalign Lifetime Achievement Award</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <UserPlus size={20} className="text-secondary flex-shrink-0 mt-1" />
-                      <span>Member of the American Academy of Cosmetic Dentistry</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock size={20} className="text-secondary flex-shrink-0 mt-1" />
-                      <span>Over 1,000 smile transformations completed</span>
-                    </li>
-                  </ul>
-                  
-                  <div className="pt-4">
-                    <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                      <Button variant="outline" size="sm" className="group">
-                        Schedule With Dr. Aguil
-                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </a>
-                  </div>
-                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 sm:p-8 space-y-6">
+              <div className="space-y-1">
+                <h3 className="text-2xl sm:text-3xl font-semibold text-black">Dr. Alexie Aguil</h3>
+                <p className="text-secondary font-medium">Founder & Lead Dentist</p>
+              </div>
+
+              <p className="text-lg text-black-light">
+                With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.
+              </p>
+              
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <Award size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                  <span>Invisalign Lifetime Achievement Award</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <UserPlus size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                  <span>Member of the American Academy of Cosmetic Dentistry</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Clock size={20} className="text-secondary flex-shrink-0 mt-0.5" />
+                  <span>Over 1,000 smile transformations completed</span>
+                </li>
+              </ul>
+
+              <div>
+                <a
+                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center">
+                    Schedule With Dr. Aguil
+                    <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
