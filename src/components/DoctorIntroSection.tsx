@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
-import { Star, Award, Users, Clock } from 'lucide-react';
+import { Star, Award, Users, Clock, Wand2, Sparkles, ClipboardCheck, HandHeart } from 'lucide-react';
 import ImageComponent from '@/components/Image';
 import { drAguilImages } from '@/data/drAguilImages';
 
@@ -55,11 +55,20 @@ const DoctorIntroSection: React.FC = () => {
             {/* Why Choose Section - Mobile Optimized */}
             <div className="mb-6 sm:mb-8 text-center lg:text-left">
               <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-900">Why Choose Dr. Aguil?</h3>
-              <ul className="space-y-2 text-sm sm:text-base text-gray-600 max-w-md mx-auto lg:mx-0">
-                <li>• Precision-crafted smile transformations</li>
-                <li>• Advanced cosmetic dentistry techniques</li>
-                <li>• Personalized treatment planning</li>
-                <li>• Comfortable, anxiety-free experience</li>
+              <ul className="space-y-3 text-sm sm:text-base text-gray-600 max-w-md mx-auto lg:mx-0">
+                {[
+                  { icon: Wand2, label: 'Precision-crafted smile transformations' },
+                  { icon: Sparkles, label: 'Advanced cosmetic dentistry techniques' },
+                  { icon: ClipboardCheck, label: 'Personalized treatment planning' },
+                  { icon: HandHeart, label: 'Comfortable, anxiety-free experience' }
+                ].map(({ icon: Icon, label }) => (
+                  <li key={label} className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="text-gray-700">{label}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
