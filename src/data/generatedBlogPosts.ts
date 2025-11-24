@@ -282,7 +282,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "veneers",
     "answered"
   ],
-  "seoTitle": "Do You Need Surgery for Dental Veneers? (Answered!)",
+  "seoTitle": "Veneers & Surgery: Facts Explained",
   "seoDescription": "Fact or Fiction: Do You Need Surgery for Dental Veneers?  Dental veneers are an excellent option for those looking to enhance their smile and correct dental issues.",
   "seoKeywords": "you, need, surgery, dental, veneers, answered",
   "published": true
@@ -306,7 +306,7 @@ export const generatedBlogPosts: BlogPost[] = [{
     "dental",
     "veneers"
   ],
-  "seoTitle": "Do You Need Surgery for Dental Veneers?",
+  "seoTitle": "Do Veneers Require Surgery? LA Guide",
   "seoDescription": "If you\u2019re looking to significantly improve your smile, consider dental veneers.  These thin, translucent pieces of porcelain are carefully crafted to fit over your existing teeth, covering any discoloration or imperfections.",
   "seoKeywords": "you, need, surgery, dental, veneers",
   "published": true
