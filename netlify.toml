@@ -49,6 +49,12 @@
   force = true
 
 [[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/favicon.ico"
   to = "/favicon.ico"
   status = 200

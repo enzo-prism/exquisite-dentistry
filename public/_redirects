@@ -36,6 +36,7 @@
 /hipaa-compliance /hipaa-compliance.html 200!
 /blog/front-teeth-veneers-complete-guide /veneers/front-teeth-veneers-los-angeles/ 301
 /blog/front-teeth-veneers-complete-guide/ /veneers/front-teeth-veneers-los-angeles/ 301
+/assets/* /assets/:splat 200!
 /front-teeth-veneers-complete-guide.html /veneers/front-teeth-veneers-los-angeles/ 301
 /front-teeth-veneers-complete-guide/ /veneers/front-teeth-veneers-los-angeles/ 301
 /veneers/front-teeth-veneers-los-angeles/ /veneers/front-teeth-veneers-los-angeles.html 200!
