@@ -15,6 +15,7 @@ const StaticSitemap = () => {
     treatments: sitemapData.filter(url => 
       [
         '/veneers',
+        '/veneers/front-teeth-veneers-los-angeles',
         '/veneers-los-angeles',
         '/zoom-whitening',
         '/teeth-whitening',
@@ -60,8 +61,8 @@ const StaticSitemap = () => {
 
   const legacyRedirects = [
     {
-      to: '/blog/choosing-veneers-for-the-front-4-teeth/',
-      label: 'Choosing Veneers for the Front 4 Teeth (redirect)'
+      to: '/veneers/front-teeth-veneers-los-angeles/',
+      label: 'Front Teeth Veneers (redirect)'
     }
   ];
 

@@ -785,6 +785,12 @@ const Services = () => {
                   type: "service"
                 },
                 {
+                  title: "Front Teeth Veneers",
+                  href: "/veneers/front-teeth-veneers-los-angeles",
+                  description: "Transparent pricing for 2–4 veneers",
+                  type: "service"
+                },
+                {
                   title: "Before & After Gallery",
                   href: "/smile-gallery",
                   description: "See real transformation results",

@@ -5,7 +5,7 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Palette, Shield, Camera, Heart } from 'lucide-react';
+import { Sparkles, Palette, Shield, Camera, Heart, ArrowRight } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
@@ -166,6 +166,26 @@ const VeneersLosAngeles = () => {
                 Every layer of porcelain powder is chosen to harmonize with your complexion and reflectivity under studio lighting.
                 The finished smile is luminous in person, dynamic on screen, and durable for years of fine dining, travel, and networking events across Los Angeles.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 bg-muted/25">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto bg-white border border-border rounded-xl shadow-sm p-6 md:p-8">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <p className="uppercase text-secondary tracking-[0.2em] text-xs font-semibold">Options for just your front teeth</p>
+                  <h3 className="text-2xl font-bold text-foreground mt-2">2 or 4 veneers for the smile zone</h3>
+                  <p className="text-muted-foreground mt-2">See transparent pricing and design guidance when you only need the front teeth perfected.</p>
+                </div>
+                <Button asChild>
+                  <Link to="/veneers/front-teeth-veneers-los-angeles">
+                    Explore front teeth veneers
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

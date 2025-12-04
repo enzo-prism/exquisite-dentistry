@@ -35,6 +35,13 @@ export const serviceCategories: ServiceCategory[] = [
         ctaLabel: "Explore Veneers"
       },
       {
+        name: "Front Teeth Veneers (2–4 Teeth)",
+        details: "Focused smile-zone veneers with transparent pricing for 2 or 4 teeth",
+        hasDetailPage: true,
+        slug: "/veneers/front-teeth-veneers-los-angeles",
+        ctaLabel: "Front Teeth Veneers"
+      },
+      {
         name: "Los Angeles Veneer Design",
         details: "Handcrafted smile transformations tailored to LA lifestyles and on-camera confidence",
         hasDetailPage: true,

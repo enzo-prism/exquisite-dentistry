@@ -177,7 +177,7 @@
 
 [[redirects]]
   from = "/front-teeth-veneers-complete-guide.html"
-  to = "/blog/front-teeth-veneers-complete-guide/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
   status = 301
   force = true
 
@@ -201,7 +201,67 @@
 
 [[redirects]]
   from = "/front-teeth-veneers-complete-guide/"
-  to = "/blog/front-teeth-veneers-complete-guide/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/2-front-teeth-veneers-cost-los-angeles"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/2-front-teeth-veneers-cost-los-angeles/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/4-front-teeth-veneers-cost-los-angeles"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/4-front-teeth-veneers-cost-los-angeles/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/choosing-veneers-for-the-front-4-teeth/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/choosing-veneers-for-the-front-4-teeth/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/choosing-veneers-for-the-front-4-teeth"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/front-teeth-veneers-complete-guide/"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/front-teeth-veneers-complete-guide"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/veneers/front-teeth-veneers-los-angeles"
+  to = "/veneers/front-teeth-veneers-los-angeles/"
   status = 301
   force = true
 

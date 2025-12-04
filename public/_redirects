@@ -34,7 +34,11 @@
 /privacy-policy /privacy-policy.html 200!
 /terms-of-service /terms-of-service.html 200!
 /hipaa-compliance /hipaa-compliance.html 200!
-/blog/front-teeth-veneers-complete-guide /front-teeth-veneers-complete-guide.html 200!
+/blog/front-teeth-veneers-complete-guide /veneers/front-teeth-veneers-los-angeles/ 301
+/blog/front-teeth-veneers-complete-guide/ /veneers/front-teeth-veneers-los-angeles/ 301
+/front-teeth-veneers-complete-guide.html /veneers/front-teeth-veneers-los-angeles/ 301
+/front-teeth-veneers-complete-guide/ /veneers/front-teeth-veneers-los-angeles/ 301
+/veneers/front-teeth-veneers-los-angeles/ /veneers/front-teeth-veneers-los-angeles.html 200!
 /blog/single-tooth-veneers-guide /single-tooth-veneers-guide.html 200!
 /blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/ /blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day 301
 
@@ -49,6 +53,7 @@
 /contact /contact/ 301
 /veneers /veneers/ 301
 /veneers-los-angeles /veneers-los-angeles/ 301
+/veneers/front-teeth-veneers-los-angeles /veneers/front-teeth-veneers-los-angeles/ 301
 /testimonials /testimonials/ 301
 /blog /blog/ 301
 /smile-gallery /smile-gallery/ 301
@@ -104,12 +109,13 @@ https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 3
 https://www.exquisitedentistryla.com/single-tooth-veneers-guide https://exquisitedentistryla.com/blog/single-tooth-veneers-perfect-solutions/ 301
 https://www.exquisitedentistryla.com/single-tooth-veneers-guide/ https://exquisitedentistryla.com/blog/single-tooth-veneers-perfect-solutions/ 301
 /blog/single-tooth-veneers-guide /blog/single-tooth-veneers-perfect-solutions/ 301
-/choosing-veneers-for-the-front-4-teeth/ /blog/front-teeth-veneers-complete-guide/ 301
-/choosing-veneers-for-the-front-4-teeth /blog/front-teeth-veneers-complete-guide/ 301
+/choosing-veneers-for-the-front-4-teeth/ /veneers/front-teeth-veneers-los-angeles/ 301
+/choosing-veneers-for-the-front-4-teeth /veneers/front-teeth-veneers-los-angeles/ 301
 /about-us/about-dr-alexie-aguil/ /about/ 301
 /cosmetic-dentist-redondo-beach-ca/ /west-la-dentist/ 301
 /choosing-veneers-for-just-one-tooth/ /blog/single-tooth-veneers-guide/ 301
-/blog/2-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide/ 301
+/blog/2-front-teeth-veneers-cost-los-angeles /veneers/front-teeth-veneers-los-angeles/ 301
+/blog/2-front-teeth-veneers-cost-los-angeles/ /veneers/front-teeth-veneers-los-angeles/ 301
 /the-shapes-and-styles-of-dental-veneers/ /veneers/ 301
 /services/dental-crowns/ /dental-crowns/ 301
 /services/dental-crowns /dental-crowns/ 301
@@ -146,7 +152,8 @@ https://www.exquisitedentistryla.com/single-tooth-veneers-guide/ https://exquisi
 /long-will-take-fix-crooked-teeth/1000 /invisalign/ 301
 /long-will-take-fix-crooked-teeth//1000 /invisalign/ 301
 /long-will-take-fix-crooked-teeth/:splat /invisalign/ 301
-/blog/4-front-teeth-veneers-cost-los-angeles /blog/front-teeth-veneers-complete-guide/ 301
+/blog/4-front-teeth-veneers-cost-los-angeles /veneers/front-teeth-veneers-los-angeles/ 301
+/blog/4-front-teeth-veneers-cost-los-angeles/ /veneers/front-teeth-veneers-los-angeles/ 301
 /our-practice/ /about/ 301
 /the-material-options-for-dental-veneers/ /blog/the-material-options-for-dental-veneers/ 301
 /the-material-options-for-dental-veneers/1000 /blog/the-material-options-for-dental-veneers/ 301

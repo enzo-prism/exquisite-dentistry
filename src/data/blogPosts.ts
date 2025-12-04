@@ -94,10 +94,8 @@ const baseBlogPosts: BlogPost[] = [
         </ul>
         <p>
           Dive deeper into our
-          <a href="/blog/2-front-teeth-veneers-cost-los-angeles">2 front teeth</a>
-          and
-          <a href="/blog/4-front-teeth-veneers-cost-los-angeles">4 front teeth</a>
-          pricing guides for real case breakdowns.
+          <a href="/veneers/front-teeth-veneers-los-angeles">front teeth veneers hub</a>
+          for transparent pricing on 2 or 4 veneers and real case breakdowns.
         </p>
 
         <h2>5. Real 2025 Pricing in Los Angeles</h2>
@@ -626,7 +624,7 @@ const baseBlogPosts: BlogPost[] = [
     seoTitle: 'Choosing Veneers for the Front 4 Teeth | Complete Smile Transformation Guide',
     seoDescription: 'Learn everything about getting porcelain veneers for your front 4 teeth. Discover costs, benefits, process, and why treating the smile zone together delivers the best results. Expert insights from Dr. Alexie Aguil.',
     seoKeywords: 'veneers front 4 teeth, front teeth veneers, 4 veneers cost, smile zone veneers, upper front teeth veneers, porcelain veneers Los Angeles',
-    published: true
+    published: false
   },
   {
     id: '14',
@@ -945,7 +943,7 @@ const baseBlogPosts: BlogPost[] = [
     seoTitle: '2 Front Teeth Veneers Cost in Los Angeles: Complete 2025 Pricing Breakdown',
     seoDescription: 'Discover transparent pricing for 2 front teeth veneers in Los Angeles. Complete cost breakdown ($1,800-$6,000), financing options, material comparisons, and what affects your smile investment.',
     seoKeywords: '2 front teeth veneers cost, veneers los angeles cost, front teeth veneers price, cost of veneers for 2 front teeth, porcelain veneers pricing LA, dental veneers cost breakdown',
-    published: true
+    published: false
   },
   {
     id: '5',
@@ -988,7 +986,7 @@ const baseBlogPosts: BlogPost[] = [
     seoTitle: '4 Front Teeth Veneers Cost in Los Angeles: Your Ultimate 2025 Investment Guide',
     seoDescription: 'Complete breakdown of 4 front teeth veneers cost in Los Angeles ($3,600-$12,000). Discover pricing, financing options, and why smile zone transformation delivers the best results.',
     seoKeywords: '4 front teeth veneers cost, 4 veneers cost Los Angeles, front teeth veneers pricing, smile zone veneers cost, porcelain veneers 4 teeth price, cosmetic dentistry cost LA',
-    published: true
+    published: false
   }
 ];
 

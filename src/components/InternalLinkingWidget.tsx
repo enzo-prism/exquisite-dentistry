@@ -34,32 +34,32 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'veneer':
         return [
           {
+            title: 'Front Teeth Veneers (2–4 Teeth)',
+            href: '/veneers/front-teeth-veneers-los-angeles',
+            description: 'Cost, design, and process for the smile zone',
+            category: 'service',
+            priority: 1
+          },
+          {
             title: 'Porcelain Veneers Service',
             href: '/veneers',
             description: 'Complete veneer treatments and smile transformations',
             category: 'service',
-            priority: 1
+            priority: 2
           },
           {
             title: 'Veneers Los Angeles',
             href: '/veneers-los-angeles',
             description: 'Handcrafted veneers tailored to LA lifestyles',
             category: 'service',
-            priority: 1
+            priority: 3
           },
           {
             title: 'Single Tooth Veneers Guide',
             href: '/blog/single-tooth-veneers-perfect-solutions',
             description: 'Perfect solutions for individual tooth improvements',
             category: 'blog',
-            priority: 2
-          },
-          {
-            title: '2 Front Teeth Veneers Cost',
-            href: '/blog/2-front-teeth-veneers-cost-los-angeles',
-            description: 'Transparent pricing for targeted improvements',
-            category: 'blog',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Wedding Smile Makeover',
@@ -258,32 +258,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'cost':
         return [
           {
+            title: 'Front Teeth Veneers Pricing',
+            href: '/veneers/front-teeth-veneers-los-angeles',
+            description: 'See 2 vs 4 veneer investments and planning',
+            category: 'service',
+            priority: 1
+          },
+          {
             title: 'Financing Options',
             href: SCHEDULING_URL,
             description: 'Flexible payment plans and consultation scheduling',
             category: 'consultation',
-            priority: 1
+            priority: 2
           },
           {
             title: 'Netflix During Procedures',
             href: '/blog/netflix-streaming-during-dental-procedures',
             description: 'Comfortable, entertainment-focused dental experience',
             category: 'blog',
-            priority: 2
+            priority: 3
           },
           {
             title: 'Value of Investment',
             href: '/about',
             description: 'Why quality dentistry matters',
             category: 'experience',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Free Consultation',
             href: SCHEDULING_URL,
             description: 'Get personalized treatment planning',
             category: 'consultation',
-            priority: 4
+            priority: 5
           }
         ];
       

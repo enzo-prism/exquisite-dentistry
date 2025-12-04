@@ -26,6 +26,12 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/about-us/about-dr-alexie-aguil/', to: '/about', exact: true },
   { from: '/5-healthy-habits-for-your-teeth/', to: '/blog', exact: true },
   { from: '/about-us/', to: '/about', exact: true },
+  { from: '/blog/front-teeth-veneers-complete-guide/', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  { from: '/blog/front-teeth-veneers-complete-guide', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  { from: '/blog/2-front-teeth-veneers-cost-los-angeles', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  { from: '/blog/4-front-teeth-veneers-cost-los-angeles', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  { from: '/choosing-veneers-for-the-front-4-teeth/', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  { from: '/choosing-veneers-for-the-front-4-teeth', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
   
   // Pattern-based redirects (order matters - specific to general)
   { from: 'old-veneers', to: '/veneers' }, // Changed to avoid conflict with valid routes
@@ -50,7 +56,7 @@ const LegacyRedirectHandler = () => {
       '/graduation', '/wedding', '/faqs', '/smile-gallery', '/client-experience',
       '/zoom-whitening', '/privacy-policy', '/terms-of-service', '/hipaa-compliance',
       '/sitemap', '/invisalign', '/teeth-whitening', '/dental-implants',
-      '/cosmetic-dentistry', '/emergency-dentist', '/veneers-los-angeles'
+      '/cosmetic-dentistry', '/emergency-dentist', '/veneers-los-angeles', '/veneers/front-teeth-veneers-los-angeles'
     ];
     const isValidRoute = validRoutes.some(route => currentPath.startsWith(route));
     

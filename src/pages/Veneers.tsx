@@ -5,7 +5,7 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Check, Star, Clock, Shield, Sparkles } from 'lucide-react';
+import { Check, Star, Clock, Shield, Sparkles, ArrowRight } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
@@ -203,6 +203,48 @@ const Veneers = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Front teeth scenarios */}
+        <section className="py-14 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Only need your front teeth transformed?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Plan for 2 or 4 veneers with transparent pricing, shade strategy, and conservative prep.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              <Card className="border-gold/25 shadow-sm">
+                <CardContent className="p-6 space-y-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">2 veneers</p>
+                  <h3 className="text-xl font-semibold text-foreground">Targeted front tooth fixes</h3>
+                  <p className="text-muted-foreground">Perfect for a single dark tooth, chips, or peg laterals after whitening.</p>
+                  <Button variant="link" className="px-0" asChild>
+                    <Link to="/veneers/front-teeth-veneers-los-angeles" className="inline-flex items-center">
+                      Explore 2 veneer plans
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="border-gold/25 shadow-sm">
+                <CardContent className="p-6 space-y-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">4 veneers</p>
+                  <h3 className="text-xl font-semibold text-foreground">Balance the entire smile zone</h3>
+                  <p className="text-muted-foreground">Prevent shade mismatch and create camera-ready symmetry across your front teeth.</p>
+                  <Button variant="link" className="px-0" asChild>
+                    <Link to="/veneers/front-teeth-veneers-los-angeles" className="inline-flex items-center">
+                      Explore 4 veneer plans
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
