@@ -17,16 +17,23 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
   const relatedPosts = getRelatedPosts(currentPost, limit);
 
   // Determine context based on blog post category and tags
-  const getContextFromPost = (post: BlogPost): 'veneer' | 'invisalign' | 'whitening' | 'wedding' | 'graduation' | 'cost' | 'general' => {
+  const getContextFromPost = (post: BlogPost): 'veneer' | 'invisalign' | 'whitening' | 'wedding' | 'graduation' | 'cost' | 'oral-health' | 'general' => {
     const tags = post.tags.join(' ').toLowerCase();
     const category = post.category.toLowerCase();
-    
+    const title = post.title.toLowerCase();
+
     if (tags.includes('veneer') || category.includes('veneer')) return 'veneer';
     if (tags.includes('invisalign') || tags.includes('orthodontic') || category.includes('orthodontic')) return 'invisalign';
     if (tags.includes('whitening') || category.includes('whitening')) return 'whitening';
     if (tags.includes('wedding')) return 'wedding';
     if (tags.includes('graduation')) return 'graduation';
     if (tags.includes('cost') || tags.includes('price') || tags.includes('financing')) return 'cost';
+    // Oral health detection for lifestyle/health posts
+    if (tags.includes('oral') || tags.includes('health') || tags.includes('smoking') ||
+        tags.includes('alcohol') || tags.includes('gum') || tags.includes('cracked') ||
+        tags.includes('floss') || tags.includes('cancer') || tags.includes('marijuana') ||
+        title.includes('oral') || title.includes('teeth healthy') || title.includes('gum disease') ||
+        category.includes('oral health') || category.includes('prevention')) return 'oral-health';
     return 'general';
   };
 
@@ -77,10 +84,30 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
       }
     }
 
-    // General: if no matches yet, show comfort-focused stories
+    // Shannon for comfort/relaxing posts (expand matching criteria)
+    if (tags.includes('relaxing') || tags.includes('calm') || title.includes('comfort') ||
+        category.includes('patient experience')) {
+      const shannonStory = transformationStories.find(s => s.slug === 'shannon-langhorne');
+      if (shannonStory && !matchedStories.some(s => s.slug === shannonStory.slug)) {
+        matchedStories.push(shannonStory);
+      }
+    }
+
+    // Christian for general cosmetic/confidence posts (straightening, everyday confidence)
+    if (tags.includes('confidence') || tags.includes('smile') || tags.includes('straighten') ||
+        category.includes('cosmetic') || title.includes('transform')) {
+      const christianStory = transformationStories.find(s => s.slug === 'christian-fernandez');
+      if (christianStory && !matchedStories.some(s => s.slug === christianStory.slug) && matchedStories.length < 2) {
+        matchedStories.push(christianStory);
+      }
+    }
+
+    // General: if no matches yet, show comfort-focused stories (including Christian)
     if (matchedStories.length === 0) {
       const robStory = transformationStories.find(s => s.slug === 'rob-talbert');
+      const christianStory = transformationStories.find(s => s.slug === 'christian-fernandez');
       if (robStory) matchedStories.push(robStory);
+      if (christianStory && matchedStories.length < 2) matchedStories.push(christianStory);
     }
 
     return matchedStories.slice(0, 2);
@@ -128,6 +155,28 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             href: "/contact",
             description: "See your future smile before treatment",
             popularity: 88
+          }
+        ];
+      case 'oral-health':
+        return [
+          {
+            title: "Dental Health Checkup",
+            href: "/contact",
+            description: "Comprehensive oral health evaluation",
+            duration: "45 min",
+            popularity: 90
+          },
+          {
+            title: "Restorative Options",
+            href: "/services#restorative",
+            description: "Solutions for damaged or aging teeth",
+            popularity: 75
+          },
+          {
+            title: "Preventive Care",
+            href: "/services",
+            description: "Protect your teeth for life",
+            popularity: 85
           }
         ];
       default:

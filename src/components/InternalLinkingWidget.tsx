@@ -14,7 +14,7 @@ interface LinkItem {
 
 interface InternalLinkingWidgetProps {
   currentPage?: string;
-  context?: 'veneer' | 'cost' | 'experience' | 'general' | 'orthodontics' | 'whitening' | 'wedding' | 'graduation' | 'consultation' | 'invisalign';
+  context?: 'veneer' | 'cost' | 'experience' | 'general' | 'orthodontics' | 'whitening' | 'wedding' | 'graduation' | 'consultation' | 'invisalign' | 'oral-health';
   variant?: 'compact' | 'expanded' | 'sidebar';
   className?: string;
   title?: string;
@@ -87,6 +87,63 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             description: 'See real veneer transformations',
             category: 'gallery',
             priority: 7
+          },
+          // Underlinked veneer blog posts
+          {
+            title: 'Veneers vs Bonding Comparison',
+            href: '/blog/dental-veneers-vs-bonding',
+            description: 'Compare veneers and bonding for your smile goals',
+            category: 'blog',
+            priority: 9
+          },
+          {
+            title: 'Hollywood Veneers Guide',
+            href: '/blog/how-hollywood-veneers-can-transform-your-smile',
+            description: 'Discover how Hollywood-style veneers create stunning smiles',
+            category: 'blog',
+            priority: 10
+          },
+          {
+            title: 'Veneer Materials Explained',
+            href: '/blog/the-material-options-for-dental-veneers',
+            description: 'Porcelain vs composite: which material is right for you',
+            category: 'blog',
+            priority: 11
+          },
+          {
+            title: 'Veneer Maintenance Tips',
+            href: '/blog/restoration-and-maintenance-for-dental-veneers',
+            description: 'Keep your veneers looking perfect for years',
+            category: 'blog',
+            priority: 12
+          },
+          {
+            title: 'Veneer Styles & Shapes',
+            href: '/blog/the-shapes-and-styles-of-dental-veneers',
+            description: 'Find the perfect veneer shape for your face',
+            category: 'blog',
+            priority: 13
+          },
+          {
+            title: 'Do Veneers Require Surgery?',
+            href: '/blog/do-you-need-surgery-for-dental-veneers',
+            description: 'Understanding the veneer procedure and what to expect',
+            category: 'blog',
+            priority: 14
+          },
+          {
+            title: 'Veneer Replacement Guide',
+            href: '/blog/the-process-of-veneer-replacemen',
+            description: 'When and how to replace your veneers',
+            category: 'blog',
+            priority: 15
+          },
+          {
+            title: 'Long-Term Cosmetic Solutions',
+            href: '/blog/long-term-cosmetic-dentistry-solutions',
+            description: 'Lasting options for your smile transformation',
+            category: 'blog',
+            priority: 16
           }
         ];
       
@@ -214,6 +271,20 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             description: 'Wedding smile transformations',
             category: 'gallery',
             priority: 4
+          },
+          {
+            title: 'Wedding Smile Tips',
+            href: '/blog/how-to-maintain-the-perfect-wedding-smile',
+            description: 'Expert tips for your perfect wedding day smile',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'Valentine\'s Dental Tips',
+            href: '/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day',
+            description: 'Keep your smile healthy for special occasions',
+            category: 'blog',
+            priority: 6
           }
         ];
       
@@ -379,9 +450,91 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             category: 'special',
             priority: 8,
             seasonal: true
+          },
+          // Underlinked oral health/experience posts
+          {
+            title: 'Oral Wellness As You Age',
+            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older',
+            description: 'Protect your smile through every stage of life',
+            category: 'blog',
+            priority: 9
+          },
+          {
+            title: 'Daily Flossing Tips',
+            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine',
+            description: 'Build better oral health habits',
+            category: 'blog',
+            priority: 10
           }
         ];
-      
+
+      case 'oral-health':
+        return [
+          {
+            title: 'Restorative Dentistry',
+            href: '/services#restorative',
+            description: 'Solutions for damaged or missing teeth',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Smoking & Oral Cancer Risk',
+            href: '/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer',
+            description: 'Understanding the connection between smoking and oral health',
+            category: 'blog',
+            priority: 2
+          },
+          {
+            title: 'How Alcohol Affects Teeth',
+            href: '/blog/how-alcohol-affects-your-teeth',
+            description: 'The impact of alcohol on your dental health',
+            category: 'blog',
+            priority: 3
+          },
+          {
+            title: 'Cannabis & Gum Disease',
+            href: '/blog/marijuana-use-increases-risk-gum-disease',
+            description: 'Marijuana\'s effect on periodontal health',
+            category: 'blog',
+            priority: 4
+          },
+          {
+            title: 'Can Teeth Repair Naturally?',
+            href: '/blog/can-damaged-teeth-repair-themselves-naturally',
+            description: 'The truth about natural tooth repair',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'Cracked Tooth Signs',
+            href: '/blog/do-you-have-a-cracked-tooth',
+            description: 'Recognize the symptoms of a cracked tooth',
+            category: 'blog',
+            priority: 6
+          },
+          {
+            title: 'Oral Health & Aging',
+            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older',
+            description: 'Protect your smile at every age',
+            category: 'blog',
+            priority: 7
+          },
+          {
+            title: 'Daily Flossing Guide',
+            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine',
+            description: 'Build effective oral hygiene habits',
+            category: 'blog',
+            priority: 8
+          },
+          {
+            title: 'Schedule a Checkup',
+            href: SCHEDULING_URL,
+            description: 'Protect your oral health with regular visits',
+            category: 'consultation',
+            priority: 9
+          }
+        ];
+
       default:
         return [
           {
@@ -432,6 +585,21 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             description: 'Begin your smile transformation',
             category: 'consultation',
             priority: 7
+          },
+          // Underlinked local/professional posts
+          {
+            title: 'Adult Cosmetic Dentistry',
+            href: '/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age',
+            description: 'Smile transformations at any age',
+            category: 'blog',
+            priority: 8
+          },
+          {
+            title: 'Visiting LA? Need a Dentist?',
+            href: '/blog/need-dentist-visiting-los-angeles',
+            description: 'Quality dental care for LA visitors',
+            category: 'blog',
+            priority: 9
           }
         ];
     }
@@ -473,7 +641,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
 
   const getContextTitle = () => {
     if (title) return title;
-    
+
     switch (context) {
       case 'veneer': return 'Related Veneer Information';
       case 'orthodontics':
@@ -484,6 +652,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'consultation': return 'Your Next Steps';
       case 'cost': return 'Investment & Financing';
       case 'experience': return 'Explore More Experiences';
+      case 'oral-health': return 'Oral Health Resources';
       default: return 'Helpful Resources';
     }
   };

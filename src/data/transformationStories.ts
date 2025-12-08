@@ -782,6 +782,14 @@ export const getStoryContext = (story: TransformationStory): StoryLinkingContext
     ...(story.seo.keywords?.toLowerCase().split(',') || [])
   ].join(' ');
 
+  // Christian's story - straightening/confidence focus
+  if (story.slug === 'christian-fernandez' || keywords.includes('straighter') || keywords.includes('aligned')) {
+    return 'invisalign';
+  }
+  // Shannon's story - spa/comfort focus
+  if (story.slug === 'shannon-langhorne') {
+    return 'experience';
+  }
   if (keywords.includes('invisalign') || keywords.includes('straighten') || keywords.includes('aligner')) {
     return 'invisalign';
   }
@@ -807,13 +815,21 @@ export const getRelatedBlogSlugsForStory = (story: TransformationStory): string[
     invisalign: [
       'invisalign-hurt-mouth',
       'long-will-take-fix-crooked-teeth',
-      'the-best-teeth-straightening-for-adults'
+      'the-best-teeth-straightening-for-adults',
+      // Underlinked posts relevant to straightening/confidence
+      'do-you-have-a-cracked-tooth',
+      'leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age'
     ],
     veneer: [
       'all-about-veneers-for-teeth',
       'choosing-veneers-for-just-one-tooth',
       'the-cost-of-dental-veneers-in-los-angeles',
-      'how-hollywood-veneers-can-transform-your-smile'
+      'how-hollywood-veneers-can-transform-your-smile',
+      // Underlinked veneer posts
+      'dental-veneers-vs-bonding',
+      'the-material-options-for-dental-veneers',
+      'restoration-and-maintenance-for-dental-veneers',
+      'the-shapes-and-styles-of-dental-veneers'
     ],
     whitening: [
       'dental-veneers-and-teeth-whitening-myths-and-facts-uncovered',
@@ -822,12 +838,18 @@ export const getRelatedBlogSlugsForStory = (story: TransformationStory): string[
     experience: [
       'can-help-get-fear-dentist',
       'finding-good-dentist-area',
-      'high-end-dentistry'
+      'high-end-dentistry',
+      // Underlinked oral health/experience posts
+      'oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older',
+      'recommendations-to-work-flossing-into-your-daily-routine'
     ],
     general: [
       'finding-the-best-cosmetic-dentist-in-los-angeles',
       'long-term-cosmetic-dentistry-solutions',
-      'maintaining-oral-wellness-as-you-age'
+      'maintaining-oral-wellness-as-you-age',
+      // Underlinked local/professional posts
+      'leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age',
+      'need-dentist-visiting-los-angeles'
     ]
   };
 
