@@ -1,14 +1,15 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import TransformationStoryStructuredData from '@/components/TransformationStoryStructuredData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { transformationStories } from '@/data/transformationStories';
+import { transformationStories, getRelatedStories, getStoryContext, getRelatedBlogSlugsForStory } from '@/data/transformationStories';
+import { getPostBySlug } from '@/data/blogPosts';
 import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
-import { ArrowLeft, CheckCircle, Heart, Star, Users } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import { ArrowLeft, CheckCircle, Heart, Star, Users, BookOpen, Video } from 'lucide-react';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const TransformationStoryPage: React.FC = () => {
@@ -59,6 +60,15 @@ const TransformationStoryPage: React.FC = () => {
   } as const;
 
   const isExternalLink = (href?: string) => Boolean(href && href.startsWith('http'));
+
+  // Get related content for internal linking
+  const relatedStories = getRelatedStories(caseStudy.slug, 3);
+  const storyContext = getStoryContext(caseStudy);
+  const relatedBlogSlugs = getRelatedBlogSlugsForStory(caseStudy);
+  const relatedBlogPosts = relatedBlogSlugs
+    .map(slug => getPostBySlug(slug))
+    .filter((post): post is NonNullable<typeof post> => post !== undefined)
+    .slice(0, 3);
 
   return (
     <>
@@ -250,7 +260,90 @@ const TransformationStoryPage: React.FC = () => {
           </Accordion>
         </div>
       </section>
-      
+
+      {/* Related Blog Posts Section */}
+      {relatedBlogPosts.length > 0 && (
+        <section className="py-16 bg-muted/50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-semibold mb-4">Related Articles</h2>
+              <p className="text-muted-foreground">Learn more about the treatments and care discussed in this story</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedBlogPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  to={`/blog/${post.slug}`}
+                  className="group"
+                >
+                  <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-2 text-gold mb-3">
+                        <BookOpen className="h-4 w-4" />
+                        <span className="text-sm font-medium">{post.category}</span>
+                      </div>
+                      <h3 className="font-semibold mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                      <span className="text-xs text-muted-foreground mt-3 block">{post.readTime}</span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* More Transformation Stories Section */}
+      {relatedStories.length > 0 && (
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-semibold mb-4">More Patient Stories</h2>
+              <p className="text-muted-foreground">Discover how other patients transformed their smiles and confidence</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedStories.map((story) => (
+                <Link
+                  key={story.id}
+                  to={`/transformation-stories/${story.slug}`}
+                  className="group"
+                >
+                  <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-2 text-gold mb-3">
+                        <Video className="h-4 w-4" />
+                        <span className="text-sm font-medium">Patient Story</span>
+                      </div>
+                      <h3 className="font-semibold mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                        {story.patientName}'s Story
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">{story.shortDescription}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Internal Linking Widget */}
+      <section className="py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <InternalLinkingWidget
+            context={storyContext}
+            variant="expanded"
+            currentPage={`/transformation-stories/${caseStudy.slug}`}
+            title="Explore Related Services"
+          />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-gold/10 to-gold/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

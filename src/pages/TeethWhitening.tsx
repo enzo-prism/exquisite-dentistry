@@ -12,6 +12,7 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 
@@ -327,6 +328,13 @@ const TeethWhitening = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['whitening', 'teeth whitening', 'zoom', 'bright smile']}
+          title="Whitening Tips & Insights"
+          subtitle="Learn how to achieve and maintain your brightest smile"
+        />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">

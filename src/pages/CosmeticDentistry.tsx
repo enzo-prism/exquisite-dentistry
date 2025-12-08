@@ -12,6 +12,7 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 
@@ -346,6 +347,14 @@ const CosmeticDentistry = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['cosmetic dentistry', 'smile makeover', 'veneers', 'whitening']}
+          category="Cosmetic Dentistry"
+          title="Cosmetic Dentistry Resources"
+          subtitle="Expert insights on smile makeovers, veneers, whitening, and more"
+        />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">

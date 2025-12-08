@@ -56,17 +56,31 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Single Tooth Veneers Guide',
-            href: '/blog/single-tooth-veneers-perfect-solutions',
+            href: '/blog/choosing-veneers-for-just-one-tooth',
             description: 'Perfect solutions for individual tooth improvements',
             category: 'blog',
             priority: 4
+          },
+          {
+            title: '4 Front Teeth Veneers Cost',
+            href: '/blog/4-front-teeth-veneers-cost-los-angeles',
+            description: 'Pricing guide for front teeth veneers in LA',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'Are Veneers Covered by Insurance?',
+            href: '/blog/are-veneers-covered-by-insurance',
+            description: 'Understanding insurance and veneer financing',
+            category: 'blog',
+            priority: 6
           },
           {
             title: 'Wedding Smile Makeover',
             href: '/wedding',
             description: 'Perfect veneers for your special day',
             category: 'special',
-            priority: 6,
+            priority: 8,
             seasonal: true
           },
           {
@@ -74,7 +88,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/smile-gallery',
             description: 'See real veneer transformations',
             category: 'gallery',
-            priority: 5
+            priority: 7
           }
         ];
       
@@ -96,25 +110,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
-            title: 'Invisalign vs Braces Blog',
-            href: '/blog/invisalign-clear-advantage-over-traditional-braces',
-            description: 'Why Invisalign has advantages over traditional braces',
+            title: 'Does Invisalign Hurt?',
+            href: '/blog/invisalign-hurt-mouth',
+            description: 'What to expect during treatment',
             category: 'blog',
             priority: 3
+          },
+          {
+            title: 'Best Teeth Straightening for Adults',
+            href: '/blog/the-best-teeth-straightening-for-adults',
+            description: 'Options for adult orthodontic treatment',
+            category: 'blog',
+            priority: 4
+          },
+          {
+            title: 'How Long to Fix Crooked Teeth?',
+            href: '/blog/long-will-take-fix-crooked-teeth',
+            description: 'Treatment timeline expectations',
+            category: 'blog',
+            priority: 5
           },
           {
             title: 'Patient Testimonials',
             href: '/testimonials',
             description: 'Stories from Invisalign patients',
             category: 'experience',
-            priority: 4
+            priority: 6
           },
           {
             title: 'Graduation Smile Prep',
             href: '/graduation',
             description: 'Straighten your smile before graduation',
             category: 'special',
-            priority: 6,
+            priority: 8,
             seasonal: true
           }
         ];
@@ -311,11 +339,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
+            title: 'Transformation Stories',
+            href: '/transformation-stories',
+            description: 'Complete patient journey stories',
+            category: 'experience',
+            priority: 3
+          },
+          {
+            title: 'Overcome Dental Fear',
+            href: '/blog/can-help-get-fear-dentist',
+            description: 'Tips for a comfortable dental experience',
+            category: 'blog',
+            priority: 4
+          },
+          {
+            title: 'Finding a Good Dentist',
+            href: '/blog/finding-good-dentist-area',
+            description: 'What to look for in a dental practice',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'High-End Dentistry Guide',
+            href: '/blog/high-end-dentistry',
+            description: 'What sets premium dental care apart',
+            category: 'blog',
+            priority: 6
+          },
+          {
             title: 'Wedding Smile Prep',
             href: '/wedding',
             description: 'Perfect smile for your special day',
             category: 'special',
-            priority: 5,
+            priority: 7,
             seasonal: true
           },
           {
@@ -323,15 +379,8 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/graduation',
             description: 'Look your best for graduation photos',
             category: 'special',
-            priority: 6,
+            priority: 8,
             seasonal: true
-          },
-          {
-            title: 'Transformation Stories',
-            href: '/transformation-stories',
-            description: 'Complete patient journey stories',
-            category: 'experience',
-            priority: 5
           }
         ];
       
@@ -359,11 +408,32 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
+            title: 'Oral Wellness As You Age',
+            href: '/blog/maintaining-oral-wellness-as-you-age',
+            description: 'Tips for lifelong dental health',
+            category: 'blog',
+            priority: 4
+          },
+          {
+            title: 'How Oral Health Affects Overall Health',
+            href: '/blog/how-oral-health-problems-can-affect-your-overall-health',
+            description: 'The connection between dental and general health',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'Finding the Best Cosmetic Dentist',
+            href: '/blog/finding-the-best-cosmetic-dentist-in-los-angeles',
+            description: 'Guide to choosing a cosmetic dentist in LA',
+            category: 'blog',
+            priority: 6
+          },
+          {
             title: 'Schedule Consultation',
             href: SCHEDULING_URL,
             description: 'Begin your smile transformation',
             category: 'consultation',
-            priority: 4
+            priority: 7
           }
         ];
     }

@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import VeneerCTA from '@/components/VeneerCTA';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import RelatedArticles from '@/components/RelatedArticles';
 import { SCHEDULING_URL } from '@/constants/urls';
 
 const FrontTeethVeneers = () => {
@@ -342,6 +343,14 @@ const FrontTeethVeneers = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['front teeth', 'veneers', '4 front teeth', 'single tooth', 'cost']}
+          category="Cosmetic Dentistry"
+          title="Front Teeth Veneer Guides"
+          subtitle="Expert articles on 2-4 front teeth veneers, costs, and what to expect"
+        />
 
         {/* CTA */}
         <section className="py-14 md:py-16 bg-black text-white">

@@ -11,6 +11,7 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 
@@ -306,6 +307,13 @@ const ZoomWhitening = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['whitening', 'zoom', 'teeth whitening', 'bright']}
+          title="Whitening Articles & Tips"
+          subtitle="Expert advice on achieving and maintaining your brightest smile"
+        />
 
         {/* CTA Section */}
         <section className="py-16 bg-muted/30">

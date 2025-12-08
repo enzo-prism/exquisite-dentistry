@@ -2,7 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
+import { Video } from 'lucide-react';
 import { BlogPost, getRelatedPosts } from '@/data/blogPosts';
+import { transformationStories, type TransformationStory } from '@/data/transformationStories';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 
@@ -26,6 +28,62 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
     if (tags.includes('graduation')) return 'graduation';
     if (tags.includes('cost') || tags.includes('price') || tags.includes('financing')) return 'cost';
     return 'general';
+  };
+
+  // Get related transformation stories based on blog post context
+  const getRelatedTransformationStories = (post: BlogPost): TransformationStory[] => {
+    const tags = post.tags.join(' ').toLowerCase();
+    const category = post.category.toLowerCase();
+    const title = post.title.toLowerCase();
+
+    // Match stories based on context
+    const matchedStories: TransformationStory[] = [];
+
+    // Invisalign/orthodontics posts → Nick's Invisalign story
+    if (tags.includes('invisalign') || tags.includes('straighten') || tags.includes('orthodontic') || tags.includes('aligner')) {
+      const nickStory = transformationStories.find(s => s.slug === 'nick-invisalign');
+      if (nickStory) matchedStories.push(nickStory);
+    }
+
+    // Anxiety/fear/comfort posts → Anxiety to Ease story
+    if (tags.includes('fear') || tags.includes('anxiety') || tags.includes('comfort') || tags.includes('nervous') || title.includes('fear') || category.includes('patient experience')) {
+      const anxietyStory = transformationStories.find(s => s.slug === 'anxiety-to-ease');
+      if (anxietyStory && !matchedStories.some(s => s.slug === anxietyStory.slug)) {
+        matchedStories.push(anxietyStory);
+      }
+    }
+
+    // Veneer/cosmetic posts → Virginia's story (artistry), Brandon (comfort)
+    if (tags.includes('veneer') || tags.includes('cosmetic') || category.includes('cosmetic')) {
+      const virginiaStory = transformationStories.find(s => s.slug === 'virginia');
+      const brandonStory = transformationStories.find(s => s.slug === 'brandon-gray');
+      if (virginiaStory && !matchedStories.some(s => s.slug === virginiaStory.slug)) {
+        matchedStories.push(virginiaStory);
+      }
+      if (brandonStory && !matchedStories.some(s => s.slug === brandonStory.slug) && matchedStories.length < 2) {
+        matchedStories.push(brandonStory);
+      }
+    }
+
+    // Spa/Netflix/experience posts → Taylor, Shannon, Rob stories
+    if (tags.includes('netflix') || tags.includes('spa') || tags.includes('experience') || title.includes('spa')) {
+      const taylorStory = transformationStories.find(s => s.slug === 'taylor-vasek');
+      const shannonStory = transformationStories.find(s => s.slug === 'shannon-langhorne');
+      if (taylorStory && !matchedStories.some(s => s.slug === taylorStory.slug)) {
+        matchedStories.push(taylorStory);
+      }
+      if (shannonStory && !matchedStories.some(s => s.slug === shannonStory.slug) && matchedStories.length < 2) {
+        matchedStories.push(shannonStory);
+      }
+    }
+
+    // General: if no matches yet, show comfort-focused stories
+    if (matchedStories.length === 0) {
+      const robStory = transformationStories.find(s => s.slug === 'rob-talbert');
+      if (robStory) matchedStories.push(robStory);
+    }
+
+    return matchedStories.slice(0, 2);
   };
 
   const getServiceRecommendations = (post: BlogPost) => {
@@ -126,14 +184,50 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         ))}
       </div>
 
+      {/* Related Transformation Stories */}
+      {(() => {
+        const relatedStories = getRelatedTransformationStories(currentPost);
+        if (relatedStories.length === 0) return null;
+
+        return (
+          <div className="mb-12">
+            <h3 className="text-xl font-bold mb-4">Real Patient Stories</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {relatedStories.map((story) => (
+                <Link
+                  key={story.slug}
+                  to={`/transformation-stories/${story.slug}`}
+                  className="group"
+                >
+                  <Card className="hover:shadow-lg transition-shadow hover:border-gold/50">
+                    <CardContent className="p-5">
+                      <div className="flex items-center gap-2 text-gold mb-2">
+                        <Video className="h-4 w-4" />
+                        <span className="text-xs font-medium uppercase tracking-wide">Video Story</span>
+                      </div>
+                      <h4 className="font-semibold group-hover:text-gold transition-colors line-clamp-1">
+                        {story.patientName}'s Story
+                      </h4>
+                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                        {story.shortDescription}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Enhanced Internal Linking */}
       <div className="grid md:grid-cols-2 gap-8">
-        <InternalLinkingWidget 
-          context={getContextFromPost(currentPost)} 
+        <InternalLinkingWidget
+          context={getContextFromPost(currentPost)}
           variant="expanded"
           currentPage={`/blog/${currentPost.slug}`}
         />
-        
+
         <ServiceRecommendation
           currentService={`${currentPost.category} Blog`}
           context="complement"

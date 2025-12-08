@@ -12,6 +12,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
@@ -460,6 +461,14 @@ const Invisalign = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['invisalign', 'orthodontics', 'teeth straightening', 'clear aligners']}
+          category="Orthodontics"
+          title="Invisalign Resources & Guides"
+          subtitle="Expert answers to your questions about clear aligner treatment"
+        />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">

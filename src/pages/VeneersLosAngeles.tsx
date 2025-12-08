@@ -12,6 +12,7 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const VeneersLosAngeles = () => {
@@ -393,6 +394,14 @@ const VeneersLosAngeles = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['veneers', 'los angeles', 'hollywood veneers', 'cosmetic dentistry']}
+          category="Cosmetic Dentistry"
+          title="Veneer Insights from Our Blog"
+          subtitle="Expert guidance on costs, materials, and celebrity smile transformations"
+        />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">

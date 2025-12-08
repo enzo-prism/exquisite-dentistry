@@ -1,5 +1,8 @@
 import { ANXIETY_TO_EASE_TESTIMONIAL } from '../components/video-hero/video-constants';
 
+// Context type for internal linking widget
+export type StoryLinkingContext = 'veneer' | 'invisalign' | 'experience' | 'whitening' | 'general';
+
 export interface TransformationStory {
   id: string;
   slug: string;
@@ -757,3 +760,76 @@ export const transformationStories: TransformationStory[] = [
     }
   }
 ];
+
+/**
+ * Get related transformation stories excluding the current one
+ */
+export const getRelatedStories = (currentSlug: string, limit: number = 3): TransformationStory[] => {
+  return transformationStories
+    .filter(story => story.slug !== currentSlug)
+    .slice(0, limit);
+};
+
+/**
+ * Determine the internal linking context based on story content
+ * Used to show relevant blog posts and service links
+ */
+export const getStoryContext = (story: TransformationStory): StoryLinkingContext => {
+  const keywords = [
+    story.title.toLowerCase(),
+    story.shortDescription.toLowerCase(),
+    story.goal.toLowerCase(),
+    ...(story.seo.keywords?.toLowerCase().split(',') || [])
+  ].join(' ');
+
+  if (keywords.includes('invisalign') || keywords.includes('straighten') || keywords.includes('aligner')) {
+    return 'invisalign';
+  }
+  if (keywords.includes('veneer') || keywords.includes('cosmetic') || keywords.includes('smile design')) {
+    return 'veneer';
+  }
+  if (keywords.includes('whitening') || keywords.includes('whiten') || keywords.includes('bright')) {
+    return 'whitening';
+  }
+  if (keywords.includes('anxiety') || keywords.includes('fear') || keywords.includes('comfort') || keywords.includes('spa')) {
+    return 'experience';
+  }
+  return 'general';
+};
+
+/**
+ * Get blog post slugs relevant to a transformation story's context
+ */
+export const getRelatedBlogSlugsForStory = (story: TransformationStory): string[] => {
+  const context = getStoryContext(story);
+
+  const blogMapping: Record<StoryLinkingContext, string[]> = {
+    invisalign: [
+      'invisalign-hurt-mouth',
+      'long-will-take-fix-crooked-teeth',
+      'the-best-teeth-straightening-for-adults'
+    ],
+    veneer: [
+      'all-about-veneers-for-teeth',
+      'choosing-veneers-for-just-one-tooth',
+      'the-cost-of-dental-veneers-in-los-angeles',
+      'how-hollywood-veneers-can-transform-your-smile'
+    ],
+    whitening: [
+      'dental-veneers-and-teeth-whitening-myths-and-facts-uncovered',
+      'the-benefits-of-veneers-to-whiten-your-teeth'
+    ],
+    experience: [
+      'can-help-get-fear-dentist',
+      'finding-good-dentist-area',
+      'high-end-dentistry'
+    ],
+    general: [
+      'finding-the-best-cosmetic-dentist-in-los-angeles',
+      'long-term-cosmetic-dentistry-solutions',
+      'maintaining-oral-wellness-as-you-age'
+    ]
+  };
+
+  return blogMapping[context];
+};

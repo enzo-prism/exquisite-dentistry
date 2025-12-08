@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import RelatedArticles from '@/components/RelatedArticles';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
@@ -351,6 +352,14 @@ const Veneers = () => {
             </div>
           </div>
         </section>
+
+        {/* Related Articles Section */}
+        <RelatedArticles
+          tags={['veneers', 'porcelain veneers', 'cosmetic dentistry', 'smile makeover']}
+          category="Cosmetic Dentistry"
+          title="Learn More About Veneers"
+          subtitle="Explore our blog for expert insights on porcelain veneers, costs, and care"
+        />
 
         {/* CTA Section */}
         <section className="py-16 bg-background">
