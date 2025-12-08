@@ -919,12 +919,143 @@ button:focus-visible,
     /* Faster animations on mobile for better perceived performance */
     transition-duration: 0.3s;
   }
-  
+
   /* Ensure animations work even when GPU acceleration is disabled */
   .fade-in.in-view,
   .gpu-slide-in.in-view,
   .scale-in.in-view {
     opacity: 1 !important;
     transform: translateY(0) scale(1) !important;
+  }
+}
+
+/* ============================================
+   CSS-ONLY ANIMATIONS (Replace Framer Motion)
+   ============================================ */
+
+/* Section entrance animation - replaces motion.div wrappers */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from left */
+.section-animate-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-animate-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale entrance */
+.section-animate-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-animate-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Card hover effect - replaces motion hover animations */
+.card-animate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-animate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Stagger children animation delay classes */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+.stagger-7 { transition-delay: 0.7s; }
+
+/* Native details/summary FAQ styling - replaces Accordion */
+details.faq-item {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+details.faq-item summary {
+  padding: 1rem 0;
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: transform 0.2s ease;
+}
+
+details.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+details.faq-item .faq-answer {
+  padding: 0 0 1rem 0;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Semantic card - lighter than shadcn Card */
+.semantic-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.semantic-card-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.semantic-card-hover:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: hsl(var(--gold) / 0.3);
+}
+
+/* Semantic horizontal rule */
+hr.separator-gold {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.3), transparent);
+  margin: 1.5rem 0;
+}
+
+/* Reduced motion support for new animations */
+@media (prefers-reduced-motion: reduce) {
+  .section-animate,
+  .section-animate-left,
+  .section-animate-scale,
+  .card-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

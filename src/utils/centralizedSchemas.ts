@@ -277,3 +277,145 @@ export function detectSchemaDuplicates(schemas: JsonLd[]): string[] {
 
   return warnings;
 }
+
+// ============================================
+// Schema Generator Functions
+// Use these to create schemas that can be passed to MasterStructuredData
+// ============================================
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+/**
+ * Generate FAQ schema object
+ */
+export function createFAQSchema(faqs: FAQItem[], about = 'Cosmetic Dentistry Services'): JsonLd {
+  return {
+    '@type': 'FAQPage',
+    about: {
+      '@type': 'Thing',
+      name: about
+    },
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    })),
+    provider: getBusinessReference()
+  };
+}
+
+export interface ProcedureStep {
+  name: string;
+  description: string;
+}
+
+export interface MedicalProcedureOptions {
+  procedureName: string;
+  description: string;
+  url: string;
+  image?: string;
+  procedureType: string;
+  bodyLocation: string;
+  preparation?: string[];
+  steps?: ProcedureStep[];
+  followupCare?: string[];
+  risks?: string[];
+  benefits?: string[];
+  duration?: string;
+  recoveryTime?: string;
+  priceRange?: string;
+}
+
+/**
+ * Generate MedicalProcedure schema object
+ */
+export function createMedicalProcedureSchema(options: MedicalProcedureOptions): JsonLd {
+  const schema: JsonLd = {
+    '@type': 'MedicalProcedure',
+    name: options.procedureName,
+    description: options.description,
+    url: `https://exquisitedentistryla.com${options.url}`,
+    procedureType: options.procedureType,
+    bodyLocation: {
+      '@type': 'BodySystem',
+      name: options.bodyLocation
+    },
+    provider: getBusinessReference(),
+    performer: getDoctorReference()
+  };
+
+  if (options.image) schema.image = options.image;
+  if (options.preparation?.length) schema.preparation = options.preparation.join('. ');
+  if (options.followupCare?.length) schema.followupCare = options.followupCare.join('. ');
+  if (options.risks?.length) schema.riskFactor = options.risks;
+  if (options.benefits?.length) schema.expectedPrognosis = options.benefits.join('. ');
+  if (options.recoveryTime) schema.recoveryTime = options.recoveryTime;
+  if (options.priceRange) schema.priceRange = options.priceRange;
+
+  if (options.steps?.length) {
+    schema.howPerformed = options.steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.description
+    }));
+  }
+
+  return schema;
+}
+
+export interface WebPageOptions {
+  title: string;
+  description: string;
+  url: string;
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage';
+}
+
+/**
+ * Generate WebPage schema object
+ */
+export function createWebPageSchema(options: WebPageOptions): JsonLd {
+  return {
+    '@type': options.pageType || 'WebPage',
+    name: options.title,
+    description: options.description,
+    url: getCanonicalUrl(options.url),
+    isPartOf: getWebsiteReference(),
+    provider: getBusinessReference(),
+    inLanguage: 'en-US'
+  };
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+/**
+ * Generate BreadcrumbList schema object
+ */
+export function createBreadcrumbSchema(breadcrumbs: BreadcrumbItem[]): JsonLd {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: getCanonicalUrl('/')
+      },
+      ...breadcrumbs.map((breadcrumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 2,
+        name: breadcrumb.name,
+        item: getCanonicalUrl(breadcrumb.url)
+      }))
+    ]
+  };
+}

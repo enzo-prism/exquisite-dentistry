@@ -13,11 +13,11 @@ import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import ImageComponent from '@/components/Image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { transformationStories } from '@/data/transformationStories';
 import FloatingActionButton from '@/components/mobile/FloatingActionButton';
 import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 
 const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
   const thumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
@@ -50,42 +50,16 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
 });
 
 const IndexPage: React.FC = () => {
-  // Scroll progress for animations
-  const { scrollYProgress } = useScroll();
-  const yProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.95
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        duration: 0.6
-      }
-    }
-  };
-
   const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
+
+  // CSS-based reveal animations (replacing Framer Motion)
+  const practiceVideo = useRevealOnScroll({ animation: 'up' });
+  const doctorIntro = useRevealOnScroll({ animation: 'up', delayClass: 'stagger-1' });
+  const smileGallery = useRevealOnScroll({ animation: 'up' });
+  const services = useRevealOnScroll({ animation: 'up' });
+  const seasonal = useRevealOnScroll({ animation: 'fade' });
+  const clientExperience = useRevealOnScroll({ animation: 'scale' });
+  const testimonials = useRevealOnScroll({ animation: 'fade' });
 
   return (
     <>
@@ -117,155 +91,71 @@ const IndexPage: React.FC = () => {
         useGradient={false}
       />
       
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        style={{ willChange: 'transform' }}
-      >
+      <div ref={practiceVideo.ref} className={practiceVideo.animationClass}>
         <PracticeVideoSection />
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        style={{ willChange: 'transform' }}
-      >
+      </div>
+
+      <div ref={doctorIntro.ref} className={doctorIntro.animationClass}>
         <DoctorIntroSection />
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-        style={{ willChange: 'transform' }}
-      >
+      </div>
+
+      <div ref={smileGallery.ref} className={smileGallery.animationClass}>
         <SmileGalleryPreview />
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ willChange: 'transform' }}
-      >
+      </div>
+
+      <div ref={services.ref} className={services.animationClass}>
         <ServicesSection />
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ willChange: 'transform' }}
-      >
+      </div>
+
+      <div ref={seasonal.ref} className={seasonal.animationClass}>
         <SeasonalTreatments />
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        style={{ willChange: 'transform' }}
-      >
+      </div>
+
+      <div ref={clientExperience.ref} className={clientExperience.animationClass}>
         <ClientExperienceSection />
-      </motion.div>
+      </div>
       
-      <motion.section 
-        className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        style={{ willChange: 'transform' }}
+      <section
+        ref={testimonials.ref}
+        className={`py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white ${testimonials.animationClass}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center max-w-3xl mx-auto mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <motion.span 
-              className="inline-block text-sm text-gold font-medium mb-3"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block text-sm text-gold font-medium mb-3">
               TESTIMONIALS
-            </motion.span>
-            <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
               Client <span className="text-gold">Reviews</span>
-            </motion.h2>
-            <motion.div 
-              className="separator mx-auto"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            />
-            <motion.p 
-              className="text-gray-600 mt-6 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
+            </h2>
+            <div className="separator mx-auto" />
+            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
               See what our clients are saying about their experience at Exquisite Dentistry
-            </motion.p>
-          </motion.div>
-          
+            </p>
+          </div>
+
           {/* Video Testimonials */}
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-12"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-12">
             {HOMEPAGE_TESTIMONIALS.map((testimonial, index) => {
               const isCenteredSolo = totalTestimonials % 2 === 1 && index === totalTestimonials - 1;
               return (
-                <motion.div
+                <div
                   key={testimonial.id}
-                  variants={itemVariants}
-                  className={`h-full ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
+                  className={`h-full card-animate ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
                 >
                   <SimpleTestimonialEmbed
                     testimonial={testimonial}
                     className="h-full"
                   />
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="bg-white shadow-lg rounded-sm border border-gray-100 p-8"
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            style={{ willChange: 'transform' }}
-          >
+          <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
             <ReviewWidget />
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* SEO-Rich Content Section */}
       <section className="relative z-10 bg-background py-16">

@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Clock, Shield, Sparkles, ArrowRight } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
-import WebPageStructuredData from '@/components/WebPageStructuredData';
-import ServiceStructuredData from '@/components/ServiceStructuredData';
-import FAQStructuredData from '@/components/seo/FAQStructuredData';
-import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { SCHEDULING_URL } from '@/constants/urls';
-import { getCanonicalUrl } from '@/utils/schemaValidation';
+import {
+  createFAQSchema,
+  createMedicalProcedureSchema,
+  createWebPageSchema,
+  createBreadcrumbSchema
+} from '@/utils/centralizedSchemas';
 
 const Veneers = () => {
   const benefits = [
@@ -87,11 +87,55 @@ const Veneers = () => {
     }
   ];
 
+  // Generate schemas to pass to MasterStructuredData (single @graph)
+  const additionalSchemas = [
+    createMedicalProcedureSchema({
+      procedureName: "Porcelain Veneers",
+      description: "Custom-designed ultra-thin porcelain shells bonded to the front surface of teeth to improve appearance, creating a beautiful and natural-looking smile transformation.",
+      url: "/veneers",
+      image: "https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
+      procedureType: "Cosmetic Dental Procedure",
+      bodyLocation: "Oral and Dental System",
+      preparation: [
+        "Comprehensive consultation and examination",
+        "Digital impressions and smile design",
+        "Color matching to existing teeth"
+      ],
+      steps: [
+        { name: "Consultation & Design", description: "Comprehensive evaluation and digital smile design to visualize your new smile" },
+        { name: "Preparation", description: "Minimal tooth preparation and precise impressions for custom fabrication" },
+        { name: "Fabrication", description: "Expert craftsmen create your custom veneers using premium porcelain materials" },
+        { name: "Placement", description: "Precise bonding and final adjustments to achieve your perfect smile" }
+      ],
+      followupCare: [
+        "Regular dental cleanings and checkups",
+        "Avoid using teeth as tools",
+        "Consider nightguard if teeth grinding occurs"
+      ],
+      benefits: [
+        "Instant smile transformation",
+        "Natural-looking results",
+        "Long-lasting durability",
+        "Stain-resistant surface"
+      ],
+      recoveryTime: "Immediate return to normal activities",
+      priceRange: "$1,500-$3,000 per tooth"
+    }),
+    createWebPageSchema({
+      title: "Porcelain Veneers Los Angeles",
+      description: "Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care.",
+      url: "/veneers"
+    }),
+    createBreadcrumbSchema([{ name: "Veneers", url: "/veneers" }]),
+    createFAQSchema(faqs, "Porcelain Veneers")
+  ];
+
   return (
     <>
       <MasterStructuredData
         includeBusiness={true}
         includeWebsite={true}
+        additionalSchemas={additionalSchemas}
       />
 
       <PageSEO
@@ -101,51 +145,6 @@ const Veneers = () => {
         path="/veneers"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
       />
-
-      <MedicalProcedureStructuredData
-        procedureName="Porcelain Veneers"
-        description="Custom-designed ultra-thin porcelain shells bonded to the front surface of teeth to improve appearance, creating a beautiful and natural-looking smile transformation."
-        url="/veneers"
-        image="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
-        procedureType="Cosmetic Dental Procedure"
-        bodyLocation="Oral and Dental System"
-        preparation={[
-          "Comprehensive consultation and examination",
-          "Digital impressions and smile design",
-          "Color matching to existing teeth"
-        ]}
-        steps={[
-          { name: "Consultation & Design", description: "Comprehensive evaluation and digital smile design to visualize your new smile" },
-          { name: "Preparation", description: "Minimal tooth preparation and precise impressions for custom fabrication" },
-          { name: "Fabrication", description: "Expert craftsmen create your custom veneers using premium porcelain materials" },
-          { name: "Placement", description: "Precise bonding and final adjustments to achieve your perfect smile" }
-        ]}
-        followupCare={[
-          "Regular dental cleanings and checkups",
-          "Avoid using teeth as tools",
-          "Consider nightguard if teeth grinding occurs"
-        ]}
-        benefits={[
-          "Instant smile transformation",
-          "Natural-looking results",
-          "Long-lasting durability",
-          "Stain-resistant surface"
-        ]}
-        duration="2-3 appointments over 2-3 weeks"
-        recoveryTime="Immediate return to normal activities"
-        priceRange="$1,500-$3,000 per tooth"
-      />
-
-      <WebPageStructuredData 
-        title="Porcelain Veneers Los Angeles"
-        description="Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care."
-        url="https://exquisitedentistryla.com/veneers"
-        breadcrumbs={[
-          { name: "Veneers", url: "https://exquisitedentistryla.com/veneers" }
-        ]}
-      />
-
-      <FAQStructuredData faqs={faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} about="Porcelain Veneers" />
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
@@ -299,18 +298,19 @@ const Veneers = () => {
             </div>
 
             <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible className="w-full">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={`veneer-faq-${index}-${faq.question.slice(0, 20).replace(/[^a-zA-Z0-9]/g, '')}`} value={`item-${index}`}>
-                    <AccordionTrigger textClassName="text-left">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              {faqs.map((faq, index) => (
+                <details
+                  key={`veneer-faq-${index}`}
+                  className="faq-item"
+                >
+                  <summary className="text-left font-medium text-foreground">
+                    {faq.question}
+                  </summary>
+                  <p className="faq-answer">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
             </div>
 
             {/* Internal Linking and Service Recommendations */}

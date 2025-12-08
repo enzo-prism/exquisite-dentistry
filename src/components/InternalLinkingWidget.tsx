@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Sparkles, Calendar, Heart, FileText, Camera } from 'lucide-react';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { cn } from '@/lib/utils';
 
@@ -451,22 +449,23 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
   const displayLinks = variant === 'compact' ? filteredLinks.slice(0, 3) : 
                       variant === 'sidebar' ? links.slice(0, 4) : links;
 
+  // Unicode icons instead of Lucide SVGs (~200 bytes saved per icon)
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'service':
-        return <Star className="w-4 h-4 text-gold" />;
+        return <span className="text-gold" aria-hidden="true">★</span>;
       case 'blog':
-        return <FileText className="w-4 h-4 text-blue-500" />;
+        return <span className="text-blue-500" aria-hidden="true">📄</span>;
       case 'experience':
-        return <Heart className="w-4 h-4 text-red-500" />;
+        return <span className="text-red-500" aria-hidden="true">♥</span>;
       case 'consultation':
-        return <Calendar className="w-4 h-4 text-green-600" />;
+        return <span className="text-green-600" aria-hidden="true">📅</span>;
       case 'gallery':
-        return <Camera className="w-4 h-4 text-purple-600" />;
+        return <span className="text-purple-600" aria-hidden="true">📷</span>;
       case 'special':
-        return <Sparkles className="w-4 h-4 text-pink-500" />;
+        return <span className="text-pink-500" aria-hidden="true">✨</span>;
       default:
-        return <ArrowRight className="w-4 h-4 text-gray-500" />;
+        return <span className="text-gray-500" aria-hidden="true">→</span>;
     }
   };
 
@@ -539,7 +538,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
               </div>
               <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors group-hover:text-gold/80">
                 Explore
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
               </span>
             </>
           );
