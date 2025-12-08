@@ -70,12 +70,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
           </div>
         </div>
 
-        {/* Enhanced Title */}
-        <h3 className={`text-xl md:text-2xl font-bold text-card-foreground transition-all duration-300 leading-tight blog-card-title ${featured ? 'xl:text-3xl' : ''}`}>
+        {/* Enhanced Title - H2 for proper heading hierarchy (H1 is in hero) */}
+        <h2 className={`text-xl md:text-2xl font-bold text-card-foreground transition-all duration-300 leading-tight blog-card-title ${featured ? 'xl:text-3xl' : ''}`}>
           <span className="bg-gradient-to-r from-foreground to-foreground group-hover:from-gold group-hover:to-gold/80 bg-clip-text group-hover:text-transparent transition-all duration-300">
             {post.title}
           </span>
-        </h3>
+        </h2>
 
         {/* Enhanced Excerpt */}
         <p className="text-muted-foreground leading-relaxed text-base md:text-lg flex-grow blog-card-excerpt">
