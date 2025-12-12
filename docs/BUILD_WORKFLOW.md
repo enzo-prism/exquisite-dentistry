@@ -24,7 +24,7 @@ npm run dev          # Vite dev server @ http://localhost:5173
 | --- | --- | --- |
 | 1 | `npm run generate:blog` | Only when files inside `Blog-Content/` change. |
 | 2 | `npm run lint` | ESLint (TS + React Hooks). Add `-- --fix` to auto-fix style issues. |
-| 3 | `npm run build` | Standard Vite production bundle, writes to `dist/`. |
+| 3 | `npm run build` | Runs HTML fallbacks, builds Vite, then prerenders static route HTML into `dist/`. |
 | 4 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
 | 5 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
 | 6 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
@@ -59,7 +59,7 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
 ## CI / Automation Tips
 
 - Cache `~/.npm` and `node_modules` between runs to cut `npm install` time.
-- Run `npm run build:prod` instead of `npm run build` inside Netlify-style pipelines so image optimization happens every deploy.
+- Run `npm run build:prod` instead of `npm run build` inside Netlify-style pipelines so image optimization, HTML fallbacks, and static prerendering happen every deploy.
 - Add `npm run lint && npm run build && npm run check:seo` to PR workflows; those three commands surface 90% of issues before reviewers look at UI diffs.
 
 ## Troubleshooting

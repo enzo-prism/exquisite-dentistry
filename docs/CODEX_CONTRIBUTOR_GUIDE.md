@@ -10,6 +10,8 @@ This playbook distills the workflow conventions, scripts, and gotchas Codex agen
 4. Run **at least** `npm run lint` + `npm run build`
 5. For asset-heavy work, also run `npm run build:prod` before pushing
 
+`npm run build` now also produces static, crawlable HTML snapshots for key marketing, service, location, and blog routes in `dist/` (no JS required).
+
 ## Repo Map & Conventions
 
 | Path | Purpose |
@@ -33,9 +35,10 @@ Quick rules:
 | --- | --- | --- |
 | `npm run dev` | Any interactive work | Hot reload; picks up `.env`. |
 | `npm run lint` | Before every PR/push | ESLint (TS + React Hooks). Add `-- --fix` when safe. |
-| `npm run build` | Mandatory gate | Vite production bundle → `dist/`. |
+| `npm run build` | Mandatory gate | Runs static HTML fallbacks + Vite build + SEO prerender into `dist/`. |
 | `npm run build:prod` | Media/launch parity | Runs Sharp optimizer + build. Mirrors Netlify. |
 | `npm run preview` | Manual QA | Serves `dist/` on `http://localhost:4173`. |
+| `npm run prerender:static` | After build if needed | Rebuilds static route HTML snapshots in `dist/` (already included in `build`). |
 | `npm run generate:blog` | After editing `Blog-Content/` | Rebuilds `src/data/generatedBlogPosts.ts`. |
 | `npm run check:seo` | Before launch | Ensures canonical + JSON-LD tags exist in build. |
 | `node test-browser.js` | Optional smoke test | Puppeteer suite; requires dev/preview server. |
@@ -49,7 +52,7 @@ Quick rules:
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
   - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
   - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
-- **Static fallbacks**: `npm run generate:fallbacks` runs automatically inside `npm run build`. It renders service + geo routes into `public/<slug>.html` and fails if canonical/meta/schema/H1 are missing. If you touch those configs, feel free to re-run the generator manually and spot-check the resulting HTML.
+- **Static fallbacks & prerendered routes**: `npm run build` runs `generate:fallbacks` (writes `public/<slug>.html` for services/geos) and `prerender:static` (writes `dist/<route>/index.html` for marketing, services/geos, and blog posts). Both outputs are JS-free snapshots for crawlers; rerun the scripts manually when adjusting SEO copy or internal links.
 
 ## Testing Expectations
 

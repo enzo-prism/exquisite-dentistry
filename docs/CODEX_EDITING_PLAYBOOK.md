@@ -24,7 +24,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 - `LegacyRedirectHandler` (`src/components/LegacyRedirectHandler.tsx`) mirrors Netlify redirects in-browser to fix indexed `.html` URLs. Avoid touching it unless Netlify rules change.
 
 ### Build & quality gates
-- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build`, `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, and `node test-browser.js`.
+- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build` (includes `generate:fallbacks` + `prerender:static`), `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, `npm run prerender:static`, and `node test-browser.js`.
 - `scripts/seo-smoke.mjs` checks `public/emergency-dentist.html` for canonical/OG/JSON-LD tags—run it after builds touching SEO-critical assets.
 
 ---
@@ -129,7 +129,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
    The harness reads `scripts/redirect-tests/legacy-urls.txt` and `canonical-map.json`; keep both updated whenever you add/remove canonicals. The Netlify server must serve from `public/` so `_redirects` and the HTML fallbacks are honored.
 
 3. **Production build** – `npm run build`  
-   Automatically runs `npm run generate:fallbacks`, validates every generated HTML file (canonical/meta/schema/H1), then compiles Vite. Investigate any warnings (eval, browserslist, etc.) before continuing.
+   Automatically runs `npm run generate:fallbacks`, validates every generated HTML file (canonical/meta/schema/H1), compiles Vite, and then runs `npm run prerender:static` to write JS-free HTML snapshots into `dist/`. Investigate any warnings (eval, browserslist, etc.) before continuing.
 
 4. **Static smoke** – `npx serve -s dist -l 4173`  
    Visit `/teeth-cleaning`, `/root-canal`, `/west-hollywood-dentist`, `/blog/the-material-options-for-dental-veneers` with JS disabled. Confirm HTML renders real content, canonical tags point to the right URL, and the JSON-LD block appears in view-source.
