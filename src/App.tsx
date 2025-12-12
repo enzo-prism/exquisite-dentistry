@@ -58,6 +58,7 @@ const MelroseDentist = lazy(() => import("@/pages/MelroseDentist"));
 const WestwoodDentist = lazy(() => import("@/pages/WestwoodDentist"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -233,6 +234,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/westwood-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
                 <WestwoodDentist />
+              </Suspense>} />
+              <Route path="*" element={<Suspense fallback={<PageLoaderComponent />}>
+                <NotFound />
               </Suspense>} />
             </Routes>
           </PageTransition>

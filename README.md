@@ -129,6 +129,16 @@ curl -s http://localhost:3000/veneers/ | rg "<h1|Custom Porcelain Veneers"
 
 You should see the route’s `<h1>` and intro paragraph in the raw HTML response.
 
+### Not Found / soft‑404 verification
+
+This site uses a Netlify SPA fallback, so unknown URLs return `index.html` with a 200. To prevent soft‑404 indexing, the client-side Not Found route emits `noindex`.
+
+To verify:
+
+1. Run `npm run dev` or `npm run preview`.
+2. Visit an invalid path like `http://localhost:5173/this-does-not-exist`.
+3. In devtools, inspect `<head>` and confirm a `<meta name="robots" content="noindex,follow">` tag is present.
+
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
