@@ -66,7 +66,6 @@ const TestimonialsPage: React.FC = () => {
     <>
       <MasterStructuredData 
         includeBusiness={true}
-        includeReviews={true}
         includeWebsite={true}
         additionalSchemas={[
           {

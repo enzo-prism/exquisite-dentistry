@@ -4,6 +4,14 @@ import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
 import { getPublishedPosts } from "../src/data/blogPosts";
 import { getRouteMetadata } from "../src/constants/metadata";
+import {
+  MASTER_BUSINESS_ENTITY,
+  MASTER_DOCTOR_ENTITY,
+  WEBSITE_ENTITY,
+  createFAQSchema
+} from "../src/utils/centralizedSchemas";
+import { faqs } from "../src/data/faqs";
+import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 
 type StaticLink = { label: string; href: string };
 type StaticRoute = {
@@ -17,6 +25,7 @@ type StaticRoute = {
 
 const DIST_DIR = path.resolve("dist");
 const TEMPLATE_PATH = path.join(DIST_DIR, "index.html");
+const SCHEMA_ORG_CONTEXT = "https://schema.org";
 
 const defaultNavLinks: StaticLink[] = [
   { label: "Services", href: "/services" },
@@ -291,6 +300,91 @@ const injectSeo = (template: string, title: string, description: string, routePa
   return html;
 };
 
+const safeJsonLd = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, "\\u003c");
+
+const buildTestimonialsSchema = () => {
+  const toAbsoluteUrl = (url: string) =>
+    url.startsWith("http") ? url : `https://exquisitedentistryla.com${url}`;
+
+  const videoObjects = VIDEO_TESTIMONIALS.map((testimonial) => {
+    const thumbnailUrl = toAbsoluteUrl(testimonial.thumbnailUrl);
+    const base: Record<string, unknown> = {
+      "@type": "VideoObject",
+      name: testimonial.title,
+      description: `${testimonial.title} patient testimonial at Exquisite Dentistry Los Angeles.`,
+      thumbnailUrl,
+      uploadDate: testimonial.uploadDate,
+      duration: testimonial.duration,
+      publisher: {
+        "@id": "https://exquisitedentistryla.com/#business"
+      },
+      inLanguage: "en-US"
+    };
+
+    if (testimonial.type === "vimeo") {
+      base.contentUrl = `https://vimeo.com/${testimonial.vimeoId}`;
+      base.embedUrl = `https://player.vimeo.com/video/${testimonial.vimeoId}`;
+    } else {
+      base.contentUrl = testimonial.videoUrl;
+      base.embedUrl = testimonial.videoUrl;
+    }
+
+    return base;
+  });
+
+  return {
+    "@type": "ItemList",
+    name: "Video Testimonials",
+    description: "Collection of patient video testimonials for Exquisite Dentistry Los Angeles",
+    numberOfItems: videoObjects.length,
+    itemListElement: videoObjects.map((video, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: video
+    }))
+  };
+};
+
+const getSchemasForRoute = (routePath: string) => {
+  const schemas: Record<string, unknown>[] = [
+    MASTER_BUSINESS_ENTITY,
+    WEBSITE_ENTITY
+  ];
+
+  if (routePath === "/about") {
+    schemas.push(MASTER_DOCTOR_ENTITY);
+  }
+
+  if (routePath === "/faqs") {
+    schemas.push(
+      createFAQSchema(
+        faqs.map(({ question, answer }) => ({ question, answer })),
+        "Exquisite Dentistry Services and Appointments"
+      )
+    );
+  }
+
+  if (routePath === "/testimonials") {
+    schemas.push(buildTestimonialsSchema());
+  }
+
+  return schemas;
+};
+
+const injectJsonLd = (template: string, schemas: Record<string, unknown>[]) => {
+  if (!schemas.length) return template;
+  const graph = {
+    "@context": SCHEMA_ORG_CONTEXT,
+    "@graph": schemas
+  };
+  const jsonLd = safeJsonLd(graph);
+  return template.replace(
+    /<\/head>/i,
+    `  <script type="application/ld+json">${jsonLd}</script>\n</head>`
+  );
+};
+
 const injectRoot = (template: string, contentHtml: string) => {
   const rootRegex = /<div id=["']root["'][^>]*>[\s\S]*?<\/div>/i;
   if (!rootRegex.test(template)) {
@@ -387,7 +481,9 @@ const renderRoute = (template: string, route: StaticRoute) => {
     </main>
   </div>`;
 
+  const schemas = getSchemasForRoute(route.path);
   let html = injectSeo(template, route.title, route.description, route.path);
+  html = injectJsonLd(html, schemas);
   html = injectRoot(html, contentHtml);
   return html;
 };

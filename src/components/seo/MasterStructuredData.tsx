@@ -4,7 +4,6 @@ import {
   MASTER_BUSINESS_ENTITY,
   MASTER_DOCTOR_ENTITY,
   WEBSITE_ENTITY,
-  REVIEW_AGGREGATE_DATA,
   detectSchemaDuplicates
 } from '@/utils/centralizedSchemas';
 import { validateLocalBusiness, validateJsonLd, logValidationErrors } from '@/utils/schemaValidation';
@@ -14,7 +13,6 @@ interface MasterStructuredDataProps {
   includeBusiness?: boolean;
   includeDoctor?: boolean;
   includeWebsite?: boolean;
-  includeReviews?: boolean;
   additionalSchemas?: JsonLd[];
 }
 
@@ -43,19 +41,13 @@ const MasterStructuredData: React.FC<MasterStructuredDataProps> = ({
   includeBusiness = true,
   includeDoctor = false,
   includeWebsite = false,
-  includeReviews = false,
   additionalSchemas = []
 }) => {
   const graphEntities: JsonLd[] = [];
 
   // Add business entity (always first in graph if included)
   if (includeBusiness) {
-    const businessWithReviews = includeReviews ? {
-      ...MASTER_BUSINESS_ENTITY,
-      aggregateRating: REVIEW_AGGREGATE_DATA
-    } : MASTER_BUSINESS_ENTITY;
-    
-    graphEntities.push(businessWithReviews);
+    graphEntities.push(MASTER_BUSINESS_ENTITY);
   }
 
   // Add website entity

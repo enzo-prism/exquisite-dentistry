@@ -19,19 +19,6 @@ const TransformationStoryStructuredData: React.FC<TransformationStoryStructuredD
     url: canonicalUrl,
     about: {
       "@id": "https://exquisitedentistryla.com/#business"
-    },
-    mainEntity: {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": caseStudy.patientName
-      },
-      "reviewBody": caseStudy.quotes[0]?.text || caseStudy.shortDescription,
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      }
     }
   };
 

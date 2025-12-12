@@ -18,6 +18,7 @@ Manual spot-checks for new/edited pages:
 - Verify body content is unique, 200–300+ words, and includes at least two internal links (services) or one service link (geo pages).
 - Ensure PageSEO data (title + meta description) is intentional, not boilerplate.
 - Confirm schema markup renders (view-source to see the JSON-LD block from each template).
+- For eligible routes, paste the deployed URL into Google’s Rich Results Test to validate WebSite/LocalBusiness, FAQPage, and VideoObject markup.
 
 ## 2. Automated Redirect Checks (local Netlify)
 

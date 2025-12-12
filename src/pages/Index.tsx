@@ -69,7 +69,6 @@ const IndexPage: React.FC = () => {
         includeBusiness={true}
         includeDoctor={true}
         includeWebsite={true}
-        includeReviews={true}
       />
       <PageSEO 
         title={meta.title}

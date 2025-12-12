@@ -5,7 +5,6 @@ import type { JsonLd, LocalBusinessSchema } from '@/utils/schemaValidation';
 
 interface ConsolidatedStructuredDataProps {
   pageType?: 'home' | 'about' | 'services' | 'contact' | 'testimonials' | 'other';
-  includeReviews?: boolean;
   includeServices?: boolean;
 }
 
@@ -15,7 +14,6 @@ interface ConsolidatedStructuredDataProps {
  */
 const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
   pageType = 'other',
-  includeReviews = false,
   includeServices = false
 }) => {
   // Main business entity - single source of truth
@@ -87,11 +85,7 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
       'Restorative Dentistry',
       'Preventive Dentistry'
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '50+'
-    }
+    // NOTE: Do not include AggregateRating/Review for self-serving pages.
   };
 
   // Add services if requested
@@ -136,50 +130,6 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
     }
   };
 
-  // Reviews data (if requested)
-  const reviewsData: JsonLd[] = includeReviews ? [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Review',
-      '@id': 'https://exquisitedentistryla.com/#review-shannon',
-      itemReviewed: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        '@id': 'https://exquisitedentistryla.com/#business'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'Shannon Langhorne'
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      reviewBody: 'Exceptional cosmetic dentistry experience with Dr. Alexie Aguil. The staff is professional and the results exceeded my expectations.',
-      datePublished: '2024-01-15'
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Review',
-      '@id': 'https://exquisitedentistryla.com/#review-taylor',
-      itemReviewed: {
-        '@type': ['LocalBusiness', 'Dentist'],
-        '@id': 'https://exquisitedentistryla.com/#business'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'Taylor Vasek'
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      reviewBody: 'Outstanding service and beautiful results. Dr. Aguil is truly an artist when it comes to cosmetic dentistry.',
-      datePublished: '2024-01-10'
-    }
-  ] : [];
-
   // Validate schema in development
   const validationResult = validateLocalBusiness(businessData);
   logValidationErrors('ConsolidatedStructuredData', validationResult);
@@ -188,9 +138,6 @@ const ConsolidatedStructuredData: React.FC<ConsolidatedStructuredDataProps> = ({
     <Helmet>
       <script type="application/ld+json">{JSON.stringify(businessData)}</script>
       <script type="application/ld+json">{JSON.stringify(websiteData)}</script>
-      {reviewsData.map((review, index) => (
-        <script key={index} type="application/ld+json">{JSON.stringify(review)}</script>
-      ))}
     </Helmet>
   );
 };
