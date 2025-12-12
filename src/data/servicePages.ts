@@ -286,6 +286,140 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Schedule a Consultation", href: "/contact" },
     ],
   },
+  "invisalign-beverly-hills": {
+    slug: "invisalign-beverly-hills",
+    title: "Invisalign Near Beverly Hills",
+    seo: {
+      title: "Invisalign Near Beverly Hills | Exquisite Dentistry",
+      description:
+        "Invisalign near Beverly Hills with Dr. Alexie Aguil, DDS. Clear aligners planned with iTero scans, flexible visits, and comfort-first care on Wilshire Blvd in Los Angeles.",
+      keywords: [
+        "invisalign beverly hills",
+        "invisalign near beverly hills",
+        "clear aligners beverly hills",
+        "invisalign los angeles",
+        "adult orthodontics beverly hills",
+        "itero scanner",
+      ],
+    },
+    hero: {
+      eyebrow: "Orthodontics",
+      heading: "Invisalign Near Beverly Hills",
+      subheading:
+        "Discreet clear aligners designed for busy Beverly Hills schedules—planned with digital scans, concierge check-ins, and an aesthetics-first finish.",
+      highlights: [
+        "iTero digital scans (no messy impressions)",
+        "Flexible appointments + concierge pacing",
+        "Finish with whitening or bonding options",
+      ],
+    },
+    overview: {
+      intro: [
+        "If you’re searching for Invisalign in Beverly Hills, you likely want a straighter smile without brackets or disruptions to your day. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we plan clear aligner treatment around work, travel, and event timelines.",
+        "Dr. Alexie Aguil, DDS uses digital iTero scanning and staged planning to guide predictable tooth movement. When the time is right, we can coordinate cosmetic finishing touches—like whitening or subtle edge contouring—so your final result looks natural and balanced.",
+      ],
+      callouts: [
+        {
+          title: "Digital planning",
+          description:
+            "We use iTero scans to map your bite, visualize movement, and keep progress measurable from start to finish.",
+        },
+        {
+          title: "Beverly Hills-friendly scheduling",
+          description:
+            "Concierge reminders, efficient visits, and clear timelines help you stay consistent without compromising your calendar.",
+        },
+        {
+          title: "Aesthetic finishing",
+          description:
+            "After alignment, we can coordinate whitening, bonding, or veneers when indicated to refine symmetry and shade.",
+        },
+      ],
+    },
+    benefits: [
+      {
+        title: "Nearly invisible treatment",
+        description:
+          "Clear aligners keep treatment discreet for meetings, social events, and photos while teeth gradually align.",
+      },
+      {
+        title: "Comfort-first progress",
+        description:
+          "Smooth aligners reduce irritation and minimize emergencies compared to brackets and wires.",
+      },
+      {
+        title: "A plan that fits your lifestyle",
+        description:
+          "Wear aligners 20–22 hours a day, remove them for dining, and keep oral hygiene simple throughout treatment.",
+      },
+    ],
+    treatmentSteps: [
+      {
+        title: "01. Consultation + iTero Scan",
+        detail:
+          "We evaluate goals, bite function, and aesthetic priorities, then capture digital scans for precise planning.",
+      },
+      {
+        title: "02. Digital Treatment Plan",
+        detail:
+          "We map tooth movement in stages and set expectations for wear time, check-ins, and likely refinements.",
+      },
+      {
+        title: "03. Aligner Check-ins",
+        detail:
+          "Progress visits keep you on track. If needed, we adjust attachments or order refinement aligners for finishing details.",
+      },
+      {
+        title: "04. Retainers + Finishing",
+        detail:
+          "We lock in results with retainers and can coordinate whitening or cosmetic polishing when desired.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you offer Invisalign for Beverly Hills patients?",
+        answer:
+          "Yes. Many patients travel from Beverly Hills to our Wilshire Blvd studio for Invisalign planning and check-ins. We coordinate schedules and timelines to make visits efficient.",
+      },
+      {
+        question: "How long does Invisalign take?",
+        answer:
+          "Many adult alignment cases finish in 6–12 months, while complex bite corrections can take longer. After your scan, we’ll outline a realistic timeline and what each stage accomplishes.",
+      },
+      {
+        question: "How often do I need to come in during treatment?",
+        answer:
+          "Visit frequency depends on your plan, but most patients check in every 6–10 weeks. We’ll coordinate appointments around travel and major events whenever possible.",
+      },
+      {
+        question: "Can Invisalign be combined with whitening or veneers?",
+        answer:
+          "Yes. Alignment often comes first so we can refine shade and shape afterward. We’ll recommend the ideal sequence for predictable color matching and a balanced bite.",
+      },
+      {
+        question: "Is Invisalign comfortable for speaking at work?",
+        answer:
+          "Most patients adjust quickly. Aligners fit closely to teeth, and any minor speech changes typically resolve within a day or two of consistent wear.",
+      },
+    ],
+    cta: {
+      heading: "Book an Invisalign Consultation Near Beverly Hills",
+      description:
+        "Schedule a scan and consultation to see if Invisalign fits your goals, timeline, and bite. We’ll outline options and next steps with clear expectations.",
+      primaryText: "Book Online",
+      primaryHref: SCHEDULING_URL,
+      secondaryText: "Call Us",
+      secondaryHref: "tel:+13232722388",
+    },
+    internalLinks: [
+      { label: "Invisalign Clear Aligners (Los Angeles)", href: "/invisalign" },
+      { label: "Beverly Hills Dentist Page", href: "/beverly-hills-dentist" },
+      { label: "iTero 3D Scanner", href: "/itero-scanner" },
+      { label: "Nick’s Invisalign Story", href: "/transformation-stories/nick-invisalign" },
+      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
+      { label: "Contact & Scheduling", href: "/contact" },
+    ],
+  },
   "root-canal": {
     slug: "root-canal",
     title: "Root Canal Therapy in Los Angeles",

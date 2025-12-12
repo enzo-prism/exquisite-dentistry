@@ -737,6 +737,61 @@ const getSchemasForRoute = (routePath: string) => {
     }
   }
 
+  if (routePath === "/invisalign-beverly-hills") {
+    const meta = getRouteMetadata("/invisalign-beverly-hills");
+    const config = servicePageConfigs["invisalign-beverly-hills"];
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/invisalign-beverly-hills",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Invisalign", url: "/invisalign" },
+        { name: "Invisalign Near Beverly Hills", url: "/invisalign-beverly-hills" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Invisalign Clear Aligners",
+        description:
+          "Invisalign near Beverly Hills with clear aligners planned using digital scans, staged tooth movement, and concierge-style check-ins for busy schedules.",
+        url: "/invisalign-beverly-hills/",
+        image: meta.ogImage,
+        procedureType: "Orthodontic Procedure",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Consultation to review goals, bite function, and candidacy",
+          "Digital iTero scan for precise aligner planning"
+        ],
+        steps: (config?.treatmentSteps ?? []).map((step) => ({
+          name: step.title,
+          description: step.detail
+        })),
+        risks: ["Temporary tooth sensitivity", "Temporary gum irritation"],
+        benefits: [
+          "Discreet alignment with removable aligners",
+          "Predictable planning with digital scans",
+          "Finishing options like whitening or bonding when indicated"
+        ],
+        recoveryTime: "No downtime"
+      })
+    );
+    if (config?.faqs?.length) {
+      schemas.push(
+        createFAQSchema(
+          config.faqs.map(({ question, answer }) => ({ question, answer })),
+          "Invisalign Near Beverly Hills"
+        )
+      );
+    }
+  }
+
   if (routePath === "/faqs") {
     schemas.push(
       createFAQSchema(

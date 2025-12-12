@@ -112,7 +112,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "beverly-hills-dentist": createLocationConfig(
     "beverly-hills-dentist",
     "Beverly Hills",
-    "Concierge-level cosmetic dentistry a short drive east of Rodeo Drive with discreet, private treatment rooms. Private entries, NDA-friendly visits, and same-day coordination with your glam squad keep every reveal seamless.",
+    "Concierge-level cosmetic dentistry a short drive east of Rodeo Drive, serving Beverly Hills patients with discreet, private treatment rooms. Veneers, Invisalign, whitening, and restorations planned with privacy-first scheduling keep every reveal seamless.",
     [
       "Complimentary beverage and comfort menu",
       "Coordinated rideshare or car service",
@@ -121,12 +121,14 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     [
       "Smile makeovers that pair veneers, crowns, and whitening for flawless symmetry",
       "Porcelain veneers crafted with Beverly Hills ceramists for natural brilliance",
+      "Invisalign clear aligners for discreet, camera-ready alignment and bite refinement",
       "Dental implants planned with advanced imaging for enduring bite strength",
       "Full-mouth reconstruction that balances function, health, and high fashion"
     ],
     { quote: "A Beverly Hills-level experience without crossing town. My veneers look flawless.", author: "Taylor V." },
     [
       { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
+      { label: "Invisalign Near Beverly Hills", href: "/invisalign-beverly-hills" },
       { label: "Dental Implants", href: "/dental-implants" },
       { label: "Dental Crowns", href: "/dental-crowns" }
     ]

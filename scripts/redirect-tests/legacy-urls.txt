@@ -37,6 +37,7 @@
 /90048-dentist/
 /melrose-dentist/
 /forms/
+/beverly-hills-invisalign/
 /smile-makeover/
 /services/zoom-whitening/
 /blog/netflix-streaming-during-dental-procedures

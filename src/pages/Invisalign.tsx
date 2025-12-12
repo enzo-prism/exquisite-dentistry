@@ -355,6 +355,20 @@ const Invisalign = () => {
                 We also curate transformation packages that integrate smile whitening, <Link to="/testimonials" className="text-secondary underline-offset-4 hover:underline">patient-proven comfort amenities</Link>, and Vivera retainer subscriptions.
                 After treatment, our team schedules quarterly digital check-ins to ensure retainers fit perfectly and to plan any enhancements before important events.
               </p>
+              <div className="mt-10 rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
+                <h3 className="text-2xl font-semibold text-foreground">Invisalign near Beverly Hills</h3>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  If you’re coming from Beverly Hills, explore our location guide and a dedicated overview of Invisalign planning designed for Beverly Hills schedules.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button variant="outline" asChild>
+                    <Link to="/invisalign-beverly-hills">Beverly Hills Invisalign Guide</Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>

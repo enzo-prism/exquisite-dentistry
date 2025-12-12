@@ -32,6 +32,7 @@ const StaticSitemap = () => {
         '/teeth-whitening',
         '/teeth-cleaning',
         '/invisalign',
+        '/invisalign-beverly-hills',
         '/itero-scanner',
         '/dental-implants',
         '/dental-crowns',

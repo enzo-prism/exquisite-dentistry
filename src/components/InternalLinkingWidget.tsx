@@ -165,46 +165,53 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 1
           },
           {
+            title: 'Invisalign Near Beverly Hills',
+            href: '/invisalign-beverly-hills',
+            description: 'Concierge clear aligners for Beverly Hills schedules',
+            category: 'service',
+            priority: 2
+          },
+          {
             title: 'iTero 3D Scanner',
             href: '/itero-scanner',
             description: 'See how digital impressions accelerate Invisalign planning',
             category: 'service',
-            priority: 2
+            priority: 3
           },
           {
             title: 'Does Invisalign Hurt?',
             href: '/blog/invisalign-hurt-mouth',
             description: 'What to expect during treatment',
             category: 'blog',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Best Teeth Straightening for Adults',
             href: '/blog/the-best-teeth-straightening-for-adults',
             description: 'Options for adult orthodontic treatment',
             category: 'blog',
-            priority: 4
+            priority: 5
           },
           {
             title: 'How Long to Fix Crooked Teeth?',
             href: '/blog/long-will-take-fix-crooked-teeth',
             description: 'Treatment timeline expectations',
             category: 'blog',
-            priority: 5
+            priority: 6
           },
           {
             title: 'Patient Testimonials',
             href: '/testimonials',
             description: 'Stories from Invisalign patients',
             category: 'experience',
-            priority: 6
+            priority: 7
           },
           {
             title: 'Graduation Smile Prep',
             href: '/graduation',
             description: 'Straighten your smile before graduation',
             category: 'special',
-            priority: 8,
+            priority: 9,
             seasonal: true
           }
         ];

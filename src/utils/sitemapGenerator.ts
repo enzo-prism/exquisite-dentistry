@@ -116,6 +116,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/invisalign-beverly-hills'),
+      lastmod: getFileLastModified('src/pages/InvisalignBeverlyHills.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
       loc: getCanonicalUrl('/itero-scanner'),
       lastmod: getFileLastModified('src/pages/IteroScanner.tsx', 14, now),
       changefreq: 'monthly',
