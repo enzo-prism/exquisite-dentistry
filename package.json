@@ -5,17 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate:fallbacks && vite build",
+    "build": "npm run generate:fallbacks && vite build && npm run prerender:static",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "optimize:images": "node scripts/optimize-images.js",
-    "build:prod": "npm run optimize:images && npm run generate:fallbacks && vite build",
+    "optimize:images": "node scripts/optimize-images.js && node scripts/validate-images.js",
+    "build:prod": "npm run optimize:images && npm run generate:fallbacks && vite build && npm run prerender:static",
     "generate:blog": "node scripts/generate-blog-posts.mjs",
     "check:seo": "node scripts/seo-smoke.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
     "test:content": "tsx scripts/test-content-quality.ts",
-    "generate:fallbacks": "tsx scripts/generate-fallbacks.ts"
+    "generate:fallbacks": "tsx scripts/generate-fallbacks.ts",
+    "prerender:static": "tsx scripts/prerender-static.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -48,7 +49,6 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@sentry/react": "^8.55.0",
     "@sentry/tracing": "^7.120.3",
-    "@tanstack/react-query": "^5.56.2",
     "@types/react-helmet": "^6.1.11",
     "@types/react-helmet-async": "^1.0.3",
     "class-variance-authority": "^0.7.1",
@@ -60,7 +60,6 @@
     "glob": "^11.0.3",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
-    "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",

@@ -115,6 +115,20 @@ npm run preview
 npm run test:redirects
 ```
 
+### Static HTML (SEO) verification
+
+`npm run build` now generates static, crawlable HTML snapshots for key marketing routes in `dist/` (no bot-specific serving). To verify the initial HTML contains real content:
+
+```sh
+npm run build
+npx serve -s dist
+
+# In another terminal (adjust port if needed):
+curl -s http://localhost:3000/veneers/ | rg "<h1|Custom Porcelain Veneers"
+```
+
+You should see the route’s `<h1>` and intro paragraph in the raw HTML response.
+
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
