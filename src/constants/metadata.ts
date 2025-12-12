@@ -69,7 +69,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/zoom-whitening': {
     title: 'Zoom Whitening Los Angeles | Exquisite Dentistry',
     description:
-      'Professional Zoom whitening in LA brightens teeth 8+ shades in one visit. Safe, effective, immediate results. Special offers available now!',
+      'Zoom teeth whitening in Los Angeles brightens your smile fast—often 3–8 shades in about 60–90 minutes. Comfort-first protocol on Wilshire Blvd.',
     keywords:
       'Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile',
     ogImage:

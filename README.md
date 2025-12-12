@@ -124,10 +124,10 @@ npm run build
 npx serve -s dist
 
 # In another terminal (adjust port if needed):
-curl -s http://localhost:3000/veneers/ | rg "<h1|Custom Porcelain Veneers"
+curl -s http://localhost:3000/zoom-whitening/ | rg "<title|meta name=\"description\"|<h1" | head
 ```
 
-You should see the route’s `<h1>` and intro paragraph in the raw HTML response.
+You should see the route’s `<h1>` and intro paragraph in the raw HTML response (plus a unique `<title>` + `<meta name="description">`).
 
 If you’re deploying via **Lovable hosting**, also run the production sanity check in `docs/verification.md` to ensure your host serves `/<route>/index.html` for `/<route>/` (some SPA-style hosts incorrectly return `/index.html` for all extensionless routes, which causes duplicate meta descriptions).
 

@@ -50,13 +50,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
       opens: '08:00',
-      closes: '19:00'
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '08:00',
-      closes: '14:00'
+      closes: '18:00'
     }
   ],
   areaServed: [

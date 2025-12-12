@@ -16,6 +16,8 @@ import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { ZOOM_WHITENING_FAQS } from '@/data/zoomWhitening';
+import { ADDRESS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const ZoomWhitening = () => {
   const meta = ROUTE_METADATA['/zoom-whitening'];
@@ -73,43 +75,19 @@ const ZoomWhitening = () => {
     "Prepare for special events and occasions"
   ];
 
-  const faqs = [
-    {
-      question: "How much whiter will my teeth get?",
-      answer: "Most patients see their teeth become 3-8 shades whiter after a single Zoom session. Results vary based on your starting shade and the type of stains present."
-    },
-    {
-      question: "Is Zoom whitening safe?",
-      answer: "Yes, Zoom whitening is FDA-approved and safe when performed by a dental professional. The treatment has been used successfully for over 20 years with minimal side effects."
-    },
-    {
-      question: "Will my teeth be sensitive after treatment?",
-      answer: "Some patients experience mild sensitivity for 24-48 hours after treatment. We provide desensitizing treatments and recommendations to minimize any discomfort."
-    },
-    {
-      question: "How long do Zoom whitening results last?",
-      answer: "With proper care, results typically last 1-2 years. Avoiding staining foods and drinks, regular brushing, and periodic touch-ups help maintain your bright smile."
-    },
-    {
-      question: "Who is a good candidate for Zoom whitening?",
-      answer: "Most people with healthy teeth and gums are good candidates. We'll evaluate your teeth during consultation to ensure Zoom is right for you and discuss any limitations."
-    },
-    {
-      question: "Can I whiten my teeth if I have crowns or veneers?",
-      answer: "Zoom whitening only works on natural teeth. Existing crowns, veneers, or fillings won't change color, so we'll discuss options to match your restoration work to your newly whitened teeth."
-    }
-  ];
+  const faqs = ZOOM_WHITENING_FAQS;
 
   return (
     <>
       <MasterStructuredData 
         includeBusiness={true}
+        includeDoctor={true}
         includeWebsite={true}
         additionalSchemas={[{
           '@context': 'https://schema.org',
           '@type': 'MedicalProcedure',
           name: 'Zoom Teeth Whitening',
-          description: 'Professional in-office teeth whitening treatment using advanced Zoom technology for immediate, dramatic results',
+          description: 'Professional in-office Zoom teeth whitening in Los Angeles for fast, noticeable stain reduction in one visit.',
           url: getCanonicalUrl('/zoom-whitening'),
           category: 'Cosmetic Dentistry',
           bodyLocation: {
@@ -122,7 +100,6 @@ const ZoomWhitening = () => {
           performer: {
             '@id': 'https://exquisitedentistryla.com/#doctor'
           },
-          priceRange: '$300-$600',
           expectedPrognosis: 'Teeth become 3-8 shades whiter in one appointment'
         }]}
       />
@@ -139,6 +116,8 @@ const ZoomWhitening = () => {
         description="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results."
         url="https://exquisitedentistryla.com/zoom-whitening"
         breadcrumbs={[
+          { name: "Services", url: "https://exquisitedentistryla.com/services" },
+          { name: "Teeth Whitening", url: "https://exquisitedentistryla.com/teeth-whitening" },
           { name: "Zoom Whitening", url: "https://exquisitedentistryla.com/zoom-whitening" }
         ]}
       />
@@ -155,11 +134,11 @@ const ZoomWhitening = () => {
         about="Zoom Teeth Whitening Services" 
       />
 
-      <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <VideoHero 
-          title="Zoom Teeth Whitening"
-          subtitle="Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology"
+        <div className="min-h-screen bg-background">
+          {/* Hero Section */}
+          <VideoHero 
+          title="Zoom Teeth Whitening in Los Angeles"
+          subtitle="Fast, in-office whitening designed to lift stains and brighten your smile in about one visit at our Wilshire Blvd dental studio."
           primaryCta={{
             text: "Book a Zoom Whitening Appointment",
             href: SCHEDULING_URL,
@@ -177,11 +156,54 @@ const ZoomWhitening = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Brighten Your Smile Today
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Zoom teeth whitening is the most effective professional whitening treatment available, 
-                delivering immediate and dramatic results in just one comfortable office visit. 
-                Our advanced whitening system safely removes years of stains and discoloration.
+              <p className="text-sm text-muted-foreground mb-4">
+                Reviewed by{' '}
+                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+                  Dr. Alexie Aguil, DDS
+                </Link>{' '}
+                ·{' '}
+                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
+                  Editorial policy
+                </Link>
               </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Zoom teeth whitening in Los Angeles is an in-office treatment designed to lift surface stains and brighten natural teeth quickly—often in about 60–90 minutes.
+                We personalize each session for your enamel and sensitivity levels, so you can leave with a noticeably brighter shade and a plan to maintain it.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 text-left">
+                <Card className="border border-border/60 shadow-sm">
+                  <CardContent className="p-6 space-y-2">
+                    <h3 className="text-lg font-semibold text-foreground">Visit Our Los Angeles Office</h3>
+                    <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                    <p className="text-sm text-muted-foreground">
+                      Call{' '}
+                      <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
+                        {PHONE_NUMBER_DISPLAY}
+                      </a>{' '}
+                      or{' '}
+                      <Link to="/contact" className="text-secondary underline-offset-4 hover:underline">
+                        request an appointment
+                      </Link>
+                      .
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="border border-border/60 shadow-sm">
+                  <CardContent className="p-6 space-y-2">
+                    <h3 className="text-lg font-semibold text-foreground">Not Sure Which Whitening Option?</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Compare Zoom to custom take-home whitening and hybrid plans on our{' '}
+                      <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                        teeth whitening page
+                      </Link>
+                      .
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      If you have veneers or bonding, we’ll plan your shade so everything looks consistent.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -290,7 +312,7 @@ const ZoomWhitening = () => {
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Everything you need to know about Zoom whitening
+                Answers for Zoom whitening in Los Angeles
               </p>
             </div>
 

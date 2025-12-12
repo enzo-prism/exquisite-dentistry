@@ -1,6 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import {
+  STREET_ADDRESS,
+  ADDRESS_LOCALITY,
+  ADDRESS_REGION,
+  POSTAL_CODE,
+  ADDRESS_COUNTRY,
+  PHONE_NUMBER_DISPLAY
+} from '@/constants/contact';
 
 interface WebPageStructuredDataProps {
   title: string;
@@ -54,13 +62,13 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
       name: 'Exquisite Dentistry',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '6227 Wilshire Blvd',
-        addressLocality: 'Los Angeles',
-        addressRegion: 'CA',
-        postalCode: '90048',
-        addressCountry: 'US'
+        streetAddress: STREET_ADDRESS,
+        addressLocality: ADDRESS_LOCALITY,
+        addressRegion: ADDRESS_REGION,
+        postalCode: POSTAL_CODE,
+        addressCountry: ADDRESS_COUNTRY
       },
-      telephone: '(323) 272-2388'
+      telephone: PHONE_NUMBER_DISPLAY
     },
     inLanguage: 'en-US',
     dateModified: new Date().toISOString().split('T')[0]

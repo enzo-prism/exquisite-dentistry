@@ -9,10 +9,14 @@ import {
   MASTER_BUSINESS_ENTITY,
   MASTER_DOCTOR_ENTITY,
   WEBSITE_ENTITY,
-  createFAQSchema
+  createBreadcrumbSchema,
+  createFAQSchema,
+  createMedicalProcedureSchema,
+  createWebPageSchema
 } from "../src/utils/centralizedSchemas";
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
+import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 
 type StaticLink = { label: string; href: string };
 type StaticRoute = {
@@ -100,19 +104,24 @@ const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/teeth-whitening").description,
     h1: "Teeth Whitening Los Angeles",
     paragraphs: [
-      "Three luminous whitening paths designed for fast-paced LA lives.",
+      "Professional teeth whitening in Los Angeles can remove common coffee, tea, and wine stains while keeping comfort and enamel health in focus.",
+      "Explore in-office Zoom whitening, custom take-home options, and hybrid maintenance plans tailored to your timeline and sensitivity level.",
     ],
-    links: defaultNavLinks,
+    links: [{ label: "Zoom Whitening", href: "/zoom-whitening" }, ...defaultNavLinks],
   },
   {
     path: "/zoom-whitening",
     title: getRouteMetadata("/zoom-whitening").title,
     description: getRouteMetadata("/zoom-whitening").description,
-    h1: "Zoom Teeth Whitening",
+    h1: "Zoom Teeth Whitening in Los Angeles",
     paragraphs: [
-      "Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology.",
+      "Looking for Zoom whitening in Los Angeles? Our in-office Zoom Teeth Whitening treatment is designed to lift surface stains and brighten natural teeth in about 60–90 minutes.",
+      "Visit Exquisite Dentistry on Wilshire Blvd (near Beverly Hills and West Hollywood) for a shade assessment, comfort-first whitening protocol, and clear aftercare guidance to help results last.",
     ],
-    links: defaultNavLinks,
+    links: [
+      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
+      ...defaultNavLinks,
+    ],
   },
   {
     path: "/dental-implants",
@@ -531,6 +540,55 @@ const getSchemasForRoute = (routePath: string) => {
 
   if (routePath === "/about") {
     schemas.push(MASTER_DOCTOR_ENTITY);
+  }
+
+  if (routePath === "/zoom-whitening") {
+    const meta = getRouteMetadata("/zoom-whitening");
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/zoom-whitening",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Teeth Whitening", url: "/teeth-whitening" },
+        { name: "Zoom Whitening", url: "/zoom-whitening" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Zoom Teeth Whitening",
+        description:
+          "In-office Zoom teeth whitening in Los Angeles designed to lift surface stains and brighten natural teeth quickly, with comfort-first care and aftercare guidance.",
+        url: "/zoom-whitening/",
+        image: meta.ogImage,
+        procedureType: "Cosmetic Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Dental exam to confirm healthy enamel and gums",
+          "Shade assessment and discussion of expectations"
+        ],
+        steps: [
+          { name: "Preparation", description: "Protect gums and lips, then apply whitening gel in timed cycles." },
+          { name: "Activation", description: "Use the Zoom light to activate the gel for consistent whitening." },
+          { name: "Aftercare", description: "Review sensitivity management and provide touch-up guidance." }
+        ],
+        risks: ["Temporary tooth sensitivity", "Temporary gum irritation"],
+        benefits: ["Noticeably brighter shade in one visit", "Improved stain reduction with professional supervision"],
+        recoveryTime: "No downtime"
+      })
+    );
+    schemas.push(
+      createFAQSchema(
+        ZOOM_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
+        "Zoom Teeth Whitening in Los Angeles"
+      )
+    );
   }
 
   if (routePath === "/faqs") {

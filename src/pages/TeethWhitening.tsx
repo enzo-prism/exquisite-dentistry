@@ -131,6 +131,13 @@ const TeethWhitening = () => {
                 Unlike one-size-fits-all whitening bars, we calibrate gel strength, light activation, and session timing to your comfort level.
                 You leave with a documented maintenance roadmap so results stay luminous between shoots, investors meetings, and nights on the town.
               </p>
+              <p className="mt-6 text-base text-muted-foreground">
+                Looking specifically for in-office Zoom? Explore{' '}
+                <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
+                  Zoom Teeth Whitening in Los Angeles
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </section>
