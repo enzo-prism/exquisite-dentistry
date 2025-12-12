@@ -66,7 +66,7 @@ curl -sSL https://exquisitedentistryla.com/about/ | rg '<title>|meta name="descr
 curl -sSL https://exquisitedentistryla.com/about/index.html | rg '<title>|meta name="description"|<h1' | head
 ```
 
-These two outputs should be *different*. If `/about/` matches the homepage while `/about/index.html` is correct, your hosting layer is rewriting extensionless routes to `/index.html`. Fix by deploying to a host that supports directory indexes + redirect rules (Netlify config lives in `netlify.toml` + `public/_redirects`) or by disabling any SPA catch-all rewrite at the edge.
+These two outputs should both describe the **About** page. If `/about/` matches the homepage while `/about/index.html` is correct, your hosting layer is rewriting extensionless routes to `/index.html`. Fix by deploying to a host that supports directory indexes + redirect rules (Netlify config lives in `netlify.toml` + `public/_redirects`) or by disabling any SPA catch-all rewrite at the edge.
 
 If you're on **Cloudflare Pages**, this repo includes `public/_worker.js` which maps `/route/` → `/route/index.html` (and returns real 404s) to prevent the “everything is index.html” issue.
 
