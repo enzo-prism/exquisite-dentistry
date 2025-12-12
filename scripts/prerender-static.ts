@@ -422,21 +422,40 @@ const renderLinks = (links: StaticLink[]) => {
 const injectSeo = (template: string, title: string, description: string, routePath: string) => {
   const fullTitle = buildSeoTitle(title);
   const metaDescription = toMeta(description);
+  const canonicalUrl =
+    routePath === "/"
+      ? "https://exquisitedentistryla.com/"
+      : `https://exquisitedentistryla.com${routePath}/`;
   let html = template;
 
   if (/<title>[\s\S]*?<\/title>/i.test(html)) {
-    html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
+    html = html.replace(
+      /<title>[\s\S]*?<\/title>/i,
+      `<title data-rh="true">${escapeHtml(fullTitle)}</title>`,
+    );
   } else {
     html = html.replace(
       /<\/head>/i,
-      `  <title>${escapeHtml(fullTitle)}</title>\n  <meta name="description" content="${escapeHtml(metaDescription)}" />\n</head>`,
+      `  <title data-rh="true">${escapeHtml(fullTitle)}</title>\n  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />\n  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />\n</head>`,
     );
   }
 
   if (/<meta[^>]+name=["']description["'][^>]*>/i.test(html)) {
     html = html.replace(
       /<meta[^>]+name=["']description["'][^>]*>/i,
-      `<meta name="description" content="${escapeHtml(metaDescription)}" />`,
+      `<meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    );
+  }
+
+  if (/<link[^>]+rel=["']canonical["'][^>]*>/i.test(html)) {
+    html = html.replace(
+      /<link[^>]+rel=["']canonical["'][^>]*>/i,
+      `<link rel="canonical" href="${canonicalUrl}" data-rh="true" />`,
+    );
+  } else {
+    html = html.replace(
+      /<\/head>/i,
+      `  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />\n</head>`,
     );
   }
 
@@ -453,7 +472,7 @@ const injectSeo = (template: string, title: string, description: string, routePa
   updateMetaContent(/<meta[^>]+name=["']twitter:description["'][^>]*>/i, metaDescription);
 
   // Update og:url if present.
-  updateMetaContent(/<meta[^>]+property=["']og:url["'][^>]*>/i, `https://exquisitedentistryla.com${routePath}`);
+  updateMetaContent(/<meta[^>]+property=["']og:url["'][^>]*>/i, canonicalUrl);
 
   return html;
 };

@@ -84,6 +84,56 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   // Final safety check: ensure total length is within limit
   fullTitle = truncateTitle(fullTitle, 70);
 
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const pruneDuplicates = (
+      selector: string,
+      isCurrent: (element: Element) => boolean,
+    ) => {
+      const nodes = Array.from(document.head.querySelectorAll(selector));
+      if (nodes.length <= 1) return;
+
+      const keep =
+        nodes.find(isCurrent) ??
+        nodes.find(
+          (node) =>
+            node.getAttribute('data-rh') === 'true' ||
+            node.getAttribute('data-react-helmet') === 'true',
+        ) ??
+        nodes[nodes.length - 1];
+
+      nodes.forEach((node) => {
+        if (node !== keep) node.parentNode?.removeChild(node);
+      });
+    };
+
+    pruneDuplicates(
+      'meta[name="description"]',
+      (node) => node.getAttribute('content') === sanitizedDescription,
+    );
+    pruneDuplicates(
+      'meta[property="og:title"]',
+      (node) => node.getAttribute('content') === fullTitle,
+    );
+    pruneDuplicates(
+      'meta[property="og:description"]',
+      (node) => node.getAttribute('content') === sanitizedDescription,
+    );
+    pruneDuplicates(
+      'meta[name="twitter:title"]',
+      (node) => node.getAttribute('content') === fullTitle,
+    );
+    pruneDuplicates(
+      'meta[name="twitter:description"]',
+      (node) => node.getAttribute('content') === sanitizedDescription,
+    );
+    pruneDuplicates(
+      'link[rel="canonical"]',
+      (node) => node.getAttribute('href') === canonicalUrl,
+    );
+  }, [canonicalUrl, fullTitle, sanitizedDescription]);
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
