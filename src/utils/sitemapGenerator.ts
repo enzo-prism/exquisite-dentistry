@@ -27,47 +27,8 @@ const getStableLastModified = (path: string, maxDaysAgo: number, referenceDate: 
   return computedDate.toISOString().split('T')[0];
 };
 
-type StatFn = (path: string) => { mtime: Date };
-type ResolveFn = (...segments: string[]) => string;
-type FsModule = { statSync: StatFn };
-type PathModule = { resolve: ResolveFn };
-
-let statSync: StatFn | null = null;
-let resolvePath: ResolveFn | null = null;
-
-const isServerSide = typeof globalThis !== 'undefined' && typeof (globalThis as { window?: unknown }).window === 'undefined';
-
-if (isServerSide) {
-  try {
-    const req = eval('require') as (module: string) => unknown;
-    const fsModule = req('fs') as FsModule;
-    const pathModule = req('path') as PathModule;
-    statSync = fsModule.statSync;
-    resolvePath = pathModule.resolve;
-  } catch (error) {
-    statSync = null;
-    resolvePath = null;
-  }
-}
-
 const getFileLastModified = (relativePath: string, fallbackDays: number, referenceDate: Date): string => {
-  const fallback = getStableLastModified(relativePath, fallbackDays, referenceDate);
-
-  if (!statSync || !resolvePath) {
-    return fallback;
-  }
-
-  try {
-    const filePath = resolvePath(process.cwd(), relativePath);
-    const stats = statSync(filePath);
-    const modified = stats.mtime;
-    if (modified.getTime() > referenceDate.getTime()) {
-      return referenceDate.toISOString().split('T')[0];
-    }
-    return modified.toISOString().split('T')[0];
-  } catch (error) {
-    return fallback;
-  }
+  return getStableLastModified(relativePath, fallbackDays, referenceDate);
 };
 
 export const generateSitemapData = (): SitemapUrl[] => {
