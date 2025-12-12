@@ -14,7 +14,7 @@ interface LinkItem {
 
 interface InternalLinkingWidgetProps {
   currentPage?: string;
-  context?: 'veneer' | 'cost' | 'experience' | 'general' | 'orthodontics' | 'whitening' | 'wedding' | 'graduation' | 'consultation' | 'invisalign' | 'oral-health';
+  context?: 'veneer' | 'cost' | 'experience' | 'general' | 'orthodontics' | 'implants' | 'whitening' | 'wedding' | 'graduation' | 'consultation' | 'invisalign' | 'oral-health';
   variant?: 'compact' | 'expanded' | 'sidebar';
   className?: string;
   title?: string;
@@ -267,6 +267,59 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             description: 'Comfortable whitening experience',
             category: 'experience',
             priority: 6
+          }
+        ];
+
+      case 'implants':
+        return [
+          {
+            title: 'Dental Implants (Los Angeles)',
+            href: '/dental-implants',
+            description: 'Guided planning and custom implant restorations',
+            category: 'service',
+            priority: 1
+          },
+          {
+            title: 'Dental Implants Near Santa Monica',
+            href: '/santa-monica-dental-implants',
+            description: 'Implant options tailored to Santa Monica schedules',
+            category: 'service',
+            priority: 2
+          },
+          {
+            title: 'Dental Bridge vs Implants',
+            href: '/dental-bridge',
+            description: 'Compare tooth replacement options',
+            category: 'service',
+            priority: 3
+          },
+          {
+            title: 'Implants Benefits Guide',
+            href: '/blog/reasons-to-get-dental-implants',
+            description: 'Why implants are a long-lasting solution',
+            category: 'blog',
+            priority: 4
+          },
+          {
+            title: 'Restoration Stories',
+            href: '/transformation-stories',
+            description: 'Watch real patient stories and outcomes',
+            category: 'experience',
+            priority: 5
+          },
+          {
+            title: 'Smile Gallery',
+            href: '/smile-gallery',
+            description: 'Before & after dental transformations',
+            category: 'gallery',
+            priority: 6
+          },
+          {
+            title: 'Book an Implant Consultation',
+            href: '/contact',
+            description: 'Schedule your implant planning visit',
+            category: 'consultation',
+            priority: 7
           }
         ];
       
@@ -674,6 +727,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'veneer': return 'Related Veneer Information';
       case 'orthodontics':
       case 'invisalign': return 'Invisalign & Orthodontic Resources';
+      case 'implants': return 'Dental Implant Resources';
       case 'whitening': return 'Teeth Whitening Options';
       case 'wedding': return 'Wedding Smile Solutions';
       case 'graduation': return 'Graduation Smile Prep';

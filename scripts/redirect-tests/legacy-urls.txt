@@ -39,6 +39,7 @@
 /forms/
 /beverly-hills-invisalign/
 /beverly-hills-teeth-whitening/
+/dental-implants-santa-monica/
 /smile-makeover/
 /services/zoom-whitening/
 /blog/netflix-streaming-during-dental-procedures

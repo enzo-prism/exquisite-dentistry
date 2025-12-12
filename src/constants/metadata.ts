@@ -111,6 +111,15 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
   },
+  '/santa-monica-dental-implants': {
+    title: 'Dental Implants Near Santa Monica | Exquisite Dentistry',
+    description:
+      'Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles—book a consultation.',
+    keywords:
+      'santa monica dental implants, dental implants near santa monica, implant dentist santa monica, tooth replacement santa monica, implant crowns santa monica',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+  },
   '/cosmetic-dentistry': {
     title: 'Cosmetic Dentistry Los Angeles | Exquisite Dentistry',
     description:

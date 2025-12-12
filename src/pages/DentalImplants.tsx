@@ -402,8 +402,22 @@ const DentalImplants = () => {
 
         <section className="pb-20">
           <div className="container mx-auto px-4">
+            <div className="mx-auto mb-10 max-w-5xl rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold text-foreground">Dental implants near Santa Monica</h3>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                Coming from Santa Monica? Explore implant options built around Westside schedules, including 3D imaging, guided placement, and restoration-first planning.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button variant="outline" asChild>
+                  <Link to="/santa-monica-dental-implants">Santa Monica Implant Guide</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link to="/west-la-dentist">West LA Dentist Page</Link>
+                </Button>
+              </div>
+            </div>
             <InternalLinkingWidget
-              context="general"
+              context="implants"
               variant="expanded"
               title="Continue your restorative dentistry research"
             />

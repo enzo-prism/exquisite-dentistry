@@ -140,6 +140,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/santa-monica-dental-implants'),
+      lastmod: getFileLastModified('src/pages/SantaMonicaDentalImplants.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
       loc: getCanonicalUrl('/dental-bridge'),
       lastmod: getFileLastModified('src/pages/DentalBridge.tsx', 30, now),
       changefreq: 'monthly',

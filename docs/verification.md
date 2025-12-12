@@ -84,6 +84,10 @@ curl -sSL https://exquisitedentistryla.com/invisalign-beverly-hills/index.html |
 # Teeth whitening near Beverly Hills landing (important for the “teeth whitening beverly hills” query)
 curl -sSL https://exquisitedentistryla.com/teeth-whitening-beverly-hills/ | rg '<title>|meta name="description"|<h1' | head
 curl -sSL https://exquisitedentistryla.com/teeth-whitening-beverly-hills/index.html | rg '<title>|meta name="description"|<h1' | head
+
+# Santa Monica dental implants landing (important for the “santa monica dental implants” query)
+curl -sSL https://exquisitedentistryla.com/santa-monica-dental-implants/ | rg '<title>|meta name="description"|<h1' | head
+curl -sSL https://exquisitedentistryla.com/santa-monica-dental-implants/index.html | rg '<title>|meta name="description"|<h1' | head
 ```
 
 These two outputs should both describe the **About** page. If `/about/` matches the homepage while `/about/index.html` is correct, your hosting layer is rewriting extensionless routes to `/index.html`. Fix by deploying to a host that supports directory indexes + redirect rules (Netlify config lives in `netlify.toml` + `public/_redirects`) or by disabling any SPA catch-all rewrite at the edge.

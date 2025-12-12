@@ -847,6 +847,61 @@ const getSchemasForRoute = (routePath: string) => {
     }
   }
 
+  if (routePath === "/santa-monica-dental-implants") {
+    const meta = getRouteMetadata("/santa-monica-dental-implants");
+    const config = servicePageConfigs["santa-monica-dental-implants"];
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/santa-monica-dental-implants",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Dental Implants", url: "/dental-implants" },
+        { name: "Dental Implants Near Santa Monica", url: "/santa-monica-dental-implants" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Dental Implant Therapy",
+        description:
+          "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges, planned for comfort and long-term function.",
+        url: "/santa-monica-dental-implants/",
+        image: meta.ogImage,
+        procedureType: "Restorative Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Comprehensive exam and CBCT imaging to evaluate bone and gums",
+          "Restoration-first planning to define final tooth shape and bite"
+        ],
+        steps: (config?.treatmentSteps ?? []).map((step) => ({
+          name: step.title,
+          description: step.detail
+        })),
+        risks: ["Temporary soreness", "Swelling", "Infection risk (rare with proper care)"],
+        benefits: [
+          "Stable tooth replacement that feels natural",
+          "Preserve bone and support facial structure",
+          "Custom restoration designed for bite and esthetics"
+        ],
+        recoveryTime: "Minimal downtime"
+      })
+    );
+    if (config?.faqs?.length) {
+      schemas.push(
+        createFAQSchema(
+          config.faqs.map(({ question, answer }) => ({ question, answer })),
+          "Dental Implants Near Santa Monica"
+        )
+      );
+    }
+  }
+
   if (routePath === "/faqs") {
     schemas.push(
       createFAQSchema(

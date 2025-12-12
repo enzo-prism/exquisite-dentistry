@@ -554,6 +554,141 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Contact & Scheduling", href: "/contact" },
     ],
   },
+  "santa-monica-dental-implants": {
+    slug: "santa-monica-dental-implants",
+    title: "Dental Implants Near Santa Monica",
+    seo: {
+      title: "Dental Implants Near Santa Monica | Exquisite Dentistry",
+      description:
+        "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles—book a consultation.",
+      keywords: [
+        "santa monica dental implants",
+        "dental implants near santa monica",
+        "implant dentist santa monica",
+        "tooth replacement santa monica",
+        "implant crowns santa monica",
+        "implant bridge santa monica",
+      ],
+    },
+    hero: {
+      eyebrow: "Dental Implants",
+      heading: "Dental Implants Near Santa Monica",
+      subheading:
+        "Implant planning designed for Santa Monica schedules—3D imaging, guided placement, and restoration-first coordination that keeps comfort and long-term function in focus.",
+      highlights: [
+        "CBCT 3D imaging + digital treatment planning",
+        "Guided placement + custom implant restorations",
+        "Sedation options + comfort-first aftercare",
+      ],
+    },
+    overview: {
+      intro: [
+        "If you’re searching for dental implants in Santa Monica, you likely want a solution that feels stable, looks natural, and fits your calendar. Our Wilshire Blvd Los Angeles studio is a convenient drive from Santa Monica, and we coordinate both the surgical and restorative phases so the plan is clear from day one.",
+        "We begin with 3D imaging and a restoration-first blueprint, then discuss the right option for your goals: a single implant crown, an implant-supported bridge, or a full-arch restoration when multiple teeth are missing. You’ll leave with an expected timeline, comfort options, and a maintenance plan to protect your long-term results.",
+      ],
+      callouts: [
+        {
+          title: "Restoration-first planning",
+          description:
+            "We plan the final tooth shape, bite, and emergence profile before placement so your implant restoration looks and feels natural.",
+        },
+        {
+          title: "Guided, precise placement",
+          description:
+            "3D imaging and surgical guides help position implants accurately for stability, esthetics, and predictable healing.",
+        },
+        {
+          title: "Comfort + follow-up",
+          description:
+            "We tailor anesthesia and sedation options, coordinate aftercare, and provide clear next steps so you’re supported throughout healing.",
+        },
+      ],
+    },
+    benefits: [
+      {
+        title: "Confident chewing and speaking",
+        description:
+          "Implants restore stability so you can eat comfortably and speak confidently—without relying on removable appliances.",
+      },
+      {
+        title: "Support bone and facial structure",
+        description:
+          "A properly planned implant helps preserve bone over time, supporting facial contours and a healthy bite.",
+      },
+      {
+        title: "A streamlined, coordinated plan",
+        description:
+          "We align the surgical and restorative phases, which is especially helpful when you’re commuting from the Westside and want fewer surprises.",
+      },
+    ],
+    treatmentSteps: [
+      {
+        title: "01. Consultation + 3D Imaging",
+        detail:
+          "We review your goals, medical history, and bite, then capture CBCT imaging and digital scans to evaluate bone and plan the final restoration.",
+      },
+      {
+        title: "02. Implant Blueprint",
+        detail:
+          "We outline the recommended option (single implant, implant bridge, or full-arch), discuss grafting when needed, and share a realistic timeline.",
+      },
+      {
+        title: "03. Guided Placement + Healing Support",
+        detail:
+          "Implants are placed using a precision plan with comfort-focused care. You’ll receive aftercare guidance and check-ins as healing progresses.",
+      },
+      {
+        title: "04. Final Restoration + Maintenance",
+        detail:
+          "We deliver a custom crown or bridge and refine your bite. We also share a long-term maintenance plan to protect your investment.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you treat Santa Monica patients for dental implants?",
+        answer:
+          "Yes. Many patients visit from Santa Monica for implant planning and implant restorations. We coordinate scheduling and keep the process clear so you know what to expect at each phase.",
+      },
+      {
+        question: "How long does the implant process take?",
+        answer:
+          "Timelines vary based on bone health, grafting needs, and how many teeth are being replaced. Many cases take several months from planning to final restoration. After your imaging and exam, we’ll outline a realistic schedule.",
+      },
+      {
+        question: "What if I need a bone graft?",
+        answer:
+          "If bone volume is limited, grafting can create a stable foundation. We’ll explain whether grafting is recommended, what healing looks like, and how it impacts the overall timeline.",
+      },
+      {
+        question: "Is recovery painful?",
+        answer:
+          "Most patients describe recovery as manageable and return to normal routines quickly. We provide comfort-first aftercare instructions and recommendations for swelling and sensitivity during healing.",
+      },
+      {
+        question: "Should I choose an implant or a bridge?",
+        answer:
+          "It depends on the number of missing teeth, adjacent tooth health, budget, and timeline. We’ll compare implants and bridges for your situation so you can choose the option that best supports long-term function.",
+      },
+    ],
+    cta: {
+      heading: "Book Dental Implants Near Santa Monica",
+      description:
+        "Schedule a consultation and 3D imaging review to explore implant options, timelines, and comfort planning—built around Westside schedules.",
+      primaryText: "Book Online",
+      primaryHref: SCHEDULING_URL,
+      secondaryText: "Call Us",
+      secondaryHref: "tel:+13232722388",
+    },
+    internalLinks: [
+      { label: "Dental Implants (Los Angeles)", href: "/dental-implants" },
+      { label: "Dental Bridge (Alternative to Implants)", href: "/dental-bridge" },
+      { label: "West LA Dentist Page", href: "/west-la-dentist" },
+      { label: "Transformation Stories", href: "/transformation-stories" },
+      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
+      { label: "Implants Benefits Guide", href: "/blog/reasons-to-get-dental-implants" },
+      { label: "Contact & Scheduling", href: "/contact" },
+    ],
+  },
   "root-canal": {
     slug: "root-canal",
     title: "Root Canal Therapy in Los Angeles",

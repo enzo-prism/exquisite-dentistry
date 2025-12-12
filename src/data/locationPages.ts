@@ -161,7 +161,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "west-la-dentist": createLocationConfig(
     "west-la-dentist",
     "West LA",
-    "Access advanced cosmetic and restorative care without the commute downtown—our studio sits conveniently off Wilshire. Enjoy valet-friendly arrival, digital consultations, and treatment plans that respect Westside commutes.",
+    "Access advanced cosmetic and restorative care without the commute downtown—our studio sits conveniently off Wilshire and is an easy fit for Westside neighborhoods like Santa Monica. Enjoy valet-friendly arrival, digital consultations, and treatment plans that respect Westside commutes.",
     [
       "Easy access from the 10 and 405",
       "Valet-friendly entrance",
@@ -176,6 +176,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     { quote: "Driving in from West LA is simple and the team makes every visit feel restorative.", author: "Chris R." },
     [
       { label: "Dental Implants", href: "/dental-implants" },
+      { label: "Dental Implants Near Santa Monica", href: "/santa-monica-dental-implants" },
       { label: "Emergency Dentistry", href: "/emergency-dentist" },
       { label: "Professional Whitening", href: "/teeth-whitening" }
     ]
