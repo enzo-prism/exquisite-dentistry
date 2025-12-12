@@ -51,26 +51,22 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
     const buttonHref = hasCustomHref ? primaryCta.href! : SCHEDULING_URL;
     const isHashLink = buttonHref.startsWith('#');
 
-    const ButtonContent = () => (
-      <Button 
-        variant="default"
-        size={buttonSize}
-        onClick={primaryCta.onClick}
-        type="button"
-        className={`group ${isMobile ? 'w-full' : ''}`}
-      >
-        {primaryCta.text}
-        <ArrowRight 
-          size={16} 
-          className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
-        />
-      </Button>
-    );
-
     if (shouldRenderStandaloneButton) {
       return (
         <div className={primaryButtonClass}>
-          <ButtonContent />
+          <Button
+            variant="default"
+            size={buttonSize}
+            onClick={primaryCta.onClick}
+            type="button"
+            className={`group ${isMobile ? 'w-full' : ''}`}
+          >
+            {primaryCta.text}
+            <ArrowRight
+              size={16}
+              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+            />
+          </Button>
         </div>
       );
     }
@@ -78,18 +74,19 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
     if (isHashLink) {
       return (
         <div className={primaryButtonClass}>
-          <Button 
+          <Button
+            asChild
             variant="default"
             size={buttonSize}
-            onClick={handleHashClick(buttonHref)}
-            type="button"
             className={`group ${isMobile ? 'w-full' : ''}`}
           >
-            {primaryCta.text}
-            <ArrowRight 
-              size={16} 
-              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
-            />
+            <a href={buttonHref} onClick={handleHashClick(buttonHref)}>
+              {primaryCta.text}
+              <ArrowRight
+                size={16}
+                className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+              />
+            </a>
           </Button>
         </div>
       );
@@ -98,22 +95,47 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
     // If it's an external link or scheduling URL
     if (buttonHref.startsWith('http')) {
       return (
-        <a 
-          href={buttonHref} 
-          target={primaryCta.target || "_blank"} 
-          rel={primaryCta.rel || "noopener noreferrer"}
-          className={primaryButtonClass}
-        >
-          <ButtonContent />
-        </a>
+        <div className={primaryButtonClass}>
+          <Button
+            asChild
+            variant="default"
+            size={buttonSize}
+            className={`group ${isMobile ? 'w-full' : ''}`}
+          >
+            <a
+              href={buttonHref}
+              target={primaryCta.target || "_blank"}
+              rel={primaryCta.rel || "noopener noreferrer"}
+            >
+              {primaryCta.text}
+              <ArrowRight
+                size={16}
+                className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+              />
+            </a>
+          </Button>
+        </div>
       );
     }
 
     // For internal routes
     return (
-      <Link to={buttonHref} className={primaryButtonClass}>
-        <ButtonContent />
-      </Link>
+      <div className={primaryButtonClass}>
+        <Button
+          asChild
+          variant="default"
+          size={buttonSize}
+          className={`group ${isMobile ? 'w-full' : ''}`}
+        >
+          <Link to={buttonHref}>
+            {primaryCta.text}
+            <ArrowRight
+              size={16}
+              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+            />
+          </Link>
+        </Button>
+      </div>
     );
   };
 
@@ -127,26 +149,22 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         const wrapperClass = isMobile ? "w-full sm:w-auto" : "";
         const isHashLink = buttonHref?.startsWith('#');
 
-        const ButtonContent = () => (
-          <Button 
-            variant="black" 
-            size={buttonSize}
-            className={`group ${isMobile ? 'w-full' : ''}`}
-            onClick={secondaryCta.onClick}
-            type="button"
-          >
-            {secondaryCta.text}
-            <ArrowRight 
-              size={16} 
-              className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
-            />
-          </Button>
-        );
-
         if (shouldRenderStandaloneButton) {
           return (
             <div className={wrapperClass}>
-              <ButtonContent />
+              <Button
+                variant="black"
+                size={buttonSize}
+                className={`group ${isMobile ? 'w-full' : ''}`}
+                onClick={secondaryCta.onClick}
+                type="button"
+              >
+                {secondaryCta.text}
+                <ArrowRight
+                  size={16}
+                  className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+                />
+              </Button>
             </div>
           );
         }
@@ -158,18 +176,19 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         if (isHashLink) {
           return (
             <div className={wrapperClass}>
-              <Button 
-                variant="black" 
+              <Button
+                asChild
+                variant="black"
                 size={buttonSize}
                 className={`group ${isMobile ? 'w-full' : ''}`}
-                onClick={handleHashClick(buttonHref)}
-                type="button"
               >
-                {secondaryCta.text}
-                <ArrowRight 
-                  size={16} 
-                  className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5" 
-                />
+                <a href={buttonHref} onClick={handleHashClick(buttonHref)}>
+                  {secondaryCta.text}
+                  <ArrowRight
+                    size={16}
+                    className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+                  />
+                </a>
               </Button>
             </div>
           );
@@ -177,21 +196,46 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
 
         if (buttonHref.startsWith('http')) {
           return (
-            <a 
-              href={buttonHref} 
-              target={secondaryCta.target || "_blank"} 
-              rel={secondaryCta.rel || "noopener noreferrer"}
-              className={wrapperClass}
-            >
-              <ButtonContent />
-            </a>
+            <div className={wrapperClass}>
+              <Button
+                asChild
+                variant="black"
+                size={buttonSize}
+                className={`group ${isMobile ? 'w-full' : ''}`}
+              >
+                <a
+                  href={buttonHref}
+                  target={secondaryCta.target || "_blank"}
+                  rel={secondaryCta.rel || "noopener noreferrer"}
+                >
+                  {secondaryCta.text}
+                  <ArrowRight
+                    size={16}
+                    className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+                  />
+                </a>
+              </Button>
+            </div>
           );
         }
 
         return (
-          <Link to={buttonHref} className={wrapperClass}>
-            <ButtonContent />
-          </Link>
+          <div className={wrapperClass}>
+            <Button
+              asChild
+              variant="black"
+              size={buttonSize}
+              className={`group ${isMobile ? 'w-full' : ''}`}
+            >
+              <Link to={buttonHref}>
+                {secondaryCta.text}
+                <ArrowRight
+                  size={16}
+                  className="ml-2 transition-transform duration-300 ease-out motion-reduce:transform-none group-hover:translate-x-1.5"
+                />
+              </Link>
+            </Button>
+          </div>
         );
       })()}
     </div>
