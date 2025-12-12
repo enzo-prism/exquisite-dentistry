@@ -202,6 +202,12 @@ http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 /case-studies/ /transformation-stories/ 301
 /case-studies/* /transformation-stories/:splat 301
 
+# Catch any remaining clean-URL `.html` variants.
+# We generate `public/*.html` fallbacks for legacy/compatibility, but the canonical URLs
+# are the trailing-slash routes (e.g., `/dental-implants/`). Redirecting prevents
+# duplicate indexable variants and duplicate meta descriptions.
+/*.html /:splat/ 301
+
 # NOTE: We no longer use a global SPA rewrite here.
 # All indexable marketing, service, blog, and story routes are statically prerendered into `dist/`.
 # Unknown URLs should return a real 404 (preferred for SEO) instead of a 200 shell.

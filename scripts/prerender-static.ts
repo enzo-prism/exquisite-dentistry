@@ -443,7 +443,7 @@ const injectSeo = (template: string, title: string, description: string, routePa
   // Keep OG/Twitter in sync when present.
   const updateMetaContent = (pattern: RegExp, content: string) => {
     html = html.replace(pattern, (match) =>
-      match.replace(/content=["'][^"']*["']/, `content="${escapeHtml(content)}"`),
+      match.replace(/content=(\"[^\"]*\"|'[^']*')/i, `content="${escapeHtml(content)}"`),
     );
   };
 
