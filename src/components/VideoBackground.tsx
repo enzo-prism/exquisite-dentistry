@@ -83,6 +83,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           frameBorder="0"
           allow="autoplay; fullscreen"
           title="Background video"
+          loading="lazy"
           onLoad={() => onLoad?.()}
         />
       );

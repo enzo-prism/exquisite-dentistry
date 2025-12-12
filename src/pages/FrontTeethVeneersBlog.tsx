@@ -10,6 +10,7 @@ import ArticleStructuredData from '@/components/seo/ArticleStructuredData';
 
 import { PageSEO } from '@/components/seo/PageSEO';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const FrontTeethVeneersBlog = () => {
   const blogPost = {
@@ -350,7 +351,7 @@ const FrontTeethVeneersBlog = () => {
               </Link>
             </div>
             <p className="mt-6 text-sm text-white/60">
-              Or call us at (310) 393-5133
+              Or call us at {PHONE_NUMBER_DISPLAY}
             </p>
           </section>
 

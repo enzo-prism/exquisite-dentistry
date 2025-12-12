@@ -55,7 +55,7 @@ const StaticSitemap = () => {
     ),
     blog: sitemapData.filter(url => url.loc.includes('/blog/') && !url.loc.endsWith('/blog')),
     legal: sitemapData.filter(url => 
-      ['/privacy-policy', '/terms-of-service', '/hipaa-compliance'].some(path => url.loc.endsWith(path))
+      ['/privacy-policy', '/terms-of-service', '/hipaa-compliance', '/editorial-policy'].some(path => url.loc.endsWith(path))
     )
   };
 

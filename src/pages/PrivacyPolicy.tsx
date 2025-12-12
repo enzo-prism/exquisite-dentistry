@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
+import { ADDRESS, EMAIL, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const PrivacyPolicy: React.FC = () => {
   return (
@@ -101,9 +102,9 @@ const PrivacyPolicy: React.FC = () => {
             </p>
             <div className="mt-4 text-gray-600">
               <p>Exquisite Dentistry</p>
-              <p>6227 Wilshire Blvd, Los Angeles, CA 90048</p>
-              <p>Phone: (323) 272-2388</p>
-              <p>Email: info@exquisitedentistry.com</p>
+              <p>{ADDRESS}</p>
+              <p>Phone: {PHONE_NUMBER_DISPLAY}</p>
+              <p>Email: {EMAIL}</p>
             </div>
           </section>
         </div>

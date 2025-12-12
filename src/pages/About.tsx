@@ -75,7 +75,7 @@ const About = () => {
           '@context': 'https://schema.org',
           '@type': 'AboutPage',
           '@id': getCanonicalUrl('/about#page'),
-          name: 'About Dr. Alexie Aguil | Top Cosmetic Dentist Los Angeles',
+          name: 'About Dr. Alexie Aguil | Cosmetic Dentist Los Angeles',
           description: 'Meet Dr. Alexie Aguil and our team. We combine modern cosmetic techniques with gentle, personalized care to create natural, long-lasting smiles in Los Angeles.',
           url: getCanonicalUrl('/about'),
           isPartOf: {
@@ -99,8 +99,8 @@ const About = () => {
 
       {/* Hero Section with VideoHero */}
       <VideoHero
-        title={<>Meet Dr. Alexie Aguil - <span className="text-gold">Award-Winning Cosmetic Dentist</span></>}
-        subtitle="Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years."
+        title={<>Meet Dr. Alexie Aguil, DDS - <span className="text-gold">Cosmetic Dentist</span></>}
+        subtitle="Learn about Dr. Alexie Aguil, DDS — a USC-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider — and the personalized approach behind our Los Angeles practice."
         primaryCta={{ 
           text: "Schedule a Personal Consultation" 
         }}
@@ -122,21 +122,21 @@ const About = () => {
               <div className="space-y-3">
                 <span className="inline-block text-xs font-semibold tracking-[0.18em] text-secondary">MEET THE DOCTOR</span>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
-                  The Artist Behind Beverly Hills' Most Beautiful Smiles
+                  The Dentist Behind Natural-Looking Smile Transformations
                 </h2>
               </div>
 
               <div className="space-y-4 text-base sm:text-lg text-black-light">
                 <p>
-                  Dr. Alexie Aguil didn't just become a dentist—he became an artist who happens to work in dentistry. His Beverly Hills practice represents the pinnacle of cosmetic dental artistry, where each smile is meticulously crafted as a unique work of art. Dr. Aguil's philosophy centers on the belief that exceptional dentistry requires both technical mastery and an artist's eye for beauty, proportion, and harmony.
+                  Dr. Alexie Aguil is a USC School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Her approach blends clinical precision with an eye for proportion, shade, and facial balance.
                 </p>
                 
                 <p>
-                  Trained at prestigious institutions and mentored by the world's leading cosmetic dentists, Dr. Aguil has spent over 15 years perfecting techniques that preserve maximum tooth structure while achieving dramatic aesthetic improvements. His celebrity clientele includes A-list actors, musicians, and industry leaders who trust him with their most valuable asset—their smile.
+                  She has more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers. Every plan starts with digital scans and a conversation about your goals, so the final result feels like you — not a template.
                 </p>
                 
                 <p>
-                  Beyond his technical expertise, Dr. Aguil is known for his meticulous attention to detail and commitment to patient comfort. His practice features a spa-like environment with amenities typically found in five-star resorts, because he believes that exceptional dental care should be delivered in an atmosphere of luxury and relaxation.
+                  Patients often comment on the calm, spa-like setting and the time her team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
                 </p>
               </div>
 
@@ -167,7 +167,7 @@ const About = () => {
                   </div>
                   <div className="text-sm">
                     <p className="font-semibold text-black">Invisalign Lifetime Achievement</p>
-                    <p className="text-black-light">Top provider in Beverly Hills & West Hollywood</p>
+                    <p className="text-black-light">Lifetime Achievement Award provider serving Beverly Hills & West Hollywood</p>
                   </div>
                 </div>
               </div>
@@ -254,7 +254,7 @@ const About = () => {
               </div>
 
               <p className="text-lg text-black-light">
-                With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.
+                With more than a decade of experience, Dr. Aguil combines artistic vision with technical expertise to deliver natural-looking results in cosmetic and restorative dentistry.
               </p>
               
               <ul className="space-y-3">
@@ -332,7 +332,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Patient Comfort</h3>
                 <p className="text-black-light">
-                  Creating a comfortable, stress-free environment is a top priority. Dr. Aguil and his team go above and beyond to ensure each visit is a positive experience.
+                  Creating a comfortable, stress-free environment is a top priority. Dr. Aguil and her team go above and beyond to ensure each visit is a positive experience.
                 </p>
               </CardContent>
             </Card>

@@ -28,6 +28,7 @@ const SmileGallery = lazy(() => import("@/pages/SmileGallery"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
+const EditorialPolicy = lazy(() => import("@/pages/EditorialPolicy"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
@@ -151,6 +152,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
                 <HipaaCompliance />
+              </Suspense>} />
+              <Route path="/editorial-policy" element={<Suspense fallback={<PageLoaderComponent />}>
+                <EditorialPolicy />
               </Suspense>} />
               
               <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>

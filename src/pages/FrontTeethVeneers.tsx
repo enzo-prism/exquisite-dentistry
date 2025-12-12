@@ -12,6 +12,7 @@ import VeneerCTA from '@/components/VeneerCTA';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const FrontTeethVeneers = () => {
   const costHighlights = [
@@ -163,7 +164,7 @@ const FrontTeethVeneers = () => {
                 </Link>
               </Button>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">Need clarity first? Call (310) 393-5133 for pricing and timelines.</p>
+            <p className="mt-4 text-sm text-muted-foreground">Need clarity first? Call {PHONE_NUMBER_DISPLAY} for pricing and timelines.</p>
           </div>
         </section>
 
@@ -375,7 +376,7 @@ const FrontTeethVeneers = () => {
                 </Link>
               </Button>
             </div>
-            <p className="text-sm text-white/60">Prefer to speak now? Call (310) 393-5133</p>
+            <p className="text-sm text-white/60">Prefer to speak now? Call {PHONE_NUMBER_DISPLAY}</p>
           </div>
         </section>
 

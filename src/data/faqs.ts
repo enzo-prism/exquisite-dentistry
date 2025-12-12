@@ -18,7 +18,7 @@ export const faqs: FAQItem[] = [
   {
     question: "Is There Parking Nearby?",
     answer:
-      "Yes, there is parking on-site at 6227 Wilshire Blvd. West Hollywood, CA 90048. But it's not our parking lot, and does charge a cash fee. Street parking in the neighborhoods surrounding our office is very limited, so please read street signs carefully if you decide to park there."
+      "Yes, there is parking on-site at 6227 Wilshire Blvd, Los Angeles, CA 90048. It's not our parking lot and does charge a cash fee. Street parking in the neighborhoods surrounding our office is very limited, so please read street signs carefully if you decide to park there."
   },
   {
     question: "Is Exquisite Dentistry for Children & Adults?",
@@ -56,4 +56,3 @@ export const faqs: FAQItem[] = [
       "Our treatments are customized for your individual needs. Our doctor will determine the best course of treatment and create a personalized treatment plan to fit your budget."
   }
 ];
-

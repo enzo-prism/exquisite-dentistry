@@ -12,6 +12,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
+import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -362,6 +363,8 @@ const ZoomWhitening = () => {
                   title="Explore Related Services"
                 />
               </div>
+
+              <LastUpdated date="December 2025" className="text-center" />
             </div>
           </div>
         </section>

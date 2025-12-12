@@ -263,6 +263,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.3
     },
     {
+      loc: getCanonicalUrl('/editorial-policy'),
+      lastmod: getFileLastModified('src/pages/EditorialPolicy.tsx', 180, now),
+      changefreq: 'yearly',
+      priority: 0.3
+    },
+    {
       loc: getCanonicalUrl('/transformation-stories'),
       lastmod: getFileLastModified('src/pages/TransformationStories.tsx', 30, now),
       changefreq: 'weekly',

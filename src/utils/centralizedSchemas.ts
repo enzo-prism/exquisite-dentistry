@@ -5,6 +5,15 @@
 
 import { getCanonicalUrl } from './schemaValidation';
 import type { JsonLd, LocalBusinessSchema } from './schemaValidation';
+import {
+  STREET_ADDRESS,
+  ADDRESS_LOCALITY,
+  ADDRESS_REGION,
+  POSTAL_CODE,
+  ADDRESS_COUNTRY,
+  PHONE_NUMBER_E164,
+  EMAIL
+} from '../constants/contact';
 
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
 
@@ -17,18 +26,18 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   alternateName: 'Exquisite Dentistry',
   description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
   url: 'https://exquisitedentistryla.com/',
-  telephone: '+1-323-272-2388',
-  email: 'info@exquisitedentistryla.com',
+  telephone: PHONE_NUMBER_E164,
+  email: EMAIL,
   priceRange: '$$$',
   currenciesAccepted: 'USD',
   paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '6222 Wilshire Blvd Suite 101',
-    addressLocality: 'Los Angeles',
-    addressRegion: 'CA',
-    postalCode: '90048',
-    addressCountry: 'US'
+    streetAddress: STREET_ADDRESS,
+    addressLocality: ADDRESS_LOCALITY,
+    addressRegion: ADDRESS_REGION,
+    postalCode: POSTAL_CODE,
+    addressCountry: ADDRESS_COUNTRY
   },
   geo: {
     '@type': 'GeoCoordinates',

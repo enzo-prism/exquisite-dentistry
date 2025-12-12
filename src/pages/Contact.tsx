@@ -12,6 +12,14 @@ import PageSEO from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import {
+  PHONE_NUMBER_DISPLAY,
+  EMAIL,
+  STREET_ADDRESS,
+  ADDRESS_LOCALITY,
+  ADDRESS_REGION,
+  POSTAL_CODE
+} from '@/constants/contact';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -152,7 +160,7 @@ const Contact = () => {
     } catch (error) {
       console.error('Contact form submission failed', error);
       setFormStatus('error');
-      setFeedback('Something went wrong. Please try again or call us at (323) 272-2388.');
+      setFeedback(`Something went wrong. Please try again or call us at ${PHONE_NUMBER_DISPLAY}.`);
     }
   };
 
@@ -166,7 +174,7 @@ const Contact = () => {
           '@type': 'ContactPage',
           '@id': getCanonicalUrl('/contact#page'),
           name: 'Contact Exquisite Dentistry | Schedule Your Consultation Today',
-          description: 'Contact Dr. Alexie Aguil and the team at Exquisite Dentistry. Schedule your consultation for cosmetic dentistry in Los Angeles. Call (323) 272-2388.',
+          description: `Contact Dr. Alexie Aguil and the team at Exquisite Dentistry. Schedule your consultation for cosmetic dentistry in Los Angeles. Call ${PHONE_NUMBER_DISPLAY}.`,
           url: getCanonicalUrl('/contact'),
           isPartOf: {
             '@id': 'https://exquisitedentistryla.com/#website'
@@ -217,8 +225,8 @@ const Contact = () => {
                         <Phone size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Phone</h3>
-                          <PhoneLink phoneNumber="(323) 272-2388" className="text-white/80 hover:text-gold transition-colors">
-                            (323) 272-2388
+                          <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="text-white/80 hover:text-gold transition-colors">
+                            {PHONE_NUMBER_DISPLAY}
                           </PhoneLink>
                         </div>
                       </div>
@@ -227,7 +235,7 @@ const Contact = () => {
                         <Mail size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
                         <div>
                           <h3 className="font-medium mb-1.5">Email</h3>
-                          <p className="text-white/80">info@exquisitedentistryla.com</p>
+                          <p className="text-white/80">{EMAIL}</p>
                         </div>
                       </div>
                       
@@ -241,8 +249,8 @@ const Contact = () => {
                             rel="noopener noreferrer"
                             className="text-white/80 hover:text-gold transition-colors inline-block"
                           >
-                            6227 Wilshire Blvd<br />
-                            Los Angeles, CA 90048
+                            {STREET_ADDRESS}<br />
+                            {ADDRESS_LOCALITY}, {ADDRESS_REGION} {POSTAL_CODE}
                           </a>
                         </div>
                       </div>

@@ -72,7 +72,8 @@ const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
     links: [
       { label: 'Transformation Stories', to: '/transformation-stories' },
       { label: 'Smile Gallery', to: '/smile-gallery' },
-      { label: 'FAQs', to: '/faqs' }
+      { label: 'FAQs', to: '/faqs' },
+      { label: 'Editorial Policy', to: '/editorial-policy' }
     ]
   }
 ];

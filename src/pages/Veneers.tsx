@@ -9,6 +9,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
+import LastUpdated from '@/components/LastUpdated';
 import { SCHEDULING_URL } from '@/constants/urls';
 import {
   createFAQSchema,
@@ -151,8 +152,8 @@ const Veneers = () => {
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <VideoHero 
-          title={<>Custom Porcelain Veneers - <span className="text-gold">Hollywood-Quality Smile Makeovers</span></>}
-          subtitle="Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous."
+          title={<>Custom Porcelain Veneers in <span className="text-gold">Los Angeles</span></>}
+          subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil, DDS using digital smile design and careful lab fabrication."
           primaryCta={{
             text: "Book a Porcelain Veneers Appointment",
             href: SCHEDULING_URL,
@@ -168,10 +169,10 @@ const Veneers = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                The Art of Smile Perfection - Los Angeles Veneer Mastery
+                Porcelain Veneers, Planned for Natural Results
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our porcelain veneers represent the pinnacle of cosmetic dental artistry—ultra-thin shells of premium porcelain that are meticulously crafted to transform your smile while preserving your natural tooth structure. Unlike mass-produced alternatives, each veneer is individually designed by Dr. Aguil using advanced digital technology and hand-finished by master ceramists to achieve the perfect blend of strength, beauty, and luminosity that characterizes a truly exceptional smile.
+                Porcelain veneers are thin ceramic shells bonded to the front of teeth to improve shape, color, and minor alignment. We start with digital smile design and conservative preparation to keep as much natural tooth structure as possible. Each veneer is fabricated by a dental lab to match your facial features and bite for a natural-looking finish.
               </p>
             </div>
           </div>
@@ -408,6 +409,8 @@ const Veneers = () => {
                   title="Explore Related Services"
                 />
               </div>
+
+              <LastUpdated date="December 2025" className="text-center" />
             </div>
           </div>
         </section>

@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
+import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -375,6 +376,7 @@ const TeethWhitening = () => {
               variant="expanded"
               title="Explore more smile-brightening resources"
             />
+            <LastUpdated date="December 2025" className="text-center" />
           </div>
         </section>
       </div>

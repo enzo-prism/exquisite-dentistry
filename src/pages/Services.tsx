@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
+import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import { serviceCategories, SCHEDULING_URL } from '@/data/services';
 
@@ -908,6 +909,7 @@ const Services = () => {
             <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
               <Button size="lg">Book a Dental Services Appointment</Button>
             </a>
+            <LastUpdated date="December 2025" className="text-center text-white/60 mt-6" />
           </div>
         </div>
       </section>

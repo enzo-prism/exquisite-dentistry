@@ -79,8 +79,8 @@ const IndexPage: React.FC = () => {
       />
       
       <VideoHero
-        title={<>Los Angeles' Premier <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil." 
+        title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
+        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Led by Dr. Alexie Aguil, DDS, with a calm, spa-like patient experience." 
         primaryCta={{
           text: "Schedule a Consultation",
           href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
@@ -164,10 +164,10 @@ const IndexPage: React.FC = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Where Celebrity Smiles Are Made - Los Angeles Excellence
+                Cosmetic Dentistry in Los Angeles, Designed for You
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Located in Los Angeles near Beverly Hills, Exquisite Dentistry is where A-list celebrities, industry executives, and discerning patients come for unparalleled cosmetic dental artistry. Dr. Alexie Aguil's exclusive practice combines cutting-edge technology with old-world craftsmanship to create the stunning, natural-looking smiles that define Hollywood glamour.
+                Located in Los Angeles near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign, professional whitening, implants, and complete smile makeovers. Dr. Alexie Aguil, DDS uses digital smile design and close lab collaboration to deliver natural-looking results that fit your facial features and bite.
               </p>
             </div>
             
@@ -177,15 +177,10 @@ const IndexPage: React.FC = () => {
                   Why Choose Exquisite Dentistry?
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Located in Los Angeles, conveniently serving Beverly Hills and the surrounding area, our practice combines advanced dental 
-                  technology with artistic vision to create stunning, natural-looking smile 
-                  transformations. Dr. Aguil's expertise in cosmetic dentistry has made her 
-                  the trusted choice for patients throughout Los Angeles, West Hollywood, 
-                  Santa Monica, and surrounding areas.
+                  Located in Los Angeles and serving Beverly Hills and nearby neighborhoods, our practice combines advanced dental technology with artistic planning to create natural-looking smile transformations. Dr. Aguil focuses on conservative care, clear communication, and results that look believable in real life.
                 </p>
                 <p className="text-muted-foreground">
-                  With over a decade of experience and thousands of successful treatments, 
-                  Dr. Aguil understands that every smile is unique. She takes time to listen 
+                  With more than a decade in practice, Dr. Aguil understands that every smile is unique. She takes time to listen 
                   to your goals and creates personalized treatment plans that enhance your 
                   natural beauty while improving oral health and function.
                 </p>
@@ -200,14 +195,14 @@ const IndexPage: React.FC = () => {
                     <span className="text-gold mr-2">•</span>
                     <div>
                       <strong>Porcelain Veneers:</strong> Ultra-thin, custom-crafted shells 
-                      that create perfect, Hollywood-worthy smiles
+                      designed to refine shape, color, and symmetry
                     </div>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold mr-2">•</span>
                     <div>
                       <strong>Professional Teeth Whitening:</strong> Safe, effective treatments 
-                      that brighten teeth up to 8 shades in one visit
+                      that often brighten teeth several shades in one visit
                     </div>
                   </li>
                   <li className="flex items-start">

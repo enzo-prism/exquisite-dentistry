@@ -13,6 +13,7 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
+import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -192,10 +193,9 @@ const DentalImplants = () => {
                   Your Implant Blueprint
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  From West Hollywood creatives to Mid-Wilshire families, our implant patients trust us to choreograph each detail.
+                  Patients across West Hollywood, Mid-Wilshire, and greater Los Angeles come to us for coordinated implant care from planning through final restoration.
                   We plan surgical and restorative phases simultaneously, preserving gum contours and ensuring crowns emerge naturally.
-                  If you need temporary smiles during healing, custom-crafted provisionals maintain esthetics and speech,
-                  empowering you to keep filming, presenting, or hosting without interruption.
+                  If you need a temporary tooth during healing, custom provisionals maintain esthetics and speech so you can stay on schedule.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Nutrition and wellness are integral to success. We provide anti-inflammatory meal guides, supplement recommendations,
@@ -407,6 +407,7 @@ const DentalImplants = () => {
               variant="expanded"
               title="Continue your restorative dentistry research"
             />
+            <LastUpdated date="December 2025" className="text-center" />
           </div>
         </section>
       </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
 import GradientBackground from '@/components/GradientBackground';
+import ImageComponent from '@/components/Image';
 import HeroCtaButtons from './HeroCtaButtons';
 import type { VideoHeroProps } from './video-hero-types';
 import { getHeroHeightClasses } from '@/utils/heroHeights';
@@ -48,11 +49,12 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         <div className="absolute inset-0">
           {posterSrc ? (
             <>
-              <img
+              <ImageComponent
                 src={posterSrc}
                 alt=""
                 aria-hidden="true"
-                loading="lazy"
+                fill
+                priority
                 decoding="async"
                 className="h-full w-full object-cover"
               />
