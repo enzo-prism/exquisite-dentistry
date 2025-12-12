@@ -146,6 +146,146 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Spa Cosmetic Dentistry", href: "/cosmetic-dentistry" }
     ],
   },
+  "smile-makeover-los-angeles": {
+    slug: "smile-makeover-los-angeles",
+    title: "Smile Makeover in Los Angeles",
+    seo: {
+      title: "Smile Makeover Los Angeles | Exquisite Dentistry",
+      description:
+        "Plan a smile makeover in Los Angeles with Dr. Alexie Aguil, DDS. Veneers, whitening, Invisalign, bonding, and implants—coordinated with digital smile design and comfort-first care.",
+      keywords: [
+        "smile makeover los angeles",
+        "smile makeover la",
+        "cosmetic dentist los angeles",
+        "porcelain veneers los angeles",
+        "invisalign los angeles",
+        "zoom whitening los angeles",
+        "dental bonding los angeles",
+        "dental implants los angeles",
+      ],
+    },
+    hero: {
+      eyebrow: "Cosmetic Dentistry",
+      heading: "Smile Makeover in Los Angeles",
+      subheading:
+        "A smile makeover is a personalized plan that combines veneers, whitening, Invisalign, bonding, and restorative care to upgrade color, shape, and symmetry—without the “done” look.",
+      highlights: [
+        "Digital smile design + photo analysis",
+        "Curated plan: veneers, whitening, Invisalign, bonding",
+        "Comfort-first care near Beverly Hills",
+      ],
+    },
+    overview: {
+      intro: [
+        "If you’re searching for a smile makeover in Los Angeles, you’re probably looking for a result that looks natural in real life and on camera. We start with a shade, shape, and bite analysis, then map out the smallest set of treatments that reaches your goal.",
+        "Dr. Alexie Aguil, DDS designs each plan around your face, lip dynamics, and timeline—whether that’s a fast whitening refresh, a veneer-focused redesign, or a multi-step combination that includes Invisalign or implants.",
+      ],
+      callouts: [
+        {
+          title: "Designed to look like you",
+          description:
+            "We focus on proportion, symmetry, and texture so enhancements read as healthy teeth—not a template.",
+        },
+        {
+          title: "One coordinated plan",
+          description:
+            "We sequence treatments (alignment → whitening → bonding/veneers) so color matching and bite stability stay predictable.",
+        },
+        {
+          title: "Comfort-first experience",
+          description:
+            "From digital scanning to gentle protocols, we aim for calm visits and clear expectations from consult to aftercare.",
+        },
+      ],
+    },
+    benefits: [
+      {
+        title: "Natural color and brightness",
+        description:
+          "Address stains and uneven shade with professional whitening or shade-matched porcelain that still looks lifelike.",
+      },
+      {
+        title: "Improved shape and symmetry",
+        description:
+          "Refine proportions, close small gaps, and smooth chips with bonding or veneers tailored to your facial features.",
+      },
+      {
+        title: "A stable, confident bite",
+        description:
+          "When alignment or missing teeth affect function, Invisalign and implants can be part of the makeover for long-term stability.",
+      },
+    ],
+    treatmentSteps: [
+      {
+        title: "01. Smile Analysis",
+        detail:
+          "We review goals, photos, gum display, tooth wear, and bite—plus a shade assessment and digital scans when needed.",
+      },
+      {
+        title: "02. Plan + Timeline",
+        detail:
+          "You’ll get a clear sequence of recommended treatments, expected milestones, and options based on comfort and budget.",
+      },
+      {
+        title: "03. Treatment Visits",
+        detail:
+          "Depending on your plan, this may include whitening, Invisalign, bonding, veneers, crowns, or implant restorations.",
+      },
+      {
+        title: "04. Finishing + Maintenance",
+        detail:
+          "We finalize bite and aesthetics, then share a maintenance plan (touch-ups, nightguard, hygiene) to protect results.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What treatments are included in a smile makeover?",
+        answer:
+          "A smile makeover is a customized combination of cosmetic and restorative treatments. Common options include whitening, bonding, porcelain veneers, Invisalign, crowns, and implants. Your plan depends on goals, enamel health, existing dental work, and bite function.",
+      },
+      {
+        question: "How long does a smile makeover take?",
+        answer:
+          "Some makeovers are completed in a single visit (for example, whitening or bonding). Veneers often take a few visits. Invisalign-based plans can take several months. We’ll outline a realistic timeline after your consultation and scans.",
+      },
+      {
+        question: "How much does a smile makeover cost in Los Angeles?",
+        answer:
+          "Costs vary widely based on the treatments and number of teeth involved. After a consultation, we provide a detailed plan with line-item pricing and options that prioritize the changes that matter most to you.",
+      },
+      {
+        question: "Will my smile makeover look natural?",
+        answer:
+          "Natural results are the goal. We consider tooth translucency, texture, smile arc, and facial proportions, then coordinate shades across whitening and porcelain so the outcome looks like healthy enamel—just upgraded.",
+      },
+      {
+        question: "Do you offer smile makeovers before events?",
+        answer:
+          "Yes. If you have a deadline (wedding, graduation, photos, or a move), we can recommend a plan that fits your timeline—often starting with whitening and short-term improvements, then layering longer-term changes if desired.",
+      },
+    ],
+    cta: {
+      heading: "Book a Smile Makeover Consultation",
+      description:
+        "Tell us your goal and your timeline. We’ll recommend the best combination of treatments to upgrade your smile—comfort-first, with clear next steps.",
+      primaryText: "Book Online",
+      primaryHref: SCHEDULING_URL,
+      secondaryText: "Call Us",
+      secondaryHref: "tel:+13232722388",
+    },
+    internalLinks: [
+      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
+      { label: "Transformation Stories", href: "/transformation-stories" },
+      { label: "Porcelain Veneers", href: "/veneers" },
+      { label: "Veneers in Los Angeles", href: "/veneers-los-angeles" },
+      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      { label: "Invisalign Clear Aligners", href: "/invisalign" },
+      { label: "Dental Implants", href: "/dental-implants" },
+      { label: "Cosmetic Dentistry Overview", href: "/cosmetic-dentistry" },
+      { label: "Schedule a Consultation", href: "/contact" },
+    ],
+  },
   "root-canal": {
     slug: "root-canal",
     title: "Root Canal Therapy in Los Angeles",

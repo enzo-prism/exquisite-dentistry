@@ -28,7 +28,7 @@ const services: ServiceItemProps[] = [
   {
     title: "Smile Makeovers",
     description: "Comprehensive treatment plans combining multiple procedures to completely transform your smile's appearance.",
-    href: "/services#cosmetic",
+    href: "/smile-makeover-los-angeles",
     index: 1
   },
   {

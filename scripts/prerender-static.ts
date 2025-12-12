@@ -682,6 +682,61 @@ const getSchemasForRoute = (routePath: string) => {
     );
   }
 
+  if (routePath === "/smile-makeover-los-angeles") {
+    const meta = getRouteMetadata("/smile-makeover-los-angeles");
+    const config = servicePageConfigs["smile-makeover-los-angeles"];
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/smile-makeover-los-angeles",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Cosmetic Dentistry", url: "/cosmetic-dentistry" },
+        { name: "Smile Makeover", url: "/smile-makeover-los-angeles" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Smile Makeover",
+        description:
+          "Smile makeover planning in Los Angeles combining veneers, whitening, Invisalign, bonding, and restorative dentistry into one coordinated treatment plan tailored to your goals and timeline.",
+        url: "/smile-makeover-los-angeles/",
+        image: meta.ogImage,
+        procedureType: "Cosmetic Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Consultation to discuss goals, timeline, and sensitivity history",
+          "Digital scans and smile analysis when needed"
+        ],
+        steps: (config?.treatmentSteps ?? []).map((step) => ({
+          name: step.title,
+          description: step.detail
+        })),
+        risks: ["Temporary tooth sensitivity (whitening)", "Temporary gum irritation"],
+        benefits: [
+          "Improved shade and symmetry",
+          "A plan sequenced for predictable results",
+          "Maintenance guidance to help results last"
+        ],
+        recoveryTime: "Varies by treatment plan"
+      })
+    );
+    if (config?.faqs?.length) {
+      schemas.push(
+        createFAQSchema(
+          config.faqs.map(({ question, answer }) => ({ question, answer })),
+          "Smile Makeover in Los Angeles"
+        )
+      );
+    }
+  }
+
   if (routePath === "/faqs") {
     schemas.push(
       createFAQSchema(

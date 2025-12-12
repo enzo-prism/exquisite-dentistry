@@ -344,7 +344,7 @@ const Veneers = () => {
                   },
                   {
                     title: "Smile Makeover",
-                    href: "/services#cosmetic",
+                    href: "/smile-makeover-los-angeles",
                     description: "Complete transformation with multiple procedures",
                     duration: "Multiple visits",
                     popularity: 60,

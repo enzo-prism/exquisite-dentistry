@@ -40,6 +40,13 @@ const TransformationStoriesPage: React.FC = () => {
             <p className="text-lg text-muted-foreground">
               See how our patients achieved their dream smiles and gained confidence through personalized care
             </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Want a step-by-step overview first? Start with our{" "}
+              <Link to="/smile-makeover-los-angeles" className="text-secondary underline underline-offset-4 hover:underline">
+                Smile Makeover in Los Angeles guide
+              </Link>
+              .
+            </p>
             <div className="separator mx-auto mt-6"></div>
           </div>
           

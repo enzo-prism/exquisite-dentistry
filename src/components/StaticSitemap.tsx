@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { generateSitemapData } from '@/utils/sitemapGenerator';
-import { CANONICAL_URLS } from '@/hooks/use-canonical';
 import PageSEO from '@/components/seo/PageSEO';
 
 const StaticSitemap = () => {
   const sitemapData = generateSitemapData();
+
+  const locToPath = (loc: string) => {
+    try {
+      const path = new URL(loc).pathname || '/';
+      const trimmed = path.replace(/\/$/, '');
+      return trimmed === '' ? '/' : trimmed;
+    } catch {
+      const trimmed = (loc || '/').replace(/\/$/, '');
+      return trimmed === '' ? '/' : trimmed;
+    }
+  };
   
   // Group URLs by category for better organization
   const groupedUrls = {
     main: sitemapData.filter(url => 
-      ['/', '/about', '/tour', '/services', '/contact'].some(path => url.loc.endsWith(path))
+      ['/', '/about', '/tour', '/services', '/contact'].includes(locToPath(url.loc))
     ),
     treatments: sitemapData.filter(url => 
       [
@@ -18,6 +28,7 @@ const StaticSitemap = () => {
         '/veneers/front-teeth-veneers-los-angeles',
         '/veneers-los-angeles',
         '/zoom-whitening',
+        '/culver-city-teeth-whitening',
         '/teeth-whitening',
         '/teeth-cleaning',
         '/invisalign',
@@ -29,8 +40,9 @@ const StaticSitemap = () => {
         '/pain-free-dentistry',
         '/oral-cancer-screening',
         '/cosmetic-dentistry',
+        '/smile-makeover-los-angeles',
         '/emergency-dentist'
-      ].some(path => url.loc.endsWith(path))
+      ].includes(locToPath(url.loc))
     ),
     locations: sitemapData.filter(url =>
       [
@@ -42,20 +54,20 @@ const StaticSitemap = () => {
         '/90048-dentist',
         '/melrose-dentist',
         '/westwood-dentist'
-      ].some(path => url.loc.endsWith(path))
+      ].includes(locToPath(url.loc))
     ),
     experience: sitemapData.filter(url => 
-      ['/smile-gallery', '/testimonials', '/client-experience', '/transformation-stories'].some(path => url.loc.endsWith(path))
+      ['/smile-gallery', '/testimonials', '/client-experience', '/transformation-stories'].includes(locToPath(url.loc))
     ),
     special: sitemapData.filter(url => 
-      ['/wedding', '/graduation'].some(path => url.loc.endsWith(path))
+      ['/wedding', '/graduation'].includes(locToPath(url.loc))
     ),
     resources: sitemapData.filter(url => 
-      ['/blog', '/faqs'].some(path => url.loc.endsWith(path))
+      ['/blog', '/faqs'].includes(locToPath(url.loc))
     ),
-    blog: sitemapData.filter(url => url.loc.includes('/blog/') && !url.loc.endsWith('/blog')),
-    legal: sitemapData.filter(url => 
-      ['/privacy-policy', '/terms-of-service', '/hipaa-compliance', '/editorial-policy'].some(path => url.loc.endsWith(path))
+    blog: sitemapData.filter(url => locToPath(url.loc).startsWith('/blog/') && locToPath(url.loc) !== '/blog'),
+    legal: sitemapData.filter(url =>
+      ['/privacy-policy', '/terms-of-service', '/hipaa-compliance', '/editorial-policy'].includes(locToPath(url.loc))
     )
   };
 

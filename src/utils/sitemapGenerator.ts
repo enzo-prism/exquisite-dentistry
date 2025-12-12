@@ -146,6 +146,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/smile-makeover-los-angeles'),
+      lastmod: getFileLastModified('src/pages/SmileMakeoverLosAngeles.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
       loc: getCanonicalUrl('/emergency-dentist'),
       lastmod: getFileLastModified('src/pages/EmergencyDentist.tsx', 7, now),
       changefreq: 'monthly',

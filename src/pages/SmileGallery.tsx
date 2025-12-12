@@ -72,6 +72,13 @@ const SmileGallery = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Real transformations from our clients who trusted us with their smiles
             </p>
+            <p className="mt-4 text-sm text-gray-600 max-w-2xl mx-auto">
+              Planning a full transformation? Explore our{" "}
+              <Link to="/smile-makeover-los-angeles" className="text-primary underline underline-offset-4">
+                Smile Makeover in Los Angeles guide
+              </Link>
+              .
+            </p>
           </div>
           
           {/* Patient transformations grid - standardized responsive breakpoints */}

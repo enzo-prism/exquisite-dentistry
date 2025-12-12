@@ -770,7 +770,7 @@ const Services = () => {
               description="Complete transformation solutions"
               centralHub={{
                 title: "Complete Smile Makeover",
-                href: "/services#cosmetic",
+                href: "/smile-makeover-los-angeles",
                 description: "Transform your entire smile with our comprehensive approach",
                 type: "service"
               }}

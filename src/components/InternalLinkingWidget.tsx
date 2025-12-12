@@ -53,32 +53,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
+            title: 'Smile Makeover (Los Angeles)',
+            href: '/smile-makeover-los-angeles',
+            description: 'How we combine veneers, whitening, and Invisalign in one plan',
+            category: 'service',
+            priority: 4
+          },
+          {
             title: 'Single Tooth Veneers Guide',
             href: '/blog/choosing-veneers-for-just-one-tooth',
             description: 'Perfect solutions for individual tooth improvements',
             category: 'blog',
-            priority: 4
+            priority: 5
           },
           {
             title: '4 Front Teeth Veneers Cost',
             href: '/blog/4-front-teeth-veneers-cost-los-angeles',
             description: 'Pricing guide for front teeth veneers in LA',
             category: 'blog',
-            priority: 5
+            priority: 6
           },
           {
             title: 'Are Veneers Covered by Insurance?',
             href: '/blog/are-veneers-covered-by-insurance',
             description: 'Understanding insurance and veneer financing',
             category: 'blog',
-            priority: 6
+            priority: 7
           },
           {
             title: 'Wedding Smile Makeover',
             href: '/wedding',
             description: 'Perfect veneers for your special day',
             category: 'special',
-            priority: 8,
+            priority: 9,
             seasonal: true
           },
           {
@@ -86,7 +93,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/smile-gallery',
             description: 'See real veneer transformations',
             category: 'gallery',
-            priority: 7
+            priority: 8
           },
           // Underlinked veneer blog posts
           {
@@ -219,18 +226,25 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
+            title: 'Smile Makeover (Los Angeles)',
+            href: '/smile-makeover-los-angeles',
+            description: 'Combine whitening with veneers and alignment for a full upgrade',
+            category: 'service',
+            priority: 3
+          },
+          {
             title: 'Veneers vs Whitening',
             href: '/veneers',
             description: 'Compare whitening with veneer options',
             category: 'service',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Wedding Whitening',
             href: '/wedding',
             description: 'Brighten your smile for your wedding day',
             category: 'special',
-            priority: 5,
+            priority: 6,
             seasonal: true
           },
           {
@@ -238,7 +252,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/client-experience',
             description: 'Comfortable whitening experience',
             category: 'experience',
-            priority: 4
+            priority: 5
           }
         ];
       

@@ -189,6 +189,7 @@ const CosmeticDentistry = () => {
                   You may begin with Invisalign to perfect alignment, transition to <Link to="/veneers-los-angeles" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link> for symmetry,
                   and finish with <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">professional whitening</Link> for brilliance.
                   Each step is documented and previewed so you remain excited, informed, and empowered.
+                  For a step-by-step overview, explore our <Link to="/smile-makeover-los-angeles" className="text-secondary underline-offset-4 hover:underline">Smile Makeover in Los Angeles guide</Link>.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   We embrace collaboration, partnering with dermatologists, facial plastic surgeons, and wellness practitioners to ensure your smile harmonizes with your overall aesthetic goals.

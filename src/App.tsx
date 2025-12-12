@@ -40,6 +40,7 @@ const DentalImplants = lazy(() => import("@/pages/DentalImplants"));
 const DentalBridge = lazy(() => import("@/pages/DentalBridge"));
 const DentalCrowns = lazy(() => import("@/pages/DentalCrowns"));
 const CosmeticDentistry = lazy(() => import("@/pages/CosmeticDentistry"));
+const SmileMakeoverLosAngeles = lazy(() => import("@/pages/SmileMakeoverLosAngeles"));
 const EmergencyDentist = lazy(() => import("@/pages/EmergencyDentist"));
 const IteroScanner = lazy(() => import("@/pages/IteroScanner"));
 const TransformationStories = lazy(() => import("@/pages/TransformationStories"));
@@ -196,6 +197,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/cosmetic-dentistry" element={<Suspense fallback={<PageLoaderComponent />}>
                 <CosmeticDentistry />
+              </Suspense>} />
+              <Route path="/smile-makeover-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SmileMakeoverLosAngeles />
               </Suspense>} />
               <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
                 <EmergencyDentist />

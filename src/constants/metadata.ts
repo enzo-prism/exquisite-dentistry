@@ -102,6 +102,15 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp'
   },
+  '/smile-makeover-los-angeles': {
+    title: 'Smile Makeover Los Angeles | Exquisite Dentistry',
+    description:
+      'Plan a smile makeover in Los Angeles with Dr. Alexie Aguil, DDS. Veneers, whitening, Invisalign, bonding, and implants coordinated with comfort-first care.',
+    keywords:
+      'smile makeover los angeles, smile makeover la, cosmetic dentist los angeles, veneers los angeles, teeth whitening los angeles, invisalign los angeles',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp'
+  },
   '/emergency-dentist': {
     title: 'Emergency Dentist Los Angeles | Exquisite Dentistry',
     description:
