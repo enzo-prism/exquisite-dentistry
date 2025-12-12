@@ -55,6 +55,19 @@ You can override the target server by exporting `REDIRECT_TEST_BASE` (defaults t
 
 Record any discrepancies before shipping.
 
+### Production hosting sanity check (common root cause of duplicate meta)
+
+If an SEO crawler reports that dozens of pages share the *same* `<title>` / `<meta name="description">`, the most common cause is that the host is serving `dist/index.html` for every route (SPA fallback), instead of serving `dist/<route>/index.html` for `/route/`.
+
+Quick checks against production:
+
+```bash
+curl -sSL https://exquisitedentistryla.com/about/ | rg '<title>|meta name="description"|<h1' | head
+curl -sSL https://exquisitedentistryla.com/about/index.html | rg '<title>|meta name="description"|<h1' | head
+```
+
+These two outputs should be *different*. If `/about/` matches the homepage while `/about/index.html` is correct, your hosting layer is rewriting extensionless routes to `/index.html`. Fix by deploying to a host that supports directory indexes + redirect rules (Netlify config lives in `netlify.toml` + `public/_redirects`) or by disabling any SPA catch-all rewrite at the edge.
+
 ## 4. Google Search Console Live Tests
 
 For each legacy bucket (services, geo, blogs with `/1000`, pagination junk), run “Test Live URL” inside GSC. Recommended sample set:
