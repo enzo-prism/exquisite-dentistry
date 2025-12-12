@@ -14,8 +14,10 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const ZoomWhitening = () => {
+  const meta = ROUTE_METADATA['/zoom-whitening'];
   const benefits = [
     {
       icon: <Zap className="h-8 w-8 text-secondary" />,
@@ -124,11 +126,11 @@ const ZoomWhitening = () => {
         }]}
       />
       <PageSEO
-        title="Zoom Whitening LA | Professional Teeth Whitening"
-        description="Professional Zoom whitening in LA brightens teeth 8+ shades in one visit. Safe, effective, immediate results. Special offers available now!"
-        keywords="Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/zoom-whitening"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData 

@@ -15,12 +15,14 @@ import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData'
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { SCHEDULING_URL } from '@/constants/urls';
 import ImageComponent from '@/components/Image';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const SmileGallery = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   
+  const meta = ROUTE_METADATA['/smile-gallery'];
   const { isMobile } = useBreakpoint();
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
@@ -36,10 +38,11 @@ const SmileGallery = () => {
       <MasterStructuredData includeBusiness={true} />
       <ImageGalleryStructuredData galleryType="smile-transformations" />
       <PageSEO
-        title="Before & After Gallery | LA Smile Transformations"
-        description="View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA."
-        keywords="smile gallery Los Angeles, before after dental photos, smile transformation results, porcelain veneers before after, cosmetic dentistry results, patient transformations"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/smile-gallery"
+        ogImage={meta.ogImage}
       />
 
       {/* Hero Section with VideoHero */}

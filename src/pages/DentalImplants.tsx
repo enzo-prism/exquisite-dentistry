@@ -15,8 +15,10 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const DentalImplants = () => {
+  const meta = ROUTE_METADATA['/dental-implants'];
   const implantAdvantages = [
     {
       icon: <Anchor className="h-8 w-8 text-secondary" />,
@@ -100,11 +102,11 @@ const DentalImplants = () => {
       />
 
       <PageSEO
-        title="Dental Implants Los Angeles | Permanent Tooth Replacement"
-        description="Dental implants in Los Angeles with guided surgery, bone regeneration, and custom restorations that restore chewing power and confident smiles."
-        keywords="dental implants Los Angeles, implant dentist LA, tooth replacement, full arch implants LA"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/dental-implants"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData

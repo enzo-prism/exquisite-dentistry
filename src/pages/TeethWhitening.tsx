@@ -15,8 +15,10 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const TeethWhitening = () => {
+  const meta = ROUTE_METADATA['/teeth-whitening'];
   const whiteningPrograms = [
     {
       title: "In-Office Zoom Whitening",
@@ -71,11 +73,11 @@ const TeethWhitening = () => {
       />
 
       <PageSEO
-        title="Teeth Whitening Los Angeles | Professional Smile Brightening"
-        description="Professional teeth whitening in Los Angeles with Zoom power whitening, custom take-home kits, and concierge maintenance plans for lasting radiance."
-        keywords="teeth whitening Los Angeles, professional whitening LA, Zoom whitening Los Angeles, cosmetic dentist whitening"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/teeth-whitening"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData

@@ -11,11 +11,13 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import FeaturedReviewWall from '@/components/FeaturedReviewWall';
 import { featuredReviews } from '@/data/featuredReviews';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const TestimonialsPage: React.FC = () => {
   const SITE_BASE_URL = 'https://exquisitedentistryla.com';
   const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
   const totalTestimonials = VIDEO_TESTIMONIALS.length;
+  const meta = ROUTE_METADATA['/testimonials'];
 
   const toAbsoluteUrl = (url: string) => {
     if (!url) return undefined;
@@ -92,11 +94,11 @@ const TestimonialsPage: React.FC = () => {
         ]}
       />
       <PageSEO
-        title="Patient Reviews LA | Real Cosmetic Dentistry Results"
-        description="Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles."
-        keywords="dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/testimonials"
-        ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
         
       />
       

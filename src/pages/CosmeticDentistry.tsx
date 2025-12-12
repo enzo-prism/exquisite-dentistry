@@ -15,8 +15,10 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const CosmeticDentistry = () => {
+  const meta = ROUTE_METADATA['/cosmetic-dentistry'];
   const pillars = [
     {
       icon: <Palette className="h-8 w-8 text-secondary" />,
@@ -93,11 +95,11 @@ const CosmeticDentistry = () => {
       />
 
       <PageSEO
-        title="Cosmetic Dentistry Los Angeles | Luxury Smile Makeovers"
-        description="Cosmetic dentistry in Los Angeles with bespoke veneers, Invisalign, whitening, and bonding to create camera-ready smiles that fit your lifestyle."
-        keywords="cosmetic dentistry Los Angeles, smile makeover LA, cosmetic dentist Beverly Hills, veneers and Invisalign LA"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/cosmetic-dentistry"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData

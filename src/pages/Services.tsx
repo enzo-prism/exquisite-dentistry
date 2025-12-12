@@ -28,6 +28,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import TopicClusterWidget from '@/components/TopicClusterWidget';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -44,6 +45,8 @@ const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const meta = ROUTE_METADATA['/services'];
 
   const differentiators = [
     {
@@ -290,11 +293,11 @@ const Services = () => {
       />
       
       <PageSEO
-        title="Cosmetic Dentistry LA | Veneers, Whitening, Implants"
-        description="Complete cosmetic dentistry in LA: porcelain veneers, Zoom whitening, Invisalign & implants. Advanced techniques, natural results. Call today!"
-        keywords="cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/services"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       {/* Add structured data for key services */}

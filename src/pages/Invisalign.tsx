@@ -16,8 +16,10 @@ import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const Invisalign = () => {
+  const meta = ROUTE_METADATA['/invisalign'];
   const benefits = [
     {
       icon: <Smile className="h-8 w-8 text-secondary" />,
@@ -114,11 +116,11 @@ const Invisalign = () => {
       />
 
       <PageSEO
-        title="Invisalign Los Angeles | Clear Aligner Dentist"
-        description="Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals."
-        keywords="Invisalign Los Angeles, clear aligners LA, Invisalign dentist LA, adult orthodontics, clear braces"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/invisalign"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData

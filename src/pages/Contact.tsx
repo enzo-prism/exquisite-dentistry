@@ -11,6 +11,7 @@ import ReviewWidget from '@/components/ReviewWidget';
 import PageSEO from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -24,6 +25,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
+  const meta = ROUTE_METADATA['/contact'];
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -178,10 +180,11 @@ const Contact = () => {
         }]}
       />
       <PageSEO 
-        title="Schedule Appointment | Exquisite Dentistry LA"
-        description="Schedule your consultation with Dr. Aguil in Los Angeles. Convenient Wilshire Blvd location, flexible hours. Call (323) 272-2388 or book online!"
-        keywords="contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/contact"
+        ogImage={meta.ogImage}
       />
 
       <div className="min-h-screen overflow-hidden">

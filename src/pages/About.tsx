@@ -14,11 +14,14 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { drAguilImages } from '@/data/drAguilImages';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const meta = ROUTE_METADATA['/about'];
 
   const introHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
   const introParagraph = useRevealOnScroll({ delayClass: 'reveal-delay-200' });
@@ -87,10 +90,11 @@ const About = () => {
         }]}
       />
       <PageSEO
-        title="Dr. Alexie Aguil | Award-Winning LA Cosmetic Dentist"
-        description="Meet Dr. Alexie Aguil, Los Angeles' award-winning cosmetic dentist with 15+ years creating celebrity smiles. Artistic vision meets gentle care."
-        keywords="Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/about"
+        ogImage={meta.ogImage}
       />
 
       {/* Hero Section with VideoHero */}

@@ -3,6 +3,7 @@ import path from "node:path";
 import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
 import { getPublishedPosts } from "../src/data/blogPosts";
+import { getRouteMetadata } from "../src/constants/metadata";
 
 type StaticLink = { label: string; href: string };
 type StaticRoute = {
@@ -29,9 +30,8 @@ const defaultNavLinks: StaticLink[] = [
 const manualPages: StaticRoute[] = [
   {
     path: "/",
-    title: "Los Angeles Premier Cosmetic Dentist | Dr. Aguil",
-    description:
-      "Transform your smile with Los Angeles' most trusted cosmetic dentist. Dr. Aguil delivers Hollywood-quality results in a spa-like setting. Book today!",
+    title: getRouteMetadata("/").title,
+    description: getRouteMetadata("/").description,
     h1: "Los Angeles' Premier Cosmetic Dentist",
     paragraphs: [
       "Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil.",
@@ -40,9 +40,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/about",
-    title: "Dr. Alexie Aguil | Award-Winning LA Cosmetic Dentist",
-    description:
-      "Meet Dr. Alexie Aguil, Los Angeles' award-winning cosmetic dentist with 15+ years creating celebrity smiles. Artistic vision meets gentle care.",
+    title: getRouteMetadata("/about").title,
+    description: getRouteMetadata("/about").description,
     h1: "Meet Dr. Alexie Aguil",
     paragraphs: [
       "Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years.",
@@ -51,9 +50,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/services",
-    title: "Cosmetic Dentistry LA | Veneers, Whitening, Implants",
-    description:
-      "Complete cosmetic dentistry in LA: porcelain veneers, Zoom whitening, Invisalign & implants. Advanced techniques, natural results. Call today!",
+    title: getRouteMetadata("/services").title,
+    description: getRouteMetadata("/services").description,
     h1: "Advanced Cosmetic & Restorative Dental Services",
     paragraphs: [
       "Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results.",
@@ -68,9 +66,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/veneers",
-    title: "Porcelain Veneers Los Angeles | Custom Smile Design",
-    description:
-      "Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available.",
+    title: getRouteMetadata("/veneers").title,
+    description: getRouteMetadata("/veneers").description,
     h1: "Custom Porcelain Veneers",
     paragraphs: [
       "Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous.",
@@ -79,9 +76,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/invisalign",
-    title: "Invisalign Los Angeles | Clear Aligner Dentist",
-    description:
-      "Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.",
+    title: getRouteMetadata("/invisalign").title,
+    description: getRouteMetadata("/invisalign").description,
     h1: "Invisalign® Clear Aligners",
     paragraphs: [
       "Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles.",
@@ -90,9 +86,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/teeth-whitening",
-    title: "Teeth Whitening Los Angeles | Professional Smile Brightening",
-    description:
-      "Professional teeth whitening in Los Angeles with Zoom power whitening, custom take-home kits, and concierge maintenance plans for lasting radiance.",
+    title: getRouteMetadata("/teeth-whitening").title,
+    description: getRouteMetadata("/teeth-whitening").description,
     h1: "Teeth Whitening Los Angeles",
     paragraphs: [
       "Three luminous whitening paths designed for fast-paced LA lives.",
@@ -101,9 +96,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/zoom-whitening",
-    title: "Zoom Whitening LA | Professional Teeth Whitening",
-    description:
-      "Professional Zoom whitening in LA brightens teeth 8+ shades in one visit. Safe, effective, immediate results. Special offers available now!",
+    title: getRouteMetadata("/zoom-whitening").title,
+    description: getRouteMetadata("/zoom-whitening").description,
     h1: "Zoom Teeth Whitening",
     paragraphs: [
       "Achieve dramatically whiter teeth in just one visit with professional Zoom whitening technology.",
@@ -112,9 +106,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/dental-implants",
-    title: "Dental Implants Los Angeles | Permanent Tooth Replacement",
-    description:
-      "Dental implants in Los Angeles with guided surgery, bone regeneration, and custom restorations that restore chewing power and confident smiles.",
+    title: getRouteMetadata("/dental-implants").title,
+    description: getRouteMetadata("/dental-implants").description,
     h1: "Dental Implants Los Angeles",
     paragraphs: [
       "Rebuild your smile with precision-engineered implants and luxury-level care.",
@@ -123,9 +116,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/cosmetic-dentistry",
-    title: "Cosmetic Dentistry Los Angeles | Luxury Smile Makeovers",
-    description:
-      "Cosmetic dentistry in Los Angeles with bespoke veneers, Invisalign, whitening, and bonding to create camera-ready smiles that fit your lifestyle.",
+    title: getRouteMetadata("/cosmetic-dentistry").title,
+    description: getRouteMetadata("/cosmetic-dentistry").description,
     h1: "Cosmetic Dentistry Los Angeles",
     paragraphs: [
       "Curated smile transformations for tastemakers, entrepreneurs, and artists.",
@@ -134,9 +126,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/emergency-dentist",
-    title: "Emergency Dentist Los Angeles | Same-Day Dental Care",
-    description:
-      "Emergency dentist in Los Angeles providing same-day appointments, after-hours guidance, and concierge treatment for urgent dental needs.",
+    title: getRouteMetadata("/emergency-dentist").title,
+    description: getRouteMetadata("/emergency-dentist").description,
     h1: "Emergency Dentist Los Angeles",
     paragraphs: [
       "Immediate, compassionate care when dental emergencies disrupt your day.",
@@ -145,9 +136,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/contact",
-    title: "Schedule Appointment | Exquisite Dentistry LA",
-    description:
-      "Schedule your consultation with Dr. Aguil in Los Angeles. Convenient Wilshire Blvd location, flexible hours. Call (323) 272-2388 or book online!",
+    title: getRouteMetadata("/contact").title,
+    description: getRouteMetadata("/contact").description,
     h1: "Contact Us",
     paragraphs: [
       "We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil.",
@@ -156,9 +146,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/testimonials",
-    title: "Patient Reviews LA | Real Cosmetic Dentistry Results",
-    description:
-      "Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles.",
+    title: getRouteMetadata("/testimonials").title,
+    description: getRouteMetadata("/testimonials").description,
     h1: "Client Testimonials",
     paragraphs: [
       "See what our clients are saying about their experience at Exquisite Dentistry.",
@@ -167,9 +156,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/smile-gallery",
-    title: "Before & After Gallery | LA Smile Transformations",
-    description:
-      "View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.",
+    title: getRouteMetadata("/smile-gallery").title,
+    description: getRouteMetadata("/smile-gallery").description,
     h1: "Smile Gallery",
     paragraphs: [
       "See the incredible results our patients have achieved with our expert dental care.",
@@ -178,9 +166,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/faqs",
-    title: "Dental FAQ Los Angeles | Common Questions Answered",
-    description:
-      "Get answers to common dental questions: veneer costs, insurance coverage, treatment time, recovery. Expert guidance from our LA dental team.",
+    title: getRouteMetadata("/faqs").title,
+    description: getRouteMetadata("/faqs").description,
     h1: "Dental FAQs",
     paragraphs: [
       "Get comprehensive answers about our Los Angeles practice near Beverly Hills, treatment procedures, insurance coverage, and what to expect during your luxury dental experience.",
@@ -189,9 +176,8 @@ const manualPages: StaticRoute[] = [
   },
   {
     path: "/blog",
-    title: "Los Angeles Cosmetic Dentistry Blog | Expert Insights & Techniques",
-    description:
-      "Stay current with Exquisite Dentistry’s Los Angeles cosmetic dental insights. Discover veneers, whitening breakthroughs, patient stories, and advanced oral health techniques.",
+    title: getRouteMetadata("/blog").title,
+    description: getRouteMetadata("/blog").description,
     h1: "Expert Dental Insights & Patient Education",
     paragraphs: [
       "Stay informed with the latest in cosmetic dentistry, oral health innovations, and expert guidance from Dr. Alexie Aguil and our Los Angeles dental team near Beverly Hills.",
@@ -234,15 +220,11 @@ const buildSeoTitle = (title: string) => {
   const brandSuffix = "Exquisite Dentistry Los Angeles";
   const lowerTitle = title.toLowerCase();
   const shouldAppendBrand = !lowerTitle.includes("exquisite dentistry");
-  if (!shouldAppendBrand) return stripTrailingSeparators(truncateTitle(title, 70));
-
   const separator = " | ";
-  const maxTitleLength = 70 - separator.length - brandSuffix.length;
-  const truncatedTitle = title.length > maxTitleLength
-    ? truncateTitle(title, maxTitleLength)
+  const fullTitle = shouldAppendBrand
+    ? `${title}${separator}${brandSuffix}`
     : title;
-  const safeTitle = stripTrailingSeparators(truncatedTitle);
-  return truncateTitle(`${safeTitle}${separator}${brandSuffix}`, 70);
+  return stripTrailingSeparators(truncateTitle(fullTitle, 70));
 };
 
 const uniqueLinks = (links: StaticLink[]) => {

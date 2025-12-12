@@ -76,18 +76,11 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   const lowerTitle = title.toLowerCase();
   const shouldAppendBrand = !lowerTitle.includes('exquisite dentistry');
   
-  let fullTitle: string;
-  if (shouldAppendBrand) {
-    const separator = ' | ';
-    const maxTitleLength = 70 - separator.length - brandSuffix.length;
-    const truncatedTitle = title.length > maxTitleLength 
-      ? truncateTitle(title, maxTitleLength)
-      : title;
-    fullTitle = `${truncatedTitle}${separator}${brandSuffix}`;
-  } else {
-    fullTitle = title;
-  }
-  
+  const separator = ' | ';
+  let fullTitle: string = shouldAppendBrand
+    ? `${title}${separator}${brandSuffix}`
+    : title;
+
   // Final safety check: ensure total length is within limit
   fullTitle = truncateTitle(fullTitle, 70);
 

@@ -4,6 +4,7 @@ import VideoHero from '@/components/VideoHero';
 import { cn } from '@/lib/utils';
 import PageSEO from '@/components/seo/PageSEO';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import { ROUTE_METADATA } from '@/constants/metadata';
 import {
   Accordion,
   AccordionContent,
@@ -68,14 +69,16 @@ const FAQs = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const meta = ROUTE_METADATA['/faqs'];
+
   return (
     <>
       <PageSEO
-        title="Dental FAQ Los Angeles | Common Questions Answered"
-        description="Get answers to common dental questions: veneer costs, insurance coverage, treatment time, recovery. Expert guidance from our LA dental team."
-        keywords="dental FAQ, cosmetic dentistry questions, dental insurance Los Angeles, dental appointment questions, teeth whitening FAQ, veneers questions"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/faqs"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
       
       <FAQStructuredData 

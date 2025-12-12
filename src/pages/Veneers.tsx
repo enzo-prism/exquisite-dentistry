@@ -16,8 +16,10 @@ import {
   createWebPageSchema,
   createBreadcrumbSchema
 } from '@/utils/centralizedSchemas';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const Veneers = () => {
+  const meta = ROUTE_METADATA['/veneers'];
   const benefits = [
     {
       icon: <Sparkles className="h-8 w-8 text-secondary" />,
@@ -139,11 +141,11 @@ const Veneers = () => {
       />
 
       <PageSEO
-        title="Porcelain Veneers Los Angeles | Custom Smile Design"
-        description="Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available."
-        keywords="porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/veneers"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       <div className="min-h-screen bg-background">

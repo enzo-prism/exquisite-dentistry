@@ -18,6 +18,7 @@ import { transformationStories } from '@/data/transformationStories';
 import FloatingActionButton from '@/components/mobile/FloatingActionButton';
 import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
   const thumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
@@ -51,6 +52,7 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
 
 const IndexPage: React.FC = () => {
   const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
+  const meta = ROUTE_METADATA['/'];
 
   // CSS-based reveal animations (replacing Framer Motion)
   const practiceVideo = useRevealOnScroll({ animation: 'up' });
@@ -70,11 +72,11 @@ const IndexPage: React.FC = () => {
         includeReviews={true}
       />
       <PageSEO 
-        title="Los Angeles Premier Cosmetic Dentist | Dr. Aguil"
-        description="Transform your smile with Los Angeles' most trusted cosmetic dentist. Dr. Aguil delivers Hollywood-quality results in a spa-like setting. Book today!"
-        keywords="cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path=""
-        ogImage="/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
       
       <VideoHero

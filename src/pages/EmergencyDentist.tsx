@@ -14,8 +14,10 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULING_URL } from '@/constants/urls';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const EmergencyDentist = () => {
+  const meta = ROUTE_METADATA['/emergency-dentist'];
   const rapidResponse = [
     {
       icon: <AlarmClock className="h-8 w-8 text-secondary" />,
@@ -96,11 +98,11 @@ const EmergencyDentist = () => {
       />
 
       <PageSEO
-        title="Emergency Dentist Los Angeles | Same-Day Dental Care"
-        description="Emergency dentist in Los Angeles providing same-day appointments, after-hours guidance, and concierge treatment for urgent dental needs."
-        keywords="emergency dentist Los Angeles, same-day dental care LA, urgent dentist, after-hours dentist LA"
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
         path="/emergency-dentist"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData

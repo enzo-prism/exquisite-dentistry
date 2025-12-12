@@ -10,6 +10,7 @@ import { usePerformance } from '@/hooks/use-performance';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { ROUTE_METADATA } from '@/constants/metadata';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -19,6 +20,7 @@ const Blog = () => {
   const allPosts = useMemo(() => getPublishedPosts(), []);
   const categories = useMemo(() => getAllCategories(), []);
   const { isSlowConnection } = usePerformance();
+  const meta = ROUTE_METADATA['/blog'];
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter(post => {
@@ -58,10 +60,10 @@ const Blog = () => {
     }
 
     return {
-      seoTitle: 'Los Angeles Cosmetic Dentistry Blog | Expert Insights & Techniques',
-      seoDescription: 'Stay current with Exquisite Dentistry’s Los Angeles cosmetic dental insights. Discover veneers, whitening breakthroughs, patient stories, and advanced oral health techniques.'
+      seoTitle: meta.title,
+      seoDescription: meta.description
     };
-  }, [filteredPosts.length, searchTerm, selectedCategory]);
+  }, [filteredPosts.length, meta.title, meta.description, searchTerm, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,9 +73,9 @@ const Blog = () => {
       <PageSEO
         title={seoTitle}
         description={seoDescription}
-        keywords="dental blog, cosmetic dentistry, oral health, dental tips, Dr. Alexie Aguil, dental expert insights, Beverly Hills dentist"
+        keywords={meta.keywords}
         path="/blog"
-        ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
+        ogImage={meta.ogImage}
       />
 
       {/* Hero Section */}
