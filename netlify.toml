@@ -73,12 +73,12 @@
 
 [[redirects]]
   from = "/invisalign-los-angeles.html"
-  to = "/services/#invisalign"
+  to = "/invisalign/"
   status = 301
 
 [[redirects]]
   from = "/invisalign.html"
-  to = "/services/#invisalign"
+  to = "/invisalign/"
   status = 301
 
 [[redirects]]
@@ -101,6 +101,49 @@
   from = "/about-us/"
   to = "/about/"
   status = 301
+
+# Blog canonical redirects (must be before catch-all patterns)
+[[redirects]]
+  from = "/blog/single-tooth-veneers-guide"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/single-tooth-veneers-guide/"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/single-tooth-veneers-guide"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/single-tooth-veneers-guide/"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/single-tooth-veneers-guide.html"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/netflix-streaming-during-dental-procedures"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/netflix-streaming-during-dental-procedures/"
+  to = "/blog/"
+  status = 301
+  force = true
 
 # Pattern-based catch-alls for other locations
 [[redirects]]
@@ -189,19 +232,13 @@
 
 [[redirects]]
   from = "/single-tooth-veneers-guide.html"
-  to = "/blog/single-tooth-veneers-guide/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/invisalign"
-  to = "/services/#invisalign"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/single-tooth-veneers-guide/"
-  to = "/blog/single-tooth-veneers-guide/"
+  to = "/blog/single-tooth-veneers-perfect-solutions/"
   status = 301
   force = true
 
@@ -292,6 +329,19 @@
 [[redirects]]
   from = "/blog"
   to = "/blog/"
+  status = 301
+  force = true
+
+# Dynamic trailing slash enforcement for prerendered collections
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/blog/:slug/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/transformation-stories/:slug"
+  to = "/transformation-stories/:slug/"
   status = 301
   force = true
 
