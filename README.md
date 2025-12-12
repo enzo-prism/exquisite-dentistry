@@ -131,13 +131,12 @@ You should see the route’s `<h1>` and intro paragraph in the raw HTML response
 
 ### Not Found / soft‑404 verification
 
-This site uses a Netlify SPA fallback, so unknown URLs return `index.html` with a 200. To prevent soft‑404 indexing, the client-side Not Found route emits `noindex`.
+This site does **not** use a global SPA rewrite in production. Legitimate routes are prerendered into `dist/`, so unknown URLs should return a real 404 from the host (preferred for SEO). The client-side Not Found route still emits `noindex` as a secondary safeguard.
 
 To verify:
 
-1. Run `npm run dev` or `npm run preview`.
-2. Visit an invalid path like `http://localhost:5173/this-does-not-exist`.
-3. In devtools, inspect `<head>` and confirm a `<meta name="robots" content="noindex,follow">` tag is present.
+1. After deployment, visit an invalid path like `https://exquisitedentistryla.com/this-does-not-exist` and confirm the response is a 404.
+2. Optionally in local dev, visit an invalid path and confirm `<meta name="robots" content="noindex,follow">` is present on the Not Found route.
 
 `npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
