@@ -459,12 +459,12 @@ const injectSeo = (template: string, title: string, description: string, routePa
     );
   }
 
-  // Keep OG/Twitter in sync when present.
-  const updateMetaContent = (pattern: RegExp, content: string) => {
-    html = html.replace(pattern, (match) =>
-      match.replace(/content=(\"[^\"]*\"|'[^']*')/i, `content="${escapeHtml(content)}"`),
-    );
-  };
+	  // Keep OG/Twitter in sync when present.
+	  const updateMetaContent = (pattern: RegExp, content: string) => {
+	    html = html.replace(pattern, (match) =>
+	      match.replace(/content=("[^"]*"|'[^']*')/i, `content="${escapeHtml(content)}"`),
+	    );
+	  };
 
   updateMetaContent(/<meta[^>]+property=["']og:title["'][^>]*>/i, fullTitle);
   updateMetaContent(/<meta[^>]+property=["']og:description["'][^>]*>/i, metaDescription);

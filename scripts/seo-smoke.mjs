@@ -2,10 +2,10 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const fallbackSeoPage = resolve(process.cwd(), 'public/emergency-dentist.html');
+const fallbackSeoPage = resolve(process.cwd(), 'dist/index.html');
 
 if (!existsSync(fallbackSeoPage)) {
-  console.error('❌  Could not locate public/emergency-dentist.html for SEO smoke test.');
+  console.error('❌  Could not locate dist/index.html for SEO smoke test. Run `npm run build` first.');
   process.exit(1);
 }
 
@@ -28,4 +28,4 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log('✅  SEO smoke check passed – canonical, OG, and JSON-LD tags detected in public/emergency-dentist.html.');
+console.log('✅  SEO smoke check passed – canonical, OG, and JSON-LD tags detected in dist/index.html.');

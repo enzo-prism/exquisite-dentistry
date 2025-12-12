@@ -105,7 +105,7 @@ npm run test:content
 # 4. Build the production bundle
 npm run build
 
-# 5. Verify SEO-critical tags (canonical, OG, JSON-LD) on the public emergency page
+# 5. Verify SEO-critical tags (canonical, OG, JSON-LD) on the built HTML
 npm run check:seo
 
 # 6. (Optional) Smoke test the built site locally
@@ -129,9 +129,11 @@ curl -s http://localhost:3000/veneers/ | rg "<h1|Custom Porcelain Veneers"
 
 You should see the route’s `<h1>` and intro paragraph in the raw HTML response.
 
+If you’re deploying via **Lovable hosting**, also run the production sanity check in `docs/verification.md` to ensure your host serves `/<route>/index.html` for `/<route>/` (some SPA-style hosts incorrectly return `/index.html` for all extensionless routes, which causes duplicate meta descriptions).
+
 ### Not Found / soft‑404 verification
 
-This site does **not** use a global SPA rewrite in production. Legitimate routes are prerendered into `dist/`, so unknown URLs should return a real 404 from the host (preferred for SEO). The client-side Not Found route still emits `noindex` as a secondary safeguard.
+When deployed to a standard static host (e.g. Netlify, or Cloudflare Pages with the included `public/_worker.js`), legitimate routes are prerendered into `dist/`, and unknown URLs should return a real 404 (preferred for SEO). The client-side Not Found route still emits `noindex` as a secondary safeguard.
 
 To verify:
 
@@ -192,4 +194,4 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 
 ## I want to use a custom domain - is that possible?
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Yes. Lovable supports custom domains (see https://docs.lovable.dev/features/custom-domain.md). For full SEO control (edge redirects, correct 404s, and serving prerendered HTML at clean routes), deploy the built `dist/` output to a host that supports directory indexes and routing rules (Netlify config lives in `netlify.toml` + `public/_redirects`, and Cloudflare Pages can use `public/_worker.js`).
