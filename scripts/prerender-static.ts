@@ -3,6 +3,7 @@ import path from "node:path";
 import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
 import { getPublishedPosts } from "../src/data/blogPosts";
+import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata } from "../src/constants/metadata";
 import {
   MASTER_BUSINESS_ENTITY,
@@ -190,6 +191,163 @@ const manualPages: StaticRoute[] = [
     h1: "Expert Dental Insights & Patient Education",
     paragraphs: [
       "Stay informed with the latest in cosmetic dentistry, oral health innovations, and expert guidance from Dr. Alexie Aguil and our Los Angeles dental team near Beverly Hills.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/tour",
+    title: "Luxury Dental Studio Tour | Exquisite Dentistry LA",
+    description:
+      "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore our spa-like dental studio, advanced technology, and comfort-first amenities.",
+    h1: "Take a Tour of Our Los Angeles Dental Studio",
+    paragraphs: [
+      "Step inside Exquisite Dentistry and see how a calm, spa-like environment and modern technology work together to make every visit feel easier.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/client-experience",
+    title: "Luxury Dental Spa LA | Comfort‑Focused Dentistry | Exquisite",
+    description:
+      "Learn what to expect at Exquisite Dentistry: comfort amenities, gentle care, and a concierge patient experience for cosmetic and restorative dentistry in Los Angeles.",
+    h1: "A Comfort‑First Dental Experience",
+    paragraphs: [
+      "From arrival to aftercare, our team focuses on comfort, clear communication, and treatment plans tailored to your goals.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/veneers-los-angeles",
+    title: "Veneers Los Angeles | Custom Porcelain Smile Design | Exquisite",
+    description:
+      "Explore porcelain veneers in Los Angeles. See candidacy, process, and real results with Dr. Alexie Aguil’s custom smile design approach.",
+    h1: "Porcelain Veneers in Los Angeles",
+    paragraphs: [
+      "Porcelain veneers refine color, shape, and symmetry with a conservative approach designed to look natural in real life.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/veneers/front-teeth-veneers-los-angeles",
+    title:
+      "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",
+    description:
+      "Plan front‑teeth veneers in Los Angeles with transparent pricing, minimal‑prep porcelain, and smile‑zone design by Dr. Alexie Aguil, DDS.",
+    h1: "Front Teeth Veneers in Los Angeles",
+    paragraphs: [
+      "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/itero-scanner",
+    title: "iTero Scanner Los Angeles | Digital Dental Impressions | Exquisite",
+    description:
+      "Discover how iTero 3D scanning improves comfort and precision for Invisalign, crowns, and veneers at our Los Angeles dental studio.",
+    h1: "iTero 3D Scanning for Precision Dentistry",
+    paragraphs: [
+      "Our iTero scanner captures fast, comfortable digital impressions and helps us plan treatments with greater accuracy.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/transformation-stories",
+    title:
+      "Patient Transformation Stories | Exquisite Dentistry Los Angeles",
+    description:
+      "Watch real patient transformation stories from Exquisite Dentistry in Los Angeles. Hear what changed, what they experienced, and why they recommend our team.",
+    h1: "Patient Transformation Stories",
+    paragraphs: [
+      "These interviews highlight real people, their goals, and how their dental experience shifted from anxiety or uncertainty to confidence.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/share-your-story",
+    title: "Share Your Story | Exquisite Dentistry Los Angeles",
+    description:
+      "Share your experience with Exquisite Dentistry. Tell us how your smile or comfort changed and help future patients feel prepared.",
+    h1: "Share Your Transformation Story",
+    paragraphs: [
+      "We’re grateful when patients share what stood out in their care — from comfort to results. Your story helps others feel confident booking a visit.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/wedding",
+    title: "Bridal Smile Makeover LA | Perfect Wedding Dentistry | Exquisite",
+    description:
+      "Wedding smile prep in Los Angeles: veneers, whitening, and alignment timed to your big day. Concierge planning with Dr. Alexie Aguil.",
+    h1: "Wedding Smile Prep in Los Angeles",
+    paragraphs: [
+      "We coordinate whitening, veneers, and Invisalign timelines around your wedding so your smile looks natural and photo‑ready.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/graduation",
+    title: "Graduation Smile Prep LA | Student Dental Packages | Exquisite",
+    description:
+      "Graduation smile makeovers in Los Angeles with whitening, Invisalign, and cosmetic upgrades designed for milestone photos and interviews.",
+    h1: "Graduation Smile Prep",
+    paragraphs: [
+      "Celebrate your milestone with a confident smile. Our team helps you choose the right cosmetic plan for your timeline and budget.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/privacy-policy",
+    title: "Privacy Policy | Exquisite Dentistry Los Angeles",
+    description:
+      "Read how Exquisite Dentistry protects and uses personal information in compliance with HIPAA and California privacy standards.",
+    h1: "Privacy Policy",
+    paragraphs: [
+      "We take privacy seriously. This page explains what data we collect, how it’s used, and your rights as a patient.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/terms-of-service",
+    title: "Terms of Service | Exquisite Dentistry Los Angeles",
+    description:
+      "Review appointment policies, payment terms, and patient responsibilities for care at Exquisite Dentistry in Los Angeles.",
+    h1: "Terms of Service",
+    paragraphs: [
+      "These terms outline how appointments, payments, and treatment plans work at our practice.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/hipaa-compliance",
+    title:
+      "HIPAA Compliance | Patient Health Information Protection | Exquisite",
+    description:
+      "Learn how Exquisite Dentistry safeguards protected health information and follows HIPAA best practices in Los Angeles.",
+    h1: "HIPAA Compliance",
+    paragraphs: [
+      "We follow HIPAA guidelines and use secure systems to protect your health information.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/editorial-policy",
+    title: "Editorial Policy | Exquisite Dentistry Los Angeles",
+    description:
+      "How Exquisite Dentistry creates, reviews, and updates dental information to keep our content accurate and patient‑focused.",
+    h1: "Editorial Policy",
+    paragraphs: [
+      "Our clinical content is written for patients and reviewed by licensed dental professionals. Each medical‑adjacent page includes a last‑updated date.",
+    ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/sitemap",
+    title: "Website Directory & Sitemap | Exquisite Dentistry LA",
+    description:
+      "Browse a full directory of Exquisite Dentistry pages, including services, patient resources, and location guides.",
+    h1: "Site Map",
+    paragraphs: [
+      "Use this directory to find every major service, guide, and patient resource on our website.",
     ],
     links: defaultNavLinks,
   },
@@ -446,6 +604,20 @@ const buildRoutes = (): StaticRoute[] => {
       h1: post.title,
       paragraphs: extractBlogParagraphs(post.content || "", post.excerpt),
       links: uniqueLinks([{ label: "Back to Blog", href: "/blog" }, ...defaultNavLinks]),
+    });
+  });
+
+  transformationStories.forEach((story) => {
+    routes.push({
+      path: `/transformation-stories/${story.slug}`,
+      title: story.seo.title,
+      description: story.seo.description,
+      h1: story.title,
+      paragraphs: [story.shortDescription],
+      links: uniqueLinks([
+        { label: "Back to Transformation Stories", href: "/transformation-stories" },
+        ...defaultNavLinks
+      ])
     });
   });
 

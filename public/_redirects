@@ -3,7 +3,6 @@
 /assets/* /assets/:splat 200!
 /front-teeth-veneers-complete-guide.html /veneers/front-teeth-veneers-los-angeles/ 301
 /front-teeth-veneers-complete-guide/ /veneers/front-teeth-veneers-los-angeles/ 301
-/veneers/front-teeth-veneers-los-angeles/ /veneers/front-teeth-veneers-los-angeles.html 200!
 
 # Static files - serve directly with force flag
 /sitemap.xml /sitemap.xml 200!
@@ -203,5 +202,6 @@ http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 /case-studies/ /transformation-stories/ 301
 /case-studies/* /transformation-stories/:splat 301
 
-# SPA catch-all for all other routes (MUST BE LAST)
-/* /index.html 200
+# NOTE: We no longer use a global SPA rewrite here.
+# All indexable marketing, service, blog, and story routes are statically prerendered into `dist/`.
+# Unknown URLs should return a real 404 (preferred for SEO) instead of a 200 shell.
