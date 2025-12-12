@@ -345,8 +345,15 @@
   status = 301
   force = true
 
-# SPA catch-all for all other routes (MUST BE LAST)
+# IMPORTANT:
+# This site is statically prerendered into `dist/<route>/index.html` for all indexable routes.
+# Do NOT add an SPA catch-all rewrite here (e.g. `/* -> /index.html 200`), otherwise every URL
+# returns the homepage HTML and crawlers report duplicate titles/descriptions + soft-404s.
+# Unknown URLs should return a real 404 whenever possible.
+
+# Catch any remaining clean-URL `.html` variants and redirect to the canonical trailing-slash URL.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/*.html"
+  to = "/:splat/"
+  status = 301
+  force = true

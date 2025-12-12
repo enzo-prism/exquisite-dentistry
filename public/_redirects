@@ -202,6 +202,9 @@ http://exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 /case-studies/ /transformation-stories/ 301
 /case-studies/* /transformation-stories/:splat 301
 
+# Avoid duplicate homepage variants.
+/index.html / 301
+
 # Catch any remaining clean-URL `.html` variants.
 # We generate `public/*.html` fallbacks for legacy/compatibility, but the canonical URLs
 # are the trailing-slash routes (e.g., `/dental-implants/`). Redirecting prevents
