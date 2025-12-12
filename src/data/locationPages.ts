@@ -143,14 +143,15 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     [
       "Teeth cleanings with VELscope screenings for proactive wellness",
       "Invisalign treatment that adapts to hybrid work and travel",
-      "Composite bonding to refresh worn edges between shoots",
+      "Professional teeth whitening (in-office and take-home) timed around headshots and events",
       "Dental crowns that restore durability without sacrificing aesthetics"
     ],
     { quote: "Worth the quick drive from Culver City. Efficient, luxurious, and always on schedule.", author: "Nick S." },
     [
-      { label: "Teeth Cleaning", href: "/teeth-cleaning" },
+      { label: "Teeth Whitening Near Culver City", href: "/culver-city-teeth-whitening" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
       { label: "Invisalign", href: "/invisalign" },
-      { label: "Dental Crowns", href: "/dental-crowns" }
+      { label: "Teeth Cleaning", href: "/teeth-cleaning" }
     ]
   ),
   "west-la-dentist": createLocationConfig(

@@ -199,6 +199,13 @@ const ZoomWhitening = () => {
                       .
                     </p>
                     <p className="text-sm text-muted-foreground">
+                      Coming from Culver City? Start here:{' '}
+                      <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                        teeth whitening near Culver City
+                      </Link>
+                      .
+                    </p>
+                    <p className="text-sm text-muted-foreground">
                       If you have veneers or bonding, we’ll plan your shade so everything looks consistent.
                     </p>
                   </CardContent>

@@ -54,6 +54,7 @@ const TeethWhitening = () => {
     <>
       <MasterStructuredData
         includeBusiness={true}
+        includeDoctor={true}
         includeWebsite={true}
         additionalSchemas={[{
           '@context': 'https://schema.org',
@@ -135,6 +136,10 @@ const TeethWhitening = () => {
                 Looking specifically for in-office Zoom? Explore{' '}
                 <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
                   Zoom Teeth Whitening in Los Angeles
+                </Link>
+                . Coming from Culver City? See{' '}
+                <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                  teeth whitening near Culver City
                 </Link>
                 .
               </p>

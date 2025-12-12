@@ -361,6 +361,7 @@ const getPageTitle = (url: string): string => {
     '/veneers-los-angeles': 'Veneers Los Angeles',
     '/zoom-whitening': 'Zoom Whitening',
     '/teeth-whitening': 'Teeth Whitening',
+    '/culver-city-teeth-whitening': 'Culver City Teeth Whitening',
     '/teeth-cleaning': 'Teeth Cleaning',
     '/invisalign': 'Invisalign',
     '/itero-scanner': 'iTero Scanner',

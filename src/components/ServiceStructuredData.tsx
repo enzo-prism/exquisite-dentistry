@@ -56,6 +56,7 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     areaServed: [
       { '@type': 'City', name: 'Los Angeles' },
       { '@type': 'City', name: 'Beverly Hills' },
+      { '@type': 'City', name: 'Culver City' },
       { '@type': 'City', name: 'West Hollywood' }
     ],
     availableChannel: {

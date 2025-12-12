@@ -64,6 +64,10 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     },
     {
       '@type': 'City',
+      name: 'Culver City'
+    },
+    {
+      '@type': 'City',
       name: 'West Hollywood'
     },
     {

@@ -110,6 +110,22 @@ const manualPages: StaticRoute[] = [
     links: [{ label: "Zoom Whitening", href: "/zoom-whitening" }, ...defaultNavLinks],
   },
   {
+    path: "/culver-city-teeth-whitening",
+    title: getRouteMetadata("/culver-city-teeth-whitening").title,
+    description: getRouteMetadata("/culver-city-teeth-whitening").description,
+    h1: "Teeth Whitening Near Culver City",
+    paragraphs: [
+      "Searching for teeth whitening in Culver City? Many patients visit our Wilshire Blvd dental studio for in-office whitening and custom take-home options planned for comfort and enamel health.",
+      "Compare fast in-office whitening to gradual tray-based brightening, get guidance for sensitivity and existing dental work, and leave with a maintenance plan that fits your schedule.",
+    ],
+    links: [
+      { label: "Compare Teeth Whitening Options", href: "/teeth-whitening" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      { label: "Culver City Dentist", href: "/culver-city-dentist" },
+      ...defaultNavLinks,
+    ],
+  },
+  {
     path: "/zoom-whitening",
     title: getRouteMetadata("/zoom-whitening").title,
     description: getRouteMetadata("/zoom-whitening").description,
@@ -454,6 +470,11 @@ const injectSeo = (template: string, title: string, description: string, routePa
       /<meta[^>]+name=["']description["'][^>]*>/i,
       `<meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
     );
+  } else {
+    html = html.replace(
+      /<\/head>/i,
+      `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />\n</head>`,
+    );
   }
 
   if (/<link[^>]+rel=["']canonical["'][^>]*>/i.test(html)) {
@@ -587,6 +608,76 @@ const getSchemasForRoute = (routePath: string) => {
       createFAQSchema(
         ZOOM_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
         "Zoom Teeth Whitening in Los Angeles"
+      )
+    );
+  }
+
+  if (routePath === "/culver-city-teeth-whitening") {
+    const meta = getRouteMetadata("/culver-city-teeth-whitening");
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/culver-city-teeth-whitening",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Teeth Whitening", url: "/teeth-whitening" },
+        { name: "Culver City Teeth Whitening", url: "/culver-city-teeth-whitening" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Professional Teeth Whitening",
+        description:
+          "Professional teeth whitening near Culver City with in-office whitening and custom take-home options planned for comfort and enamel health.",
+        url: "/culver-city-teeth-whitening/",
+        image: meta.ogImage,
+        procedureType: "Cosmetic Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Shade assessment and review of sensitivity history",
+          "Confirm existing restorations and desired final shade"
+        ],
+        steps: [
+          { name: "Consultation", description: "Review goals, sensitivity, and existing dental work." },
+          { name: "Whitening", description: "Complete timed gel cycles with comfort-first adjustments." },
+          { name: "Aftercare", description: "Share guidance to reduce sensitivity and help results last." }
+        ],
+        risks: ["Temporary tooth sensitivity", "Temporary gum irritation"],
+        benefits: ["Noticeably brighter shade", "Personalized maintenance plan"],
+        recoveryTime: "No downtime"
+      })
+    );
+    schemas.push(
+      createFAQSchema(
+        [
+          {
+            question: "Do you offer teeth whitening for Culver City patients?",
+            answer:
+              "Yes. Many patients visit us from Culver City for in-office whitening and custom take-home whitening. Our studio is on Wilshire Blvd in Los Angeles, and we tailor each plan to sensitivity, restorations, and your timeline."
+          },
+          {
+            question: "How long does in-office whitening take?",
+            answer:
+              "Most in-office whitening visits take about 60–90 minutes. We start with a shade assessment and comfort steps, then complete timed gel cycles with careful monitoring."
+          },
+          {
+            question: "Will whitening work if I have veneers or crowns?",
+            answer:
+              "Whitening gels brighten natural enamel but do not change the shade of porcelain or composite restorations. If you have veneers, bonding, or crowns in the smile zone, we’ll plan your whitening and shade-matching so everything looks consistent."
+          },
+          {
+            question: "How do you reduce sensitivity?",
+            answer:
+              "We use a comfort-first protocol: shorter gel cycles when needed, desensitizing options, and clear aftercare instructions. If you’re prone to sensitivity, we can recommend a gradual plan using custom take-home trays."
+          }
+        ],
+        "Teeth Whitening Near Culver City"
       )
     );
   }

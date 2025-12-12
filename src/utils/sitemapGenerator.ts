@@ -104,6 +104,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/culver-city-teeth-whitening'),
+      lastmod: getFileLastModified('src/pages/CulverCityTeethWhitening.tsx', 14, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
       loc: getCanonicalUrl('/invisalign'),
       lastmod: getFileLastModified('src/pages/Invisalign.tsx', 7, now),
       changefreq: 'monthly',
