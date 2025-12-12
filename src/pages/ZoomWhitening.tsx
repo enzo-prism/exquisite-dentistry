@@ -206,6 +206,13 @@ const ZoomWhitening = () => {
                       .
                     </p>
                     <p className="text-sm text-muted-foreground">
+                      Coming from Beverly Hills? Start here:{' '}
+                      <Link to="/teeth-whitening-beverly-hills" className="text-secondary underline-offset-4 hover:underline">
+                        teeth whitening near Beverly Hills
+                      </Link>
+                      .
+                    </p>
+                    <p className="text-sm text-muted-foreground">
                       If you have veneers or bonding, we’ll plan your shade so everything looks consistent.
                     </p>
                   </CardContent>

@@ -36,6 +36,7 @@ const Invisalign = lazy(() => import("@/pages/Invisalign"));
 const InvisalignBeverlyHills = lazy(() => import("@/pages/InvisalignBeverlyHills"));
 const VeneersLosAngeles = lazy(() => import("@/pages/VeneersLosAngeles"));
 const TeethWhitening = lazy(() => import("@/pages/TeethWhitening"));
+const TeethWhiteningBeverlyHills = lazy(() => import("@/pages/TeethWhiteningBeverlyHills"));
 const CulverCityTeethWhitening = lazy(() => import("@/pages/CulverCityTeethWhitening"));
 const DentalImplants = lazy(() => import("@/pages/DentalImplants"));
 const DentalBridge = lazy(() => import("@/pages/DentalBridge"));
@@ -183,6 +184,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <TeethWhitening />
+              </Suspense>} />
+              <Route path="/teeth-whitening-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhiteningBeverlyHills />
               </Suspense>} />
               <Route path="/culver-city-teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <CulverCityTeethWhitening />

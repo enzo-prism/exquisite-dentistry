@@ -75,6 +75,15 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
+  '/teeth-whitening-beverly-hills': {
+    title: 'Teeth Whitening Near Beverly Hills | Exquisite Dentistry',
+    description:
+      'Teeth whitening near Beverly Hills with in-office whitening and custom take-home trays. Comfort-first care on Wilshire Blvd in Los Angeles with shade planning for restorations.',
+    keywords:
+      'teeth whitening beverly hills, teeth whitening near beverly hills, professional teeth whitening beverly hills, zoom whitening beverly hills',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
+  },
   '/culver-city-teeth-whitening': {
     title: 'Teeth Whitening Near Culver City | Exquisite Dentistry LA',
     description:

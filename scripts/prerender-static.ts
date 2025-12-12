@@ -792,6 +792,61 @@ const getSchemasForRoute = (routePath: string) => {
     }
   }
 
+  if (routePath === "/teeth-whitening-beverly-hills") {
+    const meta = getRouteMetadata("/teeth-whitening-beverly-hills");
+    const config = servicePageConfigs["teeth-whitening-beverly-hills"];
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/teeth-whitening-beverly-hills",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Teeth Whitening", url: "/teeth-whitening" },
+        { name: "Teeth Whitening Near Beverly Hills", url: "/teeth-whitening-beverly-hills" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Professional Teeth Whitening",
+        description:
+          "Teeth whitening near Beverly Hills with in-office whitening and custom take-home trays, planned for comfort, sensitivity management, and realistic shade matching for existing dental work.",
+        url: "/teeth-whitening-beverly-hills/",
+        image: meta.ogImage,
+        procedureType: "Cosmetic Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Shade assessment and review of sensitivity history",
+          "Confirm existing restorations and desired target shade"
+        ],
+        steps: (config?.treatmentSteps ?? []).map((step) => ({
+          name: step.title,
+          description: step.detail
+        })),
+        risks: ["Temporary tooth sensitivity", "Temporary gum irritation"],
+        benefits: [
+          "Noticeably brighter shade with professional supervision",
+          "Options that fit your timeline and comfort level",
+          "Aftercare guidance to help results last"
+        ],
+        recoveryTime: "No downtime"
+      })
+    );
+    if (config?.faqs?.length) {
+      schemas.push(
+        createFAQSchema(
+          config.faqs.map(({ question, answer }) => ({ question, answer })),
+          "Teeth Whitening Near Beverly Hills"
+        )
+      );
+    }
+  }
+
   if (routePath === "/faqs") {
     schemas.push(
       createFAQSchema(

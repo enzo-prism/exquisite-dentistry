@@ -30,6 +30,7 @@ const StaticSitemap = () => {
         '/zoom-whitening',
         '/culver-city-teeth-whitening',
         '/teeth-whitening',
+        '/teeth-whitening-beverly-hills',
         '/teeth-cleaning',
         '/invisalign',
         '/invisalign-beverly-hills',

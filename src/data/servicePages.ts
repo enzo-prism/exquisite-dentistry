@@ -420,6 +420,140 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Contact & Scheduling", href: "/contact" },
     ],
   },
+  "teeth-whitening-beverly-hills": {
+    slug: "teeth-whitening-beverly-hills",
+    title: "Teeth Whitening Near Beverly Hills",
+    seo: {
+      title: "Teeth Whitening Near Beverly Hills | Exquisite Dentistry",
+      description:
+        "Teeth whitening near Beverly Hills with in-office whitening and custom take-home trays. Comfort-first care on Wilshire Blvd in Los Angeles with shade planning for existing veneers or crowns.",
+      keywords: [
+        "teeth whitening beverly hills",
+        "teeth whitening near beverly hills",
+        "professional teeth whitening beverly hills",
+        "zoom whitening beverly hills",
+        "in-office teeth whitening",
+        "custom whitening trays",
+      ],
+    },
+    hero: {
+      eyebrow: "Teeth Whitening",
+      heading: "Teeth Whitening Near Beverly Hills",
+      subheading:
+        "Professional whitening plans designed for Beverly Hills schedules—fast in-office brightening, custom trays for sensitive teeth, and hybrid maintenance that keeps your shade consistent.",
+      highlights: [
+        "In-office whitening + sensitivity planning",
+        "Custom take-home trays for gradual brightening",
+        "Shade matching for veneers/crowns when needed",
+      ],
+    },
+    overview: {
+      intro: [
+        "If you’re looking for teeth whitening in Beverly Hills, you probably want a brighter shade without sensitivity surprises or an unnatural finish. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we tailor whitening to your timeline—whether that’s an upcoming event, headshots, or a low-maintenance refresh.",
+        "We start with a shade assessment, review existing dental work, and choose the right approach: in-office whitening for faster results, custom trays for gradual brightening, or a hybrid plan that balances speed and comfort. If you have veneers or crowns, we’ll plan whitening so natural enamel blends with existing restorations.",
+      ],
+      callouts: [
+        {
+          title: "Comfort-first protocol",
+          description:
+            "We adjust gel strength and cycle timing, and recommend desensitizing steps when you’re prone to sensitivity.",
+        },
+        {
+          title: "Options that fit your calendar",
+          description:
+            "Choose in-office whitening for speed, take-home trays for control, or a hybrid plan for lasting brightness.",
+        },
+        {
+          title: "Realistic shade planning",
+          description:
+            "Whitening changes natural teeth, not porcelain. We’ll guide you on shade matching if you have veneers, bonding, or crowns.",
+        },
+      ],
+    },
+    benefits: [
+      {
+        title: "Brighter shade, professionally supervised",
+        description:
+          "We monitor comfort and results in real time, helping you avoid over-whitening and reducing sensitivity risks.",
+      },
+      {
+        title: "A plan matched to your enamel",
+        description:
+          "Sensitive teeth, thin enamel, and existing restorations need different pacing—your plan is built around those details.",
+      },
+      {
+        title: "Maintenance that keeps results stable",
+        description:
+          "We give you aftercare guidance and touch-up timing so your shade stays consistent through coffee, tea, and travel.",
+      },
+    ],
+    treatmentSteps: [
+      {
+        title: "01. Shade Assessment",
+        detail:
+          "We evaluate enamel health, sensitivity history, and existing restorations, then set a realistic target shade.",
+      },
+      {
+        title: "02. Choose Your Whitening Plan",
+        detail:
+          "Select in-office whitening, custom take-home trays, or a hybrid plan based on timeline, comfort, and desired brightness.",
+      },
+      {
+        title: "03. Whitening + Comfort Support",
+        detail:
+          "We complete timed whitening cycles (or deliver trays) and share steps to minimize sensitivity during and after treatment.",
+      },
+      {
+        title: "04. Aftercare + Touch-Ups",
+        detail:
+          "We provide a maintenance schedule and product guidance to help results last and to keep your shade even over time.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you offer teeth whitening for Beverly Hills patients?",
+        answer:
+          "Yes. Many patients visit us from Beverly Hills for in-office whitening and custom take-home trays. We coordinate schedules and recommend the best option based on your timeline and sensitivity level.",
+      },
+      {
+        question: "How long does in-office whitening take?",
+        answer:
+          "Most in-office whitening visits take about 60–90 minutes. We begin with a shade check and comfort steps, then complete timed gel cycles with careful monitoring.",
+      },
+      {
+        question: "Will whitening work if I have veneers or crowns?",
+        answer:
+          "Whitening gels brighten natural enamel but do not change the shade of porcelain or composite restorations. If you have veneers, bonding, or crowns in the smile zone, we’ll plan whitening and shade matching so everything looks consistent.",
+      },
+      {
+        question: "How do you reduce sensitivity?",
+        answer:
+          "We use a comfort-first protocol with appropriate gel strengths, shorter cycles when needed, and desensitizing recommendations. If you’re highly sensitive, custom trays often provide a gentler, more controlled approach.",
+      },
+      {
+        question: "How long do whitening results last?",
+        answer:
+          "Results vary by diet and habits, but many patients maintain brightness with periodic touch-ups. We’ll recommend timing based on coffee, tea, wine, and lifestyle factors so your shade stays consistent.",
+      },
+    ],
+    cta: {
+      heading: "Book Teeth Whitening Near Beverly Hills",
+      description:
+        "Schedule a shade assessment and we’ll recommend the whitening plan that fits your comfort level, timeline, and existing dental work.",
+      primaryText: "Book Online",
+      primaryHref: SCHEDULING_URL,
+      secondaryText: "Call Us",
+      secondaryHref: "tel:+13232722388",
+    },
+    internalLinks: [
+      { label: "Teeth Whitening Options (Los Angeles)", href: "/teeth-whitening" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      { label: "Beverly Hills Dentist Page", href: "/beverly-hills-dentist" },
+      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
+      { label: "Patient Testimonials", href: "/testimonials" },
+      { label: "Contact & Scheduling", href: "/contact" },
+    ],
+  },
   "root-canal": {
     slug: "root-canal",
     title: "Root Canal Therapy in Los Angeles",

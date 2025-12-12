@@ -122,12 +122,14 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Smile makeovers that pair veneers, crowns, and whitening for flawless symmetry",
       "Porcelain veneers crafted with Beverly Hills ceramists for natural brilliance",
       "Invisalign clear aligners for discreet, camera-ready alignment and bite refinement",
+      "Teeth whitening plans (in-office and take-home) timed around events and photo sessions",
       "Dental implants planned with advanced imaging for enduring bite strength",
       "Full-mouth reconstruction that balances function, health, and high fashion"
     ],
     { quote: "A Beverly Hills-level experience without crossing town. My veneers look flawless.", author: "Taylor V." },
     [
       { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
+      { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills" },
       { label: "Invisalign Near Beverly Hills", href: "/invisalign-beverly-hills" },
       { label: "Dental Implants", href: "/dental-implants" },
       { label: "Dental Crowns", href: "/dental-crowns" }
