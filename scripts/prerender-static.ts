@@ -37,6 +37,12 @@ import {
   SMILE_MAKEOVER_REFERENCES
 } from "../src/data/smile-makeover-hub";
 import {
+  INVISALIGN_BEVERLY_HILLS_HUB_INTRO_PARAGRAPHS,
+  INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS,
+  INVISALIGN_BEVERLY_HILLS_REFERENCES,
+  INVISALIGN_BEVERLY_HILLS_SUPPORTING_LINKS
+} from "../src/data/invisalign-beverly-hills-hub";
+import {
   ADDRESS,
   BUSINESS_HOURS,
   PHONE_NUMBER_DISPLAY,
@@ -49,6 +55,7 @@ import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
+import { INVISALIGN_BEVERLY_HILLS_FAQS } from "../src/data/invisalign-beverly-hills-faqs";
 
 type StaticLink = { label: string; href: string };
 type StaticRouteSection = {
@@ -221,6 +228,40 @@ const manualPages: StaticRoute[] = [
     ],
     faqItems: SMILE_MAKEOVER_LOS_ANGELES_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [...SMILE_MAKEOVER_HUB_SUPPORTING_LINKS, ...defaultNavLinks],
+  },
+  {
+    path: "/invisalign-beverly-hills",
+    title: getRouteMetadata("/invisalign-beverly-hills").title,
+    description: getRouteMetadata("/invisalign-beverly-hills").description,
+    h1: "Invisalign Beverly Hills",
+    paragraphs: [...INVISALIGN_BEVERLY_HILLS_HUB_INTRO_PARAGRAPHS],
+    sections: [
+      {
+        id: "on-this-page",
+        heading: "On this page",
+        links: [
+          { label: "Benefits", href: "#benefits" },
+          { label: "Candidacy", href: "#candidacy" },
+          { label: "Process", href: "#process" },
+          { label: "Attachments & refinements", href: "#attachments" },
+          { label: "Appointments", href: "#visits" },
+          { label: "Timeline", href: "#timeline" },
+          { label: "Cost factors", href: "#cost" },
+          { label: "After Invisalign", href: "#finishing" },
+          { label: "Location & hours", href: "#location" },
+          { label: "FAQs", href: "#faqs" },
+          { label: "References", href: "#references" }
+        ]
+      },
+      ...INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS,
+      {
+        id: "references",
+        heading: "References",
+        links: [...INVISALIGN_BEVERLY_HILLS_REFERENCES]
+      }
+    ],
+    faqItems: INVISALIGN_BEVERLY_HILLS_FAQS.map(({ question, answer }) => ({ question, answer })),
+    links: [...INVISALIGN_BEVERLY_HILLS_SUPPORTING_LINKS, ...defaultNavLinks],
   },
   {
     path: "/cosmetic-dentistry",
@@ -856,14 +897,13 @@ const getSchemasForRoute = (routePath: string) => {
       createBreadcrumbSchema([
         { name: "Services", url: "/services" },
         { name: "Invisalign", url: "/invisalign" },
-        { name: "Invisalign Near Beverly Hills", url: "/invisalign-beverly-hills" }
+        { name: "Invisalign Beverly Hills", url: "/invisalign-beverly-hills" }
       ])
     );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Invisalign Clear Aligners",
-        description:
-          "Invisalign near Beverly Hills with clear aligners planned using digital scans, staged tooth movement, and concierge-style check-ins for busy schedules.",
+        description: meta.description,
         url: "/invisalign-beverly-hills/",
         image: meta.ogImage,
         procedureType: "Orthodontic Procedure",
@@ -889,7 +929,7 @@ const getSchemasForRoute = (routePath: string) => {
       schemas.push(
         createFAQSchema(
           config.faqs.map(({ question, answer }) => ({ question, answer })),
-          "Invisalign Near Beverly Hills"
+          "Invisalign Beverly Hills"
         )
       );
     }

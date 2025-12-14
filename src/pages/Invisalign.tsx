@@ -357,13 +357,13 @@ const Invisalign = () => {
                 After treatment, our team schedules quarterly digital check-ins to ensure retainers fit perfectly and to plan any enhancements before important events.
               </p>
               <div className="mt-10 rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
-                <h3 className="text-2xl font-semibold text-foreground">Invisalign near Beverly Hills</h3>
+                <h3 className="text-2xl font-semibold text-foreground">Invisalign Beverly Hills</h3>
                 <p className="mt-3 text-muted-foreground leading-relaxed">
                   If you’re coming from Beverly Hills, explore our location guide and a dedicated overview of Invisalign planning designed for Beverly Hills schedules.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <Button variant="outline" asChild>
-                    <Link to="/invisalign-beverly-hills">Beverly Hills Invisalign Guide</Link>
+                    <Link to="/invisalign-beverly-hills">Invisalign Beverly Hills guide</Link>
                   </Button>
                   <Button variant="outline" asChild>
                     <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>

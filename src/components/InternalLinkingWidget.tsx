@@ -165,7 +165,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 1
           },
           {
-            title: 'Invisalign Near Beverly Hills',
+            title: 'Invisalign Beverly Hills',
             href: '/invisalign-beverly-hills',
             description: 'Concierge clear aligners for Beverly Hills schedules',
             category: 'service',

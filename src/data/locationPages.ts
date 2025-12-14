@@ -130,7 +130,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     [
       { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
       { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills" },
-      { label: "Invisalign Near Beverly Hills", href: "/invisalign-beverly-hills" },
+      { label: "Invisalign Beverly Hills", href: "/invisalign-beverly-hills" },
       { label: "Dental Implants", href: "/dental-implants" },
       { label: "Dental Crowns", href: "/dental-crowns" }
     ]

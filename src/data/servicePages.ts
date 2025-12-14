@@ -1,5 +1,6 @@
 import { SCHEDULING_URL } from "@/constants/urls";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
+import { INVISALIGN_BEVERLY_HILLS_FAQS } from "@/data/invisalign-beverly-hills-faqs";
 
 export interface ServicePageConfig {
   slug: string;
@@ -263,11 +264,11 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
   },
   "invisalign-beverly-hills": {
     slug: "invisalign-beverly-hills",
-    title: "Invisalign Near Beverly Hills",
+    title: "Invisalign Beverly Hills",
     seo: {
-      title: "Invisalign Near Beverly Hills | Exquisite Dentistry",
+      title: "Invisalign Beverly Hills | Exquisite Dentistry",
       description:
-        "Invisalign near Beverly Hills with Dr. Alexie Aguil, DDS. Clear aligners planned with iTero scans, flexible visits, and comfort-first care on Wilshire Blvd in Los Angeles.",
+        "Invisalign Beverly Hills: clear aligners planned with iTero scans, flexible visits, and comfort-first care at our Wilshire Blvd Los Angeles studio near Beverly Hills.",
       keywords: [
         "invisalign beverly hills",
         "invisalign near beverly hills",
@@ -279,9 +280,9 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     },
     hero: {
       eyebrow: "Orthodontics",
-      heading: "Invisalign Near Beverly Hills",
+      heading: "Invisalign Beverly Hills",
       subheading:
-        "Discreet clear aligners designed for busy Beverly Hills schedules—planned with digital scans, concierge check-ins, and an aesthetics-first finish.",
+        "Discreet clear aligners planned near Beverly Hills with digital scans, concierge check-ins, and a bite-focused finish at our Wilshire Blvd Los Angeles studio.",
       highlights: [
         "iTero digital scans (no messy impressions)",
         "Flexible appointments + concierge pacing",
@@ -290,7 +291,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     },
     overview: {
       intro: [
-        "If you’re searching for Invisalign in Beverly Hills, you likely want a straighter smile without brackets or disruptions to your day. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we plan clear aligner treatment around work, travel, and event timelines.",
+        "If you’re searching for Invisalign Beverly Hills, you likely want a straighter smile without brackets or disruptions to your day. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we plan clear aligner treatment around work, travel, and event timelines.",
         "Dr. Alexie Aguil, DDS uses digital iTero scanning and staged planning to guide predictable tooth movement. When the time is right, we can coordinate cosmetic finishing touches—like whitening or subtle edge contouring—so your final result looks natural and balanced.",
       ],
       callouts: [
@@ -350,33 +351,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
           "We lock in results with retainers and can coordinate whitening or cosmetic polishing when desired.",
       },
     ],
-    faqs: [
-      {
-        question: "Do you offer Invisalign for Beverly Hills patients?",
-        answer:
-          "Yes. Many patients travel from Beverly Hills to our Wilshire Blvd studio for Invisalign planning and check-ins. We coordinate schedules and timelines to make visits efficient.",
-      },
-      {
-        question: "How long does Invisalign take?",
-        answer:
-          "Many adult alignment cases finish in 6–12 months, while complex bite corrections can take longer. After your scan, we’ll outline a realistic timeline and what each stage accomplishes.",
-      },
-      {
-        question: "How often do I need to come in during treatment?",
-        answer:
-          "Visit frequency depends on your plan, but most patients check in every 6–10 weeks. We’ll coordinate appointments around travel and major events whenever possible.",
-      },
-      {
-        question: "Can Invisalign be combined with whitening or veneers?",
-        answer:
-          "Yes. Alignment often comes first so we can refine shade and shape afterward. We’ll recommend the ideal sequence for predictable color matching and a balanced bite.",
-      },
-      {
-        question: "Is Invisalign comfortable for speaking at work?",
-        answer:
-          "Most patients adjust quickly. Aligners fit closely to teeth, and any minor speech changes typically resolve within a day or two of consistent wear.",
-      },
-    ],
+    faqs: INVISALIGN_BEVERLY_HILLS_FAQS,
     cta: {
       heading: "Book an Invisalign Consultation Near Beverly Hills",
       description:

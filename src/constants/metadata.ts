@@ -57,11 +57,11 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
   },
   '/invisalign-beverly-hills': {
-    title: 'Invisalign Near Beverly Hills | Exquisite Dentistry',
+    title: 'Invisalign Beverly Hills | Exquisite Dentistry',
     description:
-      'Invisalign near Beverly Hills with Dr. Alexie Aguil, DDS. Clear aligners planned with iTero scans, flexible visits, and comfort-first care on Wilshire Blvd in Los Angeles.',
+      'Invisalign Beverly Hills: clear aligners planned with iTero scans, flexible visits, and comfort-first care at our Wilshire Blvd Los Angeles studio near Beverly Hills.',
     keywords:
-      'invisalign beverly hills, invisalign near beverly hills, clear aligners beverly hills, adult orthodontics beverly hills',
+      'invisalign beverly hills, invisalign near beverly hills, clear aligners beverly hills, invisalign dentist beverly hills, adult orthodontics beverly hills, itero scan beverly hills',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
   },
