@@ -96,9 +96,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/zoom-whitening': {
     title: 'Zoom Whitening Los Angeles | Exquisite Dentistry',
     description:
-      'Zoom teeth whitening in Los Angeles brightens your smile fast—often 3–8 shades in about 60–90 minutes. Comfort-first protocol on Wilshire Blvd.',
+      'Zoom whitening in Los Angeles brightens your smile fast—often 3–8 shades in about 60–90 minutes. Comfort-first protocol on Wilshire Blvd.',
     keywords:
-      'Zoom whitening, teeth whitening Los Angeles, professional whitening, dental whitening, bright smile',
+      'zoom whitening los angeles, zoom teeth whitening los angeles, in-office teeth whitening los angeles, philips zoom whitening, professional teeth whitening los angeles',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },

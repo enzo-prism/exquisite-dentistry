@@ -25,6 +25,12 @@ import {
   CULVER_CITY_TEETH_WHITENING_SUPPORTING_LINKS
 } from "../src/data/culver-city-teeth-whitening-hub";
 import {
+  ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS,
+  ZOOM_WHITENING_HUB_SECTIONS,
+  ZOOM_WHITENING_REFERENCES,
+  ZOOM_WHITENING_SUPPORTING_LINKS
+} from "../src/data/zoom-whitening-hub";
+import {
   ADDRESS,
   BUSINESS_HOURS,
   PHONE_NUMBER_DISPLAY,
@@ -52,6 +58,7 @@ type StaticRoute = {
   h1: string;
   paragraphs: string[];
   sections?: StaticRouteSection[];
+  faqItems?: Array<{ question: string; answer: string }>;
   links: StaticLink[];
 };
 
@@ -143,21 +150,25 @@ const manualPages: StaticRoute[] = [
     h1: "Culver City Teeth Whitening",
     paragraphs: [...CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS],
     sections: CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS,
+    faqItems: CULVER_CITY_TEETH_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [...CULVER_CITY_TEETH_WHITENING_SUPPORTING_LINKS, ...defaultNavLinks],
   },
   {
     path: "/zoom-whitening",
     title: getRouteMetadata("/zoom-whitening").title,
     description: getRouteMetadata("/zoom-whitening").description,
-    h1: "Zoom Teeth Whitening in Los Angeles",
-    paragraphs: [
-      "Looking for Zoom whitening in Los Angeles? Our in-office Zoom Teeth Whitening treatment is designed to lift surface stains and brighten natural teeth in about 60–90 minutes.",
-      "Visit Exquisite Dentistry on Wilshire Blvd (near Beverly Hills and West Hollywood) for a shade assessment, comfort-first whitening protocol, and clear aftercare guidance to help results last.",
+    h1: "Zoom Whitening in Los Angeles",
+    paragraphs: [...ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS],
+    sections: [
+      ...ZOOM_WHITENING_HUB_SECTIONS,
+      {
+        id: "references",
+        heading: "References",
+        links: [...ZOOM_WHITENING_REFERENCES]
+      }
     ],
-    links: [
-      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
-      ...defaultNavLinks,
-    ],
+    faqItems: ZOOM_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
+    links: [...ZOOM_WHITENING_SUPPORTING_LINKS, ...defaultNavLinks],
   },
   {
     path: "/dental-implants",
@@ -166,6 +177,7 @@ const manualPages: StaticRoute[] = [
     h1: "Dental Implants in Los Angeles",
     paragraphs: [...DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS],
     sections: DENTAL_IMPLANTS_HUB_SECTIONS,
+    faqItems: DENTAL_IMPLANT_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [
       ...DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS,
       ...defaultNavLinks,
@@ -494,6 +506,29 @@ const renderLinks = (links: StaticLink[]) => {
   </section>`;
 };
 
+const renderFaqSection = (faqItems: Array<{ question: string; answer: string }>) => {
+  const itemsHtml = faqItems
+    .filter((item) => item.question && item.answer)
+    .map(
+      (item) => `
+      <details class="rounded-2xl border border-border bg-muted/30 px-6 py-4">
+        <summary class="cursor-pointer text-lg font-semibold text-foreground">${escapeHtml(
+          item.question,
+        )}</summary>
+        <p class="mt-3 text-lg leading-relaxed text-muted-foreground">${escapeHtml(item.answer)}</p>
+      </details>`,
+    )
+    .join("\n");
+
+  if (!itemsHtml) return "";
+
+  return `
+  <section class="mt-10" id="faqs">
+    <h2 class="text-2xl font-semibold text-foreground mb-4">FAQs</h2>
+    <div class="space-y-4">${itemsHtml}</div>
+  </section>`;
+};
+
 const injectSeo = (template: string, title: string, description: string, routePath: string) => {
   const fullTitle = buildSeoTitle(title);
   const metaDescription = toMeta(description);
@@ -633,9 +668,8 @@ const getSchemasForRoute = (routePath: string) => {
     );
     schemas.push(
       createMedicalProcedureSchema({
-        procedureName: "Zoom Teeth Whitening",
-        description:
-          "In-office Zoom teeth whitening in Los Angeles designed to lift surface stains and brighten natural teeth quickly, with comfort-first care and aftercare guidance.",
+        procedureName: "Zoom Whitening",
+        description: meta.description,
         url: "/zoom-whitening/",
         image: meta.ogImage,
         procedureType: "Cosmetic Dentistry",
@@ -657,7 +691,7 @@ const getSchemasForRoute = (routePath: string) => {
     schemas.push(
       createFAQSchema(
         ZOOM_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
-        "Zoom Teeth Whitening in Los Angeles"
+        "Zoom Whitening in Los Angeles"
       )
     );
   }
@@ -1149,7 +1183,12 @@ const renderRoute = (template: string, route: StaticRoute) => {
         ${linksHtml}
       </section>`;
     })
-    .join("\n");
+	    .join("\n");
+
+  const faqHtml =
+    route.faqItems?.length && route.faqItems.some((item) => item.question && item.answer)
+      ? renderFaqSection(route.faqItems)
+      : "";
 
   const hasLocationSection = (route.sections ?? []).some(
     (section) => section.id === "location",
@@ -1183,15 +1222,16 @@ const renderRoute = (template: string, route: StaticRoute) => {
   const contentHtml = `
 	  <div class="min-h-screen bg-background">
 	    <main class="container mx-auto px-4 py-16">
-	      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
-	        route.h1,
-	      )}</h1>
-	      ${paragraphsHtml}
-	      ${sectionsHtml}
-	      ${visitUsHtml}
-	      ${renderLinks(route.links)}
-	    </main>
-	  </div>`;
+		      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
+		        route.h1,
+		      )}</h1>
+		      ${paragraphsHtml}
+		      ${sectionsHtml}
+		      ${faqHtml}
+		      ${visitUsHtml}
+		      ${renderLinks(route.links)}
+		    </main>
+		  </div>`;
 
   const schemas = getSchemasForRoute(route.path);
   let html = injectSeo(template, route.title, route.description, route.path);

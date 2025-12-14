@@ -5,7 +5,7 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Zap, Clock, Shield, Star, CheckCircle } from 'lucide-react';
+import { Zap, Clock, Shield, Star, CheckCircle, MapPin, Phone } from 'lucide-react';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
@@ -13,11 +13,14 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
-import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { ZOOM_WHITENING_FAQS } from '@/data/zoomWhitening';
-import { ADDRESS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
+import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
+import {
+  ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS,
+  ZOOM_WHITENING_REFERENCES
+} from '@/data/zoom-whitening-hub';
 
 const ZoomWhitening = () => {
   const meta = ROUTE_METADATA['/zoom-whitening'];
@@ -30,7 +33,7 @@ const ZoomWhitening = () => {
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
       title: "Safe & Comfortable",
-      description: "FDA-approved treatment with minimal sensitivity when properly administered"
+      description: "Dentist-supervised protocol with gum protection and comfort-first sensitivity planning"
     },
     {
       icon: <Star className="h-8 w-8 text-secondary" />,
@@ -77,117 +80,150 @@ const ZoomWhitening = () => {
 
   const faqs = ZOOM_WHITENING_FAQS;
 
-  return (
-    <>
-      <MasterStructuredData 
-        includeBusiness={true}
-        includeDoctor={true}
-        includeWebsite={true}
-        additionalSchemas={[{
-          '@context': 'https://schema.org',
-          '@type': 'MedicalProcedure',
-          name: 'Zoom Teeth Whitening',
-          description: 'Professional in-office Zoom teeth whitening in Los Angeles for fast, noticeable stain reduction in one visit.',
-          url: getCanonicalUrl('/zoom-whitening'),
-          category: 'Cosmetic Dentistry',
-          bodyLocation: {
-            '@type': 'BodySystem',
-            name: 'Oral and Dental System'
-          },
-          provider: {
-            '@id': 'https://exquisitedentistryla.com/#business'
-          },
-          performer: {
-            '@id': 'https://exquisitedentistryla.com/#doctor'
-          },
-          expectedPrognosis: 'Teeth become 3-8 shades whiter in one appointment'
-        }]}
-      />
-      <PageSEO
-        title={meta.title}
-        description={meta.description}
+	  return (
+	    <>
+	      <MasterStructuredData 
+	        includeBusiness={true}
+	        includeDoctor={true}
+	        includeWebsite={true}
+	      />
+	      <PageSEO
+	        title={meta.title}
+	        description={meta.description}
         keywords={meta.keywords}
         path="/zoom-whitening"
         ogImage={meta.ogImage}
-      />
+	      />
 
-      <WebPageStructuredData 
-        title="Zoom Teeth Whitening Los Angeles"
-        description="Get dramatically whiter teeth in just one visit with professional Zoom whitening in Los Angeles. Safe, effective, and immediate results."
-        url="https://exquisitedentistryla.com/zoom-whitening"
-        breadcrumbs={[
-          { name: "Services", url: "https://exquisitedentistryla.com/services" },
-          { name: "Teeth Whitening", url: "https://exquisitedentistryla.com/teeth-whitening" },
-          { name: "Zoom Whitening", url: "https://exquisitedentistryla.com/zoom-whitening" }
-        ]}
-      />
+	      <WebPageStructuredData 
+	        title="Zoom Whitening Los Angeles"
+	        description={meta.description}
+	        url="https://exquisitedentistryla.com/zoom-whitening"
+	        breadcrumbs={[
+	          { name: "Services", url: "https://exquisitedentistryla.com/services/" },
+	          { name: "Teeth Whitening", url: "https://exquisitedentistryla.com/teeth-whitening/" },
+	          { name: "Zoom Whitening", url: "https://exquisitedentistryla.com/zoom-whitening/" }
+	        ]}
+	      />
 
-      <ServiceStructuredData 
-        serviceName="Zoom Teeth Whitening"
-        description="Professional teeth whitening treatment that delivers dramatic results in just one office visit, removing years of stains and discoloration."
-        url="/zoom-whitening"
-        priceRange="$$-$$$"
-      />
+	      <ServiceStructuredData 
+	        serviceName="Zoom Whitening Los Angeles"
+	        description={meta.description}
+	        url="https://exquisitedentistryla.com/zoom-whitening"
+	        category="Cosmetic Dentistry"
+	      />
 
-      <FAQStructuredData 
-        faqs={faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} 
-        about="Zoom Teeth Whitening Services" 
-      />
+	      <FAQStructuredData 
+	        faqs={faqs} 
+	        about="Zoom Whitening Los Angeles" 
+	      />
 
-        <div className="min-h-screen bg-background">
-          {/* Hero Section */}
-          <VideoHero 
-          title="Zoom Teeth Whitening in Los Angeles"
-          subtitle="Fast, in-office whitening designed to lift stains and brighten your smile in about one visit at our Wilshire Blvd dental studio."
-          primaryCta={{
-            text: "Book a Zoom Whitening Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
-          }}
-          height="medium"
-        />
+	        <div className="min-h-screen bg-background">
+	          {/* Hero Section */}
+	          <VideoHero
+	            title="Zoom Whitening in Los Angeles"
+	            subtitle="Fast, in-office teeth whitening designed to lift stains and brighten your smile in about one visit at our Wilshire Blvd dental studio."
+	            primaryCta={{
+	              text: "Book a Zoom Whitening Appointment",
+	              href: SCHEDULING_URL,
+	              target: "_blank",
+	              rel: "noopener noreferrer"
+	            }}
+	            height="medium"
+	            preferStaticOnMobile={true}
+	          />
 
         {/* Introduction */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Brighten Your Smile Today
-              </h2>
-              <p className="text-sm text-muted-foreground mb-4">
-                Reviewed by{' '}
-                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil, DDS
+	              <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
+	              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+	                Zoom Whitening Los Angeles: What to Expect
+	              </h2>
+	              <p className="text-sm text-muted-foreground mb-4">
+	                Reviewed by{' '}
+	                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+	                  Dr. Alexie Aguil, DDS
                 </Link>{' '}
                 ·{' '}
                 <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
-                  Editorial policy
-                </Link>
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Zoom teeth whitening in Los Angeles is an in-office treatment designed to lift surface stains and brighten natural teeth quickly—often in about 60–90 minutes.
-                We personalize each session for your enamel and sensitivity levels, so you can leave with a noticeably brighter shade and a plan to maintain it.
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 text-left">
-                <Card className="border border-border/60 shadow-sm">
-                  <CardContent className="p-6 space-y-2">
-                    <h3 className="text-lg font-semibold text-foreground">Visit Our Los Angeles Office</h3>
-                    <p className="text-sm text-muted-foreground">{ADDRESS}</p>
-                    <p className="text-sm text-muted-foreground">
-                      Call{' '}
-                      <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
-                        {PHONE_NUMBER_DISPLAY}
-                      </a>{' '}
-                      or{' '}
-                      <Link to="/contact" className="text-secondary underline-offset-4 hover:underline">
-                        request an appointment
-                      </Link>
-                      .
-                    </p>
-                  </CardContent>
-                </Card>
+	                  Editorial policy
+	                </Link>
+	              </p>
+	              {ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS.map((paragraph) => (
+	                <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
+	                  {paragraph}
+	                </p>
+	              ))}
+
+	              <nav
+	                aria-label="On this page"
+	                className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border bg-muted/30 p-6 text-left"
+	              >
+	                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">On this page</p>
+	                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#benefits">
+	                      Benefits
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#process">
+	                      Process
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#sensitivity">
+	                      Sensitivity
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#cost">
+	                      Cost
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#aftercare">
+	                      Aftercare
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#location">
+	                      Location & hours
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#faqs">
+	                      FAQs
+	                    </a>
+	                  </li>
+	                  <li>
+	                    <a className="text-primary underline-offset-4 hover:underline" href="#references">
+	                      References
+	                    </a>
+	                  </li>
+	                </ul>
+	              </nav>
+
+	              <div className="mt-10 grid gap-4 sm:grid-cols-2 text-left">
+	                <Card className="border border-border/60 shadow-sm">
+	                  <CardContent className="p-6 space-y-2">
+	                    <h3 className="text-lg font-semibold text-foreground">Visit Our Los Angeles Office</h3>
+	                    <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+	                    <p className="text-sm text-muted-foreground">
+	                      Call{' '}
+	                      <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
+	                        {PHONE_NUMBER_DISPLAY}
+	                      </a>{' '}
+	                      ·{' '}
+	                      <a className="text-secondary underline-offset-4 hover:underline" href="#location">
+	                        directions and hours
+	                      </a>
+	                      .
+	                    </p>
+	                  </CardContent>
+	                </Card>
                 <Card className="border border-border/60 shadow-sm">
                   <CardContent className="p-6 space-y-2">
                     <h3 className="text-lg font-semibold text-foreground">Not Sure Which Whitening Option?</h3>
@@ -198,13 +234,13 @@ const ZoomWhitening = () => {
                       </Link>
                       .
                     </p>
-                    <p className="text-sm text-muted-foreground">
-                      Coming from Culver City? Start here:{' '}
-                      <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
-                        teeth whitening near Culver City
-                      </Link>
-                      .
-                    </p>
+	                    <p className="text-sm text-muted-foreground">
+	                      Coming from Culver City? Start here:{' '}
+	                      <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+	                        Culver City teeth whitening
+	                      </Link>
+	                      .
+	                    </p>
                     <p className="text-sm text-muted-foreground">
                       Coming from Beverly Hills? Start here:{' '}
                       <Link to="/teeth-whitening-beverly-hills" className="text-secondary underline-offset-4 hover:underline">
@@ -220,15 +256,15 @@ const ZoomWhitening = () => {
               </div>
             </div>
           </div>
-        </section>
+	        </section>
 
-        {/* Benefits Grid */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Why Choose Zoom Whitening?
-              </h2>
+	        {/* Benefits Grid */}
+	        <section id="benefits" className="py-16 bg-muted/30">
+	          <div className="container mx-auto px-4">
+	            <div className="text-center mb-12">
+	              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+	                Why Choose Zoom Whitening?
+	              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Experience the gold standard in professional teeth whitening
               </p>
@@ -252,7 +288,7 @@ const ZoomWhitening = () => {
               ))}
             </div>
           </div>
-        </section>
+	        </section>
 
         {/* What to Expect */}
         <section className="py-16 bg-background">
@@ -282,13 +318,13 @@ const ZoomWhitening = () => {
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                The Zoom Whitening Process
-              </h2>
+	        {/* Process Section */}
+	        <section id="process" className="py-16 bg-muted/30">
+	          <div className="container mx-auto px-4">
+	            <div className="text-center mb-12">
+	              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+	                The Zoom Whitening Process
+	              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 A comfortable, professional experience from start to finish
               </p>
@@ -316,15 +352,214 @@ const ZoomWhitening = () => {
               </div>
             </div>
           </div>
-        </section>
+		        </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Frequently Asked Questions
-              </h2>
+		        <section id="sensitivity" className="py-16 bg-background">
+		          <div className="container mx-auto px-4">
+		            <div className="max-w-5xl mx-auto">
+		              <div className="text-center mb-12">
+		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+		                  Sensitivity & Comfort Protocol
+		                </h2>
+		                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+		                  Zoom whitening in Los Angeles can cause temporary sensitivity, especially if you’ve had sensitivity in the past.
+		                  We tailor gel cycles and aftercare so you can whiten predictably and comfortably.
+		                </p>
+		              </div>
+
+		              <div className="grid gap-6 md:grid-cols-2">
+		                <Card className="border border-border/60 bg-white shadow-sm">
+		                  <CardHeader>
+		                    <CardTitle className="text-xl text-foreground">Comfort-first adjustments</CardTitle>
+		                  </CardHeader>
+		                  <CardContent className="text-muted-foreground leading-relaxed">
+		                    <ul className="list-disc pl-5 space-y-2">
+		                      <li>Review sensitivity history and enamel condition before starting</li>
+		                      <li>Timed gel cycles with monitoring and on-the-fly comfort adjustments</li>
+		                      <li>Desensitizing options and clear 24–48 hour aftercare guidance</li>
+		                    </ul>
+		                  </CardContent>
+		                </Card>
+		                <Card className="border border-border/60 bg-white shadow-sm">
+		                  <CardHeader>
+		                    <CardTitle className="text-xl text-foreground">If you have sensitive teeth</CardTitle>
+		                  </CardHeader>
+		                  <CardContent className="text-muted-foreground leading-relaxed space-y-4">
+		                    <p>
+		                      If sensitivity is a big concern, we can recommend a slower plan with custom take-home trays or a hybrid approach.
+		                      The goal is a bright, natural shade that still feels comfortable day to day.
+		                    </p>
+		                    <div className="flex flex-col gap-3 sm:flex-row">
+		                      <Button variant="outline" asChild>
+		                        <Link to="/teeth-whitening">Compare whitening options</Link>
+		                      </Button>
+		                      <Button asChild>
+		                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+		                          Book a consultation
+		                        </a>
+		                      </Button>
+		                    </div>
+		                  </CardContent>
+		                </Card>
+		              </div>
+		            </div>
+		          </div>
+		        </section>
+
+		        <section id="cost" className="py-16 bg-muted/20">
+		          <div className="container mx-auto px-4">
+		            <div className="max-w-5xl mx-auto">
+		              <div className="text-center mb-12">
+		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+		                  Zoom Whitening Cost in Los Angeles
+		                </h2>
+		                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+		                  Pricing depends on your starting shade, sensitivity history, and whether take-home boosters are included. We’ll confirm candidacy first and share a clear estimate.
+		                </p>
+		              </div>
+
+		              <Card className="border border-border/60 bg-white shadow-sm">
+		                <CardContent className="p-8 space-y-4">
+		                  <ul className="list-disc pl-5 space-y-2 text-muted-foreground leading-relaxed">
+		                    <li>In-office Zoom whitening typically starts around $595 (confirm after your exam and shade check)</li>
+		                    <li>Existing veneers, crowns, or bonding may require shade matching to keep results consistent</li>
+		                    <li>Maintenance items (touch-up gel or trays) can extend longevity for coffee/tea/wine habits</li>
+		                  </ul>
+		                  <div className="flex flex-col gap-3 sm:flex-row">
+		                    <Button asChild>
+		                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+		                        Book online
+		                      </a>
+		                    </Button>
+		                    <Button variant="outline" asChild>
+		                      <Link to="/teeth-whitening">Compare programs</Link>
+		                    </Button>
+		                  </div>
+		                </CardContent>
+		              </Card>
+		            </div>
+		          </div>
+		        </section>
+
+		        <section id="aftercare" className="py-16 bg-background">
+		          <div className="container mx-auto px-4">
+		            <div className="max-w-5xl mx-auto">
+		              <div className="text-center mb-12">
+		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+		                  Aftercare & How Long Results Last
+		                </h2>
+		                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+		                  Results commonly last months to a couple of years depending on diet, habits, and home care. The first 24–48 hours are the most important for protecting your new shade.
+		                </p>
+		              </div>
+
+		              <div className="grid gap-6 md:grid-cols-2">
+		                <Card className="border border-border/60 bg-white shadow-sm">
+		                  <CardHeader>
+		                    <CardTitle className="text-xl text-foreground">24–48 hour “white diet”</CardTitle>
+		                  </CardHeader>
+		                  <CardContent className="text-muted-foreground leading-relaxed">
+		                    <ul className="list-disc pl-5 space-y-2">
+		                      <li>Avoid coffee, red wine, tea, berries, and dark sauces</li>
+		                      <li>Choose lighter meals, still water, and non-staining drinks</li>
+		                      <li>Follow sensitivity guidance if teeth feel temporarily “zingy”</li>
+		                    </ul>
+		                  </CardContent>
+		                </Card>
+		                <Card className="border border-border/60 bg-white shadow-sm">
+		                  <CardHeader>
+		                    <CardTitle className="text-xl text-foreground">Maintenance</CardTitle>
+		                  </CardHeader>
+		                  <CardContent className="text-muted-foreground leading-relaxed">
+		                    <ul className="list-disc pl-5 space-y-2">
+		                      <li>Keep up with regular cleanings so surface stains don’t build up</li>
+		                      <li>Use touch-ups when you notice dulling (especially with coffee/tea/wine habits)</li>
+		                      <li>Schedule whitening ahead of events so shade settles naturally</li>
+		                    </ul>
+		                  </CardContent>
+		                </Card>
+		              </div>
+		            </div>
+		          </div>
+		        </section>
+
+		        <section id="location" className="py-16 bg-muted/15">
+		          <div className="container mx-auto px-4">
+		            <div className="max-w-5xl mx-auto">
+		              <div className="text-center mb-12">
+		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+		                  Location, Hours, and Directions
+		                </h2>
+		                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+		                  Visit Exquisite Dentistry on Wilshire Blvd in Los Angeles for Zoom whitening and professional stain reduction with comfort-first care.
+		                </p>
+		              </div>
+
+		              <Card className="border border-border/60 bg-white shadow-sm">
+		                <CardContent className="p-8">
+		                  <div className="grid gap-6 md:grid-cols-3">
+		                    <div className="flex items-start gap-3">
+		                      <MapPin className="mt-1 h-5 w-5 text-secondary" />
+		                      <div>
+		                        <p className="font-semibold text-foreground">Address</p>
+		                        <p className="text-muted-foreground">{ADDRESS}</p>
+		                      </div>
+		                    </div>
+		                    <div className="flex items-start gap-3">
+		                      <Phone className="mt-1 h-5 w-5 text-secondary" />
+		                      <div>
+		                        <p className="font-semibold text-foreground">Phone</p>
+		                        <a
+		                          href={`tel:${PHONE_NUMBER_E164}`}
+		                          className="text-muted-foreground underline-offset-4 hover:underline"
+		                        >
+		                          {PHONE_NUMBER_DISPLAY}
+		                        </a>
+		                      </div>
+		                    </div>
+		                    <div className="flex items-start gap-3">
+		                      <Clock className="mt-1 h-5 w-5 text-secondary" />
+		                      <div>
+		                        <p className="font-semibold text-foreground">Hours</p>
+		                        <div className="space-y-1 text-muted-foreground">
+		                          {BUSINESS_HOURS.map(({ label, value }) => (
+		                            <p key={label}>
+		                              <span className="font-medium">{label}:</span> {value}
+		                            </p>
+		                          ))}
+		                        </div>
+		                      </div>
+		                    </div>
+		                  </div>
+
+		                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+		                    <Button variant="outline" asChild>
+		                      <a href={GOOGLE_MAPS_SHORT_URL} target="_blank" rel="noopener noreferrer">
+		                        Get directions
+		                      </a>
+		                    </Button>
+		                    <Button variant="outline" asChild>
+		                      <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>
+		                    </Button>
+		                    <Button asChild>
+		                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+		                        Book online
+		                      </a>
+		                    </Button>
+		                  </div>
+		                </CardContent>
+		              </Card>
+		            </div>
+		          </div>
+		        </section>
+
+		        {/* FAQ Section */}
+		        <section id="faqs" className="py-16 bg-background">
+		          <div className="container mx-auto px-4">
+		            <div className="text-center mb-12">
+	              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+	                Frequently Asked Questions
+	              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Answers for Zoom whitening in Los Angeles
               </p>
@@ -344,13 +579,37 @@ const ZoomWhitening = () => {
                 ))}
               </Accordion>
             </div>
-          </div>
-        </section>
+	          </div>
+	        </section>
 
-        {/* Related Articles Section */}
-        <RelatedArticles
-          tags={['whitening', 'zoom', 'teeth whitening', 'bright']}
-          title="Whitening Articles & Tips"
+	        <section id="references" className="py-16 bg-muted/20">
+	          <div className="container mx-auto px-4">
+	            <div className="max-w-4xl mx-auto">
+	              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
+	                References
+	              </h2>
+	              <div className="space-y-3 text-muted-foreground">
+	                {ZOOM_WHITENING_REFERENCES.map((reference) => (
+	                  <p key={reference.href}>
+	                    <a
+	                      className="text-secondary underline-offset-4 hover:underline"
+	                      href={reference.href}
+	                      target="_blank"
+	                      rel="noopener noreferrer"
+	                    >
+	                      {reference.label}
+	                    </a>
+	                  </p>
+	                ))}
+	              </div>
+	            </div>
+	          </div>
+	        </section>
+
+	        {/* Related Articles Section */}
+	        <RelatedArticles
+	          tags={['whitening', 'zoom', 'teeth whitening', 'bright']}
+	          title="Whitening Articles & Tips"
           subtitle="Expert advice on achieving and maintaining your brightest smile"
         />
 
