@@ -4,46 +4,25 @@ import PageSEO from "@/components/seo/PageSEO";
 import MasterStructuredData from "@/components/seo/MasterStructuredData";
 import FAQStructuredData from "@/components/seo/FAQStructuredData";
 import WebPageStructuredData from "@/components/WebPageStructuredData";
+import ServiceStructuredData from "@/components/ServiceStructuredData";
 import VideoHero from "@/components/VideoHero";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
-import { SCHEDULING_URL } from "@/constants/urls";
-import { getCanonicalUrl } from "@/utils/schemaValidation";
-import { ADDRESS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
-import { Clock, MapPin, Sparkles, Shield } from "lucide-react";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
+import { Clock, MapPin, Phone, Sparkles, Shield } from "lucide-react";
+import { CULVER_CITY_TEETH_WHITENING_FAQS } from "@/data/culver-city-teeth-whitening-faqs";
+import {
+  CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS,
+  CULVER_CITY_TEETH_WHITENING_REFERENCES
+} from "@/data/culver-city-teeth-whitening-hub";
 
 const CulverCityTeethWhitening = () => {
   const meta = ROUTE_METADATA["/culver-city-teeth-whitening"];
-
-  const faqs = [
-    {
-      question: "Do you offer teeth whitening for Culver City patients?",
-      answer:
-        "Yes. Many patients visit us from Culver City for in-office whitening and custom take-home whitening. Our studio is on Wilshire Blvd in Los Angeles, and we tailor each plan to sensitivity, restorations, and your timeline.",
-    },
-    {
-      question: "How long does in-office whitening take?",
-      answer:
-        "Most in-office whitening visits take about 60–90 minutes. We start with a shade assessment and comfort steps, then complete timed gel cycles with careful monitoring.",
-    },
-    {
-      question: "Will whitening work if I have veneers or crowns?",
-      answer:
-        "Whitening gels brighten natural enamel but do not change the shade of porcelain or composite restorations. If you have veneers, bonding, or crowns in the smile zone, we’ll plan your whitening and shade-matching so everything looks consistent.",
-    },
-    {
-      question: "How do you reduce sensitivity?",
-      answer:
-        "We use a comfort-first protocol: shorter gel cycles when needed, desensitizing options, and clear aftercare instructions. If you’re prone to sensitivity, we can recommend a gradual plan using custom take-home trays.",
-    },
-    {
-      question: "How long do whitening results last?",
-      answer:
-        "Results vary based on diet and habits, but many patients maintain brightness with periodic touch-ups. We’ll recommend a maintenance schedule based on coffee, tea, wine, and lifestyle factors.",
-    },
-  ];
+  const faqs = CULVER_CITY_TEETH_WHITENING_FAQS;
 
   return (
     <>
@@ -51,20 +30,6 @@ const CulverCityTeethWhitening = () => {
         includeBusiness={true}
         includeDoctor={true}
         includeWebsite={true}
-        additionalSchemas={[
-          {
-            "@context": "https://schema.org",
-            "@type": "MedicalProcedure",
-            name: "Professional Teeth Whitening",
-            description:
-              "Professional teeth whitening near Culver City with in-office treatments and custom take-home options, planned for comfort and enamel health.",
-            url: getCanonicalUrl("/culver-city-teeth-whitening"),
-            category: "Cosmetic Dentistry",
-            provider: { "@id": "https://exquisitedentistryla.com/#business" },
-            performer: { "@id": "https://exquisitedentistryla.com/#doctor" },
-            bodyLocation: "Teeth",
-          },
-        ]}
       />
 
       <PageSEO
@@ -76,22 +41,29 @@ const CulverCityTeethWhitening = () => {
       />
 
       <WebPageStructuredData
-        title="Teeth Whitening Near Culver City"
-        description="Explore professional teeth whitening options near Culver City, including in-office whitening and custom take-home trays designed for sensitive teeth."
+        title="Culver City Teeth Whitening"
+        description={meta.description}
         url="https://exquisitedentistryla.com/culver-city-teeth-whitening"
         breadcrumbs={[
           { name: "Services", url: "https://exquisitedentistryla.com/services/" },
           { name: "Teeth Whitening", url: "https://exquisitedentistryla.com/teeth-whitening/" },
-          { name: "Culver City", url: "https://exquisitedentistryla.com/culver-city-teeth-whitening/" },
+          { name: "Culver City Teeth Whitening", url: "https://exquisitedentistryla.com/culver-city-teeth-whitening/" },
         ]}
       />
 
-      <FAQStructuredData faqs={faqs} about="Teeth Whitening Near Culver City" />
+      <ServiceStructuredData
+        serviceName="Culver City Teeth Whitening"
+        description={meta.description}
+        url="https://exquisitedentistryla.com/culver-city-teeth-whitening"
+        category="Cosmetic Dentistry"
+      />
+
+      <FAQStructuredData faqs={faqs} about="Culver City Teeth Whitening" />
 
       <div className="min-h-screen bg-background">
         <VideoHero
-          title="Teeth Whitening Near Culver City"
-          subtitle="In-office whitening and custom take-home options—planned for comfort and a natural-looking shade."
+          title="Culver City Teeth Whitening"
+          subtitle="In-office whitening and custom take-home trays—comfort-first care designed for a natural-looking shade, a short drive from Culver City."
           primaryCta={{
             text: "Book a Whitening Consultation",
             href: SCHEDULING_URL,
@@ -99,6 +71,7 @@ const CulverCityTeethWhitening = () => {
             rel: "noopener noreferrer",
           }}
           height="medium"
+          preferStaticOnMobile={true}
         />
 
         <section className="py-16 bg-background">
@@ -107,17 +80,73 @@ const CulverCityTeethWhitening = () => {
               <span className="uppercase tracking-[0.35em] text-secondary font-semibold">
                 Serving Culver City Patients
               </span>
-              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
-                Teeth Whitening Near Culver City
-              </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                If you’re searching for teeth whitening in Culver City, you don’t need to compromise on comfort or predictability.
-                Our Wilshire Blvd dental studio is a straightforward drive from Culver City, and we personalize whitening around sensitivity, existing dental work, and your calendar.
+              <h2 id="overview" className="mt-6 text-3xl md:text-4xl font-bold text-foreground">
+                Professional teeth whitening planned for Culver City schedules
+              </h2>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Clinically reviewed by{" "}
+                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+                  Dr. Alexie Aguil, DDS
+                </Link>{" "}
+                ·{" "}
+                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
+                  Editorial policy
+                </Link>
               </p>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Choose an in-office whitening visit for a fast refresh, custom take-home trays for gradual brightening, or a hybrid plan that keeps results consistent for photos, presentations, and events.
-                You’ll leave with clear aftercare guidance and a maintenance roadmap so your smile stays bright.
-              </p>
+              {CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS.map((paragraph) => (
+                <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+
+              <nav
+                aria-label="On this page"
+                className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border bg-muted/30 p-6 text-left"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">On this page</p>
+                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#options">
+                      Whitening options
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#sensitivity">
+                      Sensitivity protocol
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#restorations">
+                      Veneers & crowns
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#maintenance">
+                      Maintenance
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#visit">
+                      Plan the visit
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#location">
+                      Location & hours
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#faqs">
+                      FAQs
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#references">
+                      References
+                    </a>
+                  </li>
+                </ul>
+              </nav>
 
               <div className="mt-10 grid gap-4 md:grid-cols-2 text-left">
                 <Card className="border border-border/60 shadow-sm">
@@ -133,9 +162,9 @@ const CulverCityTeethWhitening = () => {
                         {PHONE_NUMBER_DISPLAY}
                       </a>
                       {" · "}
-                      <Link to="/contact" className="text-secondary underline-offset-4 hover:underline">
+                      <a href="#location" className="text-secondary underline-offset-4 hover:underline">
                         directions and hours
-                      </Link>
+                      </a>
                       .
                     </p>
                   </CardContent>
@@ -148,7 +177,7 @@ const CulverCityTeethWhitening = () => {
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Most in-office whitening appointments take about 60–90 minutes. If you’re coming from Culver City,
-                      we can recommend appointment timing that fits commute patterns.
+                      we can recommend appointment timing that fits your schedule.
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
@@ -171,12 +200,11 @@ const CulverCityTeethWhitening = () => {
                 </Link>
                 .
               </p>
-              <LastUpdated date="December 12, 2025" />
             </div>
           </div>
         </section>
 
-        <section className="py-16 bg-muted/30">
+        <section id="options" className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
@@ -217,11 +245,244 @@ const CulverCityTeethWhitening = () => {
                   </CardContent>
                 </Card>
               </div>
+              <p className="mt-10 text-center text-sm text-muted-foreground">
+                Not sure which option fits best? Start with the{" "}
+                <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                  teeth whitening overview
+                </Link>{" "}
+                and we’ll tailor the plan to sensitivity and existing dental work.
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="py-16 bg-background">
+        <section id="sensitivity" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+                Sensitivity & Comfort Protocol
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardContent className="p-6 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Whitening can cause temporary sensitivity, especially if you’ve experienced cold triggers or past whitening discomfort.
+                      We plan gel strength, cycle timing, and aftercare to keep the experience predictable.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                      <li>Review sensitivity history and enamel condition</li>
+                      <li>Timed gel cycles with comfort-first adjustments</li>
+                      <li>Desensitizing options and 24–48 hour aftercare guidance</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardContent className="p-6 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      If you’re prone to sensitivity, custom take-home trays let you brighten gradually while controlling the pace.
+                      We’ll recommend the option that matches your comfort threshold and timeline.
+                    </p>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <Button variant="outline" asChild>
+                        <Link to="/teeth-whitening">Compare programs</Link>
+                      </Button>
+                      <Button asChild>
+                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                          Book a consultation
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="restorations" className="py-16 bg-muted/15">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+                Whitening with Veneers, Crowns, or Bonding
+              </h2>
+              <Card className="border border-border/60 bg-white shadow-sm">
+                <CardContent className="p-8 space-y-4">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Whitening gels brighten natural enamel, but they don’t change the shade of porcelain or composite restorations. If you have veneers, crowns,
+                    or bonding that show when you smile, we’ll plan the target shade so everything looks consistent.
+                  </p>
+                  <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                    <li>Identify which restorations are in the smile zone</li>
+                    <li>Set a realistic target shade for natural teeth</li>
+                    <li>Discuss sequencing if replacements are needed for a match</li>
+                  </ul>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <Button variant="outline" asChild>
+                      <Link to="/veneers">Explore veneers</Link>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <Link to="/cosmetic-dentistry">Cosmetic dentistry</Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="maintenance" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+                How Long Results Last & Maintenance
+              </h2>
+              <div className="grid gap-6 md:grid-cols-3">
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardHeader className="space-y-2">
+                    <CardTitle className="text-lg text-foreground">Longevity</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                    Whitening longevity varies by diet and habits. Many patients refresh in-office whitening about every 12–18 months depending on stain exposure.
+                  </CardContent>
+                </Card>
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardHeader className="space-y-2">
+                    <CardTitle className="text-lg text-foreground">Touch-ups</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                    Custom trays make it easy to do shorter touch-ups when you notice dulling, especially if coffee, tea, or wine are part of your routine.
+                  </CardContent>
+                </Card>
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardHeader className="space-y-2">
+                    <CardTitle className="text-lg text-foreground">Consistency</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                    We’ll recommend an aftercare plan that fits real schedules so your shade stays consistent for headshots, meetings, and events.
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="visit" className="py-16 bg-muted/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-8">
+                Plan the Visit from Culver City
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardContent className="p-8 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Most in-office whitening visits take about 60–90 minutes. If you’re working around a deadline, we’ll help you choose the option that fits your
+                      timeline and comfort level.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Validated parking is available in our building, and ride-share drop-offs are easy. If you’re unsure what to book, start with a consult — we’ll
+                      confirm the best approach for enamel and restorations.
+                    </p>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <Button asChild>
+                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                          Book online
+                        </a>
+                      </Button>
+                      <Button variant="outline" asChild>
+                        <Link to="/contact">Directions & parking</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="border border-border/60 bg-white shadow-sm">
+                  <CardContent className="p-8 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      Want a faster in-office option? Learn about{" "}
+                      <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
+                        Zoom Teeth Whitening in Los Angeles
+                      </Link>{" "}
+                      and how we personalize the session for sensitivity.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Looking for broader care? Explore our{" "}
+                      <Link to="/culver-city-dentist" className="text-secondary underline-offset-4 hover:underline">
+                        Culver City dentist page
+                      </Link>{" "}
+                      for preventive and cosmetic options patients travel in for.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="location" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
+                Location, Hours, and Directions
+              </h2>
+              <Card className="border border-border/60 bg-white shadow-sm">
+                <CardContent className="p-8">
+                  <div className="grid gap-6 md:grid-cols-3">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="mt-1 h-5 w-5 text-secondary" />
+                      <div>
+                        <p className="font-semibold text-foreground">Address</p>
+                        <p className="text-muted-foreground">{ADDRESS}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Phone className="mt-1 h-5 w-5 text-secondary" />
+                      <div>
+                        <p className="font-semibold text-foreground">Phone</p>
+                        <a
+                          href={`tel:${PHONE_NUMBER_E164}`}
+                          className="text-muted-foreground underline-offset-4 hover:underline"
+                        >
+                          {PHONE_NUMBER_DISPLAY}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Clock className="mt-1 h-5 w-5 text-secondary" />
+                      <div>
+                        <p className="font-semibold text-foreground">Hours</p>
+                        <div className="space-y-1 text-muted-foreground">
+                          {BUSINESS_HOURS.map(({ label, value }) => (
+                            <p key={label}>
+                              <span className="font-medium">{label}:</span> {value}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Button variant="outline" asChild>
+                      <a href={GOOGLE_MAPS_SHORT_URL} target="_blank" rel="noopener noreferrer">
+                        Get directions
+                      </a>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>
+                    </Button>
+                    <Button asChild>
+                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                        Book online
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="faqs" className="py-16 bg-muted/10">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
@@ -242,6 +503,37 @@ const CulverCityTeethWhitening = () => {
                 </Link>{" "}
                 for more services patients travel in for.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="references" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
+                References
+              </h2>
+              <div className="space-y-3 text-muted-foreground">
+                {CULVER_CITY_TEETH_WHITENING_REFERENCES.map((reference) => (
+                  <p key={reference.href}>
+                    <a
+                      className="text-secondary underline-offset-4 hover:underline"
+                      href={reference.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {reference.label}
+                    </a>
+                  </p>
+                ))}
+              </div>
+              <InternalLinkingWidget
+                context="whitening"
+                variant="expanded"
+                currentPage="/culver-city-teeth-whitening"
+                title="Explore more whitening resources"
+              />
+              <LastUpdated date="December 2025" className="text-center" />
             </div>
           </div>
         </section>

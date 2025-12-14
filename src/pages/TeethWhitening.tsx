@@ -237,27 +237,43 @@ const TeethWhitening = () => {
                 If you have veneers, implants, or composite bonding, we calibrate whitening so natural teeth harmonize beautifully with existing dentistry.
                 Our team also offers executive lunchtime whitening sessions and post-pilates appointments to seamlessly integrate into your routine.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Pair whitening with <Link to="/veneers-los-angeles" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or <Link to="/cosmetic-dentistry" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plans</Link>
-                to unlock your ideal smile transformation.
-              </p>
-              <div className="mt-10 rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
-                <h3 className="text-2xl font-semibold text-foreground">Teeth whitening near Beverly Hills</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">
-                  Coming from Beverly Hills? See whitening options designed around Beverly Hills schedules, including in-office whitening, custom trays, and shade planning for existing restorations.
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <Button variant="outline" asChild>
-                    <Link to="/teeth-whitening-beverly-hills">Beverly Hills Whitening Guide</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+	              <p className="text-lg text-muted-foreground leading-relaxed">
+	                Pair whitening with <Link to="/veneers-los-angeles" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or <Link to="/cosmetic-dentistry" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plans</Link>
+	                to unlock your ideal smile transformation.
+	              </p>
+	              <div className="mt-10 grid gap-6 md:grid-cols-2">
+	                <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
+	                  <h3 className="text-2xl font-semibold text-foreground">Teeth whitening near Beverly Hills</h3>
+	                  <p className="mt-3 text-muted-foreground leading-relaxed">
+	                    Coming from Beverly Hills? See whitening options designed around Beverly Hills schedules, including in-office whitening, custom trays, and shade planning for existing restorations.
+	                  </p>
+	                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+	                    <Button variant="outline" asChild>
+	                      <Link to="/teeth-whitening-beverly-hills">Beverly Hills Whitening Guide</Link>
+	                    </Button>
+	                    <Button variant="outline" asChild>
+	                      <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>
+	                    </Button>
+	                  </div>
+	                </div>
+	                <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
+	                  <h3 className="text-2xl font-semibold text-foreground">Culver City teeth whitening</h3>
+	                  <p className="mt-3 text-muted-foreground leading-relaxed">
+	                    Coming from Culver City? Compare in-office whitening, custom take-home trays, and sensitivity planning designed for busy Culver City schedules.
+	                  </p>
+	                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+	                    <Button variant="outline" asChild>
+	                      <Link to="/culver-city-teeth-whitening">Culver City Whitening Guide</Link>
+	                    </Button>
+	                    <Button variant="outline" asChild>
+	                      <Link to="/culver-city-dentist">Culver City Dentist Page</Link>
+	                    </Button>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </section>
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">

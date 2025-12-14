@@ -240,25 +240,32 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
+            title: 'Culver City Teeth Whitening',
+            href: '/culver-city-teeth-whitening',
+            description: 'Options for Culver City patients: in-office whitening, trays, and sensitivity planning',
+            category: 'service',
+            priority: 4
+          },
+          {
             title: 'Smile Makeover (Los Angeles)',
             href: '/smile-makeover-los-angeles',
             description: 'Combine whitening with veneers and alignment for a full upgrade',
             category: 'service',
-            priority: 4
+            priority: 5
           },
           {
             title: 'Veneers vs Whitening',
             href: '/veneers',
             description: 'Compare whitening with veneer options',
             category: 'service',
-            priority: 5
+            priority: 6
           },
           {
             title: 'Wedding Whitening',
             href: '/wedding',
             description: 'Brighten your smile for your wedding day',
             category: 'special',
-            priority: 7,
+            priority: 9,
             seasonal: true
           },
           {
@@ -266,7 +273,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             href: '/client-experience',
             description: 'Comfortable whitening experience',
             category: 'experience',
-            priority: 6
+            priority: 7
           }
         ];
 

@@ -20,6 +20,11 @@ import {
   DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS
 } from "../src/data/dental-implants-hub";
 import {
+  CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS,
+  CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS,
+  CULVER_CITY_TEETH_WHITENING_SUPPORTING_LINKS
+} from "../src/data/culver-city-teeth-whitening-hub";
+import {
   ADDRESS,
   BUSINESS_HOURS,
   PHONE_NUMBER_DISPLAY,
@@ -30,6 +35,7 @@ import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
+import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 
 type StaticLink = { label: string; href: string };
 type StaticRouteSection = {
@@ -134,17 +140,10 @@ const manualPages: StaticRoute[] = [
     path: "/culver-city-teeth-whitening",
     title: getRouteMetadata("/culver-city-teeth-whitening").title,
     description: getRouteMetadata("/culver-city-teeth-whitening").description,
-    h1: "Teeth Whitening Near Culver City",
-    paragraphs: [
-      "Searching for teeth whitening in Culver City? Many patients visit our Wilshire Blvd dental studio for in-office whitening and custom take-home options planned for comfort and enamel health.",
-      "Compare fast in-office whitening to gradual tray-based brightening, get guidance for sensitivity and existing dental work, and leave with a maintenance plan that fits your schedule.",
-    ],
-    links: [
-      { label: "Compare Teeth Whitening Options", href: "/teeth-whitening" },
-      { label: "Zoom Whitening", href: "/zoom-whitening" },
-      { label: "Culver City Dentist", href: "/culver-city-dentist" },
-      ...defaultNavLinks,
-    ],
+    h1: "Culver City Teeth Whitening",
+    paragraphs: [...CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS],
+    sections: CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS,
+    links: [...CULVER_CITY_TEETH_WHITENING_SUPPORTING_LINKS, ...defaultNavLinks],
   },
   {
     path: "/zoom-whitening",
@@ -684,8 +683,7 @@ const getSchemasForRoute = (routePath: string) => {
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Professional Teeth Whitening",
-        description:
-          "Professional teeth whitening near Culver City with in-office whitening and custom take-home options planned for comfort and enamel health.",
+        description: meta.description,
         url: "/culver-city-teeth-whitening/",
         image: meta.ogImage,
         procedureType: "Cosmetic Dentistry",
@@ -706,29 +704,11 @@ const getSchemasForRoute = (routePath: string) => {
     );
     schemas.push(
       createFAQSchema(
-        [
-          {
-            question: "Do you offer teeth whitening for Culver City patients?",
-            answer:
-              "Yes. Many patients visit us from Culver City for in-office whitening and custom take-home whitening. Our studio is on Wilshire Blvd in Los Angeles, and we tailor each plan to sensitivity, restorations, and your timeline."
-          },
-          {
-            question: "How long does in-office whitening take?",
-            answer:
-              "Most in-office whitening visits take about 60–90 minutes. We start with a shade assessment and comfort steps, then complete timed gel cycles with careful monitoring."
-          },
-          {
-            question: "Will whitening work if I have veneers or crowns?",
-            answer:
-              "Whitening gels brighten natural enamel but do not change the shade of porcelain or composite restorations. If you have veneers, bonding, or crowns in the smile zone, we’ll plan your whitening and shade-matching so everything looks consistent."
-          },
-          {
-            question: "How do you reduce sensitivity?",
-            answer:
-              "We use a comfort-first protocol: shorter gel cycles when needed, desensitizing options, and clear aftercare instructions. If you’re prone to sensitivity, we can recommend a gradual plan using custom take-home trays."
-          }
-        ],
-        "Teeth Whitening Near Culver City"
+        CULVER_CITY_TEETH_WHITENING_FAQS.map(({ question, answer }) => ({
+          question,
+          answer
+        })),
+        "Culver City Teeth Whitening"
       )
     );
   }

@@ -85,9 +85,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
   '/culver-city-teeth-whitening': {
-    title: 'Teeth Whitening Near Culver City | Exquisite Dentistry LA',
+    title: 'Culver City Teeth Whitening | Exquisite Dentistry',
     description:
-      'Teeth whitening near Culver City with in-office whitening and custom take-home trays—comfort-first care at our Wilshire Blvd Los Angeles studio.',
+      'Culver City teeth whitening with in-office whitening or custom take-home trays—comfort-first care on Wilshire Blvd in Los Angeles. Book a consultation.',
     keywords:
       'culver city teeth whitening, teeth whitening near culver city, zoom whitening near culver city, professional whitening los angeles',
     ogImage:
