@@ -160,8 +160,6 @@ const Navbar = () => {
     { to: '/faqs', label: 'FAQs' },
     { to: '/contact', label: 'Contact' },
     { to: '/blog', label: 'Blog' },
-    { to: '/west-hollywood-dentist', label: 'West Hollywood Dentist' },
-    { to: '/beverly-hills-dentist', label: 'Beverly Hills Dentist' },
     { to: '/culver-city-dentist', label: 'Culver City Dentist' },
   ];
 
