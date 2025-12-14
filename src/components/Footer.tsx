@@ -29,7 +29,7 @@ import {
   SOCIAL_MEDIA,
   BUSINESS_HOURS
 } from '@/constants/contact';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
 import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
 
 type FooterLink = {
@@ -308,7 +308,7 @@ const Footer = () => {
                   <p className="text-sm font-semibold">Exquisite Dentistry</p>
                   <a
                     href={generateUTMUrl(
-                      'https://maps.app.goo.gl/7g618h7918tzp9f79',
+                      GOOGLE_MAPS_SHORT_URL,
                       UTM_PARAMETERS.googleBusinessProfile
                     )}
                     target="_blank"
@@ -322,7 +322,7 @@ const Footer = () => {
 
               <a
                 href={generateUTMUrl(
-                  'https://maps.app.goo.gl/7g618h7918tzp9f79',
+                  GOOGLE_MAPS_SHORT_URL,
                   UTM_PARAMETERS.googleBusinessProfile
                 )}
                 target="_blank"

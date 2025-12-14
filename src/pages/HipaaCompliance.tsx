@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { PageSEO } from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 
 const HipaaCompliance: React.FC = () => {
   return (
     <>
+      <MasterStructuredData includeBusiness={true} includeWebsite={true} />
       <PageSEO 
         title="HIPAA Compliance | Patient Health Information Protection"
         description="Learn about our HIPAA compliance practices and how Exquisite Dentistry protects your health information privacy and security in accordance with federal regulations."

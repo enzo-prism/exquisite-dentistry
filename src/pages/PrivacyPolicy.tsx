@@ -1,14 +1,15 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ADDRESS, EMAIL, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <>
+      <MasterStructuredData includeBusiness={true} includeWebsite={true} />
       <WebPageStructuredData 
         title="Privacy Policy | Exquisite Dentistry Los Angeles"
         description="Read our privacy policy to understand how Exquisite Dentistry protects and handles your personal and health information in compliance with HIPAA regulations."

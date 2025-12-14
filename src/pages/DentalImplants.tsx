@@ -5,7 +5,7 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Shield, Anchor, Building2, Smile, HeartPulse } from 'lucide-react';
+import { Shield, Anchor, Building2, Smile, HeartPulse, MapPin, Phone, Clock } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
@@ -15,9 +15,19 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { DENTAL_IMPLANT_FAQS } from '@/data/dental-implants-faqs';
+import {
+  ADDRESS,
+  BUSINESS_HOURS,
+  PHONE_NUMBER_DISPLAY,
+  PHONE_NUMBER_E164
+} from '@/constants/contact';
+import {
+  DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS,
+  DENTAL_IMPLANTS_REFERENCES
+} from '@/data/dental-implants-hub';
 
 const DentalImplants = () => {
   const meta = ROUTE_METADATA['/dental-implants'];
@@ -114,13 +124,14 @@ const DentalImplants = () => {
         description="Permanent tooth replacement using titanium or zirconia implants paired with custom cosmetic restorations."
         url="/dental-implants"
         priceRange="$$$$"
+        category="Restorative Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Dental Implants in Los Angeles" />
 
       <div className="min-h-screen bg-background">
         <VideoHero
-          title="Dental Implants Los Angeles"
+          title="Dental Implants in Los Angeles"
           subtitle="Guided planning, custom implant crowns and bridges, and comfort-first support—built around long-term bite stability."
           primaryCta={{
             text: "Book a Dental Implant Appointment",
@@ -138,14 +149,21 @@ const DentalImplants = () => {
               <h2 id="overview" className="mt-6 text-3xl md:text-4xl font-bold text-foreground">
                 Dental Implant Planning & Restorations in Los Angeles
               </h2>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Dental implants can replace missing teeth with a stable foundation for a custom crown, bridge, or full-arch restoration.
-                Our Los Angeles team starts with 3D imaging and restoration-first planning so the final tooth shape, bite, and smile design guide every decision.
+              <p className="mt-4 text-sm text-muted-foreground">
+                Clinically reviewed by{' '}
+                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+                  Dr. Alexie Aguil, DDS
+                </Link>{' '}
+                ·{' '}
+                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
+                  Editorial policy
+                </Link>
               </p>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                You’ll leave your consultation with a clear plan: which option fits your goals, what affects timeline and comfort, and how we coordinate care.
-                When surgical placement is best handled by an oral surgeon or periodontist, we collaborate closely to keep the restorative result predictable.
-              </p>
+              {DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS.map((paragraph) => (
+                <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
 
               <nav
                 aria-label="On this page"
@@ -174,12 +192,93 @@ const DentalImplants = () => {
                     </a>
                   </li>
                   <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#location">
+                      Location
+                    </a>
+                  </li>
+                  <li>
                     <a className="text-primary underline-offset-4 hover:underline" href="#faqs">
                       FAQs
                     </a>
                   </li>
+                  <li>
+                    <a className="text-primary underline-offset-4 hover:underline" href="#references">
+                      References
+                    </a>
+                  </li>
                 </ul>
               </nav>
+
+              <div
+                id="location"
+                className="mx-auto mt-10 max-w-4xl rounded-2xl border border-border bg-white p-6 text-left shadow-sm"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">Visit Our Office</p>
+                <h3 className="mt-3 text-2xl font-semibold text-foreground">Wilshire Blvd, Los Angeles</h3>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  Our office is located at {ADDRESS}. If you have questions about dental implants in Los Angeles, you can call or book online.
+                </p>
+
+                <div className="mt-6 grid gap-6 md:grid-cols-3">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-1 h-5 w-5 text-secondary" />
+                    <div>
+                      <p className="font-semibold text-foreground">Address</p>
+                      <a
+                        href={GOOGLE_MAPS_SHORT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground underline-offset-4 hover:underline"
+                      >
+                        {ADDRESS}
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-1 h-5 w-5 text-secondary" />
+                    <div>
+                      <p className="font-semibold text-foreground">Phone</p>
+                      <a
+                        href={`tel:${PHONE_NUMBER_E164}`}
+                        className="text-muted-foreground underline-offset-4 hover:underline"
+                      >
+                        {PHONE_NUMBER_DISPLAY}
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Clock className="mt-1 h-5 w-5 text-secondary" />
+                    <div>
+                      <p className="font-semibold text-foreground">Hours</p>
+                      <div className="space-y-1 text-muted-foreground">
+                        {BUSINESS_HOURS.map(({ label, value }) => (
+                          <p key={label}>
+                            <span className="font-medium">{label}:</span> {value}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Button variant="outline" asChild>
+                    <a href={GOOGLE_MAPS_SHORT_URL} target="_blank" rel="noopener noreferrer">
+                      Get directions
+                    </a>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <a href={`tel:${PHONE_NUMBER_E164}`}>
+                      Call {PHONE_NUMBER_DISPLAY}
+                    </a>
+                  </Button>
+                  <Button asChild>
+                    <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
+                      Book online
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -374,6 +473,31 @@ const DentalImplants = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </div>
+        </section>
+
+        <section id="references" className="py-12 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-2xl font-semibold text-foreground">References</h2>
+              <p className="mt-3 text-muted-foreground">
+                These resources provide additional background on dental implants and oral health.
+              </p>
+              <ul className="mt-6 list-disc space-y-2 pl-6 text-muted-foreground">
+                {DENTAL_IMPLANTS_REFERENCES.map((reference) => (
+                  <li key={reference.href}>
+                    <a
+                      href={reference.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-secondary underline-offset-4 hover:underline"
+                    >
+                      {reference.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>

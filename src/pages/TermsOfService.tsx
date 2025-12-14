@@ -1,14 +1,15 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
+import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ADDRESS, EMAIL, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const TermsOfService: React.FC = () => {
   return (
     <>
+      <MasterStructuredData includeBusiness={true} includeWebsite={true} />
       <WebPageStructuredData 
         title="Terms of Service | Exquisite Dentistry Los Angeles"
         description="Review our terms of service including appointment policies, payment terms, and patient responsibilities at Exquisite Dentistry in Los Angeles."

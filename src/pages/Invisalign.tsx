@@ -139,6 +139,7 @@ const Invisalign = () => {
         description="Discreet clear aligner therapy designed to align teeth comfortably while fitting perfectly into fast-paced Los Angeles schedules."
         url="/invisalign"
         priceRange="$$$"
+        category="Orthodontics"
       />
 
       <FAQStructuredData

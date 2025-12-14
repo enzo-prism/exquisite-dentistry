@@ -120,6 +120,7 @@ const EmergencyDentist = () => {
         description="Rapid-response dental services including pain relief, fracture repair, infection control, and trauma management."
         url="/emergency-dentist"
         priceRange="$$-$$$"
+        category="Emergency Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Emergency Dentist Los Angeles" />

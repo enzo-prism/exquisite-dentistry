@@ -14,18 +14,38 @@ import {
   createMedicalProcedureSchema,
   createWebPageSchema
 } from "../src/utils/centralizedSchemas";
+import {
+  DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS,
+  DENTAL_IMPLANTS_HUB_SECTIONS,
+  DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS
+} from "../src/data/dental-implants-hub";
+import {
+  ADDRESS,
+  BUSINESS_HOURS,
+  PHONE_NUMBER_DISPLAY,
+  PHONE_NUMBER_E164
+} from "../src/constants/contact";
+import { GOOGLE_MAPS_SHORT_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 
 type StaticLink = { label: string; href: string };
+type StaticRouteSection = {
+  id?: string;
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  links?: StaticLink[];
+};
 type StaticRoute = {
   path: string;
   title: string;
   description: string;
   h1: string;
   paragraphs: string[];
+  sections?: StaticRouteSection[];
   links: StaticLink[];
 };
 
@@ -145,16 +165,10 @@ const manualPages: StaticRoute[] = [
     title: getRouteMetadata("/dental-implants").title,
     description: getRouteMetadata("/dental-implants").description,
     h1: "Dental Implants in Los Angeles",
-    paragraphs: [
-      "Dental implants can replace missing teeth with a stable foundation for a custom crown, bridge, or full-arch restoration.",
-      "We start with 3D imaging and restoration-first planning so the final tooth shape and bite guide every decision. You’ll get a clear timeline, comfort plan, and next steps after your consultation.",
-    ],
+    paragraphs: [...DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS],
+    sections: DENTAL_IMPLANTS_HUB_SECTIONS,
     links: [
-      { label: "Dental Bridge (Alternative to Implants)", href: "/dental-bridge" },
-      { label: "Implants Benefits Guide", href: "/blog/reasons-to-get-dental-implants" },
-      { label: "Dental Implant Cost Guide", href: "/blog/dental-implant-cost-los-angeles" },
-      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
-      { label: "Transformation Stories", href: "/transformation-stories" },
+      ...DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS,
       ...defaultNavLinks,
     ],
   },
@@ -417,6 +431,23 @@ const truncateTitle = (input: string, max = 70) => {
 const stripTrailingSeparators = (input: string) =>
   input.replace(/[\s|–—:-]+$/g, "").trim();
 
+const normalizeInternalHref = (href: string) => {
+  if (!href) return href;
+  if (href.startsWith("#")) return href;
+  if (/^(https?:)?\/\//i.test(href)) return href;
+  if (/^(mailto|tel):/i.test(href)) return href;
+  if (!href.startsWith("/")) return href;
+
+  const match = href.match(/^([^?#]*)(.*)$/);
+  const pathname = match?.[1] ?? href;
+  const suffix = match?.[2] ?? "";
+
+  if (pathname === "/" || pathname.endsWith("/")) return href;
+  if (/\/[^/]+\.[^/]+$/.test(pathname)) return href;
+
+  return `${pathname}/${suffix}`;
+};
+
 const buildSeoTitle = (title: string) => {
   const brandSuffix = "Exquisite Dentistry Los Angeles";
   const lowerTitle = title.toLowerCase();
@@ -431,25 +462,36 @@ const buildSeoTitle = (title: string) => {
 const uniqueLinks = (links: StaticLink[]) => {
   const map = new Map<string, StaticLink>();
   links.forEach((link) => {
-    if (link.href && !map.has(link.href)) map.set(link.href, link);
+    if (!link.href) return;
+    const normalizedHref = normalizeInternalHref(link.href);
+    if (!map.has(normalizedHref)) {
+      map.set(normalizedHref, { ...link, href: normalizedHref });
+    }
   });
   return Array.from(map.values());
 };
 
-const renderLinks = (links: StaticLink[]) => {
+const renderLinkList = (links: StaticLink[], className = "") => {
   if (!links.length) return "";
   const items = links
     .map(
       (link) =>
-        `<li><a class="text-primary underline hover:no-underline" href="${link.href}">${escapeHtml(
+        `<li><a class="text-primary underline hover:no-underline" href="${escapeHtml(
+          normalizeInternalHref(link.href),
+        )}">${escapeHtml(
           link.label,
         )}</a></li>`,
     )
     .join("\n");
+  return `<ul class="list-disc pl-6 space-y-2 ${className}">${items}</ul>`;
+};
+
+const renderLinks = (links: StaticLink[]) => {
+  if (!links.length) return "";
   return `
   <section class="mt-10">
     <h2 class="text-2xl font-semibold text-foreground mb-4">Explore More</h2>
-    <ul class="list-disc pl-6 space-y-2">${items}</ul>
+    ${renderLinkList(links)}
   </section>`;
 };
 
@@ -1091,16 +1133,85 @@ const renderRoute = (template: string, route: StaticRoute) => {
     )
     .join("\n");
 
+  const sectionsHtml = (route.sections ?? [])
+    .map((section) => {
+      const sectionParagraphs = (section.paragraphs ?? [])
+        .filter(Boolean)
+        .map(
+          (paragraph) =>
+            `<p class="text-lg leading-relaxed text-muted-foreground mb-4">${escapeHtml(
+              paragraph,
+            )}</p>`,
+        )
+        .join("\n");
+
+      const bullets = (section.bullets ?? []).filter(Boolean);
+      const bulletsHtml =
+        bullets.length > 0
+          ? `<ul class="list-disc pl-6 space-y-2 text-muted-foreground mb-4">${bullets
+              .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
+              .join("\n")}</ul>`
+          : "";
+
+      const links = uniqueLinks(section.links ?? []);
+      const linksHtml =
+        links.length > 0
+          ? `<div class="mt-4">${renderLinkList(links, "text-muted-foreground")}</div>`
+          : "";
+
+      const sectionIdAttr = section.id ? ` id="${escapeHtml(section.id)}"` : "";
+
+      return `
+      <section class="mt-10"${sectionIdAttr}>
+        <h2 class="text-2xl font-semibold text-foreground mb-4">${escapeHtml(section.heading)}</h2>
+        ${sectionParagraphs}
+        ${bulletsHtml}
+        ${linksHtml}
+      </section>`;
+    })
+    .join("\n");
+
+  const hasLocationSection = (route.sections ?? []).some(
+    (section) => section.id === "location",
+  );
+  const visitUsBullets = [
+    `Address: ${ADDRESS}`,
+    `Phone: ${PHONE_NUMBER_DISPLAY}`,
+    ...BUSINESS_HOURS.map(({ label, value }) => `${label}: ${value}`)
+  ];
+  const visitUsHtml = hasLocationSection
+    ? ""
+    : `
+      <section class="mt-10" id="visit-us">
+        <h2 class="text-2xl font-semibold text-foreground mb-4">Visit Exquisite Dentistry</h2>
+        <p class="text-lg leading-relaxed text-muted-foreground mb-4">
+          Our Los Angeles dental studio is on Wilshire Blvd. Find directions, hours, and contact details below.
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-muted-foreground mb-4">${visitUsBullets
+          .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
+          .join("\n")}</ul>
+        <div class="mt-4">${renderLinkList(
+          [
+            { label: "Get Directions (Google Maps)", href: GOOGLE_MAPS_SHORT_URL },
+            { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+            { label: "Contact", href: "/contact" }
+          ],
+          "text-muted-foreground",
+        )}</div>
+      </section>`;
+
   const contentHtml = `
-  <div class="min-h-screen bg-background">
-    <main class="container mx-auto px-4 py-16">
-      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
-        route.h1,
-      )}</h1>
-      ${paragraphsHtml}
-      ${renderLinks(route.links)}
-    </main>
-  </div>`;
+	  <div class="min-h-screen bg-background">
+	    <main class="container mx-auto px-4 py-16">
+	      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
+	        route.h1,
+	      )}</h1>
+	      ${paragraphsHtml}
+	      ${sectionsHtml}
+	      ${visitUsHtml}
+	      ${renderLinks(route.links)}
+	    </main>
+	  </div>`;
 
   const schemas = getSchemasForRoute(route.path);
   let html = injectSeo(template, route.title, route.description, route.path);

@@ -200,11 +200,6 @@ export const WEBSITE_ENTITY: JsonLd = {
   publisher: {
     '@id': 'https://exquisitedentistryla.com/#business'
   },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://exquisitedentistryla.com/search?q={search_term_string}',
-    'query-input': 'required name=search_term_string'
-  },
   inLanguage: 'en-US'
 };
 

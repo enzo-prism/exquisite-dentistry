@@ -1,14 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import {
-  STREET_ADDRESS,
-  ADDRESS_LOCALITY,
-  ADDRESS_REGION,
-  POSTAL_CODE,
-  ADDRESS_COUNTRY,
-  PHONE_NUMBER_DISPLAY
-} from '@/constants/contact';
 
 interface WebPageStructuredDataProps {
   title: string;
@@ -53,22 +45,13 @@ const WebPageStructuredData: React.FC<WebPageStructuredDataProps> = ({
     description: description,
     url: canonicalUrl,
     isPartOf: {
-      '@type': 'WebSite',
-      name: 'Exquisite Dentistry',
-      url: getCanonicalUrl('/')
+      '@id': 'https://exquisitedentistryla.com/#website'
     },
     provider: {
-      '@type': ['LocalBusiness', 'Dentist'],
-      name: 'Exquisite Dentistry',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: STREET_ADDRESS,
-        addressLocality: ADDRESS_LOCALITY,
-        addressRegion: ADDRESS_REGION,
-        postalCode: POSTAL_CODE,
-        addressCountry: ADDRESS_COUNTRY
-      },
-      telephone: PHONE_NUMBER_DISPLAY
+      '@id': 'https://exquisitedentistryla.com/#business'
+    },
+    publisher: {
+      '@id': 'https://exquisitedentistryla.com/#business'
     },
     inLanguage: 'en-US',
     dateModified: new Date().toISOString().split('T')[0]

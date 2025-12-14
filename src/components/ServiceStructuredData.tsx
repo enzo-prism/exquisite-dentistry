@@ -8,6 +8,7 @@ interface ServiceStructuredDataProps {
   url: string;
   image?: string;
   priceRange?: string;
+  category?: string;
 }
 
 const normalizeUrl = (value: string): string => {
@@ -32,12 +33,13 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
   description, 
   url, 
   image,
-  priceRange 
+  priceRange,
+  category = 'Cosmetic Dentistry'
 }) => {
   const canonicalUrl = normalizeUrl(url);
   const serviceData = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalProcedure',
+    '@type': ['Service', 'MedicalProcedure'],
     serviceType: serviceName,
     name: serviceName,
     description: description,
@@ -49,10 +51,10 @@ const ServiceStructuredData: React.FC<ServiceStructuredDataProps> = ({
     performer: {
       '@type': 'Person',
       name: 'Dr. Alexie Aguil',
-      jobTitle: 'Cosmetic Dentist'
+      jobTitle: 'Dentist'
     },
     ...(priceRange && { priceRange }),
-    category: 'Cosmetic Dentistry',
+    category,
     areaServed: [
       { '@type': 'City', name: 'Los Angeles' },
       { '@type': 'City', name: 'Beverly Hills' },
