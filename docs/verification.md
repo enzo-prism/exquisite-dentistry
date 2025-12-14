@@ -65,6 +65,10 @@ Quick checks against production:
 curl -sSL https://exquisitedentistryla.com/about/ | rg '<title>|meta name="description"|<h1' | head
 curl -sSL https://exquisitedentistryla.com/about/index.html | rg '<title>|meta name="description"|<h1' | head
 
+# Dental implants hub (important for “dental implants los angeles”)
+curl -sSL https://exquisitedentistryla.com/dental-implants/ | rg '<title>|meta name="description"|<h1' | head
+curl -sSL https://exquisitedentistryla.com/dental-implants/index.html | rg '<title>|meta name="description"|<h1' | head
+
 # Zoom landing (important for the “zoom whitening los angeles” query)
 curl -sSL https://exquisitedentistryla.com/zoom-whitening/ | rg '<title>|meta name="description"|<h1' | head
 curl -sSL https://exquisitedentistryla.com/zoom-whitening/index.html | rg '<title>|meta name="description"|<h1' | head

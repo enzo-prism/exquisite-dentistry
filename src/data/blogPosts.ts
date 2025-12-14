@@ -443,6 +443,182 @@ const baseBlogPosts: BlogPost[] = [
     published: true
   },
   {
+    id: '19',
+    title: 'Dental Implant Cost in Los Angeles: What Affects Pricing (and How to Compare Quotes)',
+    slug: 'dental-implant-cost-los-angeles',
+    excerpt:
+      'A clear, non-sales guide to what drives dental implant pricing in Los Angeles—what’s included, common add-ons like grafting, and how to compare two implant quotes confidently.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-sm text-gray-500">By Dr. Alexie Aguil | Exquisite Dentistry, Los Angeles • Updated: December 2025 • 8 min read</p>
+
+        <p>
+          If you’re searching for <em>“dental implant cost Los Angeles”</em>, you’re usually trying to answer one practical question: <strong>what will my implant actually cost, and what is included?</strong>
+          The most helpful answer is not a single number—it’s a checklist you can use to compare plans from different offices without getting surprised later.
+        </p>
+
+        <h2>1) Why implant pricing varies so much</h2>
+        <p>
+          Dental implants are a sequence of steps and components, not one single procedure. The final fee depends on your biology, how many teeth you’re replacing, and what type of restoration you need (a crown, bridge, or full-arch design).
+        </p>
+
+        <h2>2) What’s typically included in an implant plan</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Diagnostics:</strong> exam, images (often CBCT), and digital scans for planning.</li>
+          <li><strong>Surgical phase:</strong> implant placement (and extractions if needed).</li>
+          <li><strong>Components:</strong> the implant itself plus abutment parts.</li>
+          <li><strong>Restoration:</strong> an implant crown, implant-supported bridge, or full-arch prosthesis.</li>
+          <li><strong>Follow-up:</strong> post-op checks, bite adjustments, and guidance during healing.</li>
+        </ul>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
+          <h3 class="text-lg font-semibold text-center mb-3">Quick tip for comparing quotes</h3>
+          <p class="text-center mb-0">
+            Ask for an <strong>itemized estimate</strong> that separates surgical fees, components, and the final restoration. This makes “apples-to-apples” comparisons much easier.
+          </p>
+        </div>
+
+        <h2>3) Common cost drivers (the parts that change most)</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Bone support:</strong> grafting or sinus lift needs can change both cost and timeline.</li>
+          <li><strong>Number of teeth:</strong> a single implant crown vs. an implant bridge vs. full-arch replacement.</li>
+          <li><strong>Material choices:</strong> crown/bridge materials and whether pink esthetic ceramics are needed.</li>
+          <li><strong>Comfort options:</strong> sedation planning, appointment pacing, and post-op support.</li>
+          <li><strong>Complexity:</strong> replacing teeth in the smile zone often requires more detailed esthetic planning.</li>
+        </ul>
+
+        <h2>4) How to compare two implant plans in Los Angeles</h2>
+        <p>When you have two estimates, ask these questions:</p>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li><strong>Who is doing what?</strong> Will one office coordinate both placement and restoration, or are there referrals?</li>
+          <li><strong>What restoration is included?</strong> Is the final crown/bridge included, or only the implant placement?</li>
+          <li><strong>What’s the timeline?</strong> Are there staged visits and healing time, and how do you handle temporary teeth?</li>
+          <li><strong>What is the maintenance plan?</strong> What cleanings and recall schedule are recommended long-term?</li>
+        </ol>
+
+        <h2>5) Insurance, FSA/HSA, and financing</h2>
+        <p>
+          Insurance coverage varies widely. If you have a dental plan, ask whether implants have benefits and what documentation is required. Many patients also use FSA/HSA funds for eligible portions of care.
+          If you prefer monthly payments, ask about financing options during your consultation.
+        </p>
+
+        <h2>Next step: get a plan you can trust</h2>
+        <p>
+          The fastest way to stop guessing is to get an exam and imaging review, then walk out with a clear plan and a line-item estimate.
+          Explore our <a href="/dental-implants/">dental implants service page</a> or compare alternatives on our <a href="/dental-bridge/">dental bridge page</a>.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-4">
+          <h3 class="text-lg font-semibold">Schedule an implant consultation</h3>
+          <div class="text-center space-y-2">
+            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book online</a>
+            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+          </div>
+        </div>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'December 12, 2025',
+    readTime: '8 min read',
+    category: 'Restorative Dentistry',
+    tags: [
+      'dental implants',
+      'dental implant cost',
+      'tooth replacement',
+      'restorative dentistry',
+      'los angeles',
+      'implant bridge',
+      'bone grafting'
+    ],
+    seoTitle: 'Dental Implant Cost in Los Angeles: What Affects Pricing + Quote Checklist',
+    seoDescription:
+      'Learn what drives dental implant cost in Los Angeles, what’s typically included, and a simple checklist to compare implant quotes (placement, parts, restoration, and aftercare).',
+    seoKeywords:
+      'dental implant cost los angeles, implant pricing los angeles, dental implants los angeles cost factors, implant quote checklist, implant crown cost, implant bridge cost',
+    published: true
+  },
+  {
+    id: '20',
+    title: 'Dental Implants vs Bridge in Los Angeles: How to Decide (Without Regrets)',
+    slug: 'dental-implants-vs-bridge-los-angeles',
+    excerpt:
+      'Implant or bridge? This practical guide compares stability, longevity, timeline, and maintenance so you can choose the right tooth replacement option in Los Angeles.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p class="text-sm text-gray-500">By Dr. Alexie Aguil | Exquisite Dentistry, Los Angeles • Updated: December 2025 • 7 min read</p>
+
+        <p>
+          If you’re missing a tooth (or a few), the two most common fixed options are a <strong>dental implant</strong> and a <strong>dental bridge</strong>.
+          Both can look natural. The best choice depends on your bite, the health of nearby teeth, bone support, timeline, and how you want to maintain the result long-term.
+        </p>
+
+        <h2>Quick definitions</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Dental implant:</strong> a replacement root that supports a crown or bridge without relying on adjacent teeth.</li>
+          <li><strong>Dental bridge:</strong> a replacement tooth (or teeth) supported by neighboring teeth or implants.</li>
+        </ul>
+
+        <h2>When implants are often a great fit</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>You want a solution that does not depend on adjacent tooth support.</li>
+          <li>You’re aiming for a long-term option with stable chewing and speaking.</li>
+          <li>You want to preserve bone and maintain predictable spacing over time.</li>
+        </ul>
+
+        <h2>When a bridge may be the better choice</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Adjacent teeth already need crowns, or you’re replacing a tooth under an existing bridge.</li>
+          <li>You need a faster path for certain cases and your dentist recommends it.</li>
+          <li>Implants are not ideal right now due to bone support, medical factors, or timeline.</li>
+        </ul>
+
+        <h2>Maintenance: what’s different</h2>
+        <p>
+          Both options require excellent home care and professional maintenance. Implants need careful cleaning around the gumline and regular monitoring of bite forces.
+          Bridges require cleaning under the bridge area and monitoring the supporting teeth. We’ll recommend tools and recall intervals tailored to your case.
+        </p>
+
+        <h2>A simple decision checklist</h2>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li><strong>Is the supporting tooth healthy?</strong> If it’s already compromised, that can change the best option.</li>
+          <li><strong>What’s your timeline?</strong> Some plans require healing time; others may be faster.</li>
+          <li><strong>What’s your long-term goal?</strong> Prioritize stability, esthetics, and maintainability—not just the initial visit count.</li>
+          <li><strong>Do you clench or grind?</strong> Bite forces matter; we may recommend protection like a night guard.</li>
+        </ol>
+
+        <h2>Next step: compare options with imaging</h2>
+        <p>
+          The best way to choose is with a full exam and imaging review. We’ll explain what we see, the trade-offs, and the option we believe is most predictable for your goals.
+          Start with our <a href="/dental-implants/">dental implants page</a> or explore <a href="/dental-bridge/">dental bridges</a>.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-4">
+          <h3 class="text-lg font-semibold">Talk through implants vs bridge</h3>
+          <div class="text-center space-y-2">
+            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book a consultation</a>
+            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+          </div>
+        </div>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'December 12, 2025',
+    readTime: '7 min read',
+    category: 'Restorative Dentistry',
+    tags: [
+      'dental implants',
+      'dental bridge',
+      'implants vs bridge',
+      'tooth replacement',
+      'restorative dentistry',
+      'los angeles'
+    ],
+    seoTitle: 'Dental Implants vs Bridge in Los Angeles: How to Decide',
+    seoDescription:
+      'Compare dental implants vs bridges in Los Angeles—stability, timeline, maintenance, and who each option fits best—so you can choose confidently.',
+    seoKeywords:
+      'dental implants vs bridge los angeles, implant vs bridge los angeles, tooth replacement los angeles, dental bridge vs implant, restorative dentistry los angeles',
+    published: true
+  },
+  {
     id: '6',
     title: '5 Healthy Habits For Your Teeth',
     slug: 'healthy-habits-for-your-teeth',

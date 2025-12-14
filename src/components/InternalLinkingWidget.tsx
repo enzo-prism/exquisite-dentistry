@@ -301,25 +301,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 4
           },
           {
+            title: 'Dental Implant Cost in Los Angeles',
+            href: '/blog/dental-implant-cost-los-angeles',
+            description: 'What affects pricing and how to compare quotes',
+            category: 'blog',
+            priority: 5
+          },
+          {
+            title: 'Implants vs Bridge: How to Decide',
+            href: '/blog/dental-implants-vs-bridge-los-angeles',
+            description: 'Stability, timeline, and maintenance differences',
+            category: 'blog',
+            priority: 6
+          },
+          {
             title: 'Restoration Stories',
             href: '/transformation-stories',
             description: 'Watch real patient stories and outcomes',
             category: 'experience',
-            priority: 5
+            priority: 7
           },
           {
             title: 'Smile Gallery',
             href: '/smile-gallery',
             description: 'Before & after dental transformations',
             category: 'gallery',
-            priority: 6
+            priority: 8
           },
           {
             title: 'Book an Implant Consultation',
             href: '/contact',
             description: 'Schedule your implant planning visit',
             category: 'consultation',
-            priority: 7
+            priority: 9
           }
         ];
       

@@ -103,11 +103,11 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
   '/dental-implants': {
-    title: 'Dental Implants Los Angeles | Exquisite Dentistry',
+    title: 'Dental Implants in Los Angeles | Exquisite Dentistry',
     description:
-      'Dental implants in Los Angeles with guided surgery, bone regeneration, and custom restorations that restore chewing power and confident smiles.',
+      'Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd—book a consultation.',
     keywords:
-      'dental implants Los Angeles, implant dentist LA, tooth replacement, full arch implants LA',
+      'dental implants los angeles, implant dentist los angeles, implant crown los angeles, implant bridge los angeles, tooth replacement los angeles, full arch implants los angeles',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
   },

@@ -17,6 +17,7 @@ import {
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
+import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 
 type StaticLink = { label: string; href: string };
 type StaticRoute = {
@@ -143,11 +144,19 @@ const manualPages: StaticRoute[] = [
     path: "/dental-implants",
     title: getRouteMetadata("/dental-implants").title,
     description: getRouteMetadata("/dental-implants").description,
-    h1: "Dental Implants Los Angeles",
+    h1: "Dental Implants in Los Angeles",
     paragraphs: [
-      "Rebuild your smile with precision-engineered implants and luxury-level care.",
+      "Dental implants can replace missing teeth with a stable foundation for a custom crown, bridge, or full-arch restoration.",
+      "We start with 3D imaging and restoration-first planning so the final tooth shape and bite guide every decision. You’ll get a clear timeline, comfort plan, and next steps after your consultation.",
     ],
-    links: defaultNavLinks,
+    links: [
+      { label: "Dental Bridge (Alternative to Implants)", href: "/dental-bridge" },
+      { label: "Implants Benefits Guide", href: "/blog/reasons-to-get-dental-implants" },
+      { label: "Dental Implant Cost Guide", href: "/blog/dental-implant-cost-los-angeles" },
+      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
+      { label: "Transformation Stories", href: "/transformation-stories" },
+      ...defaultNavLinks,
+    ],
   },
   {
     path: "/cosmetic-dentistry",
@@ -845,6 +854,58 @@ const getSchemasForRoute = (routePath: string) => {
         )
       );
     }
+  }
+
+  if (routePath === "/dental-implants") {
+    const meta = getRouteMetadata("/dental-implants");
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/dental-implants",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Dental Implants", url: "/dental-implants" }
+      ])
+    );
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Dental Implant Therapy",
+        description: meta.description,
+        url: "/dental-implants/",
+        image: meta.ogImage,
+        procedureType: "Restorative Dentistry",
+        bodyLocation: "Teeth",
+        preparation: [
+          "Comprehensive exam and CBCT imaging to evaluate bone and gums",
+          "Restoration-first planning to define final tooth shape and bite"
+        ],
+        steps: [
+          { name: "Consultation + 3D Imaging", description: "Review goals, medical history, and scans to confirm candidacy and plan the final restoration." },
+          { name: "Foundation Planning", description: "Discuss extractions or grafting if needed and map the timeline for placement and healing." },
+          { name: "Placement + Healing", description: "Complete surgical placement (often with a specialist when indicated), then allow time for integration." },
+          { name: "Final Restoration", description: "Deliver a custom implant crown or bridge and refine bite for comfort and stability." }
+        ],
+        risks: ["Temporary soreness", "Swelling", "Infection risk (rare with proper care)"],
+        benefits: [
+          "Stable tooth replacement that feels natural",
+          "Preserve bone and support facial structure",
+          "Custom restoration designed for bite and esthetics"
+        ],
+        recoveryTime: "Minimal downtime"
+      })
+    );
+    schemas.push(
+      createFAQSchema(
+        DENTAL_IMPLANT_FAQS.map(({ question, answer }) => ({ question, answer })),
+        "Dental Implants in Los Angeles"
+      )
+    );
   }
 
   if (routePath === "/santa-monica-dental-implants") {
