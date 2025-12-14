@@ -31,6 +31,12 @@ import {
   ZOOM_WHITENING_SUPPORTING_LINKS
 } from "../src/data/zoom-whitening-hub";
 import {
+  SMILE_MAKEOVER_HUB_INTRO_PARAGRAPHS,
+  SMILE_MAKEOVER_HUB_SECTIONS,
+  SMILE_MAKEOVER_HUB_SUPPORTING_LINKS,
+  SMILE_MAKEOVER_REFERENCES
+} from "../src/data/smile-makeover-hub";
+import {
   ADDRESS,
   BUSINESS_HOURS,
   PHONE_NUMBER_DISPLAY,
@@ -42,6 +48,7 @@ import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
+import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
 
 type StaticLink = { label: string; href: string };
 type StaticRouteSection = {
@@ -182,6 +189,38 @@ const manualPages: StaticRoute[] = [
       ...DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS,
       ...defaultNavLinks,
     ],
+  },
+  {
+    path: "/smile-makeover-los-angeles",
+    title: getRouteMetadata("/smile-makeover-los-angeles").title,
+    description: getRouteMetadata("/smile-makeover-los-angeles").description,
+    h1: "Smile Makeover Los Angeles",
+    paragraphs: [...SMILE_MAKEOVER_HUB_INTRO_PARAGRAPHS],
+    sections: [
+      {
+        id: "on-this-page",
+        heading: "On this page",
+        links: [
+          { label: "Options", href: "#options" },
+          { label: "Planning process", href: "#process" },
+          { label: "Timeline", href: "#timeline" },
+          { label: "Cost factors", href: "#cost" },
+          { label: "Natural results", href: "#natural-results" },
+          { label: "Maintenance", href: "#maintenance" },
+          { label: "Location & hours", href: "#location" },
+          { label: "FAQs", href: "#faqs" },
+          { label: "References", href: "#references" }
+        ]
+      },
+      ...SMILE_MAKEOVER_HUB_SECTIONS,
+      {
+        id: "references",
+        heading: "References",
+        links: [...SMILE_MAKEOVER_REFERENCES]
+      }
+    ],
+    faqItems: SMILE_MAKEOVER_LOS_ANGELES_FAQS.map(({ question, answer }) => ({ question, answer })),
+    links: [...SMILE_MAKEOVER_HUB_SUPPORTING_LINKS, ...defaultNavLinks],
   },
   {
     path: "/cosmetic-dentistry",
@@ -769,8 +808,7 @@ const getSchemasForRoute = (routePath: string) => {
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Smile Makeover",
-        description:
-          "Smile makeover planning in Los Angeles combining veneers, whitening, Invisalign, bonding, and restorative dentistry into one coordinated treatment plan tailored to your goals and timeline.",
+        description: meta.description,
         url: "/smile-makeover-los-angeles/",
         image: meta.ogImage,
         procedureType: "Cosmetic Dentistry",
@@ -796,7 +834,7 @@ const getSchemasForRoute = (routePath: string) => {
       schemas.push(
         createFAQSchema(
           config.faqs.map(({ question, answer }) => ({ question, answer })),
-          "Smile Makeover in Los Angeles"
+          "Smile Makeover Los Angeles"
         )
       );
     }

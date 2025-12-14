@@ -1,4 +1,5 @@
 import { SCHEDULING_URL } from "@/constants/urls";
+import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
 
 export interface ServicePageConfig {
   slug: string;
@@ -166,7 +167,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     },
     hero: {
       eyebrow: "Cosmetic Dentistry",
-      heading: "Smile Makeover in Los Angeles",
+      heading: "Smile Makeover Los Angeles",
       subheading:
         "A smile makeover is a personalized plan that combines veneers, whitening, Invisalign, bonding, and restorative care to upgrade color, shape, and symmetry—without the “done” look.",
       highlights: [
@@ -237,33 +238,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
           "We finalize bite and aesthetics, then share a maintenance plan (touch-ups, nightguard, hygiene) to protect results.",
       },
     ],
-    faqs: [
-      {
-        question: "What treatments are included in a smile makeover?",
-        answer:
-          "A smile makeover is a customized combination of cosmetic and restorative treatments. Common options include whitening, bonding, porcelain veneers, Invisalign, crowns, and implants. Your plan depends on goals, enamel health, existing dental work, and bite function.",
-      },
-      {
-        question: "How long does a smile makeover take?",
-        answer:
-          "Some makeovers are completed in a single visit (for example, whitening or bonding). Veneers often take a few visits. Invisalign-based plans can take several months. We’ll outline a realistic timeline after your consultation and scans.",
-      },
-      {
-        question: "How much does a smile makeover cost in Los Angeles?",
-        answer:
-          "Costs vary widely based on the treatments and number of teeth involved. After a consultation, we provide a detailed plan with line-item pricing and options that prioritize the changes that matter most to you.",
-      },
-      {
-        question: "Will my smile makeover look natural?",
-        answer:
-          "Natural results are the goal. We consider tooth translucency, texture, smile arc, and facial proportions, then coordinate shades across whitening and porcelain so the outcome looks like healthy enamel—just upgraded.",
-      },
-      {
-        question: "Do you offer smile makeovers before events?",
-        answer:
-          "Yes. If you have a deadline (wedding, graduation, photos, or a move), we can recommend a plan that fits your timeline—often starting with whitening and short-term improvements, then layering longer-term changes if desired.",
-      },
-    ],
+    faqs: SMILE_MAKEOVER_LOS_ANGELES_FAQS,
     cta: {
       heading: "Book a Smile Makeover Consultation",
       description:
