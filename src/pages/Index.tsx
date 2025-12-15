@@ -115,7 +115,7 @@ const IndexPage: React.FC = () => {
                 <Button
                   key={item.to}
                   variant="outline"
-                  className="border-gold/40 text-white hover:text-black hover:bg-gold/90"
+                  className="w-full border-gold/40 !text-white hover:bg-white/10 hover:!text-white"
                   asChild
                 >
                   <Link to={item.to}>{item.label}</Link>
