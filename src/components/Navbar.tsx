@@ -1,9 +1,16 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import ScrollProgress from './ScrollProgress';
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
+import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,9 +18,33 @@ const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [originalBodyOverflow, setOriginalBodyOverflow] = useState<string>('');
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 0,
+  );
+  const [isNavOverflowing, setIsNavOverflowing] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const lastMenuLinkRef = useRef<HTMLButtonElement>(null);
+  const headerRowRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const desktopNavRef = useRef<HTMLElement>(null);
+
+  const isAtLeastLg = viewportWidth >= 1024;
+  const shouldShowDesktopNav = isAtLeastLg && !isNavOverflowing;
+
+  // Enhanced mobile menu close with focus restoration
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+
+    // Restore focus to menu button when closing
+    setTimeout(() => {
+      const button = menuButtonRef.current;
+      if (!button) return;
+      if (button.offsetParent === null) return;
+      button.focus();
+    }, 100);
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -23,6 +54,18 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track viewport width for responsive behaviors that can't rely on CSS alone.
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Enhanced body scroll management with position preservation
@@ -59,28 +102,12 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen, originalBodyOverflow, scrollPosition]);
 
-  // Handle window resize to close mobile menu on desktop
+  // Close the mobile menu when switching into desktop navigation mode.
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && isMobileMenuOpen) {
-        closeMobileMenu();
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMobileMenuOpen]);
-
-  // Enhanced mobile menu close with focus restoration
-  const closeMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(false);
-    setOpenDropdown(null);
-    
-    // Restore focus to menu button when closing
-    setTimeout(() => {
-      menuButtonRef.current?.focus();
-    }, 100);
-  }, []);
+    if (shouldShowDesktopNav && isMobileMenuOpen) {
+      closeMobileMenu();
+    }
+  }, [shouldShowDesktopNav, isMobileMenuOpen, closeMobileMenu]);
 
   // Focus management for accessibility
   const handleMenuOpen = useCallback(() => {
@@ -122,6 +149,41 @@ const Navbar = () => {
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
+
+  // Desktop navigation fit check (auto-collapses to hamburger if links can't fit).
+  const updateNavFit = useCallback(() => {
+    const headerEl = headerRowRef.current;
+    const logoEl = logoRef.current;
+    const navEl = desktopNavRef.current;
+
+    if (!headerEl || !logoEl || !navEl) return;
+
+    const containerWidth = headerEl.clientWidth;
+    const logoWidth = logoEl.getBoundingClientRect().width;
+    const navWidth = navEl.getBoundingClientRect().width;
+    const buffer = 24;
+
+    setIsNavOverflowing(logoWidth + navWidth + buffer > containerWidth);
+  }, []);
+
+  useLayoutEffect(() => {
+    updateNavFit();
+  }, [viewportWidth, updateNavFit]);
+
+  useEffect(() => {
+    const headerEl = headerRowRef.current;
+    const logoEl = logoRef.current;
+    const navEl = desktopNavRef.current;
+
+    if (!headerEl || !logoEl || !navEl) return;
+
+    const observer = new ResizeObserver(() => updateNavFit());
+    observer.observe(headerEl);
+    observer.observe(logoEl);
+    observer.observe(navEl);
+
+    return () => observer.disconnect();
+  }, [updateNavFit]);
 
   // Navigation links data
   const navLinks = [
@@ -176,15 +238,15 @@ const Navbar = () => {
         }`}
       >
         <div className="mx-auto px-4 sm:px-6 max-w-7xl">
-          <div className="flex h-16 sm:h-20 items-center justify-between">
+          <div ref={headerRowRef} className="flex h-16 sm:h-20 items-center gap-3 sm:gap-4">
             
             {/* Logo */}
-            <div className="flex-shrink-0 z-50">
+            <div ref={logoRef} className="flex-shrink-0 z-50">
               <Link to="/" onClick={closeMobileMenu}>
                 <img
                   src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
                   alt="Exquisite Dentistry Logo"
-                  className="h-6 md:h-12 w-auto max-w-none"
+                  className="h-6 sm:h-8 lg:h-9 xl:h-12 w-auto max-w-[160px] sm:max-w-[210px] lg:max-w-[190px] xl:max-w-[280px]"
                   loading="eager"
                   style={{ 
                     objectFit: 'contain',
@@ -195,58 +257,76 @@ const Navbar = () => {
             </div>
           
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav
+              ref={desktopNavRef}
+              aria-label="Primary"
+              aria-hidden={!shouldShowDesktopNav}
+              className={cn(
+                "ml-auto flex items-center whitespace-nowrap text-sm xl:text-base",
+                "gap-[clamp(0.5rem,1.2vw,1.75rem)]",
+                shouldShowDesktopNav
+                  ? ""
+                  : "pointer-events-none invisible absolute -left-[9999px] -top-[9999px]",
+              )}
+            >
               {navLinks.map((link) =>
                 link.label === 'Schedule Consultation' ? (
-                  <Button key={link.to} asChild className="bg-gold text-black hover:bg-gold/90">
-                    <Link to={link.to} className="px-4 py-2">
-                      {link.label}
-                    </Link>
-                  </Button>
+	                  <Button
+	                    key={link.to}
+	                    size="sm"
+	                    asChild
+	                    className="bg-gold text-black hover:bg-gold/90 h-9 xl:h-10 px-3 xl:px-4 text-[13px] xl:text-base"
+	                  >
+	                    <Link to={link.to}>
+	                      {link.label}
+	                    </Link>
+	                  </Button>
                 ) : (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="navbar-link text-white transition-colors duration-200 py-2 px-2"
+                    className="navbar-link text-white transition-colors duration-200 py-2 px-2 text-[13px] xl:text-base"
                   >
                     {link.label}
                   </Link>
                 ),
               )}
 
-              {/* More Dropdown - Desktop */}
-              <div 
-                className="relative group"
-                onMouseEnter={() => setOpenDropdown('more')}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button 
-                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    type="button"
+                    className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2 text-[13px] xl:text-base"
+                    aria-label="More pages"
+                  >
+                    More
+                    <ChevronDown size={16} />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="w-56 bg-black border border-gold/40 text-white shadow-xl"
                 >
-                  More
-                  <ChevronDown size={16} />
-                </button>
-                
-                {openDropdown === 'more' && (
-                  <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
-                    {moreDropdown.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
-                        >
-                          {item.label}
-                        </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+                  {moreDropdown.map((item) => (
+                    <DropdownMenuItem
+                      key={item.to}
+                      asChild
+                      className="cursor-pointer text-white focus:bg-white/10 focus:text-white data-[highlighted]:bg-white/10 data-[highlighted]:text-white"
+                    >
+                      <Link to={item.to}>{item.label}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </nav>
           
             {/* Enhanced Mobile Menu Button */}
             <button
               ref={menuButtonRef}
-              className="md:hidden relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform"
+              className={cn(
+                "ml-auto relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
+                shouldShowDesktopNav ? "hidden" : "",
+              )}
               style={{ 
                 minWidth: '48px', 
                 minHeight: '48px',
@@ -271,7 +351,7 @@ const Navbar = () => {
         {/* Enhanced Mobile Navigation with Swipe Support */}
         {isMobileMenuOpen && (
           <div 
-            className="fixed inset-0 z-[110] md:hidden"
+            className="fixed inset-0 z-[110]"
             id="mobile-menu"
             data-mobile-menu
             onKeyDown={handleKeyDown}
@@ -335,29 +415,32 @@ const MobileMenuPanel = ({
     onSwipeLeft: () => {
       onClose();
     },
-    threshold: 100
+    threshold: 100,
+    preventDefaultTouchmove: false
   });
+
+  const setPanelRefs = useCallback((node: HTMLDivElement | null) => {
+    panelRef.current = node;
+    swipeRef.current = node;
+  }, [swipeRef]);
 
   // Calculate deltaX for swipe visual feedback
   const deltaX = gestureState.currentX - gestureState.startX;
-
-  // Combine refs for swipe functionality
-  useEffect(() => {
-    if (panelRef.current && swipeRef.current) {
-      swipeRef.current = panelRef.current;
-    }
-  }, []);
+  const deltaY = gestureState.currentY - gestureState.startY;
+  const isHorizontalDrag =
+    gestureState.isDragging &&
+    Math.abs(deltaX) > Math.abs(deltaY) &&
+    Math.abs(deltaX) > 8;
 
   return (
     <div 
-      ref={panelRef}
-      className={`relative h-full w-full bg-black flex flex-col pt-12 sm:pt-14 pb-6 sm:pb-8 transform transition-transform duration-300 will-change-transform ${
-        gestureState.isDragging ? 'transition-none' : ''
+      ref={setPanelRefs}
+      className={`relative h-full w-full bg-black flex flex-col pt-12 sm:pt-14 transform transition-transform duration-300 will-change-transform ${
+        isHorizontalDrag ? 'transition-none' : ''
       }`}
       style={{ 
         minHeight: '100dvh',
-        paddingBottom: 'env(safe-area-inset-bottom)',
-        transform: gestureState.isDragging && deltaX < 0 
+        transform: isHorizontalDrag && deltaX < 0 
           ? `translateX(${Math.min(0, deltaX)}px)` 
           : 'translateX(0)'
       }}
@@ -365,24 +448,22 @@ const MobileMenuPanel = ({
       <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
       
       {/* Navigation Links - Scrollable Area */}
-      <div className="px-4">
-        <nav 
-          className="flex flex-col w-full gap-1.5 overflow-y-auto pr-1 scroll-smooth"
-          role="navigation"
-          style={{ maxHeight: 'min(70vh, calc(100dvh - 240px))' }}
-        >
+      <nav 
+        className="flex-1 flex flex-col w-full gap-1.5 overflow-y-auto overscroll-contain px-4 pb-4 scroll-smooth"
+        role="navigation"
+        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+      >
           {navLinks.map((link, index) => (
             <Link
               key={link.to}
               ref={index === 0 ? firstMenuLinkRef : undefined}
               to={link.to}
-              className="navbar-link w-full block py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+              className="w-full block py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
               }}
               onClick={onClose}
-              tabIndex={0}
             >
               <span className="font-medium">{link.label}</span>
             </Link>
@@ -391,12 +472,15 @@ const MobileMenuPanel = ({
           {/* Services Section */}
           <div className="w-full border-b border-white/10 pb-1">
             <button
+              id="services-button"
               className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
                 WebkitTapHighlightColor: 'transparent'
               }}
               onClick={() => toggleDropdown('services')}
+              aria-expanded={openDropdown === 'services'}
+              aria-controls="services-submenu"
             >
               <span className="font-medium">Services</span>
               <ChevronDown 
@@ -405,7 +489,12 @@ const MobileMenuPanel = ({
               />
             </button>
             {openDropdown === 'services' && (
-              <div className="mt-1 space-y-1.5 pb-1">
+              <div
+                id="services-submenu"
+                className="mt-1 space-y-1.5 pb-1"
+                role="region"
+                aria-labelledby="services-button"
+              >
                 {servicesDropdown.map((item) => (
                   <Link
                     key={item.to}
@@ -423,6 +512,7 @@ const MobileMenuPanel = ({
           {/* Clients Section */}
           <div className="w-full border-b border-white/10 pb-1">
             <button
+              id="clients-button"
               className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
                 minHeight: '48px',
@@ -452,7 +542,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                     className="navbar-link w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                     className="w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -469,6 +559,7 @@ const MobileMenuPanel = ({
           {/* More Section */}
           <div className="w-full border-b border-white/10 pb-1">
             <button
+              id="more-button"
               ref={lastMenuLinkRef}
               className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
               style={{ 
@@ -499,7 +590,7 @@ const MobileMenuPanel = ({
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="navbar-link w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                     style={{ 
                       minHeight: '44px',
                       WebkitTapHighlightColor: 'transparent'
@@ -512,8 +603,7 @@ const MobileMenuPanel = ({
               </div>
             )}
           </div>
-        </nav>
-      </div>
+      </nav>
       
       {/* Enhanced CTA Button - Mobile - Fixed at bottom */}
       <div 
@@ -538,7 +628,7 @@ const MobileMenuPanel = ({
       </div>
       
       {/* Swipe Indicator */}
-      {gestureState.isDragging && deltaX < -50 && (
+      {isHorizontalDrag && deltaX < -50 && (
         <div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/60 animate-pulse">
           <div className="flex items-center gap-2">
             <span className="text-sm">Swipe to close</span>

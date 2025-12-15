@@ -414,9 +414,6 @@ body {
 
 /* Navbar Specific Styles - Ensure white text regardless of link state */
 .navbar-link,
-.navbar-link:hover,
-.navbar-link:active,
-.navbar-link:focus,
 .navbar-link:visited {
   color: #ffffff !important;
   text-decoration: none !important;
@@ -434,20 +431,31 @@ body {
   background: linear-gradient(90deg, rgba(232, 197, 109, 0.9), rgba(255, 255, 255, 0));
   transform: translateY(4px);
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+	transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-link:hover,
-.navbar-link:focus {
+.navbar-link:active,
+.navbar-link:focus-visible {
   color: #f0d9a2 !important;
-  transform: translateY(-2px);
 }
 
-.navbar-link:hover::after,
-.navbar-link:focus::after {
+.navbar-link:focus-visible::after {
   height: 2px;
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navbar-link:hover {
+    color: #f0d9a2 !important;
+    transform: translateY(-2px);
+  }
+
+  .navbar-link:hover::after {
+    height: 2px;
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Reveal Animations */
