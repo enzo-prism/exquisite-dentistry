@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const SingleToothVeneersBlog = () => {
   const blogPost = {
@@ -45,7 +45,7 @@ const SingleToothVeneersBlog = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
+            <Link to="/blog/" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
               <ArrowLeft size={20} />
               Back to Blog
             </Link>
@@ -362,14 +362,9 @@ const SingleToothVeneersBlog = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg" className="text-lg px-8 py-4">
-                <a
-                  href={SCHEDULING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center"
-                >
+                <Link to={SCHEDULE_CONSULTATION_PATH} className="flex items-center justify-center">
                   Schedule Consultation
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
                 <a 
@@ -382,7 +377,7 @@ const SingleToothVeneersBlog = () => {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
-                <Link to="/contact" className="flex items-center justify-center">
+                <Link to="/contact/" className="flex items-center justify-center">
                   Contact Our Dental Team
                 </Link>
               </Button>

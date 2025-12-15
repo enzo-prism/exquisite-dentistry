@@ -9,7 +9,7 @@ import BlogStructuredData from '@/components/BlogStructuredData';
 import ArticleStructuredData from '@/components/seo/ArticleStructuredData';
 
 import { PageSEO } from '@/components/seo/PageSEO';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const FrontTeethVeneersBlog = () => {
@@ -325,12 +325,12 @@ const FrontTeethVeneersBlog = () => {
               Schedule your consultation today and discover how veneers for your front 4 teeth can give you the confident, beautiful smile you deserve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg">
-                  Book Free Consultation
+              <Button size="lg" asChild>
+                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  Schedule Consultation
                   <ArrowRight size={16} className="ml-2" />
-                </Button>
-              </a>
+                </Link>
+              </Button>
               <a href="https://exquisiteveneersla.com/" target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg" 
@@ -340,7 +340,7 @@ const FrontTeethVeneersBlog = () => {
                   Explore Veneer Gallery
                 </Button>
               </a>
-              <Link to="/smile-gallery">
+              <Link to="/smile-gallery/">
                 <Button 
                   size="lg" 
                   variant="outline"
@@ -359,7 +359,7 @@ const FrontTeethVeneersBlog = () => {
           <section className="mt-16">
             <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
             <div className="grid gap-4">
-              <Link to="/blog/single-tooth-veneers-perfect-solutions" className="group">
+              <Link to="/blog/single-tooth-veneers-perfect-solutions/" className="group">
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold group-hover:text-gold transition-colors">

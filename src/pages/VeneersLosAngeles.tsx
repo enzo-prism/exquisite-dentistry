@@ -14,6 +14,7 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const VeneersLosAngeles = () => {
   const differentiators = [
@@ -124,7 +125,6 @@ const VeneersLosAngeles = () => {
         serviceName="Los Angeles Porcelain Veneers"
         description="Custom smile makeovers using premium porcelain veneers, designed for natural beauty and long-term durability."
         url="/veneers-los-angeles"
-        priceRange="$$$$"
       />
 
       <FAQStructuredData
@@ -137,14 +137,12 @@ const VeneersLosAngeles = () => {
           title="Porcelain Veneers Los Angeles"
           subtitle="Capture the radiance of a handcrafted smile designed for film, fashion, and modern city life."
           primaryCta={{
-            text: "Plan Your Smile Design",
-            href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null",
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           secondaryCta={{
-            text: "Explore Transformations",
-            href: "/smile-gallery"
+            text: "Smile Gallery",
+            href: "/smile-gallery/"
           }}
           height="medium"
         />
@@ -181,7 +179,7 @@ const VeneersLosAngeles = () => {
                   <p className="text-muted-foreground mt-2">See transparent pricing and design guidance when you only need the front teeth perfected.</p>
                 </div>
                 <Button asChild>
-                  <Link to="/veneers/front-teeth-veneers-los-angeles">
+                  <Link to="/veneers/front-teeth-veneers-los-angeles/">
                     Explore front teeth veneers
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -233,16 +231,10 @@ const VeneersLosAngeles = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <a
-                      href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Reserve Smile Consultation
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/transformation-stories">
+                    <Link to="/transformation-stories/">
                       Explore Patient Transformations
                     </Link>
                   </Button>
@@ -278,8 +270,8 @@ const VeneersLosAngeles = () => {
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 Our concierge team coordinates with glam squads, brand managers, and wedding planners so treatment milestones align with key dates.
-                Temporary veneers are hand-polished to look natural during press tours, while final porcelain integrates seamlessly with <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">Zoom whitening</Link>,
-                <Link to="/invisalign" className="text-secondary underline-offset-4 hover:underline">Invisalign alignment</Link>, or <Link to="/dental-implants" className="text-secondary underline-offset-4 hover:underline">implant restorations</Link> for comprehensive bite rehabilitation.
+                Temporary veneers are hand-polished to look natural during press tours, while final porcelain integrates seamlessly with <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">Zoom whitening</Link>,
+                <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign alignment</Link>, or <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">implant restorations</Link> for comprehensive bite rehabilitation.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 After delivery, you will receive custom Vivera retainers, a nightguard, and access to our VIP maintenance program.
@@ -415,16 +407,10 @@ const VeneersLosAngeles = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <a
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Veneer Design Session
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/testimonials">
+                  <Link to="/testimonials/">
                     Hear from Our Veneer Patients
                   </Link>
                 </Button>

@@ -1,4 +1,5 @@
-import { SCHEDULING_URL } from '../constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '../constants/urls';
+import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '../constants/contact';
 import type { BlogPost } from './blogTypes';
 import { generatedBlogPosts } from './generatedBlogPosts';
 
@@ -94,7 +95,7 @@ const baseBlogPosts: BlogPost[] = [
         </ul>
         <p>
           Dive deeper into our
-          <a href="/veneers/front-teeth-veneers-los-angeles">front teeth veneers hub</a>
+          <a href="/veneers/front-teeth-veneers-los-angeles/">front teeth veneers hub</a>
           for transparent pricing on 2 or 4 veneers and real case breakdowns.
         </p>
 
@@ -160,10 +161,10 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10 text-center space-y-4">
           <h3 class="text-2xl font-semibold">Transform Your Smile with Porcelain Veneers</h3>
           <p>Schedule a one-on-one consultation with Dr. Alexie Aguil to plan the exact veneer count, cost, and timeline that fits your lifestyle.</p>
-          <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
-            Book a Veneer Consultation
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
+            Schedule Consultation
           </a>
-          <p class="text-sm text-gray-600">Prefer a conversation first? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+          <p class="text-sm text-gray-600">Prefer a conversation first? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
         </div>
 
         <p>
@@ -224,8 +225,8 @@ const baseBlogPosts: BlogPost[] = [
           <h3 class="text-lg font-semibold text-center mb-3">Need Personalized Guidance?</h3>
           <p class="text-center mb-4">We align treatment plans with your work calendar so you stay confident in every meeting.</p>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book an Invisalign visit</a>
-            <p class="text-sm text-gray-600">Prefer a call? Reach us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Prefer a call? Reach us at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
 
@@ -279,8 +280,8 @@ const baseBlogPosts: BlogPost[] = [
           <h3 class="text-lg font-semibold text-center mb-3">Plan Your Visit</h3>
           <p class="text-center mb-4">Experience adult-focused care in a relaxing environment.</p>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Request an appointment</a>
-            <p class="text-sm text-gray-600">Prefer the phone? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Prefer the phone? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
 
@@ -331,8 +332,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Book a quick oral cancer screening</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule online</a>
-            <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
 
@@ -384,8 +385,8 @@ const baseBlogPosts: BlogPost[] = [
           <h3 class="text-lg font-semibold text-center mb-3">Need a refresh?</h3>
           <p class="text-center mb-4">Pair your new routine with professional cleanings twice a year.</p>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule a visit</a>
-            <p class="text-sm text-gray-600">Call us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> with any questions.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Call us at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a> with any questions.</p>
           </div>
         </div>
       </div>`,
@@ -426,8 +427,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Talk with our implant team</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book a consultation</a>
-            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
       </div>`,
@@ -510,8 +511,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-4">
           <h3 class="text-lg font-semibold">Schedule an implant consultation</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book online</a>
-            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
       </div>`,
@@ -593,8 +594,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-4">
           <h3 class="text-lg font-semibold">Talk through implants vs bridge</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book a consultation</a>
-            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Have questions? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
       </div>`,
@@ -668,8 +669,8 @@ const baseBlogPosts: BlogPost[] = [
 
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-3">
           <h3 class="text-lg font-semibold">Ready for a healthier smile?</h3>
-          <p>Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> or book online.</p>
-          <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule a consultation</a>
+          <p>Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a> or book online.</p>
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
         </div>
 
         <h3>Transform Your Smile with Exquisite Dentistry</h3>
@@ -682,9 +683,9 @@ const baseBlogPosts: BlogPost[] = [
 
         <h3>Related Reads</h3>
         <ul class="list-disc pl-6 space-y-2">
-          <li><a href="/blog/improve-oral-care-at-work" class="text-primary hover:text-primary/80 underline">5 Ways to Improve Oral Care While You’re at Work →</a></li>
-          <li><a href="/blog/early-signs-of-oral-cancer" class="text-primary hover:text-primary/80 underline">6 Early Signs of Oral Cancer →</a></li>
-          <li><a href="/blog/all-about-veneers-for-teeth" class="text-primary hover:text-primary/80 underline">All About Veneers for Teeth →</a></li>
+          <li><a href="/blog/improve-oral-care-at-work/" class="text-primary hover:text-primary/80 underline">5 Ways to Improve Oral Care While You’re at Work →</a></li>
+          <li><a href="/blog/early-signs-of-oral-cancer/" class="text-primary hover:text-primary/80 underline">6 Early Signs of Oral Cancer →</a></li>
+          <li><a href="/blog/all-about-veneers-for-teeth/" class="text-primary hover:text-primary/80 underline">All About Veneers for Teeth →</a></li>
         </ul>
       </div>`,
     author: 'Dr. Alexie Aguil',
@@ -720,8 +721,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Curious about Invisalign?</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Request a consultation</a>
-            <p class="text-sm text-gray-600">Prefer to chat? Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Prefer to chat? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
 
@@ -764,8 +765,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Schedule a screening</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book now</a>
-            <p class="text-sm text-gray-600">Call <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> if you prefer to speak with our team.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a> if you prefer to speak with our team.</p>
           </div>
         </div>
 
@@ -840,8 +841,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Experience dentistry that feels like a spa day</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule your visit</a>
-            <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Prefer to call? Reach us at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
       </div>`,
@@ -1098,12 +1099,12 @@ const baseBlogPosts: BlogPost[] = [
 
         <h2>Ready to Transform Your Smile?</h2>
         <p>
-          See real before-and-after results in our <a href="/smile-gallery" class="text-primary hover:text-primary/80 underline">Smile Gallery</a> or schedule a complimentary consultation to explore your custom veneer design.
+          See real before-and-after results in our <a href="/smile-gallery/" class="text-primary hover:text-primary/80 underline">Smile Gallery</a> or schedule a complimentary consultation to explore your custom veneer design.
         </p>
         <p>
-          <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book a Consultation</a>
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
         </p>
-        <p>Or call us directly at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a> for pricing and financing details.</p>
+        <p>Or call us directly at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a> for pricing and financing details.</p>
 
         <p>
           <strong>Exquisite Dentistry - Beverly Hills | 6227 Wilshire Blvd, Los Angeles, CA 90048</strong><br />
@@ -1144,8 +1145,8 @@ const baseBlogPosts: BlogPost[] = [
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8">
           <h3 class="text-lg font-semibold text-center mb-3">Explore your veneer options</h3>
           <div class="text-center space-y-2">
-            <a href="${SCHEDULING_URL}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Book a design session</a>
-            <p class="text-sm text-gray-600">Speak with us directly at <a href="tel:13232722388" class="text-primary hover:text-primary/80 underline">(323) 272-2388</a>.</p>
+            <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">Schedule Consultation</a>
+            <p class="text-sm text-gray-600">Speak with us directly at <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface BreadcrumbItem {
   label: string;
@@ -49,7 +50,7 @@ const SmartBreadcrumbs: React.FC<SmartBreadcrumbsProps> = ({
               </span>
             ) : (
               <Link
-                to={item.href || '/'}
+                to={normalizeInternalHref(item.href || '/')}
                 className="hover:text-gold transition-colors"
               >
                 {item.label}
@@ -70,7 +71,7 @@ const SmartBreadcrumbs: React.FC<SmartBreadcrumbsProps> = ({
             {currentItem?.related?.map((related, index) => (
               <Link
                 key={index}
-                to={related.href}
+                to={normalizeInternalHref(related.href)}
                 className="block p-3 bg-white rounded-md hover:bg-gold/5 hover:border-gold/20 border border-gray-200 transition-all group"
               >
                 <div className="flex items-center justify-between">

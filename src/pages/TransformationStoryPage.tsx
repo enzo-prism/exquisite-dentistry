@@ -11,13 +11,15 @@ import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { ArrowLeft, CheckCircle, Heart, Star, Users, BookOpen, Video } from 'lucide-react';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const TransformationStoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const caseStudy = transformationStories.find(cs => cs.slug === slug);
 
   if (!caseStudy) {
-    return <Navigate to="/transformation-stories" replace />;
+    return <Navigate to="/transformation-stories/" replace />;
   }
 
   const canonicalUrl = getCanonicalUrl(`/transformation-stories/${caseStudy.slug}`);
@@ -51,12 +53,12 @@ const TransformationStoryPage: React.FC = () => {
     description:
       caseStudy.finalCta?.description ??
       'Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity — every step of the way.',
-    primaryCtaText: caseStudy.finalCta?.primaryCtaText ?? '👉 Book a Consultation',
+    primaryCtaText: caseStudy.finalCta?.primaryCtaText ?? 'Schedule Consultation',
     primaryCtaHref:
       caseStudy.finalCta?.primaryCtaHref ??
-      'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      SCHEDULE_CONSULTATION_PATH,
     secondaryCtaText: caseStudy.finalCta?.secondaryCtaText ?? 'Call the Office',
-    secondaryCtaHref: caseStudy.finalCta?.secondaryCtaHref ?? 'tel:+13232722388'
+    secondaryCtaHref: caseStudy.finalCta?.secondaryCtaHref ?? `tel:${PHONE_NUMBER_E164}`
   } as const;
 
   const isExternalLink = (href?: string) => Boolean(href && href.startsWith('http'));
@@ -88,7 +90,7 @@ const TransformationStoryPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <Link 
-              to="/transformation-stories" 
+              to="/transformation-stories/" 
               className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors"
             >
               <ArrowLeft size={16} />
@@ -274,7 +276,7 @@ const TransformationStoryPage: React.FC = () => {
               {relatedBlogPosts.map((post) => (
                 <Link
                   key={post.id}
-                  to={`/blog/${post.slug}`}
+                  to={`/blog/${post.slug}/`}
                   className="group"
                 >
                   <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
@@ -310,7 +312,7 @@ const TransformationStoryPage: React.FC = () => {
               {relatedStories.map((story) => (
                 <Link
                   key={story.id}
-                  to={`/transformation-stories/${story.slug}`}
+                  to={`/transformation-stories/${story.slug}/`}
                   className="group"
                 >
                   <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
@@ -338,7 +340,7 @@ const TransformationStoryPage: React.FC = () => {
           <InternalLinkingWidget
             context={storyContext}
             variant="expanded"
-            currentPage={`/transformation-stories/${caseStudy.slug}`}
+            currentPage={`/transformation-stories/${caseStudy.slug}/`}
             title="Explore Related Services"
           />
         </div>

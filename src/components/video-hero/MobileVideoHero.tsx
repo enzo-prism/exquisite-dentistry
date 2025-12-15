@@ -98,7 +98,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
           />
         </div>
         <Link
-          to="/testimonials"
+          to="/testimonials/"
           className="mt-5 inline-flex w-full justify-center text-xs text-white/80 hover:text-white transition-colors"
         >
           5-star experience · 200+ Google · 100+ Yelp

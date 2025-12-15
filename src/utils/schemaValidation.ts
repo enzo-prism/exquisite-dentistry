@@ -77,10 +77,6 @@ export function validateLocalBusiness(data: LocalBusinessSchema): ValidationResu
     warnings.push({ field: 'openingHours', error: 'Opening hours are recommended', severity: 'warning' });
   }
 
-  if (!data.priceRange) {
-    warnings.push({ field: 'priceRange', error: 'Price range is recommended', severity: 'warning' });
-  }
-
   if (
     !data.geo ||
     typeof data.geo.latitude !== 'number' ||

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +11,7 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import {
   createFAQSchema,
   createMedicalProcedureSchema,
@@ -129,7 +130,10 @@ const Veneers = () => {
       description: "Transform your smile with custom porcelain veneers in Los Angeles. Expert craftsmanship, natural results, and personalized care.",
       url: "/veneers"
     }),
-    createBreadcrumbSchema([{ name: "Veneers", url: "/veneers" }]),
+    createBreadcrumbSchema([
+      { name: "Services", url: "/services" },
+      { name: "Porcelain Veneers", url: "/veneers" }
+    ]),
     createFAQSchema(faqs, "Porcelain Veneers")
   ];
 
@@ -155,13 +159,20 @@ const Veneers = () => {
           title={<>Custom Porcelain Veneers in <span className="text-gold">Los Angeles</span></>}
           subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil, DDS using digital smile design and careful lab fabrication."
           primaryCta={{
-            text: "Book a Porcelain Veneers Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
         />
+
+        <div className="container mx-auto px-4 mt-6">
+          <Breadcrumbs
+            items={[
+              { label: 'Services', to: '/services/' },
+              { label: 'Porcelain Veneers', to: '/veneers/' }
+            ]}
+          />
+        </div>
 
         {/* Introduction */}
         <section className="py-16 bg-background">
@@ -228,7 +239,7 @@ const Veneers = () => {
                   <h3 className="text-xl font-semibold text-foreground">Targeted front tooth fixes</h3>
                   <p className="text-muted-foreground">Perfect for a single dark tooth, chips, or peg laterals after whitening.</p>
                   <Button variant="link" className="px-0" asChild>
-                    <Link to="/veneers/front-teeth-veneers-los-angeles" className="inline-flex items-center">
+                    <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
                       Explore 2 veneer plans
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </Link>
@@ -241,7 +252,7 @@ const Veneers = () => {
                   <h3 className="text-xl font-semibold text-foreground">Balance the entire smile zone</h3>
                   <p className="text-muted-foreground">Prevent shade mismatch and create camera-ready symmetry across your front teeth.</p>
                   <Button variant="link" className="px-0" asChild>
-                    <Link to="/veneers/front-teeth-veneers-los-angeles" className="inline-flex items-center">
+                    <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
                       Explore 4 veneer plans
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </Link>
@@ -381,20 +392,14 @@ const Veneers = () => {
                   size="lg"
                   asChild
                 >
-                  <a 
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Consultation
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   asChild
                 >
-                  <Link to="/contact">
+                  <Link to="/contact/">
                     Contact Us
                   </Link>
                 </Button>
@@ -405,7 +410,7 @@ const Veneers = () => {
                 <InternalLinkingWidget 
                   context="veneer" 
                   variant="compact"
-                  currentPage="/veneers"
+                  currentPage="/veneers/"
                   title="Explore Related Services"
                 />
               </div>

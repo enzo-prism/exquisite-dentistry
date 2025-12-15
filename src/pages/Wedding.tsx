@@ -9,8 +9,7 @@ import PageSEO from '@/components/seo/PageSEO';
 import ImageComponent from '@/components/Image';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const Wedding = () => {
   useEffect(() => {
@@ -55,8 +54,8 @@ const Wedding = () => {
           title={<>Wedding <span className="text-gold">Smile</span></>}
           subtitle="Look your absolute best on your special day with our customized wedding smile packages designed for brides, grooms, and wedding parties."
           primaryCta={{ 
-            text: "Book Consultation",
-            href: SCHEDULING_URL
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           badgeText="WEDDING SPECIALS"
           scrollIndicator={true}
@@ -182,9 +181,9 @@ const Wedding = () => {
                 <p className="text-md text-gray-500 mb-6">
                   Serving couples getting married at premier Los Angeles venues including The Beverly Hills Hotel, Chateau Marmont, The London West Hollywood, Vibiana, and throughout Beverly Hills, West Hollywood, and Santa Monica.
                 </p>
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  <Button>Schedule Your Wedding Smile Consultation</Button>
-                </a>
+                <Button asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -372,9 +371,9 @@ const Wedding = () => {
               <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
                 Book your wedding smile consultation today and walk down the aisle with the confidence that comes from knowing your smile is absolutely perfect.
               </p>
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg">Book Your Wedding Consultation</Button>
-              </a>
+              <Button size="lg" asChild>
+                <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+              </Button>
             </div>
           </div>
         </section>

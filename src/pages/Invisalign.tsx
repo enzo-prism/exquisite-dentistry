@@ -15,7 +15,7 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
@@ -138,8 +138,6 @@ const Invisalign = () => {
         serviceName="Invisalign Clear Aligners"
         description="Discreet clear aligner therapy designed to align teeth comfortably while fitting perfectly into fast-paced Los Angeles schedules."
         url="/invisalign"
-        priceRange="$$$"
-        category="Orthodontics"
       />
 
       <FAQStructuredData
@@ -152,10 +150,8 @@ const Invisalign = () => {
           title="Invisalign® Clear Aligners"
           subtitle="Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles."
           primaryCta={{
-            text: "Book an Invisalign Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
         />
@@ -178,7 +174,7 @@ const Invisalign = () => {
                 <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-2">Powered by iTero 3D Scanning</p>
                 <p className="text-muted-foreground">
                   Every Invisalign plan begins with a{' '}
-                  <Link to="/itero-scanner" className="text-secondary underline-offset-4 hover:underline">
+                  <Link to="/itero-scanner/" className="text-secondary underline-offset-4 hover:underline">
                     high-definition iTero scan
                   </Link>
                   , delivering digital impressions that sync instantly with ClinCheck for faster trays and more predictable movement.
@@ -227,7 +223,7 @@ const Invisalign = () => {
                     “I’ve been concerned with my teeth my whole life. Dr. Alexie Aguil told me that Invisalign would help. The work that he’s done on my teeth and my smile has impacted my life significantly. I’m happier with my smile, I’m more confident. The experience was fantastic.”
                   </blockquote>
                   <Button size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/transformation-stories/nick-invisalign">Read Full Story</Link>
+                    <Link to="/transformation-stories/nick-invisalign/">Read Full Story</Link>
                   </Button>
                 </div>
               </div>
@@ -244,7 +240,7 @@ const Invisalign = () => {
                   Watch Nick describe how Invisalign changed the way he shows up at work, in photos, and on camera.
                 </p>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/transformation-stories/nick-invisalign">See Nick’s Journey</Link>
+                  <Link to="/transformation-stories/nick-invisalign/">See Nick’s Journey</Link>
                 </Button>
               </div>
             </div>
@@ -293,17 +289,15 @@ const Invisalign = () => {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Dr. Aguil has completed hundreds of clear aligner cases across West Hollywood, Beverly Hills, and central Los Angeles.
-                  Because she personally reviews each ClinCheck stage, refinements are minimized, and you stay confident that every detail contributes to a polished, balanced smile.
-                  Pair Invisalign with <Link to="/veneers" className="text-secondary underline-offset-4 hover:underline">hand-layered porcelain veneers</Link> or <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">LED-accelerated whitening</Link> for a comprehensive cosmetic plan.
+                  Because Dr. Aguil personally reviews each ClinCheck stage, refinements are minimized, and you stay confident that every detail contributes to a polished, balanced smile.
+                  Pair Invisalign with <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">hand-layered porcelain veneers</Link> or <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">LED-accelerated whitening</Link> for a comprehensive cosmetic plan.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                      Reserve Consultation
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/transformation-stories/nick-invisalign">
+                    <Link to="/transformation-stories/nick-invisalign/">
                       See Nick&apos;s Invisalign Journey
                     </Link>
                   </Button>
@@ -353,7 +347,7 @@ const Invisalign = () => {
                 If you are pairing Invisalign with restorative dentistry, our restorative-phasing protocols coordinate aligner wear with implant surgery or veneer delivery to avoid unnecessary delays.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We also curate transformation packages that integrate smile whitening, <Link to="/testimonials" className="text-secondary underline-offset-4 hover:underline">patient-proven comfort amenities</Link>, and Vivera retainer subscriptions.
+                We also curate transformation packages that integrate smile whitening, <Link to="/testimonials/" className="text-secondary underline-offset-4 hover:underline">patient-proven comfort amenities</Link>, and Vivera retainer subscriptions.
                 After treatment, our team schedules quarterly digital check-ins to ensure retainers fit perfectly and to plan any enhancements before important events.
               </p>
               <div className="mt-10 rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
@@ -363,10 +357,10 @@ const Invisalign = () => {
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <Button variant="outline" asChild>
-                    <Link to="/invisalign-beverly-hills">Invisalign Beverly Hills guide</Link>
+                    <Link to="/invisalign-beverly-hills/">Invisalign Beverly Hills guide</Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>
+                    <Link to="/beverly-hills-dentist/">Beverly Hills Dentist Page</Link>
                   </Button>
                 </div>
               </div>
@@ -502,12 +496,10 @@ const Invisalign = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <a href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null" target="_blank" rel="noopener noreferrer">
-                    Book Invisalign Consultation
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/testimonials">
+                  <Link to="/testimonials/">
                     Read Invisalign Testimonials
                   </Link>
                 </Button>

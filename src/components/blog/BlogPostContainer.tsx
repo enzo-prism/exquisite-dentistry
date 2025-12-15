@@ -62,7 +62,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
+            <Link to="/blog/" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
               <ArrowLeft size={20} />
               Back to Blog
             </Link>
@@ -164,7 +164,7 @@ const BlogPostContainer: React.FC = () => {
 
   if (error || !post) {
     console.log(`Blog post error: ${error}, redirecting to blog list`);
-    return <Navigate to="/blog" replace />;
+    return <Navigate to="/blog/" replace />;
   }
 
   return (

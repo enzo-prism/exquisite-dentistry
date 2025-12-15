@@ -4,7 +4,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from '@/constants/contact';
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 export type ZoomWhiteningHubSection = {
   id: string;
@@ -61,7 +61,7 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
       'Offer tray-based alternatives when a slower pace is the better fit'
     ],
     links: [
-      { label: 'Compare Teeth Whitening Options', href: '/teeth-whitening' }
+      { label: 'Compare Teeth Whitening Options', href: '/teeth-whitening/' }
     ]
   },
   {
@@ -76,7 +76,7 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
       'A maintenance plan (touch-up gel or trays) can extend longevity for coffee/tea/wine habits'
     ],
     links: [
-      { label: 'Book a Whitening Consultation', href: SCHEDULING_URL }
+      { label: 'Schedule Consultation', href: SCHEDULE_CONSULTATION_PATH }
     ]
   },
   {
@@ -106,18 +106,18 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
     links: [
       { label: 'Get Directions (Google Maps)', href: GOOGLE_MAPS_SHORT_URL },
       { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
-      { label: 'Book Online', href: SCHEDULING_URL },
-      { label: 'Contact', href: '/contact' }
+      { label: 'Schedule Consultation', href: SCHEDULE_CONSULTATION_PATH },
+      { label: 'Contact', href: '/contact/' }
     ]
   }
 ];
 
 export const ZOOM_WHITENING_SUPPORTING_LINKS = [
-  { label: 'Teeth Whitening Options', href: '/teeth-whitening' },
-  { label: 'Teeth Whitening Near Beverly Hills', href: '/teeth-whitening-beverly-hills' },
-  { label: 'Culver City Teeth Whitening', href: '/culver-city-teeth-whitening' },
-  { label: 'Smile Gallery', href: '/smile-gallery' },
-  { label: 'Patient Testimonials', href: '/testimonials' }
+  { label: 'Teeth Whitening Options', href: '/teeth-whitening/' },
+  { label: 'Teeth Whitening Near Beverly Hills', href: '/teeth-whitening-beverly-hills/' },
+  { label: 'Culver City Teeth Whitening', href: '/culver-city-teeth-whitening/' },
+  { label: 'Smile Gallery', href: '/smile-gallery/' },
+  { label: 'Patient Testimonials', href: '/testimonials/' }
 ] as const;
 
 export const ZOOM_WHITENING_REFERENCES = [
@@ -130,4 +130,3 @@ export const ZOOM_WHITENING_REFERENCES = [
     href: 'https://www.nhs.uk/tests-and-treatments/teeth-whitening/'
   }
 ] as const;
-

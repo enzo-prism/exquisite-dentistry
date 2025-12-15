@@ -75,7 +75,7 @@ const Tour = () => {
             Take a virtual tour of the 5 star interior design of Exquisite Dentistry
           </p>
           <Link
-            to="/testimonials"
+            to="/testimonials/"
             className="inline-flex justify-center text-xs uppercase tracking-[0.35em] text-white/70 hover:text-white transition"
           >
             5-star experience · 200+ Google reviews · 100+ Yelp reviews

@@ -16,7 +16,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link to={`/blog/${post.slug}`} className="block h-full group">
+    <Link to={`/blog/${post.slug}/`} className="block h-full group">
       <Card 
         className={`relative overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:border-gold/40 bg-card/95 backdrop-blur-sm transform group-hover:-translate-y-1 group-hover:scale-[1.01] h-full flex flex-col ${featured ? 'ring-2 ring-gold/20' : ''}`}
         onMouseEnter={() => setIsHovered(true)}

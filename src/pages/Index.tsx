@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import PageSEO from '@/components/seo/PageSEO';
@@ -82,15 +83,48 @@ const IndexPage: React.FC = () => {
         title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
         subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Led by Dr. Alexie Aguil, DDS, with a calm, spa-like patient experience." 
         primaryCta={{
-          text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          text: "Schedule Consultation",
+          href: "/schedule-consultation/"
         }}
         secondaryCta={{
-          text: "View Smile Gallery",
-          href: "/smile-gallery"
+          text: "Smile Gallery",
+          href: "/smile-gallery/"
         }}
         useGradient={false}
       />
+
+      <section className="bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs tracking-[0.35em] uppercase text-gold/80">
+                Most Requested
+              </p>
+              <h2 className="text-lg font-semibold text-white">
+                Popular Pages
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full lg:w-auto">
+              {[
+                { to: '/dental-implants/', label: 'Dental Implants' },
+                { to: '/veneers/', label: 'Porcelain Veneers' },
+                { to: '/beverly-hills-dentist/', label: 'Beverly Hills Dentist' },
+                { to: '/smile-gallery/', label: 'Smile Gallery' },
+                { to: '/schedule-consultation/', label: 'Schedule Consultation' }
+              ].map((item) => (
+                <Button
+                  key={item.to}
+                  variant="outline"
+                  className="border-gold/40 text-white hover:text-black hover:bg-gold/90"
+                  asChild
+                >
+                  <Link to={item.to}>{item.label}</Link>
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
       
       <div ref={practiceVideo.ref} className={practiceVideo.animationClass}>
         <PracticeVideoSection />

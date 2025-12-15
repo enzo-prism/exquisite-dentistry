@@ -23,13 +23,15 @@ import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
-import { serviceCategories, SCHEDULING_URL } from '@/data/services';
+import { serviceCategories } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import TopicClusterWidget from '@/components/TopicClusterWidget';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 // Icon mapping helper
 const getIcon = (iconName: string) => {
@@ -122,7 +124,7 @@ const Services = () => {
       iconLabel: '3D',
       cta: {
         label: 'Learn More',
-        href: '/itero-scanner'
+        href: '/itero-scanner/'
       }
     },
     {
@@ -151,7 +153,7 @@ const Services = () => {
           name: 'Dental Services Catalog',
           description: 'Comprehensive dental services offered at Exquisite Dentistry in Los Angeles',
           url: 'https://exquisitedentistryla.com/services/',
-          numberOfItems: 8,
+          numberOfItems: 7,
           itemListElement: [
             {
               '@type': 'ListItem',
@@ -175,23 +177,6 @@ const Services = () => {
               position: 2,
               item: {
                 '@type': 'MedicalProcedure',
-                name: 'Veneers Los Angeles',
-                description: 'Handcrafted porcelain veneer designs tailored to Los Angeles lifestyles and on-camera needs',
-                url: 'https://exquisitedentistryla.com/veneers-los-angeles/',
-                category: 'Cosmetic Dentistry',
-                provider: {
-                  '@id': 'https://exquisitedentistryla.com/#business'
-                },
-                performer: {
-                  '@id': 'https://exquisitedentistryla.com/#doctor'
-                }
-              }
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              item: {
-                '@type': 'MedicalProcedure',
                 name: 'Teeth Whitening',
                 description: 'Professional teeth whitening treatments for a brighter, more confident smile',
                 url: 'https://exquisitedentistryla.com/teeth-whitening/',
@@ -206,7 +191,7 @@ const Services = () => {
             },
             {
               '@type': 'ListItem',
-              position: 4,
+              position: 3,
               item: {
                 '@type': 'MedicalProcedure',
                 name: 'Zoom Whitening',
@@ -223,7 +208,7 @@ const Services = () => {
             },
             {
               '@type': 'ListItem',
-              position: 5,
+              position: 4,
               item: {
                 '@type': 'MedicalProcedure',
                 name: 'Dental Implants',
@@ -240,7 +225,7 @@ const Services = () => {
             },
             {
               '@type': 'ListItem',
-              position: 6,
+              position: 5,
               item: {
                 '@type': 'MedicalProcedure',
                 name: 'Invisalign Clear Aligners',
@@ -257,7 +242,7 @@ const Services = () => {
             },
             {
               '@type': 'ListItem',
-              position: 7,
+              position: 6,
               item: {
                 '@type': 'MedicalProcedure',
                 name: 'Cosmetic Dentistry',
@@ -274,7 +259,7 @@ const Services = () => {
             },
             {
               '@type': 'ListItem',
-              position: 8,
+              position: 7,
               item: {
                 '@type': 'MedicalProcedure',
                 name: 'Emergency Dental Care',
@@ -314,7 +299,6 @@ const Services = () => {
           "Long-lasting results",
           "Natural appearance"
         ]}
-        priceRange="$500-$5,000+ depending on procedure"
       />
       
       <VideoHero 
@@ -322,10 +306,8 @@ const Services = () => {
         title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>} 
         subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results." 
         primaryCta={{
-          text: "Book a Dental Services Appointment",
-          href: SCHEDULING_URL,
-          target: "_blank",
-          rel: "noopener noreferrer"
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
         secondaryCta={{
           text: "View Smile Gallery",
@@ -378,13 +360,13 @@ const Services = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                    <Button className="group w-full sm:w-auto">
-                      Schedule a Consultation
+                  <Button className="group w-full sm:w-auto" asChild>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>
+                      Schedule Consultation
                       <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </a>
-                  <Link to="/contact" className="w-full sm:w-auto">
+                    </Link>
+                  </Button>
+                  <Link to="/contact/" className="w-full sm:w-auto">
                     <Button variant="outline" className="w-full sm:w-auto">
                       Contact Us
                     </Button>
@@ -478,13 +460,13 @@ const Services = () => {
                 </div>
                 
                  <div className="pt-4 flex flex-col gap-3">
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    <Button className="group">
-                      Schedule a Consultation
+                  <Button className="group" asChild>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>
+                      Schedule Consultation
                       <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </a>
-                  <Link to="/contact">
+                    </Link>
+                  </Button>
+                  <Link to="/contact/">
                     <Button variant="outline" size="sm">
                       Contact Us
                     </Button>
@@ -553,12 +535,12 @@ const Services = () => {
               </div>
               
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button className="group w-full sm:w-auto">
-                    Schedule Invisalign Consultation
+                <Button className="group w-full sm:w-auto" asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    Schedule Consultation
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </a>
+                  </Link>
+                </Button>
                 <a
                   href="https://providerbio.invisalign.com/sv/381345#start"
                   target="_blank"
@@ -636,7 +618,7 @@ const Services = () => {
                     <p className="mt-3 text-sm leading-relaxed text-black-light/80">{highlight.description}</p>
                     {highlight.cta && (
                       <Link
-                        to={highlight.cta.href}
+                        to={normalizeInternalHref(highlight.cta.href)}
                         className="mt-4 inline-flex items-center text-sm font-semibold text-gold hover:text-gold/80 transition-colors"
                       >
                         {highlight.cta.label}
@@ -725,12 +707,12 @@ const Services = () => {
               </div>
               
               <div className="pt-4">
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="group">
-                    Experience Our Difference
+                <Button className="group" asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    Schedule Consultation
                     <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </a>
+                  </Link>
+                </Button>
               </div>
             </div>
             
@@ -877,8 +859,8 @@ const Services = () => {
                   type: "gallery"
                 },
                 {
-                  title: "Free Consultation",
-                  href: SCHEDULING_URL,
+                  title: "Schedule Consultation",
+                  href: SCHEDULE_CONSULTATION_PATH,
                   description: "Get your custom plan",
                   type: "consultation"
                 }
@@ -906,9 +888,9 @@ const Services = () => {
             <p className="text-xl text-white/80 mb-10 font-light">
               Schedule your consultation today and discover how our comprehensive dental services can enhance your smile and oral health.
             </p>
-            <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-              <Button size="lg">Book a Dental Services Appointment</Button>
-            </a>
+            <Button size="lg" asChild>
+              <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+            </Button>
             <LastUpdated date="December 2025" className="text-center text-white/60 mt-6" />
           </div>
         </div>

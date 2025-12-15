@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Circle, Clock } from 'lucide-react';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface JourneyStep {
   id: string;
@@ -52,7 +53,7 @@ const PatientJourneyNav: React.FC<PatientJourneyNavProps> = ({
               )}
               
               <Link
-                to={step.href}
+                to={normalizeInternalHref(step.href)}
                 className={`flex items-start gap-4 p-3 rounded-lg transition-all group ${
                   isCurrent 
                     ? 'bg-gold/10 border border-gold/20' 
@@ -106,7 +107,7 @@ const PatientJourneyNav: React.FC<PatientJourneyNavProps> = ({
 
       <div className="mt-6 pt-4 border-t border-gray-200">
         <Link
-          to="/contact"
+          to="/contact/"
           className="inline-flex items-center text-sm text-gold hover:text-gold/80 transition-colors"
         >
           Questions about your journey?

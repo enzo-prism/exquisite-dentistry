@@ -2,6 +2,7 @@
 import React from 'react';
 import { generateSitemapData } from '@/utils/sitemapGenerator';
 import PageSEO from '@/components/seo/PageSEO';
+import { ADDRESS, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const Sitemap = () => {
   const sitemapData = generateSitemapData();
@@ -9,31 +10,30 @@ const Sitemap = () => {
   // Group URLs by category for better organization
   const groupedUrls = {
     main: sitemapData.filter(url => 
-      ['/', '/about', '/services', '/contact'].some(path => url.loc.endsWith(path))
+      ['/', '/about/', '/services/', '/contact/'].some(path => url.loc.endsWith(path))
     ),
     services: sitemapData.filter(url => 
       [
-        '/veneers',
-        '/veneers-los-angeles',
-        '/zoom-whitening',
-        '/teeth-whitening',
-        '/invisalign',
-        '/dental-implants',
-        '/cosmetic-dentistry',
-        '/emergency-dentist'
+        '/veneers/',
+        '/zoom-whitening/',
+        '/teeth-whitening/',
+        '/invisalign/',
+        '/dental-implants/',
+        '/cosmetic-dentistry/',
+        '/emergency-dentist/'
       ].some(path => url.loc.endsWith(path))
     ),
     experience: sitemapData.filter(url => 
-      ['/client-experience', '/testimonials', '/smile-gallery', '/faqs'].some(path => url.loc.endsWith(path))
+      ['/client-experience/', '/testimonials/', '/smile-gallery/', '/faqs/'].some(path => url.loc.endsWith(path))
     ),
     special: sitemapData.filter(url => 
-      ['/wedding', '/graduation'].some(path => url.loc.endsWith(path))
+      ['/wedding/', '/graduation/'].some(path => url.loc.endsWith(path))
     ),
     blog: sitemapData.filter(url => 
       url.loc.includes('/blog')
     ),
     legal: sitemapData.filter(url => 
-      ['/privacy-policy', '/terms-of-service', '/hipaa-compliance'].some(path => url.loc.endsWith(path))
+      ['/privacy-policy/', '/terms-of-service/', '/hipaa-compliance/'].some(path => url.loc.endsWith(path))
     )
   };
 
@@ -172,7 +172,7 @@ const Sitemap = () => {
           Last updated: {new Date().toLocaleDateString()} | Total pages: {sitemapData.length}
         </p>
         <p style={{ color: '#666', fontSize: '0.9rem' }}>
-          Exquisite Dentistry - 6227 Wilshire Blvd, Los Angeles, CA 90048 - (323) 272-2388
+          Exquisite Dentistry - {ADDRESS} - {PHONE_NUMBER_DISPLAY}
         </p>
         <p style={{ color: '#666', fontSize: '0.8rem', marginTop: '1rem' }}>
           <a href="/sitemap.xml" style={{ color: '#0066cc' }}>View XML Sitemap</a>
@@ -188,27 +188,28 @@ const getPageTitle = (url: string): string => {
   const path = url.replace('https://exquisitedentistryla.com', '');
   const titleMap: Record<string, string> = {
     '/': 'Home',
-    '/about': 'About Dr. Aguil',
-    '/services': 'Our Services',
-    '/contact': 'Contact Us',
-    '/veneers': 'Porcelain Veneers',
-    '/veneers-los-angeles': 'Veneers Los Angeles',
-    '/zoom-whitening': 'Zoom Whitening',
-    '/teeth-whitening': 'Teeth Whitening',
-    '/invisalign': 'Invisalign',
-    '/dental-implants': 'Dental Implants',
-    '/cosmetic-dentistry': 'Cosmetic Dentistry',
-    '/emergency-dentist': 'Emergency Dentist',
-    '/testimonials': 'Patient Testimonials',
-    '/client-experience': 'Client Experience',
-    '/smile-gallery': 'Smile Gallery',
-    '/faqs': 'Frequently Asked Questions',
-    '/wedding': 'Wedding Smiles',
-    '/graduation': 'Graduation Ready',
-    '/privacy-policy': 'Privacy Policy',
-    '/terms-of-service': 'Terms of Service',
-    '/hipaa-compliance': 'HIPAA Compliance',
-    '/blog': 'Blog & Articles'
+    '/about/': 'About Dr. Aguil',
+    '/services/': 'Our Services',
+    '/locations/': 'Locations',
+    '/schedule-consultation/': 'Schedule Consultation',
+    '/contact/': 'Contact Us',
+    '/veneers/': 'Porcelain Veneers',
+    '/zoom-whitening/': 'Zoom Whitening',
+    '/teeth-whitening/': 'Teeth Whitening',
+    '/invisalign/': 'Invisalign',
+    '/dental-implants/': 'Dental Implants',
+    '/cosmetic-dentistry/': 'Cosmetic Dentistry',
+    '/emergency-dentist/': 'Emergency Dentist',
+    '/testimonials/': 'Patient Testimonials',
+    '/client-experience/': 'Client Experience',
+    '/smile-gallery/': 'Smile Gallery',
+    '/faqs/': 'Frequently Asked Questions',
+    '/wedding/': 'Wedding Smiles',
+    '/graduation/': 'Graduation Ready',
+    '/privacy-policy/': 'Privacy Policy',
+    '/terms-of-service/': 'Terms of Service',
+    '/hipaa-compliance/': 'HIPAA Compliance',
+    '/blog/': 'Blog & Articles'
   };
   return titleMap[path] || path;
 };

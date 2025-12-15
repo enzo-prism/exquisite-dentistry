@@ -26,7 +26,6 @@ const StaticSitemap = () => {
       [
         '/veneers',
         '/veneers/front-teeth-veneers-los-angeles',
-        '/veneers-los-angeles',
         '/zoom-whitening',
         '/culver-city-teeth-whitening',
         '/teeth-whitening',
@@ -349,7 +348,7 @@ const StaticSitemap = () => {
                   <span>Robots.txt</span>
                 </a>
                 <Link 
-                  to="/contact" 
+                  to="/contact/" 
                   className="flex items-center p-3 bg-card rounded border hover:border-gold transition-colors"
                 >
                   <span className="text-gold mr-2">📞</span>
@@ -373,7 +372,6 @@ const getPageTitle = (url: string): string => {
     '/services': 'Our Services',
     '/contact': 'Contact Us',
     '/veneers': 'Porcelain Veneers',
-    '/veneers-los-angeles': 'Veneers Los Angeles',
     '/zoom-whitening': 'Zoom Whitening',
     '/teeth-whitening': 'Teeth Whitening',
     '/culver-city-teeth-whitening': 'Culver City Teeth Whitening',

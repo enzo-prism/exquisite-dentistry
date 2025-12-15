@@ -5,6 +5,8 @@ import VideoHero from '@/components/VideoHero';
 import { Button } from '@/components/ui/button';
 import { transformationStories } from '@/data/transformationStories';
 import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const TransformationStoriesPage: React.FC = () => {
   return (
@@ -22,11 +24,11 @@ const TransformationStoriesPage: React.FC = () => {
         subtitle="Real clients, real transformations, real stories of confidence and care"
         primaryCta={{
           text: "View Stories",
-          href: "/transformation-stories#stories"
+          href: "/transformation-stories/#stories"
         }}
         secondaryCta={{
-          text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
       />
       
@@ -42,7 +44,7 @@ const TransformationStoriesPage: React.FC = () => {
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
               Want a step-by-step overview first? Start with our{" "}
-              <Link to="/smile-makeover-los-angeles" className="text-secondary underline underline-offset-4 hover:underline">
+              <Link to="/smile-makeover-los-angeles/" className="text-secondary underline underline-offset-4 hover:underline">
                 Smile Makeover in Los Angeles guide
               </Link>
               .
@@ -95,7 +97,7 @@ const TransformationStoriesPage: React.FC = () => {
                     {/* CTA */}
                     <div className="pt-4">
                       <Button asChild variant="default">
-                        <Link to={`/transformation-stories/${caseStudy.slug}`}>
+                        <Link to={`/transformation-stories/${caseStudy.slug}/`}>
                           Read Full Story
                         </Link>
                       </Button>
@@ -115,16 +117,10 @@ const TransformationStoriesPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="default">
-                <a 
-                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Book a Consultation
-                </a>
+                <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="tel:+13232722388">
+                <a href={`tel:${PHONE_NUMBER_E164}`}>
                   Call the Office
                 </a>
               </Button>

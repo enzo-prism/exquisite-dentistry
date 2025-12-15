@@ -5,6 +5,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useTouchOptimization } from '@/hooks/use-mobile-gestures';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gtagSendEvent } from '@/utils/googleAdsTracking';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 interface FloatingActionButtonProps {
   className?: string;
@@ -36,25 +38,25 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
     {
       icon: Phone,
       label: 'Call Now',
-      href: 'tel:+13232722388',
+      href: `tel:${PHONE_NUMBER_E164}`,
       color: 'bg-green-500 hover:bg-green-600'
     },
     {
       icon: MessageSquare,
       label: 'Text Us',
-      href: 'sms:+13232722388',
+      href: `sms:${PHONE_NUMBER_E164}`,
       color: 'bg-blue-500 hover:bg-blue-600'
     },
     {
       icon: MapPin,
       label: 'Directions',
-      href: 'https://maps.google.com/?q=Exquisite+Dentistry+Los+Angeles',
+      href: GOOGLE_MAPS_SHORT_URL,
       color: 'bg-red-500 hover:bg-red-600'
     },
     {
       icon: Calendar,
-      label: 'Schedule',
-      href: 'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      label: 'Schedule Consultation',
+      href: SCHEDULE_CONSULTATION_PATH,
       color: 'bg-primary hover:bg-primary/90 text-primary-foreground',
       trackConversion: true
     }

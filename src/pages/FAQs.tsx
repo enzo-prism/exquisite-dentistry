@@ -6,15 +6,13 @@ import PageSEO from '@/components/seo/PageSEO';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { faqs } from '@/data/faqs';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
-// Scheduling URL constant - consistent across site
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 
 const FAQs = () => {
   useEffect(() => {
@@ -42,7 +40,7 @@ const FAQs = () => {
         <VideoHero
           title={<>Your Dental Questions Answered - <span className="text-gold">Patient Care Guide</span></>}
           subtitle="Get comprehensive answers about our Los Angeles practice near Beverly Hills, treatment procedures, insurance coverage, and what to expect during your luxury dental experience."
-          primaryCta={{ text: "Schedule Your First Visit", href: SCHEDULING_URL }}
+          primaryCta={{ text: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH }}
           badgeText="PATIENT GUIDANCE"
           height="medium"
           scrollIndicator={false}

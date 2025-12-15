@@ -4,6 +4,7 @@ import ConversionButton from '@/components/ConversionButton';
 import { Star, Award, Users, Clock, Wand2, Sparkles, ClipboardCheck, HandHeart } from 'lucide-react';
 import ImageComponent from '@/components/Image';
 import { drAguilImages } from '@/data/drAguilImages';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const DoctorIntroSection: React.FC = () => {
   const stats = [
@@ -79,15 +80,13 @@ const DoctorIntroSection: React.FC = () => {
                 size="lg" 
                 className="px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
               >
-                <a href="/about">Learn More About Dr. Aguil</a>
+                <a href="/about/">Learn More About Dr. Aguil</a>
               </Button>
               <ConversionButton 
                 variant="outline" 
                 size="lg" 
                 className="px-6 sm:px-8 py-3 min-h-[44px] touch-optimized"
-                href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={SCHEDULE_CONSULTATION_PATH}
               >
                 Schedule Consultation
               </ConversionButton>

@@ -13,7 +13,7 @@ import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import RelatedArticles from "@/components/RelatedArticles";
 import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { Clock, MapPin, Phone } from "lucide-react";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
@@ -22,6 +22,7 @@ import {
   SMILE_MAKEOVER_HUB_SECTIONS,
   SMILE_MAKEOVER_REFERENCES
 } from "@/data/smile-makeover-hub";
+import { normalizeInternalHref } from "@/utils/normalizeInternalHref";
 
 type HubLink = { label: string; href: string };
 type HubSection = (typeof SMILE_MAKEOVER_HUB_SECTIONS)[number];
@@ -32,7 +33,7 @@ const SectionLinkButton = ({ link }: { link: HubLink }) => {
   if (isInternalHref(link.href)) {
     return (
       <Button key={link.href} variant="outline" asChild>
-        <Link to={link.href}>{link.label}</Link>
+        <Link to={normalizeInternalHref(link.href)}>{link.label}</Link>
       </Button>
     );
   }
@@ -112,7 +113,6 @@ const SmileMakeoverLosAngeles = () => {
         serviceName="Smile Makeover Los Angeles"
         description={meta.description}
         url="https://exquisitedentistryla.com/smile-makeover-los-angeles"
-        category="Cosmetic Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Smile Makeover Los Angeles" />
@@ -122,10 +122,8 @@ const SmileMakeoverLosAngeles = () => {
           title="Smile Makeover Los Angeles"
           subtitle="A personalized plan that can combine veneers, whitening, Invisalign, bonding, and restorative care—sequenced for natural-looking results and bite stability."
           primaryCta={{
-            text: "Book a Smile Makeover Consultation",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
           preferStaticOnMobile={true}
@@ -139,16 +137,16 @@ const SmileMakeoverLosAngeles = () => {
               <h2 id="overview" className="mt-6 text-3xl md:text-4xl font-bold text-foreground">
                 Smile Makeover Los Angeles: What to Expect
               </h2>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Clinically reviewed by{" "}
-                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil, DDS
-                </Link>{" "}
-                ·{" "}
-                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
-                  Editorial policy
-                </Link>
-              </p>
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Clinically reviewed by{" "}
+                  <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
+                    Dr. Alexie Aguil, DDS
+                  </Link>{" "}
+                  ·{" "}
+                  <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
+                    Editorial policy
+                  </Link>
+                </p>
 
               {SMILE_MAKEOVER_HUB_INTRO_PARAGRAPHS.map((paragraph) => (
                 <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
@@ -242,12 +240,10 @@ const SmileMakeoverLosAngeles = () => {
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
-                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                          Book online
-                        </a>
+                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                       </Button>
                       <Button variant="outline" asChild>
-                        <Link to="/smile-gallery">See results</Link>
+                        <Link to="/smile-gallery/">See results</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -375,12 +371,10 @@ const SmileMakeoverLosAngeles = () => {
                       </a>
                     </Button>
                     <Button asChild>
-                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                        Book online
-                      </a>
+                      <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <Link to="/contact">Contact</Link>
+                      <Link to="/contact/">Contact</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -452,9 +446,7 @@ const SmileMakeoverLosAngeles = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    Book online
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>

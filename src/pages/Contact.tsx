@@ -12,6 +12,7 @@ import PageSEO from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import {
   PHONE_NUMBER_DISPLAY,
   EMAIL,
@@ -27,8 +28,6 @@ const SOCIAL_URLS = {
   INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/"
 };
 
-// Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -463,19 +462,17 @@ const Contact = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-8">
-                Book <span className="text-gold">Now</span>
+                Schedule <span className="text-gold">Consultation</span>
               </h2>
               <p className="text-xl text-white/80 mb-12 font-light">
-                Schedule your visit today and experience the Exquisite Dentistry difference.
+                Schedule your consultation today and experience the Exquisite Dentistry difference.
               </p>
               <ConversionButton 
                 size="lg" 
                 className="px-8 py-3.5"
-                href={SCHEDULING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={SCHEDULE_CONSULTATION_PATH}
               >
-                Book Appointment
+                Schedule Consultation
               </ConversionButton>
             </div>
           </div>

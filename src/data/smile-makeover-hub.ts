@@ -4,7 +4,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from "@/constants/contact";
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 
 export type SmileMakeoverHubSection = {
   id: string;
@@ -36,12 +36,11 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
       "Restorative dentistry (crowns/implants): replace worn or missing teeth as part of the plan"
     ],
     links: [
-      { label: "Porcelain Veneers", href: "/veneers" },
-      { label: "Veneers Los Angeles", href: "/veneers-los-angeles" },
-      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
-      { label: "Zoom Whitening", href: "/zoom-whitening" },
-      { label: "Invisalign", href: "/invisalign" },
-      { label: "Dental Implants", href: "/dental-implants" }
+      { label: "Porcelain Veneers", href: "/veneers/" },
+      { label: "Teeth Whitening Options", href: "/teeth-whitening/" },
+      { label: "Zoom Whitening", href: "/zoom-whitening/" },
+      { label: "Invisalign", href: "/invisalign/" },
+      { label: "Dental Implants", href: "/dental-implants/" }
     ]
   },
   {
@@ -58,8 +57,8 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
       "Maintenance plan: hygiene, retainers/nightguard guidance, and touch-up timing"
     ],
     links: [
-      { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
-      { label: "Transformation Stories", href: "/transformation-stories" }
+      { label: "Smile Gallery (Before & After)", href: "/smile-gallery/" },
+      { label: "Transformation Stories", href: "/transformation-stories/" }
     ]
   },
   {
@@ -76,7 +75,7 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
       "Implant or restorative cases: staged timelines that prioritize healing and fit"
     ],
     links: [
-      { label: "Book a Smile Analysis", href: SCHEDULING_URL }
+      { label: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH }
     ]
   },
   {
@@ -93,8 +92,8 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
       "Timeline needs (events, travel, staged treatment)"
     ],
     links: [
-      { label: "Schedule a Consultation", href: SCHEDULING_URL },
-      { label: "Contact & Scheduling", href: "/contact" }
+      { label: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH },
+      { label: "Contact", href: "/contact/" }
     ]
   },
   {
@@ -138,19 +137,19 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
     links: [
       { label: "Get Directions (Google Maps)", href: GOOGLE_MAPS_SHORT_URL },
       { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
-      { label: "Book Online", href: SCHEDULING_URL },
-      { label: "Client Experience", href: "/client-experience" }
+      { label: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH },
+      { label: "Client Experience", href: "/client-experience/" }
     ]
   }
 ];
 
 export const SMILE_MAKEOVER_HUB_SUPPORTING_LINKS = [
-  { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
-  { label: "Transformation Stories", href: "/transformation-stories" },
-  { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
-  { label: "Porcelain Veneers", href: "/veneers" },
-  { label: "Teeth Whitening", href: "/teeth-whitening" },
-  { label: "Invisalign", href: "/invisalign" }
+  { label: "Smile Gallery (Before & After)", href: "/smile-gallery/" },
+  { label: "Transformation Stories", href: "/transformation-stories/" },
+  { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry/" },
+  { label: "Porcelain Veneers", href: "/veneers/" },
+  { label: "Teeth Whitening", href: "/teeth-whitening/" },
+  { label: "Invisalign", href: "/invisalign/" }
 ] as const;
 
 export const SMILE_MAKEOVER_REFERENCES = [
@@ -167,4 +166,3 @@ export const SMILE_MAKEOVER_REFERENCES = [
     href: "https://www.nhs.uk/tests-and-treatments/teeth-whitening/"
   }
 ] as const;
-

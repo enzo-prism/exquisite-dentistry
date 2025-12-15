@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { cn } from '@/lib/utils';
 
 interface LinkItem {
@@ -19,6 +19,23 @@ interface InternalLinkingWidgetProps {
   className?: string;
   title?: string;
 }
+
+const normalizeInternalHref = (href: string): string => {
+  if (!href) return href;
+  if (href.startsWith('#')) return href;
+  if (/^(https?:)?\/\//i.test(href)) return href;
+  if (/^(mailto|tel):/i.test(href)) return href;
+  if (!href.startsWith('/')) return href;
+
+  const match = href.match(/^([^?#]*)(.*)$/);
+  const pathname = match?.[1] ?? href;
+  const suffix = match?.[2] ?? '';
+
+  if (pathname === '/' || pathname.endsWith('/')) return href;
+  if (/\/[^/]+\.[^/]+$/.test(pathname)) return href;
+
+  return `${pathname}/${suffix}`;
+};
 
 const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({ 
   currentPage = '', 
@@ -46,18 +63,11 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
-            title: 'Veneers Los Angeles',
-            href: '/veneers-los-angeles',
-            description: 'Handcrafted veneers tailored to LA lifestyles',
-            category: 'service',
-            priority: 3
-          },
-          {
             title: 'Smile Makeover (Los Angeles)',
             href: '/smile-makeover-los-angeles',
             description: 'How we combine veneers, whitening, and Invisalign in one plan',
             category: 'service',
-            priority: 4
+            priority: 3
           },
           {
             title: 'Single Tooth Veneers Guide',
@@ -464,9 +474,9 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 1
           },
           {
-            title: 'Financing Options',
-            href: SCHEDULING_URL,
-            description: 'Flexible payment plans and consultation scheduling',
+            title: 'Schedule Consultation',
+            href: SCHEDULE_CONSULTATION_PATH,
+            description: 'Financing questions and personalized treatment planning',
             category: 'consultation',
             priority: 2
           },
@@ -485,10 +495,10 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 4
           },
           {
-            title: 'Free Consultation',
-            href: SCHEDULING_URL,
-            description: 'Get personalized treatment planning',
-            category: 'consultation',
+            title: 'Client Experience',
+            href: '/client-experience/',
+            description: 'What to expect during your visits',
+            category: 'experience',
             priority: 5
           }
         ];
@@ -629,9 +639,9 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 8
           },
           {
-            title: 'Schedule a Checkup',
-            href: SCHEDULING_URL,
-            description: 'Protect your oral health with regular visits',
+            title: 'Schedule Consultation',
+            href: SCHEDULE_CONSULTATION_PATH,
+            description: 'Confirm next steps for your oral health',
             category: 'consultation',
             priority: 9
           }
@@ -683,7 +693,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Schedule Consultation',
-            href: SCHEDULING_URL,
+            href: SCHEDULE_CONSULTATION_PATH,
             description: 'Begin your smile transformation',
             category: 'consultation',
             priority: 7
@@ -707,8 +717,10 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     }
   };
 
+  const normalizedCurrentPage = normalizeInternalHref(currentPage);
+
   const links = getContextualLinks()
-    .filter(link => !currentPage.includes(link.href))
+    .filter((link) => !normalizedCurrentPage.includes(normalizeInternalHref(link.href)))
     .sort((a, b) => (a.priority || 99) - (b.priority || 99));
   
   // Filter out seasonal/special links for compact variant to reduce over-promotion
@@ -784,7 +796,9 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       
       <div className={gridClasses}>
         {displayLinks.map((link, index) => {
-          const isExternal = /^https?:\/\//.test(link.href);
+          const normalizedHref = normalizeInternalHref(link.href);
+          const isRouterLink = normalizedHref.startsWith('/');
+          const isHttpUrl = /^(https?:)?\/\//i.test(normalizedHref);
           const linkClassName = cardClasses;
           const linkContent = (
             <>
@@ -815,13 +829,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             </>
           );
 
-          if (isExternal) {
+          if (!isRouterLink) {
             return (
               <a
                 key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={normalizedHref}
+                target={isHttpUrl ? "_blank" : undefined}
+                rel={isHttpUrl ? "noopener noreferrer" : undefined}
                 className={linkClassName}
               >
                 {linkContent}
@@ -830,7 +844,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           }
 
           return (
-            <Link key={index} to={link.href} className={linkClassName}>
+            <Link key={index} to={normalizedHref} className={linkClassName}>
               {linkContent}
             </Link>
           );

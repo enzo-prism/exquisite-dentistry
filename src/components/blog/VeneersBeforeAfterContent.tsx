@@ -5,7 +5,8 @@ import PatientTransformationCard from '@/components/PatientTransformation';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const VeneersBeforeAfterContent = () => {
   const sectionContainer = 'max-w-5xl mx-auto px-4';
@@ -90,7 +91,7 @@ const VeneersBeforeAfterContent = () => {
               </p>
             </div>
             <Button variant="outline" asChild>
-              <Link to="/smile-gallery">Browse Full Smile Gallery</Link>
+              <Link to="/smile-gallery/">Browse Full Smile Gallery</Link>
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -113,7 +114,7 @@ const VeneersBeforeAfterContent = () => {
               </p>
             </div>
             <Button variant="outline" asChild>
-              <Link to="/smile-gallery#smile-gallery-sliders">View More Close-Ups</Link>
+              <Link to="/smile-gallery/#smile-gallery-sliders">View More Close-Ups</Link>
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -209,18 +210,20 @@ const VeneersBeforeAfterContent = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <a href={SCHEDULING_URL} target="_blank" rel="noreferrer">
-                Schedule a Veneer Consultation
-              </a>
+              <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/blog/4-front-teeth-veneers-cost-los-angeles">
+              <Link to="/blog/4-front-teeth-veneers-cost-los-angeles/">
                 Review Veneer Pricing Guides
               </Link>
             </Button>
           </div>
           <p className="text-sm text-gray-500">
-            Prefer to talk it through? Call <a href="tel:13232722388" className="text-primary">(323) 272-2388</a>.
+            Prefer to talk it through? Call{' '}
+            <a href={`tel:${PHONE_NUMBER_E164}`} className="text-primary">
+              {PHONE_NUMBER_DISPLAY}
+            </a>
+            .
           </p>
         </div>
       </section>

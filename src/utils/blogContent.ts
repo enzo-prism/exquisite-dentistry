@@ -1,4 +1,5 @@
 import type { BlogPost } from '@/data/blogPosts';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 const stripTags = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -30,6 +31,15 @@ const hasStrongTokenOverlap = (heading: string, post: BlogPost) => {
   return false;
 };
 
+const normalizeBlogAnchorHrefs = (html: string) => {
+  const anchorHrefRegex = /<a\b([^>]*?)\bhref=(["'])([^"']+)\2/gi;
+  return html.replace(anchorHrefRegex, (match, beforeAttrs: string, quote: string, href: string) => {
+    const normalizedHref = normalizeInternalHref(href);
+    if (normalizedHref === href) return match;
+    return `<a${beforeAttrs}href=${quote}${normalizedHref}${quote}`;
+  });
+};
+
 export const sanitizeBlogHtml = (post: BlogPost) => {
   if (!post.content) return '';
 
@@ -37,15 +47,15 @@ export const sanitizeBlogHtml = (post: BlogPost) => {
   const match = headingRegex.exec(post.content);
 
   if (!match) {
-    return post.content.trim();
+    return normalizeBlogAnchorHrefs(post.content.trim());
   }
 
   const headingText = stripTags(match[1]);
   if (!hasStrongTokenOverlap(headingText, post)) {
-    return post.content.trim();
+    return normalizeBlogAnchorHrefs(post.content.trim());
   }
 
   const before = post.content.slice(0, match.index);
   const after = post.content.slice(match.index + match[0].length);
-  return `${before}${after}`.trim();
+  return normalizeBlogAnchorHrefs(`${before}${after}`.trim());
 };

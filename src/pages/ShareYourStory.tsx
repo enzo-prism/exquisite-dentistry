@@ -351,7 +351,7 @@ const ShareYourStory = () => {
             <ConversionButton
               variant="outline"
               size="lg"
-              href="/contact"
+              href="/contact/"
               className="mr-4"
             >
               Contact Us

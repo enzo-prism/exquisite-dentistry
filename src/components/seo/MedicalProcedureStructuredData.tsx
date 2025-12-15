@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface ProcedureStep {
   name: string;
@@ -20,8 +21,24 @@ interface MedicalProcedureStructuredDataProps {
   benefits?: string[];
   duration?: string;
   recoveryTime?: string;
-  priceRange?: string;
 }
+
+const normalizeUrl = (value: string): string => {
+  if (!value) {
+    return getCanonicalUrl('/');
+  }
+
+  try {
+    if (value.startsWith('http://') || value.startsWith('https://')) {
+      const parsed = new URL(value);
+      return getCanonicalUrl(parsed.pathname || '/');
+    }
+  } catch {
+    // Ignore parse errors and fall through
+  }
+
+  return getCanonicalUrl(value);
+};
 
 const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataProps> = ({
   procedureName,
@@ -35,16 +52,15 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
   followupCare = [],
   risks = [],
   benefits = [],
-  duration,
-  recoveryTime,
-  priceRange
+  recoveryTime
 }) => {
+  const canonicalUrl = normalizeUrl(url);
   const procedureData = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     name: procedureName,
     description: description,
-    url: `https://exquisitedentistryla.com${url}`,
+    url: canonicalUrl,
     ...(image && { image: image }),
     procedureType: procedureType,
     bodyLocation: {
@@ -55,9 +71,7 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
     ...(followupCare.length > 0 && { followupCare: followupCare.join('. ') }),
     ...(risks.length > 0 && { riskFactor: risks }),
     ...(benefits.length > 0 && { expectedPrognosis: benefits.join('. ') }),
-    ...(duration && { estimatedCost: { '@type': 'MonetaryAmount', value: duration } }),
     ...(recoveryTime && { recoveryTime: recoveryTime }),
-    ...(priceRange && { priceRange: priceRange }),
     provider: {
       '@id': 'https://exquisitedentistryla.com/#business'
     },

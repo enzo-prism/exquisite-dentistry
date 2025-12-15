@@ -1,3 +1,5 @@
+import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+
 export type PageMetadata = {
   title: string;
   description: string;
@@ -36,6 +38,14 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
+  },
+  '/locations': {
+    title: 'Locations | Exquisite Dentistry',
+    description:
+      'Explore the Los Angeles neighborhoods we serve near Beverly Hills. Find concierge dental care, directions, and location-specific pages for your area.',
+    keywords:
+      'Beverly Hills dentist, West Hollywood dentist, Culver City dentist, Los Angeles dentist locations, dental office near Beverly Hills',
+    ogImage: DEFAULT_OG_IMAGE
   },
   '/veneers': {
     title: 'Porcelain Veneers Los Angeles | Exquisite Dentistry',
@@ -148,11 +158,19 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
   '/contact': {
-    title: 'Schedule Appointment | Exquisite Dentistry LA',
+    title: 'Contact Exquisite Dentistry Los Angeles | Phone & Directions',
     description:
-      'Schedule your consultation with Dr. Aguil in Los Angeles. Convenient Wilshire Blvd location, flexible hours. Call (323) 272-2388 or book online!',
+      `Contact Exquisite Dentistry on Wilshire Blvd in Los Angeles near Beverly Hills. Call ${PHONE_NUMBER_DISPLAY} for concierge care, directions, and scheduling.`,
     keywords:
       'contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd',
+    ogImage: DEFAULT_OG_IMAGE
+  },
+  '/schedule-consultation': {
+    title: 'Schedule Consultation | Exquisite Dentistry',
+    description:
+      `Schedule a porcelain veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles. Book online or call ${PHONE_NUMBER_DISPLAY}.`,
+    keywords:
+      'schedule consultation, book dentist appointment, porcelain veneers consultation, dental implants consultation, Beverly Hills dentist, Los Angeles cosmetic dentist',
     ogImage: DEFAULT_OG_IMAGE
   },
   '/testimonials': {

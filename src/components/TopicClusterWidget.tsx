@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Heart, Camera, Calendar, FileText, Sparkles } from 'lucide-react';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface ClusterItem {
   title: string;
@@ -66,7 +67,7 @@ const TopicClusterWidget: React.FC<TopicClusterWidgetProps> = ({
       {/* Central Hub */}
       <div className="mb-6">
         <Link
-          to={centralHub.href}
+          to={normalizeInternalHref(centralHub.href)}
           className="block p-4 bg-gradient-to-r from-gold/10 to-gold/20 rounded-lg border-2 border-gold/30 hover:border-gold/50 transition-all group"
         >
           <div className="flex items-center gap-3">
@@ -92,7 +93,7 @@ const TopicClusterWidget: React.FC<TopicClusterWidgetProps> = ({
         {spokes.map((spoke, index) => (
           <Link
             key={index}
-            to={spoke.href}
+            to={normalizeInternalHref(spoke.href)}
             className={`block p-3 rounded-md border transition-all hover:shadow-sm group ${getTypeColor(spoke.type)}`}
           >
             <div className="flex items-start gap-3">

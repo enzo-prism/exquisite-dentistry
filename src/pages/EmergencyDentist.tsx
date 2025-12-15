@@ -13,8 +13,16 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import {
+  ADDRESS_LOCALITY,
+  ADDRESS_REGION,
+  PHONE_NUMBER_DISPLAY,
+  PHONE_NUMBER_E164,
+  POSTAL_CODE,
+  STREET_ADDRESS
+} from '@/constants/contact';
 
 const EmergencyDentist = () => {
   const meta = ROUTE_METADATA['/emergency-dentist'];
@@ -119,8 +127,6 @@ const EmergencyDentist = () => {
         serviceName="Emergency Dental Care"
         description="Rapid-response dental services including pain relief, fracture repair, infection control, and trauma management."
         url="/emergency-dentist"
-        priceRange="$$-$$$"
-        category="Emergency Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Emergency Dentist Los Angeles" />
@@ -130,10 +136,8 @@ const EmergencyDentist = () => {
         title="Emergency Dentist Los Angeles"
         subtitle="Immediate, compassionate care when dental emergencies disrupt your day."
         primaryCta={{
-          text: "Book an Emergency Dental Appointment",
-          href: SCHEDULING_URL,
-          target: "_blank",
-          rel: "noopener noreferrer"
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
         height="medium"
       />
@@ -141,24 +145,26 @@ const EmergencyDentist = () => {
       <section className="-mt-8 sm:-mt-14 relative z-20">
         <div className="container mx-auto px-4">
           <div className="bg-white border border-border/60 shadow-xl rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Our Location</p>
-              <address className="not-italic text-xl text-foreground mt-3 leading-relaxed">
-                <span itemProp="streetAddress">6227 Wilshire Blvd</span><br />
-                <span>
-                  <span itemProp="addressLocality">Los Angeles</span>, <span itemProp="addressRegion">CA</span> <span itemProp="postalCode">90048</span>
-                </span>
-              </address>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Call Us</p>
-              <a href="tel:+13232722388" itemProp="telephone" className="text-3xl font-semibold text-foreground mt-3 block">
-                (323) 272-2388
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+	            <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+	              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Our Location</p>
+	              <address className="not-italic text-xl text-foreground mt-3 leading-relaxed">
+	                <span itemProp="streetAddress">{STREET_ADDRESS}</span><br />
+	                <span>
+	                  <span itemProp="addressLocality">{ADDRESS_LOCALITY}</span>,{' '}
+	                  <span itemProp="addressRegion">{ADDRESS_REGION}</span>{' '}
+	                  <span itemProp="postalCode">{POSTAL_CODE}</span>
+	                </span>
+	              </address>
+	            </div>
+	            <div>
+	              <p className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold">Call Us</p>
+	              <a href={`tel:${PHONE_NUMBER_E164}`} itemProp="telephone" className="text-3xl font-semibold text-foreground mt-3 block">
+	                {PHONE_NUMBER_DISPLAY}
+	              </a>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
 
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
@@ -218,18 +224,18 @@ const EmergencyDentist = () => {
                   If root canal therapy or implant placement is necessary, we coordinate with our in-house specialists or trusted partners the same day.
                   Before you leave, we map next steps, review costs transparently, and arrange virtual check-ins to monitor healing.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <a href="tel:+13232722388">
-                      Speak to Our Emergency Team
-                    </a>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">
-                      Request Follow-Up Care
-                    </Link>
-                  </Button>
-                </div>
+	                <div className="flex flex-wrap gap-4">
+	                  <Button size="lg" asChild>
+	                    <a href={`tel:${PHONE_NUMBER_E164}`}>
+	                      Speak to Our Emergency Team
+	                    </a>
+	                  </Button>
+	                  <Button size="lg" variant="outline" asChild>
+	                    <Link to="/contact/">
+	                      Request Follow-Up Care
+	                    </Link>
+	                  </Button>
+	                </div>
               </div>
               <div className="bg-muted/40 border border-border/60 rounded-2xl p-8">
                 <h3 className="text-2xl font-semibold text-foreground mb-4">Common Emergencies We Treat</h3>
@@ -262,10 +268,12 @@ const EmergencyDentist = () => {
                 Following emergency care, we schedule comprehensive exams and personalized wellness plans to reduce future risks.
                 Many patients join our VIP membership for priority scheduling, quarterly cleanings, and whitening touch-ups that keep emergencies at bay.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Need follow-up cosmetic care after trauma? We seamlessly transition into <Link to="/cosmetic-dentistry" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>,
-                <Link to="/veneers" className="text-secondary underline-offset-4 hover:underline">veneers</Link>, or <Link to="/dental-implants" className="text-secondary underline-offset-4 hover:underline">implant therapy</Link> to restore long-term confidence.
-              </p>
+	              <p className="text-lg text-muted-foreground leading-relaxed">
+	                Need follow-up cosmetic care after trauma? We seamlessly transition into{' '}
+	                <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>,{' '}
+	                <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">veneers</Link>, or{' '}
+	                <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">implant therapy</Link> to restore long-term confidence.
+	              </p>
             </div>
           </div>
         </section>
@@ -296,10 +304,16 @@ const EmergencyDentist = () => {
                 <div className="bg-white border border-border/60 rounded-2xl p-8 shadow-sm">
                   <h3 className="text-2xl font-semibold text-foreground mb-4">Emergency Readiness Checklist</h3>
                   <ul className="space-y-3 text-muted-foreground leading-relaxed">
-                    <li className="flex items-start gap-3">
-                      <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Store our number <a className="text-secondary underline-offset-4 hover:underline" href="tel:+13232722388">(323) 272-2388</a> in your phone under “Emergency Dentist LA.”</span>
-                    </li>
+	                    <li className="flex items-start gap-3">
+	                      <Compass className="w-5 h-5 text-secondary mt-1" />
+	                      <span>
+	                        Store our number{' '}
+	                        <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
+	                          {PHONE_NUMBER_DISPLAY}
+	                        </a>{' '}
+	                        in your phone under “Emergency Dentist LA.”
+	                      </span>
+	                    </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
                       <span>Keep a small dental travel kit with floss, pain relievers, and a clean container in your bag or car.</span>
@@ -323,26 +337,26 @@ const EmergencyDentist = () => {
                   currentService="Emergency Dentist"
                   context="complement"
                   recommendations={[
-                    {
-                      title: "Dental Implants",
-                      href: "/dental-implants",
-                      description: "Replace teeth lost to trauma with permanent solutions.",
-                      popularity: 47
-                    },
-                    {
-                      title: "Cosmetic Dentistry",
-                      href: "/cosmetic-dentistry",
-                      description: "Restore aesthetics after emergency repairs and long-term healing.",
-                      popularity: 58
-                    },
-                    {
-                      title: "FAQs",
-                      href: "/faqs",
-                      description: "Review preventive tips and solutions for common oral health questions.",
-                      popularity: 62
-                    }
-                  ]}
-                />
+	                    {
+	                      title: "Dental Implants",
+	                      href: "/dental-implants/",
+	                      description: "Replace teeth lost to trauma with permanent solutions.",
+	                      popularity: 47
+	                    },
+	                    {
+	                      title: "Cosmetic Dentistry",
+	                      href: "/cosmetic-dentistry/",
+	                      description: "Restore aesthetics after emergency repairs and long-term healing.",
+	                      popularity: 58
+	                    },
+	                    {
+	                      title: "FAQs",
+	                      href: "/faqs/",
+	                      description: "Review preventive tips and solutions for common oral health questions.",
+	                      popularity: 62
+	                    }
+	                  ]}
+	                />
               </div>
             </div>
           </div>
@@ -379,18 +393,18 @@ const EmergencyDentist = () => {
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Dental emergencies do not wait, and neither should you. Call or message us now for concierge-level emergency care in the heart of Los Angeles.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" asChild>
-                  <a href="tel:+13232722388">
-                    Call (323) 272-2388
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/contact">
-                    Request Emergency Follow-Up
-                  </Link>
-                </Button>
-              </div>
+	              <div className="flex flex-wrap justify-center gap-4">
+	                <Button size="lg" asChild>
+	                  <a href={`tel:${PHONE_NUMBER_E164}`}>
+	                    Call {PHONE_NUMBER_DISPLAY}
+	                  </a>
+	                </Button>
+	                <Button size="lg" variant="outline" asChild>
+	                  <Link to="/contact/">
+	                    Request Emergency Follow-Up
+	                  </Link>
+	                </Button>
+	              </div>
             </div>
           </div>
         </section>

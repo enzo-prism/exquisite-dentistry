@@ -14,7 +14,7 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
 const CosmeticDentistry = () => {
@@ -116,7 +116,6 @@ const CosmeticDentistry = () => {
         serviceName="Cosmetic Dentistry Services"
         description="Integrated cosmetic dentistry solutions featuring veneers, Invisalign, whitening, and bonding for bespoke smile transformations."
         url="/cosmetic-dentistry"
-        priceRange="$$$-$$$$"
       />
 
       <FAQStructuredData faqs={faqs} about="Cosmetic Dentistry Los Angeles" />
@@ -126,10 +125,8 @@ const CosmeticDentistry = () => {
           title="Cosmetic Dentistry Los Angeles"
           subtitle="Curated smile transformations for tastemakers, entrepreneurs, and artists."
           primaryCta={{
-            text: "Book a Cosmetic Dentistry Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
         />
@@ -184,12 +181,12 @@ const CosmeticDentistry = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                   Tailored Smile Journeys
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                   No two smile makeovers look alike. We craft curated pathways that align with your timeline, budget, and aspirations.
-                  You may begin with Invisalign to perfect alignment, transition to <Link to="/veneers-los-angeles" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link> for symmetry,
-                  and finish with <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">professional whitening</Link> for brilliance.
+                  You may begin with Invisalign to perfect alignment, transition to <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link> for symmetry,
+                  and finish with <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">professional whitening</Link> for brilliance.
                   Each step is documented and previewed so you remain excited, informed, and empowered.
-                  For a step-by-step overview, explore our <Link to="/smile-makeover-los-angeles" className="text-secondary underline-offset-4 hover:underline">Smile Makeover in Los Angeles guide</Link>.
+                  For a step-by-step overview, explore our <Link to="/smile-makeover-los-angeles/" className="text-secondary underline-offset-4 hover:underline">Smile Makeover in Los Angeles guide</Link>.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   We embrace collaboration, partnering with dermatologists, facial plastic surgeons, and wellness practitioners to ensure your smile harmonizes with your overall aesthetic goals.
@@ -197,16 +194,10 @@ const CosmeticDentistry = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <a
-                      href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Book Cosmetic Consultation
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/client-experience">
+                    <Link to="/client-experience/">
                       Discover Our Experience
                     </Link>
                   </Button>
@@ -305,7 +296,7 @@ const CosmeticDentistry = () => {
                   recommendations={[
                     {
                       title: "Porcelain Veneers",
-                      href: "/veneers-los-angeles",
+                      href: "/veneers/",
                       description: "Handcrafted veneers for cinematic smile transformations.",
                       combination: true,
                       popularity: 76
@@ -371,16 +362,10 @@ const CosmeticDentistry = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <a
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Start Your Makeover
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/testimonials">
+                  <Link to="/testimonials/">
                     Hear From Cosmetic Patients
                   </Link>
                 </Button>

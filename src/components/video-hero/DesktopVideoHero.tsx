@@ -86,7 +86,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
           />
         </div>
         <Link
-          to="/testimonials"
+          to="/testimonials/"
           className="mt-4 inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
         >
           5-star experience · 200+ Google reviews · 100+ Yelp reviews

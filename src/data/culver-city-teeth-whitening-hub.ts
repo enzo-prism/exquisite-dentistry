@@ -4,7 +4,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from '@/constants/contact';
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 export type CulverCityTeethWhiteningHubSection = {
   id: string;
@@ -34,8 +34,8 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
       'Hybrid plan: combine a jumpstart visit with periodic tray touch-ups to maintain your shade'
     ],
     links: [
-      { label: 'Compare Teeth Whitening Options', href: '/teeth-whitening' },
-      { label: 'Zoom Teeth Whitening (In-Office)', href: '/zoom-whitening' }
+      { label: 'Compare Teeth Whitening Options', href: '/teeth-whitening/' },
+      { label: 'Zoom Teeth Whitening (In-Office)', href: '/zoom-whitening/' }
     ]
   },
   {
@@ -63,8 +63,8 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
       'If shade mismatch is likely, we’ll discuss sequencing (whitening first, then replacements when needed)'
     ],
     links: [
-      { label: 'Porcelain Veneers', href: '/veneers' },
-      { label: 'Cosmetic Dentistry Overview', href: '/cosmetic-dentistry' }
+      { label: 'Porcelain Veneers', href: '/veneers/' },
+      { label: 'Cosmetic Dentistry Overview', href: '/cosmetic-dentistry/' }
     ]
   },
   {
@@ -91,8 +91,8 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
       'Book online or call for scheduling guidance if you have a deadline'
     ],
     links: [
-      { label: 'Book Online', href: SCHEDULING_URL },
-      { label: 'Contact & Directions', href: '/contact' }
+      { label: 'Schedule Consultation', href: SCHEDULE_CONSULTATION_PATH },
+      { label: 'Contact & Directions', href: '/contact/' }
     ]
   },
   {
@@ -109,16 +109,16 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
     links: [
       { label: 'Get Directions (Google Maps)', href: GOOGLE_MAPS_SHORT_URL },
       { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
-      { label: 'Contact & Scheduling', href: '/contact' }
+      { label: 'Contact & Scheduling', href: '/contact/' }
     ]
   }
 ];
 
 export const CULVER_CITY_TEETH_WHITENING_SUPPORTING_LINKS = [
-  { label: 'Teeth Whitening (Los Angeles)', href: '/teeth-whitening' },
-  { label: 'Zoom Whitening', href: '/zoom-whitening' },
-  { label: 'Culver City Dentist', href: '/culver-city-dentist' },
-  { label: 'Smile Gallery', href: '/smile-gallery' }
+  { label: 'Teeth Whitening (Los Angeles)', href: '/teeth-whitening/' },
+  { label: 'Zoom Whitening', href: '/zoom-whitening/' },
+  { label: 'Culver City Dentist', href: '/culver-city-dentist/' },
+  { label: 'Smile Gallery', href: '/smile-gallery/' }
 ] as const;
 
 export const CULVER_CITY_TEETH_WHITENING_REFERENCES = [
@@ -131,4 +131,3 @@ export const CULVER_CITY_TEETH_WHITENING_REFERENCES = [
     href: 'https://www.nhs.uk/tests-and-treatments/teeth-whitening/'
   }
 ] as const;
-

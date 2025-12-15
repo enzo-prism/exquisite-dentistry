@@ -29,7 +29,7 @@ import {
   SOCIAL_MEDIA,
   BUSINESS_HOURS
 } from '@/constants/contact';
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL } from '@/constants/urls';
 import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
 
 type FooterLink = {
@@ -38,42 +38,50 @@ type FooterLink = {
   href?: string;
 };
 
+const POPULAR_PAGES: FooterLink[] = [
+  { label: 'Dental Implants', to: '/dental-implants/' },
+  { label: 'Porcelain Veneers', to: '/veneers/' },
+  { label: 'Beverly Hills Dentist', to: '/beverly-hills-dentist/' },
+  { label: 'Smile Gallery', to: '/smile-gallery/' },
+  { label: 'Schedule Consultation', to: '/schedule-consultation/' }
+];
+
 const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
   {
     id: 'practice',
     title: 'Practice',
     links: [
       { label: 'Home', to: '/' },
-      { label: 'About Dr. Aguil', to: '/about' },
-      { label: 'Client Experience', to: '/client-experience' },
-      { label: 'Testimonials', to: '/testimonials' },
-      { label: 'Blog', to: '/blog' },
-      { label: 'Contact', to: '/contact' }
+      { label: 'About Dr. Aguil', to: '/about/' },
+      { label: 'Client Experience', to: '/client-experience/' },
+      { label: 'Testimonials', to: '/testimonials/' },
+      { label: 'Blog', to: '/blog/' },
+      { label: 'Contact', to: '/contact/' }
     ]
   },
   {
     id: 'services',
     title: 'Signature Services',
     links: [
-      { label: 'Porcelain Veneers', to: '/veneers' },
-      { label: 'Invisalign', to: '/invisalign' },
-      { label: 'Teeth Whitening', to: '/teeth-whitening' },
-      { label: 'Zoom Whitening', to: '/zoom-whitening' },
-      { label: 'Dental Implants', to: '/dental-implants' },
-      { label: 'Cosmetic Dentistry', to: '/cosmetic-dentistry' },
-      { label: 'Emergency Dentist', to: '/emergency-dentist' },
-      { label: 'Wedding Smiles', to: '/wedding' },
-      { label: 'Graduation Ready', to: '/graduation' }
+      { label: 'Porcelain Veneers', to: '/veneers/' },
+      { label: 'Invisalign', to: '/invisalign/' },
+      { label: 'Teeth Whitening', to: '/teeth-whitening/' },
+      { label: 'Zoom Whitening', to: '/zoom-whitening/' },
+      { label: 'Dental Implants', to: '/dental-implants/' },
+      { label: 'Cosmetic Dentistry', to: '/cosmetic-dentistry/' },
+      { label: 'Emergency Dentist', to: '/emergency-dentist/' },
+      { label: 'Wedding Smiles', to: '/wedding/' },
+      { label: 'Graduation Ready', to: '/graduation/' }
     ]
   },
   {
     id: 'resources',
     title: 'Client Resources',
     links: [
-      { label: 'Transformation Stories', to: '/transformation-stories' },
-      { label: 'Smile Gallery', to: '/smile-gallery' },
-      { label: 'FAQs', to: '/faqs' },
-      { label: 'Editorial Policy', to: '/editorial-policy' }
+      { label: 'Transformation Stories', to: '/transformation-stories/' },
+      { label: 'Smile Gallery', to: '/smile-gallery/' },
+      { label: 'FAQs', to: '/faqs/' },
+      { label: 'Editorial Policy', to: '/editorial-policy/' }
     ]
   }
 ];
@@ -170,16 +178,11 @@ const Footer = () => {
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <a
-              href={SCHEDULING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full sm:w-auto"
-            >
-              <Button className="bg-gold text-black hover:bg-gold/90 px-6 whitespace-nowrap w-full sm:w-auto">
-                Book a Consultation
-              </Button>
-            </a>
+            <Button className="bg-gold text-black hover:bg-gold/90 px-6 whitespace-nowrap w-full sm:w-auto" asChild>
+              <Link to="/schedule-consultation/" className="inline-flex w-full sm:w-auto justify-center">
+                Schedule Consultation
+              </Link>
+            </Button>
             <Button
               variant="outline"
               className="border-gold/40 text-white hover:text-black hover:bg-gold/90 whitespace-nowrap px-4 w-full sm:w-auto"
@@ -243,6 +246,16 @@ const Footer = () => {
         {/* Mobile Accordion */}
         <div className="md:hidden">
           <Accordion type="multiple" className="divide-y divide-white/10">
+            <AccordionItem value="popular-pages">
+              <AccordionTrigger
+                className="text-lg font-semibold text-white"
+                textClassName="text-white"
+                iconClassName="text-white"
+              >
+                Popular Pages
+              </AccordionTrigger>
+              <AccordionContent>{renderLinks(POPULAR_PAGES)}</AccordionContent>
+            </AccordionItem>
             {FOOTER_SECTIONS.map((section) => (
               <AccordionItem key={section.id} value={section.id}>
                 <AccordionTrigger
@@ -281,6 +294,12 @@ const Footer = () => {
               Luxury cosmetic and restorative dentistry in the heart of Los
               Angeles, blending artistry, technology, and concierge comfort.
             </p>
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4 border-b border-gold/30 pb-2">
+                Popular Pages
+              </h3>
+              {renderLinks(POPULAR_PAGES)}
+            </div>
           </motion.div>
 
           {FOOTER_SECTIONS.map((section) => (
@@ -383,15 +402,15 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between text-xs text-white/60">
           <p>© {currentYear} Exquisite Dentistry. All rights reserved.</p>
           <div className="flex flex-wrap gap-3 items-center">
-            <Link to="/privacy-policy" className="hover:text-gold transition-colors">
+            <Link to="/privacy-policy/" className="hover:text-gold transition-colors">
               Privacy Policy
             </Link>
             <span className="text-gold/50">•</span>
-            <Link to="/terms-of-service" className="hover:text-gold transition-colors">
+            <Link to="/terms-of-service/" className="hover:text-gold transition-colors">
               Terms of Service
             </Link>
             <span className="text-gold/50">•</span>
-            <Link to="/hipaa-compliance" className="hover:text-gold transition-colors">
+            <Link to="/hipaa-compliance/" className="hover:text-gold transition-colors">
               HIPAA Compliance
             </Link>
             <span className="text-gold/50">•</span>

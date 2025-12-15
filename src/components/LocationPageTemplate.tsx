@@ -1,18 +1,21 @@
 import React from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import PageSEO from "@/components/seo/PageSEO";
 import { LocationPageConfig } from "@/data/locationPages";
 import { Button } from "@/components/ui/button";
 import { Quote } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { getCanonicalUrl } from "@/utils/schemaValidation";
 import { Link } from "react-router-dom";
+import { createBreadcrumbSchema, createWebPageSchema } from "@/utils/centralizedSchemas";
+import { normalizeInternalHref } from "@/utils/normalizeInternalHref";
 
 interface LocationPageTemplateProps {
   config: LocationPageConfig;
 }
 
-
 const MIN_WORD_COUNT = 150;
+
+const isHttpUrl = (href: string) => /^https?:\/\//i.test(href);
 
 const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) => {
   if (!config?.seo?.title || !config?.seo?.description) {
@@ -24,8 +27,6 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
   if (!config.relatedServices || config.relatedServices.length === 0) {
     throw new Error(`Location page "${config.slug}" must link to at least one related service.`);
   }
-
-  const canonicalUrl = getCanonicalUrl(`/${config.slug}`);
 
   const combinedText = [
     config.hero.subheading,
@@ -46,12 +47,18 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: config.seo.title,
-    url: canonicalUrl,
-    about: {
-      "@id": "https://exquisitedentistryla.com/#business"
-    }
+    "@graph": [
+      createWebPageSchema({
+        title: config.seo.title,
+        description: config.seo.description,
+        url: `/${config.slug}`,
+        pageType: "WebPage"
+      }),
+      createBreadcrumbSchema([
+        { name: "Locations", url: "/locations" },
+        { name: `${config.cityLabel} Dentist`, url: `/${config.slug}` }
+      ])
+    ]
   };
 
   return (
@@ -65,6 +72,15 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         keywords={config.seo.keywords.join(", ")}
         path={`/${config.slug}`}
       />
+
+      <div className="mx-auto max-w-5xl px-4 pt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Locations", to: "/locations/" },
+            { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
+          ]}
+        />
+      </div>
 
       <section className="bg-gradient-to-br from-black via-black to-primary/30 text-white">
         <div className="mx-auto max-w-5xl px-4 py-20 text-center md:py-24">
@@ -139,7 +155,7 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
             {config.relatedServices.map((service) => (
               <Link
                 key={service.href}
-                to={service.href}
+                to={normalizeInternalHref(service.href)}
                 className="flex items-center justify-between rounded-2xl border border-border/80 bg-background px-5 py-4 text-primary transition hover:border-primary hover:bg-primary/5"
               >
                 <span>{service.label}</span>
@@ -156,13 +172,25 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
           <p className="mt-4 text-lg text-muted-foreground">{config.cta.description}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" asChild>
-              <a href={config.cta.primaryHref} target="_blank" rel="noopener noreferrer">
-                {config.cta.primaryText}
-              </a>
+              {config.cta.primaryHref.startsWith("/") ? (
+                <Link to={normalizeInternalHref(config.cta.primaryHref)}>{config.cta.primaryText}</Link>
+              ) : (
+                <a
+                  href={config.cta.primaryHref}
+                  target={isHttpUrl(config.cta.primaryHref) ? "_blank" : undefined}
+                  rel={isHttpUrl(config.cta.primaryHref) ? "noopener noreferrer" : undefined}
+                >
+                  {config.cta.primaryText}
+                </a>
+              )}
             </Button>
             {config.cta.secondaryText && config.cta.secondaryHref && (
               <Button size="lg" variant="outline" asChild>
-                <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
+                {config.cta.secondaryHref.startsWith("/") ? (
+                  <Link to={normalizeInternalHref(config.cta.secondaryHref)}>{config.cta.secondaryText}</Link>
+                ) : (
+                  <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
+                )}
               </Button>
             )}
           </div>

@@ -4,7 +4,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from "@/constants/contact";
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 
 export type InvisalignBeverlyHillsHubSection = {
   id: string;
@@ -35,8 +35,8 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Finishing options (whitening/bonding) once alignment is stable"
     ],
     links: [
-      { label: "Invisalign (Los Angeles)", href: "/invisalign" },
-      { label: "iTero Scanner", href: "/itero-scanner" }
+      { label: "Invisalign (Los Angeles)", href: "/invisalign/" },
+      { label: "iTero Scanner", href: "/itero-scanner/" }
     ]
   },
   {
@@ -52,8 +52,8 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "We’ll outline realistic expectations after your scan and exam"
     ],
     links: [
-      { label: "Smile Makeover Los Angeles", href: "/smile-makeover-los-angeles" },
-      { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" }
+      { label: "Smile Makeover Los Angeles", href: "/smile-makeover-los-angeles/" },
+      { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry/" }
     ]
   },
   {
@@ -70,7 +70,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Refinements if needed, then retainers to lock in results"
     ],
     links: [
-      { label: "Book a Scan + Consultation", href: SCHEDULING_URL }
+      { label: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH }
     ]
   },
   {
@@ -99,7 +99,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Support if you lose a tray or need help while traveling"
     ],
     links: [
-      { label: "Patient Testimonials", href: "/testimonials" }
+      { label: "Patient Testimonials", href: "/testimonials/" }
     ]
   },
   {
@@ -128,7 +128,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Cosmetic finishing (whitening/bonding) if desired after alignment"
     ],
     links: [
-      { label: "Contact & Scheduling", href: "/contact" }
+      { label: "Contact & Scheduling", href: "/contact/" }
     ]
   },
   {
@@ -144,9 +144,9 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Smile makeover sequencing for predictable color matching and bite stability"
     ],
     links: [
-      { label: "Teeth Whitening Options", href: "/teeth-whitening" },
-      { label: "Zoom Whitening", href: "/zoom-whitening" },
-      { label: "Porcelain Veneers", href: "/veneers" }
+      { label: "Teeth Whitening Options", href: "/teeth-whitening/" },
+      { label: "Zoom Whitening", href: "/zoom-whitening/" },
+      { label: "Porcelain Veneers", href: "/veneers/" }
     ]
   },
   {
@@ -163,19 +163,19 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
     links: [
       { label: "Get Directions (Google Maps)", href: GOOGLE_MAPS_SHORT_URL },
       { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
-      { label: "Book Online", href: SCHEDULING_URL },
-      { label: "Beverly Hills Dentist Page", href: "/beverly-hills-dentist" }
+      { label: "Schedule Consultation", href: SCHEDULE_CONSULTATION_PATH },
+      { label: "Beverly Hills Dentist Page", href: "/beverly-hills-dentist/" }
     ]
   }
 ];
 
 export const INVISALIGN_BEVERLY_HILLS_SUPPORTING_LINKS = [
-  { label: "Invisalign (Los Angeles)", href: "/invisalign" },
-  { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
-  { label: "iTero Scanner", href: "/itero-scanner" },
-  { label: "Smile Makeover Los Angeles", href: "/smile-makeover-los-angeles" },
-  { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills" },
-  { label: "Patient Testimonials", href: "/testimonials" }
+  { label: "Invisalign (Los Angeles)", href: "/invisalign/" },
+  { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist/" },
+  { label: "iTero Scanner", href: "/itero-scanner/" },
+  { label: "Smile Makeover Los Angeles", href: "/smile-makeover-los-angeles/" },
+  { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills/" },
+  { label: "Patient Testimonials", href: "/testimonials/" }
 ] as const;
 
 export const INVISALIGN_BEVERLY_HILLS_REFERENCES = [

@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import VeneerCTA from '@/components/VeneerCTA';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const FrontTeethVeneers = () => {
@@ -103,7 +103,6 @@ const FrontTeethVeneers = () => {
         serviceName="Front Teeth Veneers"
         description="Hand-layered porcelain veneers for the 2–4 front teeth to balance symmetry, color, and proportion."
         url="/veneers/front-teeth-veneers-los-angeles"
-        priceRange="$$$"
       />
 
       <MedicalProcedureStructuredData
@@ -136,7 +135,6 @@ const FrontTeethVeneers = () => {
         ]}
         duration="2–3 appointments over ~3 weeks"
         recoveryTime="Immediate return to normal activities"
-        priceRange="$3,000–$10,000 depending on veneer count and complexity"
       />
 
       <div className="min-h-screen bg-background">
@@ -153,13 +151,13 @@ const FrontTeethVeneers = () => {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  Book a front teeth veneer consult
+                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  Schedule Consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/smile-gallery">
+                <Link to="/smile-gallery/">
                   View veneer transformations
                 </Link>
               </Button>
@@ -211,10 +209,10 @@ const FrontTeethVeneers = () => {
                   </p>
                 </div>
                 <Button size="sm" variant="ghost" asChild>
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
-                    See your options
+                  <Link to={SCHEDULE_CONSULTATION_PATH} className="inline-flex items-center">
+                    Schedule Consultation
                     <ArrowRight className="h-4 w-4 ml-1" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -317,10 +315,10 @@ const FrontTeethVeneers = () => {
                   <p className="text-muted-foreground max-w-2xl">Netflix, warm blankets, and gentle anesthesia protocols keep the experience calm while we refine details that make your veneers believable.</p>
                 </div>
                 <Button size="lg" variant="default" asChild>
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    Start your design
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    Schedule Consultation
                     <ArrowRight className="h-4 w-4 ml-2" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -365,13 +363,13 @@ const FrontTeethVeneers = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  Book your veneer consult
+                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  Schedule Consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white hover:text-black">
-                <Link to="/contact">
+                <Link to="/contact/">
                   Talk to our concierge
                 </Link>
               </Button>

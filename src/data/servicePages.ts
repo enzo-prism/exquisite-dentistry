@@ -1,4 +1,5 @@
-import { SCHEDULING_URL } from "@/constants/urls";
+import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
+import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "@/data/invisalign-beverly-hills-faqs";
 
@@ -137,10 +138,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Book Your Teeth Cleaning",
       description:
         "Choose a time that fits your calendar or call our concierge team. We’ll take care of the rest.",
-      primaryText: "Schedule Online",
-      primaryHref: SCHEDULING_URL,
-      secondaryText: "Call (323) 272-2388",
-      secondaryHref: "tel:+13232722388",
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
+      secondaryText: `Call ${PHONE_NUMBER_DISPLAY}`,
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Oral Cancer Screenings", href: "/oral-cancer-screening" },
@@ -244,22 +245,21 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Book a Smile Makeover Consultation",
       description:
         "Tell us your goal and your timeline. We’ll recommend the best combination of treatments to upgrade your smile—comfort-first, with clear next steps.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
       { label: "Transformation Stories", href: "/transformation-stories" },
       { label: "Porcelain Veneers", href: "/veneers" },
-      { label: "Veneers in Los Angeles", href: "/veneers-los-angeles" },
       { label: "Teeth Whitening Options", href: "/teeth-whitening" },
       { label: "Zoom Whitening", href: "/zoom-whitening" },
       { label: "Invisalign Clear Aligners", href: "/invisalign" },
       { label: "Dental Implants", href: "/dental-implants" },
       { label: "Cosmetic Dentistry Overview", href: "/cosmetic-dentistry" },
-      { label: "Schedule a Consultation", href: "/contact" },
+      { label: "Schedule Consultation", href: "/schedule-consultation" },
     ],
   },
   "invisalign-beverly-hills": {
@@ -356,10 +356,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Book an Invisalign Consultation Near Beverly Hills",
       description:
         "Schedule a scan and consultation to see if Invisalign fits your goals, timeline, and bite. We’ll outline options and next steps with clear expectations.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Invisalign Clear Aligners (Los Angeles)", href: "/invisalign" },
@@ -367,7 +367,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "iTero 3D Scanner", href: "/itero-scanner" },
       { label: "Nick’s Invisalign Story", href: "/transformation-stories/nick-invisalign" },
       { label: "Teeth Whitening Options", href: "/teeth-whitening" },
-      { label: "Contact & Scheduling", href: "/contact" },
+      { label: "Schedule Consultation", href: "/schedule-consultation" },
     ],
   },
   "teeth-whitening-beverly-hills": {
@@ -490,10 +490,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Book Teeth Whitening Near Beverly Hills",
       description:
         "Schedule a shade assessment and we’ll recommend the whitening plan that fits your comfort level, timeline, and existing dental work.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Teeth Whitening Options (Los Angeles)", href: "/teeth-whitening" },
@@ -501,7 +501,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Beverly Hills Dentist Page", href: "/beverly-hills-dentist" },
       { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
       { label: "Patient Testimonials", href: "/testimonials" },
-      { label: "Contact & Scheduling", href: "/contact" },
+      { label: "Schedule Consultation", href: "/schedule-consultation" },
     ],
   },
   "santa-monica-dental-implants": {
@@ -624,10 +624,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Book Dental Implants Near Santa Monica",
       description:
         "Schedule a consultation and 3D imaging review to explore implant options, timelines, and comfort planning—built around Westside schedules.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Dental Implants (Los Angeles)", href: "/dental-implants" },
@@ -636,7 +636,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       { label: "Transformation Stories", href: "/transformation-stories" },
       { label: "Smile Gallery (Before & After)", href: "/smile-gallery" },
       { label: "Implants Benefits Guide", href: "/blog/reasons-to-get-dental-implants" },
-      { label: "Contact & Scheduling", href: "/contact" },
+      { label: "Schedule Consultation", href: "/schedule-consultation" },
     ],
   },
   "root-canal": {
@@ -725,10 +725,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       heading: "Schedule a Root Canal Consultation",
       description:
         "Call or book online and we’ll reserve time to relieve your pain and save your tooth.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Speak With Our Team",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Porcelain Dental Crowns", href: "/dental-crowns" },
@@ -804,10 +804,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Replace Missing Teeth With Confidence",
       description: "Let’s plan the right restoration for your smile and lifestyle.",
-      primaryText: "Request a Consultation",
-      primaryHref: SCHEDULING_URL,
-      secondaryText: "Call (323) 272-2388",
-      secondaryHref: "tel:+13232722388",
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
+      secondaryText: `Call ${PHONE_NUMBER_DISPLAY}`,
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Handcrafted Dental Crowns", href: "/dental-crowns" },
@@ -859,10 +859,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Strengthen & Beautify Your Smile",
       description: "Reserve time to discuss whether a crown, onlay, or veneer suits your goals.",
-      primaryText: "Book Online",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call the Office",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Root Canal Therapy", href: "/root-canal" },
@@ -926,10 +926,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Talk With Our Concierge Team",
       description: "We’ll map out a gentle approach so you actually look forward to care.",
-      primaryText: "Request a Comfort Consult",
-      primaryHref: SCHEDULING_URL,
-      secondaryText: "Call (323) 272-2388",
-      secondaryHref: "tel:+13232722388",
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
+      secondaryText: `Call ${PHONE_NUMBER_DISPLAY}`,
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Teeth Cleaning Experiences", href: "/teeth-cleaning" },
@@ -998,10 +998,10 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Add a Screening to Your Next Visit",
       description: "Book online or call the office—we’ll handle everything once you arrive.",
-      primaryText: "Schedule Preventive Care",
-      primaryHref: SCHEDULING_URL,
+      primaryText: "Schedule Consultation",
+      primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
-      secondaryHref: "tel:+13232722388",
+      secondaryHref: `tel:${PHONE_NUMBER_E164}`,
     },
     internalLinks: [
       { label: "Teeth Cleaning Visits", href: "/teeth-cleaning" },

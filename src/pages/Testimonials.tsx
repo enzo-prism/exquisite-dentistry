@@ -12,6 +12,8 @@ import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import FeaturedReviewWall from '@/components/FeaturedReviewWall';
 import { featuredReviews } from '@/data/featuredReviews';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const TestimonialsPage: React.FC = () => {
   const SITE_BASE_URL = 'https://exquisitedentistryla.com';
@@ -110,8 +112,8 @@ const TestimonialsPage: React.FC = () => {
           href: "#five-star-proof"
         }}
         secondaryCta={{
-          text: "Schedule a Consultation",
-          href: "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
       />
       
@@ -144,7 +146,7 @@ const TestimonialsPage: React.FC = () => {
           </div>
           <div className="flex justify-center mb-16">
             <Link
-              to="/transformation-stories"
+              to="/transformation-stories/"
               className="inline-flex items-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition"
             >
               View Transformation Stories
@@ -168,20 +170,18 @@ const TestimonialsPage: React.FC = () => {
           <FeaturedReviewWall reviews={featuredReviews} />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <a
-              href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={SCHEDULE_CONSULTATION_PATH}
               className="w-full sm:w-auto"
             >
-              <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-black px-6 py-3 text-white text-sm font-semibold hover:bg-black/90 transition">
-                Schedule Your Visit
-              </button>
-            </a>
-            <a href="tel:+13236592912" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition">
+              <span className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-black px-6 py-3 text-white text-sm font-semibold hover:bg-black/90 transition">
+                Schedule Consultation
+              </span>
+            </Link>
+            <a href={`tel:${PHONE_NUMBER_E164}`} className="w-full sm:w-auto">
+              <span className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition">
                 Call The Concierge
-              </button>
+              </span>
             </a>
           </div>
 

@@ -15,7 +15,7 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
 const TeethWhitening = () => {
@@ -96,7 +96,6 @@ const TeethWhitening = () => {
         serviceName="Professional Teeth Whitening"
         description="Concierge whitening programs including Zoom in-office treatments and custom take-home kits for long-lasting brightness."
         url="/teeth-whitening"
-        priceRange="$$"
       />
 
       <FAQStructuredData faqs={faqs} about="Professional Teeth Whitening in Los Angeles" />
@@ -106,10 +105,8 @@ const TeethWhitening = () => {
           title="Teeth Whitening Los Angeles"
           subtitle="Three luminous whitening paths designed for fast-paced LA lives."
           primaryCta={{
-            text: "Book a Teeth Whitening Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
         />
@@ -134,11 +131,11 @@ const TeethWhitening = () => {
               </p>
               <p className="mt-6 text-base text-muted-foreground">
                 Looking specifically for in-office Zoom? Explore{' '}
-                <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">
                   Zoom Teeth Whitening in Los Angeles
                 </Link>
                 . Coming from Culver City? See{' '}
-                <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/culver-city-teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">
                   teeth whitening near Culver City
                 </Link>
                 .
@@ -178,21 +175,15 @@ const TeethWhitening = () => {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   We customize gel strengths for each 15-minute cycle, ensuring a balance between powerful results and enamel safety.
-                  After whitening, you will receive a personalized kit featuring touch-up pens, aligner-safe gel (if you wear <Link to="/invisalign" className="text-secondary underline-offset-4 hover:underline">Invisalign</Link>),
+                  After whitening, you will receive a personalized kit featuring touch-up pens, aligner-safe gel (if you wear <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign</Link>),
                   and curated dietary guidelines for the first 48 hours.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <a
-                      href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Reserve Whitening Session
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/zoom-whitening">
+                    <Link to="/zoom-whitening/">
                       Learn about Zoom Whitening
                     </Link>
                   </Button>
@@ -238,37 +229,37 @@ const TeethWhitening = () => {
                 Our team also offers executive lunchtime whitening sessions and post-pilates appointments to seamlessly integrate into your routine.
               </p>
 	              <p className="text-lg text-muted-foreground leading-relaxed">
-	                Pair whitening with <Link to="/veneers-los-angeles" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or <Link to="/cosmetic-dentistry" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plans</Link>
-	                to unlock your ideal smile transformation.
-	              </p>
+		                Pair whitening with <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plans</Link>
+		                to unlock your ideal smile transformation.
+		              </p>
 	              <div className="mt-10 grid gap-6 md:grid-cols-2">
 	                <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
 	                  <h3 className="text-2xl font-semibold text-foreground">Teeth whitening near Beverly Hills</h3>
 	                  <p className="mt-3 text-muted-foreground leading-relaxed">
 	                    Coming from Beverly Hills? See whitening options designed around Beverly Hills schedules, including in-office whitening, custom trays, and shade planning for existing restorations.
 	                  </p>
-	                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-	                    <Button variant="outline" asChild>
-	                      <Link to="/teeth-whitening-beverly-hills">Beverly Hills Whitening Guide</Link>
-	                    </Button>
-	                    <Button variant="outline" asChild>
-	                      <Link to="/beverly-hills-dentist">Beverly Hills Dentist Page</Link>
-	                    </Button>
-	                  </div>
+		                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+		                    <Button variant="outline" asChild>
+		                      <Link to="/teeth-whitening-beverly-hills/">Beverly Hills Whitening Guide</Link>
+		                    </Button>
+		                    <Button variant="outline" asChild>
+		                      <Link to="/beverly-hills-dentist/">Beverly Hills Dentist Page</Link>
+		                    </Button>
+		                  </div>
 	                </div>
 	                <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
 	                  <h3 className="text-2xl font-semibold text-foreground">Culver City teeth whitening</h3>
 	                  <p className="mt-3 text-muted-foreground leading-relaxed">
 	                    Coming from Culver City? Compare in-office whitening, custom take-home trays, and sensitivity planning designed for busy Culver City schedules.
 	                  </p>
-	                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-	                    <Button variant="outline" asChild>
-	                      <Link to="/culver-city-teeth-whitening">Culver City Whitening Guide</Link>
-	                    </Button>
-	                    <Button variant="outline" asChild>
-	                      <Link to="/culver-city-dentist">Culver City Dentist Page</Link>
-	                    </Button>
-	                  </div>
+		                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+		                    <Button variant="outline" asChild>
+		                      <Link to="/culver-city-teeth-whitening/">Culver City Whitening Guide</Link>
+		                    </Button>
+		                    <Button variant="outline" asChild>
+		                      <Link to="/culver-city-dentist/">Culver City Dentist Page</Link>
+		                    </Button>
+		                  </div>
 	                </div>
 	              </div>
 	            </div>
@@ -393,19 +384,13 @@ const TeethWhitening = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <a
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Whitening
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/testimonials">
-                    Hear From Whitening Clients
-                  </Link>
-                </Button>
+	                <Button size="lg" variant="outline" asChild>
+	                  <Link to="/testimonials/">
+	                    Hear From Whitening Clients
+	                  </Link>
+	                </Button>
               </div>
             </div>
           </div>

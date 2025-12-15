@@ -12,25 +12,24 @@ import {
   POSTAL_CODE,
   ADDRESS_COUNTRY,
   PHONE_NUMBER_E164,
-  EMAIL
+  EMAIL,
+  SOCIAL_MEDIA
 } from '../constants/contact';
 
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
+const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
 
 // Master business entity - single source of truth
 export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'Dentist', 'MedicalBusiness'],
+  '@type': 'Dentist',
   '@id': 'https://exquisitedentistryla.com/#business',
-  name: 'Exquisite Dentistry Los Angeles',
-  alternateName: 'Exquisite Dentistry',
+  name: 'Exquisite Dentistry',
+  alternateName: ['Exquisite Dentistry LA', 'Exquisite Dentistry Los Angeles'],
   description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
   url: 'https://exquisitedentistryla.com/',
   telephone: PHONE_NUMBER_E164,
   email: EMAIL,
-  priceRange: '$$$',
-  currenciesAccepted: 'USD',
-  paymentAccepted: ['Cash', 'Credit Card', 'Insurance'],
   address: {
     '@type': 'PostalAddress',
     streetAddress: STREET_ADDRESS,
@@ -53,89 +52,12 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       closes: '18:00'
     }
   ],
-  areaServed: [
-    {
-      '@type': 'City',
-      name: 'Los Angeles'
-    },
-    {
-      '@type': 'City', 
-      name: 'Beverly Hills'
-    },
-    {
-      '@type': 'City',
-      name: 'Culver City'
-    },
-    {
-      '@type': 'City',
-      name: 'West Hollywood'
-    },
-    {
-      '@type': 'City',
-      name: 'Santa Monica'
-    }
-  ],
-  serviceArea: {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: 34.064851,
-      longitude: -118.370092
-    },
-    geoRadius: 25000
-  },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Dental Services',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
-          name: 'Porcelain Veneers'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
-          name: 'Teeth Whitening'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
-          name: 'Invisalign'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
-          name: 'Dental Implants'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'MedicalProcedure',
-          name: 'Emergency Dental Care'
-        }
-      }
-    ]
-  },
-  image: [
-    'https://exquisitedentistryla.com/lovable-uploads/dr-aguil-banner-2024-m.webp',
-    'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
-    'https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png'
-  ],
-  logo: 'https://exquisitedentistryla.com/lovable-uploads/dr-aguil-banner-2024-m.webp',
+  image: LOGO_URL,
+  logo: LOGO_URL,
   sameAs: [
-    'https://www.google.com/maps/place/Exquisite+Dentistry',
-    'https://www.facebook.com/exquisitedentistryla',
-    'https://www.instagram.com/exquisitedentistryla/',
-    'https://www.yelp.com/biz/exquisite-dentistry-los-angeles-3'
+    SOCIAL_MEDIA.facebook,
+    SOCIAL_MEDIA.instagram,
+    SOCIAL_MEDIA.youtube
   ]
 };
 
@@ -145,48 +67,11 @@ export const MASTER_DOCTOR_ENTITY: JsonLd = {
   '@id': 'https://exquisitedentistryla.com/#doctor',
   name: 'Dr. Alexie Aguil',
   jobTitle: 'Cosmetic Dentist',
-  description: 'Board-certified cosmetic dentist specializing in porcelain veneers, smile makeovers, and advanced dental aesthetics',
   url: getCanonicalUrl('/about'),
   image: 'https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png',
   worksFor: {
     '@id': 'https://exquisitedentistryla.com/#business'
-  },
-  knowsAbout: [
-    'Cosmetic Dentistry',
-    'Porcelain Veneers', 
-    'Teeth Whitening',
-    'Invisalign',
-    'Smile Makeovers',
-    'Dental Aesthetics'
-  ],
-  alumniOf: [
-    {
-      '@type': 'EducationalOrganization',
-      name: 'University of Southern California School of Dentistry'
-    }
-  ],
-  memberOf: [
-    {
-      '@type': 'Organization',
-      name: 'American Academy of Cosmetic Dentistry'
-    },
-    {
-      '@type': 'Organization', 
-      name: 'California Dental Association'
-    }
-  ],
-  hasCredential: [
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Doctor of Dental Surgery (DDS)',
-      credentialCategory: 'degree'
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Invisalign Lifetime Achievement Award',
-      credentialCategory: 'award'
-    }
-  ]
+  }
 };
 
 // Website schema
@@ -194,22 +79,8 @@ export const WEBSITE_ENTITY: JsonLd = {
   '@type': 'WebSite',
   '@id': 'https://exquisitedentistryla.com/#website',
   name: 'Exquisite Dentistry',
-  alternateName: 'Exquisite Dentistry Los Angeles',
-  url: getCanonicalUrl('/'),
-  description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, and smile makeovers',
-  publisher: {
-    '@id': 'https://exquisitedentistryla.com/#business'
-  },
-  inLanguage: 'en-US'
-};
-
-// Common review aggregation data
-export const REVIEW_AGGREGATE_DATA: JsonLd = {
-  '@type': 'AggregateRating',
-  ratingValue: 4.9,
-  reviewCount: 127,
-  bestRating: 5,
-  worstRating: 1
+  alternateName: ['Exquisite Dentistry LA', 'Exquisite Dentistry Los Angeles'],
+  url: getCanonicalUrl('/')
 };
 
 /**
@@ -342,7 +213,7 @@ export function createMedicalProcedureSchema(options: MedicalProcedureOptions): 
     '@type': 'MedicalProcedure',
     name: options.procedureName,
     description: options.description,
-    url: `https://exquisitedentistryla.com${options.url}`,
+    url: getCanonicalUrl(options.url),
     procedureType: options.procedureType,
     bodyLocation: {
       '@type': 'BodySystem',

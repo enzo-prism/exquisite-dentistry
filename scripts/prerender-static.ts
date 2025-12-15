@@ -48,7 +48,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from "../src/constants/contact";
-import { GOOGLE_MAPS_SHORT_URL } from "../src/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
@@ -81,9 +81,13 @@ const TEMPLATE_PATH = path.join(DIST_DIR, "index.html");
 const SCHEMA_ORG_CONTEXT = "https://schema.org";
 
 const defaultNavLinks: StaticLink[] = [
+  { label: "Dental Implants", href: "/dental-implants" },
+  { label: "Porcelain Veneers", href: "/veneers" },
+  { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
+  { label: "Smile Gallery", href: "/smile-gallery" },
+  { label: "Schedule Consultation", href: "/schedule-consultation" },
   { label: "Services", href: "/services" },
   { label: "About Dr. Aguil", href: "/about" },
-  { label: "Smile Gallery", href: "/smile-gallery" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
@@ -97,6 +101,22 @@ const manualPages: StaticRoute[] = [
     h1: "Los Angeles' Premier Cosmetic Dentist",
     paragraphs: [
       "Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil.",
+    ],
+    sections: [
+      {
+        id: "most-requested",
+        heading: "Most Requested",
+        paragraphs: [
+          "Start with our most requested pages for porcelain veneers, dental implants, Beverly Hills care, and booking.",
+        ],
+        links: [
+          { label: "Dental Implants", href: "/dental-implants" },
+          { label: "Porcelain Veneers", href: "/veneers" },
+          { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
+          { label: "Smile Gallery", href: "/smile-gallery" },
+          { label: "Schedule Consultation", href: "/schedule-consultation" },
+        ],
+      },
     ],
     links: defaultNavLinks,
   },
@@ -125,6 +145,31 @@ const manualPages: StaticRoute[] = [
       { label: "Dental Implants", href: "/dental-implants" },
       ...defaultNavLinks,
     ],
+  },
+  {
+    path: "/locations",
+    title: getRouteMetadata("/locations").title,
+    description: getRouteMetadata("/locations").description,
+    h1: "Locations",
+    paragraphs: [
+      "Our Wilshire Blvd Los Angeles studio is a quick drive from Beverly Hills and nearby neighborhoods. Explore location pages below to find concierge dental care and popular services by area.",
+    ],
+    sections: [
+      {
+        heading: "Service Areas",
+        links: [
+          { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
+          { label: "West Hollywood Dentist", href: "/west-hollywood-dentist" },
+          { label: "Culver City Dentist", href: "/culver-city-dentist" },
+          { label: "West LA Dentist", href: "/west-la-dentist" },
+          { label: "Bel Air Dentist", href: "/bel-air-dentist" },
+          { label: "90048 Dentist", href: "/90048-dentist" },
+          { label: "Melrose Dentist", href: "/melrose-dentist" },
+          { label: "Westwood Dentist", href: "/westwood-dentist" }
+        ]
+      }
+    ],
+    links: defaultNavLinks,
   },
   {
     path: "/veneers",
@@ -294,6 +339,29 @@ const manualPages: StaticRoute[] = [
     links: defaultNavLinks,
   },
   {
+    path: "/schedule-consultation",
+    title: getRouteMetadata("/schedule-consultation").title,
+    description: getRouteMetadata("/schedule-consultation").description,
+    h1: "Schedule Consultation",
+    paragraphs: [
+      "Planning porcelain veneers or dental implants near Beverly Hills? Use this page to book time with our team at Exquisite Dentistry on Wilshire Blvd in Los Angeles.",
+    ],
+    sections: [
+      {
+        id: "book-online",
+        heading: "Book Online",
+        paragraphs: [
+          "Use our online scheduler to request a consultation. Prefer to speak with someone first? Call our office and we’ll help you find a time that fits your schedule.",
+        ],
+        links: [
+          { label: "Book Online", href: SCHEDULING_URL },
+          { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+        ],
+      },
+    ],
+    links: defaultNavLinks,
+  },
+  {
     path: "/testimonials",
     title: getRouteMetadata("/testimonials").title,
     description: getRouteMetadata("/testimonials").description,
@@ -352,17 +420,6 @@ const manualPages: StaticRoute[] = [
     h1: "A Comfort‑First Dental Experience",
     paragraphs: [
       "From arrival to aftercare, our team focuses on comfort, clear communication, and treatment plans tailored to your goals.",
-    ],
-    links: defaultNavLinks,
-  },
-  {
-    path: "/veneers-los-angeles",
-    title: "Veneers Los Angeles | Custom Porcelain Smile Design | Exquisite",
-    description:
-      "Explore porcelain veneers in Los Angeles. See candidacy, process, and real results with Dr. Alexie Aguil’s custom smile design approach.",
-    h1: "Porcelain Veneers in Los Angeles",
-    paragraphs: [
-      "Porcelain veneers refine color, shape, and symmetry with a conservative approach designed to look natural in real life.",
     ],
     links: defaultNavLinks,
   },
@@ -586,6 +643,64 @@ const renderLinks = (links: StaticLink[]) => {
   </section>`;
 };
 
+const getBreadcrumbLinksForRoute = (routePath: string): StaticLink[] => {
+  switch (routePath) {
+    case "/dental-implants":
+      return [
+        { label: "Services", href: "/services" },
+        { label: "Dental Implants", href: "/dental-implants" }
+      ];
+    case "/veneers":
+      return [
+        { label: "Services", href: "/services" },
+        { label: "Porcelain Veneers", href: "/veneers" }
+      ];
+    case "/beverly-hills-dentist":
+      return [
+        { label: "Locations", href: "/locations" },
+        { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" }
+      ];
+    case "/locations":
+      return [{ label: "Locations", href: "/locations" }];
+    case "/schedule-consultation":
+      return [{ label: "Schedule Consultation", href: "/schedule-consultation" }];
+    case "/smile-gallery":
+      return [{ label: "Smile Gallery", href: "/smile-gallery" }];
+    default:
+      return [];
+  }
+};
+
+const renderBreadcrumbs = (routePath: string) => {
+  const trail = getBreadcrumbLinksForRoute(routePath);
+  if (!trail.length) return "";
+
+  const all = [{ label: "Home", href: "/" }, ...trail];
+  const itemsHtml = all
+    .map((item, index) => {
+      const isLast = index === all.length - 1;
+      const label = escapeHtml(item.label);
+      const href = escapeHtml(normalizeInternalHref(item.href));
+
+      if (index === 0) {
+        return `<li><a class="hover:text-foreground" href="${href}">${label}</a></li>`;
+      }
+
+      if (isLast) {
+        return `<li class="flex items-center gap-2"><span aria-hidden="true" class="text-muted-foreground/60">/</span><span aria-current="page" class="text-foreground">${label}</span></li>`;
+      }
+      return `<li class="flex items-center gap-2"><span aria-hidden="true" class="text-muted-foreground/60">/</span><a class="hover:text-foreground" href="${href}">${label}</a></li>`;
+    })
+    .join("\n");
+
+  return `
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+          ${itemsHtml}
+        </ol>
+      </nav>`;
+};
+
 const renderFaqSection = (faqItems: Array<{ question: string; answer: string }>) => {
   const itemsHtml = faqItems
     .filter((item) => item.question && item.answer)
@@ -726,6 +841,88 @@ const getSchemasForRoute = (routePath: string) => {
 
   if (routePath === "/about") {
     schemas.push(MASTER_DOCTOR_ENTITY);
+  }
+
+  if (routePath === "/locations") {
+    const meta = getRouteMetadata("/locations");
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/locations",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(createBreadcrumbSchema([{ name: "Locations", url: "/locations" }]));
+  }
+
+  if (routePath === "/schedule-consultation") {
+    const meta = getRouteMetadata("/schedule-consultation");
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/schedule-consultation",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Schedule Consultation", url: "/schedule-consultation" }
+      ])
+    );
+  }
+
+  if (routePath === "/veneers") {
+    const meta = getRouteMetadata("/veneers");
+    schemas.push(MASTER_DOCTOR_ENTITY);
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/veneers",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Services", url: "/services" },
+        { name: "Porcelain Veneers", url: "/veneers" }
+      ])
+    );
+  }
+
+  if (routePath === "/smile-gallery") {
+    const meta = getRouteMetadata("/smile-gallery");
+    schemas.push(
+      createWebPageSchema({
+        title: meta.title,
+        description: meta.description,
+        url: "/smile-gallery",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([{ name: "Smile Gallery", url: "/smile-gallery" }])
+    );
+  }
+
+  if (routePath === "/beverly-hills-dentist") {
+    const config = locationPageConfigs["beverly-hills-dentist"];
+    schemas.push(
+      createWebPageSchema({
+        title: config.seo.title,
+        description: config.seo.description,
+        url: "/beverly-hills-dentist",
+        pageType: "WebPage"
+      })
+    );
+    schemas.push(
+      createBreadcrumbSchema([
+        { name: "Locations", url: "/locations" },
+        { name: "Beverly Hills Dentist", url: "/beverly-hills-dentist" }
+      ])
+    );
   }
 
   if (routePath === "/zoom-whitening") {
@@ -1300,6 +1497,7 @@ const renderRoute = (template: string, route: StaticRoute) => {
   const contentHtml = `
 	  <div class="min-h-screen bg-background">
 	    <main class="container mx-auto px-4 py-16">
+		      ${renderBreadcrumbs(route.path)}
 		      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
 		        route.h1,
 		      )}</h1>

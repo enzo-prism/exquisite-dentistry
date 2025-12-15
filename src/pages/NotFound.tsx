@@ -26,7 +26,7 @@ const NotFound: React.FC = () => {
             Go to Homepage
           </Link>
           <Link
-            to="/services"
+            to="/services/"
             className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-border bg-background font-semibold hover:bg-muted transition-colors"
           >
             View Services
@@ -35,27 +35,27 @@ const NotFound: React.FC = () => {
         <nav className="pt-6 text-sm text-muted-foreground">
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <li>
-              <Link to="/veneers" className="hover:text-foreground underline">
+              <Link to="/veneers/" className="hover:text-foreground underline">
                 Veneers
               </Link>
             </li>
             <li>
-              <Link to="/invisalign" className="hover:text-foreground underline">
+              <Link to="/invisalign/" className="hover:text-foreground underline">
                 Invisalign
               </Link>
             </li>
             <li>
-              <Link to="/zoom-whitening" className="hover:text-foreground underline">
+              <Link to="/zoom-whitening/" className="hover:text-foreground underline">
                 Zoom Whitening
               </Link>
             </li>
             <li>
-              <Link to="/smile-gallery" className="hover:text-foreground underline">
+              <Link to="/smile-gallery/" className="hover:text-foreground underline">
                 Smile Gallery
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-foreground underline">
+              <Link to="/contact/" className="hover:text-foreground underline">
                 Contact
               </Link>
             </li>
@@ -67,4 +67,3 @@ const NotFound: React.FC = () => {
 };
 
 export default NotFound;
-

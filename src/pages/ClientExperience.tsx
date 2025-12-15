@@ -16,9 +16,8 @@ import {
 import { Button } from '@/components/ui/button';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { PageSEO } from '@/components/seo/PageSEO';
-
-// Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const ClientExperience = () => {
   const comfortHighlights = [
@@ -144,19 +143,17 @@ const ClientExperience = () => {
                 Private suites, spa rituals, concierge scheduling, and immersive entertainment turn every visit into a restorative ritual tailored to you.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex w-full sm:w-auto">
-                <Button className="bg-gold text-black hover:bg-gold/90 px-8 w-full sm:w-auto">
-                  Book Your Experience
-                </Button>
-              </a>
-              <Button variant="outline" className="border-white/30 text-white hover:text-black hover:bg-white w-full sm:w-auto" asChild>
-                <Link to="/smile-gallery">
-                  View the Smile Gallery
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+	            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+	              <Button className="bg-gold text-black hover:bg-gold/90 px-8 w-full sm:w-auto" asChild>
+	                <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+	              </Button>
+	              <Button variant="outline" className="border-white/30 text-white hover:text-black hover:bg-white w-full sm:w-auto" asChild>
+	                <Link to="/smile-gallery/">
+	                  View the Smile Gallery
+	                  <ArrowRight className="ml-2 h-4 w-4" />
+	                </Link>
+	              </Button>
+	            </div>
           </div>
         </section>
 
@@ -321,17 +318,15 @@ const ClientExperience = () => {
                   ))}
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex w-full sm:w-auto">
-                    <Button className="bg-black text-white hover:bg-black/90 w-full sm:w-auto">
-                      Book an Appointment
-                    </Button>
-                  </a>
-                  <Button variant="outline" className="border-black/30 text-black hover:bg-black hover:text-white w-full sm:w-auto" asChild>
-                    <a href="tel:+13232722388">
-                      Call the Concierge Team
-                    </a>
-                  </Button>
-                </div>
+	                  <Button className="bg-black text-white hover:bg-black/90 w-full sm:w-auto" asChild>
+	                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+	                  </Button>
+	                  <Button variant="outline" className="border-black/30 text-black hover:bg-black hover:text-white w-full sm:w-auto" asChild>
+	                    <a href={`tel:${PHONE_NUMBER_E164}`}>
+	                      Call the Concierge Team
+	                    </a>
+	                  </Button>
+	                </div>
               </div>
               <div className="rounded-3xl border border-black/5 bg-gray-50 p-6 space-y-6">
                 <div className="flex items-center gap-3">

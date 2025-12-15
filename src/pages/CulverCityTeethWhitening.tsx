@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { Clock, MapPin, Phone, Sparkles, Shield } from "lucide-react";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "@/data/culver-city-teeth-whitening-faqs";
@@ -55,7 +55,6 @@ const CulverCityTeethWhitening = () => {
         serviceName="Culver City Teeth Whitening"
         description={meta.description}
         url="https://exquisitedentistryla.com/culver-city-teeth-whitening"
-        category="Cosmetic Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Culver City Teeth Whitening" />
@@ -65,10 +64,8 @@ const CulverCityTeethWhitening = () => {
           title="Culver City Teeth Whitening"
           subtitle="In-office whitening and custom take-home trays—comfort-first care designed for a natural-looking shade, a short drive from Culver City."
           primaryCta={{
-            text: "Book a Whitening Consultation",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer",
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH,
           }}
           height="medium"
           preferStaticOnMobile={true}
@@ -83,13 +80,13 @@ const CulverCityTeethWhitening = () => {
               <h2 id="overview" className="mt-6 text-3xl md:text-4xl font-bold text-foreground">
                 Professional teeth whitening planned for Culver City schedules
               </h2>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Clinically reviewed by{" "}
-                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Clinically reviewed by{" "}
+                <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
                   Dr. Alexie Aguil, DDS
                 </Link>{" "}
                 ·{" "}
-                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
                   Editorial policy
                 </Link>
               </p>
@@ -181,12 +178,10 @@ const CulverCityTeethWhitening = () => {
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
-                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                          Book online
-                        </a>
+                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                       </Button>
                       <Button variant="outline" asChild>
-                        <Link to="/teeth-whitening">Compare whitening options</Link>
+                        <Link to="/teeth-whitening/">Compare whitening options</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -195,7 +190,7 @@ const CulverCityTeethWhitening = () => {
 
               <p className="mt-8 text-sm text-muted-foreground">
                 Looking specifically for in-office Zoom? Explore{" "}
-                <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">
                   Zoom Teeth Whitening in Los Angeles
                 </Link>
                 .
@@ -247,7 +242,7 @@ const CulverCityTeethWhitening = () => {
               </div>
               <p className="mt-10 text-center text-sm text-muted-foreground">
                 Not sure which option fits best? Start with the{" "}
-                <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">
                   teeth whitening overview
                 </Link>{" "}
                 and we’ll tailor the plan to sensitivity and existing dental work.
@@ -284,12 +279,10 @@ const CulverCityTeethWhitening = () => {
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button variant="outline" asChild>
-                        <Link to="/teeth-whitening">Compare programs</Link>
+                        <Link to="/teeth-whitening/">Compare programs</Link>
                       </Button>
                       <Button asChild>
-                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                          Book a consultation
-                        </a>
+                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -318,10 +311,10 @@ const CulverCityTeethWhitening = () => {
                   </ul>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <Button variant="outline" asChild>
-                      <Link to="/veneers">Explore veneers</Link>
+                      <Link to="/veneers/">Explore veneers</Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <Link to="/cosmetic-dentistry">Cosmetic dentistry</Link>
+                      <Link to="/cosmetic-dentistry/">Cosmetic dentistry</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -385,12 +378,10 @@ const CulverCityTeethWhitening = () => {
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
-                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                          Book online
-                        </a>
+                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                       </Button>
                       <Button variant="outline" asChild>
-                        <Link to="/contact">Directions & parking</Link>
+                        <Link to="/contact/">Directions & parking</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -399,14 +390,14 @@ const CulverCityTeethWhitening = () => {
                   <CardContent className="p-8 space-y-4">
                     <p className="text-muted-foreground leading-relaxed">
                       Want a faster in-office option? Learn about{" "}
-                      <Link to="/zoom-whitening" className="text-secondary underline-offset-4 hover:underline">
+                      <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">
                         Zoom Teeth Whitening in Los Angeles
                       </Link>{" "}
                       and how we personalize the session for sensitivity.
                     </p>
                     <p className="text-muted-foreground leading-relaxed">
                       Looking for broader care? Explore our{" "}
-                      <Link to="/culver-city-dentist" className="text-secondary underline-offset-4 hover:underline">
+                      <Link to="/culver-city-dentist/" className="text-secondary underline-offset-4 hover:underline">
                         Culver City dentist page
                       </Link>{" "}
                       for preventive and cosmetic options patients travel in for.
@@ -471,9 +462,7 @@ const CulverCityTeethWhitening = () => {
                       <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>
                     </Button>
                     <Button asChild>
-                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                        Book online
-                      </a>
+                      <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -498,7 +487,7 @@ const CulverCityTeethWhitening = () => {
               </div>
               <p className="mt-10 text-center text-sm text-muted-foreground">
                 Explore our{" "}
-                <Link to="/culver-city-dentist" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/culver-city-dentist/" className="text-secondary underline-offset-4 hover:underline">
                   Culver City dentist page
                 </Link>{" "}
                 for more services patients travel in for.

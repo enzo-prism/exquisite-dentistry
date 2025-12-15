@@ -15,6 +15,7 @@ import { drAguilImages } from '@/data/drAguilImages';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const About = () => {
   useEffect(() => {
@@ -102,9 +103,10 @@ const About = () => {
         title={<>Meet Dr. Alexie Aguil, DDS - <span className="text-gold">Cosmetic Dentist</span></>}
         subtitle="Learn about Dr. Alexie Aguil, DDS — a USC-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider — and the personalized approach behind our Los Angeles practice."
         primaryCta={{ 
-          text: "Schedule a Personal Consultation" 
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
-        secondaryCta={{ text: "View Services", href: "/services" }}
+        secondaryCta={{ text: "View Services", href: "/services/" }}
         height="medium"
         badgeText="MEET THE DOCTOR"
         scrollIndicator={true}
@@ -128,36 +130,31 @@ const About = () => {
 
               <div className="space-y-4 text-base sm:text-lg text-black-light">
                 <p>
-                  Dr. Alexie Aguil is a USC School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Her approach blends clinical precision with an eye for proportion, shade, and facial balance.
+                  Dr. Alexie Aguil is a USC School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Dr. Aguil&apos;s approach blends clinical precision with an eye for proportion, shade, and facial balance.
                 </p>
                 
                 <p>
-                  She has more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers. Every plan starts with digital scans and a conversation about your goals, so the final result feels like you — not a template.
+                  With more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers, Dr. Aguil starts with digital scans and a conversation about your goals so the final result feels like you — not a template.
                 </p>
                 
                 <p>
-                  Patients often comment on the calm, spa-like setting and the time her team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
+                  Patients often comment on the calm, spa-like setting and the time our team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link to="/services" className="w-full sm:w-auto">
+                <Link to="/services/" className="w-full sm:w-auto">
                   <Button className="w-full sm:w-auto justify-center">
                     Explore Our Services
                     <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </Link>
-                <a
-                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto"
-                >
-                  <Button variant="outline" className="w-full sm:w-auto justify-center">
-                    Schedule a Consultation
+                <Button variant="outline" className="w-full sm:w-auto justify-center" asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    Schedule Consultation
                     <ArrowRight size={16} className="ml-2" />
-                  </Button>
-                </a>
+                  </Link>
+                </Button>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -273,16 +270,12 @@ const About = () => {
               </ul>
 
               <div>
-                <a
-                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center">
-                    Schedule With Dr. Aguil
+                <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center" asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    Schedule Consultation
                     <ArrowRight size={16} className="ml-2" />
-                  </Button>
-                </a>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -332,7 +325,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Patient Comfort</h3>
                 <p className="text-black-light">
-                  Creating a comfortable, stress-free environment is a top priority. Dr. Aguil and her team go above and beyond to ensure each visit is a positive experience.
+                  Creating a comfortable, stress-free environment is a top priority. Dr. Aguil and the team go above and beyond to ensure each visit is a positive experience.
                 </p>
               </CardContent>
             </Card>
@@ -361,7 +354,7 @@ const About = () => {
                 Mess-free digital impressions capture every angle of your smile for Invisalign, veneers, crowns, and more.
                 The scan uploads instantly so you can preview results with Dr. Aguil in real time.
               </p>
-              <Link to="/itero-scanner" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
+              <Link to="/itero-scanner/" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
                 Learn about the iTero scanner
                 <ArrowRight size={16} className="ml-1" />
               </Link>
@@ -375,7 +368,7 @@ const About = () => {
                 Artificial intelligence reviews every radiograph alongside Dr. Aguil, highlighting microfractures, incipient decay, and bone changes
                 so treatment stays proactive and precise.
               </p>
-              <Link to="/services#technology" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
+              <Link to="/services/#technology" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
                 Explore our technology suite
                 <ArrowRight size={16} className="ml-1" />
               </Link>

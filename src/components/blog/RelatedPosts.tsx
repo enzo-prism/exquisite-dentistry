@@ -204,7 +204,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         <InternalLinkingWidget 
           context={getContextFromPost(currentPost)} 
           variant="expanded"
-          currentPage={`/blog/${currentPost.slug}`}
+          currentPage={`/blog/${currentPost.slug}/`}
         />
       </section>
     );
@@ -215,7 +215,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
       <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
       <div className="grid gap-4 mb-12">
         {relatedPosts.map((post) => (
-          <Link key={post.slug} to={`/blog/${post.slug}`} className="group">
+          <Link key={post.slug} to={`/blog/${post.slug}/`} className="group">
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold group-hover:text-gold transition-colors">
@@ -245,7 +245,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
               {relatedStories.map((story) => (
                 <Link
                   key={story.slug}
-                  to={`/transformation-stories/${story.slug}`}
+                  to={`/transformation-stories/${story.slug}/`}
                   className="group"
                 >
                   <Card className="hover:shadow-lg transition-shadow hover:border-gold/50">
@@ -274,7 +274,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         <InternalLinkingWidget
           context={getContextFromPost(currentPost)}
           variant="expanded"
-          currentPage={`/blog/${currentPost.slug}`}
+          currentPage={`/blog/${currentPost.slug}/`}
         />
 
         <ServiceRecommendation

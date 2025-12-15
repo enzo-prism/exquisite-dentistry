@@ -62,8 +62,20 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/locations'),
+      lastmod: getFileLastModified('src/pages/Locations.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.75
+    },
+    {
       loc: getCanonicalUrl('/contact'),
       lastmod: getFileLastModified('src/pages/Contact.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/schedule-consultation'),
+      lastmod: getFileLastModified('src/pages/ScheduleConsultation.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.9
     },
@@ -78,12 +90,6 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: getFileLastModified('src/pages/FrontTeethVeneers.tsx', 7, now),
       changefreq: 'monthly',
       priority: 0.85
-    },
-    {
-      loc: getCanonicalUrl('/veneers-los-angeles'),
-      lastmod: getFileLastModified('src/pages/VeneersLosAngeles.tsx', 7, now),
-      changefreq: 'monthly',
-      priority: 0.9
     },
     {
       loc: getCanonicalUrl('/zoom-whitening'),

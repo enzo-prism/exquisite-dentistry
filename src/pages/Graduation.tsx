@@ -7,8 +7,7 @@ import ImageComponent from '@/components/Image';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
-
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const Graduation = () => {
   useEffect(() => {
@@ -31,8 +30,8 @@ const Graduation = () => {
           title={<>Graduation <span className="text-gold">Smile</span></>}
           subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
           primaryCta={{ 
-            text: "Book Consultation",
-            href: SCHEDULING_URL
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           badgeText="GRAD SPECIALS"
           scrollIndicator={true}
@@ -146,9 +145,9 @@ const Graduation = () => {
                 <p className="text-md text-gray-500 mb-6">
                   Perfect timing for UCLA (June), USC (May), LMU (May), and local high school graduations throughout Los Angeles County. We coordinate with your academic schedule for stress-free treatment.
                 </p>
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  <Button>Schedule Your Grad Smile Consultation</Button>
-                </a>
+                <Button asChild>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -293,12 +292,12 @@ const Graduation = () => {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Your achievement deserves to be celebrated with a smile you're proud of. Schedule your graduation smile consultation today.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gold hover:bg-gold-dark text-white px-8 py-4 text-lg font-semibold"
-              onClick={() => window.open(SCHEDULING_URL, '_blank')}
+              asChild
             >
-              Book Your Graduation Smile Consultation
+              <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
             </Button>
           </div>
         </section>

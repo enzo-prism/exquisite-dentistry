@@ -35,8 +35,8 @@ export const DENTAL_IMPLANTS_HUB_SECTIONS: DentalImplantsHubSection[] = [
       'Foundation support: bone grafting or sinus lift may be recommended when needed for stability'
     ],
     links: [
-      { label: 'Dental Bridge (Alternative to Implants)', href: '/dental-bridge' },
-      { label: 'Implants vs Bridge Guide', href: '/blog/dental-implants-vs-bridge-los-angeles' }
+      { label: 'Dental Bridge (Alternative to Implants)', href: '/dental-bridge/' },
+      { label: 'Implants vs Bridge Guide', href: '/blog/dental-implants-vs-bridge-los-angeles/' }
     ]
   },
   {
@@ -65,7 +65,7 @@ export const DENTAL_IMPLANTS_HUB_SECTIONS: DentalImplantsHubSection[] = [
       'Comfort options: sedation planning and appointment pacing'
     ],
     links: [
-      { label: 'Dental Implant Cost Guide (Los Angeles)', href: '/blog/dental-implant-cost-los-angeles' }
+      { label: 'Dental Implant Cost Guide (Los Angeles)', href: '/blog/dental-implant-cost-los-angeles/' }
     ]
   },
   {
@@ -95,16 +95,16 @@ export const DENTAL_IMPLANTS_HUB_SECTIONS: DentalImplantsHubSection[] = [
     links: [
       { label: 'Get Directions (Google Maps)', href: GOOGLE_MAPS_SHORT_URL },
       { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
-      { label: 'Contact & Scheduling', href: '/contact' }
+      { label: 'Contact & Scheduling', href: '/contact/' }
     ]
   }
 ];
 
 export const DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS = [
-  { label: 'Implants Benefits Guide', href: '/blog/reasons-to-get-dental-implants' },
-  { label: 'Dental Implant Cost Guide', href: '/blog/dental-implant-cost-los-angeles' },
-  { label: 'Smile Gallery (Before & After)', href: '/smile-gallery' },
-  { label: 'Transformation Stories', href: '/transformation-stories' }
+  { label: 'Implants Benefits Guide', href: '/blog/reasons-to-get-dental-implants/' },
+  { label: 'Dental Implant Cost Guide', href: '/blog/dental-implant-cost-los-angeles/' },
+  { label: 'Smile Gallery (Before & After)', href: '/smile-gallery/' },
+  { label: 'Transformation Stories', href: '/transformation-stories/' }
 ] as const;
 
 export const DENTAL_IMPLANTS_REFERENCES = [
@@ -117,4 +117,3 @@ export const DENTAL_IMPLANTS_REFERENCES = [
     href: 'https://www.nidcr.nih.gov/health-info/dental-implants'
   }
 ] as const;
-

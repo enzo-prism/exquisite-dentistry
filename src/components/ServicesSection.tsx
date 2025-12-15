@@ -110,7 +110,7 @@ const ServicesSection: React.FC = () => {
         )}
         
         <div className="flex justify-center mt-12">
-          <Link to="/services" className="inline-flex items-center bg-white border border-gold text-black hover:bg-gold/5 px-6 py-3 rounded-sm shadow-sm transition-colors group">
+          <Link to="/services/" className="inline-flex items-center bg-white border border-gold text-black hover:bg-gold/5 px-6 py-3 rounded-sm shadow-sm transition-colors group">
             View All Services 
             <ArrowRight className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
           </Link>

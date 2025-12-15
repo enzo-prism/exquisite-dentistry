@@ -3,9 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
-// Scheduling URL constant
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+const DEFAULT_PRIMARY_CTA_HREF = SCHEDULE_CONSULTATION_PATH;
 
 interface CtaButtonsProps {
   primaryCta?: {
@@ -48,7 +49,8 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
 
     const hasCustomHref = typeof primaryCta.href === 'string' && primaryCta.href.trim().length > 0;
     const shouldRenderStandaloneButton = Boolean(primaryCta.onClick && !hasCustomHref);
-    const buttonHref = hasCustomHref ? primaryCta.href! : SCHEDULING_URL;
+    const buttonHref = hasCustomHref ? primaryCta.href! : DEFAULT_PRIMARY_CTA_HREF;
+    const normalizedHref = normalizeInternalHref(buttonHref);
     const isHashLink = buttonHref.startsWith('#');
 
     if (shouldRenderStandaloneButton) {
@@ -103,7 +105,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             className={`group ${isMobile ? 'w-full' : ''}`}
           >
             <a
-              href={buttonHref}
+              href={normalizedHref}
               target={primaryCta.target || "_blank"}
               rel={primaryCta.rel || "noopener noreferrer"}
             >
@@ -127,7 +129,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           size={buttonSize}
           className={`group ${isMobile ? 'w-full' : ''}`}
         >
-          <Link to={buttonHref}>
+          <Link to={normalizedHref}>
             {primaryCta.text}
             <ArrowRight
               size={16}
@@ -146,6 +148,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
         const hasHref = typeof secondaryCta.href === 'string' && secondaryCta.href.trim().length > 0;
         const shouldRenderStandaloneButton = Boolean(secondaryCta.onClick && !hasHref);
         const buttonHref = hasHref ? secondaryCta.href! : undefined;
+        const normalizedHref = buttonHref ? normalizeInternalHref(buttonHref) : undefined;
         const wrapperClass = isMobile ? "w-full sm:w-auto" : "";
         const isHashLink = buttonHref?.startsWith('#');
 
@@ -204,7 +207,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
                 className={`group ${isMobile ? 'w-full' : ''}`}
               >
                 <a
-                  href={buttonHref}
+                  href={normalizedHref}
                   target={secondaryCta.target || "_blank"}
                   rel={secondaryCta.rel || "noopener noreferrer"}
                 >
@@ -227,7 +230,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               size={buttonSize}
               className={`group ${isMobile ? 'w-full' : ''}`}
             >
-              <Link to={buttonHref}>
+              <Link to={normalizedHref ?? buttonHref}>
                 {secondaryCta.text}
                 <ArrowRight
                   size={16}

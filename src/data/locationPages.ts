@@ -1,4 +1,5 @@
-import { SCHEDULING_URL } from "@/constants/urls";
+import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
+import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 
 export interface LocationPageConfig {
   slug: string;
@@ -46,6 +47,15 @@ const sharedFaqs = [
   },
 ];
 
+const normalizeInternalHref = (href: string): string => {
+  if (!href.startsWith("/")) return href;
+  if (href === "/") return href;
+
+  const [pathPart, hashPart] = href.split("#");
+  const normalizedPath = pathPart.endsWith("/") ? pathPart : `${pathPart}/`;
+  return hashPart ? `${normalizedPath}#${hashPart}` : normalizedPath;
+};
+
 const createLocationConfig = (
   slug: string,
   cityLabel: string,
@@ -60,7 +70,11 @@ const createLocationConfig = (
   seo: {
     title: `${cityLabel} Dentist | Exquisite Dentistry in Los Angeles`,
     description,
-    keywords: [`${cityLabel.toLowerCase()} dentist`, `${cityLabel.toLowerCase()} cosmetic dentist`, "west hollywood dentist"],
+    keywords: [
+      `${cityLabel.toLowerCase()} dentist`,
+      `${cityLabel.toLowerCase()} cosmetic dentist`,
+      "west hollywood dentist",
+    ],
   },
   hero: {
     heading: `${cityLabel}’s Boutique Dental Experience`,
@@ -74,15 +88,18 @@ const createLocationConfig = (
   neighborhoodHighlights: highlights,
   signatureServices: services,
   testimonials: [quote],
-  relatedServices,
+  relatedServices: relatedServices.map((service) => ({
+    ...service,
+    href: normalizeInternalHref(service.href),
+  })),
   faqs: sharedFaqs,
   cta: {
     heading: `Visit Us From ${cityLabel}`,
     description: "Our Wilshire Boulevard studio is a quick drive from your neighborhood.",
-    primaryText: "Schedule Online",
-    primaryHref: SCHEDULING_URL,
-    secondaryText: "Call (323) 272-2388",
-    secondaryHref: "tel:+13232722388",
+    primaryText: "Schedule Consultation",
+    primaryHref: SCHEDULE_CONSULTATION_PATH,
+    secondaryText: `Call ${PHONE_NUMBER_DISPLAY}`,
+    secondaryHref: `tel:${PHONE_NUMBER_E164}`,
   },
 });
 

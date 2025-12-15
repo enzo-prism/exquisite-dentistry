@@ -15,6 +15,17 @@ interface ServicePageTemplateProps {
 
 const MIN_WORD_COUNT = 150;
 
+const normalizeInternalHref = (href: string): string => {
+  if (!href.startsWith("/")) return href;
+  if (href === "/") return href;
+
+  const [pathPart, hashPart] = href.split("#");
+  const normalizedPath = pathPart.endsWith("/") ? pathPart : `${pathPart}/`;
+  return hashPart ? `${normalizedPath}#${hashPart}` : normalizedPath;
+};
+
+const isHttpUrl = (href: string) => /^https?:\/\//i.test(href);
+
 const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => {
   if (!config?.seo?.title || !config?.seo?.description) {
     throw new Error(`Service page "${config?.slug}" is missing SEO title/description.`);
@@ -179,7 +190,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
             {config.internalLinks.map((link) => (
               <Link
                 key={link.href}
-                to={link.href}
+                to={normalizeInternalHref(link.href)}
                 className="flex items-center justify-between rounded-2xl border border-border/80 bg-background px-5 py-4 text-primary transition hover:border-primary hover:bg-primary/5"
               >
                 <span>{link.label}</span>
@@ -197,13 +208,25 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
           <p className="mt-4 text-lg text-muted-foreground">{config.cta.description}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg">
-              <a href={config.cta.primaryHref} target="_blank" rel="noopener noreferrer">
-                {config.cta.primaryText}
-              </a>
+              {config.cta.primaryHref.startsWith("/") ? (
+                <Link to={normalizeInternalHref(config.cta.primaryHref)}>{config.cta.primaryText}</Link>
+              ) : (
+                <a
+                  href={config.cta.primaryHref}
+                  target={isHttpUrl(config.cta.primaryHref) ? "_blank" : undefined}
+                  rel={isHttpUrl(config.cta.primaryHref) ? "noopener noreferrer" : undefined}
+                >
+                  {config.cta.primaryText}
+                </a>
+              )}
             </Button>
             {config.cta.secondaryText && config.cta.secondaryHref && (
               <Button asChild size="lg" variant="outline">
-                <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
+                {config.cta.secondaryHref.startsWith("/") ? (
+                  <Link to={normalizeInternalHref(config.cta.secondaryHref)}>{config.cta.secondaryText}</Link>
+                ) : (
+                  <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
+                )}
               </Button>
             )}
           </div>

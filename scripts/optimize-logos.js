@@ -6,10 +6,10 @@ import { join } from 'path';
 const LOGOS_DIR = 'public/lovable-uploads';
 const OUTPUT_DIR = 'public/optimized/logos';
 
-// Logo files that need optimization - Updated with new logo
+// Logo files that need optimization
 const LOGO_FILES = [
   {
-    filename: '8101a102-f008-4fc6-ab3a-e2b64a9b1155.png',
+    filename: 'fd45d438-10a2-4bde-9162-a38816b28958.png',
     sizes: [
       { width: 200, height: 37, suffix: 'desktop' }, // For desktop navbar and footer
       { width: 120, height: 22, suffix: 'mobile' },   // For mobile navbar

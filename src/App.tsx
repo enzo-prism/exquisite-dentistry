@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { useSectionFix } from "@/hooks/use-section-fix";
@@ -18,8 +18,10 @@ const Index = lazy(() => import("@/pages/Index"));
 const About = lazy(() => import("@/pages/About"));
 const Tour = lazy(() => import("@/pages/Tour"));
 const Services = lazy(() => import("@/pages/Services"));
+const Locations = lazy(() => import("@/pages/Locations"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const ScheduleConsultation = lazy(() => import("@/pages/ScheduleConsultation"));
 const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
 const Wedding = lazy(() => import("@/pages/Wedding"));
 const Graduation = lazy(() => import("@/pages/Graduation"));
@@ -34,7 +36,6 @@ const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const Invisalign = lazy(() => import("@/pages/Invisalign"));
 const InvisalignBeverlyHills = lazy(() => import("@/pages/InvisalignBeverlyHills"));
-const VeneersLosAngeles = lazy(() => import("@/pages/VeneersLosAngeles"));
 const TeethWhitening = lazy(() => import("@/pages/TeethWhitening"));
 const TeethWhiteningBeverlyHills = lazy(() => import("@/pages/TeethWhiteningBeverlyHills"));
 const CulverCityTeethWhitening = lazy(() => import("@/pages/CulverCityTeethWhitening"));
@@ -120,6 +121,9 @@ const AppRoutes = () => {
               <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Services />
               </Suspense>} />
+              <Route path="/locations" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Locations />
+              </Suspense>} />
               <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ClientExperience />
               </Suspense>} />
@@ -128,6 +132,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Contact />
+              </Suspense>} />
+              <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ScheduleConsultation />
               </Suspense>} />
               <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Wedding />
@@ -165,9 +172,7 @@ const AppRoutes = () => {
               <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Veneers />
               </Suspense>} />
-              <Route path="/veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
-                <VeneersLosAngeles />
-              </Suspense>} />
+              <Route path="/veneers-los-angeles/*" element={<Navigate to="/veneers/" replace />} />
               <Route path="/veneers/front-teeth-veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
                 <FrontTeethVeneers />
               </Suspense>} />

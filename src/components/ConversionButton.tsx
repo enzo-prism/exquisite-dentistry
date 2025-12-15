@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { gtagSendEvent } from '@/utils/googleAdsTracking';
 import { cn } from '@/lib/utils';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface ConversionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
@@ -33,16 +34,17 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
     onClick,
     ...props 
   }, ref) => {
+    const normalizedHref = href ? normalizeInternalHref(href) : undefined;
     
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       // Track conversion if enabled and href is provided
-      if (trackConversion && href) {
+      if (trackConversion && normalizedHref) {
         e.preventDefault();
         
         // For new tab navigation, open immediately to avoid popup blockers
         if (target === '_blank') {
           try {
-            const newWindow = window.open(href, '_blank', rel || 'noopener,noreferrer');
+            const newWindow = window.open(normalizedHref, '_blank', rel || 'noopener,noreferrer');
             if (newWindow) {
               // Window opened successfully, send tracking event without callback
               if (typeof window.gtag === 'function') {
@@ -59,15 +61,15 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
               }
             } else {
               console.warn('Popup blocked, using fallback tracking navigation');
-              gtagSendEvent(href, target);
+              gtagSendEvent(normalizedHref, target);
             }
           } catch (error) {
             console.error('Error opening new tab:', error);
-            gtagSendEvent(href, target);
+            gtagSendEvent(normalizedHref, target);
           }
         } else {
           // Same tab navigation - use tracking with callback
-          gtagSendEvent(href, target);
+          gtagSendEvent(normalizedHref, target);
         }
       }
       
@@ -78,7 +80,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
     };
 
     // If asChild is true and href is provided, render as anchor with tracking
-    if (asChild && href) {
+    if (asChild && normalizedHref) {
       return (
         <Button 
           asChild={false}
@@ -95,7 +97,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
     }
 
     // If href is provided but not asChild, render as button with tracking
-    if (href) {
+    if (normalizedHref) {
       return (
         <Button 
           variant={variant}

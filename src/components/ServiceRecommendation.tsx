@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Clock, DollarSign } from 'lucide-react';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface ServiceItem {
   title: string;
@@ -74,7 +75,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
         {recommendations.map((service, index) => (
           <Link
             key={index}
-            to={service.href}
+            to={normalizeInternalHref(service.href)}
             className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-gold/50 hover:shadow-md transition-all group"
           >
             <div className="flex items-start justify-between gap-4">
@@ -126,7 +127,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
 
       <div className="mt-6 pt-4 border-t border-gray-200">
         <Link
-          to="/contact"
+          to="/contact/"
           className="inline-flex items-center text-sm text-gold hover:text-gold/80 transition-colors"
         >
           Discuss combination options with Dr. Aguil

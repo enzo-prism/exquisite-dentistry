@@ -93,7 +93,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
   // Filter posts by tags or category
   const matchingPosts = allPosts.filter(post => {
     // Exclude current page if provided
-    if (currentPage && `/blog/${post.slug}` === currentPage) {
+    if (currentPage && `/blog/${post.slug}/` === currentPage) {
       return false;
     }
 
@@ -153,7 +153,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
               {relatedStories.map((story) => (
                 <Link
                   key={story.id}
-                  to={`/transformation-stories/${story.slug}`}
+                  to={`/transformation-stories/${story.slug}/`}
                   className="group"
                 >
                   <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
@@ -180,7 +180,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
             {articlesToShow.map((post) => (
               <Link
                 key={post.id}
-                to={`/blog/${post.slug}`}
+                to={`/blog/${post.slug}/`}
                 className="group"
               >
                 <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-gold/50">
@@ -206,7 +206,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
 
         <div className="text-center mt-8">
           <Link
-            to="/blog"
+            to="/blog/"
             className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors font-medium"
           >
             View All Articles

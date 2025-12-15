@@ -41,7 +41,6 @@ export const CANONICAL_URLS = {
   VENEERS: getCanonicalUrl('/veneers'),
   ZOOM_WHITENING: getCanonicalUrl('/zoom-whitening'),
   INVISALIGN: getCanonicalUrl('/invisalign'),
-  VENEERS_LOS_ANGELES: getCanonicalUrl('/veneers-los-angeles'),
   TEETH_WHITENING: getCanonicalUrl('/teeth-whitening'),
   DENTAL_IMPLANTS: getCanonicalUrl('/dental-implants'),
   COSMETIC_DENTISTRY: getCanonicalUrl('/cosmetic-dentistry'),

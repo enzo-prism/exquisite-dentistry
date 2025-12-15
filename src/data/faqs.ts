@@ -1,3 +1,5 @@
+import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+
 export type FAQItem = {
   question: string;
   answer: string;
@@ -28,7 +30,7 @@ export const faqs: FAQItem[] = [
   {
     question: "What Insurances Do You Accept?",
     answer:
-      "We accept most major PPO providers. Please call our office at (323) 272-2388 to determine if we will accept your plan."
+      `We accept most major PPO providers. Please call our office at ${PHONE_NUMBER_DISPLAY} to determine if we will accept your plan.`
   },
   {
     question: "What Types of Payment Do You Accept?",

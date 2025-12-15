@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import ConversionButton from '@/components/ConversionButton';
-import ImageComponent from '@/components/Image';
 import ScrollProgress from './ScrollProgress';
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
 
@@ -127,40 +125,44 @@ const Navbar = () => {
 
   // Navigation links data
   const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About' },
-    { to: '/tour', label: 'Virtual Tour' },
+    { to: '/dental-implants/', label: 'Dental Implants' },
+    { to: '/veneers/', label: 'Porcelain Veneers' },
+    { to: '/beverly-hills-dentist/', label: 'Beverly Hills Dentist' },
+    { to: '/smile-gallery/', label: 'Smile Gallery' },
+    { to: '/schedule-consultation/', label: 'Schedule Consultation' },
   ];
 
   const servicesDropdown = [
-    { to: '/services', label: 'Services Overview' },
-    { to: '/invisalign', label: 'Invisalign' },
-    { to: '/veneers', label: 'Porcelain Veneers' },
-    { to: '/teeth-whitening', label: 'Teeth Whitening' },
-    { to: '/teeth-cleaning', label: 'Teeth Cleaning' },
-    { to: '/zoom-whitening', label: 'Zoom Whitening' },
-    { to: '/dental-implants', label: 'Dental Implants' },
-    { to: '/dental-crowns', label: 'Dental Crowns' },
-    { to: '/dental-bridge', label: 'Dental Bridge' },
-    { to: '/root-canal', label: 'Root Canal Therapy' },
-    { to: '/cosmetic-dentistry', label: 'Cosmetic Dentistry' },
-    { to: '/emergency-dentist', label: 'Emergency Dentist' },
-    { to: '/pain-free-dentistry', label: 'Pain-Free Dentistry' },
-    { to: '/oral-cancer-screening', label: 'Oral Cancer Screening' },
+    { to: '/services/', label: 'Services Overview' },
+    { to: '/veneers/', label: 'Porcelain Veneers' },
+    { to: '/dental-implants/', label: 'Dental Implants' },
+    { to: '/invisalign/', label: 'Invisalign' },
+    { to: '/teeth-whitening/', label: 'Teeth Whitening' },
+    { to: '/teeth-cleaning/', label: 'Teeth Cleaning' },
+    { to: '/zoom-whitening/', label: 'Zoom Whitening' },
+    { to: '/dental-crowns/', label: 'Dental Crowns' },
+    { to: '/dental-bridge/', label: 'Dental Bridge' },
+    { to: '/root-canal/', label: 'Root Canal Therapy' },
+    { to: '/cosmetic-dentistry/', label: 'Cosmetic Dentistry' },
+    { to: '/emergency-dentist/', label: 'Emergency Dentist' },
+    { to: '/pain-free-dentistry/', label: 'Pain-Free Dentistry' },
+    { to: '/oral-cancer-screening/', label: 'Oral Cancer Screening' },
   ];
 
   const clientsDropdown = [
-    { to: '/transformation-stories', label: 'Transformation Stories' },
-    { to: '/smile-gallery', label: 'Smile Gallery' },
-    { to: '/testimonials', label: 'Testimonials' },
-    { to: '/client-experience', label: 'Client Experience' },
+    { to: '/transformation-stories/', label: 'Transformation Stories' },
+    { to: '/testimonials/', label: 'Testimonials' },
+    { to: '/client-experience/', label: 'Client Experience' },
   ];
 
   const moreDropdown = [
-    { to: '/faqs', label: 'FAQs' },
-    { to: '/contact', label: 'Contact' },
-    { to: '/blog', label: 'Blog' },
-    { to: '/culver-city-dentist', label: 'Culver City Dentist' },
+    { to: '/', label: 'Home' },
+    { to: '/services/', label: 'Services' },
+    { to: '/about/', label: 'About Dr. Aguil' },
+    { to: '/tour/', label: 'Virtual Tour' },
+    { to: '/contact/', label: 'Contact' },
+    { to: '/faqs/', label: 'FAQs' },
+    { to: '/blog/', label: 'Blog' },
   ];
 
   return (
@@ -194,71 +196,23 @@ const Navbar = () => {
           
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="navbar-link text-white transition-colors duration-200 py-2 px-2"
-                >
-                  {link.label}
-                </Link>
-              ))}
-
-              {/* Services Dropdown - Desktop */}
-              <div 
-                className="relative group"
-                onMouseEnter={() => setOpenDropdown('services')}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button 
-                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
-                >
-                  Services
-                  <ChevronDown size={16} />
-                </button>
-                
-                {openDropdown === 'services' && (
-                  <div className="absolute top-full left-0 w-56 bg-black border border-gold rounded-md shadow-lg z-50">
-                    {servicesDropdown.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-              
-              {/* Clients Dropdown - Desktop */}
-              <div 
-                className="relative group"
-                onMouseEnter={() => setOpenDropdown('clients')}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button 
-                  className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2"
-                >
-                  Clients
-                  <ChevronDown size={16} />
-                </button>
-                
-                {openDropdown === 'clients' && (
-                  <div className="absolute top-full left-0 w-48 bg-black border border-gold rounded-md shadow-lg z-50">
-                    {clientsDropdown.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          className="navbar-link block px-4 py-2 text-white hover:bg-white/10 transition-colors first:rounded-t-md last:rounded-b-md"
-                        >
-                          {item.label}
-                        </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {navLinks.map((link) =>
+                link.label === 'Schedule Consultation' ? (
+                  <Button key={link.to} asChild className="bg-gold text-black hover:bg-gold/90">
+                    <Link to={link.to} className="px-4 py-2">
+                      {link.label}
+                    </Link>
+                  </Button>
+                ) : (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="navbar-link text-white transition-colors duration-200 py-2 px-2"
+                  >
+                    {link.label}
+                  </Link>
+                ),
+              )}
 
               {/* More Dropdown - Desktop */}
               <div 
@@ -287,17 +241,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              
-              {/* CTA Button - Desktop */}
-              <ConversionButton 
-                size="lg" 
-                variant="default"
-                href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book an Appointment
-              </ConversionButton>
             </nav>
           
             {/* Enhanced Mobile Menu Button */}
@@ -579,21 +522,19 @@ const MobileMenuPanel = ({
           paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 20px))'
         }}
       >
-        <ConversionButton 
-          size="lg" 
-          className="w-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
-          variant="default"
-          href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ 
+        <Button
+          size="lg"
+          className="w-full bg-gold text-black hover:bg-gold/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
+          asChild
+          style={{
             minHeight: '48px',
             WebkitTapHighlightColor: 'transparent'
           }}
-          onClick={onClose}
         >
-          Book an Appointment
-        </ConversionButton>
+          <Link to="/schedule-consultation/" onClick={onClose}>
+            Schedule Consultation
+          </Link>
+        </Button>
       </div>
       
       {/* Swipe Indicator */}

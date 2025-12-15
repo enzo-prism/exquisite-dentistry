@@ -2,9 +2,7 @@ import React from 'react';
 import { Headphones, Clock, Sofa, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import ImageComponent from '@/components/Image';
-
-const SCHEDULING_URL = "https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null";
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 interface Feature {
   icon: React.ReactNode;
@@ -83,15 +81,26 @@ const ClientExperienceSection: React.FC = () => {
             </div>
             
             <div className="pt-4 flex justify-center md:justify-start">
-              <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                <Button className="group shadow-md hover:shadow-lg">
-                  Schedule Your Visit
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 transition-transform group-hover:translate-x-1">
+              <Button asChild className="group shadow-md hover:shadow-lg">
+                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  Schedule Consultation
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-2 transition-transform group-hover:translate-x-1"
+                  >
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
-                </Button>
-              </a>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { ZOOM_WHITENING_FAQS } from '@/data/zoomWhitening';
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
@@ -110,7 +110,6 @@ const ZoomWhitening = () => {
 	        serviceName="Zoom Whitening Los Angeles"
 	        description={meta.description}
 	        url="https://exquisitedentistryla.com/zoom-whitening"
-	        category="Cosmetic Dentistry"
 	      />
 
 	      <FAQStructuredData 
@@ -124,10 +123,8 @@ const ZoomWhitening = () => {
 	            title="Zoom Whitening in Los Angeles"
 	            subtitle="Fast, in-office teeth whitening designed to lift stains and brighten your smile in about one visit at our Wilshire Blvd dental studio."
 	            primaryCta={{
-	              text: "Book a Zoom Whitening Appointment",
-	              href: SCHEDULING_URL,
-	              target: "_blank",
-	              rel: "noopener noreferrer"
+	              text: "Schedule Consultation",
+	              href: SCHEDULE_CONSULTATION_PATH
 	            }}
 	            height="medium"
 	            preferStaticOnMobile={true}
@@ -143,13 +140,13 @@ const ZoomWhitening = () => {
 	              </h2>
 	              <p className="text-sm text-muted-foreground mb-4">
 	                Reviewed by{' '}
-	                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
-	                  Dr. Alexie Aguil, DDS
-                </Link>{' '}
-                ·{' '}
-                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
-	                  Editorial policy
-	                </Link>
+		                <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
+		                  Dr. Alexie Aguil, DDS
+	                </Link>{' '}
+	                ·{' '}
+	                <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
+		                  Editorial policy
+		                </Link>
 	              </p>
 	              {ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS.map((paragraph) => (
 	                <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
@@ -229,21 +226,21 @@ const ZoomWhitening = () => {
                     <h3 className="text-lg font-semibold text-foreground">Not Sure Which Whitening Option?</h3>
                     <p className="text-sm text-muted-foreground">
                       Compare Zoom to custom take-home whitening and hybrid plans on our{' '}
-                      <Link to="/teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+                      <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">
                         teeth whitening page
                       </Link>
                       .
                     </p>
 	                    <p className="text-sm text-muted-foreground">
 	                      Coming from Culver City? Start here:{' '}
-	                      <Link to="/culver-city-teeth-whitening" className="text-secondary underline-offset-4 hover:underline">
+	                      <Link to="/culver-city-teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">
 	                        Culver City teeth whitening
 	                      </Link>
 	                      .
 	                    </p>
                     <p className="text-sm text-muted-foreground">
                       Coming from Beverly Hills? Start here:{' '}
-                      <Link to="/teeth-whitening-beverly-hills" className="text-secondary underline-offset-4 hover:underline">
+                      <Link to="/teeth-whitening-beverly-hills/" className="text-secondary underline-offset-4 hover:underline">
                         teeth whitening near Beverly Hills
                       </Link>
                       .
@@ -391,12 +388,10 @@ const ZoomWhitening = () => {
 		                    </p>
 		                    <div className="flex flex-col gap-3 sm:flex-row">
 		                      <Button variant="outline" asChild>
-		                        <Link to="/teeth-whitening">Compare whitening options</Link>
+		                        <Link to="/teeth-whitening/">Compare whitening options</Link>
 		                      </Button>
 		                      <Button asChild>
-		                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-		                          Book a consultation
-		                        </a>
+		                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
 		                      </Button>
 		                    </div>
 		                  </CardContent>
@@ -427,12 +422,10 @@ const ZoomWhitening = () => {
 		                  </ul>
 		                  <div className="flex flex-col gap-3 sm:flex-row">
 		                    <Button asChild>
-		                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-		                        Book online
-		                      </a>
+		                      <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
 		                    </Button>
 		                    <Button variant="outline" asChild>
-		                      <Link to="/teeth-whitening">Compare programs</Link>
+		                      <Link to="/teeth-whitening/">Compare programs</Link>
 		                    </Button>
 		                  </div>
 		                </CardContent>
@@ -542,9 +535,7 @@ const ZoomWhitening = () => {
 		                      <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>
 		                    </Button>
 		                    <Button asChild>
-		                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-		                        Book online
-		                      </a>
+		                      <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
 		                    </Button>
 		                  </div>
 		                </CardContent>
@@ -630,23 +621,17 @@ const ZoomWhitening = () => {
                   size="lg"
                   asChild
                 >
-                  <a 
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Whitening
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   asChild
                 >
-                  <Link to="/contact">
-                    Contact Us
-                  </Link>
-                </Button>
+	                  <Link to="/contact/">
+	                    Contact Us
+	                  </Link>
+	                </Button>
               </div>
 
               {/* Additional Internal Links near CTA */}

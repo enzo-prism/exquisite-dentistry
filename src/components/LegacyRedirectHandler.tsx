@@ -19,7 +19,7 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/dental-implants.html', to: '/dental-implants', exact: true },
   { from: '/cosmetic-dentistry.html', to: '/cosmetic-dentistry', exact: true },
   { from: '/emergency-dentist.html', to: '/emergency-dentist', exact: true },
-  { from: '/veneers-los-angeles.html', to: '/veneers-los-angeles', exact: true },
+  { from: '/veneers-los-angeles.html', to: '/veneers', exact: true },
   { from: '/z-test_value.html', to: '/', exact: true },
   
   // Google-indexed URLs that need redirects
@@ -56,7 +56,7 @@ const LegacyRedirectHandler = () => {
       '/graduation', '/wedding', '/faqs', '/smile-gallery', '/client-experience',
       '/zoom-whitening', '/privacy-policy', '/terms-of-service', '/hipaa-compliance',
       '/sitemap', '/invisalign', '/teeth-whitening', '/dental-implants',
-      '/cosmetic-dentistry', '/emergency-dentist', '/veneers-los-angeles', '/veneers/front-teeth-veneers-los-angeles'
+      '/cosmetic-dentistry', '/emergency-dentist', '/veneers/front-teeth-veneers-los-angeles'
     ];
     const isValidRoute = validRoutes.some(route => currentPath.startsWith(route));
     

@@ -13,7 +13,7 @@ import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import RelatedArticles from "@/components/RelatedArticles";
 import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "@/constants/urls";
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { Clock, MapPin, Phone, Sparkles } from "lucide-react";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "@/data/invisalign-beverly-hills-faqs";
@@ -22,6 +22,7 @@ import {
   INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS,
   INVISALIGN_BEVERLY_HILLS_REFERENCES
 } from "@/data/invisalign-beverly-hills-hub";
+import { normalizeInternalHref } from "@/utils/normalizeInternalHref";
 
 const InvisalignBeverlyHills = () => {
   const meta = ROUTE_METADATA["/invisalign-beverly-hills"];
@@ -34,7 +35,7 @@ const InvisalignBeverlyHills = () => {
     if (isInternalHref(href)) {
       return (
         <Button key={href} variant="outline" asChild>
-          <Link to={href}>{label}</Link>
+          <Link to={normalizeInternalHref(href)}>{label}</Link>
         </Button>
       );
     }
@@ -109,7 +110,6 @@ const InvisalignBeverlyHills = () => {
         serviceName="Invisalign Beverly Hills"
         description={meta.description}
         url="https://exquisitedentistryla.com/invisalign-beverly-hills"
-        category="Orthodontic Procedure"
       />
 
       <FAQStructuredData faqs={faqs} about="Invisalign Beverly Hills" />
@@ -119,10 +119,8 @@ const InvisalignBeverlyHills = () => {
           title="Invisalign Beverly Hills"
           subtitle="Clear aligners planned with iTero scans and bite-focused staging—concierge check-ins at our Wilshire Blvd Los Angeles studio near Beverly Hills."
           primaryCta={{
-            text: "Book an Invisalign Consultation",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
           preferStaticOnMobile={true}
@@ -136,16 +134,16 @@ const InvisalignBeverlyHills = () => {
               <h2 id="overview" className="mt-6 text-3xl md:text-4xl font-bold text-foreground">
                 Invisalign Beverly Hills: What to Expect
               </h2>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Clinically reviewed by{" "}
-                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil, DDS
-                </Link>{" "}
-                ·{" "}
-                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
-                  Editorial policy
-                </Link>
-              </p>
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Clinically reviewed by{" "}
+                  <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
+                    Dr. Alexie Aguil, DDS
+                  </Link>{" "}
+                  ·{" "}
+                  <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
+                    Editorial policy
+                  </Link>
+                </p>
 
               {INVISALIGN_BEVERLY_HILLS_HUB_INTRO_PARAGRAPHS.map((paragraph) => (
                 <p key={paragraph} className="mt-6 text-lg text-muted-foreground leading-relaxed">
@@ -249,12 +247,10 @@ const InvisalignBeverlyHills = () => {
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
-                        <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                          Book online
-                        </a>
+                        <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                       </Button>
                       <Button variant="outline" asChild>
-                        <Link to="/itero-scanner">Learn about iTero</Link>
+                        <Link to="/itero-scanner/">Learn about iTero</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -404,12 +400,10 @@ const InvisalignBeverlyHills = () => {
                       </a>
                     </Button>
                     <Button asChild>
-                      <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                        Book online
-                      </a>
+                      <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <Link to="/beverly-hills-dentist">Beverly Hills dentist page</Link>
+                      <Link to="/beverly-hills-dentist/">Beverly Hills dentist page</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -481,9 +475,7 @@ const InvisalignBeverlyHills = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    Book online
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href={`tel:${PHONE_NUMBER_E164}`}>Call {PHONE_NUMBER_DISPLAY}</a>

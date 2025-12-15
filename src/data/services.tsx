@@ -1,5 +1,3 @@
-export { SCHEDULING_URL } from '@/constants/urls';
-
 export interface ServiceTreatment {
   name: string;
   details: string;
@@ -40,13 +38,6 @@ export const serviceCategories: ServiceCategory[] = [
         hasDetailPage: true,
         slug: "/veneers/front-teeth-veneers-los-angeles",
         ctaLabel: "Front Teeth Veneers"
-      },
-      {
-        name: "Los Angeles Veneer Design",
-        details: "Handcrafted smile transformations tailored to LA lifestyles and on-camera confidence",
-        hasDetailPage: true,
-        slug: "/veneers-los-angeles",
-        ctaLabel: "Veneers in Los Angeles"
       },
       {
         name: "Professional Teeth Whitening",

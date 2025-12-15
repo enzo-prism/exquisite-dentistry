@@ -1,4 +1,6 @@
 import { ANXIETY_TO_EASE_TESTIMONIAL } from '../components/video-hero/video-constants';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 // Context type for internal linking widget
 export type StoryLinkingContext = 'veneer' | 'invisalign' | 'experience' | 'whitening' | 'general';
@@ -155,11 +157,10 @@ export const transformationStories: TransformationStory[] = [
       heading: 'Thinking About Your Own Smile?',
       description:
         'If you’ve ever held back your smile — or want results that feel as natural as they look — Dr. Alexie Aguil and the Exquisite Dentistry LA team are ready to help you start your own transformation.',
-      primaryCtaText: 'Book an Invisalign Consultation',
-      primaryCtaHref:
-        'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      primaryCtaText: 'Schedule Consultation',
+      primaryCtaHref: SCHEDULE_CONSULTATION_PATH,
       secondaryCtaText: 'Call the Office',
-      secondaryCtaHref: 'tel:+13232722388'
+      secondaryCtaHref: `tel:${PHONE_NUMBER_E164}`
     },
     seo: {
       title: 'Nick’s Invisalign Transformation Story | Exquisite Dentistry LA',
@@ -264,10 +265,10 @@ export const transformationStories: TransformationStory[] = [
       heading: 'Thinking About Your Own Smile?',
       description:
         'Whether you’ve avoided the dentist for years or just want a place that feels different — Dr. Aguil and the Exquisite Dentistry team are here to change how you feel about dental care.',
-      primaryCtaText: 'Book a Comfort Consultation',
-      primaryCtaHref: 'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null',
+      primaryCtaText: 'Schedule Consultation',
+      primaryCtaHref: SCHEDULE_CONSULTATION_PATH,
       secondaryCtaText: 'Call the Office',
-      secondaryCtaHref: 'tel:+13232722388'
+      secondaryCtaHref: `tel:${PHONE_NUMBER_E164}`
     },
     seo: {
       title: 'Brandon Gray’s Transformation Story | Exquisite Dentistry LA',

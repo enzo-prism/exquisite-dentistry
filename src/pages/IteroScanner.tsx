@@ -5,7 +5,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { Button } from '@/components/ui/button';
 import ImageComponent from '@/components/Image';
 import { Check, Sparkles, Cpu } from 'lucide-react';
-import { SCHEDULING_URL } from '@/constants/urls';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const heroImage = '/lovable-uploads/0cf5c270-9dc6-41f6-9b69-f40a31403033.png';
@@ -101,12 +101,10 @@ const IteroScanner = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" asChild>
-                  <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                    Schedule a Scan
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/invisalign">See Invisalign Results</Link>
+                  <Link to="/invisalign/">See Invisalign Results</Link>
                 </Button>
               </div>
             </div>
@@ -210,8 +208,8 @@ const IteroScanner = () => {
               ))}
             </ul>
             <p className="text-center text-gray-600 mt-8">
-              Want to see the scanner in action? Our <Link to="/services" className="text-gold hover:text-gold/80 underline-offset-4 hover:underline">Services</Link> and{' '}
-              <Link to="/invisalign" className="text-gold hover:text-gold/80 underline-offset-4 hover:underline">Invisalign</Link> pages highlight real case studies powered by iTero technology.
+              Want to see the scanner in action? Our <Link to="/services/" className="text-gold hover:text-gold/80 underline-offset-4 hover:underline">Services</Link> and{' '}
+              <Link to="/invisalign/" className="text-gold hover:text-gold/80 underline-offset-4 hover:underline">Invisalign</Link> pages highlight real case studies powered by iTero technology.
             </p>
           </div>
         </section>
@@ -226,12 +224,10 @@ const IteroScanner = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>
-                <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                  Schedule Your Consultation
-                </a>
+                <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/contact">Ask About iTero</Link>
+                <Link to="/contact/">Ask About iTero</Link>
               </Button>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
+import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface ServiceCardProps {
   title: string;
@@ -22,6 +23,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   index = 0
 }) => {
   const { ref } = useHardwareAcceleration();
+  const normalizedHref = href ? normalizeInternalHref(href) : undefined;
 
   return (
     <div 
@@ -38,8 +40,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       </div>
       <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-black">{title}</h3>
       <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{description}</p>
-      {href && (
-        <Link to={href} className="mt-auto block">
+      {normalizedHref && (
+        <Link to={normalizedHref} className="mt-auto block">
           <Button 
             variant="outline" 
             size="sm"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +16,7 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from '@/constants/urls';
+import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { DENTAL_IMPLANT_FAQS } from '@/data/dental-implants-faqs';
 import {
@@ -123,8 +124,6 @@ const DentalImplants = () => {
         serviceName="Los Angeles Dental Implants"
         description="Permanent tooth replacement using titanium or zirconia implants paired with custom cosmetic restorations."
         url="/dental-implants"
-        priceRange="$$$$"
-        category="Restorative Dentistry"
       />
 
       <FAQStructuredData faqs={faqs} about="Dental Implants in Los Angeles" />
@@ -134,13 +133,20 @@ const DentalImplants = () => {
           title="Dental Implants in Los Angeles"
           subtitle="Guided planning, custom implant crowns and bridges, and comfort-first support—built around long-term bite stability."
           primaryCta={{
-            text: "Book a Dental Implant Appointment",
-            href: SCHEDULING_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
+            text: "Schedule Consultation",
+            href: SCHEDULE_CONSULTATION_PATH
           }}
           height="medium"
         />
+
+        <div className="container mx-auto px-4 mt-6">
+          <Breadcrumbs
+            items={[
+              { label: 'Services', to: '/services/' },
+              { label: 'Dental Implants', to: '/dental-implants/' }
+            ]}
+          />
+        </div>
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
@@ -151,11 +157,11 @@ const DentalImplants = () => {
               </h2>
               <p className="mt-4 text-sm text-muted-foreground">
                 Clinically reviewed by{' '}
-                <Link to="/about" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
                   Dr. Alexie Aguil, DDS
                 </Link>{' '}
                 ·{' '}
-                <Link to="/editorial-policy" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
                   Editorial policy
                 </Link>
               </p>
@@ -273,9 +279,7 @@ const DentalImplants = () => {
                     </a>
                   </Button>
                   <Button asChild>
-                    <a href={SCHEDULING_URL} target="_blank" rel="noopener noreferrer">
-                      Book online
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                 </div>
               </div>
@@ -319,16 +323,10 @@ const DentalImplants = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <a
-                      href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Begin Implant Planning
-                    </a>
+                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/transformation-stories">
+                    <Link to="/transformation-stories/">
                       View Restoration Stories
                     </Link>
                   </Button>
@@ -360,12 +358,12 @@ const DentalImplants = () => {
                 When multiple teeth are missing, an implant-supported bridge can replace a span efficiently. For full-smile restoration, full-arch options can stabilize a complete set of teeth with a fixed or removable design depending on your needs.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                If you’re comparing implants to other tooth replacement options, a <Link to="/dental-bridge" className="text-secondary underline-offset-4 hover:underline">dental bridge</Link> may be appropriate in select scenarios.
-                For a practical comparison, see our <Link to="/blog/dental-implants-vs-bridge-los-angeles" className="text-secondary underline-offset-4 hover:underline">implants vs bridge guide</Link>.
+                If you’re comparing implants to other tooth replacement options, a <Link to="/dental-bridge/" className="text-secondary underline-offset-4 hover:underline">dental bridge</Link> may be appropriate in select scenarios.
+                For a practical comparison, see our <Link to="/blog/dental-implants-vs-bridge-los-angeles/" className="text-secondary underline-offset-4 hover:underline">implants vs bridge guide</Link>.
                 We’ll review your bite, gum health, and long-term maintenance preferences to recommend the most stable and predictable option for your situation.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Many patients coordinate implants with <Link to="/cosmetic-dentistry" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>—like whitening or veneers—after foundational function is restored.
+                Many patients coordinate implants with <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>—like whitening or veneers—after foundational function is restored.
               </p>
             </div>
           </div>
@@ -393,7 +391,7 @@ const DentalImplants = () => {
                     If you’d like to spread payments over time, ask about financing options during your visit. If you have dental insurance, we can help submit documentation to support any applicable implant benefits.
                   </p>
                   <p>
-                    Want a deeper breakdown? Read our <Link to="/blog/dental-implant-cost-los-angeles" className="text-secondary underline-offset-4 hover:underline">dental implant cost guide for Los Angeles</Link>.
+                    Want a deeper breakdown? Read our <Link to="/blog/dental-implant-cost-los-angeles/" className="text-secondary underline-offset-4 hover:underline">dental implant cost guide for Los Angeles</Link>.
                   </p>
                 </CardContent>
               </Card>
@@ -521,16 +519,10 @@ const DentalImplants = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <a
-                    href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Implant Consultation
-                  </a>
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/testimonials">
+                  <Link to="/testimonials/">
                     Hear Implant Success Stories
                   </Link>
                 </Button>
@@ -548,10 +540,10 @@ const DentalImplants = () => {
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button variant="outline" asChild>
-                  <Link to="/santa-monica-dental-implants">Santa Monica Implant Guide</Link>
+                  <Link to="/santa-monica-dental-implants/">Santa Monica Implant Guide</Link>
                 </Button>
                 <Button variant="outline" asChild>
-                  <Link to="/west-la-dentist">West LA Dentist Page</Link>
+                  <Link to="/west-la-dentist/">West LA Dentist Page</Link>
                 </Button>
               </div>
             </div>

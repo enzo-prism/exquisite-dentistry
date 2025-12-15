@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import VideoHero from '@/components/VideoHero';
 import { ChevronRight } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
@@ -13,7 +14,8 @@ import { closeUpTransformations } from '@/data/closeUpTransformations';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
-import { SCHEDULING_URL } from '@/constants/urls';
+import WebPageStructuredData from '@/components/WebPageStructuredData';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import ImageComponent from '@/components/Image';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
@@ -44,6 +46,14 @@ const SmileGallery = () => {
         path="/smile-gallery"
         ogImage={meta.ogImage}
       />
+      <WebPageStructuredData
+        title="Smile Gallery"
+        description={meta.description}
+        url="https://exquisitedentistryla.com/smile-gallery"
+        breadcrumbs={[
+          { name: 'Smile Gallery', url: 'https://exquisitedentistryla.com/smile-gallery/' }
+        ]}
+      />
 
       {/* Hero Section with VideoHero */}
       <VideoHero 
@@ -54,15 +64,17 @@ const SmileGallery = () => {
           onClick: handleViewGallery
         }}
         secondaryCta={{
-          text: "Schedule a Consultation",
-          href: SCHEDULING_URL,
-          target: "_blank",
-          rel: "noopener noreferrer"
+          text: "Schedule Consultation",
+          href: SCHEDULE_CONSULTATION_PATH
         }}
         height="medium" 
         badgeText="SMILE GALLERY" 
         scrollIndicator={true} 
       />
+
+      <div className="container mx-auto px-4 mt-6 max-w-6xl">
+        <Breadcrumbs items={[{ label: 'Smile Gallery', to: '/smile-gallery/' }]} />
+      </div>
 
       {/* Patient Stories Section */}
       <section className="bg-white py-10 md:py-16">
@@ -72,9 +84,9 @@ const SmileGallery = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Real transformations from our clients who trusted us with their smiles
             </p>
-            <p className="mt-4 text-sm text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-4 text-sm text-gray-600 max-w-2xl mx-auto">
               Planning a full transformation? Explore our{" "}
-              <Link to="/smile-makeover-los-angeles" className="text-primary underline underline-offset-4">
+              <Link to="/smile-makeover-los-angeles/" className="text-primary underline underline-offset-4">
                 Smile Makeover in Los Angeles guide
               </Link>
               .

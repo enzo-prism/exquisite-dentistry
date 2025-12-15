@@ -84,7 +84,7 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
         </div>
         <div className="mt-5 text-center">
           <Link
-            to="/testimonials"
+            to="/testimonials/"
             className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-1 text-xs font-semibold text-black/60 hover:text-black transition"
           >
             Read more reviews

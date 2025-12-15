@@ -4,6 +4,7 @@ import { PageSEO } from '@/components/seo/PageSEO';
 import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import { ADDRESS, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 
 const HipaaCompliance: React.FC = () => {
   return (
@@ -118,8 +119,8 @@ const HipaaCompliance: React.FC = () => {
             <div className="mt-4 text-gray-600">
               <p><strong>Privacy Officer</strong></p>
               <p>Exquisite Dentistry</p>
-              <p>6227 Wilshire Blvd, Los Angeles, CA 90048</p>
-              <p>Phone: (323) 272-2388</p>
+              <p>{ADDRESS}</p>
+              <p>Phone: {PHONE_NUMBER_DISPLAY}</p>
               <p>Email: privacy@exquisitedentistry.com</p>
             </div>
             <p className="text-gray-600 mt-4">

@@ -7,6 +7,7 @@ import PatientTransformationCard from '@/components/PatientTransformation';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
 import { patientTransformations } from '@/data/patientTransformations';
 import { closeUpTransformations } from '@/data/closeUpTransformations';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const SmileGalleryPreview: React.FC = () => {
   // Select 3 most compelling patient transformations
@@ -125,7 +126,7 @@ const SmileGalleryPreview: React.FC = () => {
                 size="lg"
                 className="group"
               >
-                <Link to="/smile-gallery">
+                <Link to="/smile-gallery/">
                   View Full Gallery
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -137,14 +138,10 @@ const SmileGalleryPreview: React.FC = () => {
                 size="lg"
                 className="group"
               >
-                <a 
-                  href="https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Schedule Your Consultation
+                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  Schedule Consultation
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
