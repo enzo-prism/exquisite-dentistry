@@ -7,7 +7,9 @@ import { ROUTE_METADATA } from "../src/constants/metadata.ts";
 import { servicePageConfigs } from "../src/data/servicePages.ts";
 import { locationPageConfigs } from "../src/data/locationPages.ts";
 import { getPublishedPosts } from "../src/data/blogPosts.ts";
+import { transformationStories } from "../src/data/transformationStories.ts";
 import { normalizeInternalHref } from "../src/utils/normalizeInternalHref.ts";
+import { manualPages } from "./prerender-static.ts";
 
 type SearchItemType = "page" | "service" | "location" | "blog";
 
@@ -17,11 +19,12 @@ interface SearchIndexItem {
   title: string;
   href: string;
   description?: string;
+  h1?: string;
   keywords?: string[];
 }
 
 interface SearchIndexFile {
-  version: 1;
+  version: 2;
   items: SearchIndexItem[];
 }
 
@@ -55,23 +58,60 @@ const uniq = (values: string[]): string[] => {
 const normalizeHref = (href: string): string => normalizeInternalHref(href);
 
 const buildSearchIndex = (): SearchIndexFile => {
-  const items: SearchIndexItem[] = [];
-  const dedupeByHref = new Map<string, SearchIndexItem>();
+  type SearchIndexDraft = Omit<SearchIndexItem, "id">;
 
-  const addItem = (item: Omit<SearchIndexItem, "id">) => {
+  const byHref = new Map<string, SearchIndexDraft>();
+
+  const typeRank: Record<SearchItemType, number> = {
+    page: 0,
+    location: 1,
+    service: 2,
+    blog: 3,
+  };
+
+  const normalizeComparable = (value?: string) => (value ?? "").trim().toLowerCase();
+
+  const mergeDrafts = (existing: SearchIndexDraft, incoming: SearchIndexDraft): SearchIndexDraft => {
+    const existingRank = typeRank[existing.type];
+    const incomingRank = typeRank[incoming.type];
+
+    const primary = incomingRank > existingRank ? incoming : existing;
+    const secondary = primary === existing ? incoming : existing;
+
+    const primaryH1 = primary.h1?.trim();
+    const secondaryH1 = secondary.h1?.trim();
+
+    const mergedKeywords = uniq([
+      ...(primary.keywords ?? []),
+      ...(secondary.keywords ?? []),
+      ...(primaryH1 && secondaryH1 && normalizeComparable(primaryH1) !== normalizeComparable(secondaryH1)
+        ? [secondaryH1]
+        : []),
+    ]);
+
+    return {
+      type: primary.type,
+      href: primary.href,
+      title: primary.title || secondary.title,
+      description: primary.description || secondary.description,
+      h1: primaryH1 || secondaryH1,
+      keywords: mergedKeywords.length ? mergedKeywords : undefined,
+    };
+  };
+
+  const upsertItem = (item: SearchIndexDraft) => {
     const href = normalizeHref(item.href);
     const key = href.toLowerCase();
-    if (dedupeByHref.has(key)) return;
 
-    const normalizedItem: SearchIndexItem = {
+    const normalizedItem: SearchIndexDraft = {
       ...item,
       href,
-      id: `${item.type}:${href}`,
       keywords: item.keywords?.length ? uniq(item.keywords) : undefined,
+      h1: item.h1?.trim() || undefined,
     };
 
-    dedupeByHref.set(key, normalizedItem);
-    items.push(normalizedItem);
+    const existing = byHref.get(key);
+    byHref.set(key, existing ? mergeDrafts(existing, normalizedItem) : normalizedItem);
   };
 
   const serviceHrefs = new Set(
@@ -81,22 +121,34 @@ const buildSearchIndex = (): SearchIndexFile => {
     Object.values(locationPageConfigs).map((config) => normalizeHref(`/${config.slug}`)),
   );
 
+  manualPages.forEach((route) => {
+    upsertItem({
+      type: "page",
+      title: route.title,
+      description: route.description,
+      href: route.path,
+      h1: route.h1,
+    });
+  });
+
   Object.entries(servicePageConfigs).forEach(([slug, config]) => {
-    addItem({
+    upsertItem({
       type: "service",
       title: config.title,
       description: config.seo.description,
       href: `/${slug}`,
+      h1: config.hero.heading,
       keywords: config.seo.keywords,
     });
   });
 
   Object.entries(locationPageConfigs).forEach(([slug, config]) => {
-    addItem({
+    upsertItem({
       type: "location",
       title: `${config.cityLabel} Dentist`,
       description: config.seo.description,
       href: `/${slug}`,
+      h1: config.hero.heading,
       keywords: config.seo.keywords,
     });
   });
@@ -105,7 +157,7 @@ const buildSearchIndex = (): SearchIndexFile => {
     const normalized = normalizeHref(href);
     if (serviceHrefs.has(normalized) || locationHrefs.has(normalized)) return;
 
-    addItem({
+    upsertItem({
       type: "page",
       title: meta.title,
       description: meta.description,
@@ -115,12 +167,28 @@ const buildSearchIndex = (): SearchIndexFile => {
   });
 
   getPublishedPosts().forEach((post) => {
-    addItem({
+    upsertItem({
       type: "blog",
       title: post.title,
       description: post.excerpt,
       href: `/blog/${post.slug}`,
+      h1: post.title,
       keywords: uniq([post.category, ...(post.tags ?? []), ...(post.sourceSlug ? [post.sourceSlug] : []), ...splitKeywords(post.seoKeywords)]),
+    });
+  });
+
+  transformationStories.forEach((story) => {
+    upsertItem({
+      type: "page",
+      title: story.title,
+      description: story.shortDescription || story.seo.description,
+      href: `/transformation-stories/${story.slug}`,
+      h1: story.title,
+      keywords: uniq([
+        ...(story.patientName ? [story.patientName] : []),
+        ...(story.location ? [story.location] : []),
+        ...splitKeywords(story.seo.keywords),
+      ]),
     });
   });
 
@@ -131,13 +199,19 @@ const buildSearchIndex = (): SearchIndexFile => {
     blog: 3,
   };
 
+  const items: SearchIndexItem[] = Array.from(byHref.values()).map((item) => ({
+    ...item,
+    id: `${item.type}:${item.href}`,
+    keywords: item.keywords?.length ? uniq(item.keywords) : undefined,
+  }));
+
   items.sort((a, b) => {
     const typeDiff = typeOrder[a.type] - typeOrder[b.type];
     if (typeDiff !== 0) return typeDiff;
     return a.title.localeCompare(b.title, "en", { sensitivity: "base" });
   });
 
-  return { version: 1, items };
+  return { version: 2, items };
 };
 
 const writeSearchIndex = (outputPath: string, data: SearchIndexFile) => {
@@ -177,4 +251,3 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
 }
 
 export default generateSearchIndex;
-

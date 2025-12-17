@@ -19,6 +19,7 @@ interface SearchIndexItem {
   title: string;
   href: string;
   description?: string;
+  h1?: string;
   keywords?: string[];
 }
 
@@ -69,34 +70,61 @@ const getTypeIcon = (type: SearchItemType) => {
   }
 };
 
+const TOKEN_SYNONYMS: Record<string, string[]> = {
+  client: ["patient", "patients"],
+  clients: ["patient", "patients"],
+  patient: ["client", "clients"],
+  patients: ["client", "clients"],
+};
+
+const getTokenVariants = (token: string): string[] => {
+  const synonyms = TOKEN_SYNONYMS[token];
+  if (!synonyms?.length) return [token];
+  return Array.from(new Set([token, ...synonyms]));
+};
+
 const tokenize = (value: string): string[] =>
   value
-    .trim()
     .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
     .split(/\s+/)
     .filter(Boolean);
 
 const scoreItem = (item: SearchIndexItem, tokens: string[]): number | null => {
   const title = item.title.toLowerCase();
+  const h1 = (item.h1 ?? "").toLowerCase();
   const description = (item.description ?? "").toLowerCase();
   const keywords = (item.keywords ?? []).join(" ").toLowerCase();
   const href = item.href.toLowerCase();
 
   let score = 0;
   for (const token of tokens) {
-    if (title.includes(token)) {
-      score += title.startsWith(token) ? 12 : 10;
+    const variants = getTokenVariants(token);
+
+    const titleVariant = variants.find((variant) => title.includes(variant));
+    if (titleVariant) {
+      score += title.startsWith(titleVariant) ? 12 : 10;
       continue;
     }
-    if (keywords.includes(token)) {
+
+    const h1Variant = variants.find((variant) => h1.includes(variant));
+    if (h1Variant) {
+      score += h1.startsWith(h1Variant) ? 9 : 7;
+      continue;
+    }
+
+    if (variants.some((variant) => keywords.includes(variant))) {
       score += 6;
       continue;
     }
-    if (description.includes(token)) {
+
+    if (variants.some((variant) => description.includes(variant))) {
       score += 3;
       continue;
     }
-    if (href.includes(token)) {
+
+    if (variants.some((variant) => href.includes(variant))) {
       score += 1;
       continue;
     }
@@ -378,7 +406,7 @@ const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (href: string
 
   return (
     <CommandItem
-      value={[item.title, item.description, ...(item.keywords ?? []), item.href].filter(Boolean).join(" ")}
+      value={[item.title, item.h1, item.description, ...(item.keywords ?? []), item.href].filter(Boolean).join(" ")}
       onSelect={() => onSelect(item.href)}
       className="flex items-start gap-3 rounded-md px-3 py-3 text-white data-[selected=true]:bg-gold/15"
     >

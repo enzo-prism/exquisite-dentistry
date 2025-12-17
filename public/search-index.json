@@ -1,11 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
   "items": [
     {
       "type": "service",
       "title": "Dental Bridges in Los Angeles",
       "description": "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and spa-level comfort.",
       "href": "/dental-bridge/",
+      "h1": "Natural-Looking Dental Bridges",
       "keywords": [
         "dental bridge los angeles",
         "tooth replacement west hollywood",
@@ -18,6 +19,7 @@
       "title": "Dental Crowns in Los Angeles",
       "description": "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for Hollywood-ready aesthetics.",
       "href": "/dental-crowns/",
+      "h1": "Porcelain Dental Crowns",
       "keywords": [
         "dental crowns los angeles",
         "porcelain crown west hollywood",
@@ -30,6 +32,7 @@
       "title": "Dental Implants Near Santa Monica",
       "description": "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles—book a consultation.",
       "href": "/santa-monica-dental-implants/",
+      "h1": "Dental Implants Near Santa Monica",
       "keywords": [
         "santa monica dental implants",
         "dental implants near santa monica",
@@ -42,9 +45,10 @@
     },
     {
       "type": "service",
+      "href": "/invisalign-beverly-hills/",
       "title": "Invisalign Beverly Hills",
       "description": "Invisalign Beverly Hills: clear aligners planned with iTero scans, flexible visits, and comfort-first care at our Wilshire Blvd Los Angeles studio near Beverly Hills.",
-      "href": "/invisalign-beverly-hills/",
+      "h1": "Invisalign Beverly Hills",
       "keywords": [
         "invisalign beverly hills",
         "invisalign near beverly hills",
@@ -60,6 +64,7 @@
       "title": "Oral Cancer Screenings in Los Angeles",
       "description": "Annual VELscope oral cancer screenings detect cellular changes early. Add a screening to any hygiene visit in West Hollywood.",
       "href": "/oral-cancer-screening/",
+      "h1": "VELscope® Oral Cancer Screenings",
       "keywords": [
         "oral cancer screening los angeles",
         "velscope dentist LA",
@@ -72,6 +77,7 @@
       "title": "Pain-Free Dentistry in Los Angeles",
       "description": "Experience stress-free visits with sedation, advanced anesthesia, and a concierge comfort menu designed for anxious patients.",
       "href": "/pain-free-dentistry/",
+      "h1": "Pain-Free Dentistry for Every Visit",
       "keywords": [
         "pain free dentist LA",
         "sedation dentistry west hollywood",
@@ -84,6 +90,7 @@
       "title": "Root Canal Therapy in Los Angeles",
       "description": "Experience sedation options, modern imaging, and compassionate care during root canal therapy in West Hollywood.",
       "href": "/root-canal/",
+      "h1": "Root Canal Therapy Without the Stress",
       "keywords": [
         "root canal los angeles",
         "endodontic therapy LA",
@@ -93,9 +100,10 @@
     },
     {
       "type": "service",
+      "href": "/smile-makeover-los-angeles/",
       "title": "Smile Makeover in Los Angeles",
       "description": "Plan a smile makeover in Los Angeles with Dr. Alexie Aguil, DDS. Veneers, whitening, Invisalign, bonding, and implants—coordinated with digital smile design and comfort-first care.",
-      "href": "/smile-makeover-los-angeles/",
+      "h1": "Smile Makeover Los Angeles",
       "keywords": [
         "smile makeover los angeles",
         "smile makeover la",
@@ -113,6 +121,7 @@
       "title": "Teeth Cleaning in Los Angeles",
       "description": "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and spa-level comfort.",
       "href": "/teeth-cleaning/",
+      "h1": "Teeth Cleaning in Los Angeles",
       "keywords": [
         "teeth cleaning los angeles",
         "dental cleaning west hollywood",
@@ -125,6 +134,7 @@
       "title": "Teeth Whitening Near Beverly Hills",
       "description": "Teeth whitening near Beverly Hills with in-office whitening and custom take-home trays. Comfort-first care on Wilshire Blvd in Los Angeles with shade planning for existing veneers or crowns.",
       "href": "/teeth-whitening-beverly-hills/",
+      "h1": "Teeth Whitening Near Beverly Hills",
       "keywords": [
         "teeth whitening beverly hills",
         "teeth whitening near beverly hills",
@@ -140,6 +150,7 @@
       "title": "90048 Dentist",
       "description": "Your neighborhood dentist in the 90048 zip code—walkable for locals and convenient for Cedars-Sinai teams. Stop in between rounds or lunch breaks for modern preventive care, whitening boosts, and same-day fixes.",
       "href": "/90048-dentist/",
+      "h1": "90048’s Boutique Dental Experience",
       "keywords": [
         "90048 dentist",
         "90048 cosmetic dentist",
@@ -152,6 +163,7 @@
       "title": "Bel Air Dentist",
       "description": "Luxury-driven dentistry with tight confidentiality, ideal for Bel Air residents seeking a polished smile experience. Private lounge service, personalized sedation, and rapid lab turnarounds keep elite calendars on track.",
       "href": "/bel-air-dentist/",
+      "h1": "Bel Air’s Boutique Dental Experience",
       "keywords": [
         "bel air dentist",
         "bel air cosmetic dentist",
@@ -164,6 +176,7 @@
       "title": "Beverly Hills Dentist",
       "description": "Concierge-level cosmetic dentistry a short drive east of Rodeo Drive, serving Beverly Hills patients with discreet, private treatment rooms. Veneers, Invisalign, whitening, and restorations planned with privacy-first scheduling keep every reveal seamless.",
       "href": "/beverly-hills-dentist/",
+      "h1": "Beverly Hills Dentist — Concierge Cosmetic Care",
       "keywords": [
         "beverly hills dentist",
         "beverly hills cosmetic dentist",
@@ -176,6 +189,7 @@
       "title": "Culver City Dentist",
       "description": "Preferred by studio professionals and tech teams commuting up La Cienega for elevated preventive and cosmetic care. We sync treatment plans with shoot calendars, investor meetings, and hybrid workweeks so nothing slows momentum.",
       "href": "/culver-city-dentist/",
+      "h1": "Culver City’s Boutique Dental Experience",
       "keywords": [
         "culver city dentist",
         "culver city cosmetic dentist",
@@ -188,6 +202,7 @@
       "title": "Melrose Dentist",
       "description": "Creative professionals along Melrose trust us for cosmetic touch-ups before events, premieres, and photoshoots. On-demand whitening, veneer repairs, and pain-free visits keep you camera ready every day of the week.",
       "href": "/melrose-dentist/",
+      "h1": "Melrose’s Boutique Dental Experience",
       "keywords": [
         "melrose dentist",
         "melrose cosmetic dentist",
@@ -200,6 +215,7 @@
       "title": "West Hollywood Dentist",
       "description": "Minutes from the Sunset Strip and Melrose, our dental studio delivers Beverly Grove convenience with West Hollywood style. Expect hush-hush operatories, late appointments during award season, and concierge touches curated for on-camera schedules.",
       "href": "/west-hollywood-dentist/",
+      "h1": "West Hollywood’s Boutique Dental Experience",
       "keywords": [
         "west hollywood dentist",
         "west hollywood cosmetic dentist"
@@ -211,6 +227,7 @@
       "title": "West LA Dentist",
       "description": "Access advanced cosmetic and restorative care without the commute downtown—our studio sits conveniently off Wilshire and is an easy fit for Westside neighborhoods like Santa Monica. Enjoy valet-friendly arrival, digital consultations, and treatment plans that respect Westside commutes.",
       "href": "/west-la-dentist/",
+      "h1": "West LA’s Boutique Dental Experience",
       "keywords": [
         "west la dentist",
         "west la cosmetic dentist",
@@ -223,6 +240,7 @@
       "title": "Westwood Dentist",
       "description": "From UCLA grads to Century City executives, patients head east for boutique dentistry that respects tight calendars. We prioritize punctual starts, virtual follow-ups, and express hygiene blocks before big meetings.",
       "href": "/westwood-dentist/",
+      "h1": "Westwood’s Boutique Dental Experience",
       "keywords": [
         "westwood dentist",
         "westwood cosmetic dentist",
@@ -232,9 +250,52 @@
     },
     {
       "type": "page",
+      "title": "Bridal Smile Makeover LA | Perfect Wedding Dentistry | Exquisite",
+      "description": "Wedding smile prep in Los Angeles: veneers, whitening, and alignment timed to your big day. Concierge planning with Dr. Alexie Aguil.",
+      "href": "/wedding/",
+      "h1": "Wedding Smile Prep in Los Angeles",
+      "id": "page:/wedding/"
+    },
+    {
+      "type": "page",
+      "title": "Christian Fernandez — A Confidence-Boosting Smile Story",
+      "description": "Christian came to Exquisite Dentistry wanting to feel great about her smile every day. After her smile-straightening journey with our team, she left feeling more confident, cared for, and part of the Exquisite Dentistry family.",
+      "href": "/transformation-stories/christian-fernandez/",
+      "h1": "Christian Fernandez — A Confidence-Boosting Smile Story",
+      "keywords": [
+        "Christian Fernandez",
+        "Los Angeles, CA",
+        "smile transformation Los Angeles",
+        "teeth straightening case study",
+        "cosmetic dentistry results",
+        "patient testimonial",
+        "Dr. Alexie Aguil"
+      ],
+      "id": "page:/transformation-stories/christian-fernandez/"
+    },
+    {
+      "type": "page",
+      "title": "Confidence in Every Smile: Nick’s Invisalign Journey with Dr. Alexie Aguil at Exquisite Dentistry LA",
+      "description": "A lifetime of hiding his smile — until Invisalign with Dr. Aguil gave him the confidence to show it off.",
+      "href": "/transformation-stories/nick-invisalign/",
+      "h1": "Confidence in Every Smile: Nick’s Invisalign Journey with Dr. Alexie Aguil at Exquisite Dentistry LA",
+      "keywords": [
+        "Nick",
+        "Los Angeles, CA",
+        "Nick Invisalign story",
+        "Invisalign Los Angeles testimonial",
+        "Exquisite Dentistry transformation",
+        "Dr. Alexie Aguil Invisalign",
+        "smile confidence LA"
+      ],
+      "id": "page:/transformation-stories/nick-invisalign/"
+    },
+    {
+      "type": "page",
+      "href": "/contact/",
       "title": "Contact Exquisite Dentistry Los Angeles | Phone & Directions",
       "description": "Contact Exquisite Dentistry on Wilshire Blvd in Los Angeles near Beverly Hills. Call (323) 272-2388 for concierge care, directions, and scheduling.",
-      "href": "/contact/",
+      "h1": "Contact Us",
       "keywords": [
         "contact dentist Los Angeles",
         "dental appointment booking",
@@ -246,9 +307,10 @@
     },
     {
       "type": "page",
+      "href": "/services/",
       "title": "Cosmetic & Restorative Dentistry Los Angeles | Exquisite Dentistry",
       "description": "Complete cosmetic dentistry in LA: porcelain veneers, Zoom whitening, Invisalign & implants. Advanced techniques, natural results. Call today!",
-      "href": "/services/",
+      "h1": "Advanced Cosmetic & Restorative Dental Services",
       "keywords": [
         "cosmetic dental services",
         "porcelain veneers Los Angeles",
@@ -262,9 +324,10 @@
     },
     {
       "type": "page",
+      "href": "/",
       "title": "Cosmetic Dentist Los Angeles | Dr. Aguil | Exquisite Dentistry",
       "description": "Transform your smile with Los Angeles' most trusted cosmetic dentist. Dr. Aguil delivers Hollywood-quality results in a spa-like setting. Book today!",
-      "href": "/",
+      "h1": "Los Angeles' Premier Cosmetic Dentist",
       "keywords": [
         "cosmetic dentist Los Angeles",
         "porcelain veneers",
@@ -278,9 +341,10 @@
     },
     {
       "type": "page",
+      "href": "/blog/",
       "title": "Cosmetic Dentistry Blog Los Angeles | Exquisite Dentistry",
       "description": "Stay current with Exquisite Dentistry’s Los Angeles cosmetic dental insights. Discover veneers, whitening breakthroughs, patient stories, and advanced oral health techniques.",
-      "href": "/blog/",
+      "h1": "Expert Dental Insights & Patient Education",
       "keywords": [
         "dental blog",
         "cosmetic dentistry",
@@ -294,9 +358,10 @@
     },
     {
       "type": "page",
+      "href": "/cosmetic-dentistry/",
       "title": "Cosmetic Dentistry Los Angeles | Exquisite Dentistry",
       "description": "Cosmetic dentistry in Los Angeles with bespoke veneers, Invisalign, whitening, and bonding to create camera-ready smiles that fit your lifestyle.",
-      "href": "/cosmetic-dentistry/",
+      "h1": "Cosmetic Dentistry Los Angeles",
       "keywords": [
         "cosmetic dentistry Los Angeles",
         "smile makeover LA",
@@ -307,9 +372,10 @@
     },
     {
       "type": "page",
+      "href": "/culver-city-teeth-whitening/",
       "title": "Culver City Teeth Whitening | Exquisite Dentistry",
       "description": "Culver City teeth whitening with in-office whitening or custom take-home trays—comfort-first care on Wilshire Blvd in Los Angeles. Book a consultation.",
-      "href": "/culver-city-teeth-whitening/",
+      "h1": "Culver City Teeth Whitening",
       "keywords": [
         "culver city teeth whitening",
         "teeth whitening near culver city",
@@ -320,9 +386,10 @@
     },
     {
       "type": "page",
+      "href": "/faqs/",
       "title": "Dental FAQs Los Angeles | Exquisite Dentistry",
       "description": "Get answers to common dental questions: veneer costs, insurance coverage, treatment time, recovery. Expert guidance from our LA dental team.",
-      "href": "/faqs/",
+      "h1": "Dental FAQs",
       "keywords": [
         "dental FAQ",
         "cosmetic dentistry questions",
@@ -335,9 +402,10 @@
     },
     {
       "type": "page",
+      "href": "/dental-implants/",
       "title": "Dental Implants in Los Angeles | Exquisite Dentistry",
       "description": "Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd—book a consultation.",
-      "href": "/dental-implants/",
+      "h1": "Dental Implants in Los Angeles",
       "keywords": [
         "dental implants los angeles",
         "implant dentist los angeles",
@@ -350,9 +418,10 @@
     },
     {
       "type": "page",
+      "href": "/about/",
       "title": "Dr. Alexie Aguil | Los Angeles Cosmetic Dentist | Exquisite Dentistry",
       "description": "Meet Dr. Alexie Aguil, Los Angeles' award-winning cosmetic dentist with 15+ years creating celebrity smiles. Artistic vision meets gentle care.",
-      "href": "/about/",
+      "h1": "Meet Dr. Alexie Aguil",
       "keywords": [
         "Dr. Alexie Aguil",
         "cosmetic dentist Los Angeles",
@@ -365,9 +434,18 @@
     },
     {
       "type": "page",
+      "title": "Editorial Policy | Exquisite Dentistry Los Angeles",
+      "description": "How Exquisite Dentistry creates, reviews, and updates dental information to keep our content accurate and patient‑focused.",
+      "href": "/editorial-policy/",
+      "h1": "Editorial Policy",
+      "id": "page:/editorial-policy/"
+    },
+    {
+      "type": "page",
+      "href": "/emergency-dentist/",
       "title": "Emergency Dentist Los Angeles | Exquisite Dentistry",
       "description": "Emergency dentist in Los Angeles providing same-day appointments, after-hours guidance, and concierge treatment for urgent dental needs.",
-      "href": "/emergency-dentist/",
+      "h1": "Emergency Dentist Los Angeles",
       "keywords": [
         "emergency dentist Los Angeles",
         "same-day dental care LA",
@@ -378,9 +456,68 @@
     },
     {
       "type": "page",
+      "title": "From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA",
+      "description": "A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can't wait to show off.",
+      "href": "/transformation-stories/anxiety-to-ease/",
+      "h1": "From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA",
+      "keywords": [
+        "Real Patients",
+        "West Hollywood / Beverly Grove, Los Angeles",
+        "dental anxiety Los Angeles",
+        "comfort dentistry LA",
+        "anxiety-free dental care",
+        "patient testimonials Los Angeles",
+        "spa-like dental office"
+      ],
+      "id": "page:/transformation-stories/anxiety-to-ease/"
+    },
+    {
+      "type": "page",
+      "title": "From Fear to Family: Brandon Gray’s Experience with Dr. Aguil at Exquisite Dentistry LA",
+      "description": "A dental visit that feels more like catching up with friends — and results that make you want to smile.",
+      "href": "/transformation-stories/brandon-gray/",
+      "h1": "From Fear to Family: Brandon Gray’s Experience with Dr. Aguil at Exquisite Dentistry LA",
+      "keywords": [
+        "Brandon Gray",
+        "West Hollywood / Beverly Grove, Los Angeles",
+        "Brandon Gray dental story",
+        "fear-free dentist Los Angeles",
+        "Exquisite Dentistry testimonial",
+        "comfort dentistry LA",
+        "Dr. Aguil patient experience"
+      ],
+      "id": "page:/transformation-stories/brandon-gray/"
+    },
+    {
+      "type": "page",
+      "title": "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",
+      "description": "Plan front‑teeth veneers in Los Angeles with transparent pricing, minimal‑prep porcelain, and smile‑zone design by Dr. Alexie Aguil, DDS.",
+      "href": "/veneers/front-teeth-veneers-los-angeles/",
+      "h1": "Front Teeth Veneers in Los Angeles",
+      "id": "page:/veneers/front-teeth-veneers-los-angeles/"
+    },
+    {
+      "type": "page",
+      "title": "Graduation Smile Prep LA | Student Dental Packages | Exquisite",
+      "description": "Graduation smile makeovers in Los Angeles with whitening, Invisalign, and cosmetic upgrades designed for milestone photos and interviews.",
+      "href": "/graduation/",
+      "h1": "Graduation Smile Prep",
+      "id": "page:/graduation/"
+    },
+    {
+      "type": "page",
+      "title": "HIPAA Compliance | Patient Health Information Protection | Exquisite",
+      "description": "Learn how Exquisite Dentistry safeguards protected health information and follows HIPAA best practices in Los Angeles.",
+      "href": "/hipaa-compliance/",
+      "h1": "HIPAA Compliance",
+      "id": "page:/hipaa-compliance/"
+    },
+    {
+      "type": "page",
+      "href": "/invisalign/",
       "title": "Invisalign Clear Aligners Los Angeles | Exquisite Dentistry",
       "description": "Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.",
-      "href": "/invisalign/",
+      "h1": "Invisalign® Clear Aligners",
       "keywords": [
         "Invisalign Los Angeles",
         "clear aligners LA",
@@ -392,9 +529,18 @@
     },
     {
       "type": "page",
+      "title": "iTero Scanner Los Angeles | Digital Dental Impressions | Exquisite",
+      "description": "Discover how iTero 3D scanning improves comfort and precision for Invisalign, crowns, and veneers at our Los Angeles dental studio.",
+      "href": "/itero-scanner/",
+      "h1": "iTero 3D Scanning for Precision Dentistry",
+      "id": "page:/itero-scanner/"
+    },
+    {
+      "type": "page",
+      "href": "/locations/",
       "title": "Locations | Exquisite Dentistry",
       "description": "Explore the Los Angeles neighborhoods we serve near Beverly Hills. Find concierge dental care, directions, and location-specific pages for your area.",
-      "href": "/locations/",
+      "h1": "Locations",
       "keywords": [
         "Beverly Hills dentist",
         "West Hollywood dentist",
@@ -406,9 +552,26 @@
     },
     {
       "type": "page",
+      "title": "Luxury Dental Spa LA | Comfort‑Focused Dentistry | Exquisite",
+      "description": "Learn what to expect at Exquisite Dentistry: comfort amenities, gentle care, and a concierge patient experience for cosmetic and restorative dentistry in Los Angeles.",
+      "href": "/client-experience/",
+      "h1": "A Comfort‑First Dental Experience",
+      "id": "page:/client-experience/"
+    },
+    {
+      "type": "page",
+      "title": "Luxury Dental Studio Tour | Exquisite Dentistry LA",
+      "description": "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore our spa-like dental studio, advanced technology, and comfort-first amenities.",
+      "href": "/tour/",
+      "h1": "Take a Tour of Our Los Angeles Dental Studio",
+      "id": "page:/tour/"
+    },
+    {
+      "type": "page",
+      "href": "/testimonials/",
       "title": "Patient Reviews & Testimonials Los Angeles | Exquisite Dentistry",
       "description": "Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles.",
-      "href": "/testimonials/",
+      "h1": "Client Testimonials",
       "keywords": [
         "dental reviews Los Angeles",
         "patient testimonials",
@@ -421,9 +584,18 @@
     },
     {
       "type": "page",
+      "title": "Patient Transformation Stories | Exquisite Dentistry Los Angeles",
+      "description": "Watch real patient transformation stories from Exquisite Dentistry in Los Angeles. Hear what changed, what they experienced, and why they recommend our team.",
+      "href": "/transformation-stories/",
+      "h1": "Patient Transformation Stories",
+      "id": "page:/transformation-stories/"
+    },
+    {
+      "type": "page",
+      "href": "/veneers/",
       "title": "Porcelain Veneers Los Angeles | Exquisite Dentistry",
       "description": "Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available.",
-      "href": "/veneers/",
+      "h1": "Custom Porcelain Veneers",
       "keywords": [
         "porcelain veneers",
         "Los Angeles veneers",
@@ -435,9 +607,36 @@
     },
     {
       "type": "page",
+      "title": "Privacy Policy | Exquisite Dentistry Los Angeles",
+      "description": "Read how Exquisite Dentistry protects and uses personal information in compliance with HIPAA and California privacy standards.",
+      "href": "/privacy-policy/",
+      "h1": "Privacy Policy",
+      "id": "page:/privacy-policy/"
+    },
+    {
+      "type": "page",
+      "title": "Rob Talbert's Story — \"It doesn't even feel like going to the dentist\"",
+      "description": "Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.",
+      "href": "/transformation-stories/rob-talbert/",
+      "h1": "Rob Talbert's Story — \"It doesn't even feel like going to the dentist\"",
+      "keywords": [
+        "Rob Talbert",
+        "Los Angeles, CA",
+        "comfortable dental care Los Angeles",
+        "spa-like dentist LA",
+        "personal dental relationship",
+        "Rob Talbert testimonial",
+        "Dr. Alexie Aguil",
+        "anxiety-free dental visits"
+      ],
+      "id": "page:/transformation-stories/rob-talbert/"
+    },
+    {
+      "type": "page",
+      "href": "/schedule-consultation/",
       "title": "Schedule Consultation | Exquisite Dentistry",
       "description": "Schedule a porcelain veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles. Book online or call (323) 272-2388.",
-      "href": "/schedule-consultation/",
+      "h1": "Schedule Consultation",
       "keywords": [
         "schedule consultation",
         "book dentist appointment",
@@ -450,9 +649,35 @@
     },
     {
       "type": "page",
+      "title": "Shannon Langhorne's Story — A Dental Visit That Feels Like Stepping Into a Spa",
+      "description": "For Shannon, going to the dentist used to be just another appointment on the calendar. That changed the first time she visited Exquisite Dentistry where it feels like walking into a spa.",
+      "href": "/transformation-stories/shannon-langhorne/",
+      "h1": "Shannon Langhorne's Story — A Dental Visit That Feels Like Stepping Into a Spa",
+      "keywords": [
+        "Shannon Langhorne",
+        "Los Angeles, CA",
+        "spa-like dental office Los Angeles",
+        "relaxing dentist LA",
+        "comfortable dental care",
+        "patient testimonial Los Angeles",
+        "confidence boost dental"
+      ],
+      "id": "page:/transformation-stories/shannon-langhorne/"
+    },
+    {
+      "type": "page",
+      "title": "Share Your Story | Exquisite Dentistry Los Angeles",
+      "description": "Share your experience with Exquisite Dentistry. Tell us how your smile or comfort changed and help future patients feel prepared.",
+      "href": "/share-your-story/",
+      "h1": "Share Your Transformation Story",
+      "id": "page:/share-your-story/"
+    },
+    {
+      "type": "page",
+      "href": "/smile-gallery/",
       "title": "Smile Gallery Los Angeles | Before & After | Exquisite Dentistry",
       "description": "View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.",
-      "href": "/smile-gallery/",
+      "h1": "Smile Gallery",
       "keywords": [
         "smile gallery Los Angeles",
         "before after dental photos",
@@ -465,9 +690,27 @@
     },
     {
       "type": "page",
+      "title": "Taylor Vasek's Story — From \"No Dentist\" to Looking Forward to Every Visit",
+      "description": "After moving to Los Angeles, Taylor needed a new dentist he could trust. From the moment he walked in, the experience felt different: warm faces, easy check-in, and a relaxed energy that made dental visits something to enjoy.",
+      "href": "/transformation-stories/taylor-vasek/",
+      "h1": "Taylor Vasek's Story — From \"No Dentist\" to Looking Forward to Every Visit",
+      "keywords": [
+        "Taylor Vasek",
+        "Los Angeles, CA",
+        "dental patient story Los Angeles",
+        "comfortable dentist LA",
+        "Netflix dental chair",
+        "patient testimonial Los Angeles",
+        "anxiety-free dental care"
+      ],
+      "id": "page:/transformation-stories/taylor-vasek/"
+    },
+    {
+      "type": "page",
+      "href": "/teeth-whitening/",
       "title": "Teeth Whitening Los Angeles | Professional Smile Brightening",
       "description": "Professional teeth whitening in Los Angeles with Zoom power whitening, custom take-home kits, and concierge maintenance plans for lasting radiance.",
-      "href": "/teeth-whitening/",
+      "h1": "Teeth Whitening Los Angeles",
       "keywords": [
         "teeth whitening Los Angeles",
         "professional whitening LA",
@@ -478,9 +721,42 @@
     },
     {
       "type": "page",
+      "title": "Terms of Service | Exquisite Dentistry Los Angeles",
+      "description": "Review appointment policies, payment terms, and patient responsibilities for care at Exquisite Dentistry in Los Angeles.",
+      "href": "/terms-of-service/",
+      "h1": "Terms of Service",
+      "id": "page:/terms-of-service/"
+    },
+    {
+      "type": "page",
+      "title": "The Art of a Smile: Virginia’s Story at Exquisite Dentistry LA",
+      "description": "Where precision meets artistry — and every detail reflects the person behind the smile.",
+      "href": "/transformation-stories/virginia/",
+      "h1": "The Art of a Smile: Virginia’s Story at Exquisite Dentistry LA",
+      "keywords": [
+        "Virginia",
+        "Los Angeles / Beverly Grove",
+        "Virginia dental transformation",
+        "smile design Los Angeles",
+        "Exquisite Dentistry testimonial",
+        "artistic cosmetic dentistry LA"
+      ],
+      "id": "page:/transformation-stories/virginia/"
+    },
+    {
+      "type": "page",
+      "title": "Website Directory & Sitemap | Exquisite Dentistry LA",
+      "description": "Browse a full directory of Exquisite Dentistry pages, including services, patient resources, and location guides.",
+      "href": "/sitemap/",
+      "h1": "Site Map",
+      "id": "page:/sitemap/"
+    },
+    {
+      "type": "page",
+      "href": "/zoom-whitening/",
       "title": "Zoom Whitening Los Angeles | Exquisite Dentistry",
       "description": "Zoom whitening in Los Angeles brightens your smile fast—often 3–8 shades in about 60–90 minutes. Comfort-first protocol on Wilshire Blvd.",
-      "href": "/zoom-whitening/",
+      "h1": "Zoom Whitening in Los Angeles",
       "keywords": [
         "zoom whitening los angeles",
         "zoom teeth whitening los angeles",
@@ -495,6 +771,7 @@
       "title": "5 Healthy Habits For Your Teeth",
       "description": "Five dentist-approved habits—from mindful brushing to smart snacking—that keep your smile bright, healthy, and confident every day.",
       "href": "/blog/healthy-habits-for-your-teeth/",
+      "h1": "5 Healthy Habits For Your Teeth",
       "keywords": [
         "Oral Health",
         "oral hygiene",
@@ -517,6 +794,7 @@
       "title": "5 Reasons to Get Dental Implants",
       "description": "Discover the top five reasons dental implants are a natural, long-lasting solution that protects your oral health, keeps you comfortable, and restores confidence—plus when bridges may be the right alternative.",
       "href": "/blog/reasons-to-get-dental-implants/",
+      "h1": "5 Reasons to Get Dental Implants",
       "keywords": [
         "Restorative Dentistry",
         "dental implants",
@@ -537,6 +815,7 @@
       "title": "5 Ways to Improve Oral Care While You’re at Work",
       "description": "Turn your workday into an opportunity for better oral health with five dentist-approved strategies for brushing, flossing, and staying confident on the job.",
       "href": "/blog/improve-oral-care-at-work/",
+      "h1": "5 Ways to Improve Oral Care While You’re at Work",
       "keywords": [
         "Oral Health",
         "oral hygiene",
@@ -558,6 +837,7 @@
       "title": "6 Early Signs of Oral Cancer",
       "description": "Learn how to recognize six early warning signs of oral cancer and why proactive screenings with Exquisite Dentistry keep you protected.",
       "href": "/blog/early-signs-of-oral-cancer/",
+      "h1": "6 Early Signs of Oral Cancer",
       "keywords": [
         "Oral Health",
         "oral cancer",
@@ -578,6 +858,7 @@
       "title": "A Dentist for Adults in Los Angeles",
       "description": "Experience a spa-inspired dental visit designed exclusively for adults with concierge comforts, comprehensive care, and cosmetic enhancements in West Hollywood.",
       "href": "/blog/dentist-for-adults-los-angeles/",
+      "h1": "A Dentist for Adults in Los Angeles",
       "keywords": [
         "Patient Experience",
         "adult dentistry",
@@ -599,6 +880,7 @@
       "title": "Adjusting to Invisalign While Starting a New Job",
       "description": "Learn practical strategies to stay comfortable, consistent, and confident with Invisalign while you navigate the first weeks of a new job.",
       "href": "/blog/adjusting-to-invisalign-while-starting-new-job/",
+      "h1": "Adjusting to Invisalign While Starting a New Job",
       "keywords": [
         "Orthodontics",
         "Invisalign",
@@ -620,6 +902,7 @@
       "title": "All About Veneers for Teeth",
       "description": "You’re wanting to flash that beautiful Hollywood smile, but you’ve got one problem: Your teeth.  Perhaps they’re discolored, misshapen, or don’t align quite the way you want them to.",
       "href": "/blog/all-about-veneers-for-teeth/",
+      "h1": "All About Veneers for Teeth",
       "keywords": [
         "Cosmetic Dentistry",
         "all",
@@ -633,6 +916,7 @@
       "title": "Are Veneers Covered by Insurance?",
       "description": "Much of the time, treatment with dental veneers is seen as a cosmetic procedure that insurance companies do not cover.  At Exquisite Dentistry in West Los Angeles, Dr.",
       "href": "/blog/are-veneers-covered-by-insurance/",
+      "h1": "Are Veneers Covered by Insurance?",
       "keywords": [
         "Cosmetic Dentistry",
         "are",
@@ -647,6 +931,7 @@
       "title": "Can Damaged Teeth Repair Themselves Naturally?",
       "description": "Do teeth naturally heal over time?  The thought of someone’s teeth regenerating sounds like science fiction to most.",
       "href": "/blog/can-damaged-teeth-repair-themselves-naturally/",
+      "h1": "Can Damaged Teeth Repair Themselves Naturally?",
       "keywords": [
         "Oral Health",
         "can",
@@ -663,6 +948,7 @@
       "title": "Choosing Veneers for Just One Tooth",
       "description": "Adults have 32 teeth, but all it takes is one misshapen, damaged, or discolored tooth for a person to lose confidence in their smile.  Dental veneers are a common way to improve the shape of teeth, fix chips or cracks, and give teeth a radiant natural color.",
       "href": "/blog/choosing-veneers-for-just-one-tooth/",
+      "h1": "Choosing Veneers for Just One Tooth",
       "keywords": [
         "Cosmetic Dentistry",
         "choosing",
@@ -678,6 +964,7 @@
       "title": "Choosing Veneers for the Four Front Teeth",
       "description": "When it comes to achieving the smile of your dreams, cosmetic dentistry offers transformative solutions.  Among these, porcelain veneers are a powerful treatment for achieving radiant, perfectly shaped teeth.",
       "href": "/blog/choosing-veneers-for-the-four-front-teeth/",
+      "h1": "Choosing Veneers for the Four Front Teeth",
       "keywords": [
         "Cosmetic Dentistry",
         "choosing",
@@ -693,6 +980,7 @@
       "title": "Dental Implant Cost in Los Angeles: What Affects Pricing (and How to Compare Quotes)",
       "description": "A clear, non-sales guide to what drives dental implant pricing in Los Angeles—what’s included, common add-ons like grafting, and how to compare two implant quotes confidently.",
       "href": "/blog/dental-implant-cost-los-angeles/",
+      "h1": "Dental Implant Cost in Los Angeles: What Affects Pricing (and How to Compare Quotes)",
       "keywords": [
         "Restorative Dentistry",
         "dental implants",
@@ -715,6 +1003,7 @@
       "title": "Dental Implants vs Bridge in Los Angeles: How to Decide (Without Regrets)",
       "description": "Implant or bridge? This practical guide compares stability, longevity, timeline, and maintenance so you can choose the right tooth replacement option in Los Angeles.",
       "href": "/blog/dental-implants-vs-bridge-los-angeles/",
+      "h1": "Dental Implants vs Bridge in Los Angeles: How to Decide (Without Regrets)",
       "keywords": [
         "Restorative Dentistry",
         "dental implants",
@@ -735,6 +1024,7 @@
       "title": "Dental Veneers and Teeth Whitening: Myths and Facts Uncovered",
       "description": "It’s no secret that dental veneers are a great way to transform your smile.  Porcelain veneers are also a standout solution for teeth whitening, often used to address a range of dental concerns like chipped, crooked, or misaligned teeth.",
       "href": "/blog/dental-veneers-and-teeth-whitening-myths-and-facts-uncovered/",
+      "h1": "Dental Veneers and Teeth Whitening: Myths and Facts Uncovered",
       "keywords": [
         "Cosmetic Dentistry",
         "dental",
@@ -752,6 +1042,7 @@
       "title": "Dental Veneers vs Crowns",
       "description": "For effective treatment to restore the shape and color of your teeth, you have a choice in the form of dental veneers or crowns.  Both options provide relief in the way of creating a bright, healthy smile – but each goes about solving our dental problems in…",
       "href": "/blog/dental-veneers-vs-crowns/",
+      "h1": "Dental Veneers vs Crowns",
       "keywords": [
         "Restorative Dentistry",
         "dental",
@@ -765,6 +1056,7 @@
       "title": "Dental Veneers vs. Bonding",
       "description": "It’s a dentist’s job to help you keep your teeth clean and healthy, but there is a whole lot more they can do.  Cosmetic dentists specialize in treatments that help whiten teeth, repair damaged teeth, and even design the new smile you always wanted.",
       "href": "/blog/dental-veneers-vs-bonding/",
+      "h1": "Dental Veneers vs. Bonding",
       "keywords": [
         "Cosmetic Dentistry",
         "dental",
@@ -778,6 +1070,7 @@
       "title": "Dental Veneers vs. Bonding: A Comprehensive Comparison for Your Smile Makeover",
       "description": "Dental Veneers vs.  Bonding: What’s Right for You?",
       "href": "/blog/dental-veneers-vs-bonding-a-comprehensive-comparison-for-your-smile-makeover/",
+      "h1": "Dental Veneers vs. Bonding: A Comprehensive Comparison for Your Smile Makeover",
       "keywords": [
         "Cosmetic Dentistry",
         "dental",
@@ -795,6 +1088,7 @@
       "title": "Do You Have a Cracked Tooth?",
       "description": "You can feel a searing pain in your mouth that radiates into your jawbone.  It may even seem to shoot down from your mouth all the way to your toes, causing you pain that can range from irritating to severe.",
       "href": "/blog/do-you-have-a-cracked-tooth/",
+      "h1": "Do You Have a Cracked Tooth?",
       "keywords": [
         "Oral Health",
         "you",
@@ -808,6 +1102,7 @@
       "title": "Do You Need Surgery for Dental Veneers?",
       "description": "If you’re looking to significantly improve your smile, consider dental veneers.  These thin, translucent pieces of porcelain are carefully crafted to fit over your existing teeth, covering any discoloration or imperfections.",
       "href": "/blog/do-you-need-surgery-for-dental-veneers/",
+      "h1": "Do You Need Surgery for Dental Veneers?",
       "keywords": [
         "Cosmetic Dentistry",
         "you",
@@ -823,6 +1118,7 @@
       "title": "Do You Need Surgery for Dental Veneers? (Answered!)",
       "description": "Fact or Fiction: Do You Need Surgery for Dental Veneers?  Dental veneers are an excellent option for those looking to enhance their smile and correct dental issues.",
       "href": "/blog/do-you-need-surgery-for-dental-veneers-answered/",
+      "h1": "Do You Need Surgery for Dental Veneers? (Answered!)",
       "keywords": [
         "Cosmetic Dentistry",
         "you",
@@ -839,6 +1135,7 @@
       "title": "Does Invisalign Hurt Your Mouth?",
       "description": "If you’re smile isn’t everything you want it to be, you may feel like you have to settle for less than the best.  Fortunately, this simply isn’t the case.",
       "href": "/blog/invisalign-hurt-mouth/",
+      "h1": "Does Invisalign Hurt Your Mouth?",
       "keywords": [
         "Orthodontics",
         "invisalign",
@@ -852,6 +1149,7 @@
       "title": "Female Smokers Are at a Higher Risk of Oral Cancer",
       "description": "Healthy smiles are always on display—when you laugh, pose for a photo, or just can’t seem to contain your joy.  For women, a brilliant smile is important not only because it showcases your beauty.",
       "href": "/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
+      "h1": "Female Smokers Are at a Higher Risk of Oral Cancer",
       "keywords": [
         "Oral Health",
         "female",
@@ -869,6 +1167,7 @@
       "title": "Finding a good dentist in your area",
       "description": "If you’ve moved recently or simply want a change and are searching for a new dentist, the process can be overwhelming.  Googling the long list of doctors on Yelp doesn’t help, because it tells you nothing about their chairside manner, philosophy on patient …",
       "href": "/blog/finding-good-dentist-area/",
+      "h1": "Finding a good dentist in your area",
       "keywords": [
         "Cosmetic Dentistry",
         "finding",
@@ -883,6 +1182,7 @@
       "title": "Finding the Best Cosmetic Dentist in Los Angeles",
       "description": "There are thousands of cosmetic dentists in Los Angeles.  So how do you find the best for a Hollywood Smile Design?",
       "href": "/blog/finding-the-best-cosmetic-dentist-in-los-angeles/",
+      "h1": "Finding the Best Cosmetic Dentist in Los Angeles",
       "keywords": [
         "Cosmetic Dentistry",
         "finding",
@@ -898,6 +1198,7 @@
       "title": "How Alcohol Affects Your Teeth",
       "description": "A glass of wine with a good meal or an ice-cold beer while you’re watching the game—for some people, these are some of life’s simplest pleasures.  Unfortunately, the effect alcohol has on your dental health is not as pleasant.",
       "href": "/blog/how-alcohol-affects-your-teeth/",
+      "h1": "How Alcohol Affects Your Teeth",
       "keywords": [
         "Oral Health",
         "how",
@@ -912,6 +1213,7 @@
       "title": "How Do I Choose a High-End Dental Office?",
       "description": "Do you smile with your lips closed or your hand in front of your mouth?  Do you hate taking pictures because you don’t want anyone to see your teeth?",
       "href": "/blog/high-end-dentistry/",
+      "h1": "How Do I Choose a High-End Dental Office?",
       "keywords": [
         "Patient Experience",
         "high",
@@ -925,6 +1227,7 @@
       "title": "How Hollywood Veneers can Transform your Smile",
       "description": "You’ve got Hollywood style, but do you have a Hollywood smile?  That’s what porcelain veneers can do for you.",
       "href": "/blog/how-hollywood-veneers-can-transform-your-smile/",
+      "h1": "How Hollywood Veneers can Transform your Smile",
       "keywords": [
         "Cosmetic Dentistry",
         "how",
@@ -941,6 +1244,7 @@
       "title": "How Long Does It Take to Fix Crooked Teeth in Adults?",
       "description": "Teeth straightening is becoming one of the most popular and sought-after cosmetic dentistry treatments.  Traditionally, getting braces has been thought of as a straightening treatment for tweens and teenagers, but more and more adults these days are interes…",
       "href": "/blog/long-will-take-fix-crooked-teeth/",
+      "h1": "How Long Does It Take to Fix Crooked Teeth in Adults?",
       "keywords": [
         "Oral Health",
         "long",
@@ -956,6 +1260,7 @@
       "title": "How Marijuana Use Increases Your Risk of Gum Disease",
       "description": "In November 2016, California voters approved Proposition 64, legalizing recreational marijuana use across the state.  Although marijuana was available in retail stores in 2018, many cities and municipalities still have not created regulations for the sale o…",
       "href": "/blog/marijuana-use-increases-risk-gum-disease/",
+      "h1": "How Marijuana Use Increases Your Risk of Gum Disease",
       "keywords": [
         "Oral Health",
         "marijuana",
@@ -972,6 +1277,7 @@
       "title": "How Oral Health Problems can Affect Your Overall Health",
       "description": "Proper oral care is more than just supporting a stunning smile.  Your teeth can indicate a variety of health concerns that most don’t even think about.",
       "href": "/blog/how-oral-health-problems-can-affect-your-overall-health/",
+      "h1": "How Oral Health Problems can Affect Your Overall Health",
       "keywords": [
         "Oral Health",
         "how",
@@ -989,6 +1295,7 @@
       "title": "How Sweet: Ideas for Keeping Teeth Healthy On Valentine’s Day",
       "description": "Valentine’s Day is all about setting aside some time to be with your significant other and, for some, exchanging sugary treats.  Whether you pick up a box of themed candy, or choose a sampler with dozens of assorted chocolates, February 14th has always been…",
       "href": "/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/",
+      "h1": "How Sweet: Ideas for Keeping Teeth Healthy On Valentine’s Day",
       "keywords": [
         "Oral Health",
         "how",
@@ -1007,6 +1314,7 @@
       "title": "How to Maintain the Perfect Wedding Smile",
       "description": "A wedding is one of the most memorable days in a person’s life.  With all eyes on the bride and groom, it’s essential to ensure that your smile is as perfect as your outfit.",
       "href": "/blog/how-to-maintain-the-perfect-wedding-smile/",
+      "h1": "How to Maintain the Perfect Wedding Smile",
       "keywords": [
         "Cosmetic Dentistry",
         "how",
@@ -1022,6 +1330,7 @@
       "title": "If you need a dentist while visiting Los Angeles…",
       "description": "If you’re in Los Angeles and need an emergency dentist, don’t panic.  There’s an option that’s perfect for your situation.",
       "href": "/blog/need-dentist-visiting-los-angeles/",
+      "h1": "If you need a dentist while visiting Los Angeles…",
       "keywords": [
         "Cosmetic Dentistry",
         "need",
@@ -1037,6 +1346,7 @@
       "title": "Leading Cosmetic Dentist for Adults in Los Angeles: Transforming Smiles at Any Age",
       "description": "Nowadays, pediatric dentists are decked out with all sorts of amenities to make children feel comfortable and at ease during their dental visits.  But have you ever wondered why the same level of care and comfort isn’t readily available when it comes to vis…",
       "href": "/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/",
+      "h1": "Leading Cosmetic Dentist for Adults in Los Angeles: Transforming Smiles at Any Age",
       "keywords": [
         "Cosmetic Dentistry",
         "leading",
@@ -1057,6 +1367,7 @@
       "title": "Long term cosmetic dentistry solutions",
       "description": "Have you become ashamed of your smile?  You’re not alone.",
       "href": "/blog/long-term-cosmetic-dentistry-solutions/",
+      "h1": "Long term cosmetic dentistry solutions",
       "keywords": [
         "Cosmetic Dentistry",
         "long",
@@ -1072,6 +1383,7 @@
       "title": "Maintaining Oral Wellness As You Age",
       "description": "Actor Anthony Hopkins once ironically stated, “Getting old ain’t for the faint of heart. ” How true that is!",
       "href": "/blog/maintaining-oral-wellness-as-you-age/",
+      "h1": "Maintaining Oral Wellness As You Age",
       "keywords": [
         "Oral Health",
         "maintaining",
@@ -1087,6 +1399,7 @@
       "title": "Oral Wellness with Age: How to Protect Your Teeth as You Grow Older",
       "description": "Actor Anthony Hopkins once ironically stated, “Getting old ain’t for the faint of heart. ” How true that is!",
       "href": "/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/",
+      "h1": "Oral Wellness with Age: How to Protect Your Teeth as You Grow Older",
       "keywords": [
         "Oral Health",
         "oral",
@@ -1106,6 +1419,7 @@
       "title": "Porcelain Veneers in Los Angeles: Your No-BS 2025 Buyer's Guide",
       "description": "Get straight answers about porcelain veneers in Los Angeles including candidacy, real 2025 pricing, veneer counts, process timelines, and how to choose between porcelain, composite, and crowns.",
       "href": "/blog/porcelain-veneers-los-angeles-buyers-guide/",
+      "h1": "Porcelain Veneers in Los Angeles: Your No-BS 2025 Buyer's Guide",
       "keywords": [
         "Cosmetic Dentistry",
         "porcelain veneers",
@@ -1127,6 +1441,7 @@
       "title": "Recommendations to Work Flossing Into Your Daily Routine",
       "description": "“Do you floss? ” the dentist asks you as you settle into the chair for your appointment.",
       "href": "/blog/recommendations-to-work-flossing-into-your-daily-routine/",
+      "h1": "Recommendations to Work Flossing Into Your Daily Routine",
       "keywords": [
         "Oral Health",
         "recommendations",
@@ -1142,6 +1457,7 @@
       "title": "Relax and Binge Netflix's Hottest Shows During Your Cosmetic Dentistry Visit",
       "description": "Turn your dental anxiety into entertainment bliss! Discover how streaming Netflix during cosmetic procedures at Exquisite Dentistry creates a spa-like experience while achieving your perfect smile.",
       "href": "/blog/netflix-streaming-during-dental-procedures/",
+      "h1": "Relax and Binge Netflix's Hottest Shows During Your Cosmetic Dentistry Visit",
       "keywords": [
         "Patient Experience",
         "patient comfort",
@@ -1162,6 +1478,7 @@
       "title": "Restoration and Maintenance for Dental Veneers",
       "description": "For patients looking for a beautiful, radiant smile, dental veneer restoration may be the answer.  Veneers are translucent, yet durable pieces of porcelain that are bonded to the front of teeth to enhance their color and shape, as well as fix damage.",
       "href": "/blog/restoration-and-maintenance-for-dental-veneers/",
+      "h1": "Restoration and Maintenance for Dental Veneers",
       "keywords": [
         "Cosmetic Dentistry",
         "restoration",
@@ -1176,6 +1493,7 @@
       "title": "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
       "description": "Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.",
       "href": "/blog/single-tooth-veneers-perfect-solutions/",
+      "h1": "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
       "keywords": [
         "Cosmetic Dentistry",
         "single veneer",
@@ -1192,6 +1510,7 @@
       "title": "The Benefits of Veneers to Whiten Your Teeth",
       "description": "Dental veneers are an effective treatment to design your smile exactly the way you want.  They’re often used to help fix a chipped tooth, a gap between teeth, or even make a tiny adjustment to the bite of a person’s mouth.",
       "href": "/blog/the-benefits-of-veneers-to-whiten-your-teeth/",
+      "h1": "The Benefits of Veneers to Whiten Your Teeth",
       "keywords": [
         "Cosmetic Dentistry",
         "benefits",
@@ -1206,6 +1525,7 @@
       "title": "The Best Teeth Straightening for Adults",
       "description": "You can say a lot with a smile.  That simple gesture shows that you’re happy, approachable, and relatable.",
       "href": "/blog/the-best-teeth-straightening-for-adults/",
+      "h1": "The Best Teeth Straightening for Adults",
       "keywords": [
         "Oral Health",
         "teeth",
@@ -1219,6 +1539,7 @@
       "title": "The Cost of Dental Veneers in Los Angeles",
       "description": "A brilliant smile is priceless.  Here in Los Angeles, celebrities and business leaders are famous for the smiles their careers are built on.",
       "href": "/blog/the-cost-of-dental-veneers-in-los-angeles/",
+      "h1": "The Cost of Dental Veneers in Los Angeles",
       "keywords": [
         "Cosmetic Dentistry",
         "cost",
@@ -1234,6 +1555,7 @@
       "title": "The Material Options for Dental Veneers",
       "description": "If you’re looking for an easy way to make extraordinary improvements to your smile, veneers are the perfect option.  Dental veneers are thin, translucent coverings that are placed over the front of a tooth, instantly transforming a problematic tooth into a …",
       "href": "/blog/the-material-options-for-dental-veneers/",
+      "h1": "The Material Options for Dental Veneers",
       "keywords": [
         "Cosmetic Dentistry",
         "material",
@@ -1248,6 +1570,7 @@
       "title": "The Process of Veneer Replacement",
       "description": "Dental veneers are an outstanding investment in your smile.  They last many years with exceptional care.",
       "href": "/blog/the-process-of-veneer-replacemen/",
+      "h1": "The Process of Veneer Replacement",
       "keywords": [
         "Cosmetic Dentistry",
         "process",
@@ -1261,6 +1584,7 @@
       "title": "The Shapes and Styles of Dental Veneers",
       "description": "Dental veneers have become a popular way for people in Los Angeles to significantly improve their smile.  Veneers are thin structures of porcelain that can be bonded to your teeth to give them a naturally-bright white look, as well as to improve their shape…",
       "href": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "h1": "The Shapes and Styles of Dental Veneers",
       "keywords": [
         "Cosmetic Dentistry",
         "shapes",
@@ -1275,6 +1599,7 @@
       "title": "Top 4 Netflix Shows to Explore From the Dentist’s Chair",
       "description": "It was like pulling teeth.  Everyone knows that idiom.",
       "href": "/blog/top-4-netflix-shows-to-explore-from-the-dentists-chair/",
+      "h1": "Top 4 Netflix Shows to Explore From the Dentist’s Chair",
       "keywords": [
         "Patient Experience",
         "top",
@@ -1291,6 +1616,7 @@
       "title": "Top LA Cosmetic Dentist Answers Your Questions: Are Veneers a Good Investment?",
       "description": "Are you looking to enhance your smile and boost your confidence?  Dental veneers offer the best solution that can transform the appearance of your teeth, addressing issues such as discoloration, chipping, misalignment, and irregularities in shape.",
       "href": "/blog/top-la-cosmetic-dentist-answers-your-questions-are-veneers-a-good-investment/",
+      "h1": "Top LA Cosmetic Dentist Answers Your Questions: Are Veneers a Good Investment?",
       "keywords": [
         "Cosmetic Dentistry",
         "top",
@@ -1310,6 +1636,7 @@
       "title": "Top LA Cosmetic Dentist Answers Your Questions: Is Invisalign a Good Investment?",
       "description": "has revolutionized orthodontic treatment with its stunning results and discreet and convenient approach.  As the leading teeth straightening system, Invisalign can deliver a gorgeous smile for adults and teens seeking either small aesthetic changes or major…",
       "href": "/blog/top-la-cosmetic-dentist-answers-your-questions-is-invisalign-a-good-investment/",
+      "h1": "Top LA Cosmetic Dentist Answers Your Questions: Is Invisalign a Good Investment?",
       "keywords": [
         "Orthodontics",
         "top",
@@ -1328,6 +1655,7 @@
       "title": "Veneers Before and After in Los Angeles: Real Cases, Real Results (2025 Guide)",
       "description": "See real porcelain veneer transformations from Los Angeles without hype or patient stories. This 2025 guide explains what veneers fix, what to look for in before-and-after photos, and how to plan your own smile.",
       "href": "/blog/veneers-before-after-los-angeles/",
+      "h1": "Veneers Before and After in Los Angeles: Real Cases, Real Results (2025 Guide)",
       "keywords": [
         "Cosmetic Dentistry",
         "porcelain veneers",
@@ -1347,6 +1675,7 @@
       "title": "Veneers or Implants: Choosing the Best Path to a Perfect Smile",
       "description": "When it comes to veneers or implants, both options offer a life-changing transformative solution that can significantly enhance your smile, confidence, and overall dental health.  Porcelain veneers are thin, durable shells of high-quality porcelain placed o…",
       "href": "/blog/veneers-or-implants-choosing-the-best-path-to-a-perfect-smile/",
+      "h1": "Veneers or Implants: Choosing the Best Path to a Perfect Smile",
       "keywords": [
         "Restorative Dentistry",
         "veneers",
@@ -1363,6 +1692,7 @@
       "title": "Veneers vs. Braces for Shaping Teeth",
       "description": "Should you choose dental veneers or braces to shape your teeth and align your bite?  This is ultimately a discussion to have between you and your dentist, but it always helps to prepare yourself with information.",
       "href": "/blog/veneers-vs-braces-for-shaping-teeth/",
+      "h1": "Veneers vs. Braces for Shaping Teeth",
       "keywords": [
         "Orthodontics",
         "veneers",
@@ -1377,6 +1707,7 @@
       "title": "We can help you get over your fear of the dentist",
       "description": "If you have dentophobia, or suffer from a fear of going to the dentist, you’re not alone.  It’s estimated that as many as one in five people avoid going to the dentist unless they require major dental work or something that is bad enough to require immediat…",
       "href": "/blog/can-help-get-fear-dentist/",
+      "h1": "We can help you get over your fear of the dentist",
       "keywords": [
         "Patient Experience",
         "can",
@@ -1392,6 +1723,7 @@
       "title": "What a Teeth Whitening Dentist Can do for You",
       "description": "Everyone wants a beautiful Hollywood smile.  There are plenty of at-home remedies, but they’re often ineffective toothpastes, messy trays, or sloppy bleach gels that just don’t give the best results.",
       "href": "/blog/what-a-teeth-whitening-dentist-can-do-for-you/",
+      "h1": "What a Teeth Whitening Dentist Can do for You",
       "keywords": [
         "Cosmetic Dentistry",
         "teeth",
@@ -1407,6 +1739,7 @@
       "title": "What Are Some Easy Ways to Whiten Your Teeth?",
       "description": "You want your smile to dazzle—in person and in photos.  So when your pearly whites begin to lose their shine, you need a whitening solution that’s convenient, safe, and effective.",
       "href": "/blog/what-are-some-easy-ways-to-whiten-your-teeth/",
+      "h1": "What Are Some Easy Ways to Whiten Your Teeth?",
       "keywords": [
         "Oral Health",
         "are",
@@ -1422,6 +1755,7 @@
       "title": "What To Do If You’ve Chipped a Tooth",
       "description": "“I chipped my tooth.  What do I do?",
       "href": "/blog/what-to-do-if-youve-chipped-a-tooth/",
+      "h1": "What To Do If You’ve Chipped a Tooth",
       "keywords": [
         "Oral Health",
         "youve",
@@ -1435,6 +1769,7 @@
       "title": "Why Female Smokers are at a High Risk for Oral Cancer: Unpacking the Dangers",
       "description": "Learn why female smokers face heightened oral cancer risks compared to men. Discover the dangers of tobacco use, HPV connections, and essential preventative measures for optimal oral health.",
       "href": "/blog/female-smokers-high-risk-oral-cancer-dangers/",
+      "h1": "Why Female Smokers are at a High Risk for Oral Cancer: Unpacking the Dangers",
       "keywords": [
         "Oral Health",
         "oral cancer",
@@ -1456,6 +1791,7 @@
       "title": "Why Invisalign Has a Clear Advantage Over Traditional Braces",
       "description": "Discover why Invisalign revolutionizes teeth straightening with clear aligners, offering superior design, no food restrictions, faster results, and unmatched confidence compared to traditional metal braces.",
       "href": "/blog/invisalign-clear-advantage-over-traditional-braces/",
+      "h1": "Why Invisalign Has a Clear Advantage Over Traditional Braces",
       "keywords": [
         "Orthodontics",
         "invisalign",

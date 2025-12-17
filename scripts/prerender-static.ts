@@ -57,15 +57,15 @@ import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "../src/data/invisalign-beverly-hills-faqs";
 
-type StaticLink = { label: string; href: string };
-type StaticRouteSection = {
+export type StaticLink = { label: string; href: string };
+export type StaticRouteSection = {
   id?: string;
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
   links?: StaticLink[];
 };
-type StaticRoute = {
+export type StaticRoute = {
   path: string;
   title: string;
   description: string;
@@ -80,7 +80,7 @@ const DIST_DIR = path.resolve("dist");
 const TEMPLATE_PATH = path.join(DIST_DIR, "index.html");
 const SCHEMA_ORG_CONTEXT = "https://schema.org";
 
-const defaultNavLinks: StaticLink[] = [
+export const defaultNavLinks: StaticLink[] = [
   { label: "Dental Implants", href: "/dental-implants" },
   { label: "Porcelain Veneers", href: "/veneers" },
   { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
@@ -93,7 +93,7 @@ const defaultNavLinks: StaticLink[] = [
   { label: "Blog", href: "/blog" },
 ];
 
-const manualPages: StaticRoute[] = [
+export const manualPages: StaticRoute[] = [
   {
     path: "/",
     title: getRouteMetadata("/").title,
@@ -1350,7 +1350,7 @@ const extractBlogParagraphs = (content: string, excerpt: string) => {
   return [excerpt];
 };
 
-const buildRoutes = (): StaticRoute[] => {
+export const buildRoutes = (): StaticRoute[] => {
   const routes: StaticRoute[] = [...manualPages];
 
   Object.values(servicePageConfigs).forEach((config) => {
@@ -1530,7 +1530,9 @@ const main = async () => {
   console.log(`✅  Pre-rendered ${routes.length} static routes into /dist.`);
 };
 
-main().catch((error) => {
-  console.error("Static prerender failed:\n", error);
-  process.exitCode = 1;
-});
+if (process.argv[1] === new URL(import.meta.url).pathname) {
+  main().catch((error) => {
+    console.error("Static prerender failed:\n", error);
+    process.exitCode = 1;
+  });
+}
