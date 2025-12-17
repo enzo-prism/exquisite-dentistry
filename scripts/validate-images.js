@@ -50,6 +50,8 @@ function extractImageReferences() {
       let match;
       while ((match = pattern.exec(content)) !== null) {
         const imagePath = match[1];
+        // Skip dynamic template strings (cannot be validated statically)
+        if (imagePath.includes('${')) continue;
         if (imagePath.startsWith('/')) {
           references.add(imagePath);
         }

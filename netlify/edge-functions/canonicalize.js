@@ -5,6 +5,7 @@ const CANONICAL_HOST_ALIASES = new Set(["www.exquisitedentistryla.com", "m.exqui
 const PROBE_HEADER = "x-canonicalize-probe";
 
 const hasExtension = (pathname) => /\.[a-z0-9]+$/i.test(pathname);
+const optimizedVariantPattern = /^\/optimized\/([^/]+?)-(sm|md|lg|xl|original)\.(webp|avif)$/i;
 
 export default async (request, context) => {
   if (request.headers.get(PROBE_HEADER) === "1") {
@@ -58,6 +59,46 @@ export default async (request, context) => {
 
   if (canonicalUrl.toString() !== url.toString()) {
     return Response.redirect(canonicalUrl.toString(), 301);
+  }
+
+  if (optimizedVariantPattern.test(canonicalPathname) && (request.method === "GET" || request.method === "HEAD")) {
+    const response = await context.next();
+
+    if (response.status !== 404) {
+      return response;
+    }
+
+    const match = canonicalPathname.match(optimizedVariantPattern);
+    const baseName = match?.[1];
+
+    if (!baseName) {
+      return response;
+    }
+
+    const fallbackCandidates = [
+      `/lovable-uploads/${baseName}.webp`,
+      `/lovable-uploads/${baseName}.png`,
+      `/lovable-uploads/${baseName}.jpg`,
+      `/lovable-uploads/${baseName}.jpeg`
+    ];
+
+    const fallbackHeaders = new Headers({ [PROBE_HEADER]: "1" });
+
+    for (const fallbackPath of fallbackCandidates) {
+      const fallbackUrl = new URL(fallbackPath, url.origin);
+      const fallbackResponse = await fetch(
+        new Request(fallbackUrl.toString(), {
+          method: request.method,
+          headers: fallbackHeaders
+        })
+      );
+
+      if (fallbackResponse.status === 200) {
+        return fallbackResponse;
+      }
+    }
+
+    return response;
   }
 
   return context.next();
