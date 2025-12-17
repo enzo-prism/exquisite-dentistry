@@ -9,6 +9,7 @@ interface UniversalVideoPlayerProps {
   videoId: string;
   title: string;
   thumbnailUrl: string;
+  thumbnailFallbackUrl?: string;
   autoplay?: boolean;
   muted?: boolean;
   className?: string;
@@ -24,6 +25,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
   videoId,
   title,
   thumbnailUrl,
+  thumbnailFallbackUrl,
   autoplay = false,
   muted = false,
   className,
@@ -36,6 +38,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
 
   const [isPlaying, setIsPlaying] = useState(showIframeImmediately);
   const [imageError, setImageError] = useState(false);
+  const [thumbnailSrc, setThumbnailSrc] = useState(thumbnailUrl);
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -49,6 +52,11 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
     }
   }, [showIframeImmediately, onVideoStart]);
 
+  React.useEffect(() => {
+    setThumbnailSrc(thumbnailUrl);
+    setImageError(false);
+  }, [thumbnailUrl]);
+
   // Use custom player if requested
   if (useCustomControls) {
     return (
@@ -57,6 +65,7 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
         videoId={videoId}
         title={title}
         thumbnailUrl={thumbnailUrl}
+        thumbnailFallbackUrl={thumbnailFallbackUrl}
         autoplay={autoplay}
         muted={muted}
         className={className}
@@ -99,10 +108,19 @@ const UniversalVideoPlayer: React.FC<UniversalVideoPlayerProps> = ({
         {/* Thumbnail */}
         {!imageError && (
           <img
-            src={thumbnailUrl}
+            src={thumbnailSrc}
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
-            onError={() => setImageError(true)}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            onError={() => {
+              if (thumbnailFallbackUrl && thumbnailSrc !== thumbnailFallbackUrl) {
+                setThumbnailSrc(thumbnailFallbackUrl);
+                return;
+              }
+              setImageError(true);
+            }}
           />
         )}
         

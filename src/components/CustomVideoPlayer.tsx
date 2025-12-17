@@ -9,6 +9,7 @@ interface CustomVideoPlayerProps {
   videoId: string;
   title: string;
   thumbnailUrl?: string;
+  thumbnailFallbackUrl?: string;
   className?: string;
   autoplay?: boolean;
   muted?: boolean;
@@ -22,6 +23,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   videoId,
   title,
   thumbnailUrl,
+  thumbnailFallbackUrl,
   className,
   autoplay = false,
   muted = false,
@@ -34,6 +36,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [thumbnailSrc, setThumbnailSrc] = useState(thumbnailUrl);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout>();
@@ -59,6 +62,11 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
       }
     };
   }, []);
+
+  useEffect(() => {
+    setThumbnailSrc(thumbnailUrl);
+    setImageError(false);
+  }, [thumbnailUrl]);
 
   // Create dynamic embed URL - always unmuted for testimonial videos
   const embedUrl = useMemo(() => {
@@ -231,17 +239,26 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           ) : (
           <>
             {/* Thumbnail */}
-            {thumbnailUrl && !imageError && (
+            {thumbnailSrc && !imageError && (
               <img
-                src={thumbnailUrl}
+                src={thumbnailSrc}
                 alt={title}
                 className="absolute inset-0 w-full h-full object-cover"
-                onError={() => setImageError(true)}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                onError={() => {
+                  if (thumbnailFallbackUrl && thumbnailSrc !== thumbnailFallbackUrl) {
+                    setThumbnailSrc(thumbnailFallbackUrl);
+                    return;
+                  }
+                  setImageError(true);
+                }}
               />
             )}
             
             {/* Fallback background */}
-            {(!thumbnailUrl || imageError) && (
+            {(!thumbnailSrc || imageError) && (
               <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
                 <span className="text-white/60 text-sm font-medium">Video Preview</span>
               </div>

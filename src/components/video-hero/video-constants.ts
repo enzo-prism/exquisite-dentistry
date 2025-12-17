@@ -5,6 +5,7 @@ export const DEFAULT_HERO_VIMEO_ID = "1082215464";
 interface BaseVideoTestimonialItem {
   id: string;
   thumbnailUrl: string;
+  thumbnailFallbackUrl?: string;
   title: string;
   uploadDate: string;
   duration: string;
@@ -67,7 +68,8 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: '1082192427',
     type: 'vimeo',
     vimeoId: '1082192427',
-    thumbnailUrl: '/lovable-uploads/f88acd79-6f67-4a5b-a586-6b67cd9f154f.png',
+    thumbnailUrl: '/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md.webp',
+    thumbnailFallbackUrl: '/lovable-uploads/f88acd79-6f67-4a5b-a586-6b67cd9f154f.png',
     title: 'Shannon Langhorne Patient Testimonial',
     uploadDate: '2024-06-01',
     duration: 'PT2M5S'
@@ -76,7 +78,8 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: '1082192501',
     type: 'vimeo',
     vimeoId: '1082192501',
-    thumbnailUrl: '/lovable-uploads/42773f00-4b49-4cbf-ab77-d2f56c5afdb8.png',
+    thumbnailUrl: '/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md.webp',
+    thumbnailFallbackUrl: '/lovable-uploads/42773f00-4b49-4cbf-ab77-d2f56c5afdb8.png',
     title: 'Taylor Vasek Patient Testimonial',
     uploadDate: '2024-06-08',
     duration: 'PT1M48S'
@@ -85,7 +88,8 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: '1076745525',
     type: 'vimeo',
     vimeoId: '1076745525',
-    thumbnailUrl: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png',
+    thumbnailUrl: '/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md.webp',
+    thumbnailFallbackUrl: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png',
     title: 'Exquisite Dentistry Testimonial _ Christian Fernandez',
     uploadDate: '2024-07-01',
     duration: 'PT1M58S'
@@ -94,7 +98,8 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: '1088877336',
     type: 'vimeo',
     vimeoId: '1088877336',
-    thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
+    thumbnailUrl: '/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md.webp',
+    thumbnailFallbackUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
     title: 'Rob Talbert Patient Testimonial',
     uploadDate: '2024-07-15',
     duration: 'PT1M42S'

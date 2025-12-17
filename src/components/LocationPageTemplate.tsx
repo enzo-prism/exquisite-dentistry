@@ -1,6 +1,8 @@
 import React from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import DoctorExperienceSection from "@/components/DoctorExperienceSection";
 import PageSEO from "@/components/seo/PageSEO";
+import PracticeLocationSection from "@/components/PracticeLocationSection";
 import { LocationPageConfig } from "@/data/locationPages";
 import { Button } from "@/components/ui/button";
 import { Quote } from "lucide-react";
@@ -30,8 +32,12 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
 
   const combinedText = [
     config.hero.subheading,
+    config.practiceLocation?.description,
+    ...(config.practiceLocation?.highlights ?? []),
     ...(config.neighborhoodHighlights ?? []),
     ...(config.signatureServices ?? []),
+    ...(config.doctorSection?.paragraphs ?? []),
+    ...(config.doctorSection?.highlights ?? []),
     ...(config.testimonials?.map((t) => t.quote) ?? []),
     ...(config.faqs?.map((faq) => faq.answer) ?? []),
     config.cta.description
@@ -98,6 +104,10 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         </div>
       </section>
 
+      {config.practiceLocation ? (
+        <PracticeLocationSection config={config.practiceLocation} />
+      ) : null}
+
       <section className="mx-auto max-w-5xl px-4 py-16 md:py-20">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
@@ -122,6 +132,10 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
           </div>
         </div>
       </section>
+
+      {config.doctorSection ? (
+        <DoctorExperienceSection config={config.doctorSection} />
+      ) : null}
 
       <section className="bg-muted/30">
         <div className="mx-auto max-w-4xl px-4 py-16 md:py-20">

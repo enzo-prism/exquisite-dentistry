@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { trackLegacyRedirect } from '@/utils/redirectTracker';
 
 interface RedirectRule {
   from: string;
@@ -32,16 +31,6 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/blog/4-front-teeth-veneers-cost-los-angeles', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
   { from: '/choosing-veneers-for-the-front-4-teeth/', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
   { from: '/choosing-veneers-for-the-front-4-teeth', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
-  
-  // Pattern-based redirects (order matters - specific to general)
-  { from: 'old-veneers', to: '/veneers' }, // Changed to avoid conflict with valid routes
-  { from: 'whitening', to: '/zoom-whitening' },
-  { from: 'cosmetic-dentist', to: '/services' },
-  { from: 'dentist-', to: '/about' },
-  { from: 'dentist.html', to: '/services' },
-  { from: 'beach', to: '/' },
-  { from: 'hills', to: '/' },
-  { from: 'hollywood', to: '/' },
 ];
 
 const LegacyRedirectHandler = () => {
@@ -49,52 +38,33 @@ const LegacyRedirectHandler = () => {
 
   useEffect(() => {
     const currentPath = location.pathname + location.search + location.hash;
-    
-    // Exclude valid React Router paths from redirects to prevent loops
-    const validRoutes = [
-      '/blog/', '/services', '/about', '/contact', '/veneers', '/testimonials', 
-      '/graduation', '/wedding', '/faqs', '/smile-gallery', '/client-experience',
-      '/zoom-whitening', '/privacy-policy', '/terms-of-service', '/hipaa-compliance',
-      '/sitemap', '/invisalign', '/teeth-whitening', '/dental-implants',
-      '/cosmetic-dentistry', '/emergency-dentist', '/veneers/front-teeth-veneers-los-angeles'
-    ];
-    const isValidRoute = validRoutes.some(route => currentPath.startsWith(route));
-    
-    if (isValidRoute) {
-      console.log(`Skipping redirect for valid route: ${currentPath}`);
-      return;
-    }
-    
+    const { pathname } = location;
+
+    const redirectTo = (to: string) => {
+      import('@/utils/redirectTracker')
+        .then(({ trackLegacyRedirect }) => {
+          trackLegacyRedirect(currentPath);
+        })
+        .catch(() => undefined)
+        .finally(() => {
+          window.location.replace(to);
+        });
+    };
+
     // Check for exact matches first
     const exactMatch = LEGACY_REDIRECTS.find(
-      rule => rule.exact && rule.from === location.pathname
+      rule => rule.exact && rule.from === pathname
     );
     
     if (exactMatch) {
-      console.log(`Legacy redirect: ${currentPath} → ${exactMatch.to}`);
-      trackLegacyRedirect(currentPath);
-      window.location.replace(exactMatch.to);
-      return;
-    }
-    
-    // Check for pattern matches (more restrictive now)
-    const patternMatch = LEGACY_REDIRECTS.find(
-      rule => !rule.exact && currentPath.toLowerCase().includes(rule.from.toLowerCase())
-    );
-    
-    if (patternMatch) {
-      console.log(`Legacy redirect: ${currentPath} → ${patternMatch.to}`);
-      trackLegacyRedirect(currentPath);
-      window.location.replace(patternMatch.to);
+      redirectTo(exactMatch.to);
       return;
     }
     
     // Handle .html extensions on any path (WordPress legacy)
-    if (location.pathname.endsWith('.html')) {
-      const cleanPath = location.pathname.replace('.html', '');
-      console.log(`HTML extension redirect: ${currentPath} → ${cleanPath || '/'}`);
-      trackLegacyRedirect(currentPath);
-      window.location.replace(cleanPath || '/');
+    if (pathname.endsWith('.html')) {
+      const cleanPath = pathname.replace(/\.html$/, '');
+      redirectTo(cleanPath || '/');
       return;
     }
 

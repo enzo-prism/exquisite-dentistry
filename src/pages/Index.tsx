@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
@@ -16,13 +16,25 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import ImageComponent from '@/components/Image';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { transformationStories } from '@/data/transformationStories';
-import FloatingActionButton from '@/components/mobile/FloatingActionButton';
-import ProgressiveLoader from '@/components/mobile/ProgressiveLoader';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
+const LazyFloatingActionButton = lazy(() => import('@/components/mobile/FloatingActionButton'));
+
+const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
+  const match = thumbnailUrl.match(/^\/lovable-uploads\/([^/]+)\.(png|jpe?g)$/i);
+  if (!match) return { thumbnailUrl };
+
+  return {
+    thumbnailUrl: `/optimized/${match[1]}-md.webp`,
+    thumbnailFallbackUrl: thumbnailUrl,
+  };
+};
+
 const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
-  const thumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
+  const rawThumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
+  const { thumbnailUrl, thumbnailFallbackUrl } = toOptimizedLocalThumbnail(rawThumbnailUrl);
   const isVimeo = story.video.src.includes('vimeo.com');
 
   if (isVimeo) {
@@ -34,6 +46,7 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
       type: 'vimeo' as const,
       vimeoId,
       thumbnailUrl,
+      thumbnailFallbackUrl,
       title: story.title,
       uploadDate: '2024-01-01',
       duration: 'PT2M0S'
@@ -45,11 +58,37 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map(
     type: 'file' as const,
     videoUrl: story.video.src,
     thumbnailUrl,
+    thumbnailFallbackUrl,
     title: story.title,
     uploadDate: '2024-01-01',
     duration: 'PT2M0S'
   };
 });
+
+const DeferredMobileFab: React.FC = () => {
+  const isMobile = useIsMobile();
+  const [shouldLoadFab, setShouldLoadFab] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScroll = () => {
+      setShouldLoadFab(window.scrollY > 100);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile]);
+
+  if (!isMobile || !shouldLoadFab) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <LazyFloatingActionButton />
+    </Suspense>
+  );
+};
 
 const IndexPage: React.FC = () => {
   const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
@@ -286,7 +325,7 @@ const IndexPage: React.FC = () => {
       </section>
 
       {/* Mobile Floating Action Button */}
-      <FloatingActionButton />
+      <DeferredMobileFab />
     </>
   );
 };

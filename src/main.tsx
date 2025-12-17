@@ -12,6 +12,17 @@ window.gtag = function gtag(...args: unknown[]) {
 
 const rootElement = document.getElementById('root');
 
+const scheduleIdle = (callback: () => void, timeoutMs: number) => {
+  if (typeof window === 'undefined') return;
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(callback, { timeout: timeoutMs });
+    return;
+  }
+
+  window.setTimeout(callback, timeoutMs);
+};
+
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
@@ -20,25 +31,21 @@ if (rootElement) {
   );
   
   // Defer non-critical initializations until after app is mounted
-  setTimeout(() => {
-    // Initialize performance optimizations after app load
-    import('./utils/preloadResources').then(({ initializePerformanceOptimizations }) => {
-      initializePerformanceOptimizations();
-    }).catch(console.error);
-    
-    // Initialize third-party scripts after delay
-    import('./utils/thirdPartyLoader').then(({ initializeThirdPartyScripts, initializeGoogleAnalytics }) => {
-      initializeThirdPartyScripts();
-      
-      // Initialize analytics after additional delay
-      setTimeout(() => {
-        initializeGoogleAnalytics();
-        
-        // Initialize redirect tracking after analytics is ready
-        import('./utils/redirectTracker').then(({ initializeRedirectTracking }) => {
-          initializeRedirectTracking();
-        }).catch(console.error);
-      }, 3000);
-    }).catch(console.error);
-  }, 1000);
+  scheduleIdle(() => {
+    import('./utils/thirdPartyLoader')
+      .then(({ initializeThirdPartyScripts, initializeGoogleAnalytics }) => {
+        initializeThirdPartyScripts();
+
+        scheduleIdle(() => {
+          initializeGoogleAnalytics();
+
+          import('./utils/redirectTracker')
+            .then(({ initializeRedirectTracking }) => {
+              initializeRedirectTracking();
+            })
+            .catch(() => undefined);
+        }, 6000);
+      })
+      .catch(() => undefined);
+  }, 3000);
 }

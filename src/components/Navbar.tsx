@@ -2,7 +2,6 @@ import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import ScrollProgress from './ScrollProgress';
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
 import { cn } from '@/lib/utils';
 import {
@@ -16,21 +15,19 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [originalBodyOverflow, setOriginalBodyOverflow] = useState<string>('');
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [viewportWidth, setViewportWidth] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth : 0,
-  );
-  const [isNavOverflowing, setIsNavOverflowing] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const lastMenuLinkRef = useRef<HTMLButtonElement>(null);
-  const headerRowRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const desktopNavRef = useRef<HTMLElement>(null);
-
-  const isAtLeastLg = viewportWidth >= 1024;
-  const shouldShowDesktopNav = isAtLeastLg && !isNavOverflowing;
+  const scrollLockRef = useRef<{
+    scrollY: number;
+    bodyOverflow: string;
+    bodyPosition: string;
+    bodyTop: string;
+    bodyLeft: string;
+    bodyRight: string;
+    bodyWidth: string;
+    htmlOverflow: string;
+  } | null>(null);
 
   // Enhanced mobile menu close with focus restoration
   const closeMobileMenu = useCallback(() => {
@@ -56,58 +53,70 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Track viewport width for responsive behaviors that can't rely on CSS alone.
-  useEffect(() => {
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
+  // Lock body scroll while the mobile menu is open (restore on close/unmount).
+  useLayoutEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const scrollY = window.scrollY;
+    scrollLockRef.current = {
+      scrollY,
+      bodyOverflow: document.body.style.overflow,
+      bodyPosition: document.body.style.position,
+      bodyTop: document.body.style.top,
+      bodyLeft: document.body.style.left,
+      bodyRight: document.body.style.right,
+      bodyWidth: document.body.style.width,
+      htmlOverflow: document.documentElement.style.overflow,
     };
 
-    window.addEventListener('resize', handleResize, { passive: true });
-    handleResize();
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Enhanced body scroll management with position preservation
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Store original state and scroll position
-      setOriginalBodyOverflow(document.body.style.overflow);
-      setScrollPosition(window.scrollY);
-      
-      // Prevent scrolling
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      // Restore original state and scroll position
-      document.body.style.overflow = originalBodyOverflow;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      
-      // Restore scroll position smoothly
-      if (scrollPosition > 0) {
-        window.scrollTo(0, scrollPosition);
-      }
-    }
-    
     return () => {
-      // Cleanup on unmount
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [isMobileMenuOpen, originalBodyOverflow, scrollPosition]);
+      const locked = scrollLockRef.current;
+      if (!locked) return;
 
-  // Close the mobile menu when switching into desktop navigation mode.
+      document.documentElement.style.overflow = locked.htmlOverflow;
+      document.body.style.overflow = locked.bodyOverflow;
+      document.body.style.position = locked.bodyPosition;
+      document.body.style.top = locked.bodyTop;
+      document.body.style.left = locked.bodyLeft;
+      document.body.style.right = locked.bodyRight;
+      document.body.style.width = locked.bodyWidth;
+
+      window.scrollTo(0, locked.scrollY);
+      scrollLockRef.current = null;
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close the mobile menu when switching into desktop navigation.
   useEffect(() => {
-    if (shouldShowDesktopNav && isMobileMenuOpen) {
+    if (!isMobileMenuOpen) return;
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const handleChange = (event: MediaQueryListEvent) => {
+      if (event.matches) closeMobileMenu();
+    };
+
+    if (mediaQuery.matches) {
       closeMobileMenu();
+      return;
     }
-  }, [shouldShowDesktopNav, isMobileMenuOpen, closeMobileMenu]);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, [isMobileMenuOpen, closeMobileMenu]);
 
   // Focus management for accessibility
   const handleMenuOpen = useCallback(() => {
@@ -149,41 +158,6 @@ const Navbar = () => {
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
-
-  // Desktop navigation fit check (auto-collapses to hamburger if links can't fit).
-  const updateNavFit = useCallback(() => {
-    const headerEl = headerRowRef.current;
-    const logoEl = logoRef.current;
-    const navEl = desktopNavRef.current;
-
-    if (!headerEl || !logoEl || !navEl) return;
-
-    const containerWidth = headerEl.clientWidth;
-    const logoWidth = logoEl.getBoundingClientRect().width;
-    const navWidth = navEl.getBoundingClientRect().width;
-    const buffer = 24;
-
-    setIsNavOverflowing(logoWidth + navWidth + buffer > containerWidth);
-  }, []);
-
-  useLayoutEffect(() => {
-    updateNavFit();
-  }, [viewportWidth, updateNavFit]);
-
-  useEffect(() => {
-    const headerEl = headerRowRef.current;
-    const logoEl = logoRef.current;
-    const navEl = desktopNavRef.current;
-
-    if (!headerEl || !logoEl || !navEl) return;
-
-    const observer = new ResizeObserver(() => updateNavFit());
-    observer.observe(headerEl);
-    observer.observe(logoEl);
-    observer.observe(navEl);
-
-    return () => observer.disconnect();
-  }, [updateNavFit]);
 
   // Navigation links data
   const navLinks = [
@@ -229,7 +203,6 @@ const Navbar = () => {
 
   return (
     <>
-      <ScrollProgress />
       <header 
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           scrolled 
@@ -238,49 +211,49 @@ const Navbar = () => {
         }`}
       >
         <div className="mx-auto px-4 sm:px-6 max-w-7xl">
-          <div ref={headerRowRef} className="flex h-16 sm:h-20 items-center gap-3 sm:gap-4">
+          <div className="flex h-16 sm:h-20 items-center gap-3 sm:gap-4">
             
             {/* Logo */}
-            <div ref={logoRef} className="flex-shrink-0 z-50">
-              <Link to="/" onClick={closeMobileMenu}>
+            <div className="flex-shrink-0 z-50">
+              <Link
+                to="/"
+                onClick={closeMobileMenu}
+                className="group relative inline-flex items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-2 rounded-xl bg-gold/10 opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-100"
+                />
                 <img
                   src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
                   alt="Exquisite Dentistry Logo"
-                  className="h-6 sm:h-8 lg:h-9 xl:h-12 w-auto max-w-[160px] sm:max-w-[210px] lg:max-w-[190px] xl:max-w-[280px]"
+                  className="relative h-6 w-auto max-w-[160px] object-contain sm:h-8 sm:max-w-[210px] lg:h-9 lg:max-w-[190px] xl:h-12 xl:max-w-[280px] transition-transform duration-200 ease-out group-hover:scale-[1.02] group-active:scale-[0.99]"
                   loading="eager"
-                  style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'center'
-                  }}
+                  style={{ objectPosition: 'center' }}
                 />
               </Link>
             </div>
           
             {/* Desktop Navigation */}
             <nav
-              ref={desktopNavRef}
               aria-label="Primary"
-              aria-hidden={!shouldShowDesktopNav}
               className={cn(
-                "ml-auto flex items-center whitespace-nowrap text-sm xl:text-base",
+                "ml-auto hidden lg:flex items-center whitespace-nowrap text-sm xl:text-base",
                 "gap-[clamp(0.5rem,1.2vw,1.75rem)]",
-                shouldShowDesktopNav
-                  ? ""
-                  : "pointer-events-none invisible absolute -left-[9999px] -top-[9999px]",
               )}
             >
               {navLinks.map((link) =>
                 link.label === 'Schedule Consultation' ? (
-	                  <Button
-	                    key={link.to}
-	                    size="sm"
-	                    asChild
-	                    className="bg-gold text-black hover:bg-gold/90 h-9 xl:h-10 px-3 xl:px-4 text-[13px] xl:text-base"
-	                  >
-	                    <Link to={link.to}>
-	                      {link.label}
-	                    </Link>
-	                  </Button>
+                  <Button
+                    key={link.to}
+                    size="sm"
+                    asChild
+                    className="bg-gold text-black hover:bg-gold/90 h-9 xl:h-10 px-3 xl:px-4 text-[13px] xl:text-base"
+                  >
+                    <Link to={link.to}>
+                      {link.label}
+                    </Link>
+                  </Button>
                 ) : (
                   <Link
                     key={link.to}
@@ -324,8 +297,7 @@ const Navbar = () => {
             <button
               ref={menuButtonRef}
               className={cn(
-                "ml-auto relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
-                shouldShowDesktopNav ? "hidden" : "",
+                "ml-auto lg:hidden relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
               )}
               style={{ 
                 minWidth: '48px', 
@@ -409,6 +381,7 @@ const MobileMenuPanel = ({
   lastMenuLinkRef: React.RefObject<HTMLButtonElement>;
 }) => {
   const panelRef = useRef<HTMLDivElement>(null);
+  const navScrollRef = useRef<HTMLElement>(null);
   
   // Swipe gesture support
   const { ref: swipeRef, gestureState } = useSwipeGestures({
@@ -432,12 +405,28 @@ const MobileMenuPanel = ({
     Math.abs(deltaX) > Math.abs(deltaY) &&
     Math.abs(deltaX) > 8;
 
+  // Ensure the menu always opens at the top (prevents momentum scroll from hiding items).
+  useLayoutEffect(() => {
+    const navEl = navScrollRef.current;
+    if (!navEl) return;
+
+    navEl.scrollTop = 0;
+    const rafId = requestAnimationFrame(() => {
+      navEl.scrollTop = 0;
+    });
+
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   return (
     <div 
       ref={setPanelRefs}
-      className={`relative h-full w-full bg-black flex flex-col pt-12 sm:pt-14 transform transition-transform duration-300 will-change-transform ${
-        isHorizontalDrag ? 'transition-none' : ''
-      }`}
+      className={cn(
+        "relative h-full w-full bg-black flex flex-col",
+        "pt-[calc(env(safe-area-inset-top,0px)+4rem)] sm:pt-[calc(env(safe-area-inset-top,0px)+5rem)]",
+        "transform transition-transform duration-300 will-change-transform",
+        isHorizontalDrag ? "transition-none" : "",
+      )}
       style={{ 
         minHeight: '100dvh',
         transform: isHorizontalDrag && deltaX < 0 
@@ -449,7 +438,8 @@ const MobileMenuPanel = ({
       
       {/* Navigation Links - Scrollable Area */}
       <nav 
-        className="flex-1 flex flex-col w-full gap-1.5 overflow-y-auto overscroll-contain px-4 pb-4 scroll-smooth"
+        ref={navScrollRef}
+        className="flex-1 flex flex-col w-full gap-1.5 overflow-y-auto overscroll-contain px-4 pb-4"
         role="navigation"
         style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
       >

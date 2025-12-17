@@ -54,6 +54,7 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
           videoId={testimonial.vimeoId}
           title={testimonial.title}
           thumbnailUrl={testimonial.thumbnailUrl}
+          thumbnailFallbackUrl={testimonial.thumbnailFallbackUrl}
           className="w-full h-full"
           useCustomControls={true}
           overlayMode="safe"

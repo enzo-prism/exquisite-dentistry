@@ -11,7 +11,6 @@ import {
   Star,
   ArrowRight
 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -94,28 +93,6 @@ const Footer = () => {
     animationClass: 'gpu-slide-in',
     threshold: 0.1
   });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
-  };
 
   const renderLinks = (links: FooterLink[]) => (
     <ul className="space-y-3 text-sm text-white/80">
@@ -223,20 +200,18 @@ const Footer = () => {
                 ][index];
 
                 return (
-                  <motion.a
+                  <a
                     key={href}
                     href={generateUTMUrl(href, utm)}
-                    className="h-11 w-11 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-black hover:bg-gold transition-colors"
+                    className="h-11 w-11 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-black hover:bg-gold transition-all duration-200 hover:scale-105 active:scale-95"
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     aria-label={`Visit our ${
                       ['Instagram', 'Facebook', 'YouTube'][index]
                     }`}
                   >
                     <Icon size={18} />
-                  </motion.a>
+                  </a>
                 );
               }
             )}
@@ -272,14 +247,8 @@ const Footer = () => {
         </div>
 
         {/* Desktop Layout */}
-        <motion.div
-          className="hidden md:grid grid-cols-12 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div className="col-span-3 space-y-5" variants={itemVariants}>
+        <div className="hidden md:grid grid-cols-12 gap-8">
+          <div className="col-span-3 space-y-5">
             <div
               className="flex items-center"
               style={{ width: '220px', height: '40px' }}
@@ -288,6 +257,8 @@ const Footer = () => {
                 src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
                 alt="Exquisite Dentistry"
                 className="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="text-white/70 leading-relaxed text-sm">
@@ -300,22 +271,21 @@ const Footer = () => {
               </h3>
               {renderLinks(POPULAR_PAGES)}
             </div>
-          </motion.div>
+          </div>
 
           {FOOTER_SECTIONS.map((section) => (
-            <motion.div
+            <div
               key={section.id}
               className="col-span-2"
-              variants={itemVariants}
             >
               <h3 className="text-lg font-semibold text-white mb-4 border-b border-gold/30 pb-2">
                 {section.title}
               </h3>
               {renderLinks(section.links)}
-            </motion.div>
+            </div>
           ))}
 
-          <motion.div className="col-span-3 space-y-5" variants={itemVariants}>
+          <div className="col-span-3 space-y-5">
             <h3 className="text-lg font-semibold text-white mb-2 border-b border-gold/30 pb-2">
               Visit Us
             </h3>
@@ -393,8 +363,8 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Legal */}

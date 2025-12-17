@@ -14,6 +14,8 @@ export interface LocationPageConfig {
     subheading: string;
     stats: { label: string; value: string }[];
   };
+  practiceLocation?: PracticeLocationSectionConfig;
+  doctorSection?: DoctorExperienceSectionConfig;
   neighborhoodHighlights: string[];
   signatureServices: string[];
   testimonials: { quote: string; author: string }[];
@@ -22,6 +24,31 @@ export interface LocationPageConfig {
   cta: {
     heading: string;
     description: string;
+    primaryText: string;
+    primaryHref: string;
+    secondaryText?: string;
+    secondaryHref?: string;
+  };
+}
+
+export interface PracticeLocationSectionConfig {
+  heading: string;
+  description: string;
+  highlights?: string[];
+  mapEmbedSrc?: string;
+  directionsHref?: string;
+}
+
+export interface DoctorExperienceSectionConfig {
+  eyebrow?: string;
+  heading: string;
+  paragraphs: string[];
+  highlights?: string[];
+  image?: {
+    src: string;
+    alt: string;
+  };
+  cta?: {
     primaryText: string;
     primaryHref: string;
     secondaryText?: string;
@@ -126,32 +153,76 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       { label: "Teeth Cleaning", href: "/teeth-cleaning" }
     ]
   ),
-  "beverly-hills-dentist": createLocationConfig(
-    "beverly-hills-dentist",
-    "Beverly Hills",
-    "Concierge-level cosmetic dentistry a short drive east of Rodeo Drive, serving Beverly Hills patients with discreet, private treatment rooms. Veneers, Invisalign, whitening, and restorations planned with privacy-first scheduling keep every reveal seamless.",
-    [
-      "Complimentary beverage and comfort menu",
-      "Coordinated rideshare or car service",
-      "Collaboration with Beverly Hills surgeons and dermatologists",
-    ],
-    [
-      "Smile makeovers that pair veneers, crowns, and whitening for flawless symmetry",
-      "Porcelain veneers crafted with Beverly Hills ceramists for natural brilliance",
-      "Invisalign clear aligners for discreet, camera-ready alignment and bite refinement",
-      "Teeth whitening plans (in-office and take-home) timed around events and photo sessions",
-      "Dental implants planned with advanced imaging for enduring bite strength",
-      "Full-mouth reconstruction that balances function, health, and high fashion"
-    ],
-    { quote: "A Beverly Hills-level experience without crossing town. My veneers look flawless.", author: "Taylor V." },
-    [
-      { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
-      { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills" },
-      { label: "Invisalign Beverly Hills", href: "/invisalign-beverly-hills" },
-      { label: "Dental Implants", href: "/dental-implants" },
-      { label: "Dental Crowns", href: "/dental-crowns" }
-    ]
-  ),
+  "beverly-hills-dentist": (() => {
+    const base = createLocationConfig(
+      "beverly-hills-dentist",
+      "Beverly Hills",
+      "Concierge-level cosmetic dentistry a short drive east of Rodeo Drive, serving Beverly Hills patients with discreet, private treatment rooms. Veneers, Invisalign, whitening, and restorations planned with privacy-first scheduling keep every reveal seamless.",
+      [
+        "Complimentary beverage and comfort menu",
+        "Coordinated rideshare or car service",
+        "Collaboration with Beverly Hills surgeons and dermatologists",
+      ],
+      [
+        "Smile makeovers that pair veneers, crowns, and whitening for flawless symmetry",
+        "Porcelain veneers crafted with Beverly Hills ceramists for natural brilliance",
+        "Invisalign clear aligners for discreet, camera-ready alignment and bite refinement",
+        "Teeth whitening plans (in-office and take-home) timed around events and photo sessions",
+        "Dental implants planned with advanced imaging for enduring bite strength",
+        "Full-mouth reconstruction that balances function, health, and high fashion"
+      ],
+      { quote: "A Beverly Hills-level experience without crossing town. My veneers look flawless.", author: "Taylor V." },
+      [
+        { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry" },
+        { label: "Teeth Whitening Near Beverly Hills", href: "/teeth-whitening-beverly-hills" },
+        { label: "Invisalign Beverly Hills", href: "/invisalign-beverly-hills" },
+        { label: "Dental Implants", href: "/dental-implants" },
+        { label: "Dental Crowns", href: "/dental-crowns" }
+      ],
+    );
+
+    return {
+      ...base,
+      hero: {
+        ...base.hero,
+        heading: "Beverly Hills Dentist — Concierge Cosmetic Care",
+      },
+      practiceLocation: {
+        heading: "Visit Exquisite Dentistry from Beverly Hills",
+        description:
+          "Our Wilshire Blvd studio sits just outside Beverly Hills, making it simple to plan concierge dental care without a long commute. We’ll help you coordinate timing, parking, and discreet scheduling so appointments fit seamlessly into your calendar.",
+        highlights: [
+          "Quick drive from Rodeo Drive and Beverly Hills neighborhoods (traffic varies)",
+          "Validated building parking + rideshare-friendly drop-off",
+          "Privacy-first scheduling for professionals and public-facing careers",
+        ],
+      },
+      doctorSection: {
+        eyebrow: "Meet the Dentist",
+        heading: "Dr. Alexie Aguil, DDS",
+        paragraphs: [
+          "Beverly Hills patients visit Exquisite Dentistry for high-end cosmetic and restorative care with a calm, private experience. Dr. Aguil blends precision dentistry with an artistic eye, creating natural-looking results that photograph beautifully and hold up for everyday function.",
+          "With 15+ years serving Los Angeles and 2,400+ smile transformations, Dr. Aguil is known for thoughtful planning, clear communication, and comfort-first appointments. Whether you’re considering veneers, Invisalign, whitening, or implants, your treatment plan is tailored to your timeline, lifestyle, and long-term oral health.",
+        ],
+        highlights: [
+          "USC-trained cosmetic dentist with a function-first approach",
+          "Invisalign Lifetime Achievement Award provider",
+          "Digital scanning and smile planning for predictable results",
+          "Discreet, concierge scheduling designed around busy calendars",
+        ],
+        image: {
+          src: "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
+          alt: "Dr. Alexie Aguil - premium business portrait",
+        },
+        cta: {
+          primaryText: "Schedule Consultation",
+          primaryHref: SCHEDULE_CONSULTATION_PATH,
+          secondaryText: "Learn About Dr. Aguil",
+          secondaryHref: "/about/",
+        },
+      },
+    };
+  })(),
   "culver-city-dentist": createLocationConfig(
     "culver-city-dentist",
     "Culver City",
