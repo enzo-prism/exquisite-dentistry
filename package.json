@@ -5,19 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run prerender:static && tsx scripts/generate-sitemap.js",
+    "build": "vite build && npm run prerender:static && tsx scripts/generate-sitemap.js && tsx scripts/generate-search-index.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.js && node scripts/optimize-logos.js && node scripts/validate-images.js",
-    "build:prod": "npm run optimize:images && vite build && npm run prerender:static && tsx scripts/generate-sitemap.js",
+    "build:prod": "npm run optimize:images && vite build && npm run prerender:static && tsx scripts/generate-sitemap.js && tsx scripts/generate-search-index.ts",
     "generate:blog": "node scripts/generate-blog-posts.mjs",
     "check:seo": "node scripts/seo-smoke.mjs",
     "test:seo": "node scripts/seo-acceptance.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
     "test:content": "tsx scripts/test-content-quality.ts",
     "generate:fallbacks": "tsx scripts/generate-fallbacks.ts",
-    "prerender:static": "tsx scripts/prerender-static.ts"
+    "prerender:static": "tsx scripts/prerender-static.ts",
+    "generate:search-index": "tsx scripts/generate-search-index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

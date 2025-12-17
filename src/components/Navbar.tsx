@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
 import { cn } from '@/lib/utils';
@@ -11,8 +11,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
+const LazySiteSearch = lazy(() => import('@/components/search/SiteSearch'));
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [shouldMountSearch, setShouldMountSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -43,6 +47,17 @@ const Navbar = () => {
     }, 100);
   }, []);
 
+  const prefetchSearch = useCallback(() => {
+    import('@/components/search/SiteSearch').catch(() => undefined);
+  }, []);
+
+  const openSearch = useCallback(() => {
+    setShouldMountSearch(true);
+    setIsSearchOpen(true);
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  }, []);
+
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +67,35 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Global keyboard shortcut: Cmd+K / Ctrl+K opens search.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const isTypingContext = (target: EventTarget | null) => {
+      const element = target as HTMLElement | null;
+      if (!element) return false;
+      const tag = element.tagName?.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return true;
+      if (element.isContentEditable) return true;
+      return element.getAttribute('role') === 'textbox';
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented) return;
+      if (isTypingContext(event.target)) return;
+
+      const key = event.key.toLowerCase();
+      if (key !== 'k') return;
+      if (!event.metaKey && !event.ctrlKey) return;
+
+      event.preventDefault();
+      openSearch();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [openSearch]);
 
   // Lock body scroll while the mobile menu is open (restore on close/unmount).
   useLayoutEffect(() => {
@@ -242,6 +286,25 @@ const Navbar = () => {
                 "gap-[clamp(0.5rem,1.2vw,1.75rem)]",
               )}
             >
+              <button
+                type="button"
+                onClick={openSearch}
+                onMouseEnter={prefetchSearch}
+                onFocus={prefetchSearch}
+                className={cn(
+                  "group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2",
+                  "text-white/90 transition-colors duration-200 hover:bg-white/10 hover:text-white",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                )}
+                aria-label="Search site"
+              >
+                <Search className="h-4 w-4 text-gold/90 group-hover:text-gold" aria-hidden="true" />
+                <span className="hidden xl:inline text-[13px] xl:text-base">Search</span>
+                <kbd className="hidden xl:inline-flex items-center rounded bg-black/40 px-2 py-0.5 text-[10px] text-white/70">
+                  ⌘K
+                </kbd>
+              </button>
+
               {navLinks.map((link) =>
                 link.label === 'Schedule Consultation' ? (
                   <Button
@@ -293,30 +356,51 @@ const Navbar = () => {
               </DropdownMenu>
             </nav>
           
-            {/* Enhanced Mobile Menu Button */}
-            <button
-              ref={menuButtonRef}
-              className={cn(
-                "ml-auto lg:hidden relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
-              )}
-              style={{ 
-                minWidth: '48px', 
-                minHeight: '48px',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onClick={isMobileMenuOpen ? closeMobileMenu : handleMenuOpen}
-              onKeyDown={handleKeyDown}
-              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              <span className="sr-only">
-                {isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              </span>
-              <div className="transform transition-transform duration-200 hover:scale-110">
-                {isMobileMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
-              </div>
-            </button>
+            {/* Mobile Actions */}
+            <div className="ml-auto flex items-center gap-1 lg:hidden">
+              <button
+                type="button"
+                className={cn(
+                  "relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200",
+                )}
+                style={{
+                  minWidth: '48px',
+                  minHeight: '48px',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+                onClick={openSearch}
+                onMouseEnter={prefetchSearch}
+                onFocus={prefetchSearch}
+                aria-label="Search site"
+              >
+                <Search size={24} className="text-white" />
+              </button>
+
+              {/* Enhanced Mobile Menu Button */}
+              <button
+                ref={menuButtonRef}
+                className={cn(
+                  "relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
+                )}
+                style={{ 
+                  minWidth: '48px', 
+                  minHeight: '48px',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+                onClick={isMobileMenuOpen ? closeMobileMenu : handleMenuOpen}
+                onKeyDown={handleKeyDown}
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                <span className="sr-only">
+                  {isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                </span>
+                <div className="transform transition-transform duration-200 hover:scale-110">
+                  {isMobileMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
+                </div>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -354,6 +438,12 @@ const Navbar = () => {
           </div>
         )}
       </header>
+
+      {shouldMountSearch ? (
+        <Suspense fallback={null}>
+          <LazySiteSearch open={isSearchOpen} onOpenChange={setIsSearchOpen} />
+        </Suspense>
+      ) : null}
     </>
   );
 };
