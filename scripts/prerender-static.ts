@@ -452,7 +452,7 @@ export const manualPages: StaticRoute[] = [
       "Patient Transformation Stories | Exquisite Dentistry Los Angeles",
     description:
       "Watch real patient transformation stories from Exquisite Dentistry in Los Angeles. Hear what changed, what they experienced, and why they recommend our team.",
-    h1: "Patient Transformation Stories",
+    h1: "Client Transformation Stories",
     paragraphs: [
       "These interviews highlight real people, their goals, and how their dental experience shifted from anxiety or uncertainty to confidence.",
     ],

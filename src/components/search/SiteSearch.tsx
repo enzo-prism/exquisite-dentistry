@@ -77,58 +77,108 @@ const TOKEN_SYNONYMS: Record<string, string[]> = {
   patients: ["client", "clients"],
 };
 
-const getTokenVariants = (token: string): string[] => {
-  const synonyms = TOKEN_SYNONYMS[token];
-  if (!synonyms?.length) return [token];
-  return Array.from(new Set([token, ...synonyms]));
-};
-
-const tokenize = (value: string): string[] =>
+const normalizeForSearch = (value: string): string =>
   value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
-    .trim()
+    .trim();
+
+const stemToken = (token: string): string => {
+  if (token.length <= 3) return token;
+  if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+  if (token.endsWith("es") && token.length > 4) return token.slice(0, -2);
+  if (token.endsWith("s") && token.length > 3) return token.slice(0, -1);
+  return token;
+};
+
+const getTokenForms = (token: string): string[] => {
+  const normalized = token.trim().toLowerCase();
+  const stemmed = stemToken(normalized);
+  const forms = new Set<string>([normalized, stemmed]);
+
+  if (stemmed.length > 2) {
+    if (stemmed.endsWith("y")) forms.add(`${stemmed.slice(0, -1)}ies`);
+    else forms.add(`${stemmed}s`);
+  }
+
+  return Array.from(forms).filter(Boolean);
+};
+
+const getTokenVariants = (token: string): string[] => {
+  const normalized = token.trim().toLowerCase();
+  const synonyms = TOKEN_SYNONYMS[normalized] ?? [];
+  const variants = new Set<string>();
+
+  [normalized, ...synonyms].forEach((candidate) => {
+    getTokenForms(candidate).forEach((form) => variants.add(form));
+  });
+
+  return Array.from(variants);
+};
+
+const tokenize = (value: string): string[] =>
+  normalizeForSearch(value)
     .split(/\s+/)
     .filter(Boolean);
 
-const scoreItem = (item: SearchIndexItem, tokens: string[]): number | null => {
-  const title = item.title.toLowerCase();
-  const h1 = (item.h1 ?? "").toLowerCase();
-  const description = (item.description ?? "").toLowerCase();
-  const keywords = (item.keywords ?? []).join(" ").toLowerCase();
-  const href = item.href.toLowerCase();
+const getRequiredMatches = (tokenCount: number): number => {
+  if (tokenCount <= 2) return tokenCount;
+  if (tokenCount <= 5) return tokenCount - 1;
+  return tokenCount - 2;
+};
+
+const scoreItem = (item: SearchIndexItem, tokens: string[], queryPhrase: string): number | null => {
+  const title = normalizeForSearch(item.title);
+  const h1 = normalizeForSearch(item.h1 ?? "");
+  const description = normalizeForSearch(item.description ?? "");
+  const keywords = normalizeForSearch((item.keywords ?? []).join(" "));
+  const href = normalizeForSearch(item.href);
 
   let score = 0;
+  let matchedTokens = 0;
+  const requiredMatches = getRequiredMatches(tokens.length);
+
   for (const token of tokens) {
     const variants = getTokenVariants(token);
 
     const titleVariant = variants.find((variant) => title.includes(variant));
     if (titleVariant) {
       score += title.startsWith(titleVariant) ? 12 : 10;
+      matchedTokens += 1;
       continue;
     }
 
     const h1Variant = variants.find((variant) => h1.includes(variant));
     if (h1Variant) {
       score += h1.startsWith(h1Variant) ? 9 : 7;
+      matchedTokens += 1;
       continue;
     }
 
     if (variants.some((variant) => keywords.includes(variant))) {
       score += 6;
+      matchedTokens += 1;
       continue;
     }
 
     if (variants.some((variant) => description.includes(variant))) {
       score += 3;
+      matchedTokens += 1;
       continue;
     }
 
     if (variants.some((variant) => href.includes(variant))) {
       score += 1;
+      matchedTokens += 1;
       continue;
     }
-    return null;
+  }
+
+  if (matchedTokens < requiredMatches) return null;
+
+  if (queryPhrase) {
+    if (h1.includes(queryPhrase)) score += 12;
+    else if (title.includes(queryPhrase)) score += 10;
   }
 
   return score;
@@ -180,7 +230,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
     const controller = new AbortController();
     setIsLoadingIndex(true);
 
-    fetch(SEARCH_INDEX_URL, { signal: controller.signal, cache: "force-cache" })
+    fetch(SEARCH_INDEX_URL, { signal: controller.signal, cache: import.meta.env.DEV ? "no-store" : "no-cache" })
       .then((response) => {
         if (!response.ok) throw new Error(`Search index request failed: ${response.status}`);
         return response.json() as Promise<SearchIndexFile>;
@@ -218,6 +268,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
   const groupedResults = useMemo(() => {
     const items = searchIndex?.items ?? [];
     const tokens = tokenize(query);
+    const queryPhrase = tokens.join(" ");
 
     if (tokens.length === 0) {
       const popular = POPULAR_HREFS.map((href) => {
@@ -234,7 +285,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
 
     const matches = items
       .map((item) => {
-        const score = scoreItem(item, tokens);
+        const score = scoreItem(item, tokens, queryPhrase);
         return score === null ? null : { item, score };
       })
       .filter(Boolean) as Array<{ item: SearchIndexItem; score: number }>;
@@ -403,6 +454,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
 
 const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (href: string) => void }> = ({ item, onSelect }) => {
   const Icon = getTypeIcon(item.type);
+  const displayTitle = item.h1?.trim() || item.title;
 
   return (
     <CommandItem
@@ -412,7 +464,7 @@ const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (href: string
     >
       <Icon className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
       <div className="min-w-0">
-        <p className="truncate font-medium">{item.title}</p>
+        <p className="truncate font-medium">{displayTitle}</p>
         {item.description ? (
           <p className="mt-0.5 hidden truncate text-xs text-white/60 sm:block">{item.description}</p>
         ) : null}
