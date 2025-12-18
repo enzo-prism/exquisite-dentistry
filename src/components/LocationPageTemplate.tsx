@@ -1,5 +1,5 @@
 import React from "react";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import LocationBreadcrumbs from "@/components/LocationBreadcrumbs";
 import DoctorExperienceSection from "@/components/DoctorExperienceSection";
 import PageSEO from "@/components/seo/PageSEO";
 import PracticeLocationSection from "@/components/PracticeLocationSection";
@@ -79,27 +79,29 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         path={`/${config.slug}`}
       />
 
-      <div className="mx-auto max-w-5xl px-4 pt-8">
-        <Breadcrumbs
-          items={[
-            { label: "Locations", to: "/locations/" },
-            { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
-          ]}
-        />
-      </div>
-
       <section className="bg-gradient-to-br from-black via-black to-primary/30 text-white">
-        <div className="mx-auto max-w-5xl px-4 py-20 text-center md:py-24">
-          <p className="text-sm uppercase tracking-[0.4em] text-gold">{config.cityLabel}</p>
-          <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">{config.hero.heading}</h1>
-          <p className="mt-4 text-lg text-white/80">{config.hero.subheading}</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {config.hero.stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                <p className="text-3xl font-bold text-gold">{stat.value}</p>
-                <p className="text-sm uppercase tracking-widest text-white/70">{stat.label}</p>
-              </div>
-            ))}
+        <div className="mx-auto max-w-5xl px-4 pb-20 pt-8 md:pb-24 md:pt-10">
+          <div className="mb-10 text-left md:mb-12">
+            <LocationBreadcrumbs
+              items={[
+                { label: "Locations", to: "/locations/" },
+                { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
+              ]}
+            />
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-gold">{config.cityLabel}</p>
+            <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">{config.hero.heading}</h1>
+            <p className="mt-4 text-lg text-white/80">{config.hero.subheading}</p>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {config.hero.stats.map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                  <p className="text-3xl font-bold text-gold">{stat.value}</p>
+                  <p className="text-sm uppercase tracking-widest text-white/70">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
