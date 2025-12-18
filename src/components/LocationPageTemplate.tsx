@@ -79,17 +79,19 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         path={`/${config.slug}`}
       />
 
-      <section className="bg-gradient-to-br from-black via-black to-primary/30 text-white">
-        <div className="mx-auto max-w-5xl px-4 pb-20 pt-8 md:pb-24 md:pt-10">
-          <div className="mb-10 text-left md:mb-12">
-            <LocationBreadcrumbs
-              items={[
-                { label: "Locations", to: "/locations/" },
-                { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
-              ]}
-            />
-          </div>
+      <div className="bg-black text-white">
+        <div className="mx-auto max-w-5xl px-4 py-4">
+          <LocationBreadcrumbs
+            items={[
+              { label: "Locations", to: "/locations/" },
+              { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
+            ]}
+          />
+        </div>
+      </div>
 
+      <section className="bg-gradient-to-br from-black via-black to-primary/30 text-white">
+        <div className="mx-auto max-w-5xl px-4 pb-20 pt-12 md:pb-24 md:pt-16">
           <div className="text-center">
             <p className="text-sm uppercase tracking-[0.4em] text-gold">{config.cityLabel}</p>
             <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">{config.hero.heading}</h1>
