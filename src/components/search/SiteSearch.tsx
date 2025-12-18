@@ -349,7 +349,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
             placeholder="Search services, locations, pages, or blog posts…"
             value={query}
             onValueChange={setQuery}
-            className="flex h-12 w-full bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/50"
+            className="flex h-12 w-full bg-transparent py-3 text-base text-white outline-none placeholder:text-white/50 lg:text-sm"
           />
           <button
             type="button"
