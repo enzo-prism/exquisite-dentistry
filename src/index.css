@@ -181,6 +181,17 @@ body {
   touch-action: manipulation;
 }
 
+/* Hide scrollbars while retaining scroll behavior */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Premium CTA sheen effect */
 .cta-glow {
   position: relative;
