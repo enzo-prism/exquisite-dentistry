@@ -38,30 +38,47 @@ async function optimizeImage(imagePath) {
       // Skip if the original is smaller than the target size
       if (metadata.width < size.width) continue;
       
-      const outputPath = join(OUTPUT_DIR, `${filename}-${size.suffix}.webp`);
+      const outputBase = join(OUTPUT_DIR, `${filename}-${size.suffix}`);
       
       await image
+        .clone()
         .resize(size.width, null, {
           withoutEnlargement: true,
           fit: 'inside'
         })
         .webp({ quality: 85 })
-        .toFile(outputPath);
+        .toFile(`${outputBase}.webp`);
       
-      const outputStats = statSync(outputPath);
+      const outputStats = statSync(`${outputBase}.webp`);
       const outputSizeMB = outputStats.size / (1024 * 1024);
       console.log(`  Created ${size.suffix} version: ${outputSizeMB.toFixed(2)}MB`);
+
+      await image
+        .clone()
+        .resize(size.width, null, {
+          withoutEnlargement: true,
+          fit: 'inside'
+        })
+        .avif({ quality: 60 })
+        .toFile(`${outputBase}.avif`);
     }
     
     // Also create an optimized original-size WebP
     const originalWebpPath = join(OUTPUT_DIR, `${filename}-original.webp`);
     await image
+      .clone()
       .webp({ quality: 90 })
       .toFile(originalWebpPath);
     
     const originalWebpStats = statSync(originalWebpPath);
     const originalWebpSizeMB = originalWebpStats.size / (1024 * 1024);
     console.log(`  Created original WebP: ${originalWebpSizeMB.toFixed(2)}MB`);
+
+    const originalAvifPath = join(OUTPUT_DIR, `${filename}-original.avif`);
+    await image
+      .clone()
+      .avif({ quality: 70 })
+      .toFile(originalAvifPath);
     
   } catch (error) {
     console.error(`Error processing ${filename}:`, error);

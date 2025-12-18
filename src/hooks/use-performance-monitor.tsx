@@ -1,5 +1,12 @@
 
-import { useEffect, useRef, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode
+} from 'react';
 
 type PerformanceMemory = {
   usedJSHeapSize: number;
@@ -132,8 +139,32 @@ export const usePerformanceMonitor = () => {
   };
 };
 
+type PerformanceMonitorContextValue = ReturnType<typeof usePerformanceMonitor>;
+
+const PerformanceMonitorContext = createContext<PerformanceMonitorContextValue | null>(null);
+
+export const PerformanceProvider = ({ children }: { children: ReactNode }) => {
+  const value = usePerformanceMonitor();
+
+  return (
+    <PerformanceMonitorContext.Provider value={value}>
+      {children}
+    </PerformanceMonitorContext.Provider>
+  );
+};
+
+export const usePerformanceSettings = () => {
+  const context = useContext(PerformanceMonitorContext);
+
+  if (!context) {
+    throw new Error('usePerformanceSettings must be used within PerformanceProvider');
+  }
+
+  return context;
+};
+
 export const useSmartAnimations = () => {
-  const { optimizedSettings } = usePerformanceMonitor();
+  const { optimizedSettings } = usePerformanceSettings();
   
   const getAnimationClass = (defaultClass: string, heavyClass?: string) => {
     if (!optimizedSettings.enableHeavyAnimations && heavyClass) {

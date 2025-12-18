@@ -29,30 +29,8 @@
     <link rel="apple-touch-icon" href="/lovable-uploads/c02fc442-7238-4410-80f6-e6fb780c406f.png">
     
     <!-- Performance optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- DNS prefetch for better performance -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preconnect" href="https://player.vimeo.com">
-    <link rel="dns-prefetch" href="//player.vimeo.com">
-    
-    <!-- Preconnect to critical third-party origins -->
-    <link rel="preconnect" href="https://scheduling.simplifeye.co">
-    <link rel="dns-prefetch" href="//scheduling.simplifeye.co">
-    <link rel="preconnect" href="https://res.cloudinary.com">
-    <link rel="dns-prefetch" href="//res.cloudinary.com">
-    <link rel="preconnect" href="https://static.hotjar.com">
-    <link rel="preconnect" href="https://script.hotjar.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://static.cloudflareinsights.com">
-    
-    <!-- DNS prefetch for additional origins -->
-    <link rel="dns-prefetch" href="//static.hotjar.com">
-    <link rel="dns-prefetch" href="//script.hotjar.com">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="dns-prefetch" href="//static.cloudflareinsights.com">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5"></script>
@@ -90,7 +68,10 @@
     <!-- Hotjar Tracking Code for Primary - Deferred -->
     <script>
         // Defer Hotjar loading to improve performance
+        var hotjarLoaded = false;
         function loadHotjar() {
+            if (hotjarLoaded) return;
+            hotjarLoaded = true;
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
                 h._hjSettings={hjid:5272510,hjsv:6};
@@ -129,10 +110,9 @@
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
     
     <!-- Preload critical images -->
-    <link rel="preload" href="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp 120w, /optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp 200w, /optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop-2x.webp 240w" imagesizes="(max-width: 768px) 120px, 200px">
     <link rel="preload" href="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png" as="image" type="image/png" fetchpriority="high">
     
     <style>
@@ -229,11 +209,6 @@
     
     <!-- Preload module script for faster loading -->
     <link rel="modulepreload" href="/src/main.tsx">
-    
-    <!-- Preload Vimeo Player API for hero video -->
-    <link rel="preconnect" href="https://f.vimeocdn.com">
-    <link rel="dns-prefetch" href="//f.vimeocdn.com">
-    
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>

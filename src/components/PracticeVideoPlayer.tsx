@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Play, Pause, Maximize, Loader2 } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import { OptimizedImage } from '@/components/seo';
 
 interface PracticeVideoPlayerProps {
   source: string;
@@ -238,11 +239,12 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
         style={{ borderRadius: 'inherit' }}
       >
         {!isReady && (
-          <img
+          <OptimizedImage
             src={poster}
             alt={`${title} preview`}
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
+            sizes="100vw"
           />
         )}
         <video
@@ -251,7 +253,6 @@ const PracticeVideoPlayer: React.FC<PracticeVideoPlayerProps> = ({
             'absolute inset-0 h-full w-full object-cover transition-opacity duration-300',
             !isReady ? 'opacity-0' : 'opacity-100'
           )}
-          poster={poster}
           preload={preloadValue}
           loop={loop}
           controls={false}

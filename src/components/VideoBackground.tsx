@@ -1,9 +1,9 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import UniversalVideoPlayer from './UniversalVideoPlayer';
+import { OptimizedImage } from '@/components/seo';
 
 interface VideoBackgroundProps {
   youtubeId?: string;
@@ -30,10 +30,85 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const hasVideo = Boolean(vimeoId || youtubeId || streamableUrl);
+
+  const preconnectOrigin = useCallback((origin: string) => {
+    if (typeof document === 'undefined') return;
+    if (document.querySelector(`link[rel="preconnect"][href="${origin}"]`)) return;
+
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = origin;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  }, []);
+
+  const preconnectVideoOrigins = useCallback(() => {
+    if (vimeoId) {
+      preconnectOrigin('https://player.vimeo.com');
+      preconnectOrigin('https://f.vimeocdn.com');
+    }
+
+    if (youtubeId) {
+      preconnectOrigin('https://www.youtube.com');
+    }
+
+    if (streamableUrl) {
+      try {
+        const origin = new URL(streamableUrl).origin;
+        preconnectOrigin(origin);
+      } catch (error) {
+        // Ignore invalid URLs
+      }
+    }
+  }, [preconnectOrigin, streamableUrl, vimeoId, youtubeId]);
+
+  useEffect(() => {
+    if (!hasVideo || typeof window === 'undefined') return;
+
+    const element = containerRef.current;
+    if (!element || typeof IntersectionObserver === 'undefined') {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: isContained ? '150px' : '300px' }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasVideo, isContained]);
+
+  useEffect(() => {
+    if (!hasVideo || !isInView || shouldLoadVideo || typeof window === 'undefined') return;
+
+    const scheduleLoad = () => {
+      preconnectVideoOrigins();
+      setShouldLoadVideo(true);
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(scheduleLoad, { timeout: 2000 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(scheduleLoad, 1200);
+    return () => window.clearTimeout(timeoutId);
+  }, [hasVideo, isInView, shouldLoadVideo, preconnectVideoOrigins]);
   
   // Handle video playback for streamable videos
   useEffect(() => {
-    if (!videoRef.current || !streamableUrl || vimeoId) return;
+    if (!shouldLoadVideo || !videoRef.current || !streamableUrl || vimeoId) return;
     
     const playVideo = async () => {
       try {
@@ -48,7 +123,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Video playback started successfully');
               onLoad?.();
             })
             .catch(error => {
@@ -61,11 +135,28 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     };
     
     playVideo();
-  }, [streamableUrl, vimeoId, onLoad]);
+  }, [shouldLoadVideo, streamableUrl, vimeoId, onLoad]);
   
   const renderVideoElement = () => {
+    if (!shouldLoadVideo && posterSrc) {
+      return (
+        <OptimizedImage
+          src={posterSrc}
+          alt=""
+          aria-hidden="true"
+          priority
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+          sizes="100vw"
+        />
+      );
+    }
+
+    if (!shouldLoadVideo) {
+      return null;
+    }
+
     if (vimeoId) {
-      console.log('Rendering Vimeo video:', vimeoId);
       return (
         <iframe
           src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&controls=0&loop=1&title=0&byline=0&portrait=0&background=1`}
@@ -109,7 +200,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             top: '0',
             left: '0'
           }}
-          poster={posterSrc}
         >
           <source src={`${streamableUrl}.mp4`} type="video/mp4" />
           <source src={streamableUrl} type="video/mp4" />
@@ -150,7 +240,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   
   if (isContained) {
     return (
-      <div className={cn("w-full overflow-hidden rounded-md shadow-lg bg-black", className)}>
+      <div
+        ref={containerRef}
+        className={cn("w-full overflow-hidden rounded-md shadow-lg bg-black", className)}
+      >
         <AspectRatio ratio={aspectRatio}>
           {renderVideoElement()}
         </AspectRatio>
@@ -159,7 +252,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }
   
   return (
-    <div className="absolute inset-0 w-full h-full bg-black">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full bg-black">
       {/* Video content */}
       <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden bg-black", className)}>
         {/* Dark overlay */}

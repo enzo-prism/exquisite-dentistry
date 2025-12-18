@@ -1,3 +1,5 @@
+import { imageExists } from './imageRegistry';
+
 export interface OptimizedImageProps {
   src: string;
   alt: string;
@@ -6,30 +8,59 @@ export interface OptimizedImageProps {
   className?: string;
   loading?: 'lazy' | 'eager';
   priority?: boolean;
+  sizes?: string;
 }
 
-// Generate responsive image URLs for different screen sizes
+const OPTIMIZED_SIZES = [
+  { suffix: 'sm', width: 320 },
+  { suffix: 'md', width: 640 },
+  { suffix: 'lg', width: 1024 },
+  { suffix: 'xl', width: 1920 }
+];
+
+const normalizeLocalPath = (src: string) => src.split('?')[0]?.split('#')[0] ?? src;
+
+const resolveOptimizedBase = (src: string): string | null => {
+  if (!src.startsWith('/')) return null;
+
+  const normalized = normalizeLocalPath(src);
+  const withoutExtension = normalized.replace(/\.[^.]+$/, '');
+
+  if (normalized.includes('/optimized/')) {
+    const match = withoutExtension.match(/^(.*)-(sm|md|lg|xl|original)$/);
+    return match ? match[1] : withoutExtension;
+  }
+
+  if (normalized.includes('/lovable-uploads/')) {
+    const filename = withoutExtension.split('/').pop();
+    if (!filename) return null;
+    return `/optimized/${filename}`;
+  }
+
+  return null;
+};
+
+const buildSrcSet = (base: string, format: 'avif' | 'webp') => {
+  const entries = OPTIMIZED_SIZES
+    .filter(({ suffix }) => imageExists(`${base}-${suffix}.${format}`))
+    .map(({ suffix, width }) => `${base}-${suffix}.${format} ${width}w`);
+
+  return entries.length ? entries.join(', ') : undefined;
+};
+
 export const generateResponsiveImageUrls = (src: string) => {
-  // If it's already an optimized image, return as-is
-  if (src.includes('/optimized/')) {
+  const normalized = normalizeLocalPath(src);
+  const optimizedBase = resolveOptimizedBase(normalized);
+
+  if (!optimizedBase) {
     return {
-      mobile: src,
-      tablet: src,
-      desktop: src,
-      webp: src
+      fallback: src
     };
   }
 
-  // Extract filename without extension
-  const lastDot = src.lastIndexOf('.');
-  const basePath = src.substring(0, lastDot);
-  const extension = src.substring(lastDot);
-  
   return {
-    mobile: `${basePath}-mobile.webp`,
-    tablet: `${basePath}-tablet.webp`, 
-    desktop: `${basePath}-desktop.webp`,
-    webp: `${basePath}.webp`,
+    avif: buildSrcSet(optimizedBase, 'avif'),
+    webp: buildSrcSet(optimizedBase, 'webp'),
     fallback: src
   };
 };

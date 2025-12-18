@@ -17,6 +17,23 @@ const DELAYED_SCRIPTS: ThirdPartyScript[] = [
   // Additional analytics scripts can be added here if needed for delayed loading
 ];
 
+const preconnectOrigin = (url: string) => {
+  if (typeof document === 'undefined') return;
+
+  try {
+    const origin = new URL(url).origin;
+    if (document.querySelector(`link[rel="preconnect"][href="${origin}"]`)) return;
+
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = origin;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  } catch (error) {
+    // Ignore invalid URLs
+  }
+};
+
 // Load a script dynamically
 export function loadScript(script: ThirdPartyScript): Promise<void> {
   if (typeof document === 'undefined') {
@@ -24,6 +41,8 @@ export function loadScript(script: ThirdPartyScript): Promise<void> {
   }
 
   return new Promise((resolve, reject) => {
+    preconnectOrigin(script.url);
+
     // Check if script already exists
     if (document.querySelector(`script[data-name="${script.name}"]`)) {
       resolve();
@@ -192,6 +211,7 @@ export function loadBirdEyeWidget(containerId: string) {
     return;
   }
 
+  preconnectOrigin(BIRDEYE_WIDGET_SCRIPT_SRC);
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = BIRDEYE_WIDGET_SCRIPT_SRC;

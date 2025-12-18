@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
-import { usePerformanceMonitor } from '@/hooks/use-performance-monitor';
+import { usePerformanceSettings } from '@/hooks/use-performance-monitor';
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const location = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const { ref } = useHardwareAcceleration();
-  const { optimizedSettings } = usePerformanceMonitor();
+  const { optimizedSettings } = usePerformanceSettings();
 
   useEffect(() => {
     setIsTransitioning(true);

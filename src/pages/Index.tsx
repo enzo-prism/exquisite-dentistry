@@ -15,7 +15,7 @@ import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import ImageComponent from '@/components/Image';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
-import { transformationStories } from '@/data/transformationStories';
+import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -32,38 +32,20 @@ const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string
   };
 };
 
-const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = transformationStories.map((story) => {
-  const rawThumbnailUrl = story.thumbnailUrl ?? story.video.poster ?? '';
-  const { thumbnailUrl, thumbnailFallbackUrl } = toOptimizedLocalThumbnail(rawThumbnailUrl);
-  const isVimeo = story.video.src.includes('vimeo.com');
-
-  if (isVimeo) {
-    const match = story.video.src.match(/video\/(\d+)/);
-    const vimeoId = match?.[1] ?? story.id;
+const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = VIDEO_TESTIMONIALS.map(
+  (testimonial) => {
+    const { thumbnailUrl, thumbnailFallbackUrl } = toOptimizedLocalThumbnail(
+      testimonial.thumbnailUrl
+    );
 
     return {
-      id: `${story.id}-testimonial`,
-      type: 'vimeo' as const,
-      vimeoId,
+      ...testimonial,
       thumbnailUrl,
-      thumbnailFallbackUrl,
-      title: story.title,
-      uploadDate: '2024-01-01',
-      duration: 'PT2M0S'
+      thumbnailFallbackUrl:
+        thumbnailFallbackUrl ?? testimonial.thumbnailFallbackUrl
     };
   }
-
-  return {
-    id: `${story.id}-testimonial`,
-    type: 'file' as const,
-    videoUrl: story.video.src,
-    thumbnailUrl,
-    thumbnailFallbackUrl,
-    title: story.title,
-    uploadDate: '2024-01-01',
-    duration: 'PT2M0S'
-  };
-});
+);
 
 const DeferredMobileFab: React.FC = () => {
   const isMobile = useIsMobile();

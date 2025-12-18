@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import ImageComponent from '@/components/Image';
 import {
   Accordion,
   AccordionContent,
@@ -253,9 +254,11 @@ const Footer = () => {
               className="flex items-center"
               style={{ width: '220px', height: '40px' }}
             >
-              <img
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
+              <ImageComponent
+                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
                 alt="Exquisite Dentistry"
+                responsive
+                logoType="main"
                 className="w-full h-full object-contain"
                 loading="lazy"
                 decoding="async"

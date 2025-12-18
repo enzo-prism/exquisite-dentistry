@@ -14,7 +14,7 @@ const SRC_DIR = path.join(process.cwd(), 'src');
 
 // Get all available images in public directory
 function getAvailableImages() {
-  const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+  const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'svg'];
   const images = new Set();
   
   imageExtensions.forEach(ext => {
@@ -39,11 +39,11 @@ function extractImageReferences() {
     
     // Match various image reference patterns
     const patterns = [
-      /src="([^"]+\.(png|jpg|jpeg|webp|svg))"/g,
-      /src=\{["']([^"']+\.(png|jpg|jpeg|webp|svg))["']\}/g,
-      /thumbnailUrl="([^"]+\.(png|jpg|jpeg|webp|svg))"/g,
-      /['"`]([^'"`]*\/lovable-uploads\/[^'"`]*\.(png|jpg|jpeg|webp|svg))['"`]/g,
-      /['"`]([^'"`]*\/optimized\/[^'"`]*\.(png|jpg|jpeg|webp|svg))['"`]/g,
+      /src="([^"]+\.(png|jpg|jpeg|webp|avif|svg))"/g,
+      /src=\{["']([^"']+\.(png|jpg|jpeg|webp|avif|svg))["']\}/g,
+      /thumbnailUrl="([^"]+\.(png|jpg|jpeg|webp|avif|svg))"/g,
+      /['"`]([^'"`]*\/lovable-uploads\/[^'"`]*\.(png|jpg|jpeg|webp|avif|svg))['"`]/g,
+      /['"`]([^'"`]*\/optimized\/[^'"`]*\.(png|jpg|jpeg|webp|avif|svg))['"`]/g,
     ];
     
     patterns.forEach(pattern => {

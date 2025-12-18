@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
+import { OptimizedImage } from '@/components/seo';
 import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import { serviceCategories } from '@/data/services';
@@ -718,10 +719,11 @@ const Services = () => {
             
             <div className="relative">
               <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                <ImageComponent
+                <OptimizedImage
                   alt="Spa-like dental environment"
                   className="w-full h-full object-cover"
                   src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"
+                  sizes="(min-width: 1024px) 520px, 90vw"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">

@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
 import { cn } from '@/lib/utils';
+import ImageComponent from '@/components/Image';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -268,11 +269,13 @@ const Navbar = () => {
                   aria-hidden="true"
                   className="pointer-events-none absolute -inset-2 rounded-xl bg-gold/10 opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-100"
                 />
-                <img
-                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp"
+                <ImageComponent
+                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
                   alt="Exquisite Dentistry Logo"
+                  responsive
+                  logoType="main"
+                  priority
                   className="relative h-6 w-auto max-w-[160px] object-contain sm:h-8 sm:max-w-[210px] lg:h-9 lg:max-w-[190px] xl:h-12 xl:max-w-[280px] transition-transform duration-200 ease-out group-hover:scale-[1.02] group-active:scale-[0.99]"
-                  loading="eager"
                   style={{ objectPosition: 'center' }}
                 />
               </Link>

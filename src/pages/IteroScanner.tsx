@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { Button } from '@/components/ui/button';
-import ImageComponent from '@/components/Image';
+import { OptimizedImage } from '@/components/seo';
 import { Check, Sparkles, Cpu } from 'lucide-react';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
@@ -111,11 +111,12 @@ const IteroScanner = () => {
             <div className="relative">
               <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-gold/30 to-transparent blur-3xl opacity-70" />
               <div className="relative rounded-[28px] border border-gold/30 bg-black/40 p-4 backdrop-blur">
-                <ImageComponent
+                <OptimizedImage
                   src={heroImage}
                   alt="iTero Element scanner at Exquisite Dentistry"
                   className="rounded-[20px] object-cover w-full h-full"
                   loading="lazy"
+                  sizes="(min-width: 1024px) 520px, 90vw"
                 />
               </div>
             </div>

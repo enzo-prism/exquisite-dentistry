@@ -2,7 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
-import { usePerformanceMonitor } from '@/hooks/use-performance-monitor';
+import { usePerformanceSettings } from '@/hooks/use-performance-monitor';
 
 interface LoadingSkeletonProps {
   className?: string;
@@ -18,7 +18,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   animate = true
 }) => {
   const { ref } = useHardwareAcceleration();
-  const { optimizedSettings } = usePerformanceMonitor();
+  const { optimizedSettings } = usePerformanceSettings();
 
   const getAnimationClass = () => {
     if (!animate) return '';

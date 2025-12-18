@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
-import { usePerformanceMonitor } from '@/hooks/use-performance-monitor';
+import { usePerformanceSettings } from '@/hooks/use-performance-monitor';
 
 interface EnhancedLoadingProps {
   variant?: 'skeleton' | 'pulse' | 'shimmer' | 'fade';
@@ -21,7 +21,7 @@ const EnhancedLoading: React.FC<EnhancedLoadingProps> = ({
   loadingText
 }) => {
   const { ref } = useHardwareAcceleration();
-  const { metrics, optimizedSettings } = usePerformanceMonitor();
+  const { metrics, optimizedSettings } = usePerformanceSettings();
 
   const sizeClasses = {
     sm: 'h-4',

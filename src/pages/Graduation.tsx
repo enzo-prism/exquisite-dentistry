@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import ImageComponent from '@/components/Image';
+import { OptimizedImage } from '@/components/seo';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
@@ -129,10 +128,11 @@ const Graduation = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
-                <ImageComponent
+                <OptimizedImage
                   src="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
                   alt="Graduates with beautiful smiles"
                   className="w-full h-auto object-cover rounded-sm shadow-md"
+                  sizes="(min-width: 768px) 50vw, 90vw"
                 />
               </div>
               <div className="md:w-1/2">

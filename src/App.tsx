@@ -7,6 +7,7 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
+import { PerformanceProvider } from "@/hooks/use-performance-monitor";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -291,15 +292,17 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <div className="flex flex-col min-h-screen">
-              <AppRoutes />
-            </div>
-          </BrowserRouter>
-        </TooltipProvider>
+        <PerformanceProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <div className="flex flex-col min-h-screen">
+                <AppRoutes />
+              </div>
+            </BrowserRouter>
+          </TooltipProvider>
+        </PerformanceProvider>
       </HelmetProvider>
     </QueryClientProvider>
   );

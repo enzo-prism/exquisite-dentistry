@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useHardwareAcceleration } from '@/hooks/use-hardware-acceleration';
-import { usePerformanceMonitor } from '@/hooks/use-performance-monitor';
+import { usePerformanceSettings } from '@/hooks/use-performance-monitor';
 import EnhancedLoading from './enhanced-loading';
 
 interface ProgressiveImageProps {
@@ -27,7 +27,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { ref: gpuRef } = useHardwareAcceleration();
-  const { optimizedSettings } = usePerformanceMonitor();
+  const { optimizedSettings } = usePerformanceSettings();
 
   useEffect(() => {
     const observer = new IntersectionObserver(

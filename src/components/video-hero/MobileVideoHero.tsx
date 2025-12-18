@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import VideoBackground from '@/components/VideoBackground';
 import GradientBackground from '@/components/GradientBackground';
-import ImageComponent from '@/components/Image';
+import { OptimizedImage } from '@/components/seo';
 import HeroCtaButtons from './HeroCtaButtons';
 import type { VideoHeroProps } from './video-hero-types';
 import { getHeroHeightClasses } from '@/utils/heroHeights';
@@ -49,14 +49,14 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         <div className="absolute inset-0">
           {posterSrc ? (
             <>
-              <ImageComponent
+              <OptimizedImage
                 src={posterSrc}
                 alt=""
                 aria-hidden="true"
-                fill
                 priority
                 decoding="async"
-                className="h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
+                sizes="100vw"
               />
               <div className="absolute inset-0 bg-black/70 md:bg-black/50" />
             </>
