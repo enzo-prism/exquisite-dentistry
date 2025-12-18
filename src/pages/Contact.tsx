@@ -31,9 +31,16 @@ const SOCIAL_URLS = {
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const CONTACT_PERSONA_OPTIONS = [
+  { value: 'existing_patient', label: 'Existing patient' },
+  { value: 'new_patient', label: 'Thinking about becoming a new patient' },
+  { value: 'vendor_business', label: 'Vendor/business' }
+] as const;
+
 const Contact = () => {
   const meta = ROUTE_METADATA['/contact'];
   const [formState, setFormState] = useState({
+    whichBestDescribesYou: '',
     name: '',
     email: '',
     phone: '',
@@ -43,10 +50,17 @@ const Contact = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
   const [fieldErrors, setFieldErrors] = useState({
-    email: ''
+    whichBestDescribesYou: '',
+    name: '',
+    email: '',
+    message: ''
   });
   const formSectionRef = useRef<HTMLDivElement | null>(null);
+  const personaFieldsetRef = useRef<HTMLFieldSetElement | null>(null);
+  const personaFirstOptionRef = useRef<HTMLInputElement | null>(null);
   const nameFieldRef = useRef<HTMLInputElement | null>(null);
+  const emailFieldRef = useRef<HTMLInputElement | null>(null);
+  const messageFieldRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,8 +82,9 @@ const Contact = () => {
       [name]: value
     }));
 
-    if (name === 'email' && fieldErrors.email) {
-      setFieldErrors((prev) => ({ ...prev, email: '' }));
+    const errorKey = name as keyof typeof fieldErrors;
+    if (fieldErrors[errorKey]) {
+      setFieldErrors((prev) => ({ ...prev, [errorKey]: '' }));
     }
   };
 
@@ -90,7 +105,7 @@ const Contact = () => {
   };
 
   const handleScrollToForm = () => {
-    const targetElement = nameFieldRef.current || formSectionRef.current;
+    const targetElement = personaFieldsetRef.current || nameFieldRef.current || formSectionRef.current;
     if (!targetElement) return;
 
     if (typeof window === 'undefined' || typeof window.scrollTo !== 'function') {
@@ -105,34 +120,86 @@ const Contact = () => {
     event.preventDefault();
     if (formStatus === 'submitting') return;
 
-    const trimmedEmail = formState.email.trim();
-    if (!EMAIL_PATTERN.test(trimmedEmail)) {
-      setFieldErrors((prev) => ({
-        ...prev,
-        email: 'Please enter a valid email address (example: name@domain.com).'
-      }));
-      setFormStatus('error');
-      setFeedback('Please correct the highlighted fields and try again.');
-      return;
-    }
-
-    setFormStatus('submitting');
     setFeedback('');
 
     // If honeypot is filled, silently succeed
     if (honeypot) {
       setFormStatus('success');
       setFeedback('Thanks for reaching out! We will respond shortly.');
-      setFormState({ name: '', email: '', phone: '', message: '' });
+      setFormState({ whichBestDescribesYou: '', name: '', email: '', phone: '', message: '' });
       setHoneypot('');
+      setFieldErrors({ whichBestDescribesYou: '', name: '', email: '', message: '' });
       return;
     }
 
+    const trimmedPersona = formState.whichBestDescribesYou.trim();
+    const trimmedName = formState.name.trim();
+    const trimmedEmail = formState.email.trim();
+    const trimmedMessage = formState.message.trim();
+
+    const nextErrors = {
+      whichBestDescribesYou: '',
+      name: '',
+      email: '',
+      message: ''
+    };
+
+    const isPersonaValid = CONTACT_PERSONA_OPTIONS.some((option) => option.label === trimmedPersona);
+    if (!isPersonaValid) {
+      nextErrors.whichBestDescribesYou = 'Please select one option.';
+    }
+
+    if (!trimmedName) {
+      nextErrors.name = 'Please enter your name.';
+    }
+
+    if (!trimmedEmail) {
+      nextErrors.email = 'Please enter your email address.';
+    } else if (!EMAIL_PATTERN.test(trimmedEmail)) {
+      nextErrors.email = 'Please enter a valid email address (example: name@domain.com).';
+    }
+
+    if (!trimmedMessage) {
+      nextErrors.message = 'Please enter a message.';
+    }
+
+    if (Object.values(nextErrors).some(Boolean)) {
+      setFieldErrors(nextErrors);
+      setFormStatus('error');
+      setFeedback('Please correct the highlighted fields and try again.');
+
+      const focusableElement =
+        (nextErrors.whichBestDescribesYou && personaFirstOptionRef.current) ||
+        (nextErrors.name && nameFieldRef.current) ||
+        (nextErrors.email && emailFieldRef.current) ||
+        (nextErrors.message && messageFieldRef.current) ||
+        null;
+
+      const scrollTarget =
+        (nextErrors.whichBestDescribesYou && personaFieldsetRef.current) ||
+        focusableElement ||
+        formSectionRef.current;
+
+      if (scrollTarget) {
+        centerElementInViewport(scrollTarget);
+      }
+
+      if (focusableElement) {
+        focusableElement.focus();
+      }
+
+      return;
+    }
+
+    setFieldErrors(nextErrors);
+    setFormStatus('submitting');
+
     try {
       const formData = new FormData();
-      formData.append('name', formState.name.trim());
+      formData.append('whichBestDescribesYou', trimmedPersona);
+      formData.append('name', trimmedName);
       formData.append('email', trimmedEmail);
-      formData.append('message', formState.message.trim());
+      formData.append('message', trimmedMessage);
       const trimmedPhone = formState.phone.trim();
       if (trimmedPhone) {
         formData.append('phone', trimmedPhone);
@@ -152,10 +219,10 @@ const Contact = () => {
 
       setFormStatus('success');
       setFeedback('Thanks for reaching out! We will respond shortly.');
-      setFormState({ name: '', email: '', phone: '', message: '' });
+      setFormState({ whichBestDescribesYou: '', name: '', email: '', phone: '', message: '' });
       setHoneypot('');
-      setFieldErrors({ email: '' });
-      trackFormSubmission('contact_form');
+      setFieldErrors({ whichBestDescribesYou: '', name: '', email: '', message: '' });
+      trackFormSubmission('contact_form', { whichBestDescribesYou: trimmedPersona });
     } catch (error) {
       console.error('Contact form submission failed', error);
       setFormStatus('error');
@@ -312,6 +379,62 @@ const Contact = () => {
                         </label>
                       </div>
 
+                      <fieldset
+                        ref={personaFieldsetRef}
+                        aria-invalid={Boolean(fieldErrors.whichBestDescribesYou)}
+                        aria-describedby={fieldErrors.whichBestDescribesYou ? 'which-best-describes-you-error' : undefined}
+                        className="flex flex-col text-left"
+                      >
+                        <legend className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
+                          Which best describes you? <span className="text-red-600">*</span>
+                        </legend>
+                        <div role="radiogroup" className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          {CONTACT_PERSONA_OPTIONS.map((option, index) => {
+                            const optionId = `which-best-describes-you-${option.value}`;
+                            const isSelected = formState.whichBestDescribesYou === option.label;
+
+                            return (
+                              <div key={option.value} className="relative">
+                                <input
+                                  id={optionId}
+                                  name="whichBestDescribesYou"
+                                  type="radio"
+                                  value={option.label}
+                                  checked={isSelected}
+                                  onChange={handleChange}
+                                  required
+                                  ref={index === 0 ? personaFirstOptionRef : undefined}
+                                  className="peer sr-only"
+                                />
+                                <label
+                                  htmlFor={optionId}
+                                  className={`flex cursor-pointer items-center justify-between gap-3 rounded-sm border bg-white px-4 py-3 text-sm font-medium text-gray-900 transition-shadow peer-focus:outline-none peer-focus:ring-2 ${
+                                    fieldErrors.whichBestDescribesYou
+                                      ? 'border-red-500 peer-focus:ring-red-500'
+                                      : 'border-gray-200 hover:border-gold peer-focus:ring-gold'
+                                  } ${isSelected ? 'border-gold bg-gold/5 shadow-sm' : ''}`}
+                                >
+                                  <span className="min-w-0">{option.label}</span>
+                                  <span
+                                    aria-hidden="true"
+                                    className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
+                                      isSelected ? 'border-gold' : 'border-gray-300'
+                                    }`}
+                                  >
+                                    <span className={`h-2 w-2 rounded-full bg-gold ${isSelected ? 'opacity-100' : 'opacity-0'}`} />
+                                  </span>
+                                </label>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        {fieldErrors.whichBestDescribesYou && (
+                          <p id="which-best-describes-you-error" className="mt-2 text-sm text-red-600">
+                            {fieldErrors.whichBestDescribesYou}
+                          </p>
+                        )}
+                      </fieldset>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col text-left">
                           <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
@@ -327,8 +450,19 @@ const Contact = () => {
                             placeholder="Full name"
                             autoComplete="name"
                             ref={nameFieldRef}
-                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
+                            aria-invalid={Boolean(fieldErrors.name)}
+                            aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+                            className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow ${
+                              fieldErrors.name
+                                ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
+                                : 'border border-gray-200 focus:ring-gold focus:border-gold'
+                            }`}
                           />
+                          {fieldErrors.name && (
+                            <p id="name-error" className="mt-2 text-sm text-red-600">
+                              {fieldErrors.name}
+                            </p>
+                          )}
                         </div>
 
                         <div className="flex flex-col text-left">
@@ -344,6 +478,7 @@ const Contact = () => {
                             required
                             placeholder="you@example.com"
                             autoComplete="email"
+                            ref={emailFieldRef}
                             aria-invalid={Boolean(fieldErrors.email)}
                             aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                             className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow ${
@@ -385,10 +520,22 @@ const Contact = () => {
                           value={formState.message}
                           onChange={handleChange}
                           required
+                          ref={messageFieldRef}
+                          aria-invalid={Boolean(fieldErrors.message)}
+                          aria-describedby={fieldErrors.message ? 'message-error' : undefined}
                           rows={6}
                           placeholder="Tell us how we can help..."
-                          className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow resize-none"
+                          className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow resize-none ${
+                            fieldErrors.message
+                              ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
+                              : 'border border-gray-200 focus:ring-gold focus:border-gold'
+                          }`}
                         />
+                        {fieldErrors.message && (
+                          <p id="message-error" className="mt-2 text-sm text-red-600">
+                            {fieldErrors.message}
+                          </p>
+                        )}
                       </div>
 
                       <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 space-y-4 lg:space-y-0">
