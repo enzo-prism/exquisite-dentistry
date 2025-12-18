@@ -36,6 +36,14 @@ interface SiteSearchProps {
 const SEARCH_INDEX_URL = "/search-index.json";
 const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
 
+const isIOS = (): boolean => {
+  if (typeof navigator === "undefined") return false;
+  return (
+    /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+};
+
 const POPULAR_HREFS = [
   "/dental-implants/",
   "/veneers/",
@@ -200,6 +208,27 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
     return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
   });
   const lastActiveRef = useRef<HTMLElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const focusSearchInput = () => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    if (typeof window === "undefined") return;
+
+    // iOS Safari can scroll fixed-layer UIs off-screen when focusing programmatically.
+    // Mirror Vaul's mobile Safari workaround to keep the viewport stable.
+    if (isIOS()) {
+      input.style.transform = "translateY(-2000px)";
+      input.focus();
+      window.requestAnimationFrame(() => {
+        input.style.transform = "";
+      });
+      return;
+    }
+
+    input.focus();
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -345,7 +374,8 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
         >
           <Search className="h-4 w-4 shrink-0 text-white/60" aria-hidden="true" />
           <CommandPrimitive.Input
-            autoFocus
+            ref={inputRef}
+            autoFocus={isDesktop}
             placeholder="Search services, locations, pages, or blog posts…"
             value={query}
             onValueChange={setQuery}
@@ -366,7 +396,11 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
         </div>
       </div>
 
-      <CommandList className={cn(isDesktop ? "max-h-[min(420px,60dvh)]" : "max-h-[min(520px,70dvh)]")}>
+      <CommandList
+        className={cn(
+          isDesktop ? "max-h-[min(420px,60dvh)]" : "flex-1 min-h-0 max-h-none"
+        )}
+      >
         {isLoadingIndex ? (
           <div className="px-4 py-8 text-center text-sm text-white/70">Loading search…</div>
         ) : null}
@@ -426,7 +460,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
         </CommandGroup>
       </CommandList>
 
-      <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3 text-xs text-white/60">
+      <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] text-xs text-white/60">
         <span className="hidden sm:inline">Use ↑ ↓ to navigate · Enter to open · Esc to close</span>
         <span className="sm:hidden">Tap a result to open</span>
       </div>
@@ -444,8 +478,16 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
   }
 
   return (
-    <Drawer open={open} onOpenChange={handleOpenChange} shouldScaleBackground={false}>
-      <DrawerContent className="max-h-[85dvh] overflow-hidden border-gold/30 bg-black p-0 text-white">
+    <Drawer
+      open={open}
+      onOpenChange={handleOpenChange}
+      shouldScaleBackground={false}
+      onAnimationEnd={(isNowOpen) => {
+        if (!isNowOpen) return;
+        focusSearchInput();
+      }}
+    >
+      <DrawerContent className="mt-0 h-[85dvh] overflow-hidden border-gold/30 bg-black p-0 text-white">
         {commandContent}
       </DrawerContent>
     </Drawer>
