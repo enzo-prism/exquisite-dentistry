@@ -239,6 +239,7 @@ const Navbar = () => {
   const moreDropdown = [
     { to: '/', label: 'Home' },
     { to: '/services/', label: 'Services' },
+    { to: '/locations/', label: 'Locations' },
     { to: '/about/', label: 'About Dr. Aguil' },
     { to: '/tour/', label: 'Virtual Tour' },
     { to: '/contact/', label: 'Contact' },

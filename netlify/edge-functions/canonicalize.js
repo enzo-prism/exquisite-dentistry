@@ -4,8 +4,27 @@ const CANONICAL_HOST_ALIASES = new Set(["www.exquisitedentistryla.com", "m.exqui
 
 const PROBE_HEADER = "x-canonicalize-probe";
 
+let cachedHomeEtagPromise;
+
 const hasExtension = (pathname) => /\.[a-z0-9]+$/i.test(pathname);
 const optimizedVariantPattern = /^\/optimized\/([^/]+?)-(sm|md|lg|xl|original)\.(webp|avif)$/i;
+
+const fetchWithProbe = (url, options = {}) => {
+  const headers = new Headers(options.headers);
+  headers.set(PROBE_HEADER, "1");
+  return fetch(new Request(url, { ...options, headers }));
+};
+
+const getHomeEtag = async (request) => {
+  if (!cachedHomeEtagPromise) {
+    const url = new URL(request.url);
+    url.pathname = "/index.html";
+    cachedHomeEtagPromise = fetchWithProbe(url.toString(), { method: "HEAD" })
+      .then((res) => res.headers.get("etag"))
+      .catch(() => null);
+  }
+  return cachedHomeEtagPromise;
+};
 
 export default async (request, context) => {
   if (request.headers.get(PROBE_HEADER) === "1") {
@@ -101,5 +120,46 @@ export default async (request, context) => {
     return response;
   }
 
-  return context.next();
+  const response = await context.next();
+
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return response;
+  }
+
+  if (response.status >= 300 && response.status < 400) {
+    return response;
+  }
+
+  if (hasExtension(canonicalPathname)) {
+    return response;
+  }
+
+  if (canonicalPathname === "/" || canonicalPathname.endsWith("/")) {
+    const responseEtag = response.headers.get("etag");
+    const homeEtag = await getHomeEtag(request);
+
+    if (responseEtag && homeEtag && responseEtag === homeEtag) {
+      if (canonicalPathname === "/") {
+        return response;
+      }
+
+      const indexUrl = new URL(url.toString());
+      indexUrl.pathname = `${canonicalPathname}index.html`;
+
+      const indexResponse = await fetchWithProbe(indexUrl.toString(), { method: request.method });
+
+      if (indexResponse.status === 404) {
+        return new Response("Not Found", { status: 404 });
+      }
+
+      const indexEtag = indexResponse.headers.get("etag");
+      if (indexEtag && homeEtag && indexEtag === homeEtag) {
+        return new Response("Not Found", { status: 404 });
+      }
+
+      return indexResponse;
+    }
+  }
+
+  return response;
 };

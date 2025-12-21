@@ -63,6 +63,20 @@ const extractH1 = (html) => {
   return raw ? stripHtml(raw) : null;
 };
 
+const extractSitemapLocs = async () => {
+  const sitemapPath = path.join(DIST_DIR, 'sitemap.xml');
+  if (!existsSync(sitemapPath)) return [];
+
+  const xml = await readFile(sitemapPath, 'utf8');
+  const locs = [];
+  const regex = /<loc>([^<]+)<\/loc>/gi;
+  let match;
+  while ((match = regex.exec(xml))) {
+    if (match[1]) locs.push(match[1].trim());
+  }
+  return locs;
+};
+
 const hasNoindex = (html) =>
   /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*\bnoindex\b[^"']*["'][^>]*>/i.test(html);
 
@@ -207,6 +221,28 @@ const validateDistHtml = async () => {
         errors.push(`❌ ${page.route}: missing BreadcrumbList schema`);
       }
     }
+  }
+
+  const sitemapLocs = await extractSitemapLocs();
+  if (!sitemapLocs.length) {
+    warnings.push('⚠️ sitemap.xml missing or empty; skipping blog prerender checks.');
+  } else {
+    const blogLocs = sitemapLocs
+      .map((loc) => {
+        try {
+          return new URL(loc, CANONICAL_BASE).pathname;
+        } catch {
+          return null;
+        }
+      })
+      .filter((pathname) => pathname && pathname.startsWith('/blog/') && pathname !== '/blog/');
+
+    blogLocs.forEach((pathname) => {
+      const filePath = distHtmlPathForRoute(pathname);
+      if (!existsSync(filePath)) {
+        errors.push(`❌ Missing prerendered blog HTML: ${filePath} (route ${pathname})`);
+      }
+    });
   }
 
   assertUnique(
@@ -395,4 +431,3 @@ const main = async () => {
 };
 
 await main();
-

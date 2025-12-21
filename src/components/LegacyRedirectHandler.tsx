@@ -17,7 +17,7 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/teeth-whitening.html', to: '/teeth-whitening', exact: true },
   { from: '/dental-implants.html', to: '/dental-implants', exact: true },
   { from: '/cosmetic-dentistry.html', to: '/cosmetic-dentistry', exact: true },
-  { from: '/emergency-dentist.html', to: '/emergency-dentist', exact: true },
+  { from: '/emergency-dentist.html', to: '/emergency-dentist/', exact: true },
   { from: '/veneers-los-angeles.html', to: '/veneers', exact: true },
   { from: '/z-test_value.html', to: '/', exact: true },
   

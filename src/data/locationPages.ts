@@ -265,7 +265,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     [
       { label: "Dental Implants", href: "/dental-implants" },
       { label: "Dental Implants Near Santa Monica", href: "/santa-monica-dental-implants" },
-      { label: "Emergency Dentistry", href: "/emergency-dentist" },
+      { label: "Emergency Dentistry", href: "/emergency-dentist/" },
       { label: "Professional Whitening", href: "/teeth-whitening" }
     ]
   ),

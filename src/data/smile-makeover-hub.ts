@@ -158,10 +158,6 @@ export const SMILE_MAKEOVER_REFERENCES = [
     href: "https://www.ada.org/resources/ada-library/oral-health-topics/whitening"
   },
   {
-    label: "NIH (NIDCR): Dental Implants",
-    href: "https://www.nidcr.nih.gov/health-info/dental-implants"
-  },
-  {
     label: "NHS: Teeth whitening",
     href: "https://www.nhs.uk/tests-and-treatments/teeth-whitening/"
   }

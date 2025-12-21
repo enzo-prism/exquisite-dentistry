@@ -109,14 +109,14 @@ const EmergencyDentist = () => {
         title={meta.title}
         description={meta.description}
         keywords={meta.keywords}
-        path="/emergency-dentist"
+        path="/emergency-dentist/"
         ogImage={meta.ogImage}
       />
 
       <WebPageStructuredData
         title="Emergency Dentist in Los Angeles"
         description="Contact Exquisite Dentistry for emergency dental care in Los Angeles. Same-day relief for toothaches, broken teeth, infections, and trauma."
-        url="https://exquisitedentistryla.com/emergency-dentist"
+        url="https://exquisitedentistryla.com/emergency-dentist/"
         breadcrumbs={[
           { name: 'Services', url: 'https://exquisitedentistryla.com/services/' },
           { name: 'Emergency Dentist', url: 'https://exquisitedentistryla.com/emergency-dentist/' }
@@ -126,7 +126,7 @@ const EmergencyDentist = () => {
       <ServiceStructuredData
         serviceName="Emergency Dental Care"
         description="Rapid-response dental services including pain relief, fracture repair, infection control, and trauma management."
-        url="/emergency-dentist"
+        url="/emergency-dentist/"
       />
 
       <FAQStructuredData faqs={faqs} about="Emergency Dentist Los Angeles" />
@@ -170,9 +170,9 @@ const EmergencyDentist = () => {
         <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Urgent Dental Care</span>
-              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
+              <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
                 Rapid Relief for Los Angeles Smiles
-              </h1>
+              </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Dental emergencies can strike at the worst times—a board presentation, a flight out of LAX, or a weekend getaway in Malibu.
                 Exquisite Dentistry provides same-day treatment, virtual triage, and extended availability to safeguard your smile and comfort.

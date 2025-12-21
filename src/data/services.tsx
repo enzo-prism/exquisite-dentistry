@@ -138,7 +138,7 @@ export const serviceCategories: ServiceCategory[] = [
         name: "Emergency Dentistry",
         details: "Same-day care for toothaches, fractures, and trauma with after-hours support",
         hasDetailPage: true,
-        slug: "/emergency-dentist",
+        slug: "/emergency-dentist/",
         ctaLabel: "Emergency Dentist Info"
       }
     ]

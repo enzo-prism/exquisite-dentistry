@@ -111,9 +111,5 @@ export const DENTAL_IMPLANTS_REFERENCES = [
   {
     label: 'American Dental Association (ADA): Dental Implants',
     href: 'https://www.ada.org/resources/research/science-and-research-institute/oral-health-topics/dental-implants'
-  },
-  {
-    label: 'NIH (NIDCR): Dental Implants',
-    href: 'https://www.nidcr.nih.gov/health-info/dental-implants'
   }
 ] as const;

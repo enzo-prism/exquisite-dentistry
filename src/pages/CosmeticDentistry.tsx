@@ -135,9 +135,9 @@ const CosmeticDentistry = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Bespoke Smile Studio</span>
-              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
+              <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
                 Where Aesthetics, Wellness, and Storytelling Unite
-              </h1>
+              </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Cosmetic dentistry at Exquisite Dentistry is a collaborative art form.
                 We listen to what your smile represents—confidence on camera, leadership in the boardroom, joy at family celebrations—and design a plan that amplifies those moments.

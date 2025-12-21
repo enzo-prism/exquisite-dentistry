@@ -115,9 +115,9 @@ const TeethWhitening = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.35em] text-secondary font-semibold">Los Angeles Smile Brightening</span>
-              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
+              <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
                 Radiance That Keeps Pace with Your Calendar
-              </h1>
+              </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Our whitening studio combines clinical precision with concierge-level comfort.
                 Whether you are preparing for red carpet season, a Malibu wedding, or a branding photoshoot,

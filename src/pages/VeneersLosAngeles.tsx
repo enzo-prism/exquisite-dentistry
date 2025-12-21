@@ -151,9 +151,9 @@ const VeneersLosAngeles = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Los Angeles Cosmetic Dentistry</span>
-              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
+              <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
                 Veneers Crafted for Spotlight & Everyday Confidence
-              </h1>
+              </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Exquisite Dentistry veneers capture California sunshine, red-carpet glamour, and authentic personality.
                 We begin with an immersive smile discovery session—analyzing facial proportions, phonetics, and lifestyle needs—before handcrafting

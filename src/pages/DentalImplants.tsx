@@ -436,7 +436,7 @@ const DentalImplants = () => {
                     },
                     {
                       title: "Emergency Dentist",
-                      href: "/emergency-dentist",
+                      href: "/emergency-dentist/",
                       description: "Immediate care if you experience trauma affecting existing implants or teeth.",
                       popularity: 32
                     },

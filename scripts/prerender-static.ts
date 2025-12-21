@@ -87,6 +87,7 @@ export const defaultNavLinks: StaticLink[] = [
   { label: "Smile Gallery", href: "/smile-gallery" },
   { label: "Schedule Consultation", href: "/schedule-consultation" },
   { label: "Services", href: "/services" },
+  { label: "Locations", href: "/locations/" },
   { label: "About Dr. Aguil", href: "/about" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },

@@ -161,9 +161,9 @@ const Invisalign = () => {
             <div className="max-w-5xl mx-auto">
               <div className="mb-10 text-center">
                 <span className="uppercase tracking-widest text-secondary font-semibold">Los Angeles Invisalign Experts</span>
-                <h1 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">
+                <h2 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">
                   Confident Smiles, Zero Compromise
-                </h1>
+                </h2>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Clear aligner therapy at Exquisite Dentistry pairs world-class Invisalign technology with bespoke concierge care.
