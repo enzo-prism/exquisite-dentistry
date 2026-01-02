@@ -50,49 +50,49 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Front Teeth Veneers (2–4 Teeth)',
-            href: '/veneers/front-teeth-veneers-los-angeles',
+            href: '/veneers/front-teeth-veneers-los-angeles/',
             description: 'Cost, design, and process for the smile zone',
             category: 'service',
             priority: 1
           },
           {
             title: 'Porcelain Veneers Service',
-            href: '/veneers',
+            href: '/veneers/',
             description: 'Complete veneer treatments and smile transformations',
             category: 'service',
             priority: 2
           },
           {
             title: 'Smile Makeover (Los Angeles)',
-            href: '/smile-makeover-los-angeles',
+            href: '/smile-makeover-los-angeles/',
             description: 'How we combine veneers, whitening, and Invisalign in one plan',
             category: 'service',
             priority: 3
           },
           {
             title: 'Single Tooth Veneers Guide',
-            href: '/blog/choosing-veneers-for-just-one-tooth',
+            href: '/blog/choosing-veneers-for-just-one-tooth/',
             description: 'Perfect solutions for individual tooth improvements',
             category: 'blog',
             priority: 5
           },
           {
             title: '4 Front Teeth Veneers Cost',
-            href: '/blog/4-front-teeth-veneers-cost-los-angeles',
+            href: '/blog/4-front-teeth-veneers-cost-los-angeles/',
             description: 'Pricing guide for front teeth veneers in LA',
             category: 'blog',
             priority: 6
           },
           {
             title: 'Are Veneers Covered by Insurance?',
-            href: '/blog/are-veneers-covered-by-insurance',
+            href: '/blog/are-veneers-covered-by-insurance/',
             description: 'Understanding insurance and veneer financing',
             category: 'blog',
             priority: 7
           },
           {
             title: 'Wedding Smile Makeover',
-            href: '/wedding',
+            href: '/wedding/',
             description: 'Perfect veneers for your special day',
             category: 'special',
             priority: 9,
@@ -100,7 +100,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Smile Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'See real veneer transformations',
             category: 'gallery',
             priority: 8
@@ -108,59 +108,66 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           // Underlinked veneer blog posts
           {
             title: 'Veneers vs Bonding Comparison',
-            href: '/blog/dental-veneers-vs-bonding',
+            href: '/blog/dental-veneers-vs-bonding-a-comprehensive-comparison-for-your-smile-makeover/',
             description: 'Compare veneers and bonding for your smile goals',
             category: 'blog',
             priority: 9
           },
           {
-            title: 'Hollywood Veneers Guide',
-            href: '/blog/how-hollywood-veneers-can-transform-your-smile',
-            description: 'Discover how Hollywood-style veneers create stunning smiles',
+            title: 'Veneers vs Crowns',
+            href: '/blog/dental-veneers-vs-crowns/',
+            description: 'Learn when veneers or crowns make more sense',
             category: 'blog',
             priority: 10
           },
           {
-            title: 'Veneer Materials Explained',
-            href: '/blog/the-material-options-for-dental-veneers',
-            description: 'Porcelain vs composite: which material is right for you',
+            title: 'Hollywood Veneers Guide',
+            href: '/blog/how-hollywood-veneers-can-transform-your-smile/',
+            description: 'Discover how Hollywood-style veneers create stunning smiles',
             category: 'blog',
             priority: 11
           },
           {
-            title: 'Veneer Maintenance Tips',
-            href: '/blog/restoration-and-maintenance-for-dental-veneers',
-            description: 'Keep your veneers looking perfect for years',
+            title: 'Veneer Materials Explained',
+            href: '/blog/the-material-options-for-dental-veneers/',
+            description: 'Porcelain vs composite: which material is right for you',
             category: 'blog',
             priority: 12
           },
           {
-            title: 'Veneer Styles & Shapes',
-            href: '/blog/the-shapes-and-styles-of-dental-veneers',
-            description: 'Find the perfect veneer shape for your face',
+            title: 'Veneer Maintenance Tips',
+            href: '/blog/restoration-and-maintenance-for-dental-veneers/',
+            description: 'Keep your veneers looking perfect for years',
             category: 'blog',
             priority: 13
           },
           {
-            title: 'Do Veneers Require Surgery?',
-            href: '/blog/do-you-need-surgery-for-dental-veneers',
-            description: 'Understanding the veneer procedure and what to expect',
+            title: 'Veneer Styles & Shapes',
+            href: '/blog/the-shapes-and-styles-of-dental-veneers/',
+            description: 'Find the perfect veneer shape for your face',
             category: 'blog',
             priority: 14
           },
           {
-            title: 'Veneer Replacement Guide',
-            href: '/blog/the-process-of-veneer-replacemen',
-            description: 'When and how to replace your veneers',
+            title: 'Do Veneers Require Surgery?',
+            href: '/blog/do-you-need-surgery-for-dental-veneers-answered/',
+            description: 'Understanding the veneer procedure and what to expect',
             category: 'blog',
             priority: 15
           },
           {
-            title: 'Long-Term Cosmetic Solutions',
-            href: '/blog/long-term-cosmetic-dentistry-solutions',
-            description: 'Lasting options for your smile transformation',
+            title: 'Veneer Replacement Guide',
+            href: '/blog/the-process-of-veneer-replacemen/',
+            description: 'When and how to replace your veneers',
             category: 'blog',
             priority: 16
+          },
+          {
+            title: 'Long-Term Cosmetic Solutions',
+            href: '/blog/long-term-cosmetic-dentistry-solutions/',
+            description: 'Lasting options for your smile transformation',
+            category: 'blog',
+            priority: 17
           }
         ];
       
@@ -169,56 +176,56 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Invisalign Treatment',
-            href: '/invisalign',
+            href: '/invisalign/',
             description: 'Clear aligners for discreet teeth straightening',
             category: 'service',
             priority: 1
           },
           {
             title: 'Invisalign Beverly Hills',
-            href: '/invisalign-beverly-hills',
+            href: '/invisalign-beverly-hills/',
             description: 'Concierge clear aligners for Beverly Hills schedules',
             category: 'service',
             priority: 2
           },
           {
             title: 'iTero 3D Scanner',
-            href: '/itero-scanner',
+            href: '/itero-scanner/',
             description: 'See how digital impressions accelerate Invisalign planning',
             category: 'service',
             priority: 3
           },
           {
             title: 'Does Invisalign Hurt?',
-            href: '/blog/invisalign-hurt-mouth',
+            href: '/blog/invisalign-hurt-mouth/',
             description: 'What to expect during treatment',
             category: 'blog',
             priority: 4
           },
           {
             title: 'Best Teeth Straightening for Adults',
-            href: '/blog/the-best-teeth-straightening-for-adults',
+            href: '/blog/the-best-teeth-straightening-for-adults/',
             description: 'Options for adult orthodontic treatment',
             category: 'blog',
             priority: 5
           },
           {
             title: 'How Long to Fix Crooked Teeth?',
-            href: '/blog/long-will-take-fix-crooked-teeth',
+            href: '/blog/long-will-take-fix-crooked-teeth/',
             description: 'Treatment timeline expectations',
             category: 'blog',
             priority: 6
           },
           {
             title: 'Patient Testimonials',
-            href: '/testimonials',
+            href: '/testimonials/',
             description: 'Stories from Invisalign patients',
             category: 'experience',
             priority: 7
           },
           {
             title: 'Graduation Smile Prep',
-            href: '/graduation',
+            href: '/graduation/',
             description: 'Straighten your smile before graduation',
             category: 'special',
             priority: 9,
@@ -230,49 +237,49 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Teeth Whitening Service',
-            href: '/teeth-whitening',
+            href: '/teeth-whitening/',
             description: 'Professional teeth whitening programs',
             category: 'service',
             priority: 1
           },
           {
             title: 'Zoom Whitening',
-            href: '/zoom-whitening',
+            href: '/zoom-whitening/',
             description: 'In-office treatment for instant brightness',
             category: 'service',
             priority: 2
           },
           {
             title: 'Teeth Whitening Near Beverly Hills',
-            href: '/teeth-whitening-beverly-hills',
+            href: '/teeth-whitening-beverly-hills/',
             description: 'Whitening plans tailored to Beverly Hills schedules',
             category: 'service',
             priority: 3
           },
           {
             title: 'Culver City Teeth Whitening',
-            href: '/culver-city-teeth-whitening',
+            href: '/culver-city-teeth-whitening/',
             description: 'Options for Culver City patients: in-office whitening, trays, and sensitivity planning',
             category: 'service',
             priority: 4
           },
           {
             title: 'Smile Makeover (Los Angeles)',
-            href: '/smile-makeover-los-angeles',
+            href: '/smile-makeover-los-angeles/',
             description: 'Combine whitening with veneers and alignment for a full upgrade',
             category: 'service',
             priority: 5
           },
           {
             title: 'Veneers vs Whitening',
-            href: '/veneers',
+            href: '/veneers/',
             description: 'Compare whitening with veneer options',
             category: 'service',
             priority: 6
           },
           {
             title: 'Wedding Whitening',
-            href: '/wedding',
+            href: '/wedding/',
             description: 'Brighten your smile for your wedding day',
             category: 'special',
             priority: 9,
@@ -280,7 +287,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Client Experience',
-            href: '/client-experience',
+            href: '/client-experience/',
             description: 'Comfortable whitening experience',
             category: 'experience',
             priority: 7
@@ -291,63 +298,63 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Dental Implants (Los Angeles)',
-            href: '/dental-implants',
+            href: '/dental-implants/',
             description: 'Guided planning and custom implant restorations',
             category: 'service',
             priority: 1
           },
           {
             title: 'Dental Implants Near Santa Monica',
-            href: '/santa-monica-dental-implants',
+            href: '/santa-monica-dental-implants/',
             description: 'Implant options tailored to Santa Monica schedules',
             category: 'service',
             priority: 2
           },
           {
             title: 'Dental Bridge vs Implants',
-            href: '/dental-bridge',
+            href: '/dental-bridge/',
             description: 'Compare tooth replacement options',
             category: 'service',
             priority: 3
           },
           {
             title: 'Implants Benefits Guide',
-            href: '/blog/reasons-to-get-dental-implants',
+            href: '/blog/reasons-to-get-dental-implants/',
             description: 'Why implants are a long-lasting solution',
             category: 'blog',
             priority: 4
           },
           {
             title: 'Dental Implant Cost in Los Angeles',
-            href: '/blog/dental-implant-cost-los-angeles',
+            href: '/blog/dental-implant-cost-los-angeles/',
             description: 'What affects pricing and how to compare quotes',
             category: 'blog',
             priority: 5
           },
           {
             title: 'Implants vs Bridge: How to Decide',
-            href: '/blog/dental-implants-vs-bridge-los-angeles',
+            href: '/blog/dental-implants-vs-bridge-los-angeles/',
             description: 'Stability, timeline, and maintenance differences',
             category: 'blog',
             priority: 6
           },
           {
             title: 'Restoration Stories',
-            href: '/transformation-stories',
+            href: '/transformation-stories/',
             description: 'Watch real patient stories and outcomes',
             category: 'experience',
             priority: 7
           },
           {
             title: 'Smile Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'Before & after dental transformations',
             category: 'gallery',
             priority: 8
           },
           {
             title: 'Book an Implant Consultation',
-            href: '/contact',
+            href: '/contact/',
             description: 'Schedule your implant planning visit',
             category: 'consultation',
             priority: 9
@@ -358,42 +365,42 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Wedding Smile Makeover',
-            href: '/wedding',
+            href: '/wedding/',
             description: 'Complete smile transformation for your special day',
             category: 'service',
             priority: 1
           },
           {
             title: 'Porcelain Veneers',
-            href: '/veneers',
+            href: '/veneers/',
             description: 'Perfect teeth for your wedding photos',
             category: 'service',
             priority: 2
           },
           {
             title: 'Teeth Whitening',
-            href: '/zoom-whitening',
+            href: '/zoom-whitening/',
             description: 'Brighten your smile for the big day',
             category: 'service',
             priority: 3
           },
           {
             title: 'Before & After Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'Wedding smile transformations',
             category: 'gallery',
             priority: 4
           },
           {
             title: 'Wedding Smile Tips',
-            href: '/blog/how-to-maintain-the-perfect-wedding-smile',
+            href: '/blog/how-to-maintain-the-perfect-wedding-smile/',
             description: 'Expert tips for your perfect wedding day smile',
             category: 'blog',
             priority: 5
           },
           {
             title: 'Valentine\'s Dental Tips',
-            href: '/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day',
+            href: '/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/',
             description: 'Keep your smile healthy for special occasions',
             category: 'blog',
             priority: 6
@@ -404,28 +411,28 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Graduation Smile Package',
-            href: '/graduation',
+            href: '/graduation/',
             description: 'Look your best for graduation photos',
             category: 'service',
             priority: 1
           },
           {
             title: 'Quick Smile Fixes',
-            href: '/veneers',
+            href: '/veneers/',
             description: 'Fast solutions for immediate results',
             category: 'service',
             priority: 2
           },
           {
             title: 'Invisalign for Students',
-            href: '/invisalign',
+            href: '/invisalign/',
             description: 'Discreet treatment during school',
             category: 'service',
             priority: 3
           },
           {
             title: 'Student Success Stories',
-            href: '/testimonials',
+            href: '/testimonials/',
             description: 'Graduation transformations',
             category: 'experience',
             priority: 4
@@ -436,28 +443,28 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'What to Expect',
-            href: '/client-experience',
+            href: '/client-experience/',
             description: 'Your first visit experience',
             category: 'experience',
             priority: 1
           },
           {
             title: 'Our Services',
-            href: '/services',
+            href: '/services/',
             description: 'Complete range of treatments',
             category: 'service',
             priority: 2
           },
           {
             title: 'Patient Stories',
-            href: '/testimonials',
+            href: '/testimonials/',
             description: 'Hear from our satisfied patients',
             category: 'experience',
             priority: 3
           },
           {
             title: 'Smile Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'See actual patient results',
             category: 'gallery',
             priority: 4
@@ -468,7 +475,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Front Teeth Veneers Pricing',
-            href: '/veneers/front-teeth-veneers-los-angeles',
+            href: '/veneers/front-teeth-veneers-los-angeles/',
             description: 'See 2 vs 4 veneer investments and planning',
             category: 'service',
             priority: 1
@@ -482,14 +489,14 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Netflix During Procedures',
-            href: '/blog/netflix-streaming-during-dental-procedures',
+            href: '/blog/netflix-streaming-during-dental-procedures/',
             description: 'Comfortable, entertainment-focused dental experience',
             category: 'blog',
             priority: 3
           },
           {
             title: 'Value of Investment',
-            href: '/about',
+            href: '/about/',
             description: 'Why quality dentistry matters',
             category: 'experience',
             priority: 4
@@ -507,49 +514,49 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Smile Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'Before & after transformations from real patients',
             category: 'gallery',
             priority: 1
           },
           {
             title: 'Patient Testimonials',
-            href: '/testimonials',
+            href: '/testimonials/',
             description: 'Stories from satisfied patients',
             category: 'experience',
             priority: 2
           },
           {
             title: 'Transformation Stories',
-            href: '/transformation-stories',
+            href: '/transformation-stories/',
             description: 'Complete patient journey stories',
             category: 'experience',
             priority: 3
           },
           {
             title: 'Overcome Dental Fear',
-            href: '/blog/can-help-get-fear-dentist',
+            href: '/blog/can-help-get-fear-dentist/',
             description: 'Tips for a comfortable dental experience',
             category: 'blog',
             priority: 4
           },
           {
             title: 'Finding a Good Dentist',
-            href: '/blog/finding-good-dentist-area',
+            href: '/blog/finding-good-dentist-area/',
             description: 'What to look for in a dental practice',
             category: 'blog',
             priority: 5
           },
           {
             title: 'High-End Dentistry Guide',
-            href: '/blog/high-end-dentistry',
+            href: '/blog/high-end-dentistry/',
             description: 'What sets premium dental care apart',
             category: 'blog',
             priority: 6
           },
           {
             title: 'Wedding Smile Prep',
-            href: '/wedding',
+            href: '/wedding/',
             description: 'Perfect smile for your special day',
             category: 'special',
             priority: 7,
@@ -557,7 +564,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           },
           {
             title: 'Graduation Smile',
-            href: '/graduation',
+            href: '/graduation/',
             description: 'Look your best for graduation photos',
             category: 'special',
             priority: 8,
@@ -566,14 +573,14 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           // Underlinked oral health/experience posts
           {
             title: 'Oral Wellness As You Age',
-            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older',
+            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/',
             description: 'Protect your smile through every stage of life',
             category: 'blog',
             priority: 9
           },
           {
             title: 'Daily Flossing Tips',
-            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine',
+            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine/',
             description: 'Build better oral health habits',
             category: 'blog',
             priority: 10
@@ -584,56 +591,56 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Restorative Dentistry',
-            href: '/services#restorative',
+            href: '/services/#restorative',
             description: 'Solutions for damaged or missing teeth',
             category: 'service',
             priority: 1
           },
           {
             title: 'Smoking & Oral Cancer Risk',
-            href: '/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer',
+            href: '/blog/female-smokers-high-risk-oral-cancer-dangers/',
             description: 'Understanding the connection between smoking and oral health',
             category: 'blog',
             priority: 2
           },
           {
             title: 'How Alcohol Affects Teeth',
-            href: '/blog/how-alcohol-affects-your-teeth',
+            href: '/blog/how-alcohol-affects-your-teeth/',
             description: 'The impact of alcohol on your dental health',
             category: 'blog',
             priority: 3
           },
           {
             title: 'Cannabis & Gum Disease',
-            href: '/blog/marijuana-use-increases-risk-gum-disease',
+            href: '/blog/marijuana-use-increases-risk-gum-disease/',
             description: 'Marijuana\'s effect on periodontal health',
             category: 'blog',
             priority: 4
           },
           {
             title: 'Can Teeth Repair Naturally?',
-            href: '/blog/can-damaged-teeth-repair-themselves-naturally',
+            href: '/blog/can-damaged-teeth-repair-themselves-naturally/',
             description: 'The truth about natural tooth repair',
             category: 'blog',
             priority: 5
           },
           {
             title: 'Cracked Tooth Signs',
-            href: '/blog/do-you-have-a-cracked-tooth',
+            href: '/blog/do-you-have-a-cracked-tooth/',
             description: 'Recognize the symptoms of a cracked tooth',
             category: 'blog',
             priority: 6
           },
           {
             title: 'Oral Health & Aging',
-            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older',
+            href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/',
             description: 'Protect your smile at every age',
             category: 'blog',
             priority: 7
           },
           {
             title: 'Daily Flossing Guide',
-            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine',
+            href: '/blog/recommendations-to-work-flossing-into-your-daily-routine/',
             description: 'Build effective oral hygiene habits',
             category: 'blog',
             priority: 8
@@ -651,42 +658,42 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
         return [
           {
             title: 'Our Services',
-            href: '/services',
+            href: '/services/',
             description: 'Complete cosmetic dentistry treatments',
             category: 'service',
             priority: 1
           },
           {
             title: 'About Dr. Aguil',
-            href: '/about',
+            href: '/about/',
             description: 'Meet your expert cosmetic dentist',
             category: 'experience',
             priority: 2
           },
           {
             title: 'Patient Gallery',
-            href: '/smile-gallery',
+            href: '/smile-gallery/',
             description: 'Real transformation results',
             category: 'gallery',
             priority: 3
           },
           {
             title: 'Oral Wellness As You Age',
-            href: '/blog/maintaining-oral-wellness-as-you-age',
+            href: '/blog/maintaining-oral-wellness-as-you-age/',
             description: 'Tips for lifelong dental health',
             category: 'blog',
             priority: 4
           },
           {
             title: 'How Oral Health Affects Overall Health',
-            href: '/blog/how-oral-health-problems-can-affect-your-overall-health',
+            href: '/blog/how-oral-health-problems-can-affect-your-overall-health/',
             description: 'The connection between dental and general health',
             category: 'blog',
             priority: 5
           },
           {
             title: 'Finding the Best Cosmetic Dentist',
-            href: '/blog/finding-the-best-cosmetic-dentist-in-los-angeles',
+            href: '/blog/finding-the-best-cosmetic-dentist-in-los-angeles/',
             description: 'Guide to choosing a cosmetic dentist in LA',
             category: 'blog',
             priority: 6
@@ -701,14 +708,14 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           // Underlinked local/professional posts
           {
             title: 'Adult Cosmetic Dentistry',
-            href: '/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age',
+            href: '/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/',
             description: 'Smile transformations at any age',
             category: 'blog',
             priority: 8
           },
           {
             title: 'Visiting LA? Need a Dentist?',
-            href: '/blog/need-dentist-visiting-los-angeles',
+            href: '/blog/need-dentist-visiting-los-angeles/',
             description: 'Quality dental care for LA visitors',
             category: 'blog',
             priority: 9

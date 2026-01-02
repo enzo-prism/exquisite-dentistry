@@ -1,12 +1,12 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Star, Heart, Check } from 'lucide-react';
+import { Calendar, Star, Heart, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import ImageComponent from '@/components/Image';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
@@ -337,7 +337,11 @@ const Wedding = () => {
                   What if I need emergency dental work before my wedding?
                 </h3>
                 <p className="text-gray-600">
-                  Dr. Aguil offers priority scheduling for wedding emergencies. We understand the stress of last-minute dental issues and provide same-day solutions to ensure your smile is perfect for your special day.
+                  Dr. Aguil offers priority scheduling for wedding emergencies. We understand the stress of last-minute dental issues and provide same-day solutions through our{' '}
+                  <Link to="/emergency-dentist/" className="text-gold underline-offset-4 hover:underline">
+                    emergency dentist
+                  </Link>{' '}
+                  team so your smile is ready for your special day.
                 </p>
               </div>
               
@@ -359,6 +363,74 @@ const Wedding = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+                Build Your Wedding Smile Plan
+              </h2>
+              <p className="text-lg text-black-light">
+                Align your timeline with the right treatments so every detail feels intentional on the big day.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  title: 'Porcelain Veneers',
+                  description: 'Refine shape, symmetry, and color for photo-ready smiles.',
+                  href: '/veneers/'
+                },
+                {
+                  title: 'Teeth Whitening',
+                  description: 'Brighten enamel in time for engagement shoots and ceremonies.',
+                  href: '/teeth-whitening/'
+                },
+                {
+                  title: 'Invisalign',
+                  description: 'Discreet alignment before veneers or whitening.',
+                  href: '/invisalign/'
+                },
+                {
+                  title: 'Dental Implants',
+                  description: 'Replace missing teeth with stable, natural-looking restorations.',
+                  href: '/dental-implants/'
+                },
+                {
+                  title: 'Front Teeth Veneers',
+                  description: 'Target 2-4 teeth for fast cosmetic updates.',
+                  href: '/veneers/front-teeth-veneers-los-angeles/'
+                },
+                {
+                  title: 'Emergency Dentist',
+                  description: 'Same-day relief for chipped teeth or sudden pain.',
+                  href: '/emergency-dentist/'
+                }
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  to={item.href}
+                  className="group rounded-2xl border border-border bg-white p-6 shadow-sm transition hover:border-gold/60 hover:shadow-md"
+                >
+                  <h3 className="text-lg font-semibold text-black group-hover:text-gold transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-black-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            <InternalLinkingWidget
+              context="wedding"
+              variant="expanded"
+              currentPage="/wedding/"
+              className="mt-12"
+            />
           </div>
         </section>
 

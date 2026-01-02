@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
-import { getPublishedPosts } from "../src/data/blogPosts";
+import { getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata } from "../src/constants/metadata";
 import {
@@ -94,6 +94,47 @@ export const defaultNavLinks: StaticLink[] = [
   { label: "Blog", href: "/blog" },
 ];
 
+const CORE_SERVICES_LINKS: StaticLink[] = [
+  { label: "Emergency Dentist", href: "/emergency-dentist" },
+  { label: "Invisalign", href: "/invisalign" },
+  { label: "Teeth Whitening", href: "/teeth-whitening" },
+  { label: "Zoom Whitening", href: "/zoom-whitening" },
+  { label: "Front Teeth Veneers", href: "/veneers/front-teeth-veneers-los-angeles" }
+];
+
+const EVENT_LINKS: StaticLink[] = [
+  { label: "Wedding Smiles", href: "/wedding" },
+  { label: "Graduation Ready", href: "/graduation" }
+];
+
+const LOCATION_LINKS: StaticLink[] = [
+  { label: "90048 Dentist", href: "/90048-dentist" },
+  { label: "Bel Air Dentist", href: "/bel-air-dentist" },
+  { label: "Melrose Dentist", href: "/melrose-dentist" },
+  { label: "West Hollywood Dentist", href: "/west-hollywood-dentist" },
+  { label: "Westwood Dentist", href: "/westwood-dentist" }
+];
+
+const VENEER_BLOG_LINKS: StaticLink[] = [
+  {
+    label: "Veneers vs Bonding",
+    href: "/blog/dental-veneers-vs-bonding-a-comprehensive-comparison-for-your-smile-makeover"
+  },
+  { label: "Veneers vs Crowns", href: "/blog/dental-veneers-vs-crowns" },
+  { label: "Do Veneers Require Surgery?", href: "/blog/do-you-need-surgery-for-dental-veneers-answered" }
+];
+
+const WEDDING_BLOG_LINKS: StaticLink[] = [
+  { label: "Wedding Smile Tips", href: "/blog/how-to-maintain-the-perfect-wedding-smile" }
+];
+
+const ORAL_HEALTH_BLOG_LINKS: StaticLink[] = [
+  {
+    label: "Oral Cancer Risk for Female Smokers",
+    href: "/blog/female-smokers-high-risk-oral-cancer-dangers"
+  }
+];
+
 export const manualPages: StaticRoute[] = [
   {
     path: "/",
@@ -119,7 +160,7 @@ export const manualPages: StaticRoute[] = [
         ],
       },
     ],
-    links: defaultNavLinks,
+    links: [...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...LOCATION_LINKS, ...defaultNavLinks],
   },
   {
     path: "/about",
@@ -129,7 +170,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years.",
     ],
-    links: defaultNavLinks,
+    links: [...LOCATION_LINKS, ...defaultNavLinks],
   },
   {
     path: "/services",
@@ -139,13 +180,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results.",
     ],
-    links: [
-      { label: "Porcelain Veneers", href: "/veneers" },
-      { label: "Invisalign", href: "/invisalign" },
-      { label: "Zoom Whitening", href: "/zoom-whitening" },
-      { label: "Dental Implants", href: "/dental-implants" },
-      ...defaultNavLinks,
-    ],
+    links: [...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...defaultNavLinks],
   },
   {
     path: "/locations",
@@ -170,7 +205,7 @@ export const manualPages: StaticRoute[] = [
         ]
       }
     ],
-    links: defaultNavLinks,
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/veneers",
@@ -180,7 +215,11 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous.",
     ],
-    links: defaultNavLinks,
+    links: [
+      ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/invisalign"),
+      ...EVENT_LINKS,
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/invisalign",
@@ -190,7 +229,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles.",
     ],
-    links: defaultNavLinks,
+    links: [...VENEER_BLOG_LINKS, ...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...defaultNavLinks],
   },
   {
     path: "/teeth-whitening",
@@ -201,7 +240,12 @@ export const manualPages: StaticRoute[] = [
       "Professional teeth whitening in Los Angeles can remove common coffee, tea, and wine stains while keeping comfort and enamel health in focus.",
       "Explore in-office Zoom whitening, custom take-home options, and hybrid maintenance plans tailored to your timeline and sensitivity level.",
     ],
-    links: [{ label: "Zoom Whitening", href: "/zoom-whitening" }, ...defaultNavLinks],
+    links: [
+      ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/teeth-whitening"),
+      ...EVENT_LINKS,
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/culver-city-teeth-whitening",
@@ -240,6 +284,8 @@ export const manualPages: StaticRoute[] = [
     faqItems: DENTAL_IMPLANT_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [
       ...DENTAL_IMPLANTS_HUB_SUPPORTING_LINKS,
+      ...CORE_SERVICES_LINKS,
+      ...EVENT_LINKS,
       ...defaultNavLinks,
     ],
   },
@@ -273,7 +319,12 @@ export const manualPages: StaticRoute[] = [
       }
     ],
     faqItems: SMILE_MAKEOVER_LOS_ANGELES_FAQS.map(({ question, answer }) => ({ question, answer })),
-    links: [...SMILE_MAKEOVER_HUB_SUPPORTING_LINKS, ...defaultNavLinks],
+    links: [
+      ...SMILE_MAKEOVER_HUB_SUPPORTING_LINKS,
+      ...VENEER_BLOG_LINKS,
+      ...EVENT_LINKS,
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/invisalign-beverly-hills",
@@ -317,7 +368,11 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Curated smile transformations for tastemakers, entrepreneurs, and artists.",
     ],
-    links: defaultNavLinks,
+    links: [
+      ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/emergency-dentist"),
+      ...EVENT_LINKS,
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/emergency-dentist",
@@ -434,7 +489,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",
     ],
-    links: defaultNavLinks,
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/itero-scanner",
@@ -479,7 +534,12 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "We coordinate whitening, veneers, and Invisalign timelines around your wedding so your smile looks natural and photo‑ready.",
     ],
-    links: defaultNavLinks,
+    links: [
+      ...WEDDING_BLOG_LINKS,
+      ...CORE_SERVICES_LINKS,
+      ...EVENT_LINKS.filter((link) => link.href !== "/wedding"),
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/graduation",
@@ -490,7 +550,11 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Celebrate your milestone with a confident smile. Our team helps you choose the right cosmetic plan for your timeline and budget.",
     ],
-    links: defaultNavLinks,
+    links: [
+      ...CORE_SERVICES_LINKS,
+      ...EVENT_LINKS.filter((link) => link.href !== "/graduation"),
+      ...defaultNavLinks
+    ],
   },
   {
     path: "/privacy-policy",
@@ -1351,6 +1415,45 @@ const extractBlogParagraphs = (content: string, excerpt: string) => {
   return [excerpt];
 };
 
+const getBlogSupportLinks = (post: BlogPost): StaticLink[] => {
+  const tagText = `${post.title} ${post.category} ${post.tags.join(" ")}`.toLowerCase();
+  const links: StaticLink[] = [];
+
+  if (tagText.includes("veneer") || tagText.includes("bonding") || tagText.includes("crown")) {
+    links.push(...VENEER_BLOG_LINKS);
+    links.push({ label: "Porcelain Veneers", href: "/veneers" });
+    links.push({ label: "Front Teeth Veneers", href: "/veneers/front-teeth-veneers-los-angeles" });
+  }
+
+  if (tagText.includes("implant")) {
+    links.push({ label: "Dental Implants", href: "/dental-implants" });
+  }
+
+  if (tagText.includes("whitening")) {
+    links.push({ label: "Teeth Whitening", href: "/teeth-whitening" });
+    links.push({ label: "Zoom Whitening", href: "/zoom-whitening" });
+  }
+
+  if (tagText.includes("invisalign") || tagText.includes("aligner") || tagText.includes("orthodont")) {
+    links.push({ label: "Invisalign", href: "/invisalign" });
+  }
+
+  if (tagText.includes("wedding")) {
+    links.push(...EVENT_LINKS.filter((link) => link.href === "/wedding"));
+    links.push(...WEDDING_BLOG_LINKS);
+  }
+
+  if (tagText.includes("graduation")) {
+    links.push(...EVENT_LINKS.filter((link) => link.href === "/graduation"));
+  }
+
+  if (tagText.includes("oral") || tagText.includes("cancer") || tagText.includes("smoking")) {
+    links.push(...ORAL_HEALTH_BLOG_LINKS);
+  }
+
+  return uniqueLinks(links);
+};
+
 export const buildRoutes = (): StaticRoute[] => {
   const routes: StaticRoute[] = [...manualPages];
 
@@ -1361,30 +1464,45 @@ export const buildRoutes = (): StaticRoute[] => {
       description: config.seo.description,
       h1: config.hero.heading,
       paragraphs: config.overview.intro.slice(0, 2),
-      links: uniqueLinks([...config.internalLinks, ...defaultNavLinks]),
+      links: uniqueLinks([
+        ...config.internalLinks,
+        ...CORE_SERVICES_LINKS,
+        ...EVENT_LINKS,
+        ...defaultNavLinks
+      ]),
     });
   });
 
   Object.values(locationPageConfigs).forEach((config) => {
+    const locationLinks = LOCATION_LINKS.filter(
+      (link) => normalizeInternalHref(link.href) !== normalizeInternalHref(`/${config.slug}`)
+    );
     routes.push({
       path: `/${config.slug}`,
       title: config.seo.title,
       description: config.seo.description,
       h1: config.hero.heading,
       paragraphs: [config.hero.subheading],
-      links: uniqueLinks([...config.relatedServices, ...defaultNavLinks]),
+      links: uniqueLinks([...config.relatedServices, ...locationLinks, ...defaultNavLinks]),
     });
   });
 
   const blogPosts = getPublishedPosts();
   blogPosts.forEach((post) => {
+    const supportLinks = getBlogSupportLinks(post).filter(
+      (link) => normalizeInternalHref(link.href) !== normalizeInternalHref(`/blog/${post.slug}`)
+    );
     routes.push({
       path: `/blog/${post.slug}`,
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.excerpt,
       h1: post.title,
       paragraphs: extractBlogParagraphs(post.content || "", post.excerpt),
-      links: uniqueLinks([{ label: "Back to Blog", href: "/blog" }, ...defaultNavLinks]),
+      links: uniqueLinks([
+        { label: "Back to Blog", href: "/blog" },
+        ...supportLinks,
+        ...defaultNavLinks
+      ]),
     });
   });
 

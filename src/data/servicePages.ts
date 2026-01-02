@@ -1006,7 +1006,8 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     internalLinks: [
       { label: "Teeth Cleaning Visits", href: "/teeth-cleaning" },
       { label: "Professional Teeth Whitening", href: "/teeth-whitening" },
-      { label: "Contact Exquisite Dentistry", href: "/contact" }
+      { label: "Contact Exquisite Dentistry", href: "/contact" },
+      { label: "Oral Cancer Risk for Female Smokers", href: "/blog/female-smokers-high-risk-oral-cancer-dangers" }
     ],
   },
 };

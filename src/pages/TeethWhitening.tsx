@@ -319,20 +319,26 @@ const TeethWhitening = () => {
                   recommendations={[
                     {
                       title: "Zoom Whitening",
-                      href: "/zoom-whitening",
+                      href: "/zoom-whitening/",
                       description: "Learn about our in-office whitening technology for immediate results.",
                       popularity: 88,
                       combination: true
                     },
                     {
                       title: "Wedding Smile Package",
-                      href: "/wedding",
+                      href: "/wedding/",
                       description: "Pair whitening with veneers and Invisalign before your celebration.",
                       popularity: 46
                     },
                     {
+                      title: "Graduation Smile Prep",
+                      href: "/graduation/",
+                      description: "Brighten your smile before ceremonies and professional headshots.",
+                      popularity: 42
+                    },
+                    {
                       title: "Client Experience",
-                      href: "/client-experience",
+                      href: "/client-experience/",
                       description: "See the comfort amenities that make whitening an elevated ritual.",
                       popularity: 52
                     }

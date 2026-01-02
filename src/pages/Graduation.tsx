@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Star, GraduationCap, Check } from 'lucide-react';
+import { Calendar, Star, GraduationCap, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { OptimizedImage } from '@/components/seo';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
+import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const Graduation = () => {
@@ -229,6 +230,74 @@ const Graduation = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-4">
+                Plan Your Graduation Smile
+              </h2>
+              <p className="text-lg text-black-light">
+                Choose the right mix of treatments to look your best in photos, interviews, and celebrations.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  title: 'Teeth Whitening',
+                  description: 'Fast brightness for ceremonies and headshots.',
+                  href: '/teeth-whitening/'
+                },
+                {
+                  title: 'Porcelain Veneers',
+                  description: 'Transform your smile for major milestones.',
+                  href: '/veneers/'
+                },
+                {
+                  title: 'Front Teeth Veneers',
+                  description: 'Target 2-4 teeth for quick upgrades.',
+                  href: '/veneers/front-teeth-veneers-los-angeles/'
+                },
+                {
+                  title: 'Invisalign',
+                  description: 'Align teeth discreetly before graduation events.',
+                  href: '/invisalign/'
+                },
+                {
+                  title: 'Dental Implants',
+                  description: 'Replace missing teeth with confidence.',
+                  href: '/dental-implants/'
+                },
+                {
+                  title: 'Emergency Dentist',
+                  description: 'Same-day help for chipped or painful teeth.',
+                  href: '/emergency-dentist/'
+                }
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  to={item.href}
+                  className="group rounded-2xl border border-border bg-white p-6 shadow-sm transition hover:border-gold/60 hover:shadow-md"
+                >
+                  <h3 className="text-lg font-semibold text-black group-hover:text-gold transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-black-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            <InternalLinkingWidget
+              context="graduation"
+              variant="expanded"
+              currentPage="/graduation/"
+              className="mt-12"
+            />
           </div>
         </section>
 

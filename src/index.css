@@ -259,7 +259,7 @@ body {
   @apply font-semibold text-gray-900;
 }
 
-.prose a {
+.prose a:not([class]) {
   @apply text-primary hover:underline;
 }
 
@@ -749,11 +749,11 @@ a {
   text-decoration: none;
 }
 
-a:visited {
+a:not([class]):visited {
   color: inherit;
 }
 
-a:hover {
+a:not([class]):hover {
   color: hsl(var(--gold));
 }
 

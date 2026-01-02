@@ -75,6 +75,17 @@ const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
     ]
   },
   {
+    id: 'neighborhoods',
+    title: 'Neighborhoods',
+    links: [
+      { label: '90048 Dentist', to: '/90048-dentist/' },
+      { label: 'Bel Air Dentist', to: '/bel-air-dentist/' },
+      { label: 'Melrose Dentist', to: '/melrose-dentist/' },
+      { label: 'West Hollywood Dentist', to: '/west-hollywood-dentist/' },
+      { label: 'Westwood Dentist', to: '/westwood-dentist/' }
+    ]
+  },
+  {
     id: 'resources',
     title: 'Client Resources',
     links: [

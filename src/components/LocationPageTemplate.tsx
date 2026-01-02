@@ -19,6 +19,17 @@ const MIN_WORD_COUNT = 150;
 
 const isHttpUrl = (href: string) => /^https?:\/\//i.test(href);
 
+const LOCATION_LINKS = [
+  { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist/" },
+  { label: "West Hollywood Dentist", href: "/west-hollywood-dentist/" },
+  { label: "Culver City Dentist", href: "/culver-city-dentist/" },
+  { label: "West LA Dentist", href: "/west-la-dentist/" },
+  { label: "Bel Air Dentist", href: "/bel-air-dentist/" },
+  { label: "90048 Dentist", href: "/90048-dentist/" },
+  { label: "Melrose Dentist", href: "/melrose-dentist/" },
+  { label: "Westwood Dentist", href: "/westwood-dentist/" }
+];
+
 const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) => {
   if (!config?.seo?.title || !config?.seo?.description) {
     throw new Error(`Location page "${config?.slug}" is missing SEO title/description.`);
@@ -46,6 +57,9 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
     .join(" ");
 
   const bodyWordCount = combinedText.trim().split(/\s+/).filter(Boolean).length;
+  const filteredLocationLinks = LOCATION_LINKS.filter(
+    (link) => normalizeInternalHref(link.href) !== normalizeInternalHref(`/${config.slug}`)
+  );
 
   if (import.meta.env.DEV && bodyWordCount < MIN_WORD_COUNT) {
     console.warn(`Location page /${config.slug} is thin (${bodyWordCount} words). Target at least ${MIN_WORD_COUNT}+ words.`);
@@ -164,6 +178,27 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
           ))}
         </div>
       </section>
+
+      {filteredLocationLinks.length > 0 ? (
+        <section className="mx-auto max-w-4xl px-4 pb-12">
+          <div className="rounded-3xl border border-border bg-background p-8">
+            <p className="text-sm uppercase tracking-[0.4em] text-primary">Nearby Neighborhoods</p>
+            <h2 className="mt-3 text-3xl font-semibold">Explore Nearby Locations</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {filteredLocationLinks.map((location) => (
+                <Link
+                  key={location.href}
+                  to={normalizeInternalHref(location.href)}
+                  className="flex items-center justify-between rounded-2xl border border-border/80 bg-background px-5 py-4 text-primary transition hover:border-primary hover:bg-primary/5"
+                >
+                  <span>{location.label}</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-4xl px-4 pb-12">
         <div className="rounded-3xl border border-border bg-muted/20 p-8">
