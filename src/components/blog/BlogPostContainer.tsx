@@ -15,7 +15,6 @@ import BlogErrorBoundary from './BlogErrorBoundary';
 import { sanitizeBlogHtml } from '@/utils/blogContent';
 
 // Lazy load specific-blog components
-const FrontTeethVeneersBlog = React.lazy(() => import('@/pages/FrontTeethVeneersBlog'));
 const SingleToothVeneersBlog = React.lazy(() => import('@/pages/SingleToothVeneersBlog'));
 const VeneersBeforeAfterContent = React.lazy(() => import('@/components/blog/VeneersBeforeAfterContent'));
 
@@ -27,14 +26,6 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   const sanitizedContent = useMemo(() => sanitizeBlogHtml(post), [post]);
 
   // Handle component-based blog posts
-  if (post.content === 'front-4-veneers') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <FrontTeethVeneersBlog />
-      </Suspense>
-    );
-  }
-  
   if (post.content === 'single-tooth-veneers') {
     return (
       <Suspense fallback={<PageLoader />}>

@@ -213,7 +213,7 @@ const VeneersBeforeAfterContent = () => {
               <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/blog/4-front-teeth-veneers-cost-los-angeles/">
+              <Link to="/veneers/front-teeth-veneers-los-angeles/">
                 Review Veneer Pricing Guides
               </Link>
             </Button>

@@ -77,13 +77,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 5
           },
           {
-            title: '4 Front Teeth Veneers Cost',
-            href: '/blog/4-front-teeth-veneers-cost-los-angeles/',
-            description: 'Pricing guide for front teeth veneers in LA',
-            category: 'blog',
-            priority: 6
-          },
-          {
             title: 'Are Veneers Covered by Insurance?',
             href: '/blog/are-veneers-covered-by-insurance/',
             description: 'Understanding insurance and veneer financing',

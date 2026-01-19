@@ -14,6 +14,7 @@
     "generate:blog": "node scripts/generate-blog-posts.mjs",
     "check:seo": "node scripts/seo-smoke.mjs",
     "test:seo": "node scripts/seo-acceptance.mjs",
+    "test:blog": "node scripts/test-blog-integrity.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
     "test:content": "node --import tsx scripts/test-content-quality.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",

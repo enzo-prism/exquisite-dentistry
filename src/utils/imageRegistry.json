@@ -1402,2870 +1402,3444 @@
     },
     "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm.webp"
+        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm.webp",
+        "avif": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm.avif"
       },
       "preferred": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm.webp",
       "fallback": null
     },
     "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-original.webp"
+        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-original.webp",
+        "avif": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-original.avif"
       },
       "preferred": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-original.webp",
       "fallback": null
     },
     "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-md.webp"
+        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-md.webp",
+        "avif": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-md.avif"
       },
       "preferred": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-md.webp",
       "fallback": null
     },
     "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-lg.webp"
+        "webp": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-lg.webp",
+        "avif": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-lg.avif"
       },
       "preferred": "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-lg.webp",
       "fallback": null
     },
     "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-sm.webp"
+        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-sm.webp",
+        "avif": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-sm.avif"
       },
       "preferred": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-sm.webp",
       "fallback": null
     },
     "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-original.webp"
+        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-original.webp",
+        "avif": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-original.avif"
       },
       "preferred": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-original.webp",
       "fallback": null
     },
     "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-md.webp"
+        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-md.webp",
+        "avif": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-md.avif"
       },
       "preferred": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-md.webp",
       "fallback": null
     },
     "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-lg.webp"
+        "webp": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-lg.webp",
+        "avif": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-lg.avif"
       },
       "preferred": "/optimized/fd07d62a-aef3-47e8-8a17-fe4cec7116c1-lg.webp",
       "fallback": null
     },
     "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-sm.webp"
+        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-sm.webp",
+        "avif": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-sm.avif"
       },
       "preferred": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-sm.webp",
       "fallback": null
     },
     "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-original.webp"
+        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-original.webp",
+        "avif": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-original.avif"
       },
       "preferred": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-original.webp",
       "fallback": null
     },
     "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-md.webp"
+        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-md.webp",
+        "avif": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-md.avif"
       },
       "preferred": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-md.webp",
       "fallback": null
     },
     "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-lg.webp"
+        "webp": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-lg.webp",
+        "avif": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-lg.avif"
       },
       "preferred": "/optimized/f8eace1a-38be-4b57-a359-7dffa835e1c1-lg.webp",
       "fallback": null
     },
     "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-sm.webp"
+        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-sm.webp",
+        "avif": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-sm.avif"
       },
       "preferred": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-sm.webp",
       "fallback": null
     },
     "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-original.webp"
+        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-original.webp",
+        "avif": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-original.avif"
       },
       "preferred": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-original.webp",
       "fallback": null
     },
     "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md.webp"
+        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md.webp",
+        "avif": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md.avif"
       },
       "preferred": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-md.webp",
       "fallback": null
     },
     "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-lg.webp"
+        "webp": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-lg.webp",
+        "avif": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-lg.avif"
       },
       "preferred": "/optimized/f88f1b17-04d5-4a21-9fd5-0294d68af115-lg.webp",
       "fallback": null
     },
     "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-sm.webp"
+        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-sm.webp",
+        "avif": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-sm.avif"
       },
       "preferred": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-sm.webp",
       "fallback": null
     },
     "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-original.webp"
+        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-original.webp",
+        "avif": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-original.avif"
       },
       "preferred": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-original.webp",
       "fallback": null
     },
     "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md.webp"
+        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md.webp",
+        "avif": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md.avif"
       },
       "preferred": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-md.webp",
       "fallback": null
     },
     "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-lg.webp"
+        "webp": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-lg.webp",
+        "avif": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-lg.avif"
       },
       "preferred": "/optimized/f88acd79-6f67-4a5b-a586-6b67cd9f154f-lg.webp",
       "fallback": null
     },
     "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-sm.webp"
+        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-sm.webp",
+        "avif": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-sm.avif"
       },
       "preferred": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-sm.webp",
       "fallback": null
     },
     "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-original.webp"
+        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-original.webp",
+        "avif": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-original.avif"
       },
       "preferred": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-original.webp",
       "fallback": null
     },
     "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-md.webp"
+        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-md.webp",
+        "avif": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-md.avif"
       },
       "preferred": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-md.webp",
       "fallback": null
     },
     "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-lg.webp"
+        "webp": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-lg.webp",
+        "avif": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-lg.avif"
       },
       "preferred": "/optimized/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed-lg.webp",
       "fallback": null
     },
     "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-sm.webp"
+        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-sm.webp",
+        "avif": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-sm.avif"
       },
       "preferred": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-sm.webp",
       "fallback": null
     },
     "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-original.webp"
+        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-original.webp",
+        "avif": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-original.avif"
       },
       "preferred": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-original.webp",
       "fallback": null
     },
     "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-md.webp"
+        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-md.webp",
+        "avif": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-md.avif"
       },
       "preferred": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-md.webp",
       "fallback": null
     },
     "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-lg.webp"
+        "webp": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-lg.webp",
+        "avif": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-lg.avif"
       },
       "preferred": "/optimized/f11616bb-2674-4b86-bb8f-f0f59c488640-lg.webp",
       "fallback": null
     },
     "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-sm.webp"
+        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-sm.webp",
+        "avif": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-sm.avif"
       },
       "preferred": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-sm.webp",
       "fallback": null
     },
     "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-original.webp"
+        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-original.webp",
+        "avif": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-original.avif"
       },
       "preferred": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-original.webp",
       "fallback": null
     },
     "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-md.webp"
+        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-md.webp",
+        "avif": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-md.avif"
       },
       "preferred": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-md.webp",
       "fallback": null
     },
     "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-lg.webp"
+        "webp": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-lg.webp",
+        "avif": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-lg.avif"
       },
       "preferred": "/optimized/ed8ac06c-537d-4671-ad56-dceafa37deb8-lg.webp",
       "fallback": null
     },
     "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-sm.webp"
+        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-sm.webp",
+        "avif": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-sm.avif"
       },
       "preferred": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-sm.webp",
       "fallback": null
     },
     "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-original.webp"
+        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-original.webp",
+        "avif": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-original.avif"
       },
       "preferred": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-original.webp",
       "fallback": null
     },
     "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-md.webp"
+        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-md.webp",
+        "avif": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-md.avif"
       },
       "preferred": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-md.webp",
       "fallback": null
     },
     "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-lg.webp"
+        "webp": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-lg.webp",
+        "avif": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-lg.avif"
       },
       "preferred": "/optimized/e89dc5c2-d95e-481e-b9ad-287a86a0ff23-lg.webp",
       "fallback": null
     },
     "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-sm.webp"
+        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-sm.webp",
+        "avif": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-sm.avif"
       },
       "preferred": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-sm.webp",
       "fallback": null
     },
     "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-original.webp"
+        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-original.webp",
+        "avif": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-original.avif"
       },
       "preferred": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-original.webp",
       "fallback": null
     },
     "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-md.webp"
+        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-md.webp",
+        "avif": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-md.avif"
       },
       "preferred": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-md.webp",
       "fallback": null
     },
     "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-lg.webp"
+        "webp": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-lg.webp",
+        "avif": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-lg.avif"
       },
       "preferred": "/optimized/e7e81168-3517-4494-b257-690d6ec7bafd-lg.webp",
       "fallback": null
     },
     "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-sm.webp"
+        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-sm.webp",
+        "avif": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-sm.avif"
       },
       "preferred": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-sm.webp",
       "fallback": null
     },
     "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-original.webp"
+        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-original.webp",
+        "avif": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-original.avif"
       },
       "preferred": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-original.webp",
       "fallback": null
     },
     "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-md.webp"
+        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-md.webp",
+        "avif": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-md.avif"
       },
       "preferred": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-md.webp",
       "fallback": null
     },
     "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-lg.webp"
+        "webp": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-lg.webp",
+        "avif": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-lg.avif"
       },
       "preferred": "/optimized/e5666e84-eae4-42d0-a75c-f034454be491-lg.webp",
       "fallback": null
     },
     "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-xl": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-xl.webp"
+        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-xl.webp",
+        "avif": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-xl.avif"
       },
       "preferred": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-xl.webp",
       "fallback": null
     },
     "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-sm.webp"
+        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-sm.webp",
+        "avif": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-sm.avif"
       },
       "preferred": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-sm.webp",
       "fallback": null
     },
     "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-original.webp"
+        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-original.webp",
+        "avif": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-original.avif"
       },
       "preferred": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-original.webp",
       "fallback": null
     },
     "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-md.webp"
+        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-md.webp",
+        "avif": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-md.avif"
       },
       "preferred": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-md.webp",
       "fallback": null
     },
     "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-lg.webp"
+        "webp": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-lg.webp",
+        "avif": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-lg.avif"
       },
       "preferred": "/optimized/e2d3dd68-6f1f-4361-8749-59f510dfbc6c-lg.webp",
       "fallback": null
     },
     "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-sm.webp"
+        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-sm.webp",
+        "avif": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-sm.avif"
       },
       "preferred": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-sm.webp",
       "fallback": null
     },
     "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-original.webp"
+        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-original.webp",
+        "avif": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-original.avif"
       },
       "preferred": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-original.webp",
       "fallback": null
     },
     "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-md.webp"
+        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-md.webp",
+        "avif": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-md.avif"
       },
       "preferred": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-md.webp",
       "fallback": null
     },
     "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-lg.webp"
+        "webp": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-lg.webp",
+        "avif": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-lg.avif"
       },
       "preferred": "/optimized/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af-lg.webp",
       "fallback": null
     },
     "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-sm.webp"
+        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-sm.webp",
+        "avif": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-sm.avif"
       },
       "preferred": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-sm.webp",
       "fallback": null
     },
     "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-original.webp"
+        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-original.webp",
+        "avif": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-original.avif"
       },
       "preferred": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-original.webp",
       "fallback": null
     },
     "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-md.webp"
+        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-md.webp",
+        "avif": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-md.avif"
       },
       "preferred": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-md.webp",
       "fallback": null
     },
     "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-lg.webp"
+        "webp": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-lg.webp",
+        "avif": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-lg.avif"
       },
       "preferred": "/optimized/ddefa946-f35c-4677-a60f-1e827e11e198-lg.webp",
       "fallback": null
     },
     "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-sm.webp"
+        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-sm.webp",
+        "avif": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-sm.avif"
       },
       "preferred": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-sm.webp",
       "fallback": null
     },
     "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-original.webp"
+        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-original.webp",
+        "avif": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-original.avif"
       },
       "preferred": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-original.webp",
       "fallback": null
     },
     "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-md.webp"
+        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-md.webp",
+        "avif": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-md.avif"
       },
       "preferred": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-md.webp",
       "fallback": null
     },
     "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-lg.webp"
+        "webp": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-lg.webp",
+        "avif": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-lg.avif"
       },
       "preferred": "/optimized/db3a686f-e8b8-4b68-b129-61f397983827-lg.webp",
       "fallback": null
     },
     "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-sm.webp"
+        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-sm.webp",
+        "avif": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-sm.avif"
       },
       "preferred": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-sm.webp",
       "fallback": null
     },
     "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-original.webp"
+        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-original.webp",
+        "avif": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-original.avif"
       },
       "preferred": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-original.webp",
       "fallback": null
     },
     "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-md.webp"
+        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-md.webp",
+        "avif": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-md.avif"
       },
       "preferred": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-md.webp",
       "fallback": null
     },
     "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-lg.webp"
+        "webp": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-lg.webp",
+        "avif": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-lg.avif"
       },
       "preferred": "/optimized/ced61c9e-85aa-49c9-8378-f0ed60da48fc-lg.webp",
       "fallback": null
     },
     "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-sm.webp"
+        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-sm.webp",
+        "avif": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-sm.avif"
       },
       "preferred": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-sm.webp",
       "fallback": null
     },
     "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-original.webp"
+        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-original.webp",
+        "avif": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-original.avif"
       },
       "preferred": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-original.webp",
       "fallback": null
     },
     "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-md.webp"
+        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-md.webp",
+        "avif": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-md.avif"
       },
       "preferred": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-md.webp",
       "fallback": null
     },
     "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-lg.webp"
+        "webp": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-lg.webp",
+        "avif": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-lg.avif"
       },
       "preferred": "/optimized/ccf494f0-20ca-4dd8-8ea2-1535b1ae7aaa-lg.webp",
       "fallback": null
     },
     "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-sm.webp"
+        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-sm.webp",
+        "avif": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-sm.avif"
       },
       "preferred": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-sm.webp",
       "fallback": null
     },
     "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-original.webp"
+        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-original.webp",
+        "avif": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-original.avif"
       },
       "preferred": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-original.webp",
       "fallback": null
     },
     "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-md.webp"
+        "webp": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-md.webp",
+        "avif": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-md.avif"
       },
       "preferred": "/optimized/cc4f1722-a37f-42b6-8438-6160759e3eb8-md.webp",
       "fallback": null
     },
     "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-sm.webp"
+        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-sm.webp",
+        "avif": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-sm.avif"
       },
       "preferred": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-sm.webp",
       "fallback": null
     },
     "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-original.webp"
+        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-original.webp",
+        "avif": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-original.avif"
       },
       "preferred": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-original.webp",
       "fallback": null
     },
     "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md.webp"
+        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md.webp",
+        "avif": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md.avif"
       },
       "preferred": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-md.webp",
       "fallback": null
     },
     "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-lg.webp"
+        "webp": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-lg.webp",
+        "avif": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-lg.avif"
       },
       "preferred": "/optimized/c9638a7e-6ecb-4be0-b755-71e2d2918efd-lg.webp",
       "fallback": null
     },
     "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-sm.webp"
+        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-sm.webp",
+        "avif": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-sm.avif"
       },
       "preferred": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-sm.webp",
       "fallback": null
     },
     "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-original.webp"
+        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-original.webp",
+        "avif": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-original.avif"
       },
       "preferred": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-original.webp",
       "fallback": null
     },
     "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-md.webp"
+        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-md.webp",
+        "avif": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-md.avif"
       },
       "preferred": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-md.webp",
       "fallback": null
     },
     "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-lg.webp"
+        "webp": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-lg.webp",
+        "avif": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-lg.avif"
       },
       "preferred": "/optimized/c876408e-2891-4863-9f01-e5d025c7c52f-lg.webp",
       "fallback": null
     },
     "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-sm.webp"
+        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-sm.webp",
+        "avif": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-sm.avif"
       },
       "preferred": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-sm.webp",
       "fallback": null
     },
     "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-original.webp"
+        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-original.webp",
+        "avif": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-original.avif"
       },
       "preferred": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-original.webp",
       "fallback": null
     },
     "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-md.webp"
+        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-md.webp",
+        "avif": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-md.avif"
       },
       "preferred": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-md.webp",
       "fallback": null
     },
     "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-lg.webp"
+        "webp": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-lg.webp",
+        "avif": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-lg.avif"
       },
       "preferred": "/optimized/c6994b6f-0247-4180-8643-a323a515b7fb-lg.webp",
       "fallback": null
     },
     "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-sm.webp"
+        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-sm.webp",
+        "avif": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-sm.avif"
       },
       "preferred": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-sm.webp",
       "fallback": null
     },
     "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-original.webp"
+        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-original.webp",
+        "avif": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-original.avif"
       },
       "preferred": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-original.webp",
       "fallback": null
     },
     "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-md.webp"
+        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-md.webp",
+        "avif": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-md.avif"
       },
       "preferred": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-md.webp",
       "fallback": null
     },
     "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-lg.webp"
+        "webp": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-lg.webp",
+        "avif": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-lg.avif"
       },
       "preferred": "/optimized/bccd20a5-67f9-4966-a433-0e020f0023db-lg.webp",
       "fallback": null
     },
     "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-sm.webp"
+        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-sm.webp",
+        "avif": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-sm.avif"
       },
       "preferred": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-sm.webp",
       "fallback": null
     },
     "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-original.webp"
+        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-original.webp",
+        "avif": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-original.avif"
       },
       "preferred": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-original.webp",
       "fallback": null
     },
     "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-md.webp"
+        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-md.webp",
+        "avif": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-md.avif"
       },
       "preferred": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-md.webp",
       "fallback": null
     },
     "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-lg.webp"
+        "webp": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-lg.webp",
+        "avif": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-lg.avif"
       },
       "preferred": "/optimized/bc529c99-3a4d-4e95-ad71-d673bedd4d2e-lg.webp",
       "fallback": null
     },
     "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-sm.webp"
+        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-sm.webp",
+        "avif": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-sm.avif"
       },
       "preferred": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-sm.webp",
       "fallback": null
     },
     "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-original.webp"
+        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-original.webp",
+        "avif": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-original.avif"
       },
       "preferred": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-original.webp",
       "fallback": null
     },
     "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-md.webp"
+        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-md.webp",
+        "avif": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-md.avif"
       },
       "preferred": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-md.webp",
       "fallback": null
     },
     "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-lg.webp"
+        "webp": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-lg.webp",
+        "avif": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-lg.avif"
       },
       "preferred": "/optimized/b873d422-2613-49ad-b9ef-d12c878cf4f4-lg.webp",
       "fallback": null
     },
     "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-sm.webp"
+        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-sm.webp",
+        "avif": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-sm.avif"
       },
       "preferred": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-sm.webp",
       "fallback": null
     },
     "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-original.webp"
+        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-original.webp",
+        "avif": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-original.avif"
       },
       "preferred": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-original.webp",
       "fallback": null
     },
     "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-md.webp"
+        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-md.webp",
+        "avif": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-md.avif"
       },
       "preferred": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-md.webp",
       "fallback": null
     },
     "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-lg.webp"
+        "webp": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-lg.webp",
+        "avif": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-lg.avif"
       },
       "preferred": "/optimized/b51f12fb-722d-4d87-ba02-516ef7bd452c-lg.webp",
       "fallback": null
     },
     "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-sm.webp"
+        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-sm.webp",
+        "avif": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-sm.avif"
       },
       "preferred": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-sm.webp",
       "fallback": null
     },
     "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-original.webp"
+        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-original.webp",
+        "avif": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-original.avif"
       },
       "preferred": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-original.webp",
       "fallback": null
     },
     "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-md.webp"
+        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-md.webp",
+        "avif": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-md.avif"
       },
       "preferred": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-md.webp",
       "fallback": null
     },
     "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-lg.webp"
+        "webp": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-lg.webp",
+        "avif": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-lg.avif"
       },
       "preferred": "/optimized/b18fe6af-ea26-4dbb-ad1e-eb7fb2241cc9-lg.webp",
       "fallback": null
     },
     "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-sm.webp"
+        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-sm.webp",
+        "avif": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-sm.avif"
       },
       "preferred": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-sm.webp",
       "fallback": null
     },
     "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-original.webp"
+        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-original.webp",
+        "avif": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-original.avif"
       },
       "preferred": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-original.webp",
       "fallback": null
     },
     "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-md.webp"
+        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-md.webp",
+        "avif": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-md.avif"
       },
       "preferred": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-md.webp",
       "fallback": null
     },
     "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-lg.webp"
+        "webp": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-lg.webp",
+        "avif": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-lg.avif"
       },
       "preferred": "/optimized/acb40878-6364-480c-92d4-abb9b586d3a2-lg.webp",
       "fallback": null
     },
     "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-sm.webp"
+        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-sm.webp",
+        "avif": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-sm.avif"
       },
       "preferred": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-sm.webp",
       "fallback": null
     },
     "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-original.webp"
+        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-original.webp",
+        "avif": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-original.avif"
       },
       "preferred": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-original.webp",
       "fallback": null
     },
     "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-md.webp"
+        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-md.webp",
+        "avif": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-md.avif"
       },
       "preferred": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-md.webp",
       "fallback": null
     },
     "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-lg.webp"
+        "webp": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-lg.webp",
+        "avif": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-lg.avif"
       },
       "preferred": "/optimized/ab504393-67bf-4498-b08e-0ff259231b9e-lg.webp",
       "fallback": null
     },
     "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-xl": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-xl.webp"
+        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-xl.webp",
+        "avif": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-xl.avif"
       },
       "preferred": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-xl.webp",
       "fallback": null
     },
     "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-sm.webp"
+        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-sm.webp",
+        "avif": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-sm.avif"
       },
       "preferred": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-sm.webp",
       "fallback": null
     },
     "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-original.webp"
+        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-original.webp",
+        "avif": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-original.avif"
       },
       "preferred": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-original.webp",
       "fallback": null
     },
     "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-md.webp"
+        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-md.webp",
+        "avif": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-md.avif"
       },
       "preferred": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-md.webp",
       "fallback": null
     },
     "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-lg.webp"
+        "webp": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-lg.webp",
+        "avif": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-lg.avif"
       },
       "preferred": "/optimized/a88d0fa1-399a-4043-ba91-b3a84e19149a-lg.webp",
       "fallback": null
     },
     "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-sm.webp"
+        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-sm.webp",
+        "avif": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-sm.avif"
       },
       "preferred": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-sm.webp",
       "fallback": null
     },
     "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-original.webp"
+        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-original.webp",
+        "avif": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-original.avif"
       },
       "preferred": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-original.webp",
       "fallback": null
     },
     "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-md.webp"
+        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-md.webp",
+        "avif": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-md.avif"
       },
       "preferred": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-md.webp",
       "fallback": null
     },
     "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-lg.webp"
+        "webp": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-lg.webp",
+        "avif": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-lg.avif"
       },
       "preferred": "/optimized/a7c198f8-b229-4850-af33-aff84c90fd94-lg.webp",
       "fallback": null
     },
     "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-sm.webp"
+        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-sm.webp",
+        "avif": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-sm.avif"
       },
       "preferred": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-sm.webp",
       "fallback": null
     },
     "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-original.webp"
+        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-original.webp",
+        "avif": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-original.avif"
       },
       "preferred": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-original.webp",
       "fallback": null
     },
     "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-md.webp"
+        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-md.webp",
+        "avif": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-md.avif"
       },
       "preferred": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-md.webp",
       "fallback": null
     },
     "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-lg.webp"
+        "webp": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-lg.webp",
+        "avif": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-lg.avif"
       },
       "preferred": "/optimized/a478e28f-fd88-427c-b049-31f7d99099f1-lg.webp",
       "fallback": null
     },
     "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-sm.webp"
+        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-sm.webp",
+        "avif": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-sm.avif"
       },
       "preferred": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-sm.webp",
       "fallback": null
     },
     "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-original.webp"
+        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-original.webp",
+        "avif": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-original.avif"
       },
       "preferred": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-original.webp",
       "fallback": null
     },
     "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-md.webp"
+        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-md.webp",
+        "avif": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-md.avif"
       },
       "preferred": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-md.webp",
       "fallback": null
     },
     "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-lg.webp"
+        "webp": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-lg.webp",
+        "avif": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-lg.avif"
       },
       "preferred": "/optimized/a21508d3-d058-400c-b7ce-30b4cdaf9a01-lg.webp",
       "fallback": null
     },
     "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-sm.webp"
+        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-sm.webp",
+        "avif": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-sm.avif"
       },
       "preferred": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-sm.webp",
       "fallback": null
     },
     "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-original.webp"
+        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-original.webp",
+        "avif": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-original.avif"
       },
       "preferred": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-original.webp",
       "fallback": null
     },
     "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-md.webp"
+        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-md.webp",
+        "avif": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-md.avif"
       },
       "preferred": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-md.webp",
       "fallback": null
     },
     "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-lg.webp"
+        "webp": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-lg.webp",
+        "avif": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-lg.avif"
       },
       "preferred": "/optimized/a174d17a-ee21-411d-9034-2dfe2fa0dcd3-lg.webp",
       "fallback": null
     },
     "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-sm.webp"
+        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-sm.webp",
+        "avif": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-sm.avif"
       },
       "preferred": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-sm.webp",
       "fallback": null
     },
     "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-original.webp"
+        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-original.webp",
+        "avif": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-original.avif"
       },
       "preferred": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-original.webp",
       "fallback": null
     },
     "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-md.webp"
+        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-md.webp",
+        "avif": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-md.avif"
       },
       "preferred": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-md.webp",
       "fallback": null
     },
     "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-lg.webp"
+        "webp": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-lg.webp",
+        "avif": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-lg.avif"
       },
       "preferred": "/optimized/9ac2cd01-a8a2-4537-a952-61b0d3b9e744-lg.webp",
       "fallback": null
     },
     "/optimized/99e29243-ed25-4827-b344-04ab0981acae-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-sm.webp"
+        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-sm.webp",
+        "avif": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-sm.avif"
       },
       "preferred": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-sm.webp",
       "fallback": null
     },
     "/optimized/99e29243-ed25-4827-b344-04ab0981acae-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-original.webp"
+        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-original.webp",
+        "avif": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-original.avif"
       },
       "preferred": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-original.webp",
       "fallback": null
     },
     "/optimized/99e29243-ed25-4827-b344-04ab0981acae-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-md.webp"
+        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-md.webp",
+        "avif": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-md.avif"
       },
       "preferred": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-md.webp",
       "fallback": null
     },
     "/optimized/99e29243-ed25-4827-b344-04ab0981acae-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-lg.webp"
+        "webp": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-lg.webp",
+        "avif": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-lg.avif"
       },
       "preferred": "/optimized/99e29243-ed25-4827-b344-04ab0981acae-lg.webp",
       "fallback": null
     },
     "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-sm.webp"
+        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-sm.webp",
+        "avif": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-sm.avif"
       },
       "preferred": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-sm.webp",
       "fallback": null
     },
     "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-original.webp"
+        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-original.webp",
+        "avif": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-original.avif"
       },
       "preferred": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-original.webp",
       "fallback": null
     },
     "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-md.webp"
+        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-md.webp",
+        "avif": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-md.avif"
       },
       "preferred": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-md.webp",
       "fallback": null
     },
     "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-lg.webp"
+        "webp": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-lg.webp",
+        "avif": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-lg.avif"
       },
       "preferred": "/optimized/993eead8-0b95-49ef-84bc-778c614cda09-lg.webp",
       "fallback": null
     },
     "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-sm.webp"
+        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-sm.webp",
+        "avif": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-sm.avif"
       },
       "preferred": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-sm.webp",
       "fallback": null
     },
     "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-original.webp"
+        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-original.webp",
+        "avif": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-original.avif"
       },
       "preferred": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-original.webp",
       "fallback": null
     },
     "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-md.webp"
+        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-md.webp",
+        "avif": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-md.avif"
       },
       "preferred": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-md.webp",
       "fallback": null
     },
     "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-lg.webp"
+        "webp": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-lg.webp",
+        "avif": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-lg.avif"
       },
       "preferred": "/optimized/969c20fb-4345-4982-ad1e-0d6c2a554a24-lg.webp",
       "fallback": null
     },
     "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-sm.webp"
+        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-sm.webp",
+        "avif": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-sm.avif"
       },
       "preferred": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-sm.webp",
       "fallback": null
     },
     "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-original.webp"
+        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-original.webp",
+        "avif": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-original.avif"
       },
       "preferred": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-original.webp",
       "fallback": null
     },
     "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-md.webp"
+        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-md.webp",
+        "avif": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-md.avif"
       },
       "preferred": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-md.webp",
       "fallback": null
     },
     "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-lg.webp"
+        "webp": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-lg.webp",
+        "avif": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-lg.avif"
       },
       "preferred": "/optimized/9605398c-9376-492f-96bf-fe0660461b0b-lg.webp",
       "fallback": null
     },
     "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-sm.webp"
+        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-sm.webp",
+        "avif": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-sm.avif"
       },
       "preferred": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-sm.webp",
       "fallback": null
     },
     "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-original.webp"
+        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-original.webp",
+        "avif": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-original.avif"
       },
       "preferred": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-original.webp",
       "fallback": null
     },
     "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-md.webp"
+        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-md.webp",
+        "avif": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-md.avif"
       },
       "preferred": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-md.webp",
       "fallback": null
     },
     "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-lg.webp"
+        "webp": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-lg.webp",
+        "avif": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-lg.avif"
       },
       "preferred": "/optimized/94b33bca-4e9c-4e37-9028-82ebe5b81ccf-lg.webp",
       "fallback": null
     },
     "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-sm.webp"
+        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-sm.webp",
+        "avif": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-sm.avif"
       },
       "preferred": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-sm.webp",
       "fallback": null
     },
     "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-original.webp"
+        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-original.webp",
+        "avif": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-original.avif"
       },
       "preferred": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-original.webp",
       "fallback": null
     },
     "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-md.webp"
+        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-md.webp",
+        "avif": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-md.avif"
       },
       "preferred": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-md.webp",
       "fallback": null
     },
     "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-lg.webp"
+        "webp": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-lg.webp",
+        "avif": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-lg.avif"
       },
       "preferred": "/optimized/927eb7e1-b5fa-4551-ac20-82666716d7e1-lg.webp",
       "fallback": null
     },
     "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-sm.webp"
+        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-sm.webp",
+        "avif": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-sm.avif"
       },
       "preferred": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-sm.webp",
       "fallback": null
     },
     "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-original.webp"
+        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-original.webp",
+        "avif": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-original.avif"
       },
       "preferred": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-original.webp",
       "fallback": null
     },
     "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-md.webp"
+        "webp": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-md.webp",
+        "avif": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-md.avif"
       },
       "preferred": "/optimized/8b7b3e48-76a3-4f37-91e3-2b3a8c681841-md.webp",
       "fallback": null
     },
     "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-sm.webp"
+        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-sm.webp",
+        "avif": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-sm.avif"
       },
       "preferred": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-sm.webp",
       "fallback": null
     },
     "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-original.webp"
+        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-original.webp",
+        "avif": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-original.avif"
       },
       "preferred": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-original.webp",
       "fallback": null
     },
     "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-md.webp"
+        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-md.webp",
+        "avif": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-md.avif"
       },
       "preferred": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-md.webp",
       "fallback": null
     },
     "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-lg.webp"
+        "webp": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-lg.webp",
+        "avif": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-lg.avif"
       },
       "preferred": "/optimized/8b6047b6-9da7-440f-b6b9-6fa85c53ab33-lg.webp",
       "fallback": null
     },
     "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-sm.webp"
+        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-sm.webp",
+        "avif": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-sm.avif"
       },
       "preferred": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-sm.webp",
       "fallback": null
     },
     "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-original.webp"
+        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-original.webp",
+        "avif": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-original.avif"
       },
       "preferred": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-original.webp",
       "fallback": null
     },
     "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-md.webp"
+        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-md.webp",
+        "avif": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-md.avif"
       },
       "preferred": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-md.webp",
       "fallback": null
     },
     "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-lg.webp"
+        "webp": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-lg.webp",
+        "avif": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-lg.avif"
       },
       "preferred": "/optimized/7fc03f27-6c3a-4d2a-bba6-961af127a9f0-lg.webp",
       "fallback": null
     },
     "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-sm.webp"
+        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-sm.webp",
+        "avif": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-sm.avif"
       },
       "preferred": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-sm.webp",
       "fallback": null
     },
     "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-original.webp"
+        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-original.webp",
+        "avif": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-original.avif"
       },
       "preferred": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-original.webp",
       "fallback": null
     },
     "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-md.webp"
+        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-md.webp",
+        "avif": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-md.avif"
       },
       "preferred": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-md.webp",
       "fallback": null
     },
     "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-lg.webp"
+        "webp": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-lg.webp",
+        "avif": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-lg.avif"
       },
       "preferred": "/optimized/77fcf3e8-62f7-4d75-8e71-c9b8f7759fec-lg.webp",
       "fallback": null
     },
     "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-sm.webp"
+        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-sm.webp",
+        "avif": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-sm.avif"
       },
       "preferred": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-sm.webp",
       "fallback": null
     },
     "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-original.webp"
+        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-original.webp",
+        "avif": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-original.avif"
       },
       "preferred": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-original.webp",
       "fallback": null
     },
     "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-md.webp"
+        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-md.webp",
+        "avif": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-md.avif"
       },
       "preferred": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-md.webp",
       "fallback": null
     },
     "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-lg.webp"
+        "webp": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-lg.webp",
+        "avif": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-lg.avif"
       },
       "preferred": "/optimized/77e54716-bd1f-4933-a6e9-a2e31367a263-lg.webp",
       "fallback": null
     },
     "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-sm.webp"
+        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-sm.webp",
+        "avif": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-sm.avif"
       },
       "preferred": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-sm.webp",
       "fallback": null
     },
     "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-original.webp"
+        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-original.webp",
+        "avif": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-original.avif"
       },
       "preferred": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-original.webp",
       "fallback": null
     },
     "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-md.webp"
+        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-md.webp",
+        "avif": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-md.avif"
       },
       "preferred": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-md.webp",
       "fallback": null
     },
     "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-lg.webp"
+        "webp": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-lg.webp",
+        "avif": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-lg.avif"
       },
       "preferred": "/optimized/6c6ec8ab-c502-4f2c-8ef5-fbdd95e23e72-lg.webp",
       "fallback": null
     },
     "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-sm.webp"
+        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-sm.webp",
+        "avif": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-sm.avif"
       },
       "preferred": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-sm.webp",
       "fallback": null
     },
     "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-original.webp"
+        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-original.webp",
+        "avif": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-original.avif"
       },
       "preferred": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-original.webp",
       "fallback": null
     },
     "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-md.webp"
+        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-md.webp",
+        "avif": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-md.avif"
       },
       "preferred": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-md.webp",
       "fallback": null
     },
     "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-lg.webp"
+        "webp": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-lg.webp",
+        "avif": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-lg.avif"
       },
       "preferred": "/optimized/5e86bd09-59b8-479e-93a7-18bd8484a8cd-lg.webp",
       "fallback": null
     },
     "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-sm.webp"
+        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-sm.webp",
+        "avif": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-sm.avif"
       },
       "preferred": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-sm.webp",
       "fallback": null
     },
     "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-original.webp"
+        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-original.webp",
+        "avif": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-original.avif"
       },
       "preferred": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-original.webp",
       "fallback": null
     },
     "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-md.webp"
+        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-md.webp",
+        "avif": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-md.avif"
       },
       "preferred": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-md.webp",
       "fallback": null
     },
     "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-lg.webp"
+        "webp": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-lg.webp",
+        "avif": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-lg.avif"
       },
       "preferred": "/optimized/5d9db165-60d4-4dee-80d9-5a89d7dacfe5-lg.webp",
       "fallback": null
     },
     "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-sm.webp"
+        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-sm.webp",
+        "avif": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-sm.avif"
       },
       "preferred": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-sm.webp",
       "fallback": null
     },
     "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-original.webp"
+        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-original.webp",
+        "avif": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-original.avif"
       },
       "preferred": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-original.webp",
       "fallback": null
     },
     "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-md.webp"
+        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-md.webp",
+        "avif": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-md.avif"
       },
       "preferred": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-md.webp",
       "fallback": null
     },
     "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-lg.webp"
+        "webp": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-lg.webp",
+        "avif": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-lg.avif"
       },
       "preferred": "/optimized/5b91a198-792a-46b2-ae37-2e31cf9d6c5a-lg.webp",
       "fallback": null
     },
     "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-sm.webp"
+        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-sm.webp",
+        "avif": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-sm.avif"
       },
       "preferred": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-sm.webp",
       "fallback": null
     },
     "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-original.webp"
+        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-original.webp",
+        "avif": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-original.avif"
       },
       "preferred": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-original.webp",
       "fallback": null
     },
     "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-md.webp"
+        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-md.webp",
+        "avif": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-md.avif"
       },
       "preferred": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-md.webp",
       "fallback": null
     },
     "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-lg.webp"
+        "webp": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-lg.webp",
+        "avif": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-lg.avif"
       },
       "preferred": "/optimized/59e70fe7-4f12-4534-9fff-33150538f73b-lg.webp",
       "fallback": null
     },
     "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-sm.webp"
+        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-sm.webp",
+        "avif": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-sm.avif"
       },
       "preferred": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-sm.webp",
       "fallback": null
     },
     "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-original.webp"
+        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-original.webp",
+        "avif": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-original.avif"
       },
       "preferred": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-original.webp",
       "fallback": null
     },
     "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-md.webp"
+        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-md.webp",
+        "avif": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-md.avif"
       },
       "preferred": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-md.webp",
       "fallback": null
     },
     "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-lg.webp"
+        "webp": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-lg.webp",
+        "avif": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-lg.avif"
       },
       "preferred": "/optimized/59827607-3607-49c6-9a55-8cb56ec09a3b-lg.webp",
       "fallback": null
     },
     "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-sm.webp"
+        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-sm.webp",
+        "avif": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-sm.avif"
       },
       "preferred": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-sm.webp",
       "fallback": null
     },
     "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-original.webp"
+        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-original.webp",
+        "avif": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-original.avif"
       },
       "preferred": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-original.webp",
       "fallback": null
     },
     "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-md.webp"
+        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-md.webp",
+        "avif": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-md.avif"
       },
       "preferred": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-md.webp",
       "fallback": null
     },
     "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-lg.webp"
+        "webp": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-lg.webp",
+        "avif": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-lg.avif"
       },
       "preferred": "/optimized/545af5af-4b07-4d1e-ac0c-0e2717791533-lg.webp",
       "fallback": null
     },
     "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-sm.webp"
+        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-sm.webp",
+        "avif": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-sm.avif"
       },
       "preferred": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-sm.webp",
       "fallback": null
     },
     "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-original.webp"
+        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-original.webp",
+        "avif": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-original.avif"
       },
       "preferred": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-original.webp",
       "fallback": null
     },
     "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-md.webp"
+        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-md.webp",
+        "avif": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-md.avif"
       },
       "preferred": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-md.webp",
       "fallback": null
     },
     "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-lg.webp"
+        "webp": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-lg.webp",
+        "avif": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-lg.avif"
       },
       "preferred": "/optimized/5453516e-5298-4daa-9f2c-f98804ddcd5e-lg.webp",
       "fallback": null
     },
     "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-sm.webp"
+        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-sm.webp",
+        "avif": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-sm.avif"
       },
       "preferred": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-sm.webp",
       "fallback": null
     },
     "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-original.webp"
+        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-original.webp",
+        "avif": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-original.avif"
       },
       "preferred": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-original.webp",
       "fallback": null
     },
     "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-md.webp"
+        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-md.webp",
+        "avif": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-md.avif"
       },
       "preferred": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-md.webp",
       "fallback": null
     },
     "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-lg.webp"
+        "webp": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-lg.webp",
+        "avif": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-lg.avif"
       },
       "preferred": "/optimized/4dd9a295-29d0-4804-99bd-83d836885d72-lg.webp",
       "fallback": null
     },
     "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-sm.webp"
+        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-sm.webp",
+        "avif": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-sm.avif"
       },
       "preferred": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-sm.webp",
       "fallback": null
     },
     "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-original.webp"
+        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-original.webp",
+        "avif": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-original.avif"
       },
       "preferred": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-original.webp",
       "fallback": null
     },
     "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-md.webp"
+        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-md.webp",
+        "avif": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-md.avif"
       },
       "preferred": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-md.webp",
       "fallback": null
     },
     "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-lg.webp"
+        "webp": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-lg.webp",
+        "avif": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-lg.avif"
       },
       "preferred": "/optimized/4d62d9cb-5f8b-4897-857e-f62e3804597d-lg.webp",
       "fallback": null
     },
     "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-sm.webp"
+        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-sm.webp",
+        "avif": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-sm.avif"
       },
       "preferred": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-sm.webp",
       "fallback": null
     },
     "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-original.webp"
+        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-original.webp",
+        "avif": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-original.avif"
       },
       "preferred": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-original.webp",
       "fallback": null
     },
     "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-md.webp"
+        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-md.webp",
+        "avif": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-md.avif"
       },
       "preferred": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-md.webp",
       "fallback": null
     },
     "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-lg.webp"
+        "webp": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-lg.webp",
+        "avif": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-lg.avif"
       },
       "preferred": "/optimized/4b013eb9-025b-4762-9fd9-3e1ed6e76587-lg.webp",
       "fallback": null
     },
     "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-sm.webp"
+        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-sm.webp",
+        "avif": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-sm.avif"
       },
       "preferred": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-sm.webp",
       "fallback": null
     },
     "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-original.webp"
+        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-original.webp",
+        "avif": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-original.avif"
       },
       "preferred": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-original.webp",
       "fallback": null
     },
     "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-md.webp"
+        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-md.webp",
+        "avif": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-md.avif"
       },
       "preferred": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-md.webp",
       "fallback": null
     },
     "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-lg.webp"
+        "webp": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-lg.webp",
+        "avif": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-lg.avif"
       },
       "preferred": "/optimized/492219eb-34a3-48cb-8f8f-58023e7cb5e1-lg.webp",
       "fallback": null
     },
     "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-sm.webp"
+        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-sm.webp",
+        "avif": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-sm.avif"
       },
       "preferred": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-sm.webp",
       "fallback": null
     },
     "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-original.webp"
+        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-original.webp",
+        "avif": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-original.avif"
       },
       "preferred": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-original.webp",
       "fallback": null
     },
     "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-md.webp"
+        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-md.webp",
+        "avif": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-md.avif"
       },
       "preferred": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-md.webp",
       "fallback": null
     },
     "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-lg.webp"
+        "webp": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-lg.webp",
+        "avif": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-lg.avif"
       },
       "preferred": "/optimized/46552f14-ce4f-4246-9d40-d5d1c6cc8956-lg.webp",
       "fallback": null
     },
     "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-sm.webp"
+        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-sm.webp",
+        "avif": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-sm.avif"
       },
       "preferred": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-sm.webp",
       "fallback": null
     },
     "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-original.webp"
+        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-original.webp",
+        "avif": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-original.avif"
       },
       "preferred": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-original.webp",
       "fallback": null
     },
     "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-md.webp"
+        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-md.webp",
+        "avif": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-md.avif"
       },
       "preferred": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-md.webp",
       "fallback": null
     },
     "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-lg.webp"
+        "webp": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-lg.webp",
+        "avif": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-lg.avif"
       },
       "preferred": "/optimized/45895aca-ec41-480b-b5a3-b4261464edef-lg.webp",
       "fallback": null
     },
     "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-sm.webp"
+        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-sm.webp",
+        "avif": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-sm.avif"
       },
       "preferred": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-sm.webp",
       "fallback": null
     },
     "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-original.webp"
+        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-original.webp",
+        "avif": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-original.avif"
       },
       "preferred": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-original.webp",
       "fallback": null
     },
     "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-md.webp"
+        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-md.webp",
+        "avif": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-md.avif"
       },
       "preferred": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-md.webp",
       "fallback": null
     },
     "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-lg.webp"
+        "webp": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-lg.webp",
+        "avif": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-lg.avif"
       },
       "preferred": "/optimized/442f1b06-f170-43a9-ab81-6c7d7e27dda8-lg.webp",
       "fallback": null
     },
     "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-sm.webp"
+        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-sm.webp",
+        "avif": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-sm.avif"
       },
       "preferred": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-sm.webp",
       "fallback": null
     },
     "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-original.webp"
+        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-original.webp",
+        "avif": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-original.avif"
       },
       "preferred": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-original.webp",
       "fallback": null
     },
     "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-md.webp"
+        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-md.webp",
+        "avif": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-md.avif"
       },
       "preferred": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-md.webp",
       "fallback": null
     },
     "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-lg.webp"
+        "webp": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-lg.webp",
+        "avif": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-lg.avif"
       },
       "preferred": "/optimized/44218c1b-5e06-4f02-aed6-b32ab5eca52e-lg.webp",
       "fallback": null
     },
     "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-sm.webp"
+        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-sm.webp",
+        "avif": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-sm.avif"
       },
       "preferred": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-sm.webp",
       "fallback": null
     },
     "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-original.webp"
+        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-original.webp",
+        "avif": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-original.avif"
       },
       "preferred": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-original.webp",
       "fallback": null
     },
     "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md.webp"
+        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md.webp",
+        "avif": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md.avif"
       },
       "preferred": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-md.webp",
       "fallback": null
     },
     "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-lg.webp"
+        "webp": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-lg.webp",
+        "avif": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-lg.avif"
       },
       "preferred": "/optimized/42773f00-4b49-4cbf-ab77-d2f56c5afdb8-lg.webp",
       "fallback": null
     },
     "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-sm.webp"
+        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-sm.webp",
+        "avif": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-sm.avif"
       },
       "preferred": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-sm.webp",
       "fallback": null
     },
     "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-original.webp"
+        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-original.webp",
+        "avif": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-original.avif"
       },
       "preferred": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-original.webp",
       "fallback": null
     },
     "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-md.webp"
+        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-md.webp",
+        "avif": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-md.avif"
       },
       "preferred": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-md.webp",
       "fallback": null
     },
     "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-lg.webp"
+        "webp": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-lg.webp",
+        "avif": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-lg.avif"
       },
       "preferred": "/optimized/3c9eee1c-2df4-485f-bbfc-56ee7a757eb9-lg.webp",
       "fallback": null
     },
     "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-sm.webp"
+        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-sm.webp",
+        "avif": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-sm.avif"
       },
       "preferred": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-sm.webp",
       "fallback": null
     },
     "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-original.webp"
+        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-original.webp",
+        "avif": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-original.avif"
       },
       "preferred": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-original.webp",
       "fallback": null
     },
     "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-md.webp"
+        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-md.webp",
+        "avif": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-md.avif"
       },
       "preferred": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-md.webp",
       "fallback": null
     },
     "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-lg.webp"
+        "webp": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-lg.webp",
+        "avif": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-lg.avif"
       },
       "preferred": "/optimized/2e2732fc-c4a6-4f21-9829-3717d9b2b36d-lg.webp",
       "fallback": null
     },
     "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-sm.webp"
+        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-sm.webp",
+        "avif": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-sm.avif"
       },
       "preferred": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-sm.webp",
       "fallback": null
     },
     "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-original.webp"
+        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-original.webp",
+        "avif": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-original.avif"
       },
       "preferred": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-original.webp",
       "fallback": null
     },
     "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-md.webp"
+        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-md.webp",
+        "avif": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-md.avif"
       },
       "preferred": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-md.webp",
       "fallback": null
     },
     "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-lg.webp"
+        "webp": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-lg.webp",
+        "avif": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-lg.avif"
       },
       "preferred": "/optimized/2bbd4833-a352-4ec7-8bfe-c12d956fbcfa-lg.webp",
       "fallback": null
     },
     "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-sm.webp"
+        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-sm.webp",
+        "avif": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-sm.avif"
       },
       "preferred": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-sm.webp",
       "fallback": null
     },
     "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-original.webp"
+        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-original.webp",
+        "avif": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-original.avif"
       },
       "preferred": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-original.webp",
       "fallback": null
     },
     "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-md.webp"
+        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-md.webp",
+        "avif": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-md.avif"
       },
       "preferred": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-md.webp",
       "fallback": null
     },
     "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-lg.webp"
+        "webp": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-lg.webp",
+        "avif": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-lg.avif"
       },
       "preferred": "/optimized/2ab6ba69-7000-4368-9ec8-1264ebe5cee1-lg.webp",
       "fallback": null
     },
     "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-sm.webp"
+        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-sm.webp",
+        "avif": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-sm.avif"
       },
       "preferred": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-sm.webp",
       "fallback": null
     },
     "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-original.webp"
+        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-original.webp",
+        "avif": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-original.avif"
       },
       "preferred": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-original.webp",
       "fallback": null
     },
     "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-md.webp"
+        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-md.webp",
+        "avif": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-md.avif"
       },
       "preferred": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-md.webp",
       "fallback": null
     },
     "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-lg.webp"
+        "webp": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-lg.webp",
+        "avif": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-lg.avif"
       },
       "preferred": "/optimized/160f389c-fa93-49f1-ac68-847dedda16fc-lg.webp",
       "fallback": null
     },
     "/optimized/124b1461-00bb-4065-9657-02b2984d461f-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-sm.webp"
+        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-sm.webp",
+        "avif": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-sm.avif"
       },
       "preferred": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-sm.webp",
       "fallback": null
     },
     "/optimized/124b1461-00bb-4065-9657-02b2984d461f-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-original.webp"
+        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-original.webp",
+        "avif": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-original.avif"
       },
       "preferred": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-original.webp",
       "fallback": null
     },
     "/optimized/124b1461-00bb-4065-9657-02b2984d461f-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-md.webp"
+        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-md.webp",
+        "avif": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-md.avif"
       },
       "preferred": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-md.webp",
       "fallback": null
     },
     "/optimized/124b1461-00bb-4065-9657-02b2984d461f-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-lg.webp"
+        "webp": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-lg.webp",
+        "avif": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-lg.avif"
       },
       "preferred": "/optimized/124b1461-00bb-4065-9657-02b2984d461f-lg.webp",
       "fallback": null
     },
     "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-sm.webp"
+        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-sm.webp",
+        "avif": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-sm.avif"
       },
       "preferred": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-sm.webp",
       "fallback": null
     },
     "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-original.webp"
+        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-original.webp",
+        "avif": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-original.avif"
       },
       "preferred": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-original.webp",
       "fallback": null
     },
     "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-md.webp"
+        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-md.webp",
+        "avif": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-md.avif"
       },
       "preferred": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-md.webp",
       "fallback": null
     },
     "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-lg.webp"
+        "webp": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-lg.webp",
+        "avif": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-lg.avif"
       },
       "preferred": "/optimized/1228ba28-d235-4f1b-bcfd-1fd79a1ad756-lg.webp",
       "fallback": null
     },
     "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-sm.webp"
+        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-sm.webp",
+        "avif": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-sm.avif"
       },
       "preferred": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-sm.webp",
       "fallback": null
     },
     "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-original.webp"
+        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-original.webp",
+        "avif": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-original.avif"
       },
       "preferred": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-original.webp",
       "fallback": null
     },
     "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-md.webp"
+        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-md.webp",
+        "avif": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-md.avif"
       },
       "preferred": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-md.webp",
       "fallback": null
     },
     "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-lg.webp"
+        "webp": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-lg.webp",
+        "avif": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-lg.avif"
       },
       "preferred": "/optimized/0cf5c270-9dc6-41f6-9b69-f40a31403033-lg.webp",
       "fallback": null
     },
     "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-sm.webp"
+        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-sm.webp",
+        "avif": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-sm.avif"
       },
       "preferred": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-sm.webp",
       "fallback": null
     },
     "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-original.webp"
+        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-original.webp",
+        "avif": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-original.avif"
       },
       "preferred": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-original.webp",
       "fallback": null
     },
     "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-md.webp"
+        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-md.webp",
+        "avif": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-md.avif"
       },
       "preferred": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-md.webp",
       "fallback": null
     },
     "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-lg": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-lg.webp"
+        "webp": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-lg.webp",
+        "avif": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-lg.avif"
       },
       "preferred": "/optimized/0c2bb7d8-5298-4aef-8c65-2a328429a8e7-lg.webp",
       "fallback": null
     },
     "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-sm": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-sm.webp"
+        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-sm.webp",
+        "avif": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-sm.avif"
       },
       "preferred": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-sm.webp",
       "fallback": null
     },
     "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-original": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-original.webp"
+        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-original.webp",
+        "avif": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-original.avif"
       },
       "preferred": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-original.webp",
       "fallback": null
     },
     "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-md": {
       "formats": [
-        "webp"
+        "webp",
+        "avif"
       ],
       "paths": {
-        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-md.webp"
+        "webp": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-md.webp",
+        "avif": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-md.avif"
       },
       "preferred": "/optimized/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995-md.webp",
       "fallback": null
@@ -4410,5 +4984,5 @@
       "fallback": null
     }
   },
-  "lastUpdated": "2025-12-15T06:43:03.651Z"
+  "lastUpdated": "2026-01-19T18:16:42.247Z"
 }

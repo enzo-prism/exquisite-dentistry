@@ -24,7 +24,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 - `LegacyRedirectHandler` (`src/components/LegacyRedirectHandler.tsx`) mirrors Netlify redirects in-browser to fix indexed `.html` URLs. Avoid touching it unless Netlify rules change.
 
 ### Build & quality gates
-- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build` (includes `generate:fallbacks` + `prerender:static`), `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, `npm run prerender:static`, and `node test-browser.js`.
+- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build` (includes `generate:fallbacks` + `prerender:static`), `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, `npm run test:blog`, `npm run prerender:static`, and `node test-browser.js`.
 - `scripts/seo-smoke.mjs` checks `public/emergency-dentist.html` for canonical/OG/JSON-LD tags—run it after builds touching SEO-critical assets.
 
 ---
@@ -58,6 +58,8 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 
 ### 3.3 Content Pipelines
 - Blogs: run `npm run generate:blog` after editing files in `Blog-Content/exq_dental_blog_posts`. The generator deduplicates against `src/data/blogPosts.ts`, normalizes slugs, enforces excerpt lengths, and writes `generatedBlogPosts.ts`.
+  - Keep **one** source file per blog topic. If you move a post into `src/data/blogPosts.ts`, delete the matching `Blog-Content` file so it cannot re-generate duplicates.
+  - Avoid leaving `published: false` entries unless you intend them to be reachable by slug; otherwise delete or publish them to keep `/blog` clean.
 - Transformation stories/testimonials: data lives in `src/data/transformationStories.ts`, `patientTransformations.ts`, etc. Most pages import from these datasets rather than inlining strings—update data, not components, to keep reuse high.
 - Gallery/media: `public/lovable-uploads` houses source images. Use `scripts/optimize-images.js` (or `npm run build:prod`) to refresh derivatives in `public/optimized`.
 
@@ -89,9 +91,9 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 5. Run `npm run lint && npm run build` (and `npm run preview` for manual QA).
 
 ### 4.3 Publishing Blog Content
-1. Drop the raw export/markdown into `Blog-Content/exq_dental_blog_posts`.
+1. Drop the raw export/markdown into `Blog-Content/exq_dental_blog_posts` **only if** it does not overlap an existing post in `src/data/blogPosts.ts`.
 2. Run `npm run generate:blog` to refresh `src/data/generatedBlogPosts.ts`.
-3. Commit both the content file (if tracked) and the generated dataset.
+3. Commit the content file (if tracked) and the generated dataset.
 4. Verify `/blog` and `/blog/:slug` render the new article locally; run `npm run lint && npm run build`.
 
 ### 4.4 Updating Media/OG Assets
@@ -114,6 +116,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 | Copy/UI tweaks | `npm run lint && npm run build` | `npm run preview` for layout sanity, mobile viewport in devtools. |
 | New page / major layout | `npm run lint && npm run build` | `npm run preview` + responsive sweep, ensure nav/footer links update, rerun `scripts/generate-sitemap.js` if needed. |
 | Blog/content pipeline | `npm run generate:blog`, `npm run lint`, `npm run build` | Open `/blog` + the slug locally, check structured data via browser devtools. |
+| Blog data integrity | `npm run test:blog` | Ensure no draft posts, duplicate sources, or broken blog links. |
 | Media changes | `npm run build:prod` | Confirm optimized assets exist under `public/optimized`, check network waterfall for WebP usage. |
 | SEO/structured data | `npm run lint`, `npm run build`, `npm run check:seo` | View page source for canonical/JSON-LD, run Rich Results Test for targeted page. |
 | Smoke tests | (after server running) `node test-browser.js` | Required when touching `/services/zoom-whitening` or contact/CTA flows. |

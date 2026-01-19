@@ -346,7 +346,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     return null;
   }
 
-  const readTime = computeReadTime(stripHtml(htmlContent));
+  const readTime = computeReadTime(stripHtml(htmlContentBody));
   const distributedDate = pickDistributedDate(index, total);
   const date = formatDate(distributedDate);
 
