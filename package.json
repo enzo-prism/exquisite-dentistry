@@ -16,6 +16,7 @@
     "test:seo": "node scripts/seo-acceptance.mjs",
     "test:blog": "node scripts/test-blog-integrity.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
+    "verify:prod": "node scripts/verify-prod.mjs",
     "test:content": "node --import tsx scripts/test-content-quality.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",
     "prerender:static": "node --import tsx scripts/prerender-static.ts",
