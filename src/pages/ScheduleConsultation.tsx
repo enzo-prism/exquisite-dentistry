@@ -101,12 +101,24 @@ const ScheduleConsultation = () => {
                   .
                 </p>
 
+                <div className="mt-4">
+                  <a
+                    href={SCHEDULING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
+                  >
+                    Open scheduling in a new tab
+                  </a>
+                </div>
+
                 <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
                   <iframe
                     title="Online scheduling"
                     src={SCHEDULING_URL}
                     className="w-full h-[900px]"
                     loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
               </div>

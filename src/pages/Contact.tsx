@@ -226,7 +226,7 @@ const Contact = () => {
     } catch (error) {
       console.error('Contact form submission failed', error);
       setFormStatus('error');
-      setFeedback(`Something went wrong. Please try again or call us at ${PHONE_NUMBER_DISPLAY}.`);
+      setFeedback('Something went wrong. Please try again.');
     }
   };
 
@@ -548,12 +548,24 @@ const Contact = () => {
                           {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
                         </Button>
                         {feedback && (
-                          <p
+                          <div
                             className={`text-sm ${formStatus === 'success' ? 'text-emerald-600' : formStatus === 'error' ? 'text-red-600' : 'text-gray-500'}`}
                             aria-live="polite"
                           >
-                            {feedback}
-                          </p>
+                            <p>{feedback}</p>
+                            {formStatus === 'error' && (
+                              <p className="mt-1 text-sm text-gray-600">
+                                If this fails, please call the office or email us at{' '}
+                                <a
+                                  href={`mailto:${EMAIL}`}
+                                  className="text-secondary underline underline-offset-4 hover:no-underline"
+                                >
+                                  {EMAIL}
+                                </a>
+                                .
+                              </p>
+                            )}
+                          </div>
                         )}
                       </div>
                     </form>
