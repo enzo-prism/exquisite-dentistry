@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize:images && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts",
+    "build": "npm run optimize:images && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -17,6 +17,7 @@
     "test:blog": "node scripts/test-blog-integrity.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
     "verify:prod": "node scripts/verify-prod.mjs",
+    "verify:staging": "node scripts/verify-staging.mjs",
     "test:content": "node --import tsx scripts/test-content-quality.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",
     "prerender:static": "node --import tsx scripts/prerender-static.ts",

@@ -18,6 +18,17 @@ import {
 
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
 const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
+const BASE_URL = 'https://exquisitedentistryla.com';
+
+const toAbsoluteUrl = (value?: string): string | undefined => {
+  const raw = (value || '').trim();
+  if (!raw) return undefined;
+
+  if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+  if (raw.startsWith('//')) return `https:${raw}`;
+  if (raw.startsWith('/')) return `${BASE_URL}${raw}`;
+  return `${BASE_URL}/${raw}`;
+};
 
 // Master business entity - single source of truth
 export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
@@ -291,4 +302,80 @@ export function createBreadcrumbSchema(breadcrumbs: BreadcrumbItem[]): JsonLd {
       }))
     ]
   };
+}
+
+export interface BlogPostingOptions {
+  headline: string;
+  description: string;
+  url: string;
+  authorName: string;
+  datePublished?: string;
+  dateModified?: string;
+  image?: string;
+  keywords?: string[];
+}
+
+/**
+ * Generate BlogPosting schema object
+ */
+export function createBlogPostingSchema(options: BlogPostingOptions): JsonLd {
+  const imageUrl = toAbsoluteUrl(options.image);
+  const schema: JsonLd = {
+    '@type': 'BlogPosting',
+    headline: options.headline,
+    description: options.description,
+    url: getCanonicalUrl(options.url),
+    mainEntityOfPage: getCanonicalUrl(options.url),
+    isPartOf: getWebsiteReference(),
+    author: {
+      '@type': 'Person',
+      name: options.authorName
+    },
+    publisher: getBusinessReference(),
+    inLanguage: 'en-US'
+  };
+
+  if (options.datePublished) schema.datePublished = options.datePublished;
+  if (options.dateModified) schema.dateModified = options.dateModified;
+  if (imageUrl) schema.image = [imageUrl];
+  if (options.keywords?.length) schema.keywords = options.keywords.join(', ');
+
+  return schema;
+}
+
+export interface VideoObjectOptions {
+  name: string;
+  description: string;
+  url: string;
+  thumbnailUrl?: string;
+  contentUrl?: string;
+  embedUrl?: string;
+  uploadDate?: string;
+  duration?: string;
+}
+
+/**
+ * Generate VideoObject schema object (for transformation stories and testimonials)
+ */
+export function createVideoObjectSchema(options: VideoObjectOptions): JsonLd {
+  const thumbnailUrl = toAbsoluteUrl(options.thumbnailUrl);
+  const contentUrl = toAbsoluteUrl(options.contentUrl);
+  const embedUrl = toAbsoluteUrl(options.embedUrl);
+
+  const schema: JsonLd = {
+    '@type': 'VideoObject',
+    name: options.name,
+    description: options.description,
+    url: getCanonicalUrl(options.url),
+    publisher: getBusinessReference(),
+    inLanguage: 'en-US'
+  };
+
+  if (thumbnailUrl) schema.thumbnailUrl = thumbnailUrl;
+  if (contentUrl) schema.contentUrl = contentUrl;
+  if (embedUrl) schema.embedUrl = embedUrl;
+  if (options.uploadDate) schema.uploadDate = options.uploadDate;
+  if (options.duration) schema.duration = options.duration;
+
+  return schema;
 }

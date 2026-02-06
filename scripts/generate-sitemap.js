@@ -10,7 +10,17 @@ import fs from 'fs';
 import path from 'path';
 import { generateXmlSitemap } from '../src/utils/sitemapGenerator.ts';
 
+const isStagingBuild =
+  process.env.VITE_APP_ENV === 'staging' ||
+  process.env.VERCEL_GIT_COMMIT_REF === 'staging' ||
+  process.env.VERCEL_GIT_BRANCH === 'staging';
+
 const generateSitemap = () => {
+  if (isStagingBuild) {
+    console.log('🧪 Staging build detected. Skipping sitemap generation.');
+    return;
+  }
+
   try {
     console.log('🗺️  Generating sitemap...');
     

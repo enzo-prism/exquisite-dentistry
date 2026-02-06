@@ -4,14 +4,16 @@ import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
 import { getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
-import { getRouteMetadata } from "../src/constants/metadata";
+import { getRouteMetadata, ROUTE_METADATA } from "../src/constants/metadata";
 import {
   MASTER_BUSINESS_ENTITY,
   MASTER_DOCTOR_ENTITY,
   WEBSITE_ENTITY,
   createBreadcrumbSchema,
+  createBlogPostingSchema,
   createFAQSchema,
   createMedicalProcedureSchema,
+  createVideoObjectSchema,
   createWebPageSchema
 } from "../src/utils/centralizedSchemas";
 import {
@@ -74,11 +76,44 @@ export type StaticRoute = {
   sections?: StaticRouteSection[];
   faqItems?: Array<{ question: string; answer: string }>;
   links: StaticLink[];
+  ogImage?: string;
+  ogType?: "website" | "article";
+  blogPost?: {
+    headline: string;
+    authorName: string;
+    datePublished?: string;
+    dateModified?: string;
+    image?: string;
+    keywords?: string[];
+  };
+  video?: {
+    name: string;
+    description: string;
+    contentUrl: string;
+    thumbnailUrl?: string;
+    embedUrl?: string;
+    uploadDate?: string;
+    duration?: string;
+  };
 };
 
 const DIST_DIR = path.resolve("dist");
 const TEMPLATE_PATH = path.join(DIST_DIR, "index.html");
 const SCHEMA_ORG_CONTEXT = "https://schema.org";
+const CANONICAL_BASE = "https://exquisitedentistryla.com";
+const DEFAULT_OG_IMAGE = `${CANONICAL_BASE}/lovable-uploads/dr-aguil-banner-2024-m.webp`;
+const OG_SITE_NAME = "Exquisite Dentistry";
+const OG_LOCALE = "en_US";
+
+const toAbsoluteUrl = (value?: string): string => {
+  const raw = (value || "").trim();
+  if (!raw) return "";
+
+  if (raw.startsWith("http://") || raw.startsWith("https://")) return raw;
+  if (raw.startsWith("//")) return `https:${raw}`;
+  if (raw.startsWith("/")) return `${CANONICAL_BASE}${raw}`;
+  return `${CANONICAL_BASE}/${raw}`;
+};
 
 export const defaultNavLinks: StaticLink[] = [
   { label: "Dental Implants", href: "/dental-implants" },
@@ -636,6 +671,23 @@ const toMeta = (input: string, max = 155) => {
   return text.slice(0, max).replace(/\s+\S*$/, "");
 };
 
+const toIsoDate = (value?: string) => {
+  if (!value) return undefined;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return undefined;
+  return parsed.toISOString().split("T")[0];
+};
+
+const parseSeoKeywords = (value?: string) => {
+  const raw = (value || "").trim();
+  if (!raw) return undefined;
+  const parts = raw
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  return parts.length ? parts : undefined;
+};
+
 const truncateTitle = (input: string, max = 70) => {
   if (input.length <= max) return input;
   return input.slice(0, max).replace(/\s+\S*$/, "").trim();
@@ -789,66 +841,83 @@ const renderFaqSection = (faqItems: Array<{ question: string; answer: string }>)
   </section>`;
 };
 
-const injectSeo = (template: string, title: string, description: string, routePath: string) => {
-  const fullTitle = buildSeoTitle(title);
-  const metaDescription = toMeta(description);
-  const canonicalUrl =
-    routePath === "/"
-      ? "https://exquisitedentistryla.com/"
-      : `https://exquisitedentistryla.com${routePath}/`;
+const buildCanonicalUrl = (routePath: string) => {
+  const normalizedPath = !routePath || routePath === "/" ? "/" : routePath.startsWith("/") ? routePath : `/${routePath}`;
+  if (normalizedPath === "/") return `${CANONICAL_BASE}/`;
+  const withoutTrailing = normalizedPath.endsWith("/") ? normalizedPath.slice(0, -1) : normalizedPath;
+  return `${CANONICAL_BASE}${withoutTrailing}/`;
+};
+
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const removeHeadMetaBy = (html: string, attr: "name" | "property", key: string) => {
+  const keyPattern = escapeRegExp(key);
+  const regex = new RegExp(`<meta\\s+[^>]*${attr}\\s*=\\s*["']${keyPattern}["'][^>]*>\\s*`, "gi");
+  return html.replace(regex, "");
+};
+
+const removeHeadLinkByRel = (html: string, rel: string) => {
+  const relPattern = escapeRegExp(rel);
+  const regex = new RegExp(`<link\\s+[^>]*rel\\s*=\\s*["']${relPattern}["'][^>]*>\\s*`, "gi");
+  return html.replace(regex, "");
+};
+
+const injectSeo = (template: string, route: StaticRoute) => {
+  const fullTitle = buildSeoTitle(route.title);
+  const metaDescription = toMeta(route.description);
+  const canonicalUrl = buildCanonicalUrl(route.path);
+
+  const ogType =
+    route.ogType ??
+    (route.path.startsWith("/blog/") || route.path.startsWith("/transformation-stories/")
+      ? "article"
+      : "website");
+
+  const routeMeta = ROUTE_METADATA[route.path];
+  const ogImageCandidate = route.ogImage || routeMeta?.ogImage || DEFAULT_OG_IMAGE;
+  const absoluteOgImage = toAbsoluteUrl(ogImageCandidate) || DEFAULT_OG_IMAGE;
+
   let html = template;
 
-  if (/<title>[\s\S]*?<\/title>/i.test(html)) {
-    html = html.replace(
-      /<title>[\s\S]*?<\/title>/i,
-      `<title data-rh="true">${escapeHtml(fullTitle)}</title>`,
-    );
-  } else {
-    html = html.replace(
-      /<\/head>/i,
-      `  <title data-rh="true">${escapeHtml(fullTitle)}</title>\n  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />\n  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />\n</head>`,
-    );
-  }
+  // Remove tags we manage to ensure a single source of truth per prerendered page.
+  html = html.replace(/<title[^>]*>[\s\S]*?<\/title>\s*/gi, "");
+  html = removeHeadMetaBy(html, "name", "description");
+  html = removeHeadLinkByRel(html, "canonical");
 
-  if (/<meta[^>]+name=["']description["'][^>]*>/i.test(html)) {
-    html = html.replace(
-      /<meta[^>]+name=["']description["'][^>]*>/i,
-      `<meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
-    );
-  } else {
-    html = html.replace(
-      /<\/head>/i,
-      `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />\n</head>`,
-    );
-  }
+  // Open Graph
+  html = removeHeadMetaBy(html, "property", "og:type");
+  html = removeHeadMetaBy(html, "property", "og:site_name");
+  html = removeHeadMetaBy(html, "property", "og:locale");
+  html = removeHeadMetaBy(html, "property", "og:title");
+  html = removeHeadMetaBy(html, "property", "og:description");
+  html = removeHeadMetaBy(html, "property", "og:url");
+  html = removeHeadMetaBy(html, "property", "og:image");
 
-  if (/<link[^>]+rel=["']canonical["'][^>]*>/i.test(html)) {
-    html = html.replace(
-      /<link[^>]+rel=["']canonical["'][^>]*>/i,
-      `<link rel="canonical" href="${canonicalUrl}" data-rh="true" />`,
-    );
-  } else {
-    html = html.replace(
-      /<\/head>/i,
-      `  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />\n</head>`,
-    );
-  }
+  // Twitter
+  html = removeHeadMetaBy(html, "name", "twitter:card");
+  html = removeHeadMetaBy(html, "name", "twitter:title");
+  html = removeHeadMetaBy(html, "name", "twitter:description");
+  html = removeHeadMetaBy(html, "name", "twitter:image");
 
-	  // Keep OG/Twitter in sync when present.
-	  const updateMetaContent = (pattern: RegExp, content: string) => {
-	    html = html.replace(pattern, (match) =>
-	      match.replace(/content=("[^"]*"|'[^']*')/i, `content="${escapeHtml(content)}"`),
-	    );
-	  };
+  const injectedHeadTags = [
+    `  <title data-rh="true">${escapeHtml(fullTitle)}</title>`,
+    `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    `  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />`,
+    `  <meta property="og:type" content="${escapeHtml(ogType)}" data-rh="true" />`,
+    `  <meta property="og:site_name" content="${escapeHtml(OG_SITE_NAME)}" data-rh="true" />`,
+    `  <meta property="og:locale" content="${escapeHtml(OG_LOCALE)}" data-rh="true" />`,
+    `  <meta property="og:title" content="${escapeHtml(fullTitle)}" data-rh="true" />`,
+    `  <meta property="og:description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    `  <meta property="og:url" content="${canonicalUrl}" data-rh="true" />`,
+    `  <meta property="og:image" content="${escapeHtml(absoluteOgImage)}" data-rh="true" />`,
+    `  <meta name="twitter:card" content="summary_large_image" data-rh="true" />`,
+    `  <meta name="twitter:title" content="${escapeHtml(fullTitle)}" data-rh="true" />`,
+    `  <meta name="twitter:description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    `  <meta name="twitter:image" content="${escapeHtml(absoluteOgImage)}" data-rh="true" />`,
+  ].join("\n");
 
-  updateMetaContent(/<meta[^>]+property=["']og:title["'][^>]*>/i, fullTitle);
-  updateMetaContent(/<meta[^>]+property=["']og:description["'][^>]*>/i, metaDescription);
-  updateMetaContent(/<meta[^>]+name=["']twitter:title["'][^>]*>/i, fullTitle);
-  updateMetaContent(/<meta[^>]+name=["']twitter:description["'][^>]*>/i, metaDescription);
-
-  // Update og:url if present.
-  updateMetaContent(/<meta[^>]+property=["']og:url["'][^>]*>/i, canonicalUrl);
-
+  html = html.replace(/<\/head>/i, `${injectedHeadTags}\n</head>`);
   return html;
 };
 
@@ -898,116 +967,160 @@ const buildTestimonialsSchema = () => {
   };
 };
 
-const getSchemasForRoute = (routePath: string) => {
-  const schemas: Record<string, unknown>[] = [
-    MASTER_BUSINESS_ENTITY,
-    WEBSITE_ENTITY
-  ];
+const SERVICE_METADATA_EXCLUSIONS = new Set([
+  "/",
+  "/about",
+  "/services",
+  "/locations",
+  "/contact",
+  "/schedule-consultation",
+  "/testimonials",
+  "/smile-gallery",
+  "/faqs",
+  "/blog",
+]);
 
-  if (routePath === "/about") {
-    schemas.push(MASTER_DOCTOR_ENTITY);
+const SERVICE_METADATA_PATHS = new Set(
+  Object.keys(ROUTE_METADATA).filter((key) => !SERVICE_METADATA_EXCLUSIONS.has(key)),
+);
+
+const pathToSlug = (routePath: string) => routePath.replace(/^\/+|\/+$/g, "");
+
+const isLocationConfigPath = (routePath: string) => {
+  const slug = pathToSlug(routePath);
+  return Boolean(slug && locationPageConfigs[slug]);
+};
+
+const isServiceConfigPath = (routePath: string) => {
+  const slug = pathToSlug(routePath);
+  return Boolean(slug && servicePageConfigs[slug]);
+};
+
+const buildBreadcrumbsForRoute = (route: StaticRoute) => {
+  const routePath = route.path;
+  if (!routePath || routePath === "/") return [];
+
+  if (routePath === "/blog") {
+    return [{ name: "Blog", url: "/blog" }];
+  }
+  if (routePath.startsWith("/blog/")) {
+    return [
+      { name: "Blog", url: "/blog" },
+      { name: route.h1, url: routePath }
+    ];
   }
 
-  if (routePath === "/locations") {
-    const meta = getRouteMetadata("/locations");
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/locations",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(createBreadcrumbSchema([{ name: "Locations", url: "/locations" }]));
+  if (routePath === "/transformation-stories") {
+    return [{ name: "Transformation Stories", url: "/transformation-stories" }];
+  }
+  if (routePath.startsWith("/transformation-stories/")) {
+    return [
+      { name: "Transformation Stories", url: "/transformation-stories" },
+      { name: route.h1, url: routePath }
+    ];
   }
 
-  if (routePath === "/schedule-consultation") {
-    const meta = getRouteMetadata("/schedule-consultation");
+  const isVeneersChild = routePath.startsWith("/veneers/") && routePath !== "/veneers";
+
+  if (isLocationConfigPath(routePath)) {
+    return [
+      { name: "Locations", url: "/locations" },
+      { name: route.h1, url: routePath }
+    ];
+  }
+
+  if (isVeneersChild) {
+    return [
+      { name: "Services", url: "/services" },
+      { name: "Porcelain Veneers", url: "/veneers" },
+      { name: route.h1, url: routePath }
+    ];
+  }
+
+  const isServiceLike =
+    routePath === "/veneers" ||
+    isServiceConfigPath(routePath) ||
+    SERVICE_METADATA_PATHS.has(routePath);
+
+  if (isServiceLike) {
+    return [
+      { name: "Services", url: "/services" },
+      { name: route.h1, url: routePath }
+    ];
+  }
+
+  return [{ name: route.h1, url: routePath }];
+};
+
+const getSchemasForRoute = (route: StaticRoute) => {
+  const routePath = route.path;
+  const schemas: Record<string, unknown>[] = [MASTER_BUSINESS_ENTITY, WEBSITE_ENTITY];
+
+  const includeDoctor =
+    routePath === "/about" ||
+    routePath === "/veneers" ||
+    routePath === "/zoom-whitening" ||
+    routePath === "/culver-city-teeth-whitening" ||
+    routePath === "/smile-makeover-los-angeles" ||
+    routePath === "/invisalign-beverly-hills" ||
+    routePath === "/teeth-whitening-beverly-hills" ||
+    routePath === "/dental-implants" ||
+    routePath === "/santa-monica-dental-implants";
+
+  if (includeDoctor) schemas.push(MASTER_DOCTOR_ENTITY);
+
+  const pageType =
+    routePath === "/about"
+      ? "AboutPage"
+      : routePath === "/contact"
+        ? "ContactPage"
+        : "WebPage";
+
+  schemas.push(
+    createWebPageSchema({
+      title: route.title,
+      description: route.description,
+      url: routePath,
+      pageType
+    })
+  );
+
+  if (routePath !== "/") {
+    schemas.push(createBreadcrumbSchema(buildBreadcrumbsForRoute(route)));
+  }
+
+  if (route.blogPost) {
     schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/schedule-consultation",
-        pageType: "WebPage"
+      createBlogPostingSchema({
+        headline: route.blogPost.headline,
+        description: route.description,
+        url: routePath,
+        authorName: route.blogPost.authorName,
+        datePublished: route.blogPost.datePublished,
+        dateModified: route.blogPost.dateModified,
+        image: route.blogPost.image,
+        keywords: route.blogPost.keywords
       })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Schedule Consultation", url: "/schedule-consultation" }
-      ])
     );
   }
 
-  if (routePath === "/veneers") {
-    const meta = getRouteMetadata("/veneers");
-    schemas.push(MASTER_DOCTOR_ENTITY);
+  if (route.video) {
     schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/veneers",
-        pageType: "WebPage"
+      createVideoObjectSchema({
+        name: route.video.name,
+        description: route.video.description,
+        url: routePath,
+        thumbnailUrl: route.video.thumbnailUrl,
+        contentUrl: route.video.contentUrl,
+        embedUrl: route.video.embedUrl,
+        uploadDate: route.video.uploadDate,
+        duration: route.video.duration
       })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Porcelain Veneers", url: "/veneers" }
-      ])
-    );
-  }
-
-  if (routePath === "/smile-gallery") {
-    const meta = getRouteMetadata("/smile-gallery");
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/smile-gallery",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([{ name: "Smile Gallery", url: "/smile-gallery" }])
-    );
-  }
-
-  if (routePath === "/beverly-hills-dentist") {
-    const config = locationPageConfigs["beverly-hills-dentist"];
-    schemas.push(
-      createWebPageSchema({
-        title: config.seo.title,
-        description: config.seo.description,
-        url: "/beverly-hills-dentist",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Locations", url: "/locations" },
-        { name: "Beverly Hills Dentist", url: "/beverly-hills-dentist" }
-      ])
     );
   }
 
   if (routePath === "/zoom-whitening") {
     const meta = getRouteMetadata("/zoom-whitening");
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/zoom-whitening",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Teeth Whitening", url: "/teeth-whitening" },
-        { name: "Zoom Whitening", url: "/zoom-whitening" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Zoom Whitening",
@@ -1040,22 +1153,6 @@ const getSchemasForRoute = (routePath: string) => {
 
   if (routePath === "/culver-city-teeth-whitening") {
     const meta = getRouteMetadata("/culver-city-teeth-whitening");
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/culver-city-teeth-whitening",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Teeth Whitening", url: "/teeth-whitening" },
-        { name: "Culver City Teeth Whitening", url: "/culver-city-teeth-whitening" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Professional Teeth Whitening",
@@ -1092,22 +1189,6 @@ const getSchemasForRoute = (routePath: string) => {
   if (routePath === "/smile-makeover-los-angeles") {
     const meta = getRouteMetadata("/smile-makeover-los-angeles");
     const config = servicePageConfigs["smile-makeover-los-angeles"];
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/smile-makeover-los-angeles",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Cosmetic Dentistry", url: "/cosmetic-dentistry" },
-        { name: "Smile Makeover", url: "/smile-makeover-los-angeles" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Smile Makeover",
@@ -1146,22 +1227,6 @@ const getSchemasForRoute = (routePath: string) => {
   if (routePath === "/invisalign-beverly-hills") {
     const meta = getRouteMetadata("/invisalign-beverly-hills");
     const config = servicePageConfigs["invisalign-beverly-hills"];
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/invisalign-beverly-hills",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Invisalign", url: "/invisalign" },
-        { name: "Invisalign Beverly Hills", url: "/invisalign-beverly-hills" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Invisalign Clear Aligners",
@@ -1200,22 +1265,6 @@ const getSchemasForRoute = (routePath: string) => {
   if (routePath === "/teeth-whitening-beverly-hills") {
     const meta = getRouteMetadata("/teeth-whitening-beverly-hills");
     const config = servicePageConfigs["teeth-whitening-beverly-hills"];
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/teeth-whitening-beverly-hills",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Teeth Whitening", url: "/teeth-whitening" },
-        { name: "Teeth Whitening Near Beverly Hills", url: "/teeth-whitening-beverly-hills" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Professional Teeth Whitening",
@@ -1254,21 +1303,6 @@ const getSchemasForRoute = (routePath: string) => {
 
   if (routePath === "/dental-implants") {
     const meta = getRouteMetadata("/dental-implants");
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/dental-implants",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Dental Implants", url: "/dental-implants" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Dental Implant Therapy",
@@ -1307,22 +1341,6 @@ const getSchemasForRoute = (routePath: string) => {
   if (routePath === "/santa-monica-dental-implants") {
     const meta = getRouteMetadata("/santa-monica-dental-implants");
     const config = servicePageConfigs["santa-monica-dental-implants"];
-    schemas.push(MASTER_DOCTOR_ENTITY);
-    schemas.push(
-      createWebPageSchema({
-        title: meta.title,
-        description: meta.description,
-        url: "/santa-monica-dental-implants",
-        pageType: "WebPage"
-      })
-    );
-    schemas.push(
-      createBreadcrumbSchema([
-        { name: "Services", url: "/services" },
-        { name: "Dental Implants", url: "/dental-implants" },
-        { name: "Dental Implants Near Santa Monica", url: "/santa-monica-dental-implants" }
-      ])
-    );
     schemas.push(
       createMedicalProcedureSchema({
         procedureName: "Dental Implant Therapy",
@@ -1492,12 +1510,22 @@ export const buildRoutes = (): StaticRoute[] => {
     const supportLinks = getBlogSupportLinks(post).filter(
       (link) => normalizeInternalHref(link.href) !== normalizeInternalHref(`/blog/${post.slug}`)
     );
+    const keywords = parseSeoKeywords(post.seoKeywords);
     routes.push({
       path: `/blog/${post.slug}`,
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.excerpt,
       h1: post.title,
       paragraphs: extractBlogParagraphs(post.content || "", post.excerpt),
+      ogType: "article",
+      ogImage: post.featuredImage,
+      blogPost: {
+        headline: post.title,
+        authorName: post.author,
+        datePublished: toIsoDate(post.date),
+        image: post.featuredImage,
+        keywords
+      },
       links: uniqueLinks([
         { label: "Back to Blog", href: "/blog" },
         ...supportLinks,
@@ -1507,12 +1535,21 @@ export const buildRoutes = (): StaticRoute[] => {
   });
 
   transformationStories.forEach((story) => {
+    const storyOgImage = story.thumbnailUrl || story.video.poster;
     routes.push({
       path: `/transformation-stories/${story.slug}`,
       title: story.seo.title,
       description: story.seo.description,
       h1: story.title,
       paragraphs: [story.shortDescription],
+      ogType: "article",
+      ogImage: storyOgImage,
+      video: {
+        name: story.title,
+        description: story.shortDescription,
+        contentUrl: story.video.src,
+        thumbnailUrl: story.video.poster || story.thumbnailUrl
+      },
       links: uniqueLinks([
         { label: "Back to Transformation Stories", href: "/transformation-stories" },
         ...defaultNavLinks
@@ -1628,8 +1665,8 @@ const renderRoute = (template: string, route: StaticRoute) => {
 		    </main>
 		  </div>`;
 
-  const schemas = getSchemasForRoute(route.path);
-  let html = injectSeo(template, route.title, route.description, route.path);
+  const schemas = getSchemasForRoute(route);
+  let html = injectSeo(template, route);
   html = injectJsonLd(html, schemas);
   html = injectRoot(html, contentHtml);
   return html;

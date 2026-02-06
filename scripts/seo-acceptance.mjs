@@ -31,6 +31,22 @@ const stripHtml = (value) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const extractMetaContent = (html, { attr, key }) => {
+  const attrPattern = escapeRegExp(attr);
+  const keyPattern = escapeRegExp(key);
+  const regex = new RegExp(
+    `<meta[^>]+${attrPattern}=["']${keyPattern}["'][^>]*content=["']([^"']+)["'][^>]*>`,
+    'i'
+  );
+  const match = regex.exec(html);
+  return match?.[1]?.trim() ?? null;
+};
+
+const extractMetaProperty = (html, property) => extractMetaContent(html, { attr: 'property', key: property });
+const extractMetaName = (html, name) => extractMetaContent(html, { attr: 'name', key: name });
+
 const distHtmlPathForRoute = (route) => {
   if (route === '/') return path.join(DIST_DIR, 'index.html');
   const normalized = route.replace(/^\/|\/$/g, '');
@@ -185,6 +201,29 @@ const validateDistHtml = async () => {
       errors.push(`❌ ${page.route}: canonical must use ${CANONICAL_BASE} (${canonical})`);
     }
 
+    const ogUrl = extractMetaProperty(html, 'og:url');
+    const ogImage = extractMetaProperty(html, 'og:image');
+    const twitterCard = extractMetaName(html, 'twitter:card');
+    const twitterTitle = extractMetaName(html, 'twitter:title');
+    const twitterDescription = extractMetaName(html, 'twitter:description');
+    const twitterImage = extractMetaName(html, 'twitter:image');
+
+    assertTruthy(`${page.route}: og:url`, ogUrl, errors);
+    assertTruthy(`${page.route}: og:image`, ogImage, errors);
+    assertTruthy(`${page.route}: twitter:card`, twitterCard, errors);
+    assertTruthy(`${page.route}: twitter:title`, twitterTitle, errors);
+    assertTruthy(`${page.route}: twitter:description`, twitterDescription, errors);
+    assertTruthy(`${page.route}: twitter:image`, twitterImage, errors);
+
+    assertEqual(`${page.route}: og:url`, ogUrl, expectedCanonical, errors);
+
+    if (ogImage && !/^https?:\/\//i.test(ogImage)) {
+      errors.push(`❌ ${page.route}: og:image must be an absolute URL (${ogImage})`);
+    }
+    if (twitterImage && !/^https?:\/\//i.test(twitterImage)) {
+      errors.push(`❌ ${page.route}: twitter:image must be an absolute URL (${twitterImage})`);
+    }
+
     const jsonLdBlocks = extractJsonLdBlocks(html);
     if (!jsonLdBlocks.length) {
       errors.push(`❌ ${page.route}: missing JSON-LD`);
@@ -227,6 +266,27 @@ const validateDistHtml = async () => {
   if (!sitemapLocs.length) {
     warnings.push('⚠️ sitemap.xml missing or empty; skipping blog prerender checks.');
   } else {
+    const schemaTypesForPathname = async (pathname) => {
+      const filePath = distHtmlPathForRoute(pathname);
+      if (!existsSync(filePath)) return null;
+
+      const html = await readFile(filePath, 'utf8');
+      const jsonLdBlocks = extractJsonLdBlocks(html);
+      if (!jsonLdBlocks.length) return new Set();
+
+      const schemaNodes = [];
+      for (const block of jsonLdBlocks) {
+        try {
+          const parsed = JSON.parse(block);
+          schemaNodes.push(...flattenJsonLdGraph(parsed));
+        } catch {
+          // Ignore parse errors here; the main page loop already validates JSON-LD parseability.
+        }
+      }
+
+      return new Set(schemaNodes.flatMap(getTypes));
+    };
+
     const blogLocs = sitemapLocs
       .map((loc) => {
         try {
@@ -243,6 +303,48 @@ const validateDistHtml = async () => {
         errors.push(`❌ Missing prerendered blog HTML: ${filePath} (route ${pathname})`);
       }
     });
+
+    const sampleBlogPath = blogLocs[0];
+    if (sampleBlogPath) {
+      const types = await schemaTypesForPathname(sampleBlogPath);
+      if (types && !types.has('BlogPosting')) {
+        errors.push(`❌ ${sampleBlogPath}: missing BlogPosting schema`);
+      }
+    } else {
+      warnings.push('⚠️ No blog detail pages found in sitemap; skipping BlogPosting schema check.');
+    }
+
+    const storyLocs = sitemapLocs
+      .map((loc) => {
+        try {
+          return new URL(loc, CANONICAL_BASE).pathname;
+        } catch {
+          return null;
+        }
+      })
+      .filter(
+        (pathname) =>
+          pathname &&
+          pathname.startsWith('/transformation-stories/') &&
+          pathname !== '/transformation-stories/'
+      );
+
+    storyLocs.forEach((pathname) => {
+      const filePath = distHtmlPathForRoute(pathname);
+      if (!existsSync(filePath)) {
+        errors.push(`❌ Missing prerendered transformation story HTML: ${filePath} (route ${pathname})`);
+      }
+    });
+
+    const sampleStoryPath = storyLocs[0];
+    if (sampleStoryPath) {
+      const types = await schemaTypesForPathname(sampleStoryPath);
+      if (types && !types.has('VideoObject')) {
+        errors.push(`❌ ${sampleStoryPath}: missing VideoObject schema`);
+      }
+    } else {
+      warnings.push('⚠️ No transformation story pages found in sitemap; skipping VideoObject schema check.');
+    }
   }
 
   assertUnique(

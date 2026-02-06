@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 const BASE_URL = 'https://exquisitedentistryla.com';
+const OG_SITE_NAME = 'Exquisite Dentistry';
+const OG_LOCALE = 'en_US';
 
 interface PageSEOProps {
   title: string;
@@ -33,6 +35,16 @@ const toMeta = (input: string, max = 155) => {
 const truncateTitle = (input: string, max = 70) => {
   if (input.length <= max) return input;
   return input.slice(0, max).replace(/\s+\S*$/, "").trim();
+};
+
+const toAbsoluteUrl = (value: string) => {
+  const raw = (value || "").trim();
+  if (!raw) return raw;
+
+  if (raw.startsWith("http://") || raw.startsWith("https://")) return raw;
+  if (raw.startsWith("//")) return `https:${raw}`;
+  if (raw.startsWith("/")) return `${BASE_URL}${raw}`;
+  return `${BASE_URL}/${raw}`;
 };
 
 // Dev-time duplicate detection
@@ -67,9 +79,13 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   noindex = false,
   nofollow = false,
 }) => {
+  const isStaging = import.meta.env.VITE_APP_ENV === 'staging';
   const normalizedPath = path === undefined ? '/' : path || '/';
   const canonicalUrl = getCanonicalUrl(normalizedPath);
   const sanitizedDescription = toMeta(description);
+  const absoluteOgImage = toAbsoluteUrl(ogImage);
+  const effectiveNoindex = noindex || isStaging;
+  const effectiveNofollow = nofollow || isStaging;
 
   // Differentiate <title> from on-page H1 by adding brand suffix
   const brandSuffix = 'Exquisite Dentistry Los Angeles';
@@ -121,6 +137,14 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       (node) => node.getAttribute('content') === sanitizedDescription,
     );
     pruneDuplicates(
+      'meta[property="og:url"]',
+      (node) => node.getAttribute('content') === canonicalUrl,
+    );
+    pruneDuplicates(
+      'meta[property="og:image"]',
+      (node) => node.getAttribute('content') === absoluteOgImage,
+    );
+    pruneDuplicates(
       'meta[name="twitter:title"]',
       (node) => node.getAttribute('content') === fullTitle,
     );
@@ -129,10 +153,14 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       (node) => node.getAttribute('content') === sanitizedDescription,
     );
     pruneDuplicates(
+      'meta[name="twitter:image"]',
+      (node) => node.getAttribute('content') === absoluteOgImage,
+    );
+    pruneDuplicates(
       'link[rel="canonical"]',
       (node) => node.getAttribute('href') === canonicalUrl,
     );
-  }, [canonicalUrl, fullTitle, sanitizedDescription]);
+  }, [absoluteOgImage, canonicalUrl, fullTitle, sanitizedDescription]);
 
   return (
     <Helmet>
@@ -142,10 +170,10 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
 
       {/* Robots */}
-      {(noindex || nofollow) && (
+      {(effectiveNoindex || effectiveNofollow) && (
         <meta
           name="robots"
-          content={`${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`}
+          content={`${effectiveNoindex ? 'noindex' : 'index'},${effectiveNofollow ? 'nofollow' : 'follow'}`}
         />
       )}
 
@@ -154,16 +182,18 @@ export const PageSEO: React.FC<PageSEOProps> = ({
 
       {/* Open Graph Meta Tags */}
       <meta property="og:type" content={ogType} />
+      <meta property="og:site_name" content={OG_SITE_NAME} />
+      <meta property="og:locale" content={OG_LOCALE} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={sanitizedDescription} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={absoluteOgImage} />
 
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={sanitizedDescription} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={absoluteOgImage} />
 
       {/* Article-specific meta (if provided) */}
       {articlePublishedTime && (

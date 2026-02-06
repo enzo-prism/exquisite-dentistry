@@ -1,6 +1,16 @@
 const BASE_URL = 'https://exquisitedentistryla.com';
 const WWW_URL = 'https://www.exquisitedentistryla.com';
 const ROOT_CANONICAL = `${BASE_URL}/`;
+const isStagingEnv =
+  process.env.VITE_APP_ENV === 'staging' ||
+  process.env.VERCEL_GIT_COMMIT_REF === 'staging' ||
+  process.env.VERCEL_GIT_BRANCH === 'staging';
+const vercelEnv = process.env.VERCEL_ENV;
+
+if (isStagingEnv || (vercelEnv && vercelEnv !== 'production')) {
+  console.error('verify-prod is restricted to production runs only.');
+  process.exit(1);
+}
 
 const results = [];
 
