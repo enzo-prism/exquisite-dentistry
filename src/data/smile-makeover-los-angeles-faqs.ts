@@ -52,7 +52,7 @@ export const SMILE_MAKEOVER_LOS_ANGELES_FAQS: FAQItem[] = [
   {
     question: "Can you plan a smile makeover before an event?",
     answer:
-      "Yes. If you have a deadline (wedding, graduation, photos, travel), we can recommend a timeline that fits—often starting with whitening and short-term improvements, then layering longer-term changes when appropriate."
+      "Yes. If you have a deadline (wedding, graduation, photos, travel), we can recommend a timeline that fits, often starting with whitening and short-term improvements, then layering longer-term changes when appropriate."
   }
 ];
 

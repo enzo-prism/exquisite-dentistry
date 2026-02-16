@@ -12,12 +12,12 @@ export const INVISALIGN_BEVERLY_HILLS_FAQS: FAQItem[] = [
   {
     question: "How long does Invisalign take?",
     answer:
-      "Many adults finish cosmetic alignment in about 6–12 months, while bite-focused or complex cases can take longer. After your scan and exam, we’ll outline a realistic timeline and the milestones you can expect."
+      "Many adults finish cosmetic alignment in about 6 to 12 months, while bite-focused or complex cases can take longer. After your scan and exam, we’ll outline a realistic timeline and the milestones you can expect."
   },
   {
     question: "How often are Invisalign appointments?",
     answer:
-      "Most patients check in about every 6–10 weeks, depending on the plan and how teeth are tracking. We’ll confirm the ideal cadence and help you schedule around travel and events."
+      "Most patients check in about every 6 to 10 weeks, depending on the plan and how teeth are tracking. We’ll confirm the ideal cadence and help you schedule around travel and events."
   },
   {
     question: "Do I need attachments for Invisalign?",

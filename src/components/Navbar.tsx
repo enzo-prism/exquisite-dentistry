@@ -1,81 +1,101 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, useCallback, lazy, Suspense } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Search } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { useSwipeGestures } from '@/hooks/use-mobile-gestures';
-import { cn } from '@/lib/utils';
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { ChevronDown, Menu, Phone, Search, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import ImageComponent from '@/components/Image';
+import PhoneLink from '@/components/PhoneLink';
+import { cn } from '@/lib/utils';
+import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import {
+  DESKTOP_CORE_LINKS,
+  DESKTOP_EXPANDED_LINKS,
+  DESKTOP_MORE_LINKS,
+  MOBILE_PRIMARY_LINKS,
+  MOBILE_SECONDARY_LINKS,
+  POPULAR_SERVICE_LINKS,
+  SERVICE_SECTION_MATCHES,
+  SERVICE_MENU_LINKS,
+} from '@/constants/navigation';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 const LazySiteSearch = lazy(() => import('@/components/search/SiteSearch'));
 
+const DESKTOP_LINK_BASE_CLASS =
+  'inline-flex h-10 items-center rounded-full px-2.5 text-[13px] font-medium transition-colors duration-200 xl:px-3 xl:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+
+const DESKTOP_ICON_BUTTON_CLASS =
+  'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/85 transition-colors duration-200 hover:bg-white/[0.11] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+
+const MOBILE_ICON_BUTTON_CLASS =
+  'inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+
+const MOBILE_LINK_BASE_CLASS =
+  'block min-h-11 w-full rounded-xl px-3.5 py-3 text-[15px] font-medium leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+
+const matchesPath = (pathname: string, to: string) => pathname === to || pathname.startsWith(`${to}/`);
+
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [shouldMountSearch, setShouldMountSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
-  const lastMenuLinkRef = useRef<HTMLButtonElement>(null);
-  const scrollLockRef = useRef<{
-    scrollY: number;
-    bodyOverflow: string;
-    bodyPosition: string;
-    bodyTop: string;
-    bodyLeft: string;
-    bodyRight: string;
-    bodyWidth: string;
-    htmlOverflow: string;
-  } | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
-  // Enhanced mobile menu close with focus restoration
-  const closeMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(false);
-    setOpenDropdown(null);
-
-    // Restore focus to menu button when closing
-    setTimeout(() => {
-      const button = menuButtonRef.current;
-      if (!button) return;
-      if (button.offsetParent === null) return;
-      button.focus();
-    }, 100);
-  }, []);
+  const isServicesSectionActive = useMemo(
+    () => SERVICE_SECTION_MATCHES.some((path) => matchesPath(location.pathname, path)),
+    [location.pathname],
+  );
+  const isDesktopMoreActive = useMemo(
+    () => DESKTOP_MORE_LINKS.some((item) => matchesPath(location.pathname, item.to)),
+    [location.pathname],
+  );
 
   const prefetchSearch = useCallback(() => {
     import('@/components/search/SiteSearch').catch(() => undefined);
   }, []);
 
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setIsMobileServicesOpen(false);
+  }, []);
+
   const openSearch = useCallback(() => {
     setShouldMountSearch(true);
     setIsSearchOpen(true);
-    setIsMobileMenuOpen(false);
-    setOpenDropdown(null);
-  }, []);
+    closeMobileMenu();
+  }, [closeMobileMenu]);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 24);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Global keyboard shortcut: Cmd+K / Ctrl+K opens search.
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const isTypingContext = (target: EventTarget | null) => {
       const element = target as HTMLElement | null;
       if (!element) return false;
+
       const tag = element.tagName?.toLowerCase();
       if (tag === 'input' || tag === 'textarea' || tag === 'select') return true;
       if (element.isContentEditable) return true;
@@ -83,8 +103,7 @@ const Navbar = () => {
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented) return;
-      if (isTypingContext(event.target)) return;
+      if (event.defaultPrevented || isTypingContext(event.target)) return;
 
       const key = event.key.toLowerCase();
       if (key !== 'k') return;
@@ -98,54 +117,21 @@ const Navbar = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [openSearch]);
 
-  // Lock body scroll while the mobile menu is open (restore on close/unmount).
-  useLayoutEffect(() => {
-    if (!isMobileMenuOpen) return;
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location.pathname, closeMobileMenu]);
 
-    const scrollY = window.scrollY;
-    scrollLockRef.current = {
-      scrollY,
-      bodyOverflow: document.body.style.overflow,
-      bodyPosition: document.body.style.position,
-      bodyTop: document.body.style.top,
-      bodyLeft: document.body.style.left,
-      bodyRight: document.body.style.right,
-      bodyWidth: document.body.style.width,
-      htmlOverflow: document.documentElement.style.overflow,
-    };
-
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-
-    return () => {
-      const locked = scrollLockRef.current;
-      if (!locked) return;
-
-      document.documentElement.style.overflow = locked.htmlOverflow;
-      document.body.style.overflow = locked.bodyOverflow;
-      document.body.style.position = locked.bodyPosition;
-      document.body.style.top = locked.bodyTop;
-      document.body.style.left = locked.bodyLeft;
-      document.body.style.right = locked.bodyRight;
-      document.body.style.width = locked.bodyWidth;
-
-      window.scrollTo(0, locked.scrollY);
-      scrollLockRef.current = null;
-    };
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      setIsMobileServicesOpen(false);
+    }
   }, [isMobileMenuOpen]);
 
-  // Close the mobile menu when switching into desktop navigation.
   useEffect(() => {
-    if (!isMobileMenuOpen) return;
-    if (typeof window === 'undefined') return;
+    if (!isMobileMenuOpen || typeof window === 'undefined') return;
 
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
-    const handleChange = (event: MediaQueryListEvent) => {
+    const handleDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) closeMobileMenu();
     };
 
@@ -155,292 +141,407 @@ const Navbar = () => {
     }
 
     if (typeof mediaQuery.addEventListener === 'function') {
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+      mediaQuery.addEventListener('change', handleDesktop);
+      return () => mediaQuery.removeEventListener('change', handleDesktop);
     }
 
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
+    mediaQuery.addListener(handleDesktop);
+    return () => mediaQuery.removeListener(handleDesktop);
   }, [isMobileMenuOpen, closeMobileMenu]);
-
-  // Focus management for accessibility
-  const handleMenuOpen = useCallback(() => {
-    setIsMobileMenuOpen(true);
-    
-    // Focus first menu item after opening
-    setTimeout(() => {
-      firstMenuLinkRef.current?.focus();
-    }, 100);
-  }, []);
-
-  // Keyboard navigation handler
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (!isMobileMenuOpen) return;
-    
-    if (e.key === 'Escape') {
-      closeMobileMenu();
-    }
-    
-    // Tab trap logic
-    if (e.key === 'Tab') {
-      const focusableElements = document.querySelectorAll(
-        '[data-mobile-menu] a, [data-mobile-menu] button'
-      );
-      const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-      
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement?.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement?.focus();
-      }
-    }
-  }, [isMobileMenuOpen, closeMobileMenu]);
-
-  // Toggle dropdown menus
-  const toggleDropdown = (dropdown: string) => {
-    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
-  };
-
-  // Navigation links data
-  const navLinks = [
-    { to: '/dental-implants/', label: 'Dental Implants' },
-    { to: '/veneers/', label: 'Porcelain Veneers' },
-    { to: '/beverly-hills-dentist/', label: 'Beverly Hills Dentist' },
-    { to: '/smile-gallery/', label: 'Smile Gallery' },
-    { to: '/schedule-consultation/', label: 'Schedule Consultation' },
-  ];
-
-  const servicesDropdown = [
-    { to: '/services/', label: 'Services Overview' },
-    { to: '/veneers/', label: 'Porcelain Veneers' },
-    { to: '/dental-implants/', label: 'Dental Implants' },
-    { to: '/invisalign/', label: 'Invisalign' },
-    { to: '/teeth-whitening/', label: 'Teeth Whitening' },
-    { to: '/teeth-cleaning/', label: 'Teeth Cleaning' },
-    { to: '/zoom-whitening/', label: 'Zoom Whitening' },
-    { to: '/dental-crowns/', label: 'Dental Crowns' },
-    { to: '/dental-bridge/', label: 'Dental Bridge' },
-    { to: '/root-canal/', label: 'Root Canal Therapy' },
-    { to: '/cosmetic-dentistry/', label: 'Cosmetic Dentistry' },
-    { to: '/emergency-dentist/', label: 'Emergency Dentist' },
-    { to: '/pain-free-dentistry/', label: 'Pain-Free Dentistry' },
-    { to: '/oral-cancer-screening/', label: 'Oral Cancer Screening' },
-  ];
-
-  const clientsDropdown = [
-    { to: '/transformation-stories/', label: 'Transformation Stories' },
-    { to: '/testimonials/', label: 'Testimonials' },
-    { to: '/client-experience/', label: 'Client Experience' },
-  ];
-
-  const moreDropdown = [
-    { to: '/', label: 'Home' },
-    { to: '/services/', label: 'Services' },
-    { to: '/locations/', label: 'Locations' },
-    { to: '/about/', label: 'About Dr. Aguil' },
-    { to: '/tour/', label: 'Virtual Tour' },
-    { to: '/contact/', label: 'Contact' },
-    { to: '/faqs/', label: 'FAQs' },
-    { to: '/blog/', label: 'Blog' },
-  ];
 
   return (
     <>
-      <header 
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled 
-            ? 'bg-black/90 backdrop-blur-md border-b border-white/10' 
-            : 'bg-black'
-        }`}
+      <header
+        className={cn(
+          'sticky top-0 z-50 w-full border-b border-white/10 backdrop-blur-xl transition-[background-color,box-shadow] duration-300',
+          scrolled ? 'bg-black shadow-[0_24px_42px_-30px_rgba(0,0,0,0.95)]' : 'bg-black',
+        )}
       >
-        <div className="mx-auto px-4 sm:px-6 max-w-7xl">
-          <div className="flex h-16 sm:h-20 items-center gap-3 sm:gap-4">
-            
-            {/* Logo */}
-            <div className="flex-shrink-0 z-50">
-              <Link
-                to="/"
-                onClick={closeMobileMenu}
-                className="group relative inline-flex items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-2 rounded-xl bg-gold/10 opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-100"
-                />
-                <ImageComponent
-                  src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
-                  alt="Exquisite Dentistry Logo"
-                  responsive
-                  logoType="main"
-                  priority
-                  className="relative h-6 w-auto max-w-[160px] object-contain sm:h-8 sm:max-w-[210px] lg:h-9 lg:max-w-[190px] xl:h-12 xl:max-w-[280px] transition-transform duration-200 ease-out group-hover:scale-[1.02] group-active:scale-[0.99]"
-                  style={{ objectPosition: 'center' }}
-                />
-              </Link>
-            </div>
-          
-            {/* Desktop Navigation */}
-            <nav
-              aria-label="Primary"
-              className={cn(
-                "ml-auto hidden lg:flex items-center whitespace-nowrap text-sm xl:text-base",
-                "gap-[clamp(0.5rem,1.2vw,1.75rem)]",
-              )}
+        <div className="mx-auto w-full max-w-[1380px] px-3 sm:px-5 lg:px-6">
+          <div className="flex h-16 items-center gap-2 sm:h-[4.5rem] sm:gap-3">
+            <Link
+              to="/"
+              className="group relative inline-flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-2 rounded-xl bg-gold/10 opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-100"
+              />
+              <ImageComponent
+                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
+                alt="Exquisite Dentistry Logo"
+                responsive
+                logoType="main"
+                priority
+                className="relative h-6 w-auto max-w-[124px] object-contain transition-transform duration-200 ease-out group-hover:scale-[1.02] sm:h-7 sm:max-w-[154px] md:h-8 md:max-w-[182px] lg:h-7 lg:max-w-[148px] xl:h-8 xl:max-w-[176px] 2xl:h-9 2xl:max-w-[192px]"
+                style={{ objectPosition: 'center' }}
+              />
+            </Link>
+
+            <div className="ml-auto hidden min-w-0 items-center gap-1.5 lg:flex">
+              <nav aria-label="Primary" className="min-w-0 items-center gap-0.5 xl:gap-1 lg:flex">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        DESKTOP_LINK_BASE_CLASS,
+                        'gap-1.5',
+                        isServicesSectionActive
+                          ? 'bg-white/10 text-gold'
+                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
+                      )}
+                      aria-label="Browse services"
+                    >
+                      Services
+                      <ChevronDown size={16} aria-hidden="true" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="start"
+                    sideOffset={10}
+                    className="w-[22rem] max-h-[min(70vh,34rem)] max-w-[calc(100vw-2rem)] overflow-y-auto border border-zinc-700/70 !bg-zinc-950/95 p-2.5 text-zinc-100 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md xl:w-[24rem] 2xl:w-[26rem]"
+                  >
+                    <div className="px-3 pb-2 pt-1">
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-400">
+                        Most Requested
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+                        High-interest treatments patients ask about first.
+                      </p>
+                    </div>
+                    {SERVICE_MENU_LINKS.map((item) => (
+                      <DropdownMenuItem
+                        key={item.to}
+                        asChild
+                        className="cursor-pointer rounded-xl p-0 text-white focus:bg-transparent focus:text-white data-[highlighted]:bg-transparent data-[highlighted]:text-white"
+                      >
+                        <NavLink
+                          to={item.to}
+                          className={({ isActive }) => {
+                            const isCurrent = item.to === '/services' ? isServicesSectionActive : isActive;
+
+                            return cn(
+                              'group flex w-full flex-col items-start gap-1.5 whitespace-normal rounded-xl border px-3.5 py-3 text-left transition-colors duration-150',
+                              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
+                              isCurrent
+                                ? 'border-gold/35 bg-gold/10 text-white'
+                                : 'border-white/10 bg-white/[0.03] text-white/95 hover:border-white/25 hover:bg-white/[0.08]',
+                            );
+                          }}
+                        >
+                          <span className="text-[15px] font-semibold leading-tight text-white">
+                            {item.label}
+                          </span>
+                          {item.description ? (
+                            <span className="max-w-[34ch] text-[13px] leading-snug text-white/70 group-hover:text-white/90">
+                              {item.description}
+                            </span>
+                          ) : null}
+                        </NavLink>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {DESKTOP_CORE_LINKS.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      cn(
+                        DESKTOP_LINK_BASE_CLASS,
+                        isActive
+                          ? 'bg-white/10 text-gold'
+                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
+                      )
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+
+                {DESKTOP_EXPANDED_LINKS.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      cn(
+                        DESKTOP_LINK_BASE_CLASS,
+                        'hidden min-[1240px]:inline-flex',
+                        isActive
+                          ? 'bg-white/10 text-gold'
+                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
+                      )
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        DESKTOP_LINK_BASE_CLASS,
+                        'gap-1 min-[1240px]:hidden',
+                        isDesktopMoreActive
+                          ? 'bg-white/10 text-gold'
+                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
+                      )}
+                      aria-label="More pages"
+                    >
+                      More
+                      <ChevronDown size={14} aria-hidden="true" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="w-52 border border-white/10 bg-black/95 p-1.5 text-white shadow-xl"
+                  >
+                    {DESKTOP_MORE_LINKS.map((item) => (
+                      <DropdownMenuItem
+                        key={item.to}
+                        asChild
+                        className="cursor-pointer rounded-lg p-0 text-white focus:bg-white/10 focus:text-white data-[highlighted]:bg-white/10 data-[highlighted]:text-white"
+                      >
+                        <NavLink
+                          to={item.to}
+                          className={({ isActive }) =>
+                            cn(
+                              'block w-full rounded-lg px-3 py-2 text-sm transition-colors',
+                              isActive ? 'bg-white/10 text-gold' : 'text-white/90',
+                            )
+                          }
+                        >
+                          {item.label}
+                        </NavLink>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </nav>
+
+              <div className="ml-1 flex shrink-0 items-center gap-1 lg:gap-1.5">
+                <button
+                  type="button"
+                  onClick={openSearch}
+                  onMouseEnter={prefetchSearch}
+                  onFocus={prefetchSearch}
+                  className={cn(
+                    DESKTOP_ICON_BUTTON_CLASS,
+                    'min-[1450px]:w-auto min-[1450px]:gap-2 min-[1450px]:px-3',
+                  )}
+                  aria-label="Search site"
+                >
+                  <Search className="h-4 w-4" aria-hidden="true" />
+                  <span className="hidden min-[1450px]:inline">Search</span>
+                  <kbd className="hidden rounded bg-black/45 px-2 py-0.5 text-[10px] text-white/70 min-[1700px]:inline-flex">
+                    ⌘K
+                  </kbd>
+                </button>
+
+                <PhoneLink
+                  phoneNumber={PHONE_NUMBER_DISPLAY}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:hidden"
+                  aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
+                >
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                </PhoneLink>
+
+                <PhoneLink
+                  phoneNumber={PHONE_NUMBER_DISPLAY}
+                  className="hidden h-10 items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 text-sm font-semibold text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:inline-flex"
+                >
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  <span>Call</span>
+                </PhoneLink>
+
+                <Button
+                  size="sm"
+                  asChild
+                  className="h-10 rounded-full bg-gold px-3.5 text-sm font-semibold text-black hover:bg-gold/90 min-[1480px]:px-4"
+                >
+                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                    <span className="min-[1480px]:hidden">Book</span>
+                    <span className="hidden min-[1480px]:inline min-[1680px]:hidden">Book Now</span>
+                    <span className="hidden min-[1680px]:inline">Schedule Consultation</span>
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="ml-auto flex items-center gap-1.5 lg:hidden">
+              <Button
+                size="sm"
+                asChild
+                className="hidden h-10 rounded-full bg-gold px-4 text-sm font-semibold text-black hover:bg-gold/90 sm:inline-flex"
+              >
+                <Link to={SCHEDULE_CONSULTATION_PATH}>Book</Link>
+              </Button>
+
               <button
                 type="button"
                 onClick={openSearch}
                 onMouseEnter={prefetchSearch}
                 onFocus={prefetchSearch}
-                className={cn(
-                  "group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2",
-                  "text-white/90 transition-colors duration-200 hover:bg-white/10 hover:text-white",
-                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
-                )}
+                className={MOBILE_ICON_BUTTON_CLASS}
                 aria-label="Search site"
               >
-                <Search className="h-4 w-4 text-gold/90 group-hover:text-gold" aria-hidden="true" />
-                <span className="hidden xl:inline text-[13px] xl:text-base">Search</span>
-                <kbd className="hidden xl:inline-flex items-center rounded bg-black/40 px-2 py-0.5 text-[10px] text-white/70">
-                  ⌘K
-                </kbd>
+                <Search className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
               </button>
 
-              {navLinks.map((link) =>
-                link.label === 'Schedule Consultation' ? (
-                  <Button
-                    key={link.to}
-                    size="sm"
-                    asChild
-                    className="bg-gold text-black hover:bg-gold/90 h-9 xl:h-10 px-3 xl:px-4 text-[13px] xl:text-base"
-                  >
-                    <Link to={link.to}>
-                      {link.label}
-                    </Link>
-                  </Button>
-                ) : (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="navbar-link text-white transition-colors duration-200 py-2 px-2 text-[13px] xl:text-base"
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
                   <button
                     type="button"
-                    className="navbar-link text-white transition-colors duration-200 flex items-center gap-1 py-2 px-2 text-[13px] xl:text-base"
-                    aria-label="More pages"
+                    className={MOBILE_ICON_BUTTON_CLASS}
+                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    aria-expanded={isMobileMenuOpen}
                   >
-                    More
-                    <ChevronDown size={16} />
+                    {isMobileMenuOpen ? (
+                      <X className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+                    ) : (
+                      <Menu className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+                    )}
                   </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="end"
-                  className="w-56 bg-black border border-gold/40 text-white shadow-xl"
-                >
-                  {moreDropdown.map((item) => (
-                    <DropdownMenuItem
-                      key={item.to}
-                      asChild
-                      className="cursor-pointer text-white focus:bg-white/10 focus:text-white data-[highlighted]:bg-white/10 data-[highlighted]:text-white"
-                    >
-                      <Link to={item.to}>{item.label}</Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </nav>
-          
-            {/* Mobile Actions */}
-            <div className="ml-auto flex items-center gap-1 lg:hidden">
-              <button
-                type="button"
-                className={cn(
-                  "relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200",
-                )}
-                style={{
-                  minWidth: '48px',
-                  minHeight: '48px',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-                onClick={openSearch}
-                onMouseEnter={prefetchSearch}
-                onFocus={prefetchSearch}
-                aria-label="Search site"
-              >
-                <Search size={24} className="text-white" />
-              </button>
+                </SheetTrigger>
 
-              {/* Enhanced Mobile Menu Button */}
-              <button
-                ref={menuButtonRef}
-                className={cn(
-                  "relative p-3 text-white hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md z-[115] transition-all duration-200 will-change-transform",
-                )}
-                style={{ 
-                  minWidth: '48px', 
-                  minHeight: '48px',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-                onClick={isMobileMenuOpen ? closeMobileMenu : handleMenuOpen}
-                onKeyDown={handleKeyDown}
-                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-menu"
-              >
-                <span className="sr-only">
-                  {isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                </span>
-                <div className="transform transition-transform duration-200 hover:scale-110">
-                  {isMobileMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
-                </div>
-              </button>
+                <SheetContent
+                  side="right"
+                  className="w-full max-w-none overflow-hidden border-l border-white/10 bg-zinc-950 p-0 text-white sm:w-[26rem] sm:max-w-none md:w-[30rem] [&>button]:right-4 [&>button]:top-4 [&>button]:inline-flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/20 [&>button]:bg-black/65 [&>button]:text-white [&>button]:opacity-100"
+                >
+                  <div className="flex h-full flex-col bg-[radial-gradient(circle_at_88%_8%,rgba(212,175,55,0.14),transparent_42%),linear-gradient(to_bottom,rgba(24,24,27,0.98),rgba(9,9,11,0.98))]">
+                    <div className="border-b border-white/10 px-5 pb-5 pt-6 sm:px-6">
+                      <SheetTitle className="text-left text-base font-semibold text-white">Book Your Visit</SheetTitle>
+                      <SheetDescription className="mt-1 text-left text-sm text-white/70">
+                        New patients can schedule online in under a minute.
+                      </SheetDescription>
+
+                      <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                        <Button
+                          asChild
+                          size="lg"
+                          className="h-12 w-full rounded-full bg-gold text-sm font-semibold text-black hover:bg-gold/90"
+                        >
+                          <Link to={SCHEDULE_CONSULTATION_PATH} onClick={closeMobileMenu}>
+                            Schedule Consultation
+                          </Link>
+                        </Button>
+
+                        <PhoneLink
+                          phoneNumber={PHONE_NUMBER_DISPLAY}
+                          onClick={closeMobileMenu}
+                          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+                        >
+                          <Phone className="h-4 w-4" aria-hidden="true" />
+                          <span>{`Call ${PHONE_NUMBER_DISPLAY}`}</span>
+                        </PhoneLink>
+                      </div>
+                    </div>
+
+                    <nav
+                      className="flex flex-1 flex-col items-stretch justify-start overflow-y-auto px-4 pb-6 pt-4 sm:px-5"
+                      aria-label="Mobile"
+                    >
+                      <ul className="space-y-1.5">
+                        {MOBILE_PRIMARY_LINKS.map((item) => (
+                          <li key={item.to}>
+                            <NavLink
+                              to={item.to}
+                              onClick={closeMobileMenu}
+                              className={({ isActive }) => {
+                                const isCurrent = item.to === '/services' ? isServicesSectionActive : isActive;
+
+                                return cn(
+                                  MOBILE_LINK_BASE_CLASS,
+                                  isCurrent
+                                    ? 'border border-white/15 bg-white/10 text-gold'
+                                    : 'text-white/90 hover:bg-white/[0.08] hover:text-white',
+                                );
+                              }}
+                            >
+                              {item.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-5 rounded-2xl border border-white/12 bg-white/[0.03] p-2.5">
+                        <button
+                          type="button"
+                          onClick={() => setIsMobileServicesOpen((prev) => !prev)}
+                          className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+                          aria-expanded={isMobileServicesOpen}
+                          aria-controls="mobile-service-links"
+                        >
+                          <span>Popular Services</span>
+                          <ChevronDown
+                            className={cn(
+                              'h-4 w-4 transition-transform duration-200',
+                              isMobileServicesOpen ? 'rotate-180 text-gold' : 'text-white/70',
+                            )}
+                            aria-hidden="true"
+                          />
+                        </button>
+
+                        {isMobileServicesOpen ? (
+                          <ul id="mobile-service-links" className="mt-2 space-y-1.5 pb-1">
+                            {POPULAR_SERVICE_LINKS.map((item) => (
+                              <li key={item.to}>
+                                <NavLink
+                                  to={item.to}
+                                  onClick={closeMobileMenu}
+                                  className={({ isActive }) =>
+                                    cn(
+                                      'block w-full rounded-xl px-3.5 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
+                                      isActive
+                                        ? 'bg-white/10 text-gold'
+                                        : 'text-white/85 hover:bg-white/10 hover:text-white',
+                                    )
+                                  }
+                                >
+                                  {item.label}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+
+                      <div className="mt-6 border-t border-white/10 pt-4">
+                        <p className="px-3.5 text-[11px] uppercase tracking-[0.18em] text-white/45">
+                          More Resources
+                        </p>
+                        <ul className="mt-2 space-y-1.5">
+                          {MOBILE_SECONDARY_LINKS.map((item) => (
+                            <li key={item.to}>
+                              <NavLink
+                                to={item.to}
+                                onClick={closeMobileMenu}
+                                className={({ isActive }) =>
+                                  cn(
+                                    'block w-full rounded-xl px-3.5 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
+                                    isActive
+                                      ? 'bg-white/[0.08] text-gold'
+                                      : 'text-white/75 hover:bg-white/[0.07] hover:text-white',
+                                  )
+                                }
+                              >
+                                {item.label}
+                              </NavLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </nav>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
-
-        {/* Enhanced Mobile Navigation with Swipe Support */}
-        {isMobileMenuOpen && (
-          <div 
-            className="fixed inset-0 z-[110]"
-            id="mobile-menu"
-            data-mobile-menu
-            onKeyDown={handleKeyDown}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="mobile-menu-title"
-          >
-            {/* Enhanced Backdrop with Animation */}
-            <div 
-              className="absolute inset-0 bg-black/95 backdrop-blur-sm animate-fade-in" 
-              onClick={closeMobileMenu}
-              onTouchStart={(e) => e.stopPropagation()}
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            />
-            
-            {/* Enhanced Menu Panel with Swipe Support */}
-            <MobileMenuPanel 
-              onClose={closeMobileMenu}
-              navLinks={navLinks}
-              servicesDropdown={servicesDropdown}
-              clientsDropdown={clientsDropdown}
-              moreDropdown={moreDropdown}
-              openDropdown={openDropdown}
-              toggleDropdown={toggleDropdown}
-              firstMenuLinkRef={firstMenuLinkRef}
-              lastMenuLinkRef={lastMenuLinkRef}
-            />
-          </div>
-        )}
       </header>
 
       {shouldMountSearch ? (
@@ -449,278 +550,6 @@ const Navbar = () => {
         </Suspense>
       ) : null}
     </>
-  );
-};
-
-// Enhanced Mobile Menu Panel Component with Swipe Support
-const MobileMenuPanel = ({ 
-  onClose, 
-  navLinks, 
-  servicesDropdown,
-  clientsDropdown, 
-  moreDropdown, 
-  openDropdown, 
-  toggleDropdown,
-  firstMenuLinkRef,
-  lastMenuLinkRef
-}: {
-  onClose: () => void;
-  navLinks: Array<{ to: string; label: string }>;
-  clientsDropdown: Array<{ to: string; label: string }>;
-  servicesDropdown: Array<{ to: string; label: string }>;
-  moreDropdown: Array<{ to: string; label: string }>;
-  openDropdown: string | null;
-  toggleDropdown: (dropdown: string) => void;
-  firstMenuLinkRef: React.RefObject<HTMLAnchorElement>;
-  lastMenuLinkRef: React.RefObject<HTMLButtonElement>;
-}) => {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const navScrollRef = useRef<HTMLElement>(null);
-  
-  // Swipe gesture support
-  const { ref: swipeRef, gestureState } = useSwipeGestures({
-    onSwipeLeft: () => {
-      onClose();
-    },
-    threshold: 100,
-    preventDefaultTouchmove: false
-  });
-
-  const setPanelRefs = useCallback((node: HTMLDivElement | null) => {
-    panelRef.current = node;
-    swipeRef.current = node;
-  }, [swipeRef]);
-
-  // Calculate deltaX for swipe visual feedback
-  const deltaX = gestureState.currentX - gestureState.startX;
-  const deltaY = gestureState.currentY - gestureState.startY;
-  const isHorizontalDrag =
-    gestureState.isDragging &&
-    Math.abs(deltaX) > Math.abs(deltaY) &&
-    Math.abs(deltaX) > 8;
-
-  // Ensure the menu always opens at the top (prevents momentum scroll from hiding items).
-  useLayoutEffect(() => {
-    const navEl = navScrollRef.current;
-    if (!navEl) return;
-
-    navEl.scrollTop = 0;
-    const rafId = requestAnimationFrame(() => {
-      navEl.scrollTop = 0;
-    });
-
-    return () => cancelAnimationFrame(rafId);
-  }, []);
-
-  return (
-    <div 
-      ref={setPanelRefs}
-      className={cn(
-        "relative h-full w-full bg-black flex flex-col",
-        "pt-[calc(env(safe-area-inset-top,0px)+4rem)] sm:pt-[calc(env(safe-area-inset-top,0px)+5rem)]",
-        "transform transition-transform duration-300 will-change-transform",
-        isHorizontalDrag ? "transition-none" : "",
-      )}
-      style={{ 
-        minHeight: '100dvh',
-        transform: isHorizontalDrag && deltaX < 0 
-          ? `translateX(${Math.min(0, deltaX)}px)` 
-          : 'translateX(0)'
-      }}
-    >
-      <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
-      
-      {/* Navigation Links - Scrollable Area */}
-      <nav 
-        ref={navScrollRef}
-        className="flex-1 flex flex-col w-full gap-1.5 overflow-y-auto overscroll-contain px-4 pb-4"
-        role="navigation"
-        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-      >
-          {navLinks.map((link, index) => (
-            <Link
-              key={link.to}
-              ref={index === 0 ? firstMenuLinkRef : undefined}
-              to={link.to}
-              className="w-full block py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-              style={{ 
-                minHeight: '48px',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onClick={onClose}
-            >
-              <span className="font-medium">{link.label}</span>
-            </Link>
-          ))}
-          
-          {/* Services Section */}
-          <div className="w-full border-b border-white/10 pb-1">
-            <button
-              id="services-button"
-              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
-              style={{ 
-                minHeight: '48px',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onClick={() => toggleDropdown('services')}
-              aria-expanded={openDropdown === 'services'}
-              aria-controls="services-submenu"
-            >
-              <span className="font-medium">Services</span>
-              <ChevronDown 
-                size={18} 
-                className={`transition-transform duration-200 ${openDropdown === 'services' ? 'rotate-180 text-gold' : ''}`} 
-              />
-            </button>
-            {openDropdown === 'services' && (
-              <div
-                id="services-submenu"
-                className="mt-1 space-y-1.5 pb-1"
-                role="region"
-                aria-labelledby="services-button"
-              >
-                {servicesDropdown.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    onClick={onClose}
-                    className="block py-2.5 px-6 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors rounded-md"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          {/* Clients Section */}
-          <div className="w-full border-b border-white/10 pb-1">
-            <button
-              id="clients-button"
-              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
-              style={{ 
-                minHeight: '48px',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onClick={() => toggleDropdown('clients')}
-              aria-expanded={openDropdown === 'clients'}
-              aria-controls="clients-submenu"
-            >
-              <span className="font-medium">Clients</span>
-              <ChevronDown 
-                size={18} 
-                className={`transition-transform duration-300 ${
-                  openDropdown === 'clients' ? 'rotate-180' : ''
-                }`} 
-              />
-            </button>
-            
-            {openDropdown === 'clients' && (
-              <div 
-                id="clients-submenu"
-                className="w-full bg-black/50 rounded-md ml-4 mb-2 animate-accordion-down"
-                role="region"
-                aria-labelledby="clients-button"
-              >
-                {clientsDropdown.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                     className="w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-                    style={{ 
-                      minHeight: '44px',
-                      WebkitTapHighlightColor: 'transparent'
-                    }}
-                    onClick={onClose}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          {/* More Section */}
-          <div className="w-full border-b border-white/10 pb-1">
-            <button
-              id="more-button"
-              ref={lastMenuLinkRef}
-              className="w-full flex items-center justify-between py-3 px-4 text-base text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-md"
-              style={{ 
-                minHeight: '48px',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onClick={() => toggleDropdown('more')}
-              aria-expanded={openDropdown === 'more'}
-              aria-controls="more-submenu"
-            >
-              <span className="font-medium">More</span>
-              <ChevronDown 
-                size={18} 
-                className={`transition-transform duration-300 ${
-                  openDropdown === 'more' ? 'rotate-180' : ''
-                }`} 
-              />
-            </button>
-            
-            {openDropdown === 'more' && (
-              <div 
-                id="more-submenu"
-                className="w-full bg-black/50 rounded-md ml-4 mb-2 animate-accordion-down"
-                role="region"
-                aria-labelledby="more-button"
-              >
-                {moreDropdown.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="w-full block py-2.5 px-4 text-sm text-white hover:bg-white/10 active:bg-white/20 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-                    style={{ 
-                      minHeight: '44px',
-                      WebkitTapHighlightColor: 'transparent'
-                    }}
-                    onClick={onClose}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-      </nav>
-      
-      {/* Enhanced CTA Button - Mobile - Fixed at bottom */}
-      <div 
-        className="flex-shrink-0 mt-auto p-4 border-t border-white/10 bg-black/95" 
-        style={{ 
-          paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 20px))'
-        }}
-      >
-        <Button
-          size="lg"
-          className="w-full bg-gold text-black hover:bg-gold/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold/50"
-          asChild
-          style={{
-            minHeight: '48px',
-            WebkitTapHighlightColor: 'transparent'
-          }}
-        >
-          <Link to="/schedule-consultation/" onClick={onClose}>
-            Schedule Consultation
-          </Link>
-        </Button>
-      </div>
-      
-      {/* Swipe Indicator */}
-      {isHorizontalDrag && deltaX < -50 && (
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/60 animate-pulse">
-          <div className="flex items-center gap-2">
-            <span className="text-sm">Swipe to close</span>
-            <ChevronDown className="rotate-90" size={16} />
-          </div>
-        </div>
-      )}
-    </div>
   );
 };
 

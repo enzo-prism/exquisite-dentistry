@@ -129,7 +129,7 @@ const IteroScanner = () => {
             <p className="text-lg text-gray-600 leading-relaxed">
               The iTero Element 5D is an intraoral imaging system that captures more than 6,000 frames per second,
               stitching them into a highly accurate 3D model of your teeth, gums, and bite.
-              No alginate, no powder, and no anxiety—just a quick, breathable scan that translates directly to Invisalign treatment planning and restorative design.
+              No alginate, no powder, and no anxiety, just a quick, breathable scan that translates directly to Invisalign treatment planning and restorative design.
             </p>
           </div>
         </section>

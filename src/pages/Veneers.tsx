@@ -31,7 +31,7 @@ const Veneers = () => {
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
       title: "Durable & Long-lasting",
-      description: "High-quality porcelain veneers can last 10-15 years with proper care"
+      description: "High-quality porcelain veneers can last 10 to 15 years with proper care"
     },
     {
       icon: <Star className="h-8 w-8 text-secondary" />,
@@ -71,7 +71,7 @@ const Veneers = () => {
   const faqs = [
     {
       question: "How long do porcelain veneers last?",
-      answer: "With proper care and regular dental visits, porcelain veneers typically last 10-15 years. Their longevity depends on factors like oral hygiene, bite habits, and lifestyle choices."
+      answer: "With proper care and regular dental visits, porcelain veneers typically last 10 to 15 years. Their longevity depends on factors like oral hygiene, bite habits, and lifestyle choices."
     },
     {
       question: "Are veneers reversible?",
@@ -87,7 +87,7 @@ const Veneers = () => {
     },
     {
       question: "How do I care for my veneers?",
-      answer: "Care for veneers just like your natural teeth - brush twice daily, floss regularly, and visit us for routine cleanings. Avoid using your teeth as tools and consider a nightguard if you grind your teeth."
+      answer: "Care for veneers just like your natural teeth, brush twice daily, floss regularly, and visit us for routine cleanings. Avoid using your teeth as tools and consider a nightguard if you grind your teeth."
     }
   ];
 
@@ -157,7 +157,7 @@ const Veneers = () => {
         {/* Hero Section */}
         <VideoHero 
           title={<>Custom Porcelain Veneers in <span className="text-gold">Los Angeles</span></>}
-          subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil, DDS using digital smile design and careful lab fabrication."
+          subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil using digital smile design and careful lab fabrication."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -350,7 +350,7 @@ const Veneers = () => {
                     title: "Gum Contouring",
                     href: "/services#cosmetic",
                     description: "Frame your veneers with perfect gum lines",
-                    duration: "30-60 min",
+                    duration: "30 to 60 min",
                     popularity: 45
                   },
                   {
@@ -359,7 +359,7 @@ const Veneers = () => {
                     description: "Complete transformation with multiple procedures",
                     duration: "Multiple visits",
                     popularity: 60,
-                    priceRange: "$5K-15K"
+                    priceRange: "$5K to $15K"
                   }
                 ]}
               />

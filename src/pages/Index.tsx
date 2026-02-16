@@ -102,7 +102,7 @@ const IndexPage: React.FC = () => {
       
       <VideoHero
         title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Led by Dr. Alexie Aguil, DDS, with a calm, spa-like patient experience." 
+        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Led by Dr. Alexie Aguil, with a calm, spa-like patient experience." 
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule-consultation/"
@@ -222,7 +222,7 @@ const IndexPage: React.FC = () => {
                 Cosmetic Dentistry in Los Angeles, Designed for You
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Located in Los Angeles near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign, professional whitening, implants, and complete smile makeovers. Dr. Alexie Aguil, DDS uses digital smile design and close lab collaboration to deliver natural-looking results that fit your facial features and bite.
+                Located in Los Angeles near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign, professional whitening, implants, and complete smile makeovers. Dr. Alexie Aguil uses digital smile design and close lab collaboration to deliver natural-looking results that fit your facial features and bite.
               </p>
             </div>
             

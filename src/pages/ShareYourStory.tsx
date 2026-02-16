@@ -29,11 +29,11 @@ const ShareYourStory = () => {
     },
     {
       question: "How long should my testimonial be?",
-      answer: "Written testimonials should be 2-3 sentences minimum. Video testimonials should be at least 30 seconds long to qualify for the Apple Watch raffle."
+      answer: "Written testimonials should be 2 to 3 sentences minimum. Video testimonials should be at least 30 seconds long to qualify for the Apple Watch raffle."
     },
     {
       question: "When will I receive my reward?",
-      answer: "Digital gift cards are typically sent within 5-7 business days after your story is approved. Apple Watch raffle winners will be contacted within 30 days of submission."
+      answer: "Digital gift cards are typically sent within 5 to 7 business days after your story is approved. Apple Watch raffle winners will be contacted within 30 days of submission."
     },
     {
       question: "Will my story be shared publicly?",
@@ -161,7 +161,7 @@ const ShareYourStory = () => {
               <div className="space-y-3 mb-8">
                 <div className="flex items-center text-sm text-gray-600">
                   <Clock className="w-4 h-4 mr-2 text-primary" />
-                  Takes 3-5 minutes
+                  Takes 3 to 5 minutes
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
                   <Gift className="w-4 h-4 mr-2 text-primary" />
@@ -269,7 +269,7 @@ const ShareYourStory = () => {
               {
                 step: "3",
                 title: "Receive Your Reward",
-                description: "Our team will review your submission and contact you via email within 5-7 days to arrange your thank-you gift.",
+                description: "Our team will review your submission and contact you via email within 5 to 7 days to arrange your thank-you gift.",
                 icon: Gift
               }
             ].map((item, index) => (

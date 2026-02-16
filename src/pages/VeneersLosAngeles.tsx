@@ -66,7 +66,7 @@ const VeneersLosAngeles = () => {
     },
     {
       question: "How long do veneers last?",
-      answer: "With proper care—nightguard use, professional maintenance, and mindful habits—our porcelain veneers routinely last 15 years or longer. We enroll you in a personalized maintenance calendar that combines hygiene visits, bite evaluations, and whitening touch-ups to keep your investment flawless."
+      answer: "With proper care, nightguard use, professional maintenance, and mindful habits, our porcelain veneers routinely last 15 years or longer. We enroll you in a personalized maintenance calendar that combines hygiene visits, bite evaluations, and whitening touch-ups to keep your investment flawless."
     }
   ];
 
@@ -156,7 +156,7 @@ const VeneersLosAngeles = () => {
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Exquisite Dentistry veneers capture California sunshine, red-carpet glamour, and authentic personality.
-                We begin with an immersive smile discovery session—analyzing facial proportions, phonetics, and lifestyle needs—before handcrafting
+                We begin with an immersive smile discovery session, analyzing facial proportions, phonetics, and lifestyle needs, before handcrafting
                 porcelain that enhances your identity rather than masking it. The result is a smile that photographs beautifully,
                 speaks naturally, and leaves a lasting impression long after the cameras and conversations end.
               </p>
@@ -220,7 +220,7 @@ const VeneersLosAngeles = () => {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Your veneer journey begins with high-definition photography, digital smile simulations, and a deep conversation about how you want to look and feel.
-                  We co-create a mood board that captures your aspirational smile—whether that is effortless Beverly Hills polish or editorial edge.
+                  We co-create a mood board that captures your aspirational smile, whether that is effortless Beverly Hills polish or editorial edge.
                   Trial smile previews let you wear your design at home, receive feedback from stylists, and ensure phonetics feel natural before we finalize porcelain shades.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -263,7 +263,7 @@ const VeneersLosAngeles = () => {
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Los Angeles-Focused Veneer Planning</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Living in LA means every angle of your smile is photographed—at premieres, on Zoom, and in candid photos with friends.
+                Living in LA means every angle of your smile is photographed, at premieres, on Zoom, and in candid photos with friends.
                 We evaluate how your teeth interact with facial muscles as you speak, laugh, and perform.
                 If gum levels need refinement, we pair veneers with gentle laser recontouring.
                 Patients coming from Santa Monica or Malibu often request slightly warm undertones to harmonize with beach lighting, while downtown executives prefer crisp brightness for indoor boardrooms.
@@ -312,7 +312,7 @@ const VeneersLosAngeles = () => {
                   <ul className="space-y-3 text-muted-foreground leading-relaxed">
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />
-                      <span>Attend professional cleanings every 3–4 months with hygienists trained in veneer-safe polishing paste.</span>
+                      <span>Attend professional cleanings every 3 to 4 months with hygienists trained in veneer-safe polishing paste.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />

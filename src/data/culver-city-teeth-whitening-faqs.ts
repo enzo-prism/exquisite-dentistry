@@ -7,7 +7,7 @@ export const CULVER_CITY_TEETH_WHITENING_FAQS = [
   {
     question: 'How long does professional teeth whitening take?',
     answer:
-      'Most in-office whitening appointments take about 60–90 minutes. Custom take-home trays typically involve a short visit for impressions or scans, then gradual whitening over days or weeks depending on your target shade and sensitivity.',
+      'Most in-office whitening appointments take about 60 to 90 minutes. Custom take-home trays typically involve a short visit for impressions or scans, then gradual whitening over days or weeks depending on your target shade and sensitivity.',
   },
   {
     question: 'How much does teeth whitening cost near Culver City?',

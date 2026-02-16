@@ -7,7 +7,7 @@ export const ZOOM_WHITENING_FAQS: FAQItem[] = [
   {
     question: 'How long does Zoom teeth whitening take?',
     answer:
-      'Most in-office Zoom whitening appointments take about 60–90 minutes. We start with a quick exam and shade check, then protect your gums, apply the whitening gel in timed cycles, and finish with aftercare guidance.'
+      'Most in-office Zoom whitening appointments take about 60 to 90 minutes. We start with a quick exam and shade check, then protect your gums, apply the whitening gel in timed cycles, and finish with aftercare guidance.'
   },
   {
     question: 'How much does Zoom whitening cost in Los Angeles?',
@@ -17,22 +17,22 @@ export const ZOOM_WHITENING_FAQS: FAQItem[] = [
   {
     question: 'How many shades whiter can Zoom whitening make my teeth?',
     answer:
-      'Many patients brighten about 3–8 shades depending on starting shade, enamel, and stain type. We’ll do a shade assessment before and after treatment so you can see the change clearly.'
+      'Many patients brighten about 3 to 8 shades depending on starting shade, enamel, and stain type. We’ll do a shade assessment before and after treatment so you can see the change clearly.'
   },
   {
     question: 'Is Zoom whitening safe?',
     answer:
-      'Yes—Zoom whitening is widely used and safe on healthy natural teeth when supervised by a dental professional. We evaluate enamel, gum health, and restorations first to make sure whitening is appropriate for your smile.'
+      'Yes, Zoom whitening is widely used and safe on healthy natural teeth when supervised by a dental professional. We evaluate enamel, gum health, and restorations first to make sure whitening is appropriate for your smile.'
   },
   {
     question: 'Will my teeth be sensitive after treatment?',
     answer:
-      'Some people feel temporary sensitivity for 24–48 hours. We use a comfort-first protocol and can recommend desensitizing products to keep you comfortable before and after whitening.'
+      'Some people feel temporary sensitivity for 24 to 48 hours. We use a comfort-first protocol and can recommend desensitizing products to keep you comfortable before and after whitening.'
   },
   {
     question: 'What should I avoid after Zoom whitening?',
     answer:
-      'For the first 24–48 hours, we recommend avoiding dark foods and drinks that can stain (coffee, tea, red wine, berries, dark sauces). We’ll also review aftercare steps to help reduce sensitivity and keep your new shade stable.'
+      'For the first 24 to 48 hours, we recommend avoiding dark foods and drinks that can stain (coffee, tea, red wine, berries, dark sauces). We’ll also review aftercare steps to help reduce sensitivity and keep your new shade stable.'
   },
   {
     question: 'How long do results last?',
@@ -47,7 +47,7 @@ export const ZOOM_WHITENING_FAQS: FAQItem[] = [
   {
     question: 'How soon before an event should I do Zoom whitening?',
     answer:
-      'If you’re whitening for photos, a wedding, or an important event, many patients schedule about 7–10 days ahead so the shade settles naturally and any temporary sensitivity has time to calm.'
+      'If you’re whitening for photos, a wedding, or an important event, many patients schedule about 7 to 10 days ahead so the shade settles naturally and any temporary sensitivity has time to calm.'
   },
   {
     question: "Can I whiten if I have veneers, crowns, or fillings?",

@@ -31,3 +31,7 @@ dist-ssr
 
 # Generated image derivatives (created by `npm run optimize:images` / `npm run build:prod`)
 public/optimized/
+
+# Playwright artifacts
+test-results/
+playwright-report/

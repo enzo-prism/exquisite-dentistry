@@ -38,7 +38,7 @@ const baseBlogPosts: BlogPost[] = [
           If you are seriously searching for <em>"veneers Los Angeles"</em> or <em>"porcelain veneers Beverly Hills"</em>, you are already past casual browsing. You need real numbers, honest expectations, and a clear path with a doctor who respects the investment you are about to make.
         </p>
         <p>
-          This 2025 guide answers the biggest questions Dr. Alexie Aguil hears from high-performing patients every week so you can decide—in a fully informed way—if porcelain veneers belong in your next chapter.
+          This 2025 guide answers the biggest questions Dr. Alexie Aguil hears from high-performing patients every week so you can decide, in a fully informed way, if porcelain veneers belong in your next chapter.
         </p>
 
         <hr />
@@ -60,7 +60,7 @@ const baseBlogPosts: BlogPost[] = [
           <a href="https://maplewooddental.com/long-term-durability-of-dental-veneers-what-you-need-to-know-2/" rel="noreferrer">[2]</a>
         </p>
         <p>
-          Candidates with active gum disease, major bite problems, or untreated decay require foundational care first—and heavy grinders must be willing to wear protection.
+          Candidates with active gum disease, major bite problems, or untreated decay require foundational care first, and heavy grinders must be willing to wear protection.
           <a href="https://southsidedds.com/ada-library/veneers" rel="noreferrer">[3]</a>
         </p>
 
@@ -210,12 +210,12 @@ const baseBlogPosts: BlogPost[] = [
           Mild pressure is normal during the first days with a new set. Keep orthodontic wax, lip balm, and over-the-counter pain relief in your work bag. Sip water often to reduce dryness and speak clearly in meetings.
         </p>
         <p>
-          Choose soft lunches—soups, smoothies, or yogurt—until your teeth settle. Schedule coffee runs near your break so you can remove your trays, enjoy your drink, brush, and pop them back in on time.
+          Choose soft lunches, soups, smoothies, or yogurt, until your teeth settle. Schedule coffee runs near your break so you can remove your trays, enjoy your drink, brush, and pop them back in on time.
         </p>
 
         <h2>Build Daily Reminders</h2>
         <p>
-          Invisalign works best when trays stay in 20–22 hours a day. Set calendar alerts to remind you to reinsert aligners after meals. Keep a travel toothbrush, toothpaste, and aligner case at your desk so clean-up is quick.
+          Invisalign works best when trays stay in 20 to 22 hours a day. Set calendar alerts to remind you to reinsert aligners after meals. Keep a travel toothbrush, toothpaste, and aligner case at your desk so clean-up is quick.
         </p>
         <p>
           At night, rinse the trays, brush and floss, and store everything in one spot. After a week or two the process becomes automatic, freeing you to focus on learning your new role.
@@ -258,7 +258,7 @@ const baseBlogPosts: BlogPost[] = [
       'Experience a spa-inspired dental visit designed exclusively for adults with concierge comforts, comprehensive care, and cosmetic enhancements in West Hollywood.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
-          Adult patients deserve dental visits that feel calm, respectful, and efficient. Our West Hollywood team designed every detail—from the lounge to the treatment rooms—with grown-up comfort in mind.
+          Adult patients deserve dental visits that feel calm, respectful, and efficient. Our West Hollywood team designed every detail, from the lounge to the treatment rooms, with grown-up comfort in mind.
         </p>
 
         <h2>Welcome to the Dental Spa</h2>
@@ -338,7 +338,7 @@ const baseBlogPosts: BlogPost[] = [
         </div>
 
         <p>
-          Knowing the warning signs and staying consistent with screenings keeps you protected. If something feels off, let us know—we are here to help.
+          Knowing the warning signs and staying consistent with screenings keeps you protected. If something feels off, let us know, we are here to help.
         </p>
       </div>`,
     author: 'Dr. Alexie Aguil',
@@ -368,7 +368,7 @@ const baseBlogPosts: BlogPost[] = [
 
         <h2>Build a Workday Routine</h2>
         <p>
-          Pick a consistent time—after lunch or before a big meeting—and set a reminder to brush or rinse. Keeping floss picks or a travel-sized brush at your desk ensures you are always prepared.
+          Pick a consistent time, after lunch or before a big meeting, and set a reminder to brush or rinse. Keeping floss picks or a travel-sized brush at your desk ensures you are always prepared.
         </p>
 
         <h2>Keep a Compact Care Kit</h2>
@@ -397,7 +397,7 @@ const baseBlogPosts: BlogPost[] = [
     category: 'Oral Health',
     tags: ['oral hygiene', 'workplace brushing', 'healthy habits', 'dental tips', 'cosmetic dentistry'],
     seoTitle: '5 Ways to Improve Oral Care at Work | Exquisite Dentistry Tips',
-    seoDescription: 'Discover five practical ways to upgrade your oral care routine while you’re at work, from timing your brushings to prepping a hygiene kit—courtesy of Exquisite Dentistry in West Hollywood.',
+    seoDescription: 'Discover five practical ways to upgrade your oral care routine while you’re at work, from timing your brushings to prepping a hygiene kit, courtesy of Exquisite Dentistry in West Hollywood.',
     seoKeywords: 'oral care at work, brushing teeth at work, workplace oral hygiene, dental tips for professionals, Exquisite Dentistry blog',
     published: true
   },
@@ -406,7 +406,7 @@ const baseBlogPosts: BlogPost[] = [
     title: '5 Reasons to Get Dental Implants',
     slug: 'reasons-to-get-dental-implants',
     sourceSlug: '5-reasons-to-get-dental-implants',
-    excerpt: 'Discover the top five reasons dental implants are a natural, long-lasting solution that protects your oral health, keeps you comfortable, and restores confidence—plus when bridges may be the right alternative.',
+    excerpt: 'Discover the top five reasons dental implants are a natural, long-lasting solution that protects your oral health, keeps you comfortable, and restores confidence, plus when bridges may be the right alternative.',
     content: `<div class="prose prose-lg max-w-none">
         <p>
           Dental implants replace missing teeth with a solution that looks, feels, and functions like the real thing. Here are five reasons patients love them.
@@ -439,7 +439,7 @@ const baseBlogPosts: BlogPost[] = [
     category: 'Restorative Dentistry',
     tags: ['dental implants', 'restorative dentistry', 'tooth replacement', 'oral health', 'cosmetic dentistry'],
     seoTitle: '5 Reasons to Get Dental Implants | Long-Lasting Tooth Replacement LA',
-    seoDescription: 'Explore five compelling reasons to choose dental implants—from natural aesthetics to oral health benefits—and see when bridges may be the right alternative at Exquisite Dentistry in Los Angeles.',
+    seoDescription: 'Explore five compelling reasons to choose dental implants, from natural aesthetics to oral health benefits, and see when bridges may be the right alternative at Exquisite Dentistry in Los Angeles.',
     seoKeywords: 'dental implants benefits, dental implants Los Angeles, implant vs bridge, restorative dentistry LA, tooth replacement options',
     published: true
   },
@@ -448,13 +448,13 @@ const baseBlogPosts: BlogPost[] = [
     title: 'Dental Implant Cost in Los Angeles: What Affects Pricing (and How to Compare Quotes)',
     slug: 'dental-implant-cost-los-angeles',
     excerpt:
-      'A clear, non-sales guide to what drives dental implant pricing in Los Angeles—what’s included, common add-ons like grafting, and how to compare two implant quotes confidently.',
+      'A clear, non-sales guide to what drives dental implant pricing in Los Angeles, what’s included, common add-ons like grafting, and how to compare two implant quotes confidently.',
     content: `<div class="prose prose-lg max-w-none">
         <p class="text-sm text-gray-500">By Dr. Alexie Aguil | Exquisite Dentistry, Los Angeles • Updated: December 2025 • 8 min read</p>
 
         <p>
           If you’re searching for <em>“dental implant cost Los Angeles”</em>, you’re usually trying to answer one practical question: <strong>what will my implant actually cost, and what is included?</strong>
-          The most helpful answer is not a single number—it’s a checklist you can use to compare plans from different offices without getting surprised later.
+          The most helpful answer is not a single number, it’s a checklist you can use to compare plans from different offices without getting surprised later.
         </p>
 
         <h2>1) Why implant pricing varies so much</h2>
@@ -581,7 +581,7 @@ const baseBlogPosts: BlogPost[] = [
         <ol class="list-decimal pl-6 space-y-2">
           <li><strong>Is the supporting tooth healthy?</strong> If it’s already compromised, that can change the best option.</li>
           <li><strong>What’s your timeline?</strong> Some plans require healing time; others may be faster.</li>
-          <li><strong>What’s your long-term goal?</strong> Prioritize stability, esthetics, and maintainability—not just the initial visit count.</li>
+          <li><strong>What’s your long-term goal?</strong> Prioritize stability, esthetics, and maintainability, not just the initial visit count.</li>
           <li><strong>Do you clench or grind?</strong> Bite forces matter; we may recommend protection like a night guard.</li>
         </ol>
 
@@ -614,7 +614,7 @@ const baseBlogPosts: BlogPost[] = [
     ],
     seoTitle: 'Dental Implants vs Bridge in Los Angeles: How to Decide',
     seoDescription:
-      'Compare dental implants vs bridges in Los Angeles—stability, timeline, maintenance, and who each option fits best—so you can choose confidently.',
+      'Compare dental implants vs bridges in Los Angeles, stability, timeline, maintenance, and who each option fits best, so you can choose confidently.',
     seoKeywords:
       'dental implants vs bridge los angeles, implant vs bridge los angeles, tooth replacement los angeles, dental bridge vs implant, restorative dentistry los angeles',
     published: true
@@ -625,31 +625,31 @@ const baseBlogPosts: BlogPost[] = [
     slug: 'healthy-habits-for-your-teeth',
     sourceSlug: '5-healthy-habits-for-your-teeth',
     excerpt:
-      'Five dentist-approved habits—from mindful brushing to smart snacking—that keep your smile bright, healthy, and confident every day.',
+      'Five dentist-approved habits, from mindful brushing to smart snacking, that keep your smile bright, healthy, and confident every day.',
     content: `<div class="prose prose-lg max-w-none">
         <p class="text-sm text-gray-500">By Dr. Alexie Aguil | Exquisite Dentistry, Los Angeles • Updated: November 2025 • 5 min read</p>
 
         <h2>🦷 5 Simple Habits for a Healthier, Brighter Smile</h2>
         <p>
-          A confident smile doesn’t happen by accident—it’s built one routine at a time. These five habits prevent cavities, gum disease, and discoloration so your teeth stay strong and camera-ready.
+          A confident smile doesn’t happen by accident, it’s built one routine at a time. These five habits prevent cavities, gum disease, and discoloration so your teeth stay strong and camera-ready.
         </p>
 
         <h3>1. Brush Smarter, Not Harder</h3>
         <p>Technique matters more than pressure. Try this:</p>
         <ul class="list-disc pl-6 space-y-2">
           <li><strong>Use the right brush:</strong> Electric brushes like Philips Sonicare do the work for you.</li>
-          <li><strong>Perfect your angle:</strong> Aim bristles toward the gumline and glide—no scrubbing.</li>
+          <li><strong>Perfect your angle:</strong> Aim bristles toward the gumline and glide, no scrubbing.</li>
           <li><strong>Follow the 2x2 rule:</strong> Brush two minutes, twice a day.</li>
           <li><strong>Swap brush heads every 3 months:</strong> Fresh bristles clean better.</li>
           <li><strong>Choose nourishing pastes:</strong> Dental Herb Company’s Tooth &amp; Gum Paste and Tonic support gum health.</li>
         </ul>
         <p class="bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 text-sm">
-          ✅ Pro tip: Light pressure protects enamel—pressing hard can actually scrub it away.
+          ✅ Pro tip: Light pressure protects enamel, pressing hard can actually scrub it away.
         </p>
 
         <h3>2. Don’t Skip the Floss</h3>
         <p>
-          Brushing cleans only about 60% of each tooth. Daily flossing—or water flossing—removes plaque between teeth and along the gumline, preventing tartar, inflammation, and bad breath.
+          Brushing cleans only about 60% of each tooth. Daily flossing, or water flossing, removes plaque between teeth and along the gumline, preventing tartar, inflammation, and bad breath.
         </p>
 
         <h3>3. Snack Less, Smile More</h3>
@@ -664,7 +664,7 @@ const baseBlogPosts: BlogPost[] = [
 
         <h3>5. See Your Dentist Twice a Year</h3>
         <p>
-          Professional cleanings remove buildup home care can’t. Twice-yearly visits polish away stains, prevent cavities, and keep your oral health—and confidence—at its peak. At Exquisite Dentistry, cleanings feel restorative with Netflix, noise-canceling headphones, aromatherapy, and a warm blanket.
+          Professional cleanings remove buildup home care can’t. Twice-yearly visits polish away stains, prevent cavities, and keep your oral health, and confidence, at its peak. At Exquisite Dentistry, cleanings feel restorative with Netflix, noise-canceling headphones, aromatherapy, and a warm blanket.
         </p>
 
         <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-8 text-center space-y-3">
@@ -675,9 +675,9 @@ const baseBlogPosts: BlogPost[] = [
 
         <h3>Transform Your Smile with Exquisite Dentistry</h3>
         <ul class="list-disc pl-6 space-y-2">
-          <li>✨ Porcelain Veneers – flawless symmetry and brightness</li>
-          <li>🦷 Invisalign® Clear Aligners – discreet alignment</li>
-          <li>🌟 Laser Teeth Whitening – instant brilliance</li>
+          <li>✨ Porcelain Veneers to flawless symmetry and brightness</li>
+          <li>🦷 Invisalign® Clear Aligners to discreet alignment</li>
+          <li>🌟 Laser Teeth Whitening to instant brilliance</li>
           <li>💎 Smile Makeovers &amp; Full-Mouth Reconstruction</li>
         </ul>
 
@@ -713,7 +713,7 @@ const baseBlogPosts: BlogPost[] = [
         <ul class="list-disc pl-6 space-y-2">
           <li><strong>Discreet look:</strong> Clear aligners are barely noticeable in photos or meetings.</li>
           <li><strong>No food limits:</strong> Remove the trays to enjoy popcorn, apples, and other favorites.</li>
-          <li><strong>Easy cleaning:</strong> Brush and floss normally—no brackets or wires in the way.</li>
+          <li><strong>Easy cleaning:</strong> Brush and floss normally, no brackets or wires in the way.</li>
           <li><strong>Comfortable fit:</strong> Smooth plastic reduces irritation to lips and cheeks.</li>
           <li><strong>Predictable results:</strong> Digital planning shows your future smile before treatment begins.</li>
         </ul>

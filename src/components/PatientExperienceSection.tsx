@@ -69,7 +69,7 @@ const ClientExperienceSection: React.FC = () => {
             <div className="bg-gold/10 p-6 rounded-sm border-l-4 border-gold shadow-md">
               <h3 className="text-xl font-semibold mb-2">Dr. Aguil's Approach</h3>
               <p className="text-gray-700">
-                "My goal is to make every patient feel comfortable and cared for throughout their visit." - Dr. Alexie Aguil
+                My goal is to make every patient feel comfortable and cared for throughout their visit. Quote by Dr. Alexie Aguil.
               </p>
             </div>
             

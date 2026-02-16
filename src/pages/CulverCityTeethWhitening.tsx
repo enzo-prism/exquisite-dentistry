@@ -62,7 +62,7 @@ const CulverCityTeethWhitening = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Culver City Teeth Whitening"
-          subtitle="In-office whitening and custom take-home trays—comfort-first care designed for a natural-looking shade, a short drive from Culver City."
+          subtitle="In-office whitening and custom take-home trays, comfort-first care designed for a natural-looking shade, a short drive from Culver City."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH,
@@ -83,7 +83,7 @@ const CulverCityTeethWhitening = () => {
                 <p className="mt-4 text-sm text-muted-foreground">
                   Clinically reviewed by{" "}
                 <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil, DDS
+                  Dr. Alexie Aguil
                 </Link>{" "}
                 ·{" "}
                 <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
@@ -173,7 +173,7 @@ const CulverCityTeethWhitening = () => {
                       <h2 className="text-lg font-semibold">Plan the Visit</h2>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Most in-office whitening appointments take about 60–90 minutes. If you’re coming from Culver City,
+                      Most in-office whitening appointments take about 60 to 90 minutes. If you’re coming from Culver City,
                       we can recommend appointment timing that fits your schedule.
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
@@ -267,7 +267,7 @@ const CulverCityTeethWhitening = () => {
                     <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                       <li>Review sensitivity history and enamel condition</li>
                       <li>Timed gel cycles with comfort-first adjustments</li>
-                      <li>Desensitizing options and 24–48 hour aftercare guidance</li>
+                      <li>Desensitizing options and 24 to 48 hour aftercare guidance</li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -335,7 +335,7 @@ const CulverCityTeethWhitening = () => {
                     <CardTitle className="text-lg text-foreground">Longevity</CardTitle>
                   </CardHeader>
                   <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                    Whitening longevity varies by diet and habits. Many patients refresh in-office whitening about every 12–18 months depending on stain exposure.
+                    Whitening longevity varies by diet and habits. Many patients refresh in-office whitening about every 12 to 18 months depending on stain exposure.
                   </CardContent>
                 </Card>
                 <Card className="border border-border/60 bg-white shadow-sm">
@@ -369,11 +369,11 @@ const CulverCityTeethWhitening = () => {
                 <Card className="border border-border/60 bg-white shadow-sm">
                   <CardContent className="p-8 space-y-4">
                     <p className="text-muted-foreground leading-relaxed">
-                      Most in-office whitening visits take about 60–90 minutes. If you’re working around a deadline, we’ll help you choose the option that fits your
+                      Most in-office whitening visits take about 60 to 90 minutes. If you’re working around a deadline, we’ll help you choose the option that fits your
                       timeline and comfort level.
                     </p>
                     <p className="text-muted-foreground leading-relaxed">
-                      Validated parking is available in our building, and ride-share drop-offs are easy. If you’re unsure what to book, start with a consult — we’ll
+                      Validated parking is available in our building, and ride-share drop-offs are easy. If you’re unsure what to book, start with a consult. We’ll
                       confirm the best approach for enamel and restorations.
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">

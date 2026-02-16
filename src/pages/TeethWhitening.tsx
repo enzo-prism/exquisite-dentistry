@@ -46,7 +46,7 @@ const TeethWhitening = () => {
     },
     {
       question: "How often should I whiten?",
-      answer: "In-office whitening can be repeated every 12–18 months, while take-home touch-ups keep results fresh every few weeks. We tailor a maintenance plan that considers on-camera obligations, wine tastings, and lifestyle habits so you never lose momentum."
+      answer: "In-office whitening can be repeated every 12 to 18 months, while take-home touch-ups keep results fresh every few weeks. We tailor a maintenance plan that considers on-camera obligations, wine tastings, and lifestyle habits so you never lose momentum."
     }
   ];
 
@@ -304,11 +304,11 @@ const TeethWhitening = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Sun className="w-5 h-5 text-secondary mt-1" />
-                      <span>Schedule whitening 7–10 days before major events so shade settles and soft tissues look their healthiest.</span>
+                      <span>Schedule whitening 7 to 10 days before major events so shade settles and soft tissues look their healthiest.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Sun className="w-5 h-5 text-secondary mt-1" />
-                      <span>Bring your trays to hygiene visits—we’ll professionally clean them and restock whitening gel refills.</span>
+                      <span>Bring your trays to hygiene visits, we’ll professionally clean them and restock whitening gel refills.</span>
                     </li>
                   </ul>
                 </div>

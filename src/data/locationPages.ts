@@ -185,7 +185,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       ...base,
       hero: {
         ...base.hero,
-        heading: "Beverly Hills Dentist — Concierge Cosmetic Care",
+        heading: "Beverly Hills Dentist, Concierge Cosmetic Care",
       },
       practiceLocation: {
         heading: "Visit Exquisite Dentistry from Beverly Hills",
@@ -199,7 +199,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       },
       doctorSection: {
         eyebrow: "Meet the Dentist",
-        heading: "Dr. Alexie Aguil, DDS",
+        heading: "Dr. Alexie Aguil",
         paragraphs: [
           "Beverly Hills patients visit Exquisite Dentistry for high-end cosmetic and restorative care with a calm, private experience. Dr. Aguil blends precision dentistry with an artistic eye, creating natural-looking results that photograph beautifully and hold up for everyday function.",
           "With 15+ years serving Los Angeles and 2,400+ smile transformations, Dr. Aguil is known for thoughtful planning, clear communication, and comfort-first appointments. Whether you’re considering veneers, Invisalign, whitening, or implants, your treatment plan is tailored to your timeline, lifestyle, and long-term oral health.",
@@ -212,7 +212,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
         ],
         image: {
           src: "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
-          alt: "Dr. Alexie Aguil - premium business portrait",
+          alt: "Dr. Alexie Aguil, premium business portrait",
         },
         cta: {
           primaryText: "Schedule Consultation",
@@ -249,7 +249,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "west-la-dentist": createLocationConfig(
     "west-la-dentist",
     "West LA",
-    "Access advanced cosmetic and restorative care without the commute downtown—our studio sits conveniently off Wilshire and is an easy fit for Westside neighborhoods like Santa Monica. Enjoy valet-friendly arrival, digital consultations, and treatment plans that respect Westside commutes.",
+    "Access advanced cosmetic and restorative care without the commute downtown, our studio sits conveniently off Wilshire and is an easy fit for Westside neighborhoods like Santa Monica. Enjoy valet-friendly arrival, digital consultations, and treatment plans that respect Westside commutes.",
     [
       "Easy access from the 10 and 405",
       "Valet-friendly entrance",
@@ -294,7 +294,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "90048-dentist": createLocationConfig(
     "90048-dentist",
     "90048",
-    "Your neighborhood dentist in the 90048 zip code—walkable for locals and convenient for Cedars-Sinai teams. Stop in between rounds or lunch breaks for modern preventive care, whitening boosts, and same-day fixes.",
+    "Your neighborhood dentist in the 90048 zip code, walkable for locals and convenient for Cedars-Sinai teams. Stop in between rounds or lunch breaks for modern preventive care, whitening boosts, and same-day fixes.",
     [
       "Steps from the Beverly Center and Cedars-Sinai",
       "Validated parking + EV charging nearby",
@@ -350,7 +350,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Preventive cleanings with VELscope screenings at every visit",
       "Oral cancer screenings that support long-term wellness goals"
     ],
-    { quote: "Driving from Westwood is worth it—appointments start on time and the results are unmatched.", author: "Emily R." },
+    { quote: "Driving from Westwood is worth it, appointments start on time and the results are unmatched.", author: "Emily R." },
     [
       { label: "Invisalign", href: "/invisalign" },
       { label: "Teeth Cleaning", href: "/teeth-cleaning" },

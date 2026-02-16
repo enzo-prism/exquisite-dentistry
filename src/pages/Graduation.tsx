@@ -50,13 +50,13 @@ const Graduation = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* 1-2 Week Solutions */}
+              {/* 1 to 2 Week Solutions */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <Calendar size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">1-2 Week Solutions</h3>
+                  <h3 className="text-xl font-medium">1 to 2 Week Solutions</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -74,13 +74,13 @@ const Graduation = () => {
                 </ul>
               </div>
 
-              {/* 2-4 Week Solutions */}
+              {/* 2 to 4 Week Solutions */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <Star size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">2-4 Week Solutions</h3>
+                  <h3 className="text-xl font-medium">2 to 4 Week Solutions</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -98,13 +98,13 @@ const Graduation = () => {
                 </ul>
               </div>
 
-              {/* 1-3 Month Solutions */}
+              {/* 1 to 3 Month Solutions */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <GraduationCap size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">1-3 Month Solutions</h3>
+                  <h3 className="text-xl font-medium">1 to 3 Month Solutions</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -173,11 +173,11 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">One-Hour Power Whitening</h3>
                   <p className="text-black-light mb-4">
-                    Our most popular graduation treatment, this in-office whitening procedure brightens your smile by up to 8 shades in just one hour – perfect for last-minute preparations.
+                    Our most popular graduation treatment, this in-office whitening procedure brightens your smile by up to 8 shades in just one hour, perfect for last minute preparations.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
-                    <span>60-90 minutes, single appointment</span>
+                    <span>60 to 90 minutes, single appointment</span>
                   </div>
                 </div>
               </div>
@@ -193,7 +193,7 @@ const Graduation = () => {
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
-                    <span>2-3 hours, can be done in one day</span>
+                    <span>2 to 3 hours, can be done in one day</span>
                   </div>
                 </div>
               </div>
@@ -205,11 +205,11 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Express Cosmetic Bonding</h3>
                   <p className="text-black-light mb-4">
-                    Repair chips, close small gaps, or reshape teeth in just one visit with our artistic composite bonding technique – no anesthesia required.
+                    Repair chips, close small gaps, or reshape teeth in just one visit with our artistic composite bonding technique, with no anesthesia required.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
-                    <span>30-60 minutes per tooth, same-day results</span>
+                    <span>30 to 60 minutes per tooth, same-day results</span>
                   </div>
                 </div>
               </div>
@@ -221,11 +221,11 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Front Teeth Veneers</h3>
                   <p className="text-black-light mb-4">
-                    Transform your most visible teeth with our limited veneer set, focusing on the front 4-6 teeth for maximum impact with faster treatment time.
+                    Transform your most visible teeth with our limited veneer set, focusing on the front 4 to 6 teeth for maximum impact with faster treatment time.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
-                    <span>Two appointments over 2-3 weeks</span>
+                    <span>Two appointments over 2 to 3 weeks</span>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,7 @@ const Graduation = () => {
                 },
                 {
                   title: 'Front Teeth Veneers',
-                  description: 'Target 2-4 teeth for quick upgrades.',
+                  description: 'Target 2 to 4 teeth for quick upgrades.',
                   href: '/veneers/front-teeth-veneers-los-angeles/'
                 },
                 {
@@ -319,7 +319,7 @@ const Graduation = () => {
                   How soon before graduation should I start treatment?
                 </h3>
                 <p className="text-gray-600">
-                  For quick fixes like teeth whitening or bonding, 2-4 weeks is perfect. For more comprehensive treatments like veneers, start 2-3 months before your ceremony to allow for proper healing and adjustments.
+                  For quick fixes like teeth whitening or bonding, 2 to 4 weeks is perfect. For more comprehensive treatments like veneers, start 2 to 3 months before your ceremony to allow for proper healing and adjustments.
                 </p>
               </div>
               

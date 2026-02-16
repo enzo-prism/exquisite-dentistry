@@ -30,7 +30,7 @@ const Invisalign = () => {
     {
       icon: <Clock className="h-8 w-8 text-secondary" />,
       title: "Predictable Timelines",
-      description: "Digital treatment plans and weekly aligner changes get most adults to the finish line in 6–12 months."
+      description: "Digital treatment plans and weekly aligner changes get most adults to the finish line in 6 to 12 months."
     },
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
@@ -51,12 +51,12 @@ const Invisalign = () => {
       description: "iTero 3D scans create a precise model of your bite, while we preview tooth movements with ClinCheck simulations."
     },
     {
-      step: "Weeks 2-6",
+      step: "Weeks 2 to 6",
       title: "Trackable Progress",
       description: "Receive micro-adjusted aligners that guide teeth gently into position; virtual check-ins keep you on pace between in-person visits."
     },
     {
-      step: "Weeks 12-24",
+      step: "Weeks 12 to 24",
       title: "Refinements & Detailing",
       description: "Attachments and IPR, when indicated, sculpt finishing details for film-ready symmetry and balanced occlusion."
     },
@@ -74,11 +74,11 @@ const Invisalign = () => {
     },
     {
       question: "What is the typical Invisalign timeline in Los Angeles?",
-      answer: "Most cosmetic alignment cases finish within 6–12 months, while more complex bite corrections may take 18 months. We stage your plan around work, production schedules, and major life events so treatment never interrupts the moments that matter."
+      answer: "Most cosmetic alignment cases finish within 6 to 12 months, while more complex bite corrections may take 18 months. We stage your plan around work, production schedules, and major life events so treatment never interrupts the moments that matter."
     },
     {
       question: "Is Invisalign comfortable for speaking on camera or at events?",
-      answer: "Yes. The trays hug teeth closely, so you can present, sing, or record podcasts without the speech changes caused by bulky appliances. Regular wear—20 to 22 hours per day—keeps your articulation crisp after just a day or two of acclimating."
+      answer: "Yes. The trays hug teeth closely, so you can present, sing, or record podcasts without the speech changes caused by bulky appliances. Regular wear, 20 to 22 hours per day, keeps your articulation crisp after just a day or two of acclimating."
     }
   ];
 
@@ -111,7 +111,7 @@ const Invisalign = () => {
             'Crossbite',
             'Open bite'
           ],
-          expectedPrognosis: 'Straighter teeth and balanced bite in 6-18 months with proper aligner wear.',
+          expectedPrognosis: 'Straighter teeth and balanced bite in 6 to 18 months with proper aligner wear.',
           procedureType: 'Clear Aligner Therapy'
         }]}
       />
@@ -168,7 +168,7 @@ const Invisalign = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Clear aligner therapy at Exquisite Dentistry pairs world-class Invisalign technology with bespoke concierge care.
                 Dr. Alexie Aguil plans every movement with iTero digital scans, so you can preview results before wearing your first tray.
-                We map treatment around filming schedules, launch events, red-carpet appearances, and long production days, ensuring your smile journey enhances—not interrupts—your Los Angeles lifestyle.
+                We map treatment around filming schedules, launch events, red-carpet appearances, and long production days, ensuring your smile journey enhances, not interrupts, your Los Angeles lifestyle.
               </p>
               <div className="mt-8 rounded-2xl border border-secondary/30 bg-secondary/5 p-6 text-center">
                 <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-2">Powered by iTero 3D Scanning</p>
@@ -199,7 +199,7 @@ const Invisalign = () => {
                   Confidence in Every Smile: Nick’s Invisalign Journey
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  A lifetime of hiding his smile—until Invisalign with Dr. Aguil gave him the confidence to show it off.
+                  A lifetime of hiding his smile, until Invisalign with Dr. Aguil gave him the confidence to show it off.
                 </p>
                 <div className="mt-6 space-y-4 text-sm text-foreground">
                   <div>
@@ -211,7 +211,7 @@ const Invisalign = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-secondary">•</span>
-                        <span>Confidence through care—every visit focused on trust, comfort, and self-esteem.</span>
+                        <span>Confidence through care, every visit focused on trust, comfort, and self-esteem.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-secondary">•</span>
@@ -397,11 +397,11 @@ const Invisalign = () => {
                   <ul className="space-y-3 text-muted-foreground leading-relaxed">
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Wear aligners 20–22 hours daily, removing them only for meals, coffee tastings, and your brushing routine.</span>
+                      <span>Wear aligners 20 to 22 hours daily, removing them only for meals, coffee tastings, and your brushing routine.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Switch to the next set every 7–10 days as directed; the MyInvisalign app keeps you on schedule with tailored reminders.</span>
+                      <span>Switch to the next set every 7 to 10 days as directed; the MyInvisalign app keeps you on schedule with tailored reminders.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
@@ -413,7 +413,7 @@ const Invisalign = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Update us promptly if a tray cracks or is lost—we 3D print backups quickly to keep you on track without losing progress.</span>
+                      <span>Update us promptly if a tray cracks or is lost, we 3D print backups quickly to keep you on track without losing progress.</span>
                     </li>
                   </ul>
                 </div>

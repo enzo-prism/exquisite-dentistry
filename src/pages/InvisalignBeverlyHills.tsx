@@ -117,7 +117,7 @@ const InvisalignBeverlyHills = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Invisalign Beverly Hills"
-          subtitle="Clear aligners planned with iTero scans and bite-focused staging—concierge check-ins at our Wilshire Blvd Los Angeles studio near Beverly Hills."
+          subtitle="Clear aligners planned with iTero scans and bite-focused staging, concierge check-ins at our Wilshire Blvd Los Angeles studio near Beverly Hills."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -137,7 +137,7 @@ const InvisalignBeverlyHills = () => {
                 <p className="mt-4 text-sm text-muted-foreground">
                   Clinically reviewed by{" "}
                   <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                    Dr. Alexie Aguil, DDS
+                    Dr. Alexie Aguil
                   </Link>{" "}
                   ·{" "}
                   <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">

@@ -120,7 +120,7 @@ const SmileMakeoverLosAngeles = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Smile Makeover Los Angeles"
-          subtitle="A personalized plan that can combine veneers, whitening, Invisalign, bonding, and restorative care—sequenced for natural-looking results and bite stability."
+          subtitle="A personalized plan that can combine veneers, whitening, Invisalign, bonding, and restorative care, sequenced for natural-looking results and bite stability."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -140,7 +140,7 @@ const SmileMakeoverLosAngeles = () => {
                 <p className="mt-4 text-sm text-muted-foreground">
                   Clinically reviewed by{" "}
                   <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                    Dr. Alexie Aguil, DDS
+                    Dr. Alexie Aguil
                   </Link>{" "}
                   ·{" "}
                   <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">

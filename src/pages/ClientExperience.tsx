@@ -76,7 +76,7 @@ const ClientExperience = () => {
       service: 'Porcelain Veneers'
     },
     {
-      quote: '“They scheduled my Invisalign visits around set days—concierge dentistry at its best.”',
+      quote: '“They scheduled my Invisalign visits around set days, concierge dentistry at its best.”',
       name: 'Nick R.',
       service: 'Invisalign'
     },
@@ -279,7 +279,7 @@ const ClientExperience = () => {
                 <h2 className="text-3xl md:text-4xl font-semibold">Customize Every Sensory Detail</h2>
               </div>
               <p className="text-white/80 max-w-xl">
-                Mix and match sensory comforts before each visit—or adjust in real time. Our concierge tracks your preferences so every return visit feels familiar.
+                Mix and match sensory comforts before each visit, or adjust in real time. Our concierge tracks your preferences so every return visit feels familiar.
               </p>
             </div>
             <div className="relative">

@@ -52,7 +52,7 @@ const TransformationStoryPage: React.FC = () => {
     heading: caseStudy.finalCta?.heading ?? 'Thinking About Your Own Smile?',
     description:
       caseStudy.finalCta?.description ??
-      'Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity — every step of the way.',
+      'Whether you’re looking for subtle refinements or a complete transformation, our team guides you with empathy, artistry, and clarity at every step.',
     primaryCtaText: caseStudy.finalCta?.primaryCtaText ?? 'Schedule Consultation',
     primaryCtaHref:
       caseStudy.finalCta?.primaryCtaHref ??
@@ -167,7 +167,7 @@ const TransformationStoryPage: React.FC = () => {
                 <blockquote key={index} className="border-l-4 border-gold pl-6 py-4 bg-muted/50 rounded-r-lg">
                   <p className="text-lg italic mb-2">"{quote.text}"</p>
                   {quote.context && (
-                    <cite className="text-sm text-muted-foreground">— {quote.context}</cite>
+                    <cite className="text-sm text-muted-foreground">Context: {quote.context}</cite>
                   )}
                 </blockquote>
               ))}

@@ -17,7 +17,7 @@ export type InvisalignBeverlyHillsHubSection = {
 export const INVISALIGN_BEVERLY_HILLS_HUB_INTRO_PARAGRAPHS = [
   'If you’re searching for “Invisalign Beverly Hills,” you’re probably looking for discreet alignment with a plan that fits a busy schedule and delivers natural-looking results.',
   'Invisalign uses a series of clear aligners to move teeth gradually. The best outcomes come from precise planning, consistent wear, and check-ins that keep progress on track.',
-  'At Exquisite Dentistry near Beverly Hills (Wilshire Blvd in Los Angeles), we start with digital scanning and a bite-focused evaluation so tooth movement is predictable—not guesswork.',
+  'At Exquisite Dentistry near Beverly Hills (Wilshire Blvd in Los Angeles), we start with digital scanning and a bite-focused evaluation so tooth movement is predictable, not guesswork.',
   'When alignment is complete, we can coordinate finishing touches like whitening or bonding so your final smile looks balanced and camera-ready.'
 ] as const;
 
@@ -65,8 +65,8 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
     bullets: [
       "Consultation and bite-focused exam to confirm goals and candidacy",
       "Digital scan (no messy impressions) and staged movement plan",
-      "Aligner delivery and wear guidance (typically 20–22 hours/day)",
-      "Check-ins every 6–10 weeks to confirm tracking and adjust as needed",
+      "Aligner delivery and wear guidance (typically 20 to 22 hours/day)",
+      "Check-ins every 6 to 10 weeks to confirm tracking and adjust as needed",
       "Refinements if needed, then retainers to lock in results"
     ],
     links: [
@@ -93,7 +93,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Most Invisalign patients don’t need frequent visits, but you do need consistent check-ins. We keep appointments efficient and coordinate around travel and events when possible."
     ],
     bullets: [
-      "Typical cadence: every 6–10 weeks depending on your plan",
+      "Typical cadence: every 6 to 10 weeks depending on your plan",
       "Clear guidance on wear time and aligner changes so progress stays on schedule",
       "Options to coordinate cosmetic finishing (whitening/bonding) when you’re done",
       "Support if you lose a tray or need help while traveling"
@@ -109,7 +109,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSec
       "Timelines vary by complexity and wear consistency. Many adults finish cosmetic alignment in months, while bite-focused cases can take longer."
     ],
     bullets: [
-      "Many adults finish in ~6–12 months; complex bite cases may take longer",
+      "Many adults finish in ~6 to 12 months; complex bite cases may take longer",
       "Wear time and tracking impact timelines more than almost anything else",
       "Refinements can extend treatment slightly but improve the final details",
       "Retainers are essential after treatment to maintain alignment"

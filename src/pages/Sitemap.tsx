@@ -54,7 +54,7 @@ const Sitemap = () => {
       color: '#333'
     }}>
       <h1 style={{ fontSize: '2rem', marginBottom: '2rem', color: '#000' }}>
-        Sitemap - Exquisite Dentistry
+        Sitemap | Exquisite Dentistry
       </h1>
       
       <div style={{ marginBottom: '2rem' }}>
@@ -73,7 +73,7 @@ const Sitemap = () => {
                 {getPageTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority} | Updated: {url.lastmod}
+                Priority: {url.priority} | Updated: {url.lastmod}
               </span>
             </li>
           ))}
@@ -90,7 +90,7 @@ const Sitemap = () => {
                 {getPageTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority}
+                Priority: {url.priority}
               </span>
             </li>
           ))}
@@ -107,7 +107,7 @@ const Sitemap = () => {
                 {getPageTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority}
+                Priority: {url.priority}
               </span>
             </li>
           ))}
@@ -124,7 +124,7 @@ const Sitemap = () => {
                 {getPageTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority}
+                Priority: {url.priority}
               </span>
             </li>
           ))}
@@ -143,7 +143,7 @@ const Sitemap = () => {
                 {getBlogTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority} | Updated: {url.lastmod}
+                Priority: {url.priority} | Updated: {url.lastmod}
               </span>
             </li>
           ))}
@@ -160,7 +160,7 @@ const Sitemap = () => {
                 {getPageTitle(url.loc)}
               </a>
               <span style={{ color: '#666', marginLeft: '0.5rem', fontSize: '0.9rem' }}>
-                - Priority: {url.priority}
+                Priority: {url.priority}
               </span>
             </li>
           ))}
@@ -172,7 +172,7 @@ const Sitemap = () => {
           Last updated: {new Date().toLocaleDateString()} | Total pages: {sitemapData.length}
         </p>
         <p style={{ color: '#666', fontSize: '0.9rem' }}>
-          Exquisite Dentistry - {ADDRESS} - {PHONE_NUMBER_DISPLAY}
+          Exquisite Dentistry | {ADDRESS} | {PHONE_NUMBER_DISPLAY}
         </p>
         <p style={{ color: '#666', fontSize: '0.8rem', marginTop: '1rem' }}>
           <a href="/sitemap.xml" style={{ color: '#0066cc' }}>View XML Sitemap</a>

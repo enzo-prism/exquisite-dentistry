@@ -199,7 +199,7 @@ const SingleToothVeneersBlog = () => {
                     <h3 className="text-xl font-semibold">Quick Results</h3>
                   </div>
                   <p className="text-gray-600">
-                    Typically completed in just 2-3 appointments with immediate visual improvement
+                    Typically completed in just 2 to 3 appointments with immediate visual improvement
                   </p>
                 </CardContent>
               </Card>
@@ -336,7 +336,7 @@ const SingleToothVeneersBlog = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Maintenance Tips</h3>
                     <p className="text-gray-700 mb-4">
-                      With proper care, your single tooth veneer can last 10-15 years or more:
+                      With proper care, your single tooth veneer can last 10 to 15 years or more:
                     </p>
                   </div>
                 </div>

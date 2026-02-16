@@ -5,7 +5,7 @@ export const drAguilImages = {
   // Professional Portrait - Perfect for About page hero, team section
   professionalPortrait: {
     src: '/lovable-uploads/e2d3dd68-6f1f-4361-8749-59f510dfbc6c.png',
-    alt: 'Dr. Alexie Aguil, DDS - Professional dental portrait in clinical setting',
+    alt: 'Dr. Alexie Aguil, professional dental portrait in clinical setting',
     description: 'Dr. Aguil in professional dental attire with crossed arms, warm smile',
     usage: ['about-hero', 'team-section', 'professional-bio'],
     aspectRatio: '16:9',
@@ -15,7 +15,7 @@ export const drAguilImages = {
   // NEW: Professional Studio Portrait - Premium business headshot
   businessPortrait: {
     src: '/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png',
-    alt: 'Dr. Alexie Aguil, DDS - Premium business portrait with professional smile',
+    alt: 'Dr. Alexie Aguil, premium business portrait with professional smile',
     description: 'Elegant studio portrait of Dr. Aguil in professional business attire',
     usage: ['about-hero', 'homepage-hero', 'premium-branding', 'leadership'],
     aspectRatio: '4:5',
@@ -25,7 +25,7 @@ export const drAguilImages = {
   // NEW: Black & White Clinical Portrait - Artistic professional shot
   clinicalPortrait: {
     src: '/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp',
-    alt: 'Dr. Alexie Aguil, DDS - Professional clinical portrait in dental setting',
+    alt: 'Dr. Alexie Aguil, professional clinical portrait in dental setting',
     description: 'Professional black and white portrait of Dr. Aguil in dental office environment',
     usage: ['clinical-excellence', 'professional-bio', 'about-section'],
     aspectRatio: '3:4',
@@ -35,7 +35,7 @@ export const drAguilImages = {
   // NEW: Casual Office Portrait - Approachable and friendly
   casualOfficePortrait: {
     src: '/lovable-uploads/fc6628ee-e664-4138-9abd-756dbcfc9889.png',
-    alt: 'Dr. Alexie Aguil, DDS - Friendly office portrait in dental scrubs',
+    alt: 'Dr. Alexie Aguil, friendly office portrait in dental scrubs',
     description: 'Warm, approachable portrait of Dr. Aguil in dental scrubs in his office',
     usage: ['homepage-doctor-section', 'about-personality', 'patient-comfort'],
     aspectRatio: '4:5',
@@ -45,7 +45,7 @@ export const drAguilImages = {
   // NEW: Beautiful Smile Close-up - Results showcase
   smileCloseup: {
     src: '/lovable-uploads/ced61c9e-85aa-49c9-8378-f0ed60da48fc.png',
-    alt: 'Dr. Alexie Aguil, DDS - Professional smile showcasing beautiful dental work',
+    alt: 'Dr. Alexie Aguil, professional smile showcasing beautiful dental work',
     description: 'Close-up portrait highlighting Dr. Aguil\'s beautiful smile and dental artistry',
     usage: ['results-showcase', 'smile-gallery', 'testimonials', 'before-after'],
     aspectRatio: '16:9',

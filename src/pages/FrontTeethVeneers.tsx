@@ -18,13 +18,13 @@ const FrontTeethVeneers = () => {
   const costHighlights = [
     {
       title: '2 Front Teeth',
-      range: '$3,000 – $7,000',
+      range: '$3,000 to $7,000',
       idealFor: 'Single dark tooth, chips, or matching peg laterals',
       notes: 'We plan whitening first so the veneers match your brightest shade.'
     },
     {
       title: '4 Front Teeth',
-      range: '$7,200 – $10,000',
+      range: '$7,200 to $10,000',
       idealFor: 'Symmetry upgrades, closing gaps, and balancing the smile line',
       notes: 'Stops future shade mismatch between veneers and natural teeth.'
     }
@@ -47,7 +47,7 @@ const FrontTeethVeneers = () => {
     {
       step: '02',
       title: 'Minimal Preparation',
-      detail: 'Conservative enamel reshaping (about 0.3–0.5mm) only where needed for a flush fit.'
+      detail: 'Conservative enamel reshaping (about 0.3 to 0.5mm) only where needed for a flush fit.'
     },
     {
       step: '03',
@@ -68,7 +68,7 @@ const FrontTeethVeneers = () => {
     },
     {
       question: 'How long do they last?',
-      answer: 'Our porcelain veneers routinely last 10–15+ years with routine hygiene, nightguard use for clenching, and mindful habits.'
+      answer: 'Our porcelain veneers routinely last 10 to 15+ years with routine hygiene, nightguard use for clenching, and mindful habits.'
     },
     {
       question: 'Will they look natural?',
@@ -81,7 +81,7 @@ const FrontTeethVeneers = () => {
       <MasterStructuredData includeBusiness includeWebsite />
 
       <PageSEO
-        title="Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers"
+        title="Front Teeth Veneers in Los Angeles | 2 to 4 Tooth Smile Zone Makeovers"
         description="Upgrade just your front teeth with handcrafted porcelain veneers. Transparent pricing for 2 or 4 veneers, conservative prep, and camera-ready symmetry from Dr. Alexie Aguil in Los Angeles."
         keywords="front teeth veneers, 2 front teeth veneers cost, 4 front teeth veneers cost, veneers for front teeth Los Angeles, smile zone veneers"
         path="/veneers/front-teeth-veneers-los-angeles"
@@ -91,7 +91,7 @@ const FrontTeethVeneers = () => {
 
       <WebPageStructuredData
         title="Front Teeth Veneers in Los Angeles"
-        description="Transparent pricing and design guidance for 2–4 front teeth veneers with Dr. Alexie Aguil."
+        description="Transparent pricing and design guidance for 2 to 4 front teeth veneers with Dr. Alexie Aguil."
         url="https://exquisitedentistryla.com/veneers/front-teeth-veneers-los-angeles"
         breadcrumbs={[
           { name: 'Veneers', url: 'https://exquisitedentistryla.com/veneers/' },
@@ -101,13 +101,13 @@ const FrontTeethVeneers = () => {
 
       <ServiceStructuredData
         serviceName="Front Teeth Veneers"
-        description="Hand-layered porcelain veneers for the 2–4 front teeth to balance symmetry, color, and proportion."
+        description="Hand-layered porcelain veneers for the 2 to 4 front teeth to balance symmetry, color, and proportion."
         url="/veneers/front-teeth-veneers-los-angeles"
       />
 
       <MedicalProcedureStructuredData
         procedureName="Front Teeth Porcelain Veneers"
-        description="Conservative porcelain veneers designed for the smile zone (front 2–4 teeth) with digital planning, temporaries, and protective bite calibration."
+        description="Conservative porcelain veneers designed for the smile zone (front 2 to 4 teeth) with digital planning, temporaries, and protective bite calibration."
         url="/veneers/front-teeth-veneers-los-angeles"
         image="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
         procedureType="Cosmetic Dental Procedure"
@@ -133,7 +133,7 @@ const FrontTeethVeneers = () => {
           'Shade stability and stain resistance',
           'Conservative, tooth-preserving design'
         ]}
-        duration="2–3 appointments over ~3 weeks"
+        duration="2 to 3 appointments over ~3 weeks"
         recoveryTime="Immediate return to normal activities"
       />
 
@@ -223,7 +223,7 @@ const FrontTeethVeneers = () => {
         <section className="py-14 md:py-16 bg-background">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Why focus on the front 2–4 teeth?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Why focus on the front 2 to 4 teeth?</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 The central and lateral incisors define your smile line. Treating them together prevents shade mismatch, gives symmetrical proportions, and keeps photos and video consistent under different lighting.
               </p>
@@ -250,7 +250,7 @@ const FrontTeethVeneers = () => {
               </div>
               <div className="flex items-center gap-2 text-sm text-secondary">
                 <Clock className="h-4 w-4" />
-                2–3 visits over ~3 weeks
+                2 to 3 visits over ~3 weeks
               </div>
             </div>
 
@@ -348,7 +348,7 @@ const FrontTeethVeneers = () => {
           tags={['front teeth', 'veneers', '4 front teeth', 'single tooth', 'cost']}
           category="Cosmetic Dentistry"
           title="Front Teeth Veneer Guides"
-          subtitle="Expert articles on 2-4 front teeth veneers, costs, and what to expect"
+          subtitle="Expert articles on 2 to 4 front teeth veneers, costs, and what to expect"
         />
 
         {/* CTA */}

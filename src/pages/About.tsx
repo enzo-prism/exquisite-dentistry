@@ -100,8 +100,8 @@ const About = () => {
 
       {/* Hero Section with VideoHero */}
       <VideoHero
-        title={<>Meet Dr. Alexie Aguil, DDS - <span className="text-gold">Cosmetic Dentist</span></>}
-        subtitle="Learn about Dr. Alexie Aguil, DDS — a USC-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider — and the personalized approach behind our Los Angeles practice."
+        title={<>Meet Dr. Alexie Aguil, <span className="text-gold">Cosmetic Dentist</span></>}
+        subtitle="Learn about Dr. Alexie Aguil, a USC-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider, and the personalized approach behind our Los Angeles practice."
         primaryCta={{ 
           text: "Schedule Consultation",
           href: SCHEDULE_CONSULTATION_PATH
@@ -134,7 +134,7 @@ const About = () => {
                 </p>
                 
                 <p>
-                  With more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers, Dr. Aguil starts with digital scans and a conversation about your goals so the final result feels like you — not a template.
+                  With more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers, Dr. Aguil starts with digital scans and a conversation about your goals so the final result feels like you, not a template.
                 </p>
                 
                 <p>

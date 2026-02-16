@@ -15,9 +15,9 @@ export type CulverCityTeethWhiteningHubSection = {
 };
 
 export const CULVER_CITY_TEETH_WHITENING_INTRO_PARAGRAPHS = [
-  'If you’re searching for “culver city teeth whitening,” you’re likely looking for a brighter shade that still looks natural — without sensitivity surprises or gimmicky one-size-fits-all treatments.',
+  'If you’re searching for “culver city teeth whitening,” you’re likely looking for a brighter shade that still looks natural, without sensitivity surprises or gimmicky one-size-fits-all treatments.',
   'Exquisite Dentistry is located on Wilshire Blvd in Los Angeles, and many patients visit us from Culver City for professional whitening planned around enamel health, existing restorations, and real-life timelines.',
-  'Choose a fast in-office whitening visit (often 60–90 minutes), custom take-home trays for gradual brightening, or a hybrid plan that keeps results consistent long-term.',
+  'Choose a fast in-office whitening visit (often 60 to 90 minutes), custom take-home trays for gradual brightening, or a hybrid plan that keeps results consistent long-term.',
   'We start with a shade assessment and comfort review, then finish with clear aftercare guidance so your smile stays bright beyond the appointment.'
 ] as const;
 
@@ -47,7 +47,7 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
     bullets: [
       'Review of sensitivity triggers (cold, brushing, clenching) and enamel condition',
       'Timed gel cycles and adjustments based on comfort during the appointment',
-      'Desensitizing options and aftercare guidance for the first 24–48 hours',
+      'Desensitizing options and aftercare guidance for the first 24 to 48 hours',
       'A slower tray-based plan when you want results with minimal sensitivity'
     ]
   },
@@ -74,7 +74,7 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
       'Whitening longevity varies based on habits and diet. The best results come from a simple plan you can actually maintain.'
     ],
     bullets: [
-      'Many patients refresh in-office whitening about every 12–18 months, depending on stain exposure',
+      'Many patients refresh in-office whitening about every 12 to 18 months, depending on stain exposure',
       'Take-home trays make it easy to do shorter touch-ups when you notice dulling',
       'We share stain-management guidance for coffee, tea, wine, and travel schedules'
     ]
@@ -86,7 +86,7 @@ export const CULVER_CITY_TEETH_WHITENING_HUB_SECTIONS: CulverCityTeethWhiteningH
       'If you’re coming from Culver City, we’ll help you choose the right appointment type so you can fit whitening into a workday or event timeline.'
     ],
     bullets: [
-      'Most in-office whitening visits take about 60–90 minutes',
+      'Most in-office whitening visits take about 60 to 90 minutes',
       'Validated parking is available in our building, plus ride-share friendly drop-offs',
       'Book online or call for scheduling guidance if you have a deadline'
     ],

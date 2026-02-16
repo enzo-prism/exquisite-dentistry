@@ -32,8 +32,8 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
       <ComparisonSlider
         beforeImage={patient.beforeImage}
         afterImage={patient.afterImage}
-        beforeAlt={`${patient.name} - Before ${patient.procedure}`}
-        afterAlt={`${patient.name} - After ${patient.procedure}`}
+        beforeAlt={`${patient.name} Before ${patient.procedure}`}
+        afterAlt={`${patient.name} After ${patient.procedure}`}
         objectPosition={objectPosition}
         minAspectRatio={aspectRatioBounds.min}
         maxAspectRatio={aspectRatioBounds.max}

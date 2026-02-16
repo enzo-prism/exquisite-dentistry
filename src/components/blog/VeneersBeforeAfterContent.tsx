@@ -31,7 +31,7 @@ const VeneersBeforeAfterContent = () => {
           <h2 className="text-3xl font-semibold mb-4">Why Before-and-After Veneer Photos Matter</h2>
           <p className="text-gray-600 mb-8 max-w-3xl">
             You should see the work before you trust a cosmetic dentist. The gallery proves whether the artistry is
-            natural, balanced, and modern—not exaggerated or overdone.
+            natural, balanced, and modern, not exaggerated or overdone.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             {[
@@ -45,7 +45,7 @@ const VeneersBeforeAfterContent = () => {
               },
               {
                 title: 'Evaluate micro-details',
-                text: 'Look for translucency, smooth smile arcs, and gum harmony—the subtle cues of premium veneers.'
+                text: 'Look for translucency, smooth smile arcs, and gum harmony, the subtle cues of premium veneers.'
               }
             ].map(item => (
               <div key={item.title} className="bg-slate-50 border border-slate-100 rounded-xl p-6 h-full shadow-sm">
@@ -132,7 +132,7 @@ const VeneersBeforeAfterContent = () => {
             {[
               {
                 title: 'Conservative aesthetic',
-                text: 'Teeth retain natural character. The goal is a believable enhancement—not a copy-and-paste smile.'
+                text: 'Teeth retain natural character. The goal is a believable enhancement, not a copy-and-paste smile.'
               },
               {
                 title: 'Shade & face harmony',
@@ -159,7 +159,7 @@ const VeneersBeforeAfterContent = () => {
           <h2 className="text-3xl font-semibold mb-4">What to Expect from Veneers in Los Angeles</h2>
           <p className="text-gray-600 mb-4 max-w-3xl">
             Patients choose porcelain veneers for confidence, symmetry, youthful energy, and long-term stain resistance.
-            Common treatment ranges are 2, 4, 6, or 8+ veneers depending on how many teeth show when you smile—something
+            Common treatment ranges are 2, 4, 6, or 8+ veneers depending on how many teeth show when you smile, something
             your consultation will determine precisely.
           </p>
           <ul className="list-disc list-inside space-y-2 text-gray-700">
@@ -176,7 +176,7 @@ const VeneersBeforeAfterContent = () => {
             {[
               {
                 q: 'Do veneers look fake?',
-                a: 'Not when designed with layered porcelain, natural texture, and a shade tailored to you—as seen throughout the gallery.'
+                a: 'Not when designed with layered porcelain, natural texture, and a shade tailored to you, as seen throughout the gallery.'
               },
               {
                 q: 'Can veneers close gaps or fix chips?',
@@ -206,7 +206,7 @@ const VeneersBeforeAfterContent = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Start Your Smile Transformation</h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             The gallery shows what is possible. A one-on-one consultation with Dr. Alexie Aguil delivers your custom
-            veneer count, quote, and smile preview—without guesswork or pressure.
+            veneer count, quote, and smile preview, without guesswork or pressure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>

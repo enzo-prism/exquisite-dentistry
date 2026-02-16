@@ -49,7 +49,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
       case 'veneer':
         return [
           {
-            title: 'Front Teeth Veneers (2–4 Teeth)',
+            title: 'Front Teeth Veneers (2 to 4 Teeth)',
             href: '/veneers/front-teeth-veneers-los-angeles/',
             description: 'Cost, design, and process for the smile zone',
             category: 'service',

@@ -2,33 +2,39 @@ import React from 'react';
 import { trackPhoneClick } from '@/utils/googleAdsTracking';
 import { formatPhoneForTel } from '@/utils/phoneFormatting';
 
-interface PhoneLinkProps {
+interface PhoneLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   phoneNumber: string;
   children: React.ReactNode;
-  className?: string;
 }
 
 /**
  * Enhanced phone link component that tracks phone clicks as potential conversions
  * Automatically formats phone numbers to E.164 format for proper tel: links
  */
-const PhoneLink: React.FC<PhoneLinkProps> = ({ phoneNumber, children, className }) => {
-  const handlePhoneClick = () => {
-    trackPhoneClick(phoneNumber);
-  };
+const PhoneLink = React.forwardRef<HTMLAnchorElement, PhoneLinkProps>(
+  ({ phoneNumber, children, className, onClick, ...props }, ref) => {
+    const handlePhoneClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      trackPhoneClick(phoneNumber);
+      onClick?.(event);
+    };
 
-  // Convert phone number to E.164 format for tel: link
-  const telHref = formatPhoneForTel(phoneNumber);
+    // Convert phone number to E.164 format for tel: link
+    const telHref = formatPhoneForTel(phoneNumber);
 
-  return (
-    <a 
-      href={`tel:${telHref}`}
-      className={className}
-      onClick={handlePhoneClick}
-    >
-      {children}
-    </a>
-  );
-};
+    return (
+      <a
+        ref={ref}
+        href={`tel:${telHref}`}
+        className={className}
+        onClick={handlePhoneClick}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  },
+);
+
+PhoneLink.displayName = 'PhoneLink';
 
 export default PhoneLink;

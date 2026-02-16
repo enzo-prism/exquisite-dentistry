@@ -27,8 +27,8 @@ const CloseUpTransformationCard: React.FC<CloseUpTransformationCardProps> = ({
       <ComparisonSlider
         beforeImage={transformation.beforeImage}
         afterImage={transformation.afterImage}
-        beforeAlt={`Close-up dental transformation before - ${transformation.id}`}
-        afterAlt={`Close-up dental transformation after - ${transformation.id}`}
+        beforeAlt={`Close up dental transformation before ${transformation.id}`}
+        afterAlt={`Close up dental transformation after ${transformation.id}`}
         objectPosition="center 30%"
         minAspectRatio={aspectRatioBounds.min}
         maxAspectRatio={aspectRatioBounds.max}

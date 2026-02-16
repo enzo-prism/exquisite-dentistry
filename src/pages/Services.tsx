@@ -339,7 +339,7 @@ const Services = () => {
                     Where Technology Meets Artistry
                   </h2>
                   <p className="text-base sm:text-lg text-black-light/80 leading-relaxed">
-                    Our Los Angeles practice near Beverly Hills delivers the complete spectrum of modern dentistry—from transformative aesthetics to comprehensive restorative solutions. Dr. Aguil blends time-honored techniques with the latest innovations, ensuring each experience is as precise and personal as it is beautiful.
+                    Our Los Angeles practice near Beverly Hills delivers the complete spectrum of modern dentistry, from transformative aesthetics to comprehensive restorative solutions. Dr. Aguil blends time-honored techniques with the latest innovations, ensuring each experience is as precise and personal as it is beautiful.
                   </p>
                 </div>
 
@@ -381,7 +381,7 @@ const Services = () => {
                     Guided Paths to Your Ideal Smile
                   </h3>
                   <p className="mt-3 text-sm sm:text-base text-black-light/80 leading-relaxed">
-                    Explore comprehensive services tailored to your needs—from artistry-driven cosmetic enhancements to advanced restorative care and precision orthodontics.
+                    Explore comprehensive services tailored to your needs, from artistry-driven cosmetic enhancements to advanced restorative care and precision orthodontics.
                   </p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -775,7 +775,7 @@ const Services = () => {
                 {
                   title: "Front Teeth Veneers",
                   href: "/veneers/front-teeth-veneers-los-angeles",
-                  description: "Transparent pricing for 2–4 veneers",
+                  description: "Transparent pricing for 2 to 4 veneers",
                   type: "service"
                 },
                 {

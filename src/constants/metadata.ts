@@ -97,7 +97,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/culver-city-teeth-whitening': {
     title: 'Culver City Teeth Whitening | Exquisite Dentistry',
     description:
-      'Culver City teeth whitening with in-office whitening or custom take-home trays—comfort-first care on Wilshire Blvd in Los Angeles. Book a consultation.',
+      'Culver City teeth whitening with in-office whitening or custom take-home trays, comfort-first care on Wilshire Blvd in Los Angeles. Book a consultation.',
     keywords:
       'culver city teeth whitening, teeth whitening near culver city, zoom whitening near culver city, professional whitening los angeles',
     ogImage:
@@ -106,7 +106,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/zoom-whitening': {
     title: 'Zoom Whitening Los Angeles | Exquisite Dentistry',
     description:
-      'Zoom whitening in Los Angeles brightens your smile fast—often 3–8 shades in about 60–90 minutes. Comfort-first protocol on Wilshire Blvd.',
+      'Zoom whitening in Los Angeles brightens your smile fast, often 3 to 8 shades in about 60 to 90 minutes. Comfort-first protocol on Wilshire Blvd.',
     keywords:
       'zoom whitening los angeles, zoom teeth whitening los angeles, in-office teeth whitening los angeles, philips zoom whitening, professional teeth whitening los angeles',
     ogImage:
@@ -115,7 +115,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/dental-implants': {
     title: 'Dental Implants in Los Angeles | Exquisite Dentistry',
     description:
-      'Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd—book a consultation.',
+      'Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd, book a consultation.',
     keywords:
       'dental implants los angeles, implant dentist los angeles, implant crown los angeles, implant bridge los angeles, tooth replacement los angeles, full arch implants los angeles',
     ogImage:
@@ -124,7 +124,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/santa-monica-dental-implants': {
     title: 'Dental Implants Near Santa Monica | Exquisite Dentistry',
     description:
-      'Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles—book a consultation.',
+      'Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles, book a consultation.',
     keywords:
       'santa monica dental implants, dental implants near santa monica, implant dentist santa monica, tooth replacement santa monica, implant crowns santa monica',
     ogImage:
@@ -142,7 +142,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/smile-makeover-los-angeles': {
     title: 'Smile Makeover Los Angeles | Exquisite Dentistry',
     description:
-      'Plan a smile makeover in Los Angeles with Dr. Alexie Aguil, DDS. Veneers, whitening, Invisalign, bonding, and implants—coordinated with digital smile design and comfort-first care.',
+      'Plan a smile makeover in Los Angeles with Dr. Alexie Aguil. Veneers, whitening, Invisalign, bonding, and implants, coordinated with digital smile design and comfort-first care.',
     keywords:
       'smile makeover los angeles, smile makeover la, smile makeover dentist los angeles, digital smile design los angeles, porcelain veneers los angeles, dental bonding los angeles, invisalign los angeles',
     ogImage:

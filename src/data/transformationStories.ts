@@ -66,7 +66,7 @@ export const transformationStories: TransformationStory[] = [
     title:
       'Confidence in Every Smile: Nick’s Invisalign Journey with Dr. Alexie Aguil at Exquisite Dentistry LA',
     shortDescription:
-      'A lifetime of hiding his smile — until Invisalign with Dr. Aguil gave him the confidence to show it off.',
+      'A lifetime of hiding his smile, until Invisalign with Dr. Aguil gave him the confidence to show it off.',
     video: {
       src: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761590081/Nick_homviy.mp4',
       poster: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png'
@@ -75,9 +75,9 @@ export const transformationStories: TransformationStory[] = [
     location: 'Los Angeles, CA',
     goal: 'Improve smile alignment and self-confidence with Invisalign',
     keyTakeaways: [
-      'A smile that changed everything — “I’ve been concerned with my teeth my whole life… the work Dr. Aguil did has impacted my life significantly.”',
-      'Confidence through care — every visit focused on trust, comfort, and self-esteem.',
-      'A fantastic experience — what started as concern ended as confidence with results that feel as good as they look.'
+      'A smile that changed everything, “I’ve been concerned with my teeth my whole life… the work Dr. Aguil did has impacted my life significantly.”',
+      'Confidence through care, every visit focused on trust, comfort, and self-esteem.',
+      'A fantastic experience, what started as concern ended as confidence with results that feel as good as they look.'
     ],
     quotes: [
       {
@@ -96,12 +96,12 @@ export const transformationStories: TransformationStory[] = [
       {
         title: 'Expert guidance, personal care',
         description:
-          'Dr. Aguil didn’t just recommend Invisalign — he mapped out a clear, step-by-step plan that made the process easy to trust.'
+          'Dr. Aguil didn’t just recommend Invisalign, he mapped out a clear, step-by-step plan that made the process easy to trust.'
       },
       {
         title: 'Confidence built in every visit',
         description:
-          'With genuine reassurance and expertise, the team turned years of hesitation into steady progress — and joy.'
+          'With genuine reassurance and expertise, the team turned years of hesitation into steady progress, and joy.'
       },
       {
         title: 'Results that speak for themselves',
@@ -117,11 +117,11 @@ export const transformationStories: TransformationStory[] = [
       {
         category: 'Concern → Clarity',
         description:
-          'Invisalign gave Nick a simple, transparent plan — and visible progress that kept him motivated.'
+          'Invisalign gave Nick a simple, transparent plan, and visible progress that kept him motivated.'
       },
       {
         category: 'Smile Goals → Life Change',
-        description: 'The results went beyond teeth — they reshaped how he sees himself.'
+        description: 'The results went beyond teeth, they reshaped how he sees himself.'
       }
     ],
     approach: [
@@ -135,17 +135,17 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Support You All the Way',
-        description: 'From first tray to final reveal — every step is guided by care and communication.'
+        description: 'From first tray to final reveal, every step is guided by care and communication.'
       }
     ],
     faqs: [
       {
         question: 'How long does Invisalign take to show results?',
-        answer: 'Every case is unique — but many patients begin to see visible improvement in just a few months.'
+        answer: 'Every case is unique, but many patients begin to see visible improvement in just a few months.'
       },
       {
         question: 'Does Invisalign hurt?',
-        answer: 'Most patients describe it as gentle pressure — and our team is here to make every adjustment comfortable.'
+        answer: 'Most patients describe it as gentle pressure, and our team is here to make every adjustment comfortable.'
       },
       {
         question: 'Is Invisalign right for me?',
@@ -156,7 +156,7 @@ export const transformationStories: TransformationStory[] = [
     finalCta: {
       heading: 'Thinking About Your Own Smile?',
       description:
-        'If you’ve ever held back your smile — or want results that feel as natural as they look — Dr. Alexie Aguil and the Exquisite Dentistry LA team are ready to help you start your own transformation.',
+        'If you’ve ever held back your smile, or want results that feel as natural as they look, Dr. Alexie Aguil and the Exquisite Dentistry LA team are ready to help you start your own transformation.',
       primaryCtaText: 'Schedule Consultation',
       primaryCtaHref: SCHEDULE_CONSULTATION_PATH,
       secondaryCtaText: 'Call the Office',
@@ -176,7 +176,7 @@ export const transformationStories: TransformationStory[] = [
     patientName: 'Brandon Gray',
     title: 'From Fear to Family: Brandon Gray’s Experience with Dr. Aguil at Exquisite Dentistry LA',
     shortDescription:
-      'A dental visit that feels more like catching up with friends — and results that make you want to smile.',
+      'A dental visit that feels more like catching up with friends, and results that make you want to smile.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/brandon.mp4',
       poster: 'https://videos-hazel-eta.vercel.app/brandon-thumbnail.png'
@@ -185,14 +185,14 @@ export const transformationStories: TransformationStory[] = [
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Overcome fear of the dentist and feel comfortable in the chair',
     keyTakeaways: [
-      'Feels like family — not a clinic.',
+      'Feels like family, not a clinic.',
       'Friendly, professional, reassuring. “They’re super friendly and make it feel like a family here.”',
-      'Fun, comfortable experience. A visit that replaces fear with ease — and ends with a smile you’re proud to show.'
+      'Fun, comfortable experience. A visit that replaces fear with ease, and ends with a smile you’re proud to show.'
     ],
     quotes: [
       {
         text:
-          'A lot of people are afraid to go to the dentist or dread going, but Dr. Aguil and his staff are super friendly and they make it feel like it’s a family here. So it’s a whole fun experience — and you walk out with a great smile.',
+          'A lot of people are afraid to go to the dentist or dread going, but Dr. Aguil and his staff are super friendly and they make it feel like it’s a family here. So it’s a whole fun experience, and you walk out with a great smile.',
         context: 'Brandon Gray, on how Exquisite Dentistry changed his perception of dental care'
       }
     ],
@@ -213,7 +213,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Smiles built to last',
-        description: 'Beyond a single visit — lasting confidence and better dental habits start here.'
+        description: 'Beyond a single visit, lasting confidence and better dental habits start here.'
       }
     ],
     whatChanged: [
@@ -223,7 +223,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Appointments → Experiences',
-        description: 'Visits became something to look forward to — not avoid.'
+        description: 'Visits became something to look forward to, not avoid.'
       },
       {
         category: 'Results → Confidence',
@@ -241,7 +241,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Results & Support',
-        description: 'You leave with a confident smile — and the know-how to maintain it.'
+        description: 'You leave with a confident smile, and the know-how to maintain it.'
       }
     ],
     faqs: [
@@ -258,13 +258,13 @@ export const transformationStories: TransformationStory[] = [
       {
         question: 'Can I really look forward to going to the dentist?',
         answer:
-          'Yes. When genuine care replaces judgment and every step is explained in plain language, fear fades. Patients tell us they leave smiling — and excited for the next visit.'
+          'Yes. When genuine care replaces judgment and every step is explained in plain language, fear fades. Patients tell us they leave smiling, and excited for the next visit.'
       }
     ],
     finalCta: {
       heading: 'Thinking About Your Own Smile?',
       description:
-        'Whether you’ve avoided the dentist for years or just want a place that feels different — Dr. Aguil and the Exquisite Dentistry team are here to change how you feel about dental care.',
+        'Whether you’ve avoided the dentist for years or just want a place that feels different, Dr. Aguil and the Exquisite Dentistry team are here to change how you feel about dental care.',
       primaryCtaText: 'Schedule Consultation',
       primaryCtaHref: SCHEDULE_CONSULTATION_PATH,
       secondaryCtaText: 'Call the Office',
@@ -283,7 +283,7 @@ export const transformationStories: TransformationStory[] = [
     slug: 'virginia',
     patientName: 'Virginia',
     title: 'The Art of a Smile: Virginia’s Story at Exquisite Dentistry LA',
-    shortDescription: 'Where precision meets artistry — and every detail reflects the person behind the smile.',
+    shortDescription: 'Where precision meets artistry, and every detail reflects the person behind the smile.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/virginia.mp4',
       poster: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png'
@@ -292,9 +292,9 @@ export const transformationStories: TransformationStory[] = [
     location: 'Los Angeles / Beverly Grove',
     goal: 'A confident, natural-looking smile that reflects who she is',
     keyTakeaways: [
-      'Attentive artistry — Dr. Aguil listens closely, notices what matters, and brings that vision to life.',
-      'Ease through empathy — Calm tone, clear communication, and genuine care replace dental stress with trust.',
-      'A true partnership — Every decision is explained, every step designed around comfort and confidence.'
+      'Attentive artistry, Dr. Aguil listens closely, notices what matters, and brings that vision to life.',
+      'Ease through empathy, Calm tone, clear communication, and genuine care replace dental stress with trust.',
+      'A true partnership, Every decision is explained, every step designed around comfort and confidence.'
     ],
     quotes: [
       {
@@ -305,7 +305,7 @@ export const transformationStories: TransformationStory[] = [
     whyChoseUs: [
       {
         title: 'Attentive Listening Builds Trust',
-        description: 'When your doctor truly hears you, treatment feels collaborative — not clinical.'
+        description: 'When your doctor truly hears you, treatment feels collaborative, not clinical.'
       },
       {
         title: 'Artistry Meets Precision',
@@ -313,7 +313,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Comfort Transforms Confidence',
-        description: 'When you’re relaxed in the chair, you show up differently in your life — smiling freely and often.'
+        description: 'When you’re relaxed in the chair, you show up differently in your life, smiling freely and often.'
       }
     ],
     whatChanged: [
@@ -323,7 +323,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Desire → Design',
-        description: 'She left with the exact smile she envisioned — balanced, bright, unmistakably hers.'
+        description: 'She left with the exact smile she envisioned, balanced, bright, unmistakably hers.'
       },
       {
         category: 'Patient → Partner',
@@ -337,7 +337,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         question: 'What helps make the experience feel so calming?',
-        answer: 'Clear communication, a relaxed tone, and thoughtful amenities keep you comfortable at every step, so the focus stays on enjoying the process—not stressing about it.'
+        answer: 'Clear communication, a relaxed tone, and thoughtful amenities keep you comfortable at every step, so the focus stays on enjoying the process, not stressing about it.'
       },
       {
         question: 'Can I be involved in every decision during treatment?',
@@ -355,7 +355,7 @@ export const transformationStories: TransformationStory[] = [
     slug: 'anxiety-to-ease',
     patientName: 'Real Patients',
     title: 'From Anxiety to Ease: Real Patient Stories at Exquisite Dentistry LA',
-    shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be — and smiles you can\'t wait to show off.',
+    shortDescription: 'A comfort-first approach that makes the dentist feel like a place you want to be, and smiles you can\'t wait to show off.',
     video: {
       src: ANXIETY_TO_EASE_TESTIMONIAL.type === 'file' 
         ? ANXIETY_TO_EASE_TESTIMONIAL.videoUrl 
@@ -366,9 +366,9 @@ export const transformationStories: TransformationStory[] = [
     location: 'West Hollywood / Beverly Grove, Los Angeles',
     goal: 'Anxiety-friendly, experience-driven dentistry with comfort-focused care',
     keyTakeaways: [
-      'Warm welcome, zero rush — You\'re greeted by name and never feel like "just another appointment."',
-      'Sensory calm — A warm blanket, noise-canceling headphones, Netflix, and subtle aromatherapy to lower stress.',
-      'Transparent care — What we\'re doing, why it matters, and what it will feel like explained in plain language.'
+      'Warm welcome, zero rush, You\'re greeted by name and never feel like "just another appointment."',
+      'Sensory calm, A warm blanket, noise-canceling headphones, Netflix, and subtle aromatherapy to lower stress.',
+      'Transparent care, What we\'re doing, why it matters, and what it will feel like explained in plain language.'
     ],
     quotes: [
       {
@@ -413,7 +413,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Confidence On Display',
-        description: 'Smile improvements that patients are proud to show — from healthier gums to aligned, luminous teeth.'
+        description: 'Smile improvements that patients are proud to show, from healthier gums to aligned, luminous teeth.'
       },
       {
         category: 'Better Habits',
@@ -427,7 +427,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         question: 'I\'m anxious about pain. Can you really make this easy?',
-        answer: 'Yes. From numbing choices and gentle techniques to blankets, headphones, and Netflix — we\'ve designed every detail to lower stress.'
+        answer: 'Yes. From numbing choices and gentle techniques to blankets, headphones, and Netflix, we\'ve designed every detail to lower stress.'
       },
       {
         question: 'Do you offer Invisalign?',
@@ -440,7 +440,7 @@ export const transformationStories: TransformationStory[] = [
     ],
     seo: {
       title: 'Transformation Story: From Dental Anxiety to Ease | Exquisite Dentistry LA',
-      description: 'How Exquisite Dentistry LA turns anxiety into comfort — warm blankets, essential oils, and Netflix — delivering confidence-building results patients love. Watch real patient stories.',
+      description: 'How Exquisite Dentistry LA turns anxiety into comfort, warm blankets, essential oils, and Netflix, delivering confidence-building results patients love. Watch real patient stories.',
       keywords: 'dental anxiety Los Angeles, comfort dentistry LA, anxiety-free dental care, patient testimonials Los Angeles, spa-like dental office'
     }
   },
@@ -448,7 +448,7 @@ export const transformationStories: TransformationStory[] = [
     id: 'rob-talbert',
     slug: 'rob-talbert',
     patientName: 'Rob Talbert',
-    title: 'Rob Talbert\'s Story — "It doesn\'t even feel like going to the dentist"',
+    title: 'Rob Talbert\'s Story, "It doesn\'t even feel like going to the dentist"',
     shortDescription: 'Rob walked into Exquisite Dentistry expecting dentistry. He found something different: a calm space, a team that knows him, and care that changed how he feels about his smile and his visits.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/rob.mp4',
@@ -456,7 +456,7 @@ export const transformationStories: TransformationStory[] = [
     },
     thumbnailUrl: '/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png',
     location: 'Los Angeles, CA',
-    goal: 'From stress to ease — and a routine he actually looks forward to',
+    goal: 'From stress to ease, and a routine he actually looks forward to',
     keyTakeaways: [
       'Calm, spa-like experience: "the environment\'s great…super calming, relaxing."',
       'Personal relationship with the doctor: Rob says the doctor remembers him and what\'s happening in his life, which signals continuity and trust.',
@@ -464,11 +464,11 @@ export const transformationStories: TransformationStory[] = [
     ],
     quotes: [
       {
-        text: 'The environment\'s great—it\'s super calming and relaxing.',
+        text: 'The environment\'s great, it\'s super calming and relaxing.',
         context: 'About the spa-like atmosphere'
       },
       {
-        text: 'My dentist remembers me—what\'s going on in my life.',
+        text: 'My dentist remembers me, what\'s going on in my life.',
         context: 'About personal continuity'
       },
       {
@@ -483,7 +483,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Personal Continuity',
-        description: 'Dr. Aguil remembers Rob—his preferences, his priorities, and what\'s going on in his life—so every visit starts with context and trust.'
+        description: 'Dr. Aguil remembers Rob, his preferences, his priorities, and what\'s going on in his life, so every visit starts with context and trust.'
       },
       {
         title: 'Comfort-First Care',
@@ -501,7 +501,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'From uncertain to confident',
-        description: 'Feeling known and cared for translated into confidence in his smile—and in the plan behind it.'
+        description: 'Feeling known and cared for translated into confidence in his smile, and in the plan behind it.'
       }
     ],
     faqs: [
@@ -511,7 +511,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         question: 'How do you build personal relationships with patients?',
-        answer: 'Dr. Aguil takes time to know you as a person—your preferences, priorities, and what\'s happening in your life—so every visit feels personal and connected.'
+        answer: 'Dr. Aguil takes time to know you as a person, your preferences, priorities, and what\'s happening in your life, so every visit feels personal and connected.'
       },
       {
         question: 'What if I have dental anxiety?',
@@ -532,7 +532,7 @@ export const transformationStories: TransformationStory[] = [
     id: 'christian-fernandez',
     slug: 'christian-fernandez',
     patientName: 'Christian Fernandez',
-    title: 'Christian Fernandez — A Confidence-Boosting Smile Story',
+    title: 'Christian Fernandez, A Confidence-Boosting Smile Story',
     shortDescription: 'Christian came to Exquisite Dentistry wanting to feel great about her smile every day. After her smile-straightening journey with our team, she left feeling more confident, cared for, and part of the Exquisite Dentistry family.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/christian.mp4',
@@ -540,7 +540,7 @@ export const transformationStories: TransformationStory[] = [
     },
     thumbnailUrl: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png',
     location: 'Los Angeles, CA',
-    goal: 'A straighter, better-looking smile — and the confidence that comes with it',
+    goal: 'A straighter, better-looking smile, and the confidence that comes with it',
     keyTakeaways: [
       'Everyday confidence is up.',
       'She feels truly taken care of by the team.',
@@ -573,7 +573,7 @@ export const transformationStories: TransformationStory[] = [
     whatChanged: [
       {
         category: 'Confidence',
-        description: 'Christian now smiles more freely — at work, socially, and in everyday moments.'
+        description: 'Christian now smiles more freely, at work, socially, and in everyday moments.'
       },
       {
         category: 'Smile Aesthetics',
@@ -595,7 +595,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         question: 'Is follow-up required?',
-        answer: 'Yes — simple check-ins help ensure your smile looks great long-term.'
+        answer: 'Yes, simple check-ins help ensure your smile looks great long-term.'
       }
     ],
     seo: {
@@ -608,7 +608,7 @@ export const transformationStories: TransformationStory[] = [
     id: 'taylor-vasek',
     slug: 'taylor-vasek',
     patientName: 'Taylor Vasek',
-    title: 'Taylor Vasek\'s Story — From "No Dentist" to Looking Forward to Every Visit',
+    title: 'Taylor Vasek\'s Story, From "No Dentist" to Looking Forward to Every Visit',
     shortDescription: 'After moving to Los Angeles, Taylor needed a new dentist he could trust. From the moment he walked in, the experience felt different: warm faces, easy check-in, and a relaxed energy that made dental visits something to enjoy.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/taylor.mp4',
@@ -620,19 +620,19 @@ export const transformationStories: TransformationStory[] = [
     keyTakeaways: [
       'People first: A friendly, attentive team that treats you like a person, not a time slot.',
       'Modern comfort: Entertainment at the chair (hello, Netflix) to keep anxiety low and the visit flying by.',
-      'The overall vibe: Welcoming, unrushed, and refreshingly human — more like visiting people you trust than "going to the dentist."'
+      'The overall vibe: Welcoming, unrushed, and refreshingly human, more like visiting people you trust than "going to the dentist."'
     ],
     quotes: [
       {
-        text: 'I didn\'t have a dentist — I\'d already moved out here — and the difference between Exquisite and the other ones that I\'ve gone to… it doesn\'t really feel like an appointment.',
+        text: 'I didn\'t have a dentist, I\'d already moved out here, and the difference between Exquisite and the other ones that I\'ve gone to… it doesn\'t really feel like an appointment.',
         context: 'About the experience difference'
       },
       {
-        text: 'You can watch Netflix. The staff — the people here — is just really wonderful. Makes it easy to enjoy.',
+        text: 'You can watch Netflix. The staff, the people here, is just really wonderful. Makes it easy to enjoy.',
         context: 'About the comfort and staff'
       },
       {
-        text: 'It doesn\'t really feel like an appointment — it\'s kind of like a fun hangout.',
+        text: 'It doesn\'t really feel like an appointment, it\'s kind of like a fun hangout.',
         context: 'About the overall atmosphere'
       }
     ],
@@ -647,7 +647,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'The Overall Vibe',
-        description: 'Welcoming, unrushed, and refreshingly human — more like visiting people you trust.'
+        description: 'Welcoming, unrushed, and refreshingly human, more like visiting people you trust.'
       }
     ],
     whatChanged: [
@@ -688,7 +688,7 @@ export const transformationStories: TransformationStory[] = [
     id: 'shannon-langhorne',
     slug: 'shannon-langhorne',
     patientName: 'Shannon Langhorne',
-    title: 'Shannon Langhorne\'s Story — A Dental Visit That Feels Like Stepping Into a Spa',
+    title: 'Shannon Langhorne\'s Story, A Dental Visit That Feels Like Stepping Into a Spa',
     shortDescription: 'For Shannon, going to the dentist used to be just another appointment on the calendar. That changed the first time she visited Exquisite Dentistry where it feels like walking into a spa.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/shannon.mp4',
@@ -700,7 +700,7 @@ export const transformationStories: TransformationStory[] = [
     keyTakeaways: [
       'Spa-like environment: Calm, welcoming, and designed to put patients at ease.',
       'Friendly faces: A team that makes you feel cared for from the moment you arrive.',
-      'Confidence boost: Results that leave you smiling more — and feeling proud of it.'
+      'Confidence boost: Results that leave you smiling more, and feeling proud of it.'
     ],
     quotes: [
       {
@@ -723,7 +723,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         title: 'Confidence Boost',
-        description: 'Results that leave you smiling more — and feeling proud of it.'
+        description: 'Results that leave you smiling more, and feeling proud of it.'
       }
     ],
     whatChanged: [
@@ -733,7 +733,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Atmosphere',
-        description: 'Every detail felt intentional — from genuine smiles to Dr. Aguil\'s excitement to see her.'
+        description: 'Every detail felt intentional, from genuine smiles to Dr. Aguil\'s excitement to see her.'
       },
       {
         category: 'Confidence',

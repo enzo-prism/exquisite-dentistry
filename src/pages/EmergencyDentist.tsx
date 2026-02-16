@@ -174,7 +174,7 @@ const EmergencyDentist = () => {
                 Rapid Relief for Los Angeles Smiles
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Dental emergencies can strike at the worst times—a board presentation, a flight out of LAX, or a weekend getaway in Malibu.
+                Dental emergencies can strike at the worst times: a board presentation, a flight out of LAX, or a weekend getaway in Malibu.
                 Exquisite Dentistry provides same-day treatment, virtual triage, and extended availability to safeguard your smile and comfort.
                 From severe toothaches to cracked veneers, our team resolves pain, restores appearance, and coordinates follow-up so you can get back to what matters.
               </p>
@@ -215,7 +215,7 @@ const EmergencyDentist = () => {
                   What to Expect During Your Emergency Visit
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Call us the moment discomfort begins. Our care team provides immediate instructions and reserves the next available appointment—often within hours.
+                  Call us the moment discomfort begins. Our care team provides immediate instructions and reserves the next available appointment, often within hours.
                   Upon arrival, we prioritize pain relief using gentle anesthesia techniques, warm blankets, and calming aromatherapy.
                   Digital X-rays and intraoral cameras allow us to diagnose quickly while showing you exactly what we see.
                 </p>
@@ -295,7 +295,7 @@ const EmergencyDentist = () => {
                     For extensive emergency treatment, financing options and payment plans are available to remove barriers to care.
                   </p>
                   <p>
-                    After-hours care is available for established patients and travelers with urgent needs—call or text to connect with our on-call team.
+                    After-hours care is available for established patients and travelers with urgent needs. Call or text to connect with our on-call team.
                   </p>
                 </CardContent>
               </Card>
@@ -324,7 +324,7 @@ const EmergencyDentist = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Schedule regular checkups—most emergencies stem from untreated decay or cracked restorations.</span>
+                      <span>Schedule regular checkups. Most emergencies stem from untreated decay or cracked restorations.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />

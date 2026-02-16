@@ -97,7 +97,7 @@ const DentalImplants = () => {
           },
           bodyLocation: 'Oral cavity',
           procedureType: 'ImplantPlacement',
-          followup: ['Post-operative check at 48 hours', 'Osseointegration assessment at 8-12 weeks', 'Restorative delivery'],
+          followup: ['Post-operative check at 48 hours', 'Osseointegration assessment at 8 to 12 weeks', 'Restorative delivery'],
           expectedPrognosis: 'Long-term tooth replacement with proper maintenance and follow-up.'
         }]}
       />
@@ -131,7 +131,7 @@ const DentalImplants = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Dental Implants in Los Angeles"
-          subtitle="Guided planning, custom implant crowns and bridges, and comfort-first support—built around long-term bite stability."
+          subtitle="Guided planning, custom implant crowns and bridges, and comfort-first support, built around long-term bite stability."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -158,7 +158,7 @@ const DentalImplants = () => {
               <p className="mt-4 text-sm text-muted-foreground">
                 Clinically reviewed by{' '}
                 <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil, DDS
+                  Dr. Alexie Aguil
                 </Link>{' '}
                 ·{' '}
                 <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
@@ -363,7 +363,7 @@ const DentalImplants = () => {
                 We’ll review your bite, gum health, and long-term maintenance preferences to recommend the most stable and predictable option for your situation.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Many patients coordinate implants with <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>—like whitening or veneers—after foundational function is restored.
+                Many patients coordinate implants with <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">cosmetic dentistry</Link>, like whitening or veneers, after foundational function is restored.
               </p>
             </div>
           </div>
@@ -515,7 +515,7 @@ const DentalImplants = () => {
                 Reclaim Confidence with Dental Implants
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Your smile is too important to compromise. Let us craft an implant solution that restores strength, beauty, and peace of mind—right here in Los Angeles.
+                Your smile is too important to compromise. Let us craft an implant solution that restores strength, beauty, and peace of mind, right here in Los Angeles.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>

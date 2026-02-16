@@ -74,13 +74,13 @@ const Wedding = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* 6-12 Month Timeline */}
+              {/* 6 to 12 Month Timeline */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <Calendar size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">6-12 Months Before</h3>
+                  <h3 className="text-xl font-medium">6 to 12 Months Before</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -102,18 +102,18 @@ const Wedding = () => {
                 </ul>
               </div>
 
-              {/* 3-6 Month Timeline */}
+              {/* 3 to 6 Month Timeline */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <Star size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">3-6 Months Before</h3>
+                  <h3 className="text-xl font-medium">3 to 6 Months Before</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <Check size={18} className="text-gold mt-1 mr-2 shrink-0" />
-                    <span>Limited veneer sets (front 6-8 teeth)</span>
+                    <span>Limited veneer sets (front 6 to 8 teeth)</span>
                   </li>
                   <li className="flex items-start">
                     <Check size={18} className="text-gold mt-1 mr-2 shrink-0" />
@@ -130,13 +130,13 @@ const Wedding = () => {
                 </ul>
               </div>
 
-              {/* 1-3 Month Timeline */}
+              {/* 1 to 3 Month Timeline */}
               <div className="bg-gray-50 p-8 rounded-sm shadow-sm">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mr-4">
                     <Heart size={24} />
                   </div>
-                  <h3 className="text-xl font-medium">1-3 Months Before</h3>
+                  <h3 className="text-xl font-medium">1 to 3 Months Before</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -212,7 +212,7 @@ const Wedding = () => {
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Timeline:</span>
-                    <span>2-3 appointments over 4-6 weeks</span>
+                    <span>2 to 3 appointments over 4 to 6 weeks</span>
                   </div>
                 </div>
               </div>
@@ -228,7 +228,7 @@ const Wedding = () => {
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Timeline:</span>
-                    <span>1-2 appointments over 2-3 weeks</span>
+                    <span>1 to 2 appointments over 2 to 3 weeks</span>
                   </div>
                 </div>
               </div>
@@ -260,7 +260,7 @@ const Wedding = () => {
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Timeline:</span>
-                    <span>Same-day treatment, 60-90 minutes</span>
+                    <span>Same-day treatment, 60 to 90 minutes</span>
                   </div>
                 </div>
               </div>
@@ -328,7 +328,7 @@ const Wedding = () => {
                   How far in advance should I start my wedding smile treatment?
                 </h3>
                 <p className="text-gray-600">
-                  We recommend starting 6-12 months before your wedding for major transformations like veneers or orthodontics. For teeth whitening, 2-4 weeks is sufficient. We work with your wedding timeline to ensure perfect results.
+                  We recommend starting 6 to 12 months before your wedding for major transformations like veneers or orthodontics. For teeth whitening, 2 to 4 weeks is sufficient. We work with your wedding timeline to ensure perfect results.
                 </p>
               </div>
               
@@ -401,7 +401,7 @@ const Wedding = () => {
                 },
                 {
                   title: 'Front Teeth Veneers',
-                  description: 'Target 2-4 teeth for fast cosmetic updates.',
+                  description: 'Target 2 to 4 teeth for fast cosmetic updates.',
                   href: '/veneers/front-teeth-veneers-los-angeles/'
                 },
                 {

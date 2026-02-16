@@ -28,7 +28,7 @@ const ZoomWhitening = () => {
     {
       icon: <Zap className="h-8 w-8 text-secondary" />,
       title: "Immediate Results",
-      description: "See dramatic whitening results in just one 60-90 minute session"
+      description: "See dramatic whitening results in just one 60 to 90 minute session"
     },
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
@@ -141,7 +141,7 @@ const ZoomWhitening = () => {
 	              <p className="text-sm text-muted-foreground mb-4">
 	                Reviewed by{' '}
 		                <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-		                  Dr. Alexie Aguil, DDS
+		                  Dr. Alexie Aguil
 	                </Link>{' '}
 	                ·{' '}
 	                <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
@@ -306,7 +306,7 @@ const ZoomWhitening = () => {
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-2xl p-8 text-center">
-                  <div className="text-6xl font-bold text-secondary mb-4">3-8</div>
+                  <div className="text-6xl font-bold text-secondary mb-4">3 to 8</div>
                   <div className="text-xl font-semibold text-foreground mb-2">Shades Whiter</div>
                   <div className="text-muted-foreground">In just one visit</div>
                 </div>
@@ -373,7 +373,7 @@ const ZoomWhitening = () => {
 		                    <ul className="list-disc pl-5 space-y-2">
 		                      <li>Review sensitivity history and enamel condition before starting</li>
 		                      <li>Timed gel cycles with monitoring and on-the-fly comfort adjustments</li>
-		                      <li>Desensitizing options and clear 24–48 hour aftercare guidance</li>
+		                      <li>Desensitizing options and clear 24 to 48 hour aftercare guidance</li>
 		                    </ul>
 		                  </CardContent>
 		                </Card>
@@ -442,14 +442,14 @@ const ZoomWhitening = () => {
 		                  Aftercare & How Long Results Last
 		                </h2>
 		                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-		                  Results commonly last months to a couple of years depending on diet, habits, and home care. The first 24–48 hours are the most important for protecting your new shade.
+		                  Results commonly last months to a couple of years depending on diet, habits, and home care. The first 24 to 48 hours are the most important for protecting your new shade.
 		                </p>
 		              </div>
 
 		              <div className="grid gap-6 md:grid-cols-2">
 		                <Card className="border border-border/60 bg-white shadow-sm">
 		                  <CardHeader>
-		                    <CardTitle className="text-xl text-foreground">24–48 hour “white diet”</CardTitle>
+		                    <CardTitle className="text-xl text-foreground">24 to 48 hour “white diet”</CardTitle>
 		                  </CardHeader>
 		                  <CardContent className="text-muted-foreground leading-relaxed">
 		                    <ul className="list-disc pl-5 space-y-2">

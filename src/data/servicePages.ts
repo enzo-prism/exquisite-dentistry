@@ -155,7 +155,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Smile Makeover Los Angeles | Exquisite Dentistry",
       description:
-        "Plan a smile makeover in Los Angeles with Dr. Alexie Aguil, DDS. Veneers, whitening, Invisalign, bonding, and implants—coordinated with digital smile design and comfort-first care.",
+        "Plan a smile makeover in Los Angeles with Dr. Alexie Aguil. Veneers, whitening, Invisalign, bonding, and implants, coordinated with digital smile design and comfort-first care.",
       keywords: [
         "smile makeover los angeles",
         "smile makeover la",
@@ -171,7 +171,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       eyebrow: "Cosmetic Dentistry",
       heading: "Smile Makeover Los Angeles",
       subheading:
-        "A smile makeover is a personalized plan that combines veneers, whitening, Invisalign, bonding, and restorative care to upgrade color, shape, and symmetry—without the “done” look.",
+        "A smile makeover is a personalized plan that combines veneers, whitening, Invisalign, bonding, and restorative care to upgrade color, shape, and symmetry, without the “done” look.",
       highlights: [
         "Digital smile design + photo analysis",
         "Curated plan: veneers, whitening, Invisalign, bonding",
@@ -181,13 +181,13 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     overview: {
       intro: [
         "If you’re searching for a smile makeover in Los Angeles, you’re probably looking for a result that looks natural in real life and on camera. We start with a shade, shape, and bite analysis, then map out the smallest set of treatments that reaches your goal.",
-        "Dr. Alexie Aguil, DDS designs each plan around your face, lip dynamics, and timeline—whether that’s a fast whitening refresh, a veneer-focused redesign, or a multi-step combination that includes Invisalign or implants.",
+        "Dr. Alexie Aguil designs each plan around your face, lip dynamics, and timeline, whether that’s a fast whitening refresh, a veneer-focused redesign, or a multi-step combination that includes Invisalign or implants.",
       ],
       callouts: [
         {
           title: "Designed to look like you",
           description:
-            "We focus on proportion, symmetry, and texture so enhancements read as healthy teeth—not a template.",
+            "We focus on proportion, symmetry, and texture so enhancements read as healthy teeth, not a template.",
         },
         {
           title: "One coordinated plan",
@@ -222,7 +222,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         title: "01. Smile Analysis",
         detail:
-          "We review goals, photos, gum display, tooth wear, and bite—plus a shade assessment and digital scans when needed.",
+          "We review goals, photos, gum display, tooth wear, and bite, plus a shade assessment and digital scans when needed.",
       },
       {
         title: "02. Plan + Timeline",
@@ -244,7 +244,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Book a Smile Makeover Consultation",
       description:
-        "Tell us your goal and your timeline. We’ll recommend the best combination of treatments to upgrade your smile—comfort-first, with clear next steps.",
+        "Tell us your goal and your timeline. We’ll recommend the best combination of treatments to upgrade your smile, comfort-first, with clear next steps.",
       primaryText: "Schedule Consultation",
       primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
@@ -292,7 +292,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     overview: {
       intro: [
         "If you’re searching for Invisalign Beverly Hills, you likely want a straighter smile without brackets or disruptions to your day. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we plan clear aligner treatment around work, travel, and event timelines.",
-        "Dr. Alexie Aguil, DDS uses digital iTero scanning and staged planning to guide predictable tooth movement. When the time is right, we can coordinate cosmetic finishing touches—like whitening or subtle edge contouring—so your final result looks natural and balanced.",
+        "Dr. Alexie Aguil uses digital iTero scanning and staged planning to guide predictable tooth movement. When the time is right, we can coordinate cosmetic finishing touches, like whitening or subtle edge contouring, so your final result looks natural and balanced.",
       ],
       callouts: [
         {
@@ -326,7 +326,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         title: "A plan that fits your lifestyle",
         description:
-          "Wear aligners 20–22 hours a day, remove them for dining, and keep oral hygiene simple throughout treatment.",
+          "Wear aligners 20 to 22 hours a day, remove them for dining, and keep oral hygiene simple throughout treatment.",
       },
     ],
     treatmentSteps: [
@@ -390,7 +390,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       eyebrow: "Teeth Whitening",
       heading: "Teeth Whitening Near Beverly Hills",
       subheading:
-        "Professional whitening plans designed for Beverly Hills schedules—fast in-office brightening, custom trays for sensitive teeth, and hybrid maintenance that keeps your shade consistent.",
+        "Professional whitening plans designed for Beverly Hills schedules, fast in-office brightening, custom trays for sensitive teeth, and hybrid maintenance that keeps your shade consistent.",
       highlights: [
         "In-office whitening + sensitivity planning",
         "Custom take-home trays for gradual brightening",
@@ -399,7 +399,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     },
     overview: {
       intro: [
-        "If you’re looking for teeth whitening in Beverly Hills, you probably want a brighter shade without sensitivity surprises or an unnatural finish. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we tailor whitening to your timeline—whether that’s an upcoming event, headshots, or a low-maintenance refresh.",
+        "If you’re looking for teeth whitening in Beverly Hills, you probably want a brighter shade without sensitivity surprises or an unnatural finish. Our Wilshire Blvd Los Angeles studio is a short drive from Beverly Hills, and we tailor whitening to your timeline, whether that’s an upcoming event, headshots, or a low-maintenance refresh.",
         "We start with a shade assessment, review existing dental work, and choose the right approach: in-office whitening for faster results, custom trays for gradual brightening, or a hybrid plan that balances speed and comfort. If you have veneers or crowns, we’ll plan whitening so natural enamel blends with existing restorations.",
       ],
       callouts: [
@@ -429,7 +429,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         title: "A plan matched to your enamel",
         description:
-          "Sensitive teeth, thin enamel, and existing restorations need different pacing—your plan is built around those details.",
+          "Sensitive teeth, thin enamel, and existing restorations need different pacing, your plan is built around those details.",
       },
       {
         title: "Maintenance that keeps results stable",
@@ -468,7 +468,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         question: "How long does in-office whitening take?",
         answer:
-          "Most in-office whitening visits take about 60–90 minutes. We begin with a shade check and comfort steps, then complete timed gel cycles with careful monitoring.",
+          "Most in-office whitening visits take about 60 to 90 minutes. We begin with a shade check and comfort steps, then complete timed gel cycles with careful monitoring.",
       },
       {
         question: "Will whitening work if I have veneers or crowns?",
@@ -510,7 +510,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Dental Implants Near Santa Monica | Exquisite Dentistry",
       description:
-        "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles—book a consultation.",
+        "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles, book a consultation.",
       keywords: [
         "santa monica dental implants",
         "dental implants near santa monica",
@@ -524,7 +524,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       eyebrow: "Dental Implants",
       heading: "Dental Implants Near Santa Monica",
       subheading:
-        "Implant planning designed for Santa Monica schedules—3D imaging, guided placement, and restoration-first coordination that keeps comfort and long-term function in focus.",
+        "Implant planning designed for Santa Monica schedules, 3D imaging, guided placement, and restoration-first coordination that keeps comfort and long-term function in focus.",
       highlights: [
         "CBCT 3D imaging + digital treatment planning",
         "Guided placement + custom implant restorations",
@@ -558,7 +558,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         title: "Confident chewing and speaking",
         description:
-          "Implants restore stability so you can eat comfortably and speak confidently—without relying on removable appliances.",
+          "Implants restore stability so you can eat comfortably and speak confidently, without relying on removable appliances.",
       },
       {
         title: "Support bone and facial structure",
@@ -623,7 +623,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     cta: {
       heading: "Book Dental Implants Near Santa Monica",
       description:
-        "Schedule a consultation and 3D imaging review to explore implant options, timelines, and comfort planning—built around Westside schedules.",
+        "Schedule a consultation and 3D imaging review to explore implant options, timelines, and comfort planning, built around Westside schedules.",
       primaryText: "Schedule Consultation",
       primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",
@@ -788,7 +788,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         question: "How long do dental bridges last?",
         answer:
-          "With proper hygiene and regular checkups, bridges often last 10–15 years or more. We’ll share specific tips for flossing and care to extend longevity.",
+          "With proper hygiene and regular checkups, bridges often last 10 to 15 years or more. We’ll share specific tips for flossing and care to extend longevity.",
       },
       {
         question: "Are implants better?",
@@ -888,7 +888,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     },
     overview: {
       intro: [
-        "We believe dentistry should feel restorative—not stressful. Whether you need a simple cleaning or a full smile makeover, we adapt pacing, anesthesia, and communication to your comfort level.",
+        "We believe dentistry should feel restorative, not stressful. Whether you need a simple cleaning or a full smile makeover, we adapt pacing, anesthesia, and communication to your comfort level.",
       ],
       callouts: [
         { title: "Sedation Choices", description: "Nitrous oxide, oral medication, and NuCalm®-style relaxation keep anxiety low." },
@@ -971,7 +971,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     benefits: [
       { title: "Peace of Mind", description: "Know that proactive screenings are part of every visit, not an optional add-on." },
       { title: "Holistic Wellness", description: "We look at lifestyle, medications, and immune factors that influence risk." },
-      { title: "Fast & Comfortable", description: "No dyes, rinses, or discomfort—just a quick scan during your exam." },
+      { title: "Fast & Comfortable", description: "No dyes, rinses, or discomfort, just a quick scan during your exam." },
     ],
     treatmentSteps: [
       { title: "01. Health Review", detail: "We discuss risk factors like tobacco use, HPV, and family history." },
@@ -997,7 +997,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     ],
     cta: {
       heading: "Add a Screening to Your Next Visit",
-      description: "Book online or call the office—we’ll handle everything once you arrive.",
+      description: "Book online or call the office, we’ll handle everything once you arrive.",
       primaryText: "Schedule Consultation",
       primaryHref: SCHEDULE_CONSULTATION_PATH,
       secondaryText: "Call Us",

@@ -519,7 +519,7 @@ export const manualPages: StaticRoute[] = [
     title:
       "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",
     description:
-      "Plan front‑teeth veneers in Los Angeles with transparent pricing, minimal‑prep porcelain, and smile‑zone design by Dr. Alexie Aguil, DDS.",
+      "Plan front‑teeth veneers in Los Angeles with transparent pricing, minimal‑prep porcelain, and smile‑zone design by Dr. Alexie Aguil.",
     h1: "Front Teeth Veneers in Los Angeles",
     paragraphs: [
       "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",

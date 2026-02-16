@@ -15,10 +15,10 @@ export type SmileMakeoverHubSection = {
 };
 
 export const SMILE_MAKEOVER_HUB_INTRO_PARAGRAPHS = [
-  'If you’re searching for “smile makeover Los Angeles,” you’re likely looking for a plan that improves color, shape, and symmetry—without an overdone look.',
+  'If you’re searching for “smile makeover Los Angeles,” you’re likely looking for a plan that improves color, shape, and symmetry, without an overdone look.',
   'A smile makeover isn’t one procedure. It’s a sequenced treatment plan that can combine whitening, bonding, porcelain veneers, Invisalign, and restorative dentistry when needed.',
   'At Exquisite Dentistry on Wilshire Blvd in Los Angeles, we start with a smile analysis (shade, proportions, and bite), then recommend the smallest set of treatments that gets you to your goal.',
-  'You’ll leave with clear options, timeline expectations, and next steps—whether you want a quick refresh for an event or a fully coordinated transformation.'
+  'You’ll leave with clear options, timeline expectations, and next steps, whether you want a quick refresh for an event or a fully coordinated transformation.'
 ] as const;
 
 export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
@@ -100,7 +100,7 @@ export const SMILE_MAKEOVER_HUB_SECTIONS: SmileMakeoverHubSection[] = [
     id: "natural-results",
     heading: "Natural-Looking Results (Shade, Shape & Texture)",
     paragraphs: [
-      "“Natural” isn’t one shade—it’s a combination of proportion, translucency, and surface texture that reads like healthy enamel. We plan these details so your smile looks elevated, not artificial."
+      "“Natural” isn’t one shade, it’s a combination of proportion, translucency, and surface texture that reads like healthy enamel. We plan these details so your smile looks elevated, not artificial."
     ],
     bullets: [
       "Shade planning that fits your skin tone and lifestyle (camera-friendly, not chalky)",

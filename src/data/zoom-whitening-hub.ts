@@ -29,8 +29,8 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
       'Zoom is popular because it’s fast and predictable when it’s planned around enamel health, sensitivity, and existing dental work.'
     ],
     bullets: [
-      'In-office treatment often takes about 60–90 minutes',
-      'Many patients brighten about 3–8 shades depending on starting shade and enamel',
+      'In-office treatment often takes about 60 to 90 minutes',
+      'Many patients brighten about 3 to 8 shades depending on starting shade and enamel',
       'Dentist-supervised protocol with gum protection and comfort-first adjustments',
       'Optional take-home boosters can help maintain brightness long-term'
     ]
@@ -57,7 +57,7 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
     bullets: [
       'Review sensitivity history and enamel condition before starting',
       'Adjust cycle timing and treatment pacing based on comfort',
-      'Recommend desensitizing options and 24–48 hour aftercare steps',
+      'Recommend desensitizing options and 24 to 48 hour aftercare steps',
       'Offer tray-based alternatives when a slower pace is the better fit'
     ],
     links: [
@@ -83,10 +83,10 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
     id: 'aftercare',
     heading: 'Aftercare & How Long Results Last',
     paragraphs: [
-      'Results commonly last months to a couple of years depending on diet, habits, and maintenance. Aftercare helps protect your new shade—especially in the first 24–48 hours.'
+      'Results commonly last months to a couple of years depending on diet, habits, and maintenance. Aftercare helps protect your new shade, especially in the first 24 to 48 hours.'
     ],
     bullets: [
-      'Follow a “white diet” for 24–48 hours (avoid dark sauces, coffee, red wine, and berries)',
+      'Follow a “white diet” for 24 to 48 hours (avoid dark sauces, coffee, red wine, and berries)',
       'Manage sensitivity with the plan we recommend for your enamel',
       'Keep up with regular cleanings so surface stains don’t build up',
       'Use touch-ups as needed to keep your shade consistent before events'

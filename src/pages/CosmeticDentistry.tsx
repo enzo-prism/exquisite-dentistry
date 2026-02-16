@@ -64,7 +64,7 @@ const CosmeticDentistry = () => {
     },
     {
       question: "Can cosmetic dentistry be phased?",
-      answer: "Absolutely. Many Los Angeles patients phase treatments around production schedules, weddings, or budget considerations. We prioritize foundational work first—like Invisalign or implants—then deliver veneers, bonding, and whitening when you are ready for the reveal."
+      answer: "Absolutely. Many Los Angeles patients phase treatments around production schedules, weddings, or budget considerations. We prioritize foundational work first, like Invisalign or implants, then deliver veneers, bonding, and whitening when you are ready for the reveal."
     },
     {
       question: "Is cosmetic dentistry only about looks?",
@@ -140,13 +140,13 @@ const CosmeticDentistry = () => {
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Cosmetic dentistry at Exquisite Dentistry is a collaborative art form.
-                We listen to what your smile represents—confidence on camera, leadership in the boardroom, joy at family celebrations—and design a plan that amplifies those moments.
+                We listen to what your smile represents, confidence on camera, leadership in the boardroom, joy at family celebrations, and design a plan that amplifies those moments.
                 Every detail is considered: tooth proportion, facial symmetry, lip support, and even how your smile interprets under stage lighting.
               </p>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Our team blends cutting-edge technology with human-centered artistry.
                 We plan each step with 3D simulations, then craft final results by hand with master ceramists and detail-oriented hygienists.
-                The journey feels as elevated as the outcome—with spa-inspired amenities, personalized scheduling, and transparent guidance from consultation through reveal.
+                The journey feels as elevated as the outcome, with spa-inspired amenities, personalized scheduling, and transparent guidance from consultation through reveal.
               </p>
             </div>
           </div>
@@ -226,7 +226,7 @@ const CosmeticDentistry = () => {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 Los Angeles is a convergence of creativity, entrepreneurship, and cultural vibrancy.
-                Our cosmetic plans honor your unique rhythm—early-morning visits before production, lunchtime touch-ups between meetings, and virtual check-ins while touring.
+                Our cosmetic plans honor your unique rhythm, early-morning visits before production, lunchtime touch-ups between meetings, and virtual check-ins while touring.
                 We provide discreet concierge scheduling, private entry options, and sedation dentistry for patients seeking added privacy or comfort.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -252,7 +252,7 @@ const CosmeticDentistry = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Cosmetic consultations begin with a comprehensive smile analysis ($195, credited toward treatment). Veneers range from $2,200–$3,000 per tooth, same-day bonding begins at $450 per tooth, and professional whitening packages start at $350. Full smile makeovers are custom quoted with detailed timelines and deliverables.
+                    Cosmetic consultations begin with a comprehensive smile analysis ($195, credited toward treatment). Veneers range from $2,200 to $3,000 per tooth, same-day bonding begins at $450 per tooth, and professional whitening packages start at $350. Full smile makeovers are custom quoted with detailed timelines and deliverables.
                   </p>
                   <p>
                     We collaborate with flexible financing partners, accept FSA/HSA payments, and offer loyalty pricing for patients continuing with maintenance memberships. Each proposal includes a breakdown of laboratory costs, chairside artistry, and follow-up care so you can invest with confidence.
@@ -269,7 +269,7 @@ const CosmeticDentistry = () => {
                   <ul className="space-y-3 text-muted-foreground leading-relaxed">
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Schedule professional cleanings every 3–4 months to maintain luster and gum health.</span>
+                      <span>Schedule professional cleanings every 3 to 4 months to maintain luster and gum health.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
@@ -285,7 +285,7 @@ const CosmeticDentistry = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Capture new professional headshots after treatment—our team coordinates mini sessions or provides trusted photographer referrals.</span>
+                      <span>Capture new professional headshots after treatment. Our team coordinates mini sessions or provides trusted photographer referrals.</span>
                     </li>
                   </ul>
                 </div>
