@@ -17,7 +17,7 @@ import {
 } from '../constants/contact';
 
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
-const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
+const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png';
 const BASE_URL = 'https://exquisitedentistryla.com';
 
 const toAbsoluteUrl = (value?: string): string | undefined => {
