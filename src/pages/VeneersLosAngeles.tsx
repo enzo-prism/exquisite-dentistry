@@ -15,6 +15,7 @@ import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { trackCTAClick } from '@/utils/googleAdsTracking';
 
 const VeneersLosAngeles = () => {
   const differentiators = [
@@ -178,12 +179,24 @@ const VeneersLosAngeles = () => {
                   <h3 className="text-2xl font-bold text-foreground mt-2">2 or 4 veneers for the smile zone</h3>
                   <p className="text-muted-foreground mt-2">See transparent pricing and design guidance when you only need the front teeth perfected.</p>
                 </div>
-                <Button asChild>
-                  <Link to="/veneers/front-teeth-veneers-los-angeles/">
-                    Explore front teeth veneers
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild>
+                    <Link to="/veneers/front-teeth-veneers-los-angeles/">
+                      Explore front teeth veneers
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/">
+                      View 2-tooth cost guide
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/veneers/1-tooth-veneer-los-angeles/">
+                      Single-tooth veneer options
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -231,7 +244,7 @@ const VeneersLosAngeles = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+                    <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_pillar_book_click', 'Schedule Consultation')}>Schedule Consultation</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
                     <Link to="/transformation-stories/">
@@ -407,7 +420,7 @@ const VeneersLosAngeles = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+                  <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_pillar_book_click', 'Schedule Consultation')}>Schedule Consultation</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link to="/testimonials/">

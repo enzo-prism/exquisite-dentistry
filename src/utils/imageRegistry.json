@@ -1,5 +1,55 @@
 {
   "images": {
+    "//favicon-96x96": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/favicon-96x96.png"
+      },
+      "preferred": "/favicon-96x96.png",
+      "fallback": "/favicon-96x96.png"
+    },
+    "//favicon-512x512": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/favicon-512x512.png"
+      },
+      "preferred": "/favicon-512x512.png",
+      "fallback": "/favicon-512x512.png"
+    },
+    "//favicon-48x48": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/favicon-48x48.png"
+      },
+      "preferred": "/favicon-48x48.png",
+      "fallback": "/favicon-48x48.png"
+    },
+    "//favicon-192x192": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/favicon-192x192.png"
+      },
+      "preferred": "/favicon-192x192.png",
+      "fallback": "/favicon-192x192.png"
+    },
+    "//apple-touch-icon": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/apple-touch-icon.png"
+      },
+      "preferred": "/apple-touch-icon.png",
+      "fallback": "/apple-touch-icon.png"
+    },
     "/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile": {
       "formats": [
         "png",
@@ -4984,5 +5034,5 @@
       "fallback": null
     }
   },
-  "lastUpdated": "2026-02-16T17:29:59.584Z"
+  "lastUpdated": "2026-02-21T23:47:14.035Z"
 }

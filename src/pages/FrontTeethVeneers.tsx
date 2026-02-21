@@ -13,6 +13,7 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import { trackCTAClick } from '@/utils/googleAdsTracking';
 
 const FrontTeethVeneers = () => {
   const costHighlights = [
@@ -151,7 +152,7 @@ const FrontTeethVeneers = () => {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
-                <Link to={SCHEDULE_CONSULTATION_PATH}>
+                <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_front_teeth_book_click', 'Schedule Consultation')}>
                   Schedule Consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -214,6 +215,11 @@ const FrontTeethVeneers = () => {
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/" className="text-secondary hover:underline">2-front-teeth cost guide</Link>
+                <Link to="/veneers/1-tooth-veneer-los-angeles/" className="text-secondary hover:underline">Single-tooth veneer page</Link>
+                <Link to="/veneers-los-angeles/" className="text-secondary hover:underline">Veneers Los Angeles overview</Link>
               </div>
             </div>
           </div>
