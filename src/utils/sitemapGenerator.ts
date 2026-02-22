@@ -92,6 +92,24 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.85
     },
     {
+      loc: getCanonicalUrl('/veneers-los-angeles'),
+      lastmod: getFileLastModified('src/pages/VeneersLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
+      loc: getCanonicalUrl('/veneers/2-front-teeth-veneers-cost-los-angeles'),
+      lastmod: getFileLastModified('src/pages/VeneersCostLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      loc: getCanonicalUrl('/veneers/1-tooth-veneer-los-angeles'),
+      lastmod: getFileLastModified('src/pages/OneToothVeneerLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
       loc: getCanonicalUrl('/zoom-whitening'),
       lastmod: getFileLastModified('src/pages/ZoomWhitening.tsx', 14, now),
       changefreq: 'monthly',

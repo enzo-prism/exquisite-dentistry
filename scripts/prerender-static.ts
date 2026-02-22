@@ -515,6 +515,17 @@ export const manualPages: StaticRoute[] = [
     links: defaultNavLinks,
   },
   {
+    path: "/veneers-los-angeles",
+    title: "Porcelain Veneers Los Angeles | Smile Design by Dr. Aguil",
+    description:
+      "Explore porcelain veneers in Los Angeles, candidacy, smile design options, and consultation planning at Exquisite Dentistry.",
+    h1: "Porcelain Veneers in Los Angeles",
+    paragraphs: [
+      "Compare veneer options, treatment flow, and outcomes to decide the best smile-zone plan for your goals.",
+    ],
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+  },
+  {
     path: "/veneers/front-teeth-veneers-los-angeles",
     title:
       "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",
@@ -523,6 +534,28 @@ export const manualPages: StaticRoute[] = [
     h1: "Front Teeth Veneers in Los Angeles",
     paragraphs: [
       "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",
+    ],
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+  },
+  {
+    path: "/veneers/2-front-teeth-veneers-cost-los-angeles",
+    title: "Cost of 2 Front Teeth Veneers in Los Angeles (2026 Guide)",
+    description:
+      "Learn what impacts the cost of 2 front teeth veneers in Los Angeles and when a 2-tooth smile-zone plan is the right fit.",
+    h1: "Cost of 2 Front Teeth Veneers in Los Angeles",
+    paragraphs: [
+      "Understand pricing factors, alternatives, and consultation next steps for 2 front teeth veneer treatment.",
+    ],
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+  },
+  {
+    path: "/veneers/1-tooth-veneer-los-angeles",
+    title: "1 Tooth Veneer in Los Angeles | Natural Match & Smile Design",
+    description:
+      "See when a single-tooth veneer is ideal, how shade matching works, and what to expect for treatment in Los Angeles.",
+    h1: "Single Tooth Veneer in Los Angeles",
+    paragraphs: [
+      "Get clear guidance on candidacy, design precision, and single-tooth veneer options versus bonding or crowns.",
     ],
     links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
