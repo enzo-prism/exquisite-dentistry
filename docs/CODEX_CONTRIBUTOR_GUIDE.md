@@ -53,6 +53,7 @@ Quick rules:
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
   - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
   - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
+- **Global analytics**: App-wide providers live in `src/App.tsx`. Vercel Analytics is mounted there with `@vercel/analytics/react`; keep it singleton-scoped so React Router navigations are tracked once per pageview.
 - **Static fallbacks & prerendered routes**: `npm run build` runs `generate:fallbacks` (writes `public/<slug>.html` for services/geos) and `prerender:static` (writes `dist/<route>/index.html` for marketing, services/geos, and blog posts). Both outputs are JS-free snapshots for crawlers; rerun the scripts manually when adjusting SEO copy or internal links.
 
 ## Testing Expectations
