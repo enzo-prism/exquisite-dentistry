@@ -7,6 +7,425 @@ export type { BlogPost };
 
 const baseBlogPosts: BlogPost[] = [
   {
+    id: '22',
+    title: 'Veneers vs Teeth Whitening in Los Angeles: Which Smile Upgrade Is Right for You?',
+    slug: 'veneers-vs-teeth-whitening-los-angeles',
+    excerpt:
+      'Not sure whether veneers or professional whitening is the better move? Learn how Los Angeles cosmetic patients can choose the right treatment for stains, shape, and smile goals.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p>
+          If you want a brighter, more polished smile, two treatments usually rise to the top first: professional <a href="/teeth-whitening/" class="text-primary hover:text-primary/80 underline">teeth whitening</a> and <a href="/veneers/" class="text-primary hover:text-primary/80 underline">porcelain veneers</a>.
+        </p>
+        <p>
+          Both can dramatically improve your smile, but they solve different problems. That is where many Los Angeles patients get stuck. They know they want to look fresher, cleaner, and more confident on camera, in meetings, at events, or in everyday life. What they are not sure about is whether whitening is enough or whether veneers are the better long-term fit.
+        </p>
+        <p>
+          At Exquisite Dentistry LA, this decision is never about chasing an artificial look. It is about matching the right treatment to the smile you have now, the result you want, and the level of change that makes sense for your lifestyle.
+        </p>
+
+        <h2>The Simplest Difference</h2>
+        <p>
+          Teeth whitening brightens the color of natural teeth.
+        </p>
+        <p>
+          Veneers change more than color. They can also improve shape, symmetry, proportion, surface texture, and the overall design of the smile.
+        </p>
+        <p>
+          That means whitening is usually the better place to start when the main concern is external staining from coffee, tea, red wine, or general dullness. Veneers are often the stronger option when discoloration comes with chips, wear, uneven edges, small gaps, misshapen teeth, or a desire for a more complete smile makeover.
+        </p>
+
+        <h2>When Professional Whitening Makes the Most Sense</h2>
+        <p>
+          Professional whitening is often ideal for patients whose teeth are healthy and well shaped but no longer look as bright as they used to.
+        </p>
+        <p>
+          You may be a strong candidate for whitening if:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Your teeth are generally straight and proportional</li>
+          <li>Your main concern is yellowing or surface staining</li>
+          <li>You want a faster, lower-commitment cosmetic upgrade</li>
+          <li>You prefer to preserve your natural enamel structure as much as possible</li>
+          <li>You have an upcoming event and want a noticeable refresh</li>
+        </ul>
+        <p>
+          Exquisite Dentistry offers both in-office options like <a href="/zoom-whitening/" class="text-primary hover:text-primary/80 underline">Zoom whitening</a> and tailored take-home maintenance plans. For many patients, especially those with a solid smile foundation already, this can deliver exactly the improvement they want.
+        </p>
+
+        <h2>When Veneers May Be the Better Investment</h2>
+        <p>
+          Whitening has limits. It does not change tooth shape. It does not fix chips or uneven edges. It does not close gaps. And it may not fully improve deeper intrinsic discoloration, especially if the stain is internal rather than surface based.
+        </p>
+        <p>
+          Porcelain veneers are often the better choice when the goal is a more curated smile design.
+        </p>
+        <p>
+          You may want to consider veneers if:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>You have deep discoloration that whitening may not improve enough</li>
+          <li>You have chipped, worn, or slightly uneven front teeth</li>
+          <li>You want a more balanced smile line in photos and in person</li>
+          <li>You are looking for a refined result rather than a simple brightness boost</li>
+          <li>You want multiple cosmetic concerns addressed at once</li>
+        </ul>
+        <p>
+          For many image-conscious Los Angeles patients, that difference matters. Whitening can make a smile look cleaner. Veneers can make it look intentionally designed.
+        </p>
+
+        <h2>What About Front Teeth Only?</h2>
+        <p>
+          One common misconception is that veneers always mean a full smile overhaul. In reality, some patients only need treatment in the smile zone.
+        </p>
+        <p>
+          If your concerns are concentrated in the front, a focused veneer plan may create a beautiful result without changing more teeth than necessary. This is especially relevant for patients whose side teeth already look healthy, while the front teeth show wear, staining, or asymmetry that stands out in conversation or on camera.
+        </p>
+        <p>
+          If that sounds familiar, our guide to <a href="/veneers/front-teeth-veneers-los-angeles/" class="text-primary hover:text-primary/80 underline">front teeth veneers in Los Angeles</a> is a good next step before a consultation.
+        </p>
+
+        <h2>How to Think About Your Real Goal</h2>
+        <p>
+          The best choice usually becomes clear when you stop asking, "Which treatment is better?" and start asking, "What exactly am I trying to change?"
+        </p>
+        <p>
+          A more useful breakdown looks like this:
+        </p>
+
+        <h3>Choose Whitening If Your Goal Is:</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Brighter natural teeth</li>
+          <li>Less visible coffee, tea, or wine staining</li>
+          <li>A quick cosmetic refresh</li>
+          <li>A more conservative first step</li>
+        </ul>
+
+        <h3>Choose Veneers If Your Goal Is:</h3>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>A whiter smile plus shape improvement</li>
+          <li>Smoother edges and better symmetry</li>
+          <li>Correction of chips, wear, or small gaps</li>
+          <li>A polished smile-makeover result</li>
+        </ul>
+
+        <h2>Can You Combine Veneers and Whitening?</h2>
+        <p>
+          For some patients, the answer is not either-or. Whitening may be used on non-veneered teeth to keep the overall smile bright and harmonious, while veneers are used only where shape, wear, or more dramatic discoloration need to be corrected.
+        </p>
+        <p>
+          That hybrid approach is one reason a cosmetic consultation matters. The right plan depends on how wide your smile shows, how your teeth relate to your lips, and whether the final result will look seamless from multiple angles.
+        </p>
+
+        <h2>A Los Angeles Consideration That Matters More Than People Think</h2>
+        <p>
+          In a city where appearance, photography, meetings, and social visibility are part of daily life, patients often want results that look elevated but still believable. That is the real cosmetic challenge.
+        </p>
+        <p>
+          Overly opaque, overly uniform, or overly bright dentistry can read as obvious work. On the other hand, under-treating a smile that has multiple concerns can leave people feeling like they spent money without getting the transformation they hoped for.
+        </p>
+        <p>
+          The sweet spot is customized treatment planning. That means looking at skin tone, facial proportions, lip dynamics, tooth display, and how natural or glamorous you want the end result to feel. This is where artistry matters just as much as technical skill.
+        </p>
+
+        <h2>What to Expect at a Cosmetic Consultation</h2>
+        <p>
+          A cosmetic consultation should do more than sell you a procedure. It should help you understand what is realistic, what will look natural on your face, and what option aligns with your priorities.
+        </p>
+        <p>
+          At Exquisite Dentistry LA, treatment planning can take into account:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Current tooth shade and stain type</li>
+          <li>Enamel quality and overall oral health</li>
+          <li>Edge wear, chips, and proportions</li>
+          <li>How much of your smile shows when you speak and smile</li>
+          <li>Whether whitening alone can achieve your desired result</li>
+          <li>Whether veneers would create a more complete and satisfying change</li>
+        </ul>
+        <p>
+          That level of personalization is what separates a routine cosmetic treatment from a smile design that actually feels right.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10 text-center space-y-4">
+          <h3 class="text-2xl font-semibold">Decide Between a Brighter Smile and a Bigger Smile Upgrade</h3>
+          <p>Dr. Alexie Aguil can show you whether professional whitening, veneers, or a combined plan will get you closer to the result you actually want.</p>
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
+            Schedule Consultation
+          </a>
+          <p class="text-sm text-gray-600">Prefer to talk first? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
+        </div>
+
+        <p>
+          If you are deciding between veneers and teeth whitening, schedule a consultation at Exquisite Dentistry LA. The right answer depends on whether you want a brighter version of your current smile or a more refined cosmetic transformation.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'March 15, 2026',
+    publishedAt: '2026-03-15',
+    readTime: '7 min read',
+    category: 'Cosmetic Dentistry',
+    tags: [
+      'veneers',
+      'teeth whitening',
+      'whitening',
+      'porcelain veneers',
+      'zoom whitening',
+      'front teeth veneers',
+      'cosmetic dentistry',
+      'smile makeover',
+      'los angeles'
+    ],
+    seoTitle: 'Veneers vs Teeth Whitening in Los Angeles: What Should You Choose?',
+    seoDescription:
+      'Not sure whether veneers or professional whitening is the better move? Learn how Los Angeles cosmetic patients can choose the right treatment for stains, shape, and smile goals.',
+    seoKeywords:
+      'veneers vs teeth whitening Los Angeles, porcelain veneers Los Angeles, professional teeth whitening Los Angeles, Zoom whitening Los Angeles, front teeth veneers Los Angeles, cosmetic dentist Los Angeles',
+    faqs: [
+      {
+        question: 'Is whitening safer than veneers?',
+        answer:
+          'They are different treatments, not competing risk categories. Whitening is less invasive because it works on your natural teeth without changing shape. Veneers are a restorative cosmetic treatment used when whitening alone cannot create the desired result.'
+      },
+      {
+        question: 'Can I get whitening before deciding on veneers?',
+        answer:
+          'In many cases, yes. Some patients start with whitening to see whether brightness alone gets them close enough to their goal before committing to veneers.'
+      },
+      {
+        question: 'Do veneers look more natural than whitening?',
+        answer:
+          'Not automatically. Natural-looking results depend on planning, material choice, shape, and shade selection. The goal is not just white teeth. It is harmony.'
+      },
+      {
+        question: 'Which option lasts longer?',
+        answer:
+          'Professional whitening usually requires maintenance over time. Porcelain veneers generally offer a longer-term cosmetic result, though they still require good care and regular dental follow-up.'
+      }
+    ],
+    published: true
+  },
+  {
+    id: '21',
+    title: 'When Should You Start Wedding Smile Prep in Los Angeles? A Realistic Cosmetic Dentistry Timeline',
+    slug: 'when-to-start-wedding-smile-prep-los-angeles',
+    excerpt:
+      'Planning a wedding in Los Angeles? Learn when to start veneers, whitening, Invisalign, and other smile treatments so your results look natural and camera ready by the big day.',
+    featuredImage: '/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png',
+    content: `<div class="prose prose-lg max-w-none">
+        <p>
+          If you are getting married in Los Angeles, your smile timeline matters more than most people realize.
+        </p>
+        <p>
+          The best cosmetic dentistry results rarely come from rushing. Whether you are considering <a href="/veneers/" class="text-primary hover:text-primary/80 underline">porcelain veneers</a>, professional <a href="/teeth-whitening/" class="text-primary hover:text-primary/80 underline">teeth whitening</a>, <a href="/invisalign/" class="text-primary hover:text-primary/80 underline">Invisalign</a>, or a combination of treatments, the right plan depends on how much time you have before the wedding and what kind of result you want in photos, on video, and in person.
+        </p>
+        <p>
+          At Exquisite Dentistry, wedding smile prep is designed around the event date so your smile looks polished, natural, and fully settled when the cameras are on. If you are wondering when to start, here is the realistic answer.
+        </p>
+
+        <h2>The Short Answer</h2>
+        <p>
+          If your wedding is still months away, start now.
+        </p>
+        <p>
+          For many couples, the ideal timeline looks something like this:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>6 to 12 months before the wedding for Invisalign or more comprehensive changes</li>
+          <li>Several months before the wedding for porcelain veneers or a broader smile makeover plan</li>
+          <li>About 1 to 2 months before the wedding for professional whitening, depending on sensitivity and goals</li>
+          <li>As soon as possible for any chipped tooth, old dental work, gum concerns, or emergency issues that could affect your comfort or appearance</li>
+        </ul>
+        <p>
+          That does not mean everyone needs a year of treatment. It means the earlier you plan, the more options you have and the less likely you are to make a stressed decision right before the big day.
+        </p>
+
+        <h2>Why Wedding Smile Treatment Should Be Timed Carefully</h2>
+        <p>
+          Cosmetic dentistry is not only about making teeth look brighter. It is about balancing shape, shade, symmetry, bite, and facial harmony so everything looks believable up close and in high resolution photos.
+        </p>
+        <p>
+          In Los Angeles, patients often want a smile that looks elevated but not obvious. That is especially true for weddings, where you will be photographed in natural light, flash photography, and close-up video all in the same day.
+        </p>
+        <p>
+          Starting early gives your dentist time to:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Evaluate your current smile and bite</li>
+          <li>Identify the treatments that will actually make the biggest visual difference</li>
+          <li>Sequence those treatments in the right order</li>
+          <li>Avoid last-minute sensitivity, temporary restorations, or rushed cosmetic decisions</li>
+        </ul>
+
+        <h2>If You Want Veneers for Your Wedding</h2>
+        <p>
+          Porcelain veneers can create one of the most dramatic transformations, especially if you are dealing with chips, uneven edges, discoloration, worn enamel, or small gaps.
+        </p>
+        <p>
+          But veneers should not be treated like a same-week beauty appointment. They require planning, design, preparation, and shade selection. The best veneer cases also account for your face shape, lip line, skin tone, and how your smile shows in motion, not just in still photos.
+        </p>
+        <p>
+          For wedding patients, it is smart to begin the conversation well in advance so there is enough time for consultation, smile design, and final delivery without pressure. If you are also thinking about whitening or minor alignment changes, the sequencing matters even more.
+        </p>
+
+        <h2>If You Want Whitening for the Wedding</h2>
+        <p>
+          Professional whitening can make a strong impact, but timing still matters.
+        </p>
+        <p>
+          Too early, and the brightness may fade before the event. Too late, and you may be dealing with sensitivity close to the wedding weekend. Many patients do best when whitening is scheduled in the final stretch before the event, once other cosmetic work is planned and any restorative needs are addressed.
+        </p>
+        <p>
+          If you already have crowns, bonding, or veneers, whitening should be discussed with your dentist first. Natural teeth can change shade, but existing restorations do not whiten the same way. That is one reason a customized plan matters.
+        </p>
+
+        <h2>If You Want Straighter Teeth Before the Wedding</h2>
+        <p>
+          Invisalign can be a great option for adults who want a more refined smile without traditional braces. It works especially well for patients who want improved alignment but also need treatment that fits a busy professional and social schedule.
+        </p>
+        <p>
+          The key is being realistic about timing. Many Invisalign cases show visible improvement within months, but full treatment often takes longer. Starting 6 to 12 months ahead gives you the best shot at meaningful change, especially if bite correction or refinements may be needed.
+        </p>
+        <p>
+          If your wedding is closer than that, you may still have options. A consultation can clarify whether aligners, whitening, bonding, or veneers would give the best result in your available window.
+        </p>
+
+        <h2>A Simple Planning Guide by Timeline</h2>
+
+        <h3>If Your Wedding Is 12 Months Away or More</h3>
+        <p>
+          This is the ideal time for bigger decisions. You have room for Invisalign, veneers, implant planning, gum contouring, or a staged smile makeover. You can move thoughtfully instead of urgently.
+        </p>
+
+        <h3>If Your Wedding Is 6 to 9 Months Away</h3>
+        <p>
+          You still have strong options. This is often a good window for veneers, selective cosmetic changes, and many Invisalign cases that aim for meaningful improvement before the event.
+        </p>
+
+        <h3>If Your Wedding Is 3 to 6 Months Away</h3>
+        <p>
+          Now the plan needs to be tighter. Whitening, bonding, contouring, and carefully selected veneer cases may still fit well. Some Invisalign cases may show improvement, but not every case should be rushed.
+        </p>
+
+        <h3>If Your Wedding Is Under 3 Months Away</h3>
+        <p>
+          Focus on what will look beautiful and stable in the time you have. Whitening, small repairs, limited cosmetic adjustments, and emergency fixes may be the smartest play. This is not the moment for unrealistic promises.
+        </p>
+
+        <h2>Common Mistakes to Avoid</h2>
+        <p>
+          The biggest mistakes usually happen when people wait too long and then try to do everything at once.
+        </p>
+        <p>
+          Avoid these common problems:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Starting whitening before deciding whether veneers or bonding are needed</li>
+          <li>Assuming Invisalign will finish faster than it realistically can</li>
+          <li>Ignoring gum health or worn dental work until the final weeks</li>
+          <li>Choosing cosmetic treatment based only on trend photos instead of your own facial features</li>
+          <li>Scheduling major smile work too close to travel, events, or the rehearsal week</li>
+        </ul>
+
+        <h2>Why This Matters for Los Angeles Weddings</h2>
+        <p>
+          Los Angeles weddings often come with engagement shoots, bridal events, social media content, and highly detailed photography. Your smile may be documented for months before and after the ceremony, not just on one date.
+        </p>
+        <p>
+          That is why a staged cosmetic plan often works better than a single-treatment mindset. The right plan should fit your timeline, your goals, and the level of polish you want.
+        </p>
+
+        <h2>What to Do Next</h2>
+        <p>
+          If your wedding is on the calendar, the smartest first step is a consultation. You do not need to know which treatment you want before coming in. You just need a target date and a clear sense of what you want to improve.
+        </p>
+        <p>
+          If you have not explored our dedicated <a href="/wedding/" class="text-primary hover:text-primary/80 underline">wedding smile makeover page</a> yet, it is a helpful place to compare timelines and treatment directions before you book.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10 text-center space-y-4">
+          <h3 class="text-2xl font-semibold">Build a Wedding Smile Timeline That Actually Fits</h3>
+          <p>Dr. Alexie Aguil can map out veneers, whitening, Invisalign, and finishing touches around your event date so your smile feels intentional, not rushed.</p>
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
+            Schedule Consultation
+          </a>
+          <p class="text-sm text-gray-600">Prefer to talk first? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
+        </div>
+
+        <h2>FAQ</h2>
+
+        <h3>How far in advance should I get veneers before my wedding?</h3>
+        <p>
+          It is best to start well ahead of the wedding so there is time for planning, design, and final delivery without pressure.
+        </p>
+
+        <h3>When should I whiten my teeth before the wedding?</h3>
+        <p>
+          Many patients do well whitening closer to the event, often in the final one to two months, but the exact timing depends on sensitivity and other dental work.
+        </p>
+
+        <h3>Can Invisalign help before my wedding?</h3>
+        <p>
+          Yes, but the amount of improvement depends on your case and how much time you have. Starting earlier gives you more flexibility.
+        </p>
+
+        <h3>What if my wedding is soon?</h3>
+        <p>
+          You may still have excellent options. A consultation can help prioritize the treatments that will make the biggest visible difference safely and quickly.
+        </p>
+
+        <p>
+          If you are planning wedding smile prep in Los Angeles, schedule your consultation early. A smart timeline gives you better choices, smoother treatment, and a result that looks effortless when the big day arrives.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'March 14, 2026',
+    publishedAt: '2026-03-14',
+    readTime: '8 min read',
+    category: 'Cosmetic Dentistry',
+    tags: [
+      'wedding',
+      'wedding smile prep',
+      'bridal smile makeover',
+      'veneers',
+      'teeth whitening',
+      'invisalign',
+      'cosmetic dentistry',
+      'los angeles'
+    ],
+    seoTitle: 'When to Start Wedding Smile Prep in Los Angeles | Exquisite Dentistry',
+    seoDescription:
+      'Planning a wedding in Los Angeles? Learn when to start veneers, whitening, Invisalign, and other smile treatments so your results look natural and camera ready by the big day.',
+    seoKeywords:
+      'wedding smile prep Los Angeles, cosmetic dentistry before wedding Los Angeles, veneers before wedding timeline, teeth whitening before wedding, Invisalign before wedding, bridal smile makeover Los Angeles',
+    faqs: [
+      {
+        question: 'How far in advance should I start wedding smile treatment?',
+        answer:
+          'Start as early as possible. Larger changes like Invisalign, veneers, implant planning, or a full smile makeover usually benefit from several months of lead time, while whitening and minor repairs often fit closer to the event.'
+      },
+      {
+        question: 'Is three months enough time before a wedding?',
+        answer:
+          'Three months can be enough for whitening, bonding, contouring, and some carefully selected veneer cases, but it is usually too tight for full orthodontic treatment or more complex restorative planning. A consultation helps narrow the smartest options for that window.'
+      },
+      {
+        question: 'Can Invisalign still help if my wedding is less than a year away?',
+        answer:
+          'In many cases, yes. Invisalign can often create visible improvement within months, especially for mild to moderate alignment issues, but the right answer depends on your starting bite and whether refinements may be needed.'
+      },
+      {
+        question: 'What if I chip a tooth or have a dental emergency close to the wedding?',
+        answer:
+          'Do not wait. Emergency repairs, smoothing, bonding, temporary stabilization, or other targeted cosmetic fixes may still be possible close to the event date. The earlier you come in, the more controlled and photo-ready the outcome tends to be.'
+      }
+    ],
+    published: true
+  },
+  {
     id: '18',
     title: 'Veneers Before and After in Los Angeles: Real Cases, Real Results (2025 Guide)',
     slug: 'veneers-before-after-los-angeles',
@@ -841,9 +1260,71 @@ const baseBlogPosts: BlogPost[] = [
   },
 ];
 
-const parseDate = (value: string): number => {
-  const parsed = Date.parse(value);
-  return Number.isNaN(parsed) ? 0 : parsed;
+type BlogPostDateSource = Pick<BlogPost, 'date' | 'publishedAt'>;
+
+const MONTH_TO_NUMBER: Record<string, string> = {
+  january: '01',
+  february: '02',
+  march: '03',
+  april: '04',
+  may: '05',
+  june: '06',
+  july: '07',
+  august: '08',
+  september: '09',
+  october: '10',
+  november: '11',
+  december: '12'
+};
+
+const DISPLAY_DATE_PATTERN = /^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/;
+
+const normalizeIsoDate = (value?: string): string | undefined => {
+  if (!value) return undefined;
+
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+
+  const isoDateMatch = /^(\d{4}-\d{2}-\d{2})T/.exec(trimmed);
+  if (isoDateMatch) return isoDateMatch[1];
+
+  const parsed = Date.parse(trimmed);
+  if (Number.isNaN(parsed)) return undefined;
+
+  return new Date(parsed).toISOString().split('T')[0];
+};
+
+const parseDisplayDateToIsoDate = (value?: string): string | undefined => {
+  if (!value) return undefined;
+
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+
+  const match = DISPLAY_DATE_PATTERN.exec(trimmed);
+  if (!match) {
+    return normalizeIsoDate(trimmed);
+  }
+
+  const [, monthName, day, year] = match;
+  const month = MONTH_TO_NUMBER[monthName.toLowerCase()];
+  if (!month) return undefined;
+
+  return `${year}-${month}-${day.padStart(2, '0')}`;
+};
+
+export const getBlogPostIsoDate = (post: BlogPostDateSource): string | undefined => {
+  return normalizeIsoDate(post.publishedAt) ?? parseDisplayDateToIsoDate(post.date);
+};
+
+export const getBlogPostDateTime = (post: BlogPostDateSource): string | undefined => {
+  const isoDate = getBlogPostIsoDate(post);
+  return isoDate ? `${isoDate}T00:00:00.000Z` : undefined;
+};
+
+export const getBlogPostTimestamp = (post: BlogPostDateSource): number => {
+  const isoDateTime = getBlogPostDateTime(post);
+  return isoDateTime ? Date.parse(isoDateTime) : 0;
 };
 
 const normalizeTitle = (value: string): string => {
@@ -877,7 +1358,7 @@ const buildBlogPosts = (): BlogPost[] => {
 
   [...baseBlogPosts, ...generatedBlogPosts].forEach(tryAddPost);
 
-  return merged.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+  return merged.sort((a, b) => getBlogPostTimestamp(b) - getBlogPostTimestamp(a));
 };
 
 export const blogPosts: BlogPost[] = buildBlogPosts();

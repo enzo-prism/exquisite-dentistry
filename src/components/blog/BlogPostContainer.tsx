@@ -3,7 +3,7 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import { ArrowLeft } from 'lucide-react';
-import { BlogPost, getPostBySlug } from '@/data/blogPosts';
+import { BlogPost, getBlogPostDateTime, getPostBySlug } from '@/data/blogPosts';
 import PageLoader from '@/components/ui/page-loader';
 import { toast } from 'sonner';
 import BlogMeta from './BlogMeta';
@@ -13,6 +13,7 @@ import BlogStructuredData from '@/components/BlogStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import BlogErrorBoundary from './BlogErrorBoundary';
 import { sanitizeBlogHtml } from '@/utils/blogContent';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Lazy load specific-blog components
 const SingleToothVeneersBlog = React.lazy(() => import('@/pages/SingleToothVeneersBlog'));
@@ -38,6 +39,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   return (
     <>
       <BlogStructuredData post={post} />
+      {post.faqs?.length ? <FAQStructuredData faqs={post.faqs} about={post.title} /> : null}
       <PageSEO
         title={post.seoTitle || post.title}
         description={post.seoDescription || post.excerpt}
@@ -45,7 +47,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
         path={`/blog/${post.slug}`}
         ogType="article"
         articleAuthor={post.author}
-        articlePublishedTime={new Date(post.date).toISOString()}
+        articlePublishedTime={getBlogPostDateTime(post)}
       />
 
       {/* Header */}
@@ -69,6 +71,17 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
             <p className="text-xl text-gray-600 leading-relaxed">
               {post.excerpt}
             </p>
+
+            <p className="mt-4 text-sm text-gray-500">
+              Clinically reviewed by{' '}
+              <Link to="/about/" className="text-gold underline-offset-4 hover:underline">
+                Dr. Alexie Aguil
+              </Link>{' '}
+              ·{' '}
+              <Link to="/editorial-policy/" className="text-gold underline-offset-4 hover:underline">
+                Editorial policy
+              </Link>
+            </p>
           </div>
         </div>
       </div>
@@ -85,6 +98,25 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
               <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
             </div>
           )}
+
+          {post.faqs?.length ? (
+            <section id="faqs" className="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-muted/20 px-6 py-8">
+              <div className="mb-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-gold">FAQs</p>
+                <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
+                  {getFaqHeading(post)}
+                </h2>
+              </div>
+              <div className="space-y-1">
+                {post.faqs.map((faq) => (
+                  <details key={faq.question} className="faq-item">
+                    <summary>{faq.question}</summary>
+                    <p className="faq-answer">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ) : null}
           
           <InternalLinkingWidget 
             currentPage={`/blog/${post.slug}`}
@@ -105,16 +137,58 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
 
 // Helper function to determine context for internal linking
 const getContext = (post: BlogPost) => {
+  const tags = post.tags?.join(' ').toLowerCase() ?? '';
+  const title = post.title.toLowerCase();
+  const category = post.category.toLowerCase();
+
+  if (tags.includes('wedding') || title.includes('wedding')) {
+    return 'wedding';
+  }
+  if (tags.includes('graduation') || title.includes('graduation')) {
+    return 'graduation';
+  }
+  if (tags.includes('implant') || tags.includes('bridge') || category.includes('restorative')) {
+    return 'implants';
+  }
+  if (tags.includes('whitening') || title.includes('whitening')) {
+    return 'whitening';
+  }
+  if (tags.includes('invisalign') || tags.includes('aligner') || category.includes('orthodontic')) {
+    return 'invisalign';
+  }
+  if (tags.includes('oral') || tags.includes('health') || tags.includes('gum') || tags.includes('cancer') || category.includes('oral health')) {
+    return 'oral-health';
+  }
   if (post.tags?.includes('veneer cost') || post.tags?.includes('2 front teeth veneers') || post.tags?.includes('4 front teeth veneers')) {
     return 'cost';
   }
-  if (post.tags?.includes('veneers') || post.tags?.includes('porcelain veneers')) {
+  if (tags.includes('veneer')) {
     return 'veneer';
   }
-  if (post.tags?.includes('patient comfort') || post.tags?.includes('entertainment')) {
+  if (tags.includes('patient comfort') || tags.includes('entertainment') || tags.includes('experience') || tags.includes('comfort')) {
     return 'experience';
   }
   return 'general';
+};
+
+const getFaqHeading = (post: BlogPost) => {
+  const tags = post.tags?.join(' ').toLowerCase() ?? '';
+  const title = post.title.toLowerCase();
+
+  if (tags.includes('wedding') || title.includes('wedding')) {
+    return 'Questions Patients Ask About Wedding Smile Prep';
+  }
+  if ((tags.includes('whitening') || title.includes('whitening')) && (tags.includes('veneer') || title.includes('veneer'))) {
+    return 'Questions Patients Ask About Veneers and Whitening';
+  }
+  if (tags.includes('whitening') || title.includes('whitening')) {
+    return 'Questions Patients Ask About Whitening Options';
+  }
+  if (tags.includes('veneer') || title.includes('veneer')) {
+    return 'Questions Patients Ask About Veneers';
+  }
+
+  return 'Questions Patients Ask About This Topic';
 };
 
 const BlogPostContainer: React.FC = () => {

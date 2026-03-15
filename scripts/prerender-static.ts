@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { servicePageConfigs } from "../src/data/servicePages";
 import { locationPageConfigs } from "../src/data/locationPages";
-import { getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
+import { getBlogPostIsoDate, getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata, ROUTE_METADATA } from "../src/constants/metadata";
 import {
@@ -702,13 +702,6 @@ const toMeta = (input: string, max = 155) => {
   const text = stripHtml(input || "").replace(/["<>]/g, "").trim();
   if (text.length <= max) return text;
   return text.slice(0, max).replace(/\s+\S*$/, "");
-};
-
-const toIsoDate = (value?: string) => {
-  if (!value) return undefined;
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return undefined;
-  return parsed.toISOString().split("T")[0];
 };
 
 const parseSeoKeywords = (value?: string) => {
@@ -1555,7 +1548,7 @@ export const buildRoutes = (): StaticRoute[] => {
       blogPost: {
         headline: post.title,
         authorName: post.author,
-        datePublished: toIsoDate(post.date),
+        datePublished: getBlogPostIsoDate(post),
         image: post.featuredImage,
         keywords
       },

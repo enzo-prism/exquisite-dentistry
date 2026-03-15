@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost } from '@/data/blogPosts';
+import { BlogPost, getBlogPostDateTime } from '@/data/blogPosts';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface BlogStructuredDataProps {
@@ -18,9 +18,33 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
     return `https://exquisitedentistryla.com${value.startsWith('/') ? value : `/${value}`}`;
   };
 
-  const toIsoDateTime = (value: string) => {
-    const parsed = new Date(value);
-    return Number.isNaN(parsed.getTime()) ? value : parsed.toISOString();
+  const toIsoDuration = (value: string | undefined) => {
+    if (!value) return undefined;
+    const match = value.match(/(\d+)\s*min/i);
+    return match ? `PT${match[1]}M` : undefined;
+  };
+
+  const getAboutTopic = () => {
+    const tags = post.tags.join(' ').toLowerCase();
+    const title = post.title.toLowerCase();
+
+    if (tags.includes('wedding') || title.includes('wedding')) {
+      return 'Wedding smile preparation';
+    }
+    if ((tags.includes('whitening') || title.includes('whitening')) && (tags.includes('veneer') || title.includes('veneer'))) {
+      return 'Veneers and teeth whitening comparison';
+    }
+    if (tags.includes('invisalign') || tags.includes('aligner')) {
+      return 'Invisalign treatment';
+    }
+    if (tags.includes('whitening') || title.includes('whitening')) {
+      return 'Professional teeth whitening';
+    }
+    if (tags.includes('veneer')) {
+      return 'Porcelain veneers';
+    }
+
+    return post.category;
   };
 
   const blogPostData = {
@@ -45,18 +69,18 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
         url: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
       }
     },
-    datePublished: toIsoDateTime(post.date),
-    dateModified: toIsoDateTime(post.date),
+    datePublished: getBlogPostDateTime(post),
+    dateModified: getBlogPostDateTime(post),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': postUrl
     },
     articleSection: post.category,
     keywords: post.tags?.join(', ') || '',
-    timeRequired: post.readTime,
+    timeRequired: toIsoDuration(post.readTime),
     about: {
       '@type': 'Thing',
-      name: 'Cosmetic Dentistry'
+      name: getAboutTopic()
     },
     isPartOf: {
       '@type': 'Blog',

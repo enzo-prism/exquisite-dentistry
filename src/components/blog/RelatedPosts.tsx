@@ -22,11 +22,12 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
     const category = post.category.toLowerCase();
     const title = post.title.toLowerCase();
 
-    if (tags.includes('veneer') || category.includes('veneer')) return 'veneer';
-    if (tags.includes('invisalign') || tags.includes('orthodontic') || category.includes('orthodontic')) return 'invisalign';
-    if (tags.includes('whitening') || category.includes('whitening')) return 'whitening';
     if (tags.includes('wedding')) return 'wedding';
     if (tags.includes('graduation')) return 'graduation';
+    if ((tags.includes('whitening') || title.includes('whitening')) && (tags.includes('veneer') || title.includes('veneer'))) return 'whitening';
+    if (tags.includes('whitening') || title.includes('whitening')) return 'whitening';
+    if (tags.includes('veneer') || category.includes('veneer')) return 'veneer';
+    if (tags.includes('invisalign') || tags.includes('orthodontic') || category.includes('orthodontic')) return 'invisalign';
     if (tags.includes('cost') || tags.includes('price') || tags.includes('financing')) return 'cost';
     // Oral health detection for lifestyle/health posts
     if (tags.includes('oral') || tags.includes('health') || tags.includes('smoking') ||
@@ -155,6 +156,51 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             href: "/contact",
             description: "See your future smile before treatment",
             popularity: 88
+          }
+        ];
+      case 'whitening':
+        return [
+          {
+            title: "Teeth Whitening Consultation",
+            href: "/teeth-whitening",
+            description: "Compare in-office whitening, custom trays, and hybrid plans",
+            duration: "45 min",
+            popularity: 92
+          },
+          {
+            title: "Zoom Whitening",
+            href: "/zoom-whitening",
+            description: "Fast in-office brightening for photo-ready results",
+            duration: "60 min",
+            popularity: 88
+          },
+          {
+            title: "Schedule Consultation",
+            href: "/schedule-consultation",
+            description: "Book a whitening plan tailored to your timeline",
+            popularity: 80
+          }
+        ];
+      case 'wedding':
+        return [
+          {
+            title: "Wedding Smile Makeover",
+            href: "/wedding",
+            description: "Compare bridal, groom, and wedding-party smile timelines",
+            duration: "45 min",
+            popularity: 94
+          },
+          {
+            title: "Porcelain Veneers",
+            href: "/veneers",
+            description: "Explore veneer design and smile-makeover options",
+            popularity: 89
+          },
+          {
+            title: "Schedule Consultation",
+            href: "/schedule-consultation",
+            description: "Map your treatment plan to the wedding date",
+            popularity: 86
           }
         ];
       case 'oral-health':

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost } from '@/data/blogPosts';
+import { BlogPost, getBlogPostDateTime } from '@/data/blogPosts';
 
 interface BlogListingStructuredDataProps {
   posts: BlogPost[];
@@ -35,7 +35,7 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
       '@type': 'BlogPosting',
       headline: post.title,
       url: `https://exquisitedentistryla.com/blog/${post.slug}`,
-      datePublished: post.date,
+      datePublished: getBlogPostDateTime(post),
       author: {
         '@type': 'Person',
         name: post.author

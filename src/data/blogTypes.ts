@@ -1,3 +1,8 @@
+export interface BlogFaq {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -8,6 +13,7 @@ export interface BlogPost {
   author: string;
   authorBio?: string;
   date: string;
+  publishedAt?: string;
   readTime: string;
   category: string;
   tags: string[];
@@ -15,5 +21,6 @@ export interface BlogPost {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string;
+  faqs?: BlogFaq[];
   published: boolean;
 }

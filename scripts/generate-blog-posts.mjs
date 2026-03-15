@@ -349,6 +349,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
   const readTime = computeReadTime(stripHtml(htmlContentBody));
   const distributedDate = pickDistributedDate(index, total);
   const date = formatDate(distributedDate);
+  const publishedAt = distributedDate.toISOString().split('T')[0];
 
   dedupeState.slugs.add(slug);
   dedupeState.titles.add(normalizedTitle);
@@ -368,6 +369,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     author: AUTHOR,
     authorBio: AUTHOR_BIO,
     date,
+    publishedAt,
     readTime,
     category,
     tags,

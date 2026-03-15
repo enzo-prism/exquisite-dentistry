@@ -70,6 +70,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
+            title: 'Veneers vs Teeth Whitening',
+            href: '/blog/veneers-vs-teeth-whitening-los-angeles/',
+            description: 'See whether color alone or shape changes will get you closer to your goal',
+            category: 'blog',
+            priority: 4
+          },
+          {
             title: 'Single Tooth Veneers Guide',
             href: '/blog/choosing-veneers-for-just-one-tooth/',
             description: 'Perfect solutions for individual tooth improvements',
@@ -90,6 +97,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             category: 'special',
             priority: 9,
             seasonal: true
+          },
+          {
+            title: 'Wedding Smile Prep Timeline',
+            href: '/blog/when-to-start-wedding-smile-prep-los-angeles/',
+            description: 'See when veneers, whitening, and Invisalign should start before the wedding',
+            category: 'blog',
+            priority: 10
           },
           {
             title: 'Smile Gallery',
@@ -223,6 +237,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             category: 'special',
             priority: 9,
             seasonal: true
+          },
+          {
+            title: 'Wedding Smile Prep Timeline',
+            href: '/blog/when-to-start-wedding-smile-prep-los-angeles/',
+            description: 'Understand how much Invisalign progress is realistic before the big day',
+            category: 'blog',
+            priority: 10
           }
         ];
       
@@ -243,32 +264,39 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
+            title: 'Porcelain Veneers',
+            href: '/veneers/',
+            description: 'Explore whether shape changes make more sense than whitening alone',
+            category: 'service',
+            priority: 3
+          },
+          {
             title: 'Teeth Whitening Near Beverly Hills',
             href: '/teeth-whitening-beverly-hills/',
             description: 'Whitening plans tailored to Beverly Hills schedules',
             category: 'service',
-            priority: 3
+            priority: 4
           },
           {
             title: 'Culver City Teeth Whitening',
             href: '/culver-city-teeth-whitening/',
             description: 'Options for Culver City patients: in-office whitening, trays, and sensitivity planning',
             category: 'service',
-            priority: 4
+            priority: 5
           },
           {
             title: 'Smile Makeover (Los Angeles)',
             href: '/smile-makeover-los-angeles/',
             description: 'Combine whitening with veneers and alignment for a full upgrade',
             category: 'service',
-            priority: 5
+            priority: 6
           },
           {
-            title: 'Veneers vs Whitening',
-            href: '/veneers/',
-            description: 'Compare whitening with veneer options',
-            category: 'service',
-            priority: 6
+            title: 'Veneers vs Teeth Whitening',
+            href: '/blog/veneers-vs-teeth-whitening-los-angeles/',
+            description: 'Compare which option fits stains, shape, and long-term smile goals',
+            category: 'blog',
+            priority: 7
           },
           {
             title: 'Wedding Whitening',
@@ -279,11 +307,18 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             seasonal: true
           },
           {
+            title: 'Wedding Smile Prep Timeline',
+            href: '/blog/when-to-start-wedding-smile-prep-los-angeles/',
+            description: 'Learn when whitening should happen relative to veneers and aligners',
+            category: 'blog',
+            priority: 10
+          },
+          {
             title: 'Client Experience',
             href: '/client-experience/',
             description: 'Comfortable whitening experience',
             category: 'experience',
-            priority: 7
+            priority: 8
           }
         ];
 
@@ -378,25 +413,32 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
+            title: 'When to Start Wedding Smile Prep',
+            href: '/blog/when-to-start-wedding-smile-prep-los-angeles/',
+            description: 'A realistic timeline for veneers, whitening, and Invisalign',
+            category: 'blog',
+            priority: 4
+          },
+          {
             title: 'Before & After Gallery',
             href: '/smile-gallery/',
             description: 'Wedding smile transformations',
             category: 'gallery',
-            priority: 4
+            priority: 5
           },
           {
             title: 'Wedding Smile Tips',
             href: '/blog/how-to-maintain-the-perfect-wedding-smile/',
             description: 'Expert tips for your perfect wedding day smile',
             category: 'blog',
-            priority: 5
+            priority: 6
           },
           {
             title: 'Valentine\'s Dental Tips',
             href: '/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/',
             description: 'Keep your smile healthy for special occasions',
             category: 'blog',
-            priority: 6
+            priority: 7
           }
         ];
       

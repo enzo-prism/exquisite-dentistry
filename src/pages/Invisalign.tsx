@@ -186,6 +186,13 @@ const Invisalign = () => {
                 You will swap to a fresh set of trays every 7 to 10 days, meeting virtually or in-person for progress checks that keep you on track.
                 When paired with cosmetic finishing touches like whitening or edge recontouring, Invisalign becomes the centerpiece of a full smile glow-up.
               </p>
+              <p className="mt-6 text-base text-muted-foreground">
+                Working toward a wedding date? Our{' '}
+                <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
+                  wedding smile prep timeline guide
+                </Link>{' '}
+                breaks down how much Invisalign progress is realistic before the big day.
+              </p>
             </div>
           </div>
         </section>

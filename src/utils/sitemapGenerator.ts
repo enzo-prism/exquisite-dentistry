@@ -1,5 +1,5 @@
 
-import { getPublishedPosts } from '../data/blogPosts';
+import { getBlogPostIsoDate, getPublishedPosts } from '../data/blogPosts';
 import { transformationStories } from '../data/transformationStories';
 import { getCanonicalUrl } from './schemaValidation';
 
@@ -342,8 +342,7 @@ export const generateSitemapData = (): SitemapUrl[] => {
   // Dynamic blog posts with actual publish dates
   const publishedPosts = getPublishedPosts();
   const blogPages: SitemapUrl[] = publishedPosts.map(post => {
-    // Convert blog post date to ISO format
-    const postDate = new Date(post.date).toISOString().split('T')[0];
+    const postDate = getBlogPostIsoDate(post) || currentDate;
     
     // High-value blog posts get higher priority
     const isHighValuePost = post.tags.includes('veneers') || 

@@ -191,6 +191,11 @@ const CosmeticDentistry = () => {
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   We embrace collaboration, partnering with dermatologists, facial plastic surgeons, and wellness practitioners to ensure your smile harmonizes with your overall aesthetic goals.
                   Our team coordinates with stylists, photographers, and branding agencies to time your reveal with pivotal milestones such as press tours, product launches, or wedding weekends.
+                  If your target date is a ceremony or engagement shoot, review our{' '}
+                  <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
+                    wedding smile prep timeline guide
+                  </Link>
+                  .
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>

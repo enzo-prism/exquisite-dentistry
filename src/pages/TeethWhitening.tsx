@@ -138,6 +138,10 @@ const TeethWhitening = () => {
                 <Link to="/culver-city-teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">
                   teeth whitening near Culver City
                 </Link>
+                . Planning around a ceremony or engagement photos? Read our{' '}
+                <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
+                  wedding smile prep timeline guide
+                </Link>
                 .
               </p>
             </div>

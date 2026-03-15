@@ -71,6 +71,13 @@ const Wedding = () => {
               <p className="text-lg text-black-light">
                 Plan your wedding smile transformation with our timeline-based treatment options.
               </p>
+              <p className="mt-4 text-sm md:text-base text-gray-500">
+                Need a more realistic breakdown before you book? Read our{' '}
+                <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-gold underline-offset-4 hover:underline">
+                  wedding smile prep timeline guide
+                </Link>
+                .
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

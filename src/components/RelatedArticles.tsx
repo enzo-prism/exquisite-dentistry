@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ArrowRight, Video } from 'lucide-react';
-import { getPublishedPosts, type BlogPost } from '@/data/blogPosts';
+import { getBlogPostTimestamp, getPublishedPosts, type BlogPost } from '@/data/blogPosts';
 import { transformationStories, type TransformationStory } from '@/data/transformationStories';
 
 interface RelatedArticlesProps {
@@ -128,7 +128,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
   // Sort by score descending, then by date descending
   scoredPosts.sort((a, b) => {
     if (b.score !== a.score) return b.score - a.score;
-    return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
+    return getBlogPostTimestamp(b.post) - getBlogPostTimestamp(a.post);
   });
 
   const articlesToShow = scoredPosts.slice(0, limit).map(item => item.post);

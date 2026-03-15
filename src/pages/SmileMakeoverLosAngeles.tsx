@@ -238,6 +238,13 @@ const SmileMakeoverLosAngeles = () => {
                     <p className="text-sm text-muted-foreground">
                       We’ll review your goals, timeline, and existing dental work, then recommend a sequenced plan for predictable results.
                     </p>
+                    <p className="text-sm text-muted-foreground">
+                      Planning around a wedding date? Start with our{' '}
+                      <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
+                        wedding smile prep timeline guide
+                      </Link>
+                      .
+                    </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Button asChild>
                         <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>

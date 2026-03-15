@@ -242,6 +242,13 @@ const VeneersLosAngeles = () => {
                   When veneers are ready for delivery, we test under soft box lighting to ensure brilliance on stage, on camera, and in the boardroom.
                   You leave with a protective nightguard, whitening serum for natural teeth, and a personalized care roadmap.
                 </p>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If veneers are part of a wedding plan, timing matters. Our{' '}
+                  <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
+                    wedding smile prep timeline guide
+                  </Link>{' '}
+                  explains when to start veneer planning relative to whitening, alignment, and other event-driven treatment decisions.
+                </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
                     <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_pillar_book_click', 'Schedule Consultation')}>Schedule Consultation</Link>
