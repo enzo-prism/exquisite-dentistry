@@ -7,6 +7,201 @@ export type { BlogPost };
 
 const baseBlogPosts: BlogPost[] = [
   {
+    id: '23',
+    title: 'Should You Get Invisalign Before Veneers? A Los Angeles Guide to Smile Planning',
+    slug: 'invisalign-before-veneers-los-angeles',
+    excerpt:
+      'Thinking about veneers but not sure whether you should straighten your teeth first? Learn when Invisalign before veneers makes sense for Los Angeles cosmetic patients.',
+    content: `<div class="prose prose-lg max-w-none">
+        <p>
+          Many cosmetic dentistry patients start with the same question: if I know I want <a href="/veneers/" class="text-primary hover:text-primary/80 underline">veneers</a>, do I really need Invisalign first?
+        </p>
+        <p>
+          Sometimes the answer is no. If the teeth are already in a strong position and the main concern is color, shape, proportion, or minor cosmetic irregularities, veneers alone may be enough.
+        </p>
+        <p>
+          But in other cases, straightening the teeth first creates a better, more natural, and more conservative result. That is especially true when crowding, rotation, spacing, or bite issues would force veneers to do too much camouflage work.
+        </p>
+        <p>
+          At Exquisite Dentistry LA, this is not a generic treatment sequence. It is a smile-planning decision. The goal is not just to make teeth look whiter. It is to create a result that looks refined, feels balanced, and fits your face and lifestyle.
+        </p>
+
+        <h2>What Invisalign and Veneers Each Do</h2>
+        <p>
+          <a href="/invisalign/" class="text-primary hover:text-primary/80 underline">Invisalign</a> and veneers can both improve a smile, but they solve different problems.
+        </p>
+        <p>
+          Invisalign changes tooth position. It can align crowded or spaced teeth, improve the bite, and create a cleaner foundation.
+        </p>
+        <p>
+          Veneers change the visible appearance of the tooth. They can improve color, shape, proportions, edge contours, and overall smile design.
+        </p>
+        <p>
+          That distinction matters. Veneers can disguise minor alignment issues, but they do not move teeth. If the teeth are significantly rotated, crowded, or affected by bite issues, trying to solve everything with veneers can mean more compromise than necessary.
+        </p>
+
+        <h2>When Invisalign Before Veneers Makes Sense</h2>
+        <p>
+          Straightening first is often worth considering when:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>The front teeth overlap or twist enough to affect symmetry</li>
+          <li>There is spacing that changes how veneers would need to be shaped</li>
+          <li>The bite relationship would make veneers less stable or less natural looking</li>
+          <li>You want a polished result with minimal unnecessary bulk</li>
+          <li>You want to preserve as much natural tooth structure as possible</li>
+        </ul>
+        <p>
+          This is one reason Invisalign and veneers often complement each other. A short or moderate aligner phase can create a better canvas. Then veneers can focus on finishing the smile instead of compensating for bigger alignment issues.
+        </p>
+
+        <h2>Why Straightening First Can Be the More Conservative Plan</h2>
+        <p>
+          Patients sometimes assume that adding Invisalign first means doing more treatment than necessary. In reality, the opposite can be true.
+        </p>
+        <p>
+          If teeth are crowded or angled inward or outward, veneers may need to be shaped more aggressively to create the appearance of alignment. That can sometimes mean accepting a look that feels bulkier, flatter, or less natural than intended.
+        </p>
+        <p>
+          By moving teeth into a better position first, veneers may be able to be more precise and less compensatory. For many patients, that leads to a cleaner cosmetic result and a treatment plan that respects the underlying tooth structure more thoughtfully.
+        </p>
+
+        <h2>When Veneers Alone May Still Be Enough</h2>
+        <p>
+          Not every Los Angeles smile-makeover patient needs orthodontics before veneers.
+        </p>
+        <p>
+          Veneers alone may still make sense when:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Alignment issues are minor</li>
+          <li>The main concerns are color, chips, wear, or shape</li>
+          <li>You want a faster cosmetic transformation for the visible smile zone</li>
+          <li>Your bite is stable and the final veneer design can look natural without overbuilding the teeth</li>
+        </ul>
+        <p>
+          This is especially relevant for patients interested in <a href="/veneers/front-teeth-veneers-los-angeles/" class="text-primary hover:text-primary/80 underline">front teeth veneers in Los Angeles</a> or a focused smile-zone enhancement rather than full-arch changes.
+        </p>
+
+        <h2>A Practical Los Angeles Factor That Matters</h2>
+        <p>
+          Many patients here are balancing cosmetic goals with a very real timeline. They may have content shoots, work travel, speaking events, wedding season, or simply want to feel more confident in close social settings and high-visibility environments.
+        </p>
+        <p>
+          That makes sequencing important.
+        </p>
+        <p>
+          If you want the best long-term result and the teeth need alignment, Invisalign first may be the right move even if it adds time. If your goals are more immediate and the case allows for veneers alone, a direct veneer plan may be appropriate.
+        </p>
+        <p>
+          The right answer depends on the smile you have now and the level of refinement you want at the end.
+        </p>
+
+        <h2>What a Cosmetic Consultation Should Answer</h2>
+        <p>
+          If you are deciding whether to straighten first, the consultation should clarify:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Are the teeth only cosmetically imperfect, or truly misaligned?</li>
+          <li>Would veneers need to compensate too much for crowding or rotation?</li>
+          <li>Could aligners improve the final proportions and symmetry?</li>
+          <li>Is the bite working against a durable cosmetic result?</li>
+          <li>How many veneers would actually be needed after alignment?</li>
+          <li>What timeline fits your goals and calendar?</li>
+        </ul>
+        <p>
+          Those details are more useful than broad internet advice because they turn an abstract cosmetic question into a specific treatment strategy.
+        </p>
+
+        <h2>What Many Patients Really Want</h2>
+        <p>
+          Most patients are not asking for orthodontics or veneers as separate products. They are asking for a smile that feels elevated, believable, and worth the investment.
+        </p>
+        <p>
+          That usually means:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Natural proportions</li>
+          <li>A bright but not artificial shade</li>
+          <li>Smoother edges and better balance</li>
+          <li>A smile that looks strong in person, on camera, and up close</li>
+        </ul>
+        <p>
+          Sometimes veneers alone get you there. Sometimes Invisalign first is what makes that final veneer result look effortless rather than forced.
+        </p>
+        <p>
+          If you want to see how polished finishing work can look once the foundation is right, our <a href="/smile-gallery/" class="text-primary hover:text-primary/80 underline">smile gallery</a> is a helpful next step.
+        </p>
+
+        <h2>If You Are Worried About Timeline</h2>
+        <p>
+          This is a common concern. Some patients hear Invisalign and immediately think of a long, inconvenient process. But not every case requires a dramatic full-bite transformation. In selected cosmetic cases, aligners may be used to make targeted improvements that simplify the veneer phase afterward.
+        </p>
+        <p>
+          That does not mean everyone should do it. It means timing should be discussed in context, not assumed.
+        </p>
+
+        <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl my-10 text-center space-y-4">
+          <h3 class="text-2xl font-semibold">Plan Invisalign and Veneers in the Right Order</h3>
+          <p>Dr. Alexie Aguil can show you whether straightening first will create a more natural veneer result or whether a direct veneer plan makes better sense for your goals and timeline.</p>
+          <a href="${SCHEDULE_CONSULTATION_PATH}" class="inline-flex items-center justify-center px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-md hover:bg-primary/90 transition-colors">
+            Schedule Consultation
+          </a>
+          <p class="text-sm text-gray-600">Prefer to talk first? Call <a href="tel:${PHONE_NUMBER_E164}" class="text-primary hover:text-primary/80 underline">${PHONE_NUMBER_DISPLAY}</a>.</p>
+        </div>
+
+        <p>
+          If you are considering veneers and wondering whether Invisalign should come first, schedule a consultation at Exquisite Dentistry LA. The smartest sequence is the one that gives you the most natural-looking result with the least unnecessary compromise.
+        </p>
+      </div>`,
+    author: 'Dr. Alexie Aguil',
+    authorBio:
+      'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',
+    date: 'March 19, 2026',
+    publishedAt: '2026-03-19',
+    readTime: '6 min read',
+    category: 'Orthodontics',
+    tags: [
+      'invisalign',
+      'veneers',
+      'invisalign before veneers',
+      'veneers and invisalign',
+      'porcelain veneers',
+      'front teeth veneers',
+      'smile makeover',
+      'cosmetic dentistry',
+      'los angeles'
+    ],
+    seoTitle: 'Invisalign Before Veneers in Los Angeles: When Does It Make Sense?',
+    seoDescription:
+      'Thinking about veneers but not sure whether you should straighten your teeth first? Learn when Invisalign before veneers makes sense for Los Angeles cosmetic patients.',
+    seoKeywords:
+      'Invisalign before veneers Los Angeles, veneers and Invisalign Los Angeles, porcelain veneers Los Angeles, front teeth veneers Los Angeles, smile makeover Los Angeles, cosmetic dentist Los Angeles',
+    faqs: [
+      {
+        question: 'Can veneers make crooked teeth look straight?',
+        answer:
+          'Sometimes, for mild cases. Veneers can visually improve small alignment issues, but they do not move the teeth themselves.'
+      },
+      {
+        question: 'Is Invisalign before veneers always necessary?',
+        answer:
+          'No. It depends on how much crowding, spacing, or bite correction is needed and what kind of final result you want.'
+      },
+      {
+        question: 'Does straightening first help veneers look more natural?',
+        answer:
+          'Often, yes. Better alignment can allow for cleaner proportions, less bulk, and less cosmetic compensation in the final veneer design.'
+      },
+      {
+        question: 'Will Invisalign delay my smile makeover too much?',
+        answer:
+          'Not always. Some cases need meaningful alignment time, while others only need modest improvements before cosmetic finishing. That is why timeline needs to be discussed case by case.'
+      }
+    ],
+    published: true
+  },
+  {
     id: '22',
     title: 'Veneers vs Teeth Whitening in Los Angeles: Which Smile Upgrade Is Right for You?',
     slug: 'veneers-vs-teeth-whitening-los-angeles',

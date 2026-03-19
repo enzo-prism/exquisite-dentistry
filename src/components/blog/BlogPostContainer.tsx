@@ -178,6 +178,9 @@ const getFaqHeading = (post: BlogPost) => {
   if (tags.includes('wedding') || title.includes('wedding')) {
     return 'Questions Patients Ask About Wedding Smile Prep';
   }
+  if ((tags.includes('invisalign') || title.includes('invisalign')) && (tags.includes('veneer') || title.includes('veneer'))) {
+    return 'Questions Patients Ask About Invisalign Before Veneers';
+  }
   if ((tags.includes('whitening') || title.includes('whitening')) && (tags.includes('veneer') || title.includes('veneer'))) {
     return 'Questions Patients Ask About Veneers and Whitening';
   }
