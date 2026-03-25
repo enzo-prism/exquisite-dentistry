@@ -15,7 +15,8 @@ Curl checks:
 - curl -I https://exquisitedentistryla.com/sitemap.xml
 
 Analytics check:
-- Visit a few production routes after deploy and confirm the Vercel Analytics dashboard starts recording pageviews for `exquisite-black.vercel.app` / production traffic.
+- Visit a few production routes after deploy and confirm the Vercel Analytics dashboard starts recording pageviews for production traffic.
+- Give Vercel Speed Insights a minute to ingest traffic, then confirm the dashboard stops showing "No data available" for the visited routes. Test at least one desktop and one mobile session with content blockers disabled.
 
 Canonical verification (apex only):
 - Confirm <link rel="canonical"> uses https://exquisitedentistryla.com/... on key pages.
