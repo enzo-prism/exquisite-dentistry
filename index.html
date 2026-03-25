@@ -85,10 +85,24 @@
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         }
+
+        function scheduleHotjarLoad() {
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(loadHotjar, { timeout: 10000 });
+                return;
+            }
+
+            setTimeout(loadHotjar, 10000);
+        }
         
-        // Load Hotjar after 3 seconds or when user interacts
-        setTimeout(loadHotjar, 3000);
-        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(function(event) {
+        // Load Hotjar when the browser is idle or the visitor meaningfully interacts.
+        if (document.readyState === 'complete') {
+            scheduleHotjarLoad();
+        } else {
+            window.addEventListener('load', scheduleHotjarLoad, { once: true });
+        }
+
+        ['mousedown', 'keydown', 'touchstart'].forEach(function(event) {
             document.addEventListener(event, function() {
                 loadHotjar();
             }, { once: true, passive: true });
@@ -208,9 +222,6 @@
     
     <!-- Remove no-js class when JS is available -->
     <script>document.getElementById('root').classList.remove('no-js');</script>
-    
-    <!-- Preload module script for faster loading -->
-    <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
