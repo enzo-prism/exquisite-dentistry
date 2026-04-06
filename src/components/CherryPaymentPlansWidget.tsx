@@ -170,7 +170,8 @@ const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
     <div
       ref={mountRef}
       className={cn(
-        'relative overflow-hidden rounded-[2rem] border border-gold/20 bg-white shadow-[0_28px_80px_-42px_rgba(0,0,0,0.45)]',
+        'relative w-full min-w-0 overflow-hidden rounded-[2rem] border border-gold/20 bg-white shadow-[0_28px_80px_-42px_rgba(0,0,0,0.45)]',
+        isPreview && 'mx-auto max-w-[38rem]',
         className,
       )}
     >
@@ -196,7 +197,7 @@ const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
 
       <div
         className={cn(
-          'relative bg-white',
+          'relative w-full min-w-0 bg-white',
           isPreview ? 'max-h-[34rem] overflow-hidden' : 'overflow-visible',
         )}
       >
@@ -205,12 +206,12 @@ const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
         ))}
         <div
           id="all"
-          className={cn('bg-white', isPreview ? 'hidden' : 'min-h-[980px]')}
+          className={cn('w-full bg-white', isPreview ? 'hidden' : 'min-h-[980px]')}
           aria-live="polite"
         />
         <div
           id="hero"
-          className={cn('bg-white', isPreview ? 'min-h-[34rem]' : 'hidden')}
+          className={cn('w-full bg-white', isPreview ? 'min-h-[34rem]' : 'hidden')}
           aria-hidden={!isPreview}
           aria-live="polite"
         />

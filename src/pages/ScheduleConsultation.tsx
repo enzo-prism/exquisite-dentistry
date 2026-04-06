@@ -80,8 +80,8 @@ const ScheduleConsultation = () => {
               </div>
 
               <div className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8">
-                <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
-                  <div>
+                <div className="grid gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-start">
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
                       Flexible Financing
                     </p>
@@ -103,7 +103,9 @@ const ScheduleConsultation = () => {
                     </div>
                   </div>
 
-                  <CherryPaymentPlansWidget variant="preview" />
+                  <div className="min-w-0">
+                    <CherryPaymentPlansWidget variant="preview" />
+                  </div>
                 </div>
               </div>
 

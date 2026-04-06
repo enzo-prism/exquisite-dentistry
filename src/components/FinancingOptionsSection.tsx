@@ -125,8 +125,8 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
 
           {showWidgetPreview ? (
             <div className="relative border-t border-border/70 bg-white/80 px-8 py-8 md:px-10 md:py-10">
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
-                <div className="max-w-xl">
+              <div className="grid gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-start">
+                <div className="min-w-0 max-w-xl">
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
                     Live Cherry Preview
                   </p>
@@ -147,10 +147,12 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                   </div>
                 </div>
 
-                <CherryPaymentPlansWidget
-                  variant="preview"
-                  className="border-gold/15 shadow-[0_24px_72px_-40px_rgba(0,0,0,0.35)]"
-                />
+                <div className="min-w-0">
+                  <CherryPaymentPlansWidget
+                    variant="preview"
+                    className="border-gold/15 shadow-[0_24px_72px_-40px_rgba(0,0,0,0.35)]"
+                  />
+                </div>
               </div>
             </div>
           ) : null}
