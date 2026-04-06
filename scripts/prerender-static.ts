@@ -453,6 +453,30 @@ export const manualPages: StaticRoute[] = [
     links: defaultNavLinks,
   },
   {
+    path: "/payment-plans",
+    title: getRouteMetadata("/payment-plans").title,
+    description: getRouteMetadata("/payment-plans").description,
+    h1: "Dental Payment Plans Los Angeles",
+    paragraphs: [
+      "Explore Cherry financing and flexible monthly payment options for veneers, Invisalign, implants, whitening, and complete smile makeovers in Los Angeles.",
+      "Use this page to review financing guidance, estimate monthly payments, and choose the next step with the Exquisite Dentistry team before starting treatment.",
+    ],
+    sections: [
+      {
+        id: "financing-options",
+        heading: "Financing Options",
+        paragraphs: [
+          "Cherry financing helps many patients spread cosmetic and restorative treatment costs into manageable monthly payments. It is designed to support high-intent cases where patients want to move forward without delaying care.",
+        ],
+        links: [
+          { label: "Schedule Consultation", href: "/schedule-consultation" },
+          { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+        ],
+      },
+    ],
+    links: defaultNavLinks,
+  },
+  {
     path: "/testimonials",
     title: getRouteMetadata("/testimonials").title,
     description: getRouteMetadata("/testimonials").description,
@@ -807,6 +831,8 @@ const getBreadcrumbLinksForRoute = (routePath: string): StaticLink[] => {
       return [{ label: "Locations", href: "/locations" }];
     case "/schedule-consultation":
       return [{ label: "Schedule Consultation", href: "/schedule-consultation" }];
+    case "/payment-plans":
+      return [{ label: "Payment Plans", href: "/payment-plans" }];
     case "/smile-gallery":
       return [{ label: "Smile Gallery", href: "/smile-gallery" }];
     default:
@@ -1000,6 +1026,7 @@ const SERVICE_METADATA_EXCLUSIONS = new Set([
   "/locations",
   "/contact",
   "/schedule-consultation",
+  "/payment-plans",
   "/testimonials",
   "/smile-gallery",
   "/faqs",

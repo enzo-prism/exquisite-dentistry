@@ -496,6 +496,14 @@ const validateRedirects = async () => {
 
     await expectStatus({
       baseUrl,
+      path: '/payment-plans/',
+      expectedStatus: 200,
+      errors,
+      name: '/payment-plans/ is 200'
+    });
+
+    await expectStatus({
+      baseUrl,
       path: '/definitely-not-a-real-page/',
       expectedStatus: 404,
       errors,
