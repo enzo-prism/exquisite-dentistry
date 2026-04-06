@@ -1532,6 +1532,45 @@ export const buildRoutes = (): StaticRoute[] => {
   });
 
   const blogPosts = getPublishedPosts();
+  const blogArchiveSections: StaticRouteSection[] = [];
+  const BLOG_ARCHIVE_CHUNK_SIZE = 22;
+
+  for (let index = 0; index < blogPosts.length; index += BLOG_ARCHIVE_CHUNK_SIZE) {
+    const chunk = blogPosts.slice(index, index + BLOG_ARCHIVE_CHUNK_SIZE);
+    if (!chunk.length) continue;
+
+    const chunkNumber = Math.floor(index / BLOG_ARCHIVE_CHUNK_SIZE);
+    const heading =
+      chunkNumber === 0
+        ? "Latest Articles"
+        : chunkNumber === 1
+          ? "More Articles"
+          : `Blog Archive ${chunkNumber + 1}`;
+
+    blogArchiveSections.push({
+      heading,
+      paragraphs:
+        chunkNumber === 0
+          ? [
+              `Browse ${blogPosts.length} published articles from Exquisite Dentistry, including the newest Los Angeles cosmetic dentistry guides and patient education resources.`
+            ]
+          : undefined,
+      links: chunk.map((post) => ({
+        label: post.title,
+        href: `/blog/${post.slug}`,
+      })),
+    });
+  }
+
+  const blogIndexRoute = routes.find((route) => route.path === "/blog");
+  if (blogIndexRoute) {
+    blogIndexRoute.sections = [...(blogIndexRoute.sections ?? []), ...blogArchiveSections];
+    blogIndexRoute.links = uniqueLinks([
+      ...blogPosts.map((post) => ({ label: post.title, href: `/blog/${post.slug}` })),
+      ...blogIndexRoute.links,
+    ]);
+  }
+
   blogPosts.forEach((post) => {
     const supportLinks = getBlogSupportLinks(post).filter(
       (link) => normalizeInternalHref(link.href) !== normalizeInternalHref(`/blog/${post.slug}`)
