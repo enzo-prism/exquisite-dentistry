@@ -238,14 +238,13 @@ const CherryPaymentPlansLiveWidget: React.FC<{ className?: string }> = ({ classN
   }, [renderTargetId, shouldLoad]);
 
   return (
-    <div
-      ref={mountRef}
-      className={cn(
-        'relative w-full min-w-0 overflow-hidden rounded-[2rem] border border-gold/20 bg-white shadow-[0_28px_80px_-42px_rgba(0,0,0,0.45)]',
-        isPreview && 'mx-auto max-w-[38rem]',
-        className,
-      )}
-    >
+      <div
+        ref={mountRef}
+        className={cn(
+          'relative w-full min-w-0 overflow-hidden rounded-[2rem] border border-gold/20 bg-white shadow-[0_28px_80px_-42px_rgba(0,0,0,0.45)]',
+          className,
+        )}
+      >
       {status === 'loading' ? (
         <div className="border-b border-border bg-stone-50 px-6 py-4 text-sm text-muted-foreground">
           Loading Cherry financing options...
@@ -268,8 +267,7 @@ const CherryPaymentPlansLiveWidget: React.FC<{ className?: string }> = ({ classN
 
       <div
         className={cn(
-          'relative w-full min-w-0 bg-white',
-          isPreview ? 'max-h-[34rem] overflow-hidden' : 'overflow-visible',
+          'relative w-full min-w-0 overflow-visible bg-white',
         )}
       >
         {CHERRY_WIDGET_SUPPORT_CONTAINER_IDS.map((containerId) => (
