@@ -65,9 +65,9 @@ const renderAction = (href: string, label: string, variant: 'default' | 'outline
 
 const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   eyebrow = 'Flexible Financing',
-  title = 'See whether financing would make treatment feel more comfortable.',
-  description = 'If you would rather understand the budget side before you book, Cherry can help you review monthly payment options for veneers, Invisalign, whitening, implants, and other treatment plans.',
-  disclaimer = 'Cherry is an optional financing tool. It can help you estimate payments before your consultation, and financing decisions are handled through Cherry.',
+  title = 'See whether financing would make treatment feel easier to manage.',
+  description = 'If cost is part of your decision, Cherry gives you a simple way to check possible monthly payment options for veneers, Invisalign, whitening, implants, and other treatment plans.',
+  disclaimer = 'You can use Cherry before or after a consultation. Financing is optional, and financing decisions are handled through Cherry.',
   primaryCtaText = 'View Payment Plans',
   primaryCtaHref = PAYMENT_PLANS_PATH,
   secondaryCtaText = 'Schedule Consultation',
@@ -125,19 +125,19 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
 
           {showWidgetPreview ? (
             <div className="relative border-t border-border/70 bg-white/80 px-8 py-8 md:px-10 md:py-10">
-              <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-                <div className="min-w-0 max-w-xl">
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
+                <div className="min-w-0 max-w-3xl">
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
-                    Financing Snapshot
+                    A Simple Way To Check
                   </p>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
-                    See whether financing is something you even want to explore.
+                    Use Cherry only if it helps you decide.
                   </h3>
                   <p className="mt-4 text-base leading-7 text-muted-foreground">
-                    Instead of dropping the full Cherry experience into this page, we keep the
-                    context here simple. If financing seems relevant, open the dedicated payment
-                    plans page for the full Cherry flow. If not, you can keep moving without any
-                    extra friction.
+                    We keep the treatment page simple and let the Cherry financing button do the
+                    heavy lifting. If you want to check payment options, use Cherry when it appears
+                    on the page. If you would rather keep reading or book first, you can do that
+                    without stopping.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {renderAction(primaryCtaHref, primaryCtaText, 'default')}
@@ -158,7 +158,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           ) : null}
 
           <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            If financing matters to your decision, open the full payment plans page. If it
+            If financing matters to your decision, use Cherry or open the payment plans page. If it
             doesn&apos;t, you can skip it and keep moving toward your consultation.
             <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
           </div>

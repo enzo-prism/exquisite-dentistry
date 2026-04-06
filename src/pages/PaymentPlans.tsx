@@ -53,10 +53,10 @@ const PaymentPlans = () => {
       />
 
       <div className="min-h-screen bg-background">
-        <section className="relative overflow-hidden border-b border-border/60 bg-black text-white">
+        <section className="relative overflow-hidden border-b border-border/60 bg-gradient-to-br from-white via-stone-50 to-white">
           <div className="absolute inset-0">
-            <div className="absolute left-[-10%] top-[-18rem] h-[28rem] w-[28rem] rounded-full bg-gold/20 blur-[140px]" />
-            <div className="absolute bottom-[-12rem] right-[-8%] h-[24rem] w-[24rem] rounded-full bg-white/10 blur-[150px]" />
+            <div className="absolute left-[-10%] top-[-18rem] h-[28rem] w-[28rem] rounded-full bg-gold/18 blur-[140px]" />
+            <div className="absolute bottom-[-12rem] right-[-8%] h-[24rem] w-[24rem] rounded-full bg-primary/10 blur-[150px]" />
           </div>
 
           <div className="relative container mx-auto px-4 py-16 md:py-24">
@@ -64,60 +64,50 @@ const PaymentPlans = () => {
               <Breadcrumbs
                 items={[{ label: 'Payment Plans', to: PAYMENT_PLANS_PATH }]}
                 className="mb-6"
-                listClassName="border-white/10 bg-white/5 text-white/70"
-                currentClassName="text-gold"
-                linkClassName="text-white/70 hover:text-gold"
               />
 
               <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_22rem] lg:items-start">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold/90">
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
                     Flexible Financing
                   </p>
-                  <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
+                  <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight text-foreground md:text-5xl">
                     Understand your payment options before you commit to treatment.
                   </h1>
-                  <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/75">
+                  <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
                     If you would rather understand the cost side before you make a decision, this
                     page is for you. Cherry can help you review possible monthly payment options for
                     veneers, Invisalign, whitening, implants, and other treatment plans before or
                     after your consultation.
                   </p>
-                  <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/65">
-                    Use the widget below if you want to see what financing might look like, compare
-                    payment scenarios, and decide whether it feels right for you. Financing is
-                    offered through Cherry, and approval is handled by Cherry.
+                  <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+                    This page stays intentionally simple. Read the guidance here, then use the
+                    floating Cherry button only if you want to explore payment options in more
+                    detail. Financing is offered through Cherry, and approval is handled by Cherry.
                   </p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <Button
-                      asChild
-                      className="bg-gold text-black hover:bg-gold/90"
-                    >
-                      <a href="#payment-plan-options">See Payment Options</a>
+                    <Button asChild>
+                      <a href="#payment-plan-options">See How Cherry Works</a>
                     </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="border-gold/40 bg-transparent text-white hover:bg-white hover:text-black"
-                    >
+                    <Button asChild variant="outline">
                       <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
                     </Button>
                   </div>
                 </div>
 
-                <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold/85">
-                    Not Sure Whether To Start Here?
+                <div className="rounded-[1.75rem] border border-gold/20 bg-white/90 p-6 shadow-[0_20px_48px_-34px_rgba(0,0,0,0.18)]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
+                    Helpful To Know
                   </p>
-                  <p className="mt-4 text-base leading-relaxed text-white/75">
-                    If you are not sure what treatment amount to review, whether to book first, or
-                    whether financing even makes sense for your situation, our team can help you
-                    talk it through.
-                  </p>
+                  <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                    <li>Use Cherry before you book if budget clarity affects your timing.</li>
+                    <li>Use Cherry after a consultation if you want treatment guidance first.</li>
+                    <li>You do not need to decide about financing to keep moving forward.</li>
+                  </ul>
                   <PhoneLink
                     phoneNumber={PHONE_NUMBER_DISPLAY}
-                    className="mt-6 inline-flex items-center gap-2 text-lg font-semibold text-white hover:text-gold"
+                    className="mt-6 inline-flex items-center gap-2 text-lg font-semibold text-foreground hover:text-secondary"
                   >
                     Call {PHONE_NUMBER_DISPLAY}
                     <ArrowRight size={18} />
@@ -153,36 +143,36 @@ const PaymentPlans = () => {
         >
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-6xl">
-              <div className="max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
-                  Payment Options
-                </p>
-                <h2 className="mt-4 text-3xl font-bold text-foreground md:text-4xl">
-                  See what monthly payments could look like.
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                  Use the Cherry experience below to review financing for cosmetic and restorative
-                  dental care. Once you have a better sense of what feels comfortable, we can help
-                  you decide whether to schedule, ask questions, or keep refining the treatment
-                  plan.
-                </p>
-              </div>
+              <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+                <div className="max-w-xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                    How To Use Cherry
+                  </p>
+                  <h2 className="mt-4 text-3xl font-bold text-foreground md:text-4xl">
+                    Use Cherry only when it helps.
+                  </h2>
+                  <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+                    The floating Cherry button gives you a simpler way to check payments without
+                    turning this page into a complicated estimator screen.
+                  </p>
 
-              <div className="mt-8">
-                <CherryPaymentPlansWidget variant="full" />
-              </div>
+                  <div className="mt-6 space-y-3">
+                    <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
+                      <p className="text-sm font-semibold text-foreground">1. Start with a rough amount or your consultation estimate.</p>
+                    </div>
+                    <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
+                      <p className="text-sm font-semibold text-foreground">2. Use Cherry to see whether monthly payments feel manageable.</p>
+                    </div>
+                    <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
+                      <p className="text-sm font-semibold text-foreground">3. Keep booking, ask questions, or pause. Cherry is there to help you decide, not push you.</p>
+                    </div>
+                  </div>
+                </div>
 
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                If you are unsure what amount to review in Cherry or which treatment plan to think
-                about first, call{' '}
-                <PhoneLink
-                  phoneNumber={PHONE_NUMBER_DISPLAY}
-                  className="font-semibold text-secondary underline underline-offset-4 hover:no-underline"
-                >
-                  {PHONE_NUMBER_DISPLAY}
-                </PhoneLink>{' '}
-                and our team will help you figure out the most useful next step.
-              </p>
+                <div className="min-w-0">
+                  <CherryPaymentPlansWidget variant="full" />
+                </div>
+              </div>
             </div>
           </div>
         </section>

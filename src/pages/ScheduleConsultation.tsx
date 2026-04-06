@@ -80,28 +80,27 @@ const ScheduleConsultation = () => {
               </div>
 
               <div className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8">
-                <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start">
-                  <div className="min-w-0 lg:pt-2">
+                <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
                       Flexible Financing
                     </p>
                     <h2 className="mt-3 text-2xl font-semibold text-foreground">
-                      Want to understand payment options before you book?
+                      If cost is part of your decision, Cherry is available here too.
                     </h2>
                     <p className="mt-3 text-muted-foreground leading-relaxed">
-                      If cost is part of your decision, Cherry can help you review possible monthly
-                      payments before you schedule. This is especially useful for veneers,
-                      Invisalign, whitening, implants, or a larger treatment plan when you want to
-                      know whether the budget feels comfortable first.
+                      You do not need to stop the booking process to use financing. If you want to
+                      check possible monthly payments before you schedule, Cherry can help with
+                      veneers, Invisalign, whitening, implants, and larger treatment plans.
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      The card on the right is a quick orientation tool. If financing sounds useful,
-                      open the full payment plans page for the full Cherry experience. If not, keep
-                      going and book your consultation now.
+                      The page stays intentionally simple. Use the Cherry financing button when it
+                      appears, open the full payment plans page if you want more guidance, or keep
+                      going and book now if you already know you want to talk with the team.
                     </p>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Button asChild>
-                        <Link to={PAYMENT_PLANS_PATH}>See Full Payment Plans</Link>
+                        <Link to={PAYMENT_PLANS_PATH}>Open Payment Plans</Link>
                       </Button>
                       <Button asChild variant="outline">
                         <a href="#book-online">Continue to Booking</a>
