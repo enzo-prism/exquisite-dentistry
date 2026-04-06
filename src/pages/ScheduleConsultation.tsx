@@ -86,19 +86,20 @@ const ScheduleConsultation = () => {
                       Flexible Financing
                     </p>
                     <h2 className="mt-3 text-2xl font-semibold text-foreground">
-                      Want to review payment options before you book?
+                      Want to understand payment options before you book?
                     </h2>
                     <p className="mt-3 text-muted-foreground leading-relaxed">
-                      Preview Cherry financing here so you can understand monthly payment options
-                      for veneers, Invisalign, whitening, implants, and larger treatment plans
-                      before your consultation request is even submitted.
+                      If cost is part of your decision, Cherry can help you review possible monthly
+                      payments before you schedule. It may be useful if you are considering veneers,
+                      Invisalign, whitening, implants, or a larger treatment plan and want the
+                      budget side to feel clearer first.
                     </p>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Button asChild>
-                        <Link to={PAYMENT_PLANS_PATH}>Open Full Payment Plans</Link>
+                        <Link to={PAYMENT_PLANS_PATH}>See Full Payment Plans</Link>
                       </Button>
                       <Button asChild variant="outline">
-                        <a href="#book-online">Keep Booking</a>
+                        <a href="#book-online">Continue to Booking</a>
                       </Button>
                     </div>
                   </div>

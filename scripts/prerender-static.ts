@@ -458,15 +458,15 @@ export const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/payment-plans").description,
     h1: "Dental Payment Plans Los Angeles",
     paragraphs: [
-      "Explore Cherry financing and flexible monthly payment options for veneers, Invisalign, implants, whitening, and complete smile makeovers in Los Angeles.",
-      "Use this page to review financing guidance, estimate monthly payments, and choose the next step with the Exquisite Dentistry team before starting treatment.",
+      "Use this page if you want to understand possible monthly payment options before deciding whether to move forward with treatment.",
+      "Cherry may be helpful if you are considering veneers, Invisalign, implants, whitening, or a larger smile plan and want the budget side to feel clearer before or after your consultation.",
     ],
     sections: [
       {
         id: "financing-options",
         heading: "Financing Options",
         paragraphs: [
-          "Cherry financing helps many patients spread cosmetic and restorative treatment costs into manageable monthly payments. It is designed to support high-intent cases where patients want to move forward without delaying care.",
+          "Cherry can help eligible patients review financing options for cosmetic and restorative dental treatment. If you are not sure what amount to review or whether financing makes sense for your situation, our team can help you talk through the next step.",
         ],
         links: [
           { label: "Schedule Consultation", href: "/schedule-consultation" },

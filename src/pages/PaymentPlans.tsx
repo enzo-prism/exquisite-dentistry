@@ -14,21 +14,21 @@ import { PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls
 
 const highlightCards = [
   {
-    title: 'Start With Clarity',
+    title: 'See whether the payment fits',
     description:
-      'Review monthly payment options for veneers, implants, Invisalign, whitening, and other treatment plans before you commit.',
+      'Review possible monthly payment options before you commit to veneers, implants, Invisalign, whitening, or another treatment plan.',
     icon: CreditCard,
   },
   {
-    title: 'Keep Momentum',
+    title: 'Use it before or after you book',
     description:
-      'Move from consultation to treatment planning with financing already in view, so the next step feels simpler and faster.',
+      'Some patients want to check the numbers before scheduling. Others use it after a consultation once they know the treatment they want.',
     icon: CalendarClock,
   },
   {
-    title: 'Luxury Care, More Flexible',
+    title: 'Get clearer on your next step',
     description:
-      'Use Cherry as a streamlined way to explore how your smile investment could fit your timeline and budget.',
+      'If the payment feels manageable, you can keep moving. If you still have questions, our team can help you talk through the plan.',
     icon: Sparkles,
   },
 ];
@@ -75,18 +75,18 @@ const PaymentPlans = () => {
                     Flexible Financing
                   </p>
                   <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
-                    Explore Cherry financing before you commit to treatment.
+                    Understand your payment options before you commit to treatment.
                   </h1>
                   <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/75">
-                    If you&apos;re planning veneers, Invisalign, whitening, implants, or a full
-                    smile refresh, Cherry gives you a faster way to understand monthly payment
-                    options before your consultation. That means less hesitation around cost and a
-                    clearer path into treatment planning.
+                    If you would rather understand the cost side before you make a decision, this
+                    page is for you. Cherry can help you review possible monthly payment options for
+                    veneers, Invisalign, whitening, implants, and other treatment plans before or
+                    after your consultation.
                   </p>
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/65">
-                    Use the live widget below to see if you qualify, compare payment scenarios, and
-                    bring financing clarity into your next conversation with our team. Payment
-                    options are provided through Cherry and remain subject to approval.
+                    Use the widget below if you want to see what financing might look like, compare
+                    payment scenarios, and decide whether it feels right for you. Financing is
+                    offered through Cherry, and approval is handled by Cherry.
                   </p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -108,12 +108,12 @@ const PaymentPlans = () => {
 
                 <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold/85">
-                    Prefer Concierge Help?
+                    Not Sure Whether To Start Here?
                   </p>
                   <p className="mt-4 text-base leading-relaxed text-white/75">
-                    If you want help choosing the right amount to explore, matching financing to a
-                    treatment sequence, or deciding what to do first, our team can walk you through
-                    it.
+                    If you are not sure what treatment amount to review, whether to book first, or
+                    whether financing even makes sense for your situation, our team can help you
+                    talk it through.
                   </p>
                   <PhoneLink
                     phoneNumber={PHONE_NUMBER_DISPLAY}
@@ -155,15 +155,16 @@ const PaymentPlans = () => {
             <div className="mx-auto max-w-6xl">
               <div className="max-w-3xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
-                  Cherry Financing Widget
+                  Payment Options
                 </p>
                 <h2 className="mt-4 text-3xl font-bold text-foreground md:text-4xl">
-                  See monthly payment options in one place.
+                  See what monthly payments could look like.
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                  Use the live Cherry experience below to review financing for cosmetic and
-                  restorative dental treatment. Once you know what feels comfortable, we can help
-                  you pair that with the right treatment plan, schedule, and next step.
+                  Use the Cherry experience below to review financing for cosmetic and restorative
+                  dental care. Once you have a better sense of what feels comfortable, we can help
+                  you decide whether to schedule, ask questions, or keep refining the treatment
+                  plan.
                 </p>
               </div>
 
@@ -172,15 +173,15 @@ const PaymentPlans = () => {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                If you have questions about treatment planning, timing, or what amount to review in
-                Cherry, call{' '}
+                If you are unsure what amount to review in Cherry or which treatment plan to think
+                about first, call{' '}
                 <PhoneLink
                   phoneNumber={PHONE_NUMBER_DISPLAY}
                   className="font-semibold text-secondary underline underline-offset-4 hover:no-underline"
                 >
                   {PHONE_NUMBER_DISPLAY}
                 </PhoneLink>{' '}
-                and our team will help you think through it.
+                and our team will help you figure out the most useful next step.
               </p>
             </div>
           </div>
@@ -193,12 +194,12 @@ const PaymentPlans = () => {
                 Next Step
               </p>
               <h2 className="mt-4 text-3xl font-bold text-foreground md:text-4xl">
-                Pair your payment plan with a smile consultation.
+                Ready to talk through treatment?
               </h2>
               <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                Once you&apos;ve reviewed financing, we can help you map the right treatment sequence,
-                timeline, and smile goals. That keeps the process streamlined from first consult to
-                treatment day.
+                Once you&apos;ve reviewed payment options, we can help you match them to the right
+                treatment plan, timeline, and priorities. If you still have questions, that is
+                completely fine too. A consultation is the place to talk them through.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -23,18 +23,18 @@ interface FinancingOptionsSectionProps {
 
 const defaultHighlights = [
   {
-    title: 'See monthly options',
-    description: 'Review possible payment paths before or after your consultation.',
+    title: 'Understand the monthly cost',
+    description: 'See possible monthly payment options before you decide whether now is the right time to move forward.',
     Icon: CreditCard,
   },
   {
-    title: 'Useful for bigger plans',
-    description: 'Explore financing for veneers, implants, Invisalign, whitening, and smile makeovers.',
+    title: 'Helpful for larger treatment plans',
+    description: 'Use it for veneers, implants, Invisalign, whitening, or a broader smile plan when you want the financial side to feel clearer.',
     Icon: Sparkles,
   },
   {
-    title: 'Keep momentum',
-    description: 'Move from financing clarity into treatment planning without losing your place.',
+    title: 'Choose your next step with confidence',
+    description: 'If the numbers feel comfortable, you can book. If not, you can talk with our team first and keep planning at your pace.',
     Icon: CalendarClock,
   },
 ];
@@ -65,9 +65,9 @@ const renderAction = (href: string, label: string, variant: 'default' | 'outline
 
 const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   eyebrow = 'Flexible Financing',
-  title = 'Review payment options before you commit to treatment.',
-  description = 'If you are planning veneers, Invisalign, whitening, implants, or a broader restorative plan, our Cherry financing page helps you explore monthly payment options before you book or begin treatment.',
-  disclaimer = 'Payment options are provided through Cherry and remain subject to approval.',
+  title = 'See whether financing would make treatment feel more comfortable.',
+  description = 'If you would rather understand the budget side before you book, Cherry can help you review monthly payment options for veneers, Invisalign, whitening, implants, and other treatment plans.',
+  disclaimer = 'Cherry is an optional financing tool. It can help you estimate payments before your consultation, and financing decisions are handled through Cherry.',
   primaryCtaText = 'View Payment Plans',
   primaryCtaHref = PAYMENT_PLANS_PATH,
   secondaryCtaText = 'Schedule Consultation',
@@ -131,13 +131,13 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                     Live Cherry Preview
                   </p>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
-                    Let patients see real financing options before they bounce.
+                    See what payment options could look like before you decide what to do next.
                   </h3>
                   <p className="mt-4 text-base leading-7 text-muted-foreground">
-                    This gives visitors a live Cherry preview while they are still deciding on
-                    veneers, implants, Invisalign, whitening, or a larger treatment plan. They can
-                    continue into the full financing flow or move straight into a consultation once
-                    the numbers feel realistic.
+                    This preview is here for people who want to understand the financial side of
+                    treatment before booking. You can review payment options, decide whether
+                    financing feels helpful, and then either continue to the full Cherry page or go
+                    straight to scheduling.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {renderAction(primaryCtaHref, primaryCtaText, 'default')}
@@ -158,8 +158,9 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           ) : null}
 
           <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            Patients can preview Cherry right here, continue to the full payment plans page for the
-            complete financing experience, and then return to scheduling with Exquisite Dentistry.
+            If you want a quick look, use the preview here. If you want to spend more time with the
+            full Cherry experience, open the payment plans page and come back whenever you are ready
+            to book.
             <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
           </div>
         </div>
