@@ -8,6 +8,7 @@ import ServiceStructuredData from "@/components/ServiceStructuredData";
 import VideoHero from "@/components/VideoHero";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import FinancingOptionsSection from "@/components/FinancingOptionsSection";
 import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
@@ -408,6 +409,12 @@ const CulverCityTeethWhitening = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-6 md:pt-8"
+          title="Ready to plan whitening from Culver City? Financing is easy to review here."
+          description="If your whitening visit is part of a larger cosmetic plan or you want to see streamlined monthly options before booking, our Cherry financing page gives you a simple next step right after visit-planning."
+        />
 
         <section id="location" className="py-16 bg-background">
           <div className="container mx-auto px-4">

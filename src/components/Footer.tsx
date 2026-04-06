@@ -41,6 +41,7 @@ type FooterLink = {
 const POPULAR_PAGES: FooterLink[] = [
   { label: 'Dental Implants', to: '/dental-implants/' },
   { label: 'Porcelain Veneers', to: '/veneers/' },
+  { label: 'Payment Plans', to: '/payment-plans/' },
   { label: 'Beverly Hills Dentist', to: '/beverly-hills-dentist/' },
   { label: 'Smile Gallery', to: '/smile-gallery/' },
   { label: 'Schedule Consultation', to: '/schedule-consultation/' }
@@ -91,6 +92,7 @@ const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
     links: [
       { label: 'Transformation Stories', to: '/transformation-stories/' },
       { label: 'Smile Gallery', to: '/smile-gallery/' },
+      { label: 'Payment Plans', to: '/payment-plans/' },
       { label: 'FAQs', to: '/faqs/' },
       { label: 'Editorial Policy', to: '/editorial-policy/' }
     ]

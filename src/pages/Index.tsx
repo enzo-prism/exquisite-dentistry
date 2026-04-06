@@ -10,6 +10,7 @@ import PracticeVideoSection from '@/components/PracticeVideoSection';
 import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -162,6 +163,11 @@ const IndexPage: React.FC = () => {
       <div ref={services.ref} className={services.animationClass}>
         <ServicesSection />
       </div>
+
+      <FinancingOptionsSection
+        title="A smoother way to plan your smile investment."
+        description="Before you schedule veneers, Invisalign, whitening, implants, or a larger smile makeover, you can explore Cherry payment options and come into your consultation with a clearer sense of next steps."
+      />
 
       <div ref={seasonal.ref} className={seasonal.animationClass}>
         <SeasonalTreatments />

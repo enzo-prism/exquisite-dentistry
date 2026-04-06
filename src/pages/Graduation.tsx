@@ -6,6 +6,7 @@ import { OptimizedImage } from '@/components/seo';
 import VideoHero from '@/components/VideoHero';
 import PageSEO from '@/components/seo/PageSEO';
 import GraduationServiceStructuredData from '@/components/GraduationServiceStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
@@ -352,6 +353,12 @@ const Graduation = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-white pb-0"
+          title="Need a little flexibility before graduation?"
+          description="If whitening, bonding, or veneer work is part of your graduation timeline, review Cherry payment options first so your treatment plan can move quickly."
+        />
 
         <section className="bg-gradient-to-r from-gray-50 to-white py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

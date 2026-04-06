@@ -24,6 +24,7 @@ const Locations = lazy(() => import("@/pages/Locations"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const ScheduleConsultation = lazy(() => import("@/pages/ScheduleConsultation"));
+const PaymentPlans = lazy(() => import("@/pages/PaymentPlans"));
 const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
 const Wedding = lazy(() => import("@/pages/Wedding"));
 const Graduation = lazy(() => import("@/pages/Graduation"));
@@ -140,6 +141,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ScheduleConsultation />
+              </Suspense>} />
+              <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}>
+                <PaymentPlans />
               </Suspense>} />
               <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Wedding />

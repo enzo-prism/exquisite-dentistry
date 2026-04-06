@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CherryPaymentPlansWidget from "@/components/CherryPaymentPlansWidget";
 import PageSEO from "@/components/seo/PageSEO";
 import WebPageStructuredData from "@/components/WebPageStructuredData";
 import { Button } from "@/components/ui/button";
 import PhoneLink from "@/components/PhoneLink";
 import { PHONE_NUMBER_DISPLAY } from "@/constants/contact";
-import { SCHEDULING_URL } from "@/constants/urls";
+import { PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
 import { ROUTE_METADATA } from "@/constants/metadata";
 
 const ScheduleConsultation = () => {
@@ -75,6 +77,34 @@ const ScheduleConsultation = () => {
                     Call {PHONE_NUMBER_DISPLAY}
                   </PhoneLink>
                 </Button>
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8">
+                <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
+                      Flexible Financing
+                    </p>
+                    <h2 className="mt-3 text-2xl font-semibold text-foreground">
+                      Want to review payment options before you book?
+                    </h2>
+                    <p className="mt-3 text-muted-foreground leading-relaxed">
+                      Preview Cherry financing here so you can understand monthly payment options
+                      for veneers, Invisalign, whitening, implants, and larger treatment plans
+                      before your consultation request is even submitted.
+                    </p>
+                    <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                      <Button asChild>
+                        <Link to={PAYMENT_PLANS_PATH}>Open Full Payment Plans</Link>
+                      </Button>
+                      <Button asChild variant="outline">
+                        <a href="#book-online">Keep Booking</a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  <CherryPaymentPlansWidget variant="preview" />
+                </div>
               </div>
 
               <div className="mt-14" id="book-online">

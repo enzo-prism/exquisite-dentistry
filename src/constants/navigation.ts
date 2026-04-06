@@ -15,6 +15,7 @@ export const DESKTOP_CORE_LINKS: NavigationItem[] = DESKTOP_PRIMARY_LINKS.slice(
 export const DESKTOP_EXPANDED_LINKS: NavigationItem[] = DESKTOP_PRIMARY_LINKS.slice(2);
 export const DESKTOP_MORE_LINKS: NavigationItem[] = [
   ...DESKTOP_EXPANDED_LINKS,
+  { label: 'Payment Plans', to: '/payment-plans' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -84,6 +85,7 @@ export const MOBILE_PRIMARY_LINKS: NavigationItem[] = [
 ];
 
 export const MOBILE_SECONDARY_LINKS: NavigationItem[] = [
+  { label: 'Payment Plans', to: '/payment-plans' },
   { label: 'Client Experience', to: '/client-experience' },
   { label: 'Blog', to: '/blog' },
   { label: 'FAQs', to: '/faqs' },

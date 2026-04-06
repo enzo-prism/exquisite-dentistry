@@ -12,9 +12,18 @@ export type BreadcrumbItem = {
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
   className?: string;
+  listClassName?: string;
+  linkClassName?: string;
+  currentClassName?: string;
 }
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) => {
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+  items,
+  className,
+  listClassName,
+  linkClassName,
+  currentClassName,
+}) => {
   if (!items.length) return null;
 
   const allItems: BreadcrumbItem[] = [{ label: "Home", to: "/" }, ...items];
@@ -26,7 +35,8 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) => {
           "flex max-w-full items-center overflow-x-auto whitespace-nowrap",
           "rounded-full border border-border/60 bg-muted/10 px-2 py-1",
           "text-xs text-muted-foreground sm:text-sm",
-          "no-scrollbar"
+          "no-scrollbar",
+          listClassName
         )}
       >
         {allItems.map((item, index) => {
@@ -42,7 +52,8 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) => {
                   title={item.label}
                   className={cn(
                     "inline-flex items-center gap-1.5 rounded-full px-2 py-1",
-                    "max-w-[70vw] font-medium text-foreground sm:max-w-none"
+                    "max-w-[70vw] font-medium text-foreground sm:max-w-none",
+                    currentClassName
                   )}
                 >
                   {isHome ? (
@@ -62,7 +73,8 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) => {
                   className={cn(
                     "inline-flex items-center gap-1.5 rounded-full px-2 py-1",
                     "transition-colors hover:bg-muted/30 hover:text-foreground",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                    linkClassName
                   )}
                 >
                   {isHome ? (

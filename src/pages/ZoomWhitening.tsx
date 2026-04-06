@@ -10,6 +10,7 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
@@ -434,9 +435,15 @@ const ZoomWhitening = () => {
 		          </div>
 		        </section>
 
-		        <section id="aftercare" className="py-16 bg-background">
-		          <div className="container mx-auto px-4">
-		            <div className="max-w-5xl mx-auto">
+        <FinancingOptionsSection
+          className="bg-muted/20 pt-0 md:pt-2"
+          title="Considering whitening plus other cosmetic finishing touches?"
+          description="If Zoom whitening is part of a bigger smile plan, our Cherry financing page lets you review monthly payment options right after the pricing section before you keep reading."
+        />
+
+	        <section id="aftercare" className="py-16 bg-background">
+	          <div className="container mx-auto px-4">
+	            <div className="max-w-5xl mx-auto">
 		              <div className="text-center mb-12">
 		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
 		                  Aftercare & How Long Results Last
@@ -472,13 +479,13 @@ const ZoomWhitening = () => {
 		                  </CardContent>
 		                </Card>
 		              </div>
-		            </div>
-		          </div>
-		        </section>
+	            </div>
+	          </div>
+	        </section>
 
-		        <section id="location" className="py-16 bg-muted/15">
-		          <div className="container mx-auto px-4">
-		            <div className="max-w-5xl mx-auto">
+	        <section id="location" className="py-16 bg-muted/15">
+	          <div className="container mx-auto px-4">
+	            <div className="max-w-5xl mx-auto">
 		              <div className="text-center mb-12">
 		                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
 		                  Location, Hours, and Directions

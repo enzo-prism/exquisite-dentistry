@@ -80,6 +80,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/payment-plans'),
+      lastmod: getFileLastModified('src/pages/PaymentPlans.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
       loc: getCanonicalUrl('/veneers'),
       lastmod: getFileLastModified('src/pages/Veneers.tsx', 14, now),
       changefreq: 'monthly',

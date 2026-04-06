@@ -8,6 +8,7 @@ import ServiceStructuredData from '@/components/ServiceStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import VeneerCTA from '@/components/VeneerCTA';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
@@ -224,6 +225,12 @@ const FrontTeethVeneers = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-muted/30 pt-0 md:pt-2"
+          title="Comparing 2 veneers versus 4? Review monthly payment options here."
+          description="If you are mapping the investment for a two-tooth correction or a wider smile-zone plan, our Cherry financing page lets you explore monthly payment options right after the pricing section."
+        />
 
         {/* Why section */}
         <section className="py-14 md:py-16 bg-background">

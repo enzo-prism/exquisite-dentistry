@@ -11,6 +11,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
@@ -452,6 +453,12 @@ const DentalImplants = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-6 md:pt-8"
+          title="Compare implant treatment plans with monthly payment options."
+          description="If you are weighing a single implant, implant bridge, or full-arch plan, our Cherry financing page lets you explore monthly payment options while the investment details are still fresh."
+        />
 
         <section id="faqs" className="py-16 bg-muted/20">
           <div className="container mx-auto px-4">

@@ -10,6 +10,7 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
@@ -352,6 +353,12 @@ const TeethWhitening = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-6 md:pt-8"
+          title="See flexible payment options right after the whitening investment breakdown."
+          description="If you are comparing Zoom whitening, custom trays, or a whitening package bundled with veneers or Invisalign, our Cherry financing page lets you review monthly options while the pricing details are still top of mind."
+        />
 
         <section className="py-16 bg-muted/20">
           <div className="container mx-auto px-4">

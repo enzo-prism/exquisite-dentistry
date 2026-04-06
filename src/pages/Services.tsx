@@ -24,6 +24,7 @@ import ImageComponent from '@/components/Image';
 import { OptimizedImage } from '@/components/seo';
 import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import { serviceCategories } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -491,6 +492,12 @@ const Services = () => {
           </div>
         </section>
       ))}
+
+      <FinancingOptionsSection
+        className="bg-background"
+        title="Flexible financing for cosmetic and restorative treatment."
+        description="If you already know the treatment you want, or you are still narrowing the right path, start on our Cherry payment plans page to explore monthly payment possibilities before your consultation."
+      />
 
       {/* Invisalign Section */}
       <section id="invisalign" className="py-20 bg-white">

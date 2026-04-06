@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle2, Sparkles } from "lucide-react";
 import PageSEO from "@/components/seo/PageSEO";
+import FinancingOptionsSection from "@/components/FinancingOptionsSection";
 import { ServicePageConfig } from "@/data/servicePages";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -200,6 +201,8 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
           </div>
         </div>
       </section>
+
+      <FinancingOptionsSection className="bg-background pt-10 md:pt-12" />
 
       <section className="mx-auto max-w-4xl px-4 py-16 md:py-20">
         <div className="rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-primary/20 p-10 text-center">

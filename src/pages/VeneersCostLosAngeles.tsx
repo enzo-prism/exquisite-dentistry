@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PageSEO } from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import { Button } from '@/components/ui/button';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { trackCTAClick } from '@/utils/googleAdsTracking';
@@ -81,6 +82,11 @@ const VeneersCostLosAngeles = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          title="Need clarity on veneers cost and monthly payment options?"
+          description="If you are comparing the investment for two front veneers or a broader smile-zone plan, our Cherry financing page lets you explore monthly payment options before your consultation."
+        />
       </div>
     </>
   );

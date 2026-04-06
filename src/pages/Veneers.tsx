@@ -6,6 +6,7 @@ import VideoHero from '@/components/VideoHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Clock, Shield, Sparkles, ArrowRight } from 'lucide-react';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
@@ -262,6 +263,12 @@ const Veneers = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-0 md:pt-2"
+          title="Comparing 2 veneers, 4 veneers, or a fuller veneer plan?"
+          description="Right after reviewing front-teeth veneer options and transparent planning guidance, our Cherry financing page lets you explore monthly payment options before moving into the full treatment process."
+        />
 
         {/* Process Section */}
         <section className="py-16 bg-background">

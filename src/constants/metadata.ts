@@ -173,6 +173,14 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'schedule consultation, book dentist appointment, porcelain veneers consultation, dental implants consultation, Beverly Hills dentist, Los Angeles cosmetic dentist',
     ogImage: DEFAULT_OG_IMAGE
   },
+  '/payment-plans': {
+    title: 'Dental Payment Plans Los Angeles | Cherry Financing',
+    description:
+      'Explore Cherry dental financing at Exquisite Dentistry in Los Angeles. Review monthly payment options for veneers, implants, Invisalign, whitening, and more.',
+    keywords:
+      'dental financing Los Angeles, Cherry financing dentist, dental payment plans Los Angeles, veneers financing, Invisalign payment plans, dental implants financing',
+    ogImage: DEFAULT_OG_IMAGE
+  },
   '/testimonials': {
     title:
       'Patient Reviews & Testimonials Los Angeles | Exquisite Dentistry',

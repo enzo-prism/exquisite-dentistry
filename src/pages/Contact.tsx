@@ -8,6 +8,7 @@ import { trackFormSubmission } from '@/utils/googleAdsTracking';
 import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import PageSEO from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
@@ -575,6 +576,13 @@ const Contact = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          title="Want to review payment options before we talk?"
+          description="If you are planning veneers, Invisalign, whitening, implants, or a broader treatment plan, our Cherry financing page lets you explore monthly payment options before treatment planning."
+          secondaryCtaText="Send Us a Message"
+          secondaryCtaHref="#contact-form"
+        />
 
         {/* Map Section */}
         <section className="mb-0 py-28 bg-gray-50">

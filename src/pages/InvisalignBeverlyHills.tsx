@@ -9,6 +9,7 @@ import VideoHero from "@/components/VideoHero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import FinancingOptionsSection from "@/components/FinancingOptionsSection";
 import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import RelatedArticles from "@/components/RelatedArticles";
 import LastUpdated from "@/components/LastUpdated";
@@ -340,6 +341,12 @@ const InvisalignBeverlyHills = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-muted/15 pt-0 md:pt-2"
+          title="See Invisalign monthly options while Beverly Hills treatment costs are in view."
+          description="If you are comparing aligner costs, refinements, and finishing phases, our Cherry financing page lets you review monthly payment options right after the cost section."
+        />
 
         <section id="finishing" className="py-16 bg-background">
           <div className="container mx-auto px-4">

@@ -9,6 +9,7 @@ import VideoHero from "@/components/VideoHero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import FinancingOptionsSection from "@/components/FinancingOptionsSection";
 import InternalLinkingWidget from "@/components/InternalLinkingWidget";
 import RelatedArticles from "@/components/RelatedArticles";
 import LastUpdated from "@/components/LastUpdated";
@@ -303,6 +304,12 @@ const SmileMakeoverLosAngeles = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-6 md:pt-8"
+          title="Smile makeovers are easier to plan when financing is already clear."
+          description="If your plan includes veneers, Invisalign, whitening, or restorative phases, our Cherry financing page lets you explore monthly payment options right after the smile-makeover cost discussion."
+        />
 
         <section id="natural-results" className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">

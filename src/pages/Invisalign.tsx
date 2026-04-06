@@ -10,6 +10,7 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import ServiceStructuredData from '@/components/ServiceStructuredData';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
@@ -458,6 +459,12 @@ const Invisalign = () => {
             </div>
           </div>
         </section>
+
+        <FinancingOptionsSection
+          className="bg-background pt-6 md:pt-8"
+          title="Review Invisalign monthly options while treatment costs are clear."
+          description="If you are comparing aligner fees, refinements, retainers, and bundled whitening, our Cherry financing page lets you explore monthly payment options before you move on to scheduling."
+        />
 
         <section className="py-16 bg-muted/15">
           <div className="container mx-auto px-4">
