@@ -80,8 +80,8 @@ const ScheduleConsultation = () => {
               </div>
 
               <div className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8">
-                <div className="grid gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-start">
-                  <div className="min-w-0">
+                <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start">
+                  <div className="min-w-0 lg:pt-2">
                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
                       Flexible Financing
                     </p>
@@ -90,9 +90,14 @@ const ScheduleConsultation = () => {
                     </h2>
                     <p className="mt-3 text-muted-foreground leading-relaxed">
                       If cost is part of your decision, Cherry can help you review possible monthly
-                      payments before you schedule. It may be useful if you are considering veneers,
-                      Invisalign, whitening, implants, or a larger treatment plan and want the
-                      budget side to feel clearer first.
+                      payments before you schedule. This is especially useful for veneers,
+                      Invisalign, whitening, implants, or a larger treatment plan when you want to
+                      know whether the budget feels comfortable first.
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      The card on the right is a quick orientation tool. If financing sounds useful,
+                      open the full payment plans page for the full Cherry experience. If not, keep
+                      going and book your consultation now.
                     </p>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Button asChild>

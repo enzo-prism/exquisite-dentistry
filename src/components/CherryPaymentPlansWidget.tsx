@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { CalendarClock, CircleCheckBig, CreditCard, Sparkles } from 'lucide-react';
 
 import PhoneLink from '@/components/PhoneLink';
 import {
@@ -46,10 +47,81 @@ interface CherryPaymentPlansWidgetProps {
   variant?: CherryPaymentPlansWidgetVariant;
 }
 
-const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
-  className,
-  variant = 'full',
-}) => {
+const previewHighlights = [
+  {
+    title: 'Review monthly-payment scenarios',
+    description:
+      'Open the full Cherry page when you want to explore what financing could look like for your treatment plan.',
+    Icon: CreditCard,
+  },
+  {
+    title: 'Useful before or after your consultation',
+    description:
+      'Some patients want clarity before they book. Others prefer to look once they know the treatment amount.',
+    Icon: CalendarClock,
+  },
+  {
+    title: 'A planning tool, not a commitment',
+    description:
+      'You can use financing to understand your options, then decide whether you want to schedule, ask questions, or wait.',
+    Icon: Sparkles,
+  },
+];
+
+const CherryPaymentPlansPreviewCard: React.FC<{ className?: string }> = ({ className }) => (
+  <div
+    className={cn(
+      'w-full rounded-[2rem] border border-gold/20 bg-white shadow-[0_28px_80px_-42px_rgba(0,0,0,0.28)]',
+      className,
+    )}
+  >
+    <div className="border-b border-gold/10 bg-gradient-to-r from-stone-50 via-white to-stone-50 px-6 py-5 sm:px-7">
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-secondary">
+        Cherry Financing
+      </p>
+      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+        A simpler way to explore payment options.
+      </h3>
+      <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+        Use the full Cherry page to review financing when cost is part of your decision. It is
+        there to help you plan, not pressure you into taking the next step before you are ready.
+      </p>
+    </div>
+
+    <div className="p-6 sm:p-7">
+      <div className="grid gap-3">
+        {previewHighlights.map(({ title, description, Icon }) => (
+          <div
+            key={title}
+            className="rounded-[1.35rem] border border-border/80 bg-stone-50/70 p-4"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+                <Icon size={18} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-foreground">{title}</p>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">{description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 rounded-[1.5rem] border border-gold/15 bg-gold/5 p-4">
+        <div className="flex items-start gap-3">
+          <CircleCheckBig className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+          <p className="text-sm leading-6 text-foreground/85">
+            If you are unsure whether it makes more sense to review financing first or book first,
+            our team can help you choose the better starting point.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const CherryPaymentPlansLiveWidget: React.FC<{ className?: string }> = ({ className }) => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(() =>
     typeof window !== 'undefined' ? Boolean(window['loaded-_hw']) : false,
@@ -57,8 +129,7 @@ const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
   const [status, setStatus] = useState<WidgetStatus>(() =>
     typeof window !== 'undefined' && window['loaded-_hw'] ? 'ready' : 'loading',
   );
-  const isPreview = variant === 'preview';
-  const renderTargetId = isPreview ? 'hero' : 'all';
+  const renderTargetId = 'all';
 
   useEffect(() => {
     if (shouldLoad || typeof window === 'undefined' || !mountRef.current) return;
@@ -206,25 +277,27 @@ const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
         ))}
         <div
           id="all"
-          className={cn('w-full bg-white', isPreview ? 'hidden' : 'min-h-[980px]')}
+          className="min-h-[980px] w-full bg-white"
           aria-live="polite"
         />
-        <div
-          id="hero"
-          className={cn('w-full bg-white', isPreview ? 'min-h-[34rem]' : 'hidden')}
-          aria-hidden={!isPreview}
-          aria-live="polite"
-        />
+        <div id="hero" className="hidden" aria-hidden="true" aria-live="polite" />
         <div id="calculator" className="hidden" aria-hidden="true" />
         <div id="howitworks" className="hidden" aria-hidden="true" />
         <div id="faq" className="hidden" aria-hidden="true" />
-
-        {isPreview ? (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/95 to-transparent" />
-        ) : null}
       </div>
     </div>
   );
+};
+
+const CherryPaymentPlansWidget: React.FC<CherryPaymentPlansWidgetProps> = ({
+  className,
+  variant = 'full',
+}) => {
+  if (variant === 'preview') {
+    return <CherryPaymentPlansPreviewCard className={className} />;
+  }
+
+  return <CherryPaymentPlansLiveWidget className={className} />;
 };
 
 export default CherryPaymentPlansWidget;

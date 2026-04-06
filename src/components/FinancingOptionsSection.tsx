@@ -125,19 +125,19 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
 
           {showWidgetPreview ? (
             <div className="relative border-t border-border/70 bg-white/80 px-8 py-8 md:px-10 md:py-10">
-              <div className="grid gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-start">
+              <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
                 <div className="min-w-0 max-w-xl">
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
-                    Live Cherry Preview
+                    Financing Snapshot
                   </p>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
-                    See what payment options could look like before you decide what to do next.
+                    See whether financing is something you even want to explore.
                   </h3>
                   <p className="mt-4 text-base leading-7 text-muted-foreground">
-                    This preview is here for people who want to understand the financial side of
-                    treatment before booking. You can review payment options, decide whether
-                    financing feels helpful, and then either continue to the full Cherry page or go
-                    straight to scheduling.
+                    Instead of dropping the full Cherry experience into this page, we keep the
+                    context here simple. If financing seems relevant, open the dedicated payment
+                    plans page for the full Cherry flow. If not, you can keep moving without any
+                    extra friction.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {renderAction(primaryCtaHref, primaryCtaText, 'default')}
@@ -158,9 +158,8 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           ) : null}
 
           <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            If you want a quick look, use the preview here. If you want to spend more time with the
-            full Cherry experience, open the payment plans page and come back whenever you are ready
-            to book.
+            If financing matters to your decision, open the full payment plans page. If it
+            doesn&apos;t, you can skip it and keep moving toward your consultation.
             <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
           </div>
         </div>
