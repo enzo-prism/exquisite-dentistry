@@ -31,7 +31,7 @@ npm run dev          # Vite dev server @ http://localhost:5173
 
 ## Image & Asset Pipeline
 
-- `npm run build:prod` = `optimize:images` + `vite build`. Use this for Netlify parity or whenever you add media under `public/lovable-uploads/`. The optimizer writes WebP derivatives into `public/optimized/`; never commit `dist/`.
+- `npm run build:prod` = `optimize:images` + `vite build`. Use this whenever you add media under `public/lovable-uploads/` or want a slower asset-focused verification pass. The optimizer writes WebP derivatives into `public/optimized/`, and the build refreshes `src/utils/imageRegistry.json`; never commit `dist/`.
 - The Sharp script skips files that already have an optimized counterpart, so rerunning it is safe but can take a couple minutes on large batches. Keep an eye on git status afterwards—no changes should appear because optimized files live under `public/`.
 
 ## Manual QA Scenarios
@@ -59,7 +59,7 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
 ## CI / Automation Tips
 
 - Cache `~/.npm` and `node_modules` between runs to cut `npm install` time.
-- Run `npm run build:prod` instead of `npm run build` inside Netlify-style pipelines so image optimization, HTML fallbacks, and static prerendering happen every deploy.
+- Vercel uses `npm run build` from `.vercel/project.json`. Run `npm run build:prod` locally when you want to force the full image-optimization pass before review.
 - Add `npm run lint && npm run build && npm run check:seo` to PR workflows; those three commands surface 90% of issues before reviewers look at UI diffs.
 
 ## Troubleshooting

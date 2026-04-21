@@ -36,7 +36,7 @@ Quick rules:
 | `npm run dev` | Any interactive work | Hot reload; picks up `.env`. |
 | `npm run lint` | Before every PR/push | ESLint (TS + React Hooks). Add `-- --fix` when safe. |
 | `npm run build` | Mandatory gate | Runs static HTML fallbacks + Vite build + SEO prerender into `dist/`. |
-| `npm run build:prod` | Media/launch parity | Runs Sharp optimizer + build. Mirrors Netlify. |
+| `npm run build:prod` | Media/launch parity | Runs Sharp optimizer + build for asset-heavy verification. |
 | `npm run preview` | Manual QA | Serves `dist/` on `http://localhost:4173`. |
 | `npm run prerender:static` | After build if needed | Rebuilds static route HTML snapshots in `dist/` (already included in `build`). |
 | `npm run generate:blog` | After editing `Blog-Content/` | Rebuilds `src/data/generatedBlogPosts.ts`. |
@@ -87,7 +87,9 @@ Run the extras when applicable:
 
 ## Deployment Notes
 
-- Production deploys (Netlify) call `npm run build:prod`. If you add scripts/env vars, reflect them in `docs/BUILD_WORKFLOW.md` and this guide.
+- This repo is Vercel-linked via `.vercel/project.json`. Non-`main` branches are the default preview path; `main` is the production path.
+- For external review, do not assume the raw preview URL is shareable. Generate a Vercel `_vercel_share` link if the preview is protected.
+- If you add scripts/env vars or change the release flow, reflect them in `docs/BUILD_WORKFLOW.md` and this guide.
 - Never commit `dist/` output. Treat it as disposable build artifacts.
 
 Keep this guide updated whenever you introduce new scripts, data flows, or tricky UI patterns so the next Codex session hits the ground running.

@@ -14,10 +14,16 @@ import {
   Activity
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ImageComponent from '@/components/Image';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { PageSEO } from '@/components/seo/PageSEO';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_E164 } from '@/constants/contact';
+
+const chairsideConsultationImage = {
+  src: '/lovable-uploads/patient-in-seat-talking-with-dentist.png',
+  alt: 'Dr. Alexie Aguil seated face to face with a relaxed patient during a consultation',
+};
 
 const ClientExperience = () => {
   const comfortHighlights = [
@@ -237,6 +243,24 @@ const ClientExperience = () => {
                 <p className="paragraph">
                   From first scans to final polish, we narrate every step so you always feel informed and in control. Here’s how a typical smile session flows.
                 </p>
+                <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.28)]">
+                  <div className="relative aspect-[3/2] w-full">
+                    <ImageComponent
+                      src={chairsideConsultationImage.src}
+                      alt={chairsideConsultationImage.alt}
+                      fill
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="border-t border-black/5 px-5 py-4">
+                    <p className="text-sm font-semibold text-black">Conversation-first care</p>
+                    <p className="mt-2 text-sm leading-6 text-black-light/80">
+                      The calmest visits usually start with eye-level conversation, not rushed
+                      treatment. We take time to listen, explain the plan clearly, and help
+                      patients feel settled before anything begins.
+                    </p>
+                  </div>
+                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
                     { title: 'Digital Preview Suite', body: 'iTero scans + 3D rendering let you visualize movements before we begin.' },

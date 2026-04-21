@@ -110,6 +110,26 @@
       "preferred": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.webp",
       "fallback": "/optimized/logos/9e823f53-f866-40f9-a3e2-78373640ee8f-desktop-2x.png"
     },
+    "/lovable-uploads/patient-in-seat-talking-with-dentist": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/lovable-uploads/patient-in-seat-talking-with-dentist.png"
+      },
+      "preferred": "/lovable-uploads/patient-in-seat-talking-with-dentist.png",
+      "fallback": "/lovable-uploads/patient-in-seat-talking-with-dentist.png"
+    },
+    "/lovable-uploads/office-tour": {
+      "formats": [
+        "png"
+      ],
+      "paths": {
+        "png": "/lovable-uploads/office-tour.png"
+      },
+      "preferred": "/lovable-uploads/office-tour.png",
+      "fallback": "/lovable-uploads/office-tour.png"
+    },
     "/lovable-uploads/ff4f6eda-6721-417a-aaf9-52db68468d45": {
       "formats": [
         "png"
@@ -1449,6 +1469,102 @@
       },
       "preferred": "/lovable-uploads/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995.png",
       "fallback": "/lovable-uploads/01b0ec1f-3c60-4a9f-8700-38dcbe0a3995.png"
+    },
+    "/optimized/patient-in-seat-talking-with-dentist-sm": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/patient-in-seat-talking-with-dentist-sm.webp",
+        "avif": "/optimized/patient-in-seat-talking-with-dentist-sm.avif"
+      },
+      "preferred": "/optimized/patient-in-seat-talking-with-dentist-sm.webp",
+      "fallback": null
+    },
+    "/optimized/patient-in-seat-talking-with-dentist-original": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/patient-in-seat-talking-with-dentist-original.webp",
+        "avif": "/optimized/patient-in-seat-talking-with-dentist-original.avif"
+      },
+      "preferred": "/optimized/patient-in-seat-talking-with-dentist-original.webp",
+      "fallback": null
+    },
+    "/optimized/patient-in-seat-talking-with-dentist-md": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/patient-in-seat-talking-with-dentist-md.webp",
+        "avif": "/optimized/patient-in-seat-talking-with-dentist-md.avif"
+      },
+      "preferred": "/optimized/patient-in-seat-talking-with-dentist-md.webp",
+      "fallback": null
+    },
+    "/optimized/patient-in-seat-talking-with-dentist-lg": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/patient-in-seat-talking-with-dentist-lg.webp",
+        "avif": "/optimized/patient-in-seat-talking-with-dentist-lg.avif"
+      },
+      "preferred": "/optimized/patient-in-seat-talking-with-dentist-lg.webp",
+      "fallback": null
+    },
+    "/optimized/office-tour-sm": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/office-tour-sm.webp",
+        "avif": "/optimized/office-tour-sm.avif"
+      },
+      "preferred": "/optimized/office-tour-sm.webp",
+      "fallback": null
+    },
+    "/optimized/office-tour-original": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/office-tour-original.webp",
+        "avif": "/optimized/office-tour-original.avif"
+      },
+      "preferred": "/optimized/office-tour-original.webp",
+      "fallback": null
+    },
+    "/optimized/office-tour-md": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/office-tour-md.webp",
+        "avif": "/optimized/office-tour-md.avif"
+      },
+      "preferred": "/optimized/office-tour-md.webp",
+      "fallback": null
+    },
+    "/optimized/office-tour-lg": {
+      "formats": [
+        "webp",
+        "avif"
+      ],
+      "paths": {
+        "webp": "/optimized/office-tour-lg.webp",
+        "avif": "/optimized/office-tour-lg.avif"
+      },
+      "preferred": "/optimized/office-tour-lg.webp",
+      "fallback": null
     },
     "/optimized/ff4f6eda-6721-417a-aaf9-52db68468d45-sm": {
       "formats": [
@@ -5034,5 +5150,5 @@
       "fallback": null
     }
   },
-  "lastUpdated": "2026-04-21T15:54:22.776Z"
+  "lastUpdated": "2026-04-21T16:02:47.229Z"
 }

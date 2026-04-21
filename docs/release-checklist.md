@@ -1,7 +1,15 @@
 # Release Checklist
 
+# Preview handoff:
+- Push the working branch and wait for the Vercel preview deployment to reach `READY`.
+- Verify the preview reflects the latest branch commit before sharing it.
+- If the raw preview URL is protected, generate a shareable `_vercel_share` link for client review.
+- Smoke test the changed routes on preview before sending it out.
+
 Smoke test pages:
 - https://exquisitedentistryla.com/
+- https://exquisitedentistryla.com/tour/
+- https://exquisitedentistryla.com/client-experience/
 - https://exquisitedentistryla.com/veneers/
 - https://exquisitedentistryla.com/invisalign/
 - https://exquisitedentistryla.com/emergency-dentist/

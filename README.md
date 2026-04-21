@@ -83,7 +83,24 @@ Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/03495860-0dae-47cc-9f99-6dca02a2f426) and click on Share -> Publish.
+This repo is linked to Vercel through [`.vercel/project.json`](/Users/enzo/exquisite/.vercel/project.json).
+
+Recommended flow:
+
+1. Work on a non-`main` branch.
+2. Run local QA: `npm run lint` and `npm run build`.
+3. Push the branch to GitHub to trigger a Vercel preview deployment.
+4. For client review, generate a shareable no-login Vercel preview link instead of sending the raw protected preview URL.
+5. Only update production after preview approval, by merging/pushing `main`.
+
+Production domain:
+
+- `https://exquisitedentistryla.com`
+
+Preview review tips:
+
+- Smoke test the homepage plus any changed routes before handing off the link.
+- If the raw Vercel preview shows `401` or `Unauthorized`, create a `_vercel_share` review link for the client.
 
 ## Local Build & QA Checklist
 
@@ -140,7 +157,7 @@ To verify:
 1. After deployment, visit an invalid path like `https://exquisitedentistryla.com/this-does-not-exist` and confirm the response is a 404.
 2. Optionally in local dev, visit an invalid path and confirm `<meta name="robots" content="noindex,follow">` is present on the Not Found route.
 
-`npm run build:prod` mirrors the Netlify pipeline by optimizing images first; use it when validating media-heavy changes. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
+`npm run build:prod` forces the image optimizer before building; use it when validating media-heavy changes. If you add assets under `public/lovable-uploads`, `npm run build` also refreshes `src/utils/imageRegistry.json` so the new files are tracked by the image pipeline. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 

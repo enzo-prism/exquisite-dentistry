@@ -14,20 +14,24 @@
 - `robots.txt` and `sitemap.xml` are removed from the build output
 
 ## Preview
-- Branches: `feature/*` (and any non-main/non-staging branch)
+- Branches: any non-`main` branch (for example `feature/*`, `codex/*`, or other review branches)
 - Domain: Vercel preview URLs
 - Intended for quick reviews and internal QA
+- Raw preview URLs may still be protected by Vercel Authentication
+- For external/client review, prefer a shareable `_vercel_share` preview link over the raw protected deployment URL
 
 ## Local Testing
 - `npm install`
 - `npm run dev` for local development
 - `npm run build` then `npm run preview` for a production-like check
 
-## Sharing Staging Links
-- Share the staging domain directly with clients for review.
-- Remind reviewers that staging may contain unreleased changes and is blocked from indexing.
+## Sharing Preview Links
+- Before sharing, confirm the Vercel deployment is `READY` and matches the current branch state.
+- Smoke test the homepage plus the changed routes on the preview deployment.
+- If the plain preview URL is auth-protected, generate a shareable `_vercel_share` link so clients do not need a Vercel account to review.
 
 ## Release Flow
-1. Develop on `feature/*` branches.
-2. Merge into `staging` for stakeholder review and staging verification.
-3. Promote to `main` for production release.
+1. Develop on a non-`main` branch.
+2. Push the branch and review the Vercel preview.
+3. Share a no-login preview link with stakeholders or clients when needed.
+4. Promote to `main` only after preview approval.

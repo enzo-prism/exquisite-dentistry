@@ -6,6 +6,11 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 import ImageComponent from '@/components/Image';
 
+const featuredArrivalImage = {
+  src: '/lovable-uploads/office-tour.png',
+  alt: 'Dr. Alexie Aguil welcoming a patient into Exquisite Dentistry near the reception desk',
+};
+
 const studioImages = [
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964432/Screenshot_2025-11-12_at_8.16.11_AM_tyxnyo.png', alt: 'Reception lounge with custom marble welcome desk', grid: 'lg:col-span-2', aspectClass: 'aspect-[3/2]' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.52_AM_ikhcjl.png', alt: 'Treatment suite framed by artisan lighting', aspectClass: 'aspect-[3/4]' },
@@ -40,6 +45,7 @@ const Tour = () => {
   }, []);
 
   const heroHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
+  const featuredArrivalReveal = useRevealOnScroll({ animation: 'up', delayClass: 'reveal-delay-100' });
   const galleryReveal = useRevealOnScroll({ animation: 'scale', delayClass: 'reveal-delay-100' });
 
   return (
@@ -80,6 +86,45 @@ const Tour = () => {
           >
             5-star experience · 200+ Google reviews · 100+ Yelp reviews
           </Link>
+        </div>
+      </section>
+
+      <section
+        ref={featuredArrivalReveal.ref}
+        className={`bg-white py-16 sm:py-20 ${featuredArrivalReveal.animationClass}`}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-center">
+            <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-[0_32px_80px_-44px_rgba(15,23,42,0.35)]">
+              <div className="relative aspect-[3/2] w-full">
+                <ImageComponent
+                  src={featuredArrivalImage.src}
+                  alt={featuredArrivalImage.alt}
+                  fill
+                  priority
+                  objectFit="cover"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <span className="inline-block text-sm font-medium uppercase tracking-[0.3em] text-gold">
+                Arrival Moment
+              </span>
+              <h2 className="text-3xl font-semibold tracking-tight text-black sm:text-4xl">
+                A refined space means more when you can picture yourself walking into it.
+              </h2>
+              <p className="text-base leading-7 text-black-light/80 sm:text-lg">
+                Before patients ever see a treatment suite, they want to know what arrival feels
+                like. This welcome moment shows the practice the way many first experience it:
+                greeted by Dr. Aguil, eased into the space, and immediately put at ease.
+              </p>
+              <p className="text-base leading-7 text-black-light/80">
+                It gives the gallery a more human starting point and pairs the office design with
+                the personal hospitality behind it.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
