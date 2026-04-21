@@ -7,11 +7,14 @@ import WebPageStructuredData from "@/components/WebPageStructuredData";
 import { Button } from "@/components/ui/button";
 import PhoneLink from "@/components/PhoneLink";
 import { PHONE_NUMBER_DISPLAY } from "@/constants/contact";
+import { useCherryWidgetRegistration } from "@/hooks/use-cherry-widget-registration";
 import { PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
 import { ROUTE_METADATA } from "@/constants/metadata";
 
 const ScheduleConsultation = () => {
   const meta = ROUTE_METADATA["/schedule-consultation"];
+
+  useCherryWidgetRegistration({ enabled: true });
 
   return (
     <>
@@ -79,7 +82,9 @@ const ScheduleConsultation = () => {
                 </Button>
               </div>
 
-              <div className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8">
+              <div
+                className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8"
+              >
                 <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">

@@ -27,7 +27,6 @@ const Graduation = () => {
 
       <div className="min-h-screen page-transition-in">
         <VideoHero
-          posterSrc="/lovable-uploads/ed8ac06c-537d-4671-ad56-dceafa37deb8.png"
           title={<>Graduation <span className="text-gold">Smile</span></>}
           subtitle="Make your graduation photos memorable with our quick and effective cosmetic dental treatments designed specifically for graduates."
           primaryCta={{ 

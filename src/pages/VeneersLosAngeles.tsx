@@ -15,7 +15,11 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
-import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import {
+  INSURANCE_PATH,
+  SCHEDULE_CONSULTATION_PATH,
+  VENEERS_INSURANCE_BLOG_PATH,
+} from '@/constants/urls';
 import { trackCTAClick } from '@/utils/googleAdsTracking';
 
 const VeneersLosAngeles = () => {
@@ -321,6 +325,21 @@ const VeneersLosAngeles = () => {
                     Entertainment professionals can request confidential billing and calendar coordination through our concierge desk to align with production schedules and contract milestones.
                   </p>
                   <p>
+                    If insurance is part of the decision, start with our{' '}
+                    <Link to={INSURANCE_PATH} className="text-secondary underline underline-offset-4 hover:no-underline">
+                      insurance page
+                    </Link>{' '}
+                    and our{' '}
+                    <Link
+                      to={VENEERS_INSURANCE_BLOG_PATH}
+                      className="text-secondary underline underline-offset-4 hover:no-underline"
+                    >
+                      updated veneers coverage guide
+                    </Link>
+                    . If a remaining balance still matters, Cherry can help eligible patients review
+                    monthly payment options after benefits are considered.
+                  </p>
+                  <p>
                     Patients combining veneers with implants, Invisalign, or therapeutic Botox receive bundled savings and priority scheduling blocks.
                     Ask about our &ldquo;Premiere Smile Package,&rdquo; designed for actors and public figures preparing for career-defining appearances.
                   </p>
@@ -389,7 +408,7 @@ const VeneersLosAngeles = () => {
         <FinancingOptionsSection
           className="bg-background pt-6 md:pt-8"
           title="Planning veneers? Review monthly payment options now."
-          description="If you are comparing per-tooth veneer investment or a broader smile makeover plan, our Cherry financing page lets you review monthly payment options right after the concierge pricing details."
+          description="If you are comparing per-tooth veneer investment or a broader smile makeover plan, our Cherry financing page lets you review monthly payment options right after the concierge pricing details and after you have checked whether PPO benefits apply."
         />
 
         <section className="py-16 bg-muted/20">

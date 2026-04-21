@@ -546,6 +546,21 @@
     },
     {
       "type": "page",
+      "href": "/insurance/",
+      "title": "Insurance Accepted | Exquisite Dentistry Los Angeles",
+      "description": "Most PPO plans accepted at Exquisite Dentistry in Los Angeles. Verify your plan, understand likely out-of-pocket costs, and explore Cherry for remaining balances.",
+      "h1": "Most PPO plans accepted",
+      "keywords": [
+        "insurance accepted dentist Los Angeles",
+        "PPO dentist Los Angeles",
+        "dental insurance Los Angeles",
+        "verify dental insurance",
+        "Cherry financing Los Angeles dentist"
+      ],
+      "id": "page:/insurance/"
+    },
+    {
+      "type": "page",
       "href": "/invisalign/",
       "title": "Invisalign Clear Aligners Los Angeles | Exquisite Dentistry",
       "description": "Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.",
@@ -954,7 +969,7 @@
     {
       "type": "blog",
       "title": "Are Veneers Covered by Insurance?",
-      "description": "Much of the time, treatment with dental veneers is seen as a cosmetic procedure that insurance companies do not cover.  At Exquisite Dentistry in West Los Angeles, Dr.",
+      "description": "Porcelain veneers are usually considered a cosmetic treatment, which means most dental insurance plans do not cover veneers themselves.  That is the part most patients hear first, and it is often true.",
       "href": "/blog/are-veneers-covered-by-insurance/",
       "h1": "Are Veneers Covered by Insurance?",
       "keywords": [
@@ -982,101 +997,6 @@
         "naturally"
       ],
       "id": "blog:/blog/can-damaged-teeth-repair-themselves-naturally/"
-    },
-    {
-      "type": "blog",
-      "title": "Can Invisalign Fix One Crooked Front Tooth in Los Angeles?",
-      "description": "Learn when Invisalign can correct one crooked front tooth, when veneers may be a better fit, and how Los Angeles patients can choose the right cosmetic path.",
-      "href": "/blog/can-invisalign-fix-one-crooked-front-tooth-los-angeles/",
-      "h1": "Can Invisalign Fix One Crooked Front Tooth in Los Angeles?",
-      "keywords": [
-        "Orthodontics",
-        "can",
-        "invisalign",
-        "fix",
-        "one",
-        "crooked",
-        "front",
-        "tooth",
-        "can-invisalign-fix-one-crooked-front-tooth-los-angeles",
-        "can Invisalign fix one crooked front tooth Los Angeles",
-        "Invisalign for one tooth Los Angeles",
-        "one crooked front tooth treatment",
-        "veneers vs Invisalign one tooth",
-        "front tooth alignment Los Angeles"
-      ],
-      "id": "blog:/blog/can-invisalign-fix-one-crooked-front-tooth-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "Can You Get Porcelain Veneers If You Grind Your Teeth in Los Angeles?",
-      "description": "Thinking about porcelain veneers but you grind your teeth? Learn when Los Angeles patients may still be candidates, what risks matter most, and how a night guard protects the result.",
-      "href": "/blog/can-you-get-porcelain-veneers-if-you-grind-your-teeth-los-angeles/",
-      "h1": "Can You Get Porcelain Veneers If You Grind Your Teeth in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "can",
-        "you",
-        "get",
-        "porcelain",
-        "veneers",
-        "grind",
-        "teeth",
-        "can-you-get-porcelain-veneers-if-you-grind-your-teeth-los-angeles",
-        "porcelain veneers teeth grinding Los Angeles",
-        "veneers and bruxism Los Angeles",
-        "night guard after veneers Los Angeles",
-        "veneer consultation Los Angeles",
-        "cosmetic dentist Los Angeles"
-      ],
-      "id": "blog:/blog/can-you-get-porcelain-veneers-if-you-grind-your-teeth-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "Can You Preview Your Veneers Before Treatment in Los Angeles?",
-      "description": "Learn how smile analysis, digital planning, and mockups can help you preview veneers before treatment in Los Angeles so your final result looks refined, natural, and camera-ready.",
-      "href": "/blog/can-you-preview-your-veneers-before-treatment-los-angeles/",
-      "h1": "Can You Preview Your Veneers Before Treatment in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "can",
-        "you",
-        "preview",
-        "veneers",
-        "before",
-        "treatment",
-        "can-you-preview-your-veneers-before-treatment-los-angeles",
-        "preview veneers before treatment Los Angeles",
-        "digital smile design Los Angeles",
-        "veneer mockup Los Angeles",
-        "porcelain veneers consultation Los Angeles",
-        "smile makeover planning Los Angeles",
-        "trial smile veneers Los Angeles"
-      ],
-      "id": "blog:/blog/can-you-preview-your-veneers-before-treatment-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "Can You Whiten Veneers, Crowns, or Bonding in Los Angeles?",
-      "description": "Learn what teeth whitening can and cannot change if you have veneers, crowns, or bonding, plus how Los Angeles patients can plan a bright, even smile.",
-      "href": "/blog/can-you-whiten-veneers-crowns-or-bonding-los-angeles/",
-      "h1": "Can You Whiten Veneers, Crowns, or Bonding in Los Angeles?",
-      "keywords": [
-        "Restorative Dentistry",
-        "can",
-        "you",
-        "whiten",
-        "veneers",
-        "crowns",
-        "bonding",
-        "can-you-whiten-veneers-crowns-or-bonding-los-angeles",
-        "can you whiten veneers Los Angeles",
-        "can crowns be whitened Los Angeles",
-        "whitening with bonding Los Angeles",
-        "teeth whitening with veneers Los Angeles",
-        "cosmetic dentist Los Angeles whitening veneers"
-      ],
-      "id": "blog:/blog/can-you-whiten-veneers-crowns-or-bonding-los-angeles/"
     },
     {
       "type": "blog",
@@ -1190,7 +1110,7 @@
     {
       "type": "blog",
       "title": "Dental Veneers vs Crowns",
-      "description": "For effective treatment to restore the shape and color of your teeth, you have a choice in the form of dental veneers or crowns.  Both options provide relief in the way of creating a bright, healthy smile to but each goes about solving our dental problems in…",
+      "description": "For effective treatment to restore the shape and color of your teeth, you have a choice in the form of dental veneers or crowns.  Both options provide relief in the way of creating a bright, healthy smile – but each goes about solving our dental problems in…",
       "href": "/blog/dental-veneers-vs-crowns/",
       "h1": "Dental Veneers vs Crowns",
       "keywords": [
@@ -1316,7 +1236,7 @@
     {
       "type": "blog",
       "title": "Female Smokers Are at a Higher Risk of Oral Cancer",
-      "description": "Healthy smiles are always on display, when you laugh, pose for a photo, or just can’t seem to contain your joy.  For women, a brilliant smile is important not only because it showcases your beauty.",
+      "description": "Healthy smiles are always on display—when you laugh, pose for a photo, or just can’t seem to contain your joy.  For women, a brilliant smile is important not only because it showcases your beauty.",
       "href": "/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
       "h1": "Female Smokers Are at a Higher Risk of Oral Cancer",
       "keywords": [
@@ -1381,7 +1301,7 @@
     {
       "type": "blog",
       "title": "How Alcohol Affects Your Teeth",
-      "description": "A glass of wine with a good meal or an ice-cold beer while you’re watching the game, for some people, these are some of life’s simplest pleasures.  Unfortunately, the effect alcohol has on your dental health is not as pleasant.",
+      "description": "A glass of wine with a good meal or an ice-cold beer while you’re watching the game—for some people, these are some of life’s simplest pleasures.  Unfortunately, the effect alcohol has on your dental health is not as pleasant.",
       "href": "/blog/how-alcohol-affects-your-teeth/",
       "h1": "How Alcohol Affects Your Teeth",
       "keywords": [
@@ -1426,54 +1346,6 @@
     },
     {
       "type": "blog",
-      "title": "How Long Do Porcelain Veneers Last in Los Angeles? What Protects Their Lifespan and What Shortens It",
-      "description": "Thinking about veneers in Los Angeles? Learn how long porcelain veneers typically last, what affects longevity, and how to protect your investment with the right cosmetic dentist.",
-      "href": "/blog/how-long-do-porcelain-veneers-last-los-angeles/",
-      "h1": "How Long Do Porcelain Veneers Last in Los Angeles? What Protects Their Lifespan and What Shortens It",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "how",
-        "long",
-        "porcelain",
-        "veneers",
-        "last",
-        "how-long-do-porcelain-veneers-last-los-angeles",
-        "how long do porcelain veneers last Los Angeles",
-        "porcelain veneers lifespan Los Angeles",
-        "veneers Beverly Hills longevity",
-        "how long do veneers last",
-        "custom porcelain veneers Los Angeles",
-        "protect porcelain veneers from chipping"
-      ],
-      "id": "blog:/blog/how-long-do-porcelain-veneers-last-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "How Long Does Composite Bonding Last on Front Teeth in Los Angeles?",
-      "description": "Learn how long composite bonding typically lasts on front teeth, what shortens or extends its lifespan, and when Los Angeles patients should consider veneers instead.",
-      "href": "/blog/how-long-does-composite-bonding-last-front-teeth-los-angeles/",
-      "h1": "How Long Does Composite Bonding Last on Front Teeth in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "how",
-        "long",
-        "does",
-        "composite",
-        "bonding",
-        "last",
-        "front",
-        "teeth",
-        "how-long-does-composite-bonding-last-front-teeth-los-angeles",
-        "how long does composite bonding last front teeth Los Angeles",
-        "composite bonding Los Angeles",
-        "front tooth bonding lifespan",
-        "bonding vs veneers Los Angeles",
-        "cosmetic bonding touch up Los Angeles"
-      ],
-      "id": "blog:/blog/how-long-does-composite-bonding-last-front-teeth-los-angeles/"
-    },
-    {
-      "type": "blog",
       "title": "How Long Does It Take to Fix Crooked Teeth in Adults?",
       "description": "Teeth straightening is becoming one of the most popular and sought-after cosmetic dentistry treatments.  Traditionally, getting braces has been thought of as a straightening treatment for tweens and teenagers, but more and more adults these days are interes…",
       "href": "/blog/long-will-take-fix-crooked-teeth/",
@@ -1487,28 +1359,6 @@
         "teeth"
       ],
       "id": "blog:/blog/long-will-take-fix-crooked-teeth/"
-    },
-    {
-      "type": "blog",
-      "title": "How Many Veneers Do You Need for a Natural Looking Smile in Los Angeles?",
-      "description": "Learn why some patients need 2, 4, 6, 8, or more veneers, how smile width and tooth show affect planning, and how to keep results natural in Los Angeles.",
-      "href": "/blog/how-many-veneers-do-you-need-los-angeles/",
-      "h1": "How Many Veneers Do You Need for a Natural Looking Smile in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "how",
-        "many",
-        "veneers",
-        "you",
-        "need",
-        "how-many-veneers-do-you-need-los-angeles",
-        "how many veneers do I need Los Angeles",
-        "2 front teeth veneers Los Angeles",
-        "6 veneers vs 8 veneers",
-        "natural looking veneers Los Angeles",
-        "smile makeover veneers Los Angeles"
-      ],
-      "id": "blog:/blog/how-many-veneers-do-you-need-los-angeles/"
     },
     {
       "type": "blog",
@@ -1529,50 +1379,6 @@
     },
     {
       "type": "blog",
-      "title": "How Much Does Professional Teeth Whitening Cost in Los Angeles? What Changes the Price and Which Option Fits Your Timeline",
-      "description": "Comparing professional teeth whitening cost in Los Angeles? Learn what affects price, how in-office and take-home options differ, and which whitening approach fits your schedule.",
-      "href": "/blog/professional-teeth-whitening-cost-los-angeles/",
-      "h1": "How Much Does Professional Teeth Whitening Cost in Los Angeles? What Changes the Price and Which Option Fits Your Timeline",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "professional",
-        "teeth",
-        "whitening",
-        "cost",
-        "professional-teeth-whitening-cost-los-angeles",
-        "professional teeth whitening cost Los Angeles",
-        "teeth whitening cost Los Angeles",
-        "in-office teeth whitening Los Angeles",
-        "custom take-home whitening trays Los Angeles",
-        "Zoom whitening Los Angeles",
-        "how much does teeth whitening cost at the dentist"
-      ],
-      "id": "blog:/blog/professional-teeth-whitening-cost-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "How Much Enamel Is Removed for Veneers in Los Angeles?",
-      "description": "Learn how much enamel is typically removed for porcelain veneers, when minimal prep is possible, and how Los Angeles patients can balance aesthetics with tooth preservation.",
-      "href": "/blog/how-much-enamel-is-removed-for-veneers-los-angeles/",
-      "h1": "How Much Enamel Is Removed for Veneers in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "how",
-        "much",
-        "enamel",
-        "removed",
-        "veneers",
-        "how-much-enamel-is-removed-for-veneers-los-angeles",
-        "how much enamel is removed for veneers Los Angeles",
-        "minimal prep veneers Los Angeles",
-        "no prep veneers Los Angeles",
-        "veneer enamel reduction",
-        "porcelain veneers Los Angeles"
-      ],
-      "id": "blog:/blog/how-much-enamel-is-removed-for-veneers-los-angeles/"
-    },
-    {
-      "type": "blog",
       "title": "How Oral Health Problems can Affect Your Overall Health",
       "description": "Proper oral care is more than just supporting a stunning smile.  Your teeth can indicate a variety of health concerns that most don’t even think about.",
       "href": "/blog/how-oral-health-problems-can-affect-your-overall-health/",
@@ -1588,50 +1394,6 @@
         "overall"
       ],
       "id": "blog:/blog/how-oral-health-problems-can-affect-your-overall-health/"
-    },
-    {
-      "type": "blog",
-      "title": "How Soon After Teeth Whitening Can You Drink Coffee or Red Wine in Los Angeles?",
-      "description": "Planning a brighter smile in Los Angeles? Learn how long to wait before coffee, red wine, and other stain-causing drinks after professional teeth whitening.",
-      "href": "/blog/coffee-after-teeth-whitening-los-angeles/",
-      "h1": "How Soon After Teeth Whitening Can You Drink Coffee or Red Wine in Los Angeles?",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "coffee",
-        "after",
-        "teeth",
-        "whitening",
-        "coffee-after-teeth-whitening-los-angeles",
-        "coffee after teeth whitening Los Angeles",
-        "red wine after teeth whitening",
-        "how long after teeth whitening can I drink coffee",
-        "teeth whitening aftercare Los Angeles",
-        "Zoom whitening Los Angeles",
-        "professional teeth whitening Los Angeles"
-      ],
-      "id": "blog:/blog/coffee-after-teeth-whitening-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "How Soon Before Graduation Photos Should You Whiten Your Teeth in Los Angeles?",
-      "description": "Planning graduation photos in Los Angeles? Learn when to whiten your teeth, what to avoid before your event, and when veneers may be the better cosmetic option.",
-      "href": "/blog/when-to-whiten-before-graduation-photos-los-angeles/",
-      "h1": "How Soon Before Graduation Photos Should You Whiten Your Teeth in Los Angeles?",
-      "keywords": [
-        "Oral Health",
-        "whiten",
-        "before",
-        "graduation",
-        "photos",
-        "when-to-whiten-before-graduation-photos-los-angeles",
-        "when to whiten teeth before graduation photos Los Angeles",
-        "graduation teeth whitening Los Angeles",
-        "professional whitening before photos",
-        "Zoom whitening Los Angeles",
-        "cosmetic dentist graduation smile",
-        "veneer vs whitening graduation"
-      ],
-      "id": "blog:/blog/when-to-whiten-before-graduation-photos-los-angeles/"
     },
     {
       "type": "blog",
@@ -1667,25 +1429,6 @@
         "smile"
       ],
       "id": "blog:/blog/how-to-maintain-the-perfect-wedding-smile/"
-    },
-    {
-      "type": "blog",
-      "title": "How White Should Veneers Be? A Los Angeles Guide to Choosing a Natural Looking Veneer Shade",
-      "description": "Choosing veneer color is about more than picking the whitest option. Learn how Los Angeles patients can choose a veneer shade that looks refined, balanced, and natural.",
-      "href": "/blog/veneer-shade-los-angeles/",
-      "h1": "How White Should Veneers Be? A Los Angeles Guide to Choosing a Natural Looking Veneer Shade",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "veneer",
-        "shade",
-        "veneer-shade-los-angeles",
-        "veneer shade Los Angeles",
-        "how white should veneers be",
-        "natural looking veneers Los Angeles",
-        "porcelain veneer shade guide",
-        "cosmetic dentist veneer color Los Angeles"
-      ],
-      "id": "blog:/blog/veneer-shade-los-angeles/"
     },
     {
       "type": "blog",
@@ -1878,26 +1621,6 @@
     },
     {
       "type": "blog",
-      "title": "Should You Replace One Missing Tooth With an Implant or a Bridge? A Los Angeles Guide",
-      "description": "Comparing a dental implant with a bridge for one missing tooth in Los Angeles? Learn the differences in cost, timeline, maintenance, and aesthetics before you book a consultation.",
-      "href": "/blog/implant-vs-bridge-los-angeles/",
-      "h1": "Should You Replace One Missing Tooth With an Implant or a Bridge? A Los Angeles Guide",
-      "keywords": [
-        "Restorative Dentistry",
-        "implant",
-        "bridge",
-        "implant-vs-bridge-los-angeles",
-        "implant vs bridge Los Angeles",
-        "dental implant vs bridge Los Angeles",
-        "replace one missing tooth Los Angeles",
-        "dental implants Los Angeles",
-        "single tooth bridge vs implant",
-        "cosmetic dentist Los Angeles tooth replacement"
-      ],
-      "id": "blog:/blog/implant-vs-bridge-los-angeles/"
-    },
-    {
-      "type": "blog",
       "title": "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
       "description": "Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.",
       "href": "/blog/single-tooth-veneers-perfect-solutions/",
@@ -2080,26 +1803,6 @@
     },
     {
       "type": "blog",
-      "title": "Veneers or Composite Bonding? Choosing the Right Cosmetic Option in Los Angeles",
-      "description": "Porcelain veneers or composite bonding in Los Angeles Which cosmetic option delivers the look you want, how long each lasts, and what to expect at your consult with Dr. Aguil.",
-      "href": "/blog/veneers-vs-composite-bonding-los-angeles/",
-      "h1": "Veneers or Composite Bonding? Choosing the Right Cosmetic Option in Los Angeles",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "veneers",
-        "composite",
-        "bonding",
-        "veneers-vs-composite-bonding-los-angeles",
-        "veneers vs composite bonding Los Angeles",
-        "composite bonding vs veneers LA",
-        "porcelain veneers Los Angeles",
-        "cosmetic bonding cost Los Angeles",
-        "veneer alternatives LA"
-      ],
-      "id": "blog:/blog/veneers-vs-composite-bonding-los-angeles/"
-    },
-    {
-      "type": "blog",
       "title": "Veneers or Implants: Choosing the Best Path to a Perfect Smile",
       "description": "When it comes to veneers or implants, both options offer a life-changing transformative solution that can significantly enhance your smile, confidence, and overall dental health.  Porcelain veneers are thin, durable shells of high-quality porcelain placed o…",
       "href": "/blog/veneers-or-implants-choosing-the-best-path-to-a-perfect-smile/",
@@ -2205,7 +1908,7 @@
     {
       "type": "blog",
       "title": "What Are Some Easy Ways to Whiten Your Teeth?",
-      "description": "You want your smile to dazzle, in person and in photos.  So when your pearly whites begin to lose their shine, you need a whitening solution that’s convenient, safe, and effective.",
+      "description": "You want your smile to dazzle—in person and in photos.  So when your pearly whites begin to lose their shine, you need a whitening solution that’s convenient, safe, and effective.",
       "href": "/blog/what-are-some-easy-ways-to-whiten-your-teeth/",
       "h1": "What Are Some Easy Ways to Whiten Your Teeth?",
       "keywords": [
@@ -2217,48 +1920,6 @@
         "teeth"
       ],
       "id": "blog:/blog/what-are-some-easy-ways-to-whiten-your-teeth/"
-    },
-    {
-      "type": "blog",
-      "title": "What Happens at a Veneers Consultation in Los Angeles? How to Prepare for a Smile Makeover Visit",
-      "description": "Wondering what happens at a veneers consultation in Los Angeles? Learn how to prepare, what questions to ask, and how Exquisite Dentistry LA plans a natural-looking smile makeover.",
-      "href": "/blog/veneers-consultation-los-angeles/",
-      "h1": "What Happens at a Veneers Consultation in Los Angeles? How to Prepare for a Smile Makeover Visit",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "veneers",
-        "consultation",
-        "veneers-consultation-los-angeles",
-        "veneers consultation Los Angeles",
-        "smile makeover consultation Los Angeles",
-        "porcelain veneers Los Angeles",
-        "cosmetic dentist consultation Beverly Hills",
-        "questions to ask before veneers",
-        "smile design consultation Los Angeles"
-      ],
-      "id": "blog:/blog/veneers-consultation-los-angeles/"
-    },
-    {
-      "type": "blog",
-      "title": "What Should You Do If You Chip a Front Tooth in Los Angeles? Fast Cosmetic Options That Still Look Natural",
-      "description": "Chipped a front tooth in Los Angeles? Learn what to do first, when it is an emergency, and which cosmetic repair options can restore a natural-looking smile fast.",
-      "href": "/blog/what-to-do-if-you-chip-a-front-tooth-los-angeles/",
-      "h1": "What Should You Do If You Chip a Front Tooth in Los Angeles? Fast Cosmetic Options That Still Look Natural",
-      "keywords": [
-        "Emergency Dentistry",
-        "you",
-        "chip",
-        "front",
-        "tooth",
-        "what-to-do-if-you-chip-a-front-tooth-los-angeles",
-        "chipped front tooth Los Angeles",
-        "emergency cosmetic dentist Los Angeles",
-        "fix chipped front tooth Los Angeles",
-        "dental bonding for chipped tooth Los Angeles",
-        "veneer for chipped front tooth",
-        "same day chipped tooth repair Los Angeles"
-      ],
-      "id": "blog:/blog/what-to-do-if-you-chip-a-front-tooth-los-angeles/"
     },
     {
       "type": "blog",
@@ -2338,27 +1999,6 @@
         "invisible braces"
       ],
       "id": "blog:/blog/invisalign-clear-advantage-over-traditional-braces/"
-    },
-    {
-      "type": "blog",
-      "title": "Why Is One Front Tooth Darker Than the Others? Natural Looking Cosmetic Options in Los Angeles",
-      "description": "If one front tooth looks darker than the rest, the fix depends on why it changed color. Learn when whitening helps, when veneers or crowns may be better, and how Exquisite Dentistry LA plans a natural result.",
-      "href": "/blog/dark-front-tooth-los-angeles/",
-      "h1": "Why Is One Front Tooth Darker Than the Others? Natural Looking Cosmetic Options in Los Angeles",
-      "keywords": [
-        "Emergency Dentistry",
-        "dark",
-        "front",
-        "tooth",
-        "dark-front-tooth-los-angeles",
-        "dark front tooth Los Angeles",
-        "one dark front tooth Los Angeles",
-        "cosmetic dentist for discolored tooth Los Angeles",
-        "veneer for dark tooth Los Angeles",
-        "crown vs veneer for front tooth",
-        "internal bleaching front tooth"
-      ],
-      "id": "blog:/blog/dark-front-tooth-los-angeles/"
     }
   ]
 }

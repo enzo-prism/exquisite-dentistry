@@ -9,8 +9,16 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
 import { Button } from '@/components/ui/button';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import { INSURANCE_PAYMENT_SUMMARY } from '@/data/insurance';
 import { ROUTE_METADATA } from '@/constants/metadata';
-import { PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { useCherryWidgetRegistration } from '@/hooks/use-cherry-widget-registration';
+import {
+  CONTACT_PATH,
+  INSURANCE_PATH,
+  PAYMENT_PLANS_PATH,
+  SCHEDULE_CONSULTATION_PATH,
+  VENEERS_INSURANCE_BLOG_PATH,
+} from '@/constants/urls';
 
 const highlightCards = [
   {
@@ -35,6 +43,8 @@ const highlightCards = [
 
 const PaymentPlans = () => {
   const meta = ROUTE_METADATA['/payment-plans'];
+
+  useCherryWidgetRegistration({ enabled: true });
 
   return (
     <>
@@ -112,6 +122,47 @@ const PaymentPlans = () => {
                     Call {PHONE_NUMBER_DISPLAY}
                     <ArrowRight size={18} />
                   </PhoneLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-8 md:py-10">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-6xl rounded-[1.75rem] border border-gold/15 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_20px_60px_-44px_rgba(0,0,0,0.3)] md:p-8">
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                    Insurance + Financing
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold text-foreground md:text-3xl">
+                    {INSURANCE_PAYMENT_SUMMARY}
+                  </h2>
+                  <p className="mt-3 text-base leading-7 text-muted-foreground">
+                    If insurance is your first question, start there. If you still want to compare
+                    payment scenarios afterward, keep reading and use Cherry when it helps. For a
+                    treatment-specific example, read our{' '}
+                    <Link
+                      to={VENEERS_INSURANCE_BLOG_PATH}
+                      className="text-secondary underline underline-offset-4 hover:no-underline"
+                    >
+                      veneers-and-insurance guide
+                    </Link>
+                    .
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                  <Button asChild>
+                    <Link to={CONTACT_PATH}>Check Your Plan</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="#payment-plan-options">See Cherry Options</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to={INSURANCE_PATH}>Open Insurance Page</Link>
+                  </Button>
                 </div>
               </div>
             </div>

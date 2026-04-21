@@ -5,6 +5,7 @@ import { ArrowRight, CalendarClock, CreditCard, Sparkles } from 'lucide-react';
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
 import { Button } from '@/components/ui/button';
 import { PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { useCherryWidgetRegistration } from '@/hooks/use-cherry-widget-registration';
 import { cn } from '@/lib/utils';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
@@ -75,10 +76,14 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   showWidgetPreview = true,
   className,
 }) => {
+  useCherryWidgetRegistration({ enabled: true });
+
   return (
     <section className={cn('py-16 md:py-20', className)}>
       <div className="container mx-auto px-4">
-        <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-white via-stone-50 to-white shadow-[0_30px_90px_-50px_rgba(0,0,0,0.45)]">
+        <div
+          className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-white via-stone-50 to-white shadow-[0_30px_90px_-50px_rgba(0,0,0,0.45)]"
+        >
           <div className="absolute inset-0">
             <div className="absolute left-[-8rem] top-[-8rem] h-56 w-56 rounded-full bg-gold/15 blur-3xl" />
             <div className="absolute bottom-[-10rem] right-[-6rem] h-64 w-64 rounded-full bg-primary/10 blur-3xl" />

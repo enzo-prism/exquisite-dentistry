@@ -58,6 +58,7 @@ import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "../src/data/invisalign-beverly-hills-faqs";
+import { INSURANCE_PAGE_FAQS } from "../src/data/insurance";
 
 export type StaticLink = { label: string; href: string };
 export type StaticRouteSection = {
@@ -121,6 +122,7 @@ export const defaultNavLinks: StaticLink[] = [
   { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },
   { label: "Smile Gallery", href: "/smile-gallery" },
   { label: "Schedule Consultation", href: "/schedule-consultation" },
+  { label: "Insurance Accepted", href: "/insurance" },
   { label: "Services", href: "/services" },
   { label: "Locations", href: "/locations/" },
   { label: "About Dr. Aguil", href: "/about" },
@@ -474,6 +476,39 @@ export const manualPages: StaticRoute[] = [
         ],
       },
     ],
+    links: defaultNavLinks,
+  },
+  {
+    path: "/insurance",
+    title: getRouteMetadata("/insurance").title,
+    description: getRouteMetadata("/insurance").description,
+    h1: "Most PPO plans accepted",
+    paragraphs: [
+      "Use this page to understand how PPO benefits and financing can work together before you move forward with treatment.",
+      "If you are not sure whether your plan applies, our team can help verify benefits and explain likely out-of-pocket next steps.",
+    ],
+    sections: [
+      {
+        heading: "How It Works",
+        bullets: [
+          "Share your plan details with our team",
+          "We review benefits and likely patient responsibility",
+          "Use Cherry only if you still want help with the remaining balance",
+        ],
+        links: [
+          { label: "Check Your Plan", href: "/contact" },
+          { label: "Payment Plans", href: "/payment-plans" },
+        ],
+      },
+      {
+        heading: "Helpful Resources",
+        paragraphs: [
+          "If veneers are part of the decision, our insurance guide explains how cosmetic treatment, elective treatment, and remaining balances often fit together.",
+        ],
+        links: [{ label: "Are Veneers Covered by Insurance?", href: "/blog/are-veneers-covered-by-insurance" }],
+      },
+    ],
+    faqItems: [...INSURANCE_PAGE_FAQS],
     links: defaultNavLinks,
   },
   {
@@ -833,6 +868,8 @@ const getBreadcrumbLinksForRoute = (routePath: string): StaticLink[] => {
       return [{ label: "Schedule Consultation", href: "/schedule-consultation" }];
     case "/payment-plans":
       return [{ label: "Payment Plans", href: "/payment-plans" }];
+    case "/insurance":
+      return [{ label: "Insurance", href: "/insurance" }];
     case "/smile-gallery":
       return [{ label: "Smile Gallery", href: "/smile-gallery" }];
     default:
@@ -1027,6 +1064,7 @@ const SERVICE_METADATA_EXCLUSIONS = new Set([
   "/contact",
   "/schedule-consultation",
   "/payment-plans",
+  "/insurance",
   "/testimonials",
   "/smile-gallery",
   "/faqs",
@@ -1435,6 +1473,15 @@ const getSchemasForRoute = (route: StaticRoute) => {
       createFAQSchema(
         faqs.map(({ question, answer }) => ({ question, answer })),
         "Exquisite Dentistry Services and Appointments"
+      )
+    );
+  }
+
+  if (routePath === "/insurance") {
+    schemas.push(
+      createFAQSchema(
+        [...INSURANCE_PAGE_FAQS],
+        "Insurance accepted at Exquisite Dentistry"
       )
     );
   }

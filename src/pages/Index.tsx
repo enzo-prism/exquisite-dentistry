@@ -11,15 +11,15 @@ import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
+import InsurancePaymentBand from '@/components/InsurancePaymentBand';
 import { Button } from '@/components/ui/button';
-import { Play } from 'lucide-react';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
-import ImageComponent from '@/components/Image';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { INSURANCE_HERO_BADGE } from '@/data/insurance';
 
 const LazyFloatingActionButton = lazy(() => import('@/components/mobile/FloatingActionButton'));
 
@@ -103,7 +103,7 @@ const IndexPage: React.FC = () => {
       
       <VideoHero
         title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Led by Dr. Alexie Aguil, with a calm, spa-like patient experience." 
+        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Most PPO plans accepted, and our team can help verify your benefits before you visit."
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule-consultation/"
@@ -112,6 +112,7 @@ const IndexPage: React.FC = () => {
           text: "Smile Gallery",
           href: "/smile-gallery/"
         }}
+        badgeText={INSURANCE_HERO_BADGE}
         useGradient={false}
       />
 
@@ -164,9 +165,11 @@ const IndexPage: React.FC = () => {
         <ServicesSection />
       </div>
 
+      <InsurancePaymentBand />
+
       <FinancingOptionsSection
         title="A smoother way to plan your smile investment."
-        description="Before you schedule veneers, Invisalign, whitening, implants, or a larger smile makeover, you can explore Cherry payment options and come into your consultation with a clearer sense of next steps."
+        description="If you already know insurance is only part of the picture, you can explore Cherry payment options before you schedule veneers, Invisalign, whitening, implants, or a larger smile makeover."
       />
 
       <div ref={seasonal.ref} className={seasonal.animationClass}>

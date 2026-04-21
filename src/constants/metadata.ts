@@ -181,6 +181,14 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'dental financing Los Angeles, Cherry financing dentist, dental payment plans Los Angeles, veneers financing, Invisalign payment plans, dental implants financing',
     ogImage: DEFAULT_OG_IMAGE
   },
+  '/insurance': {
+    title: 'Insurance Accepted | Exquisite Dentistry Los Angeles',
+    description:
+      'Most PPO plans accepted at Exquisite Dentistry in Los Angeles. Verify your plan, understand likely out-of-pocket costs, and explore Cherry for remaining balances.',
+    keywords:
+      'insurance accepted dentist Los Angeles, PPO dentist Los Angeles, dental insurance Los Angeles, verify dental insurance, Cherry financing Los Angeles dentist',
+    ogImage: DEFAULT_OG_IMAGE
+  },
   '/testimonials': {
     title:
       'Patient Reviews & Testimonials Los Angeles | Exquisite Dentistry',

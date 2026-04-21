@@ -45,6 +45,10 @@ const MOBILE_ICON_BUTTON_CLASS =
 const MOBILE_LINK_BASE_CLASS =
   'block min-h-11 w-full rounded-xl px-3.5 py-3 text-[15px] font-medium leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
 
+const DESKTOP_COMPACT_ONLY_MORE_LINKS = new Set(
+  DESKTOP_EXPANDED_LINKS.map((item) => item.to),
+);
+
 const matchesPath = (pathname: string, to: string) => pathname === to || pathname.startsWith(`${to}/`);
 
 const Navbar = () => {
@@ -285,7 +289,7 @@ const Navbar = () => {
                       type="button"
                       className={cn(
                         DESKTOP_LINK_BASE_CLASS,
-                        'gap-1 min-[1240px]:hidden',
+                        'gap-1',
                         isDesktopMoreActive
                           ? 'bg-white/10 text-gold'
                           : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
@@ -311,6 +315,7 @@ const Navbar = () => {
                           className={({ isActive }) =>
                             cn(
                               'block w-full rounded-lg px-3 py-2 text-sm transition-colors',
+                              DESKTOP_COMPACT_ONLY_MORE_LINKS.has(item.to) && 'min-[1240px]:hidden',
                               isActive ? 'bg-white/10 text-gold' : 'text-white/90',
                             )
                           }

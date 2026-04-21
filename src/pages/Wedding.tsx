@@ -50,7 +50,6 @@ const Wedding = () => {
 
       <div className="min-h-screen page-transition-in">
         <VideoHero
-          posterSrc="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png"
           title={<>Wedding <span className="text-gold">Smile</span></>}
           subtitle="Look your absolute best on your special day with our customized wedding smile packages designed for brides, grooms, and wedding parties."
           primaryCta={{ 

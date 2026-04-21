@@ -9,6 +9,7 @@ import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
 import { PerformanceProvider } from "@/hooks/use-performance-monitor";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
+import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -25,6 +26,7 @@ const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const ScheduleConsultation = lazy(() => import("@/pages/ScheduleConsultation"));
 const PaymentPlans = lazy(() => import("@/pages/PaymentPlans"));
+const Insurance = lazy(() => import("@/pages/Insurance"));
 const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
 const Wedding = lazy(() => import("@/pages/Wedding"));
 const Graduation = lazy(() => import("@/pages/Graduation"));
@@ -144,6 +146,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}>
                 <PaymentPlans />
+              </Suspense>} />
+              <Route path="/insurance" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Insurance />
               </Suspense>} />
               <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Wedding />
@@ -313,9 +318,11 @@ const App = () => {
             <Toaster />
             <Sonner />
             <BrowserRouter>
-              <div className="flex flex-col min-h-screen">
-                <AppRoutes />
-              </div>
+              <CherryWidgetProvider>
+                <div className="flex flex-col min-h-screen">
+                  <AppRoutes />
+                </div>
+              </CherryWidgetProvider>
               <RouteAwareObservability />
             </BrowserRouter>
           </TooltipProvider>

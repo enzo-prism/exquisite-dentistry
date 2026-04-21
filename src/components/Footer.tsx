@@ -41,6 +41,7 @@ type FooterLink = {
 const POPULAR_PAGES: FooterLink[] = [
   { label: 'Dental Implants', to: '/dental-implants/' },
   { label: 'Porcelain Veneers', to: '/veneers/' },
+  { label: 'Insurance Accepted', to: '/insurance/' },
   { label: 'Payment Plans', to: '/payment-plans/' },
   { label: 'Beverly Hills Dentist', to: '/beverly-hills-dentist/' },
   { label: 'Smile Gallery', to: '/smile-gallery/' },
@@ -91,6 +92,7 @@ const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
     title: 'Client Resources',
     links: [
       { label: 'Transformation Stories', to: '/transformation-stories/' },
+      { label: 'Insurance Accepted', to: '/insurance/' },
       { label: 'Smile Gallery', to: '/smile-gallery/' },
       { label: 'Payment Plans', to: '/payment-plans/' },
       { label: 'FAQs', to: '/faqs/' },
@@ -199,7 +201,7 @@ const Footer = () => {
               ))}
             </div>
             <p className="text-sm text-white/80">
-              200+ five-star reviews from Los Angeles clients
+              20+ years of 5-star service in Los Angeles
             </p>
           </div>
 

@@ -2,6 +2,8 @@ export const CHERRY_WIDGET_SCRIPT_ID = '_hw' as const;
 export const CHERRY_WIDGET_SCRIPT_SRC =
   'https://files.withcherry.com/widgets/widget.js' as const;
 export const CHERRY_WIDGET_FONT_LINK_ID = 'cherry-widget-fonts' as const;
+export const CHERRY_WIDGET_CONTAINER_ID = 'floatingEstimator' as const;
+export const CHERRY_WIDGET_MOUNT_ID = `widget-${CHERRY_WIDGET_CONTAINER_ID}-mount` as const;
 export const CHERRY_WIDGET_FONT_HREF =
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@200..900&family=Slabo+27px:wght@200..900&family=Lato:wght@200..900&family=Raleway:wght@200..900&family=Montserrat:wght@200..900&family=Oswald:wght@200..900&family=Poppins:wght@200..900&family=Source+Sans+Pro:wght@200..900&family=PT+Sans:wght@200..900&family=Open+Sans:wght@200..900&display=swap' as const;
 export const CHERRY_WIDGET_SUPPORT_CONTAINER_IDS = [] as const;
@@ -30,7 +32,7 @@ export const createCherryWidgetConfig = () => ({
         x: '0px',
         y: '0px',
       },
-      zIndex: 9999,
+      zIndex: 40,
       ctaFontFamily: 'Montserrat',
       bodyFontFamily: 'Montserrat',
       ctaColor: '#9a8360',

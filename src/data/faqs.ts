@@ -1,4 +1,7 @@
-import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import {
+  INSURANCE_FAQ_SHORT_ANSWER,
+  INSURANCE_FINANCING_FAQ_ANSWER,
+} from '@/data/insurance';
 
 export type FAQItem = {
   question: string;
@@ -29,8 +32,7 @@ export const faqs: FAQItem[] = [
   },
   {
     question: "What Insurances Do You Accept?",
-    answer:
-      `We accept most major PPO providers. Please call our office at ${PHONE_NUMBER_DISPLAY} to determine if we will accept your plan.`
+    answer: INSURANCE_FAQ_SHORT_ANSWER
   },
   {
     question: "What Types of Payment Do You Accept?",
@@ -38,8 +40,7 @@ export const faqs: FAQItem[] = [
   },
   {
     question: "Are Financing Options Available?",
-    answer:
-      "Yes! We have financing available through Care Credit and Wells Fargo. We work within your budget to help find the best options for you."
+    answer: INSURANCE_FINANCING_FAQ_ANSWER
   },
   {
     question:

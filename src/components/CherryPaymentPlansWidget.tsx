@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import {
   CalendarClock,
   CircleCheckBig,
@@ -7,25 +7,12 @@ import {
 } from 'lucide-react';
 
 import PhoneLink from '@/components/PhoneLink';
-import {
-  CHERRY_WIDGET_FONT_HREF,
-  CHERRY_WIDGET_FONT_LINK_ID,
-  CHERRY_WIDGET_SCRIPT_ID,
-  CHERRY_WIDGET_SCRIPT_SRC,
-  CHERRY_WIDGET_SUPPORT_CONTAINER_IDS,
-  createCherryWidgetConfig,
-} from '@/constants/cherry';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import { useCherryWidgetStatus } from '@/hooks/use-cherry-widget-registration';
 import { cn } from '@/lib/utils';
 
-type WidgetStatus = 'idle' | 'loading' | 'ready' | 'error';
 type CherryPaymentPlansWidgetVariant = 'full' | 'preview';
-
-const CHERRY_WIDGET_CONTAINER_ID = 'floatingEstimator' as const;
-const CHERRY_WIDGET_CONTAINER_IDS = [
-  CHERRY_WIDGET_CONTAINER_ID,
-  ...CHERRY_WIDGET_SUPPORT_CONTAINER_IDS,
-] as const;
+type WidgetStatus = 'idle' | 'loading' | 'ready' | 'error';
 
 const previewHighlights = [
   {
@@ -48,153 +35,9 @@ const fullSteps = [
   'If you want help choosing an amount to check or what to do next, call our team and we will walk you through it.',
 ];
 
-const resetWidgetContainers = () => {
-  CHERRY_WIDGET_CONTAINER_IDS.forEach((containerId) => {
-    document.getElementById(containerId)?.replaceChildren();
-  });
-};
-
-const resetCherryRuntime = () => {
-  resetWidgetContainers();
-  document.getElementById(CHERRY_WIDGET_SCRIPT_ID)?.remove();
-  window._hw = undefined;
-  window._hw_widgets = [];
-  window._hw_shared_layout = null;
-  window._hw_global_config = undefined;
-  window._hw_floating_config = undefined;
-  window.__cherryWidgetInitQueued = false;
-  window['loaded-_hw'] = false;
-};
-
-const useCherryFloatingEstimator = (eager: boolean) => {
-  const mountRef = useRef<HTMLDivElement | null>(null);
-  const [shouldLoad, setShouldLoad] = useState(() =>
-    typeof window !== 'undefined' ? eager || Boolean(window['loaded-_hw']) : eager,
-  );
-  const [status, setStatus] = useState<WidgetStatus>(() => {
-    if (typeof window === 'undefined') return eager ? 'loading' : 'idle';
-    if (window['loaded-_hw']) return 'ready';
-    return eager ? 'loading' : 'idle';
-  });
-
-  useEffect(() => {
-    if (eager || shouldLoad || typeof window === 'undefined' || !mountRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        setShouldLoad(true);
-        observer.disconnect();
-      },
-      { rootMargin: '280px 0px' },
-    );
-
-    observer.observe(mountRef.current);
-
-    return () => observer.disconnect();
-  }, [eager, shouldLoad]);
-
-  useEffect(() => {
-    if (!shouldLoad || typeof window === 'undefined') return;
-
-    setStatus((currentStatus) => (currentStatus === 'ready' ? currentStatus : 'loading'));
-
-    const renderKeys = [CHERRY_WIDGET_CONTAINER_ID];
-    const renderWidget = () => {
-      resetWidgetContainers();
-      window._hw?.(CHERRY_WIDGET_CONTAINER_ID);
-      window.setTimeout(() => setStatus('ready'), 150);
-    };
-
-    const ensureFontLink = () => {
-      if (document.getElementById(CHERRY_WIDGET_FONT_LINK_ID)) return;
-
-      const link = document.createElement('link');
-      link.id = CHERRY_WIDGET_FONT_LINK_ID;
-      link.rel = 'stylesheet';
-      link.href = CHERRY_WIDGET_FONT_HREF;
-      document.head.appendChild(link);
-    };
-
-    ensureFontLink();
-
-    const activeWidgets = window._hw_widgets ?? [];
-    const shouldReinitialize =
-      !window['loaded-_hw'] ||
-      activeWidgets.length !== 1 ||
-      activeWidgets[0] !== CHERRY_WIDGET_CONTAINER_ID;
-
-    if (shouldReinitialize) {
-      resetCherryRuntime();
-    }
-
-    if (window['loaded-_hw'] && !shouldReinitialize) {
-      renderWidget();
-      return;
-    }
-
-    if (!window._hw || !window._hw.q) {
-      const cherryQueue = ((...args: unknown[]) => {
-        cherryQueue.q = cherryQueue.q || [];
-        cherryQueue.q.push(args);
-      }) as NonNullable<typeof window._hw>;
-
-      cherryQueue.q = cherryQueue.q || [];
-      window._hw = cherryQueue;
-    }
-
-    if (!window.__cherryWidgetInitQueued) {
-      window._hw('init', createCherryWidgetConfig(), renderKeys);
-      window.__cherryWidgetInitQueued = true;
-    }
-
-    let script = document.getElementById(CHERRY_WIDGET_SCRIPT_ID) as HTMLScriptElement | null;
-    const handleLoad = () => {
-      window['loaded-_hw'] = true;
-      renderWidget();
-      script?.setAttribute('data-loaded', 'true');
-    };
-    const handleError = () => setStatus('error');
-
-    if (!script) {
-      script = document.createElement('script');
-      script.id = CHERRY_WIDGET_SCRIPT_ID;
-      script.src = CHERRY_WIDGET_SCRIPT_SRC;
-      script.async = true;
-      script.addEventListener('load', handleLoad, { once: true });
-      script.addEventListener('error', handleError, { once: true });
-      document.head.appendChild(script);
-    } else if (script.getAttribute('data-loaded') === 'true') {
-      renderWidget();
-    } else {
-      script.addEventListener('load', handleLoad, { once: true });
-      script.addEventListener('error', handleError, { once: true });
-    }
-
-    return () => {
-      script?.removeEventListener('load', handleLoad);
-      script?.removeEventListener('error', handleError);
-    };
-  }, [shouldLoad]);
-
-  useEffect(() => {
-    return () => {
-      if (typeof window === 'undefined') return;
-      resetCherryRuntime();
-    };
-  }, []);
-
-  return { mountRef, status };
-};
-
-interface CherryWidgetAnchorProps {
-  mountRef: React.RefObject<HTMLDivElement>;
-  status: WidgetStatus;
-}
-
-const CherryWidgetAnchor: React.FC<CherryWidgetAnchorProps> = ({ mountRef, status }) => (
-  <div ref={mountRef} className="relative">
-    {status === 'error' ? (
+const CherryWidgetStatusMessage: React.FC<{ status: WidgetStatus }> = ({ status }) => {
+  if (status === 'error') {
+    return (
       <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-900">
         Cherry did not load correctly. Please refresh the page or call{' '}
         <PhoneLink
@@ -205,18 +48,22 @@ const CherryWidgetAnchor: React.FC<CherryWidgetAnchorProps> = ({ mountRef, statu
         </PhoneLink>
         .
       </div>
-    ) : null}
+    );
+  }
 
-    <div
-      id={CHERRY_WIDGET_CONTAINER_ID}
-      className="pointer-events-none h-0 w-0 overflow-visible"
-      aria-hidden="true"
-    />
-  </div>
-);
+  if (status === 'loading') {
+    return (
+      <p className="mt-4 text-sm text-muted-foreground">
+        Turning on Cherry financing for this page...
+      </p>
+    );
+  }
+
+  return null;
+};
 
 const CherryPaymentPlansPreviewCard: React.FC<{ className?: string }> = ({ className }) => {
-  const { mountRef, status } = useCherryFloatingEstimator(true);
+  const status = useCherryWidgetStatus();
 
   return (
     <div
@@ -285,19 +132,13 @@ const CherryPaymentPlansPreviewCard: React.FC<{ className?: string }> = ({ class
         </div>
       </div>
 
-      {status === 'loading' ? (
-        <p className="mt-4 text-sm text-muted-foreground">
-          Turning on Cherry financing for this page...
-        </p>
-      ) : null}
-
-      <CherryWidgetAnchor mountRef={mountRef} status={status} />
+      <CherryWidgetStatusMessage status={status} />
     </div>
   );
 };
 
 const CherryPaymentPlansFloatingCard: React.FC<{ className?: string }> = ({ className }) => {
-  const { mountRef, status } = useCherryFloatingEstimator(true);
+  const status = useCherryWidgetStatus();
 
   return (
     <div
@@ -349,13 +190,7 @@ const CherryPaymentPlansFloatingCard: React.FC<{ className?: string }> = ({ clas
         </p>
       </div>
 
-      {status === 'loading' ? (
-        <p className="mt-4 text-sm text-muted-foreground">
-          Turning on Cherry financing for this page...
-        </p>
-      ) : null}
-
-      <CherryWidgetAnchor mountRef={mountRef} status={status} />
+      <CherryWidgetStatusMessage status={status} />
     </div>
   );
 };
