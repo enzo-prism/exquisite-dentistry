@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarClock, CreditCard, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
 
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
 import { Button } from '@/components/ui/button';
-import { PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { INSURANCE_PATH, PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { INSURANCE_SERVICE_REASSURANCE } from '@/data/insurance';
 import { useCherryWidgetRegistration } from '@/hooks/use-cherry-widget-registration';
 import { cn } from '@/lib/utils';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
@@ -103,6 +104,26 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
               <p className="mt-4 text-sm leading-6 text-muted-foreground">
                 {disclaimer}
               </p>
+
+              <div className="mt-6 rounded-xl border border-gold/20 bg-white/80 p-4">
+                <div className="flex items-start gap-3">
+                  <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">
+                      Insurance can be checked first.
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      {INSURANCE_SERVICE_REASSURANCE}
+                    </p>
+                    <Link
+                      to={INSURANCE_PATH}
+                      className="mt-3 inline-flex text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
+                    >
+                      Check insurance accepted
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {renderAction(primaryCtaHref, primaryCtaText, 'default')}

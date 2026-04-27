@@ -16,12 +16,19 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   subtitle,
   primaryCta,
   secondaryCta,
+  proofLinks,
   height = 'medium',
   useGradient = false,
   disableVideo = false
 }) => {
   const heightClasses = getHeroHeightClasses(height);
   const shouldRenderVideo = !disableVideo && !useGradient;
+  const heroProofLinks = proofLinks ?? [
+    {
+      text: '5-star experience · 200+ Google reviews · 100+ Yelp reviews',
+      href: '/testimonials/'
+    }
+  ];
 
   return (
     <section className={cn("relative flex items-center overflow-hidden bg-slate-900", heightClasses.desktop)}>
@@ -85,12 +92,19 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
             secondaryCta={secondaryCta}
           />
         </div>
-        <Link
-          to="/testimonials/"
-          className="mt-4 inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
-        >
-          5-star experience · 200+ Google reviews · 100+ Yelp reviews
-        </Link>
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/75">
+          {heroProofLinks.map((link, index) => (
+            <React.Fragment key={link.href}>
+              {index > 0 ? <span className="text-gold/70">·</span> : null}
+              <Link
+                to={link.href}
+                className="transition-colors hover:text-white"
+              >
+                {link.text}
+              </Link>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </section>
   );

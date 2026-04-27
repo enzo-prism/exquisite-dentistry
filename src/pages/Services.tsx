@@ -321,7 +321,7 @@ const Services = () => {
         scrollIndicator={false} 
       />
 
-      <section className="relative -mt-16 sm:-mt-24 md:-mt-32 z-20 mb-16 sm:mb-20 md:mb-24">
+      <section className="relative -mt-16 sm:-mt-24 md:-mt-32 z-20 mb-16 overflow-hidden sm:mb-20 md:mb-24">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fafc] via-white to-[#edf2f7]" aria-hidden="true" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute -top-20 -left-10 h-48 w-48 rounded-full bg-gold/20 blur-3xl opacity-60" aria-hidden="true" />
@@ -438,7 +438,7 @@ const Services = () => {
                 
                 <div className="space-y-4 py-4">
                   {service.treatments.map(treatment => (
-                    <div key={treatment.name} className="flex justify-between items-start">
+                    <div key={treatment.name} className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-start">
                       <div className="flex flex-1">
                         <div className="flex-shrink-0 mt-1">
                           <Check size={18} className="text-gold" />
@@ -449,9 +449,9 @@ const Services = () => {
                         </div>
                       </div>
                       {treatment.hasDetailPage && treatment.slug && (
-                        <div className="ml-4 flex-shrink-0">
-                          <Link to={treatment.slug}>
-                            <Button variant="outline" size="sm" className="text-xs border-gold text-gold hover:bg-gold/5">
+                        <div className="ml-8 sm:ml-4 sm:flex-shrink-0">
+                          <Link to={treatment.slug} className="block sm:inline-block">
+                            <Button variant="outline" size="sm" className="h-auto min-h-10 w-full whitespace-normal border-gold text-xs text-gold hover:bg-gold/5 sm:w-auto">
                               {treatment.ctaLabel || 'Learn More'}
                             </Button>
                           </Link>
@@ -566,7 +566,7 @@ const Services = () => {
             <div className="relative group">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-6 rounded-[36px] bg-gradient-to-br from-gold/30 via-gold/10 to-transparent opacity-50 blur-3xl transition duration-500 group-hover:opacity-80"
+                className="pointer-events-none absolute inset-x-0 -bottom-6 -top-6 rounded-[36px] bg-gradient-to-br from-gold/30 via-gold/10 to-transparent opacity-50 blur-3xl transition duration-500 group-hover:opacity-80 sm:-inset-6"
               />
               <div className="relative rounded-[28px] border border-gold/40 bg-gradient-to-br from-gold/20 via-black/80 to-black/90 p-[1.5px] shadow-[0_30px_60px_-20px_rgba(154,131,96,0.45)]">
                 <PracticeVideoPlayer
@@ -641,7 +641,7 @@ const Services = () => {
             <div>
               <div className="mx-auto max-w-xl xl:max-w-none">
                 <div className="relative">
-                  <div className="pointer-events-none absolute -inset-8 -translate-y-6 rounded-[36px] bg-gradient-to-br from-gold/35 via-gold/15 to-transparent opacity-70 blur-3xl"></div>
+                  <div className="pointer-events-none absolute inset-x-0 -bottom-8 -top-8 -translate-y-6 rounded-[36px] bg-gradient-to-br from-gold/35 via-gold/15 to-transparent opacity-70 blur-3xl sm:-inset-8"></div>
                   <div className="relative rounded-[32px] border border-gold/30 bg-gradient-to-br from-black/90 via-black to-black p-[1.5px] shadow-[0_45px_90px_-40px_rgba(12,7,0,0.75)]">
                   <div className="pointer-events-none absolute left-6 top-6 z-10 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-gold" />
@@ -733,7 +733,7 @@ const Services = () => {
                   sizes="(min-width: 1024px) 520px, 90vw"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-sm shadow-lg p-6 max-w-xs">
+              <div className="relative z-10 mx-4 -mt-8 bg-white rounded-sm shadow-lg p-6 sm:absolute sm:-bottom-6 sm:-right-6 sm:mx-0 sm:mt-0 sm:max-w-xs">
                 <p className="text-black-light italic text-sm">
                   "We believe that exceptional dental care should be a comfortable, stress-free experience from start to finish."
                 </p>

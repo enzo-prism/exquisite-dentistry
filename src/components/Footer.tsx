@@ -30,6 +30,7 @@ import {
   BUSINESS_HOURS
 } from '@/constants/contact';
 import { GOOGLE_MAPS_SHORT_URL } from '@/constants/urls';
+import { INSURANCE_FOOTER_SUMMARY } from '@/data/insurance';
 import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
 
 type FooterLink = {
@@ -124,7 +125,7 @@ const Footer = () => {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="flex items-center justify-between text-white/70 hover:text-gold transition-colors group"
+                className="flex min-h-7 items-center justify-between text-white/70 transition-colors hover:text-gold group"
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
@@ -138,7 +139,7 @@ const Footer = () => {
           <li key={link.label}>
             <Link
               to={link.to as string}
-              className="flex items-center justify-between text-white/70 hover:text-gold transition-colors group"
+              className="flex min-h-7 items-center justify-between text-white/70 transition-colors hover:text-gold group"
             >
               {content}
             </Link>
@@ -232,6 +233,22 @@ const Footer = () => {
               }
             )}
           </div>
+        </div>
+
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold/80">
+            Insurance Accepted
+          </p>
+          <p className="mt-2">
+            {INSURANCE_FOOTER_SUMMARY}{' '}
+            <Link
+              to="/insurance/"
+              className="font-semibold text-gold underline underline-offset-4 hover:no-underline"
+            >
+              Verify your benefits
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Mobile Accordion */}
@@ -390,15 +407,15 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between text-xs text-white/60">
           <p>© {currentYear} Exquisite Dentistry. All rights reserved.</p>
           <div className="flex flex-wrap gap-3 items-center">
-            <Link to="/privacy-policy/" className="hover:text-gold transition-colors">
+            <Link to="/privacy-policy/" className="inline-flex min-h-6 items-center hover:text-gold transition-colors">
               Privacy Policy
             </Link>
             <span className="text-gold/50">•</span>
-            <Link to="/terms-of-service/" className="hover:text-gold transition-colors">
+            <Link to="/terms-of-service/" className="inline-flex min-h-6 items-center hover:text-gold transition-colors">
               Terms of Service
             </Link>
             <span className="text-gold/50">•</span>
-            <Link to="/hipaa-compliance/" className="hover:text-gold transition-colors">
+            <Link to="/hipaa-compliance/" className="inline-flex min-h-6 items-center hover:text-gold transition-colors">
               HIPAA Compliance
             </Link>
             <span className="text-gold/50">•</span>
@@ -406,7 +423,7 @@ const Footer = () => {
               href="/sitemap.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gold transition-colors"
+              className="inline-flex min-h-6 items-center hover:text-gold transition-colors"
             >
               XML Sitemap
             </a>

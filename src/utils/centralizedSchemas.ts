@@ -15,6 +15,11 @@ import {
   EMAIL,
   SOCIAL_MEDIA
 } from '../constants/contact';
+import {
+  INSURANCE_DIRECT_CARRIER_LIST,
+  INSURANCE_PARTNER_CARRIER_LIST,
+  INSURANCE_SCHEMA_VALUES,
+} from '../data/insurance';
 
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
 const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png';
@@ -65,6 +70,26 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   ],
   image: LOGO_URL,
   logo: LOGO_URL,
+  paymentAccepted: [
+    'Cash',
+    'Credit Card',
+    'Dental insurance',
+    'Cherry financing',
+    ...INSURANCE_SCHEMA_VALUES,
+  ],
+  acceptedInsurance: [...INSURANCE_SCHEMA_VALUES],
+  additionalProperty: [
+    {
+      '@type': 'PropertyValue',
+      name: 'Direct in-network dental insurance',
+      value: INSURANCE_DIRECT_CARRIER_LIST,
+    },
+    {
+      '@type': 'PropertyValue',
+      name: 'Accepted through partner PPO billing contracts',
+      value: `${INSURANCE_PARTNER_CARRIER_LIST}, and many PPO plans subject to benefits verification`,
+    },
+  ],
   sameAs: [
     SOCIAL_MEDIA.facebook,
     SOCIAL_MEDIA.instagram,

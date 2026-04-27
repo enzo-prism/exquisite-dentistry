@@ -28,6 +28,10 @@ export interface VideoHeroProps {
   contentClassName?: string;
   height?: 'small' | 'medium' | 'large' | 'full' | 'auto';
   badgeText?: string;
+  proofLinks?: Array<{
+    text: string;
+    href: string;
+  }>;
   alignment?: 'center' | 'left';
   scrollIndicator?: boolean;
   aspectRatio?: number;

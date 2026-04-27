@@ -148,7 +148,7 @@ const ScheduleConsultation = () => {
                     href={SCHEDULING_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
+                    className="inline-flex min-h-6 items-center text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
                   >
                     Open scheduling in a new tab
                   </a>

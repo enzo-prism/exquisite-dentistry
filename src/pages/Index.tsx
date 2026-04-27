@@ -19,7 +19,7 @@ import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ROUTE_METADATA } from '@/constants/metadata';
-import { INSURANCE_HERO_BADGE } from '@/data/insurance';
+import { HOMEPAGE_HERO_PROOF_LINKS, INSURANCE_HERO_BADGE } from '@/data/insurance';
 
 const LazyFloatingActionButton = lazy(() => import('@/components/mobile/FloatingActionButton'));
 
@@ -103,7 +103,7 @@ const IndexPage: React.FC = () => {
       
       <VideoHero
         title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Most PPO plans accepted, and our team can help verify your benefits before you visit."
+        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Most PPO plans accepted through direct or partner-billing pathways."
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule-consultation/"
@@ -113,6 +113,7 @@ const IndexPage: React.FC = () => {
           href: "/smile-gallery/"
         }}
         badgeText={INSURANCE_HERO_BADGE}
+        proofLinks={[...HOMEPAGE_HERO_PROOF_LINKS]}
         useGradient={false}
       />
 

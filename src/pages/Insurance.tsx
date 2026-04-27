@@ -18,14 +18,19 @@ import {
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import {
+  DIRECT_IN_NETWORK_CARRIERS,
   INSURANCE_HERO_BADGE,
   INSURANCE_HERO_HOOK,
   INSURANCE_HERO_SUPPORT,
+  INSURANCE_DIRECT_TIER_COPY,
   INSURANCE_PAGE_FAQS,
   INSURANCE_PAGE_LINKS,
   INSURANCE_PAGE_STEPS,
+  INSURANCE_PARTNER_TIER_COPY,
   INSURANCE_PAYMENT_SUMMARY,
   INSURANCE_SUPPORT_POINTS,
+  INSURANCE_VERIFICATION_DISCLAIMER,
+  PARTNER_BILLING_CARRIERS,
 } from '@/data/insurance';
 
 const Insurance = () => {
@@ -78,16 +83,79 @@ const Insurance = () => {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-5xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-secondary">
-                Insurance Help
+                PPO Insurance
               </p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 {INSURANCE_HERO_HOOK}
               </h2>
               <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                We do not expect you to decode PPO benefits on your own. Our team can help you
-                verify your plan, understand likely out-of-pocket costs, and decide whether Cherry
-                is useful for any remaining balance.
+                The important distinction is that accepted does not always mean direct in-network.
+                Exquisite Dentistry uses a two-tier PPO model: direct in-network relationships for
+                some carriers, and partner billing-contract pathways for others.
               </p>
+            </div>
+
+            <div className="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-2">
+              <article className="rounded-[1.75rem] border border-gold/20 bg-white p-6 shadow-[0_22px_60px_-42px_rgba(0,0,0,0.25)] md:p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                  <ShieldCheck size={22} />
+                </div>
+                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                  Tier 1
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold text-foreground">
+                  Direct in-network carriers
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                  {INSURANCE_DIRECT_TIER_COPY}
+                </p>
+                <div className="mt-6 space-y-4">
+                  {DIRECT_IN_NETWORK_CARRIERS.map((carrier) => (
+                    <div key={carrier.name} className="rounded-xl border border-border bg-stone-50 p-4">
+                      <h4 className="text-base font-semibold text-foreground">{carrier.name}</h4>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{carrier.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="rounded-[1.75rem] border border-border bg-white p-6 shadow-[0_22px_60px_-42px_rgba(0,0,0,0.25)] md:p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                  <FileSearch size={22} />
+                </div>
+                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                  Tier 2
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold text-foreground">
+                  Accepted through partner billing contracts
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                  {INSURANCE_PARTNER_TIER_COPY}
+                </p>
+                <div className="mt-6 space-y-4">
+                  {PARTNER_BILLING_CARRIERS.map((carrier) => (
+                    <div key={carrier.name} className="rounded-xl border border-border bg-stone-50 p-4">
+                      <h4 className="text-base font-semibold text-foreground">{carrier.name}</h4>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{carrier.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
+
+            <div className="mx-auto mt-6 max-w-6xl rounded-xl border border-gold/20 bg-gold/5 p-5">
+              <p className="text-sm leading-7 text-foreground/80">
+                {INSURANCE_VERIFICATION_DISCLAIMER}
+              </p>
+            </div>
+
+            <div className="mx-auto mt-14 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-secondary">
+                What Happens Next
+              </p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                Verify the pathway before treatment starts
+              </h2>
             </div>
 
             <div className="mx-auto mt-10 grid max-w-6xl gap-5 md:grid-cols-3">
@@ -115,8 +183,14 @@ const Insurance = () => {
                   What We Can Help Review
                 </p>
                 <h2 className="mt-4 text-3xl font-bold text-foreground md:text-4xl">
-                  A simpler path from benefits to next steps
+                  Correct insurance guidance before you commit
                 </h2>
+                <p className="mt-4 text-base leading-7 text-muted-foreground">
+                  MetLife is accepted, but it should not be presented as the same kind of
+                  relationship as Guardian or Cigna. Our team helps confirm whether your plan
+                  should route through a direct in-network relationship or a partner PPO billing
+                  contract.
+                </p>
                 <ul className="mt-6 space-y-4">
                   {INSURANCE_SUPPORT_POINTS.map((point) => (
                     <li key={point} className="flex items-start gap-3">
@@ -131,28 +205,30 @@ const Insurance = () => {
                     Insurance + Cherry
                   </p>
                   <p className="mt-3 text-base leading-7 text-foreground/85">
-                    {INSURANCE_PAYMENT_SUMMARY}
+                    {INSURANCE_PAYMENT_SUMMARY} If a remaining balance still matters after
+                    benefits are reviewed, Cherry can help eligible patients explore payment
+                    options.
                   </p>
                 </div>
               </div>
 
               <aside className="rounded-[2rem] border border-gold/20 bg-white p-7 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.28)]">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
-                  Helpful Next Links
+                  Verify Benefits
                 </p>
                 <h3 className="mt-4 text-2xl font-semibold text-foreground">
-                  Still comparing treatment cost and coverage?
+                  Send your plan details before treatment
                 </h3>
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                  Read our updated veneers-and-insurance guide, or jump straight to Cherry if you
-                  already know you need monthly payment options.
+                  Carrier names are only the starting point. Plan name, employer group, member ID,
+                  and the planned treatment determine what benefits may apply.
                 </p>
                 <div className="mt-6 flex flex-col gap-3">
                   <Button asChild>
-                    <Link to={INSURANCE_PAGE_LINKS.blog}>Read the veneers insurance guide</Link>
+                    <Link to={INSURANCE_PAGE_LINKS.contact}>Verify My Benefits</Link>
                   </Button>
                   <Button asChild variant="outline">
-                    <Link to={INSURANCE_PAGE_LINKS.paymentPlans}>Open payment plans</Link>
+                    <Link to={INSURANCE_PAGE_LINKS.blog}>Read the veneers insurance guide</Link>
                   </Button>
                 </div>
                 <p className="mt-6 text-sm leading-7 text-muted-foreground">

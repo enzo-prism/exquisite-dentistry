@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 import { trackPhoneClick } from '@/utils/googleAdsTracking';
 import { formatPhoneForTel } from '@/utils/phoneFormatting';
 
@@ -25,7 +26,7 @@ const PhoneLink = React.forwardRef<HTMLAnchorElement, PhoneLinkProps>(
       <a
         ref={ref}
         href={`tel:${telHref}`}
-        className={className}
+        className={cn('inline-flex min-h-6 items-center', className)}
         onClick={handlePhoneClick}
         {...props}
       >

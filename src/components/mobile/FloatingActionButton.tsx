@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Phone, MessageSquare, MapPin, Calendar, X, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -26,6 +27,7 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
       setHasScrolled(window.scrollY > 100);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -105,7 +107,7 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
     }
   };
 
-  return (
+  const floatingActions = (
     <div className={cn(getThumbZoneClasses(), className)}>
       {/* Action buttons */}
       <AnimatePresence>
@@ -190,6 +192,12 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
       </AnimatePresence>
     </div>
   );
+
+  if (typeof document === 'undefined') {
+    return floatingActions;
+  }
+
+  return createPortal(floatingActions, document.body);
 };
 
 export default FloatingActionButton;

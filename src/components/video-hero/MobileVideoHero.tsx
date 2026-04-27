@@ -16,12 +16,19 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   subtitle,
   primaryCta,
   secondaryCta,
+  proofLinks,
   height = 'medium',
   useGradient = false,
   disableVideo = false
 }) => {
   const heightClasses = getHeroHeightClasses(height);
   const shouldRenderVideo = !disableVideo && !useGradient;
+  const heroProofLinks = proofLinks ?? [
+    {
+      text: '5-star experience · 200+ Google · 100+ Yelp',
+      href: '/testimonials/'
+    }
+  ];
 
   return (
     <section 
@@ -97,12 +104,19 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
             isMobile={true}
           />
         </div>
-        <Link
-          to="/testimonials/"
-          className="mt-5 inline-flex w-full justify-center text-xs text-white/80 hover:text-white transition-colors"
-        >
-          5-star experience · 200+ Google · 100+ Yelp
-        </Link>
+        <div className="mx-auto mt-5 flex max-w-xs flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs text-white/80">
+          {heroProofLinks.map((link, index) => (
+            <React.Fragment key={link.href}>
+              {index > 0 ? <span className="text-gold/70">·</span> : null}
+              <Link
+                to={link.href}
+                className="inline-flex min-h-7 items-center transition-colors hover:text-white"
+              >
+                {link.text}
+              </Link>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </section>
   );

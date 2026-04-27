@@ -14,9 +14,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/': {
     title: 'Cosmetic Dentist Los Angeles | Dr. Aguil | Exquisite Dentistry',
     description:
-      "Transform your smile with Los Angeles' most trusted cosmetic dentist. Dr. Aguil delivers Hollywood-quality results in a spa-like setting. Book today!",
+      "Transform your smile with Los Angeles' trusted cosmetic dentist. Most PPO plans accepted, Cherry payment plans available, and 5-star care since 2006.",
     keywords:
-      'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, cosmetic dentistry',
+      'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, Guardian dentist Los Angeles, Cigna dentist Los Angeles, MetLife dentist Los Angeles',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
@@ -184,9 +184,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/insurance': {
     title: 'Insurance Accepted | Exquisite Dentistry Los Angeles',
     description:
-      'Most PPO plans accepted at Exquisite Dentistry in Los Angeles. Verify your plan, understand likely out-of-pocket costs, and explore Cherry for remaining balances.',
+      'Most PPO plans accepted at Exquisite Dentistry in Los Angeles, including Guardian, Cigna, MetLife, Principal, ProSense, Emeritus, and more. Verify your benefits before treatment.',
     keywords:
-      'insurance accepted dentist Los Angeles, PPO dentist Los Angeles, dental insurance Los Angeles, verify dental insurance, Cherry financing Los Angeles dentist',
+      'insurance accepted dentist Los Angeles, PPO dentist Los Angeles, Guardian dentist Los Angeles, Cigna dentist Los Angeles, MetLife dentist Los Angeles, Principal dentist Los Angeles, ProSense dentist Los Angeles, Emeritus dentist Los Angeles, verify dental insurance',
     ogImage: DEFAULT_OG_IMAGE
   },
   '/testimonials': {

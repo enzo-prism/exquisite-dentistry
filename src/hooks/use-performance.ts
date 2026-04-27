@@ -22,61 +22,73 @@ interface PerformanceMetrics {
   connectionType: string;
 }
 
+const readPerformanceMetrics = (): PerformanceMetrics => {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return {
+      isSlowConnection: false,
+      isReducedMotion: false,
+      deviceMemory: undefined,
+      connectionType: 'unknown'
+    };
+  }
+
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const nav = navigator as ExtendedNavigator;
+  const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+  const connectionType = connection?.effectiveType ?? 'unknown';
+
+  return {
+    isSlowConnection: Boolean(
+      connection &&
+        (connection.effectiveType === 'slow-2g' ||
+          connection.effectiveType === '2g' ||
+          connection.saveData === true)
+    ),
+    isReducedMotion: mediaQuery.matches,
+    deviceMemory: nav.deviceMemory,
+    connectionType
+  };
+};
+
+type MotionMediaQueryList = MediaQueryList & {
+  addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+  removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+};
+
 export function usePerformance(): PerformanceMetrics {
-  const [metrics, setMetrics] = useState<PerformanceMetrics>({
-    isSlowConnection: false,
-    isReducedMotion: false,
-    deviceMemory: undefined,
-    connectionType: 'unknown'
-  });
+  const [metrics, setMetrics] = useState<PerformanceMetrics>(() => readPerformanceMetrics());
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof navigator === 'undefined') {
       return;
     }
 
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const isReducedMotion = mediaQuery.matches;
-
-    // Check connection speed
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)') as MotionMediaQueryList;
     const nav = navigator as ExtendedNavigator;
     const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
-    const isSlowConnection = connection ?
-      (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.saveData === true) :
-      false;
+    const updateMetrics = () => setMetrics(readPerformanceMetrics());
 
-    // Get device memory if available
-    const deviceMemory = nav.deviceMemory;
-
-    // Get connection type
-    const connectionType = connection?.effectiveType ?? 'unknown';
-
-    setMetrics({
-      isSlowConnection,
-      isReducedMotion,
-      deviceMemory,
-      connectionType
-    });
-
-    // Listen for connection changes
-    const handleConnectionChange = () => {
-      if (connection) {
-        setMetrics(prev => ({
-          ...prev,
-          isSlowConnection: connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.saveData,
-          connectionType: connection.effectiveType
-        }));
-      }
-    };
+    updateMetrics();
 
     if (connection?.addEventListener) {
-      connection.addEventListener('change', handleConnectionChange);
+      connection.addEventListener('change', updateMetrics);
+    }
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateMetrics);
+    } else if (mediaQuery.addListener) {
+      mediaQuery.addListener(updateMetrics);
     }
 
     return () => {
       if (connection?.removeEventListener) {
-        connection.removeEventListener('change', handleConnectionChange);
+        connection.removeEventListener('change', updateMetrics);
+      }
+
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', updateMetrics);
+      } else if (mediaQuery.removeListener) {
+        mediaQuery.removeListener(updateMetrics);
       }
     };
   }, []);

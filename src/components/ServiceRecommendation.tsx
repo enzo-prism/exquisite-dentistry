@@ -61,7 +61,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
   };
 
   return (
-    <div className={`bg-gradient-to-br from-gray-50 to-white rounded-lg p-6 border border-gray-200 ${className}`}>
+    <div className={`min-w-0 max-w-full overflow-hidden bg-gradient-to-br from-gray-50 to-white rounded-lg p-6 border border-gray-200 ${className}`}>
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {getContextTitle()}
@@ -76,12 +76,12 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
           <Link
             key={index}
             to={normalizeInternalHref(service.href)}
-            className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-gold/50 hover:shadow-md transition-all group"
+            className="block min-w-0 max-w-full p-4 bg-white rounded-lg border border-gray-200 hover:border-gold/50 hover:shadow-md transition-all group"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h4 className="font-medium text-gray-900 group-hover:text-gold transition-colors">
+            <div className="flex min-w-0 items-start justify-between gap-3 sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <h4 className="min-w-0 break-words font-medium text-gray-900 group-hover:text-gold transition-colors">
                     {service.title}
                   </h4>
                   {service.combination && (
@@ -95,7 +95,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
                   {service.description}
                 </p>
 
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
                   {service.duration && (
                     <div className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
@@ -128,7 +128,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
       <div className="mt-6 pt-4 border-t border-gray-200">
         <Link
           to="/contact/"
-          className="inline-flex items-center text-sm text-gold hover:text-gold/80 transition-colors"
+          className="inline-flex min-h-6 max-w-full flex-wrap items-center text-sm text-gold hover:text-gold/80 transition-colors"
         >
           Discuss combination options with Dr. Aguil
           <ArrowRight className="w-3 h-3 ml-1" />
