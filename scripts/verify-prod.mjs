@@ -1,6 +1,14 @@
+import { resolve4, resolveCname } from 'node:dns/promises';
+import tls from 'node:tls';
+
 const BASE_URL = 'https://exquisitedentistryla.com';
 const WWW_URL = 'https://www.exquisitedentistryla.com';
 const ROOT_CANONICAL = `${BASE_URL}/`;
+const APEX_HOST = 'exquisitedentistryla.com';
+const WWW_HOST = 'www.exquisitedentistryla.com';
+const EXPECTED_APEX_A_RECORDS = ['216.150.1.1', '216.150.16.1'];
+const EXPECTED_WWW_CNAME = '5af90ad8a79c4de1.vercel-dns-017.com';
+const MIN_CERT_VALID_DAYS = Number(process.env.MIN_CERT_VALID_DAYS || 30);
 const isStagingEnv =
   process.env.VITE_APP_ENV === 'staging' ||
   process.env.VERCEL_GIT_COMMIT_REF === 'staging' ||
@@ -55,6 +63,54 @@ const fetchText = async (url, options = {}) => {
   return { response, text };
 };
 
+const normalizeDnsValue = (value) => value.replace(/\.$/, '').toLowerCase();
+
+const getCertificate = (hostname) =>
+  new Promise((resolve, reject) => {
+    let settled = false;
+    const socket = tls.connect(
+      {
+        host: hostname,
+        port: 443,
+        servername: hostname,
+        rejectUnauthorized: true,
+        timeout: 10000,
+      },
+      () => {
+        settled = true;
+        const certificate = socket.getPeerCertificate();
+        socket.end();
+        resolve(certificate);
+      }
+    );
+
+    socket.setTimeout(10000, () => {
+      if (settled) return;
+      settled = true;
+      socket.destroy();
+      reject(new Error(`TLS handshake timed out for ${hostname}`));
+    });
+
+    socket.on('error', (error) => {
+      if (settled) return;
+      settled = true;
+      reject(error);
+    });
+  });
+
+const checkCertificateFreshness = async (hostname) => {
+  const certificate = await getCertificate(hostname);
+  assert(certificate?.valid_to, `Missing certificate validity data for ${hostname}`);
+
+  const expiresAt = new Date(certificate.valid_to);
+  const daysRemaining = (expiresAt.getTime() - Date.now()) / 86_400_000;
+  assert(Number.isFinite(daysRemaining), `Could not parse certificate expiry for ${hostname}`);
+  assert(
+    daysRemaining >= MIN_CERT_VALID_DAYS,
+    `${hostname} certificate expires in ${daysRemaining.toFixed(1)} days; expected at least ${MIN_CERT_VALID_DAYS}`
+  );
+};
+
 const checkPageCanonical = async (path) => {
   const url = `${BASE_URL}${path}`;
   const { response, text } = await fetchText(url);
@@ -85,6 +141,27 @@ await runCheck('www redirects to apex', async () => {
     `Expected redirect to ${BASE_URL} or ${ROOT_CANONICAL}, got ${location}`
   );
 });
+
+await runCheck('apex DNS points directly to Vercel', async () => {
+  const records = await resolve4(APEX_HOST);
+  for (const expectedRecord of EXPECTED_APEX_A_RECORDS) {
+    assert(records.includes(expectedRecord), `Missing expected A record ${expectedRecord}; got ${records.join(', ')}`);
+  }
+});
+
+await runCheck('www DNS points directly to Vercel', async () => {
+  const records = (await resolveCname(WWW_HOST)).map(normalizeDnsValue);
+  assert(
+    records.includes(EXPECTED_WWW_CNAME),
+    `Missing expected CNAME ${EXPECTED_WWW_CNAME}; got ${records.join(', ')}`
+  );
+});
+
+for (const hostname of [APEX_HOST, WWW_HOST]) {
+  await runCheck(`${hostname} certificate has at least ${MIN_CERT_VALID_DAYS} days remaining`, async () => {
+    await checkCertificateFreshness(hostname);
+  });
+}
 
 await runCheck('robots.txt references sitemap', async () => {
   const { response, text } = await fetchText(`${BASE_URL}/robots.txt`);
