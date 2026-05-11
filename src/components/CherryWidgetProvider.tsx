@@ -23,11 +23,13 @@ import {
   CHERRY_WIDGET_SUPPORT_CONTAINER_IDS,
   createCherryWidgetConfig,
 } from '@/constants/cherry';
+import { trackFinancingEngagement } from '@/utils/vercelAnalytics';
 
 const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease' as const;
 const CHERRY_WIDGET_Z_INDEX = '45' as const;
 const CHERRY_WIDGET_COMPACT_BREAKPOINT = 640;
 const CHERRY_WIDGET_COLLAPSED_BREAKPOINT = 480;
+const CHERRY_WIDGET_CLICK_SELECTOR = `[id="${CHERRY_WIDGET_MOUNT_ID}"], [class*="floatingEstimator"]`;
 
 const setImportantStyle = (target: HTMLElement, property: string, value: string) => {
   target.style.setProperty(property, value, 'important');
@@ -217,12 +219,67 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
   const teardownTimerRef = useRef<number | null>(null);
   const syncFrameRef = useRef<number | null>(null);
   const isMobileRef = useRef(isMobile);
+  const hasTrackedReadyRef = useRef(false);
+  const hasTrackedErrorRef = useRef(false);
+  const lastWidgetClickAtRef = useRef(0);
 
   const hasActiveWidgets = activeWidgetIds.size > 0;
 
   useEffect(() => {
     isMobileRef.current = isMobile;
   }, [isMobile]);
+
+  useEffect(() => {
+    if (!hasActiveWidgets) {
+      hasTrackedReadyRef.current = false;
+      hasTrackedErrorRef.current = false;
+    }
+  }, [hasActiveWidgets]);
+
+  useEffect(() => {
+    if (!hasActiveWidgets) return;
+
+    if (status === 'ready' && !hasTrackedReadyRef.current) {
+      hasTrackedReadyRef.current = true;
+      trackFinancingEngagement({
+        action: 'widget_ready',
+        source: 'cherry_widget_provider',
+        status,
+      });
+    }
+
+    if (status === 'error' && !hasTrackedErrorRef.current) {
+      hasTrackedErrorRef.current = true;
+      trackFinancingEngagement({
+        action: 'widget_error',
+        source: 'cherry_widget_provider',
+        status,
+      });
+    }
+  }, [hasActiveWidgets, status]);
+
+  useEffect(() => {
+    if (typeof document === 'undefined' || !hasActiveWidgets) return;
+
+    const handleWidgetClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (!target.closest(CHERRY_WIDGET_CLICK_SELECTOR)) return;
+
+      const now = Date.now();
+      if (now - lastWidgetClickAtRef.current < 1000) return;
+      lastWidgetClickAtRef.current = now;
+
+      trackFinancingEngagement({
+        action: 'widget_clicked',
+        source: isMobileRef.current ? 'cherry_floating_mobile' : 'cherry_floating_desktop',
+        status,
+      });
+    };
+
+    document.addEventListener('click', handleWidgetClick, true);
+    return () => document.removeEventListener('click', handleWidgetClick, true);
+  }, [hasActiveWidgets, status]);
 
   const registerWidget = useCallback((id: string) => {
     setActiveWidgetIds((currentIds) => {

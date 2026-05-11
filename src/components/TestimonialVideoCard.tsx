@@ -3,6 +3,7 @@ import UniversalVideoPlayer from './UniversalVideoPlayer';
 import { cn } from '@/lib/utils';
 import PracticeVideoPlayer from './PracticeVideoPlayer';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
+import { trackVideoEngagement } from '@/utils/vercelAnalytics';
 
 interface TestimonialVideoCardProps {
   testimonial: VideoTestimonialItem;
@@ -25,6 +26,12 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
     if (hasTrackedStartRef.current) return;
     hasTrackedStartRef.current = true;
 
+    trackVideoEngagement({
+      action: 'start',
+      source: analyticsCategory,
+      videoId,
+    });
+
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
       window.gtag('event', 'video_start', {
         event_category: analyticsCategory,
@@ -36,6 +43,12 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
 
   const handleVideoEnd = React.useCallback(() => {
     if (!trackCompletion) return;
+
+    trackVideoEngagement({
+      action: 'complete',
+      source: analyticsCategory,
+      videoId,
+    });
 
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
       window.gtag('event', 'video_complete', {

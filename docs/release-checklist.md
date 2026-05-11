@@ -24,6 +24,7 @@ Curl checks:
 
 Analytics check:
 - Visit a few production routes after deploy and confirm the Vercel Analytics dashboard starts recording pageviews for production traffic.
+- Trigger at least two high-signal custom events from `docs/vercel-analytics-events.md` such as a schedule CTA, site search result, phone click, or financing CTA, then confirm they appear in Vercel Analytics.
 - Give Vercel Speed Insights a minute to ingest traffic, then confirm the dashboard stops showing "No data available" for the visited routes. Test at least one desktop and one mobile session with content blockers disabled.
 
 Canonical verification (apex only):

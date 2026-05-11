@@ -1,6 +1,7 @@
 import React from 'react';
 import UniversalVideoPlayer from './UniversalVideoPlayer';
 import { cn } from '@/lib/utils';
+import { trackVideoEngagement } from '@/utils/vercelAnalytics';
 
 interface TestimonialThumbnailProps {
   vimeoId: string;
@@ -16,6 +17,12 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
   className
 }) => {
   const handleVideoStart = () => {
+    trackVideoEngagement({
+      action: 'start',
+      source: 'testimonial_thumbnail',
+      videoId: vimeoId,
+    });
+
     // Track video engagement for analytics
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
       window.gtag('event', 'video_start', {

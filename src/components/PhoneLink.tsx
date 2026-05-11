@@ -6,6 +6,7 @@ import { formatPhoneForTel } from '@/utils/phoneFormatting';
 interface PhoneLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   phoneNumber: string;
   children: React.ReactNode;
+  analyticsSource?: string;
 }
 
 /**
@@ -13,9 +14,9 @@ interface PhoneLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorEleme
  * Automatically formats phone numbers to E.164 format for proper tel: links
  */
 const PhoneLink = React.forwardRef<HTMLAnchorElement, PhoneLinkProps>(
-  ({ phoneNumber, children, className, onClick, ...props }, ref) => {
+  ({ phoneNumber, children, className, onClick, analyticsSource = 'phone_link', ...props }, ref) => {
     const handlePhoneClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-      trackPhoneClick(phoneNumber);
+      trackPhoneClick(phoneNumber, analyticsSource);
       onClick?.(event);
     };
 

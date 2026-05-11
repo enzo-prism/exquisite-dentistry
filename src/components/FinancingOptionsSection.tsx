@@ -9,6 +9,7 @@ import { INSURANCE_SERVICE_REASSURANCE } from '@/data/insurance';
 import { useCherryWidgetRegistration } from '@/hooks/use-cherry-widget-registration';
 import { cn } from '@/lib/utils';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
+import { trackConsultationIntent, trackFinancingEngagement } from '@/utils/vercelAnalytics';
 
 interface FinancingOptionsSectionProps {
   eyebrow?: string;
@@ -41,13 +42,34 @@ const defaultHighlights = [
   },
 ];
 
-const renderAction = (href: string, label: string, variant: 'default' | 'outline') => {
+const renderAction = (
+  href: string,
+  label: string,
+  variant: 'default' | 'outline',
+  source: string,
+) => {
   const normalizedHref = normalizeInternalHref(href);
+  const handleClick = () => {
+    trackFinancingEngagement({
+      action: 'cta_clicked',
+      source,
+      ctaText: label,
+      destination: normalizedHref,
+    });
+
+    if (normalizedHref === SCHEDULE_CONSULTATION_PATH) {
+      trackConsultationIntent({
+        source,
+        ctaText: label,
+        destination: normalizedHref,
+      });
+    }
+  };
 
   if (href.startsWith('/')) {
     return (
       <Button asChild size="lg" variant={variant}>
-        <Link to={normalizedHref}>{label}</Link>
+        <Link to={normalizedHref} onClick={handleClick}>{label}</Link>
       </Button>
     );
   }
@@ -58,6 +80,7 @@ const renderAction = (href: string, label: string, variant: 'default' | 'outline
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        onClick={handleClick}
       >
         {label}
       </a>
@@ -78,9 +101,43 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   className,
 }) => {
   useCherryWidgetRegistration({ enabled: true });
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+  const hasTrackedViewRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || hasTrackedViewRef.current) return;
+
+    const trackSectionView = () => {
+      if (hasTrackedViewRef.current) return;
+      hasTrackedViewRef.current = true;
+      trackFinancingEngagement({
+        action: 'section_viewed',
+        source: 'financing_options_section',
+        status: showWidgetPreview ? 'with_preview' : 'no_preview',
+      });
+    };
+
+    if (typeof IntersectionObserver === 'undefined') {
+      trackSectionView();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        trackSectionView();
+        observer.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [showWidgetPreview]);
 
   return (
-    <section className={cn('py-16 md:py-20', className)}>
+    <section ref={sectionRef} className={cn('py-16 md:py-20', className)}>
       <div className="container mx-auto px-4">
         <div
           className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-white via-stone-50 to-white shadow-[0_30px_90px_-50px_rgba(0,0,0,0.45)]"
@@ -126,9 +183,9 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
               </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {renderAction(primaryCtaHref, primaryCtaText, 'default')}
+                {renderAction(primaryCtaHref, primaryCtaText, 'default', 'financing_options_section_primary')}
                 {secondaryCtaText && secondaryCtaHref
-                  ? renderAction(secondaryCtaHref, secondaryCtaText, 'outline')
+                  ? renderAction(secondaryCtaHref, secondaryCtaText, 'outline', 'financing_options_section_secondary')
                   : null}
               </div>
             </div>
@@ -166,9 +223,9 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                     without stopping.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    {renderAction(primaryCtaHref, primaryCtaText, 'default')}
+                    {renderAction(primaryCtaHref, primaryCtaText, 'default', 'financing_preview_primary')}
                     {secondaryCtaText && secondaryCtaHref
-                      ? renderAction(secondaryCtaHref, secondaryCtaText, 'outline')
+                      ? renderAction(secondaryCtaHref, secondaryCtaText, 'outline', 'financing_preview_secondary')
                       : null}
                   </div>
                 </div>

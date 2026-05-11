@@ -10,7 +10,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
-    gtagSendEvent?: (url?: string) => boolean;
+    gtagSendEvent?: (url?: string, target?: string, source?: string) => boolean;
     hj?: (...args: unknown[]) => void;
     _hw?: ((method: string, ...args: unknown[]) => void) & {
       q?: unknown[][];

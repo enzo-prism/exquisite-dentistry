@@ -1,9 +1,23 @@
+import { trackLegacyRedirectEvent } from '@/utils/vercelAnalytics';
+
+const getSearchEngineSource = (referrer: string) => {
+  if (referrer.includes('google.com')) return 'google';
+  if (referrer.includes('bing.com')) return 'bing';
+  if (referrer.includes('yahoo.com')) return 'yahoo';
+  return 'other_search';
+};
+
 export function trackLegacyRedirect(fromUrl?: string) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     const referrer = fromUrl || document.referrer;
     
     // Only track if coming from Google or other search engines
     if (referrer && (referrer.includes('google.com') || referrer.includes('bing.com') || referrer.includes('yahoo.com'))) {
+      trackLegacyRedirectEvent({
+        source: getSearchEngineSource(referrer),
+        hasHash: Boolean(window.location.hash),
+      });
+
       window.gtag('event', 'legacy_redirect', {
         'from_url': referrer,
         'to_url': window.location.href,

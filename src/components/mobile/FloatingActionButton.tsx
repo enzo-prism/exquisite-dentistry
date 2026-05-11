@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { gtagSendEvent } from '@/utils/googleAdsTracking';
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_E164 } from '@/constants/contact';
+import { trackContactMethodClick } from '@/utils/vercelAnalytics';
 
 interface FloatingActionButtonProps {
   className?: string;
@@ -133,7 +134,25 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
                 onClick={(e) => {
                   if (action.trackConversion) {
                     e.preventDefault();
-                    gtagSendEvent(action.href);
+                    gtagSendEvent(action.href, undefined, 'mobile_floating_action_button');
+                  } else if (action.href.startsWith('tel:')) {
+                    trackContactMethodClick({
+                      method: 'phone',
+                      source: 'mobile_floating_action_button',
+                      destination: action.href,
+                    });
+                  } else if (action.href.startsWith('sms:')) {
+                    trackContactMethodClick({
+                      method: 'sms',
+                      source: 'mobile_floating_action_button',
+                      destination: action.href,
+                    });
+                  } else if (action.href === GOOGLE_MAPS_SHORT_URL) {
+                    trackContactMethodClick({
+                      method: 'directions',
+                      source: 'mobile_floating_action_button',
+                      destination: action.href,
+                    });
                   }
                   setIsExpanded(false);
                 }}

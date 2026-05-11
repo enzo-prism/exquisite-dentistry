@@ -5,6 +5,11 @@ import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
 import PhoneLink from '@/components/PhoneLink';
 import { trackFormSubmission } from '@/utils/googleAdsTracking';
+import {
+  trackContactFormFailed,
+  trackContactFormValidationFailed,
+  trackContactMethodClick,
+} from '@/utils/vercelAnalytics';
 import VideoHero from '@/components/VideoHero';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
@@ -189,6 +194,16 @@ const Contact = () => {
         focusableElement.focus();
       }
 
+      trackContactFormValidationFailed({
+        form: 'contact_form',
+        fieldCount: Object.values(nextErrors).filter(Boolean).length,
+        personaMissing: Boolean(nextErrors.whichBestDescribesYou),
+        nameMissing: Boolean(nextErrors.name),
+        emailMissing: nextErrors.email === 'Please enter your email address.',
+        emailInvalid: nextErrors.email === 'Please enter a valid email address (example: name@domain.com).',
+        messageMissing: Boolean(nextErrors.message),
+      });
+
       return;
     }
 
@@ -223,11 +238,18 @@ const Contact = () => {
       setFormState({ whichBestDescribesYou: '', name: '', email: '', phone: '', message: '' });
       setHoneypot('');
       setFieldErrors({ whichBestDescribesYou: '', name: '', email: '', message: '' });
-      trackFormSubmission('contact_form', { whichBestDescribesYou: trimmedPersona });
+      trackFormSubmission('contact_form', {
+        whichBestDescribesYou: trimmedPersona,
+        hasPhone: Boolean(trimmedPhone),
+      });
     } catch (error) {
       console.error('Contact form submission failed', error);
       setFormStatus('error');
       setFeedback('Something went wrong. Please try again.');
+      trackContactFormFailed({
+        form: 'contact_form',
+        reason: 'formspree_request_failed',
+      });
     }
   };
 
@@ -314,6 +336,11 @@ const Contact = () => {
                             href="https://maps.app.goo.gl/uZPw5AKARk8HuNh9A"
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => trackContactMethodClick({
+                              method: 'directions',
+                              source: 'contact_page_card',
+                              destination: 'https://maps.app.goo.gl/uZPw5AKARk8HuNh9A',
+                            })}
                             className="text-white/80 hover:text-gold transition-colors inline-block"
                           >
                             {STREET_ADDRESS}<br />

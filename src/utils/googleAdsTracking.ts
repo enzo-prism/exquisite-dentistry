@@ -1,18 +1,31 @@
 // Google Ads Conversion Tracking Utility
 // Based on the conversion snippet provided by Google Ads
+import {
+  trackContactFormSubmitted,
+  trackContactMethodClick,
+  trackConsultationIntent,
+  trackCtaClick,
+  trackVercelEvent,
+} from '@/utils/vercelAnalytics';
 
 /**
  * Helper function to delay opening a URL until a gtag event is sent.
  * Call it in response to an action that should navigate to a URL.
  * Based on Google Ads conversion tracking snippet.
  */
-export function gtagSendEvent(url?: string, target?: string): boolean {
+export function gtagSendEvent(url?: string, target?: string, source = 'google_ads_conversion_helper'): boolean {
   if (typeof window === 'undefined') {
     if (url) {
       console.warn('Window is not available; cannot delay navigation for conversion tracking.');
     }
     return false;
   }
+
+  trackConsultationIntent({
+    source,
+    ctaText: 'Consultation booking',
+    destination: url,
+  });
 
   // Ensure gtag is available
   if (typeof window.gtag !== 'function') {
@@ -84,10 +97,16 @@ function navigateToUrl(url: string, target?: string): void {
 /**
  * Track phone number clicks as potential conversions
  */
-export function trackPhoneClick(phoneNumber: string): void {
+export function trackPhoneClick(phoneNumber: string, source = 'phone_link'): void {
   if (typeof window === 'undefined') {
     return;
   }
+
+  trackContactMethodClick({
+    method: 'phone',
+    source,
+    destination: `tel:${phoneNumber}`,
+  });
 
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for phone tracking');
@@ -125,10 +144,16 @@ export function trackPhoneClick(phoneNumber: string): void {
 /**
  * Track SMS clicks separately
  */
-export function trackSMSClick(phoneNumber: string): void {
+export function trackSMSClick(phoneNumber: string, source = 'sms_link'): void {
   if (typeof window === 'undefined') {
     return;
   }
+
+  trackContactMethodClick({
+    method: 'sms',
+    source,
+    destination: `sms:${phoneNumber}`,
+  });
 
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for SMS tracking');
@@ -159,6 +184,14 @@ export function trackFormSubmission(formType: string, additionalData?: Record<st
   if (typeof window === 'undefined') {
     return;
   }
+
+  trackContactFormSubmitted({
+    form: formType,
+    persona: typeof additionalData?.whichBestDescribesYou === 'string'
+      ? additionalData.whichBestDescribesYou
+      : undefined,
+    hasPhone: Boolean(additionalData?.hasPhone),
+  });
 
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for form tracking');
@@ -203,6 +236,11 @@ export function trackCTAClick(ctaType: string, ctaText: string): void {
     return;
   }
 
+  trackCtaClick({
+    source: ctaType,
+    ctaText,
+  });
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for CTA tracking');
     return;
@@ -231,6 +269,10 @@ export function trackCTAClick(ctaType: string, ctaText: string): void {
  * Track service page views with enhanced attribution
  */
 export function trackServicePageView(serviceName: string): void {
+  trackVercelEvent('Service Page Viewed', {
+    service: serviceName,
+  });
+
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for service tracking');
     return;

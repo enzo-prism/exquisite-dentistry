@@ -10,6 +10,13 @@ import { cn } from "@/lib/utils";
 import { normalizeInternalHref } from "@/utils/normalizeInternalHref";
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
+import {
+  trackContactMethodClick,
+  trackConsultationIntent,
+  trackSiteSearchActionSelected,
+  trackSiteSearchNoResults,
+  trackSiteSearchResultSelected,
+} from "@/utils/vercelAnalytics";
 
 type SearchItemType = "page" | "service" | "location" | "blog";
 
@@ -209,6 +216,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
   });
   const lastActiveRef = useRef<HTMLElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const lastNoResultsQueryRef = useRef("");
 
   const focusSearchInput = () => {
     const input = inputRef.current;
@@ -334,6 +342,23 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
     return { popular: [] as SearchIndexItem[], groups, totalMatches };
   }, [query, searchIndex]);
 
+  useEffect(() => {
+    const normalizedQuery = normalizeForSearch(query);
+
+    if (!open || isLoadingIndex || !normalizedQuery || groupedResults.totalMatches !== 0) return;
+    if (lastNoResultsQueryRef.current === normalizedQuery) return;
+
+    const timeoutId = window.setTimeout(() => {
+      lastNoResultsQueryRef.current = normalizedQuery;
+      trackSiteSearchNoResults({
+        queryLength: query.trim().length,
+        tokenCount: tokenize(query).length,
+      });
+    }, 700);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [groupedResults.totalMatches, isLoadingIndex, open, query]);
+
   const handleOpenChange = (nextOpen: boolean) => {
     onOpenChange(nextOpen);
 
@@ -354,6 +379,50 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
     }
 
     navigate(resolved.href);
+  };
+
+  const getSearchTrackingContext = () => {
+    const trimmedQuery = query.trim();
+    return {
+      queryLength: trimmedQuery.length,
+      tokenCount: tokenize(trimmedQuery).length,
+      resultCount: groupedResults.totalMatches,
+    };
+  };
+
+  const openSearchResult = (item: SearchIndexItem) => {
+    trackSiteSearchResultSelected({
+      ...getSearchTrackingContext(),
+      resultType: item.type,
+      destination: item.href,
+    });
+    openResult(item.href);
+  };
+
+  const openSearchAction = (action: { id: string; title: string; href: string }) => {
+    const actionName = action.id.replace(/^action:/, "");
+    const trimmedQuery = query.trim();
+
+    trackSiteSearchActionSelected({
+      action: actionName,
+      queryLength: trimmedQuery.length,
+    });
+
+    if (action.href === SCHEDULE_CONSULTATION_PATH) {
+      trackConsultationIntent({
+        source: "site_search_action",
+        ctaText: action.title,
+        destination: action.href,
+      });
+    } else if (action.href.startsWith("tel:")) {
+      trackContactMethodClick({
+        method: "phone",
+        source: "site_search_action",
+        destination: action.href,
+      });
+    }
+
+    openResult(action.href);
   };
 
   const commandContent = (
@@ -413,7 +482,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
           <>
             <CommandGroup heading="Popular">
               {groupedResults.popular.map((item) => (
-                <SearchResultRow key={item.id} item={item} onSelect={openResult} />
+                <SearchResultRow key={item.id} item={item} onSelect={openSearchResult} />
               ))}
             </CommandGroup>
             <CommandSeparator />
@@ -432,7 +501,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
                 <React.Fragment key={type}>
                   <CommandGroup heading={label}>
                     {items.map((item) => (
-                      <SearchResultRow key={item.id} item={item} onSelect={openResult} />
+                      <SearchResultRow key={item.id} item={item} onSelect={openSearchResult} />
                     ))}
                   </CommandGroup>
                   {index < 3 ? <CommandSeparator /> : null}
@@ -447,7 +516,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
             <CommandItem
               key={action.id}
               value={action.title}
-              onSelect={() => openResult(action.href)}
+              onSelect={() => openSearchAction(action)}
               className="flex items-center gap-3 rounded-md px-3 py-3 text-white data-[selected=true]:bg-gold/15"
             >
               <action.icon className="h-4 w-4 text-gold" aria-hidden="true" />
@@ -494,14 +563,14 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
   );
 };
 
-const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (href: string) => void }> = ({ item, onSelect }) => {
+const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (item: SearchIndexItem) => void }> = ({ item, onSelect }) => {
   const Icon = getTypeIcon(item.type);
   const displayTitle = item.h1?.trim() || item.title;
 
   return (
     <CommandItem
       value={[item.title, item.h1, item.description, ...(item.keywords ?? []), item.href].filter(Boolean).join(" ")}
-      onSelect={() => onSelect(item.href)}
+      onSelect={() => onSelect(item)}
       className="flex items-start gap-3 rounded-md px-3 py-3 text-white data-[selected=true]:bg-gold/15"
     >
       <Icon className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />

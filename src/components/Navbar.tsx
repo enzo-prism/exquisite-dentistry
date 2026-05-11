@@ -17,6 +17,7 @@ import {
   SERVICE_MENU_LINKS,
 } from '@/constants/navigation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { trackConsultationIntent, trackSiteSearchOpened } from '@/utils/vercelAnalytics';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -80,8 +81,17 @@ const Navbar = () => {
   const openSearch = useCallback(() => {
     setShouldMountSearch(true);
     setIsSearchOpen(true);
+    trackSiteSearchOpened({ source: 'navbar' });
     closeMobileMenu();
   }, [closeMobileMenu]);
+
+  const trackNavbarConsultation = useCallback((source: string, ctaText: string) => {
+    trackConsultationIntent({
+      source,
+      ctaText,
+      destination: SCHEDULE_CONSULTATION_PATH,
+    });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -349,6 +359,7 @@ const Navbar = () => {
 
                 <PhoneLink
                   phoneNumber={PHONE_NUMBER_DISPLAY}
+                  analyticsSource="desktop_nav_icon"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:hidden"
                   aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
                 >
@@ -357,6 +368,7 @@ const Navbar = () => {
 
                 <PhoneLink
                   phoneNumber={PHONE_NUMBER_DISPLAY}
+                  analyticsSource="desktop_nav_text"
                   className="hidden h-10 items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 text-sm font-semibold text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:inline-flex"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
@@ -368,7 +380,10 @@ const Navbar = () => {
                   asChild
                   className="h-10 rounded-full bg-gold px-3.5 text-sm font-semibold text-black hover:bg-gold/90 min-[1480px]:px-4"
                 >
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>
+                  <Link
+                    to={SCHEDULE_CONSULTATION_PATH}
+                    onClick={() => trackNavbarConsultation('desktop_nav_book_button', 'Schedule Consultation')}
+                  >
                     <span className="min-[1480px]:hidden">Book</span>
                     <span className="hidden min-[1480px]:inline min-[1680px]:hidden">Book Now</span>
                     <span className="hidden min-[1680px]:inline">Schedule Consultation</span>
@@ -383,7 +398,12 @@ const Navbar = () => {
                 asChild
                 className="hidden h-10 rounded-full bg-gold px-4 text-sm font-semibold text-black hover:bg-gold/90 sm:inline-flex"
               >
-                <Link to={SCHEDULE_CONSULTATION_PATH}>Book</Link>
+                <Link
+                  to={SCHEDULE_CONSULTATION_PATH}
+                  onClick={() => trackNavbarConsultation('mobile_nav_book_button', 'Book')}
+                >
+                  Book
+                </Link>
               </Button>
 
               <button
@@ -430,13 +450,20 @@ const Navbar = () => {
                           size="lg"
                           className="h-12 w-full rounded-full bg-gold text-sm font-semibold text-black hover:bg-gold/90"
                         >
-                          <Link to={SCHEDULE_CONSULTATION_PATH} onClick={closeMobileMenu}>
+                          <Link
+                            to={SCHEDULE_CONSULTATION_PATH}
+                            onClick={() => {
+                              trackNavbarConsultation('mobile_menu_schedule_button', 'Schedule Consultation');
+                              closeMobileMenu();
+                            }}
+                          >
                             Schedule Consultation
                           </Link>
                         </Button>
 
                         <PhoneLink
                           phoneNumber={PHONE_NUMBER_DISPLAY}
+                          analyticsSource="mobile_menu"
                           onClick={closeMobileMenu}
                           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
                         >

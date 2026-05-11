@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet-async";
 import { getCanonicalUrl } from "@/utils/schemaValidation";
 import { Link } from "react-router-dom";
+import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
+import { trackConsultationIntent, trackCtaClick } from "@/utils/vercelAnalytics";
 
 interface ServicePageTemplateProps {
   config: ServicePageConfig;
@@ -39,6 +41,23 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
   }
 
   const canonicalUrl = getCanonicalUrl(`/${config.slug}`);
+  const trackServiceCta = (source: string, ctaText: string, destination: string) => {
+    const normalizedDestination = normalizeInternalHref(destination);
+
+    trackCtaClick({
+      source,
+      ctaText,
+      destination: normalizedDestination,
+    });
+
+    if (normalizedDestination === SCHEDULE_CONSULTATION_PATH) {
+      trackConsultationIntent({
+        source,
+        ctaText,
+        destination: normalizedDestination,
+      });
+    }
+  };
 
   const combinedText = [
     config.hero.subheading,
@@ -212,12 +231,18 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg">
               {config.cta.primaryHref.startsWith("/") ? (
-                <Link to={normalizeInternalHref(config.cta.primaryHref)}>{config.cta.primaryText}</Link>
+                <Link
+                  to={normalizeInternalHref(config.cta.primaryHref)}
+                  onClick={() => trackServiceCta('service_page_primary_cta', config.cta.primaryText, config.cta.primaryHref)}
+                >
+                  {config.cta.primaryText}
+                </Link>
               ) : (
                 <a
                   href={config.cta.primaryHref}
                   target={isHttpUrl(config.cta.primaryHref) ? "_blank" : undefined}
                   rel={isHttpUrl(config.cta.primaryHref) ? "noopener noreferrer" : undefined}
+                  onClick={() => trackServiceCta('service_page_primary_cta', config.cta.primaryText, config.cta.primaryHref)}
                 >
                   {config.cta.primaryText}
                 </a>
@@ -226,9 +251,19 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
             {config.cta.secondaryText && config.cta.secondaryHref && (
               <Button asChild size="lg" variant="outline">
                 {config.cta.secondaryHref.startsWith("/") ? (
-                  <Link to={normalizeInternalHref(config.cta.secondaryHref)}>{config.cta.secondaryText}</Link>
+                  <Link
+                    to={normalizeInternalHref(config.cta.secondaryHref)}
+                    onClick={() => trackServiceCta('service_page_secondary_cta', config.cta.secondaryText, config.cta.secondaryHref)}
+                  >
+                    {config.cta.secondaryText}
+                  </Link>
                 ) : (
-                  <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
+                  <a
+                    href={config.cta.secondaryHref}
+                    onClick={() => trackServiceCta('service_page_secondary_cta', config.cta.secondaryText, config.cta.secondaryHref)}
+                  >
+                    {config.cta.secondaryText}
+                  </a>
                 )}
               </Button>
             )}

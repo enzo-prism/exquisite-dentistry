@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { gtagSendEvent } from '@/utils/googleAdsTracking';
 import { cn } from '@/lib/utils';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
+import { trackConsultationIntent } from '@/utils/vercelAnalytics';
 
 interface ConversionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
@@ -44,6 +45,12 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
         // For new tab navigation, open immediately to avoid popup blockers
         if (target === '_blank') {
           try {
+            trackConsultationIntent({
+              source: 'conversion_button',
+              ctaText: typeof children === 'string' ? children : 'Conversion button',
+              destination: normalizedHref,
+            });
+
             const newWindow = window.open(normalizedHref, '_blank', rel || 'noopener,noreferrer');
             if (newWindow) {
               // Window opened successfully, send tracking event without callback
@@ -61,15 +68,15 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
               }
             } else {
               console.warn('Popup blocked, using fallback tracking navigation');
-              gtagSendEvent(normalizedHref, target);
+              gtagSendEvent(normalizedHref, target, 'conversion_button');
             }
           } catch (error) {
             console.error('Error opening new tab:', error);
-            gtagSendEvent(normalizedHref, target);
+            gtagSendEvent(normalizedHref, target, 'conversion_button');
           }
         } else {
           // Same tab navigation - use tracking with callback
-          gtagSendEvent(normalizedHref, target);
+          gtagSendEvent(normalizedHref, target, 'conversion_button');
         }
       }
       
