@@ -7,87 +7,61 @@ import {
   VENEERS_INSURANCE_BLOG_PATH,
 } from '@/constants/urls';
 
-export const INSURANCE_HERO_BADGE = 'Most PPO Plans Accepted';
-export const INSURANCE_HERO_HOOK = 'Most major PPO plans accepted.';
+export const INSURANCE_VERIFY_PATH = `${CONTACT_PATH}#contact-form` as const;
+
+export const INSURANCE_HERO_BADGE = 'Dental Insurance Accepted';
+export const INSURANCE_HERO_HEADLINE = 'Dental Insurance Accepted in Los Angeles';
+export const INSURANCE_HERO_HOOK =
+  "If you have a PPO dental insurance plan, there's a strong chance we can help you use your benefits at Exquisite Dentistry.";
 export const INSURANCE_HERO_SUPPORT =
-  'We accept most major PPO plans, including Guardian, Cigna, MetLife, Principal, ProSense, Emeritus, and more. Some plans are direct in-network relationships; others are processed through partner PPO billing contracts.';
+  "Our team works with many PPO insurance plans and PPO network relationships. Because every plan is different, we'll help verify your benefits before treatment and explain your estimated coverage clearly.";
 
 export const INSURANCE_PAYMENT_SUMMARY =
-  'Most PPO plans accepted through direct or partner-billing pathways. Cherry financing is available for treatment portions insurance does not cover.';
+  'Some cosmetic treatments may not be fully covered by dental insurance. If your plan does not cover the full cost of treatment, Cherry financing may help eligible patients move forward with flexible payment options.';
 
 export type InsuranceCarrier = {
   name: string;
   detail: string;
 };
 
-export const DIRECT_IN_NETWORK_CARRIERS = [
+export const PPO_NETWORKS = [
   {
-    name: 'Guardian',
+    name: 'Guardian PPO',
     detail:
-      'Direct in-network PPO relationship and the primary partner billing-contract network.',
+      'A PPO network relationship the practice commonly works through for eligible dental insurance benefits.',
   },
   {
-    name: 'Cigna',
+    name: 'Guardian Advantage PPO',
     detail:
-      'Direct in-network PPO relationship for eligible plans, with benefits verified before treatment.',
-  },
-] as const satisfies readonly InsuranceCarrier[];
-
-export const PARTNER_BILLING_CARRIERS = [
-  {
-    name: 'MetLife',
-    detail:
-      'Accepted through the Guardian PPO billing-contract pathway while direct MetLife participation is in transition.',
+      'A Guardian PPO pathway that may help eligible patients use PPO benefits, including some MetLife PPO members.',
   },
   {
-    name: 'Principal',
+    name: 'Zealous Network',
     detail:
-      'Accepted through partner PPO billing contracts when the patient plan is eligible.',
-  },
-  {
-    name: 'ProSense',
-    detail:
-      'Accepted through partner PPO billing contracts when the patient plan is eligible.',
-  },
-  {
-    name: 'Emeritus',
-    detail:
-      'Accepted through partner PPO billing contracts when the patient plan is eligible.',
+      'We are preparing to support additional PPO access through the Zealous Network. Eligibility will still depend on each patient plan.',
   },
 ] as const satisfies readonly InsuranceCarrier[];
 
-export const INSURANCE_DIRECT_CARRIER_LIST = DIRECT_IN_NETWORK_CARRIERS.map(
-  (carrier) => carrier.name
-).join(', ');
-
-export const INSURANCE_PARTNER_CARRIER_LIST = PARTNER_BILLING_CARRIERS.map(
-  (carrier) => carrier.name
-).join(', ');
+export const INSURANCE_NETWORK_LIST = 'Guardian PPO, Guardian Advantage PPO';
+export const INSURANCE_PENDING_NETWORK_LIST = 'Zealous Network';
 
 export const INSURANCE_SCHEMA_VALUES = [
+  'PPO dental insurance',
   'Guardian PPO',
-  'Cigna PPO',
-  'MetLife PPO via Guardian partner billing pathway',
-  'Principal PPO via partner billing pathway',
-  'ProSense PPO via partner billing pathway',
-  'Emeritus PPO via partner billing pathway',
-  'Most major PPO plans, subject to benefits verification',
+  'Guardian Advantage PPO',
+  'MetLife PPO benefits may be reviewed through participating PPO network relationships when eligible',
+  'Preparing to support additional PPO access through the Zealous Network',
+  'Many PPO plans, subject to benefits verification',
 ] as const;
 
-export const INSURANCE_DIRECT_TIER_COPY =
-  'We are directly contracted with these carriers, so eligible claims process through our in-network relationship and agreed PPO rates.';
-
-export const INSURANCE_PARTNER_TIER_COPY =
-  'We can also accept eligible PPO patients through partner billing contracts. That means a carrier may not be direct in-network with the practice, but the claim can still route through an in-network PPO partner.';
-
 export const INSURANCE_VERIFICATION_DISCLAIMER =
-  'Coverage, benefits, fee schedules, and patient responsibility vary by plan. Please contact the office so our team can verify your specific benefits before treatment.';
+  'Coverage, benefits, provider-directory listings, fee schedules, and patient responsibility vary by plan. Please contact the office so our team can verify your specific PPO benefits before treatment.';
 
 export const INSURANCE_SERVICE_REASSURANCE =
-  'Most PPO plans accepted, including Guardian and Cigna directly and MetLife through a partner PPO billing pathway. Pay over time with Cherry if there is a remaining balance.';
+  "Have a PPO dental plan? There's a strong chance we can help you use your benefits. We can verify your plan before treatment, and Cherry financing may help eligible patients if insurance leaves a remaining balance.";
 
 export const INSURANCE_FOOTER_SUMMARY =
-  'Insurance accepted: Guardian and Cigna direct in-network; MetLife, Principal, ProSense, Emeritus, and many PPO plans through partner billing pathways. Benefits vary by plan.';
+  'PPO insurance guidance: our team works with many PPO plans and PPO network relationships, including Guardian PPO and Guardian Advantage PPO, and is preparing for Zealous Network access. Benefits vary by plan.';
 
 export const HOMEPAGE_HERO_PROOF_LINKS = [
   {
@@ -99,24 +73,24 @@ export const HOMEPAGE_HERO_PROOF_LINKS = [
     href: PAYMENT_PLANS_PATH,
   },
   {
-    text: 'Most PPO plans accepted',
+    text: 'PPO benefits verified',
     href: INSURANCE_PATH,
   },
 ] as const;
 
-export const INSURANCE_FAQ_SHORT_ANSWER = `Yes. We accept most major PPO plans, including ${INSURANCE_DIRECT_CARRIER_LIST}, ${INSURANCE_PARTNER_CARRIER_LIST}, and more. Guardian and Cigna are direct in-network relationships. MetLife and several other PPO carriers may be processed through partner billing contracts instead of being direct in-network with the practice. If you are not sure whether your plan applies, call ${PHONE_NUMBER_DISPLAY} or send us a message through our contact page and our team will review your specific benefits before treatment.`;
+export const INSURANCE_FAQ_SHORT_ANSWER = `Yes. If you have a PPO dental plan, there is a strong chance we can help you use your benefits. Because every plan is different, call ${PHONE_NUMBER_DISPLAY} or send us your insurance information and our team will verify your specific benefits before treatment.`;
 
 export const INSURANCE_FINANCING_FAQ_ANSWER =
-  'Yes. Cherry financing is available for eligible patients who want help with the portion insurance does not cover. We can review insurance first, then help you decide whether financing is useful for the remaining balance.';
+  'Yes. Cherry financing is available for eligible patients who want help with the portion insurance does not cover. Cherry is financing, not insurance. We can review insurance first, then help you decide whether financing is useful for the remaining balance.';
 
 export const HOMEPAGE_INSURANCE_PANELS = [
   {
-    title: 'Most PPO plans accepted',
+    title: 'Have a PPO plan?',
     description:
-      'Guardian and Cigna are direct in-network relationships. MetLife and several other PPO plans can often be accepted through partner billing contracts.',
-    primaryCtaLabel: 'Check your plan',
-    primaryCtaHref: CONTACT_PATH,
-    secondaryCtaLabel: 'Open insurance guide',
+      'There is a strong chance we can help you use your benefits. Our team can check your plan before treatment so you know what may apply.',
+    primaryCtaLabel: 'Verify benefits',
+    primaryCtaHref: INSURANCE_VERIFY_PATH,
+    secondaryCtaLabel: 'Open insurance page',
     secondaryCtaHref: INSURANCE_PATH,
   },
   {
@@ -141,53 +115,73 @@ export const HOMEPAGE_INSURANCE_PANELS = [
 
 export const INSURANCE_PAGE_FAQS = [
   {
-    question: 'Do you accept my dental insurance?',
+    question: 'Do you accept PPO dental insurance?',
     answer: INSURANCE_FAQ_SHORT_ANSWER,
   },
   {
-    question: 'Do you file claims for me?',
+    question: 'What if I do not see my insurance carrier listed?',
     answer:
-      'Yes. Our team can help submit the information your plan needs and explain what portion may remain your responsibility before treatment moves forward. Some claims process through direct in-network relationships, while others route through partner PPO billing contracts.',
+      "Please still reach out. Many PPO plans can be used even when the insurance relationship is handled through a participating PPO network. We'll help verify your benefits before your visit.",
   },
   {
-    question: 'What if my plan is not listed on the website?',
+    question: 'Do you accept MetLife PPO insurance?',
     answer:
-      'Please still reach out. Plan lists change, and some PPO benefits are not obvious until our team checks the details of your coverage and claim pathway. Additional partner-network options may become available over time, but we only want to confirm what applies to your plan after verification.',
+      'We may be able to work with MetLife PPO members through participating PPO billing relationships, including Guardian PPO pathways. Because provider-directory status and billing-network processing can differ, please contact our team so we can verify your specific benefits before treatment.',
   },
   {
-    question: 'Can I use financing for the part insurance does not cover?',
+    question: 'Do you work with Guardian PPO?',
+    answer:
+      'Yes. Guardian PPO and Guardian Advantage PPO are PPO network relationships our team can review when checking eligible dental insurance benefits. Your exact coverage still depends on your specific plan.',
+  },
+  {
+    question: 'Do you work with the Zealous Network?',
+    answer:
+      'We are preparing to support additional PPO access through the Zealous Network. Until that rollout is confirmed for your specific plan, our team should verify your benefits before treatment.',
+  },
+  {
+    question: 'Can you verify my benefits before treatment?',
+    answer:
+      `Yes. Call ${PHONE_NUMBER_DISPLAY} or send us your insurance information through the contact page. Carrier name, plan name, member details, and the treatment you are considering help us review your benefits more accurately before treatment.`,
+  },
+  {
+    question: 'Can I use insurance for cosmetic dentistry?',
+    answer:
+      'Some cosmetic treatments may not be fully covered by dental insurance. We can review your PPO benefits before treatment and explain where insurance may apply, where it may not, and whether a remaining balance is likely.',
+  },
+  {
+    question: 'Do you offer financing if insurance does not cover cosmetic treatment?',
     answer: INSURANCE_FINANCING_FAQ_ANSWER,
   },
 ] as const;
 
 export const INSURANCE_PAGE_STEPS = [
   {
-    title: 'Start with your plan information',
+    title: 'Send your PPO plan details',
     description:
-      'Call or message our team with your carrier, plan name, member information, and treatment question so we can review the right claim pathway.',
+      'Share your carrier, plan name, member information, and the treatment you are considering so our team can check the right benefit path.',
   },
   {
-    title: 'We review benefits and expected out-of-pocket costs',
+    title: 'We verify benefits before treatment',
     description:
-      'If your plan applies, we can explain whether it appears to be direct in-network or partner-billed, what may be covered, and where a remaining balance could still apply.',
+      'We review whether your PPO benefits may apply, what the plan appears to cover, and where an out-of-pocket balance may remain.',
   },
   {
-    title: 'Use Cherry only if it helps',
+    title: 'Use Cherry only if there is a gap',
     description:
       'If insurance does not cover the full plan, Cherry can help eligible patients review financing for the remaining balance.',
   },
 ] as const;
 
 export const INSURANCE_SUPPORT_POINTS = [
-  `Direct in-network PPO relationships with ${INSURANCE_DIRECT_CARRIER_LIST}`,
-  `Partner billing-contract examples include ${INSURANCE_PARTNER_CARRIER_LIST}`,
-  'Benefit verification before treatment whenever possible',
-  'Claim support and treatment-estimate guidance from our team',
-  'Cherry financing available for eligible out-of-pocket balances',
+  'Many PPO dental insurance plans can be reviewed before treatment',
+  `PPO network relationships include ${INSURANCE_NETWORK_LIST}`,
+  `Additional PPO access through ${INSURANCE_PENDING_NETWORK_LIST} is in preparation`,
+  'Provider-directory listings may not show every PPO network pathway',
+  'Cherry financing is available for eligible out-of-pocket balances',
 ] as const;
 
 export const INSURANCE_PAGE_LINKS = {
-  contact: CONTACT_PATH,
+  contact: INSURANCE_VERIFY_PATH,
   paymentPlans: PAYMENT_PLANS_PATH,
   schedule: SCHEDULE_CONSULTATION_PATH,
   blog: VENEERS_INSURANCE_BLOG_PATH,

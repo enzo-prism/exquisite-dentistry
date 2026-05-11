@@ -7,8 +7,8 @@ import FAQStructuredData from '@/components/seo/FAQStructuredData';
 import { Button } from '@/components/ui/button';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { faqs } from '@/data/faqs';
-import { INSURANCE_HERO_HOOK, INSURANCE_PAYMENT_SUMMARY } from '@/data/insurance';
-import { CONTACT_PATH, INSURANCE_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { INSURANCE_HERO_HOOK, INSURANCE_PAGE_LINKS, INSURANCE_PAYMENT_SUMMARY } from '@/data/insurance';
+import { INSURANCE_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import {
   Accordion,
   AccordionContent,
@@ -67,7 +67,7 @@ const FAQs = () => {
                     <Link to={INSURANCE_PATH}>Open Insurance Page</Link>
                   </Button>
                   <Button asChild variant="outline">
-                    <Link to={CONTACT_PATH}>Check Your Plan</Link>
+                    <Link to={INSURANCE_PAGE_LINKS.contact}>Verify Benefits</Link>
                   </Button>
                 </div>
               </div>

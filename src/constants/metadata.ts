@@ -14,9 +14,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/': {
     title: 'Cosmetic Dentist Los Angeles | Dr. Aguil | Exquisite Dentistry',
     description:
-      "Transform your smile with Los Angeles' trusted cosmetic dentist. Most PPO plans accepted, Cherry payment plans available, and 5-star care since 2006.",
+      "Transform your smile with Los Angeles' trusted cosmetic dentist. PPO benefits can be verified before treatment, Cherry payment plans are available, and 5-star care has been offered since 2006.",
     keywords:
-      'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, Guardian dentist Los Angeles, Cigna dentist Los Angeles, MetLife dentist Los Angeles',
+      'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, PPO dental benefits, dental financing Los Angeles',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
@@ -182,11 +182,11 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage: DEFAULT_OG_IMAGE
   },
   '/insurance': {
-    title: 'Insurance Accepted | Exquisite Dentistry Los Angeles',
+    title: 'Dental Insurance Accepted in Los Angeles | Exquisite Dentistry',
     description:
-      'Most PPO plans accepted at Exquisite Dentistry in Los Angeles, including Guardian, Cigna, MetLife, Principal, ProSense, Emeritus, and more. Verify your benefits before treatment.',
+      'Exquisite Dentistry works with PPO dental insurance plans and PPO network relationships. Contact our Los Angeles team to verify benefits before treatment.',
     keywords:
-      'insurance accepted dentist Los Angeles, PPO dentist Los Angeles, Guardian dentist Los Angeles, Cigna dentist Los Angeles, MetLife dentist Los Angeles, Principal dentist Los Angeles, ProSense dentist Los Angeles, Emeritus dentist Los Angeles, verify dental insurance',
+      'PPO dental insurance Los Angeles, dental insurance accepted Los Angeles, PPO dentist Los Angeles, Guardian PPO dentist Los Angeles, Guardian Advantage PPO dentist, Zealous Network dental access, MetLife PPO benefits verification, verify dental insurance benefits, Cherry financing dentist',
     ogImage: DEFAULT_OG_IMAGE
   },
   '/testimonials': {

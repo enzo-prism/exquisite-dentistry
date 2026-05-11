@@ -5,8 +5,6 @@ import { CreditCard, ShieldCheck, Star } from 'lucide-react';
 import {
   HOMEPAGE_INSURANCE_PANELS,
   INSURANCE_HERO_HOOK,
-  INSURANCE_DIRECT_CARRIER_LIST,
-  INSURANCE_PARTNER_CARRIER_LIST,
 } from '@/data/insurance';
 import { Button } from '@/components/ui/button';
 
@@ -25,10 +23,10 @@ const InsurancePaymentBand: React.FC = () => {
               {INSURANCE_HERO_HOOK}
             </h2>
             <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
-              Direct in-network carriers include {INSURANCE_DIRECT_CARRIER_LIST}. Partner billing
-              examples include {INSURANCE_PARTNER_CARRIER_LIST}. If you still have an
-              out-of-pocket balance after benefits are reviewed, Cherry can help eligible patients
-              explore monthly payment options.
+              Our team works with many PPO plans and PPO network relationships, and we can help
+              verify your benefits before treatment. If you still have an out-of-pocket balance
+              after benefits are reviewed, Cherry can help eligible patients explore monthly
+              payment options.
             </p>
           </div>
 

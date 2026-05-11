@@ -7,6 +7,7 @@ const CRITICAL_ROUTES = [
   { path: '/smile-gallery/', expectedText: 'Smile Gallery' },
   { path: '/schedule-consultation/', expectedText: 'Schedule Consultation' },
   { path: '/payment-plans/', expectedText: 'Payment Plans' },
+  { path: '/insurance/', expectedText: 'Dental Insurance Accepted' },
   { path: '/contact/', expectedText: 'Send Us a Message' },
   { path: '/blog/are-veneers-covered-by-insurance/', expectedText: 'Are Veneers Covered by Insurance' },
 ] as const;

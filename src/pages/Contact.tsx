@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
@@ -45,6 +46,7 @@ const CONTACT_PERSONA_OPTIONS = [
 
 const Contact = () => {
   const meta = ROUTE_METADATA['/contact'];
+  const location = useLocation();
   const [formState, setFormState] = useState({
     whichBestDescribesYou: '',
     name: '',
@@ -69,17 +71,25 @@ const Contact = () => {
   const messageFieldRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    
+    const scrollTimeout = setTimeout(() => {
+      if (location.hash === '#contact-form' && formSectionRef.current) {
+        formSectionRef.current.scrollIntoView({ behavior: 'auto', block: 'center' });
+        return;
+      }
+
+      window.scrollTo(0, 0);
+    }, 0);
+
     const gapCheckTimeout = setTimeout(() => {
       checkForSectionGaps();
       fixBackgroundConsistency();
     }, 500);
 
     return () => {
+      clearTimeout(scrollTimeout);
       clearTimeout(gapCheckTimeout);
     };
-  }, []);
+  }, [location.hash]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;

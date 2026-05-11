@@ -18,6 +18,7 @@
     "test:e2e": "playwright test",
     "test:mobile-nav": "playwright test src/__tests__/navbar.mobile.spec.ts",
     "test:mobile-design": "playwright test src/__tests__/mobile-design.spec.ts",
+    "test:insurance-content": "node scripts/test-insurance-content.mjs && playwright test src/__tests__/insurance-content.spec.ts --project=chromium",
     "test:redirects": "node scripts/test-redirects.mjs",
     "verify:prod": "node scripts/verify-prod.mjs",
     "verify:staging": "node scripts/verify-staging.mjs",

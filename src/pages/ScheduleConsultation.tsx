@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import PhoneLink from "@/components/PhoneLink";
 import { PHONE_NUMBER_DISPLAY } from "@/constants/contact";
 import { useCherryWidgetRegistration } from "@/hooks/use-cherry-widget-registration";
-import { PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
+import { INSURANCE_PATH, PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
 import { ROUTE_METADATA } from "@/constants/metadata";
+import { INSURANCE_PAGE_LINKS } from "@/data/insurance";
 
 const ScheduleConsultation = () => {
   const meta = ROUTE_METADATA["/schedule-consultation"];
@@ -68,6 +69,9 @@ const ScheduleConsultation = () => {
                 <Button asChild className="w-full sm:w-auto">
                   <a href="#book-online">Book Online</a>
                 </Button>
+                <Button asChild variant="outline" className="w-full sm:w-auto">
+                  <Link to={INSURANCE_PAGE_LINKS.contact}>Verify Insurance</Link>
+                </Button>
                 <Button
                   variant="outline"
                   asChild
@@ -106,6 +110,9 @@ const ScheduleConsultation = () => {
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Button asChild>
                         <Link to={PAYMENT_PLANS_PATH}>Open Payment Plans</Link>
+                      </Button>
+                      <Button asChild variant="outline">
+                        <Link to={INSURANCE_PATH}>Insurance Options</Link>
                       </Button>
                       <Button asChild variant="outline">
                         <a href="#book-online">Continue to Booking</a>

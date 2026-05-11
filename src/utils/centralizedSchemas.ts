@@ -16,8 +16,7 @@ import {
   SOCIAL_MEDIA
 } from '../constants/contact';
 import {
-  INSURANCE_DIRECT_CARRIER_LIST,
-  INSURANCE_PARTNER_CARRIER_LIST,
+  INSURANCE_NETWORK_LIST,
   INSURANCE_SCHEMA_VALUES,
 } from '../data/insurance';
 
@@ -81,13 +80,13 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   additionalProperty: [
     {
       '@type': 'PropertyValue',
-      name: 'Direct in-network dental insurance',
-      value: INSURANCE_DIRECT_CARRIER_LIST,
+      name: 'PPO dental networks used for benefits processing',
+      value: INSURANCE_NETWORK_LIST,
     },
     {
       '@type': 'PropertyValue',
-      name: 'Accepted through partner PPO billing contracts',
-      value: `${INSURANCE_PARTNER_CARRIER_LIST}, and many PPO plans subject to benefits verification`,
+      name: 'PPO dental insurance verification',
+      value: 'Carrier-specific PPO benefits are subject to plan verification before treatment',
     },
   ],
   sameAs: [

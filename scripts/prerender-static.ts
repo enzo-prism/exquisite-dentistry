@@ -58,7 +58,14 @@ import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "../src/data/invisalign-beverly-hills-faqs";
-import { INSURANCE_PAGE_FAQS } from "../src/data/insurance";
+import {
+  INSURANCE_HERO_HEADLINE,
+  INSURANCE_HERO_HOOK,
+  INSURANCE_NETWORK_LIST,
+  INSURANCE_PAGE_FAQS,
+  INSURANCE_PAYMENT_SUMMARY,
+  INSURANCE_VERIFICATION_DISCLAIMER
+} from "../src/data/insurance";
 
 export type StaticLink = { label: string; href: string };
 export type StaticRouteSection = {
@@ -482,22 +489,37 @@ export const manualPages: StaticRoute[] = [
     path: "/insurance",
     title: getRouteMetadata("/insurance").title,
     description: getRouteMetadata("/insurance").description,
-    h1: "Most PPO plans accepted",
+    h1: INSURANCE_HERO_HEADLINE,
     paragraphs: [
-      "Use this page to understand how PPO benefits and financing can work together before you move forward with treatment.",
-      "If you are not sure whether your plan applies, our team can help verify benefits and explain likely out-of-pocket next steps.",
+      INSURANCE_HERO_HOOK,
+      "Exquisite Dentistry works with many major PPO dental insurance plans and PPO networks. If you do not see your carrier listed, contact us so we can verify your plan before treatment.",
+      `PPO network relationships include ${INSURANCE_NETWORK_LIST}. We are preparing to support additional PPO access through the Zealous Network.`,
+      INSURANCE_VERIFICATION_DISCLAIMER,
     ],
     sections: [
       {
-        heading: "How It Works",
+        heading: "How PPO Insurance Works at Exquisite Dentistry",
         bullets: [
-          "Share your plan details with our team",
-          "We review benefits and likely patient responsibility",
-          "Use Cherry only if you still want help with the remaining balance",
+          "Send your carrier, plan name, member details, and treatment question",
+          "Our team reviews whether eligible PPO benefits may apply",
+          "Some carrier directories may not show every participating PPO network pathway",
+          "Use Cherry financing only if insurance leaves a balance and monthly payments would help",
         ],
         links: [
-          { label: "Check Your Plan", href: "/contact" },
-          { label: "Payment Plans", href: "/payment-plans" },
+          { label: "Verify My Benefits", href: "/contact/#contact-form" },
+          { label: "Cherry Financing", href: "/payment-plans/" },
+        ],
+      },
+      {
+        heading: "MetLife PPO",
+        paragraphs: [
+          "We may be able to work with MetLife PPO members through participating PPO billing relationships, including Guardian PPO pathways. Because provider-directory status and billing-network processing can differ, please contact our team so we can verify your specific benefits before treatment.",
+        ],
+      },
+      {
+        heading: "Insurance and Financing Can Work Together",
+        paragraphs: [
+          INSURANCE_PAYMENT_SUMMARY,
         ],
       },
       {
@@ -1481,7 +1503,7 @@ const getSchemasForRoute = (route: StaticRoute) => {
     schemas.push(
       createFAQSchema(
         [...INSURANCE_PAGE_FAQS],
-        "Insurance accepted at Exquisite Dentistry"
+        "PPO dental insurance accepted at Exquisite Dentistry"
       )
     );
   }

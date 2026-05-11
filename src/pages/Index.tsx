@@ -103,7 +103,7 @@ const IndexPage: React.FC = () => {
       
       <VideoHero
         title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Most PPO plans accepted through direct or partner-billing pathways."
+        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Have a PPO plan? We can help verify benefits before treatment."
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule-consultation/"
