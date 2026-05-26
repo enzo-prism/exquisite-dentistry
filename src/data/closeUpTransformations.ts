@@ -24,5 +24,41 @@ export const closeUpTransformations: CloseUpTransformation[] = [
     beforeImage: "/lovable-uploads/124b1461-00bb-4065-9657-02b2984d461f.webp",
     afterImage: "/lovable-uploads/e5666e84-eae4-42d0-a75c-f034454be491.webp",
     description: ""
+  },
+  {
+    id: "transformation-6",
+    beforeImage: "/lovable-uploads/ev-result-claudia-before.webp",
+    afterImage: "/lovable-uploads/ev-result-claudia-after.webp",
+    description: ""
+  },
+  {
+    id: "transformation-7",
+    beforeImage: "/lovable-uploads/ev-result-rn-before.webp",
+    afterImage: "/lovable-uploads/ev-result-rn-after.webp",
+    description: ""
+  },
+  {
+    id: "transformation-8",
+    beforeImage: "/lovable-uploads/ev-result-lucyna-before.webp",
+    afterImage: "/lovable-uploads/ev-result-lucyna-after.webp",
+    description: ""
+  },
+  {
+    id: "transformation-9",
+    beforeImage: "/lovable-uploads/ev-result-is-before.webp",
+    afterImage: "/lovable-uploads/ev-result-is-after.webp",
+    description: ""
+  },
+  {
+    id: "transformation-10",
+    beforeImage: "/lovable-uploads/ev-result-ja-before.webp",
+    afterImage: "/lovable-uploads/ev-result-ja-after.webp",
+    description: ""
+  },
+  {
+    id: "transformation-11",
+    beforeImage: "/lovable-uploads/ev-result-sm-before.webp",
+    afterImage: "/lovable-uploads/ev-result-sm-after.webp",
+    description: ""
   }
 ];

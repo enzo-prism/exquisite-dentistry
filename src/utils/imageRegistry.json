@@ -5100,6 +5100,126 @@
       "preferred": "/lovable-uploads/graduation-smile.webp",
       "fallback": null
     },
+    "/lovable-uploads/ev-result-sm-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-sm-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-sm-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-sm-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-sm-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-sm-after.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-rn-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-rn-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-rn-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-rn-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-rn-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-rn-after.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-lucyna-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-lucyna-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-lucyna-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-lucyna-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-lucyna-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-lucyna-after.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-ja-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-ja-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-ja-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-ja-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-ja-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-ja-after.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-is-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-is-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-is-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-is-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-is-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-is-after.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-claudia-before": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-claudia-before.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-claudia-before.webp",
+      "fallback": null
+    },
+    "/lovable-uploads/ev-result-claudia-after": {
+      "formats": [
+        "webp"
+      ],
+      "paths": {
+        "webp": "/lovable-uploads/ev-result-claudia-after.webp"
+      },
+      "preferred": "/lovable-uploads/ev-result-claudia-after.webp",
+      "fallback": null
+    },
     "/lovable-uploads/dr-aguil-banner-2024-m": {
       "formats": [
         "webp"
@@ -5150,5 +5270,5 @@
       "fallback": null
     }
   },
-  "lastUpdated": "2026-04-27T17:52:50.172Z"
+  "lastUpdated": "2026-05-26T17:54:08.769Z"
 }
