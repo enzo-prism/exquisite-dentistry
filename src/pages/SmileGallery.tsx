@@ -1,13 +1,9 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import VideoHero from '@/components/VideoHero';
-import { ChevronRight } from 'lucide-react';
-import { useBreakpoint } from '@/hooks/use-mobile';
 import { patientTransformations } from '@/data/patientTransformations';
 import PatientTransformationCard from '@/components/PatientTransformation';
 import { closeUpTransformations } from '@/data/closeUpTransformations';
@@ -16,8 +12,8 @@ import ImageGalleryStructuredData from '@/components/ImageGalleryStructuredData'
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
-import ImageComponent from '@/components/Image';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -25,7 +21,6 @@ const SmileGallery = () => {
   }, []);
   
   const meta = ROUTE_METADATA['/smile-gallery'];
-  const { isMobile } = useBreakpoint();
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
   const handleViewGallery = () => {
@@ -91,6 +86,26 @@ const SmileGallery = () => {
               </Link>
               .
             </p>
+            <div className="mt-8 border-y border-gold/20 bg-stone-50/80 px-4 py-6 text-left md:px-8">
+              <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
+                    Real Patients, Real Results
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-gray-600">
+                    These are actual Exquisite Dentistry transformations, not AI renderings. Browse
+                    the before-and-after cases, then compare them with patient reviews for another
+                    layer of trust before planning your own smile goals.
+                  </p>
+                </div>
+                <Link
+                  to="/testimonials/"
+                  className="inline-flex items-center justify-center rounded-md border border-gold/40 px-5 py-3 text-sm font-semibold text-secondary transition hover:border-gold hover:bg-white"
+                >
+                  Read Patient Reviews
+                </Link>
+              </div>
+            </div>
           </div>
           
           {/* Patient transformations grid - standardized responsive breakpoints */}
@@ -129,6 +144,17 @@ const SmileGallery = () => {
           </div>
         </div>
       </section>
+
+      <FinancingOptionsSection
+        className="bg-white"
+        eyebrow="Smile Gallery Financing"
+        title="Inspired by a transformation? Review payment options before you book."
+        description="If one of these real patient cases helps you picture a larger smile plan, Cherry can help eligible patients review possible monthly payment options for veneers, implants, Invisalign, whitening, or a complete smile makeover."
+        disclaimer="Financing is optional, and financing decisions are handled through Cherry. You can explore payment options first or schedule a consultation and talk through treatment details with our team."
+        primaryCtaText="Review Payment Options"
+        secondaryCtaText="Schedule Consultation"
+        secondaryCtaHref={SCHEDULE_CONSULTATION_PATH}
+      />
 
     </>
   );
