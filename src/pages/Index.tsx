@@ -12,6 +12,7 @@ import DoctorIntroSection from '@/components/DoctorIntroSection';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InsurancePaymentBand from '@/components/InsurancePaymentBand';
+import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { Button } from '@/components/ui/button';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
@@ -149,6 +150,12 @@ const IndexPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <TreatmentDecisionBand
+        eyebrow="Start Here"
+        title="Find proof, pricing clarity, and a next step without digging."
+        description="New visitors often arrive comparing veneers, smile makeovers, insurance, and financing. These paths keep the decision simple."
+      />
       
       <div ref={practiceVideo.ref} className={practiceVideo.animationClass}>
         <PracticeVideoSection />

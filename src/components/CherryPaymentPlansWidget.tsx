@@ -7,6 +7,10 @@ import {
 } from 'lucide-react';
 
 import PhoneLink from '@/components/PhoneLink';
+import {
+  CHERRY_CREDIT_SCORE_REASSURANCE,
+  CHERRY_TERMS_REASSURANCE,
+} from '@/constants/cherry';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 import { useCherryWidgetStatus } from '@/hooks/use-cherry-widget-registration';
 import { cn } from '@/lib/utils';
@@ -18,7 +22,7 @@ const previewHighlights = [
   {
     title: 'Use it before you book if cost affects your timing',
     description:
-      'If you want budget clarity before committing to a consultation, Cherry can help you check possible monthly payments.',
+      `If you want budget clarity before committing to a consultation, Cherry can help you check possible monthly payments. ${CHERRY_CREDIT_SCORE_REASSURANCE}`,
     Icon: CreditCard,
   },
   {
@@ -31,7 +35,7 @@ const previewHighlights = [
 
 const fullSteps = [
   'Read this page first so you know whether financing is even relevant for you.',
-  'When you are ready, use the Cherry button in the lower-right corner to explore payment options.',
+  `When you are ready, use the Cherry button in the lower-right corner to explore payment options. ${CHERRY_CREDIT_SCORE_REASSURANCE}`,
   'If you want help choosing an amount to check or what to do next, call our team and we will walk you through it.',
 ];
 
@@ -155,7 +159,7 @@ const CherryPaymentPlansFloatingCard: React.FC<{ className?: string }> = ({ clas
       </h3>
       <p className="mt-3 text-sm leading-6 text-muted-foreground">
         This keeps the page easier to read. Learn what financing is for first, then open Cherry
-        only when you want to estimate monthly options.
+        only when you want to estimate monthly options. {CHERRY_TERMS_REASSURANCE}
       </p>
 
       <div className="mt-6 space-y-3">

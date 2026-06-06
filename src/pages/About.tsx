@@ -14,6 +14,7 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { drAguilImages } from '@/data/drAguilImages';
 import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
+import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
@@ -110,6 +111,13 @@ const About = () => {
         height="medium"
         badgeText="MEET THE DOCTOR"
         scrollIndicator={true}
+      />
+
+      <TreatmentDecisionBand
+        className="bg-gray-50"
+        eyebrow="Plan Your Visit"
+        title="Match Dr. Aguil's approach to the result you want."
+        description="Explore real transformations, understand Cherry payment-plan options, or book time with the team to map your cosmetic treatment."
       />
 
       {/* Dr. Aguil Introduction */}

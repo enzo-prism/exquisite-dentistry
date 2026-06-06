@@ -146,8 +146,8 @@ export const generatedBlogPosts: BlogPost[] = [
     "front",
     "teeth"
   ],
-  "seoTitle": "Choosing Veneers for the Four Front Teeth",
-  "seoDescription": "When it comes to achieving the smile of your dreams, cosmetic dentistry offers transformative solutions.  Among these, porcelain veneers are a powerful treatment for achieving radiant, perfectly shaped teeth.",
+  "seoTitle": "Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide",
+  "seoDescription": "Considering veneers for the four front teeth? Learn when a focused smile-zone veneer plan works, what to ask, and how Dr. Aguil plans natural results in Los Angeles.",
   "seoKeywords": "choosing, veneers, four, front, teeth",
   "published": true
 },

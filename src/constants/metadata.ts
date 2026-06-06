@@ -12,9 +12,9 @@ const DEFAULT_OG_IMAGE =
 
 export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/': {
-    title: 'Cosmetic Dentist Los Angeles | Dr. Aguil | Exquisite Dentistry',
+    title: 'Cosmetic Dentist Los Angeles | Veneers & Smile Makeovers',
     description:
-      "Transform your smile with Los Angeles' trusted cosmetic dentist. PPO benefits can be verified before treatment, Cherry payment plans are available, and 5-star care has been offered since 2006.",
+      "Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, and smile makeovers with PPO verification and Cherry payment plans.",
     keywords:
       'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, PPO dental benefits, dental financing Los Angeles',
     ogImage:
@@ -22,18 +22,18 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   },
   '/about': {
     title:
-      'Dr. Alexie Aguil | Los Angeles Cosmetic Dentist | Exquisite Dentistry',
+      'Meet Dr. Alexie Aguil | Cosmetic Dentist Los Angeles',
     description:
-      "Meet Dr. Alexie Aguil, Los Angeles' award-winning cosmetic dentist with 15+ years creating celebrity smiles. Artistic vision meets gentle care.",
+      "Meet Dr. Alexie Aguil, a Los Angeles cosmetic dentist known for natural veneers, smile makeovers, 5-star patient care, and comfort-first dentistry.",
     keywords:
       'Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist',
     ogImage: DEFAULT_OG_IMAGE
   },
   '/services': {
     title:
-      'Cosmetic & Restorative Dentistry Los Angeles | Exquisite Dentistry',
+      'Cosmetic Dentistry Services Los Angeles | Veneers & Implants',
     description:
-      'Complete cosmetic dentistry in LA: porcelain veneers, Zoom whitening, Invisalign & implants. Advanced techniques, natural results. Call today!',
+      'Explore cosmetic dentistry services in Los Angeles, including porcelain veneers, dental implants, Invisalign, Zoom whitening, crowns, and smile makeovers.',
     keywords:
       'cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills',
     ogImage:

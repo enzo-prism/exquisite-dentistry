@@ -4,6 +4,10 @@ import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lu
 
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
 import { Button } from '@/components/ui/button';
+import {
+  CHERRY_CREDIT_SCORE_REASSURANCE,
+  CHERRY_TERMS_REASSURANCE,
+} from '@/constants/cherry';
 import { INSURANCE_PATH, PAYMENT_PLANS_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { INSURANCE_SERVICE_REASSURANCE } from '@/data/insurance';
 import { useCherryWidgetRegistration } from '@/hooks/use-cherry-widget-registration';
@@ -27,7 +31,7 @@ interface FinancingOptionsSectionProps {
 const defaultHighlights = [
   {
     title: 'Understand the monthly cost',
-    description: 'See possible monthly payment options before you decide whether now is the right time to move forward.',
+    description: `${CHERRY_CREDIT_SCORE_REASSURANCE} Review possible monthly payment options before you decide whether now is the right time to move forward.`,
     Icon: CreditCard,
   },
   {
@@ -92,7 +96,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   eyebrow = 'Flexible Financing',
   title = 'See whether financing would make treatment feel easier to manage.',
   description = 'If cost is part of your decision, Cherry gives you a simple way to check possible monthly payment options for veneers, Invisalign, whitening, implants, and other treatment plans.',
-  disclaimer = 'You can use Cherry before or after a consultation. Financing is optional, and financing decisions are handled through Cherry.',
+  disclaimer = `You can use Cherry before or after a consultation. ${CHERRY_CREDIT_SCORE_REASSURANCE} Financing is optional. ${CHERRY_TERMS_REASSURANCE}`,
   primaryCtaText = 'View Payment Plans',
   primaryCtaHref = PAYMENT_PLANS_PATH,
   secondaryCtaText = 'Schedule Consultation',
@@ -219,8 +223,8 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                   <p className="mt-4 text-base leading-7 text-muted-foreground">
                     We keep the treatment page simple and let the Cherry financing button do the
                     heavy lifting. If you want to check payment options, use Cherry when it appears
-                    on the page. If you would rather keep reading or book first, you can do that
-                    without stopping.
+                    on the page. Checking options does not impact your credit score, and if you
+                    would rather keep reading or book first, you can do that without stopping.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {renderAction(primaryCtaHref, primaryCtaText, 'default', 'financing_preview_primary')}
@@ -241,8 +245,9 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           ) : null}
 
           <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            If financing matters to your decision, use Cherry or open the payment plans page. If it
-            doesn&apos;t, you can skip it and keep moving toward your consultation.
+            If financing matters to your decision, use Cherry or open the payment plans page. It
+            does not impact your credit score to check options. If financing doesn&apos;t matter, you
+            can skip it and keep moving toward your consultation.
             <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
           </div>
         </div>

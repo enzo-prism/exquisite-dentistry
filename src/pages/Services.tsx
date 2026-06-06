@@ -25,6 +25,7 @@ import { OptimizedImage } from '@/components/seo';
 import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
+import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { serviceCategories } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -419,6 +420,13 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      <TreatmentDecisionBand
+        className="bg-gray-50"
+        eyebrow="Service Finder"
+        title="Choose a treatment path with proof and payment clarity."
+        description="If you are comparing veneers, Invisalign, whitening, implants, or a full smile makeover, start with real outcomes, then review payment options or schedule a consultation."
+      />
 
       {serviceCategories.map((service, index) => (
         <section key={service.id} id={service.id} className={cn("py-20", index % 2 === 1 ? "bg-gray-50" : "")}>

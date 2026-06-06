@@ -8,6 +8,10 @@ import PhoneLink from '@/components/PhoneLink';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
 import { Button } from '@/components/ui/button';
+import {
+  CHERRY_CREDIT_SCORE_REASSURANCE,
+  CHERRY_TERMS_REASSURANCE,
+} from '@/constants/cherry';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 import { INSURANCE_PAYMENT_SUMMARY } from '@/data/insurance';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -24,7 +28,7 @@ const highlightCards = [
   {
     title: 'See whether the payment fits',
     description:
-      'Review possible monthly payment options before you commit to veneers, implants, Invisalign, whitening, or another treatment plan.',
+      `${CHERRY_CREDIT_SCORE_REASSURANCE} Review possible monthly payment options before you commit to veneers, implants, Invisalign, whitening, or another treatment plan.`,
     icon: CreditCard,
   },
   {
@@ -93,7 +97,8 @@ const PaymentPlans = () => {
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
                     This page stays intentionally simple. Read the guidance here, then use the
                     floating Cherry button only if you want to explore payment options in more
-                    detail. Financing is offered through Cherry, and approval is handled by Cherry.
+                    detail. {CHERRY_CREDIT_SCORE_REASSURANCE} Financing is offered through Cherry,
+                    and approval is handled by Cherry.
                   </p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -112,6 +117,7 @@ const PaymentPlans = () => {
                   </p>
                   <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                     <li>Use Cherry before you book if budget clarity affects your timing.</li>
+                    <li>Checking your options does not impact your credit score.</li>
                     <li>Use Cherry after a consultation if you want treatment guidance first.</li>
                     <li>You do not need to decide about financing to keep moving forward.</li>
                   </ul>
@@ -204,7 +210,7 @@ const PaymentPlans = () => {
                   </h2>
                   <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                     The floating Cherry button gives you a simpler way to check payments without
-                    turning this page into a complicated estimator screen.
+                    turning this page into a complicated estimator screen. {CHERRY_TERMS_REASSURANCE}
                   </p>
 
                   <div className="mt-6 space-y-3">
@@ -212,7 +218,7 @@ const PaymentPlans = () => {
                       <p className="text-sm font-semibold text-foreground">1. Start with a rough amount or your consultation estimate.</p>
                     </div>
                     <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
-                      <p className="text-sm font-semibold text-foreground">2. Use Cherry to see whether monthly payments feel manageable.</p>
+                      <p className="text-sm font-semibold text-foreground">2. Use Cherry to see whether monthly payments feel manageable without impacting your credit score.</p>
                     </div>
                     <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
                       <p className="text-sm font-semibold text-foreground">3. Keep booking, ask questions, or pause. Cherry is there to help you decide, not push you.</p>

@@ -7,6 +7,10 @@ export const CHERRY_WIDGET_MOUNT_ID = `widget-${CHERRY_WIDGET_CONTAINER_ID}-moun
 export const CHERRY_WIDGET_FONT_HREF =
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@200..900&family=Slabo+27px:wght@200..900&family=Lato:wght@200..900&family=Raleway:wght@200..900&family=Montserrat:wght@200..900&family=Oswald:wght@200..900&family=Poppins:wght@200..900&family=Source+Sans+Pro:wght@200..900&family=PT+Sans:wght@200..900&family=Open+Sans:wght@200..900&display=swap' as const;
 export const CHERRY_WIDGET_SUPPORT_CONTAINER_IDS = [] as const;
+export const CHERRY_CREDIT_SCORE_REASSURANCE =
+  'Checking your options with Cherry does not impact your credit score.' as const;
+export const CHERRY_TERMS_REASSURANCE =
+  'Plan availability, payment amounts, and terms are decided by Cherry and its lending partners.' as const;
 
 export const createCherryWidgetConfig = () => ({
   debug: false,

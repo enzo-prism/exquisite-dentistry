@@ -9,6 +9,7 @@ import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStr
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
+import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import VeneerCTA from '@/components/VeneerCTA';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import RelatedArticles from '@/components/RelatedArticles';
@@ -83,8 +84,8 @@ const FrontTeethVeneers = () => {
       <MasterStructuredData includeBusiness includeWebsite />
 
       <PageSEO
-        title="Front Teeth Veneers in Los Angeles | 2 to 4 Tooth Smile Zone Makeovers"
-        description="Upgrade just your front teeth with handcrafted porcelain veneers. Transparent pricing for 2 or 4 veneers, conservative prep, and camera-ready symmetry from Dr. Alexie Aguil in Los Angeles."
+        title="Front Teeth Veneers Los Angeles | 2-4 Tooth Veneers Cost"
+        description="Compare 2-to-4 front teeth veneers in Los Angeles, including smile-zone pricing, conservative prep, temporaries, and natural design by Dr. Alexie Aguil."
         keywords="front teeth veneers, 2 front teeth veneers cost, 4 front teeth veneers cost, veneers for front teeth Los Angeles, smile zone veneers"
         path="/veneers/front-teeth-veneers-los-angeles"
         ogType="article"
@@ -167,6 +168,12 @@ const FrontTeethVeneers = () => {
             <p className="mt-4 text-sm text-muted-foreground">Need clarity first? Call {PHONE_NUMBER_DISPLAY} for pricing and timelines.</p>
           </div>
         </section>
+
+        <TreatmentDecisionBand
+          eyebrow="Smile-Zone Decision"
+          title="Compare real veneer results before choosing 2 teeth or 4."
+          description="Use the Smile Gallery for proof, Cherry for payment-plan clarity, and a consultation for exact veneer count, shade, and timeline."
+        />
 
         {/* Cost & Scenarios */}
         <section className="py-14 md:py-16 bg-muted/30">
