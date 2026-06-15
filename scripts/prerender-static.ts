@@ -50,6 +50,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from "../src/constants/contact";
+import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from "../src/constants/cherry";
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
@@ -469,6 +470,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Use this page if you want to understand possible monthly payment options before deciding whether to move forward with treatment.",
       "Cherry may be helpful if you are considering veneers, Invisalign, implants, whitening, or a larger smile plan and want the budget side to feel clearer before or after your consultation.",
+      CHERRY_CREDIT_REPORTING_DISCLOSURE,
     ],
     sections: [
       {
@@ -476,10 +478,17 @@ export const manualPages: StaticRoute[] = [
         heading: "Financing Options",
         paragraphs: [
           "Cherry can help eligible patients review financing options for cosmetic and restorative dental treatment. If you are not sure what amount to review or whether financing makes sense for your situation, our team can help you talk through the next step.",
+          CHERRY_CREDIT_REPORTING_DISCLOSURE,
         ],
         links: [
           { label: "Schedule Consultation", href: "/schedule-consultation" },
           { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+        ],
+      },
+      {
+        heading: "Will Checking Cherry Options Affect My Credit Score?",
+        paragraphs: [
+          CHERRY_CREDIT_REPORTING_DISCLOSURE,
         ],
       },
     ],

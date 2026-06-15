@@ -14,6 +14,7 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
+import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from '@/constants/cherry';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -150,7 +151,7 @@ const SmileGallery = () => {
         eyebrow="Smile Gallery Financing"
         title="Inspired by a transformation? Review payment options before you book."
         description="If one of these real patient cases helps you picture a larger smile plan, Cherry can help eligible patients review possible monthly payment options for veneers, implants, Invisalign, whitening, or a complete smile makeover."
-        disclaimer="Financing is optional, and financing decisions are handled through Cherry. You can explore payment options first or schedule a consultation and talk through treatment details with our team."
+        disclaimer={`Financing is optional, and financing decisions are handled through Cherry. ${CHERRY_CREDIT_REPORTING_DISCLOSURE} You can explore payment options first or schedule a consultation and talk through treatment details with our team.`}
         primaryCtaText="Review Payment Options"
         secondaryCtaText="Schedule Consultation"
         secondaryCtaHref={SCHEDULE_CONSULTATION_PATH}

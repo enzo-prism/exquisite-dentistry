@@ -7,6 +7,7 @@ import WebPageStructuredData from "@/components/WebPageStructuredData";
 import { Button } from "@/components/ui/button";
 import PhoneLink from "@/components/PhoneLink";
 import { PHONE_NUMBER_DISPLAY } from "@/constants/contact";
+import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from "@/constants/cherry";
 import { useCherryWidgetRegistration } from "@/hooks/use-cherry-widget-registration";
 import { INSURANCE_PATH, PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
 import { ROUTE_METADATA } from "@/constants/metadata";
@@ -106,6 +107,9 @@ const ScheduleConsultation = () => {
                       The page stays intentionally simple. Use the Cherry financing button when it
                       appears, open the full payment plans page if you want more guidance, or keep
                       going and book now if you already know you want to talk with the team.
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {CHERRY_CREDIT_REPORTING_DISCLOSURE}
                     </p>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       <Button asChild>

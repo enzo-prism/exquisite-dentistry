@@ -165,6 +165,8 @@ To verify:
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
+>
+> Editing Cherry financing copy? Use `docs/cherry-credit-disclosure.md` and the shared constants in `src/constants/cherry.ts`; do not reintroduce unqualified credit-check language.
 
 ## Layout Utilities
 
@@ -188,6 +190,7 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - **Canonical URLs & redirects** – canonical host is `https://exquisitedentistryla.com` (non-www) and all indexable routes use trailing slashes. Production redirects are curated in `vercel.json`; keep `scripts/redirect-tests/legacy-urls.txt` and `scripts/redirect-tests/canonical-map.json` aligned whenever a legacy URL or canonical destination changes. Canonical tags are generated via `getCanonicalUrl` in `src/utils/schemaValidation.ts`. Older Netlify files remain only as historical/static-host references and are not the production source of truth.
 - **Google Search Console** – populate `VITE_GSC_VERIFICATION` in `.env` (see `.env.example`) so the `<meta name="google-site-verification">` value is injected during Vite’s HTML compile. Re-run `npm run build` and redeploy after updating the token so ownership checks stay valid.
 - **Vercel Analytics & Speed Insights** – visitor/pageview tracking and Real Experience Score collection are both mounted once at the app shell in `src/App.tsx` via `@vercel/analytics/react` and `@vercel/speed-insights/react`. Custom events are centralized in `src/utils/vercelAnalytics.ts`; keep them low-cardinality and free of patient-entered data. See `docs/vercel-analytics-events.md` before adding or renaming events. After shipping to production, open a few live routes on desktop and mobile, trigger key conversion actions, then confirm Analytics pageviews, custom events, and Speed Insights data start appearing in Vercel (content blockers can delay or suppress collection).
+- **Cherry financing copy** – approved credit-score and reporting language lives in `src/constants/cherry.ts`, with placement rules in `docs/cherry-credit-disclosure.md`. Keep "no hard credit check" to short badge copy only; do not use unqualified credit-check claims or older payment-plan wording.
 - **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
 - **Hero media** – `VideoHero` automatically drops down to a static poster for reduced-motion, slow connections, and mobile-first hero renders. Provide a high-resolution `posterSrc` whenever you introduce a new hero; rely on `disableVideo`/`preferStaticOnMobile` props to force static imagery for SEO-critical pages.
 - **Structured data** – the centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx` include map links, service channels, and service areas. Update those files when address or offerings change to keep LocalBusiness signals aligned.

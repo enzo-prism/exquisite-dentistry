@@ -1,6 +1,6 @@
 # Insurance Wording Approval Notes
 
-Last updated: April 27, 2026
+Last updated: June 15, 2026
 
 ## Public wording now used
 
@@ -23,12 +23,16 @@ MetLife is handled as an example of why verification matters:
 
 ## Website placements
 
-- Homepage hero proof line: "5-star care since 2006", "Pay over time, no credit check", and "PPO benefits verified"
+- Homepage hero proof line: "5-star care since 2006", "Pay over time, no hard credit check", and "PPO benefits verified"
 - Homepage insurance/payment band: simplified PPO reassurance with no unconfirmed carrier list
 - `/insurance/`: patient-first PPO explanation, network relationships, MetLife note, verification CTA, Cherry fallback, and FAQs
 - Service/payment sections: reinforces "PPO first, Cherry if there is a gap"
 - Footer: compact crawlable PPO/network summary on every page
 - FAQ/schema: natural-language PPO insurance answer plus structured insurance/payment fields
+
+## Cherry financing wording
+
+Cherry credit-score and reporting wording is now documented separately in `docs/cherry-credit-disclosure.md` and centralized in `src/constants/cherry.ts`. The site uses a short reassurance for compact CTAs and the full soft-check/reporting disclosure on payment-plan detail surfaces. Unqualified credit-check claims should not be reintroduced.
 
 ## Items to confirm with Michael before expanding
 

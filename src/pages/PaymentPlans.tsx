@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarClock, CreditCard, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
@@ -9,6 +9,7 @@ import WebPageStructuredData from '@/components/WebPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
 import { Button } from '@/components/ui/button';
 import {
+  CHERRY_CREDIT_REPORTING_DISCLOSURE,
   CHERRY_CREDIT_SCORE_REASSURANCE,
   CHERRY_TERMS_REASSURANCE,
 } from '@/constants/cherry';
@@ -44,6 +45,11 @@ const highlightCards = [
     icon: Sparkles,
   },
 ];
+
+const creditScoreFaq = {
+  question: 'Will checking Cherry options affect my credit score?',
+  answer: CHERRY_CREDIT_REPORTING_DISCLOSURE,
+};
 
 const PaymentPlans = () => {
   const meta = ROUTE_METADATA['/payment-plans'];
@@ -97,8 +103,8 @@ const PaymentPlans = () => {
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
                     This page stays intentionally simple. Read the guidance here, then use the
                     floating Cherry button only if you want to explore payment options in more
-                    detail. {CHERRY_CREDIT_SCORE_REASSURANCE} Financing is offered through Cherry,
-                    and approval is handled by Cherry.
+                    detail. {CHERRY_CREDIT_REPORTING_DISCLOSURE} Financing is offered through
+                    Cherry, and approval is handled by Cherry.
                   </p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -117,7 +123,8 @@ const PaymentPlans = () => {
                   </p>
                   <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                     <li>Use Cherry before you book if budget clarity affects your timing.</li>
-                    <li>Checking your options does not impact your credit score.</li>
+                    <li>{CHERRY_CREDIT_SCORE_REASSURANCE}</li>
+                    <li>If you confirm a payment plan, staying current on payments is important.</li>
                     <li>Use Cherry after a consultation if you want treatment guidance first.</li>
                     <li>You do not need to decide about financing to keep moving forward.</li>
                   </ul>
@@ -194,6 +201,29 @@ const PaymentPlans = () => {
           </div>
         </section>
 
+        <section className="pb-14 md:pb-16">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-6xl rounded-[1.75rem] border border-gold/20 bg-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.22)] md:p-8">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+                  <ShieldCheck size={22} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
+                    Credit Score FAQ
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold text-foreground">
+                    {creditScoreFaq.question}
+                  </h2>
+                  <p className="mt-3 text-base leading-7 text-muted-foreground">
+                    {creditScoreFaq.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section
           id="payment-plan-options"
           className="border-y border-border/70 bg-stone-50 py-16 md:py-20"
@@ -210,7 +240,8 @@ const PaymentPlans = () => {
                   </h2>
                   <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                     The floating Cherry button gives you a simpler way to check payments without
-                    turning this page into a complicated estimator screen. {CHERRY_TERMS_REASSURANCE}
+                    turning this page into a complicated estimator screen.{' '}
+                    {CHERRY_CREDIT_REPORTING_DISCLOSURE} {CHERRY_TERMS_REASSURANCE}
                   </p>
 
                   <div className="mt-6 space-y-3">
@@ -218,7 +249,10 @@ const PaymentPlans = () => {
                       <p className="text-sm font-semibold text-foreground">1. Start with a rough amount or your consultation estimate.</p>
                     </div>
                     <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
-                      <p className="text-sm font-semibold text-foreground">2. Use Cherry to see whether monthly payments feel manageable without impacting your credit score.</p>
+                      <p className="text-sm font-semibold text-foreground">
+                        2. Use Cherry to see whether monthly payments feel manageable.{' '}
+                        {CHERRY_CREDIT_SCORE_REASSURANCE}
+                      </p>
                     </div>
                     <div className="rounded-[1.35rem] border border-border bg-white px-5 py-4">
                       <p className="text-sm font-semibold text-foreground">3. Keep booking, ask questions, or pause. Cherry is there to help you decide, not push you.</p>

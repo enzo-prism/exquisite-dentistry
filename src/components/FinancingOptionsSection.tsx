@@ -5,6 +5,7 @@ import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lu
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
 import { Button } from '@/components/ui/button';
 import {
+  CHERRY_CREDIT_REPORTING_DISCLOSURE,
   CHERRY_CREDIT_SCORE_REASSURANCE,
   CHERRY_TERMS_REASSURANCE,
 } from '@/constants/cherry';
@@ -96,7 +97,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   eyebrow = 'Flexible Financing',
   title = 'See whether financing would make treatment feel easier to manage.',
   description = 'If cost is part of your decision, Cherry gives you a simple way to check possible monthly payment options for veneers, Invisalign, whitening, implants, and other treatment plans.',
-  disclaimer = `You can use Cherry before or after a consultation. ${CHERRY_CREDIT_SCORE_REASSURANCE} Financing is optional. ${CHERRY_TERMS_REASSURANCE}`,
+  disclaimer = `You can use Cherry before or after a consultation. ${CHERRY_CREDIT_REPORTING_DISCLOSURE} Financing is optional. ${CHERRY_TERMS_REASSURANCE}`,
   primaryCtaText = 'View Payment Plans',
   primaryCtaHref = PAYMENT_PLANS_PATH,
   secondaryCtaText = 'Schedule Consultation',
@@ -223,8 +224,8 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                   <p className="mt-4 text-base leading-7 text-muted-foreground">
                     We keep the treatment page simple and let the Cherry financing button do the
                     heavy lifting. If you want to check payment options, use Cherry when it appears
-                    on the page. Checking options does not impact your credit score, and if you
-                    would rather keep reading or book first, you can do that without stopping.
+                    on the page. {CHERRY_CREDIT_REPORTING_DISCLOSURE} If you would rather keep
+                    reading or book first, you can do that without stopping.
                   </p>
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {renderAction(primaryCtaHref, primaryCtaText, 'default', 'financing_preview_primary')}
@@ -245,9 +246,9 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           ) : null}
 
           <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            If financing matters to your decision, use Cherry or open the payment plans page. It
-            does not impact your credit score to check options. If financing doesn&apos;t matter, you
-            can skip it and keep moving toward your consultation.
+            If financing matters to your decision, use Cherry or open the payment plans page.{' '}
+            {CHERRY_CREDIT_SCORE_REASSURANCE} If financing doesn&apos;t matter, you can skip it and
+            keep moving toward your consultation.
             <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
 
 import PhoneLink from '@/components/PhoneLink';
 import {
+  CHERRY_CREDIT_REPORTING_DISCLOSURE,
   CHERRY_CREDIT_SCORE_REASSURANCE,
   CHERRY_TERMS_REASSURANCE,
 } from '@/constants/cherry';
@@ -22,7 +23,7 @@ const previewHighlights = [
   {
     title: 'Use it before you book if cost affects your timing',
     description:
-      `If you want budget clarity before committing to a consultation, Cherry can help you check possible monthly payments. ${CHERRY_CREDIT_SCORE_REASSURANCE}`,
+      `If you want budget clarity before committing to a consultation, Cherry can help you check possible monthly payments. ${CHERRY_CREDIT_REPORTING_DISCLOSURE}`,
     Icon: CreditCard,
   },
   {
@@ -35,7 +36,7 @@ const previewHighlights = [
 
 const fullSteps = [
   'Read this page first so you know whether financing is even relevant for you.',
-  `When you are ready, use the Cherry button in the lower-right corner to explore payment options. ${CHERRY_CREDIT_SCORE_REASSURANCE}`,
+  `When you are ready, use the Cherry button in the lower-right corner to explore payment options. ${CHERRY_CREDIT_REPORTING_DISCLOSURE}`,
   'If you want help choosing an amount to check or what to do next, call our team and we will walk you through it.',
 ];
 
@@ -84,7 +85,8 @@ const CherryPaymentPlansPreviewCard: React.FC<{ className?: string }> = ({ class
       </h3>
       <p className="mt-3 text-sm leading-6 text-muted-foreground">
         Instead of dropping a full widget into the page, we keep this simple. When Cherry is
-        useful, use the financing button that appears in the lower-right corner.
+        useful, use the financing button that appears in the lower-right corner.{' '}
+        {CHERRY_CREDIT_SCORE_REASSURANCE}
       </p>
 
       <div className="mt-5 space-y-3">

@@ -16,6 +16,13 @@ Smoke test pages:
 - https://exquisitedentistryla.com/blog/
 - https://exquisitedentistryla.com/contact/
 - https://exquisitedentistryla.com/schedule-consultation/
+- https://exquisitedentistryla.com/payment-plans/
+- https://exquisitedentistryla.com/smile-gallery/
+
+Cherry financing copy check:
+- Use `docs/cherry-credit-disclosure.md` as the source of truth.
+- Confirm `/payment-plans/`, `/schedule-consultation/`, `/smile-gallery/`, `/services/`, and `/` do not contain unqualified credit-check claims or the older on-time-payments clause.
+- Confirm `dist/payment-plans/index.html` contains the full soft-check/reporting disclosure after `npm run build`.
 
 Curl checks:
 - curl -I https://exquisitedentistryla.com/

@@ -26,3 +26,4 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 ## Content Notes
 - Legacy front-teeth cost blogs are unpublished and 301 to the new hub. Do not republish without revisiting redirects and sitemap.
 - Internal linking (`src/components/InternalLinkingWidget.tsx`) is context-aware; update priorities when adding new veneers content to keep the hub surfaced.
+- Cherry financing copy is centralized in `src/constants/cherry.ts`; follow `docs/cherry-credit-disclosure.md` and avoid unqualified credit-check wording outside the approved "no hard credit check" badge.
