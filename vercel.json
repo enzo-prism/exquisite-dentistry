@@ -1,3 +1,475 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/services/teeth-cleaning/",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/teeth-cleaning",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-dentistry/",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-dentistry",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-dentistry/teeth-cleaning/",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-dentistry/teeth-cleaning",
+      "destination": "/teeth-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/services/root-canal-procedure/",
+      "destination": "/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/root-canal-procedure",
+      "destination": "/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/root-canal-procedure/",
+      "destination": "/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/root-canal-procedure",
+      "destination": "/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-crowns/",
+      "destination": "/dental-crowns/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-crowns",
+      "destination": "/dental-crowns/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-bridge/",
+      "destination": "/dental-bridge/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-bridge",
+      "destination": "/dental-bridge/",
+      "permanent": true
+    },
+    {
+      "source": "/services/pain-free-dentistry/",
+      "destination": "/pain-free-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/pain-free-dentistry",
+      "destination": "/pain-free-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/service/pain-free-dentistry/",
+      "destination": "/pain-free-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/service/pain-free-dentistry",
+      "destination": "/pain-free-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/oral-cancer-screening/",
+      "destination": "/oral-cancer-screening/",
+      "permanent": true
+    },
+    {
+      "source": "/services/oral-cancer-screening",
+      "destination": "/oral-cancer-screening/",
+      "permanent": true
+    },
+    {
+      "source": "/long-will-take-fix-crooked-teeth/",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/long-will-take-fix-crooked-teeth",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/long-will-take-fix-crooked-teeth/1000",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/long-will-take-fix-crooked-teeth/1000/",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/the-material-options-for-dental-veneers/",
+      "destination": "/blog/the-material-options-for-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-material-options-for-dental-veneers",
+      "destination": "/blog/the-material-options-for-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-material-options-for-dental-veneers/1000",
+      "destination": "/blog/the-material-options-for-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-material-options-for-dental-veneers/1000/",
+      "destination": "/blog/the-material-options-for-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-shapes-and-styles-of-dental-veneers/",
+      "destination": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-shapes-and-styles-of-dental-veneers",
+      "destination": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-shapes-and-styles-of-dental-veneers/1000",
+      "destination": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/the-shapes-and-styles-of-dental-veneers/1000/",
+      "destination": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-if-youve-chipped-a-tooth/",
+      "destination": "/blog/what-to-do-if-youve-chipped-a-tooth/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-if-youve-chipped-a-tooth",
+      "destination": "/blog/what-to-do-if-youve-chipped-a-tooth/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-if-youve-chipped-a-tooth/1000",
+      "destination": "/blog/what-to-do-if-youve-chipped-a-tooth/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-if-youve-chipped-a-tooth/1000/",
+      "destination": "/blog/what-to-do-if-youve-chipped-a-tooth/",
+      "permanent": true
+    },
+    {
+      "source": "/marijuana-use-increases-risk-gum-disease/",
+      "destination": "/blog/marijuana-use-increases-risk-gum-disease/",
+      "permanent": true
+    },
+    {
+      "source": "/marijuana-use-increases-risk-gum-disease",
+      "destination": "/blog/marijuana-use-increases-risk-gum-disease/",
+      "permanent": true
+    },
+    {
+      "source": "/recommendations-to-work-flossing-into-your-daily-routine/",
+      "destination": "/blog/recommendations-to-work-flossing-into-your-daily-routine/",
+      "permanent": true
+    },
+    {
+      "source": "/recommendations-to-work-flossing-into-your-daily-routine",
+      "destination": "/blog/recommendations-to-work-flossing-into-your-daily-routine/",
+      "permanent": true
+    },
+    {
+      "source": "/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
+      "destination": "/blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers/",
+      "permanent": true
+    },
+    {
+      "source": "/female-smokers-are-at-a-higher-risk-of-oral-cancer",
+      "destination": "/blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers/",
+      "permanent": true
+    },
+    {
+      "source": "/a-dentist-for-adults-in-los-angeles/",
+      "destination": "/blog/dentist-for-adults-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/a-dentist-for-adults-in-los-angeles",
+      "destination": "/blog/dentist-for-adults-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/",
+      "destination": "/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/",
+      "permanent": true
+    },
+    {
+      "source": "/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age",
+      "destination": "/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/",
+      "permanent": true
+    },
+    {
+      "source": "/the-best-long-term-cosmetic-dentistry-solutions/",
+      "destination": "/blog/long-term-cosmetic-dentistry-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/the-best-long-term-cosmetic-dentistry-solutions",
+      "destination": "/blog/long-term-cosmetic-dentistry-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/high-end-dentistry/1000",
+      "destination": "/cosmetic-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/high-end-dentistry/1000/",
+      "destination": "/cosmetic-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-culver-city-ca/",
+      "destination": "/culver-city-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-culver-city-ca",
+      "destination": "/culver-city-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-burbank-ca/",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-burbank-ca",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-glendale-ca/",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-glendale-ca",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-santa-monica-ca/",
+      "destination": "/west-la-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-santa-monica-ca",
+      "destination": "/west-la-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-beverly-hills-ca/",
+      "destination": "/beverly-hills-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-beverly-hills-ca",
+      "destination": "/beverly-hills-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/west-hollywood-dentist/teeth-whitening/",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/west-hollywood-dentist/teeth-whitening",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/forms/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/forms",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/beverly-hills-invisalign/",
+      "destination": "/invisalign-beverly-hills/",
+      "permanent": true
+    },
+    {
+      "source": "/beverly-hills-invisalign",
+      "destination": "/invisalign-beverly-hills/",
+      "permanent": true
+    },
+    {
+      "source": "/beverly-hills-teeth-whitening/",
+      "destination": "/teeth-whitening-beverly-hills/",
+      "permanent": true
+    },
+    {
+      "source": "/beverly-hills-teeth-whitening",
+      "destination": "/teeth-whitening-beverly-hills/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-implants-santa-monica/",
+      "destination": "/santa-monica-dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-implants-santa-monica",
+      "destination": "/santa-monica-dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/smile-makeover/",
+      "destination": "/smile-makeover-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/smile-makeover",
+      "destination": "/smile-makeover-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/services/zoom-whitening/",
+      "destination": "/zoom-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/services/zoom-whitening",
+      "destination": "/zoom-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/porcelain-veneers/",
+      "destination": "/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/porcelain-veneers",
+      "destination": "/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/front-teeth-veneers/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/front-teeth-veneers",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/single-tooth-veneers-guide/",
+      "destination": "/blog/single-tooth-veneers-perfect-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/single-tooth-veneers-guide",
+      "destination": "/blog/single-tooth-veneers-perfect-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/netflix-streaming-during-dental-procedures",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/netflix-streaming-during-dental-procedures/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2-front-teeth-veneers-cost-los-angeles/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2-front-teeth-veneers-cost-los-angeles",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/4-front-teeth-veneers-cost-los-angeles/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/4-front-teeth-veneers-cost-los-angeles",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/front-teeth-veneers-complete-guide/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/front-teeth-veneers-complete-guide",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/front-teeth-veneers-complete-guide/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/front-teeth-veneers-complete-guide",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/choosing-veneers-for-the-front-4-teeth/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/choosing-veneers-for-the-front-4-teeth",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-veneers-for-the-front-4-teeth/",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-veneers-for-the-front-4-teeth",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    }
+  ]
 }

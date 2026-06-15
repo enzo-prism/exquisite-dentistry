@@ -2,20 +2,12 @@
 
 Canonical host: https://exquisitedentistryla.com (no www)
 
-DNS (Cloudflare):
-- A @ -> 76.76.21.21 (proxied)
-- CNAME www -> cname.vercel-dns.com (proxied)
+DNS:
+- Apex resolves directly to Vercel edge IPs.
+- www is a Vercel CNAME and 308 redirects to apex.
 
-SSL: Cloudflare Full (strict)
-
-Cloudflare WAF rules (order matters):
-1. Allow verified search engines
-Expression: (cf.client.bot)
-Action: Skip (All managed rules)
-2. Block non-US traffic
-Expression: (ip.geoip.country ne "US")
-Action: Block
+TLS: Vercel serves the public edge certificate while web records stay DNS-only. Cloudflare SSL mode is not in the public request path unless the records are deliberately proxied again.
 
 Vercel domains added: apex + www
 
-Note: Vercel "Proxy detected" is intentional; do not use 1-click fix.
+Note: Keep web records DNS-only/direct-to-Vercel unless there is a deliberate Cloudflare proxy requirement and a monitoring plan for Vercel certificate renewal.

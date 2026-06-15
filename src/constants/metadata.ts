@@ -14,7 +14,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/': {
     title: 'Cosmetic Dentist Los Angeles | Veneers & Smile Makeovers',
     description:
-      "Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, and smile makeovers with PPO verification and Cherry payment plans.",
+      'Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, smile makeovers, PPO verification, and Cherry payment plans.',
     keywords:
       'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, PPO dental benefits, dental financing Los Angeles',
     ogImage:
@@ -168,7 +168,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/schedule-consultation': {
     title: 'Schedule Consultation | Exquisite Dentistry',
     description:
-      `Schedule a porcelain veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles. Book online or call ${PHONE_NUMBER_DISPLAY}.`,
+      `Book a veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles, or call ${PHONE_NUMBER_DISPLAY}.`,
     keywords:
       'schedule consultation, book dentist appointment, porcelain veneers consultation, dental implants consultation, Beverly Hills dentist, Los Angeles cosmetic dentist',
     ogImage: DEFAULT_OG_IMAGE
@@ -176,7 +176,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/payment-plans': {
     title: 'Dental Payment Plans Los Angeles | Cherry Financing',
     description:
-      'Explore Cherry dental financing at Exquisite Dentistry in Los Angeles. Review monthly payment options for veneers, implants, Invisalign, whitening, and more.',
+      'Explore Cherry dental financing at Exquisite Dentistry in Los Angeles. Review monthly options for veneers, implants, Invisalign, and whitening.',
     keywords:
       'dental financing Los Angeles, Cherry financing dentist, dental payment plans Los Angeles, veneers financing, Invisalign payment plans, dental implants financing',
     ogImage: DEFAULT_OG_IMAGE

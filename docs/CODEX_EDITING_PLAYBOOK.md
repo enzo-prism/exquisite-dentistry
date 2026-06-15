@@ -21,10 +21,10 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 ### SEO & compliance
 - `<PageSEO>` (`src/components/seo/PageSEO.tsx`) centralizes canonical URLs, meta descriptions, and OG/Twitter tags. It enforces the trailing-slash policy defined in `src/utils/schemaValidation.ts`.
 - `<MasterStructuredData>` (`src/components/seo/MasterStructuredData.tsx`) injects JSON-LD entities defined in `src/utils/centralizedSchemas.ts`, complete with duplicate detection and dev-time validation. Per-page schemas (Offer, Article, etc.) should compose through this component.
-- `LegacyRedirectHandler` (`src/components/LegacyRedirectHandler.tsx`) mirrors Netlify redirects in-browser to fix indexed `.html` URLs. Avoid touching it unless Netlify rules change.
+- `LegacyRedirectHandler` (`src/components/LegacyRedirectHandler.tsx`) handles client-side legacy URL cleanup for indexed `.html` URLs. Production redirect behavior is Vercel-first via `vercel.json`.
 
 ### Build & quality gates
-- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build` (includes `generate:fallbacks` + `prerender:static`), `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, `npm run test:blog`, `npm run prerender:static`, and `node test-browser.js`.
+- Primary commands live in `package.json`: `npm run dev`, `npm run lint`, `npm run build` (image optimization, Vite build, `prerender:static`, sitemap, search index, staging SEO pruning), `npm run build:prod`, `npm run preview`, `npm run check:seo`, `npm run generate:blog`, `npm run test:blog`, `npm run prerender:static`, and `node test-browser.js`.
 - `scripts/seo-smoke.mjs` checks `public/emergency-dentist.html` for canonical/OG/JSON-LD tags—run it after builds touching SEO-critical assets.
 
 ---
@@ -128,11 +128,11 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 1. **Content QA** – `npm run test:content`  
    Blocks merges if any service/geo page is missing title/description/H1/internal links or falls below ~150 words. Warnings flag thin copy you should pad before shipping.
 
-2. **Redirect harness** – `npx netlify dev --dir public --port 8888` (terminal #1), then `npm run test:redirects` (terminal #2).  
-   The harness reads `scripts/redirect-tests/legacy-urls.txt` and `canonical-map.json`; keep both updated whenever you add/remove canonicals. The Netlify server must serve from `public/` so `_redirects` and the HTML fallbacks are honored.
+2. **Redirect harness** – `npx vercel dev --listen 127.0.0.1:8899 --yes` (terminal #1), then `npm run test:redirects` (terminal #2).
+   The harness reads `scripts/redirect-tests/legacy-urls.txt` and `canonical-map.json`; keep both updated whenever you add/remove canonicals. Vercel dev is required so `vercel.json` redirects are honored.
 
 3. **Production build** – `npm run build`  
-   Automatically runs `npm run generate:fallbacks`, validates every generated HTML file (canonical/meta/schema/H1), compiles Vite, and then runs `npm run prerender:static` to write JS-free HTML snapshots into `dist/`. Investigate any warnings (eval, browserslist, etc.) before continuing.
+   Runs image optimization, validates referenced images, compiles Vite, runs `npm run prerender:static` to write JS-free HTML snapshots into `dist/`, then regenerates the sitemap and search index. Investigate any warnings (eval, browserslist, etc.) before continuing.
 
 4. **Static smoke** – `npx serve -s dist -l 4173`  
    Visit `/teeth-cleaning`, `/root-canal`, `/west-hollywood-dentist`, `/blog/the-material-options-for-dental-veneers` with JS disabled. Confirm HTML renders real content, canonical tags point to the right URL, and the JSON-LD block appears in view-source.
@@ -144,7 +144,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
    - A “junk” pagination URL from the historic list  
    Verify Google sees the 301 chain, final page is “URL is available to Google,” and `/sitemap.xml` is reported as the discovered sitemap.
 
-6. **PR summary** – Paste a short verification summary (e.g., `✅ test:content | ✅ test:redirects (netlify dev) | ✅ build/serve | ✅ GSC live`) into the PR description so reviewers know the gates passed.
+6. **PR summary** – Paste a short verification summary (e.g., `test:content | test:redirects (vercel dev) | build/serve | GSC live`) into the PR description so reviewers know the gates passed.
 
 ---
 
@@ -152,7 +152,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 
 - **Canonical drift:** Always pass the `path` prop to `<PageSEO>` so `getCanonicalUrl` enforces trailing slashes. Hard-coded `<link rel="canonical">` tags elsewhere will get stripped by dev guards.
 - **Navbar/scroll locking:** Mobile nav sets `document.body.style.position = 'fixed'`. When creating modals/drawers, reuse the same lock helpers or ensure cleanup on unmount.
-- **Legacy redirects:** Don't delete entries from `LegacyRedirectHandler` or `netlify.toml` unless you confirm the indexed URL is gone. Both systems should stay in sync.
+- **Legacy redirects:** Don't delete entries from `vercel.json`, `LegacyRedirectHandler`, or redirect fixtures unless you confirm the indexed URL is gone. Production behavior is Vercel-first.
 - **Animations:** Framer Motion + scroll observers can introduce layout thrash. Use `willChange` sparingly and rely on `use-cleanup-effect` utilities.
 - **Static SEO page:** `public/emergency-dentist.html` serves as the SEO smoke-test fixture. Keep its head tags aligned with `<PageSEO>` defaults.
 

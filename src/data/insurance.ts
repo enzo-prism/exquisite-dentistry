@@ -69,7 +69,7 @@ export const HOMEPAGE_HERO_PROOF_LINKS = [
     href: '/testimonials/',
   },
   {
-    text: 'Pay over time, no credit check',
+    text: 'Pay over time, no hard credit check',
     href: PAYMENT_PLANS_PATH,
   },
   {

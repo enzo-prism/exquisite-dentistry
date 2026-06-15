@@ -795,13 +795,14 @@ const parseSeoKeywords = (value?: string) => {
   return parts.length ? parts : undefined;
 };
 
-const truncateTitle = (input: string, max = 70) => {
-  if (input.length <= max) return input;
-  return input.slice(0, max).replace(/\s+\S*$/, "").trim();
-};
-
 const stripTrailingSeparators = (input: string) =>
   input.replace(/[\s|–—:-]+$/g, "").trim();
+
+const truncateTitle = (input: string, max = 70) => {
+  const text = stripTrailingSeparators(input);
+  if (text.length <= max) return text;
+  return stripTrailingSeparators(text.slice(0, max).replace(/\s+\S*$/, ""));
+};
 
 const normalizeInternalHref = (href: string) => {
   if (!href) return href;
@@ -825,10 +826,12 @@ const buildSeoTitle = (title: string) => {
   const lowerTitle = title.toLowerCase();
   const shouldAppendBrand = !lowerTitle.includes("exquisite dentistry");
   const separator = " | ";
-  const fullTitle = shouldAppendBrand
+  const brandedTitle = shouldAppendBrand
     ? `${title}${separator}${brandSuffix}`
     : title;
-  return stripTrailingSeparators(truncateTitle(fullTitle, 70));
+  return shouldAppendBrand && brandedTitle.length > 70
+    ? truncateTitle(title, 70)
+    : truncateTitle(brandedTitle, 70);
 };
 
 const uniqueLinks = (links: StaticLink[]) => {

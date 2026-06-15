@@ -31,10 +31,14 @@ const toMeta = (input: string, max = 155) => {
   return text.slice(0, max).replace(/\s+\S*$/, "");
 };
 
+const stripTrailingSeparators = (input: string) =>
+  input.replace(/[\s|–—:-]+$/g, "").trim();
+
 // Truncate title to max length without breaking words
 const truncateTitle = (input: string, max = 70) => {
-  if (input.length <= max) return input;
-  return input.slice(0, max).replace(/\s+\S*$/, "").trim();
+  const text = stripTrailingSeparators(input);
+  if (text.length <= max) return text;
+  return stripTrailingSeparators(text.slice(0, max).replace(/\s+\S*$/, ""));
 };
 
 const toAbsoluteUrl = (value: string) => {
@@ -93,12 +97,15 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   const shouldAppendBrand = !lowerTitle.includes('exquisite dentistry');
   
   const separator = ' | ';
-  let fullTitle: string = shouldAppendBrand
+  const brandedTitle: string = shouldAppendBrand
     ? `${title}${separator}${brandSuffix}`
     : title;
 
   // Final safety check: ensure total length is within limit
-  fullTitle = truncateTitle(fullTitle, 70);
+  const fullTitle =
+    shouldAppendBrand && brandedTitle.length > 70
+      ? truncateTitle(title, 70)
+      : truncateTitle(brandedTitle, 70);
 
   React.useEffect(() => {
     if (typeof document === 'undefined') return;

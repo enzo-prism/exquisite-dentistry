@@ -4,7 +4,7 @@ This repository ships a Vite + React front end with image optimization, blog gen
 
 ## Toolchain Requirements
 
-- **Node.js**: 18.19+ (match Netlify’s current LTS). Use `nvm` to hop versions quickly: `nvm install 18 && nvm use 18`.
+- **Node.js**: 18.19+ locally. Vercel currently builds with the project-configured Node runtime. Use `nvm` to hop versions quickly when debugging local issues.
 - **npm**: ships with Node; lockfile is `package-lock.json`, so avoid `pnpm`/`yarn`.
 - **OS packages**: the Sharp-based optimizer needs system libvips; most macOS/Linux installs already include it. If you hit install errors, run `brew install vips` (macOS) or `apt install libvips-dev` (Debian/Ubuntu).
 
@@ -12,7 +12,7 @@ This repository ships a Vite + React front end with image optimization, blog gen
 
 ```sh
 npm install          # one-time per machine
-npm run dev          # Vite dev server @ http://localhost:5173
+npm run dev          # Vite dev server @ http://localhost:8080
 ```
 
 - Vite auto-picks up `.env` changes; copy `.env.example` if you need `VITE_GSC_VERIFICATION`.
@@ -28,10 +28,11 @@ npm run dev          # Vite dev server @ http://localhost:5173
 | 4 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
 | 5 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
 | 6 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
+| 7 | `npm run test:redirects` | Requires `npx vercel dev --listen 127.0.0.1:8899 --yes` or `REDIRECT_TEST_BASE` pointed at a Vercel deployment. |
 
 ## Image & Asset Pipeline
 
-- `npm run build:prod` = `optimize:images` + `vite build`. Use this whenever you add media under `public/lovable-uploads/` or want a slower asset-focused verification pass. The optimizer writes WebP derivatives into `public/optimized/`, and the build refreshes `src/utils/imageRegistry.json`; never commit `dist/`.
+- `npm run build` runs the full production pipeline: image optimization, Vite build, static prerender, sitemap generation, search-index generation, and staging SEO pruning. The optimizer writes WebP derivatives into `public/optimized/`, and the build refreshes `src/utils/imageRegistry.json`; avoid committing timestamp-only registry churn and never commit `dist/`.
 - The Sharp script skips files that already have an optimized counterpart, so rerunning it is safe but can take a couple minutes on large batches. Keep an eye on git status afterwards—no changes should appear because optimized files live under `public/`.
 
 ## Manual QA Scenarios
@@ -59,7 +60,7 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
 ## CI / Automation Tips
 
 - Cache `~/.npm` and `node_modules` between runs to cut `npm install` time.
-- Vercel uses `npm run build` from `.vercel/project.json`. Run `npm run build:prod` locally when you want to force the full image-optimization pass before review.
+- Vercel uses `npm run build` from project settings. `npm run build:prod` is currently an alias for the same command.
 - Add `npm run lint && npm run build && npm run check:seo` to PR workflows; those three commands surface 90% of issues before reviewers look at UI diffs.
 
 ## Troubleshooting
@@ -69,6 +70,6 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
 | `sharp` fails to install | Install libvips (`brew install vips` or `apt install libvips-dev`) and rerun `npm install`. |
 | ESLint exits with React Hook dependency warnings | Address upstream, or suppress per-file only with a short inline justification. |
 | Puppeteer test hangs | Ensure `npm run dev` or `npm run preview` is running on port 5173/4173 before invoking `node test-browser.js`. |
-| Formspree returns 403 | The endpoint rate-limits unknown origins. Ensure your dev build runs on `http://localhost:5173` or configure the Formspree project to trust your domain. |
+| Formspree returns 403 | The endpoint rate-limits unknown origins. Ensure your dev build runs on `http://localhost:8080` or configure the Formspree project to trust your domain. |
 
 Keep this document up to date whenever you add new build steps, scripts, or verification tooling so future contributors can follow a single source of truth.

@@ -21,6 +21,15 @@ Curl checks:
 - curl -I https://exquisitedentistryla.com/
 - curl -I https://exquisitedentistryla.com/robots.txt
 - curl -I https://exquisitedentistryla.com/sitemap.xml
+- curl -I https://exquisitedentistryla.com/porcelain-veneers/
+- curl -I https://exquisitedentistryla.com/front-teeth-veneers/
+- curl -I https://exquisitedentistryla.com/single-tooth-veneers-guide/
+- curl -I https://exquisitedentistryla.com/blog/front-teeth-veneers-complete-guide/
+
+Redirect regression:
+- Local production-parity redirect checks require Vercel routing, not plain Vite.
+- Run `npx vercel dev --listen 127.0.0.1:8899 --yes`, then `npm run test:redirects`.
+- For a preview or production deployment, run `REDIRECT_TEST_BASE=<deployment-url> npm run test:redirects`.
 
 Analytics check:
 - Visit a few production routes after deploy and confirm the Vercel Analytics dashboard starts recording pageviews for production traffic.

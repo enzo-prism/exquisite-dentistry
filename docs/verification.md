@@ -1,6 +1,6 @@
 # SEO & Redirect Verification
 
-This project now treats redirect QA as a first-class gate. Run the steps below (in order) whenever `_redirects`, canonical content, or navigation changes.
+This project now treats redirect QA as a first-class gate. Run the steps below (in order) whenever `vercel.json`, canonical content, or navigation changes.
 
 ## 1. Content QA (automated + manual)
 
@@ -20,12 +20,12 @@ Manual spot-checks for new/edited pages:
 - Confirm schema markup renders (view-source to see the JSON-LD block from each template).
 - For eligible routes, paste the deployed URL into Google’s Rich Results Test to validate WebSite/LocalBusiness, FAQPage, and VideoObject markup.
 
-## 2. Automated Redirect Checks (local Netlify)
+## 2. Automated Redirect Checks (local Vercel)
 
-1. In one terminal, start the Netlify dev server so `_redirects` behave exactly like production:
+1. In one terminal, start Vercel dev so `vercel.json` redirects behave like production:
 
    ```bash
-   netlify dev
+   npx vercel dev --listen 127.0.0.1:8899 --yes
    ```
 
 2. In a second terminal, run the redirect harness. It reads `scripts/redirect-tests/legacy-urls.txt`, compares against `scripts/redirect-tests/canonical-map.json`, and ensures every legacy path hops directly to the expected canonical.
@@ -34,9 +34,9 @@ Manual spot-checks for new/edited pages:
    npm run test:redirects
    ```
 
-3. The script fails fast when a URL is missing from the map, an unexpected status is returned, or a `Location` header differs from the canonical value. Fix `_redirects` (or the map) until the run is green.
+3. The script fails fast when a URL is missing from the map, an unexpected status is returned, or a `Location` header differs from the canonical value. Fix `vercel.json` (or the map) until the run is green.
 
-You can override the target server by exporting `REDIRECT_TEST_BASE` (defaults to `http://localhost:8888`).
+Plain Vite (`npm run dev`) does not apply Vercel routing. You can override the target server by exporting `REDIRECT_TEST_BASE` (defaults to `http://127.0.0.1:8899`), for example to test a Vercel preview or production URL.
 
 ## 3. Production Build + Static Rendering
 
@@ -94,7 +94,7 @@ curl -sSL https://exquisitedentistryla.com/santa-monica-dental-implants/ | rg '<
 curl -sSL https://exquisitedentistryla.com/santa-monica-dental-implants/index.html | rg '<title>|meta name="description"|<h1' | head
 ```
 
-These two outputs should both describe the **About** page. If `/about/` matches the homepage while `/about/index.html` is correct, your hosting layer is rewriting extensionless routes to `/index.html`. Fix by deploying to a host that supports directory indexes + redirect rules (Netlify config lives in `netlify.toml` + `public/_redirects`) or by disabling any SPA catch-all rewrite at the edge.
+These two outputs should both describe the **About** page. If `/about/` matches the homepage while `/about/index.html` is correct, the hosting layer is rewriting extensionless routes to `/index.html`. On Vercel, fix project routing/configuration so directory index HTML and `vercel.json` redirects are honored before any SPA fallback.
 
 If you're on **Cloudflare Pages**, this repo includes `public/_worker.js` which maps `/route/` → `/route/index.html` (and returns real 404s) to prevent the “everything is index.html” issue.
 
@@ -107,6 +107,9 @@ For each legacy bucket (services, geo, blogs with `/1000`, pagination junk), run
 | Service slug | `/services/teeth-cleaning/` | `/teeth-cleaning/` |
 | Legacy general dentistry | `/services/general-dentistry/` | `/teeth-cleaning/` |
 | Root canal | `/root-canal-procedure/` | `/root-canal/` |
+| Porcelain veneers alias | `/porcelain-veneers/` | `/veneers/` |
+| Front teeth veneers alias | `/front-teeth-veneers/` | `/veneers/front-teeth-veneers-los-angeles/` |
+| Single tooth veneer guide | `/single-tooth-veneers-guide/` | `/blog/single-tooth-veneers-perfect-solutions/` |
 | Geo | `/cosmetic-dentist-culver-city-ca/` | `/culver-city-dentist/` |
 | Geo variant | `/west-hollywood-dentist/teeth-whitening/` | `/west-hollywood-dentist/` |
 | Blog oddity | `/the-material-options-for-dental-veneers//1000` | `/blog/the-material-options-for-dental-veneers` |
@@ -122,12 +125,12 @@ Every service and geo route has a pre-rendered HTML fallback generated via:
 npm run generate:fallbacks
 ```
 
-This script uses the shared content configs to write `public/<slug>.html`, validates that each file contains a canonical tag, meta description, H1, and JSON-LD schema, and the Netlify `_redirects` file serves these versions to bots when JavaScript is disabled.
+This script uses the shared content configs to write `public/<slug>.html` and validates that each file contains a canonical tag, meta description, H1, and JSON-LD schema.
 
 **Before deploying:**
 
-1. Run `npm run generate:fallbacks` (automatically executed by `npm run build` / `build:prod`).
+1. Run `npm run generate:fallbacks` manually only when you are intentionally refreshing legacy static fallback HTML.
 2. Spot-check a few HTML outputs (e.g., `public/teeth-cleaning.html`) to confirm the rendered copy matches the SPA content.
-3. Once `serve -s dist` is running, visit `/teeth-cleaning`, `/root-canal`, `/west-hollywood-dentist`, etc., with JS disabled to ensure the fallback HTML is returned by Netlify in your local environment.
+3. Once `serve -s dist` is running, visit `/teeth-cleaning`, `/root-canal`, `/west-hollywood-dentist`, etc., with JS disabled to ensure the fallback HTML contains meaningful content.
 
 > Reminder: the fallback generator already fails if canonical/meta/schema tags go missing, so keep it green before promoting a build.

@@ -83,7 +83,7 @@ Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin
 
 ## How can I deploy this project?
 
-This repo is linked to Vercel through [`.vercel/project.json`](/Users/enzo/exquisite/.vercel/project.json).
+This repo is linked to Vercel through [`.vercel/project.json`](.vercel/project.json).
 
 Recommended flow:
 
@@ -128,7 +128,8 @@ npm run check:seo
 # 6. (Optional) Smoke test the built site locally
 npm run preview
 
-# 7. Redirect regression test (requires `netlify dev` running separately)
+# 7. Redirect regression test (requires Vercel routing, not plain Vite)
+npx vercel dev --listen 127.0.0.1:8899 --yes
 npm run test:redirects
 ```
 
@@ -150,14 +151,14 @@ If you’re deploying via **Lovable hosting**, also run the production sanity ch
 
 ### Not Found / soft‑404 verification
 
-When deployed to a standard static host (e.g. Netlify, or Cloudflare Pages with the included `public/_worker.js`), legitimate routes are prerendered into `dist/`, and unknown URLs should return a real 404 (preferred for SEO). The client-side Not Found route still emits `noindex` as a secondary safeguard.
+When deployed to Vercel, legitimate routes are prerendered into `dist/`, Vercel applies `vercel.json` redirects first, and unknown URLs should return a real 404 (preferred for SEO). The client-side Not Found route still emits `noindex` as a secondary safeguard.
 
 To verify:
 
 1. After deployment, visit an invalid path like `https://exquisitedentistryla.com/this-does-not-exist` and confirm the response is a 404.
 2. Optionally in local dev, visit an invalid path and confirm `<meta name="robots" content="noindex,follow">` is present on the Not Found route.
 
-`npm run build:prod` forces the image optimizer before building; use it when validating media-heavy changes. If you add assets under `public/lovable-uploads`, `npm run build` also refreshes `src/utils/imageRegistry.json` so the new files are tracked by the image pipeline. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
+`npm run build` runs image optimization, the Vite production build, static route prerendering, sitemap generation, search-index generation, and staging SEO pruning. If you add assets under `public/lovable-uploads`, the build also refreshes `src/utils/imageRegistry.json`; check git status afterwards and avoid committing timestamp-only registry churn. The generated files in `src/data/generatedBlogPosts.ts` are date-balanced automatically (between Jan 1 2020 and Nov 8 2025), so re-running the generator keeps the editorial calendar evenly spaced without manual edits.
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 
@@ -184,7 +185,7 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 
 ## SEO Operations
 
-- **Canonical URLs & redirects** – canonical host is `https://exquisitedentistryla.com` (non‑www) and all indexable routes use trailing slashes. Legacy `/*.html` variants 301 to the clean trailing‑slash URL to avoid duplicate indexable pages. Canonical tags are generated via `getCanonicalUrl` in `src/utils/schemaValidation.ts`. Netlify edge redirects live in `public/_redirects` with a small supplemental set in `netlify.toml`; keep them aligned when adding routes or legacy mappings.
+- **Canonical URLs & redirects** – canonical host is `https://exquisitedentistryla.com` (non-www) and all indexable routes use trailing slashes. Production redirects are curated in `vercel.json`; keep `scripts/redirect-tests/legacy-urls.txt` and `scripts/redirect-tests/canonical-map.json` aligned whenever a legacy URL or canonical destination changes. Canonical tags are generated via `getCanonicalUrl` in `src/utils/schemaValidation.ts`. Older Netlify files remain only as historical/static-host references and are not the production source of truth.
 - **Google Search Console** – populate `VITE_GSC_VERIFICATION` in `.env` (see `.env.example`) so the `<meta name="google-site-verification">` value is injected during Vite’s HTML compile. Re-run `npm run build` and redeploy after updating the token so ownership checks stay valid.
 - **Vercel Analytics & Speed Insights** – visitor/pageview tracking and Real Experience Score collection are both mounted once at the app shell in `src/App.tsx` via `@vercel/analytics/react` and `@vercel/speed-insights/react`. Custom events are centralized in `src/utils/vercelAnalytics.ts`; keep them low-cardinality and free of patient-entered data. See `docs/vercel-analytics-events.md` before adding or renaming events. After shipping to production, open a few live routes on desktop and mobile, trigger key conversion actions, then confirm Analytics pageviews, custom events, and Speed Insights data start appearing in Vercel (content blockers can delay or suppress collection).
 - **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
@@ -212,4 +213,4 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 
 ## I want to use a custom domain - is that possible?
 
-Yes. Lovable supports custom domains (see https://docs.lovable.dev/features/custom-domain.md). For full SEO control (edge redirects, correct 404s, and serving prerendered HTML at clean routes), deploy the built `dist/` output to a host that supports directory indexes and routing rules (Netlify config lives in `netlify.toml` + `public/_redirects`, and Cloudflare Pages can use `public/_worker.js`).
+Yes. Lovable supports custom domains (see https://docs.lovable.dev/features/custom-domain.md). This site currently serves production from Vercel, with domains and redirect rules managed by Vercel project settings plus `vercel.json`.

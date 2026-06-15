@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
-const BASE_URL = process.env.REDIRECT_TEST_BASE ?? 'http://localhost:8888';
+const BASE_URL = process.env.REDIRECT_TEST_BASE ?? 'http://127.0.0.1:8899';
 const LEGACY_FILE = path.resolve('scripts/redirect-tests/legacy-urls.txt');
 const MAP_FILE = path.resolve('scripts/redirect-tests/canonical-map.json');
 
@@ -12,6 +12,7 @@ const legacyRows = (await readFile(LEGACY_FILE, 'utf8'))
   .filter((line) => line.length > 0 && !line.startsWith('#'));
 
 const canonicalMap = JSON.parse(await readFile(MAP_FILE, 'utf8'));
+const MAX_REDIRECTS = 5;
 
 let passed = 0;
 let failed = 0;
@@ -30,39 +31,60 @@ for (const legacyPath of legacyRows) {
     continue;
   }
 
-  const url = legacyPath.startsWith('/') ? `${BASE_URL}${legacyPath}` : `${BASE_URL}/${legacyPath}`;
+  let currentUrl = new URL(
+    legacyPath.startsWith('/') ? legacyPath : `/${legacyPath}`,
+    BASE_URL,
+  ).href;
+  const hops = [];
   let response;
-  try {
-    response = await fetch(url, fetchOptions);
-  } catch (error) {
-    console.error(`❌ ${legacyPath} → request failed (${error.message})`);
-    failed += 1;
-    continue;
+
+  for (let depth = 0; depth <= MAX_REDIRECTS; depth += 1) {
+    try {
+      response = await fetch(currentUrl, fetchOptions);
+    } catch (error) {
+      console.error(`❌ ${legacyPath} → request failed (${error.message})`);
+      failed += 1;
+      response = undefined;
+      break;
+    }
+
+    const location = response.headers.get('location');
+    if (response.status >= 300 && response.status < 400 && location) {
+      currentUrl = new URL(location, currentUrl).href;
+      hops.push(new URL(currentUrl).pathname);
+      continue;
+    }
+
+    break;
   }
 
+  if (!response) continue;
+
+  const finalPath = new URL(currentUrl).pathname;
+
   if (expected === '__200__') {
-    if (response.status === 200) {
+    if (response.status === 200 && hops.length === 0) {
       console.log(`✅ ${legacyPath} resolved with status 200 as expected`);
       passed += 1;
     } else {
-      console.error(`❌ ${legacyPath} responded with ${response.status}, expected 200`);
+      console.error(`❌ ${legacyPath} resolved as ${finalPath} with status ${response.status}, expected direct 200`);
       failed += 1;
     }
     continue;
   }
 
-  const location = response.headers.get('location');
-  if (response.status < 300 || response.status >= 400 || !location) {
-    console.error(`❌ ${legacyPath} responded with ${response.status} (location: ${location ?? 'n/a'}), expected redirect to ${expected}`);
+  if (hops.length === 0) {
+    console.error(`❌ ${legacyPath} responded with ${response.status}, expected redirect to ${expected}`);
     failed += 1;
     continue;
   }
 
-  if (location !== expected) {
-    console.error(`❌ ${legacyPath} → ${location}, expected ${expected}`);
+  if (finalPath !== expected) {
+    console.error(`❌ ${legacyPath} → ${hops.join(' → ')}, expected ${expected}`);
     failed += 1;
   } else {
-    console.log(`✅ ${legacyPath} → ${location}`);
+    const chain = hops.length > 1 ? hops.join(' → ') : finalPath;
+    console.log(`✅ ${legacyPath} → ${chain}`);
     passed += 1;
   }
 }
