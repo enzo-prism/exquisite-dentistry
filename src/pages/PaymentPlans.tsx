@@ -4,6 +4,7 @@ import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lu
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
+import CherryPreApprovalSection from '@/components/CherryPreApprovalSection';
 import PhoneLink from '@/components/PhoneLink';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
@@ -200,6 +201,8 @@ const PaymentPlans = () => {
             </div>
           </div>
         </section>
+
+        <CherryPreApprovalSection />
 
         <section className="pb-14 md:pb-16">
           <div className="container mx-auto px-4">

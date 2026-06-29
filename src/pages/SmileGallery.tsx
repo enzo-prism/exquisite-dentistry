@@ -54,7 +54,7 @@ const SmileGallery = () => {
       {/* Hero Section with VideoHero */}
       <VideoHero 
         title={<>Smile <span className="text-gold">Gallery</span></>} 
-        subtitle="See the incredible results our patients have achieved with our expert dental care." 
+        subtitle="See the results our patients have achieved with our dental care." 
         primaryCta={{
           text: "View Gallery",
           onClick: handleViewGallery
@@ -128,8 +128,8 @@ const SmileGallery = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              See the incredible detail and precision of our cosmetic dental work. 
-              Drag the slider to reveal the dramatic before and after results.
+              See the detail and precision of our cosmetic dental work.
+              Drag the slider to compare the before and after results.
             </p>
           </div>
           

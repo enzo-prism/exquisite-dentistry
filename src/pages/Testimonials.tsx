@@ -161,7 +161,7 @@ const TestimonialsPage: React.FC = () => {
               </span>
               <h3 className="text-3xl md:text-4xl font-semibold text-black">Why Angelenos Stay With Us Year After Year</h3>
               <p className="text-black-light/80 text-base md:text-lg">
-                200+ Google reviews and 100+ Yelp reviews rave about the gentle care, cutting-edge technology, and anxiety-free experience our team delivers daily.
+                200+ Google reviews and 100+ Yelp reviews describe the gentle care, modern technology, and calm, comfortable experience our team provides.
                 Browse their words, then book your own visit.
               </p>
             </div>

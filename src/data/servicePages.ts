@@ -42,7 +42,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Teeth Cleaning in Los Angeles | Preventive Dental Care",
       description:
-        "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and spa-level comfort.",
+        "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and a comfortable visit.",
       keywords: [
         "teeth cleaning los angeles",
         "dental cleaning west hollywood",
@@ -742,7 +742,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Porcelain Dental Bridges in Los Angeles | Tooth Replacement",
       description:
-        "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and spa-level comfort.",
+        "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and a comfortable visit.",
       keywords: ["dental bridge los angeles", "tooth replacement west hollywood", "porcelain bridge LA"],
     },
     hero: {
@@ -781,7 +781,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     ],
     treatmentSteps: [
       { title: "01. Smile Design Session", detail: "Digital scans, photography, and shade mapping guide your blueprint." },
-      { title: "02. Preparation & Temporaries", detail: "Supporting teeth are shaped and protected with luxurious temporaries." },
+      { title: "02. Preparation & Temporaries", detail: "Supporting teeth are shaped and protected with well-made temporaries." },
       { title: "03. Final Placement", detail: "We bond the bridge, refine your bite, and review maintenance." },
     ],
     faqs: [
@@ -821,7 +821,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Porcelain Dental Crowns in Los Angeles | Exquisite Dentistry",
       description:
-        "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for Hollywood-ready aesthetics.",
+        "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for natural-looking results.",
       keywords: ["dental crowns los angeles", "porcelain crown west hollywood", "cosmetic crown LA"],
     },
     hero: {
@@ -837,14 +837,14 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       ],
       callouts: [
         { title: "Digital Design", description: "3D scans capture every contour to guide precise preparations." },
-        { title: "Lab Partnership", description: "Top-tier ceramists craft crowns using layered porcelain for lifelike results." },
+        { title: "Lab Partnership", description: "Skilled ceramists craft crowns using layered porcelain for lifelike results." },
         { title: "Bite Harmony", description: "We fine-tune occlusion so your jaw, TMJ, and smile stay comfortable." },
       ],
     },
     benefits: [
       { title: "Strength & Longevity", description: "Crowns shield fragile teeth from fractures and temperature sensitivity." },
       { title: "Cosmetic Upgrade", description: "Customize shade and shape to enhance symmetry and confidence." },
-      { title: "Predictable Process", description: "Two visits with luxurious temporaries in between keep you comfortable." },
+      { title: "Predictable Process", description: "Two visits with well-made temporaries in between keep you comfortable." },
     ],
     treatmentSteps: [
       { title: "01. Consultation & Scan", detail: "Digital impressions capture your current smile and bite dynamics." },

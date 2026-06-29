@@ -24,30 +24,30 @@ const TeethWhitening = () => {
   const whiteningPrograms = [
     {
       title: "In-Office Zoom Whitening",
-      description: "Brighten up to eight shades in a single visit with LED-accelerated whitening, sensitivity protection, and spa-level comforts."
+      description: "In-office whitening for noticeable results in a single visit, with LED activation and a sensitivity protocol throughout."
     },
     {
       title: "Custom Take-Home Whitening",
-      description: "Wear professional-strength gel in perfectly fitted trays to refresh brightness during travel or before big events."
+      description: "Professional-strength gel in custom-fitted trays, so you can brighten gradually and control the pace and sensitivity."
     },
     {
       title: "Hybrid Whitening Plan",
-      description: "Combine in-office jumpstarts with home boosters to maintain radiance through film shoots, weddings, and photo sessions."
+      description: "Pair an in-office session with take-home touch-ups so your shade stays consistent over time."
     }
   ];
 
   const faqs = [
     {
       question: "Which whitening option is right for me?",
-      answer: "During your consultation, we evaluate existing restorations, tooth sensitivity history, enamel thickness, and timeline. Patients preparing for same-week events choose in-office Zoom, while those wanting steady maintenance between meetings opt for custom take-home trays. Many Los Angeles professionals use a hybrid plan for year-round brilliance."
+      answer: "During your consultation, we look at existing restorations, sensitivity history, enamel thickness, and your timeline. If you have an event coming up soon, in-office whitening works well. If you would rather brighten gradually, custom take-home trays give you more control. A hybrid plan helps keep your shade consistent over time."
     },
     {
       question: "How do you reduce sensitivity?",
-      answer: "We prep teeth with nano-hydroxyapatite mousse, use carefully timed gel cycles, and apply fluoride varnish immediately after whitening. Custom take-home kits include desensitizing gel and precise instructions so you stay comfortable, even with a busy coffee routine or daily green juice habit."
+      answer: "We prep teeth with a desensitizing mousse, use carefully timed gel cycles, and apply fluoride varnish right after whitening. Custom take-home kits include desensitizing gel and clear instructions so you stay comfortable between sessions."
     },
     {
       question: "How often should I whiten?",
-      answer: "In-office whitening can be repeated every 12 to 18 months, while take-home touch-ups keep results fresh every few weeks. We tailor a maintenance plan that considers on-camera obligations, wine tastings, and lifestyle habits so you never lose momentum."
+      answer: "In-office whitening can be repeated every 12 to 18 months, while take-home touch-ups keep results fresh in between. We will recommend a maintenance plan that fits your routine and stain exposure so your shade stays consistent."
     }
   ];
 
@@ -104,7 +104,7 @@ const TeethWhitening = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Teeth Whitening Los Angeles"
-          subtitle="Three luminous whitening paths designed for fast-paced LA lives."
+          subtitle="In-office whitening, custom take-home trays, and hybrid plans, matched to your sensitivity and schedule."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -117,18 +117,18 @@ const TeethWhitening = () => {
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.35em] text-secondary font-semibold">Los Angeles Smile Brightening</span>
               <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
-                Radiance That Keeps Pace with Your Calendar
+                Professional Whitening, Planned Around Your Schedule
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Our whitening studio combines clinical precision with concierge-level comfort.
-                Whether you are preparing for red carpet season, a Malibu wedding, or a branding photoshoot,
-                we masterminded three whitening pathways that deliver noticeable brightness without sacrificing enamel integrity.
-                Each treatment is supported by a sensitivity protocol, tailored aftercare, and an on-demand support team that understands LA schedules.
+                Our whitening combines clinical precision with comfort-focused care.
+                We offer three whitening pathways designed to brighten noticeably while protecting enamel.
+                Each one is supported by a sensitivity protocol and tailored aftercare,
+                so the experience stays predictable and your results hold up.
               </p>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Dr. Alexie Aguil and our hygiene specialists analyze your enamel thickness, existing dentistry, and lifestyle habits to recommend the right formulation.
-                Unlike one-size-fits-all whitening bars, we calibrate gel strength, light activation, and session timing to your comfort level.
-                You leave with a documented maintenance roadmap so results stay luminous between shoots, investors meetings, and nights on the town.
+                Dr. Alexie Aguil and our hygiene team review your enamel thickness, existing dentistry, and habits to recommend the right approach.
+                We calibrate gel strength, light activation, and session timing to your comfort level.
+                You leave with a clear maintenance plan so your results stay consistent over time.
               </p>
               <p className="mt-6 text-base text-muted-foreground">
                 Looking specifically for in-office Zoom? Explore{' '}
@@ -171,17 +171,16 @@ const TeethWhitening = () => {
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Concierge Whitening Experience
+                  What to Expect During Whitening
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Appointments begin with a sparkling water bar, cozy blankets, and a curated playlist to relax your mind.
-                  Our hygienists polish teeth with glaze-protective paste before applying warm desensitizing mousse.
-                  During Zoom whitening, you can stream Netflix, meditate, or catch up on emails using our ergonomic chairs and device charging stations.
+                  Each visit begins with a gentle polish, and we apply a warm desensitizing mousse before whitening to keep you comfortable.
+                  During an in-office session, you can settle in and relax while the gel does its work.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  We customize gel strengths for each 15-minute cycle, ensuring a balance between powerful results and enamel safety.
-                  After whitening, you will receive a personalized kit featuring touch-up pens, aligner-safe gel (if you wear <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign</Link>),
-                  and curated dietary guidelines for the first 48 hours.
+                  We adjust gel strength for each 15-minute cycle to balance noticeable results with enamel safety.
+                  After whitening, you will receive a take-home kit with touch-up pens, aligner-safe gel (if you wear <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign</Link>),
+                  and dietary guidance for the first 48 hours.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
@@ -222,20 +221,19 @@ const TeethWhitening = () => {
         <section className="py-16 bg-muted/15">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">LA Brightening Strategies by Lifestyle</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Whitening Tailored to Your Routine</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Los Angeles is a city of creative schedules and constant opportunities. We personalize whitening plans based on how you live, work, and celebrate.
-                Coffee-lovers visiting Alfred in West Hollywood receive stain-prevention tips, while wine enthusiasts learn how to neutralize tannins after tastings in Malibu.
-                If you are prepping for a film shoot, we coordinate with your glam team to sync whitening with makeup trials and hair color refreshes.
+                We personalize whitening around your habits and goals.
+                If coffee, tea, or wine are part of your routine, we will share stain-prevention tips to help your results last.
+                If you have an event coming up, we can plan the timing so your shade settles beforehand.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                For patients flying frequently, we design TSA-friendly kits, travel-safe shade guides, and reminders that fit your itinerary.
-                If you have veneers, implants, or composite bonding, we calibrate whitening so natural teeth harmonize beautifully with existing dentistry.
-                Our team also offers executive lunchtime whitening sessions and post-pilates appointments to seamlessly integrate into your routine.
+                If you travel often, we can put together a take-home kit and a simple touch-up routine that fits your schedule.
+                If you have veneers, implants, or composite bonding, we calibrate whitening so your natural teeth match your existing dental work.
               </p>
 	              <p className="text-lg text-muted-foreground leading-relaxed">
-		                Pair whitening with <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plans</Link>
-		                to unlock your ideal smile transformation.
+		                Whitening also pairs well with <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link>, <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">dental implants</Link>, or a <Link to="/cosmetic-dentistry/" className="text-secondary underline-offset-4 hover:underline">comprehensive cosmetic plan</Link>
+		                when you are planning broader changes.
 		              </p>
 	              <div className="mt-10 grid gap-6 md:grid-cols-2">
 	                <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
@@ -280,13 +278,13 @@ const TeethWhitening = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    In-office Zoom whitening begins at $595 and includes desensitizing care, take-home boosters, and shade tracking. Custom tray systems start at $350, while hybrid pathways range from $650 to $850 depending on the number of gel refills and concierge deliveries.
+                    In-office Zoom whitening begins at $595 and includes desensitizing care, take-home boosters, and shade tracking. Custom tray systems start at $350, and hybrid pathways range from $650 to $850 depending on the number of gel refills.
                   </p>
                   <p>
-                    Members of our Glow Maintenance Club receive quarterly touch-up kits, complimentary gel refills, priority booking, and exclusive rates on cosmetic upgrades. We also offer group bookings for bridal parties, production teams, and influencer collaborations.
+                    Members of our Glow Maintenance Club receive quarterly touch-up kits, complimentary gel refills, priority booking, and member rates on cosmetic treatments. We also offer group bookings for weddings and special events.
                   </p>
                   <p>
-                    Whitening packages can be bundled with veneers, bonding, and Invisalign treatments for seamless smile makeovers with transparent pricing.
+                    Whitening packages can be bundled with veneers, bonding, and Invisalign, with pricing laid out up front.
                   </p>
                 </CardContent>
               </Card>
@@ -305,7 +303,7 @@ const TeethWhitening = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Sun className="w-5 h-5 text-secondary mt-1" />
-                      <span>Use remineralizing serum nightly for seven days to hydrate enamel and maintain a glassy shine.</span>
+                      <span>Use remineralizing serum nightly for seven days to hydrate enamel and keep the surface smooth.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Sun className="w-5 h-5 text-secondary mt-1" />
@@ -344,7 +342,7 @@ const TeethWhitening = () => {
                     {
                       title: "Client Experience",
                       href: "/client-experience/",
-                      description: "See the comfort amenities that make whitening an elevated ritual.",
+                      description: "See the comfort details that make whitening an easy, low-stress visit.",
                       popularity: 52
                     }
                   ]}
@@ -386,18 +384,19 @@ const TeethWhitening = () => {
         <RelatedArticles
           tags={['whitening', 'teeth whitening', 'zoom', 'bright smile']}
           title="Whitening Tips & Insights"
-          subtitle="Learn how to achieve and maintain your brightest smile"
+          subtitle="Learn how to brighten and maintain your smile"
         />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Glow Brighter in Los Angeles
+                Ready to Talk Through Whitening?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Ready for a luminous upgrade? Our whitening experts are here to help you shine on screen, on stage, and in every candid moment.
-                Schedule your consultation to discover the whitening path that matches your timeline and goals.
+                If you are considering whitening, a consultation is the place to start.
+                We will talk through your options, your sensitivity, and your timeline, then recommend the path that fits.
+                If you still have questions, that is completely fine too.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>

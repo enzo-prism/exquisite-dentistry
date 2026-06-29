@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-Modern React + TypeScript dental website with comprehensive performance optimizations, SEO features, and professional service pages. Built with Vite, shadcn/ui, and deployed on Netlify.
+Modern React + TypeScript dental website with comprehensive performance optimizations, SEO features, and professional service pages. Built with Vite, shadcn/ui, and deployed on Vercel.
 
 ## Tech Stack
 - **Framework**: React 18 + TypeScript
@@ -15,7 +15,7 @@ Modern React + TypeScript dental website with comprehensive performance optimiza
 - **Forms**: React Hook Form + Zod validation
 - **Animations**: Framer Motion
 - **Error Tracking**: Sentry integration
-- **Deployment**: Netlify (automated CI/CD)
+- **Deployment**: Vercel (preview per branch; production deploys from `main`). A legacy `netlify.toml` remains but Vercel is primary.
 
 ## Development Commands
 
@@ -25,7 +25,7 @@ nvm use 18               # Required: Node 18.19+
 npm run dev              # Dev server @ http://localhost:8080
 npm run lint             # ESLint (add -- --fix to auto-fix)
 npm run build            # Production bundle (runs generate:fallbacks automatically)
-npm run build:prod       # Full pipeline: image optimization + build (mirrors Netlify)
+npm run build:prod       # Full pipeline: image optimization + build (mirrors production)
 npm run preview          # Serve dist/ @ http://localhost:4173 for QA
 npm run check:seo        # Verify canonical/OG/JSON-LD in built HTML
 ```
@@ -117,11 +117,26 @@ public/lovable-uploads/  # Raw assets → optimized variants in public/optimized
 - **Source Maps**: Development only to reduce bundle size
 - **Chunk Size Limit**: 1000kb warning threshold
 
-### Netlify Configuration
-- **Auto-deploy**: Push to main branch triggers deployment
-- **Plugins**: Image optimization, Lighthouse, Critical CSS
-- **Headers**: Security headers and caching rules configured
-- **Redirects**: Old URL patterns redirect to new structure
+### Vercel Configuration
+- **Project**: linked via `.vercel/`; `vercel.json` sets `trailingSlash: true`
+- **Preview deploy**: `vercel deploy` → unique `*.vercel.app` URL (also auto-created on branch push). Use previews for client review.
+- **Production**: pushing to `main` auto-deploys to `exquisitedentistryla.com`; or run `vercel --prod`. Do not deploy to production without sign-off.
+- **Build**: `npm run build` → `dist/` (image optimization + static prerender + sitemap/search-index)
+- **Analytics**: `@vercel/analytics` + speed insights are wired (see `src/utils/vercelAnalytics.ts`)
+- A legacy `netlify.toml` remains for redirect testing only (`npm run test:redirects`).
+
+## Financing (Cherry)
+- Cherry is integrated two ways: the app-wide floating estimator (`CherryWidgetProvider` + `useCherryWidgetRegistration`, practice slug in `src/constants/cherry.ts`) and the on-page **pre-approval block** (`CherryPreApprovalSection` on `/payment-plans`) with amount entry, benefit messaging, and an apply QR.
+- The patient-facing apply link is built by `buildCherryApplyUrl()` in `src/constants/cherry.ts`.
+- **`VERIFY-BEFORE-PUBLIC` convention**: regulated financing figures and the Cherry apply/QR URL are isolated and tagged with this comment. Confirm them against Cherry's provider dashboard + practice sign-off before changing or publishing.
+- Financing engagement is tracked via `trackFinancingEngagement` in `src/utils/vercelAnalytics.ts`.
+
+## Content & Copy Voice
+The site uses one consistent marketing voice — keep new/edited copy on this bar:
+- Calm, declarative, plain-spoken, low-pressure, patient-respecting.
+- **No** superlatives ("world-class", "luxury", "finest", "premier", "gold standard", "dramatic"), **no** Hollywood/red-carpet/celebrity framing, **no** urgency, **no** exclamation marks, **no** overreach or guarantee claims.
+- Never invent or alter clinical claims, prices, timeframes, or guarantees. Remove overreach rather than restate it. Don't edit real patient testimonial quotes.
+- Reference pages for tone: `src/pages/PaymentPlans.tsx`, `src/pages/Insurance.tsx`, `src/pages/DentalImplants.tsx`, `src/pages/FrontTeethVeneers.tsx`.
 
 ## Troubleshooting
 

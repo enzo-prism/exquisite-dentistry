@@ -26,7 +26,7 @@ const Invisalign = () => {
     {
       icon: <Smile className="h-8 w-8 text-secondary" />,
       title: "Discreet & Confident",
-      description: "Crystal-clear aligners keep treatment virtually invisible in photos, meetings, and nights out in Los Angeles."
+      description: "Clear aligners stay discreet in photos, meetings, and evenings out around Los Angeles."
     },
     {
       icon: <Clock className="h-8 w-8 text-secondary" />,
@@ -59,12 +59,12 @@ const Invisalign = () => {
     {
       step: "Weeks 12 to 24",
       title: "Refinements & Detailing",
-      description: "Attachments and IPR, when indicated, sculpt finishing details for film-ready symmetry and balanced occlusion."
+      description: "Attachments and IPR, when indicated, refine the finishing details for an even, balanced occlusion."
     },
     {
       step: "Graduation",
-      title: "Retention & Glow-Up",
-      description: "Whitening touch-ups, Vivera retainers, and smile contouring deliver camera-ready confidence and lasting stability."
+      title: "Retention & Finishing",
+      description: "Whitening touch-ups, Vivera retainers, and smile contouring help keep your results stable over time."
     }
   ];
 
@@ -75,7 +75,7 @@ const Invisalign = () => {
     },
     {
       question: "What is the typical Invisalign timeline in Los Angeles?",
-      answer: "Most cosmetic alignment cases finish within 6 to 12 months, while more complex bite corrections may take 18 months. We stage your plan around work, production schedules, and major life events so treatment never interrupts the moments that matter."
+      answer: "Most cosmetic alignment cases finish within 6 to 12 months, while more complex bite corrections may take 18 months. We stage your plan around work, production schedules, and major life events so treatment fits around your calendar."
     },
     {
       question: "Is Invisalign comfortable for speaking on camera or at events?",
@@ -161,15 +161,15 @@ const Invisalign = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="mb-10 text-center">
-                <span className="uppercase tracking-widest text-secondary font-semibold">Los Angeles Invisalign Experts</span>
+                <span className="uppercase tracking-widest text-secondary font-semibold">Invisalign in Los Angeles</span>
                 <h2 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">
-                  Confident Smiles, Zero Compromise
+                  Clear Aligners, Planned Around Your Life
                 </h2>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Clear aligner therapy at Exquisite Dentistry pairs world-class Invisalign technology with bespoke concierge care.
-                Dr. Alexie Aguil plans every movement with iTero digital scans, so you can preview results before wearing your first tray.
-                We map treatment around filming schedules, launch events, red-carpet appearances, and long production days, ensuring your smile journey enhances, not interrupts, your Los Angeles lifestyle.
+                Clear aligner therapy at Exquisite Dentistry combines Invisalign aligners with planning built around how you live.
+                Dr. Alexie Aguil plans every movement with iTero digital scans, so you can preview the expected result before wearing your first tray.
+                We schedule treatment around filming, events, and long production days, so it works around your routine rather than interrupting it.
               </p>
               <div className="mt-8 rounded-2xl border border-secondary/30 bg-secondary/5 p-6 text-center">
                 <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-2">Powered by iTero 3D Scanning</p>
@@ -178,14 +178,14 @@ const Invisalign = () => {
                   <Link to="/itero-scanner/" className="text-secondary underline-offset-4 hover:underline">
                     high-definition iTero scan
                   </Link>
-                  , delivering digital impressions that sync instantly with ClinCheck for faster trays and more predictable movement.
+                  , giving us digital impressions that feed into ClinCheck for accurate trays and predictable tooth movement.
                 </p>
               </div>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Whether you are preparing for a major career milestone, recovering from years of grinding, or pursuing a healthier bite after veneers,
-                Invisalign aligners deliver precise movements without the brackets and wires of traditional orthodontics.
-                You will swap to a fresh set of trays every 7 to 10 days, meeting virtually or in-person for progress checks that keep you on track.
-                When paired with cosmetic finishing touches like whitening or edge recontouring, Invisalign becomes the centerpiece of a full smile glow-up.
+                Whether you are preparing for an event, addressing years of grinding, or working toward a healthier bite after veneers,
+                Invisalign aligners move teeth without the brackets and wires of traditional orthodontics.
+                You will swap to a fresh set of trays every 7 to 10 days, meeting virtually or in person for progress checks.
+                Paired with finishing touches like whitening or edge recontouring, Invisalign can be one part of a broader cosmetic plan.
               </p>
               <p className="mt-6 text-base text-muted-foreground">
                 Working toward a wedding date? Our{' '}
@@ -204,10 +204,10 @@ const Invisalign = () => {
               <div className="rounded-3xl border border-secondary/20 bg-white p-8 shadow-lg">
                 <p className="text-xs font-semibold uppercase tracking-[0.35em] text-secondary">Transformation Story</p>
                 <h2 className="mt-3 text-3xl font-bold text-foreground">
-                  Confidence in Every Smile: Nick’s Invisalign Journey
+                  Nick’s Invisalign Story
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  A lifetime of hiding his smile, until Invisalign with Dr. Aguil gave him the confidence to show it off.
+                  After years of feeling self-conscious about his teeth, Nick completed Invisalign treatment with Dr. Aguil.
                 </p>
                 <div className="mt-6 space-y-4 text-sm text-foreground">
                   <div>
@@ -219,11 +219,11 @@ const Invisalign = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-secondary">•</span>
-                        <span>Confidence through care, every visit focused on trust, comfort, and self-esteem.</span>
+                        <span>Visits focused on comfort and clear communication.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-secondary">•</span>
-                        <span>What started as concern ended as confidence with results that feel as good as they look.</span>
+                        <span>A steady course of treatment, with a result Nick is satisfied with.</span>
                       </li>
                     </ul>
                   </div>
@@ -243,7 +243,7 @@ const Invisalign = () => {
                   className="!rounded-2xl !bg-black mb-6"
                   appearance="minimal"
                 />
-                <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-4">Confidence Video Spotlight</p>
+                <p className="text-secondary font-semibold text-sm uppercase tracking-[0.35em] mb-4">Patient Video</p>
                 <p className="text-lg text-muted-foreground mb-6">
                   Watch Nick describe how Invisalign changed the way he shows up at work, in photos, and on camera.
                 </p>
@@ -260,7 +260,7 @@ const Invisalign = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Why Professionals Choose Invisalign</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Every aligner set is custom-trimmed for comfort, stain-resistant for on-camera confidence, and supported by a concierge dental team that anticipates your needs.
+                Every aligner set is trimmed for comfort and stain-resistant, and the team stays available between visits to answer questions.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -288,12 +288,12 @@ const Invisalign = () => {
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div>
                 <h2 className="text-3xl font-bold text-foreground mb-6">
-                  Concierge Orthodontics with Local Flair
+                  Orthodontics That Works Around Your Schedule
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Invisalign patients at our Wilshire Boulevard studio benefit from flexible morning and late-afternoon appointments, same-day attachment repairs, and aligner delivery directly to your home or production lot.
-                  We coordinate with talent managers, stylists, and event planners so your transformation aligns with brand partnerships and public appearances.
-                  Our in-office streaming lounge, noise-canceling headphones, and aromatherapy menu make every visit feel like a treat, not a clinical obligation.
+                  Invisalign patients at our Wilshire Boulevard studio have access to morning and late-afternoon appointments, same-day attachment repairs, and aligner delivery to your home or production lot.
+                  We can coordinate timing with managers, stylists, and event planners when public appearances are on the calendar.
+                  Comfort amenities, including a streaming lounge, noise-canceling headphones, and aromatherapy, are available during visits.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Dr. Aguil has completed hundreds of clear aligner cases across West Hollywood, Beverly Hills, and central Los Angeles.
@@ -314,7 +314,7 @@ const Invisalign = () => {
               <div className="bg-muted/40 border border-border/60 rounded-2xl p-8">
                 <h3 className="text-2xl font-semibold text-foreground mb-4">Invisalign Timeline</h3>
                 <p className="text-muted-foreground mb-6">
-                  A clear roadmap keeps your treatment efficient and empowers you to maintain momentum while juggling Los Angeles life.
+                  A clear roadmap keeps treatment on track and easy to follow alongside a busy schedule.
                 </p>
                 <ol className="relative border-l border-secondary/20 pl-6">
                   {milestones.map((milestone, index) => (
@@ -345,9 +345,9 @@ const Invisalign = () => {
                 Customized for Downtown, West Hollywood, and Beverly Hills Smiles
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Every aligner case starts with a deep dive into your functional goals, airway considerations, and aesthetic preferences.
-                We analyze facial proportions, lip dynamics, and even how your smile photographs under direct lighting.
-                Aligners are trimmed below the gumline for comfort and optimized pressure, while etched attachments blend into enamel so closely that HD cameras barely detect them.
+                Every aligner case starts with a review of your functional goals, airway considerations, and aesthetic preferences.
+                We look at facial proportions, lip dynamics, and how your smile photographs.
+                Aligners are trimmed below the gumline for comfort and steady pressure, while etched attachments blend into the surrounding enamel.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 For professionals managing demanding travel schedules, we bundle aligner sets and ship replacements when you are on-location.
@@ -355,8 +355,8 @@ const Invisalign = () => {
                 If you are pairing Invisalign with restorative dentistry, our restorative-phasing protocols coordinate aligner wear with implant surgery or veneer delivery to avoid unnecessary delays.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We also curate transformation packages that integrate smile whitening, <Link to="/testimonials/" className="text-secondary underline-offset-4 hover:underline">patient-proven comfort amenities</Link>, and Vivera retainer subscriptions.
-                After treatment, our team schedules quarterly digital check-ins to ensure retainers fit perfectly and to plan any enhancements before important events.
+                We can pair treatment with whitening, <Link to="/testimonials/" className="text-secondary underline-offset-4 hover:underline">comfort amenities patients mention</Link>, and Vivera retainer subscriptions.
+                After treatment, the team schedules quarterly digital check-ins to confirm retainers still fit and to plan any follow-up before key dates.
               </p>
               <div className="mt-10 rounded-3xl border border-secondary/20 bg-white p-8 shadow-sm">
                 <h3 className="text-2xl font-semibold text-foreground">Invisalign Beverly Hills</h3>
@@ -389,12 +389,12 @@ const Invisalign = () => {
                     We honor FSA/HSA payments, accept major insurances with orthodontic benefits, and collaborate with third-party lenders for 0% promotional financing.
                   </p>
                   <p>
-                    Because your smile is a long-term asset, we outline every cost in a transparent treatment calendar that covers aligners, attachments, refinements, retainers, and in-office comfort upgrades.
-                    A dedicated treatment concierge acts as your point of contact for scheduling, billing questions, and lifestyle adjustments throughout the process.
+                    We outline every cost up front in a treatment calendar that covers aligners, attachments, refinements, retainers, and in-office comfort upgrades.
+                    A single point of contact handles scheduling and billing questions throughout treatment.
                   </p>
                   <p>
-                    Clients who combine Invisalign with veneers, implants, or whitening receive bundled pricing and prioritized appointment blocks.
-                    Ask about our &ldquo;LA Smile Set&rdquo; package, which integrates Invisalign, in-office Zoom whitening, and cosmetic bonding for a camera-ready debut.
+                    Patients who combine Invisalign with veneers, implants, or whitening receive bundled pricing and grouped appointment blocks.
+                    Ask about our &ldquo;LA Smile Set&rdquo; package, which combines Invisalign, in-office Zoom whitening, and cosmetic bonding.
                   </p>
                 </CardContent>
               </Card>
@@ -417,7 +417,7 @@ const Invisalign = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Store trays in ventilated cases when dining out in West Hollywood or attending red-carpet events to avoid warping or misplacing them.</span>
+                      <span>Store trays in ventilated cases when you are out or traveling to avoid warping or misplacing them.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
@@ -433,7 +433,7 @@ const Invisalign = () => {
                     {
                       title: "Porcelain Veneers",
                       href: "/veneers",
-                      description: "Refine tooth shape and brightness after alignment for a flawless finish.",
+                      description: "Refine tooth shape and brightness after alignment for a clean, even finish.",
                       combination: true,
                       priceRange: "$$$$",
                       popularity: 62

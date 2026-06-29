@@ -26,8 +26,8 @@ const Veneers = () => {
   const benefits = [
     {
       icon: <Sparkles className="h-8 w-8 text-secondary" />,
-      title: "Instant Transformation",
-      description: "Dramatically improve your smile's appearance in just a few visits"
+      title: "A Refreshed Smile",
+      description: "Improve your smile's appearance in just a few visits"
     },
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
@@ -390,8 +390,8 @@ const Veneers = () => {
                 Ready to Transform Your Smile?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Schedule a consultation to discover how porcelain veneers can give you the confident, 
-                beautiful smile you've always wanted.
+                Schedule a consultation to learn how porcelain veneers could fit your
+                smile and your goals.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 

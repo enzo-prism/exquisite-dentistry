@@ -27,12 +27,12 @@ const VeneersLosAngeles = () => {
     {
       icon: <Palette className="h-8 w-8 text-secondary" />,
       title: "Artistry Meets Science",
-      description: "Smile designs blend 3D facial mapping with handcrafted porcelain layering from master ceramists."
+      description: "Smile designs combine 3D facial mapping with porcelain layered by hand in the lab."
     },
     {
       icon: <Sparkles className="h-8 w-8 text-secondary" />,
-      title: "Hollywood-Tested Results",
-      description: "Camera-ready aesthetics crafted for actors, entrepreneurs, and producers who live in front of the lens."
+      title: "Natural on Camera and in Person",
+      description: "Shade, shape, and surface texture are planned to read naturally in person, on video, and in photos."
     },
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
@@ -42,22 +42,22 @@ const VeneersLosAngeles = () => {
     {
       icon: <Heart className="h-8 w-8 text-secondary" />,
       title: "Comfort-First Experience",
-      description: "Noise-canceling headphones, streaming suites, and sedation options reframe dental visits as self-care."
+      description: "Noise-canceling headphones, streaming, and sedation options help keep visits calm and comfortable."
     }
   ];
 
   const veneerStyles = [
     {
-      heading: "Signature LA Glow",
-      content: "Balanced translucency and subtle characterization mimic sunlit enamel, perfect for red carpets, agency photos, and daily life in Beverly Grove."
+      heading: "Natural Brightness",
+      content: "Balanced translucency and subtle surface detail mimic healthy enamel, so veneers look at home in everyday light and in photographs."
     },
     {
-      heading: "Ultra-Natural Refinement",
-      content: "Micro-layered feldspathic porcelain refines single teeth or pairs for executives and creatives who want enhancement without broadcasting treatment."
+      heading: "Conservative Refinement",
+      content: "Micro-layered feldspathic porcelain refines a single tooth or a pair for patients who want a change that is noticeable to them, not obvious to everyone else."
     },
     {
-      heading: "High-Impact Glamour",
-      content: "For performers seeking runway drama, we design bolder contours, wider smile arcs, and high-luster finishes while safeguarding occlusion."
+      heading: "Brighter, Bolder Shaping",
+      content: "When you want a more noticeable change, we can design fuller contours, a wider smile arc, and a higher-luster finish while protecting your bite."
     }
   ];
 
@@ -68,11 +68,11 @@ const VeneersLosAngeles = () => {
     },
     {
       question: "What makes Exquisite Dentistry veneers different?",
-      answer: "Our veneers are handcrafted by elite Southern California ceramists who custom mix porcelain powders for your complexion, gender expression, and lighting environment. Dr. Aguil personally sculpts provisionals, sculpts gum symmetry when needed, and uses meticulous adhesive protocols that guard against sensitivity and staining along the margins."
+      answer: "Our veneers are handcrafted by skilled Southern California ceramists who custom mix porcelain powders for your complexion, gender expression, and lighting environment. Dr. Aguil personally sculpts provisionals, sculpts gum symmetry when needed, and uses meticulous adhesive protocols that guard against sensitivity and staining along the margins."
     },
     {
       question: "How long do veneers last?",
-      answer: "With proper care, nightguard use, professional maintenance, and mindful habits, our porcelain veneers routinely last 15 years or longer. We enroll you in a personalized maintenance calendar that combines hygiene visits, bite evaluations, and whitening touch-ups to keep your investment flawless."
+      answer: "With proper care, nightguard use, professional maintenance, and mindful habits, our porcelain veneers routinely last 15 years or longer. We enroll you in a personalized maintenance calendar that combines hygiene visits, bite evaluations, and whitening touch-ups to keep your veneers in good condition."
     }
   ];
 
@@ -105,13 +105,13 @@ const VeneersLosAngeles = () => {
             'Six-month maintenance visits',
             'Professional whitening calibration'
           ],
-          expectedPrognosis: 'Balanced, luminous smile transformation with strengthened enamel surfaces.'
+          expectedPrognosis: 'Balanced, natural-looking results with strengthened enamel surfaces.'
         }]}
       />
 
       <PageSEO
         title="Veneers Los Angeles | Custom Porcelain Smile Design"
-        description="Handcrafted porcelain veneers in Los Angeles deliver camera-ready brilliance with conservative prep, concierge comfort, and long-lasting strength."
+        description="Handcrafted porcelain veneers in Los Angeles, with conservative prep and long-lasting strength."
         keywords="veneers Los Angeles, porcelain veneers LA, smile makeover Los Angeles, cosmetic dentist LA"
         path="/veneers-los-angeles"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png"
@@ -119,7 +119,7 @@ const VeneersLosAngeles = () => {
 
       <WebPageStructuredData
         title="Porcelain Veneers in Los Angeles"
-        description="Discover handcrafted porcelain veneers in Los Angeles designed by Dr. Alexie Aguil for natural, camera-ready smile transformations."
+        description="Handcrafted porcelain veneers in Los Angeles, designed by Dr. Alexie Aguil for natural-looking results."
         url="https://exquisitedentistryla.com/veneers-los-angeles"
         breadcrumbs={[
           { name: 'Services', url: 'https://exquisitedentistryla.com/services/' },
@@ -129,7 +129,7 @@ const VeneersLosAngeles = () => {
 
       <ServiceStructuredData
         serviceName="Los Angeles Porcelain Veneers"
-        description="Custom smile makeovers using premium porcelain veneers, designed for natural beauty and long-term durability."
+        description="Custom smile makeovers using porcelain veneers, designed for a natural look and long-term durability."
         url="/veneers-los-angeles"
       />
 
@@ -141,7 +141,7 @@ const VeneersLosAngeles = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Porcelain Veneers Los Angeles"
-          subtitle="Capture the radiance of a handcrafted smile designed for film, fashion, and modern city life."
+          subtitle="Handcrafted porcelain veneers, designed to look natural in daily life and on camera."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -158,18 +158,17 @@ const VeneersLosAngeles = () => {
             <div className="max-w-5xl mx-auto text-center">
               <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Los Angeles Cosmetic Dentistry</span>
               <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
-                Veneers Crafted for Spotlight & Everyday Confidence
+                Veneers Designed for Everyday Confidence
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Exquisite Dentistry veneers capture California sunshine, red-carpet glamour, and authentic personality.
-                We begin with an immersive smile discovery session, analyzing facial proportions, phonetics, and lifestyle needs, before handcrafting
-                porcelain that enhances your identity rather than masking it. The result is a smile that photographs beautifully,
-                speaks naturally, and leaves a lasting impression long after the cameras and conversations end.
+                Every veneer plan starts with a smile discovery session. We look at your facial proportions, how you speak,
+                and how you want your smile to feel day to day, then design porcelain that fits your features rather than
+                covering them. The goal is a smile that photographs well, speaks naturally, and still looks like you.
               </p>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Dr. Alexie Aguil partners with boutique LA ceramists to sculpt each veneer by hand.
-                Every layer of porcelain powder is chosen to harmonize with your complexion and reflectivity under studio lighting.
-                The finished smile is luminous in person, dynamic on screen, and durable for years of fine dining, travel, and networking events across Los Angeles.
+                Dr. Alexie Aguil works with Los Angeles ceramists to shape each veneer by hand.
+                Layers of porcelain are chosen to match your complexion and the way your teeth catch light.
+                The finished result looks consistent in person and on camera, and is built to hold up over years of everyday use.
               </p>
             </div>
           </div>
@@ -234,18 +233,18 @@ const VeneersLosAngeles = () => {
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  From Consultation to Camera-Ready Reveal
+                  From Consultation to Final Placement
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Your veneer journey begins with high-definition photography, digital smile simulations, and a deep conversation about how you want to look and feel.
-                  We co-create a mood board that captures your aspirational smile, whether that is effortless Beverly Hills polish or editorial edge.
-                  Trial smile previews let you wear your design at home, receive feedback from stylists, and ensure phonetics feel natural before we finalize porcelain shades.
+                  Your veneer plan begins with photography, digital smile simulations, and a conversation about how you want your smile to look and feel.
+                  We map out the shape and shade together, whether you want a subtle refinement or a more noticeable change.
+                  Trial-smile previews let you wear the design at home and check how it feels and sounds before we finalize the porcelain shades.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  On veneer day, Dr. Aguil employs micro-thin preparation guides that conserve enamel and maintain tooth vitality.
-                  Conscious sedation, warm neck pillows, and curated playlists transform treatment into a restorative experience.
-                  When veneers are ready for delivery, we test under soft box lighting to ensure brilliance on stage, on camera, and in the boardroom.
-                  You leave with a protective nightguard, whitening serum for natural teeth, and a personalized care roadmap.
+                  On veneer day, Dr. Aguil uses micro-thin preparation guides that conserve enamel and maintain tooth vitality.
+                  Conscious sedation, warm neck pillows, and your choice of music help keep the visit comfortable.
+                  Before final placement, we check the veneers under different lighting so the shade reads well in person and on camera.
+                  You leave with a protective nightguard, whitening for your natural teeth, and a written care plan.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   If veneers are part of a wedding plan, timing matters. Our{' '}
@@ -266,9 +265,9 @@ const VeneersLosAngeles = () => {
                 </div>
               </div>
               <div className="bg-muted/40 border border-border/60 rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">Veneer Styles We Curate</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">Veneer Styles We Offer</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Every porcelain set is layered for depth, translucency, and light diffusion that match your features and ambitions.
+                  Every set is layered for depth, translucency, and the way it diffuses light, matched to your features and the look you want.
                 </p>
                 <div className="space-y-6">
                   {veneerStyles.map((style) => (
@@ -288,20 +287,19 @@ const VeneersLosAngeles = () => {
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Los Angeles-Focused Veneer Planning</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Living in LA means every angle of your smile is photographed, at premieres, on Zoom, and in candid photos with friends.
-                We evaluate how your teeth interact with facial muscles as you speak, laugh, and perform.
-                If gum levels need refinement, we pair veneers with gentle laser recontouring.
-                Patients coming from Santa Monica or Malibu often request slightly warm undertones to harmonize with beach lighting, while downtown executives prefer crisp brightness for indoor boardrooms.
+                In Los Angeles, your smile shows up on video calls, in photos, and in everyday conversation.
+                We look at how your teeth move as you speak, laugh, and smile, and if your gum levels need refining we can pair veneers with gentle laser recontouring.
+                Some patients prefer slightly warmer undertones and others prefer a brighter, cooler shade. We plan the shade with you so it suits your face and the light you are usually in.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Our concierge team coordinates with glam squads, brand managers, and wedding planners so treatment milestones align with key dates.
-                Temporary veneers are hand-polished to look natural during press tours, while final porcelain integrates seamlessly with <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">Zoom whitening</Link>,
-                <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign alignment</Link>, or <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">implant restorations</Link> for comprehensive bite rehabilitation.
+                Our team can coordinate with your schedule so treatment milestones line up with the dates that matter to you.
+                Temporary veneers are hand-polished to look natural while you wait, and the final porcelain works alongside <Link to="/zoom-whitening/" className="text-secondary underline-offset-4 hover:underline">Zoom whitening</Link>,
+                <Link to="/invisalign/" className="text-secondary underline-offset-4 hover:underline">Invisalign alignment</Link>, or <Link to="/dental-implants/" className="text-secondary underline-offset-4 hover:underline">implant restorations</Link> when a fuller bite plan is needed.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                After delivery, you will receive custom Vivera retainers, a nightguard, and access to our VIP maintenance program.
+                After delivery, you receive custom Vivera retainers, a nightguard, and a place in our maintenance program.
                 Six-month reviews include polish refinements, veneer-safe whitening, and bite balancing to protect your investment.
-                We document your journey with professional photography so you always have updated headshots and brand imagery that showcase your new smile.
+                We also document your results with professional photography, so you have updated photos of your new smile.
               </p>
             </div>
           </div>
@@ -317,12 +315,12 @@ const VeneersLosAngeles = () => {
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Veneer investments range from $2,200 to $3,000 per tooth, including design, provisionals, final porcelain, and maintenance essentials.
-                    Multi-arch smile makeovers include whitening of remaining teeth, nightguard fabrication, and two years of touch-up visits.
-                    Transparent estimates outline every step, so there are zero surprises from consultation to reveal.
+                    Larger smile makeovers include whitening of the remaining teeth, a nightguard, and two years of touch-up visits.
+                    Your estimate outlines every step up front, so there are no surprises along the way.
                   </p>
                   <p>
-                    We accept major credit cards, work with flexible third-party financing, and assist with FSA/HSA reimbursements.
-                    Entertainment professionals can request confidential billing and calendar coordination through our concierge desk to align with production schedules and contract milestones.
+                    We accept major credit cards, work with third-party financing, and help with FSA/HSA reimbursements.
+                    If you have a demanding schedule or need confidential billing, our concierge desk can coordinate appointments and paperwork around it.
                   </p>
                   <p>
                     If insurance is part of the decision, start with our{' '}
@@ -340,8 +338,8 @@ const VeneersLosAngeles = () => {
                     monthly payment options after benefits are considered.
                   </p>
                   <p>
-                    Patients combining veneers with implants, Invisalign, or therapeutic Botox receive bundled savings and priority scheduling blocks.
-                    Ask about our &ldquo;Premiere Smile Package,&rdquo; designed for actors and public figures preparing for career-defining appearances.
+                    Patients combining veneers with implants, Invisalign, or therapeutic Botox can ask about bundled savings and coordinated scheduling.
+                    If you are planning treatment around a specific date, let us know early so we can map the timeline.
                   </p>
                 </CardContent>
               </Card>
@@ -356,11 +354,11 @@ const VeneersLosAngeles = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />
-                      <span>Wear your nightguard nightly to safeguard porcelain edges from clenching during long edit sessions or performances.</span>
+                      <span>Wear your nightguard nightly to protect porcelain edges from clenching and grinding.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />
-                      <span>Use non-abrasive toothpaste and silk floss to protect glossy finishes and maintain impeccable margins.</span>
+                      <span>Use non-abrasive toothpaste and gentle floss to protect the finish and keep the margins clean.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />
@@ -368,7 +366,7 @@ const VeneersLosAngeles = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Camera className="w-5 h-5 text-secondary mt-1" />
-                      <span>Keep a travel-safe whitening pen and veneer case in your bag for on-location touch-ups and protection.</span>
+                      <span>Keep a travel-safe whitening pen and veneer case in your bag for touch-ups while you travel.</span>
                     </li>
                   </ul>
                 </div>
@@ -438,18 +436,18 @@ const VeneersLosAngeles = () => {
           tags={['veneers', 'los angeles', 'hollywood veneers', 'cosmetic dentistry']}
           category="Cosmetic Dentistry"
           title="Veneer Insights from Our Blog"
-          subtitle="Expert guidance on costs, materials, and celebrity smile transformations"
+          subtitle="Guidance on costs, materials, and what to expect from veneers"
         />
 
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Elevate Your Los Angeles Smile
+                Plan Your Los Angeles Veneers
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                From Beverly Hills to Silver Lake, a confident smile opens doors, books roles, and amplifies your personal brand.
-                Let us guide you through a porcelain veneer experience that celebrates your identity and delivers lasting radiance.
+                A confident smile makes a difference in how you show up, at work, on camera, and in everyday life.
+                We will walk you through the veneer process step by step and design a result that looks natural and lasts.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>

@@ -97,7 +97,7 @@ const IteroScanner = () => {
               <h1 className="text-4xl md:text-5xl font-bold">Precision Dentistry Powered by iTero 3D Scanning</h1>
               <p className="text-white/80 text-lg leading-relaxed">
                 Our iTero Element 5D scanner replaces traditional molds with ultra-fast, comfortable digital imaging.
-                The result? Invisalign plans you can preview instantly, plus restorations that seat with exceptional accuracy.
+                The result? Invisalign plans you can preview instantly, plus restorations that seat with a precise fit.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" asChild>
@@ -221,7 +221,7 @@ const IteroScanner = () => {
             <h2 className="text-4xl font-bold text-gray-900">Experience Precision Scanning</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Upgrade your Invisalign treatment, veneers, crowns, and smile previews with iTero Element 5D technology at Exquisite Dentistry.
-              We combine digital scans with Pearl AI diagnostics for the most informed care in Los Angeles.
+              We combine digital scans with Pearl AI diagnostics for well-informed, personalized care.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>

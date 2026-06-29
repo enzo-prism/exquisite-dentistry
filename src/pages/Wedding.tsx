@@ -51,7 +51,7 @@ const Wedding = () => {
       <div className="min-h-screen page-transition-in">
         <VideoHero
           title={<>Wedding <span className="text-gold">Smile</span></>}
-          subtitle="Look your absolute best on your special day with our customized wedding smile packages designed for brides, grooms, and wedding parties."
+          subtitle="Plan your smile ahead of your wedding day, with treatment options for brides, grooms, and wedding parties matched to your timeline."
           primaryCta={{ 
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -182,10 +182,10 @@ const Wedding = () => {
                   Your Perfect <span className="text-gold">Wedding Day Smile</span>
                 </h2>
                 <p className="text-lg text-black-light mb-6">
-                  Your wedding day is one of the most photographed days of your life. Every smile, every laugh, every moment of joy will be captured forever. Our specialized wedding smile treatments ensure that your confidence shines through in every photo, creating memories you'll treasure for a lifetime.
+                  Your wedding day is one of the most photographed days of your life. We plan wedding smile treatments around your timeline, so your smile feels comfortable and looks like you in the photos.
                 </p>
                 <p className="text-md text-gray-500 mb-6">
-                  Serving couples getting married at premier Los Angeles venues including The Beverly Hills Hotel, Chateau Marmont, The London West Hollywood, Vibiana, and throughout Beverly Hills, West Hollywood, and Santa Monica.
+                  Serving couples getting married at Los Angeles venues including The Beverly Hills Hotel, Chateau Marmont, The London West Hollywood, Vibiana, and throughout Beverly Hills, West Hollywood, and Santa Monica.
                 </p>
                 <Button asChild>
                   <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
@@ -202,7 +202,7 @@ const Wedding = () => {
                 Wedding <span className="text-gold">Packages</span>
               </h2>
               <p className="text-lg text-black-light">
-                Specially curated packages for brides, grooms, and wedding parties to ensure everyone looks their best.
+                Packages for brides, grooms, and wedding parties, planned around each person&apos;s timeline.
               </p>
             </div>
 
@@ -214,7 +214,7 @@ const Wedding = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Bridal Radiance Package</h3>
                   <p className="text-black-light mb-4">
-                    Our most comprehensive package designed specifically for brides, including professional whitening, cosmetic bonding, and a complete smile analysis to ensure perfection on your special day.
+                    A comprehensive package designed specifically for brides, including professional whitening, cosmetic bonding, and a full smile analysis to plan the look you want for your wedding day.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Timeline:</span>
@@ -246,7 +246,7 @@ const Wedding = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Wedding Party Glow Package</h3>
                   <p className="text-black-light mb-4">
-                    Special group rates for bridesmaids, groomsmen, and family members. Includes professional cleaning and whitening to ensure the entire wedding party looks radiant.
+                    Group rates for bridesmaids, groomsmen, and family members, with professional cleaning and whitening for the whole wedding party.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Timeline:</span>
@@ -307,9 +307,9 @@ const Wedding = () => {
                 <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
                   <Star className="h-8 w-8 text-gold" />
                 </div>
-                <h3 className="text-xl font-medium mb-3">Guaranteed Results</h3>
+                <h3 className="text-xl font-medium mb-3">Focused on Your Goals</h3>
                 <p className="text-black-light">
-                  We're committed to ensuring you're completely satisfied with your smile transformation before your wedding day.
+                  We plan each step around the result you&apos;re hoping for, and review your smile together before your wedding day.
                 </p>
               </div>
             </div>
@@ -334,7 +334,7 @@ const Wedding = () => {
                   How far in advance should I start my wedding smile treatment?
                 </h3>
                 <p className="text-gray-600">
-                  We recommend starting 6 to 12 months before your wedding for major transformations like veneers or orthodontics. For teeth whitening, 2 to 4 weeks is sufficient. We work with your wedding timeline to ensure perfect results.
+                  We recommend starting 6 to 12 months before your wedding for major treatments like veneers or orthodontics. For teeth whitening, 2 to 4 weeks is usually enough. We work with your wedding timeline to plan each step.
                 </p>
               </div>
               
@@ -356,7 +356,7 @@ const Wedding = () => {
                   Do you work with couples planning destination weddings?
                 </h3>
                 <p className="text-gray-600">
-                  Absolutely! Many of our Beverly Hills clients are planning weddings in Napa Valley, Big Sur, Hawaii, and international destinations. We coordinate treatment timelines to be completed well before your travel date.
+                  Yes. Many of our Beverly Hills clients are planning weddings in Napa Valley, Big Sur, Hawaii, and international destinations. We coordinate treatment timelines to be completed well before your travel date.
                 </p>
               </div>
               
@@ -365,7 +365,7 @@ const Wedding = () => {
                   Can you coordinate treatment for both bride and groom?
                 </h3>
                 <p className="text-gray-600">
-                  Yes! We offer couple packages and can schedule complementary appointments. Many grooms opt for teeth whitening or minor cosmetic adjustments to look their best alongside their bride.
+                  Yes. We offer couple packages and can schedule complementary appointments. Many grooms choose teeth whitening or minor cosmetic adjustments alongside their bride.
                 </p>
               </div>
             </div>
@@ -447,7 +447,7 @@ const Wedding = () => {
                 Say "I Do" with <span className="text-gold">Confidence</span>
               </h2>
               <p className="text-lg md:text-xl text-white/80 mb-8 md:mb-10 font-light">
-                Book your wedding smile consultation today and walk down the aisle with the confidence that comes from knowing your smile is absolutely perfect.
+                Book a wedding smile consultation, and walk down the aisle with a smile that feels like you.
               </p>
               <Button size="lg" asChild>
                 <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>

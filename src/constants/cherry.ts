@@ -14,10 +14,47 @@ export const CHERRY_CREDIT_REPORTING_DISCLOSURE =
 export const CHERRY_TERMS_REASSURANCE =
   'Plan availability, payment amounts, and terms are decided by Cherry and its lending partners.' as const;
 
+// Cherry practice identifier (single source of truth for the widget + apply link).
+export const CHERRY_PRACTICE_SLUG = 'exquisite-dentistry-ca' as const;
+
+// Cherry's hosted, patient-facing application page. Opening this is the real
+// "apply in ~2 minutes, soft credit check, instant decision" flow Cherry runs.
+//
+// VERIFY-BEFORE-PUBLIC: confirm this exact URL and the amount query-param name
+// against Cherry's provider dashboard for `exquisite-dentistry-ca` before this
+// goes public. If the param name is wrong the patient still lands on the apply
+// page, the amount just won't prefill (graceful degradation).
+export const CHERRY_APPLY_BASE_URL =
+  `https://pay.withcherry.com/${CHERRY_PRACTICE_SLUG}` as const;
+
+export interface CherryApplyUrlOptions {
+  /** Requested amount in whole dollars; prefilled on the Cherry application. */
+  amount?: number;
+  /** UTM source so financing applications are attributable in analytics. */
+  source?: string;
+}
+
+export const buildCherryApplyUrl = ({
+  amount,
+  source = 'website',
+}: CherryApplyUrlOptions = {}): string => {
+  const url = new URL(CHERRY_APPLY_BASE_URL);
+  url.searchParams.set('utm_source', source);
+  url.searchParams.set('utm_medium', 'pre_approval');
+  url.searchParams.set('utm_campaign', 'website_financing');
+
+  if (typeof amount === 'number' && Number.isFinite(amount) && amount > 0) {
+    // Param name pending Cherry dashboard verification (see note above).
+    url.searchParams.set('amount', String(Math.round(amount)));
+  }
+
+  return url.toString();
+};
+
 export const createCherryWidgetConfig = () => ({
   debug: false,
   variables: {
-    slug: 'exquisite-dentistry-ca',
+    slug: CHERRY_PRACTICE_SLUG,
     name: 'Exquisite Dentistry',
     images: '',
     customLogo: '',

@@ -28,8 +28,8 @@ const ZoomWhitening = () => {
   const benefits = [
     {
       icon: <Zap className="h-8 w-8 text-secondary" />,
-      title: "Immediate Results",
-      description: "See dramatic whitening results in just one 60 to 90 minute session"
+      title: "Results in One Visit",
+      description: "Whitening results in one 60 to 90 minute session"
     },
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
@@ -39,7 +39,7 @@ const ZoomWhitening = () => {
     {
       icon: <Star className="h-8 w-8 text-secondary" />,
       title: "Professional Grade",
-      description: "Advanced whitening technology available only in dental offices"
+      description: "Professional whitening technology used only in dental offices"
     },
     {
       icon: <Clock className="h-8 w-8 text-secondary" />,
@@ -67,13 +67,13 @@ const ZoomWhitening = () => {
     {
       step: "04",
       title: "Results & Maintenance",
-      description: "Immediate results with take-home kit to maintain your brilliant smile"
+      description: "Results the same visit, with a take-home kit to maintain your shade"
     }
   ];
 
   const beforeAfter = [
     "Remove years of stains from coffee, tea, and wine",
-    "Eliminate yellowing from aging and lifestyle factors", 
+    "Reduce yellowing from aging and everyday habits", 
     "Brighten teeth up to 8 shades in one visit",
     "Restore confidence in your smile",
     "Prepare for special events and occasions"
@@ -264,7 +264,7 @@ const ZoomWhitening = () => {
 	                Why Choose Zoom Whitening?
 	              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Experience the gold standard in professional teeth whitening
+                Professional, in-office whitening planned around your shade and comfort
               </p>
             </div>
             
@@ -608,7 +608,7 @@ const ZoomWhitening = () => {
 	        <RelatedArticles
 	          tags={['whitening', 'zoom', 'teeth whitening', 'bright']}
 	          title="Whitening Articles & Tips"
-          subtitle="Expert advice on achieving and maintaining your brightest smile"
+          subtitle="Tips on whitening and keeping your shade consistent"
         />
 
         {/* CTA Section */}
@@ -619,8 +619,8 @@ const ZoomWhitening = () => {
                 Ready for a Brighter Smile?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Schedule your Zoom whitening appointment today and see immediate results 
-                that will boost your confidence and brighten your day.
+                Schedule your Zoom whitening appointment, and we’ll plan the session
+                around your shade goals and comfort.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 

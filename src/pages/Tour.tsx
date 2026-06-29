@@ -59,14 +59,14 @@ const Tour = () => {
           '@type': 'ItemPage',
           '@id': getCanonicalUrl('/tour#page'),
           name: 'Studio Tour | Exquisite Dentistry Los Angeles',
-          description: 'Step inside Exquisite Dentistry in Beverly Hills. Explore the luxury dental studio, private suites, and sensory touches curated for calm, elevated care.',
+          description: 'Step inside Exquisite Dentistry in Beverly Hills. Explore the studio, private suites, and the calm, comfortable setting.',
           url: getCanonicalUrl('/tour')
         }]}
       />
 
       <PageSEO
-        title="Luxury Dental Studio Tour | Exquisite Dentistry LA"
-        description="Take a guided tour of our Beverly Hills dental studio. Explore the arrival lounge, consultation salon, private treatment suites, and finishing studio designed for a five-star experience."
+        title="Dental Studio Tour | Exquisite Dentistry LA"
+        description="Take a guided tour of our Beverly Hills dental studio. Explore the arrival lounge, consultation salon, private treatment suites, and finishing studio."
         keywords="dental office tour, Beverly Hills dental studio, luxury dentist office, Exquisite Dentistry interiors"
         path="/tour"
       />
@@ -78,13 +78,13 @@ const Tour = () => {
             Office Gallery
           </h1>
           <p className="text-white/70 text-base sm:text-lg">
-            Take a virtual tour of the 5 star interior design of Exquisite Dentistry
+            Take a virtual tour of the interior of Exquisite Dentistry
           </p>
           <Link
             to="/testimonials/"
             className="inline-flex justify-center text-xs uppercase tracking-[0.35em] text-white/70 hover:text-white transition"
           >
-            5-star experience · 200+ Google reviews · 100+ Yelp reviews
+            200+ Google reviews · 100+ Yelp reviews
           </Link>
         </div>
       </section>

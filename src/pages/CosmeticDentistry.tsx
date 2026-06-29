@@ -24,52 +24,52 @@ const CosmeticDentistry = () => {
     {
       icon: <Palette className="h-8 w-8 text-secondary" />,
       title: "Personalized Smile Design",
-      description: "Digital simulations, facial analysis, and mood boards align each treatment with your personality and lifestyle."
+      description: "Digital simulations and facial analysis help match each treatment to your features and goals."
     },
     {
       icon: <Sparkles className="h-8 w-8 text-secondary" />,
-      title: "Elevated Aesthetic Craftsmanship",
-      description: "We combine veneers, whitening, bonding, and alignment techniques for layered results that feel natural and luxurious."
+      title: "Natural-Looking Results",
+      description: "We combine veneers, whitening, bonding, and alignment so the work blends with the rest of your teeth."
     },
     {
       icon: <Layers className="h-8 w-8 text-secondary" />,
-      title: "Integrative Treatment Sequencing",
-      description: "We orchestrate restorative, orthodontic, and cosmetic phases to ensure your smile is healthy and stunning at every stage."
+      title: "Planned in the Right Order",
+      description: "We sequence restorative, orthodontic, and cosmetic steps so your smile stays healthy at every stage."
     },
     {
       icon: <Camera className="h-8 w-8 text-secondary" />,
-      title: "Brand & Media Readiness",
-      description: "Professionally lit photo sessions, content creation tips, and ongoing maintenance keep your smile on message."
+      title: "On-Camera and Photo Detail",
+      description: "If you appear on camera, we fine-tune shade, translucency, and contour so your teeth look natural under lighting."
     }
   ];
 
   const smilePaths = [
     {
-      name: "Signature Smile Makeover",
-      details: "Porcelain veneers, Invisalign®, and whitening combined to engineer cinematic, balanced smiles."
+      name: "Full Smile Makeover",
+      details: "Porcelain veneers, Invisalign®, and whitening combined for a balanced, even smile."
     },
     {
-      name: "Subtle Glow Upgrade",
-      details: "Micro-bonding, gum contouring, and targeted whitening deliver refreshing polish without downtime."
+      name: "Minor Refinements",
+      details: "Bonding, gum contouring, and targeted whitening for small changes with little or no downtime."
     },
     {
-      name: "Confidence Refresh",
-      details: "Same-day bonding, professional whitening, and Botox® for gummy smiles transform your look in a single visit."
+      name: "Single-Visit Options",
+      details: "Same-day bonding, professional whitening, and Botox® for a gummy smile, often done in one visit."
     }
   ];
 
   const faqs = [
     {
       question: "How do you plan a cosmetic dentistry makeover?",
-      answer: "We start with comprehensive imaging, 3D scans, and a lifestyle interview. Together we review inspiration photos, analyze your facial proportions, and co-create a treatment roadmap. Digital mockups and trial smiles let you preview outcomes before we begin definitive care."
+      answer: "We start with imaging, 3D scans, and a conversation about what you want to change. We review your photos, look at your facial proportions, and build a treatment plan together. Digital mockups and trial smiles let you preview the result before treatment begins."
     },
     {
       question: "Can cosmetic dentistry be phased?",
-      answer: "Absolutely. Many Los Angeles patients phase treatments around production schedules, weddings, or budget considerations. We prioritize foundational work first, like Invisalign or implants, then deliver veneers, bonding, and whitening when you are ready for the reveal."
+      answer: "Yes. Many patients phase treatment around their schedule, an upcoming event, or budget. We handle foundational work first, such as Invisalign or implants, then move to veneers, bonding, and whitening when you are ready."
     },
     {
       question: "Is cosmetic dentistry only about looks?",
-      answer: "Our approach balances esthetics with function. Bite analysis, airway considerations, and gum health are evaluated before recommending treatment. The result is a smile that looks incredible and feels comfortable for years."
+      answer: "No. We balance appearance with function. We check your bite, airway, and gum health before recommending treatment, so the result looks good and stays comfortable."
     }
   ];
 
@@ -83,8 +83,8 @@ const CosmeticDentistry = () => {
           '@type': 'WebPage',
           '@id': getCanonicalUrl('/cosmetic-dentistry') + '#webpage',
           url: getCanonicalUrl('/cosmetic-dentistry'),
-          name: 'Cosmetic Dentistry Los Angeles | Luxury Smile Makeovers',
-          description: 'Luxury cosmetic dentistry in Los Angeles offering veneers, Invisalign, whitening, bonding, and smile makeovers tailored to individual brands.',
+          name: 'Cosmetic Dentistry Los Angeles | Smile Makeovers',
+          description: 'Cosmetic dentistry in Los Angeles offering veneers, Invisalign, whitening, bonding, and smile makeovers tailored to each patient.',
           isPartOf: {
             '@id': 'https://exquisitedentistryla.com/#website'
           },
@@ -115,7 +115,7 @@ const CosmeticDentistry = () => {
 
       <ServiceStructuredData
         serviceName="Cosmetic Dentistry Services"
-        description="Integrated cosmetic dentistry solutions featuring veneers, Invisalign, whitening, and bonding for bespoke smile transformations."
+        description="Integrated cosmetic dentistry featuring veneers, Invisalign, whitening, and bonding, tailored to each patient."
         url="/cosmetic-dentistry"
       />
 
@@ -124,7 +124,7 @@ const CosmeticDentistry = () => {
       <div className="min-h-screen bg-background">
         <VideoHero
           title="Cosmetic Dentistry Los Angeles"
-          subtitle="Curated smile transformations for tastemakers, entrepreneurs, and artists."
+          subtitle="Veneers, whitening, bonding, and Invisalign, planned and finished to look natural."
           primaryCta={{
             text: "Schedule Consultation",
             href: SCHEDULE_CONSULTATION_PATH
@@ -135,19 +135,18 @@ const CosmeticDentistry = () => {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
-              <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Bespoke Smile Studio</span>
+              <span className="uppercase tracking-[0.3em] text-secondary font-semibold">Cosmetic Dentistry</span>
               <h2 className="mt-6 text-4xl md:text-5xl font-bold text-foreground">
-                Where Aesthetics, Wellness, and Storytelling Unite
+                How We Plan a Smile Makeover
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Cosmetic dentistry at Exquisite Dentistry is a collaborative art form.
-                We listen to what your smile represents, confidence on camera, leadership in the boardroom, joy at family celebrations, and design a plan that amplifies those moments.
-                Every detail is considered: tooth proportion, facial symmetry, lip support, and even how your smile interprets under stage lighting.
+                Cosmetic dentistry covers the treatments that change how your teeth look, including veneers, whitening, bonding, and alignment.
+                We start by listening to what you want to change, then plan around tooth proportion, facial symmetry, and lip support so the result fits your face.
               </p>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Our team blends cutting-edge technology with human-centered artistry.
-                We plan each step with 3D simulations, then craft final results by hand with master ceramists and detail-oriented hygienists.
-                The journey feels as elevated as the outcome, with spa-inspired amenities, personalized scheduling, and transparent guidance from consultation through reveal.
+                We plan each case with 3D simulations and trial smiles, so you can see the direction before treatment begins.
+                Final work is made by our ceramists and refined chairside.
+                You receive clear guidance at every step, from the first consultation through the final result.
               </p>
             </div>
           </div>
@@ -180,19 +179,19 @@ const CosmeticDentistry = () => {
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Tailored Smile Journeys
+                  Building Your Treatment Plan
                 </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                  No two smile makeovers look alike. We craft curated pathways that align with your timeline, budget, and aspirations.
-                  You may begin with Invisalign to perfect alignment, transition to <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link> for symmetry,
-                  and finish with <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">professional whitening</Link> for brilliance.
-                  Each step is documented and previewed so you remain excited, informed, and empowered.
-                  For a step-by-step overview, explore our <Link to="/smile-makeover-los-angeles/" className="text-secondary underline-offset-4 hover:underline">Smile Makeover in Los Angeles guide</Link>.
+                  No two smile makeovers are the same. We build a plan around your timeline, budget, and goals.
+                  You might begin with Invisalign to align teeth, move to <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">porcelain veneers</Link> for symmetry,
+                  and finish with <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">professional whitening</Link>.
+                  Each step is documented and previewed, so you know what is coming.
+                  For a step-by-step overview, see our <Link to="/smile-makeover-los-angeles/" className="text-secondary underline-offset-4 hover:underline">Smile Makeover in Los Angeles guide</Link>.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  We embrace collaboration, partnering with dermatologists, facial plastic surgeons, and wellness practitioners to ensure your smile harmonizes with your overall aesthetic goals.
-                  Our team coordinates with stylists, photographers, and branding agencies to time your reveal with pivotal milestones such as press tours, product launches, or wedding weekends.
-                  If your target date is a ceremony or engagement shoot, review our{' '}
+                  When it helps, we coordinate with dermatologists, facial plastic surgeons, and other providers so your smile fits your broader goals.
+                  If you are working toward a specific date, such as a wedding, we can plan treatment around it.
+                  If your target date is a ceremony or engagement shoot, see our{' '}
                   <Link to="/blog/when-to-start-wedding-smile-prep-los-angeles/" className="text-secondary underline-offset-4 hover:underline">
                     wedding smile prep timeline guide
                   </Link>
@@ -204,13 +203,13 @@ const CosmeticDentistry = () => {
                   </Button>
                   <Button size="lg" variant="outline" asChild>
                     <Link to="/client-experience/">
-                      Discover Our Experience
+                      See the Patient Experience
                     </Link>
                   </Button>
                 </div>
               </div>
               <div className="bg-muted/40 border border-border/60 rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">Signature Smile Paths</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-4">Ways to Combine Treatments</h3>
                 <div className="space-y-6">
                   {smilePaths.map((path) => (
                     <div key={path.name} className="p-4 bg-white rounded-xl shadow-sm border border-border/40">
@@ -228,22 +227,20 @@ const CosmeticDentistry = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Designed for Los Angeles Lifestyles
+                Scheduling and Comfort
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Los Angeles is a convergence of creativity, entrepreneurship, and cultural vibrancy.
-                Our cosmetic plans honor your unique rhythm, early-morning visits before production, lunchtime touch-ups between meetings, and virtual check-ins while touring.
-                We provide discreet concierge scheduling, private entry options, and sedation dentistry for patients seeking added privacy or comfort.
+                We try to fit treatment around your schedule, with early-morning visits, shorter touch-ups between meetings, and flexible timing when you travel.
+                We also offer private scheduling, quiet entry options, and sedation dentistry for patients who want added comfort.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                For performers and speakers, our phonetic analysis ensures speech clarity after treatment.
-                If you frequently appear on camera, we customize shade, translucency, and contour to reduce glare and maintain authenticity under stage lighting.
-                Travelers receive travel-friendly maintenance kits and direct lines to our team for urgent assistance while away from Los Angeles.
+                If you speak or perform, we check speech clarity after treatment.
+                If you appear on camera often, we adjust shade, translucency, and contour so your teeth look natural under lighting.
+                If you travel, we send you home with a maintenance kit and a way to reach us if something comes up.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We believe cosmetic dentistry should feel like a wellness ritual.
-                Aromatherapy, guided breathing, and curated playlists calm your nervous system while we craft your dream smile.
-                Post-care kits include lip hydration, customized whitening, and tips for sustaining glow between visits.
+                Appointments are calm and unhurried.
+                After treatment, we explain how to care for your results and what to use between visits.
               </p>
             </div>
           </div>
@@ -258,40 +255,40 @@ const CosmeticDentistry = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Cosmetic consultations begin with a comprehensive smile analysis ($195, credited toward treatment). Veneers range from $2,200 to $3,000 per tooth, same-day bonding begins at $450 per tooth, and professional whitening packages start at $350. Full smile makeovers are custom quoted with detailed timelines and deliverables.
+                    A cosmetic consultation begins with a smile analysis ($195, credited toward treatment). Veneers range from $2,200 to $3,000 per tooth, same-day bonding begins at $450 per tooth, and professional whitening packages start at $350. Full smile makeovers are quoted individually, with a timeline and details.
                   </p>
                   <p>
-                    We collaborate with flexible financing partners, accept FSA/HSA payments, and offer loyalty pricing for patients continuing with maintenance memberships. Each proposal includes a breakdown of laboratory costs, chairside artistry, and follow-up care so you can invest with confidence.
+                    We work with financing partners, accept FSA/HSA payments, and offer loyalty pricing for patients who continue with maintenance memberships. Each proposal breaks down lab costs, chairside work, and follow-up care so you can see what you are paying for.
                   </p>
                   <p>
-                    Elite concierge clients enjoy after-hours appointments, on-set visits, and coordinated services with trusted beauty and wellness providers throughout Los Angeles.
+                    After-hours appointments and on-set visits can be arranged when scheduling requires it.
                   </p>
                 </CardContent>
               </Card>
 
               <div className="flex flex-col gap-6">
                 <div className="bg-white border border-border/60 rounded-2xl p-8 shadow-sm">
-                  <h3 className="text-2xl font-semibold text-foreground mb-4">Cosmetic Care Playbook</h3>
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">Caring for Your Results</h3>
                   <ul className="space-y-3 text-muted-foreground leading-relaxed">
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Schedule professional cleanings every 3 to 4 months to maintain luster and gum health.</span>
+                      <span>Schedule professional cleanings every 3 to 4 months to keep your teeth and gums healthy.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Protect enamel and veneers with nightguards, especially if you perform or clench during high-pressure projects.</span>
+                      <span>Protect enamel and veneers with a nightguard, especially if you clench or grind.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Use dentist-approved whitening products and avoid abrasive toothpastes that dull cosmetic restorations.</span>
+                      <span>Use dentist-approved whitening products and avoid abrasive toothpastes, which can dull cosmetic restorations.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Return for periodic shade refreshes and bonding touch-ups to keep your smile aligned with your evolving brand.</span>
+                      <span>Come back for periodic shade refreshes and bonding touch-ups to keep your smile looking consistent.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Compass className="w-5 h-5 text-secondary mt-1" />
-                      <span>Capture new professional headshots after treatment. Our team coordinates mini sessions or provides trusted photographer referrals.</span>
+                      <span>If you want new photos after treatment, we can recommend a photographer.</span>
                     </li>
                   </ul>
                 </div>
@@ -303,7 +300,7 @@ const CosmeticDentistry = () => {
                     {
                       title: "Porcelain Veneers",
                       href: "/veneers/",
-                      description: "Handcrafted veneers for cinematic smile transformations.",
+                      description: "Custom veneers to even out shape, color, and spacing.",
                       combination: true,
                       popularity: 76
                     },
@@ -316,7 +313,7 @@ const CosmeticDentistry = () => {
                     {
                       title: "Smile Gallery",
                       href: "/smile-gallery",
-                      description: "See cosmetic dentistry before-and-after journeys across LA.",
+                      description: "See cosmetic dentistry before-and-after results.",
                       popularity: 82
                     }
                   ]}
@@ -366,11 +363,11 @@ const CosmeticDentistry = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Ready for a Smile That Reflects Your Vision?
+                Ready to Talk Through a Smile Makeover?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Whether you are stepping into a new role, launching a brand, or celebrating a milestone,
-                we are here to design a smile that matches your ambition and artistry.
+                Whatever your reason for considering cosmetic treatment, we can help you plan a smile that looks natural and fits your goals.
+                A consultation is the place to start.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" asChild>

@@ -231,7 +231,7 @@ const About = () => {
               Meet Dr. Alexie Aguil
             </h2>
             <p ref={introParagraph.ref} className={`text-lg text-black-light ${introParagraph.animationClass}`}>
-              With exceptional skills, training, and a commitment to excellence, Dr. Aguil delivers world-class cosmetic and restorative dentistry.
+              Dr. Aguil practices cosmetic and restorative dentistry in Los Angeles, planning each case around the details of your teeth, bite, and goals.
             </p>
           </div>
 
@@ -259,7 +259,7 @@ const About = () => {
               </div>
 
               <p className="text-lg text-black-light">
-                With more than a decade of experience, Dr. Aguil combines artistic vision with technical expertise to deliver natural-looking results in cosmetic and restorative dentistry.
+                With more than a decade of experience in cosmetic and restorative dentistry, Dr. Aguil pairs careful technique with attention to proportion, shade, and balance, so results look natural.
               </p>
               
               <ul className="space-y-3">
@@ -307,9 +307,9 @@ const About = () => {
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
                   🤝
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Personalized Treatment</h3>
+                <h3 className="text-xl font-semibold mb-3">Care built around you</h3>
                 <p className="text-black-light">
-                  Dr. Aguil takes the time to understand each patient's unique needs, goals, and concerns to create truly customized treatment plans.
+                  Dr. Aguil starts by understanding your goals and concerns, then builds a plan that fits your teeth and your timeline.
                 </p>
               </CardContent>
             </Card>
@@ -319,9 +319,9 @@ const About = () => {
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
                   🏅
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Exceptional Quality</h3>
+                <h3 className="text-xl font-semibold mb-3">Materials chosen with care</h3>
                 <p className="text-black-light">
-                  We never compromise on quality. Dr. Aguil uses only the finest materials and works with top dental laboratories to ensure outstanding results.
+                  Dr. Aguil uses quality materials and works with experienced dental laboratories, so your restorations fit well and look natural.
                 </p>
               </CardContent>
             </Card>
@@ -331,9 +331,9 @@ const About = () => {
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
                   🧘‍♂️
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Patient Comfort</h3>
+                <h3 className="text-xl font-semibold mb-3">A calm, comfortable visit</h3>
                 <p className="text-black-light">
-                  Creating a comfortable, stress-free environment is a top priority. Dr. Aguil and the team go above and beyond to ensure each visit is a positive experience.
+                  We keep the setting calm and take the time to explain your options, so each visit feels unhurried and you know what to expect.
                 </p>
               </CardContent>
             </Card>

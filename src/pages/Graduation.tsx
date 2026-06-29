@@ -45,7 +45,7 @@ const Graduation = () => {
                 Quick <span className="text-gold">Solutions</span>
               </h2>
               <p className="text-lg text-black-light">
-                Short on time before graduation? We have fast, effective treatments to ensure you look your best.
+                If your timeline before graduation is short, several treatments can be completed in a few weeks or less.
               </p>
             </div>
 
@@ -138,13 +138,13 @@ const Graduation = () => {
               </div>
               <div className="md:w-1/2">
                 <h2 className="text-2xl md:text-3xl font-sans font-semibold text-black leading-tight mb-4">
-                  Picture-Perfect <span className="text-gold">Graduation Smiles</span>
+                  Smiles for <span className="text-gold">Graduation Photos</span>
                 </h2>
                 <p className="text-lg text-black-light mb-6">
-                  Your graduation photos will be cherished for a lifetime. Our specialized dental treatments ensure your smile is as bright and confident as your future. From quick touch-ups to comprehensive smile makeovers, we have solutions that fit your timeline and budget.
+                  Graduation photos last a long time, so some patients like to prepare their smile beforehand. Our treatments range from quick touch-ups to fuller smile work, matched to your timeline and budget.
                 </p>
                 <p className="text-md text-gray-500 mb-6">
-                  Perfect timing for UCLA (June), USC (May), LMU (May), and local high school graduations throughout Los Angeles County. We coordinate with your academic schedule for stress-free treatment.
+                  We see students ahead of UCLA (June), USC (May), LMU (May), and local high school graduations across Los Angeles County, and we plan treatment around your academic schedule.
                 </p>
                 <Button asChild>
                   <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
@@ -158,10 +158,10 @@ const Graduation = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black leading-tight mb-6">
-                Popular <span className="text-gold">Treatments</span>
+                Graduation <span className="text-gold">Treatments</span>
               </h2>
               <p className="text-lg text-black-light">
-                These treatments are favorites among graduates for their quick results and lasting impact.
+                These treatments fit common graduation timelines, from short appointments to fuller smile work.
               </p>
             </div>
 
@@ -171,9 +171,9 @@ const Graduation = () => {
                   <div className="w-full h-full min-h-[200px] rounded-sm bg-gradient-to-br from-[#9A8360] via-black/10 to-black/5" />
                 </div>
                 <div className="md:w-2/3">
-                  <h3 className="text-xl font-medium mb-3">One-Hour Power Whitening</h3>
+                  <h3 className="text-xl font-medium mb-3">In-Office Whitening</h3>
                   <p className="text-black-light mb-4">
-                    Our most popular graduation treatment, this in-office whitening procedure brightens your smile by up to 8 shades in just one hour, perfect for last minute preparations.
+                    An in-office whitening session that can lighten natural teeth by up to 8 shades in a single appointment.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
@@ -189,7 +189,7 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Graduation Smile Package</h3>
                   <p className="text-black-light mb-4">
-                    This comprehensive package includes professional cleaning, in-office whitening, and minor cosmetic bonding to perfect your smile for graduation photos.
+                    A combined visit that includes professional cleaning, in-office whitening, and minor cosmetic bonding to prepare your smile for graduation photos.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
@@ -205,7 +205,7 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Express Cosmetic Bonding</h3>
                   <p className="text-black-light mb-4">
-                    Repair chips, close small gaps, or reshape teeth in just one visit with our artistic composite bonding technique, with no anesthesia required.
+                    Repair chips, close small gaps, or reshape teeth in a single visit with composite bonding. No anesthesia is required.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
@@ -221,7 +221,7 @@ const Graduation = () => {
                 <div className="md:w-2/3">
                   <h3 className="text-xl font-medium mb-3">Front Teeth Veneers</h3>
                   <p className="text-black-light mb-4">
-                    Transform your most visible teeth with our limited veneer set, focusing on the front 4 to 6 teeth for maximum impact with faster treatment time.
+                    A limited veneer set focused on the front 4 to 6 teeth, which keeps treatment time shorter than a full set.
                   </p>
                   <div className="flex items-center text-sm text-black-light mt-auto">
                     <span className="font-medium mr-2">Treatment Time:</span>
@@ -240,7 +240,7 @@ const Graduation = () => {
                 Plan Your Graduation Smile
               </h2>
               <p className="text-lg text-black-light">
-                Choose the right mix of treatments to look your best in photos, interviews, and celebrations.
+                Combine treatments to suit your photos, interviews, and celebrations.
               </p>
             </div>
 
@@ -253,7 +253,7 @@ const Graduation = () => {
                 },
                 {
                   title: 'Porcelain Veneers',
-                  description: 'Transform your smile for major milestones.',
+                  description: 'A longer-term smile change for major milestones.',
                   href: '/veneers/'
                 },
                 {
@@ -309,7 +309,7 @@ const Graduation = () => {
                 Graduation Smile Frequently Asked Questions
               </h2>
               <p className="text-lg text-gray-600">
-                Common questions about perfecting your smile for graduation
+                Common questions about preparing your smile for graduation
               </p>
             </div>
             
@@ -319,7 +319,7 @@ const Graduation = () => {
                   How soon before graduation should I start treatment?
                 </h3>
                 <p className="text-gray-600">
-                  For quick fixes like teeth whitening or bonding, 2 to 4 weeks is perfect. For more comprehensive treatments like veneers, start 2 to 3 months before your ceremony to allow for proper healing and adjustments.
+                  For shorter treatments like teeth whitening or bonding, 2 to 4 weeks is usually enough. For veneers and other longer treatments, plan to start 2 to 3 months before your ceremony to allow for healing and adjustments.
                 </p>
               </div>
               
@@ -328,7 +328,7 @@ const Graduation = () => {
                   Do you offer student discounts for graduation treatments?
                 </h3>
                 <p className="text-gray-600">
-                  Yes! We understand the financial considerations for students and recent graduates. We offer special graduation packages and flexible payment plans to make your perfect smile affordable.
+                  Yes. We offer graduation packages and flexible payment plans, which can help with the cost for students and recent graduates.
                 </p>
               </div>
               
@@ -337,7 +337,7 @@ const Graduation = () => {
                   Can I schedule around my final exams and graduation events?
                 </h3>
                 <p className="text-gray-600">
-                  Absolutely! We work around your academic schedule, offering early morning and evening appointments. Our Beverly Hills location is convenient for UCLA, USC, and other LA area students.
+                  Yes. We work around your academic schedule with early morning and evening appointments. Our Beverly Hills location is convenient for UCLA, USC, and other LA-area students.
                 </p>
               </div>
               
@@ -346,7 +346,7 @@ const Graduation = () => {
                   What if I'm starting a new job after graduation?
                 </h3>
                 <p className="text-gray-600">
-                  Perfect timing! Many graduates invest in their smile as they transition to their professional careers. A confident smile is a valuable asset in job interviews and your new workplace.
+                  Many graduates choose to address their smile as they move into their careers. If a new job is ahead, it can be a practical time to plan treatment.
                 </p>
               </div>
             </div>
@@ -362,10 +362,10 @@ const Graduation = () => {
         <section className="bg-gradient-to-r from-gray-50 to-white py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Ready to Graduate with Confidence?
+              Ready to plan your graduation smile?
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Your achievement deserves to be celebrated with a smile you're proud of. Schedule your graduation smile consultation today.
+              Book a consultation and we can map out the right treatments and timeline before your ceremony.
             </p>
             <Button
               size="lg"
