@@ -5,6 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ADDRESS, EMAIL, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 
 const TermsOfService: React.FC = () => {
   return (
@@ -111,6 +112,7 @@ const TermsOfService: React.FC = () => {
             <div className="mt-4 text-gray-600">
               <p>Exquisite Dentistry</p>
               <p>{ADDRESS}</p>
+              <OpenInMapsButton source="terms_of_service_contact" className="my-2" />
               <p>Phone: {PHONE_NUMBER_DISPLAY}</p>
               <p>Email: {EMAIL}</p>
             </div>

@@ -18,6 +18,7 @@ import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/u
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { ZOOM_WHITENING_FAQS } from '@/data/zoomWhitening';
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 import {
   ZOOM_WHITENING_HUB_INTRO_PARAGRAPHS,
   ZOOM_WHITENING_REFERENCES
@@ -209,6 +210,7 @@ const ZoomWhitening = () => {
 	                  <CardContent className="p-6 space-y-2">
 	                    <h3 className="text-lg font-semibold text-foreground">Visit Our Los Angeles Office</h3>
 	                    <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                    <OpenInMapsButton source="zoom_whitening_office_card" />
 	                    <p className="text-sm text-muted-foreground">
 	                      Call{' '}
 	                      <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>

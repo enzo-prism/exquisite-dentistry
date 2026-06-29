@@ -5,6 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ADDRESS, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 
 const HipaaCompliance: React.FC = () => {
   return (
@@ -120,6 +121,7 @@ const HipaaCompliance: React.FC = () => {
               <p><strong>Privacy Officer</strong></p>
               <p>Exquisite Dentistry</p>
               <p>{ADDRESS}</p>
+              <OpenInMapsButton source="hipaa_contact" className="my-2" />
               <p>Phone: {PHONE_NUMBER_DISPLAY}</p>
               <p>Email: privacy@exquisitedentistry.com</p>
             </div>

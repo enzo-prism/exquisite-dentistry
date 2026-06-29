@@ -16,6 +16,7 @@ import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
+import OpenInMapsButton from "@/components/OpenInMapsButton";
 import { Clock, MapPin, Phone, Sparkles } from "lucide-react";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "@/data/invisalign-beverly-hills-faqs";
 import {
@@ -224,6 +225,7 @@ const InvisalignBeverlyHills = () => {
                       <h2 className="text-lg font-semibold">Near Beverly Hills</h2>
                     </div>
                     <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                    <OpenInMapsButton source="invisalign_bh_office_card" />
                     <p className="text-sm text-muted-foreground">
                       Call{" "}
                       <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
@@ -374,6 +376,7 @@ const InvisalignBeverlyHills = () => {
                       <div>
                         <p className="font-semibold text-foreground">Address</p>
                         <p className="text-muted-foreground">{ADDRESS}</p>
+                        <OpenInMapsButton source="invisalign_bh_location_section" className="mt-2" />
                       </div>
                     </div>
                     <div className="flex items-start gap-3">

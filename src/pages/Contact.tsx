@@ -28,6 +28,7 @@ import {
   ADDRESS_REGION,
   POSTAL_CODE
 } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -372,6 +373,9 @@ const Contact = () => {
                             {STREET_ADDRESS}<br />
                             {ADDRESS_LOCALITY}, {ADDRESS_REGION} {POSTAL_CODE}
                           </a>
+                          <div className="mt-3">
+                            <OpenInMapsButton source="contact_page" />
+                          </div>
                         </div>
                       </div>
                       

@@ -16,6 +16,7 @@ import LastUpdated from "@/components/LastUpdated";
 import { ROUTE_METADATA } from "@/constants/metadata";
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { ADDRESS, BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
+import OpenInMapsButton from "@/components/OpenInMapsButton";
 import { Clock, MapPin, Phone } from "lucide-react";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
 import {
@@ -217,6 +218,7 @@ const SmileMakeoverLosAngeles = () => {
                       <h2 className="text-lg font-semibold">Our Location</h2>
                     </div>
                     <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                    <OpenInMapsButton source="smile_makeover_office_card" />
                     <p className="text-sm text-muted-foreground">
                       Prefer a call?{" "}
                       <a className="text-secondary underline-offset-4 hover:underline" href={`tel:${PHONE_NUMBER_E164}`}>
@@ -352,6 +354,7 @@ const SmileMakeoverLosAngeles = () => {
                       <div>
                         <p className="font-semibold text-foreground">Address</p>
                         <p className="text-muted-foreground">{ADDRESS}</p>
+                        <OpenInMapsButton source="smile_makeover_location_section" className="mt-2" />
                       </div>
                     </div>
                     <div className="flex items-start gap-3">

@@ -26,6 +26,7 @@ import {
   PHONE_NUMBER_DISPLAY,
   PHONE_NUMBER_E164
 } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 import {
   DENTAL_IMPLANTS_HUB_INTRO_PARAGRAPHS,
   DENTAL_IMPLANTS_REFERENCES
@@ -239,6 +240,7 @@ const DentalImplants = () => {
                       >
                         {ADDRESS}
                       </a>
+                      <OpenInMapsButton source="dental_implants_location" className="mt-2 flex w-fit" />
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

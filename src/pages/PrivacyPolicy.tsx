@@ -5,6 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ADDRESS, EMAIL, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 
 const PrivacyPolicy: React.FC = () => {
   return (
@@ -104,6 +105,7 @@ const PrivacyPolicy: React.FC = () => {
             <div className="mt-4 text-gray-600">
               <p>Exquisite Dentistry</p>
               <p>{ADDRESS}</p>
+              <OpenInMapsButton source="privacy_policy_contact" className="my-2" />
               <p>Phone: {PHONE_NUMBER_DISPLAY}</p>
               <p>Email: {EMAIL}</p>
             </div>
