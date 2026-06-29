@@ -109,6 +109,7 @@ public/lovable-uploads/  # Raw assets → optimized variants in public/optimized
 - Include honeypot field (`bot-field`) for spam protection
 - Call `trackFormSubmission('contact_form')` on success for Google Ads conversion tracking
 - Business hours/address sourced from `src/constants/contact.ts`
+- **Address + maps**: wherever the practice address (`ADDRESS`) is displayed, render `<OpenInMapsButton source="…" />` (`src/components/OpenInMapsButton.tsx`) beside it — opens `GOOGLE_MAPS_SHORT_URL` in a new tab with directions analytics. `Footer` and `PracticeLocationSection` already ship their own maps buttons (don't double up); never add one to JSON-LD/schema occurrences.
 
 ## Build & Deployment
 
