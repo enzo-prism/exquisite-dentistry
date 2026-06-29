@@ -69,6 +69,7 @@ public/lovable-uploads/  # Raw assets → optimized variants in public/optimized
 2. **Static Fallbacks**: `npm run generate:fallbacks` (runs automatically in build) renders service/geo routes to `public/<slug>.html` for SEO crawlers
 3. **Blog Pipeline**: Legacy WordPress exports in `Blog-Content/` → `npm run generate:blog` → `src/data/generatedBlogPosts.ts`
 4. **Route Categories**: Main pages, service pages, geo landing pages (`/beverly-hills-dentist`), blog (`/blog/:slug`), transformation stories
+5. **Hero Media**: Looping hero videos render through `VideoHero` → `Desktop/MobileVideoHero` → `VideoBackground` (one shared chain; lazy-loaded via IntersectionObserver + idle scheduling). The hero background stays **solid black** until the video is ready to play—no poster/placeholder image is shown during the in-flight load (the `bg-black` wrapper covers it; the video simply appears once it starts). Posters are only used for the static fallback when video is off (`useGradient`/`disableVideo`) and for `isContained` players. Don't reintroduce a loading poster on full-bleed heroes.
 
 ### Performance Optimizations
 - **Manual chunking**: `react-vendor` and `ui-vendor` chunks in Vite config
@@ -127,6 +128,7 @@ public/lovable-uploads/  # Raw assets → optimized variants in public/optimized
 
 ## Financing (Cherry)
 - Cherry is integrated two ways: the app-wide floating estimator (`CherryWidgetProvider` + `useCherryWidgetRegistration`, practice slug in `src/constants/cherry.ts`) and the on-page **pre-approval block** (`CherryPreApprovalSection` on `/payment-plans`) with amount entry, benefit messaging, and an apply QR.
+- **Mobile bottom-right coexistence**: the floating "Pay over time" estimator pill and the homepage `FloatingActionButton` both anchor bottom-right. The FAB is lifted (`bottom: calc(env(safe-area-inset-bottom, 0px) + 96px)` in `src/components/mobile/FloatingActionButton.tsx`) to stack **above** the pill so they never overlap. Preserve that offset if you touch either element.
 - The patient-facing apply link is built by `buildCherryApplyUrl()` in `src/constants/cherry.ts`.
 - **`VERIFY-BEFORE-PUBLIC` convention**: regulated financing figures and the Cherry apply/QR URL are isolated and tagged with this comment. Confirm them against Cherry's provider dashboard + practice sign-off before changing or publishing.
 - Financing engagement is tracked via `trackFinancingEngagement` in `src/utils/vercelAnalytics.ts`.

@@ -23,6 +23,11 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 - Redirect verification: `node scripts/test-redirects.mjs` (set `REDIRECT_TEST_BASE` when testing preview/production instead of local Vercel dev).
 - Browser smoke: `node test-browser.js` against a running server (`npm run dev` or `npm run preview`).
 
+## Hero Media & Floating UI
+- Hero background videos go through one shared chain: `VideoHero` → `Desktop/MobileVideoHero` → `VideoBackground` (~23 pages, no inline hero videos). They lazy-load via IntersectionObserver + `requestIdleCallback`.
+- The hero stays **solid black** until the video is ready to play; we intentionally do **not** show a poster/placeholder image during the in-flight load (it looked low-quality on some routes). Posters remain only for the static fallback (`useGradient`/`disableVideo`, rendered in the hero wrappers) and for `isContained` players. Don't re-add a loading poster to full-bleed heroes — change lives in `VideoBackground.renderVideoElement()`.
+- On mobile, the homepage `FloatingActionButton` (`src/components/mobile/FloatingActionButton.tsx`) is lifted to `bottom: calc(env(safe-area-inset-bottom, 0px) + 96px)` so it stacks above the Cherry "Pay over time" floating pill (which sits at `…+16px`). Keep them non-overlapping if you move either.
+
 ## Content Notes
 - Legacy front-teeth cost blogs are unpublished and 301 to the new hub. Do not republish without revisiting redirects and sitemap.
 - Internal linking (`src/components/InternalLinkingWidget.tsx`) is context-aware; update priorities when adding new veneers content to keep the hub surfaced.

@@ -45,7 +45,8 @@ Before client review or production:
 
 Manual flows:
 
-- open homepage, scroll past hero, expand quick actions, confirm fixed controls do not overlap important CTAs.
+- open homepage, scroll past hero, expand quick actions, confirm fixed controls do not overlap important CTAs. The floating quick-actions button (`FloatingActionButton`) must sit **above** the Cherry "Pay over time" pill, not on top of it.
+- on a hero with video, confirm the background is **solid black before the video starts** (no placeholder/poster image), then the looping video appears once it can play.
 - open mobile menu, expand Popular Services, navigate to one service route, confirm the drawer closes.
 - open search, type `veneers`, choose a result, confirm navigation.
 - open `/contact/`, submit empty form, confirm errors are visible and focus lands on the first issue.
