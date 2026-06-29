@@ -37,6 +37,21 @@ const SOCIAL_URLS = {
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const FORMSPREE_OPS_UTM_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+function appendFormspreeOpsMetadata(formData: FormData) {
+  formData.set('site', 'exquisite');
+  formData.set('form_key', 'contact');
+  formData.set('environment', import.meta.env.MODE ?? 'production');
+  formData.set('_codex_test', 'false');
+
+  const params = new URLSearchParams(window.location.search);
+  formData.set('page_path', window.location.pathname);
+  formData.set('referrer', document.referrer);
+  for (const field of FORMSPREE_OPS_UTM_FIELDS) {
+    formData.set(field, params.get(field) ?? '');
+  }
+}
 
 const CONTACT_PERSONA_OPTIONS = [
   { value: 'existing_patient', label: 'Existing patient' },
@@ -230,6 +245,7 @@ const Contact = () => {
       if (trimmedPhone) {
         formData.append('phone', trimmedPhone);
       }
+      appendFormspreeOpsMetadata(formData);
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
