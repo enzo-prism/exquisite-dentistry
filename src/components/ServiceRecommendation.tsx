@@ -52,7 +52,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
       case 'alternative':
         return 'Explore different approaches to achieve your goals';
       case 'upgrade':
-        return 'Premium options for enhanced results';
+        return 'Additional options for enhanced results';
       case 'combination':
         return 'Popular treatment packages for comprehensive results';
       default:

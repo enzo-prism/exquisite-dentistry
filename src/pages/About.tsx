@@ -146,7 +146,7 @@ const About = () => {
                 </p>
                 
                 <p>
-                  Patients often comment on the calm, spa-like setting and the time our team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
+                  Patients often comment on the calm setting and the time our team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
                 </p>
               </div>
 

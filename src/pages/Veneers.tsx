@@ -60,7 +60,7 @@ const Veneers = () => {
     {
       step: "03",
       title: "Fabrication",
-      description: "Expert craftsmen create your custom veneers using premium porcelain materials"
+      description: "Expert craftsmen create your custom veneers using quality porcelain materials"
     },
     {
       step: "04",
@@ -109,7 +109,7 @@ const Veneers = () => {
       steps: [
         { name: "Consultation & Design", description: "Comprehensive evaluation and digital smile design to visualize your new smile" },
         { name: "Preparation", description: "Minimal tooth preparation and precise impressions for custom fabrication" },
-        { name: "Fabrication", description: "Expert craftsmen create your custom veneers using premium porcelain materials" },
+        { name: "Fabrication", description: "Expert craftsmen create your custom veneers using quality porcelain materials" },
         { name: "Placement", description: "Precise bonding and final adjustments to achieve your perfect smile" }
       ],
       followupCare: [
@@ -251,7 +251,7 @@ const Veneers = () => {
                 <CardContent className="p-6 space-y-3">
                   <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">4 veneers</p>
                   <h3 className="text-xl font-semibold text-foreground">Balance the entire smile zone</h3>
-                  <p className="text-muted-foreground">Prevent shade mismatch and create camera-ready symmetry across your front teeth.</p>
+                  <p className="text-muted-foreground">Prevent shade mismatch and create even, natural symmetry across your front teeth.</p>
                   <Button variant="link" className="px-0" asChild>
                     <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
                       Explore 4 veneer plans

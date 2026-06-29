@@ -70,7 +70,7 @@ const ClientExperience = () => {
     {
       title: 'Reveal & Aftercare',
       summary: 'Finishing touches + personalized plan.',
-      details: 'Warm towels, vitamin-infused lip balm, and bespoke aftercare kits tailored to your procedure.',
+      details: 'Warm towels, vitamin-infused lip balm, and aftercare kits tailored to your procedure.',
       tip: 'Receive text check-ins and direct access to our concierge line.'
     }
   ];
@@ -116,8 +116,8 @@ const ClientExperience = () => {
   return (
     <>
       <PageSEO 
-        title="Luxury Dental Spa LA | Comfort-Focused Dentistry"
-        description="Experience luxury dental care in LA with spa amenities, sedation options, and personalized comfort. Redefining dental visits for anxious patients."
+        title="Comfort-Focused Dentistry in LA | Exquisite Dentistry"
+        description="Comfortable dental care in LA with spa amenities, sedation options, and personalized comfort, especially for anxious patients."
         keywords="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa"
         path="/client-experience"
       />
@@ -126,10 +126,10 @@ const ClientExperience = () => {
         additionalSchemas={[{
           '@context': 'https://schema.org',
           '@type': 'Service',
-          name: 'Luxury Dental Experience',
-          description: 'Comprehensive dental care delivered in a spa-like environment with advanced technology and personalized comfort',
+          name: 'Comfort-Focused Dental Experience',
+          description: 'Comprehensive dental care delivered in a calm setting with modern technology and personalized comfort',
           provider: { '@id': 'https://exquisitedentistryla.com/#business' },
-          serviceType: 'Luxury Dental Care',
+          serviceType: 'Comfort-Focused Dental Care',
           areaServed: { '@type': 'City', name: 'Los Angeles' }
         }]} 
       />

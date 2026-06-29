@@ -314,7 +314,7 @@ const IndexPage: React.FC = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">Comfort Focused</h4>
                   <p className="text-sm text-muted-foreground">
-                    Spa-like environment with sedation options for anxious patients
+                    Calm environment with sedation options for anxious patients
                   </p>
                 </div>
               </div>

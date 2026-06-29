@@ -18,7 +18,7 @@ export const INVISALIGN_BEVERLY_HILLS_HUB_INTRO_PARAGRAPHS = [
   'If you’re searching for “Invisalign Beverly Hills,” you’re probably looking for discreet alignment with a plan that fits a busy schedule and delivers natural-looking results.',
   'Invisalign uses a series of clear aligners to move teeth gradually. The best outcomes come from precise planning, consistent wear, and check-ins that keep progress on track.',
   'At Exquisite Dentistry near Beverly Hills (Wilshire Blvd in Los Angeles), we start with digital scanning and a bite-focused evaluation so tooth movement is predictable, not guesswork.',
-  'When alignment is complete, we can coordinate finishing touches like whitening or bonding so your final smile looks balanced and camera-ready.'
+  'When alignment is complete, we can coordinate finishing touches like whitening or bonding so your final smile looks balanced and natural.'
 ] as const;
 
 export const INVISALIGN_BEVERLY_HILLS_HUB_SECTIONS: InvisalignBeverlyHillsHubSection[] = [

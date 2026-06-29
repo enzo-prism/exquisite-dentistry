@@ -44,7 +44,7 @@ export const SERVICE_MENU_LINKS: NavigationItem[] = [
   {
     label: 'Teeth Whitening',
     to: '/teeth-whitening',
-    description: 'Professional whitening for brighter, camera-ready smiles.',
+    description: 'Professional whitening for brighter, natural-looking smiles.',
   },
   {
     label: 'Emergency Dentist',

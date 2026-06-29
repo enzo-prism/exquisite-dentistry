@@ -413,7 +413,7 @@ export const transformationStories: TransformationStory[] = [
       },
       {
         category: 'Confidence On Display',
-        description: 'Smile improvements that patients are proud to show, from healthier gums to aligned, luminous teeth.'
+        description: 'Smile improvements that patients are proud to show, from healthier gums to aligned, brighter teeth.'
       },
       {
         category: 'Better Habits',
@@ -458,14 +458,14 @@ export const transformationStories: TransformationStory[] = [
     location: 'Los Angeles, CA',
     goal: 'From stress to ease, and a routine he actually looks forward to',
     keyTakeaways: [
-      'Calm, spa-like experience: "the environment\'s great…super calming, relaxing."',
+      'Calm, comfortable experience: "the environment\'s great…super calming, relaxing."',
       'Personal relationship with the doctor: Rob says the doctor remembers him and what\'s happening in his life, which signals continuity and trust.',
       'Net feeling: "It doesn\'t feel like coming to the dentist." (friction removed → higher visit compliance).'
     ],
     quotes: [
       {
         text: 'The environment\'s great, it\'s super calming and relaxing.',
-        context: 'About the spa-like atmosphere'
+        context: 'About the calming atmosphere'
       },
       {
         text: 'My dentist remembers me, what\'s going on in my life.',
@@ -507,7 +507,7 @@ export const transformationStories: TransformationStory[] = [
     faqs: [
       {
         question: 'What makes the environment so calming?',
-        answer: 'We\'ve designed every detail to create a spa-like atmosphere that helps you breathe easier from the moment you arrive.'
+        answer: 'We\'ve designed every detail to create a calm atmosphere that helps you breathe easier from the moment you arrive.'
       },
       {
         question: 'How do you build personal relationships with patients?',
@@ -705,7 +705,7 @@ export const transformationStories: TransformationStory[] = [
     quotes: [
       {
         text: 'I like coming here because it feels like I\'m walking into a spa… everyone\'s friendly, they\'re smiling, Dr. Aguil\'s excited to see me.',
-        context: 'About the spa-like atmosphere'
+        context: 'About the calming atmosphere'
       },
       {
         text: 'I come here and it\'s always a nice, relaxing vibe. I just feel more confident about my smile than I have before.',
@@ -755,7 +755,7 @@ export const transformationStories: TransformationStory[] = [
       }
     ],
     seo: {
-      title: 'Shannon Langhorne\'s Story | Spa-Like Dental Experience | Exquisite Dentistry Los Angeles',
+      title: 'Shannon Langhorne\'s Story | Calm, Comfortable Dental Care | Exquisite Dentistry Los Angeles',
       description: 'See how Shannon found a dental office that feels like a spa at Exquisite Dentistry in Los Angeles. Watch her testimonial about the relaxing atmosphere and confidence boost.',
       keywords: 'spa-like dental office Los Angeles, relaxing dentist LA, comfortable dental care, patient testimonial Los Angeles, confidence boost dental'
     }

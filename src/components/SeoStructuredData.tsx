@@ -8,7 +8,7 @@ const SeoStructuredData: React.FC = () => {
     '@type': ['LocalBusiness', 'Dentist'],
     name: 'Exquisite Dentistry',
     alternateName: 'Exquisite Dentistry LA',
-    description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, and smile makeovers.',
+    description: 'Cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, and smile makeovers.',
     image: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     '@id': 'https://exquisitedentistryla.com/',
     url: getCanonicalUrl('/'),

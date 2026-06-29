@@ -147,7 +147,7 @@ const FrontTeethVeneers = () => {
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="uppercase tracking-[0.3em] text-secondary font-semibold mb-4">Front Teeth Veneers</p>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground max-w-3xl leading-tight">
-              Camera-ready front teeth veneers designed for symmetry, color, and confidence
+              Front teeth veneers designed for symmetry, color, and confidence
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
               Whether you need 2 veneers for a single dark tooth or 4 veneers to harmonize your smile line, Dr. Alexie Aguil designs minimal-prep porcelain that looks believable on- and off-camera.

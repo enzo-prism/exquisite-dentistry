@@ -41,7 +41,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@id': 'https://exquisitedentistryla.com/#business',
   name: 'Exquisite Dentistry',
   alternateName: ['Exquisite Dentistry LA', 'Exquisite Dentistry Los Angeles'],
-  description: 'Premier cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
+  description: 'Cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
   url: 'https://exquisitedentistryla.com/',
   telephone: PHONE_NUMBER_E164,
   email: EMAIL,

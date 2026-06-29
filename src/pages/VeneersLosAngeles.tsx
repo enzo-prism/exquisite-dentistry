@@ -85,7 +85,7 @@ const VeneersLosAngeles = () => {
           '@context': 'https://schema.org',
           '@type': 'MedicalProcedure',
           name: 'Porcelain Veneers Los Angeles',
-          description: 'Custom porcelain veneer smile makeovers handcrafted for Los Angeles patients seeking camera-ready aesthetics.',
+          description: 'Custom porcelain veneer smile makeovers handcrafted for Los Angeles patients seeking a natural look.',
           url: getCanonicalUrl('/veneers-los-angeles'),
           category: 'Cosmetic Dentistry',
           provider: {

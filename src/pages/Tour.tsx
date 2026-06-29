@@ -22,7 +22,7 @@ const studioImages = [
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964430/Screenshot_2025-11-12_at_8.17.43_AM_gwfng6.png', alt: 'Sculpted hallway with statement lighting', grid: 'lg:col-span-2', aspectClass: 'aspect-[21/9]' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964429/Screenshot_2025-11-12_at_8.19.00_AM_eoxxrj.png', alt: 'Hydration bar and apothecary shelving', aspectClass: 'aspect-[4/3]' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_1000,w_800/v1762964429/Screenshot_2025-11-12_at_8.19.00_AM_eoxxrj.png', alt: 'Shelving detail and florals', aspectClass: 'aspect-[5/8]' },
-  { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964429/Screenshot_2025-11-12_at_8.18.44_AM_z0ke2q.png', alt: 'Open concept operatory with bespoke partitions', grid: 'lg:col-span-2', aspectClass: 'aspect-[16/9]' },
+  { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964429/Screenshot_2025-11-12_at_8.18.44_AM_z0ke2q.png', alt: 'Open concept operatory with custom partitions', grid: 'lg:col-span-2', aspectClass: 'aspect-[16/9]' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_auto,h_900,w_900/v1762964429/Screenshot_2025-11-12_at_8.18.44_AM_z0ke2q.png', alt: 'Close-up of brushed brass fixtures', aspectClass: 'aspect-square' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/c_crop,g_face,h_900,w_700/v1762964429/Screenshot_2025-11-12_at_8.18.44_AM_z0ke2q.png', alt: 'Soft seating vignette', aspectClass: 'aspect-[3/4]' },
   { src: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1762964431/Screenshot_2025-11-12_at_8.16.41_AM_nk055e.png', alt: 'Luxe beverage station second angle', aspectClass: 'aspect-[4/3]' }

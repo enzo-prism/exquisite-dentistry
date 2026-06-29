@@ -134,14 +134,14 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "west-hollywood-dentist": createLocationConfig(
     "west-hollywood-dentist",
     "West Hollywood",
-    "Minutes from the Sunset Strip and Melrose, our dental studio delivers Beverly Grove convenience with West Hollywood style. Expect hush-hush operatories, late appointments during award season, and concierge touches curated for on-camera schedules.",
+    "Minutes from the Sunset Strip and Melrose, our Beverly Grove studio is an easy stop for West Hollywood patients. We offer private treatment rooms, evening appointments, and concierge scheduling that fits busy calendars.",
     [
       "Easy access from Santa Monica Blvd. and Fairfax",
       "Late-morning and early-evening appointments",
       "Creative-friendly amenities for on-camera schedules",
     ],
     [
-      "Porcelain veneers for camera-ready smiles and close-up confidence",
+      "Porcelain veneers for natural-looking, confident smiles",
       "Zoom whitening boosts scheduled before premieres and panels",
       "Emergency dentistry with discreet same-day relief and sedation",
       "Invisalign programs tailored to entertainment professionals"
@@ -166,7 +166,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       [
         "Smile makeovers that pair veneers, crowns, and whitening for flawless symmetry",
         "Porcelain veneers crafted with Beverly Hills ceramists for natural brilliance",
-        "Invisalign clear aligners for discreet, camera-ready alignment and bite refinement",
+        "Invisalign clear aligners for discreet alignment and bite refinement",
         "Teeth whitening plans (in-office and take-home) timed around events and photo sessions",
         "Dental implants planned with advanced imaging for enduring bite strength",
         "Full-mouth reconstruction that balances function, health, and high fashion"
@@ -212,7 +212,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
         ],
         image: {
           src: "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
-          alt: "Dr. Alexie Aguil, premium business portrait",
+          alt: "Dr. Alexie Aguil, professional business portrait",
         },
         cta: {
           primaryText: "Schedule Consultation",
@@ -272,7 +272,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "bel-air-dentist": createLocationConfig(
     "bel-air-dentist",
     "Bel Air",
-    "Luxury-driven dentistry with tight confidentiality, ideal for Bel Air residents seeking a polished smile experience. Private lounge service, personalized sedation, and rapid lab turnarounds keep elite calendars on track.",
+    "Discreet dentistry with careful attention to privacy for Bel Air residents. Private lounge service, personalized sedation, and quick lab turnarounds help keep appointments on schedule.",
     [
       "Private bookings & NDA-friendly appointments",
       "On-site concierge for custom requests",

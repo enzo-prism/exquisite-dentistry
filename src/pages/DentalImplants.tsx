@@ -71,7 +71,7 @@ const DentalImplants = () => {
     },
     {
       stage: "Restorative Reveal",
-      details: "We deliver bespoke crowns, bridges, or overdentures fabricated to mirror natural enamel, supported by micro-adjustments for ideal occlusion."
+      details: "We make custom crowns, bridges, or overdentures fabricated to mirror natural enamel, supported by micro-adjustments for ideal occlusion."
     }
   ];
 

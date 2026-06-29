@@ -13,7 +13,7 @@ interface Feature {
 const features: Feature[] = [
   {
     icon: <Sofa size={24} />,
-    title: "Spa-Like Amenities",
+    title: "Comfort Amenities",
     description: "Enjoy soft lighting, warm blankets, noise-canceling headphones, aromatherapy, and hot lemongrass towels."
   },
   {

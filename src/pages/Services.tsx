@@ -70,7 +70,7 @@ const Services = () => {
     {
       title: 'Elevated Patient Experience',
       description:
-        'Relaxing amenities and compassionate care create a spa-like visit tailored to your comfort.',
+        'Relaxing amenities and compassionate care create a calm visit tailored to your comfort.',
       Icon: Sparkles
     }
   ];
@@ -79,7 +79,7 @@ const Services = () => {
     {
       id: 'cosmetic',
       title: 'Cosmetic Dentistry',
-      description: 'Signature veneers, whitening, and bespoke smile makeovers crafted for you.',
+      description: 'Signature veneers, whitening, and custom smile makeovers crafted for you.',
       Icon: Smile
     },
     {
@@ -688,14 +688,14 @@ const Services = () => {
               <h2 className="heading-lg">Exceptional Comfort & Care</h2>
               <div className="separator-left"></div>
               <p className="paragraph">
-                At Exquisite Dentistry, we've reimagined what a dental visit can be. Our spa-like environment features amenities designed for your ultimate comfort:
+                At Exquisite Dentistry, we have reimagined what a dental visit can be. Our calm setting features amenities designed for your comfort:
               </p>
               
               <div className="space-y-4">
                 <div className="flex items-start">
                   <Check size={18} className="text-gold mt-1 flex-shrink-0" />
                   <div className="ml-3">
-                    <h4 className="font-medium text-black">Spa-Like Amenities</h4>
+                    <h4 className="font-medium text-black">Calming Amenities</h4>
                     <p className="text-sm text-black-light/80 mt-1">Soft lighting and warm blankets for ultimate comfort</p>
                   </div>
                 </div>
@@ -814,7 +814,7 @@ const Services = () => {
               centralHub={{
                 title: "Wedding & Graduation Prep",
                 href: "/wedding",
-                description: "Look your absolute best for special occasions",
+                description: "Look your best for special occasions",
                 type: "special"
               }}
               spokes={[

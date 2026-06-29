@@ -130,7 +130,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           {
             title: 'Hollywood Veneers Guide',
             href: '/blog/how-hollywood-veneers-can-transform-your-smile/',
-            description: 'Discover how Hollywood-style veneers create stunning smiles',
+            description: 'How Hollywood-style veneers can transform your smile',
             category: 'blog',
             priority: 11
           },
@@ -585,7 +585,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
           {
             title: 'High-End Dentistry Guide',
             href: '/blog/high-end-dentistry/',
-            description: 'What sets premium dental care apart',
+            description: 'What sets quality dental care apart',
             category: 'blog',
             priority: 6
           },

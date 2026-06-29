@@ -9,7 +9,7 @@ const ClientExperienceStructuredData: React.FC = () => {
     '@type': ['LocalBusiness', 'Dentist'],
     name: 'Exquisite Dentistry',
     alternateName: 'Exquisite Dentistry LA',
-    description: 'Luxury dental practice offering spa-like comfort and advanced cosmetic dentistry in Los Angeles',
+    description: 'Dental practice offering a calm, comfortable setting and cosmetic dentistry in Los Angeles',
     url: canonicalUrl,
     image: 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
     address: {
@@ -24,7 +24,7 @@ const ClientExperienceStructuredData: React.FC = () => {
     amenityFeature: [
       {
         '@type': 'LocationFeatureSpecification',
-        name: 'Spa-Like Amenities',
+        name: 'Comfort Amenities',
         value: 'Soft lighting, warm blankets, aromatherapy, noise-canceling headphones'
       },
       {
@@ -45,14 +45,14 @@ const ClientExperienceStructuredData: React.FC = () => {
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Luxury Dental Services',
+      name: 'Comfort-Focused Dental Care',
       itemListElement: [
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Spa-Like Dental Experience',
-            description: 'Comfortable dental care with luxury amenities'
+            name: 'Comfort-Focused Visit',
+            description: 'Comfortable dental care with calming amenities'
           }
         },
         {
@@ -67,8 +67,8 @@ const ClientExperienceStructuredData: React.FC = () => {
     },
     makesOffer: {
       '@type': 'Offer',
-      name: 'Luxury Dental Experience',
-      description: 'Premium dental care with spa-like comfort and personalized attention',
+      name: 'Comfort-Focused Dental Care',
+      description: 'Dental care with a calm, comfortable setting and personalized attention',
       category: 'Dental Services'
     }
   };
@@ -76,12 +76,12 @@ const ClientExperienceStructuredData: React.FC = () => {
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Luxury Dental Experience',
-    description: 'Comprehensive dental care delivered in a spa-like environment with advanced technology and personalized comfort',
+    name: 'Comfort-Focused Dental Care',
+    description: 'Comprehensive dental care delivered in a calm, comfortable setting with modern technology and personalized comfort',
     provider: {
       '@id': 'https://exquisitedentistryla.com/#business'
     },
-    serviceType: 'Luxury Dental Care',
+    serviceType: 'Comfort-Focused Dental Care',
     areaServed: {
       '@type': 'City',
       name: 'Los Angeles'
@@ -90,8 +90,8 @@ const ClientExperienceStructuredData: React.FC = () => {
       '@type': 'OfferCatalog',
       name: 'Client Experience Features',
       itemListElement: [
-        'Spa-like amenities',
-        'Advanced dental technology',
+        'Comfort amenities',
+        'Modern dental technology',
         'Personalized treatment planning',
         'Anxiety-free environment',
         'Flexible scheduling options',

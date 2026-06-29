@@ -133,7 +133,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/cosmetic-dentistry': {
     title: 'Cosmetic Dentistry Los Angeles | Exquisite Dentistry',
     description:
-      'Cosmetic dentistry in Los Angeles with bespoke veneers, Invisalign, whitening, and bonding to create camera-ready smiles that fit your lifestyle.',
+      'Cosmetic dentistry in Los Angeles: veneers, Invisalign, whitening, and bonding, planned to look natural.',
     keywords:
       'cosmetic dentistry Los Angeles, smile makeover LA, cosmetic dentist Beverly Hills, veneers and Invisalign LA',
     ogImage:
@@ -203,7 +203,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     title:
       'Smile Gallery Los Angeles | Before & After | Exquisite Dentistry',
     description:
-      'View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.',
+      'View before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.',
     keywords:
       'smile gallery Los Angeles, before after dental photos, smile transformation results, porcelain veneers before after, cosmetic dentistry results, patient transformations',
     ogImage: DEFAULT_OG_IMAGE

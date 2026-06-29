@@ -15,7 +15,7 @@ export const drAguilImages = {
   // NEW: Professional Studio Portrait - Premium business headshot
   businessPortrait: {
     src: '/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png',
-    alt: 'Dr. Alexie Aguil, premium business portrait with professional smile',
+    alt: 'Dr. Alexie Aguil, professional business portrait with a natural smile',
     description: 'Elegant studio portrait of Dr. Aguil in professional business attire',
     usage: ['about-hero', 'homepage-hero', 'premium-branding', 'leadership'],
     aspectRatio: '4:5',

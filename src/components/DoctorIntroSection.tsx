@@ -35,7 +35,7 @@ const DoctorIntroSection: React.FC = () => {
             <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               With over 15 years of experience in cosmetic dentistry, Dr. Aguil has transformed thousands of smiles 
               using the latest techniques and technology. His commitment to excellence and patient comfort has made 
-              him one of Los Angeles' most trusted cosmetic dentists.
+              him an experienced Los Angeles cosmetic dentist.
             </p>
 
             {/* Mobile Stats - 2x2 Grid */}
@@ -98,7 +98,7 @@ const DoctorIntroSection: React.FC = () => {
             <div className="relative aspect-[4/5] sm:aspect-[3/4] max-w-xs sm:max-w-sm mx-auto lg:max-w-full rounded-lg overflow-hidden shadow-2xl">
               <ImageComponent
                 src="/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp"
-                alt="Dr. Alexie Aguil, premium business portrait"
+                alt="Dr. Alexie Aguil, professional business portrait"
                 fill={true}
                 objectFit="cover"
                 objectPosition="center"

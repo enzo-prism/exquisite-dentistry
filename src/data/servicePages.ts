@@ -915,7 +915,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         question: "Can I bring a friend or headphones?",
         answer:
-          "Absolutely. Many patients feel more at ease with a companion or preferred entertainment. We also supply premium headphones and streaming services.",
+          "Absolutely. Many patients feel more at ease with a companion or preferred entertainment. We also supply headphones and streaming services.",
       },
       {
         question: "Is pain-free dentistry more expensive?",

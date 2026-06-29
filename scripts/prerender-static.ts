@@ -185,9 +185,9 @@ export const manualPages: StaticRoute[] = [
     path: "/",
     title: getRouteMetadata("/").title,
     description: getRouteMetadata("/").description,
-    h1: "Los Angeles' Premier Cosmetic Dentist",
+    h1: "Los Angeles Cosmetic Dentist",
     paragraphs: [
-      "Transform your smile at Los Angeles' most trusted cosmetic dentistry practice near Beverly Hills. Celebrity clientele, spa-like environment, and Hollywood-quality results with Dr. Alexie Aguil.",
+      "Cosmetic and restorative dentistry in Los Angeles, near Beverly Hills, with Dr. Alexie Aguil. Veneers, whitening, Invisalign, and implants, planned to look natural.",
     ],
     sections: [
       {
@@ -411,7 +411,7 @@ export const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/cosmetic-dentistry").description,
     h1: "Cosmetic Dentistry Los Angeles",
     paragraphs: [
-      "Curated smile transformations for tastemakers, entrepreneurs, and artists.",
+      "Veneers, whitening, bonding, and Invisalign, planned and finished to look natural.",
     ],
     links: [
       ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/emergency-dentist"),
@@ -568,7 +568,7 @@ export const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/faqs").description,
     h1: "Dental FAQs",
     paragraphs: [
-      "Get comprehensive answers about our Los Angeles practice near Beverly Hills, treatment procedures, insurance coverage, and what to expect during your luxury dental experience.",
+      "Get answers about our Los Angeles practice near Beverly Hills: treatment procedures, insurance coverage, and what to expect at your visit.",
     ],
     links: defaultNavLinks,
   },
@@ -584,18 +584,18 @@ export const manualPages: StaticRoute[] = [
   },
   {
     path: "/tour",
-    title: "Luxury Dental Studio Tour | Exquisite Dentistry LA",
+    title: "Dental Studio Tour | Exquisite Dentistry LA",
     description:
-      "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore our spa-like dental studio, advanced technology, and comfort-first amenities.",
+      "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore the studio, modern technology, and comfort-first amenities.",
     h1: "Take a Tour of Our Los Angeles Dental Studio",
     paragraphs: [
-      "Step inside Exquisite Dentistry and see how a calm, spa-like environment and modern technology work together to make every visit feel easier.",
+      "Step inside Exquisite Dentistry and see how a calm environment and modern technology work together to make every visit feel easier.",
     ],
     links: defaultNavLinks,
   },
   {
     path: "/client-experience",
-    title: "Luxury Dental Spa LA | Comfort‑Focused Dentistry | Exquisite",
+    title: "Comfort-Focused Dentistry in LA | Exquisite Dentistry",
     description:
       "Learn what to expect at Exquisite Dentistry: comfort amenities, gentle care, and a concierge patient experience for cosmetic and restorative dentistry in Los Angeles.",
     h1: "A Comfort‑First Dental Experience",

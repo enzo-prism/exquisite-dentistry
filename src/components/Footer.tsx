@@ -297,7 +297,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-white/70 leading-relaxed text-sm">
-              Luxury cosmetic and restorative dentistry in the heart of Los
+              Cosmetic and restorative dentistry in the heart of Los
               Angeles, blending artistry, technology, and concierge comfort.
             </p>
             <div>
