@@ -4,6 +4,7 @@ import { ArrowRight, CalendarClock, CreditCard, Sparkles } from 'lucide-react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
+import CherryPreApprovalSection from '@/components/CherryPreApprovalSection';
 import PhoneLink from '@/components/PhoneLink';
 import WebPageStructuredData from '@/components/WebPageStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
@@ -127,6 +128,8 @@ const PaymentPlans = () => {
             </div>
           </div>
         </section>
+
+        <CherryPreApprovalSection />
 
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-4">
