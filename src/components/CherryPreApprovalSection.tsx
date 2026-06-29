@@ -30,7 +30,7 @@ const FINANCING_TERMS = {
 
 const PRESET_AMOUNTS = [1000, 2500, 5000, 10000] as const;
 const DEFAULT_AMOUNT = 2500;
-const PRIMARY_CTA_LABEL = "See if I'm pre-approved";
+const PRIMARY_CTA_LABEL = 'See if I pre-qualify';
 
 const benefits = [
   {
@@ -72,9 +72,9 @@ interface CherryPreApprovalSectionProps {
 }
 
 const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
-  eyebrow = 'Get Pre-Approved',
+  eyebrow = 'Pre-Qualify In Minutes',
   title = 'See what you could plan for — before your visit.',
-  description = "Pick an amount and check your options with Cherry in about two minutes. It's a soft credit check, so it won't affect your credit score, and you'll get an answer right away.",
+  description = "Pick an amount and check your options with Cherry. It only takes about two minutes, and you'll get an answer right away.",
   className,
 }) => {
   // Keep the floating Cherry estimator available on any page that shows this block.
@@ -87,7 +87,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
   const [customAmount, setCustomAmount] = React.useState('');
 
   const effectiveAmount = React.useMemo(() => {
-    if (customAmount.trim() !== '') {
+    if (customAmount !== '') {
       const parsed = Number.parseInt(customAmount, 10);
       return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
     }
@@ -136,11 +136,14 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
   };
 
   const handleCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const digitsOnly = event.target.value.replace(/[^\d]/g, '').slice(0, 6);
+    const digitsOnly = event.target.value
+      .replace(/[^\d]/g, '')
+      .replace(/^0+(?=\d)/, '')
+      .slice(0, 6);
     setCustomAmount(digitsOnly);
-    if (digitsOnly !== '') {
-      setSelectedPreset(null);
-    }
+    // A non-empty custom amount clears the chip selection; clearing it back to
+    // empty restores the default so an amount is always implied.
+    setSelectedPreset(digitsOnly === '' ? DEFAULT_AMOUNT : null);
   };
 
   const openCherryApplication = () => {
@@ -180,10 +183,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{description}</p>
 
               <div className="mt-8 rounded-[1.5rem] border border-gold/20 bg-white/85 p-6 shadow-[0_20px_48px_-36px_rgba(0,0,0,0.3)] backdrop-blur-sm">
-                <p
-                  id="cherry-amount-label"
-                  className="text-sm font-semibold text-foreground"
-                >
+                <p id="cherry-amount-label" className="text-sm font-semibold text-foreground">
                   How much would you like to plan for?
                 </p>
 
@@ -193,7 +193,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
                   aria-labelledby="cherry-amount-label"
                 >
                   {PRESET_AMOUNTS.map((amount) => {
-                    const isSelected = customAmount.trim() === '' && selectedPreset === amount;
+                    const isSelected = selectedPreset === amount;
                     return (
                       <button
                         key={amount}
@@ -204,8 +204,8 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
                           'button-static rounded-full border px-4 py-2 text-sm font-semibold transition-colors',
                           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                           isSelected
-                            ? 'border-gold bg-gold text-white shadow-sm'
-                            : 'border-gold/30 bg-white text-foreground hover:border-gold hover:bg-gold/5',
+                            ? 'border-transparent bg-gold text-white shadow-sm'
+                            : 'border-gold/40 bg-white text-foreground hover:border-gold hover:bg-stone-50',
                         )}
                       >
                         {formatCurrency(amount)}
@@ -236,6 +236,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
                       placeholder="3,000"
                       value={customAmount}
                       onChange={handleCustomChange}
+                      aria-label="Amount in US dollars"
                       aria-describedby="cherry-amount-help"
                       className="pl-7"
                     />
@@ -261,17 +262,17 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
               </div>
             </div>
 
-            {/* Right column: benefits + in-office QR */}
+            {/* Right column: benefits + in-office / handoff QR */}
             <div className="space-y-4">
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {benefits.map(({ Icon, title: benefitTitle, description: benefitDescription }) => (
                   <div
                     key={benefitTitle}
                     className="rounded-[1.5rem] border border-border/80 bg-white/90 p-5 shadow-[0_20px_40px_-32px_rgba(0,0,0,0.35)] backdrop-blur-sm"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
-                        <Icon size={19} />
+                      <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+                        <Icon size={20} />
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-foreground">{benefitTitle}</p>
@@ -285,8 +286,8 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
               </div>
 
               <div className="rounded-[1.5rem] border border-gold/20 bg-gold/5 p-5">
-                <div className="flex items-center gap-4">
-                  <div className="rounded-2xl border border-gold/20 bg-white p-2.5 shadow-sm">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                  <div className="mx-auto shrink-0 rounded-2xl border border-gold/20 bg-white p-2.5 shadow-sm sm:mx-0">
                     <QRCodeSVG
                       value={inOfficeApplyUrl}
                       size={104}
@@ -297,16 +298,17 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
                       aria-label="QR code to open the Cherry financing application"
                     />
                   </div>
-                  <div className="min-w-0">
-                    <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+                  <div className="min-w-0 text-center sm:text-left">
+                    <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
                       <QrCode size={14} aria-hidden="true" />
-                      In our office
+                      Apply from your phone
                     </div>
                     <p className="mt-2 text-sm font-semibold text-foreground">
-                      Scan to apply from your phone.
+                      Scan to continue on your phone.
                     </p>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      Point your camera at the code to start the same application on your own device.
+                      Point your camera at the code to start the same application on another
+                      device — handy in our office or moving from desktop to mobile.
                     </p>
                   </div>
                 </div>
@@ -322,7 +324,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
             through? Call{' '}
             <PhoneLink
               phoneNumber={PHONE_NUMBER_DISPLAY}
-              className="font-semibold text-secondary underline underline-offset-4 hover:no-underline"
+              className="font-semibold text-gold-dark underline underline-offset-4 hover:no-underline"
             >
               {PHONE_NUMBER_DISPLAY}
             </PhoneLink>

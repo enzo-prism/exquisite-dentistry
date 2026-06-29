@@ -129,8 +129,6 @@ const PaymentPlans = () => {
           </div>
         </section>
 
-        <CherryPreApprovalSection />
-
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-6xl rounded-[1.75rem] border border-gold/15 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_20px_60px_-44px_rgba(0,0,0,0.3)] md:p-8">
@@ -171,6 +169,8 @@ const PaymentPlans = () => {
             </div>
           </div>
         </section>
+
+        <CherryPreApprovalSection />
 
         <section className="py-14 md:py-16">
           <div className="container mx-auto px-4">
