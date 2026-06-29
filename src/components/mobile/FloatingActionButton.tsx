@@ -109,7 +109,15 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
   };
 
   const floatingActions = (
-    <div className={cn(getThumbZoneClasses(), className)}>
+    // Lift the FAB above the Cherry "Pay over time" floating pill so they never
+    // overlap on mobile. The pill sits at bottom:calc(env(safe-area-inset-bottom)+16px)
+    // and is ~64px tall; this inline bottom overrides the hook's `bottom-6` and
+    // clears the pill (height + gap). FAB is mobile + Index-only, where the pill
+    // always renders, so the offset is always correct.
+    <div
+      className={cn(getThumbZoneClasses(), className)}
+      style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 96px)' }}
+    >
       {/* Action buttons */}
       <AnimatePresence>
         {isExpanded && (
