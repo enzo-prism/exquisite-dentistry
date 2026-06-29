@@ -138,21 +138,25 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }, [shouldLoadVideo, streamableUrl, vimeoId, onLoad]);
   
   const renderVideoElement = () => {
-    if (!shouldLoadVideo && posterSrc) {
-      return (
-        <OptimizedImage
-          src={posterSrc}
-          alt=""
-          aria-hidden="true"
-          priority
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
-          sizes="100vw"
-        />
-      );
-    }
-
+    // Until the video is ready to load/play, keep full-bleed hero backgrounds
+    // solid black (the wrapper is already `bg-black`) rather than flashing a
+    // poster/placeholder image. The video simply appears once it starts.
+    // Contained players (isContained) still show their poster while loading.
     if (!shouldLoadVideo) {
+      if (isContained && posterSrc) {
+        return (
+          <OptimizedImage
+            src={posterSrc}
+            alt=""
+            aria-hidden="true"
+            priority
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+            sizes="100vw"
+          />
+        );
+      }
+
       return null;
     }
 
@@ -161,7 +165,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         <iframe
           src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&controls=0&loop=1&title=0&byline=0&portrait=0&background=1`}
           className="absolute inset-0 w-full h-full"
-          style={{ 
+          style={{
             width: '140%',
             height: '140%',
             position: 'absolute',
@@ -169,7 +173,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
             maxWidth: 'none',
-            maxHeight: 'none'
+            maxHeight: 'none',
+            backgroundColor: '#000'
           }}
           frameBorder="0"
           allow="autoplay; fullscreen"
@@ -190,7 +195,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           playsInline
           preload="metadata"
           className="absolute inset-0 w-full h-full"
-          style={{ 
+          style={{
             objectFit: isContained ? 'contain' : 'cover',
             width: '100%',
             height: '100%',
@@ -198,7 +203,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             minHeight: '100%',
             position: 'absolute',
             top: '0',
-            left: '0'
+            left: '0',
+            backgroundColor: '#000'
           }}
         >
           <source src={`${streamableUrl}.mp4`} type="video/mp4" />
@@ -214,7 +220,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&enablejsapi=1&playsinline=1&origin=${window.location.origin}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             className="absolute"
-            style={{ 
+            style={{
               width: isMobile ? '200%' : '140%',
               height: isMobile ? '200%' : '140%',
               position: 'absolute',
@@ -223,7 +229,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
               transform: 'translate(-50%, -50%)',
               maxWidth: 'none',
               maxHeight: 'none',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              backgroundColor: '#000'
             }}
             frameBorder="0"
             title="Video player"
