@@ -263,6 +263,15 @@ body {
   @apply text-primary hover:underline;
 }
 
+/* Section typography utilities (used on Services / Contact / ClientExperience pages) */
+.heading-lg {
+  @apply text-3xl md:text-4xl font-bold leading-tight text-foreground;
+}
+
+.paragraph {
+  @apply text-base md:text-lg leading-relaxed text-muted-foreground max-w-prose;
+}
+
 /* Enhanced mobile text contrast */
 @media (hover: none) and (pointer: coarse) {
   .mobile-text-shadow {
@@ -807,16 +816,17 @@ a:not([class]):hover {
 }
 
 /* ==== SIMPLIFIED BUTTON SYSTEM ==== */
-/* Only gold and black backgrounds allowed, always with white text */
+/* Only gold and black backgrounds allowed. Gold buttons use BLACK text
+   (~6.3:1, passes WCAG AA); black buttons keep white text. */
 
-/* DEFAULT BUTTONS - Gold background with white text */
+/* DEFAULT BUTTONS - Gold background with black text (WCAG AA) */
 .button-variant-default,
 button[class*="bg-primary"],
 button[class*="bg-gold"],
 [data-radix-slot][class*="bg-primary"],
 [data-radix-slot][class*="bg-gold"] {
   background-color: hsl(var(--primary)) !important;
-  color: white !important;
+  color: hsl(0 0% 0%) !important;
 }
 
 .button-variant-default:hover,
@@ -825,7 +835,7 @@ button[class*="bg-gold"]:hover,
 [data-radix-slot][class*="bg-primary"]:hover,
 [data-radix-slot][class*="bg-gold"]:hover {
   background-color: hsl(var(--primary) / 0.9) !important;
-  color: white !important;
+  color: hsl(0 0% 0%) !important;
 }
 
 /* BLACK BUTTONS - Black background with white text */
@@ -843,7 +853,7 @@ button[class*="bg-black"]:hover,
   color: white !important;
 }
 
-/* OUTLINE BUTTONS - Gold border, gold text, becomes gold background with white text on hover */
+/* OUTLINE BUTTONS - Gold border, gold text, becomes gold background with black text on hover (WCAG AA) */
 .button-variant-outline,
 button[class*="border-primary"]:not([class*="bg-"]),
 button[class*="border-gold"]:not([class*="bg-"]),
@@ -860,16 +870,16 @@ button[class*="border-gold"]:not([class*="bg-"]):hover,
 [data-radix-slot][class*="border-primary"]:not([class*="bg-"]):hover,
 [data-radix-slot][class*="border-gold"]:not([class*="bg-"]):hover {
   background-color: hsl(var(--primary)) !important;
-  color: white !important;
+  color: hsl(0 0% 0%) !important;
 }
 
-/* LINK BUTTONS - Gold text */
+/* LINK BUTTONS - Dark gold text (~4.7:1 on white, passes WCAG AA) */
 .button-variant-link,
 button[class*="text-primary"],
 button[class*="text-gold"],
 [data-radix-slot][class*="text-primary"],
 [data-radix-slot][class*="text-gold"] {
-  color: hsl(var(--primary)) !important;
+  color: hsl(38 21% 42%) !important;
   background-color: transparent !important;
 }
 

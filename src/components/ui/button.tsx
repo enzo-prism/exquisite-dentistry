@@ -10,12 +10,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "cta-glow bg-primary !text-white shadow-md hover:bg-primary/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
+        default: "cta-glow bg-primary !text-black shadow-md hover:bg-primary/90 hover:!text-black motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
         black: "cta-glow bg-black !text-white shadow-md hover:bg-black/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
-        outline: "border border-primary bg-transparent text-primary hover:bg-primary hover:!text-white",
-        link: "text-primary underline-offset-4 hover:underline link-variant",
+        outline: "border border-primary bg-transparent text-primary hover:bg-primary hover:!text-black",
+        link: "text-gold-dark underline-offset-4 hover:underline link-variant",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        secondary: "cta-glow bg-secondary !text-white shadow-md hover:bg-secondary/80 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
+        secondary: "cta-glow bg-secondary !text-black shadow-md hover:bg-secondary/80 hover:!text-black motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
         destructive: "cta-glow bg-destructive !text-white shadow-md hover:bg-destructive/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
       },
       size: {

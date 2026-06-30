@@ -12,6 +12,7 @@ import {
   trackContactMethodClick,
 } from '@/utils/vercelAnalytics';
 import VideoHero from '@/components/VideoHero';
+import { getStoredUTMAttribution } from '@/utils/utmTracking';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
@@ -47,10 +48,15 @@ function appendFormspreeOpsMetadata(formData: FormData) {
   formData.set('_codex_test', 'false');
 
   const params = new URLSearchParams(window.location.search);
+  const storedAttribution = getStoredUTMAttribution() ?? {};
   formData.set('page_path', window.location.pathname);
   formData.set('referrer', document.referrer);
   for (const field of FORMSPREE_OPS_UTM_FIELDS) {
-    formData.set(field, params.get(field) ?? '');
+    const currentValue = params.get(field);
+    const resolvedValue = currentValue && currentValue.trim() !== ''
+      ? currentValue
+      : storedAttribution[field] ?? '';
+    formData.set(field, resolvedValue);
   }
 }
 

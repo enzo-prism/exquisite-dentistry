@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
+import { MotionConfig } from "framer-motion";
 import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
 import { PerformanceProvider } from "@/hooks/use-performance-monitor";
@@ -15,6 +16,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
+import SkipToContent from "@/components/SkipToContent";
 
 // Lazy load all routes for code splitting
 const Index = lazy(() => import("@/pages/Index"));
@@ -109,11 +111,12 @@ const AppRoutes = () => {
 
   return (
     <>
+      <SkipToContent />
       <LegacyRedirectHandler />
       {!isSitemapPage && <ScrollProgress />}
       {!isSitemapPage && <ScrollToTop />}
       {!isSitemapPage && <Navbar />}
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {!isSitemapPage ? (
           <PageTransition>
             <Routes>
@@ -313,6 +316,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
+        <MotionConfig reducedMotion="user">
         <PerformanceProvider>
           <TooltipProvider>
             <Toaster />
@@ -327,6 +331,7 @@ const App = () => {
             </BrowserRouter>
           </TooltipProvider>
         </PerformanceProvider>
+        </MotionConfig>
       </HelmetProvider>
     </QueryClientProvider>
   );
