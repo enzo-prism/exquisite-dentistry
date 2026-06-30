@@ -36,3 +36,7 @@ public/optimized/
 test-results/
 playwright-report/
 .vercel
+
+# Redundant lockfiles (npm / package-lock.json is the source of truth)
+bun.lockb
+deno.lock

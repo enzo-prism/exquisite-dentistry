@@ -41,8 +41,7 @@ export default defineConfig(({ mode }) => ({
           // Only essential vendor chunks
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-vendor': ['lucide-react'],
-          'motion-vendor': ['framer-motion'],
-          'sentry': ['@sentry/react']
+          'motion-vendor': ['framer-motion']
         }
       }
     },
