@@ -4,7 +4,7 @@
     {
       "type": "service",
       "title": "Dental Bridges in Los Angeles",
-      "description": "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and spa-level comfort.",
+      "description": "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and a comfortable visit.",
       "href": "/dental-bridge/",
       "h1": "Natural-Looking Dental Bridges",
       "keywords": [
@@ -17,7 +17,7 @@
     {
       "type": "service",
       "title": "Dental Crowns in Los Angeles",
-      "description": "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for Hollywood-ready aesthetics.",
+      "description": "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for natural-looking results.",
       "href": "/dental-crowns/",
       "h1": "Porcelain Dental Crowns",
       "keywords": [
@@ -119,7 +119,7 @@
     {
       "type": "service",
       "title": "Teeth Cleaning in Los Angeles",
-      "description": "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and spa-level comfort.",
+      "description": "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and a comfortable visit.",
       "href": "/teeth-cleaning/",
       "h1": "Teeth Cleaning in Los Angeles",
       "keywords": [
@@ -161,7 +161,7 @@
     {
       "type": "location",
       "title": "Bel Air Dentist",
-      "description": "Luxury-driven dentistry with tight confidentiality, ideal for Bel Air residents seeking a polished smile experience. Private lounge service, personalized sedation, and rapid lab turnarounds keep elite calendars on track.",
+      "description": "Discreet dentistry with careful attention to privacy for Bel Air residents. Private lounge service, personalized sedation, and quick lab turnarounds help keep appointments on schedule.",
       "href": "/bel-air-dentist/",
       "h1": "Bel Air’s Boutique Dental Experience",
       "keywords": [
@@ -213,7 +213,7 @@
     {
       "type": "location",
       "title": "West Hollywood Dentist",
-      "description": "Minutes from the Sunset Strip and Melrose, our dental studio delivers Beverly Grove convenience with West Hollywood style. Expect hush-hush operatories, late appointments during award season, and concierge touches curated for on-camera schedules.",
+      "description": "Minutes from the Sunset Strip and Melrose, our Beverly Grove studio is an easy stop for West Hollywood patients. We offer private treatment rooms, evening appointments, and concierge scheduling that fits busy calendars.",
       "href": "/west-hollywood-dentist/",
       "h1": "West Hollywood’s Boutique Dental Experience",
       "keywords": [
@@ -283,6 +283,14 @@
     },
     {
       "type": "page",
+      "title": "Comfort-Focused Dentistry in LA | Exquisite Dentistry",
+      "description": "Learn what to expect at Exquisite Dentistry: comfort amenities, gentle care, and a concierge patient experience for cosmetic and restorative dentistry in Los Angeles.",
+      "href": "/client-experience/",
+      "h1": "A Comfort‑First Dental Experience",
+      "id": "page:/client-experience/"
+    },
+    {
+      "type": "page",
       "title": "Confidence in Every Smile: Nick’s Invisalign Journey with Dr. Alexie Aguil at Exquisite Dentistry LA",
       "description": "A lifetime of hiding his smile, until Invisalign with Dr. Aguil gave him the confidence to show it off.",
       "href": "/transformation-stories/nick-invisalign/",
@@ -318,7 +326,7 @@
       "href": "/",
       "title": "Cosmetic Dentist Los Angeles | Veneers & Smile Makeovers",
       "description": "Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, smile makeovers, PPO verification, and Cherry payment plans.",
-      "h1": "Los Angeles' Premier Cosmetic Dentist",
+      "h1": "Los Angeles Cosmetic Dentist",
       "keywords": [
         "cosmetic dentist Los Angeles",
         "porcelain veneers",
@@ -352,7 +360,7 @@
       "type": "page",
       "href": "/cosmetic-dentistry/",
       "title": "Cosmetic Dentistry Los Angeles | Exquisite Dentistry",
-      "description": "Cosmetic dentistry in Los Angeles with bespoke veneers, Invisalign, whitening, and bonding to create camera-ready smiles that fit your lifestyle.",
+      "description": "Cosmetic dentistry in Los Angeles: veneers, Invisalign, whitening, and bonding, planned to look natural.",
       "h1": "Cosmetic Dentistry Los Angeles",
       "keywords": [
         "cosmetic dentistry Los Angeles",
@@ -467,6 +475,14 @@
         "dental implants financing"
       ],
       "id": "page:/payment-plans/"
+    },
+    {
+      "type": "page",
+      "title": "Dental Studio Tour | Exquisite Dentistry LA",
+      "description": "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore the studio, modern technology, and comfort-first amenities.",
+      "href": "/tour/",
+      "h1": "Take a Tour of Our Los Angeles Dental Studio",
+      "id": "page:/tour/"
     },
     {
       "type": "page",
@@ -588,22 +604,6 @@
     },
     {
       "type": "page",
-      "title": "Luxury Dental Spa LA | Comfort‑Focused Dentistry | Exquisite",
-      "description": "Learn what to expect at Exquisite Dentistry: comfort amenities, gentle care, and a concierge patient experience for cosmetic and restorative dentistry in Los Angeles.",
-      "href": "/client-experience/",
-      "h1": "A Comfort‑First Dental Experience",
-      "id": "page:/client-experience/"
-    },
-    {
-      "type": "page",
-      "title": "Luxury Dental Studio Tour | Exquisite Dentistry LA",
-      "description": "Take a virtual tour of Exquisite Dentistry in Los Angeles. Explore our spa-like dental studio, advanced technology, and comfort-first amenities.",
-      "href": "/tour/",
-      "h1": "Take a Tour of Our Los Angeles Dental Studio",
-      "id": "page:/tour/"
-    },
-    {
-      "type": "page",
       "href": "/about/",
       "title": "Meet Dr. Alexie Aguil | Cosmetic Dentist Los Angeles",
       "description": "Meet Dr. Alexie Aguil, a Los Angeles cosmetic dentist known for natural veneers, smile makeovers, 5-star patient care, and comfort-first dentistry.",
@@ -656,14 +656,6 @@
         "dental veneers"
       ],
       "id": "page:/veneers/"
-    },
-    {
-      "type": "page",
-      "title": "Porcelain Veneers Los Angeles | Smile Design by Dr. Aguil",
-      "description": "Explore porcelain veneers in Los Angeles, candidacy, smile design options, and consultation planning at Exquisite Dentistry.",
-      "href": "/veneers-los-angeles/",
-      "h1": "Porcelain Veneers in Los Angeles",
-      "id": "page:/veneers-los-angeles/"
     },
     {
       "type": "page",
@@ -736,7 +728,7 @@
       "type": "page",
       "href": "/smile-gallery/",
       "title": "Smile Gallery Los Angeles | Before & After | Exquisite Dentistry",
-      "description": "View stunning before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.",
+      "description": "View before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.",
       "h1": "Smile Gallery",
       "keywords": [
         "smile gallery Los Angeles",
@@ -1002,22 +994,6 @@
         "naturally"
       ],
       "id": "blog:/blog/can-damaged-teeth-repair-themselves-naturally/"
-    },
-    {
-      "type": "blog",
-      "title": "Choosing Veneers for Just One Tooth",
-      "description": "Adults have 32 teeth, but all it takes is one misshapen, damaged, or discolored tooth for a person to lose confidence in their smile.  Dental veneers are a common way to improve the shape of teeth, fix chips or cracks, and give teeth a radiant natural color.",
-      "href": "/blog/choosing-veneers-for-just-one-tooth/",
-      "h1": "Choosing Veneers for Just One Tooth",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "choosing",
-        "veneers",
-        "just",
-        "one",
-        "tooth"
-      ],
-      "id": "blog:/blog/choosing-veneers-for-just-one-tooth/"
     },
     {
       "type": "blog",
@@ -1626,10 +1602,10 @@
     },
     {
       "type": "blog",
-      "title": "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
-      "description": "Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.",
+      "title": "Single Tooth Veneers: When One Veneer Is the Right Fit",
+      "description": "Learn how a single veneer can help when one tooth needs attention — the process, what to expect, and when a single-tooth veneer is a good fit.",
       "href": "/blog/single-tooth-veneers-perfect-solutions/",
-      "h1": "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
+      "h1": "Single Tooth Veneers: When One Veneer Is the Right Fit",
       "keywords": [
         "Cosmetic Dentistry",
         "single veneer",

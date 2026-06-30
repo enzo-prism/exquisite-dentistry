@@ -31,6 +31,11 @@ const LEGACY_REDIRECTS: RedirectRule[] = [
   { from: '/blog/4-front-teeth-veneers-cost-los-angeles', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
   { from: '/choosing-veneers-for-the-front-4-teeth/', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
   { from: '/choosing-veneers-for-the-front-4-teeth', to: '/veneers/front-teeth-veneers-los-angeles', exact: true },
+  // Veneers consolidation: retire orphan LA pillar + duplicate single-tooth blog
+  { from: '/veneers-los-angeles/', to: '/veneers', exact: true },
+  { from: '/veneers-los-angeles', to: '/veneers', exact: true },
+  { from: '/blog/choosing-veneers-for-just-one-tooth/', to: '/veneers/1-tooth-veneer-los-angeles', exact: true },
+  { from: '/blog/choosing-veneers-for-just-one-tooth', to: '/veneers/1-tooth-veneer-los-angeles', exact: true },
 ];
 
 const LegacyRedirectHandler = () => {

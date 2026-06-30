@@ -823,7 +823,6 @@ export const getRelatedBlogSlugsForStory = (story: TransformationStory): string[
     ],
     veneer: [
       'all-about-veneers-for-teeth',
-      'choosing-veneers-for-just-one-tooth',
       'the-cost-of-dental-veneers-in-los-angeles',
       'how-hollywood-veneers-can-transform-your-smile',
       // Underlinked veneer posts

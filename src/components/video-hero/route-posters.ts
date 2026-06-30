@@ -20,7 +20,6 @@ export const VIDEO_HERO_POSTERS_BY_ROUTE = {
   "/testimonials": "/lovable-uploads/f88f1b17-04d5-4a21-9fd5-0294d68af115.png",
   "/transformation-stories": "/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png",
   "/veneers": "/lovable-uploads/f4b9ce7c-33fc-45a7-85e9-123f3e7ce0ed.webp",
-  "/veneers-los-angeles": "/lovable-uploads/e5666e84-eae4-42d0-a75c-f034454be491.webp",
   "/wedding": "/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png",
   "/zoom-whitening": "/lovable-uploads/4a8dedf8-1a60-4e9a-9c1f-91c1a1c96c92.webp",
 } as const;

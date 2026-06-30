@@ -50,7 +50,7 @@ const Veneers = () => {
     {
       step: "01",
       title: "Consultation & Design",
-      description: "Comprehensive evaluation and digital smile design to visualize your new smile"
+      description: "A thorough evaluation and digital smile design to preview your new smile"
     },
     {
       step: "02", 
@@ -65,7 +65,7 @@ const Veneers = () => {
     {
       step: "04",
       title: "Placement",
-      description: "Precise bonding and final adjustments to achieve your perfect smile"
+      description: "Precise bonding and final adjustments to complete your new smile"
     }
   ];
 
@@ -80,11 +80,11 @@ const Veneers = () => {
     },
     {
       question: "Do veneers look natural?",
-      answer: "Yes! Our custom-crafted porcelain veneers are designed to match your facial features, skin tone, and desired aesthetic. They reflect light naturally and blend seamlessly with your existing teeth."
+      answer: "Our custom porcelain veneers are designed to match your facial features, skin tone, and desired aesthetic. They reflect light naturally and blend seamlessly with your existing teeth."
     },
     {
       question: "Can I eat normally with veneers?",
-      answer: "Absolutely. Once your veneers are properly bonded, you can eat most foods normally. We recommend avoiding extremely hard foods and using common sense to protect your investment."
+      answer: "Once your veneers are bonded, you can eat most foods normally. We recommend avoiding extremely hard foods and using common sense to protect your investment."
     },
     {
       question: "How do I care for my veneers?",
@@ -107,10 +107,10 @@ const Veneers = () => {
         "Color matching to existing teeth"
       ],
       steps: [
-        { name: "Consultation & Design", description: "Comprehensive evaluation and digital smile design to visualize your new smile" },
+        { name: "Consultation & Design", description: "A thorough evaluation and digital smile design to preview your new smile" },
         { name: "Preparation", description: "Minimal tooth preparation and precise impressions for custom fabrication" },
         { name: "Fabrication", description: "Expert craftsmen create your custom veneers using quality porcelain materials" },
-        { name: "Placement", description: "Precise bonding and final adjustments to achieve your perfect smile" }
+        { name: "Placement", description: "Precise bonding and final adjustments to complete your new smile" }
       ],
       followupCare: [
         "Regular dental cleanings and checkups",
@@ -118,13 +118,12 @@ const Veneers = () => {
         "Consider nightguard if teeth grinding occurs"
       ],
       benefits: [
-        "Instant smile transformation",
+        "A natural-looking improvement to your smile",
         "Natural-looking results",
         "Long-lasting durability",
         "Stain-resistant surface"
       ],
-      recoveryTime: "Immediate return to normal activities",
-      priceRange: "$1,500-$3,000 per tooth"
+      recoveryTime: "Immediate return to normal activities"
     }),
     createWebPageSchema({
       title: "Porcelain Veneers Los Angeles",
@@ -190,6 +189,25 @@ const Veneers = () => {
           </div>
         </section>
 
+        {/* Veneers Designed for Everyday Confidence */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Veneers Designed for Everyday Confidence
+              </h2>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                Every veneer plan starts with a smile discovery session. We look at your facial proportions, how you speak, and how you want your smile to feel day to day, then design porcelain that fits your features rather than covering them. The goal is a smile that photographs well, speaks naturally, and still looks like you.
+              </p>
+              <p>
+                Dr. Alexie Aguil works with Los Angeles ceramists to shape each veneer by hand. Layers of porcelain are chosen to match your complexion and the way your teeth catch light. The finished result looks consistent in person and on camera, and is built to hold up over years of everyday use.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Benefits Grid */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
@@ -238,7 +256,7 @@ const Veneers = () => {
                 <CardContent className="p-6 space-y-3">
                   <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">2 veneers</p>
                   <h3 className="text-xl font-semibold text-foreground">Targeted front tooth fixes</h3>
-                  <p className="text-muted-foreground">Perfect for a single dark tooth, chips, or peg laterals after whitening.</p>
+                  <p className="text-muted-foreground">A good option for a single dark tooth, chips, or peg laterals after whitening.</p>
                   <Button variant="link" className="px-0" asChild>
                     <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
                       Explore 2 veneer plans
@@ -278,7 +296,7 @@ const Veneers = () => {
                 Our Veneer Process
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A meticulous approach to creating your perfect smile
+                A careful approach to designing your new smile
               </p>
             </div>
 
@@ -302,6 +320,63 @@ const Veneers = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Los Angeles-Focused Veneer Planning */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
+                Los Angeles-Focused Veneer Planning
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                In Los Angeles, your smile shows up on video calls, in photos, and in everyday conversation. We look at how your teeth move as you speak, laugh, and smile, and if your gum levels need refining we can pair veneers with gentle laser recontouring. Some patients prefer slightly warmer undertones and others prefer a brighter, cooler shade. We plan the shade with you so it suits your face and the light you are usually in.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Caring for Your Veneers */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
+                Caring for Your Veneers
+              </h2>
+              <ul className="max-w-3xl mx-auto space-y-4">
+                <li className="flex gap-3">
+                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-muted-foreground">
+                    Attend professional cleanings every 3 to 4 months with hygienists trained in veneer-safe polishing paste.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-muted-foreground">
+                    Wear your nightguard nightly to protect porcelain edges from clenching and grinding.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-muted-foreground">
+                    Use non-abrasive toothpaste and gentle floss to protect the finish and keep the margins clean.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-muted-foreground">
+                    Schedule quick bite checks after major orthodontic changes or new restorative work to keep veneers balanced.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-muted-foreground">
+                    Keep a travel-safe whitening pen and veneer case in your bag for touch-ups while you travel.
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -348,7 +423,7 @@ const Veneers = () => {
                   {
                     title: "Teeth Whitening",
                     href: "/zoom-whitening",
-                    description: "Perfect your veneer results with professional whitening",
+                    description: "Complement your veneer results with professional whitening",
                     duration: "1 hour",
                     popularity: 75,
                     combination: true
@@ -356,7 +431,7 @@ const Veneers = () => {
                   {
                     title: "Gum Contouring",
                     href: "/services#cosmetic",
-                    description: "Frame your veneers with perfect gum lines",
+                    description: "Frame your veneers with balanced gum lines",
                     duration: "30 to 60 min",
                     popularity: 45
                   },
@@ -365,8 +440,7 @@ const Veneers = () => {
                     href: "/smile-makeover-los-angeles",
                     description: "Complete transformation with multiple procedures",
                     duration: "Multiple visits",
-                    popularity: 60,
-                    priceRange: "$5K to $15K"
+                    popularity: 60
                   }
                 ]}
               />

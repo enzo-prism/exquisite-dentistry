@@ -9,7 +9,7 @@ interface VeneerCTAProps {
 }
 
 const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '' }) => {
-  const veneerSiteUrl = 'https://exquisiteveneersla.com/';
+  const veneerSiteUrl = '/veneers/';
 
   if (variant === 'inline') {
     return (
@@ -20,13 +20,11 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
             <p className="text-sm text-gray-700 mb-2">
               Want to learn more about our veneer expertise?
             </p>
-            <a 
-              href={veneerSiteUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <a
+              href={veneerSiteUrl}
               className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors text-sm font-medium"
             >
-              Visit Exquisite Veneers LA
+              Learn about veneers
               <ExternalLink size={14} />
             </a>
           </div>
@@ -47,11 +45,11 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
               Explore Our Veneer Expertise
             </h3>
             <p className="text-gray-600 mb-4">
-              Discover our complete veneer gallery, detailed pricing, and exclusive content on our dedicated veneer site.
+              See veneer options, before-and-after results, and what to expect.
             </p>
             <Button asChild variant="outline">
-              <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-                Visit Exquisite Veneers LA
+              <a href={veneerSiteUrl}>
+                Learn about veneers
                 <ExternalLink size={16} className="ml-2" />
               </a>
             </Button>
@@ -69,20 +67,20 @@ const VeneerCTA: React.FC<VeneerCTAProps> = ({ variant = 'inline', className = '
           <Star size={40} className="text-gold" />
         </div>
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-black">
-          Ready to Transform Your Smile with Veneers?
+          Considering veneers?
         </h2>
         <p className="text-gray-700 text-lg mb-8">
-          Explore our comprehensive veneer gallery, detailed treatment options, and exclusive pricing on our dedicated veneer site.
+          Explore veneer options and before-and-after results.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg" variant="default">
-            <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
-              Explore Veneer Options
+            <a href={veneerSiteUrl}>
+              Learn about veneers
               <ArrowRight size={16} className="ml-2" />
             </a>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <a href={veneerSiteUrl} target="_blank" rel="noopener noreferrer">
+            <a href={veneerSiteUrl}>
               View Veneer Gallery
               <ExternalLink size={16} className="ml-2" />
             </a>

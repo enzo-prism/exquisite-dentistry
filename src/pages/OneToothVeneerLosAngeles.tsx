@@ -46,7 +46,7 @@ const OneToothVeneerLosAngeles = () => {
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/veneers-los-angeles/" onClick={() => trackCTAClick('veneers_single_tooth_pillar_click', 'View Veneers Overview')}>
+                <Link to="/veneers/" onClick={() => trackCTAClick('veneers_single_tooth_pillar_click', 'View Veneers Overview')}>
                   View Veneers Overview
                 </Link>
               </Button>
@@ -75,7 +75,7 @@ const OneToothVeneerLosAngeles = () => {
               <div className="flex flex-col gap-2 text-secondary">
                 <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/">Cost of 2 Front Teeth Veneers in Los Angeles</Link>
                 <Link to="/veneers/front-teeth-veneers-los-angeles/">Front Teeth Veneers in Los Angeles</Link>
-                <Link to="/veneers-los-angeles/">Porcelain Veneers Los Angeles (Pillar)</Link>
+                <Link to="/veneers/">Porcelain Veneers Los Angeles</Link>
               </div>
             </div>
           </div>

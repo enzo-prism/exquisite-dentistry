@@ -1401,9 +1401,9 @@ const baseBlogPosts: BlogPost[] = [
   },
   {
     id: '14',
-    title: 'Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections',
+    title: 'Single Tooth Veneers: When One Veneer Is the Right Fit',
     slug: 'single-tooth-veneers-perfect-solutions',
-    excerpt: 'Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.',
+    excerpt: 'Learn how a single veneer can help when one tooth needs attention — the process, what to expect, and when a single-tooth veneer is a good fit.',
     content: 'single-tooth-veneers', // This will map to the existing component
     author: 'Dr. Alexie Aguil',
     authorBio: 'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.',

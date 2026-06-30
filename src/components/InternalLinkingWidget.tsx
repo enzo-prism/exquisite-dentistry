@@ -77,10 +77,10 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 4
           },
           {
-            title: 'Single Tooth Veneers Guide',
-            href: '/blog/choosing-veneers-for-just-one-tooth/',
-            description: 'Perfect solutions for individual tooth improvements',
-            category: 'blog',
+            title: 'Single Tooth Veneer',
+            href: '/veneers/1-tooth-veneer-los-angeles/',
+            description: 'When a single veneer is the right fit',
+            category: 'service',
             priority: 5
           },
           {

@@ -104,12 +104,6 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.85
     },
     {
-      loc: getCanonicalUrl('/veneers-los-angeles'),
-      lastmod: getFileLastModified('src/pages/VeneersLosAngeles.tsx', 7, now),
-      changefreq: 'monthly',
-      priority: 0.85
-    },
-    {
       loc: getCanonicalUrl('/veneers/2-front-teeth-veneers-cost-los-angeles'),
       lastmod: getFileLastModified('src/pages/VeneersCostLosAngeles.tsx', 7, now),
       changefreq: 'monthly',

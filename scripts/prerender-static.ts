@@ -605,17 +605,6 @@ export const manualPages: StaticRoute[] = [
     links: defaultNavLinks,
   },
   {
-    path: "/veneers-los-angeles",
-    title: "Porcelain Veneers Los Angeles | Smile Design by Dr. Aguil",
-    description:
-      "Explore porcelain veneers in Los Angeles, candidacy, smile design options, and consultation planning at Exquisite Dentistry.",
-    h1: "Porcelain Veneers in Los Angeles",
-    paragraphs: [
-      "Compare veneer options, treatment flow, and outcomes to decide the best smile-zone plan for your goals.",
-    ],
-    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
-  },
-  {
     path: "/veneers/front-teeth-veneers-los-angeles",
     title:
       "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",

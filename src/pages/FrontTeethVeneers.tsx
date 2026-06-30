@@ -21,13 +21,13 @@ const FrontTeethVeneers = () => {
   const costHighlights = [
     {
       title: '2 Front Teeth',
-      range: '$3,000 to $7,000',
+      range: 'Quoted at your consultation',
       idealFor: 'Single dark tooth, chips, or matching peg laterals',
       notes: 'We plan whitening first so the veneers match your brightest shade.'
     },
     {
       title: '4 Front Teeth',
-      range: '$7,200 to $10,000',
+      range: 'Quoted at your consultation',
       idealFor: 'Symmetry upgrades, closing gaps, and balancing the smile line',
       notes: 'Stops future shade mismatch between veneers and natural teeth.'
     }
@@ -71,7 +71,7 @@ const FrontTeethVeneers = () => {
     },
     {
       question: 'How long do they last?',
-      answer: 'Our porcelain veneers routinely last 10 to 15+ years with routine hygiene, nightguard use for clenching, and mindful habits.'
+      answer: 'With good daily hygiene and regular checkups, porcelain veneers are a long-lasting option, especially with nightguard use for clenching and mindful habits.'
     },
     {
       question: 'Will they look natural?',
@@ -180,9 +180,9 @@ const FrontTeethVeneers = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
               <div>
-                <h2 className="text-3xl font-bold text-foreground">Transparent pricing for your smile zone</h2>
+                <h2 className="text-3xl font-bold text-foreground">What goes into your veneer quote</h2>
                 <p className="text-muted-foreground mt-2 max-w-3xl">
-                  No bait-and-switch: we plan whitening, gum balance, and bite protection up front so you know the full investment for 2 or 4 veneers.
+                  We plan whitening, gum balance, and bite protection up front, then itemize the factors that shape your veneer quote, such as material and lab quality, the number of teeth, and any prep work, and confirm the total at your consultation.
                 </p>
               </div>
               <div className="inline-flex items-center gap-2 text-sm font-semibold text-secondary">
@@ -227,7 +227,7 @@ const FrontTeethVeneers = () => {
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/" className="text-secondary hover:underline">2-front-teeth cost guide</Link>
                 <Link to="/veneers/1-tooth-veneer-los-angeles/" className="text-secondary hover:underline">Single-tooth veneer page</Link>
-                <Link to="/veneers-los-angeles/" className="text-secondary hover:underline">Veneers Los Angeles overview</Link>
+                <Link to="/veneers/" className="text-secondary hover:underline">Porcelain veneers overview</Link>
               </div>
             </div>
           </div>

@@ -25,7 +25,6 @@ const StaticSitemap = () => {
     treatments: sitemapData.filter(url => 
       [
         '/veneers',
-        '/veneers-los-angeles',
         '/veneers/front-teeth-veneers-los-angeles',
         '/veneers/2-front-teeth-veneers-cost-los-angeles',
         '/veneers/1-tooth-veneer-los-angeles',

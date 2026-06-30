@@ -38,7 +38,6 @@ const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const EditorialPolicy = lazy(() => import("@/pages/EditorialPolicy"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Veneers = lazy(() => import("@/pages/Veneers"));
-const VeneersLosAngeles = lazy(() => import("@/pages/VeneersLosAngeles"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const Invisalign = lazy(() => import("@/pages/Invisalign"));
 const InvisalignBeverlyHills = lazy(() => import("@/pages/InvisalignBeverlyHills"));
@@ -185,9 +184,6 @@ const AppRoutes = () => {
               
               <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Veneers />
-              </Suspense>} />
-              <Route path="/veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
-                <VeneersLosAngeles />
               </Suspense>} />
               <Route path="/veneers/front-teeth-veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
                 <FrontTeethVeneers />

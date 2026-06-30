@@ -382,6 +382,26 @@
       "permanent": true
     },
     {
+      "source": "/veneers-los-angeles/",
+      "destination": "/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/veneers-los-angeles",
+      "destination": "/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/choosing-veneers-for-just-one-tooth/",
+      "destination": "/veneers/1-tooth-veneer-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/choosing-veneers-for-just-one-tooth",
+      "destination": "/veneers/1-tooth-veneer-los-angeles/",
+      "permanent": true
+    },
+    {
       "source": "/front-teeth-veneers/",
       "destination": "/veneers/front-teeth-veneers-los-angeles/",
       "permanent": true

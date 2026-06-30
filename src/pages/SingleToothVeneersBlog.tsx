@@ -14,7 +14,7 @@ import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 const SingleToothVeneersBlog = () => {
   const blogPost = {
     id: '2',
-    title: "Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections",
+    title: "Single Tooth Veneers: When One Veneer Is the Right Fit",
     excerpt: "Discover how a single veneer can transform your smile when one tooth needs special attention. Learn about the process, benefits, and what makes single-tooth veneers an ideal cosmetic solution.",
     content: "single-tooth-veneers",
     author: "Dr. Alexie Aguil",
@@ -77,11 +77,11 @@ const SingleToothVeneersBlog = () => {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black leading-tight">
-              Single Tooth Veneers: Perfect Solutions for Individual Smile Imperfections
+              Single Tooth Veneers: When One Veneer Is the Right Fit
             </h1>
             
             <p className="text-xl text-gray-600 leading-relaxed">
-              When just one tooth is affecting your confidence, a single veneer can provide the perfect solution. 
+              When just one tooth is affecting your confidence, a single veneer can be a good option.
               Discover how this precision approach to cosmetic dentistry can transform your smile.
             </p>
           </div>
@@ -99,7 +99,7 @@ const SingleToothVeneersBlog = () => {
                 <User size={40} className="text-gold" />
               </div>
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
-                Transform One Tooth, Transform Your Smile
+                Matching One Tooth to Your Smile
               </h2>
               <p className="text-gray-600 text-lg">
                 Single tooth veneers offer precision cosmetic enhancement for individual imperfections
@@ -118,7 +118,7 @@ const SingleToothVeneersBlog = () => {
             
             <p className="text-lg text-gray-700 leading-relaxed">
               At Exquisite Dentistry, Dr. Alexie Aguil specializes in creating custom single tooth veneers that 
-              seamlessly blend with your natural smile, providing results that are both stunning and undetectable.
+              seamlessly blend with your natural smile, providing results that blend in naturally.
             </p>
             
             <VeneerCTA variant="inline" />
@@ -275,7 +275,7 @@ const SingleToothVeneersBlog = () => {
                   <h3 className="text-xl font-semibold mb-2">Final Placement</h3>
                   <p className="text-gray-700">
                     The veneer is carefully bonded to your tooth using advanced adhesive techniques, 
-                    then polished to perfection.
+                    then polished to a natural finish.
                   </p>
                 </div>
               </div>
@@ -336,7 +336,7 @@ const SingleToothVeneersBlog = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Maintenance Tips</h3>
                     <p className="text-gray-700 mb-4">
-                      With proper care, your single tooth veneer can last 10 to 15 years or more:
+                      With good care, a single tooth veneer can last for years:
                     </p>
                   </div>
                 </div>
@@ -354,11 +354,11 @@ const SingleToothVeneersBlog = () => {
           {/* CTA Section */}
           <section className="bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-black">
-              Ready to Transform Your Smile?
+              Considering a single tooth veneer?
             </h2>
             <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
-              If you have a single tooth that's affecting your confidence, a custom veneer might be 
-              the perfect solution. Schedule a consultation with Dr. Alexie Aguil to explore your options.
+              If you have a single tooth that's affecting your confidence, a custom veneer might be
+              a good fit. Schedule a consultation with Dr. Alexie Aguil to explore your options.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="default" size="lg" className="text-lg px-8 py-4">
@@ -367,13 +367,11 @@ const SingleToothVeneersBlog = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
-                <a 
-                  href="https://exquisiteveneersla.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <a
+                  href="/veneers/"
                   className="flex items-center justify-center"
                 >
-                  Explore Veneer Options
+                  Learn about veneers
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
