@@ -55,6 +55,7 @@ import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
+import { VENEERS_COST_FAQS } from "../src/data/veneers-cost-faqs";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
@@ -614,6 +615,18 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",
     ],
+    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+  },
+  {
+    path: "/veneers/cost-los-angeles",
+    title: "Veneers Cost in Los Angeles | Exquisite Dentistry",
+    description:
+      "What veneers cost in Los Angeles: porcelain vs composite ranges, what changes the price, financing, and insurance. Your exact cost is set at a consultation.",
+    h1: "Veneers Cost in Los Angeles",
+    paragraphs: [
+      "A plain guide to what veneers cost in Los Angeles: the factors that move the price, porcelain vs composite, insurance, and financing. Your exact cost is confirmed at a consultation.",
+    ],
+    faqItems: VENEERS_COST_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
@@ -1261,6 +1274,30 @@ const getSchemasForRoute = (route: StaticRoute) => {
       createFAQSchema(
         ZOOM_WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
         "Zoom Whitening in Los Angeles"
+      )
+    );
+  }
+
+  if (routePath === "/veneers/cost-los-angeles") {
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: "Veneers Cost in Los Angeles",
+        description:
+          "What porcelain and composite veneers cost in Los Angeles, the factors that change the price, and how treatment is planned.",
+        url: "/veneers/cost-los-angeles/",
+        procedureType: "Cosmetic Dentistry",
+        bodyLocation: "Teeth",
+        steps: [
+          { name: "Consultation", description: "Review your smile goals, examine your teeth, and discuss options." },
+          { name: "Planning", description: "Scope the plan per tooth and give a clear, written estimate." },
+          { name: "Placement", description: "Custom veneer placement with bite and esthetic refinement." }
+        ]
+      })
+    );
+    schemas.push(
+      createFAQSchema(
+        VENEERS_COST_FAQS.map(({ question, answer }) => ({ question, answer })),
+        "Veneers Cost in Los Angeles"
       )
     );
   }

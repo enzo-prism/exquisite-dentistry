@@ -57,6 +57,7 @@ const TransformationStoryPage = lazy(() => import("@/pages/TransformationStoryPa
 const FrontTeethVeneers = lazy(() => import("@/pages/FrontTeethVeneers"));
 const VeneersCostLosAngeles = lazy(() => import("@/pages/VeneersCostLosAngeles"));
 const OneToothVeneerLosAngeles = lazy(() => import("@/pages/OneToothVeneerLosAngeles"));
+const VeneersCostGuideLosAngeles = lazy(() => import("@/pages/VeneersCostGuideLosAngeles"));
 const ShareYourStory = lazy(() => import("@/pages/ShareYourStory"));
 const TeethCleaning = lazy(() => import("@/pages/TeethCleaning"));
 const RootCanal = lazy(() => import("@/pages/RootCanal"));
@@ -193,6 +194,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/veneers/1-tooth-veneer-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
                 <OneToothVeneerLosAngeles />
+              </Suspense>} />
+              <Route path="/veneers/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersCostGuideLosAngeles />
               </Suspense>} />
               <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ZoomWhitening />

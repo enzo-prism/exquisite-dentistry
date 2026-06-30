@@ -63,6 +63,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 2
           },
           {
+            title: 'Veneers Cost in Los Angeles',
+            href: '/veneers/cost-los-angeles/',
+            description: 'Porcelain vs composite ranges and what changes the price',
+            category: 'service',
+            priority: 3
+          },
+          {
             title: 'Smile Makeover (Los Angeles)',
             href: '/smile-makeover-los-angeles/',
             description: 'How we combine veneers, whitening, and Invisalign in one plan',

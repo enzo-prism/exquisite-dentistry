@@ -40,6 +40,11 @@ const VeneersCostLosAngeles = () => {
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
               If you're comparing the cost of 2 front teeth veneers, the key is not just price. It's natural esthetics, long-term durability, and whether 2 veneers are the right scope for your smile.
             </p>
+            <p className="mt-4 text-base text-muted-foreground max-w-3xl">
+              This page focuses on two front teeth specifically. For general veneer pricing across the whole smile &mdash;
+              porcelain vs composite ranges and what changes the price &mdash; see our{' '}
+              <Link to="/veneers/cost-los-angeles/" className="text-secondary underline-offset-4 hover:underline">veneers cost in Los Angeles guide</Link>.
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild>
                 <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_cost_page_book_click', 'Book a Veneers Consultation')}>
@@ -75,6 +80,7 @@ const VeneersCostLosAngeles = () => {
             <div>
               <h2 className="text-2xl font-semibold text-foreground mb-3">Related pages</h2>
               <div className="flex flex-col gap-2 text-secondary">
+                <Link to="/veneers/cost-los-angeles/">Veneers Cost in Los Angeles (full guide)</Link>
                 <Link to="/veneers/1-tooth-veneer-los-angeles/">Single-Tooth Veneer in Los Angeles</Link>
                 <Link to="/veneers/front-teeth-veneers-los-angeles/">Front Teeth Veneers in Los Angeles</Link>
                 <Link to="/veneers/">Porcelain Veneers Los Angeles</Link>
