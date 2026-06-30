@@ -2,13 +2,13 @@
 
 ## Project Structure & Module Organization
 - `src/` holds all client code: route components in `pages`, shared UI (shadcn) in `components`, hooks in `hooks`, and helpers/config in `utils`, `constants`, `data`, and `lib/utils.ts`. Prefer the `@/...` alias from `tsconfig.json`.
-- `public/` serves static assets. Keep source uploads in `public/lovable-uploads` and generated WebP output in `public/optimized`.
+- `public/` serves static assets. Keep `public/lovable-uploads` to referenced image originals only (the build's `scripts/validate-images.js` fails on a missing reference; don't bulk-add raw uploads); generated WebP output in `public/optimized` is produced by the build and gitignored.
 - `scripts/optimize-images.js` powers the Sharp-based asset pipeline used by `npm run build:prod`; treat `dist/` as disposable build output.
 
 ## Build, Test, and Development Commands
 - `npm install` (Node 18+) bootstraps dependencies.
 - `npm run dev` launches Vite on `http://localhost:5173`.
-- `npm run build` bundles for production; `npm run build:prod` pre-optimizes images and mirrors the Netlify deploy step.
+- `npm run build` bundles for production; `npm run build:prod` pre-optimizes images and mirrors the production (Vercel) deploy step.
 - `npm run preview` serves the built bundle locally for smoke checks.
 - `npm run lint` runs the flat ESLint config (TypeScript + React Hooks). Append `-- --fix` for autofixes.
 - `node test-browser.js` executes the Puppeteer smoke test against a running server; install `puppeteer` locally if prompted.

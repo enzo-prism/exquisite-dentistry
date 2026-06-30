@@ -5,7 +5,7 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 ## Architecture & Routing
 - Frontend is Vite + React Router (lazy-loaded routes in `src/App.tsx`). New pages must be added there or they will 404.
 - Blog posts are data-driven from `src/data/blogPosts.ts`; some posts render custom components via the `content` key (`front-4-veneers`, `single-tooth-veneers`).
-- The veneers hub for 2–4 teeth lives at `/veneers/front-teeth-veneers-los-angeles` (`src/pages/FrontTeethVeneers.tsx`). Internal linking widgets prefer this URL over legacy cost blogs.
+- `/veneers/` is the single veneers pillar. Children: `/veneers/cost-los-angeles` (cost guide, `VeneersCostGuideLosAngeles.tsx`), `/veneers/front-teeth-veneers-los-angeles` (2–4 teeth hub, `FrontTeethVeneers.tsx`), `/veneers/2-front-teeth-veneers-cost-los-angeles` (long-tail child that links up to the hub), and `/veneers/1-tooth-veneer-los-angeles`. `/veneers-los-angeles` is retired (page deleted, 301 → `/veneers/`). Internal linking widgets prefer these URLs over legacy cost blogs, and no in-repo link should point at the second domain `exquisiteveneersla.com`.
 
 ## Redirects & Fallbacks
 - Production redirects live in `vercel.json`; this is the source of truth for the Vercel-hosted site. Keep `scripts/redirect-tests` (legacy list + canonical map) aligned whenever adding or changing mappings.
@@ -32,4 +32,5 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 - Legacy front-teeth cost blogs are unpublished and 301 to the new hub. Do not republish without revisiting redirects and sitemap.
 - Internal linking (`src/components/InternalLinkingWidget.tsx`) is context-aware; update priorities when adding new veneers content to keep the hub surfaced.
 - Cherry financing copy is centralized in `src/constants/cherry.ts`; follow `docs/cherry-credit-disclosure.md` and avoid unqualified credit-check wording outside the approved "no hard credit check" badge.
+- Veneer **market** cost ranges live in `src/constants/veneerCosts.ts` under the same `VERIFY-BEFORE-PUBLIC` convention as Cherry. `/veneers/cost-los-angeles` hides dollar figures ("confirmed at your consultation") until the practice signs off and `VENEER_COST_VERIFIED = true`. Open follow-ups (cost verification, the `exquisiteveneersla.com` domain 301, the dangling `dc09fcc1` og:image, the "Exquisite Dental" blog typo) are tracked in `CLAUDE.md` → Open follow-ups.
 - Practice address: wherever `ADDRESS` (`src/constants/contact.ts`) is shown in the UI, render `<OpenInMapsButton source="…" />` beside it (opens `GOOGLE_MAPS_SHORT_URL` in a new tab, `target="_blank" rel="noopener noreferrer"`, with `trackContactMethodClick({ method: 'directions' })`). `Footer` and `PracticeLocationSection` already have their own maps buttons. Skip JSON-LD / `*StructuredData` / schema occurrences — those are not visible UI.
