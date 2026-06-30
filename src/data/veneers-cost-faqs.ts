@@ -1,4 +1,12 @@
-import { VENEER_COSTS } from '@/constants/veneerCosts';
+import {
+  VENEER_COSTS,
+  porcelainMarketClause,
+  faqLaCompositeClause,
+  faqOutOfPocketClause,
+  faqSinglePorcelainClause,
+  faqSingleCompositeClause,
+  faqCheaperCompositeClause,
+} from '@/constants/veneerCosts';
 
 // Shared FAQ source for the Veneers Cost guide (/veneers/cost-los-angeles/).
 // Imported by the page (visible FAQ + client-side FAQPage schema) AND by
@@ -15,11 +23,11 @@ export interface VeneerCostFaq {
 export const VENEERS_COST_FAQS: VeneerCostFaq[] = [
   {
     question: 'How much do veneers cost in Los Angeles?',
-    answer: `Porcelain veneers in Los Angeles commonly range from about ${VENEER_COSTS.porcelainPerTooth} per tooth, and tend toward the higher end in the Beverly Hills and West Hollywood area. Composite veneers usually run about ${VENEER_COSTS.compositePerTooth} per tooth. These are general market ranges, and your exact cost is confirmed at a consultation.`,
+    answer: `Porcelain veneers in Los Angeles ${porcelainMarketClause}, and tend toward the higher end in the Beverly Hills and West Hollywood area. Composite veneers usually ${faqLaCompositeClause} your exact cost is confirmed at a consultation.`,
   },
   {
     question: 'How much do veneers cost without insurance?',
-    answer: `Because veneers are usually cosmetic, most people pay out of pocket, in the same market ranges of about ${VENEER_COSTS.porcelainPerTooth} per tooth for porcelain. Monthly payment options through Cherry are available if you would rather spread the cost over time.`,
+    answer: `Because veneers are usually cosmetic, most people pay out of pocket, ${faqOutOfPocketClause}. Monthly payment options through Cherry are available if you would rather spread the cost over time.`,
   },
   {
     question: 'Are veneers covered by insurance?',
@@ -27,7 +35,7 @@ export const VENEERS_COST_FAQS: VeneerCostFaq[] = [
   },
   {
     question: 'How much does one veneer cost?',
-    answer: `A single porcelain veneer typically falls in the range of about ${VENEER_COSTS.porcelainPerTooth}, depending on the lab, the prep, and any matching work. A single composite veneer usually costs less, around ${VENEER_COSTS.compositePerTooth}.`,
+    answer: `A single porcelain veneer ${faqSinglePorcelainClause}, depending on the lab, the prep, and any matching work. A single composite veneer ${faqSingleCompositeClause}.`,
   },
   {
     question: 'How much is a full set of veneers?',
@@ -39,7 +47,7 @@ export const VENEERS_COST_FAQS: VeneerCostFaq[] = [
   },
   {
     question: 'Are composite veneers cheaper than porcelain?',
-    answer: `Yes. Composite veneers usually cost less, around ${VENEER_COSTS.compositePerTooth} per tooth, and are often done in one visit. The trade-off is that they do not last as long as porcelain and are more prone to staining over time.`,
+    answer: `Yes. Composite veneers usually ${faqCheaperCompositeClause}, and are often done in one visit. The trade-off is that they do not last as long as porcelain and are more prone to staining over time.`,
   },
   {
     question: 'How long do veneers last?',

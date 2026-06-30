@@ -9,7 +9,13 @@ import { Button } from '@/components/ui/button';
 import PhoneLink from '@/components/PhoneLink';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
-import { VENEER_COSTS } from '@/constants/veneerCosts';
+import {
+  VENEER_COSTS,
+  porcelainMarketClause,
+  heroCompositeClause,
+  cardPorcelainLine,
+  cardCompositeLine,
+} from '@/constants/veneerCosts';
 import { VENEERS_COST_FAQS } from '@/data/veneers-cost-faqs';
 import { trackCTAClick } from '@/utils/googleAdsTracking';
 
@@ -54,11 +60,9 @@ const VeneersCostGuideLosAngeles = () => {
             <p className="uppercase tracking-[0.2em] text-secondary font-semibold text-sm">Veneers Cost Guide</p>
             <h1 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">Veneers Cost in Los Angeles</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-              In Los Angeles, porcelain veneers commonly range from about {VENEER_COSTS.porcelainPerTooth} per tooth,
-              with the higher end more typical in the Beverly Hills and West Hollywood area. Composite veneers usually
-              run less, in the range of about {VENEER_COSTS.compositePerTooth} per tooth. These are general market
-              estimates, not our price list &mdash; your exact cost depends on your teeth and your plan, and is confirmed
-              at a consultation.
+              In Los Angeles, porcelain veneers {porcelainMarketClause}, with the higher end more typical in the
+              Beverly Hills and West Hollywood area. Composite veneers usually {heroCompositeClause} &mdash; your exact
+              cost depends on your teeth and your plan, and is confirmed at a consultation.
             </p>
             <p className="mt-4 text-base text-muted-foreground max-w-3xl">
               New to veneers? Start with our overview of{' '}
@@ -134,7 +138,7 @@ const VeneersCostGuideLosAngeles = () => {
               <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
                 <h3 className="text-xl font-semibold text-foreground mb-3">Porcelain veneers</h3>
                 <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                  <li>Higher cost, about {VENEER_COSTS.porcelainPerTooth} per tooth.</li>
+                  <li>{cardPorcelainLine}</li>
                   <li>Longer-lasting and stain-resistant.</li>
                   <li>Made in a lab over more than one visit.</li>
                   <li>If one chips, it is usually remade rather than patched.</li>
@@ -143,7 +147,7 @@ const VeneersCostGuideLosAngeles = () => {
               <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
                 <h3 className="text-xl font-semibold text-foreground mb-3">Composite veneers</h3>
                 <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                  <li>Lower cost, about {VENEER_COSTS.compositePerTooth} per tooth.</li>
+                  <li>{cardCompositeLine}</li>
                   <li>Often done in a single visit.</li>
                   <li>More easily repaired or touched up.</li>
                   <li>Shorter lifespan, and more prone to staining over time.</li>
