@@ -12,6 +12,7 @@ interface ClientReviewCarouselProps {
 const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, variant = 'full' }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const [activeCard, setActiveCard] = useState(0);
 
   const scroll = (direction: 'prev' | 'next') => {
     const container = scrollRef.current;
@@ -19,6 +20,16 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
 
     const scrollAmount = direction === 'next' ? container.clientWidth * 0.9 : -container.clientWidth * 0.9;
     container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
+
+  const handleTrackScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const el = event.currentTarget;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) {
+      setActiveCard(0);
+      return;
+    }
+    setActiveCard(Math.round((el.scrollLeft / maxScroll) * (reviews.length - 1)));
   };
 
   if (variant === 'compact') {
@@ -35,7 +46,7 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
     return (
       <div className="mt-10 mx-auto max-w-xl rounded-2xl border border-black/5 bg-white/90 p-6 shadow-[0_25px_45px_-30px_rgba(15,23,42,0.25)]">
         <div className="flex flex-col gap-1 text-center">
-          <span className="text-xs uppercase tracking-[0.4em] text-gold">5-STAR PROOF</span>
+          <span className="text-xs uppercase tracking-[0.4em] text-gold-dark">5-STAR PROOF</span>
         </div>
         <div className="mt-6 flex flex-col gap-4 text-left">
           <div className="flex items-center gap-3">
@@ -98,7 +109,7 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
   return (
     <div className="mt-12 rounded-3xl border border-black/5 bg-white/95 shadow-[0_45px_90px_-60px_rgba(15,23,42,0.5)] p-6 sm:p-8 md:p-10">
       <div className="flex flex-col gap-4 text-center max-w-3xl mx-auto">
-        <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-gold">
+        <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-gold-dark">
           5-STAR PROOF
         </span>
         <h3 className="text-2xl sm:text-3xl font-semibold text-black">Why Angelenos Stay With Us Year After Year</h3>
@@ -132,7 +143,11 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
           </div>
         </div>
 
-        <div ref={scrollRef} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+        <div
+          ref={scrollRef}
+          onScroll={handleTrackScroll}
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+        >
           {reviews.map((review) => (
             <article
               key={`${review.name}-${review.quote}`}
@@ -156,6 +171,25 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
             </article>
           ))}
         </div>
+
+        {/* Mobile swipe affordance: the prev/next arrows are hidden below sm, so
+            surface dot indicators + a hint that more reviews are swipeable. */}
+        {reviews.length > 1 && (
+          <div className="mt-2 flex flex-col items-center gap-2 sm:hidden">
+            <div className="flex items-center gap-1.5">
+              {reviews.map((_, dotIndex) => (
+                <span
+                  key={`review-dot-${dotIndex}`}
+                  className={cn(
+                    'h-1.5 rounded-full bg-black/15 transition-all duration-300',
+                    activeCard === dotIndex ? 'w-5 bg-gold-dark' : 'w-1.5'
+                  )}
+                />
+              ))}
+            </div>
+            <span className="text-[11px] uppercase tracking-[0.28em] text-black/40">Swipe for more</span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -32,7 +32,9 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   secondaryCta,
   isMobile = false
 }) => {
-  const buttonSize = isMobile ? "default" : "lg";
+  // Always use the lg size (h-11 = 44px) so the primary CTA meets the 44px
+  // touch-target guideline on mobile, not the 40px "default".
+  const buttonSize = "lg";
   const containerClass = isMobile ? "flex flex-col sm:flex-row gap-4" : "flex flex-wrap items-center gap-4";
   const primaryButtonClass = isMobile ? "w-full sm:w-auto" : "";
 

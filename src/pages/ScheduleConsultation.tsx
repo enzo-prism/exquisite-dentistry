@@ -169,7 +169,7 @@ const ScheduleConsultation = () => {
                   <iframe
                     title="Online scheduling"
                     src={SCHEDULING_URL}
-                    className="w-full h-[900px]"
+                    className="block w-full h-[calc(100svh-8rem)] min-h-[560px] md:h-[900px]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />

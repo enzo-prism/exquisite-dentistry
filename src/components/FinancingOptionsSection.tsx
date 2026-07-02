@@ -179,7 +179,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                     </p>
                     <Link
                       to={INSURANCE_PATH}
-                      className="mt-3 inline-flex text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
+                      className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-secondary underline underline-offset-4 hover:no-underline"
                     >
                       Check insurance accepted
                     </Link>

@@ -59,6 +59,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     longitude: -118.370092
   },
   hasMap: GOOGLE_MAPS_URL,
+  priceRange: '$$$',
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',

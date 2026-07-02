@@ -5,6 +5,8 @@ import { locationPageConfigs } from "../src/data/locationPages";
 import { getBlogPostIsoDate, getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata, ROUTE_METADATA } from "../src/constants/metadata";
+import { VIDEO_HERO_POSTERS_BY_ROUTE } from "../src/components/video-hero/route-posters";
+import { generateResponsiveImageUrls } from "../src/utils/imageOptimization";
 import {
   MASTER_BUSINESS_ENTITY,
   MASTER_DOCTOR_ENTITY,
@@ -154,6 +156,12 @@ const EVENT_LINKS: StaticLink[] = [
 ];
 
 const LOCATION_LINKS: StaticLink[] = [
+  { label: "Miracle Mile Dentist", href: "/miracle-mile-dentist" },
+  { label: "Larchmont Dentist", href: "/larchmont-dentist" },
+  { label: "Hancock Park Dentist", href: "/hancock-park-dentist" },
+  { label: "Mid-Wilshire Dentist", href: "/mid-wilshire-dentist" },
+  { label: "Koreatown Dentist", href: "/koreatown-dentist" },
+  { label: "Fairfax District Dentist", href: "/fairfax-district-dentist" },
   { label: "90048 Dentist", href: "/90048-dentist" },
   { label: "Bel Air Dentist", href: "/bel-air-dentist" },
   { label: "Melrose Dentist", href: "/melrose-dentist" },
@@ -652,6 +660,78 @@ export const manualPages: StaticRoute[] = [
     links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
+    path: "/dental-implants/cost-los-angeles",
+    title: "Dental Implants Cost in Los Angeles | Exquisite Dentistry",
+    description:
+      "What drives dental implant cost in Los Angeles: number of teeth, foundation work, materials, insurance, and financing. Your exact quote is set at a consultation.",
+    h1: "Dental Implants Cost in Los Angeles",
+    ogImage: "/lovable-uploads/restorative-dentistry.webp",
+    paragraphs: [
+      "A plain guide to what shapes dental implant cost in Los Angeles — the number of teeth, any foundation work, materials, insurance, and financing. Your exact quote is confirmed at a consultation.",
+    ],
+    links: [
+      { label: "Dental Implants", href: "/dental-implants" },
+      { label: "Payment Plans", href: "/payment-plans" },
+      { label: "Insurance", href: "/insurance" },
+      ...CORE_SERVICES_LINKS,
+      ...defaultNavLinks,
+    ],
+  },
+  {
+    path: "/invisalign/cost-los-angeles",
+    title: "Invisalign Cost in Los Angeles | Exquisite Dentistry",
+    description:
+      "What drives Invisalign cost in Los Angeles: case complexity, treatment length, refinements, retainers, insurance benefits, and monthly financing options.",
+    h1: "Invisalign Cost in Los Angeles",
+    ogImage: "/lovable-uploads/specialty-services.webp",
+    paragraphs: [
+      "A plain guide to what shapes Invisalign cost in Los Angeles — case complexity, treatment length, refinements, retainers, insurance, and monthly financing. Your exact cost is confirmed at a consultation.",
+    ],
+    links: [
+      { label: "Invisalign", href: "/invisalign" },
+      { label: "Payment Plans", href: "/payment-plans" },
+      { label: "Insurance", href: "/insurance" },
+      ...CORE_SERVICES_LINKS,
+      ...defaultNavLinks,
+    ],
+  },
+  {
+    path: "/teeth-whitening/cost-los-angeles",
+    title: "Teeth Whitening Cost in Los Angeles | Exquisite Dentistry",
+    description:
+      "What professional teeth whitening costs depend on in Los Angeles: in-office vs take-home options, sensitivity care, maintenance, insurance, and financing.",
+    h1: "Teeth Whitening Cost in Los Angeles",
+    ogImage: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.webp",
+    paragraphs: [
+      "A plain guide to what professional teeth whitening depends on in Los Angeles — in-office vs take-home options, sensitivity care, maintenance, insurance, and financing. Your exact cost is confirmed at a consultation.",
+    ],
+    links: [
+      { label: "Teeth Whitening", href: "/teeth-whitening" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      { label: "Payment Plans", href: "/payment-plans" },
+      ...CORE_SERVICES_LINKS,
+      ...defaultNavLinks,
+    ],
+  },
+  {
+    path: "/same-day-dentist",
+    title: "Same-Day Dentist in Los Angeles | Exquisite Dentistry",
+    description:
+      "Same-day dental care in Los Angeles: urgent exams, pain relief, in-office whitening, and honest guidance on what takes more than one visit. Call to be seen.",
+    h1: "Same-Day Dentist in Los Angeles",
+    ogImage: "/lovable-uploads/client-experience.webp",
+    paragraphs: [
+      "Honest guidance on same-day dental care in Los Angeles — what can often be handled in one visit (urgent exams, pain relief, in-office whitening) and what takes more than one. Call to see if we can see you today.",
+    ],
+    links: [
+      { label: "Emergency Dentist", href: "/emergency-dentist" },
+      { label: "Root Canal", href: "/root-canal" },
+      { label: "Zoom Whitening", href: "/zoom-whitening" },
+      ...CORE_SERVICES_LINKS,
+      ...defaultNavLinks,
+    ],
+  },
+  {
     path: "/itero-scanner",
     title: "iTero Scanner Los Angeles | Digital Dental Impressions | Exquisite",
     description:
@@ -988,6 +1068,37 @@ const removeHeadLinkByRel = (html: string, rel: string) => {
   return html.replace(regex, "");
 };
 
+// Routes that render <VideoHero> at the top: the poster is the LCP element, but
+// it only paints after the JS boots. Emit a route-correct <head> preload that
+// matches exactly what OptimizedImage renders (avif source first, then webp,
+// then the raw fallback) so the browser fetches it during initial HTML parse.
+const mimeByExtension: Record<string, string> = {
+  webp: "image/webp",
+  png: "image/png",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  avif: "image/avif",
+};
+
+const buildHeroPosterPreload = (routePath: string): string | null => {
+  const poster =
+    VIDEO_HERO_POSTERS_BY_ROUTE[routePath as keyof typeof VIDEO_HERO_POSTERS_BY_ROUTE];
+  if (!poster) return null;
+
+  const urls = generateResponsiveImageUrls(poster);
+
+  if (urls.avif) {
+    return `  <link rel="preload" as="image" type="image/avif" imagesrcset="${escapeHtml(urls.avif)}" imagesizes="100vw" fetchpriority="high" />`;
+  }
+  if (urls.webp) {
+    return `  <link rel="preload" as="image" type="image/webp" imagesrcset="${escapeHtml(urls.webp)}" imagesizes="100vw" fetchpriority="high" />`;
+  }
+
+  const ext = poster.split(".").pop()?.toLowerCase() ?? "";
+  const type = mimeByExtension[ext];
+  return `  <link rel="preload" as="image" href="${escapeHtml(poster)}"${type ? ` type="${type}"` : ""} fetchpriority="high" />`;
+};
+
 const injectSeo = (template: string, route: StaticRoute) => {
   const fullTitle = buildSeoTitle(route.title);
   const metaDescription = toMeta(route.description);
@@ -1040,7 +1151,10 @@ const injectSeo = (template: string, route: StaticRoute) => {
     `  <meta name="twitter:title" content="${escapeHtml(fullTitle)}" data-rh="true" />`,
     `  <meta name="twitter:description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
     `  <meta name="twitter:image" content="${escapeHtml(absoluteOgImage)}" data-rh="true" />`,
-  ].join("\n");
+    buildHeroPosterPreload(route.path),
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   html = html.replace(/<\/head>/i, `${injectedHeadTags}\n</head>`);
   return html;
@@ -1661,6 +1775,9 @@ export const buildRoutes = (): StaticRoute[] => {
       description: config.seo.description,
       h1: config.hero.heading,
       paragraphs: [config.hero.subheading],
+      // Location pages share the practice smile image rather than the doctor
+      // headshot banner — more inviting and topical for a neighborhood page.
+      ogImage: "/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
       links: uniqueLinks([...config.relatedServices, ...locationLinks, ...defaultNavLinks]),
     });
   });

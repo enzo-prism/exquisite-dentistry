@@ -163,7 +163,8 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       `Contact Exquisite Dentistry on Wilshire Blvd in Los Angeles near Beverly Hills. Call ${PHONE_NUMBER_DISPLAY} for concierge care, directions, and scheduling.`,
     keywords:
       'contact dentist Los Angeles, dental appointment booking, Exquisite Dentistry location, cosmetic dentist consultation, dental office Wilshire Blvd',
-    ogImage: DEFAULT_OG_IMAGE
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/cc21ce69-7e31-4fa0-851a-4ea17ff473a1.png'
   },
   '/schedule-consultation': {
     title: 'Schedule Consultation | Exquisite Dentistry',
@@ -171,7 +172,8 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       `Book a veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles, or call ${PHONE_NUMBER_DISPLAY}.`,
     keywords:
       'schedule consultation, book dentist appointment, porcelain veneers consultation, dental implants consultation, Beverly Hills dentist, Los Angeles cosmetic dentist',
-    ogImage: DEFAULT_OG_IMAGE
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/cc21ce69-7e31-4fa0-851a-4ea17ff473a1.png'
   },
   '/payment-plans': {
     title: 'Dental Payment Plans Los Angeles | Cherry Financing',
@@ -187,7 +189,8 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Exquisite Dentistry works with PPO dental insurance plans and PPO network relationships. Contact our Los Angeles team to verify benefits before treatment.',
     keywords:
       'PPO dental insurance Los Angeles, dental insurance accepted Los Angeles, PPO dentist Los Angeles, Guardian PPO dentist Los Angeles, Guardian Advantage PPO dentist, Zealous Network dental access, MetLife PPO benefits verification, verify dental insurance benefits, Cherry financing dentist',
-    ogImage: DEFAULT_OG_IMAGE
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/preventive-care.webp'
   },
   '/testimonials': {
     title:
@@ -206,7 +209,8 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'View before & after smile transformations. Real patient results from porcelain veneers, whitening, and full makeovers in LA.',
     keywords:
       'smile gallery Los Angeles, before after dental photos, smile transformation results, porcelain veneers before after, cosmetic dentistry results, patient transformations',
-    ogImage: DEFAULT_OG_IMAGE
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/442f1b06-f170-43a9-ab81-6c7d7e27dda8.webp'
   },
   '/faqs': {
     title: 'Dental FAQs Los Angeles | Exquisite Dentistry',

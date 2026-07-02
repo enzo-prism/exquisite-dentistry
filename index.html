@@ -129,10 +129,11 @@
       }
     </style>
     
-    <!-- Preload critical images -->
+    <!-- Preload critical images. The logo is the same across all pages; the LCP
+         hero poster is preloaded per-route by scripts/prerender-static.ts so it
+         always matches the page being served. -->
     <link rel="preload" href="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp 120w, /optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp 200w, /optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop-2x.webp 240w" imagesizes="(max-width: 768px) 120px, 200px">
-    <link rel="preload" href="/lovable-uploads/96c9493a-c97f-4076-b224-591c2e9c50e6.png" as="image" type="image/png" fetchpriority="high">
-    
+
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html {

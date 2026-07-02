@@ -20,6 +20,12 @@ const MIN_WORD_COUNT = 150;
 const isHttpUrl = (href: string) => /^https?:\/\//i.test(href);
 
 const LOCATION_LINKS = [
+  { label: "Miracle Mile Dentist", href: "/miracle-mile-dentist/" },
+  { label: "Larchmont Dentist", href: "/larchmont-dentist/" },
+  { label: "Hancock Park Dentist", href: "/hancock-park-dentist/" },
+  { label: "Mid-Wilshire Dentist", href: "/mid-wilshire-dentist/" },
+  { label: "Koreatown Dentist", href: "/koreatown-dentist/" },
+  { label: "Fairfax District Dentist", href: "/fairfax-district-dentist/" },
   { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist/" },
   { label: "West Hollywood Dentist", href: "/west-hollywood-dentist/" },
   { label: "Culver City Dentist", href: "/culver-city-dentist/" },

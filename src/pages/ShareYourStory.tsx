@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Gift, Star, Upload, FileText, Clock, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -9,6 +8,40 @@ import VideoHero from '@/components/VideoHero';
 import ConversionButton from '@/components/ConversionButton';
 import ShareYourStoryStructuredData from '@/components/ShareYourStoryStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
+import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
+
+interface RevealSectionProps {
+  className?: string;
+  id?: string;
+  delayClass?: string;
+  children: React.ReactNode;
+}
+
+const RevealSection: React.FC<RevealSectionProps> = ({ className, id, delayClass, children }) => {
+  const { ref, animationClass } = useRevealOnScroll({ rootMargin: '-50px', delayClass });
+  return (
+    <section
+      id={id}
+      ref={ref as unknown as React.Ref<HTMLElement>}
+      className={`${className ?? ''} ${animationClass}`}
+    >
+      {children}
+    </section>
+  );
+};
+
+const RevealItem: React.FC<{ className?: string; delayClass?: string; children: React.ReactNode }> = ({
+  className,
+  delayClass,
+  children,
+}) => {
+  const { ref, animationClass } = useRevealOnScroll({ delayClass });
+  return (
+    <div ref={ref as React.Ref<HTMLDivElement>} className={`${className ?? ''} ${animationClass}`}>
+      {children}
+    </div>
+  );
+};
 
 const ShareYourStory = () => {
   const heroProps = {
@@ -63,13 +96,7 @@ const ShareYourStory = () => {
       <VideoHero {...heroProps} />
 
       {/* How It Works Section */}
-      <motion.section 
-        className="py-16 md:py-24 bg-white"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+      <RevealSection className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="outline" className="mb-6">
             Patient Stories Program
@@ -111,17 +138,10 @@ const ShareYourStory = () => {
             </div>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
       {/* Choose Your Path Section */}
-      <motion.section 
-        id="choose-path"
-        className="py-16 md:py-24 bg-gray-50"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-      >
+      <RevealSection id="choose-path" className="py-16 md:py-24 bg-gray-50" delayClass="reveal-delay-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-6">
@@ -227,16 +247,10 @@ const ShareYourStory = () => {
             </Card>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
       {/* 3-Step Process Section */}
-      <motion.section 
-        className="py-16 md:py-24 bg-white"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-      >
+      <RevealSection className="py-16 md:py-24 bg-white" delayClass="reveal-delay-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-6">
@@ -273,13 +287,10 @@ const ShareYourStory = () => {
                 icon: Gift
               }
             ].map((item, index) => (
-              <motion.div
+              <RevealItem
                 key={index}
                 className="flex items-start space-x-6"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                delayClass={['', 'reveal-delay-200', 'reveal-delay-400'][index]}
               >
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -294,20 +305,14 @@ const ShareYourStory = () => {
                   </div>
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
                 </div>
-              </motion.div>
+              </RevealItem>
             ))}
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
 
       {/* FAQ Section */}
-      <motion.section 
-        className="py-16 md:py-24 bg-gray-50"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-      >
+      <RevealSection className="py-16 md:py-24 bg-gray-50" delayClass="reveal-delay-400">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-6">
@@ -365,7 +370,7 @@ const ShareYourStory = () => {
             </ConversionButton>
           </div>
         </div>
-      </motion.section>
+      </RevealSection>
     </>
   );
 };

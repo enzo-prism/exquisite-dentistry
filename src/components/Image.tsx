@@ -32,21 +32,6 @@ const LOGO_SOURCES = {
   }
 };
 
-// WebP detection
-let webpSupported: boolean | null = null;
-const checkWebPSupport = (): Promise<boolean> => {
-  if (webpSupported !== null) return Promise.resolve(webpSupported);
-  
-  return new Promise((resolve) => {
-    const webP = new Image();
-    webP.onload = webP.onerror = () => {
-      webpSupported = webP.height === 2;
-      resolve(webpSupported);
-    };
-    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-  });
-};
-
 const ImageComponent: React.FC<ImageProps> = ({
   src,
   alt,
@@ -64,22 +49,6 @@ const ImageComponent: React.FC<ImageProps> = ({
   onError,
   ...props
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(priority);
-  const [error, setError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState('');
-  const [fallbackAttempt, setFallbackAttempt] = useState(0);
-  const isMobile = useIsMobile();
-  const imgRef = useRef<HTMLImageElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Ensure fill images skip lazy observer and render immediately
-  useEffect(() => {
-    if (fill && !isVisible) {
-      setIsVisible(true);
-    }
-  }, [fill, isVisible]);
-
   // URL encode image paths to handle special characters
   const encodeImagePath = (path: string): string => {
     const parts = path.split('/');
@@ -88,48 +57,39 @@ const ImageComponent: React.FC<ImageProps> = ({
     return parts.slice(0, -1).join('/') + '/' + encodedFilename;
   };
 
-  // Generate sources based on image type
-  const generateSources = async () => {
-    if (logoType && responsive) {
-      const logoConfig = LOGO_SOURCES[logoType];
-      const deviceConfig = isMobile ? logoConfig.mobile : logoConfig.desktop;
-      const supportsWebP = await checkWebPSupport();
-      return {
-        primary: supportsWebP ? deviceConfig.webp : deviceConfig.png,
-        fallback: deviceConfig.png,
-        dimensions: { width: deviceConfig.width, height: deviceConfig.height }
-      };
-    }
-
-    // Regular image - try WebP first if supported
-    const supportsWebP = await checkWebPSupport();
+  // Resolve sources synchronously. WebP is universally supported by every
+  // browser we target, so we optimistically serve it (with an error-fallback to
+  // the original) instead of gating the <img src> behind an async support probe
+  // — that async gate previously left priority/LCP images with an empty src
+  // until a Promise resolved, delaying paint and defeating the preload scanner.
+  const generateSources = () => {
     const encodedSrc = encodeImagePath(src);
-    
-    if (supportsWebP && !src.includes('.webp')) {
+
+    if (!src.includes('.webp')) {
       const webpSrc = encodedSrc.replace(/\.(png|jpg|jpeg)$/i, '.webp');
-      return {
-        primary: webpSrc,
-        fallback: encodedSrc,
-        dimensions: { width, height }
-      };
+      return { primary: webpSrc, fallback: encodedSrc };
     }
 
-    return {
-      primary: encodedSrc,
-      fallback: encodedSrc,
-      dimensions: { width, height }
-    };
+    return { primary: encodedSrc, fallback: encodedSrc };
   };
 
-  // Initialize source
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(priority || fill);
+  const [error, setError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(() => generateSources().primary);
+  const [fallbackAttempt, setFallbackAttempt] = useState(0);
+  const isMobile = useIsMobile();
+  const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Re-resolve when the source changes (keeps priority images painting immediately).
   useEffect(() => {
-    generateSources().then(sources => {
-      setCurrentSrc(sources.primary);
-      setIsLoaded(false);
-      setError(false);
-      setFallbackAttempt(0);
-    });
-  }, [src, logoType, responsive, isMobile]);
+    setCurrentSrc(generateSources().primary);
+    setIsLoaded(false);
+    setError(false);
+    setFallbackAttempt(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
 
   // Intersection observer for lazy loading
   useEffect(() => {
@@ -160,10 +120,10 @@ const ImageComponent: React.FC<ImageProps> = ({
     onLoad?.(event);
   };
 
-  const handleError = async () => {
+  const handleError = () => {
     if (fallbackAttempt === 0) {
-      // Try fallback source
-      const sources = await generateSources();
+      // Try fallback source (original format if the optimistic .webp 404s)
+      const sources = generateSources();
       if (sources.fallback !== currentSrc) {
         setCurrentSrc(sources.fallback);
         setFallbackAttempt(1);
@@ -279,7 +239,7 @@ const ImageComponent: React.FC<ImageProps> = ({
             onError={handleError}
             className={cn(
               'absolute inset-0 w-full h-full transition-opacity duration-300 gpu-accelerated',
-              isLoaded ? 'opacity-100' : 'opacity-0',
+              isLoaded || priority ? 'opacity-100' : 'opacity-0',
               className
             )}
             style={{ 
@@ -328,7 +288,7 @@ const ImageComponent: React.FC<ImageProps> = ({
           onError={handleError}
           className={cn(
             'transition-opacity duration-300 gpu-accelerated image-fade-in',
-            isLoaded ? 'opacity-100' : 'opacity-0'
+            isLoaded || priority ? 'opacity-100' : 'opacity-0'
           )}
           style={{ 
             objectFit, 

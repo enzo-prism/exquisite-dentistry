@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import { MotionConfig } from "framer-motion";
 import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
 import { PerformanceProvider } from "@/hooks/use-performance-monitor";
@@ -13,6 +12,7 @@ import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 
 import Navbar from "@/components/Navbar";
+import GlobalMobileFab from "@/components/mobile/GlobalMobileFab";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
@@ -73,6 +73,16 @@ const BelAirDentist = lazy(() => import("@/pages/BelAirDentist"));
 const Zip90048Dentist = lazy(() => import("@/pages/Zip90048Dentist"));
 const MelroseDentist = lazy(() => import("@/pages/MelroseDentist"));
 const WestwoodDentist = lazy(() => import("@/pages/WestwoodDentist"));
+const MiracleMileDentist = lazy(() => import("@/pages/MiracleMileDentist"));
+const LarchmontDentist = lazy(() => import("@/pages/LarchmontDentist"));
+const HancockParkDentist = lazy(() => import("@/pages/HancockParkDentist"));
+const MidWilshireDentist = lazy(() => import("@/pages/MidWilshireDentist"));
+const KoreatownDentist = lazy(() => import("@/pages/KoreatownDentist"));
+const FairfaxDistrictDentist = lazy(() => import("@/pages/FairfaxDistrictDentist"));
+const DentalImplantsCostLosAngeles = lazy(() => import("@/pages/DentalImplantsCostLosAngeles"));
+const InvisalignCostLosAngeles = lazy(() => import("@/pages/InvisalignCostLosAngeles"));
+const TeethWhiteningCostLosAngeles = lazy(() => import("@/pages/TeethWhiteningCostLosAngeles"));
+const SameDayDentist = lazy(() => import("@/pages/SameDayDentist"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -116,6 +126,7 @@ const AppRoutes = () => {
       {!isSitemapPage && <ScrollProgress />}
       {!isSitemapPage && <ScrollToTop />}
       {!isSitemapPage && <Navbar />}
+      {!isSitemapPage && <GlobalMobileFab />}
       <main id="main-content" className="flex-grow">
         {!isSitemapPage ? (
           <PageTransition>
@@ -207,6 +218,9 @@ const AppRoutes = () => {
               <Route path="/invisalign" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Invisalign />
               </Suspense>} />
+              <Route path="/invisalign/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <InvisalignCostLosAngeles />
+              </Suspense>} />
               <Route path="/invisalign-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}>
                 <InvisalignBeverlyHills />
               </Suspense>} />
@@ -215,6 +229,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <TeethWhitening />
+              </Suspense>} />
+              <Route path="/teeth-whitening/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhiteningCostLosAngeles />
               </Suspense>} />
               <Route path="/teeth-whitening-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}>
                 <TeethWhiteningBeverlyHills />
@@ -227,6 +244,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
                 <DentalImplants />
+              </Suspense>} />
+              <Route path="/dental-implants/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalImplantsCostLosAngeles />
               </Suspense>} />
               <Route path="/santa-monica-dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
                 <SantaMonicaDentalImplants />
@@ -245,6 +265,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
                 <EmergencyDentist />
+              </Suspense>} />
+              <Route path="/same-day-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SameDayDentist />
               </Suspense>} />
               <Route path="/root-canal" element={<Suspense fallback={<PageLoaderComponent />}>
                 <RootCanal />
@@ -289,6 +312,24 @@ const AppRoutes = () => {
               <Route path="/westwood-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
                 <WestwoodDentist />
               </Suspense>} />
+              <Route path="/miracle-mile-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <MiracleMileDentist />
+              </Suspense>} />
+              <Route path="/larchmont-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <LarchmontDentist />
+              </Suspense>} />
+              <Route path="/hancock-park-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <HancockParkDentist />
+              </Suspense>} />
+              <Route path="/mid-wilshire-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <MidWilshireDentist />
+              </Suspense>} />
+              <Route path="/koreatown-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <KoreatownDentist />
+              </Suspense>} />
+              <Route path="/fairfax-district-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <FairfaxDistrictDentist />
+              </Suspense>} />
               <Route path="*" element={<Suspense fallback={<PageLoaderComponent />}>
                 <NotFound />
               </Suspense>} />
@@ -316,7 +357,6 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <MotionConfig reducedMotion="user">
         <PerformanceProvider>
           <TooltipProvider>
             <Toaster />
@@ -331,7 +371,6 @@ const App = () => {
             </BrowserRouter>
           </TooltipProvider>
         </PerformanceProvider>
-        </MotionConfig>
       </HelmetProvider>
     </QueryClientProvider>
   );

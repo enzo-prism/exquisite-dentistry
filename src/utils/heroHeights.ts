@@ -18,7 +18,10 @@ export function getHeroHeightClasses(height: HeroHeight = 'medium'): HeightClass
       desktop: 'min-h-[60vh] md:min-h-[65vh] lg:min-h-[70vh]'
     },
     medium: {
-      mobile: 'min-h-[100vh] max-h-[100vh]',
+      // No max-height cap: on short landscape phones a fixed 100vh clipped the
+      // CTA/proof rows out of reach (the section is overflow-hidden). min-h lets
+      // the hero grow to fit its content while still filling the viewport.
+      mobile: 'min-h-[100vh]',
       desktop: 'min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh]'
     },
     large: {

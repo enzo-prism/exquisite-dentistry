@@ -58,7 +58,7 @@ const ServicesSection: React.FC = () => {
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-sm text-gold font-medium mb-3">OUR EXPERTISE</span>
+          <span className="inline-block text-sm text-gold-dark font-medium mb-3">OUR EXPERTISE</span>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             Our <span className="text-gold">Services</span>
           </h2>

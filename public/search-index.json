@@ -154,7 +154,7 @@
       "keywords": [
         "90048 dentist",
         "90048 cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near 90048"
       ],
       "id": "location:/90048-dentist/"
     },
@@ -167,7 +167,7 @@
       "keywords": [
         "bel air dentist",
         "bel air cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near bel air"
       ],
       "id": "location:/bel-air-dentist/"
     },
@@ -180,7 +180,7 @@
       "keywords": [
         "beverly hills dentist",
         "beverly hills cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near beverly hills"
       ],
       "id": "location:/beverly-hills-dentist/"
     },
@@ -193,9 +193,61 @@
       "keywords": [
         "culver city dentist",
         "culver city cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near culver city"
       ],
       "id": "location:/culver-city-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Fairfax District Dentist",
+      "description": "The Fairfax District sits directly north of our office, so visits from The Grove, the Original Farmers Market, or Fairfax Avenue are a quick trip south to Wilshire Boulevard. We keep appointments calm, unhurried, and on schedule.",
+      "href": "/fairfax-district-dentist/",
+      "h1": "Fairfax District’s Boutique Dental Experience",
+      "keywords": [
+        "fairfax district dentist",
+        "fairfax district cosmetic dentist",
+        "dentist near fairfax district"
+      ],
+      "id": "location:/fairfax-district-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Hancock Park Dentist",
+      "description": "Hancock Park sits between Larchmont Village and our Wilshire Boulevard studio, so appointments are a short drive west along Wilshire, Sixth Street, or Third Street. We provide preventive, cosmetic, and restorative dentistry for adults.",
+      "href": "/hancock-park-dentist/",
+      "h1": "Hancock Park’s Boutique Dental Experience",
+      "keywords": [
+        "hancock park dentist",
+        "hancock park cosmetic dentist",
+        "dentist near hancock park"
+      ],
+      "id": "location:/hancock-park-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Koreatown Dentist",
+      "description": "For Koreatown patients, our studio is a straight drive west along Wilshire Boulevard, past Hancock Park and Museum Row. We offer preventive care, Invisalign, whitening, and implant dentistry in a quiet, comfort-focused setting.",
+      "href": "/koreatown-dentist/",
+      "h1": "Koreatown’s Boutique Dental Experience",
+      "keywords": [
+        "koreatown dentist",
+        "koreatown cosmetic dentist",
+        "dentist near koreatown"
+      ],
+      "id": "location:/koreatown-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Larchmont Dentist",
+      "description": "A calm, comfort-focused dental studio a short drive west of Larchmont Village along Beverly Boulevard or Third Street. Larchmont patients visit us for cleanings, Invisalign, veneers, and whitening planned around everyday schedules.",
+      "href": "/larchmont-dentist/",
+      "h1": "Larchmont’s Boutique Dental Experience",
+      "keywords": [
+        "larchmont dentist",
+        "larchmont cosmetic dentist",
+        "dentist near larchmont"
+      ],
+      "id": "location:/larchmont-dentist/"
     },
     {
       "type": "location",
@@ -206,9 +258,37 @@
       "keywords": [
         "melrose dentist",
         "melrose cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near melrose"
       ],
       "id": "location:/melrose-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Mid-Wilshire Dentist",
+      "description": "Our studio is part of the Mid-Wilshire corridor itself, at 6227 Wilshire Blvd near Crescent Heights. Neighbors from Park La Brea to the surrounding blocks rely on us for cleanings, cosmetic dentistry, and same-day help when something breaks.",
+      "href": "/mid-wilshire-dentist/",
+      "h1": "Mid-Wilshire’s Boutique Dental Experience",
+      "keywords": [
+        "mid-wilshire dentist",
+        "mid-wilshire cosmetic dentist",
+        "dentist near mid-wilshire",
+        "wilshire boulevard dentist"
+      ],
+      "id": "location:/mid-wilshire-dentist/"
+    },
+    {
+      "type": "location",
+      "title": "Miracle Mile Dentist",
+      "description": "Exquisite Dentistry sits on Wilshire Boulevard at Crescent Heights, on the western end of the Miracle Mile. If you live or work near Museum Row, preventive, cosmetic, and restorative care is a short walk or drive away.",
+      "href": "/miracle-mile-dentist/",
+      "h1": "Your Dentist in the Miracle Mile",
+      "keywords": [
+        "miracle mile dentist",
+        "miracle mile cosmetic dentist",
+        "dentist near miracle mile",
+        "museum row dentist"
+      ],
+      "id": "location:/miracle-mile-dentist/"
     },
     {
       "type": "location",
@@ -218,7 +298,8 @@
       "h1": "West Hollywood’s Boutique Dental Experience",
       "keywords": [
         "west hollywood dentist",
-        "west hollywood cosmetic dentist"
+        "west hollywood cosmetic dentist",
+        "dentist near west hollywood"
       ],
       "id": "location:/west-hollywood-dentist/"
     },
@@ -231,7 +312,7 @@
       "keywords": [
         "west la dentist",
         "west la cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near west la"
       ],
       "id": "location:/west-la-dentist/"
     },
@@ -244,7 +325,7 @@
       "keywords": [
         "westwood dentist",
         "westwood cosmetic dentist",
-        "west hollywood dentist"
+        "dentist near westwood"
       ],
       "id": "location:/westwood-dentist/"
     },
@@ -427,6 +508,14 @@
     },
     {
       "type": "page",
+      "title": "Dental Implants Cost in Los Angeles | Exquisite Dentistry",
+      "description": "What drives dental implant cost in Los Angeles: number of teeth, foundation work, materials, insurance, and financing. Your exact quote is set at a consultation.",
+      "href": "/dental-implants/cost-los-angeles/",
+      "h1": "Dental Implants Cost in Los Angeles",
+      "id": "page:/dental-implants/cost-los-angeles/"
+    },
+    {
+      "type": "page",
       "href": "/dental-implants/",
       "title": "Dental Implants in Los Angeles | Exquisite Dentistry",
       "description": "Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd, book a consultation.",
@@ -581,6 +670,14 @@
     },
     {
       "type": "page",
+      "title": "Invisalign Cost in Los Angeles | Exquisite Dentistry",
+      "description": "What drives Invisalign cost in Los Angeles: case complexity, treatment length, refinements, retainers, insurance benefits, and monthly financing options.",
+      "href": "/invisalign/cost-los-angeles/",
+      "h1": "Invisalign Cost in Los Angeles",
+      "id": "page:/invisalign/cost-los-angeles/"
+    },
+    {
+      "type": "page",
       "title": "iTero Scanner Los Angeles | Digital Dental Impressions | Exquisite",
       "description": "Discover how iTero 3D scanning improves comfort and precision for Invisalign, crowns, and veneers at our Los Angeles dental studio.",
       "href": "/itero-scanner/",
@@ -685,6 +782,14 @@
     },
     {
       "type": "page",
+      "title": "Same-Day Dentist in Los Angeles | Exquisite Dentistry",
+      "description": "Same-day dental care in Los Angeles: urgent exams, pain relief, in-office whitening, and honest guidance on what takes more than one visit. Call to be seen.",
+      "href": "/same-day-dentist/",
+      "h1": "Same-Day Dentist in Los Angeles",
+      "id": "page:/same-day-dentist/"
+    },
+    {
+      "type": "page",
       "href": "/schedule-consultation/",
       "title": "Schedule Consultation | Exquisite Dentistry",
       "description": "Book a veneers or dental implants consultation near Beverly Hills at Exquisite Dentistry on Wilshire Blvd in Los Angeles, or call (323) 272-2388.",
@@ -756,6 +861,14 @@
         "anxiety-free dental care"
       ],
       "id": "page:/transformation-stories/taylor-vasek/"
+    },
+    {
+      "type": "page",
+      "title": "Teeth Whitening Cost in Los Angeles | Exquisite Dentistry",
+      "description": "What professional teeth whitening costs depend on in Los Angeles: in-office vs take-home options, sensitivity care, maintenance, insurance, and financing.",
+      "href": "/teeth-whitening/cost-los-angeles/",
+      "h1": "Teeth Whitening Cost in Los Angeles",
+      "id": "page:/teeth-whitening/cost-los-angeles/"
     },
     {
       "type": "page",

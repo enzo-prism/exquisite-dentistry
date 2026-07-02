@@ -133,55 +133,32 @@ function validateImages() {
   return missingImages.length === 0;
 }
 
-// Generate image asset registry
+// Generate the compact manifest of /optimized/ responsive variants that ships
+// to the client (imageOptimization.ts). Maps each optimized base path to the
+// size suffixes that exist on disk, e.g. "/optimized/foo": ["sm","md","lg"].
 function generateImageRegistry(availableImages) {
-  const registry = {
-    images: {},
-    lastUpdated: new Date().toISOString()
-  };
-  
-  // Group images by base name and create format options
-  const imageGroups = new Map();
-  
+  const variantPattern = /^\/optimized\/(.+)-(sm|md|lg|xl)$/;
+  const variants = {};
+
   for (const imagePath of availableImages) {
-    const basename = path.basename(imagePath, path.extname(imagePath));
-    const extension = path.extname(imagePath).slice(1);
-    const directory = path.dirname(imagePath);
-    
-    const key = `${directory}/${basename}`;
-    
-    if (!imageGroups.has(key)) {
-      imageGroups.set(key, {
-        directory,
-        basename,
-        formats: new Set(),
-        paths: {}
-      });
-    }
-    
-    const group = imageGroups.get(key);
-    group.formats.add(extension);
-    group.paths[extension] = imagePath;
+    const withoutExtension = imagePath.replace(/\.[^.]+$/, '');
+    const match = withoutExtension.match(variantPattern);
+    if (!match) continue;
+
+    const base = `/optimized/${match[1]}`;
+    if (!variants[base]) variants[base] = new Set();
+    variants[base].add(match[2]);
   }
-  
-  // Convert to registry format
-  for (const [key, group] of imageGroups) {
-    const hasWebP = group.formats.has('webp');
-    const hasPng = group.formats.has('png');
-    const hasJpg = group.formats.has('jpg') || group.formats.has('jpeg');
-    
-    registry.images[key] = {
-      formats: Array.from(group.formats),
-      paths: group.paths,
-      preferred: hasWebP ? group.paths.webp : (hasPng ? group.paths.png : group.paths.jpg || group.paths.jpeg),
-      fallback: hasPng ? group.paths.png : (hasJpg ? (group.paths.jpg || group.paths.jpeg) : null)
-    };
-  }
-  
-  // Write registry file
-  const registryPath = path.join(SRC_DIR, 'utils', 'imageRegistry.json');
-  fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2));
-  console.log(`📋 Generated image registry: ${registryPath}`);
+
+  const manifest = Object.fromEntries(
+    Object.entries(variants)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([base, suffixes]) => [base, Array.from(suffixes).sort()])
+  );
+
+  const manifestPath = path.join(SRC_DIR, 'utils', 'optimizedImageManifest.json');
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+  console.log(`📋 Generated optimized-image manifest (${Object.keys(manifest).length} bases): ${manifestPath}`);
 }
 
 // Run validation

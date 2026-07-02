@@ -110,7 +110,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
               {index > 0 ? <span className="text-gold/70">·</span> : null}
               <Link
                 to={link.href}
-                className="inline-flex min-h-7 items-center transition-colors hover:text-white"
+                className="inline-flex min-h-11 items-center px-1 transition-colors hover:text-white"
               >
                 {link.text}
               </Link>

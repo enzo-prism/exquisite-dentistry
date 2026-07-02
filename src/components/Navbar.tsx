@@ -393,10 +393,19 @@ const Navbar = () => {
             </div>
 
             <div className="ml-auto flex items-center gap-1.5 lg:hidden">
+              <PhoneLink
+                phoneNumber={PHONE_NUMBER_DISPLAY}
+                analyticsSource="mobile_nav_icon"
+                className="hidden h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[400px]:inline-flex"
+                aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
+              >
+                <Phone className="h-5 w-5" aria-hidden="true" />
+              </PhoneLink>
+
               <Button
                 size="sm"
                 asChild
-                className="hidden h-10 rounded-full bg-gold px-4 text-sm font-semibold text-black hover:bg-gold/90 sm:inline-flex"
+                className="inline-flex h-11 rounded-full bg-gold px-3.5 text-sm font-semibold text-black hover:bg-gold/90 sm:px-4"
               >
                 <Link
                   to={SCHEDULE_CONSULTATION_PATH}

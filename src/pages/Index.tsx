@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
@@ -18,11 +18,8 @@ import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
-import { useIsMobile } from '@/hooks/use-mobile';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { HOMEPAGE_HERO_PROOF_LINKS, INSURANCE_HERO_BADGE } from '@/data/insurance';
-
-const LazyFloatingActionButton = lazy(() => import('@/components/mobile/FloatingActionButton'));
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
   const match = thumbnailUrl.match(/^\/lovable-uploads\/([^/]+)\.(png|jpe?g)$/i);
@@ -48,31 +45,6 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = VIDEO_TESTIMONIALS.map(
     };
   }
 );
-
-const DeferredMobileFab: React.FC = () => {
-  const isMobile = useIsMobile();
-  const [shouldLoadFab, setShouldLoadFab] = useState(false);
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const handleScroll = () => {
-      setShouldLoadFab(window.scrollY > 100);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
-
-  if (!isMobile || !shouldLoadFab) return null;
-
-  return (
-    <Suspense fallback={null}>
-      <LazyFloatingActionButton />
-    </Suspense>
-  );
-};
 
 const IndexPage: React.FC = () => {
   const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
@@ -194,7 +166,7 @@ const IndexPage: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block text-sm text-gold font-medium mb-3">
+            <span className="inline-block text-sm text-gold-dark font-medium mb-3">
               TESTIMONIALS
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
@@ -323,8 +295,6 @@ const IndexPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Mobile Floating Action Button */}
-      <DeferredMobileFab />
     </>
   );
 };

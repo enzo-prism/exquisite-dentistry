@@ -2,6 +2,12 @@
 import { getBlogPostIsoDate, getPublishedPosts } from '../data/blogPosts';
 import { transformationStories } from '../data/transformationStories';
 import { getCanonicalUrl } from './schemaValidation';
+import pageLastmod from '../data/pageLastmod.json';
+
+// Real per-file last-modified dates (git commit date, mtime fallback), generated
+// by scripts/generate-file-dates.mjs at build time. Replaces the old hash-based
+// fabricated dates, which Google discounts and which hurt E-E-A-T on a YMYL site.
+const PAGE_LASTMOD: Record<string, string> = pageLastmod as Record<string, string>;
 
 export interface SitemapUrl {
   loc: string;
@@ -10,25 +16,16 @@ export interface SitemapUrl {
   priority: number;
 }
 
-const DAY_IN_MS = 24 * 60 * 60 * 1000;
-
-const hashString = (value: string): number => {
-  let hash = 0;
-  for (let i = 0; i < value.length; i += 1) {
-    hash = (hash << 5) - hash + value.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash);
-};
-
-const getStableLastModified = (path: string, maxDaysAgo: number, referenceDate: Date): string => {
-  const offset = hashString(path) % Math.max(maxDaysAgo, 1);
-  const computedDate = new Date(referenceDate.getTime() - offset * DAY_IN_MS);
-  return computedDate.toISOString().split('T')[0];
-};
-
-const getFileLastModified = (relativePath: string, fallbackDays: number, referenceDate: Date): string => {
-  return getStableLastModified(relativePath, fallbackDays, referenceDate);
+// Returns the real last-modified date for a source file from the build-time
+// map, falling back to the build date, then the reference date. The legacy
+// `fallbackDays` argument is retained for call-site compatibility but no longer
+// fabricates an offset.
+const getFileLastModified = (relativePath: string, _fallbackDays: number, referenceDate: Date): string => {
+  return (
+    PAGE_LASTMOD[relativePath] ||
+    PAGE_LASTMOD.__generatedAt ||
+    referenceDate.toISOString().split('T')[0]
+  );
 };
 
 export const generateSitemapData = (): SitemapUrl[] => {
@@ -140,6 +137,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/teeth-whitening/cost-los-angeles'),
+      lastmod: getFileLastModified('src/pages/TeethWhiteningCostLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
       loc: getCanonicalUrl('/teeth-whitening-beverly-hills'),
       lastmod: getFileLastModified('src/pages/TeethWhiteningBeverlyHills.tsx', 14, now),
       changefreq: 'monthly',
@@ -158,6 +161,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.9
     },
     {
+      loc: getCanonicalUrl('/invisalign/cost-los-angeles'),
+      lastmod: getFileLastModified('src/pages/InvisalignCostLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.85
+    },
+    {
       loc: getCanonicalUrl('/invisalign-beverly-hills'),
       lastmod: getFileLastModified('src/pages/InvisalignBeverlyHills.tsx', 14, now),
       changefreq: 'monthly',
@@ -174,6 +183,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: getFileLastModified('src/pages/DentalImplants.tsx', 14, now),
       changefreq: 'monthly',
       priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/dental-implants/cost-los-angeles'),
+      lastmod: getFileLastModified('src/pages/DentalImplantsCostLosAngeles.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.85
     },
     {
       loc: getCanonicalUrl('/santa-monica-dental-implants'),
@@ -210,6 +225,12 @@ export const generateSitemapData = (): SitemapUrl[] => {
       lastmod: getFileLastModified('src/pages/EmergencyDentist.tsx', 7, now),
       changefreq: 'monthly',
       priority: 0.9
+    },
+    {
+      loc: getCanonicalUrl('/same-day-dentist'),
+      lastmod: getFileLastModified('src/pages/SameDayDentist.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.85
     },
     {
       loc: getCanonicalUrl('/root-canal'),
@@ -346,6 +367,42 @@ export const generateSitemapData = (): SitemapUrl[] => {
     {
       loc: getCanonicalUrl('/westwood-dentist'),
       lastmod: getFileLastModified('src/pages/WestwoodDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/miracle-mile-dentist'),
+      lastmod: getFileLastModified('src/pages/MiracleMileDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    {
+      loc: getCanonicalUrl('/larchmont-dentist'),
+      lastmod: getFileLastModified('src/pages/LarchmontDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    {
+      loc: getCanonicalUrl('/hancock-park-dentist'),
+      lastmod: getFileLastModified('src/pages/HancockParkDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    {
+      loc: getCanonicalUrl('/mid-wilshire-dentist'),
+      lastmod: getFileLastModified('src/pages/MidWilshireDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/koreatown-dentist'),
+      lastmod: getFileLastModified('src/pages/KoreatownDentist.tsx', 30, now),
+      changefreq: 'monthly',
+      priority: 0.65
+    },
+    {
+      loc: getCanonicalUrl('/fairfax-district-dentist'),
+      lastmod: getFileLastModified('src/pages/FairfaxDistrictDentist.tsx', 30, now),
       changefreq: 'monthly',
       priority: 0.65
     }

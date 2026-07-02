@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize:images && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
+    "build": "npm run optimize:images && npm run generate:blog-index && node scripts/generate-file-dates.mjs && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -25,7 +25,8 @@
     "test:content": "node --import tsx scripts/test-content-quality.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",
     "prerender:static": "node --import tsx scripts/prerender-static.ts",
-    "generate:search-index": "node --import tsx scripts/generate-search-index.ts"
+    "generate:search-index": "node --import tsx scripts/generate-search-index.ts",
+    "generate:blog-index": "node --import tsx scripts/generate-blog-index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -66,7 +67,6 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
-    "framer-motion": "^12.9.7",
     "glob": "^11.0.3",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
@@ -79,7 +79,6 @@
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.3",
     "react-router-dom": "^6.26.2",
-    "recharts": "^2.12.7",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",

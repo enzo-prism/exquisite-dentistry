@@ -40,8 +40,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // Only essential vendor chunks
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['lucide-react'],
-          'motion-vendor': ['framer-motion']
+          'ui-vendor': ['lucide-react']
         }
       }
     },

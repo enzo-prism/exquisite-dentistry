@@ -408,14 +408,17 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       syncFloatingWidgetStyles();
     };
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    // Cherry renders into our fixed container; watch it deeply, but only watch
+    // <body> for direct-child insertions (the floating pill mounts at top level).
+    // A body-wide subtree observer fired on every React commit site-wide.
+    const container = document.getElementById(CHERRY_WIDGET_CONTAINER_ID);
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
+    }
+    observer.observe(document.body, { childList: true, subtree: false });
 
     window.addEventListener('resize', handleViewportChange, { passive: true });
     window.addEventListener('orientationchange', handleViewportChange, { passive: true });
-    window.addEventListener('scroll', handleViewportChange, { passive: true });
 
     syncFloatingWidgetStyles();
 
@@ -423,7 +426,6 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       observer.disconnect();
       window.removeEventListener('resize', handleViewportChange);
       window.removeEventListener('orientationchange', handleViewportChange);
-      window.removeEventListener('scroll', handleViewportChange);
 
       if (syncFrameRef.current !== null) {
         window.cancelAnimationFrame(syncFrameRef.current);
@@ -453,8 +455,9 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       registerWidget,
       unregisterWidget,
       status,
+      hasActiveWidgets,
     }),
-    [registerWidget, status, unregisterWidget],
+    [hasActiveWidgets, registerWidget, status, unregisterWidget],
   );
 
   return (

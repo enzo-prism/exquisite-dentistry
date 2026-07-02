@@ -15,6 +15,9 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
+import FeaturedReviewWall from '@/components/FeaturedReviewWall';
+import SmileGalleryPreview from '@/components/SmileGalleryPreview';
+import { featuredReviews } from '@/data/featuredReviews';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
@@ -379,6 +382,26 @@ const TeethWhitening = () => {
             </div>
           </div>
         </section>
+
+        {/* Social Proof: Patient Reviews */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                What Our Patients Say
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                A selection of reviews from patients at Exquisite Dentistry.
+              </p>
+            </div>
+            <div className="max-w-6xl mx-auto">
+              <FeaturedReviewWall reviews={featuredReviews.slice(0, 6)} />
+            </div>
+          </div>
+        </section>
+
+        {/* Before & After Transformations */}
+        <SmileGalleryPreview />
 
         {/* Related Articles Section */}
         <RelatedArticles
