@@ -28,6 +28,24 @@ const CONTENT_DIR = path.join(ROOT, 'Blog-Content', 'exq_dental_blog_posts');
 const GENERATED_FILE = path.join(ROOT, 'src', 'data', 'generatedBlogPosts.ts');
 const BASE_BLOG_FILE = path.join(ROOT, 'src', 'data', 'blogPosts.ts');
 
+// Retired posts that must stay unpublished on regeneration. These slugs 301
+// elsewhere (see vercel.json) — e.g. choosing-veneers-for-just-one-tooth →
+// /veneers/1-tooth-veneer-los-angeles/. Republishing requires revisiting the
+// redirects and sitemap first (see CLAUDE.md → Veneers cluster).
+const UNPUBLISHED_SLUGS = new Set(['choosing-veneers-for-just-one-tooth']);
+
+// Hand-tuned SEO metadata that must survive regeneration (the default is
+// seoTitle = post title, seoDescription = excerpt). Add entries here instead
+// of editing generatedBlogPosts.ts — hand edits to the generated file are
+// silently lost on the next `npm run generate:blog`.
+const SEO_OVERRIDES = {
+  'choosing-veneers-for-the-four-front-teeth': {
+    seoTitle: 'Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide',
+    seoDescription:
+      'Considering veneers for the four front teeth? Learn when a focused smile-zone veneer plan works, what to ask, and how Dr. Aguil plans natural results in Los Angeles.'
+  }
+};
+
 const AUTHOR = 'Dr. Alexie Aguil';
 const AUTHOR_BIO =
   'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.';
@@ -373,10 +391,10 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     readTime,
     category,
     tags,
-    seoTitle: title,
-    seoDescription: excerpt,
+    seoTitle: SEO_OVERRIDES[slug]?.seoTitle ?? title,
+    seoDescription: SEO_OVERRIDES[slug]?.seoDescription ?? excerpt,
     seoKeywords: tags.join(', '),
-    published: true
+    published: !UNPUBLISHED_SLUGS.has(slug)
   };
 };
 
