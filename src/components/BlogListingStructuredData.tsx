@@ -1,9 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost, getBlogPostDateTime } from '@/data/blogPosts';
+import { getBlogIndexEntryDateTime, type BlogIndexEntry } from '@/data/blogIndex';
+import { toAbsoluteUrl } from '@/utils/centralizedSchemas';
 
 interface BlogListingStructuredDataProps {
-  posts: BlogPost[];
+  posts: BlogIndexEntry[];
 }
 
 const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ posts }) => {
@@ -35,13 +36,13 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
       '@type': 'BlogPosting',
       headline: post.title,
       url: `https://exquisitedentistryla.com/blog/${post.slug}`,
-      datePublished: getBlogPostDateTime(post),
+      datePublished: getBlogIndexEntryDateTime(post),
       author: {
         '@type': 'Person',
         name: post.author
       },
       description: post.excerpt,
-      image: post.featuredImage || 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
+      image: toAbsoluteUrl(post.featuredImage) || 'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png',
       articleSection: post.category,
       keywords: post.tags?.join(', ') || ''
     }))

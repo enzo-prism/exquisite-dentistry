@@ -14,17 +14,9 @@ import {
   getBlogPostIsoDate,
 } from "../src/data/blogPosts";
 
-export interface BlogIndexEntry {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  tags: string[];
-  readTime: string;
-  isoDate?: string;
-  timestamp: number;
-}
+// type-only import (erased at runtime) — a value import here would load
+// blogIndex.json, the very file this script writes
+import type { BlogIndexEntry } from "../src/data/blogIndex";
 
 const OUTPUT_PATH = path.join(process.cwd(), "src", "data", "blogIndex.json");
 
@@ -37,6 +29,9 @@ const buildIndex = (): BlogIndexEntry[] =>
     category: post.category,
     tags: post.tags,
     readTime: post.readTime,
+    date: post.date,
+    author: post.author,
+    featuredImage: post.featuredImage,
     isoDate: getBlogPostIsoDate(post),
     timestamp: getBlogPostTimestamp(post),
   }));

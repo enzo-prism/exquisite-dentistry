@@ -209,7 +209,9 @@ const BlogPostContainer: React.FC = () => {
 
     try {
       const foundPost = getPostBySlug(slug);
-      if (!foundPost) {
+      // Unpublished (retired) posts must not render via client-side navigation
+      // either — server 301s in vercel.json only cover hard loads.
+      if (!foundPost || !foundPost.published) {
         setError('Blog post not found');
         setLoading(false);
         return;

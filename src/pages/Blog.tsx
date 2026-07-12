@@ -1,12 +1,11 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { getPublishedPosts, getAllCategories } from '@/data/blogPosts';
+import { getBlogIndex, getBlogIndexCategories } from '@/data/blogIndex';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogListingStructuredData from '@/components/BlogListingStructuredData';
 import PageSEO from '@/components/seo/PageSEO';
 import PageLoader from '@/components/ui/page-loader';
 import VideoHero from '@/components/VideoHero';
-import { usePerformance } from '@/hooks/use-performance';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -17,9 +16,8 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   
-  const allPosts = useMemo(() => getPublishedPosts(), []);
-  const categories = useMemo(() => getAllCategories(), []);
-  const { isSlowConnection } = usePerformance();
+  const allPosts = useMemo(() => getBlogIndex(), []);
+  const categories = useMemo(() => getBlogIndexCategories(), []);
   const meta = ROUTE_METADATA['/blog'];
 
   const filteredPosts = useMemo(() => {

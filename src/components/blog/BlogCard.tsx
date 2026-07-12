@@ -5,10 +5,10 @@ import { Calendar, ArrowRight, User, Sparkles, Eye, FileText } from 'lucide-reac
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { BlogPost } from '@/data/blogPosts';
+import type { BlogIndexEntry } from '@/data/blogIndex';
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: BlogIndexEntry;
   featured?: boolean;
 }
 

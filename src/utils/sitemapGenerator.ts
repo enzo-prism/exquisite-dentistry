@@ -1,5 +1,5 @@
 
-import { getBlogPostIsoDate, getPublishedPosts } from '../data/blogPosts';
+import { getBlogIndex } from '../data/blogIndex';
 import { transformationStories } from '../data/transformationStories';
 import { getCanonicalUrl } from './schemaValidation';
 import pageLastmod from '../data/pageLastmod.json';
@@ -408,10 +408,11 @@ export const generateSitemapData = (): SitemapUrl[] => {
     }
   ];
 
-  // Dynamic blog posts with actual publish dates
-  const publishedPosts = getPublishedPosts();
+  // Dynamic blog posts with actual publish dates (lightweight index — the
+  // build chain regenerates blogIndex.json before the sitemap runs)
+  const publishedPosts = getBlogIndex();
   const blogPages: SitemapUrl[] = publishedPosts.map(post => {
-    const postDate = getBlogPostIsoDate(post) || currentDate;
+    const postDate = post.isoDate || currentDate;
     
     // High-value blog posts get higher priority
     const isHighValuePost = post.tags.includes('veneers') || 

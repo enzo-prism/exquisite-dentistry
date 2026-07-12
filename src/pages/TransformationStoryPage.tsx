@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { transformationStories, getRelatedStories, getStoryContext, getRelatedBlogSlugsForStory } from '@/data/transformationStories';
-import { getPostBySlug } from '@/data/blogPosts';
+import { getBlogIndexEntryBySlug } from '@/data/blogIndex';
 import SimpleTransformationEmbed from '@/components/SimpleTransformationEmbed';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { ArrowLeft, CheckCircle, Heart, Star, Users, BookOpen, Video } from 'lucide-react';
@@ -68,7 +68,7 @@ const TransformationStoryPage: React.FC = () => {
   const storyContext = getStoryContext(caseStudy);
   const relatedBlogSlugs = getRelatedBlogSlugsForStory(caseStudy);
   const relatedBlogPosts = relatedBlogSlugs
-    .map(slug => getPostBySlug(slug))
+    .map(slug => getBlogIndexEntryBySlug(slug))
     .filter((post): post is NonNullable<typeof post> => post !== undefined)
     .slice(0, 3);
 

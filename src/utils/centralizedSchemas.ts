@@ -24,7 +24,7 @@ const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@
 const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png';
 const BASE_URL = 'https://exquisitedentistryla.com';
 
-const toAbsoluteUrl = (value?: string): string | undefined => {
+export const toAbsoluteUrl = (value?: string): string | undefined => {
   const raw = (value || '').trim();
   if (!raw) return undefined;
 

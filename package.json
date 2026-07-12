@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.js && node scripts/optimize-logos.js && node scripts/validate-images.js",
     "build:prod": "npm run build",
-    "generate:blog": "node scripts/generate-blog-posts.mjs",
+    "generate:blog": "node scripts/generate-blog-posts.mjs && npm run generate:blog-index",
     "check:seo": "node scripts/seo-smoke.mjs",
     "test:seo": "node scripts/seo-acceptance.mjs",
     "test:blog": "node scripts/test-blog-integrity.mjs",
