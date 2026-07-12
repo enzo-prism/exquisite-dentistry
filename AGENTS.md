@@ -7,7 +7,7 @@
 
 ## Build, Test, and Development Commands
 - `npm install` (Node 18+) bootstraps dependencies.
-- `npm run dev` launches Vite on `http://localhost:5173`.
+- `npm run dev` launches Vite on `http://localhost:8080` (port set in `vite.config.ts`).
 - `npm run build` bundles for production; `npm run build:prod` pre-optimizes images and mirrors the production (Vercel) deploy step.
 - `npm run preview` serves the built bundle locally for smoke checks.
 - `npm run lint` runs the flat ESLint config (TypeScript + React Hooks). Append `-- --fix` for autofixes.
