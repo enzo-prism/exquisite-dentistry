@@ -15,7 +15,10 @@ const rootElement = document.getElementById('root');
 const scheduleIdle = (callback: () => void, timeoutMs: number) => {
   if (typeof window === 'undefined') return;
 
-  if ('requestIdleCallback' in window) {
+  // Feature-test by value, not `'requestIdleCallback' in window`: lib.dom declares
+  // it as a required member of Window, so `in` narrows the fallback branch to
+  // `never` and TypeScript treats the setTimeout path as dead code.
+  if (typeof window.requestIdleCallback === 'function') {
     window.requestIdleCallback(callback, { timeout: timeoutMs });
     return;
   }

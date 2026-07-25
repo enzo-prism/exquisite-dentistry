@@ -8,6 +8,7 @@
     "build": "npm run optimize:images && npm run generate:blog-index && node scripts/generate-file-dates.mjs && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.js && node scripts/optimize-logos.js && node scripts/validate-images.js",
     "build:prod": "npm run build",

@@ -6,9 +6,13 @@ import {
   shouldLazyLoad
 } from '@/utils/imageOptimization';
 
+// `src`/`alt`/`width`/`height` are omitted from the intrinsic <img> attributes
+// because OptimizedImageProps declares them with narrower, non-identical types
+// (required `src`/`alt`, numeric `width`/`height`). Extending both directly made
+// this an error type, so props passed to this component were never checked.
 interface ExtendedOptimizedImageProps
   extends OptimizedImageProps,
-    React.ImgHTMLAttributes<HTMLImageElement> {
+    Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'width' | 'height'> {
   context?: 'before-after' | 'procedure' | 'team' | 'office' | 'logo' | 'general';
   caption?: string;
 }

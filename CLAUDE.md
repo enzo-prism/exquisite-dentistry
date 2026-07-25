@@ -24,6 +24,7 @@ Modern React + TypeScript dental website with comprehensive performance optimiza
 nvm use 18               # Required: Node 18.19+
 npm run dev              # Dev server @ http://localhost:8080
 npm run lint             # ESLint (add -- --fix to auto-fix)
+npm run typecheck        # tsc --noEmit — `npm run build` does NOT typecheck (see below)
 npm run build            # Production bundle (runs generate:fallbacks automatically)
 npm run build:prod       # Full pipeline: image optimization + build (mirrors production)
 npm run preview          # Serve dist/ @ http://localhost:4173 for QA
@@ -40,8 +41,17 @@ node test-browser.js     # Puppeteer smoke test (requires dev/preview server run
 
 ### Pre-commit Workflow
 ```bash
-npm run lint && npm run build
+npm run lint && npm run typecheck && npm run build
 ```
+
+**`vite build` does not typecheck.** Vite strips types via esbuild without ever calling `tsc`, so a
+green build says nothing about type correctness — type errors ship silently. `npm run typecheck`
+(`tsc -p tsconfig.app.json --noEmit`) is the only gate that catches them; it runs in CI
+(`.github/workflows/ci.yml`) and belongs in your local loop before every commit.
+
+Note `tsconfig.app.json` sets `strict: false`, so the checker only catches hard errors (broken
+interfaces, impossible narrowing, readonly/mutable mismatches) — not missing null guards. Don't read
+a clean `typecheck` as "fully type-safe".
 
 ### Environment Setup
 Copy `.env.example` to `.env` and set `VITE_GSC_VERIFICATION` for Google Search Console.
@@ -119,6 +129,16 @@ public/lovable-uploads/  # Referenced image ORIGINALS only (not a dumping ground
 
 ## Build & Deployment
 
+### CI (pre-merge gate)
+`.github/workflows/ci.yml` runs on PRs into `main`/`staging`. The existing `verify-prod` /
+`verify-staging` workflows only smoke-test the live site *after* a deploy; this one runs on the PR
+itself, in three parallel jobs:
+- **Lint & content QA** — `lint`, `typecheck`, `test:content`, `test:blog`
+- **Build & SEO acceptance** — full `build`, then `check:seo` and `test:seo` (needs `fetch-depth: 0`
+  so `generate-file-dates.mjs` can derive real `<lastmod>` values, and pre-installs `netlify-cli`
+  because `test:seo` boots `netlify dev` against `dist/`)
+- **E2E** — Playwright (chromium + webkit), which boots the dev server itself
+
 ### Build Configuration
 - **Target**: ES2015 for broader compatibility
 - **Minification**: Terser with console removal in production
@@ -169,6 +189,8 @@ Resolved (kept for context): the `exquisiteveneersla.com` second domain is **not
 | --- | --- |
 | Sharp install fails | `brew install vips` (macOS) or `apt install libvips-dev` |
 | React Hook dep warnings | Satisfy dependencies or justify inline—don't ignore |
+| Build passes but types are wrong | Expected: `vite build` never runs `tsc`. Use `npm run typecheck` |
+| Drag/resize widget keeps tracking the pointer after release | Handlers defined in the component body get new identities each render, so effect cleanup removes functions that were never registered. Define listeners *inside* the effect — see `src/components/ui/comparison-slider.tsx` |
 | Formspree 403 | Endpoint rate-limits unknown origins; use localhost:8080 |
 | Redirect tests fail | Start Vercel routing first: `npx vercel dev --listen 127.0.0.1:8899 --yes` (plain Vite/Netlify won't apply `vercel.json`) |
 | Puppeteer test hangs | Ensure dev/preview server running before `node test-browser.js` |

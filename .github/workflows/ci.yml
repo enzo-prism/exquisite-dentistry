@@ -1,0 +1,109 @@
+name: ci
+
+# Pre-merge gate. The existing verify-prod / verify-staging workflows only run
+# post-deploy smoke checks against the live site; this workflow runs the build
+# and the content/SEO test scripts on the PR itself so a broken change can't merge.
+
+on:
+  pull_request:
+    branches:
+      - main
+      - staging
+  workflow_dispatch:
+
+# Cancel superseded runs on the same branch/PR.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Fast feedback: static checks that need neither a build nor a server.
+  lint-and-content:
+    name: Lint & content QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # `vite build` does not typecheck, so without this step type errors ship silently.
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Content quality (service/location configs)
+        run: npm run test:content
+
+      - name: Blog integrity
+        run: npm run test:blog
+
+  # Production build + SEO assertions over the prerendered output.
+  build-and-seo:
+    name: Build & SEO acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so generate-file-dates.mjs can derive real <lastmod> dates.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (image opt + prerender + sitemap + search index)
+        run: npm run build
+
+      - name: SEO smoke (dist/index.html tags)
+        run: npm run check:seo
+
+      - name: Install netlify CLI
+        # test:seo spins `netlify dev` against dist/ to assert the redirect map.
+        # Pre-install so the first-run download can't exceed the script's 30s
+        # server-wait window (which would fail the job spuriously).
+        run: npm i -g netlify-cli
+
+      - name: SEO acceptance (canonicals, metadata, JSON-LD, redirects)
+        run: npm run test:seo
+
+  # Mobile UI end-to-end suite (Playwright boots the dev server itself).
+  e2e:
+    name: E2E (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Run E2E tests
+        run: npm run test:e2e

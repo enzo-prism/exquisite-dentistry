@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { SmartImage } from './smart-image';
 import { cn } from '@/lib/utils';
 
@@ -31,19 +31,17 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   const [imagesLoaded, setImagesLoaded] = useState({ before: false, after: false });
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const updateSliderPosition = useCallback((clientX: number) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const position = ((clientX - rect.left) / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, position)));
+  }, []);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     updateSliderPosition(e.clientX);
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging) {
-      updateSliderPosition(e.clientX);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -51,39 +49,38 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
     updateSliderPosition(e.touches[0].clientX);
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
-    if (isDragging) {
-      updateSliderPosition(e.touches[0].clientX);
-    }
-  };
-
-  const updateSliderPosition = (clientX: number) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const position = ((clientX - rect.left) / rect.width) * 100;
-    setSliderPosition(Math.max(0, Math.min(100, position)));
-  };
-
   const handleImageLoad = (type: 'before' | 'after') => {
     setImagesLoaded(prev => ({ ...prev, [type]: true }));
   };
 
+  // Handlers are created inside the effect so the exact listener instances that
+  // were added are the ones removed on cleanup. Defining them in the component
+  // body meant every re-render (including the ones the drag itself triggers)
+  // produced new identities, so cleanup removed functions that were never
+  // registered — leaking a live `mousemove`/`touchmove` listener per drag that
+  // kept moving the slider long after the pointer was released.
   useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('touchmove', handleTouchMove);
-      document.addEventListener('touchend', handleMouseUp);
-    }
+    if (!isDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => updateSliderPosition(e.clientX);
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) updateSliderPosition(touch.clientX);
+    };
+    const stopDragging = () => setIsDragging(false);
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', stopDragging);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', stopDragging);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseup', stopDragging);
       document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleMouseUp);
+      document.removeEventListener('touchend', stopDragging);
     };
-  }, [isDragging]);
+  }, [isDragging, updateSliderPosition]);
 
   const allImagesLoaded = imagesLoaded.before && imagesLoaded.after;
 

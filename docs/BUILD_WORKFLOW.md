@@ -24,11 +24,34 @@ npm run dev          # Vite dev server @ http://localhost:8080
 | --- | --- | --- |
 | 1 | `npm run generate:blog` | Only when files inside `Blog-Content/` change. |
 | 2 | `npm run lint` | ESLint (TS + React Hooks). Add `-- --fix` to auto-fix style issues. |
-| 3 | `npm run build` | Runs HTML fallbacks, builds Vite, then prerenders static route HTML into `dist/`. |
-| 4 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
-| 5 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
-| 6 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
-| 7 | `npm run test:redirects` | Requires `npx vercel dev --listen 127.0.0.1:8899 --yes` or `REDIRECT_TEST_BASE` pointed at a Vercel deployment. |
+| 3 | `npm run typecheck` | `tsc -p tsconfig.app.json --noEmit`. **Step 4 does not do this** — see below. |
+| 4 | `npm run build` | Runs HTML fallbacks, builds Vite, then prerenders static route HTML into `dist/`. |
+| 5 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
+| 6 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
+| 7 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
+| 8 | `npm run test:redirects` | Requires `npx vercel dev --listen 127.0.0.1:8899 --yes` or `REDIRECT_TEST_BASE` pointed at a Vercel deployment. |
+
+> **`npm run build` never runs `tsc`.** Vite strips TypeScript with esbuild, which is
+> transpile-only, so type errors do not fail the build and a green `dist/` says nothing about type
+> correctness. `npm run typecheck` is the only gate that catches them — keep it as its own step.
+> `tsconfig.app.json` runs with `strict: false`, so it catches hard errors (broken interfaces,
+> impossible narrowing, readonly/mutable mismatches) but not missing null guards.
+
+## Continuous Integration
+
+`.github/workflows/ci.yml` gates PRs into `main` and `staging` (the older `verify-prod` /
+`verify-staging` workflows only smoke-test the live site after a deploy). Three parallel jobs:
+
+| Job | Runs |
+| --- | --- |
+| `lint-and-content` | `lint`, `typecheck`, `test:content`, `test:blog` |
+| `build-and-seo` | `build`, then `check:seo` + `test:seo` |
+| `e2e` | Playwright on chromium + webkit (boots the dev server itself) |
+
+Two non-obvious requirements in `build-and-seo`: it checks out with `fetch-depth: 0` so
+`scripts/generate-file-dates.mjs` can derive real `<lastmod>` dates from history, and it
+pre-installs `netlify-cli` because `test:seo` boots `netlify dev` against `dist/` and the
+first-run download would otherwise blow past the script's 30s server-wait window.
 
 ## Image & Asset Pipeline
 

@@ -372,7 +372,14 @@ test('mobile floating actions appear after scroll and stay inside the thumb zone
 });
 
 test.describe('reduced motion mobile behavior', () => {
-  test.use({ ...MOBILE_CONTEXT, reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
+  // `reducedMotion` is a browser-context option, not a top-level test option, so
+  // it has to go through `contextOptions` — passed at the top level Playwright
+  // just ignored it and the context was created with the default preference.
+  test.use({
+    ...MOBILE_CONTEXT,
+    contextOptions: { reducedMotion: 'reduce' },
+    viewport: { width: 390, height: 844 }
+  });
 
   test('homepage hero uses a static mobile fallback instead of autoplay media', async ({ page }) => {
     await preparePage(page);

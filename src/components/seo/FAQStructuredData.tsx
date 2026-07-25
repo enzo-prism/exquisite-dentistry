@@ -7,7 +7,8 @@ interface FAQItem {
 }
 
 interface FAQStructuredDataProps {
-  faqs: FAQItem[];
+  // readonly so pages can pass their `as const` FAQ data modules directly.
+  faqs: readonly FAQItem[];
   about?: string;
 }
 
@@ -22,7 +23,7 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({
       '@type': 'Thing',
       name: about
     },
-    mainEntity: faqs.map((faq, index) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {

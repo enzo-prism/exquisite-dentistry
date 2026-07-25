@@ -200,7 +200,10 @@ export interface FAQItem {
 /**
  * Generate FAQ schema object
  */
-export function createFAQSchema(faqs: FAQItem[], about = 'Cosmetic Dentistry Services'): JsonLd {
+export function createFAQSchema(
+  faqs: readonly FAQItem[],
+  about = 'Cosmetic Dentistry Services'
+): JsonLd {
   return {
     '@type': 'FAQPage',
     about: {

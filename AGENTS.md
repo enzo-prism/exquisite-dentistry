@@ -11,6 +11,7 @@
 - `npm run build` bundles for production; `npm run build:prod` pre-optimizes images and mirrors the production (Vercel) deploy step.
 - `npm run preview` serves the built bundle locally for smoke checks.
 - `npm run lint` runs the flat ESLint config (TypeScript + React Hooks). Append `-- --fix` for autofixes.
+- `npm run typecheck` runs `tsc -p tsconfig.app.json --noEmit`. **`npm run build` does not typecheck** — Vite strips types with esbuild and never calls `tsc`, so type errors sail through an otherwise green build. Run this as its own step.
 - `node test-browser.js` executes the Puppeteer smoke test against a running server; install `puppeteer` locally if prompted.
 
 ## Coding Style & Naming Conventions
@@ -19,7 +20,7 @@
 - Let ESLint guide style and accessibility. Avoid disabling rules unless a short inline comment justifies the exception.
 
 ## Testing Guidelines
-- Treat `npm run lint`, `npm run build`, and (when relevant) `npm run build:prod` as mandatory gates before merging.
+- Treat `npm run lint`, `npm run typecheck`, `npm run build`, and (when relevant) `npm run build:prod` as mandatory gates before merging. `.github/workflows/ci.yml` enforces the first three plus the content/SEO/E2E suites on every PR.
 - Run `node test-browser.js` after starting `npm run dev` or `npm run preview` to confirm high-traffic routes like `/services/zoom-whitening`.
 - Place future automated specs in `src/__tests__/` so discovery stays predictable for tooling such as Vitest or Jest.
 
