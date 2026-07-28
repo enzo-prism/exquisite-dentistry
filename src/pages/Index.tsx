@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
 import ClientExperienceSection from '@/components/PatientExperienceSection';
 import PageSEO from '@/components/seo/PageSEO';
 import ServicesSection from '@/components/ServicesSection';
-import ReviewWidget from '@/components/ReviewWidget';
 import SeasonalTreatments from '@/components/SeasonalTreatments';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
 import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
+import ReviewCarousel from '@/components/reviews/ReviewCarousel';
+import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InsurancePaymentBand from '@/components/InsurancePaymentBand';
@@ -19,6 +21,7 @@ import type { VideoTestimonialItem } from '@/components/video-hero/video-constan
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { featuredReviews } from '@/data/featuredReviews';
 import { HOMEPAGE_HERO_PROOF_LINKS, INSURANCE_HERO_BADGE } from '@/data/insurance';
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
@@ -46,8 +49,13 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = VIDEO_TESTIMONIALS.map(
   }
 );
 
+/**
+ * A trimmed set for the homepage carousel — the full wall (with theme filters)
+ * lives on /testimonials/ behind the "Read More Reviews" button.
+ */
+const HOMEPAGE_WRITTEN_REVIEWS = featuredReviews.filter((review) => review.quote).slice(0, 12);
+
 const IndexPage: React.FC = () => {
-  const totalTestimonials = HOMEPAGE_TESTIMONIALS.length;
   const meta = ROUTE_METADATA['/'];
 
   // CSS-based reveal animations (replacing Framer Motion)
@@ -178,26 +186,46 @@ const IndexPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Video Testimonials */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-12">
-            {HOMEPAGE_TESTIMONIALS.map((testimonial, index) => {
-              const isCenteredSolo = totalTestimonials % 2 === 1 && index === totalTestimonials - 1;
-              return (
-                <div
+          {/* Video reviews — every card stays in the DOM; the carousel only
+              changes how many are in view at once. */}
+          <div className="mb-16">
+            <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
+              Video Reviews
+            </h3>
+            <ReviewCarousel label="Video reviews" perView={3}>
+              {HOMEPAGE_TESTIMONIALS.map((testimonial) => (
+                <SimpleTestimonialEmbed
                   key={testimonial.id}
-                  className={`h-full card-animate ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
-                >
-                  <SimpleTestimonialEmbed
-                    testimonial={testimonial}
-                    className="h-full"
-                  />
-                </div>
-              );
-            })}
+                  testimonial={testimonial}
+                  className="h-full"
+                />
+              ))}
+            </ReviewCarousel>
           </div>
 
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
-            <ReviewWidget />
+          {/* Written reviews, kept visually distinct from the video set. */}
+          <div>
+            <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
+              Written Reviews
+            </h3>
+            <ReviewCarousel label="Written reviews" perView={3}>
+              {HOMEPAGE_WRITTEN_REVIEWS.map((review) => (
+                <WrittenReviewCard
+                  key={review.name + (review.quote ?? '')}
+                  review={review}
+                  className="h-full"
+                />
+              ))}
+            </ReviewCarousel>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link to="/testimonials/" className="w-full sm:w-auto">
+              <span className="inline-flex w-full items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-semibold text-white transition hover:bg-black/90 sm:w-auto">
+                Read More Reviews
+                <ArrowRight size={16} className="ml-2" aria-hidden="true" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>

@@ -55,6 +55,7 @@ import {
 import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from "../src/constants/cherry";
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
+import { featuredReviews } from "../src/data/featuredReviews";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { VENEERS_COST_FAQS } from "../src/data/veneers-cost-faqs";
@@ -558,6 +559,28 @@ export const manualPages: StaticRoute[] = [
     h1: "Client Testimonials",
     paragraphs: [
       "See what our clients are saying about their experience at Exquisite Dentistry.",
+    ],
+    sections: [
+      {
+        id: "video-reviews",
+        heading: "Video Reviews",
+        paragraphs: [
+          "Patients describing their treatment and results in their own words.",
+        ],
+        bullets: VIDEO_TESTIMONIALS.map((testimonial) => testimonial.title),
+      },
+      {
+        id: "written-reviews",
+        heading: "Written Reviews",
+        paragraphs: [
+          "Verified patient reviews from Google, Yelp, and other platforms.",
+        ],
+        // The rendered page shows these behind a carousel and theme filters;
+        // the static snapshot keeps every review in the crawlable HTML.
+        bullets: featuredReviews
+          .filter((review) => review.quote)
+          .map((review) => `${review.name} (${review.rating}/5): ${review.quote}`),
+      },
     ],
     links: defaultNavLinks,
   },

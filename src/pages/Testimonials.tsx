@@ -9,8 +9,8 @@ import VideoTestimonial from '@/components/VideoTestimonial';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
-import FeaturedReviewWall from '@/components/FeaturedReviewWall';
-import { featuredReviews } from '@/data/featuredReviews';
+import ReviewCarousel from '@/components/reviews/ReviewCarousel';
+import WrittenReviewsSection from '@/components/reviews/WrittenReviewsSection';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_E164 } from '@/constants/contact';
@@ -127,22 +127,21 @@ const TestimonialsPage: React.FC = () => {
             <div className="separator mx-auto"></div>
           </div>
           
-          {/* Video Testimonials Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
-            {VIDEO_TESTIMONIALS.map((testimonial, index) => {
-              const isCenteredSolo = totalTestimonials % 2 === 1 && index === totalTestimonials - 1;
-              return (
-                <div
+          {/* Video reviews — carousel keeps the set to ~3 in view instead of a
+              nine-card wall, while every card stays in the DOM for crawlers. */}
+          <div className="mb-16">
+            <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
+              Video Reviews
+            </h3>
+            <ReviewCarousel label="Video reviews" perView={2}>
+              {VIDEO_TESTIMONIALS.map((testimonial) => (
+                <VideoTestimonial
                   key={testimonial.id}
-                  className={`h-full ${isCenteredSolo ? 'sm:col-span-2 sm:max-w-3xl sm:mx-auto' : ''}`}
-                >
-                  <VideoTestimonial
-                    testimonial={testimonial}
-                    className="h-full"
-                  />
-                </div>
-              );
-            })}
+                  testimonial={testimonial}
+                  className="h-full"
+                />
+              ))}
+            </ReviewCarousel>
           </div>
           <div className="flex justify-center mb-16">
             <Link
@@ -159,15 +158,15 @@ const TestimonialsPage: React.FC = () => {
               <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-gold">
                 5-STAR PROOF
               </span>
-              <h3 className="text-3xl md:text-4xl font-semibold text-black">Why Angelenos Stay With Us Year After Year</h3>
+              <h3 className="text-3xl md:text-4xl font-semibold text-black">Written Reviews</h3>
               <p className="text-black-light/80 text-base md:text-lg">
                 200+ Google reviews and 100+ Yelp reviews describe the gentle care, modern technology, and calm, comfortable experience our team provides.
-                Browse their words, then book your own visit.
+                Filter by what matters to you, then book your own visit.
               </p>
             </div>
           </div>
 
-          <FeaturedReviewWall reviews={featuredReviews} />
+          <WrittenReviewsSection />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Link
