@@ -249,6 +249,12 @@ test('mobile viewport metadata supports responsive layout, safe areas, and user 
 
 for (const viewport of MOBILE_VIEWPORTS) {
   test(`critical pages fit and keep tappable controls on ${viewport.name}`, async ({ page }) => {
+    // One test body loads all 9 CRITICAL_ROUTES, stabilizes and full-scans each. That
+    // does not fit the 45s global timeout on CI hardware — it fails there on an
+    // unmodified main too (legacy-small-phone 45.5s, iphone-se 45.5s), it has simply
+    // never been observed because this workflow had not run on a PR before. Widen the
+    // budget for this one long test rather than weaken what it asserts.
+    test.slow();
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await preparePage(page);
 
