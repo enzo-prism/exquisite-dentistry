@@ -92,7 +92,9 @@ export const generateSitemapData = (): SitemapUrl[] => {
       loc: getCanonicalUrl('/veneers'),
       lastmod: getFileLastModified('src/pages/Veneers.tsx', 14, now),
       changefreq: 'monthly',
-      priority: 0.8
+      // Cluster pillar — must outrank its own children (0.85) and the other
+      // service hubs (0.9). It sat at 0.8, below every page it links to.
+      priority: 0.95
     },
     {
       loc: getCanonicalUrl('/veneers/front-teeth-veneers-los-angeles'),

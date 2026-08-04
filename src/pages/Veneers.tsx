@@ -72,6 +72,33 @@ const Veneers = () => {
     }
   ];
 
+  const veneerGuides = [
+    {
+      title: 'Veneers cost in Los Angeles',
+      description: 'What changes the price of a veneer case, how porcelain and composite compare, and what a quote includes.',
+      href: '/veneers/cost-los-angeles/',
+      cta: 'Read the cost guide'
+    },
+    {
+      title: 'Veneers for the front 2 to 4 teeth',
+      description: 'How the veneer count is chosen for the smile zone, and why treating four often prevents later shade mismatch.',
+      href: '/veneers/front-teeth-veneers-los-angeles/',
+      cta: 'Compare 2 and 4 veneers'
+    },
+    {
+      title: 'Cost of veneers for 2 front teeth',
+      description: 'A closer look at the two-tooth case, including whitening sequence and what the quote covers.',
+      href: '/veneers/2-front-teeth-veneers-cost-los-angeles/',
+      cta: 'See two-tooth pricing detail'
+    },
+    {
+      title: 'A veneer for a single tooth',
+      description: 'Matching one veneer to the teeth beside it, and when bonding or whitening is the better starting point.',
+      href: '/veneers/1-tooth-veneer-los-angeles/',
+      cta: 'Read about single-tooth veneers'
+    }
+  ];
+
   const faqs = [
     {
       question: "How long do porcelain veneers last?",
@@ -281,6 +308,40 @@ const Veneers = () => {
                   </Button>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/*
+          Cluster index. This pillar previously linked only to the front-teeth child,
+          so the cost and single-tooth pages had no internal path in from the hub —
+          Search Console listed the sitemap as their only referring URL.
+        */}
+        <section className="py-14 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Veneer guides
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Detail on the questions that come up most often before a veneer consultation.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {veneerGuides.map((guide) => (
+                <Card key={guide.href} className="border-gold/25 shadow-sm">
+                  <CardContent className="p-6 space-y-3">
+                    <h3 className="text-xl font-semibold text-foreground">{guide.title}</h3>
+                    <p className="text-muted-foreground">{guide.description}</p>
+                    <Button variant="link" className="px-0" asChild>
+                      <Link to={guide.href} className="inline-flex items-center">
+                        {guide.cta}
+                        <ArrowRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
