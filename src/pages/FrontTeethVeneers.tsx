@@ -83,10 +83,15 @@ const FrontTeethVeneers = () => {
     <>
       <MasterStructuredData includeBusiness includeWebsite />
 
+      {/*
+        Scoped deliberately to the 2-and-4-front-teeth long tail, which this page
+        already ranks on page one for. The broad Los Angeles veneer head terms
+        belong to the /veneers/ pillar — don't widen this back out.
+      */}
       <PageSEO
-        title="Front Teeth Veneers Los Angeles | 2-4 Tooth Veneers Cost"
-        description="Compare 2-to-4 front teeth veneers in Los Angeles, including smile-zone pricing, conservative prep, temporaries, and natural design by Dr. Alexie Aguil."
-        keywords="front teeth veneers, 2 front teeth veneers cost, 4 front teeth veneers cost, veneers for front teeth Los Angeles, smile zone veneers"
+        title="2 & 4 Front Teeth Veneers in Los Angeles | Cost and Design"
+        description="Veneers for just the 2 or 4 front teeth in Los Angeles: choosing the count, conservative prep, temporaries, and shade matching with Dr. Alexie Aguil."
+        keywords="2 front teeth veneers, 4 front teeth veneers, 2 front teeth veneers cost, 4 front teeth veneers cost, front teeth veneers, smile zone veneers"
         path="/veneers/front-teeth-veneers-los-angeles"
         ogType="article"
         ogImage="https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png"
@@ -166,6 +171,13 @@ const FrontTeethVeneers = () => {
               </Button>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">Need clarity first? Call {PHONE_NUMBER_DISPLAY} for pricing and timelines.</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              This page covers the front 2 to 4 teeth. If you are weighing a wider plan, start with{' '}
+              <Link to="/veneers/" className="text-secondary hover:underline">
+                dental veneers in Los Angeles
+              </Link>
+              .
+            </p>
           </div>
         </section>
 

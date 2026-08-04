@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 const CRITICAL_ROUTES = [
   { path: '/', expectedText: 'Los Angeles Cosmetic Dentist' },
   { path: '/services/', expectedText: 'Advanced Cosmetic' },
-  { path: '/veneers/', expectedText: 'Custom Porcelain Veneers' },
+  { path: '/veneers/', expectedText: 'Dental Veneers in Los Angeles' },
   { path: '/smile-gallery/', expectedText: 'Smile Gallery' },
   { path: '/schedule-consultation/', expectedText: 'Schedule Consultation' },
   { path: '/payment-plans/', expectedText: 'Payment Plans' },
@@ -249,6 +249,12 @@ test('mobile viewport metadata supports responsive layout, safe areas, and user 
 
 for (const viewport of MOBILE_VIEWPORTS) {
   test(`critical pages fit and keep tappable controls on ${viewport.name}`, async ({ page }) => {
+    // One test body loads all 9 CRITICAL_ROUTES, stabilizes and full-scans each. That
+    // does not fit the 45s global timeout on CI hardware — it fails there on an
+    // unmodified main too (legacy-small-phone 45.5s, iphone-se 45.5s), it has simply
+    // never been observed because this workflow had not run on a PR before. Widen the
+    // budget for this one long test rather than weaken what it asserts.
+    test.slow();
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await preparePage(page);
 
@@ -273,7 +279,7 @@ test('mobile search drawer fits, accepts input, and navigates from a result', as
   const searchInput = page.getByRole('combobox');
   await expect(searchInput).toBeVisible();
   await searchInput.fill('veneers');
-  await expect(page.getByRole('option', { name: /Custom Porcelain Veneers/i })).toBeVisible();
+  await expect(page.getByRole('option', { name: /Dental Veneers in Los Angeles/i })).toBeVisible();
 
   const drawer = page.locator('[role="dialog"], [data-vaul-drawer]').first();
   const drawerBox = await drawer.boundingBox();
@@ -284,7 +290,7 @@ test('mobile search drawer fits, accepts input, and navigates from a result', as
 
   const searchIssues = await inspectCurrentMobileViewport(page, 'mobile search drawer');
   expect(searchIssues, JSON.stringify(searchIssues, null, 2)).toEqual([]);
-  await page.getByRole('option', { name: /Custom Porcelain Veneers/i }).click();
+  await page.getByRole('option', { name: /Dental Veneers in Los Angeles/i }).click();
   await expect(page).toHaveURL(/\/veneers\/?$/);
 });
 

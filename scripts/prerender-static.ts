@@ -179,6 +179,24 @@ const VENEER_BLOG_LINKS: StaticLink[] = [
   { label: "Do Veneers Require Surgery?", href: "/blog/do-you-need-surgery-for-dental-veneers-answered" }
 ];
 
+// The veneers cluster's own pages. Previously every veneers route linked out to
+// VENEER_BLOG_LINKS and the generic nav only, so in the crawlable HTML the pillar
+// and its children were never linked to each other — Search Console listed the
+// sitemap as the only referring URL for /veneers/cost-los-angeles/. Pillar first:
+// it is the head-term target ("dental veneers los angeles") and needs the equity.
+const VENEER_PILLAR_LINK: StaticLink = {
+  label: "Dental Veneers in Los Angeles",
+  href: "/veneers/"
+};
+
+const VENEER_CLUSTER_LINKS: StaticLink[] = [
+  VENEER_PILLAR_LINK,
+  { label: "Veneers Cost in Los Angeles", href: "/veneers/cost-los-angeles/" },
+  { label: "Front Teeth Veneers (2 to 4 Teeth)", href: "/veneers/front-teeth-veneers-los-angeles/" },
+  { label: "Cost of 2 Front Teeth Veneers", href: "/veneers/2-front-teeth-veneers-cost-los-angeles/" },
+  { label: "Single Tooth Veneer", href: "/veneers/1-tooth-veneer-los-angeles/" }
+];
+
 const WEDDING_BLOG_LINKS: StaticLink[] = [
   { label: "Wedding Smile Tips", href: "/blog/how-to-maintain-the-perfect-wedding-smile" }
 ];
@@ -266,11 +284,13 @@ export const manualPages: StaticRoute[] = [
     path: "/veneers",
     title: getRouteMetadata("/veneers").title,
     description: getRouteMetadata("/veneers").description,
-    h1: "Custom Porcelain Veneers",
+    h1: "Dental Veneers in Los Angeles",
     paragraphs: [
-      "Experience the ultimate smile transformation with our ultra-thin, custom-crafted porcelain veneers. Achieve the perfect balance of beauty, strength, and natural appearance that has made Los Angeles smiles world-famous.",
+      "Porcelain and composite veneers are thin shells bonded to the front of the teeth to adjust shape, color, and minor alignment. Dr. Alexie Aguil plans each case tooth by tooth, using conservative preparation to keep as much natural enamel as possible.",
+      "We review the veneer count, shade, and sequence with you before any work begins, whether the plan covers a single tooth, the front two to four, or a wider set.",
     ],
     links: [
+      ...VENEER_CLUSTER_LINKS.filter((link) => link.href !== "/veneers/"),
       ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/invisalign"),
       ...EVENT_LINKS,
       ...defaultNavLinks
@@ -419,9 +439,10 @@ export const manualPages: StaticRoute[] = [
     path: "/cosmetic-dentistry",
     title: getRouteMetadata("/cosmetic-dentistry").title,
     description: getRouteMetadata("/cosmetic-dentistry").description,
-    h1: "Cosmetic Dentistry Los Angeles",
+    h1: "Cosmetic Dentist in Los Angeles",
     paragraphs: [
       "Veneers, whitening, bonding, and Invisalign, planned and finished to look natural.",
+      "Dr. Alexie Aguil works case by case rather than from a set package, so the plan matches what you actually want changed.",
     ],
     links: [
       ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/emergency-dentist"),
@@ -638,15 +659,16 @@ export const manualPages: StaticRoute[] = [
   },
   {
     path: "/veneers/front-teeth-veneers-los-angeles",
-    title:
-      "Front Teeth Veneers in Los Angeles | 2–4 Tooth Smile Zone Makeovers",
+    // Scoped to the 2-and-4-tooth long tail this page already ranks page one for.
+    // The broad Los Angeles veneer head terms belong to the /veneers/ pillar.
+    title: "2 & 4 Front Teeth Veneers in Los Angeles | Cost and Design",
     description:
-      "Plan front‑teeth veneers in Los Angeles with transparent pricing, minimal‑prep porcelain, and smile‑zone design by Dr. Alexie Aguil.",
-    h1: "Front Teeth Veneers in Los Angeles",
+      "Veneers for just the 2 or 4 front teeth in Los Angeles: choosing the count, conservative prep, temporaries, and shade matching with Dr. Alexie Aguil.",
+    h1: "Veneers for the Front 2 to 4 Teeth in Los Angeles",
     paragraphs: [
-      "This guide covers 2–4 front‑teeth veneers, candidacy, timelines, and what to expect when refining the smile zone.",
+      "This page covers veneers for the front two to four teeth: how the count is chosen, candidacy, timelines, and what to expect. For a wider plan, start with dental veneers in Los Angeles.",
     ],
-    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+    links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/veneers/cost-los-angeles",
@@ -658,7 +680,7 @@ export const manualPages: StaticRoute[] = [
       "A plain guide to what veneers cost in Los Angeles: the factors that move the price, porcelain vs composite, insurance, and financing. Your exact cost is confirmed at a consultation.",
     ],
     faqItems: VENEERS_COST_FAQS.map(({ question, answer }) => ({ question, answer })),
-    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+    links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/veneers/2-front-teeth-veneers-cost-los-angeles",
@@ -669,7 +691,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Understand pricing factors, alternatives, and consultation next steps for 2 front teeth veneer treatment.",
     ],
-    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+    links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/veneers/1-tooth-veneer-los-angeles",
@@ -680,7 +702,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Get clear guidance on candidacy, design precision, and single-tooth veneer options versus bonding or crowns.",
     ],
-    links: [...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+    links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
     path: "/dental-implants/cost-los-angeles",
@@ -893,10 +915,29 @@ const stripHtml = (value: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
+// Descriptions longer than `max` used to be sliced at a word boundary and shipped
+// with no terminator, so 74 of 138 prerendered pages served a snippet that stopped
+// mid-sentence ("...Your exact cost is set at a"). Prefer the last complete sentence
+// that fits; only fall back to a word cut (with an ellipsis) when no sentence ends
+// late enough to leave a usable snippet.
+const MIN_SENTENCE_RATIO = 0.6;
+
 const toMeta = (input: string, max = 155) => {
   const text = stripHtml(input || "").replace(/["<>]/g, "").trim();
   if (text.length <= max) return text;
-  return text.slice(0, max).replace(/\s+\S*$/, "");
+
+  const window = text.slice(0, max);
+  const lastSentenceEnd = Math.max(
+    window.lastIndexOf(". "),
+    window.lastIndexOf("! "),
+    window.lastIndexOf("? "),
+  );
+  if (lastSentenceEnd >= max * MIN_SENTENCE_RATIO) {
+    return window.slice(0, lastSentenceEnd + 1).trim();
+  }
+
+  const trimmed = window.replace(/\s+\S*$/, "").replace(/[\s,;:—–-]+$/, "");
+  return `${trimmed}…`;
 };
 
 const parseSeoKeywords = (value?: string) => {
@@ -2000,7 +2041,11 @@ const renderRoute = (template: string, route: StaticRoute) => {
 		      ${sectionsHtml}
 		      ${faqHtml}
 		      ${visitUsHtml}
-		      ${renderLinks(route.links)}
+		      ${renderLinks(
+		        uniqueLinks(route.links).filter(
+		          (link) => link.href !== normalizeInternalHref(route.path),
+		        ),
+		      )}
 		    </main>
 		  </div>`;
 

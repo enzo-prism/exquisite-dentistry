@@ -47,12 +47,16 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Beverly Hills dentist, West Hollywood dentist, Culver City dentist, Los Angeles dentist locations, dental office near Beverly Hills',
     ogImage: DEFAULT_OG_IMAGE
   },
+  // Head-term target for the veneers cluster. The broad Los Angeles veneer queries
+  // ("dental veneers los angeles", "veneers los angeles", "best veneers los angeles")
+  // belong to this pillar, not to the 2-4 front-teeth child page. Keep the child
+  // pages scoped to their own long-tail so they don't compete for these terms.
   '/veneers': {
-    title: 'Porcelain Veneers Los Angeles | Exquisite Dentistry',
+    title: 'Dental & Porcelain Veneers Los Angeles | Exquisite Dentistry',
     description:
-      'Custom porcelain veneers in Los Angeles. Transform 1-8 teeth with ultra-thin shells. Natural results, minimal prep. Free consultation available.',
+      'Porcelain and composite dental veneers in Los Angeles. Dr. Alexie Aguil plans each case tooth by tooth, with conservative prep and natural shade matching.',
     keywords:
-      'porcelain veneers, Los Angeles veneers, smile makeover, cosmetic dentistry, dental veneers',
+      'dental veneers Los Angeles, veneers Los Angeles, porcelain veneers Los Angeles, composite veneers Los Angeles, cosmetic veneers Los Angeles',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
@@ -130,12 +134,15 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
   },
+  // Searchers use the singular practitioner noun ("cosmetic dentist los angeles")
+  // far more than "cosmetic dentistry"; the homepage was absorbing those queries
+  // because this page never named it. Carry both forms here.
   '/cosmetic-dentistry': {
-    title: 'Cosmetic Dentistry Los Angeles | Exquisite Dentistry',
+    title: 'Cosmetic Dentist in Los Angeles | Exquisite Dentistry',
     description:
-      'Cosmetic dentistry in Los Angeles: veneers, Invisalign, whitening, and bonding, planned to look natural.',
+      'Cosmetic dentist in Los Angeles. Dr. Alexie Aguil plans veneers, Invisalign, whitening, and bonding so the result still looks like you.',
     keywords:
-      'cosmetic dentistry Los Angeles, smile makeover LA, cosmetic dentist Beverly Hills, veneers and Invisalign LA',
+      'cosmetic dentist Los Angeles, cosmetic dentistry Los Angeles, cosmetic dentist near me, smile makeover LA, veneers and Invisalign LA',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp'
   },
