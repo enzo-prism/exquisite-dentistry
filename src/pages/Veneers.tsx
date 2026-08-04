@@ -186,7 +186,7 @@ const Veneers = () => {
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <VideoHero 
-          title={<>Custom Porcelain Veneers in <span className="text-gold">Los Angeles</span></>}
+          title={<>Dental Veneers in <span className="text-gold">Los Angeles</span></>}
           subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil using digital smile design and careful lab fabrication."
           primaryCta={{
             text: "Schedule Consultation",
