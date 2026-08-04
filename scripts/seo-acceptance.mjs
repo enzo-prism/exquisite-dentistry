@@ -393,7 +393,12 @@ const httpRequest = (url, { headers = {} } = {}) =>
     req.end();
   });
 
-const waitForServer = async (baseUrl, timeoutMs = 30_000) => {
+// `netlify dev` installs the three plugins declared in netlify.toml before it
+// serves anything, which on a cold CI runner takes well over the old 30s budget.
+// Pre-installing netlify-cli in the workflow does not cover the plugins.
+const SERVER_TIMEOUT_MS = Number(process.env.SEO_TEST_SERVER_TIMEOUT_MS || 150_000);
+
+const waitForServer = async (baseUrl, timeoutMs = SERVER_TIMEOUT_MS) => {
   const startedAt = Date.now();
   while (Date.now() - startedAt < timeoutMs) {
     try {
@@ -441,7 +446,12 @@ const validateRedirects = async () => {
     ['netlify', 'dev', '-d', 'dist', '--framework', '#static', '--port', String(port), '--no-open', '--offline'],
     {
       cwd: process.cwd(),
-      stdio: ['ignore', 'pipe', 'pipe']
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // Own the process group. `npx netlify dev` spawns grandchildren, so killing
+      // only the npx wrapper left them holding the stdio pipes and this script
+      // never exited — a failed redirect check hung the CI job to its 20 minute
+      // cap instead of reporting in seconds.
+      detached: process.platform !== 'win32'
     }
   );
 
@@ -513,7 +523,15 @@ const validateRedirects = async () => {
     errors.push(`❌ Redirect tests failed: ${error.message}`);
     output.slice(-10).forEach((line) => errors.push(`   ${line.trimEnd()}`));
   } finally {
-    child.kill('SIGTERM');
+    try {
+      if (child.pid && process.platform !== 'win32') {
+        process.kill(-child.pid, 'SIGTERM');
+      } else {
+        child.kill('SIGTERM');
+      }
+    } catch {
+      // already gone
+    }
   }
 
   return { errors };
