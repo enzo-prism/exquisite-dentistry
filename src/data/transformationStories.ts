@@ -533,7 +533,7 @@ export const transformationStories: TransformationStory[] = [
     slug: 'christian-fernandez',
     patientName: 'Christian Fernandez',
     title: 'Christian Fernandez, A Confidence-Boosting Smile Story',
-    shortDescription: 'Christian came to Exquisite Dentistry wanting to feel great about her smile every day. After her smile-straightening journey with our team, she left feeling more confident, cared for, and part of the Exquisite Dentistry family.',
+    shortDescription: 'Christian came to Exquisite Dentistry wanting to feel great about his smile every day. After his smile-straightening journey with our team, he left feeling more confident, cared for, and part of the Exquisite Dentistry family.',
     video: {
       src: 'https://videos-hazel-eta.vercel.app/christian.mp4',
       poster: '/lovable-uploads/c9638a7e-6ecb-4be0-b755-71e2d2918efd.png'

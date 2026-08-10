@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Video } from 'lucide-react';
 import { BlogPost, getRelatedPosts } from '@/data/blogPosts';
 import { transformationStories, type TransformationStory } from '@/data/transformationStories';
-import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 
 interface RelatedPostsProps {
@@ -245,15 +244,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
   };
 
   if (relatedPosts.length === 0) {
-    return (
-      <section className="mt-16">
-        <InternalLinkingWidget 
-          context={getContextFromPost(currentPost)} 
-          variant="expanded"
-          currentPage={`/blog/${currentPost.slug}/`}
-        />
-      </section>
-    );
+    return null;
   }
 
   return (
@@ -315,14 +306,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         );
       })()}
 
-      {/* Enhanced Internal Linking */}
-      <div className="grid md:grid-cols-2 gap-8">
-        <InternalLinkingWidget
-          context={getContextFromPost(currentPost)}
-          variant="expanded"
-          currentPage={`/blog/${currentPost.slug}/`}
-        />
-
+      <div className="mx-auto max-w-3xl">
         <ServiceRecommendation
           currentService={`${currentPost.category} Blog`}
           context="complement"

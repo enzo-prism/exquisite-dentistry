@@ -11,10 +11,13 @@ import { cn } from '@/lib/utils';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { ROUTE_METADATA } from '@/constants/metadata';
 
+const BLOG_PAGE_SIZE = 12;
+
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(BLOG_PAGE_SIZE);
   
   const allPosts = useMemo(() => getBlogIndex(), []);
   const categories = useMemo(() => getBlogIndexCategories(), []);
@@ -31,6 +34,10 @@ const Blog = () => {
       return matchesCategory && matchesSearch;
     });
   }, [allPosts, selectedCategory, searchTerm]);
+
+  useEffect(() => {
+    setVisibleCount(BLOG_PAGE_SIZE);
+  }, [selectedCategory, searchTerm]);
 
   // Simplified loading without complex animations
   useEffect(() => {
@@ -123,12 +130,8 @@ const Blog = () => {
                   "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background",
                   selectedCategory === null 
                     ? [
-                        "bg-gradient-to-r from-primary via-primary to-primary/90",
-                        "text-white blog-filter-selected-text border-primary",
-                        "shadow-lg shadow-primary/25",
-                        "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
-                        "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
-                        "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                        "border-black bg-black text-white",
+                        "shadow-md hover:scale-105 hover:shadow-lg"
                       ]
                     : [
                         "bg-background text-muted-foreground border-border",
@@ -138,9 +141,6 @@ const Blog = () => {
                 )}
               >
                 <span className="relative z-10">All Articles</span>
-                {selectedCategory === null && (
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent animate-pulse-subtle" />
-                )}
               </button>
               
               {categories.map((category) => (
@@ -153,12 +153,8 @@ const Blog = () => {
                     "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background",
                     selectedCategory === category 
                       ? [
-                          "bg-gradient-to-r from-primary via-primary to-primary/90",
-                          "text-white blog-filter-selected-text border-primary",
-                          "shadow-lg shadow-primary/25",
-                          "hover:shadow-xl hover:shadow-primary/30 hover:scale-105",
-                          "[text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]",
-                          "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                          "border-black bg-black text-white",
+                          "shadow-md hover:scale-105 hover:shadow-lg"
                         ]
                       : [
                           "bg-background text-muted-foreground border-border",
@@ -168,9 +164,6 @@ const Blog = () => {
                   )}
                 >
                   <span className="relative z-10 capitalize">{category}</span>
-                  {selectedCategory === category && (
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent animate-pulse-subtle" />
-                  )}
                 </button>
               ))}
             </div>
@@ -221,7 +214,7 @@ const Blog = () => {
               {/* Blog Posts Grid */}
               {filteredPosts.length > 0 ? (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                  {filteredPosts.map((post) => (
+                  {filteredPosts.slice(0, visibleCount).map((post) => (
                     <BlogCard key={post.slug} post={post} />
                   ))}
                 </div>
@@ -242,6 +235,17 @@ const Blog = () => {
                   </button>
                 </div>
               )}
+              {filteredPosts.length > visibleCount ? (
+                <div className="mt-10 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((count) => count + BLOG_PAGE_SIZE)}
+                    className="min-h-11 rounded-md border border-gold px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gold/10"
+                  >
+                    Load more articles
+                  </button>
+                </div>
+              ) : null}
             </div>
           )}
         </div>

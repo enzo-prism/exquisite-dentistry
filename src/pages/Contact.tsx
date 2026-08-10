@@ -380,7 +380,10 @@ const Contact = () => {
                             {ADDRESS_LOCALITY}, {ADDRESS_REGION} {POSTAL_CODE}
                           </a>
                           <div className="mt-3">
-                            <OpenInMapsButton source="contact_page" />
+                            <OpenInMapsButton
+                              source="contact_page"
+                              className="border-white/40 !text-white hover:!bg-white/10 hover:!text-white"
+                            />
                           </div>
                         </div>
                       </div>
@@ -402,14 +405,14 @@ const Contact = () => {
                     <div className="mt-14 pt-8 border-t border-white/20">
                       <h3 className="font-medium mb-5">Follow Us</h3>
                       <div className="flex space-x-5">
-                        <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
+                        <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Instagram (opens in a new tab)" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                           </svg>
                         </a>
-                        <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
+                        <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Facebook (opens in a new tab)" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                           </svg>

@@ -202,7 +202,7 @@ const Navbar = () => {
                         DESKTOP_LINK_BASE_CLASS,
                         'gap-1.5',
                         isServicesSectionActive
-                          ? 'bg-white/10 text-gold'
+                          ? 'bg-white/10 text-white'
                           : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
                       )}
                       aria-label="Browse services"
@@ -266,7 +266,7 @@ const Navbar = () => {
                       cn(
                         DESKTOP_LINK_BASE_CLASS,
                         isActive
-                          ? 'bg-white/10 text-gold'
+                          ? 'bg-white/10 text-white'
                           : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
                       )
                     }
@@ -284,7 +284,7 @@ const Navbar = () => {
                         DESKTOP_LINK_BASE_CLASS,
                         'hidden min-[1240px]:inline-flex',
                         isActive
-                          ? 'bg-white/10 text-gold'
+                          ? 'bg-white/10 text-white'
                           : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
                       )
                     }
@@ -301,7 +301,7 @@ const Navbar = () => {
                         DESKTOP_LINK_BASE_CLASS,
                         'gap-1',
                         isDesktopMoreActive
-                          ? 'bg-white/10 text-gold'
+                          ? 'bg-white/10 text-white'
                           : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
                       )}
                       aria-label="More pages"
@@ -326,7 +326,7 @@ const Navbar = () => {
                             cn(
                               'block w-full rounded-lg px-3 py-2 text-sm transition-colors',
                               DESKTOP_COMPACT_ONLY_MORE_LINKS.has(item.to) && 'min-[1240px]:hidden',
-                              isActive ? 'bg-white/10 text-gold' : 'text-white/90',
+                              isActive ? 'bg-white/10 text-white' : 'text-white/90',
                             )
                           }
                         >
@@ -360,7 +360,7 @@ const Navbar = () => {
                 <PhoneLink
                   phoneNumber={PHONE_NUMBER_DISPLAY}
                   analyticsSource="desktop_nav_icon"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:hidden"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-light/50 bg-white/10 text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[1320px]:hidden"
                   aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
@@ -369,7 +369,7 @@ const Navbar = () => {
                 <PhoneLink
                   phoneNumber={PHONE_NUMBER_DISPLAY}
                   analyticsSource="desktop_nav_text"
-                  className="hidden h-10 items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 text-sm font-semibold text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[1320px]:inline-flex"
+                  className="hidden h-10 items-center gap-2 rounded-full border border-gold-light/50 bg-white/10 px-3.5 text-sm font-semibold text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[1320px]:inline-flex"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
                   <span>Call</span>
@@ -396,7 +396,7 @@ const Navbar = () => {
               <PhoneLink
                 phoneNumber={PHONE_NUMBER_DISPLAY}
                 analyticsSource="mobile_nav_icon"
-                className="hidden h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold transition-colors duration-200 hover:bg-gold/20 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 min-[400px]:inline-flex"
+                className="hidden h-11 w-11 items-center justify-center rounded-full border border-gold-light/50 bg-white/10 text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[400px]:inline-flex"
                 aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
               >
                 <Phone className="h-5 w-5" aria-hidden="true" />

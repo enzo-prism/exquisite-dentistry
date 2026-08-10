@@ -162,6 +162,8 @@ To verify:
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 
+> The August 10, 2026 responsive design release, root causes, prevention controls, and validation evidence are recorded in `docs/DESIGN_QA_2026-08-10.md`.
+
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.

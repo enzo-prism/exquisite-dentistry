@@ -84,13 +84,14 @@ const ServicesSection: React.FC = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.slice(0, 3).map((service) => (
+              {services.slice(0, 3).map((service, index) => (
                 <ServiceCard
                   key={service.title}
                   title={service.title}
                   description={service.description}
                   href={service.href}
                   index={service.index}
+                  className={index === 2 ? 'md:col-span-2 lg:col-span-1' : undefined}
                 />
               ))}
             </div>

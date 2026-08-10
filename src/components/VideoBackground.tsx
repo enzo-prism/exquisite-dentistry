@@ -1,5 +1,5 @@
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -31,8 +31,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerId = useId().replace(/:/g, '');
   const [isInView, setIsInView] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const hasVideo = Boolean(vimeoId || youtubeId || streamableUrl);
 
   const preconnectOrigin = useCallback((origin: string) => {
@@ -108,6 +110,36 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     const timeoutId = window.setTimeout(scheduleLoad, 1200);
     return () => window.clearTimeout(timeoutId);
   }, [hasVideo, isInView, shouldLoadVideo, preconnectVideoOrigins]);
+
+  useEffect(() => {
+    setIsVideoReady(false);
+  }, [streamableUrl, vimeoId, youtubeId]);
+
+  useEffect(() => {
+    if (!vimeoId || typeof window === 'undefined') return;
+
+    const handleVimeoMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://player.vimeo.com') return;
+
+      let payload = event.data;
+      if (typeof payload === 'string') {
+        try {
+          payload = JSON.parse(payload);
+        } catch {
+          return;
+        }
+      }
+
+      if (!payload || payload.player_id !== playerId) return;
+      if (payload.event === 'ready' || payload.event === 'play' || payload.event === 'playing') {
+        setIsVideoReady(true);
+        onLoad?.();
+      }
+    };
+
+    window.addEventListener('message', handleVimeoMessage);
+    return () => window.removeEventListener('message', handleVimeoMessage);
+  }, [onLoad, playerId, vimeoId]);
   
   // Handle video playback for streamable videos
   useEffect(() => {
@@ -166,8 +198,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     if (vimeoId) {
       return (
         <iframe
-          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&controls=0&loop=1&title=0&byline=0&portrait=0&background=1`}
-          className="absolute inset-0 w-full h-full"
+          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&controls=0&loop=1&title=0&byline=0&portrait=0&background=1&player_id=${playerId}`}
+          className="absolute inset-0 h-full w-full transition-opacity duration-500"
           style={{
             width: '140%',
             height: '140%',
@@ -177,13 +209,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             transform: 'translate(-50%, -50%)',
             maxWidth: 'none',
             maxHeight: 'none',
-            backgroundColor: '#000'
+            backgroundColor: '#000',
+            opacity: isVideoReady ? 1 : 0
           }}
           frameBorder="0"
           allow="autoplay; fullscreen"
           title="Background video"
           loading="lazy"
-          onLoad={() => onLoad?.()}
         />
       );
     }
@@ -208,6 +240,11 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             top: '0',
             left: '0',
             backgroundColor: '#000'
+          }}
+          poster={posterSrc}
+          onCanPlay={() => {
+            setIsVideoReady(true);
+            onLoad?.();
           }}
         >
           <source src={`${streamableUrl}.mp4`} type="video/mp4" />
@@ -265,6 +302,20 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     <div ref={containerRef} className="absolute inset-0 w-full h-full bg-black">
       {/* Video content */}
       <div className={cn("absolute inset-0 w-full h-full z-10 overflow-hidden bg-black", className)}>
+        {posterSrc ? (
+          <OptimizedImage
+            src={posterSrc}
+            alt=""
+            aria-hidden="true"
+            priority
+            decoding="async"
+            className={cn(
+              'absolute inset-0 z-[5] h-full w-full object-cover transition-opacity duration-500',
+              isVideoReady && 'pointer-events-none opacity-0'
+            )}
+            sizes="100vw"
+          />
+        ) : null}
         {/* Dark overlay */}
         <div 
           className="absolute inset-0 bg-black z-10"

@@ -1,19 +1,11 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
-import { Star, Award, Users, Clock, Wand2, Sparkles, ClipboardCheck, HandHeart } from 'lucide-react';
+import { Wand2, Sparkles, ClipboardCheck, HandHeart } from 'lucide-react';
 import ImageComponent from '@/components/Image';
-import { drAguilImages } from '@/data/drAguilImages';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 
 const DoctorIntroSection: React.FC = () => {
-  const stats = [
-    { icon: Star, label: '5-Star Reviews', value: '500+' },
-    { icon: Award, label: 'Years Experience', value: '15+' },
-    { icon: Users, label: 'Happy Patients', value: '2000+' },
-    { icon: Clock, label: 'Procedures', value: '5000+' },
-  ];
-
   return (
     <section className="py-12 md:py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +26,7 @@ const DoctorIntroSection: React.FC = () => {
 
             <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               With over 15 years of experience in cosmetic dentistry, Dr. Aguil has transformed thousands of smiles 
-              using the latest techniques and technology. His commitment to excellence and patient comfort has made 
+              using the latest techniques and technology. His commitment to excellence and patient comfort has made
               him an experienced Los Angeles cosmetic dentist.
             </p>
 
@@ -42,7 +34,7 @@ const DoctorIntroSection: React.FC = () => {
             <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-sm mx-auto lg:max-w-none">
               {[
                 { label: 'Board Certified', value: 'Cosmetic Dentistry' },
-                { label: 'Happy Patients', value: '2,500+' },
+                { label: 'Smile Plans', value: 'Personalized' },
                 { label: 'Years Experience', value: '15+' },
                 { label: 'Success Rate', value: '98%' }
               ].map((stat, index) => (

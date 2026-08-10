@@ -107,7 +107,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         <div className="mx-auto mt-5 flex max-w-xs flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs text-white/80">
           {heroProofLinks.map((link, index) => (
             <React.Fragment key={link.href}>
-              {index > 0 ? <span className="text-gold/70">·</span> : null}
+              {index > 0 ? <span className="hidden text-gold/70 sm:inline">·</span> : null}
               <Link
                 to={link.href}
                 className="inline-flex min-h-11 items-center px-1 transition-colors hover:text-white"

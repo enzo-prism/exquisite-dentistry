@@ -25,7 +25,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   minAspectRatio = 3/4,
   maxAspectRatio = 16/9
 }) => {
-  const [sliderPosition, setSliderPosition] = useState(15); // Shows 85% of after photo by default
+  const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({ before: false, after: false });
@@ -105,6 +105,10 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
         showLoadingSkeleton={true}
       />
 
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/75 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+        After
+      </span>
+
       {/* Before Image (Clipped) */}
       <div 
         className="absolute inset-0 overflow-hidden"
@@ -122,6 +126,10 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
         />
       </div>
 
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/75 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+        Before
+      </span>
+
       {/* Slider Handle */}
       {allImagesLoaded && (
         <>
@@ -129,7 +137,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
             className={cn(
               "absolute top-0 bottom-0 w-1 bg-white shadow-lg transition-opacity duration-200",
               "before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
-              "before:w-8 before:h-8 before:bg-white before:rounded-full before:shadow-lg",
+              "before:w-11 before:h-11 before:bg-white before:rounded-full before:shadow-lg",
               "before:flex before:items-center before:justify-center",
               "after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2",
               "after:w-4 after:h-4 after:border-2 after:border-primary after:rounded-full",
@@ -138,13 +146,6 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
             style={{ left: `${sliderPosition}%` }}
           />
           
-          {/* Dynamic Centered Label */}
-          <div className={cn(
-            "absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/70 text-white text-sm rounded transition-all duration-300",
-            isHovering || isDragging ? "opacity-100" : "opacity-0"
-          )}>
-            {sliderPosition > 50 ? "Before" : "After"}
-          </div>
         </>
       )}
     </div>

@@ -580,6 +580,7 @@ const DentalImplants = () => {
               </div>
             </div>
             <InternalLinkingWidget
+              currentPage="/dental-implants/"
               context="implants"
               variant="expanded"
               title="Continue your restorative dentistry research"

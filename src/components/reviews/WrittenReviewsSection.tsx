@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
 import {
   filterReviewsByTheme,
@@ -17,12 +18,22 @@ import { cn } from '@/lib/utils';
  */
 const WrittenReviewsSection: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<ReviewThemeId | null>(null);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   const themes = useMemo(() => getAvailableThemes(taggedFeaturedReviews), []);
-  const visibleReviews = useMemo(
-    () => filterReviewsByTheme(taggedFeaturedReviews, activeTheme),
-    [activeTheme]
+  const reviewsWithQuotes = useMemo(
+    () => taggedFeaturedReviews.filter((review) => Boolean(review.quote?.trim())),
+    []
   );
+  const visibleReviews = useMemo(
+    () => filterReviewsByTheme(reviewsWithQuotes, activeTheme),
+    [activeTheme, reviewsWithQuotes]
+  );
+  const displayedReviews = visibleReviews.slice(0, visibleCount);
+
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [activeTheme]);
 
   return (
     <div className="relative">
@@ -64,14 +75,22 @@ const WrittenReviewsSection: React.FC = () => {
         </div>
 
         <p className="sr-only" aria-live="polite">
-          Showing {visibleReviews.length} of {taggedFeaturedReviews.length} reviews.
+          Showing {displayedReviews.length} of {visibleReviews.length} matching reviews.
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {visibleReviews.map((review) => (
+          {displayedReviews.map((review) => (
             <WrittenReviewCard key={review.name + (review.quote ?? '')} review={review} />
           ))}
         </div>
+
+        {visibleCount < visibleReviews.length && (
+          <div className="mt-8 text-center">
+            <Button variant="outline" onClick={() => setVisibleCount((count) => count + 12)}>
+              Load more reviews
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

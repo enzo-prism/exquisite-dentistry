@@ -201,6 +201,20 @@ const expectCherryVisible = async (page: Page) => {
     });
 };
 
+const expectCherryHidden = async (page: Page) => {
+  await expect
+    .poll(() => getCherryVisibilityState(page), {
+      timeout: 10000,
+    })
+    .toMatchObject({
+      exists: true,
+      visibility: 'hidden',
+      opacity: '0',
+      pointerEvents: 'none',
+      position: 'fixed',
+    });
+};
+
 const getCherryResponsiveState = async (page: Page) =>
   page.evaluate(() => {
     const button = document.querySelector('[aria-label="Open payment calculator"]') as HTMLElement | null;
@@ -253,11 +267,16 @@ test.describe('Cherry widget mobile behavior', () => {
     await page.goto('/schedule-consultation/');
     await stabilizePage(page);
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expectCherryHidden(page);
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
 
+    await page.getByText('Financing and insurance options').click();
     await page.getByRole('link', { name: 'Open Payment Plans' }).click();
     await expect(page).toHaveURL(/\/payment-plans\/?$/);
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expectCherryHidden(page);
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
 
     const menuDialog = await openMobileMenu(page);
@@ -268,7 +287,22 @@ test.describe('Cherry widget mobile behavior', () => {
     await page.locator('header a[href="/"]').first().click();
     await expect(page).toHaveURL(/\/$/);
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expectCherryHidden(page);
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
+  });
+
+  test('keeps the homepage hero clear until the visitor starts scrolling', async ({ page }) => {
+    await page.goto('/');
+    await stabilizePage(page);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expectCherryHidden(page);
+
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+    await expectCherryHidden(page);
   });
 
   test('keeps the floating widget visible while scrolling through Cherry-enabled sections', async ({
@@ -277,13 +311,12 @@ test.describe('Cherry widget mobile behavior', () => {
     await page.goto('/schedule-consultation/');
     await stabilizePage(page);
 
-    const financingHeading = page.getByRole('heading', {
-      name: 'If cost is part of your decision, Cherry is available here too.',
-    });
+    const financingSummary = page.getByText('Financing and insurance options');
 
-    await financingHeading.scrollIntoViewIfNeeded();
-    await expect(financingHeading).toBeVisible();
+    await financingSummary.scrollIntoViewIfNeeded();
+    await expect(financingSummary).toBeVisible();
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
 
     await page.locator('#book-online').scrollIntoViewIfNeeded();
@@ -297,13 +330,14 @@ test.describe('Cherry widget mobile behavior', () => {
     await page.evaluate(() => {
       window.scrollTo({ top: 0, behavior: 'auto' });
     });
-    await expectCherryVisible(page);
+    await expectCherryHidden(page);
   });
 
   test('keeps the mobile navigation sheet above Cherry when both are present', async ({ page }) => {
     await page.goto('/');
     await stabilizePage(page);
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
 
     const menuDialog = await openMobileMenu(page);
@@ -345,6 +379,7 @@ test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ pa
   await stabilizePage(page);
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 
+  await page.getByText('Financing and insurance options').click();
   await page.getByRole('link', { name: 'Open Payment Plans' }).click();
   await expect(page).toHaveURL(/\/payment-plans\/?$/);
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
@@ -354,23 +389,24 @@ test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ pa
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 });
 
-test('Cherry switches to compact copy when the viewport shrinks after desktop render', async ({
+test('Cherry stays icon-only when the viewport shrinks after desktop render', async ({
   page,
 }) => {
   await mockCherryRuntime(page);
   await page.setViewportSize(desktopViewport);
-  await page.goto('/');
+  await page.goto('/schedule-consultation/');
   await stabilizePage(page);
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+  await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
   await expectCherryVisible(page);
 
   await expect
     .poll(() => getCherryResponsiveState(page), { timeout: 10000 })
     .toMatchObject({
       exists: true,
-      desktopDisplay: 'inline',
+      desktopDisplay: 'none',
       mobileDisplay: 'none',
-      subtextDisplay: 'block',
+      subtextDisplay: 'none',
     });
 
   await page.setViewportSize({ width: 500, height: desktopViewport.height });
@@ -380,8 +416,8 @@ test('Cherry switches to compact copy when the viewport shrinks after desktop re
     .toMatchObject({
       exists: true,
       desktopDisplay: 'none',
-      mobileDisplay: 'inline',
-      subtextDisplay: 'block',
+      mobileDisplay: 'none',
+      subtextDisplay: 'none',
       overflowsViewport: false,
     });
 

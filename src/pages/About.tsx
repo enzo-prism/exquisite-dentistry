@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Clock, UserPlus, Sparkles, Cpu } from 'lucide-react';
+import { ArrowRight, Award, Clock, UserPlus, Sparkles, Cpu, Handshake, Gem, HeartHandshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 
@@ -304,8 +304,8 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <Card ref={philosophyCards[0].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[0].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
-                  🤝
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
+                  <Handshake className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Care built around you</h3>
                 <p className="text-black-light">
@@ -316,8 +316,8 @@ const About = () => {
             
             <Card ref={philosophyCards[1].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[1].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
-                  🏅
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
+                  <Gem className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Materials chosen with care</h3>
                 <p className="text-black-light">
@@ -328,8 +328,8 @@ const About = () => {
             
             <Card ref={philosophyCards[2].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[2].animationClass}`}>
               <CardContent className="p-6">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl mb-4" aria-hidden="true">
-                  🧘‍♂️
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
+                  <HeartHandshake className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">A calm, comfortable visit</h3>
                 <p className="text-black-light">

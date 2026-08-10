@@ -45,9 +45,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <Button 
             variant="outline" 
             size="sm"
-            className="group h-auto min-h-10 w-full justify-between whitespace-normal border-gold px-3 text-left text-black hover:bg-gold/5 hover:text-black sm:w-auto sm:justify-center sm:text-center smooth-animation"
+            className="group h-auto min-h-10 w-full justify-between whitespace-normal border-gold-dark !bg-white px-3 text-left !text-gold-dark hover:!bg-gold-dark hover:!text-white sm:w-auto sm:justify-center sm:text-center smooth-animation"
           >
-            <span className="min-w-0">View {title} Details</span>
+            <span className="min-w-0">View Details</span>
             <ArrowRight className="ml-2 h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </Button>
         </Link>

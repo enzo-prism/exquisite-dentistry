@@ -95,7 +95,7 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
         <Link to={buttonLink}>
           <button
             style={{
-              backgroundColor: 'hsl(38, 23%, 50%)',
+              backgroundColor: 'hsl(38, 24%, 37%)',
               color: 'white',
               padding: '0.75rem 1.5rem',
               borderRadius: '2px',
@@ -108,7 +108,7 @@ const SimpleMomentCard: React.FC<SimpleMomentCardProps> = ({
               boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
             }}
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'hsl(38, 21%, 42%)'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'hsl(38, 23%, 50%)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'hsl(38, 24%, 37%)'}
           >
             {buttonText}
           </button>

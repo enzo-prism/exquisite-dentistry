@@ -108,12 +108,12 @@ const TestimonialsPage: React.FC = () => {
         title="Client Testimonials"
         subtitle="See what our clients are saying about their experience at Exquisite Dentistry"
         primaryCta={{
-          text: "Read Testimonials",
-          href: "#five-star-proof"
-        }}
-        secondaryCta={{
           text: "Schedule Consultation",
           href: SCHEDULE_CONSULTATION_PATH
+        }}
+        secondaryCta={{
+          text: "Read Testimonials",
+          href: "#five-star-proof"
         }}
       />
       
@@ -155,7 +155,7 @@ const TestimonialsPage: React.FC = () => {
           
           <div id="five-star-proof" className="space-y-8">
             <div className="text-center max-w-4xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-gold">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
                 5-STAR PROOF
               </span>
               <h3 className="text-3xl md:text-4xl font-semibold text-black">Written Reviews</h3>

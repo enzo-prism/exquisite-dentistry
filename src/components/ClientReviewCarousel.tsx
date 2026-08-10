@@ -52,9 +52,9 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
           <div className="flex items-center gap-3">
             <div>
               <p className="text-base font-semibold text-black">{review.name}</p>
-              <p className="text-[11px] uppercase tracking-[0.35em] text-gold/80">Patient</p>
+              <p className="text-[11px] uppercase tracking-[0.35em] text-gold-dark">Patient</p>
             </div>
-            <div className="ml-auto flex items-center gap-1 text-gold" aria-label={`${review.rating} star review`}>
+            <div className="ml-auto flex items-center gap-1 text-gold" role="img" aria-label={`${review.rating} star review`}>
               {Array.from({ length: review.rating }).map((_, starIndex) => (
                 <Star key={starIndex} size={14} className="fill-current" />
               ))}
@@ -158,7 +158,7 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
                   <p className="text-base font-semibold text-black">{review.name}</p>
                   <p className="text-xs uppercase tracking-[0.28em] text-gold/80">Patient</p>
                 </div>
-                <div className="ml-auto flex items-center gap-1 text-gold" aria-label={`${review.rating} star review`}>
+                <div className="ml-auto flex items-center gap-1 text-gold" role="img" aria-label={`${review.rating} star review`}>
                   {Array.from({ length: review.rating }).map((_, index) => (
                     <Star key={index} size={16} className="fill-current" />
                   ))}

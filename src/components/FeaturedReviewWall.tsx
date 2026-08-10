@@ -25,7 +25,7 @@ const FeaturedReviewWall: React.FC<FeaturedReviewWallProps> = ({ reviews }) => {
                   <p className="text-base font-semibold text-black">{review.name}</p>
                   <p className="text-xs uppercase tracking-[0.28em] text-gold/80">Patient</p>
                 </div>
-                <div className="flex items-center gap-1 text-gold" aria-label={`${review.rating} star review`}>
+                <div className="flex items-center gap-1 text-gold" role="img" aria-label={`${review.rating} star review`}>
                   {Array.from({ length: review.rating }).map((_, index) => (
                     <Star key={index} size={16} className="fill-current" />
                   ))}

@@ -75,7 +75,7 @@ const Tour = () => {
       <section className="bg-black text-white py-16 sm:py-24 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <h1 ref={heroHeading.ref} className={`text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight ${heroHeading.animationClass}`}>
-            Office Gallery
+            Exquisite Dentistry Studio Tour
           </h1>
           <p className="text-white/70 text-base sm:text-lg">
             Take a virtual tour of the interior of Exquisite Dentistry
@@ -86,6 +86,14 @@ const Tour = () => {
           >
             200+ Google reviews · 100+ Yelp reviews
           </Link>
+          <div>
+            <Link
+              to="/schedule-consultation/"
+              className="inline-flex min-h-11 items-center justify-center rounded-sm bg-gold px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-gold/90"
+            >
+              Schedule Consultation
+            </Link>
+          </div>
         </div>
       </section>
 

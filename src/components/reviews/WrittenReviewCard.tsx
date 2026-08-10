@@ -26,6 +26,7 @@ const WrittenReviewCard: React.FC<WrittenReviewCardProps> = ({ review, className
       </div>
       <div
         className="flex items-center gap-1 text-gold"
+        role="img"
         aria-label={`${review.rating} star review`}
       >
         {Array.from({ length: review.rating }).map((_, index) => (

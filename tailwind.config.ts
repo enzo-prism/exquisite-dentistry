@@ -33,8 +33,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				gold: {
 					light: 'hsl(38 25% 58%)',
-					DEFAULT: 'hsl(38 23% 50%)',
-					dark: 'hsl(38 21% 42%)',
+					DEFAULT: 'hsl(38 24% 37%)',
+					dark: 'hsl(35 22% 32%)',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',

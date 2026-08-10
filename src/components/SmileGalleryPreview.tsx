@@ -83,7 +83,7 @@ const SmileGalleryPreview: React.FC = () => {
               Ready to See More Amazing Results?
             </h3>
             <p className="text-gray-600 mb-8">
-              Join 500+ happy patients who have transformed their smiles with Dr. Aguil. 
+              Explore smile transformations planned by Dr. Aguil.
               View our complete gallery and imagine your own transformation.
             </p>
             

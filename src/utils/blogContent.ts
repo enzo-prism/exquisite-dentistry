@@ -40,22 +40,36 @@ const normalizeBlogAnchorHrefs = (html: string) => {
   });
 };
 
+const repairAuditedLegacyVeneerCostPost = (post: BlogPost, html: string) => {
+  if (post.slug !== 'the-cost-of-dental-veneers-in-los-angeles') return html;
+
+  return html
+    .replace(
+      '<p>About $50,000 for a 32-unit veneer design Cost per Tooth: $1800 to $2500 The cost can be dependant on the number of teeth treated. The price may also vary due to diagnostic costs and the delivery method that is used. Why The Best Dental Veneers are Well-Worth the Price A Natural Look Top-quality porcelain veneers are virtually indistinguishable from natural teeth.</p>',
+      '<p>About $50,000 for a 32-unit veneer design.</p><h3>Cost per tooth</h3><p>$1,800 to $2,500. The cost can depend on the number of teeth treated, diagnostic costs, and the delivery method used.</p><h2>Why high-quality dental veneers can be worth the price</h2><h3>A natural look</h3><p>High-quality porcelain veneers are designed to look like natural teeth.</p>'
+    )
+    .replace('<h3>CONTACT EXQUISITE DENTISTRY</h3>', '<h3>Contact Exquisite Dentistry</h3>')
+    .replace('<h3>Call</h3>', '<h3>Schedule a consultation</h3>');
+};
+
 export const sanitizeBlogHtml = (post: BlogPost) => {
   if (!post.content) return '';
 
+  const repairedContent = repairAuditedLegacyVeneerCostPost(post, post.content);
+
   const headingRegex = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i;
-  const match = headingRegex.exec(post.content);
+  const match = headingRegex.exec(repairedContent);
 
   if (!match) {
-    return normalizeBlogAnchorHrefs(post.content.trim());
+    return normalizeBlogAnchorHrefs(repairedContent.trim());
   }
 
   const headingText = stripTags(match[1]);
   if (!hasStrongTokenOverlap(headingText, post)) {
-    return normalizeBlogAnchorHrefs(post.content.trim());
+    return normalizeBlogAnchorHrefs(repairedContent.trim());
   }
 
-  const before = post.content.slice(0, match.index);
-  const after = post.content.slice(match.index + match[0].length);
+  const before = repairedContent.slice(0, match.index);
+  const after = repairedContent.slice(match.index + match[0].length);
   return normalizeBlogAnchorHrefs(`${before}${after}`.trim());
 };

@@ -103,7 +103,7 @@ test.describe('homepage reviews', () => {
 });
 
 test.describe('testimonials page', () => {
-  test('renders every written review by default and filters by theme', async ({ page }) => {
+  test('paginates written reviews and filters by theme', async ({ page }) => {
     await page.goto('/testimonials/');
 
     const all = page.getByRole('button', { name: 'All Reviews' });
@@ -111,8 +111,11 @@ test.describe('testimonials page', () => {
     await expect(all).toHaveAttribute('aria-pressed', 'true');
 
     const cards = page.locator('article').filter({ hasText: 'Patient' });
-    const total = await cards.count();
-    expect(total).toBeGreaterThan(50);
+    const initialCount = await cards.count();
+    expect(initialCount).toBe(12);
+
+    await page.getByRole('button', { name: 'Load more reviews' }).click();
+    expect(await cards.count()).toBeGreaterThan(initialCount);
 
     const teamFilter = page.getByRole('button', { name: 'The Team' });
     await teamFilter.click();
@@ -120,9 +123,9 @@ test.describe('testimonials page', () => {
 
     const filtered = await cards.count();
     expect(filtered).toBeGreaterThan(0);
-    expect(filtered).toBeLessThan(total);
+    expect(filtered).toBeLessThanOrEqual(12);
 
     await all.click();
-    expect(await cards.count()).toBe(total);
+    expect(await cards.count()).toBe(initialCount);
   });
 });

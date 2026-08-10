@@ -27,9 +27,8 @@ import { trackFinancingEngagement } from '@/utils/vercelAnalytics';
 
 const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease' as const;
 const CHERRY_WIDGET_Z_INDEX = '45' as const;
-const CHERRY_WIDGET_COMPACT_BREAKPOINT = 640;
-const CHERRY_WIDGET_COLLAPSED_BREAKPOINT = 480;
 const CHERRY_WIDGET_CLICK_SELECTOR = `[id="${CHERRY_WIDGET_MOUNT_ID}"], [class*="floatingEstimator"]`;
+const WIDGET_REVEAL_SCROLL_Y = 96;
 
 const setImportantStyle = (target: HTMLElement, property: string, value: string) => {
   target.style.setProperty(property, value, 'important');
@@ -69,19 +68,13 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   const mounts = Array.from(
     document.querySelectorAll<HTMLElement>(`[id="${CHERRY_WIDGET_MOUNT_ID}"]`),
   );
-  const viewportWidth = window.innerWidth;
-  const isCompactLayout = viewportWidth <= CHERRY_WIDGET_COMPACT_BREAKPOINT;
-  const isCollapsedLayout = viewportWidth <= CHERRY_WIDGET_COLLAPSED_BREAKPOINT;
+  const shouldHideNearPageTop = window.scrollY < WIDGET_REVEAL_SCROLL_Y;
 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
 
-  const rightOffset = isMobile ? '16px' : '24px';
+  const rightOffset = isMobile ? '8px' : '16px';
   const bottomOffset = isMobile ? 'calc(env(safe-area-inset-bottom, 0px) + 16px)' : '24px';
-  const floatingButtonMaxWidth = isCollapsedLayout
-    ? 'calc(100vw - 32px)'
-    : isCompactLayout
-      ? 'min(280px, calc(100vw - 32px))'
-      : 'min(320px, calc(100vw - 48px))';
+  const floatingButtonMaxWidth = isMobile ? '56px' : '64px';
 
   const styleTargets = [
     ...mounts.slice(-1),
@@ -98,14 +91,14 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'bottom', bottomOffset);
     setImportantStyle(target, 'inset', `auto ${rightOffset} ${bottomOffset} auto`);
     setImportantStyle(target, 'z-index', CHERRY_WIDGET_Z_INDEX);
-    setImportantStyle(target, 'visibility', 'visible');
-    setImportantStyle(target, 'opacity', '1');
-    setImportantStyle(target, 'pointer-events', 'auto');
+    setImportantStyle(target, 'visibility', shouldHideNearPageTop ? 'hidden' : 'visible');
+    setImportantStyle(target, 'opacity', shouldHideNearPageTop ? '0' : '1');
+    setImportantStyle(target, 'pointer-events', shouldHideNearPageTop ? 'none' : 'auto');
     setImportantStyle(target, 'margin', '0');
     setImportantStyle(target, 'transform', 'translate3d(0, 0, 0)');
     setImportantStyle(target, 'transition', CHERRY_WIDGET_HIDE_TRANSITION);
     setImportantStyle(target, 'overflow', 'visible');
-    setImportantStyle(target, 'max-width', isMobile ? 'calc(100vw - 32px)' : 'max-content');
+    setImportantStyle(target, 'max-width', floatingButtonMaxWidth);
   });
 
   const queryUnique = (selector: string) =>
@@ -156,7 +149,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   });
 
   textContainers.forEach((target) => {
-    setImportantStyle(target, 'display', 'flex');
+    setImportantStyle(target, 'display', 'none');
     setImportantStyle(target, 'flex-direction', 'column');
     setImportantStyle(target, 'flex', '1 1 auto');
     setImportantStyle(target, 'min-width', '0');
@@ -179,7 +172,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'overflow', 'hidden');
     setImportantStyle(target, 'white-space', 'nowrap');
     setImportantStyle(target, 'text-overflow', 'ellipsis');
-    setImportantStyle(target, 'display', isCollapsedLayout ? 'none' : 'block');
+    setImportantStyle(target, 'display', 'none');
   });
 
   desktopValueProps.forEach((target) => {
@@ -188,7 +181,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'overflow', 'hidden');
     setImportantStyle(target, 'white-space', 'nowrap');
     setImportantStyle(target, 'text-overflow', 'ellipsis');
-    setImportantStyle(target, 'display', isCompactLayout ? 'none' : 'inline');
+    setImportantStyle(target, 'display', 'none');
   });
 
   mobileValueProps.forEach((target) => {
@@ -197,7 +190,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'overflow', 'hidden');
     setImportantStyle(target, 'white-space', 'nowrap');
     setImportantStyle(target, 'text-overflow', 'ellipsis');
-    setImportantStyle(target, 'display', isCompactLayout && !isCollapsedLayout ? 'inline' : 'none');
+    setImportantStyle(target, 'display', 'none');
   });
 };
 
@@ -419,6 +412,7 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
 
     window.addEventListener('resize', handleViewportChange, { passive: true });
     window.addEventListener('orientationchange', handleViewportChange, { passive: true });
+    window.addEventListener('scroll', handleViewportChange, { passive: true });
 
     syncFloatingWidgetStyles();
 
@@ -426,6 +420,7 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       observer.disconnect();
       window.removeEventListener('resize', handleViewportChange);
       window.removeEventListener('orientationchange', handleViewportChange);
+      window.removeEventListener('scroll', handleViewportChange);
 
       if (syncFrameRef.current !== null) {
         window.cancelAnimationFrame(syncFrameRef.current);

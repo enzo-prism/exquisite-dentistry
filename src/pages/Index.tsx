@@ -102,25 +102,27 @@ const IndexPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-xs tracking-[0.35em] uppercase text-gold/80">
+              <p className="text-xs tracking-[0.35em] uppercase text-gold-light">
                 Most Requested
               </p>
               <h2 className="text-lg font-semibold text-white">
                 Popular Pages
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full lg:w-auto">
+            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-6 lg:w-auto lg:grid-cols-5">
               {[
                 { to: '/dental-implants/', label: 'Dental Implants' },
                 { to: '/veneers/', label: 'Porcelain Veneers' },
                 { to: '/beverly-hills-dentist/', label: 'Beverly Hills Dentist' },
                 { to: '/smile-gallery/', label: 'Smile Gallery' },
                 { to: '/schedule-consultation/', label: 'Schedule Consultation' }
-              ].map((item) => (
+              ].map((item, index) => (
                 <Button
                   key={item.to}
                   variant="outline"
-                  className="w-full border-gold/40 !text-white hover:bg-white/10 hover:!text-white"
+                  className={`w-full border-gold/40 !text-white hover:bg-white/10 hover:!text-white lg:col-span-1 ${
+                    index >= 3 ? 'sm:col-span-3' : 'sm:col-span-2'
+                  }`}
                   asChild
                 >
                   <Link to={item.to}>{item.label}</Link>
@@ -252,7 +254,7 @@ const IndexPage: React.FC = () => {
                   Located in Los Angeles and serving Beverly Hills and nearby neighborhoods, our practice combines advanced dental technology with artistic planning to create natural-looking smile transformations. Dr. Aguil focuses on conservative care, clear communication, and results that look believable in real life.
                 </p>
                 <p className="text-muted-foreground">
-                  With more than a decade in practice, Dr. Aguil understands that every smile is unique. She takes time to listen 
+                  With more than a decade in practice, Dr. Aguil understands that every smile is unique. He takes time to listen
                   to your goals and creates personalized treatment plans that enhance your 
                   natural beauty while improving oral health and function.
                 </p>

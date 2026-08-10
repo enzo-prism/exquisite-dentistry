@@ -252,7 +252,7 @@ const Footer = () => {
         </div>
 
         {/* Mobile Accordion */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Accordion type="multiple" className="divide-y divide-white/10">
             <AccordionItem value="popular-pages">
               <AccordionTrigger
@@ -280,7 +280,7 @@ const Footer = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:grid grid-cols-12 gap-8">
+        <div className="hidden lg:grid grid-cols-12 gap-8">
           <div className="col-span-3 space-y-5">
             <div
               className="flex items-center"

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CherryPaymentPlansWidget from "@/components/CherryPaymentPlansWidget";
 import PageSEO from "@/components/seo/PageSEO";
 import WebPageStructuredData from "@/components/WebPageStructuredData";
 import { Button } from "@/components/ui/button";
@@ -87,50 +86,7 @@ const ScheduleConsultation = () => {
                 </Button>
               </div>
 
-              <div
-                className="mt-8 rounded-3xl border border-gold/20 bg-gradient-to-br from-stone-50 to-white p-6 shadow-[0_18px_48px_-32px_rgba(0,0,0,0.25)] md:p-8"
-              >
-                <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
-                      Flexible Financing
-                    </p>
-                    <h2 className="mt-3 text-2xl font-semibold text-foreground">
-                      If cost is part of your decision, Cherry is available here too.
-                    </h2>
-                    <p className="mt-3 text-muted-foreground leading-relaxed">
-                      You do not need to stop the booking process to use financing. If you want to
-                      check possible monthly payments before you schedule, Cherry can help with
-                      veneers, Invisalign, whitening, implants, and larger treatment plans.
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      The page stays intentionally simple. Use the Cherry financing button when it
-                      appears, open the full payment plans page if you want more guidance, or keep
-                      going and book now if you already know you want to talk with the team.
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      {CHERRY_CREDIT_REPORTING_DISCLOSURE}
-                    </p>
-                    <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                      <Button asChild>
-                        <Link to={PAYMENT_PLANS_PATH}>Open Payment Plans</Link>
-                      </Button>
-                      <Button asChild variant="outline">
-                        <Link to={INSURANCE_PATH}>Insurance Options</Link>
-                      </Button>
-                      <Button asChild variant="outline">
-                        <a href="#book-online">Continue to Booking</a>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="min-w-0">
-                    <CherryPaymentPlansWidget variant="preview" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-14" id="book-online">
+              <div className="mt-10" id="book-online">
                 <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
                   Book Online
                 </h2>
@@ -175,6 +131,29 @@ const ScheduleConsultation = () => {
                   />
                 </div>
               </div>
+
+              <details className="group mt-10 rounded-2xl border border-gold/20 bg-stone-50 p-5 md:p-6">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold text-foreground">
+                  <span>Financing and insurance options</span>
+                  <span className="text-xl text-secondary transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div className="mt-4 border-t border-gold/15 pt-5">
+                  <p className="leading-relaxed text-muted-foreground">
+                    If cost is part of your decision, you can review Cherry payment plans or check insurance after booking.
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {CHERRY_CREDIT_REPORTING_DISCLOSURE}
+                  </p>
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <Button asChild>
+                      <Link to={PAYMENT_PLANS_PATH}>Open Payment Plans</Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link to={INSURANCE_PATH}>Insurance Options</Link>
+                    </Button>
+                  </div>
+                </div>
+              </details>
             </div>
           </div>
         </section>

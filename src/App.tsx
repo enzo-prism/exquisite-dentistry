@@ -12,7 +12,6 @@ import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 
 import Navbar from "@/components/Navbar";
-import GlobalMobileFab from "@/components/mobile/GlobalMobileFab";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
@@ -126,7 +125,6 @@ const AppRoutes = () => {
       {!isSitemapPage && <ScrollProgress />}
       {!isSitemapPage && <ScrollToTop />}
       {!isSitemapPage && <Navbar />}
-      {!isSitemapPage && <GlobalMobileFab />}
       <main id="main-content" className="flex-grow">
         {!isSitemapPage ? (
           <PageTransition>

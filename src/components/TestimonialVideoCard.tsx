@@ -60,7 +60,8 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
   }, [analyticsCategory, testimonial.title, videoId, trackCompletion]);
 
   return (
-    <div className={cn('bg-gray-50 rounded-lg overflow-hidden shadow-lg', className)}>
+    <figure className={cn('overflow-hidden rounded-lg bg-gray-50 shadow-lg', className)}>
+      <div className="aspect-video w-full">
       {testimonial.type === 'vimeo' ? (
         <UniversalVideoPlayer
           platform="vimeo"
@@ -85,7 +86,11 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
           appearance="minimal"
         />
       )}
-    </div>
+      </div>
+      <figcaption className="border-t border-black/5 bg-white px-4 py-3 text-sm font-semibold text-black">
+        {testimonial.title}
+      </figcaption>
+    </figure>
   );
 };
 

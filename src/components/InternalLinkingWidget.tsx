@@ -833,7 +833,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     'grid-cols-1 sm:grid-cols-2'
   );
 
-  const cardClasses = 'group flex h-full flex-col gap-3 rounded-lg border border-white/60 bg-white/95 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:shadow-md';
+  const cardClasses = 'group flex h-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-white/60 bg-white/95 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:shadow-md';
   const iconWrapperClasses = 'flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold';
   const seasonalBadgeClasses = 'text-xs bg-gold/15 text-gold/90 px-2 py-1 rounded-full font-medium uppercase tracking-wide';
 

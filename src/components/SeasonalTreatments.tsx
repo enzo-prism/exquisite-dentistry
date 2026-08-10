@@ -28,7 +28,7 @@ const SeasonalTreatments = () => {
             style={{
               display: 'inline-block',
               fontSize: '0.875rem',
-              color: 'hsl(var(--secondary))',
+              color: 'hsl(var(--gold-dark))',
               fontWeight: '500',
               marginBottom: '0.75rem',
               letterSpacing: '0.05em',
@@ -58,7 +58,7 @@ const SeasonalTreatments = () => {
           <p 
             style={{
               fontSize: '1.125rem',
-              color: 'hsl(var(--muted-foreground))',
+              color: 'hsl(var(--neutral-700))',
               lineHeight: '1.75',
             }}
           >

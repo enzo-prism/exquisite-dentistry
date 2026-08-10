@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
+import { CalendarClock, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
 
 import CherryPaymentPlansWidget from '@/components/CherryPaymentPlansWidget';
 import { Button } from '@/components/ui/button';
@@ -102,7 +102,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   primaryCtaHref = PAYMENT_PLANS_PATH,
   secondaryCtaText = 'Schedule Consultation',
   secondaryCtaHref = SCHEDULE_CONSULTATION_PATH,
-  showWidgetPreview = true,
+  showWidgetPreview = false,
   className,
 }) => {
   useCherryWidgetRegistration({ enabled: true });
@@ -245,12 +245,6 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
             </div>
           ) : null}
 
-          <div className="relative border-t border-border/70 bg-white/60 px-8 py-4 text-sm text-muted-foreground md:px-10">
-            If financing matters to your decision, use Cherry or open the payment plans page.{' '}
-            {CHERRY_CREDIT_SCORE_REASSURANCE} If financing doesn&apos;t matter, you can skip it and
-            keep moving toward your consultation.
-            <ArrowRight className="ml-2 inline-flex h-4 w-4 text-secondary" />
-          </div>
         </div>
       </div>
     </section>

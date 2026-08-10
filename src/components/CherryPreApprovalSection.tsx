@@ -289,7 +289,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
                 ))}
               </div>
 
-              <div className="rounded-[1.5rem] border border-gold/20 bg-gold/5 p-5">
+              <div className="hidden rounded-[1.5rem] border border-gold/20 bg-gold/5 p-5 md:block">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                   <div className="mx-auto shrink-0 rounded-2xl border border-gold/20 bg-white p-2.5 shadow-sm sm:mx-0">
                     <QRCodeSVG

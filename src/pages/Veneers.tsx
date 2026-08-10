@@ -474,16 +474,17 @@ const Veneers = () => {
             </div>
 
             {/* Internal Linking and Service Recommendations */}
-            <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-8">
+            <div className="mx-auto mt-12 max-w-5xl space-y-8">
               <InternalLinkingWidget 
                 context="veneer" 
                 variant="expanded"
                 currentPage="/veneers"
               />
-              <ServiceRecommendation
-                currentService="Porcelain Veneers"
-                context="complement"
-                recommendations={[
+              <div className="mx-auto max-w-3xl">
+                <ServiceRecommendation
+                  currentService="Porcelain Veneers"
+                  context="complement"
+                  recommendations={[
                   {
                     title: "Teeth Whitening",
                     href: "/zoom-whitening",
@@ -506,8 +507,9 @@ const Veneers = () => {
                     duration: "Multiple visits",
                     popularity: 60
                   }
-                ]}
-              />
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </section>

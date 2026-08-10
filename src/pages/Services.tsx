@@ -22,7 +22,6 @@ import {
 import { cn } from '@/lib/utils';
 import ImageComponent from '@/components/Image';
 import { OptimizedImage } from '@/components/seo';
-import LastUpdated from '@/components/LastUpdated';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
@@ -734,11 +733,13 @@ const Services = () => {
             
             <div className="relative">
               <div className="aspect-[4/3] rounded-sm overflow-hidden shadow-xl">
-                <OptimizedImage
+                <img
                   alt="Spa-like dental environment"
                   className="w-full h-full object-cover"
                   src="/lovable-uploads/e1a7d23f-3c7b-4c52-a1ac-7862140cf0af.png"
                   sizes="(min-width: 1024px) 520px, 90vw"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="relative z-10 mx-4 -mt-8 bg-white rounded-sm shadow-lg p-6 sm:absolute sm:-bottom-6 sm:-right-6 sm:mx-0 sm:mt-0 sm:max-w-xs">
@@ -896,22 +897,6 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-6">
-              Ready to Transform <span className="text-gold">Your Smile?</span>
-            </h2>
-            <p className="text-xl text-white/80 mb-10 font-light">
-              Schedule your consultation today and discover how our comprehensive dental services can enhance your smile and oral health.
-            </p>
-            <Button size="lg" asChild>
-              <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
-            </Button>
-            <LastUpdated date="December 2025" className="text-center text-white/60 mt-6" />
-          </div>
-        </div>
-      </section>
     </>
   );
 };

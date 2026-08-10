@@ -345,36 +345,15 @@ test('mobile contact form validation stays visible and does not break the layout
   expect(formIssues, JSON.stringify(formIssues, null, 2)).toEqual([]);
 });
 
-test('mobile floating actions appear after scroll and stay inside the thumb zone', async ({ page }) => {
+test('mobile pages do not add a redundant floating navigation button', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await preparePage(page);
   await page.goto('/');
   await stabilizePage(page);
 
   await page.evaluate(() => window.scrollTo(0, 900));
-  const quickActions = page.getByRole('button', { name: 'Open quick actions' });
-  await expect(quickActions).toBeVisible({ timeout: 10_000 });
-
-  const buttonBox = await quickActions.evaluate((element) => {
-    const rect = element.getBoundingClientRect();
-    return {
-      x: rect.x,
-      y: rect.y,
-      width: rect.width,
-      height: rect.height,
-    };
-  });
-  expect(buttonBox).not.toBeNull();
-  expect(buttonBox.width).toBeGreaterThanOrEqual(48);
-  expect(buttonBox.height).toBeGreaterThanOrEqual(48);
-  expect(buttonBox.x + buttonBox.width).toBeLessThanOrEqual(390);
-  expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(844);
-
-  await quickActions.click();
-  await expect(page.getByRole('link', { name: 'Call Now' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Text Us' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Directions' })).toBeVisible();
-  await scanMobilePage(page, 'mobile expanded quick actions');
+  await expect(page.getByRole('button', { name: 'Open quick actions' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Open navigation menu' })).toBeVisible();
 });
 
 test.describe('reduced motion mobile behavior', () => {

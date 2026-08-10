@@ -6,9 +6,9 @@
 /* Custom CSS Variables for Theme Colors */
 :root {
   /* Gold Palette - Fixed to use proper gold HSL instead of bright yellow */
-  --gold: 38 23% 50%; /* Converted from #9A8360 */
+  --gold: 38 24% 37%; /* WCAG AA brand gold on light surfaces */
   --gold-light: 42 30% 65%; /* Lighter version of gold */
-  --gold-dark: 35 20% 40%; /* Darker version of gold */
+  --gold-dark: 35 22% 32%; /* Darker version of gold */
   --gold-muted: 40 15% 85%; /* Muted gold for backgrounds */
   
   /* Dental Professional Colors */
@@ -41,19 +41,19 @@
   --card-foreground: 215 25% 27%;
   --popover: 0 0% 100%;
   --popover-foreground: 215 25% 27%;
-  --primary: 38 23% 50%; /* Fixed to match gold */
+  --primary: 38 24% 37%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 38 23% 50%; /* Fixed to match gold instead of gray */
+  --secondary: 38 24% 37%;
   --secondary-foreground: 0 0% 100%;
   --muted: 215 10% 85%;
-  --muted-foreground: 215 16% 47%;
+  --muted-foreground: 215 17% 42%;
   --accent: 215 10% 85%;
   --accent-foreground: 0 0% 100%; /* Fixed to white for proper contrast */
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   --border: 215 10% 85%;
   --input: 215 10% 85%;
-  --ring: 38 23% 50%; /* Fixed to match gold */
+  --ring: 38 23% 40%;
   --radius: 0.5rem;
 }
 
@@ -433,7 +433,7 @@ body {
 
 /* Reveal Animations */
 .reveal-hidden {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(20px);
 }
 
