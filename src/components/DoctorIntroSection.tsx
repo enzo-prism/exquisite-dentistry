@@ -94,7 +94,7 @@ const DoctorIntroSection: React.FC = () => {
                 fill={true}
                 objectFit="cover"
                 objectPosition="center"
-                priority={true}
+                priority={false}
               />
             </div>
             {/* Floating Stats Card - Hidden on mobile, visible on larger screens */}
