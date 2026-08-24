@@ -1455,7 +1455,7 @@ const baseBlogPosts: BlogPost[] = [
   },
 ];
 
-type BlogPostDateSource = Pick<BlogPost, 'date' | 'publishedAt'>;
+type BlogPostDateSource = Pick<BlogPost, 'date' | 'publishedAt' | 'modifiedAt'>;
 
 const MONTH_TO_NUMBER: Record<string, string> = {
   january: '01',
@@ -1515,6 +1515,11 @@ export const getBlogPostIsoDate = (post: BlogPostDateSource): string | undefined
 export const getBlogPostDateTime = (post: BlogPostDateSource): string | undefined => {
   const isoDate = getBlogPostIsoDate(post);
   return isoDate ? `${isoDate}T00:00:00.000Z` : undefined;
+};
+
+export const getBlogPostModifiedDateTime = (post: BlogPostDateSource): string | undefined => {
+  const isoDate = normalizeIsoDate(post.modifiedAt);
+  return isoDate ? `${isoDate}T00:00:00.000Z` : getBlogPostDateTime(post);
 };
 
 export const getBlogPostTimestamp = (post: BlogPostDateSource): number => {

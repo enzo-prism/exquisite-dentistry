@@ -21,10 +21,14 @@ const checks = [
 ];
 
 const missing = checks.filter(({ pattern }) => !pattern.test(html));
+const unresolvedPlaceholders = [
+  { name: 'Google Search Console verification token', pattern: /%VITE_GSC_VERIFICATION%/i },
+].filter(({ pattern }) => pattern.test(html));
 
-if (missing.length > 0) {
+if (missing.length > 0 || unresolvedPlaceholders.length > 0) {
   console.error('❌  SEO smoke check failed. Missing:');
   missing.forEach(({ name }) => console.error(`   - ${name}`));
+  unresolvedPlaceholders.forEach(({ name }) => console.error(`   - unresolved ${name}`));
   process.exit(1);
 }
 

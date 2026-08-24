@@ -254,6 +254,35 @@ const getCherryResponsiveState = async (page: Page) =>
     };
   });
 
+const getCherryAccessibilityState = async (page: Page) =>
+  page.evaluate(() => {
+    const button = document.querySelector(
+      '[aria-label="Open payment calculator"]',
+    ) as HTMLElement | null;
+    const container =
+      (button?.closest('[class*="floatingEstimator-floatingContainer"]') as HTMLElement | null) ??
+      (document.querySelector('[id="widget-floatingEstimator-mount"]') as HTMLElement | null);
+
+    if (!button || !container) {
+      return {
+        exists: false,
+        width: 0,
+        height: 0,
+        tabIndex: -1,
+        transition: null,
+      };
+    }
+
+    const rect = button.getBoundingClientRect();
+    return {
+      exists: true,
+      width: rect.width,
+      height: rect.height,
+      tabIndex: button.tabIndex,
+      transition: container.style.getPropertyValue('transition'),
+    };
+  });
+
 test.describe('Cherry widget mobile behavior', () => {
   test.use({ viewport: mobileViewport });
 
@@ -303,6 +332,24 @@ test.describe('Cherry widget mobile behavior', () => {
 
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'auto' }));
     await expectCherryHidden(page);
+  });
+
+  test('keeps the floating control keyboard reachable with a 44px touch target', async ({ page }) => {
+    await page.goto('/payment-plans/');
+    await stabilizePage(page);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    const state = await getCherryAccessibilityState(page);
+    expect(state.exists).toBe(true);
+    expect(state.width).toBeGreaterThanOrEqual(44);
+    expect(state.height).toBeGreaterThanOrEqual(44);
+    expect(state.tabIndex).toBeGreaterThanOrEqual(0);
+
+    const button = page.getByRole('button', { name: 'Open payment calculator' });
+    await button.focus();
+    await expect(button).toBeFocused();
   });
 
   test('keeps the floating widget visible while scrolling through Cherry-enabled sections', async ({
@@ -370,6 +417,19 @@ test.describe('Cherry widget mobile behavior', () => {
 
     await expect(menuDialog).toBeVisible();
   });
+});
+
+test('Cherry removes its reveal transition when reduced motion is requested', async ({ page }) => {
+  await mockCherryRuntime(page);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize(mobileViewport);
+  await page.goto('/payment-plans/');
+  await stabilizePage(page);
+  await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+
+  await expect
+    .poll(() => getCherryAccessibilityState(page), { timeout: 10000 })
+    .toMatchObject({ exists: true, transition: 'none' });
 });
 
 test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ page }) => {

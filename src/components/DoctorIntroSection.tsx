@@ -25,18 +25,18 @@ const DoctorIntroSection: React.FC = () => {
             </p>
 
             <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              With over 15 years of experience in cosmetic dentistry, Dr. Aguil has transformed thousands of smiles 
-              using the latest techniques and technology. His commitment to excellence and patient comfort has made
-              him an experienced Los Angeles cosmetic dentist.
+              With over 15 years of experience in cosmetic dentistry, Dr. Aguil has planned more than 1,000 smile
+              transformations using modern techniques and technology. His focus on clear planning and patient comfort
+              has made him an experienced Los Angeles cosmetic dentist.
             </p>
 
             {/* Mobile Stats - 2x2 Grid */}
             <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-sm mx-auto lg:max-w-none">
               {[
-                { label: 'Board Certified', value: 'Cosmetic Dentistry' },
+                { label: 'Dental Education', value: 'UCLA Trained' },
                 { label: 'Smile Plans', value: 'Personalized' },
                 { label: 'Years Experience', value: '15+' },
-                { label: 'Success Rate', value: '98%' }
+                { label: 'Serving Los Angeles', value: 'Since 2006' }
               ].map((stat, index) => (
                 <div key={index} className="text-center p-3 sm:p-4 bg-gold/5 rounded-lg">
                   <div className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{stat.value}</div>
@@ -53,7 +53,7 @@ const DoctorIntroSection: React.FC = () => {
                   { icon: Wand2, label: 'Precision-crafted smile transformations' },
                   { icon: Sparkles, label: 'Advanced cosmetic dentistry techniques' },
                   { icon: ClipboardCheck, label: 'Personalized treatment planning' },
-                  { icon: HandHeart, label: 'Comfortable, anxiety-free experience' }
+                  { icon: HandHeart, label: 'Comfort-focused patient experience' }
                 ].map(({ icon: Icon, label }) => (
                   <li key={label} className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">

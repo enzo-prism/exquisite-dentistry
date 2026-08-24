@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
 import {
@@ -31,9 +31,10 @@ const WrittenReviewsSection: React.FC = () => {
   );
   const displayedReviews = visibleReviews.slice(0, visibleCount);
 
-  useEffect(() => {
+  const selectTheme = (theme: ReviewThemeId | null) => {
+    setActiveTheme(theme);
     setVisibleCount(12);
-  }, [activeTheme]);
+  };
 
   return (
     <div className="relative">
@@ -45,7 +46,7 @@ const WrittenReviewsSection: React.FC = () => {
         <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
           <button
             type="button"
-            onClick={() => setActiveTheme(null)}
+            onClick={() => selectTheme(null)}
             aria-pressed={activeTheme === null}
             className={cn(
               'button-static rounded-full border px-4 py-2 text-sm font-medium transition',
@@ -60,7 +61,7 @@ const WrittenReviewsSection: React.FC = () => {
             <button
               key={theme.id}
               type="button"
-              onClick={() => setActiveTheme(theme.id)}
+              onClick={() => selectTheme(theme.id)}
               aria-pressed={activeTheme === theme.id}
               className={cn(
                 'button-static rounded-full border px-4 py-2 text-sm font-medium transition',

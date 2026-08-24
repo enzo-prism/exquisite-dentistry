@@ -10,6 +10,7 @@ import { setupErrorReduction } from "@/utils/errorReduction";
 import { PerformanceProvider } from "@/hooks/use-performance-monitor";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
+import WebsiteConcierge from "@/components/WebsiteConcierge";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -20,6 +21,7 @@ import SkipToContent from "@/components/SkipToContent";
 // Lazy load all routes for code splitting
 const Index = lazy(() => import("@/pages/Index"));
 const About = lazy(() => import("@/pages/About"));
+const TeamExcellence = lazy(() => import("@/pages/TeamExcellence"));
 const Tour = lazy(() => import("@/pages/Tour"));
 const Services = lazy(() => import("@/pages/Services"));
 const Locations = lazy(() => import("@/pages/Locations"));
@@ -134,6 +136,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
                 <About />
+              </Suspense>} />
+              <Route path="/why-us/team-excellence" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeamExcellence />
               </Suspense>} />
               <Route path="/tour" element={<Suspense fallback={<PageLoaderComponent />}>
                 <Tour />
@@ -364,6 +369,7 @@ const App = () => {
                 <div className="flex flex-col min-h-screen">
                   <AppRoutes />
                 </div>
+                <WebsiteConcierge />
               </CherryWidgetProvider>
               <RouteAwareObservability />
             </BrowserRouter>

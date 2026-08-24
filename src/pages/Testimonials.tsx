@@ -14,12 +14,16 @@ import WrittenReviewsSection from '@/components/reviews/WrittenReviewsSection';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_E164 } from '@/constants/contact';
+import { bundledReviewCount, reviewArchive } from '@/data/reviewArchive';
 
 const TestimonialsPage: React.FC = () => {
   const SITE_BASE_URL = 'https://exquisitedentistryla.com';
   const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp';
   const totalTestimonials = VIDEO_TESTIMONIALS.length;
   const meta = ROUTE_METADATA['/testimonials'];
+  const hasPrerenderedSchema =
+    typeof document !== 'undefined' &&
+    Boolean(document.querySelector('script[data-prerender-schema="/testimonials"]'));
 
   const toAbsoluteUrl = (url: string) => {
     if (!url) return undefined;
@@ -64,18 +68,42 @@ const TestimonialsPage: React.FC = () => {
     };
   });
 
+  const writtenReviewSchemaItems = reviewArchive.map((review, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: review.name
+      },
+      reviewBody: review.quote,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1
+      },
+      ...(review.publishedDate ? { datePublished: review.publishedDate } : {}),
+      itemReviewed: {
+        '@id': `${SITE_BASE_URL}/#business`
+      }
+    }
+  }));
+
   return (
     <>
-      <MasterStructuredData 
-        includeBusiness={true}
-        includeWebsite={true}
-        additionalSchemas={[
+      {!hasPrerenderedSchema && (
+        <MasterStructuredData
+          includeBusiness={true}
+          includeWebsite={true}
+          additionalSchemas={[
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
             '@id': getCanonicalUrl('/testimonials#page'),
             name: 'Patient Reviews & Testimonials | Exquisite Dentistry Los Angeles',
-            description: 'Read verified patient reviews and watch video testimonials from satisfied clients of Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles',
+            description: 'Read patient reviews currently published by Exquisite Dentistry and watch video testimonials about care with Dr. Alexie Aguil in Los Angeles',
             url: getCanonicalUrl('/testimonials'),
             isPartOf: {
               '@id': 'https://exquisitedentistryla.com/#website'
@@ -91,9 +119,18 @@ const TestimonialsPage: React.FC = () => {
             description: 'Collection of patient video testimonials for Exquisite Dentistry',
             numberOfItems: totalTestimonials,
             itemListElement: videoSchemaItems
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Written Patient Reviews',
+            description: 'Written reviews currently published by Exquisite Dentistry',
+            numberOfItems: writtenReviewSchemaItems.length,
+            itemListElement: writtenReviewSchemaItems
           }
-        ]}
-      />
+          ]}
+        />
+      )}
       <PageSEO
         title={meta.title}
         description={meta.description}
@@ -160,8 +197,8 @@ const TestimonialsPage: React.FC = () => {
               </span>
               <h3 className="text-3xl md:text-4xl font-semibold text-black">Written Reviews</h3>
               <p className="text-black-light/80 text-base md:text-lg">
-                200+ Google reviews and 100+ Yelp reviews describe the gentle care, modern technology, and calm, comfortable experience our team provides.
-                Filter by what matters to you, then book your own visit.
+                Explore {bundledReviewCount} written reviews currently published on this site.
+                Filter by what matters to you, then talk with our team about your own visit.
               </p>
             </div>
           </div>

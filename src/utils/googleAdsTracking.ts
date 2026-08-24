@@ -6,7 +6,40 @@ import {
   trackConsultationIntent,
   trackCtaClick,
   trackVercelEvent,
+  normalizeTrackedRoute,
 } from '@/utils/vercelAnalytics';
+
+const MAX_EVENT_DIMENSION_LENGTH = 64;
+let googleAdsConfigured = false;
+
+const ensureGoogleAdsConfigured = () => {
+  if (googleAdsConfigured || typeof window.gtag !== 'function') return;
+  window.gtag('config', 'AW-11373090310', { send_page_view: false });
+  googleAdsConfigured = true;
+};
+
+const normalizeEventDimension = (value: string, fallback: string) => {
+  const normalized = value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .slice(0, MAX_EVENT_DIMENSION_LENGTH);
+
+  return normalized || fallback;
+};
+
+const getSourcePage = () => normalizeTrackedRoute(window.location.pathname);
+
+const getPersonaBucket = (value: unknown) => {
+  if (typeof value !== 'string') return 'unspecified';
+
+  const normalized = value.toLowerCase();
+  if (normalized.includes('existing')) return 'existing_patient';
+  if (normalized.includes('new patient') || normalized.includes('becoming')) return 'new_patient';
+  if (normalized.includes('vendor') || normalized.includes('business')) return 'vendor_business';
+  return 'other';
+};
 
 /**
  * Helper function to delay opening a URL until a gtag event is sent.
@@ -43,6 +76,7 @@ export function gtagSendEvent(url?: string, target?: string, source = 'google_ad
   };
 
   try {
+    ensureGoogleAdsConfigured();
     // Send the conversion event
     window.gtag('event', 'ads_conversion_Submit_lead_form_1', {
       'event_callback': callback,
@@ -52,8 +86,7 @@ export function gtagSendEvent(url?: string, target?: string, source = 'google_ad
       'currency': 'USD',
       'custom_parameters': {
         'conversion_type': 'consultation_booking',
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString()
+        'source_page': getSourcePage()
       }
     });
 
@@ -102,11 +135,13 @@ export function trackPhoneClick(phoneNumber: string, source = 'phone_link'): voi
     return;
   }
 
-  trackContactMethodClick({
+  const shouldSendAnalytics = trackContactMethodClick({
     method: 'phone',
     source,
     destination: `tel:${phoneNumber}`,
   });
+
+  if (!shouldSendAnalytics) return;
 
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for phone tracking');
@@ -114,28 +149,26 @@ export function trackPhoneClick(phoneNumber: string, source = 'phone_link'): voi
   }
 
   try {
-    // Enhanced phone click tracking with more detailed attribution
-    window.gtag('event', 'phone_click', {
+    window.gtag('event', 'phone_contact_click', {
       'event_category': 'engagement',
-      'event_label': phoneNumber,
+      'event_label': 'practice_phone',
       'value': 1,
       'custom_parameters': {
         'conversion_type': 'phone_contact',
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString(),
-        'user_agent': typeof navigator !== 'undefined' ? navigator.userAgent.substring(0, 100) : 'unknown',
-        'referrer': typeof document !== 'undefined' ? document.referrer || 'direct' : 'direct'
+        'interaction_source': normalizeEventDimension(source, 'phone_link'),
+        'source_page': getSourcePage()
       }
     });
 
     // Also track as potential Google Ads conversion
+    ensureGoogleAdsConfigured();
     window.gtag('event', 'conversion', {
       'send_to': 'AW-11373090310/phone_click',
       'value': 1.0,
       'currency': 'USD'
     });
 
-    console.log('Phone click tracked:', phoneNumber);
+    console.log('Practice phone click tracked');
   } catch (error) {
     console.error('Error tracking phone click:', error);
   }
@@ -149,11 +182,13 @@ export function trackSMSClick(phoneNumber: string, source = 'sms_link'): void {
     return;
   }
 
-  trackContactMethodClick({
+  const shouldSendAnalytics = trackContactMethodClick({
     method: 'sms',
     source,
     destination: `sms:${phoneNumber}`,
   });
+
+  if (!shouldSendAnalytics) return;
 
   if (typeof window.gtag !== 'function') {
     console.warn('Google Analytics gtag not available for SMS tracking');
@@ -161,17 +196,17 @@ export function trackSMSClick(phoneNumber: string, source = 'sms_link'): void {
   }
 
   try {
-    window.gtag('event', 'sms_click', {
+    window.gtag('event', 'sms_contact_click', {
       'event_category': 'engagement',
-      'event_label': phoneNumber,
+      'event_label': 'practice_sms',
       'custom_parameters': {
         'conversion_type': 'sms_contact',
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString()
+        'interaction_source': normalizeEventDimension(source, 'sms_link'),
+        'source_page': getSourcePage()
       }
     });
 
-    console.log('SMS click tracked:', phoneNumber);
+    console.log('Practice SMS click tracked');
   } catch (error) {
     console.error('Error tracking SMS click:', error);
   }
@@ -199,30 +234,30 @@ export function trackFormSubmission(formType: string, additionalData?: Record<st
   }
 
   try {
-    // Enhanced form submission tracking
-    window.gtag('event', 'form_submission', {
+    const normalizedFormType = normalizeEventDimension(formType, 'contact_form');
+
+    window.gtag('event', 'contact_form_submit', {
       'event_category': 'engagement',
-      'event_label': formType,
+      'event_label': normalizedFormType,
       'value': 1,
       'custom_parameters': {
         'conversion_type': 'form_submission',
-        'form_type': formType,
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString(),
-        'user_agent': typeof navigator !== 'undefined' ? navigator.userAgent.substring(0, 100) : 'unknown',
-        'referrer': typeof document !== 'undefined' ? document.referrer || 'direct' : 'direct',
-        ...additionalData
+        'form_type': normalizedFormType,
+        'persona': getPersonaBucket(additionalData?.whichBestDescribesYou),
+        'has_phone': Boolean(additionalData?.hasPhone),
+        'source_page': getSourcePage()
       }
     });
 
     // Also track as Google Ads conversion
+    ensureGoogleAdsConfigured();
     window.gtag('event', 'conversion', {
       'send_to': 'AW-11373090310/form_submission',
       'value': 1.0,
       'currency': 'USD'
     });
 
-    console.log('Form submission tracked:', formType, additionalData);
+    console.log('Contact form submission tracked:', normalizedFormType);
   } catch (error) {
     console.error('Error tracking form submission:', error);
   }
@@ -249,13 +284,11 @@ export function trackCTAClick(ctaType: string, ctaText: string): void {
   try {
     window.gtag('event', 'cta_click', {
       'event_category': 'engagement',
-      'event_label': `${ctaType}: ${ctaText}`,
+      'event_label': normalizeEventDimension(ctaType, 'site_cta'),
       'custom_parameters': {
         'conversion_type': 'cta_interaction',
-        'cta_type': ctaType,
-        'cta_text': ctaText,
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString()
+        'cta_type': normalizeEventDimension(ctaType, 'site_cta'),
+        'source_page': getSourcePage()
       }
     });
 
@@ -281,11 +314,10 @@ export function trackServicePageView(serviceName: string): void {
   try {
     window.gtag('event', 'service_page_view', {
       'event_category': 'page_view',
-      'event_label': serviceName,
+      'event_label': normalizeEventDimension(serviceName, 'service'),
       'custom_parameters': {
-        'service_name': serviceName,
-        'source_page': window.location.pathname,
-        'timestamp': new Date().toISOString()
+        'service_name': normalizeEventDimension(serviceName, 'service'),
+        'source_page': getSourcePage()
       }
     });
 

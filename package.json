@@ -20,10 +20,12 @@
     "test:mobile-nav": "playwright test src/__tests__/navbar.mobile.spec.ts",
     "test:mobile-design": "playwright test src/__tests__/mobile-design.spec.ts",
     "test:insurance-content": "node scripts/test-insurance-content.mjs && playwright test src/__tests__/insurance-content.spec.ts --project=chromium",
+    "test:review-import": "node scripts/test-review-ingestion.mjs",
     "test:redirects": "node scripts/test-redirects.mjs",
     "verify:prod": "node scripts/verify-prod.mjs",
     "verify:staging": "node scripts/verify-staging.mjs",
     "test:content": "node --import tsx scripts/test-content-quality.ts",
+    "test:schema-consistency": "node --import tsx scripts/test-schema-consistency.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",
     "prerender:static": "node --import tsx scripts/prerender-static.ts",
     "generate:search-index": "node --import tsx scripts/generate-search-index.ts",
@@ -87,7 +89,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
+    "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
@@ -103,12 +105,12 @@
     "marked": "^12.0.2",
     "postcss": "^8.4.47",
     "serve": "^14.2.5",
-    "sharp": "^0.33.0",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.11",
     "terser": "^5.24.0",
     "tsx": "^4.20.6",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.1",
+    "typescript-eslint": "^8.67.0",
     "vite": "^5.4.1"
   }
 }

@@ -202,6 +202,74 @@ const PaymentPlans = () => {
           </div>
         </section>
 
+        <section
+          aria-labelledby="timely-care-heading"
+          className="border-y border-border/70 bg-stone-50 py-16 md:py-20"
+        >
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-6xl">
+              <div className="max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                  Timely Care, Clearer Choices
+                </p>
+                <h2
+                  id="timely-care-heading"
+                  className="mt-4 text-3xl font-bold text-foreground md:text-4xl"
+                >
+                  Earlier answers can protect your treatment options.
+                </h2>
+                <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                  Dental concerns do not all progress at the same rate, and pain does not always
+                  show how advanced a problem is. An exam is the only way to understand what is
+                  happening. Starting the conversation sooner can make it easier to compare care,
+                  insurance, timing, and payment options before a concern becomes more complex.
+                </p>
+              </div>
+
+              <ol className="relative mt-10 grid gap-5 md:grid-cols-3">
+                {[
+                  {
+                    title: 'Notice a concern',
+                    description:
+                      'A symptom, a change, or a treatment recommendation is a reason to ask questions. Do not wait for severe pain to be the signal.',
+                  },
+                  {
+                    title: 'Get a clinical evaluation',
+                    description:
+                      'Dr. Aguil can explain whether the right next step is monitoring, preventive care, or treatment. Recommendations and fees depend on the findings.',
+                  },
+                  {
+                    title: 'Choose a timely plan',
+                    description:
+                      'If care is recommended, our team can review PPO benefits first and Cherry financing only for an eligible remaining balance.',
+                  },
+                ].map((step, index) => (
+                  <li
+                    key={step.title}
+                    className="rounded-[1.75rem] border border-gold/20 bg-white p-6 shadow-[0_20px_56px_-42px_rgba(0,0,0,0.28)]"
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-base font-bold text-black"
+                    >
+                      {index + 1}
+                    </div>
+                    <h3 className="mt-5 text-xl font-semibold text-foreground">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      {step.description}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-6 text-sm leading-6 text-muted-foreground">
+                This timeline is general education, not a diagnosis or a promise that a particular
+                treatment, cost, or insurance benefit will apply.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <CherryPreApprovalSection />
 
         <section className="pb-14 md:pb-16">

@@ -55,7 +55,7 @@ import {
 import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from "../src/constants/cherry";
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULING_URL } from "../src/constants/urls";
 import { faqs } from "../src/data/faqs";
-import { featuredReviews } from "../src/data/featuredReviews";
+import { reviewArchive } from "../src/data/reviewArchive";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { VENEERS_COST_FAQS } from "../src/data/veneers-cost-faqs";
@@ -69,7 +69,9 @@ import {
   INSURANCE_NETWORK_LIST,
   INSURANCE_PAGE_FAQS,
   INSURANCE_PAYMENT_SUMMARY,
-  INSURANCE_VERIFICATION_DISCLAIMER
+  INSURANCE_VERIFICATION_DISCLAIMER,
+  INSURANCE_VERIFICATION_PRIVACY_NOTE,
+  INSURANCE_VERIFY_PATH
 } from "../src/data/insurance";
 
 export type StaticLink = { label: string; href: string };
@@ -138,6 +140,7 @@ export const defaultNavLinks: StaticLink[] = [
   { label: "Services", href: "/services" },
   { label: "Locations", href: "/locations/" },
   { label: "About Dr. Aguil", href: "/about" },
+  { label: "Team Excellence", href: "/why-us/team-excellence" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
@@ -244,6 +247,35 @@ export const manualPages: StaticRoute[] = [
       "Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years.",
     ],
     links: [...LOCATION_LINKS, ...defaultNavLinks],
+  },
+  {
+    path: "/why-us/team-excellence",
+    title: getRouteMetadata("/why-us/team-excellence").title,
+    description: getRouteMetadata("/why-us/team-excellence").description,
+    h1: "Team Excellence",
+    paragraphs: [
+      "Dr. Alexie Aguil and the Exquisite Dentistry team pair careful treatment planning with a calm setting, clear explanations, and thoughtful follow-through.",
+      "Dr. Aguil is a UCLA School of Dentistry graduate with more than a decade of experience in cosmetic and restorative dentistry.",
+    ],
+    sections: [
+      {
+        heading: "Clinical Leadership",
+        bullets: [
+          "UCLA School of Dentistry graduate",
+          "Invisalign Lifetime Achievement Award provider",
+          "Member of the American Academy of Cosmetic Dentistry",
+        ],
+      },
+      {
+        heading: "Reviews That Mention the Team",
+        paragraphs: ["Selected from the written reviews already published on this site."],
+        bullets: reviewArchive
+          .filter((review) => /staff|team|hygienist|reception|dr\.?\s|doctor/i.test(review.quote || ""))
+          .slice(0, 6)
+          .map((review) => `${review.name} (${review.rating}/5): ${review.quote}`),
+      },
+    ],
+    links: defaultNavLinks,
   },
   {
     path: "/services",
@@ -532,21 +564,23 @@ export const manualPages: StaticRoute[] = [
     h1: INSURANCE_HERO_HEADLINE,
     paragraphs: [
       INSURANCE_HERO_HOOK,
+      "Start with your PPO benefits. Use Cherry only if a balance remains.",
       "Exquisite Dentistry works with many major PPO dental insurance plans and PPO networks. If you do not see your carrier listed, contact us so we can verify your plan before treatment.",
       `PPO network relationships include ${INSURANCE_NETWORK_LIST}. We are preparing to support additional PPO access through the Zealous Network.`,
       INSURANCE_VERIFICATION_DISCLAIMER,
+      INSURANCE_VERIFICATION_PRIVACY_NOTE,
     ],
     sections: [
       {
         heading: "How PPO Insurance Works at Exquisite Dentistry",
         bullets: [
-          "Send your carrier, plan name, member details, and treatment question",
+          "Send your carrier, plan name, and basic contact information",
           "Our team reviews whether eligible PPO benefits may apply",
           "Some carrier directories may not show every participating PPO network pathway",
           "Use Cherry financing only if insurance leaves a balance and monthly payments would help",
         ],
         links: [
-          { label: "Verify My Benefits", href: "/contact/#contact-form" },
+          { label: "Verify My Benefits", href: INSURANCE_VERIFY_PATH },
           { label: "Cherry Financing", href: "/payment-plans/" },
         ],
       },
@@ -594,12 +628,11 @@ export const manualPages: StaticRoute[] = [
         id: "written-reviews",
         heading: "Written Reviews",
         paragraphs: [
-          "Verified patient reviews from Google, Yelp, and other platforms.",
+          "Written patient reviews currently published by Exquisite Dentistry.",
         ],
         // The rendered page shows these behind a carousel and theme filters;
         // the static snapshot keeps every review in the crawlable HTML.
-        bullets: featuredReviews
-          .filter((review) => review.quote)
+        bullets: reviewArchive
           .map((review) => `${review.name} (${review.rating}/5): ${review.quote}`),
       },
     ],
@@ -1257,15 +1290,36 @@ const buildTestimonialsSchema = () => {
     return base;
   });
 
+  const writtenReviews = reviewArchive.map((review) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: review.name
+    },
+    reviewBody: review.quote,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1
+    },
+    ...(review.publishedDate ? { datePublished: review.publishedDate } : {}),
+    itemReviewed: {
+      "@id": "https://exquisitedentistryla.com/#business"
+    }
+  }));
+
+  const items = [...videoObjects, ...writtenReviews];
+
   return {
     "@type": "ItemList",
-    name: "Video Testimonials",
-    description: "Collection of patient video testimonials for Exquisite Dentistry Los Angeles",
-    numberOfItems: videoObjects.length,
-    itemListElement: videoObjects.map((video, index) => ({
+    name: "Patient Reviews and Video Testimonials",
+    description: "Patient reviews and video testimonials currently published by Exquisite Dentistry Los Angeles",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: video
+      item
     }))
   };
 };
@@ -1273,6 +1327,7 @@ const buildTestimonialsSchema = () => {
 const SERVICE_METADATA_EXCLUSIONS = new Set([
   "/",
   "/about",
+  "/why-us/team-excellence",
   "/services",
   "/locations",
   "/contact",
@@ -1363,6 +1418,7 @@ const getSchemasForRoute = (route: StaticRoute) => {
 
   const includeDoctor =
     routePath === "/about" ||
+    routePath === "/why-us/team-excellence" ||
     routePath === "/veneers" ||
     routePath === "/zoom-whitening" ||
     routePath === "/culver-city-teeth-whitening" ||
@@ -1375,7 +1431,7 @@ const getSchemasForRoute = (route: StaticRoute) => {
   if (includeDoctor) schemas.push(MASTER_DOCTOR_ENTITY);
 
   const pageType =
-    routePath === "/about"
+    routePath === "/about" || routePath === "/why-us/team-excellence"
       ? "AboutPage"
       : routePath === "/contact"
         ? "ContactPage"
@@ -1731,7 +1787,11 @@ const getSchemasForRoute = (route: StaticRoute) => {
   return schemas;
 };
 
-const injectJsonLd = (template: string, schemas: Record<string, unknown>[]) => {
+const injectJsonLd = (
+  template: string,
+  schemas: Record<string, unknown>[],
+  routePath: string,
+) => {
   if (!schemas.length) return template;
   const graph = {
     "@context": SCHEMA_ORG_CONTEXT,
@@ -1740,7 +1800,7 @@ const injectJsonLd = (template: string, schemas: Record<string, unknown>[]) => {
   const jsonLd = safeJsonLd(graph);
   return template.replace(
     /<\/head>/i,
-    `  <script type="application/ld+json">${jsonLd}</script>\n</head>`
+    `  <script type="application/ld+json" data-prerender-schema="${escapeHtml(routePath)}">${jsonLd}</script>\n</head>`
   );
 };
 
@@ -2051,7 +2111,7 @@ const renderRoute = (template: string, route: StaticRoute) => {
 
   const schemas = getSchemasForRoute(route);
   let html = injectSeo(template, route);
-  html = injectJsonLd(html, schemas);
+  html = injectJsonLd(html, schemas, route.path);
   html = injectRoot(html, contentHtml);
   return html;
 };

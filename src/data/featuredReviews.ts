@@ -2,6 +2,12 @@ export type FeaturedReview = {
   name: string;
   rating: number;
   quote?: string;
+  /** Populated only when the bundled source identifies the review platform. */
+  source?: 'Demand Force';
+  /** ISO date supplied by the source export, when available. */
+  publishedDate?: string;
+  /** Stable source ID used to prevent duplicate imports. */
+  externalId?: string;
 };
 
 export const featuredReviews: FeaturedReview[] = [

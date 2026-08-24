@@ -40,3 +40,4 @@ playwright-report/
 # Redundant lockfiles (npm / package-lock.json is the source of truth)
 bun.lockb
 deno.lock
+.env.local

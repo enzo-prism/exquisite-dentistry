@@ -29,6 +29,14 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Dr. Alexie Aguil, cosmetic dentist Los Angeles, dental expertise, smile transformation, porcelain veneers specialist, Beverly Hills dentist',
     ogImage: DEFAULT_OG_IMAGE
   },
+  '/why-us/team-excellence': {
+    title: 'Team Excellence | Exquisite Dentistry Los Angeles',
+    description:
+      'Meet Dr. Alexie Aguil and learn how Exquisite Dentistry combines careful planning, clear communication, and comfort-focused care in Los Angeles.',
+    keywords:
+      'Exquisite Dentistry team, Dr. Alexie Aguil, cosmetic dentist team Los Angeles, comfort-focused dentist Los Angeles, dental team reviews',
+    ogImage: DEFAULT_OG_IMAGE
+  },
   '/services': {
     title:
       'Cosmetic Dentistry Services Los Angeles | Veneers & Implants',
@@ -203,7 +211,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     title:
       'Patient Reviews & Testimonials Los Angeles | Exquisite Dentistry',
     description:
-      'Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles.',
+      'Read patient reviews currently published by Exquisite Dentistry and watch video testimonials about care with Dr. Aguil in Los Angeles.',
     keywords:
       'dental reviews Los Angeles, patient testimonials, cosmetic dentistry reviews, Dr. Alexie Aguil reviews, dental patient experiences, verified reviews',
     ogImage:

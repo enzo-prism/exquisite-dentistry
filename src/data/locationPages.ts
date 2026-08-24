@@ -71,7 +71,7 @@ const DOCTOR_IMAGE = {
 };
 
 const DOCTOR_HIGHLIGHTS = [
-  "USC School of Dentistry graduate focused on cosmetic and restorative care",
+  "UCLA School of Dentistry graduate focused on cosmetic and restorative care",
   "Invisalign Lifetime Achievement Award provider",
   "iTero digital scanning for comfortable, accurate impressions",
   "15+ years of experience caring for Los Angeles patients",
@@ -299,7 +299,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
         "With more than 15 years of experience and a practice that has cared for Los Angeles patients since 2006, Dr. Aguil is known for thoughtful planning, clear communication, and comfort-first appointments. Whether you’re considering veneers, Invisalign, whitening, or implants, your treatment plan is tailored to your timeline, lifestyle, and long-term oral health.",
       ]),
       highlights: [
-        "USC-trained cosmetic dentist with a function-first approach",
+        "UCLA-trained cosmetic dentist with a function-first approach",
         "Invisalign Lifetime Achievement Award provider",
         "Digital scanning and smile planning for predictable results",
         "Discreet, concierge scheduling designed around busy calendars",
@@ -373,7 +373,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Culver City patients make the drive up to Wilshire Boulevard for preventive and cosmetic care that respects their calendars. Dr. Alexie Aguil pairs efficient, well-planned visits with clear communication, so you always know what was done and what comes next.",
-      "A USC School of Dentistry graduate, Dr. Aguil has practiced in Los Angeles for more than 15 years. iTero digital scanning replaces gooey impression trays for most crown, bridge, and Invisalign work — one more way visits stay comfortable.",
+      "A UCLA School of Dentistry graduate, Dr. Aguil has practiced in Los Angeles for more than 15 years. iTero digital scanning replaces gooey impression trays for most crown, bridge, and Invisalign work — one more way visits stay comfortable.",
     ]),
   }),
 
@@ -443,7 +443,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Westside patients come east on Wilshire for restorative dentistry that is planned carefully and explained plainly. Dr. Alexie Aguil places dental implants with precision guides and 3D imaging, and handles crowns, bonding, and whitening with the same attention to detail.",
-      "Dr. Aguil is a USC School of Dentistry graduate with more than 15 years of experience in Los Angeles. His team verifies PPO benefits before treatment and keeps appointments on time, so a cross-town visit stays predictable.",
+      "Dr. Aguil is a UCLA School of Dentistry graduate with more than 15 years of experience in Los Angeles. His team verifies PPO benefits before treatment and keeps appointments on time, so a cross-town visit stays predictable.",
     ]),
   }),
 
@@ -582,7 +582,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "For patients who live or work in 90048, Dr. Alexie Aguil is the dentist around the corner. The practice covers routine cleanings and exams, whitening, Invisalign, and restorative work like bridges and crowns — so most care happens in one familiar place.",
-      "Dr. Aguil, a USC School of Dentistry graduate, has cared for this neighborhood since 2006. Visits are unhurried, digital x-rays and iTero scans keep diagnostics comfortable, and the team verifies PPO benefits before treatment.",
+      "Dr. Aguil, a UCLA School of Dentistry graduate, has cared for this neighborhood since 2006. Visits are unhurried, digital x-rays and iTero scans keep diagnostics comfortable, and the team verifies PPO benefits before treatment.",
     ]),
   }),
 
@@ -721,7 +721,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Westwood students, faculty, and Century City professionals come east on Wilshire for dentistry that respects their time. Dr. Alexie Aguil keeps visits punctual and focused, with Invisalign, cleanings, and cosmetic care planned around real deadlines.",
-      "A USC School of Dentistry graduate and Invisalign Lifetime Achievement Award provider, Dr. Aguil has practiced in Los Angeles for more than 15 years. VELscope screenings and iTero scans are part of routine care, not add-ons.",
+      "A UCLA School of Dentistry graduate and Invisalign Lifetime Achievement Award provider, Dr. Aguil has practiced in Los Angeles for more than 15 years. VELscope screenings and iTero scans are part of routine care, not add-ons.",
     ]),
   }),
 
@@ -793,7 +793,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "The Miracle Mile is where Dr. Alexie Aguil practices every day — his studio has been part of the Wilshire corridor’s working life since 2006. Neighbors come in for cleanings and exams, whitening, Invisalign, and restorative care without leaving the district.",
-      "Dr. Aguil is a USC School of Dentistry graduate with more than 15 years of experience. Appointments are calm and unhurried, with digital x-rays, iTero scanning, and VELscope screenings built into routine visits.",
+      "Dr. Aguil is a UCLA School of Dentistry graduate with more than 15 years of experience. Appointments are calm and unhurried, with digital x-rays, iTero scanning, and VELscope screenings built into routine visits.",
     ]),
     ctaHeading: "Visit Your Neighborhood Dentist",
     ctaDescription:
@@ -866,7 +866,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Larchmont patients make the short drive west for dentistry that feels like the Village itself — personal, unhurried, and consistent. Dr. Alexie Aguil handles cleanings, Invisalign, veneers, and whitening with the same team at every visit.",
-      "A USC School of Dentistry graduate and Invisalign Lifetime Achievement Award provider, Dr. Aguil has cared for Los Angeles patients since 2006. Treatment plans are explained clearly, including what your PPO plan is likely to cover.",
+      "A UCLA School of Dentistry graduate and Invisalign Lifetime Achievement Award provider, Dr. Aguil has cared for Los Angeles patients since 2006. Treatment plans are explained clearly, including what your PPO plan is likely to cover.",
     ]),
   }),
 
@@ -936,7 +936,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Hancock Park residents drive a few minutes west on Wilshire for dentistry that matches the neighborhood’s pace — considered, consistent, and private. Dr. Alexie Aguil plans veneers, crowns, and preventive care with attention to how results will look and function for years.",
-      "Dr. Aguil is a USC School of Dentistry graduate with more than 15 years of experience, and the practice has served the surrounding Wilshire corridor since 2006. The office focuses on adult care, with comfort amenities at every visit.",
+      "Dr. Aguil is a UCLA School of Dentistry graduate with more than 15 years of experience, and the practice has served the surrounding Wilshire corridor since 2006. The office focuses on adult care, with comfort amenities at every visit.",
     ]),
   }),
 
@@ -1008,7 +1008,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Mid-Wilshire is home ground for Dr. Alexie Aguil — his practice has been part of the corridor since 2006. Patients from Park La Brea, the Miracle Mile, and the surrounding blocks come in for everything from routine cleanings to implants and full cosmetic planning.",
-      "A USC School of Dentistry graduate with more than 15 years of experience, Dr. Aguil keeps care in one place: digital x-rays, iTero scanning, VELscope screenings, and restorative treatment under one roof, with PPO benefits verified before work begins.",
+      "A UCLA School of Dentistry graduate with more than 15 years of experience, Dr. Aguil keeps care in one place: digital x-rays, iTero scanning, VELscope screenings, and restorative treatment under one roof, with PPO benefits verified before work begins.",
     ]),
     ctaHeading: "Visit Us on the Wilshire Corridor",
     ctaDescription:
@@ -1081,7 +1081,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "Koreatown patients follow Wilshire west to see Dr. Alexie Aguil for preventive, cosmetic, and implant dentistry in a quieter setting. Appointments are unhurried, and treatment plans are explained clearly — including timelines and costs — before anything begins.",
-      "Dr. Aguil is a USC School of Dentistry graduate and an Invisalign Lifetime Achievement Award provider with more than 15 years of experience. His practice has served the Wilshire corridor since 2006.",
+      "Dr. Aguil is a UCLA School of Dentistry graduate and an Invisalign Lifetime Achievement Award provider with more than 15 years of experience. His practice has served the Wilshire corridor since 2006.",
     ]),
   }),
 
@@ -1153,7 +1153,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     },
     doctorSection: createDoctorSection([
       "For Fairfax District neighbors, Dr. Alexie Aguil is the dentist just down the street — his studio sits at the district’s southern edge on Wilshire Boulevard. Patients come for routine care, cosmetic work, and a calmer experience than they expect from a dental visit.",
-      "Dr. Aguil has cared for this part of Los Angeles since 2006. A USC School of Dentistry graduate, he combines careful clinical work with genuine attention to comfort, and his team verifies PPO benefits before treatment begins.",
+      "Dr. Aguil has cared for this part of Los Angeles since 2006. A UCLA School of Dentistry graduate, he combines careful clinical work with genuine attention to comfort, and his team verifies PPO benefits before treatment begins.",
     ]),
     ctaHeading: "Visit Us From the Fairfax District",
     ctaDescription:

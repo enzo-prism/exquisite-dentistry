@@ -6,7 +6,7 @@ import { featuredReviews } from '@/data/featuredReviews';
 
 const PRACTICE_VIDEO = {
   source: 'https://videos-hazel-eta.vercel.app/trailer.mp4',
-  poster: 'https://videos-hazel-eta.vercel.app/trailer-thumbnail.png',
+  poster: 'https://videos-hazel-eta.vercel.app/_next/image?url=%2Ftrailer-thumbnail.png&w=1080&q=70',
   title: 'Discover Exquisite Dentistry'
 };
 

@@ -20,7 +20,7 @@ const StaticSitemap = () => {
   // Group URLs by category for better organization
   const groupedUrls = {
     main: sitemapData.filter(url => 
-      ['/', '/about', '/tour', '/services', '/contact'].includes(locToPath(url.loc))
+      ['/', '/about', '/why-us/team-excellence', '/tour', '/services', '/contact'].includes(locToPath(url.loc))
     ),
     treatments: sitemapData.filter(url => 
       [
@@ -371,6 +371,7 @@ const getPageTitle = (url: string): string => {
   const titleMap: Record<string, string> = {
     '/': 'Home',
     '/about': 'About Dr. Aguil',
+    '/why-us/team-excellence': 'Team Excellence',
     '/services': 'Our Services',
     '/contact': 'Contact Us',
     '/veneers': 'Porcelain Veneers',

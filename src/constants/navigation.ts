@@ -15,6 +15,7 @@ export const DESKTOP_CORE_LINKS: NavigationItem[] = DESKTOP_PRIMARY_LINKS.slice(
 export const DESKTOP_EXPANDED_LINKS: NavigationItem[] = DESKTOP_PRIMARY_LINKS.slice(2);
 export const DESKTOP_MORE_LINKS: NavigationItem[] = [
   ...DESKTOP_EXPANDED_LINKS,
+  { label: 'Team Excellence', to: '/why-us/team-excellence' },
   { label: 'Insurance', to: '/insurance' },
   { label: 'Payment Plans', to: '/payment-plans' },
   { label: 'Contact', to: '/contact' },
@@ -86,6 +87,7 @@ export const MOBILE_PRIMARY_LINKS: NavigationItem[] = [
 ];
 
 export const MOBILE_SECONDARY_LINKS: NavigationItem[] = [
+  { label: 'Team Excellence', to: '/why-us/team-excellence' },
   { label: 'Insurance', to: '/insurance' },
   { label: 'Payment Plans', to: '/payment-plans' },
   { label: 'Client Experience', to: '/client-experience' },

@@ -46,6 +46,13 @@ const SEO_OVERRIDES = {
   }
 };
 
+// Truthful editorial update dates for generated posts. Publication dates stay
+// untouched; only add an entry when the corresponding source article receives
+// a substantive review or revision.
+const MODIFIED_AT_OVERRIDES = {
+  'are-veneers-covered-by-insurance': '2026-08-23'
+};
+
 const AUTHOR = 'Dr. Alexie Aguil';
 const AUTHOR_BIO =
   'With over 15 years of experience, Dr. Aguil combines artistic vision with technical expertise to deliver exceptional results in cosmetic and restorative dentistry.';
@@ -388,6 +395,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     authorBio: AUTHOR_BIO,
     date,
     publishedAt,
+    ...(MODIFIED_AT_OVERRIDES[slug] ? { modifiedAt: MODIFIED_AT_OVERRIDES[slug] } : {}),
     readTime,
     category,
     tags,

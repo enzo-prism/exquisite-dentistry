@@ -22,7 +22,10 @@ const WrittenReviewCard: React.FC<WrittenReviewCardProps> = ({ review, className
     <div className="flex items-center justify-between gap-3">
       <div>
         <p className="text-base font-semibold text-black">{review.name}</p>
-        <p className="text-xs uppercase tracking-[0.28em] text-gold/80">Patient</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-gold/80">
+          {review.source ? `${review.source} review` : 'Patient review'}
+          {review.publishedDate ? ` · ${review.publishedDate}` : ''}
+        </p>
       </div>
       <div
         className="flex items-center gap-1 text-gold"

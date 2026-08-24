@@ -19,8 +19,11 @@ import {
   INSURANCE_NETWORK_LIST,
   INSURANCE_SCHEMA_VALUES,
 } from '../data/insurance';
+import {
+  PRACTICE_GEO_COORDINATES,
+  PRACTICE_GOOGLE_MAPS_URL,
+} from '../constants/location';
 
-const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Exquisite+Dentistry/@34.0622,-118.3567,17z';
 const LOGO_URL = 'https://exquisitedentistryla.com/lovable-uploads/9683bb53-6591-4e0a-9a1d-6f49d54ea2b1.png';
 const BASE_URL = 'https://exquisitedentistryla.com';
 
@@ -55,10 +58,9 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 34.064851,
-    longitude: -118.370092
+    ...PRACTICE_GEO_COORDINATES,
   },
-  hasMap: GOOGLE_MAPS_URL,
+  hasMap: PRACTICE_GOOGLE_MAPS_URL,
   priceRange: '$$$',
   openingHoursSpecification: [
     {
@@ -94,6 +96,26 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
     SOCIAL_MEDIA.facebook,
     SOCIAL_MEDIA.instagram,
     SOCIAL_MEDIA.youtube
+  ]
+};
+
+export const CONTACT_PAGE_BUSINESS_ENTITY: JsonLd = {
+  '@type': ['LocalBusiness', 'Dentist'],
+  name: MASTER_BUSINESS_ENTITY.name,
+  address: MASTER_BUSINESS_ENTITY.address,
+  geo: MASTER_BUSINESS_ENTITY.geo,
+  hasMap: MASTER_BUSINESS_ENTITY.hasMap,
+  telephone: MASTER_BUSINESS_ENTITY.telephone,
+  email: MASTER_BUSINESS_ENTITY.email,
+  openingHoursSpecification: MASTER_BUSINESS_ENTITY.openingHoursSpecification,
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: MASTER_BUSINESS_ENTITY.telephone,
+      contactType: 'customer service',
+      availableLanguage: 'English',
+      areaServed: 'Los Angeles'
+    }
   ]
 };
 

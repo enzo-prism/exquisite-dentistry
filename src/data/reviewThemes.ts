@@ -1,4 +1,5 @@
-import { featuredReviews, type FeaturedReview } from '@/data/featuredReviews';
+import type { FeaturedReview } from '@/data/featuredReviews';
+import { reviewArchive } from '@/data/reviewArchive';
 
 /**
  * Themes patients bring up most often in their own words.
@@ -48,7 +49,7 @@ const tagReview = (review: FeaturedReview): TaggedReview => ({
     : []
 });
 
-export const taggedFeaturedReviews: TaggedReview[] = featuredReviews.map(tagReview);
+export const taggedFeaturedReviews: TaggedReview[] = reviewArchive.map(tagReview);
 
 /** Reviews carrying a given theme, or every review when no theme is selected. */
 export const filterReviewsByTheme = (

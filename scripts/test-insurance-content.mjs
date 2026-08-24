@@ -56,9 +56,11 @@ if (!existsSync(htmlPath)) {
     'We are preparing to support additional PPO access through the Zealous Network',
     'We may be able to work with MetLife PPO members',
     'Cherry financing',
+    'Start with your PPO benefits. Use Cherry only if a balance remains.',
+    'Do not send a Social Security number, full member ID, date of birth, medical history, diagnosis, or treatment records',
     'FAQPage',
     'tel:+13232722388',
-    '/contact/#contact-form',
+    '/contact/#benefits-verification',
   ].forEach((copy) => assertIncludes('insurance HTML', normalizedHtml, copy));
 
   [

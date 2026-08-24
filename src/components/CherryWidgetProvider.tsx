@@ -69,6 +69,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     document.querySelectorAll<HTMLElement>(`[id="${CHERRY_WIDGET_MOUNT_ID}"]`),
   );
   const shouldHideNearPageTop = window.scrollY < WIDGET_REVEAL_SCROLL_Y;
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
 
@@ -96,7 +97,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'pointer-events', shouldHideNearPageTop ? 'none' : 'auto');
     setImportantStyle(target, 'margin', '0');
     setImportantStyle(target, 'transform', 'translate3d(0, 0, 0)');
-    setImportantStyle(target, 'transition', CHERRY_WIDGET_HIDE_TRANSITION);
+    setImportantStyle(target, 'transition', prefersReducedMotion ? 'none' : CHERRY_WIDGET_HIDE_TRANSITION);
     setImportantStyle(target, 'overflow', 'visible');
     setImportantStyle(target, 'max-width', floatingButtonMaxWidth);
   });
@@ -132,14 +133,17 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   floatingButtons.forEach((target) => {
     setImportantStyle(target, 'width', 'auto');
     setImportantStyle(target, 'max-width', floatingButtonMaxWidth);
-    setImportantStyle(target, 'min-width', '0');
+    setImportantStyle(target, 'min-width', '44px');
+    setImportantStyle(target, 'min-height', '44px');
     setImportantStyle(target, 'overflow', 'hidden');
   });
 
   buttonContents.forEach((target) => {
     setImportantStyle(target, 'display', 'flex');
     setImportantStyle(target, 'align-items', 'center');
+    setImportantStyle(target, 'justify-content', 'center');
     setImportantStyle(target, 'flex-wrap', 'nowrap');
+    setImportantStyle(target, 'min-height', '44px');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
   });
@@ -461,7 +465,6 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       <div
         id={CHERRY_WIDGET_CONTAINER_ID}
         className="pointer-events-none fixed bottom-0 right-0 z-[45] h-0 w-0 overflow-visible"
-        aria-hidden="true"
       />
     </CherryWidgetContext.Provider>
   );

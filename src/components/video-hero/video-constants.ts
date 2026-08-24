@@ -28,7 +28,7 @@ export const ANXIETY_TO_EASE_TESTIMONIAL: VideoTestimonialItem = {
   id: 'anxiety-to-ease-testimonial',
   type: 'file',
   videoUrl: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761503257/testimonial-painting_omnjcj.mp4',
-  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761503588/testimonial-thumbnail_lbg1ln.png',
+  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/f_auto,q_auto,w_768/v1761503588/testimonial-thumbnail_lbg1ln.png',
   title: 'From Anxiety to Ease Patient Testimonial',
   uploadDate: '2024-09-05',
   duration: 'PT2M20S'
@@ -38,7 +38,7 @@ export const NICK_SMILE_TESTIMONIAL: VideoTestimonialItem = {
   id: 'nick-patient-testimonial',
   type: 'file',
   videoUrl: 'https://res.cloudinary.com/dhqpqfw6w/video/upload/v1761590081/Nick_homviy.mp4',
-  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761590343/Nick_phiely.png',
+  thumbnailUrl: 'https://res.cloudinary.com/dhqpqfw6w/image/upload/f_auto,q_auto,w_768/v1761590343/Nick_phiely.png',
   title: 'Nick Invisalign Transformation Testimonial',
   uploadDate: '2024-07-12',
   duration: 'PT2M10S'
@@ -49,7 +49,7 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: 'brandon-patient-testimonial',
     type: 'file',
     videoUrl: 'https://videos-hazel-eta.vercel.app/brandon.mp4',
-    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/brandon-thumbnail.png',
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/_next/image?url=%2Fbrandon-thumbnail.png&w=750&q=70',
     title: 'Brandon Patient Testimonial',
     uploadDate: '2024-08-18',
     duration: 'PT2M4S'
@@ -58,7 +58,7 @@ export const VIDEO_TESTIMONIALS: readonly VideoTestimonialItem[] = [
     id: 'virginia-patient-testimonial',
     type: 'file',
     videoUrl: 'https://videos-hazel-eta.vercel.app/virginia.mp4',
-    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/virginia-thumbnail.png',
+    thumbnailUrl: 'https://videos-hazel-eta.vercel.app/_next/image?url=%2Fvirginia-thumbnail.png&w=750&q=70',
     title: 'Virginia Patient Testimonial',
     uploadDate: '2024-08-20',
     duration: 'PT1M56S'

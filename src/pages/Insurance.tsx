@@ -28,6 +28,7 @@ import {
   INSURANCE_PAYMENT_SUMMARY,
   INSURANCE_SUPPORT_POINTS,
   INSURANCE_VERIFICATION_DISCLAIMER,
+  INSURANCE_VERIFICATION_PRIVACY_NOTE,
   PPO_NETWORKS,
 } from '@/data/insurance';
 
@@ -79,6 +80,45 @@ const Insurance = () => {
           height="medium"
           preferStaticOnMobile={true}
         />
+
+        <section
+          aria-labelledby="insurance-payment-lead"
+          className="border-b border-gold/25 bg-black py-8 text-white"
+        >
+          <div className="container mx-auto px-4">
+            <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold">
+                  PPO Benefits + Flexible Financing
+                </p>
+                <h2
+                  id="insurance-payment-lead"
+                  className="mt-3 text-2xl font-semibold leading-tight md:text-3xl"
+                >
+                  Start with your PPO benefits. Use Cherry only if a balance remains.
+                </h2>
+                <p className="mt-3 max-w-3xl text-base leading-7 text-white/75">
+                  If you have a PPO plan, there is a strong chance we can help you use your
+                  benefits. Coverage varies, so our team verifies your plan before treatment.
+                  Cherry financing may help eligible patients with costs insurance does not cover.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                <Button asChild size="lg" className="bg-gold text-black hover:bg-gold/90">
+                  <Link to={INSURANCE_PAGE_LINKS.contact}>Verify My Benefits</Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                >
+                  <Link to={INSURANCE_PAGE_LINKS.paymentPlans}>View Cherry Financing</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4">
@@ -137,6 +177,9 @@ const Insurance = () => {
             <div className="mx-auto mt-6 max-w-6xl rounded-xl border border-gold/20 bg-gold/5 p-5">
               <p className="text-sm leading-7 text-foreground/80">
                 {INSURANCE_VERIFICATION_DISCLAIMER}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-foreground/80">
+                {INSURANCE_VERIFICATION_PRIVACY_NOTE}
               </p>
             </div>
           </div>

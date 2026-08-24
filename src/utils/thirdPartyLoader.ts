@@ -145,9 +145,6 @@ export function initializeGoogleAnalytics() {
     page_location: window.location.href,
   });
   
-// Initialize Google Ads tracking
-  gtag('config', 'AW-11373090310');
-  
   // Initialize Google Ads conversion tracking utilities
   import('./googleAdsTracking').then(({ initializeGoogleAdsTracking }) => {
     initializeGoogleAdsTracking();

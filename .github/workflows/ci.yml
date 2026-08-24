@@ -1,10 +1,14 @@
 name: ci
 
-# Pre-merge gate. The existing verify-prod / verify-staging workflows only run
-# post-deploy smoke checks against the live site; this workflow runs the build
-# and the content/SEO test scripts on the PR itself so a broken change can't merge.
+# Pre-merge and main-branch gate. The existing verify-prod / verify-staging
+# workflows only run post-deploy smoke checks against the live site; this
+# workflow runs the build and content/SEO/browser suites on proposed changes
+# and re-verifies the exact commit after it reaches main.
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main

@@ -14,6 +14,7 @@ export interface BlogPost {
   authorBio?: string;
   date: string;
   publishedAt?: string;
+  modifiedAt?: string;
   readTime: string;
   category: string;
   tags: string[];

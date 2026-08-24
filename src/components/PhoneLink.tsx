@@ -30,6 +30,7 @@ const PhoneLink = React.forwardRef<HTMLAnchorElement, PhoneLinkProps>(
         className={cn('inline-flex min-h-6 items-center', className)}
         onClick={handlePhoneClick}
         {...props}
+        data-analytics-source={analyticsSource}
       >
         {children}
       </a>

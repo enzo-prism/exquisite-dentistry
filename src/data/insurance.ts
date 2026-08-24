@@ -7,7 +7,7 @@ import {
   VENEERS_INSURANCE_BLOG_PATH,
 } from '@/constants/urls';
 
-export const INSURANCE_VERIFY_PATH = `${CONTACT_PATH}#contact-form` as const;
+export const INSURANCE_VERIFY_PATH = `${CONTACT_PATH}#benefits-verification` as const;
 
 export const INSURANCE_HERO_BADGE = 'Dental Insurance Accepted';
 export const INSURANCE_HERO_HEADLINE = 'Dental Insurance Accepted in Los Angeles';
@@ -56,6 +56,9 @@ export const INSURANCE_SCHEMA_VALUES = [
 
 export const INSURANCE_VERIFICATION_DISCLAIMER =
   'Coverage, benefits, provider-directory listings, fee schedules, and patient responsibility vary by plan. Please contact the office so our team can verify your specific PPO benefits before treatment.';
+
+export const INSURANCE_VERIFICATION_PRIVACY_NOTE =
+  'For this first request, share only basic contact and plan information. Do not send a Social Security number, full member ID, date of birth, medical history, diagnosis, or treatment records. Our team can collect anything else through an appropriate follow-up.';
 
 export const INSURANCE_SERVICE_REASSURANCE =
   "Have a PPO dental plan? There's a strong chance we can help you use your benefits. We can verify your plan before treatment, and Cherry financing may help eligible patients if insurance leaves a remaining balance.";
@@ -141,7 +144,7 @@ export const INSURANCE_PAGE_FAQS = [
   {
     question: 'Can you verify my benefits before treatment?',
     answer:
-      `Yes. Call ${PHONE_NUMBER_DISPLAY} or send us your insurance information through the contact page. Carrier name, plan name, member details, and the treatment you are considering help us review your benefits more accurately before treatment.`,
+      `Yes. Call ${PHONE_NUMBER_DISPLAY} or use our benefits-verification form to send basic contact information, your carrier, and plan name. Please do not send a Social Security number, full member ID, date of birth, medical history, diagnosis, or treatment records through the form. Our team can collect anything else through an appropriate follow-up.`,
   },
   {
     question: 'Can I use insurance for cosmetic dentistry?',
@@ -158,7 +161,7 @@ export const INSURANCE_PAGE_STEPS = [
   {
     title: 'Send your PPO plan details',
     description:
-      'Share your carrier, plan name, member information, and the treatment you are considering so our team can check the right benefit path.',
+      'Share your carrier, plan name, and contact information through our privacy-conscious form. Our team will follow up if anything else is needed.',
   },
   {
     title: 'We verify benefits before treatment',

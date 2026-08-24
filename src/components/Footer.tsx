@@ -56,6 +56,7 @@ const FOOTER_SECTIONS: { id: string; title: string; links: FooterLink[] }[] = [
     links: [
       { label: 'Home', to: '/' },
       { label: 'About Dr. Aguil', to: '/about/' },
+      { label: 'Team Excellence', to: '/why-us/team-excellence/' },
       { label: 'Client Experience', to: '/client-experience/' },
       { label: 'Testimonials', to: '/testimonials/' },
       { label: 'Blog', to: '/blog/' },
@@ -164,7 +165,7 @@ const Footer = () => {
         {/* CTA Panel */}
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-white/10 pb-8">
           <div>
-            <p className="text-xs tracking-[0.35em] uppercase text-gold/80 mb-2">
+            <p className="text-xs font-semibold tracking-[0.35em] uppercase text-gold-light mb-2">
               Ready to start?
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold">
@@ -202,7 +203,7 @@ const Footer = () => {
               ))}
             </div>
             <p className="text-sm text-white/80">
-              20+ years of 5-star service in Los Angeles
+              Five-star care, in patients&apos; own words
             </p>
           </div>
 
@@ -236,14 +237,14 @@ const Footer = () => {
         </div>
 
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/70">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-light">
             Insurance Accepted
           </p>
           <p className="mt-2">
             {INSURANCE_FOOTER_SUMMARY}{' '}
             <Link
               to="/insurance/"
-              className="font-semibold text-gold underline underline-offset-4 hover:no-underline"
+              className="font-semibold text-gold-light underline underline-offset-4 hover:no-underline"
             >
               Verify your benefits
             </Link>

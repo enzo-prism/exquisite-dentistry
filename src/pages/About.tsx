@@ -102,7 +102,7 @@ const About = () => {
       {/* Hero Section with VideoHero */}
       <VideoHero
         title={<>Meet Dr. Alexie Aguil, <span className="text-gold">Cosmetic Dentist</span></>}
-        subtitle="Learn about Dr. Alexie Aguil, a USC-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider, and the personalized approach behind our Los Angeles practice."
+        subtitle="Learn about Dr. Alexie Aguil, a UCLA-trained cosmetic dentist and Invisalign Lifetime Achievement Award provider, and the personalized approach behind our Los Angeles practice."
         primaryCta={{ 
           text: "Schedule Consultation",
           href: SCHEDULE_CONSULTATION_PATH
@@ -138,7 +138,7 @@ const About = () => {
 
               <div className="space-y-4 text-base sm:text-lg text-black-light">
                 <p>
-                  Dr. Alexie Aguil is a USC School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Dr. Aguil&apos;s approach blends clinical precision with an eye for proportion, shade, and facial balance.
+                  Dr. Alexie Aguil is a UCLA School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Dr. Aguil&apos;s approach blends clinical precision with an eye for proportion, shade, and facial balance.
                 </p>
                 
                 <p>

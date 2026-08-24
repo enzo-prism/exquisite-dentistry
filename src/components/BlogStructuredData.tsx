@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BlogPost, getBlogPostDateTime } from '@/data/blogPosts';
+import { BlogPost, getBlogPostDateTime, getBlogPostModifiedDateTime } from '@/data/blogPosts';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 
 interface BlogStructuredDataProps {
@@ -70,7 +70,7 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
       }
     },
     datePublished: getBlogPostDateTime(post),
-    dateModified: getBlogPostDateTime(post),
+    dateModified: getBlogPostModifiedDateTime(post),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': postUrl

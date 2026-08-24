@@ -3,7 +3,12 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import { ArrowLeft } from 'lucide-react';
-import { BlogPost, getBlogPostDateTime, getPostBySlug } from '@/data/blogPosts';
+import {
+  BlogPost,
+  getBlogPostDateTime,
+  getBlogPostModifiedDateTime,
+  getPostBySlug,
+} from '@/data/blogPosts';
 import PageLoader from '@/components/ui/page-loader';
 import { toast } from 'sonner';
 import BlogMeta from './BlogMeta';
@@ -48,6 +53,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
         ogType="article"
         articleAuthor={post.author}
         articlePublishedTime={getBlogPostDateTime(post)}
+        articleModifiedTime={getBlogPostModifiedDateTime(post)}
       />
 
       {/* Header */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
@@ -11,7 +11,6 @@ import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import DoctorIntroSection from '@/components/DoctorIntroSection';
 import ReviewCarousel from '@/components/reviews/ReviewCarousel';
 import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
-import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InsurancePaymentBand from '@/components/InsurancePaymentBand';
 import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
@@ -55,6 +54,55 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = VIDEO_TESTIMONIALS.map(
  */
 const HOMEPAGE_WRITTEN_REVIEWS = featuredReviews.filter((review) => review.quote).slice(0, 12);
 
+const SmileGalleryPreview = React.lazy(() => import('@/components/SmileGalleryPreview'));
+
+const DeferredSmileGallery: React.FC = () => {
+  const anchorRef = useRef<HTMLDivElement>(null);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const anchor = anchorRef.current;
+    if (!anchor || typeof IntersectionObserver === 'undefined') {
+      setShouldRender(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShouldRender(true);
+        observer.disconnect();
+      },
+      { rootMargin: '900px 0px' },
+    );
+
+    observer.observe(anchor);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={anchorRef}>
+      {shouldRender ? (
+        <Suspense fallback={null}>
+          <SmileGalleryPreview />
+        </Suspense>
+      ) : (
+        <section className="bg-gray-50 py-20" aria-label="Smile gallery preview">
+          <div className="mx-auto max-w-4xl px-4 text-center">
+            <h2 className="text-4xl font-bold text-gray-900">See Your Potential Results</h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+              Explore real before-and-after smile transformations planned by Dr. Aguil.
+            </p>
+            <Link className="mt-6 inline-flex font-semibold text-primary underline" to="/smile-gallery/">
+              View the smile gallery
+            </Link>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};
+
 const IndexPage: React.FC = () => {
   const meta = ROUTE_METADATA['/'];
 
@@ -96,6 +144,7 @@ const IndexPage: React.FC = () => {
         badgeText={INSURANCE_HERO_BADGE}
         proofLinks={[...HOMEPAGE_HERO_PROOF_LINKS]}
         useGradient={false}
+        preferStaticOnMobile={true}
       />
 
       <section className="bg-black">
@@ -148,7 +197,7 @@ const IndexPage: React.FC = () => {
       </div>
 
       <div ref={smileGallery.ref} className={smileGallery.animationClass}>
-        <SmileGalleryPreview />
+        <DeferredSmileGallery />
       </div>
 
       <div ref={services.ref} className={services.animationClass}>

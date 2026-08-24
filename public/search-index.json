@@ -735,7 +735,7 @@
       "type": "page",
       "href": "/testimonials/",
       "title": "Patient Reviews & Testimonials Los Angeles | Exquisite Dentistry",
-      "description": "Read verified patient reviews and watch video testimonials. See why patients choose Dr. Aguil for cosmetic dentistry in Los Angeles.",
+      "description": "Read patient reviews currently published by Exquisite Dentistry and watch video testimonials about care with Dr. Aguil in Los Angeles.",
       "h1": "Client Testimonials",
       "keywords": [
         "dental reviews Los Angeles",
@@ -862,6 +862,21 @@
         "anxiety-free dental care"
       ],
       "id": "page:/transformation-stories/taylor-vasek/"
+    },
+    {
+      "type": "page",
+      "href": "/why-us/team-excellence/",
+      "title": "Team Excellence | Exquisite Dentistry Los Angeles",
+      "description": "Meet Dr. Alexie Aguil and learn how Exquisite Dentistry combines careful planning, clear communication, and comfort-focused care in Los Angeles.",
+      "h1": "Team Excellence",
+      "keywords": [
+        "Exquisite Dentistry team",
+        "Dr. Alexie Aguil",
+        "cosmetic dentist team Los Angeles",
+        "comfort-focused dentist Los Angeles",
+        "dental team reviews"
+      ],
+      "id": "page:/why-us/team-excellence/"
     },
     {
       "type": "page",

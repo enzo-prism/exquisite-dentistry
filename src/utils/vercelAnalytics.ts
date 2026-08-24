@@ -4,6 +4,8 @@ type VercelAnalyticsValue = string | number | boolean | null;
 type VercelAnalyticsProperties = Record<string, VercelAnalyticsValue | undefined>;
 
 const MAX_PROPERTY_LENGTH = 120;
+const INTENT_DEDUPE_WINDOW_MS = 1_000;
+const recentIntentEvents = new Map<string, number>();
 
 export const normalizeTrackedRoute = (pathname: string) => {
   const normalizedPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
@@ -41,6 +43,29 @@ const getCurrentPath = () => {
 };
 
 const getCurrentRoute = () => normalizeTrackedRoute(getCurrentPath());
+
+const shouldTrackIntent = (key: string) => {
+  if (typeof window === 'undefined') return false;
+
+  const now = Date.now();
+  const previousTimestamp = recentIntentEvents.get(key);
+
+  if (previousTimestamp !== undefined && now - previousTimestamp < INTENT_DEDUPE_WINDOW_MS) {
+    return false;
+  }
+
+  recentIntentEvents.set(key, now);
+
+  if (recentIntentEvents.size > 50) {
+    for (const [eventKey, timestamp] of recentIntentEvents) {
+      if (now - timestamp >= INTENT_DEDUPE_WINDOW_MS) {
+        recentIntentEvents.delete(eventKey);
+      }
+    }
+  }
+
+  return true;
+};
 
 const getViewportCategory = () => {
   if (typeof window === 'undefined') return undefined;
@@ -152,7 +177,7 @@ export const trackVercelEvent = (
   eventName: string,
   properties: VercelAnalyticsProperties = {},
 ) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return false;
 
   track(
     eventName,
@@ -163,6 +188,8 @@ export const trackVercelEvent = (
       ...properties,
     }),
   );
+
+  return true;
 };
 
 export const trackConsultationIntent = ({
@@ -174,12 +201,23 @@ export const trackConsultationIntent = ({
   ctaText?: string;
   destination?: string;
 }) => {
+  const normalizedDestination = normalizeAnalyticsDestination(destination);
+  const eventKey = [
+    'consultation',
+    getCurrentRoute(),
+    normalizedDestination,
+  ].join('|');
+
+  if (!shouldTrackIntent(eventKey)) return false;
+
   trackVercelEvent('Consultation Intent', {
     source,
     cta_text: ctaText,
-    destination: normalizeAnalyticsDestination(destination),
+    destination: normalizedDestination,
     destination_type: getDestinationType(destination),
   });
+
+  return true;
 };
 
 export const trackCtaClick = ({
@@ -208,11 +246,23 @@ export const trackContactMethodClick = ({
   source: string;
   destination?: string;
 }) => {
+  const normalizedDestination = normalizeAnalyticsDestination(destination);
+  const eventKey = [
+    'contact',
+    getCurrentRoute(),
+    method,
+    normalizedDestination,
+  ].join('|');
+
+  if (!shouldTrackIntent(eventKey)) return false;
+
   trackVercelEvent('Contact Method Clicked', {
     method,
     source,
-    destination: normalizeAnalyticsDestination(destination),
+    destination: normalizedDestination,
   });
+
+  return true;
 };
 
 export const trackContactFormSubmitted = ({

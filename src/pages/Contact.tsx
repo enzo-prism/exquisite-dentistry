@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
 import PhoneLink from '@/components/PhoneLink';
@@ -41,9 +41,9 @@ const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FORMSPREE_OPS_UTM_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
-function appendFormspreeOpsMetadata(formData: FormData) {
+function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
   formData.set('site', 'exquisite');
-  formData.set('form_key', 'contact');
+  formData.set('form_key', formKey);
   formData.set('environment', import.meta.env.MODE ?? 'production');
   formData.set('_codex_test', 'false');
 
@@ -66,6 +66,243 @@ const CONTACT_PERSONA_OPTIONS = [
   { value: 'vendor_business', label: 'Vendor/business' }
 ] as const;
 
+const EMPTY_BENEFITS_FORM = {
+  name: '',
+  email: '',
+  phone: '',
+  carrier: '',
+  planName: '',
+};
+
+const BenefitsVerificationForm = () => {
+  const [values, setValues] = useState(EMPTY_BENEFITS_FORM);
+  const [honeypot, setHoneypot] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [feedback, setFeedback] = useState('');
+  const [errors, setErrors] = useState({ name: '', email: '', carrier: '' });
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const carrierRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setValues((current) => ({ ...current, [name]: value }));
+
+    if (name in errors && errors[name as keyof typeof errors]) {
+      setErrors((current) => ({ ...current, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === 'submitting') return;
+
+    if (honeypot) {
+      setStatus('success');
+      setFeedback('Thank you. Our team will follow up about your PPO benefits.');
+      setValues(EMPTY_BENEFITS_FORM);
+      setHoneypot('');
+      return;
+    }
+
+    const nextErrors = {
+      name: values.name.trim() ? '' : 'Please enter your name.',
+      email: !values.email.trim()
+        ? 'Please enter your email address.'
+        : EMAIL_PATTERN.test(values.email.trim())
+          ? ''
+          : 'Please enter a valid email address.',
+      carrier: values.carrier.trim() ? '' : 'Please enter your insurance carrier.',
+    };
+
+    if (Object.values(nextErrors).some(Boolean)) {
+      setErrors(nextErrors);
+      setStatus('error');
+      setFeedback('Please correct the highlighted fields and try again.');
+      const firstInvalid =
+        (nextErrors.name && nameRef.current) ||
+        (nextErrors.email && emailRef.current) ||
+        (nextErrors.carrier && carrierRef.current) ||
+        null;
+      firstInvalid?.focus();
+      return;
+    }
+
+    setErrors(nextErrors);
+    setStatus('submitting');
+    setFeedback('');
+
+    try {
+      const formData = new FormData();
+      formData.set('request_type', 'PPO benefits verification');
+      formData.set('name', values.name.trim());
+      formData.set('email', values.email.trim());
+      formData.set('insurance_carrier', values.carrier.trim());
+      if (values.phone.trim()) formData.set('phone', values.phone.trim());
+      if (values.planName.trim()) formData.set('plan_name', values.planName.trim());
+      appendFormspreeOpsMetadata(formData, 'insurance_benefits');
+
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      setStatus('success');
+      setFeedback('Thank you. Our team will follow up about your PPO benefits.');
+      setValues(EMPTY_BENEFITS_FORM);
+      setHoneypot('');
+      trackFormSubmission('insurance_benefits_request', {
+        hasPhone: Boolean(values.phone.trim()),
+      });
+    } catch (error) {
+      console.error('Benefits verification request failed', error);
+      setStatus('error');
+      setFeedback(`We couldn't send this request. Please call ${PHONE_NUMBER_DISPLAY}.`);
+      trackContactFormFailed({
+        form: 'insurance_benefits_request',
+        reason: 'formspree_request_failed',
+      });
+    }
+  };
+
+  const inputClassName =
+    'w-full rounded-sm border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 transition-shadow focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold';
+
+  return (
+    <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-6">
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="benefits-bot-field">
+          Do not fill this out
+          <input
+            id="benefits-bot-field"
+            name="benefits-bot-field"
+            value={honeypot}
+            onChange={(event) => setHoneypot(event.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <div>
+          <label htmlFor="benefits-name" className="text-sm font-semibold text-foreground">
+            Name <span className="text-red-600">*</span>
+          </label>
+          <input
+            ref={nameRef}
+            id="benefits-name"
+            name="name"
+            type="text"
+            value={values.name}
+            onChange={handleChange}
+            autoComplete="name"
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? 'benefits-name-error' : undefined}
+            className={`${inputClassName} mt-2 ${errors.name ? 'border-red-500' : ''}`}
+          />
+          {errors.name ? <p id="benefits-name-error" className="mt-2 text-sm text-red-600">{errors.name}</p> : null}
+        </div>
+
+        <div>
+          <label htmlFor="benefits-email" className="text-sm font-semibold text-foreground">
+            Email <span className="text-red-600">*</span>
+          </label>
+          <input
+            ref={emailRef}
+            id="benefits-email"
+            name="email"
+            type="email"
+            value={values.email}
+            onChange={handleChange}
+            autoComplete="email"
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? 'benefits-email-error' : undefined}
+            className={`${inputClassName} mt-2 ${errors.email ? 'border-red-500' : ''}`}
+          />
+          {errors.email ? <p id="benefits-email-error" className="mt-2 text-sm text-red-600">{errors.email}</p> : null}
+        </div>
+
+        <div>
+          <label htmlFor="benefits-phone" className="text-sm font-semibold text-foreground">
+            Phone (optional)
+          </label>
+          <input
+            id="benefits-phone"
+            name="phone"
+            type="tel"
+            value={values.phone}
+            onChange={handleChange}
+            autoComplete="tel"
+            className={`${inputClassName} mt-2`}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="benefits-carrier" className="text-sm font-semibold text-foreground">
+            Insurance carrier <span className="text-red-600">*</span>
+          </label>
+          <input
+            ref={carrierRef}
+            id="benefits-carrier"
+            name="carrier"
+            type="text"
+            value={values.carrier}
+            onChange={handleChange}
+            placeholder="For example, Guardian or MetLife"
+            autoComplete="organization"
+            aria-invalid={Boolean(errors.carrier)}
+            aria-describedby={errors.carrier ? 'benefits-carrier-error' : undefined}
+            className={`${inputClassName} mt-2 ${errors.carrier ? 'border-red-500' : ''}`}
+          />
+          {errors.carrier ? <p id="benefits-carrier-error" className="mt-2 text-sm text-red-600">{errors.carrier}</p> : null}
+        </div>
+
+        <div className="md:col-span-2">
+          <label htmlFor="benefits-plan-name" className="text-sm font-semibold text-foreground">
+            Plan name (optional)
+          </label>
+          <input
+            id="benefits-plan-name"
+            name="planName"
+            type="text"
+            value={values.planName}
+            onChange={handleChange}
+            placeholder="Use the plan name only, not your member ID"
+            className={`${inputClassName} mt-2`}
+          />
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-gold/25 bg-gold/5 p-4 text-sm leading-6 text-foreground/80">
+        <p className="font-semibold text-foreground">Protect your privacy</p>
+        <p className="mt-1">
+          Do not enter a Social Security number, full member ID, date of birth, medical history,
+          diagnosis, or treatment records here. This initial form only starts the conversation;
+          our team can collect anything else through an appropriate follow-up.
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <Button type="submit" size="lg" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Sending...' : 'Request Benefits Review'}
+        </Button>
+        {feedback ? (
+          <p
+            className={`text-sm ${status === 'success' ? 'text-emerald-700' : 'text-red-600'}`}
+            role={status === 'error' ? 'alert' : 'status'}
+          >
+            {feedback}
+          </p>
+        ) : null}
+      </div>
+    </form>
+  );
+};
+
 const Contact = () => {
   const meta = ROUTE_METADATA['/contact'];
   const location = useLocation();
@@ -86,6 +323,7 @@ const Contact = () => {
     message: ''
   });
   const formSectionRef = useRef<HTMLDivElement | null>(null);
+  const benefitsSectionRef = useRef<HTMLElement | null>(null);
   const personaFieldsetRef = useRef<HTMLFieldSetElement | null>(null);
   const personaFirstOptionRef = useRef<HTMLInputElement | null>(null);
   const nameFieldRef = useRef<HTMLInputElement | null>(null);
@@ -93,14 +331,21 @@ const Contact = () => {
   const messageFieldRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
+    // Run after the app-level route scroll reset so direct hash navigation is
+    // not pulled back to the top of the page.
     const scrollTimeout = setTimeout(() => {
+      if (location.hash === '#benefits-verification' && benefitsSectionRef.current) {
+        benefitsSectionRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+        return;
+      }
+
       if (location.hash === '#contact-form' && formSectionRef.current) {
-        formSectionRef.current.scrollIntoView({ behavior: 'auto', block: 'center' });
+        formSectionRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
         return;
       }
 
       window.scrollTo(0, 0);
-    }, 0);
+    }, 120);
 
     const gapCheckTimeout = setTimeout(() => {
       checkForSectionGaps();
@@ -638,6 +883,53 @@ const Contact = () => {
                     </form>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          ref={benefitsSectionRef}
+          id="benefits-verification"
+          aria-labelledby="benefits-verification-heading"
+          className="scroll-mt-24 border-y border-gold/20 bg-stone-50 py-16 md:py-20"
+        >
+          <div className="container mx-auto px-4">
+            <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                  <ShieldCheck size={22} />
+                </div>
+                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                  PPO Benefits Verification
+                </p>
+                <h2
+                  id="benefits-verification-heading"
+                  className="mt-3 text-3xl font-semibold text-foreground md:text-4xl"
+                >
+                  Start with basic plan information.
+                </h2>
+                <p className="mt-4 text-base leading-7 text-muted-foreground">
+                  If you have a PPO plan, there is a strong chance we can help you use your
+                  benefits. Send only the basic details below. Coverage is not guaranteed until
+                  our team verifies your specific plan.
+                </p>
+                <p className="mt-4 text-base leading-7 text-muted-foreground">
+                  Prefer to speak with us? Call{' '}
+                  <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="font-semibold text-secondary">
+                    {PHONE_NUMBER_DISPLAY}
+                  </PhoneLink>
+                  .
+                </p>
+              </div>
+
+              <div className="rounded-[2rem] border border-border bg-white p-6 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.3)] md:p-8">
+                <h3 className="text-2xl font-semibold text-foreground">Request a benefits review</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  We will use these details to contact you and determine the safest next step for
+                  verifying benefits.
+                </p>
+                <BenefitsVerificationForm />
               </div>
             </div>
           </div>
