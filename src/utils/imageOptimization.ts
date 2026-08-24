@@ -76,7 +76,9 @@ export const generateOptimizedAltText = (
   originalAlt: string,
   context: 'before-after' | 'procedure' | 'team' | 'office' | 'logo' | 'general' = 'general'
 ): string => {
-  if (!originalAlt) return 'Image from Exquisite Dentistry Los Angeles';
+  // An explicitly empty alt marks decorative imagery. Preserve it so screen
+  // readers skip backgrounds instead of announcing generic SEO copy.
+  if (originalAlt === '') return '';
   
   const contextualSuffix = {
     'before-after': ' - cosmetic dentistry transformation at Exquisite Dentistry Los Angeles',

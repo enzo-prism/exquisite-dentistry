@@ -201,15 +201,15 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - **Cherry financing copy** – approved credit-score and reporting language lives in `src/constants/cherry.ts`, with placement rules in `docs/cherry-credit-disclosure.md`. Keep "no hard credit check" to short badge copy only; do not use unqualified credit-check claims or older payment-plan wording.
 - **Cherry floating launcher** – the full `Pay over time` / `No hard credit checks • 0% APR options` compact copy remains visible at every width. Follow the responsive and collision contract in `docs/cherry-credit-disclosure.md` and the device checks in `docs/mobile-qa.md`.
 - **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
-- **Hero media** – `VideoHero` automatically drops down to a static poster for reduced-motion, slow connections, and mobile-first hero renders. Provide a high-resolution `posterSrc` whenever you introduce a new hero; rely on `disableVideo`/`preferStaticOnMobile` props to force static imagery for SEO-critical pages.
+- **Hero media** – all video-backed `VideoHero` routes use the canonical abstract black-and-gold poster at `/public/lovable-uploads/exquisite-black-gold-hero.png`. It remains visible until playback starts and automatically becomes the static fallback for reduced motion, slow connections, and mobile-first hero renders. Route-level overrides require intentional design review; use `disableVideo`/`preferStaticOnMobile` to force static imagery for SEO-critical pages.
 - **Structured data** – the centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx` include map links, service channels, and service areas. Update those files when address or offerings change to keep LocalBusiness signals aligned.
 - **Automated checks** – run `npm run check:seo` after `npm run build` to confirm the generated HTML still includes canonical, Open Graph, and JSON-LD blocks. The script inspects `dist/index.html` and fails fast if key tags disappear.
 
 ## Hero Media Guidelines
 
-- Prefer supplying `posterSrc` when using `VideoHero`; this image automatically becomes the fallback for reduced-motion, slow-connection, or mobile visitors. Without a poster the component drops back to the gradient background.
+- `VideoHero` resolves the canonical shared poster automatically. Only pass `posterSrc` for a deliberately reviewed exception; the selected image also becomes the reduced-motion, slow-connection, or mobile fallback.
 - Use `disableVideo` to force a static hero (e.g., when LCP budgets are tight) or `preferStaticOnMobile` to keep autoplay video on desktop only.
-- Posters should live in `/public/optimized` or `/public/lovable-uploads` and be exported as WebP when possible for better paint times.
+- Poster originals live in `/public/lovable-uploads`; the build generates responsive AVIF/WebP derivatives in `/public/optimized`. Keep the canonical original at 2560×1440 so the 1920px desktop derivative remains available.
 - If you introduce a completely static hero, pass `useGradient` or your own background classes so the text still has adequate contrast; CTA components inherit the global hover/sheens automatically.
 
 ## Contact & Lead Capture Playbook

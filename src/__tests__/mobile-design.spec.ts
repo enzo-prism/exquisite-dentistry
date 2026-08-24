@@ -383,6 +383,9 @@ test.describe('reduced motion mobile behavior', () => {
       .getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i })
       .evaluate((heading) => heading.closest('section')?.querySelectorAll('iframe[title="Background video"], video').length ?? -1);
     expect(heroMediaCount).toBe(0);
+    const poster = page.locator('section picture img[src="/lovable-uploads/exquisite-black-gold-hero.png"]').first();
+    await expect(poster).toBeVisible();
+    await expect(poster).toHaveCSS('object-fit', 'cover');
     await scanMobilePage(page, 'reduced motion homepage');
   });
 });

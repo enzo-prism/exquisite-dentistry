@@ -1165,8 +1165,8 @@ const removeHeadLinkByRel = (html: string, rel: string) => {
   return html.replace(regex, "");
 };
 
-// Routes that render <VideoHero> at the top: the poster is the LCP element, but
-// it only paints after the JS boots. Emit a route-correct <head> preload that
+// Routes that render <VideoHero> at the top: the shared poster is the LCP
+// element, but it only paints after the JS boots. Emit a matching <head> preload that
 // matches exactly what OptimizedImage renders (avif source first, then webp,
 // then the raw fallback) so the browser fetches it during initial HTML parse.
 const mimeByExtension: Record<string, string> = {

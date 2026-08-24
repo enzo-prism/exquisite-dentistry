@@ -28,7 +28,7 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 
 ## Hero Media & Floating UI
 - Hero background videos go through one shared chain: `VideoHero` → `Desktop/MobileVideoHero` → `VideoBackground` (~23 pages, no inline hero videos). They lazy-load via IntersectionObserver + `requestIdleCallback`.
-- The hero stays **solid black** until the video is ready to play; we intentionally do **not** show a poster/placeholder image during the in-flight load (it looked low-quality on some routes). Posters remain only for the static fallback (`useGradient`/`disableVideo`, rendered in the hero wrappers) and for `isContained` players. Don't re-add a loading poster to full-bleed heroes — change lives in `VideoBackground.renderVideoElement()`.
+- Every video-backed hero uses the shared abstract black-and-gold poster at `/public/lovable-uploads/exquisite-black-gold-hero.png`. It stays visible during deferred loading and player initialization, then crossfades only after playback starts. The same asset remains visible for reduced motion, constrained connections, `disableVideo`, and `preferStaticOnMobile`. Keep testimonial and other contained-player thumbnails route-specific.
 - The Cherry launcher always shows the complete `Pay over time` / `No hard credit checks • 0% APR options` compact copy. It is 288px normally and 232px at 320px, where the supporting line wraps. Reserved left space clears the Concierge; the homepage `FloatingActionButton` remains lifted to safe area +96px above the pill. Do not restore icon-only, clipping, ellipsis, or overlapping fixed controls.
 
 ## Content Notes

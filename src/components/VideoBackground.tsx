@@ -131,7 +131,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       }
 
       if (!payload || payload.player_id !== playerId) return;
-      if (payload.event === 'ready' || payload.event === 'play' || payload.event === 'playing') {
+      // Keep the poster in place through Vimeo's `ready` event. `ready` only
+      // means that the player API initialized; it does not guarantee that a
+      // video frame has painted yet.
+      if (payload.event === 'play' || payload.event === 'playing') {
         setIsVideoReady(true);
         onLoad?.();
       }
@@ -173,10 +176,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   }, [shouldLoadVideo, streamableUrl, vimeoId, onLoad]);
   
   const renderVideoElement = () => {
-    // Until the video is ready to load/play, keep full-bleed hero backgrounds
-    // solid black (the wrapper is already `bg-black`) rather than flashing a
-    // poster/placeholder image. The video simply appears once it starts.
-    // Contained players (isContained) still show their poster while loading.
+    // The full-bleed wrapper owns its poster layer, so it remains visible while
+    // video loading is deferred. Contained players render the same poster here.
     if (!shouldLoadVideo) {
       if (isContained && posterSrc) {
         return (
@@ -242,7 +243,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             backgroundColor: '#000'
           }}
           poster={posterSrc}
-          onCanPlay={() => {
+          onPlaying={() => {
             setIsVideoReady(true);
             onLoad?.();
           }}
@@ -281,7 +282,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       );
     }
     
-    // No video - just return null for solid black background
+    // No video element is needed; the full-bleed wrapper keeps its poster visible.
     return null;
   };
   
