@@ -74,11 +74,14 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
    - Tap the phone CTA on mobile to ensure `tel:` links still function.
 4. **Hero/CTA parity**
    - Run `npm run preview`, load key marketing pages (Home, Services, Testimonials) to verify hero buttons still open the default scheduling link unless overridden.
+5. **Cherry floating widget**
+   - Run `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`.
+   - Confirm the complete Cherry compact copy remains visible and collision-free at 320px through desktop widths.
 
 ## Form & Analytics Notes
 
 - Form submissions hit Formspree (`https://formspree.io/f/xkgknpkl`). If you clone this workflow for other forms, you only need to swap the endpoint string and ensure `trackFormSubmission('contact_form')` fires after success.
-- Google Ads conversions are handled inside `src/utils/googleAdsTracking.ts`. Keep those calls in place when restructuring CTAs or forms.
+- `src/utils/googleAdsTracking.ts` is a compatibility helper: it classifies schedule/contact/general CTA intent, mirrors privacy-safe events into GA, and never emits direct Ads conversion labels. Only a confirmed Formspree success becomes the canonical `generate_lead`. Follow `docs/ga4-measurement-plan.md` when restructuring CTAs or forms.
 
 ## CI / Automation Tips
 

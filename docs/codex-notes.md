@@ -24,11 +24,12 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 - Listeners attached to `document`/`window` from a `useEffect` must be **defined inside that effect**. Handlers defined in the component body get a fresh identity every render, so cleanup calls `removeEventListener` with a function that was never registered and the original stays attached forever, holding whatever state it captured. `src/components/ui/comparison-slider.tsx` had exactly this bug: the before/after slider kept following the cursor after mouseup and leaked one live listener per drag.
 - Redirect verification: `node scripts/test-redirects.mjs` (set `REDIRECT_TEST_BASE` when testing preview/production instead of local Vercel dev).
 - Browser smoke: `node test-browser.js` against a running server (`npm run dev` or `npm run preview`).
+- Cherry responsive regression: `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`.
 
 ## Hero Media & Floating UI
 - Hero background videos go through one shared chain: `VideoHero` → `Desktop/MobileVideoHero` → `VideoBackground` (~23 pages, no inline hero videos). They lazy-load via IntersectionObserver + `requestIdleCallback`.
 - The hero stays **solid black** until the video is ready to play; we intentionally do **not** show a poster/placeholder image during the in-flight load (it looked low-quality on some routes). Posters remain only for the static fallback (`useGradient`/`disableVideo`, rendered in the hero wrappers) and for `isContained` players. Don't re-add a loading poster to full-bleed heroes — change lives in `VideoBackground.renderVideoElement()`.
-- On mobile, the homepage `FloatingActionButton` (`src/components/mobile/FloatingActionButton.tsx`) is lifted to `bottom: calc(env(safe-area-inset-bottom, 0px) + 96px)` so it stacks above the Cherry "Pay over time" floating pill (which sits at `…+16px`). Keep them non-overlapping if you move either.
+- The Cherry launcher always shows the complete `Pay over time` / `No hard credit checks • 0% APR options` compact copy. It is 288px normally and 232px at 320px, where the supporting line wraps. Reserved left space clears the Concierge; the homepage `FloatingActionButton` remains lifted to safe area +96px above the pill. Do not restore icon-only, clipping, ellipsis, or overlapping fixed controls.
 
 ## Content Notes
 - Legacy front-teeth cost blogs are unpublished and 301 to the new hub. Do not republish without revisiting redirects and sitemap. Retired generated posts are kept unpublished via `UNPUBLISHED_SLUGS` in `scripts/generate-blog-posts.mjs` (regeneration-safe); never flip `published` by hand-editing `generatedBlogPosts.ts`.

@@ -116,19 +116,22 @@ npm run generate:blog
 # 2. Lint for TypeScript/React issues
 npm run lint
 
-# 3. Validate content quality (services + geo pages)
+# 3. Run the standalone TypeScript gate (the Vite build does not typecheck)
+npm run typecheck
+
+# 4. Validate content quality (services + geo pages)
 npm run test:content
 
-# 4. Build the production bundle
+# 5. Build the production bundle
 npm run build
 
-# 5. Verify SEO-critical tags (canonical, OG, JSON-LD) on the built HTML
+# 6. Verify SEO-critical tags (canonical, OG, JSON-LD) on the built HTML
 npm run check:seo
 
-# 6. (Optional) Smoke test the built site locally
+# 7. (Optional) Smoke test the built site locally
 npm run preview
 
-# 7. Redirect regression test (requires Vercel routing, not plain Vite)
+# 8. Redirect regression test (requires Vercel routing, not plain Vite)
 npx vercel dev --listen 127.0.0.1:8899 --yes
 npm run test:redirects
 ```
@@ -169,6 +172,8 @@ To verify:
 > Dropping in via Codex? Start with `docs/CODEX_CONTRIBUTOR_GUIDE.md` for the rapid-fire orientation.
 >
 > Editing Cherry financing copy? Use `docs/cherry-credit-disclosure.md` and the shared constants in `src/constants/cherry.ts`; do not reintroduce unqualified credit-check language.
+>
+> The August 23, 2026 GA4 and Cherry release contract is recorded in `docs/GA4_CHERRY_RELEASE_2026-08-23.md`. It separates completed website work from the remaining Google Analytics and Ads Admin actions.
 
 ## Layout Utilities
 
@@ -192,7 +197,9 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - **Canonical URLs & redirects** – canonical host is `https://exquisitedentistryla.com` (non-www) and all indexable routes use trailing slashes. Production redirects are curated in `vercel.json`; keep `scripts/redirect-tests/legacy-urls.txt` and `scripts/redirect-tests/canonical-map.json` aligned whenever a legacy URL or canonical destination changes. Canonical tags are generated via `getCanonicalUrl` in `src/utils/schemaValidation.ts`. Older Netlify files remain only as historical/static-host references and are not the production source of truth.
 - **Google Search Console** – domain-level DNS verification is the authoritative method. Populate `VITE_GSC_VERIFICATION` in `.env` (see `.env.example`) only when an additional HTML verification method is needed; otherwise the meta tag is omitted. Re-run `npm run build` and redeploy after updating a token.
 - **Vercel Analytics & Speed Insights** – visitor/pageview tracking and Real Experience Score collection are both mounted once at the app shell in `src/App.tsx` via `@vercel/analytics/react` and `@vercel/speed-insights/react`. Custom events are centralized in `src/utils/vercelAnalytics.ts`; keep them low-cardinality and free of patient-entered data. See `docs/vercel-analytics-events.md` before adding or renaming events. After shipping to production, open a few live routes on desktop and mobile, trigger key conversion actions, then confirm Analytics pageviews, custom events, and Speed Insights data start appearing in Vercel (content blockers can delay or suppress collection).
+- **GA4 + consent** – Consent Mode defaults are queued in `index.html`; `RouteAwareObservability` sends the single manual SPA page view; safe GA events and redaction live in `src/utils/googleAnalytics.ts`. Vercel Analytics and Speed Insights mount only after opt-in. Do not add automatic page views, direct Ads conversion labels, or patient-entered dimensions. The source and Admin release contract is `docs/ga4-measurement-plan.md`.
 - **Cherry financing copy** – approved credit-score and reporting language lives in `src/constants/cherry.ts`, with placement rules in `docs/cherry-credit-disclosure.md`. Keep "no hard credit check" to short badge copy only; do not use unqualified credit-check claims or older payment-plan wording.
+- **Cherry floating launcher** – the full `Pay over time` / `No hard credit checks • 0% APR options` compact copy remains visible at every width. Follow the responsive and collision contract in `docs/cherry-credit-disclosure.md` and the device checks in `docs/mobile-qa.md`.
 - **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
 - **Hero media** – `VideoHero` automatically drops down to a static poster for reduced-motion, slow connections, and mobile-first hero renders. Provide a high-resolution `posterSrc` whenever you introduce a new hero; rely on `disableVideo`/`preferStaticOnMobile` props to force static imagery for SEO-critical pages.
 - **Structured data** – the centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx` include map links, service channels, and service areas. Update those files when address or offerings change to keep LocalBusiness signals aligned.

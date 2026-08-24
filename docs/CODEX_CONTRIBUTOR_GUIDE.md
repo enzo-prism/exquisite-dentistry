@@ -7,7 +7,7 @@ This playbook distills the workflow conventions, scripts, and gotchas Codex agen
 1. `nvm use 18 && npm install`
 2. `npm run dev` (Vite @ `http://localhost:8080`)
 3. Make edits with the `@/` path alias (e.g., `@/components/Navbar`)
-4. Run **at least** `npm run lint` + `npm run build`
+4. Run **at least** `npm run lint` + `npm run typecheck` + `npm run build`
 5. For asset-heavy work, inspect build-generated asset diffs before pushing
 
 `npm run build` now also produces static, crawlable HTML snapshots for key marketing, service, location, and blog routes in `dist/` (no JS required).
@@ -35,6 +35,7 @@ Quick rules:
 | --- | --- | --- |
 | `npm run dev` | Any interactive work | Hot reload; picks up `.env`. |
 | `npm run lint` | Before every PR/push | ESLint (TS + React Hooks). Add `-- --fix` when safe. |
+| `npm run typecheck` | Before every PR/push | Standalone TypeScript gate; `npm run build` does not typecheck. |
 | `npm run build` | Mandatory gate | Runs static HTML fallbacks + Vite build + SEO prerender into `dist/`. |
 | `npm run build:prod` | Production parity | Alias for `npm run build`; retained for old workflows. |
 | `npm run preview` | Manual QA | Serves `dist/` on `http://localhost:4173`. |
@@ -53,7 +54,8 @@ Quick rules:
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
   - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
   - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
-- **Global analytics**: App-wide providers live in `src/App.tsx`. Vercel Analytics and Vercel Speed Insights are both mounted there with `@vercel/analytics/react` and `@vercel/speed-insights/react`; keep them singleton-scoped so React Router navigations are tracked once per pageview and client performance beacons fire once per route visit. Custom events should go through `src/utils/vercelAnalytics.ts`; do not send patient-entered data or raw search queries.
+- **Global analytics**: Consent defaults and tag configuration live in `index.html`; `RouteAwareObservability` emits one manual GA page view per completed React route and mounts Vercel Analytics/Speed Insights only after opt-in. Safe GA events live in `src/utils/googleAnalytics.ts`; Vercel custom events live in `src/utils/vercelAnalytics.ts`. Never add automatic page views, direct Ads conversion labels, or patient-entered dimensions. Follow `docs/ga4-measurement-plan.md`.
+- **Cherry floating widget**: `CherryWidgetProvider` must preserve the full compact copy at every width, allow narrow wrapping, and clear the Concierge and mobile quick-actions FAB. Use `docs/cherry-credit-disclosure.md` as the copy/layout contract.
 - **Prerendered routes**: `npm run build` runs `prerender:static` (writes `dist/<route>/index.html` for marketing, services/geos, and blog posts). `npm run generate:fallbacks` remains available for manually refreshing legacy `public/<slug>.html` fallback files.
 
 ## Testing Expectations
@@ -62,6 +64,7 @@ Minimum for every change:
 
 ```sh
 npm run lint
+npm run typecheck
 npm run build
 ```
 
@@ -69,6 +72,7 @@ Run the extras when applicable:
 
 - `npm run build:prod`: any time you touch assets or need the slower image-optimization pass.
 - `npm run preview`: visual QA for layout shifts, mobile nav, etc.
+- `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`: Cherry copy, responsive width, overlay, and collision coverage.
 - `node test-browser.js`: after starting `npm run dev` or `npm run preview` when verifying high-traffic flows (e.g., `/services/zoom-whitening`).
 - `vercel.json` / canonical work:
   ```sh

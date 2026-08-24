@@ -1,6 +1,6 @@
 # Cherry Credit Disclosure
 
-Last updated: June 15, 2026
+Last updated: August 23, 2026
 
 ## Purpose
 
@@ -22,6 +22,14 @@ Terms reassurance:
 
 > Plan availability, payment amounts, and terms are decided by Cherry and its lending partners.
 
+Floating widget copy:
+
+> Pay over time
+>
+> No hard credit checks • 0% APR options
+
+The floating-widget line is approved compact conversion copy, not a replacement for the full disclosure on financing-detail surfaces.
+
 ## Placement Rules
 
 - Use the short reassurance in compact CTAs, badges, highlights, and one-line footer strips.
@@ -29,6 +37,14 @@ Terms reassurance:
 - Keep "no hard credit check" only as short badge language, such as the homepage proof line.
 - Do not use unqualified credit-check claims or any wording that implies active payment plans can never affect credit.
 - Do not add Michael's older on-time-payments clause; it is less precise than the current disclosure.
+
+## Floating Widget Layout Contract
+
+- Show the complete title and supporting line in the bottom-right Cherry launcher at every viewport size. Do not collapse the launcher to an icon-only button.
+- Keep the standard launcher at 288px wide. Below 376px, use `min(288px, calc(100vw - 88px))` so the full copy can wrap without colliding with the bottom-left concierge.
+- Allow the supporting line to wrap on narrow screens. Do not clip it, hide it, or apply an ellipsis.
+- Keep the launcher above the mobile quick-action bar and below consent, navigation, and dialog overlays.
+- Preserve a minimum 44px interactive target and verify 320px as the narrow-device regression case.
 
 ## Required Coverage
 
@@ -68,3 +84,11 @@ Manual route checks:
 - `/smile-gallery/`
 - `/services/`
 - `/`
+
+Responsive widget checks:
+
+```sh
+npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
+```
+
+Confirm the full floating copy is visible at 320px, 500px, and desktop widths, with no viewport overflow or overlap with the concierge and mobile quick actions.

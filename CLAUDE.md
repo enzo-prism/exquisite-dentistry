@@ -14,7 +14,7 @@ Modern React + TypeScript dental website with comprehensive performance optimiza
 - **Routing**: React Router v6 with lazy loading
 - **Forms**: React Hook Form + Zod validation
 - **Animations**: CSS transitions/keyframes only (Framer Motion was removed in `936f6f0` for ~115KB — don't reintroduce it); reduced motion is honored via `prefers-reduced-motion` blocks in `src/index.css` and `usePerformance().isReducedMotion` (used by the hero to disable video)
-- **Analytics / Observability**: Vercel Analytics + Speed Insights (Sentry was removed — it was never wired)
+- **Analytics / Observability**: GA4 + Consent Mode v2, with consent-gated Vercel Analytics + Speed Insights (Sentry was removed — it was never wired)
 - **Deployment**: Vercel (preview per branch; production deploys from `main`). A legacy `netlify.toml` remains but Vercel is primary.
 
 ## Development Commands
@@ -123,7 +123,7 @@ public/lovable-uploads/  # Referenced image ORIGINALS only (not a dumping ground
 ### Form Submissions
 - Contact forms use Formspree (`https://formspree.io/f/xkgknpkl`)
 - Include honeypot field (`bot-field`) for spam protection
-- Call `trackFormSubmission('contact_form')` on success for Google Ads conversion tracking
+- Call `trackFormSubmission('contact_form')` only after the endpoint confirms success; it emits the canonical GA4 `generate_lead` and a privacy-safe Vercel event, never a direct Ads conversion label
 - Business hours/address sourced from `src/constants/contact.ts`
 - **Address + maps**: wherever the practice address (`ADDRESS`) is displayed, render `<OpenInMapsButton source="…" />` (`src/components/OpenInMapsButton.tsx`) beside it — opens `GOOGLE_MAPS_SHORT_URL` in a new tab with directions analytics. `Footer` and `PracticeLocationSection` already ship their own maps buttons (don't double up); never add one to JSON-LD/schema occurrences.
 
@@ -150,12 +150,12 @@ itself, in three parallel jobs:
 - **Preview deploy**: `vercel deploy` → unique `*.vercel.app` URL (also auto-created on branch push). Use previews for client review.
 - **Production**: pushing to `main` auto-deploys to `exquisitedentistryla.com`; or run `vercel --prod`. Do not deploy to production without sign-off.
 - **Build**: `npm run build` → `dist/` (image optimization + static prerender + sitemap/search-index)
-- **Analytics**: `@vercel/analytics` + speed insights are wired (see `src/utils/vercelAnalytics.ts`)
+- **Analytics**: `RouteAwareObservability` owns manual GA SPA page views and consent-gated Vercel/Speed Insights; safe GA events and redaction live in `src/utils/googleAnalytics.ts`. Follow `docs/ga4-measurement-plan.md` and never add automatic page views or direct Ads conversion labels.
 - A legacy `netlify.toml` remains for redirect testing only (`npm run test:redirects`).
 
 ## Financing (Cherry)
 - Cherry is integrated two ways: the app-wide floating estimator (`CherryWidgetProvider` + `useCherryWidgetRegistration`, practice slug in `src/constants/cherry.ts`) and the on-page **pre-approval block** (`CherryPreApprovalSection` on `/payment-plans`) with amount entry, benefit messaging, and an apply QR.
-- **Mobile bottom-right coexistence**: the floating "Pay over time" estimator pill and the homepage `FloatingActionButton` both anchor bottom-right. The FAB is lifted (`bottom: calc(env(safe-area-inset-bottom, 0px) + 96px)` in `src/components/mobile/FloatingActionButton.tsx`) to stack **above** the pill so they never overlap. Preserve that offset if you touch either element.
+- **Responsive floating launcher**: show the complete `Pay over time` / `No hard credit checks • 0% APR options` copy at every width. The pill is 288px normally and 232px at 320px via `min(288px, calc(100vw - 88px))`; narrow copy wraps instead of clipping. The reserved left space clears the Concierge, and the homepage FAB remains lifted by safe area +96px above the pill. Preserve these collision rules if you touch any fixed control.
 - The patient-facing apply link is built by `buildCherryApplyUrl()` in `src/constants/cherry.ts`.
 - **`VERIFY-BEFORE-PUBLIC` convention** (applies to TWO files): (1) regulated Cherry financing figures + the apply/QR URL in `src/constants/cherry.ts`; (2) the Los Angeles veneer **market** cost ranges in `src/constants/veneerCosts.ts`. Both are isolated and tagged with this comment — confirm against the source (Cherry dashboard / practice sign-off) before changing or publishing. The veneer cost page (`/veneers/cost-los-angeles/`) is gated on `VENEER_COST_VERIFIED`: while it is `false` the page shows "confirmed at your consultation" instead of dollar figures. Flip it to `true` ONLY after the practice signs off on the ranges (and update the figures).
 - Financing engagement is tracked via `trackFinancingEngagement` in `src/utils/vercelAnalytics.ts`.

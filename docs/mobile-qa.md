@@ -26,7 +26,7 @@ The existing focused specs still matter:
 
 ```sh
 npm run test:mobile-nav
-playwright test src/__tests__/cherry-widget.mobile.spec.ts
+npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
 ```
 
 Keep those when editing the header, menu, Cherry financing widget, or global route shell.
@@ -45,7 +45,10 @@ Before client review or production:
 
 Manual flows:
 
-- open homepage, scroll past hero, expand quick actions, confirm fixed controls do not overlap important CTAs. The floating quick-actions button (`FloatingActionButton`) must sit **above** the Cherry "Pay over time" pill, not on top of it.
+- inspect the full Cherry pill at 320px, 390-430px, 667px landscape, 768px tablet, and desktop. Both `Pay over time` and `No hard credit checks • 0% APR options` must remain visible; wrapping is allowed, clipping and ellipsis are not.
+- at 320px, confirm the longest wrapped state stays inside the viewport, clears the bottom-left Concierge, and leaves the bottom-right quick-actions FAB above it. Consent, navigation, and dialog overlays must remain above the widget.
+- keyboard-focus the Cherry control, confirm the target remains at least 44px, then activate it and verify the real Cherry experience opens.
+- open homepage, scroll past hero, and expand quick actions. The floating quick-actions button (`FloatingActionButton`) must sit **above** the Cherry pill, not on top of it.
 - on a hero with video, confirm the background is **solid black before the video starts** (no placeholder/poster image), then the looping video appears once it can play.
 - open mobile menu, expand Popular Services, navigate to one service route, confirm the drawer closes.
 - open search, type `veneers`, choose a result, confirm navigation.
