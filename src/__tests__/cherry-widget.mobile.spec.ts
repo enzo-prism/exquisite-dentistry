@@ -315,19 +315,19 @@ test.describe('Cherry widget mobile behavior', () => {
 
     await page.locator('header a[href="/"]').first().click();
     await expect(page).toHaveURL(/\/$/);
-    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
-    await expectCherryHidden(page);
+    await page.getByText('A smoother way to plan your smile investment.').waitFor({ state: 'attached' });
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await expectCherryVisible(page);
   });
 
   test('keeps the homepage hero clear until the visitor starts scrolling', async ({ page }) => {
     await page.goto('/');
     await stabilizePage(page);
-    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
-    await expectCherryHidden(page);
+    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
 
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await expectCherryVisible(page);
 
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'auto' }));
@@ -383,8 +383,8 @@ test.describe('Cherry widget mobile behavior', () => {
   test('keeps the mobile navigation sheet above Cherry when both are present', async ({ page }) => {
     await page.goto('/');
     await stabilizePage(page);
-    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await expectCherryVisible(page);
 
     const menuDialog = await openMobileMenu(page);
@@ -446,6 +446,8 @@ test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ pa
 
   await page.locator('header a[href="/"]').first().click();
   await expect(page).toHaveURL(/\/$/);
+  await page.getByText('A smoother way to plan your smile investment.').waitFor({ state: 'attached' });
+  await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 });
 

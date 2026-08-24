@@ -53,7 +53,10 @@ const PageLoader: React.FC<PageLoaderProps> = ({
   // Minimal variant
   return (
     <div className={cn(
-      "flex items-center justify-center min-h-[30vh] md:min-h-[40vh] bg-background",
+      // Route components are code-split while the global footer renders outside
+      // Suspense. Reserve the visible viewport so the footer never flashes into
+      // view and then jumps thousands of pixels when the route chunk resolves.
+      "flex min-h-[calc(100svh-4rem)] items-center justify-center bg-background sm:min-h-[calc(100svh-4.5rem)]",
       className
     )}>
       <BrandLoader 

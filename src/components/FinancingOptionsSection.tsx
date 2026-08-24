@@ -105,9 +105,31 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
   showWidgetPreview = false,
   className,
 }) => {
-  useCherryWidgetRegistration({ enabled: true });
+  const [hasFinancingIntent, setHasFinancingIntent] = React.useState(false);
+  useCherryWidgetRegistration({ enabled: hasFinancingIntent });
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const hasTrackedViewRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (hasFinancingIntent || typeof window === 'undefined') return;
+
+    const enableWidget = () => setHasFinancingIntent(true);
+    const handleScroll = () => {
+      if (window.scrollY < 64) return;
+      enableWidget();
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('pointerdown', enableWidget, { once: true, passive: true });
+    document.addEventListener('keydown', enableWidget, { once: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('pointerdown', enableWidget);
+      document.removeEventListener('keydown', enableWidget);
+    };
+  }, [hasFinancingIntent]);
 
   React.useEffect(() => {
     const section = sectionRef.current;
