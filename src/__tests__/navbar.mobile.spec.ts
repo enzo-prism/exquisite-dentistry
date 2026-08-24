@@ -107,6 +107,10 @@ for (const viewport of mobileViewports) {
       await expect(logoLink).toBeVisible();
       await expect(searchButton).toBeVisible();
       await expect(menuButton).toBeVisible();
+      await expect(header.locator('a[href^="/schedule-consultation"]:visible').first()).toHaveCSS(
+        'color',
+        'rgb(255, 255, 255)',
+      );
 
       const headerOverflow = await header.evaluate((el) => el.scrollWidth - el.clientWidth);
       expect(headerOverflow).toBeLessThanOrEqual(1);
@@ -233,7 +237,11 @@ test('desktop compact mode uses inline nav and keeps actions unclipped', async (
   await expect(page.locator('nav[aria-label="Primary"]')).toBeVisible();
   await expect(page.locator('button[aria-label="Open navigation menu"]')).toBeHidden();
   await expect(page.locator('button[aria-label="More pages"]')).toBeVisible();
-  await expect(page.locator('header a[href^="/schedule-consultation"]:visible').first()).toBeVisible();
+  const bookButton = page.locator('header a[href^="/schedule-consultation"]:visible').first();
+  await expect(bookButton).toBeVisible();
+  await expect(bookButton).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await bookButton.hover();
+  await expect(bookButton).toHaveCSS('color', 'rgb(255, 255, 255)');
 
   const headerOverflow = await header.evaluate((el) => el.scrollWidth - el.clientWidth);
   expect(headerOverflow).toBeLessThanOrEqual(1);

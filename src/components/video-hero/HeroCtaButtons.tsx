@@ -16,6 +16,7 @@ interface CtaButtonsProps {
     onClick?: () => void;
     target?: string;
     rel?: string;
+    className?: string;
   };
   secondaryCta?: {
     text: string;
@@ -91,7 +92,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               primaryCta.onClick?.();
             }}
             type="button"
-            className={`group ${isMobile ? 'w-full' : ''}`}
+            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
           >
             {primaryCta.text}
             <ArrowRight
@@ -110,7 +111,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             asChild
             variant="default"
             size={buttonSize}
-            className={`group ${isMobile ? 'w-full' : ''}`}
+            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
           >
             <a href={buttonHref} onClick={handleHashClick(buttonHref, primaryCta.text, 'hero_primary_button')}>
               {primaryCta.text}
@@ -132,7 +133,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             asChild
             variant="default"
             size={buttonSize}
-            className={`group ${isMobile ? 'w-full' : ''}`}
+            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
           >
             <a
               href={normalizedHref}
@@ -158,7 +159,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           asChild
           variant="default"
           size={buttonSize}
-          className={`group ${isMobile ? 'w-full' : ''}`}
+          className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
         >
           <Link
             to={normalizedHref}

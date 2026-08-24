@@ -15,6 +15,7 @@ export interface VideoHeroProps {
     onClick?: () => void;
     target?: string;
     rel?: string;
+    className?: string;
   };
   secondaryCta?: {
     text: string;

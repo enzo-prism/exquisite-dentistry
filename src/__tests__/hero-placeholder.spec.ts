@@ -37,8 +37,13 @@ test('desktop hero keeps the poster until Vimeo playback actually starts', async
   await page.goto('/');
 
   const heading = page.getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i });
+  const hero = heading.locator('xpath=ancestor::section[1]');
   const poster = heroPoster(page);
   await expect(heading).toBeVisible();
+  const scheduleButton = hero.getByRole('link', { name: 'Schedule Consultation' });
+  await expect(scheduleButton).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await scheduleButton.hover();
+  await expect(scheduleButton).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(poster).toBeVisible();
   await expect(poster).toHaveAttribute('alt', '');
   await expect(poster).toHaveAttribute('aria-hidden', 'true');
@@ -82,7 +87,9 @@ test('mobile static hero uses the same crop-safe poster without autoplay media',
   const poster = heroPoster(page);
 
   await expect(heading).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Schedule Consultation' }).first()).toBeVisible();
+  const scheduleButton = section.getByRole('link', { name: 'Schedule Consultation' });
+  await expect(scheduleButton).toBeVisible();
+  await expect(scheduleButton).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(poster).toBeVisible();
   await expect(poster).toHaveCSS('object-fit', 'cover');
   await expect(section.locator('iframe[title="Background video"], video')).toHaveCount(0);

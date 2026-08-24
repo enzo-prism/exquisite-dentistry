@@ -135,7 +135,8 @@ const IndexPage: React.FC = () => {
         subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Have a PPO plan? We can help verify benefits before treatment."
         primaryCta={{
           text: "Schedule Consultation",
-          href: "/schedule-consultation/"
+          href: "/schedule-consultation/",
+          className: "!text-white hover:!text-white"
         }}
         secondaryCta={{
           text: "Smile Gallery",

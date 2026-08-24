@@ -378,7 +378,7 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   asChild
-                  className="h-10 rounded-full bg-gold px-3.5 text-sm font-semibold text-black hover:bg-gold/90 min-[1480px]:px-4"
+                  className="h-10 rounded-full bg-gold px-3.5 text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white min-[1480px]:px-4"
                 >
                   <Link
                     to={SCHEDULE_CONSULTATION_PATH}
@@ -405,7 +405,7 @@ const Navbar = () => {
               <Button
                 size="sm"
                 asChild
-                className="inline-flex h-11 rounded-full bg-gold px-3.5 text-sm font-semibold text-black hover:bg-gold/90 sm:px-4"
+                className="inline-flex h-11 rounded-full bg-gold px-3.5 text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white sm:px-4"
               >
                 <Link
                   to={SCHEDULE_CONSULTATION_PATH}
