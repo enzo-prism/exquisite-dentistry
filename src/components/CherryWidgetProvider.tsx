@@ -75,7 +75,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
 
   const rightOffset = isMobile ? '8px' : '16px';
   const bottomOffset = isMobile ? 'calc(env(safe-area-inset-bottom, 0px) + 16px)' : '24px';
-  const floatingButtonMaxWidth = isMobile ? '56px' : '64px';
+  const floatingButtonWidth = isMobile
+    ? 'min(288px, calc(100vw - 88px))'
+    : '288px';
 
   const styleTargets = [
     ...mounts.slice(-1),
@@ -99,7 +101,8 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'transform', 'translate3d(0, 0, 0)');
     setImportantStyle(target, 'transition', prefersReducedMotion ? 'none' : CHERRY_WIDGET_HIDE_TRANSITION);
     setImportantStyle(target, 'overflow', 'visible');
-    setImportantStyle(target, 'max-width', floatingButtonMaxWidth);
+    setImportantStyle(target, 'width', floatingButtonWidth);
+    setImportantStyle(target, 'max-width', floatingButtonWidth);
   });
 
   const queryUnique = (selector: string) =>
@@ -131,17 +134,18 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   );
 
   floatingButtons.forEach((target) => {
-    setImportantStyle(target, 'width', 'auto');
-    setImportantStyle(target, 'max-width', floatingButtonMaxWidth);
+    setImportantStyle(target, 'box-sizing', 'border-box');
+    setImportantStyle(target, 'width', floatingButtonWidth);
+    setImportantStyle(target, 'max-width', floatingButtonWidth);
     setImportantStyle(target, 'min-width', '44px');
-    setImportantStyle(target, 'min-height', '44px');
-    setImportantStyle(target, 'overflow', 'hidden');
+    setImportantStyle(target, 'min-height', '52px');
+    setImportantStyle(target, 'overflow', 'visible');
   });
 
   buttonContents.forEach((target) => {
     setImportantStyle(target, 'display', 'flex');
     setImportantStyle(target, 'align-items', 'center');
-    setImportantStyle(target, 'justify-content', 'center');
+    setImportantStyle(target, 'justify-content', 'flex-start');
     setImportantStyle(target, 'flex-wrap', 'nowrap');
     setImportantStyle(target, 'min-height', '44px');
     setImportantStyle(target, 'min-width', '0');
@@ -153,39 +157,39 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   });
 
   textContainers.forEach((target) => {
-    setImportantStyle(target, 'display', 'none');
+    setImportantStyle(target, 'display', 'flex');
     setImportantStyle(target, 'flex-direction', 'column');
     setImportantStyle(target, 'flex', '1 1 auto');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
-    setImportantStyle(target, 'overflow', 'hidden');
+    setImportantStyle(target, 'overflow', 'visible');
   });
 
   titleElements.forEach((target) => {
     setImportantStyle(target, 'display', 'block');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
-    setImportantStyle(target, 'overflow', 'hidden');
+    setImportantStyle(target, 'overflow', 'visible');
     setImportantStyle(target, 'white-space', 'nowrap');
-    setImportantStyle(target, 'text-overflow', 'ellipsis');
+    setImportantStyle(target, 'text-overflow', 'clip');
   });
 
   subtextElements.forEach((target) => {
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
-    setImportantStyle(target, 'overflow', 'hidden');
-    setImportantStyle(target, 'white-space', 'nowrap');
-    setImportantStyle(target, 'text-overflow', 'ellipsis');
-    setImportantStyle(target, 'display', 'none');
+    setImportantStyle(target, 'overflow', 'visible');
+    setImportantStyle(target, 'white-space', 'normal');
+    setImportantStyle(target, 'text-overflow', 'clip');
+    setImportantStyle(target, 'display', 'block');
   });
 
   desktopValueProps.forEach((target) => {
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
-    setImportantStyle(target, 'overflow', 'hidden');
-    setImportantStyle(target, 'white-space', 'nowrap');
-    setImportantStyle(target, 'text-overflow', 'ellipsis');
-    setImportantStyle(target, 'display', 'none');
+    setImportantStyle(target, 'overflow', 'visible');
+    setImportantStyle(target, 'white-space', 'normal');
+    setImportantStyle(target, 'text-overflow', 'clip');
+    setImportantStyle(target, 'display', 'inline');
   });
 
   mobileValueProps.forEach((target) => {

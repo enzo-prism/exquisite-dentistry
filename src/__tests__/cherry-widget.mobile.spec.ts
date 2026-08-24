@@ -237,6 +237,8 @@ const getCherryResponsiveState = async (page: Page) =>
         desktopDisplay: null,
         mobileDisplay: null,
         subtextDisplay: null,
+        desktopText: null,
+        buttonWidth: 0,
         overflowsViewport: null,
       };
     }
@@ -245,12 +247,30 @@ const getCherryResponsiveState = async (page: Page) =>
     const desktopRect = desktop.getBoundingClientRect();
     const mobileRect = mobile.getBoundingClientRect();
     const visibleCopyRect = getComputedStyle(mobile).display !== 'none' ? mobileRect : desktopRect;
+    const concierge = document.querySelector('[aria-label="Ask the Concierge"]') as HTMLElement | null;
+    const conciergeRect = concierge?.getBoundingClientRect();
+    const quickActions = Array.from(document.querySelectorAll<HTMLButtonElement>('button')).find(
+      (candidate) => candidate.textContent?.includes('Open quick actions'),
+    );
+    const quickActionsRect = quickActions?.getBoundingClientRect();
+
+    const overlaps = (other?: DOMRect) => Boolean(
+      other
+      && buttonRect.left < other.right
+      && buttonRect.right > other.left
+      && buttonRect.top < other.bottom
+      && buttonRect.bottom > other.top
+    );
 
     return {
       exists: true,
       desktopDisplay: getComputedStyle(desktop).display,
       mobileDisplay: getComputedStyle(mobile).display,
       subtextDisplay: getComputedStyle(subtext).display,
+      desktopText: desktop.textContent,
+      buttonWidth: buttonRect.width,
+      overlapsConcierge: overlaps(conciergeRect),
+      overlapsQuickActions: overlaps(quickActionsRect),
       overflowsViewport:
         buttonRect.right > window.innerWidth + 0.5 ||
         visibleCopyRect.right > buttonRect.right + 0.5,
@@ -454,7 +474,7 @@ test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ pa
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 });
 
-test('Cherry stays icon-only when the viewport shrinks after desktop render', async ({
+test('Cherry keeps its full conversion copy visible at every viewport size', async ({
   page,
 }) => {
   await mockCherryRuntime(page);
@@ -469,9 +489,14 @@ test('Cherry stays icon-only when the viewport shrinks after desktop render', as
     .poll(() => getCherryResponsiveState(page), { timeout: 10000 })
     .toMatchObject({
       exists: true,
-      desktopDisplay: 'none',
+      desktopDisplay: 'inline',
       mobileDisplay: 'none',
-      subtextDisplay: 'none',
+      subtextDisplay: 'block',
+      desktopText: 'No hard credit checks • 0% APR options',
+      buttonWidth: 288,
+      overlapsConcierge: false,
+      overlapsQuickActions: false,
+      overflowsViewport: false,
     });
 
   await page.setViewportSize({ width: 500, height: desktopViewport.height });
@@ -480,21 +505,29 @@ test('Cherry stays icon-only when the viewport shrinks after desktop render', as
     .poll(() => getCherryResponsiveState(page), { timeout: 10000 })
     .toMatchObject({
       exists: true,
-      desktopDisplay: 'none',
+      desktopDisplay: 'inline',
       mobileDisplay: 'none',
-      subtextDisplay: 'none',
+      subtextDisplay: 'block',
+      desktopText: 'No hard credit checks • 0% APR options',
+      buttonWidth: 288,
+      overlapsConcierge: false,
+      overlapsQuickActions: false,
       overflowsViewport: false,
     });
 
-  await page.setViewportSize({ width: 420, height: desktopViewport.height });
+  await page.setViewportSize({ width: 320, height: desktopViewport.height });
 
   await expect
     .poll(() => getCherryResponsiveState(page), { timeout: 10000 })
     .toMatchObject({
       exists: true,
-      desktopDisplay: 'none',
+      desktopDisplay: 'inline',
       mobileDisplay: 'none',
-      subtextDisplay: 'none',
+      subtextDisplay: 'block',
+      desktopText: 'No hard credit checks • 0% APR options',
+      buttonWidth: 232,
+      overlapsConcierge: false,
+      overlapsQuickActions: false,
       overflowsViewport: false,
     });
 });
