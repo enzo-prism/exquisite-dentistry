@@ -158,7 +158,7 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
       source: 'cherry_pre_approval_section',
       ctaText: PRIMARY_CTA_LABEL,
       destination: applyUrl,
-      status: effectiveAmount ? `amount_${effectiveAmount}` : 'amount_unset',
+      status: effectiveAmount ? 'amount_provided' : 'amount_unset',
     });
 
     if (typeof window !== 'undefined') {

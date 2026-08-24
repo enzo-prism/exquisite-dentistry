@@ -52,6 +52,9 @@ test.use(MOBILE_CONTEXT);
 const shouldBlockRequest = (url: string) => THIRD_PARTY_HOSTS.some((host) => url.includes(host));
 
 const preparePage = async (page: Page) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('exquisite_analytics_consent_v1', 'denied');
+  });
   await page.route('**/*', (route) => {
     const url = route.request().url();
     if (shouldBlockRequest(url)) {

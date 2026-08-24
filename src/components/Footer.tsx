@@ -32,6 +32,7 @@ import {
 import { GOOGLE_MAPS_SHORT_URL } from '@/constants/urls';
 import { INSURANCE_FOOTER_SUMMARY } from '@/data/insurance';
 import { generateUTMUrl, UTM_PARAMETERS } from '@/utils/utmTracking';
+import { openAnalyticsPreferences } from '@/utils/googleAnalytics';
 
 type FooterLink = {
   label: string;
@@ -411,6 +412,14 @@ const Footer = () => {
             <Link to="/privacy-policy/" className="inline-flex min-h-6 items-center hover:text-gold transition-colors">
               Privacy Policy
             </Link>
+            <span className="text-gold/50">•</span>
+            <button
+              type="button"
+              className="inline-flex min-h-11 items-center hover:text-gold transition-colors"
+              onClick={openAnalyticsPreferences}
+            >
+              Privacy choices
+            </button>
             <span className="text-gold/50">•</span>
             <Link to="/terms-of-service/" className="inline-flex min-h-6 items-center hover:text-gold transition-colors">
               Terms of Service

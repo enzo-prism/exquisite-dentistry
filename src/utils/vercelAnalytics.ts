@@ -1,4 +1,13 @@
 import { track } from '@vercel/analytics';
+import {
+  trackGenerateLead,
+  trackGoogleContactClick,
+  trackGoogleCtaClick,
+  trackGoogleFinancingEngagement,
+  trackGoogleVideoEngagement,
+  trackScheduleClick,
+  getAnalyticsConsent,
+} from '@/utils/googleAnalytics';
 
 type VercelAnalyticsValue = string | number | boolean | null;
 type VercelAnalyticsProperties = Record<string, VercelAnalyticsValue | undefined>;
@@ -7,8 +16,27 @@ const MAX_PROPERTY_LENGTH = 120;
 const INTENT_DEDUPE_WINDOW_MS = 1_000;
 const recentIntentEvents = new Map<string, number>();
 
+export const sanitizeTrackedPath = (pathname: string) => {
+  let decodedPath = pathname;
+  try {
+    decodedPath = decodeURIComponent(pathname);
+  } catch {
+    return '/redacted';
+  }
+
+  if (
+    /[^\s@]+@[^\s@]+\.[^\s@]+/.test(decodedPath)
+    || /(?:\+?\d[\s().-]*){7,}/.test(decodedPath)
+  ) {
+    return '/redacted';
+  }
+
+  const path = pathname || '/';
+  return path === '/' ? '/' : path.replace(/\/+$/, '') || '/';
+};
+
 export const normalizeTrackedRoute = (pathname: string) => {
-  const normalizedPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+  const normalizedPath = sanitizeTrackedPath(pathname);
 
   if (normalizedPath.startsWith('/blog/')) {
     return '/blog/[slug]';
@@ -24,6 +52,7 @@ export const normalizeTrackedRoute = (pathname: string) => {
 export const sanitizeTrackedUrl = (value: string) => {
   try {
     const url = new URL(value);
+    url.pathname = sanitizeTrackedPath(url.pathname);
     url.search = '';
     url.hash = '';
     return url.toString();
@@ -32,14 +61,9 @@ export const sanitizeTrackedUrl = (value: string) => {
   }
 };
 
-const normalizePath = (pathname: string) => {
-  const path = pathname || '/';
-  return path === '/' ? '/' : path.replace(/\/+$/, '') || '/';
-};
-
 const getCurrentPath = () => {
   if (typeof window === 'undefined') return '/';
-  return normalizePath(window.location.pathname);
+  return sanitizeTrackedPath(window.location.pathname);
 };
 
 const getCurrentRoute = () => normalizeTrackedRoute(getCurrentPath());
@@ -116,7 +140,7 @@ export const normalizeAnalyticsDestination = (href?: string) => {
     const hostname = url.hostname.replace(/^www\./, '');
 
     if (hostname === 'exquisitedentistryla.com' || url.origin === baseUrl) {
-      return normalizePath(url.pathname);
+      return sanitizeTrackedPath(url.pathname);
     }
 
     if (hostname === 'maps.app.goo.gl' || hostname.endsWith('google.com')) {
@@ -147,15 +171,6 @@ const getDestinationType = (href?: string) => {
   return 'internal';
 };
 
-const normalizePersona = (persona?: string) => {
-  const normalizedPersona = persona?.toLowerCase() ?? '';
-
-  if (normalizedPersona.includes('existing')) return 'existing_patient';
-  if (normalizedPersona.includes('new patient') || normalizedPersona.includes('becoming')) return 'new_patient';
-  if (normalizedPersona.includes('vendor') || normalizedPersona.includes('business')) return 'vendor_business';
-  return persona ? 'other' : 'unspecified';
-};
-
 const getQueryLengthBucket = (queryLength: number) => {
   if (queryLength <= 0) return 'empty';
   if (queryLength <= 2) return '1-2';
@@ -177,7 +192,7 @@ export const trackVercelEvent = (
   eventName: string,
   properties: VercelAnalyticsProperties = {},
 ) => {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined' || getAnalyticsConsent() !== 'granted') return false;
 
   track(
     eventName,
@@ -216,6 +231,7 @@ export const trackConsultationIntent = ({
     destination: normalizedDestination,
     destination_type: getDestinationType(destination),
   });
+  trackScheduleClick({ ctaLocation: source });
 
   return true;
 };
@@ -235,6 +251,7 @@ export const trackCtaClick = ({
     destination: normalizeAnalyticsDestination(destination),
     destination_type: getDestinationType(destination),
   });
+  trackGoogleCtaClick({ ctaType: source, ctaLocation: source });
 };
 
 export const trackContactMethodClick = ({
@@ -261,28 +278,28 @@ export const trackContactMethodClick = ({
     source,
     destination: normalizedDestination,
   });
+  trackGoogleContactClick({ method, ctaLocation: source });
 
   return true;
 };
 
 export const trackContactFormSubmitted = ({
-  form,
-  persona,
-  hasPhone,
+  form: _form,
+  persona: _persona,
+  hasPhone: _hasPhone,
 }: {
   form: string;
   persona?: string;
   hasPhone?: boolean;
 }) => {
   trackVercelEvent('Contact Form Submitted', {
-    form,
-    persona: normalizePersona(persona),
-    has_phone: Boolean(hasPhone),
+    form: 'website_contact',
   });
+  trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
 };
 
 export const trackContactFormValidationFailed = ({
-  form,
+  form: _form,
   fieldCount,
   personaMissing,
   nameMissing,
@@ -299,7 +316,7 @@ export const trackContactFormValidationFailed = ({
   messageMissing: boolean;
 }) => {
   trackVercelEvent('Contact Form Validation Failed', {
-    form,
+    form: 'website_contact',
     field_count: fieldCount,
     persona_missing: personaMissing,
     name_missing: nameMissing,
@@ -310,14 +327,14 @@ export const trackContactFormValidationFailed = ({
 };
 
 export const trackContactFormFailed = ({
-  form,
+  form: _form,
   reason,
 }: {
   form: string;
   reason: string;
 }) => {
   trackVercelEvent('Contact Form Failed', {
-    form,
+    form: 'website_contact',
     reason,
   });
 };
@@ -342,6 +359,7 @@ export const trackFinancingEngagement = ({
     destination: normalizeAnalyticsDestination(destination),
     status,
   });
+  trackGoogleFinancingEngagement({ action, ctaLocation: source });
 };
 
 export const trackSiteSearchOpened = ({ source }: { source: string }) => {
@@ -401,7 +419,7 @@ export const trackSiteSearchActionSelected = ({
 export const trackVideoEngagement = ({
   action,
   source,
-  videoId,
+  videoId: _videoId,
 }: {
   action: 'start' | 'complete';
   source: string;
@@ -410,8 +428,8 @@ export const trackVideoEngagement = ({
   trackVercelEvent('Video Engagement', {
     action,
     source,
-    video_id: videoId,
   });
+  trackGoogleVideoEngagement({ action, videoType: source, ctaLocation: getCurrentRoute() });
 };
 
 export const trackLegacyRedirectEvent = ({

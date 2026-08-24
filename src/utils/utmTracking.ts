@@ -1,138 +1,111 @@
-/**
- * UTM Parameter Management for Google Business Profile and Marketing Attribution
- */
-
-// UTM Parameter constants for different traffic sources
+/** Privacy-safe campaign attribution retained for this browser session. */
 export const UTM_PARAMETERS = {
-  googleBusinessProfile: {
-    utm_source: 'google',
-    utm_medium: 'organic',
-    utm_campaign: 'gbp'
-  },
+  googleBusinessProfile: { utm_source: 'google', utm_medium: 'organic', utm_campaign: 'gbp' },
   socialMedia: {
-    instagram: {
-      utm_source: 'instagram',
-      utm_medium: 'social',
-      utm_campaign: 'profile_link'
-    },
-    facebook: {
-      utm_source: 'facebook', 
-      utm_medium: 'social',
-      utm_campaign: 'profile_link'
-    },
-    youtube: {
-      utm_source: 'youtube',
-      utm_medium: 'social', 
-      utm_campaign: 'profile_link'
-    }
+    instagram: { utm_source: 'instagram', utm_medium: 'social', utm_campaign: 'profile_link' },
+    facebook: { utm_source: 'facebook', utm_medium: 'social', utm_campaign: 'profile_link' },
+    youtube: { utm_source: 'youtube', utm_medium: 'social', utm_campaign: 'profile_link' },
   },
-  email: {
-    utm_source: 'email',
-    utm_medium: 'email',
-    utm_campaign: 'signature'
-  },
-  referral: {
-    utm_source: 'referral',
-    utm_medium: 'referral',
-    utm_campaign: 'patient_referral'
-  }
+  email: { utm_source: 'email', utm_medium: 'email', utm_campaign: 'signature' },
+  referral: { utm_source: 'referral', utm_medium: 'referral', utm_campaign: 'patient_referral' },
 } as const;
 
-/**
- * Generate URL with UTM parameters
- */
+const ATTRIBUTION_STORAGE_KEY = 'exquisite_session_attribution_v2';
+export const ATTRIBUTION_FIELDS = [
+  'utm_id',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+  'gclid',
+  'gbraid',
+  'wbraid',
+  'dclid',
+  'msclkid',
+  'fbclid',
+] as const;
+
+const MAX_ATTRIBUTION_VALUE_LENGTH = 120;
+const EMAIL_LIKE = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
+
+const cleanAttributionValue = (value: string | null) => {
+  if (!value) return undefined;
+  const cleaned = Array.from(value)
+    .filter((character) => {
+      const code = character.charCodeAt(0);
+      return code > 31 && code !== 127;
+    })
+    .join('')
+    .trim();
+  if (!cleaned || EMAIL_LIKE.test(cleaned) || PHONE_LIKE.test(cleaned)) return undefined;
+  return cleaned.slice(0, MAX_ATTRIBUTION_VALUE_LENGTH);
+};
+
 export function generateUTMUrl(baseUrl: string, utmParams: Record<string, string>): string {
   const url = new URL(baseUrl);
-  
-  Object.entries(utmParams).forEach(([key, value]) => {
-    url.searchParams.set(key, value);
-  });
-  
+  Object.entries(utmParams).forEach(([key, value]) => url.searchParams.set(key, value));
   return url.toString();
 }
 
-/**
- * Get current UTM parameters from URL
- */
 export function getCurrentUTMParameters(): Record<string, string> {
+  if (typeof window === 'undefined') return {};
   const urlParams = new URLSearchParams(window.location.search);
-  const utmParams: Record<string, string> = {};
-  
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(param => {
-    const value = urlParams.get(param);
-    if (value) {
-      utmParams[param] = value;
-    }
-  });
-  
-  return utmParams;
+
+  return ATTRIBUTION_FIELDS.reduce<Record<string, string>>((result, field) => {
+    const value = cleanAttributionValue(urlParams.get(field));
+    if (value) result[field] = value;
+    return result;
+  }, {});
 }
 
-/**
- * Track UTM parameters in Google Analytics
- */
-export function trackUTMParameters(): void {
-  const utmParams = getCurrentUTMParameters();
-  
-  if (Object.keys(utmParams).length > 0 && typeof window.gtag === 'function') {
-    try {
-      window.gtag('event', 'utm_attribution', {
-        event_category: 'traffic_source',
-        custom_parameters: {
-          ...utmParams,
-          landing_page: window.location.pathname,
-          timestamp: new Date().toISOString()
-        }
-      });
-      
-      console.log('UTM parameters tracked:', utmParams);
-    } catch (error) {
-      console.error('Error tracking UTM parameters:', error);
-    }
-  }
-}
-
-/**
- * Generate Google Business Profile URL with UTM parameters
- */
 export function getGBPUrl(baseUrl: string = window.location.origin): string {
   return generateUTMUrl(baseUrl, UTM_PARAMETERS.googleBusinessProfile);
 }
 
-/**
- * Generate social media URLs with UTM parameters
- */
 export function getSocialMediaUrls(baseUrl: string = window.location.origin) {
   return {
     instagram: generateUTMUrl(baseUrl, UTM_PARAMETERS.socialMedia.instagram),
     facebook: generateUTMUrl(baseUrl, UTM_PARAMETERS.socialMedia.facebook),
-    youtube: generateUTMUrl(baseUrl, UTM_PARAMETERS.socialMedia.youtube)
+    youtube: generateUTMUrl(baseUrl, UTM_PARAMETERS.socialMedia.youtube),
   };
 }
 
-/**
- * Initialize UTM tracking on page load
- */
 export function initializeUTMTracking(): void {
-  // Track UTM parameters if present
-  trackUTMParameters();
-  
-  // Store UTM parameters in session storage for cross-page attribution
-  const utmParams = getCurrentUTMParameters();
-  if (Object.keys(utmParams).length > 0) {
-    sessionStorage.setItem('utm_attribution', JSON.stringify(utmParams));
+  if (typeof window === 'undefined') return;
+  const attribution = getCurrentUTMParameters();
+  if (Object.keys(attribution).length === 0) return;
+
+  try {
+    const existing = getStoredUTMAttribution() ?? {};
+    if (Object.keys(existing).length > 0) return;
+    window.sessionStorage.setItem(
+      ATTRIBUTION_STORAGE_KEY,
+      JSON.stringify(attribution),
+    );
+  } catch {
+    // Attribution remains available in the current URL if storage is blocked.
   }
 }
 
-/**
- * Get stored UTM attribution from session
- */
 export function getStoredUTMAttribution(): Record<string, string> | null {
+  if (typeof window === 'undefined') return null;
+
   try {
-    const stored = sessionStorage.getItem('utm_attribution');
-    return stored ? JSON.parse(stored) : null;
-  } catch (error) {
-    console.error('Error retrieving stored UTM attribution:', error);
+    const stored = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY);
+    if (!stored) return null;
+    const parsed = JSON.parse(stored) as Record<string, unknown>;
+
+    const attribution = ATTRIBUTION_FIELDS.reduce<Record<string, string>>((result, field) => {
+      if (typeof parsed[field] !== 'string') return result;
+      const value = cleanAttributionValue(parsed[field]);
+      if (value) result[field] = value;
+      return result;
+    }, {});
+
+    return Object.keys(attribution).length > 0 ? attribution : null;
+  } catch {
     return null;
   }
 }

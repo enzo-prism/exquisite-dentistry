@@ -11,6 +11,7 @@ import { PerformanceProvider } from "@/hooks/use-performance-monitor";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 import WebsiteConcierge from "@/components/WebsiteConcierge";
+import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -373,6 +374,7 @@ const App = () => {
                 <WebsiteConcierge />
               </CherryWidgetProvider>
               <RouteAwareObservability />
+              <AnalyticsConsentBanner />
             </BrowserRouter>
           </TooltipProvider>
         </PerformanceProvider>

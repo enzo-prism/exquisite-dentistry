@@ -23,14 +23,6 @@ const TestimonialThumbnail: React.FC<TestimonialThumbnailProps> = ({
       videoId: vimeoId,
     });
 
-    // Track video engagement for analytics
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      window.gtag('event', 'video_start', {
-        event_category: 'testimonial_thumbnail',
-        event_label: title,
-        video_id: vimeoId
-      });
-    }
   };
 
   return (

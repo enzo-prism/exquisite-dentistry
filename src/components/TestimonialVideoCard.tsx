@@ -32,14 +32,7 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
       videoId,
     });
 
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      window.gtag('event', 'video_start', {
-        event_category: analyticsCategory,
-        event_label: testimonial.title,
-        video_id: videoId
-      });
-    }
-  }, [analyticsCategory, testimonial.title, videoId]);
+  }, [analyticsCategory, videoId]);
 
   const handleVideoEnd = React.useCallback(() => {
     if (!trackCompletion) return;
@@ -50,14 +43,7 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
       videoId,
     });
 
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      window.gtag('event', 'video_complete', {
-        event_category: analyticsCategory,
-        event_label: testimonial.title,
-        video_id: videoId
-      });
-    }
-  }, [analyticsCategory, testimonial.title, videoId, trackCompletion]);
+  }, [analyticsCategory, videoId, trackCompletion]);
 
   return (
     <figure className={cn('overflow-hidden rounded-lg bg-gray-50 shadow-lg', className)}>

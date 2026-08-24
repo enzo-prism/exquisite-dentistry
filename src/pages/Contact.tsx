@@ -12,7 +12,11 @@ import {
   trackContactMethodClick,
 } from '@/utils/vercelAnalytics';
 import VideoHero from '@/components/VideoHero';
-import { getStoredUTMAttribution } from '@/utils/utmTracking';
+import {
+  ATTRIBUTION_FIELDS,
+  getCurrentUTMParameters,
+  getStoredUTMAttribution,
+} from '@/utils/utmTracking';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
@@ -39,7 +43,14 @@ const SOCIAL_URLS = {
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const FORMSPREE_OPS_UTM_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+const sanitizeOperationalUrl = (value: string) => {
+  try {
+    const url = new URL(value);
+    return `${url.origin}${url.pathname}`.slice(0, 240);
+  } catch {
+    return '';
+  }
+};
 
 function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
   formData.set('site', 'exquisite');
@@ -47,13 +58,13 @@ function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
   formData.set('environment', import.meta.env.MODE ?? 'production');
   formData.set('_codex_test', 'false');
 
-  const params = new URLSearchParams(window.location.search);
+  const currentAttribution = getCurrentUTMParameters();
   const storedAttribution = getStoredUTMAttribution() ?? {};
   formData.set('page_path', window.location.pathname);
-  formData.set('referrer', document.referrer);
-  for (const field of FORMSPREE_OPS_UTM_FIELDS) {
-    const currentValue = params.get(field);
-    const resolvedValue = currentValue && currentValue.trim() !== ''
+  formData.set('referrer', sanitizeOperationalUrl(document.referrer));
+  for (const field of ATTRIBUTION_FIELDS) {
+    const currentValue = currentAttribution[field];
+    const resolvedValue = currentValue
       ? currentValue
       : storedAttribution[field] ?? '';
     formData.set(field, resolvedValue);

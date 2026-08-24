@@ -33,100 +33,94 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Google tag (gtag.js). Queue measurement immediately, but keep the
-         network request out of the critical rendering path. -->
+    <!-- Consent-aware Google tag. It only makes network requests on the two
+         canonical production hosts; previews and local development stay clean. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      window.gtag = window.gtag || gtag;
+
+      var analyticsConsent = null;
+      try {
+        analyticsConsent = window.localStorage.getItem('exquisite_analytics_consent_v1');
+      } catch (error) {
+        analyticsConsent = null;
+      }
+
+      gtag('consent', 'default', {
+        analytics_storage: analyticsConsent === 'granted' ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
       gtag('js', new Date());
 
-      gtag('config', 'G-1MZGF2XNB5');
-      // Secondary property added in 2025. Its current owner is not proven in
-      // repository evidence, so retain it until Analytics Admin confirms it.
-      gtag('config', 'G-RECCC1K9GK');
-
-      var googleTagLoaded = false;
-      function loadGoogleTag() {
-        if (googleTagLoaded) return;
-        googleTagLoaded = true;
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5';
-        document.head.appendChild(script);
+      var initialPath = window.location.pathname || '/';
+      try {
+        var decodedInitialPath = decodeURIComponent(initialPath);
+        if (
+          /[^\s@]+@[^\s@]+\.[^\s@]+/.test(decodedInitialPath) ||
+          /(?:\+?\d[\s().-]*){7,}/.test(decodedInitialPath)
+        ) {
+          initialPath = '/redacted';
+        }
+      } catch (error) {
+        initialPath = '/redacted';
       }
 
-      function scheduleGoogleTagLoad() {
-        window.setTimeout(loadGoogleTag, 5000);
-      }
-
-      if (document.readyState === 'complete') {
-        scheduleGoogleTagLoad();
-      } else {
-        window.addEventListener('load', scheduleGoogleTagLoad, { once: true });
-      }
-
-      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function(event) {
-        document.addEventListener(event, loadGoogleTag, { once: true, passive: true });
-      });
-
-      // Helper function for Google Ads conversion tracking
-      function gtagSendEvent(url) {
-        var callback = function () {
-          if (typeof url === 'string') {
-            window.location = url;
+      var initialTagLocation = window.location.origin + initialPath;
+      try {
+        var sourceUrl = new URL(window.location.href);
+        var tagUrl = new URL(initialTagLocation);
+        [
+          'utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+          'gclid', 'gbraid', 'wbraid', 'dclid', 'msclkid', 'fbclid'
+        ].forEach(function(parameter) {
+          var value = sourceUrl.searchParams.get(parameter);
+          if (
+            value &&
+            value.length <= 120 &&
+            value.indexOf('@') === -1 &&
+            !/(?:\+?\d[\s().-]*){7,}/.test(value)
+          ) {
+            tagUrl.searchParams.set(parameter, value);
           }
-        };
-        gtag('config', 'AW-11373090310', { 'send_page_view': false });
-        gtag('event', 'ads_conversion_Submit_lead_form_1', {
-          'event_callback': callback,
-          'event_timeout': 2000
         });
-        return false;
+        initialTagLocation = tagUrl.toString();
+      } catch (error) {
+        initialTagLocation = window.location.origin + initialPath;
       }
-      
-      // Make function globally available
-      window.gtagSendEvent = gtagSendEvent;
+
+      var privacySafeConfig = {
+        send_page_view: false,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        page_location: initialTagLocation
+      };
+
+      gtag('config', 'G-1MZGF2XNB5', privacySafeConfig);
+      // Configure Ads at landing time so campaign click context is not deferred.
+      // No direct Ads conversion is emitted; the real GA lead is imported once.
+      gtag('config', 'AW-11373090310', privacySafeConfig);
+
+      var canonicalAnalyticsHost =
+        window.location.hostname === 'exquisitedentistryla.com' ||
+        window.location.hostname === 'www.exquisitedentistryla.com';
+
+      if (canonicalAnalyticsHost) {
+        var googleTag = document.createElement('script');
+        googleTag.async = true;
+        googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5';
+        googleTag.setAttribute('data-name', 'google-tag');
+        document.head.appendChild(googleTag);
+      }
     </script>
     
     <!-- Preload critical fonts to prevent layout shifts -->
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Hotjar Tracking Code for Primary - Deferred -->
-    <script>
-        // Defer Hotjar loading to improve performance
-        var hotjarLoaded = false;
-        function loadHotjar() {
-            if (hotjarLoaded) return;
-            hotjarLoaded = true;
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:5272510,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        }
-
-        function scheduleHotjarLoad() {
-            // `requestIdleCallback` often fires during initial rendering. Give
-            // the hero a quiet window; real interaction still loads Hotjar now.
-            setTimeout(loadHotjar, 10000);
-        }
-        
-        // Load Hotjar when the browser is idle or the visitor meaningfully interacts.
-        if (document.readyState === 'complete') {
-            scheduleHotjarLoad();
-        } else {
-            window.addEventListener('load', scheduleHotjarLoad, { once: true });
-        }
-
-        ['mousedown', 'keydown', 'touchstart'].forEach(function(event) {
-            document.addEventListener(event, function() {
-                loadHotjar();
-            }, { once: true, passive: true });
-        });
-    </script>
     
     <!-- Optimized font loading with font-display: swap -->
     <style>

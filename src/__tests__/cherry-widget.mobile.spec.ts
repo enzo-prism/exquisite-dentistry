@@ -107,6 +107,9 @@ const cherryWidgetMockScript = `
 `;
 
 const mockCherryRuntime = async (page: Page) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('exquisite_analytics_consent_v1', 'denied');
+  });
   await page.route(cherryWidgetScriptUrl, async (route) => {
     await route.fulfill({
       status: 200,

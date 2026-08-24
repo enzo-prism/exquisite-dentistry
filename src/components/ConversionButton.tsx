@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { gtagSendEvent } from '@/utils/googleAdsTracking';
 import { cn } from '@/lib/utils';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
-import { trackConsultationIntent } from '@/utils/vercelAnalytics';
 
 interface ConversionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
@@ -42,42 +41,7 @@ const ConversionButton = React.forwardRef<HTMLButtonElement, ConversionButtonPro
       if (trackConversion && normalizedHref) {
         e.preventDefault();
         
-        // For new tab navigation, open immediately to avoid popup blockers
-        if (target === '_blank') {
-          try {
-            trackConsultationIntent({
-              source: 'conversion_button',
-              ctaText: typeof children === 'string' ? children : 'Conversion button',
-              destination: normalizedHref,
-            });
-
-            const newWindow = window.open(normalizedHref, '_blank', rel || 'noopener,noreferrer');
-            if (newWindow) {
-              // Window opened successfully, send tracking event without callback
-              if (typeof window.gtag === 'function') {
-                window.gtag('event', 'ads_conversion_Submit_lead_form_1', {
-                  'value': 1.0,
-                  'currency': 'USD',
-                  'custom_parameters': {
-                    'conversion_type': 'consultation_booking',
-                    'source_page': window.location.pathname,
-                    'timestamp': new Date().toISOString()
-                  }
-                });
-                console.log('Google Ads conversion event sent for new tab');
-              }
-            } else {
-              console.warn('Popup blocked, using fallback tracking navigation');
-              gtagSendEvent(normalizedHref, target, 'conversion_button');
-            }
-          } catch (error) {
-            console.error('Error opening new tab:', error);
-            gtagSendEvent(normalizedHref, target, 'conversion_button');
-          }
-        } else {
-          // Same tab navigation - use tracking with callback
-          gtagSendEvent(normalizedHref, target, 'conversion_button');
-        }
+        gtagSendEvent(normalizedHref, target, 'conversion_button');
       }
       
       // Call original onClick if provided

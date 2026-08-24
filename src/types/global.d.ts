@@ -11,11 +11,9 @@ declare global {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     gtagSendEvent?: (url?: string, target?: string, source?: string) => boolean;
-    hj?: (...args: unknown[]) => void;
     _hw?: ((method: string, ...args: unknown[]) => void) & {
       q?: unknown[][];
     };
-    _hjSettings?: Record<string, unknown>;
     _hw_shared_layout?: HTMLElement | null;
     _hw_widgets?: string[];
     _hw_global_config?: Record<string, unknown>;

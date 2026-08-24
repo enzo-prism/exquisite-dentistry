@@ -5,10 +5,11 @@
 | ID | Purpose | Status |
 | --- | --- | --- |
 | `G-1MZGF2XNB5` | GA4 production source of record | Confirmed in Analytics Admin as property `498175984` |
-| `G-RECCC1K9GK` | Secondary GA4 destination added in July 2025 | Ownership is not established by repository history; preserve until Analytics Admin confirms it |
-| `AW-11373090310` | Google Ads conversion destination | Configured on demand by conversion helpers so the advertising tag does not load before a conversion interaction |
+| `AW-11373090310` | Google Ads destination | Configured at landing time under denied advertising consent; no unverified direct-conversion labels are emitted |
 
-Property `478101252` maps to `G-2HKBYNRKYX`, not `G-RECCC1K9GK`. The `G-2HKBYNRKYX` ID is not present in source. If that property receives website events through a linked Google-tag destination, stop that routing in Google Analytics Admin rather than deleting the unidentified secondary ID from source.
+The unidentified source destination `G-RECCC1K9GK` has been removed until an Analytics Admin proves ownership and need. Property `478101252` maps to `G-2HKBYNRKYX`, which is not present in source. If that property continues receiving website events, stop its linked routing in Google Analytics Admin.
+
+All source-controlled destinations use `send_page_view: false`. The React router emits one manual, query-free page view per route. The Google tag is restricted to `exquisitedentistryla.com` and `www.exquisitedentistryla.com`. Vercel Web Analytics and Speed Insights require an explicit analytics opt-in. Hotjar is disabled pending a separate healthcare privacy review.
 
 ## Search Console verification
 
