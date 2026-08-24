@@ -33,8 +33,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5"></script>
+    <!-- Google tag (gtag.js). Queue measurement immediately, but keep the
+         network request out of the critical rendering path. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -44,6 +44,30 @@
       // Secondary property added in 2025. Its current owner is not proven in
       // repository evidence, so retain it until Analytics Admin confirms it.
       gtag('config', 'G-RECCC1K9GK');
+
+      var googleTagLoaded = false;
+      function loadGoogleTag() {
+        if (googleTagLoaded) return;
+        googleTagLoaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5';
+        document.head.appendChild(script);
+      }
+
+      function scheduleGoogleTagLoad() {
+        window.setTimeout(loadGoogleTag, 5000);
+      }
+
+      if (document.readyState === 'complete') {
+        scheduleGoogleTagLoad();
+      } else {
+        window.addEventListener('load', scheduleGoogleTagLoad, { once: true });
+      }
+
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleTag, { once: true, passive: true });
+      });
 
       // Helper function for Google Ads conversion tracking
       function gtagSendEvent(url) {
@@ -85,11 +109,8 @@
         }
 
         function scheduleHotjarLoad() {
-            if ('requestIdleCallback' in window) {
-                window.requestIdleCallback(loadHotjar, { timeout: 10000 });
-                return;
-            }
-
+            // `requestIdleCallback` often fires during initial rendering. Give
+            // the hero a quiet window; real interaction still loads Hotjar now.
             setTimeout(loadHotjar, 10000);
         }
         

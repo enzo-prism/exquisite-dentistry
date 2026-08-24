@@ -17,9 +17,10 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
 import SkipToContent from "@/components/SkipToContent";
+import Index from "@/pages/Index";
 
-// Lazy load all routes for code splitting
-const Index = lazy(() => import("@/pages/Index"));
+// Keep the entry route in the initial graph so a cold visit can render the hero
+// immediately. All secondary routes remain split below.
 const About = lazy(() => import("@/pages/About"));
 const TeamExcellence = lazy(() => import("@/pages/TeamExcellence"));
 const Tour = lazy(() => import("@/pages/Tour"));
