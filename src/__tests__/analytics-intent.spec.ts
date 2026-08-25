@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { installCanonicalAnalyticsHost } from './analyticsTestHost';
 
 type AnalyticsWindow = Window & {
   __gtagTestEvents: unknown[][];
@@ -42,6 +43,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('exquisite_analytics_consent_v1', 'granted');
   });
+  await installCanonicalAnalyticsHost(page);
   await installAnalyticsRecorders(page);
 });
 

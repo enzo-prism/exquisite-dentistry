@@ -14,7 +14,7 @@
 - `analytics_storage` starts denied. `ad_storage`, `ad_user_data`, and `ad_personalization` always remain denied.
 - Google Signals and ad-personalization signals are disabled.
 - Vercel Web Analytics and Speed Insights load only after analytics consent. Hotjar is disabled pending a separate healthcare privacy review.
-- Production vendor scripts never load on localhost or preview hosts.
+- Production vendor scripts never load on localhost or preview hosts. `gtag('consent')`, `gtag('config')`, and later `gtag('event')` calls use the same allowlist (`exquisitedentistryla.com` / `www.exquisitedentistryla.com`) so local and preview builds cannot queue hits.
 - Never send form answers, names, email addresses, phone numbers, insurance details, free text, exact financing amounts, raw search terms, testimonial IDs/titles, full URLs, timestamps, or user identifiers to GA. Approved campaign and click identifiers may appear only in the sanitized initial tag configuration to preserve attribution; never emit them as custom event parameters or dimensions.
 - Do not enable Enhanced Conversions for this healthcare site without a separate legal and Google-policy review.
 
@@ -45,7 +45,7 @@ The landing page synchronously captures these values for the current browser ses
 5. Link only the canonical property to the correct Google Ads account, enable auto-tagging, and import `generate_lead` once as the primary website lead conversion.
 6. Keep phone, schedule, financing, and CTA interactions secondary until an actual booked/qualified outcome can be imported from the scheduler or CRM.
 7. Register only the approved custom dimensions listed above; do not create dimensions from click IDs or user-entered values.
-8. Review internal-traffic filters and data retention with the practice owner.
+8. Review internal-traffic filters and data retention with the practice owner. Website code now refuses to initialize the Google tag outside the two canonical hosts. If residual hits from `127.0.0.1`, `localhost`, `*.vercel.app`, or `*.lovable.app` still appear in property `498175984`, mark those hosts as Internal traffic in GA4 Admin. This repo cannot apply that Admin setting.
 
 ## Acceptance checks
 

@@ -16,7 +16,7 @@ The canonical production target is the `main` branch on the Vercel project `exqu
 - The app emits one manual, query-free `page_view` for the initial render and each completed React route change.
 - `generate_lead` fires only after a real Formspree submission succeeds. Page visits, CTA clicks, invalid forms, failed forms, and honeypots are not leads.
 - Analytics storage starts denied. Advertising storage, user data, and personalization remain denied. Vercel Analytics and Speed Insights require analytics consent.
-- Localhost and preview hosts do not load production analytics vendors.
+- Localhost and preview hosts do not load production analytics vendors, and they do not queue `gtag` consent, config, or event commands.
 - User-entered values, full URLs, query strings, email-like or phone-like paths, exact financing amounts, and other high-cardinality values are excluded or redacted.
 
 The detailed event schema and Admin checklist remain in `ga4-measurement-plan.md` and `ga4-audit-2026-08-23.md`.

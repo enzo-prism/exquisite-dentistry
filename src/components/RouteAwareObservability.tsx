@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { normalizeTrackedRoute, sanitizeTrackedPath, sanitizeTrackedUrl } from "@/utils/vercelAnalytics";
 import GlobalIntentTracking from "@/components/GlobalIntentTracking";
 import { useEffect, useState } from "react";
+import { isCanonicalAnalyticsHost } from "@/utils/analyticsHost";
 import {
   ANALYTICS_CONSENT_CHANGED_EVENT,
   getAnalyticsConsent,
@@ -15,11 +16,13 @@ const RouteAwareObservability = () => {
   const trackedRoute = normalizeTrackedRoute(pathname);
   const trackedPath = sanitizeTrackedPath(pathname);
   const [optionalAnalyticsAllowed, setOptionalAnalyticsAllowed] = useState(
-    () => getAnalyticsConsent() === 'granted',
+    () => getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost(),
   );
 
   useEffect(() => {
-    const handleConsentChange = () => setOptionalAnalyticsAllowed(getAnalyticsConsent() === 'granted');
+    const handleConsentChange = () => {
+      setOptionalAnalyticsAllowed(getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost());
+    };
     window.addEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, handleConsentChange);
     return () => window.removeEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, handleConsentChange);
   }, []);

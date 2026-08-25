@@ -1,3 +1,5 @@
+import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+
 export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v1';
 export const ANALYTICS_PREFERENCES_EVENT = 'exquisite:open-analytics-preferences';
 export const ANALYTICS_CONSENT_CHANGED_EVENT = 'exquisite:analytics-consent-changed';
@@ -56,8 +58,14 @@ const sanitizeLocation = (value: string) => {
 
 const getPageLocation = () => sanitizeLocation(window.location.href) ?? window.location.origin;
 
+const canUseGoogleTag = () => (
+  typeof window !== 'undefined'
+  && typeof window.gtag === 'function'
+  && isCanonicalAnalyticsHost()
+);
+
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return false;
+  if (!canUseGoogleTag()) return false;
 
   const cleanParameters = Object.fromEntries(
     Object.entries(parameters).filter(([, value]) => value !== undefined),
@@ -104,15 +112,17 @@ export const updateAnalyticsConsent = (consent: Exclude<AnalyticsConsent, null>)
   try {
     window.localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, consent);
   } catch {
-    // The consent update below still applies for this page if storage is blocked.
+    // Local storage can be blocked; the in-memory consent event still fires.
   }
 
-  window.gtag?.('consent', 'update', {
-    analytics_storage: consent,
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  });
+  if (canUseGoogleTag()) {
+    window.gtag?.('consent', 'update', {
+      analytics_storage: consent,
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+  }
 
   window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_CHANGED_EVENT, { detail: consent }));
 };
