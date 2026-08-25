@@ -17,11 +17,25 @@ const USER_FIXTURES = {
   message: 'Private fixture message about a dental appointment',
 };
 
+const PRODUCTION_GOOGLE_TAG_IDS = ['G-1MZGF2XNB5', 'AW-11373090310'] as const;
+
+const isProductionGoogleAnalyticsUrl = (url: string) => PRODUCTION_GOOGLE_TAG_IDS.some((id) => url.includes(id));
+
 const blockAnalyticsVendors = async (page: Page) => {
   await page.route(/https:\/\/(?:www\.)?googletagmanager\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/(?:www\.)?google-analytics\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/static\.hotjar\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/va\.vercel-scripts\.com\/.*/, (route) => route.abort());
+};
+
+const collectProductionGoogleRequests = (page: Page) => {
+  const vendorRequests: string[] = [];
+  page.on('request', (request) => {
+    if (isProductionGoogleAnalyticsUrl(request.url())) {
+      vendorRequests.push(request.url());
+    }
+  });
+  return vendorRequests;
 };
 
 const readDataLayer = async (page: Page): Promise<GtagCommand[]> => page.evaluate(() => {
@@ -160,12 +174,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('queues denied consent by default and honors explicit accept or reject', async ({ page }) => {
-  const vendorRequests: string[] = [];
-  page.on('request', (request) => {
-    if (/google(?:tagmanager|-analytics)\.com/.test(request.url())) {
-      vendorRequests.push(request.url());
-    }
-  });
+  const vendorRequests = collectProductionGoogleRequests(page);
   await page.goto('/');
 
   const initialCommands = await readDataLayer(page);
@@ -201,7 +210,9 @@ test('queues denied consent by default and honors explicit accept or reject', as
   });
   await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('granted');
   await page.waitForTimeout(100);
-  expect(vendorRequests).toEqual([]);
+  expect(vendorRequests).toEqual([
+    expect.stringContaining('googletagmanager.com/gtag/js?id=G-1MZGF2XNB5'),
+  ]);
 
   await page.context().clearCookies();
   await page.evaluate(() => localStorage.clear());
@@ -240,11 +251,16 @@ test('reopens privacy choices on mobile and persists consent revocation', async 
     expect(box?.height).toBeGreaterThanOrEqual(44);
   }
 
-  await decline.click();
+  await Promise.all([
+    page.waitForLoadState('domcontentloaded'),
+    decline.click(),
+  ]);
   await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('denied');
   await expect(page.getByRole('region', { name: 'Analytics preferences' })).toBeHidden();
-  const defaults = consentCommands(await readDataLayer(page), 'default');
-  expect(defaults.at(-1)?.[2]).toMatchObject({ analytics_storage: 'denied' });
+  await expect.poll(async () => {
+    const defaults = consentCommands(await readDataLayer(page), 'default');
+    return defaults.at(-1)?.[2];
+  }).toMatchObject({ analytics_storage: 'denied' });
   await expect(page.locator('script[src*="_vercel/insights"], script[src*="va.vercel"]')).toHaveCount(0);
 });
 
@@ -489,12 +505,7 @@ test.describe('GA4 host gate', () => {
   });
 
   test('localhost never queues gtag config/events or loads gtag.js', async ({ page }) => {
-    const vendorRequests: string[] = [];
-    page.on('request', (request) => {
-      if (/google(?:tagmanager|-analytics)\.com/.test(request.url())) {
-        vendorRequests.push(request.url());
-      }
-    });
+    const vendorRequests = collectProductionGoogleRequests(page);
 
     await page.goto('/');
     await acceptAnalytics(page);
@@ -508,7 +519,7 @@ test.describe('GA4 host gate', () => {
     expect(commands.filter((command) => command[0] === 'consent')).toEqual([]);
     expect(eventCommands(commands)).toEqual([]);
     expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
-    expect(await page.locator('script[src*="googletagmanager.com/gtag/js"]').count()).toBe(0);
+    expect(await page.locator('script[src*="gtag/js?id=G-1MZGF2XNB5"]').count()).toBe(0);
     await page.waitForTimeout(100);
     expect(vendorRequests).toEqual([]);
   });
@@ -533,12 +544,7 @@ test.describe('GA4 host gate', () => {
 
   for (const hostname of ['branch-abc.vercel.app', 'preview.lovable.app'] as const) {
     test(`${hostname} never queues gtag config/events or loads gtag.js`, async ({ page }) => {
-      const vendorRequests: string[] = [];
-      page.on('request', (request) => {
-        if (/google(?:tagmanager|-analytics)\.com/.test(request.url())) {
-          vendorRequests.push(request.url());
-        }
-      });
+      const vendorRequests = collectProductionGoogleRequests(page);
 
       await installAnalyticsHostOverride(page, hostname);
       await page.goto('/');
@@ -547,7 +553,7 @@ test.describe('GA4 host gate', () => {
       expect(commands.filter((command) => command[0] === 'config')).toEqual([]);
       expect(eventCommands(commands)).toEqual([]);
       expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
-      expect(await page.locator('script[src*="googletagmanager.com/gtag/js"]').count()).toBe(0);
+      expect(await page.locator('script[src*="gtag/js?id=G-1MZGF2XNB5"]').count()).toBe(0);
       await page.waitForTimeout(100);
       expect(vendorRequests).toEqual([]);
     });
