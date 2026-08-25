@@ -383,6 +383,51 @@ test('dedupes phone and scheduling intent and keeps GA4 parameters flat', async 
   assertPrivacySafeGaEvents(commands);
 });
 
+test('plain telephone anchors emit one privacy-safe phone event', async ({ page }) => {
+  await page.goto('/client-experience/');
+  await clearDataLayer(page);
+  const phone = page.locator('a[href^="tel:"]').first();
+  await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await phone.click();
+
+  const commands = await readDataLayer(page);
+  const phoneEvents = eventCommands(commands, 'contact_click');
+  expect(phoneEvents).toHaveLength(1);
+  expect(phoneEvents[0]?.[2]).toMatchObject({ interaction_method: 'phone' });
+  expect(phoneEvents[0]?.[2]).not.toHaveProperty('custom_parameters');
+  expect(JSON.stringify(phoneEvents)).not.toContain('+13232722388');
+  assertPrivacySafeGaEvents(commands);
+});
+
+test('schedule links without local handlers emit one consultation event', async ({ page }) => {
+  await page.goto('/locations/');
+  await clearDataLayer(page);
+  const schedule = page.locator('a[href^="/schedule-consultation"]').first();
+  await schedule.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await schedule.click();
+
+  const commands = await readDataLayer(page);
+  const scheduleEvents = eventCommands(commands, 'schedule_click');
+  expect(scheduleEvents).toHaveLength(1);
+  expect(scheduleEvents[0]?.[2]).toMatchObject({ interaction_method: 'schedule' });
+  expect(scheduleEvents[0]?.[2]).not.toHaveProperty('custom_parameters');
+  assertPrivacySafeGaEvents(commands);
+});
+
+test('testimonial actions stay generic CTAs and never become schedule intent', async ({ page }) => {
+  await page.goto('/share-your-story/');
+  await clearDataLayer(page);
+  await page.evaluate(() => {
+    window.open = (() => window) as typeof window.open;
+  });
+  await page.getByRole('button', { name: 'Start Written Testimonial' }).click();
+
+  const commands = await readDataLayer(page);
+  expect(eventCommands(commands, 'cta_click')).toHaveLength(1);
+  expect(eventCommands(commands, 'schedule_click')).toHaveLength(0);
+  assertPrivacySafeGaEvents(commands);
+});
+
 test('successful Formspree response emits exactly one privacy-safe generate_lead', async ({ page }) => {
   let formspreeRequests = 0;
   await page.route(FORM_ENDPOINT, async (route) => {
