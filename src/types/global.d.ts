@@ -10,6 +10,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    __EXQUISITE_ANALYTICS_TEST_HOST__?: string;
     gtagSendEvent?: (url?: string, target?: string, source?: string) => boolean;
     _hw?: ((method: string, ...args: unknown[]) => void) & {
       q?: unknown[][];

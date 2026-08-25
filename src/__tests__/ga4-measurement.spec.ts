@@ -1,4 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
+import {
+  extractInlineGoogleTagSnippet,
+  installAnalyticsHostOverride,
+  installCanonicalAnalyticsHost,
+  LOCAL_AND_PREVIEW_ANALYTICS_HOSTS,
+} from './analyticsTestHost';
+import { CANONICAL_ANALYTICS_HOSTS, isCanonicalAnalyticsHost } from '../utils/analyticsHost';
 
 type GtagCommand = [string, string | Date | Record<string, unknown>, Record<string, unknown>?];
 
@@ -10,11 +17,25 @@ const USER_FIXTURES = {
   message: 'Private fixture message about a dental appointment',
 };
 
+const PRODUCTION_GOOGLE_TAG_IDS = ['G-1MZGF2XNB5', 'AW-11373090310'] as const;
+
+const isProductionGoogleAnalyticsUrl = (url: string) => PRODUCTION_GOOGLE_TAG_IDS.some((id) => url.includes(id));
+
 const blockAnalyticsVendors = async (page: Page) => {
   await page.route(/https:\/\/(?:www\.)?googletagmanager\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/(?:www\.)?google-analytics\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/static\.hotjar\.com\/.*/, (route) => route.abort());
   await page.route(/https:\/\/va\.vercel-scripts\.com\/.*/, (route) => route.abort());
+};
+
+const collectProductionGoogleRequests = (page: Page) => {
+  const vendorRequests: string[] = [];
+  page.on('request', (request) => {
+    if (isProductionGoogleAnalyticsUrl(request.url())) {
+      vendorRequests.push(request.url());
+    }
+  });
+  return vendorRequests;
 };
 
 const readDataLayer = async (page: Page): Promise<GtagCommand[]> => page.evaluate(() => {
@@ -146,17 +167,14 @@ const fillValidContactForm = async (page: Page) => {
   await page.getByLabel('Message', { exact: true }).fill(USER_FIXTURES.message);
 };
 
+test.describe('GA4 measurement on canonical hosts', () => {
 test.beforeEach(async ({ page }) => {
   await blockAnalyticsVendors(page);
+  await installCanonicalAnalyticsHost(page);
 });
 
 test('queues denied consent by default and honors explicit accept or reject', async ({ page }) => {
-  const vendorRequests: string[] = [];
-  page.on('request', (request) => {
-    if (/google(?:tagmanager|-analytics)\.com/.test(request.url())) {
-      vendorRequests.push(request.url());
-    }
-  });
+  const vendorRequests = collectProductionGoogleRequests(page);
   await page.goto('/');
 
   const initialCommands = await readDataLayer(page);
@@ -192,7 +210,9 @@ test('queues denied consent by default and honors explicit accept or reject', as
   });
   await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('granted');
   await page.waitForTimeout(100);
-  expect(vendorRequests).toEqual([]);
+  expect(vendorRequests).toEqual([
+    expect.stringContaining('googletagmanager.com/gtag/js?id=G-1MZGF2XNB5'),
+  ]);
 
   await page.context().clearCookies();
   await page.evaluate(() => localStorage.clear());
@@ -231,11 +251,16 @@ test('reopens privacy choices on mobile and persists consent revocation', async 
     expect(box?.height).toBeGreaterThanOrEqual(44);
   }
 
-  await decline.click();
+  await Promise.all([
+    page.waitForLoadState('domcontentloaded'),
+    decline.click(),
+  ]);
   await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('denied');
   await expect(page.getByRole('region', { name: 'Analytics preferences' })).toBeHidden();
-  const defaults = consentCommands(await readDataLayer(page), 'default');
-  expect(defaults.at(-1)?.[2]).toMatchObject({ analytics_storage: 'denied' });
+  await expect.poll(async () => {
+    const defaults = consentCommands(await readDataLayer(page), 'default');
+    return defaults.at(-1)?.[2];
+  }).toMatchObject({ analytics_storage: 'denied' });
   await expect(page.locator('script[src*="_vercel/insights"], script[src*="va.vercel"]')).toHaveCount(0);
 });
 
@@ -358,6 +383,51 @@ test('dedupes phone and scheduling intent and keeps GA4 parameters flat', async 
   assertPrivacySafeGaEvents(commands);
 });
 
+test('plain telephone anchors emit one privacy-safe phone event', async ({ page }) => {
+  await page.goto('/client-experience/');
+  await clearDataLayer(page);
+  const phone = page.locator('a[href^="tel:"]').first();
+  await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await phone.click();
+
+  const commands = await readDataLayer(page);
+  const phoneEvents = eventCommands(commands, 'contact_click');
+  expect(phoneEvents).toHaveLength(1);
+  expect(phoneEvents[0]?.[2]).toMatchObject({ interaction_method: 'phone' });
+  expect(phoneEvents[0]?.[2]).not.toHaveProperty('custom_parameters');
+  expect(JSON.stringify(phoneEvents)).not.toContain('+13232722388');
+  assertPrivacySafeGaEvents(commands);
+});
+
+test('schedule links without local handlers emit one consultation event', async ({ page }) => {
+  await page.goto('/locations/');
+  await clearDataLayer(page);
+  const schedule = page.locator('a[href^="/schedule-consultation"]').first();
+  await schedule.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await schedule.click();
+
+  const commands = await readDataLayer(page);
+  const scheduleEvents = eventCommands(commands, 'schedule_click');
+  expect(scheduleEvents).toHaveLength(1);
+  expect(scheduleEvents[0]?.[2]).toMatchObject({ interaction_method: 'schedule' });
+  expect(scheduleEvents[0]?.[2]).not.toHaveProperty('custom_parameters');
+  assertPrivacySafeGaEvents(commands);
+});
+
+test('testimonial actions stay generic CTAs and never become schedule intent', async ({ page }) => {
+  await page.goto('/share-your-story/');
+  await clearDataLayer(page);
+  await page.evaluate(() => {
+    window.open = (() => window) as typeof window.open;
+  });
+  await page.getByRole('button', { name: 'Start Written Testimonial' }).click();
+
+  const commands = await readDataLayer(page);
+  expect(eventCommands(commands, 'cta_click')).toHaveLength(1);
+  expect(eventCommands(commands, 'schedule_click')).toHaveLength(0);
+  assertPrivacySafeGaEvents(commands);
+});
+
 test('successful Formspree response emits exactly one privacy-safe generate_lead', async ({ page }) => {
   let formspreeRequests = 0;
   await page.route(FORM_ENDPOINT, async (route) => {
@@ -443,4 +513,94 @@ test('failed, invalid, and honeypot submissions emit zero generate_lead events',
   expect(formspreeRequests).toBe(1);
 
   assertPrivacySafeGaEvents(await readDataLayer(page));
+});
+});
+
+test.describe('GA4 host gate', () => {
+  test.beforeEach(async ({ page }) => {
+    await blockAnalyticsVendors(page);
+  });
+
+  test('allowlist matches the inline snippet and rejects local/preview hosts', () => {
+    expect(CANONICAL_ANALYTICS_HOSTS).toEqual([
+      'exquisitedentistryla.com',
+      'www.exquisitedentistryla.com',
+    ]);
+
+    const snippet = extractInlineGoogleTagSnippet();
+    const hostCheckIndex = snippet.indexOf('var canonicalAnalyticsHost =');
+    const firstGtagCall = snippet.search(/\bgtag\s*\(/);
+    const configIds = [...snippet.matchAll(/gtag\('config', '([^']+)'/g)].map((match) => match[1]);
+
+    expect(hostCheckIndex).toBeGreaterThanOrEqual(0);
+    expect(firstGtagCall).toBeGreaterThan(hostCheckIndex);
+    expect(snippet.indexOf('if (canonicalAnalyticsHost)')).toBeLessThan(firstGtagCall);
+    expect(configIds).toEqual(['G-1MZGF2XNB5', 'AW-11373090310']);
+    expect(snippet).toContain('googletagmanager.com/gtag/js?id=G-1MZGF2XNB5');
+    expect(snippet).toContain("analyticsHostname === 'exquisitedentistryla.com'");
+    expect(snippet).toContain("analyticsHostname === 'www.exquisitedentistryla.com'");
+    expect(snippet).toContain('__EXQUISITE_ANALYTICS_TEST_HOST__');
+
+    for (const host of CANONICAL_ANALYTICS_HOSTS) {
+      expect(isCanonicalAnalyticsHost(host)).toBe(true);
+    }
+    for (const host of LOCAL_AND_PREVIEW_ANALYTICS_HOSTS) {
+      expect(isCanonicalAnalyticsHost(host)).toBe(false);
+    }
+  });
+
+  test('localhost never queues gtag config/events or loads gtag.js', async ({ page }) => {
+    const vendorRequests = collectProductionGoogleRequests(page);
+
+    await page.goto('/');
+    await acceptAnalytics(page);
+    await page.goto('/schedule-consultation/');
+    const phone = page.locator('a[data-analytics-source][href^="tel:"]').first();
+    await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+    await phone.click();
+
+    const commands = await readDataLayer(page);
+    expect(commands.filter((command) => command[0] === 'config')).toEqual([]);
+    expect(commands.filter((command) => command[0] === 'consent')).toEqual([]);
+    expect(eventCommands(commands)).toEqual([]);
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
+    expect(await page.locator('script[src*="gtag/js?id=G-1MZGF2XNB5"]').count()).toBe(0);
+    await page.waitForTimeout(100);
+    expect(vendorRequests).toEqual([]);
+  });
+
+  test('an injected gtag on localhost still receives no consent or events', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      window.dataLayer = [];
+      window.gtag = (...args: unknown[]) => {
+        window.dataLayer?.push(args);
+      };
+    });
+    await acceptAnalytics(page);
+    const phone = page.locator('a[href^="tel:"]').first();
+    await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+    await phone.click();
+
+    const commands = await readDataLayer(page);
+    expect(commands.filter((command) => command[0] === 'consent')).toEqual([]);
+    expect(eventCommands(commands)).toEqual([]);
+  });
+
+  for (const hostname of ['branch-abc.vercel.app', 'preview.lovable.app'] as const) {
+    test(`${hostname} never queues gtag config/events or loads gtag.js`, async ({ page }) => {
+      const vendorRequests = collectProductionGoogleRequests(page);
+
+      await installAnalyticsHostOverride(page, hostname);
+      await page.goto('/');
+
+      const commands = await readDataLayer(page);
+      expect(commands.filter((command) => command[0] === 'config')).toEqual([]);
+      expect(eventCommands(commands)).toEqual([]);
+      expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
+      expect(await page.locator('script[src*="gtag/js?id=G-1MZGF2XNB5"]').count()).toBe(0);
+      await page.waitForTimeout(100);
+      expect(vendorRequests).toEqual([]);
+    });
+  }
 });

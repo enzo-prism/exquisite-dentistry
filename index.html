@@ -33,84 +33,97 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Consent-aware Google tag. It only makes network requests on the two
-         canonical production hosts; previews and local development stay clean. -->
+    <!-- Consent-aware Google tag. Keep this allowlist in sync with
+         src/utils/analyticsHost.ts. Script load, consent, config, and later
+         events all stay off localhost and preview hosts. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = window.gtag || gtag;
-
-      var analyticsConsent = null;
-      try {
-        analyticsConsent = window.localStorage.getItem('exquisite_analytics_consent_v1');
-      } catch (error) {
-        analyticsConsent = null;
+      var actualAnalyticsHostname = String(window.location.hostname || '').toLowerCase().replace(/\.$/, '');
+      var analyticsTestHost = window.__EXQUISITE_ANALYTICS_TEST_HOST__;
+      var analyticsHostname = actualAnalyticsHostname;
+      if (
+        typeof analyticsTestHost === 'string' &&
+        analyticsTestHost &&
+        actualAnalyticsHostname !== 'exquisitedentistryla.com' &&
+        actualAnalyticsHostname !== 'www.exquisitedentistryla.com'
+      ) {
+        analyticsHostname = String(analyticsTestHost).toLowerCase().replace(/\.$/, '');
       }
-
-      gtag('consent', 'default', {
-        analytics_storage: analyticsConsent === 'granted' ? 'granted' : 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        wait_for_update: 500
-      });
-      gtag('set', 'ads_data_redaction', true);
-      gtag('set', 'url_passthrough', true);
-      gtag('js', new Date());
-
-      var initialPath = window.location.pathname || '/';
-      try {
-        var decodedInitialPath = decodeURIComponent(initialPath);
-        if (
-          /[^\s@]+@[^\s@]+\.[^\s@]+/.test(decodedInitialPath) ||
-          /(?:\+?\d[\s().-]*){7,}/.test(decodedInitialPath)
-        ) {
-          initialPath = '/redacted';
-        }
-      } catch (error) {
-        initialPath = '/redacted';
-      }
-
-      var initialTagLocation = window.location.origin + initialPath;
-      try {
-        var sourceUrl = new URL(window.location.href);
-        var tagUrl = new URL(initialTagLocation);
-        [
-          'utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
-          'gclid', 'gbraid', 'wbraid', 'dclid', 'msclkid', 'fbclid'
-        ].forEach(function(parameter) {
-          var value = sourceUrl.searchParams.get(parameter);
-          if (
-            value &&
-            value.length <= 120 &&
-            value.indexOf('@') === -1 &&
-            !/(?:\+?\d[\s().-]*){7,}/.test(value)
-          ) {
-            tagUrl.searchParams.set(parameter, value);
-          }
-        });
-        initialTagLocation = tagUrl.toString();
-      } catch (error) {
-        initialTagLocation = window.location.origin + initialPath;
-      }
-
-      var privacySafeConfig = {
-        send_page_view: false,
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false,
-        page_location: initialTagLocation
-      };
-
-      gtag('config', 'G-1MZGF2XNB5', privacySafeConfig);
-      // Configure Ads at landing time so campaign click context is not deferred.
-      // No direct Ads conversion is emitted; the real GA lead is imported once.
-      gtag('config', 'AW-11373090310', privacySafeConfig);
 
       var canonicalAnalyticsHost =
-        window.location.hostname === 'exquisitedentistryla.com' ||
-        window.location.hostname === 'www.exquisitedentistryla.com';
+        analyticsHostname === 'exquisitedentistryla.com' ||
+        analyticsHostname === 'www.exquisitedentistryla.com';
 
       if (canonicalAnalyticsHost) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = window.gtag || gtag;
+
+        var analyticsConsent = null;
+        try {
+          analyticsConsent = window.localStorage.getItem('exquisite_analytics_consent_v1');
+        } catch (error) {
+          analyticsConsent = null;
+        }
+
+        gtag('consent', 'default', {
+          analytics_storage: analyticsConsent === 'granted' ? 'granted' : 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          wait_for_update: 500
+        });
+        gtag('set', 'ads_data_redaction', true);
+        gtag('set', 'url_passthrough', true);
+        gtag('js', new Date());
+
+        var initialPath = window.location.pathname || '/';
+        try {
+          var decodedInitialPath = decodeURIComponent(initialPath);
+          if (
+            /[^\s@]+@[^\s@]+\.[^\s@]+/.test(decodedInitialPath) ||
+            /(?:\+?\d[\s().-]*){7,}/.test(decodedInitialPath)
+          ) {
+            initialPath = '/redacted';
+          }
+        } catch (error) {
+          initialPath = '/redacted';
+        }
+
+        var initialTagLocation = window.location.origin + initialPath;
+        try {
+          var sourceUrl = new URL(window.location.href);
+          var tagUrl = new URL(initialTagLocation);
+          [
+            'utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+            'gclid', 'gbraid', 'wbraid', 'dclid', 'msclkid', 'fbclid'
+          ].forEach(function(parameter) {
+            var value = sourceUrl.searchParams.get(parameter);
+            if (
+              value &&
+              value.length <= 120 &&
+              value.indexOf('@') === -1 &&
+              !/(?:\+?\d[\s().-]*){7,}/.test(value)
+            ) {
+              tagUrl.searchParams.set(parameter, value);
+            }
+          });
+          initialTagLocation = tagUrl.toString();
+        } catch (error) {
+          initialTagLocation = window.location.origin + initialPath;
+        }
+
+        var privacySafeConfig = {
+          send_page_view: false,
+          allow_google_signals: false,
+          allow_ad_personalization_signals: false,
+          page_location: initialTagLocation
+        };
+
+        gtag('config', 'G-1MZGF2XNB5', privacySafeConfig);
+        // Configure Ads at landing time so campaign click context is not deferred.
+        // No direct Ads conversion is emitted; the real GA lead is imported once.
+        gtag('config', 'AW-11373090310', privacySafeConfig);
+
         var googleTag = document.createElement('script');
         googleTag.async = true;
         googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-1MZGF2XNB5';
