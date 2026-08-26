@@ -122,6 +122,7 @@ const buildSearchIndex = (): SearchIndexFile => {
   );
 
   manualPages.forEach((route) => {
+    if (route.path.startsWith("/lp/")) return;
     upsertItem({
       type: "page",
       title: route.title,

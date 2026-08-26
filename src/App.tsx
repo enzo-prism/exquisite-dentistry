@@ -30,6 +30,7 @@ const Locations = lazy(() => import("@/pages/Locations"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const ScheduleConsultation = lazy(() => import("@/pages/ScheduleConsultation"));
+const ChatGptAdsLanding = lazy(() => import("@/pages/ChatGptAdsLanding"));
 const PaymentPlans = lazy(() => import("@/pages/PaymentPlans"));
 const Insurance = lazy(() => import("@/pages/Insurance"));
 const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
@@ -162,6 +163,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ScheduleConsultation />
+              </Suspense>} />
+              <Route path="/lp/chatgpt" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ChatGptAdsLanding />
               </Suspense>} />
               <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}>
                 <PaymentPlans />

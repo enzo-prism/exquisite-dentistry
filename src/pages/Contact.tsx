@@ -12,11 +12,7 @@ import {
   trackContactMethodClick,
 } from '@/utils/vercelAnalytics';
 import VideoHero from '@/components/VideoHero';
-import {
-  ATTRIBUTION_FIELDS,
-  getCurrentUTMParameters,
-  getStoredUTMAttribution,
-} from '@/utils/utmTracking';
+import { appendFormspreeOpsMetadata, FORMSPREE_ENDPOINT } from '@/utils/formAttribution';
 import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
@@ -41,35 +37,8 @@ const SOCIAL_URLS = {
   INSTAGRAM: "https://www.instagram.com/exquisitedentistryla/"
 };
 
-const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
+const FORM_ENDPOINT = FORMSPREE_ENDPOINT;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const sanitizeOperationalUrl = (value: string) => {
-  try {
-    const url = new URL(value);
-    return `${url.origin}${url.pathname}`.slice(0, 240);
-  } catch {
-    return '';
-  }
-};
-
-function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
-  formData.set('site', 'exquisite');
-  formData.set('form_key', formKey);
-  formData.set('environment', import.meta.env.MODE ?? 'production');
-  formData.set('_codex_test', 'false');
-
-  const currentAttribution = getCurrentUTMParameters();
-  const storedAttribution = getStoredUTMAttribution() ?? {};
-  formData.set('page_path', window.location.pathname);
-  formData.set('referrer', sanitizeOperationalUrl(document.referrer));
-  for (const field of ATTRIBUTION_FIELDS) {
-    const currentValue = currentAttribution[field];
-    const resolvedValue = currentValue
-      ? currentValue
-      : storedAttribution[field] ?? '';
-    formData.set(field, resolvedValue);
-  }
-}
 
 const CONTACT_PERSONA_OPTIONS = [
   { value: 'existing_patient', label: 'Existing patient' },

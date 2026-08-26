@@ -100,7 +100,7 @@ const WebsiteConcierge: React.FC = () => {
   const copy = COPY[language];
   const selected = copy.topics[topic];
 
-  if (location.pathname === '/sitemap') return null;
+  if (location.pathname === '/sitemap' || location.pathname.startsWith('/lp/')) return null;
 
   return (
     <Dialog>

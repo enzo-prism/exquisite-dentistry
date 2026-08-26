@@ -1,5 +1,6 @@
 export const SCHEDULING_URL = 'https://scheduling.simplifeye.co#key=g5zcQrkS2CtYq4odV42VrV7GyZrpy2F&gaID=null' as const;
 export const SCHEDULE_CONSULTATION_PATH = '/schedule-consultation/' as const;
+export const CHATGPT_ADS_LANDING_PATH = '/lp/chatgpt/' as const;
 export const PAYMENT_PLANS_PATH = '/payment-plans/' as const;
 export const CONTACT_PATH = '/contact/' as const;
 export const INSURANCE_PATH = '/insurance/' as const;

@@ -3,6 +3,29 @@ import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 const stripTags = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
+const decodeWordpressEntities = (value: string) =>
+  value
+    .replace(/&#0*38;|&amp;/gi, '&')
+    .replace(/&#0*8217;|&#0*39;|&apos;|&rsquo;/gi, '\u2019')
+    .replace(/&#0*8216;|&lsquo;/gi, '\u2018')
+    .replace(/&#0*8220;|&ldquo;/gi, '\u201c')
+    .replace(/&#0*8221;|&rdquo;/gi, '\u201d')
+    .replace(/&#0*8211;|&ndash;/gi, '\u2013')
+    .replace(/&#0*8212;|&mdash;/gi, '\u2014')
+    .replace(/&#0*160;|&nbsp;/gi, ' ')
+    .replace(/&#0*8230;|&hellip;/gi, '\u2026');
+
+const decorateBlogImages = (html: string) =>
+  html.replace(/<img\b([^>]*?)>/gi, (_match, attrs: string) => {
+    const hasClass = /\bclass=/i.test(attrs);
+    const withClass = hasClass
+      ? attrs.replace(/\bclass=(["'])(.*?)\1/i, 'class=$1$2 max-w-full h-auto rounded-xl$1')
+      : `${attrs} class="max-w-full h-auto rounded-xl"`;
+    const withLoading = /\bloading=/i.test(withClass) ? withClass : `${withClass} loading="lazy"`;
+    const withAlt = /\balt=/i.test(withLoading) ? withLoading : `${withLoading} alt=""`;
+    return `<img${withAlt}>`;
+  });
+
 const tokenize = (value?: string) => {
   if (!value) return [];
   return value
@@ -55,7 +78,9 @@ const repairAuditedLegacyVeneerCostPost = (post: BlogPost, html: string) => {
 export const sanitizeBlogHtml = (post: BlogPost) => {
   if (!post.content) return '';
 
-  const repairedContent = repairAuditedLegacyVeneerCostPost(post, post.content);
+  const repairedContent = decorateBlogImages(
+    decodeWordpressEntities(repairAuditedLegacyVeneerCostPost(post, post.content)),
+  );
 
   const headingRegex = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i;
   const match = headingRegex.exec(repairedContent);

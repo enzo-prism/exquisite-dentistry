@@ -177,6 +177,14 @@ const main = async () => {
     errors.push(`Duplicate blog slugs in base + generated data: ${duplicates.join(', ')}`);
   }
 
+  if (generatedContent && /&#0*38;/.test(generatedContent)) {
+    errors.push('Generated blog posts still contain leftover HTML entities such as &#038;.');
+  }
+
+  if (generatedContent && !/"slug":\s*"top-4-netflix-shows-to-explore-from-the-dentists-chair"/.test(generatedContent)) {
+    errors.push('Netflix chair post slug is missing from generated blog posts.');
+  }
+
   let contentFiles = [];
   try {
     const entries = await fs.readdir(CONTENT_DIR);

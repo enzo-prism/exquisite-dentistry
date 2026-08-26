@@ -263,6 +263,20 @@ body {
   @apply text-primary hover:underline;
 }
 
+.prose img,
+.prose video {
+  @apply my-6 h-auto max-w-full rounded-xl;
+}
+
+.prose iframe,
+.prose table {
+  @apply my-6 max-w-full;
+}
+
+.prose table {
+  @apply block overflow-x-auto;
+}
+
 /* Section typography utilities (used on Services / Contact / ClientExperience pages) */
 .heading-lg {
   @apply text-3xl md:text-4xl font-bold leading-tight text-foreground;

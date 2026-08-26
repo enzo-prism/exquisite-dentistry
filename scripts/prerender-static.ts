@@ -503,6 +503,19 @@ export const manualPages: StaticRoute[] = [
     links: defaultNavLinks,
   },
   {
+    path: "/lp/chatgpt",
+    title: getRouteMetadata("/lp/chatgpt").title,
+    description: getRouteMetadata("/lp/chatgpt").description,
+    h1: "A calm consultation for veneers, implants, or a second opinion.",
+    paragraphs: [
+      "Share your name and how to reach you. This form is only a request — it does not book a time on the calendar.",
+      "Exquisite Dentistry is on Wilshire Blvd in Los Angeles, near Beverly Hills.",
+    ],
+    links: [
+      { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+    ],
+  },
+  {
     path: "/schedule-consultation",
     title: getRouteMetadata("/schedule-consultation").title,
     description: getRouteMetadata("/schedule-consultation").description,
@@ -1332,6 +1345,7 @@ const SERVICE_METADATA_EXCLUSIONS = new Set([
   "/locations",
   "/contact",
   "/schedule-consultation",
+  "/lp/chatgpt",
   "/payment-plans",
   "/insurance",
   "/testimonials",

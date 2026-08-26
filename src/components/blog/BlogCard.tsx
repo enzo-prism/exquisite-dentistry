@@ -13,7 +13,7 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
-  const title = post.title.replace(/&#038;|&amp;/g, '&');
+  const title = post.title.replace(/&#0*38;|&amp;/gi, '&');
   const displayTags = post.tags?.every((tag) => !tag.trim().includes(' ')) && post.tags.length >= 5
     ? []
     : post.tags ?? [];
