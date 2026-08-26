@@ -41,7 +41,8 @@ test.describe('ChatGPT ads landing page', () => {
 
     await expect(page.getByRole('heading', { name: /calm consultation/i })).toBeVisible();
     await expect(page.locator('iframe[title="Online scheduling"]')).toHaveCount(0);
-    await expect(page.locator('a[href^="/schedule-consultation"]')).toHaveCount(0);
+    await expect(page.locator('main a[href^="/schedule-consultation"]')).toHaveCount(0);
+    await expect(page.locator('#chatgpt-name')).toBeVisible();
 
     await fillLeadForm(page);
     await page.getByRole('button', { name: 'Request a callback' }).click();

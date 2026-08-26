@@ -156,6 +156,7 @@ const buildSearchIndex = (): SearchIndexFile => {
 
   Object.entries(ROUTE_METADATA).forEach(([href, meta]) => {
     const normalized = normalizeHref(href);
+    if (normalized.startsWith("/lp/")) return;
     if (serviceHrefs.has(normalized) || locationHrefs.has(normalized)) return;
 
     upsertItem({

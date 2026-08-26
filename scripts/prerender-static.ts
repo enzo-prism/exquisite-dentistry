@@ -1245,10 +1245,16 @@ const injectSeo = (template: string, route: StaticRoute) => {
   html = removeHeadMetaBy(html, "name", "twitter:title");
   html = removeHeadMetaBy(html, "name", "twitter:description");
   html = removeHeadMetaBy(html, "name", "twitter:image");
+  html = removeHeadMetaBy(html, "name", "robots");
+
+  const robotsContent = route.path.startsWith("/lp/")
+    ? "noindex,nofollow"
+    : "index,follow";
 
   const injectedHeadTags = [
     `  <title data-rh="true">${escapeHtml(fullTitle)}</title>`,
     `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    `  <meta name="robots" content="${robotsContent}" data-rh="true" />`,
     `  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />`,
     `  <meta property="og:type" content="${escapeHtml(ogType)}" data-rh="true" />`,
     `  <meta property="og:site_name" content="${escapeHtml(OG_SITE_NAME)}" data-rh="true" />`,
