@@ -181,6 +181,14 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/cc21ce69-7e31-4fa0-851a-4ea17ff473a1.png'
   },
+  '/lp/chatgpt': {
+    title: 'Request a Consultation | Exquisite Dentistry',
+    description:
+      `Request a callback from Exquisite Dentistry on Wilshire Blvd in Los Angeles. Share your name and phone, or call ${PHONE_NUMBER_DISPLAY}.`,
+    keywords:
+      'ChatGPT dentist consultation, request dental callback Los Angeles, Exquisite Dentistry inquiry',
+    ogImage: DEFAULT_OG_IMAGE
+  },
   '/schedule-consultation': {
     title: 'Schedule Consultation | Exquisite Dentistry',
     description:

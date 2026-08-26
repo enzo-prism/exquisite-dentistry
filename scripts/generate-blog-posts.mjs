@@ -43,14 +43,33 @@ const SEO_OVERRIDES = {
     seoTitle: 'Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide',
     seoDescription:
       'Considering veneers for the four front teeth? Learn when a focused smile-zone veneer plan works, what to ask, and how Dr. Aguil plans natural results in Los Angeles.'
+  },
+  'finding-the-best-cosmetic-dentist-in-the-usa-the-world': {
+    seoTitle: 'Finding a Cosmetic Dentist in the USA | What to Look For',
+    seoDescription:
+      'What to look for when choosing a cosmetic dentist: a calm setting, careful planning, and technology that supports natural-looking results. A Los Angeles guide from Exquisite Dentistry.'
+  },
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair': {
+    seoTitle: 'Netflix From the Dentist Chair | Exquisite Dentistry LA',
+    seoDescription:
+      'Four calm Netflix titles that work well during a dental visit, plus a look inside the Exquisite Dentistry treatment rooms on Wilshire Blvd in Los Angeles.'
   }
+};
+
+const FEATURED_IMAGE_OVERRIDES = {
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair':
+    '/lovable-uploads/patient-in-seat-talking-with-dentist.png'
 };
 
 // Truthful editorial update dates for generated posts. Publication dates stay
 // untouched; only add an entry when the corresponding source article receives
 // a substantive review or revision.
 const MODIFIED_AT_OVERRIDES = {
-  'are-veneers-covered-by-insurance': '2026-08-23'
+  'are-veneers-covered-by-insurance': '2026-08-23',
+  'finding-the-best-cosmetic-dentist-in-the-usa-the-world': '2026-08-26',
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair': '2026-08-26',
+  'female-smokers-are-at-a-higher-risk-of-oral-cancer': '2026-08-26',
+  'what-a-teeth-whitening-dentist-can-do-for-you': '2026-08-26'
 };
 
 const AUTHOR = 'Dr. Alexie Aguil';
@@ -145,6 +164,92 @@ const stripHtml = (html) =>
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+const decodeWordpressEntities = (text) => {
+  if (!text) return text;
+
+  return text
+    .replace(/&#0*38;|&amp;/gi, '&')
+    .replace(/&#0*8217;|&#0*39;|&apos;|&rsquo;/gi, '\u2019')
+    .replace(/&#0*8216;|&lsquo;/gi, '\u2018')
+    .replace(/&#0*8220;|&ldquo;/gi, '\u201c')
+    .replace(/&#0*8221;|&rdquo;/gi, '\u201d')
+    .replace(/&#0*8211;|&ndash;/gi, '\u2013')
+    .replace(/&#0*8212;|&mdash;/gi, '\u2014')
+    .replace(/&#0*160;|&nbsp;/gi, ' ')
+    .replace(/&#0*8230;|&hellip;/gi, '\u2026')
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
+      const code = parseInt(hex, 16);
+      if (!Number.isFinite(code) || code < 32) return _;
+      try {
+        return String.fromCodePoint(code);
+      } catch {
+        return _;
+      }
+    })
+    .replace(/&#(\d+);/g, (_, decimal) => {
+      const code = Number(decimal);
+      if (!Number.isFinite(code) || code < 32) return _;
+      try {
+        return String.fromCodePoint(code);
+      } catch {
+        return _;
+      }
+    });
+};
+
+const isFragmentHeading = (heading) => {
+  const trimmed = heading.trim();
+  return (
+    /[,;:]$/.test(trimmed)
+    || /\b(at|of|for|and|to|in|with|by)$/i.test(trimmed)
+    || /^(here at|dr\.?\s+alexie|invisalign\.?$|dental veneers\.?$|studies from)/i.test(trimmed)
+  );
+};
+
+const repairOrphanMarkdownHeadings = (markdown) =>
+  markdown.replace(
+    /^(#{2,6})\s+([^\n]+)\n+(.+)/gm,
+    (match, _hashes, heading, rest) => {
+      const trimmedHeading = heading.trim();
+      const trimmedRest = rest.trim();
+      const shouldMerge =
+        /^[,.;:]/.test(trimmedRest)
+        || /^[a-z]/.test(trimmedRest)
+        || isFragmentHeading(trimmedHeading);
+
+      if (!shouldMerge) return match;
+
+      const needsSpace = !/^[,.;:]/.test(trimmedRest);
+      return `${trimmedHeading}${needsSpace ? ' ' : ''}${trimmedRest}`;
+    }
+  );
+
+const replaceLegacyCtaBoilerplate = (markdown) =>
+  markdown
+    .replace(
+      /## Restore Your Smile[^\n]*\n\nWith your smile the best it(?:'|’)s ever looked[^\n]*\n\n### CONTACT EXQUISITE DENTISTRY\n\n[^\n]*experience true luxury\.[^\n]*/gi,
+      '## Visit Exquisite Dentistry\n\nIf you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).'
+    )
+    .replace(/^### CONTACT EXQUISITE DENTISTRY\s*$/gim, '### Contact Exquisite Dentistry')
+    .replace(/experience true luxury\.?/gi, 'visit our Los Angeles studio.');
+
+const decorateGeneratedImages = (html) =>
+  html.replace(/<img\b([^>]*?)>/gi, (_match, attrs) => {
+    const hasClass = /\bclass=/i.test(attrs);
+    const classAttr = hasClass
+      ? attrs.replace(/\bclass=(["'])(.*?)\1/i, 'class=$1$2 max-w-full h-auto rounded-xl$1')
+      : `${attrs} class="max-w-full h-auto rounded-xl"`;
+    const withLoading = /\bloading=/i.test(classAttr) ? classAttr : `${classAttr} loading="lazy"`;
+    const withAlt = /\balt=/i.test(withLoading) ? withLoading : `${withLoading} alt=""`;
+    return `<img${withAlt}>`;
+  });
+
+const prepareImportedMarkdown = (rawMarkdown) => {
+  const decoded = decodeWordpressEntities(rawMarkdown);
+  const withoutBoilerplate = replaceLegacyCtaBoilerplate(decoded);
+  return repairOrphanMarkdownHeadings(withoutBoilerplate);
+};
 
 const tokenizeHeading = (value = '') =>
   value
@@ -334,7 +439,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     return null;
   }
 
-  let titleLine = lines[idx].trim();
+  let titleLine = decodeWordpressEntities(lines[idx].trim());
   let title = '';
   if (/^Title:\s*/i.test(titleLine)) {
     title = titleLine.replace(/^Title:\s*/i, '').trim();
@@ -347,7 +452,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     idx += 1;
   }
 
-  const body = lines.slice(idx).join('\n').trim();
+  const body = prepareImportedMarkdown(lines.slice(idx).join('\n').trim());
 
   if (!title || !body) {
     return null;
@@ -359,11 +464,11 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     return null;
   }
 
-  const excerpt = extractExcerpt(body);
+  const excerpt = decodeWordpressEntities(extractExcerpt(body));
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
   const rawHtmlContent = marked.parse(body).trim();
-  const htmlContentBody = stripDuplicateHeading(rawHtmlContent, title);
+  const htmlContentBody = decorateGeneratedImages(stripDuplicateHeading(rawHtmlContent, title));
   const cleanedContent = stripHtml(htmlContentBody).toLowerCase();
   const contentHash = hashContent(cleanedContent.slice(0, 5000));
 
@@ -399,6 +504,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     readTime,
     category,
     tags,
+    ...(FEATURED_IMAGE_OVERRIDES[slug] ? { featuredImage: FEATURED_IMAGE_OVERRIDES[slug] } : {}),
     seoTitle: SEO_OVERRIDES[slug]?.seoTitle ?? title,
     seoDescription: SEO_OVERRIDES[slug]?.seoDescription ?? excerpt,
     seoKeywords: tags.join(', '),
