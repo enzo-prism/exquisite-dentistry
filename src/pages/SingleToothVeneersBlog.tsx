@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { PageSEO } from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, User, CheckCircle, AlertCircle, Star } from 'lucide-react';
@@ -41,10 +40,9 @@ const SingleToothVeneersBlog = () => {
       />
 
       {/* Header */}
-      <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white py-12 sm:py-16 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
             <Link to="/blog/" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
               <ArrowLeft size={20} />
               Back to Blog
@@ -60,7 +58,7 @@ const SingleToothVeneersBlog = () => {
               </div>
               
               {/* Metadata grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-gray-600">
+              <div className="grid grid-cols-1 gap-3 text-sm text-gray-600 sm:grid-cols-2 lg:grid-cols-3">
                 <div className="flex items-center gap-2">
                   <Calendar size={16} className="text-gold flex-shrink-0" />
                   <span>June 19, 2025</span>
@@ -76,21 +74,20 @@ const SingleToothVeneersBlog = () => {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black leading-tight">
+            <h1 className="mb-6 break-words text-balance text-3xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
               Single Tooth Veneers: When One Veneer Is the Right Fit
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="break-words text-lg leading-relaxed text-gray-600 sm:text-xl">
               When just one tooth is affecting your confidence, a single veneer can be a good option.
               Discover how this precision approach to cosmetic dentistry can transform your smile.
             </p>
-          </div>
         </div>
       </div>
 
       {/* Content */}
-      <article className="py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
+      <article className="min-w-0 bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
           
           {/* Hero Visual */}
           <div className="mb-12 bg-gradient-to-br from-gold/20 via-gold/10 to-gold/5 rounded-2xl p-8 md:p-12">
@@ -352,7 +349,7 @@ const SingleToothVeneersBlog = () => {
           </section>
 
           {/* CTA Section */}
-          <section className="bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 rounded-2xl p-8 md:p-12 text-center">
+          <section className="rounded-2xl bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 p-6 text-center sm:p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-black">
               Considering a single tooth veneer?
             </h2>
@@ -360,13 +357,13 @@ const SingleToothVeneersBlog = () => {
               If you have a single tooth that's affecting your confidence, a custom veneer might be
               a good fit. Schedule a consultation with Dr. Alexie Aguil to explore your options.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild variant="default" size="lg" className="text-lg px-8 py-4">
+            <div className="flex flex-col gap-3 justify-center lg:flex-row lg:flex-wrap lg:gap-4">
+              <Button asChild variant="default" size="lg" className="h-auto w-full whitespace-normal px-6 py-4 text-base sm:text-lg lg:w-auto">
                 <Link to={SCHEDULE_CONSULTATION_PATH} className="flex items-center justify-center">
                   Schedule Consultation
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
+              <Button asChild variant="outline" size="lg" className="h-auto w-full whitespace-normal px-6 py-4 text-base sm:text-lg lg:w-auto">
                 <a
                   href="/veneers/"
                   className="flex items-center justify-center"
@@ -374,7 +371,7 @@ const SingleToothVeneersBlog = () => {
                   Learn about veneers
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4">
+              <Button asChild variant="outline" size="lg" className="h-auto w-full whitespace-normal px-6 py-4 text-base sm:text-lg lg:w-auto">
                 <Link to="/contact/" className="flex items-center justify-center">
                   Contact Our Dental Team
                 </Link>
