@@ -1,0 +1,66 @@
+/* Blog article layout — overflow, wrapping FAQs, and media containment */
+
+.prose {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.prose h2,
+.prose h3 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-wrap: balance;
+}
+
+.prose a {
+  overflow-wrap: anywhere;
+}
+
+.prose a.inline-flex {
+  max-width: 100%;
+  height: auto;
+  white-space: normal;
+  text-align: center;
+}
+
+.prose :where(img, video, iframe, svg) {
+  height: auto;
+  max-width: 100%;
+}
+
+.prose :where(figure) {
+  background-color: transparent;
+  max-width: 100%;
+}
+
+.prose :where(table) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.prose :where(pre, code) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+details.faq-item summary {
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+details.faq-item summary > span {
+  min-width: 0;
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+details.faq-item summary::after {
+  flex-shrink: 0;
+  line-height: 1;
+}
