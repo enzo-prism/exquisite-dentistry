@@ -40,6 +40,13 @@ const normalizeBlogAnchorHrefs = (html: string) => {
   });
 };
 
+const unwrapNestedProseShell = (html: string) => {
+  const trimmed = html.trim();
+  const match = trimmed.match(/^<div\b[^>]*\bclass=(["'])([^"']*\bprose\b[^"']*)\1[^>]*>([\s\S]*)<\/div>\s*$/i);
+  if (!match) return trimmed;
+  return match[3].trim();
+};
+
 const repairAuditedLegacyVeneerCostPost = (post: BlogPost, html: string) => {
   if (post.slug !== 'the-cost-of-dental-veneers-in-los-angeles') return html;
 
@@ -55,7 +62,9 @@ const repairAuditedLegacyVeneerCostPost = (post: BlogPost, html: string) => {
 export const sanitizeBlogHtml = (post: BlogPost) => {
   if (!post.content) return '';
 
-  const repairedContent = repairAuditedLegacyVeneerCostPost(post, post.content);
+  const repairedContent = unwrapNestedProseShell(
+    repairAuditedLegacyVeneerCostPost(post, post.content),
+  );
 
   const headingRegex = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i;
   const match = headingRegex.exec(repairedContent);

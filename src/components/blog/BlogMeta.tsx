@@ -33,7 +33,7 @@ const BlogMeta: React.FC<BlogMetaProps> = ({ post, showTags = false }) => {
 
       {/* Tags */}
       {showTags && post.tags && post.tags.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-x-2 gap-y-2.5">
           {post.tags.map((tag, index) => (
             <Badge key={index} variant="outline" className="text-xs border-gold/30 text-gold/80">
               {tag}
