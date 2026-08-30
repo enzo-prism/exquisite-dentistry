@@ -9,8 +9,8 @@ import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
 
 const VeneersBeforeAfterContent = () => {
-  const sectionContainer = 'max-w-5xl mx-auto px-4';
-  const wideContainer = 'max-w-6xl mx-auto px-4';
+  const sectionContainer = 'mx-auto min-w-0 max-w-5xl px-4 sm:px-6';
+  const wideContainer = 'mx-auto min-w-0 max-w-6xl px-4 sm:px-6';
 
   const veneerTransformations = useMemo(() => {
     return patientTransformations
@@ -28,12 +28,12 @@ const VeneersBeforeAfterContent = () => {
     <>
       <section className={`${sectionContainer} py-12 md:py-16 space-y-12`}>
         <div>
-          <h2 className="text-3xl font-semibold mb-4">Why Before-and-After Veneer Photos Matter</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl mb-4">Why Before-and-After Veneer Photos Matter</h2>
           <p className="text-gray-600 mb-8 max-w-3xl">
             You should see the work before you trust a cosmetic dentist. The gallery proves whether the artistry is
             natural, balanced, and modern, not exaggerated or overdone.
           </p>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             {[
               {
                 title: 'Proof over promises',
@@ -57,19 +57,19 @@ const VeneersBeforeAfterContent = () => {
         </div>
 
         <div>
-          <h2 className="text-3xl font-semibold mb-4">What Porcelain Veneers Can Improve</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl mb-4">What Porcelain Veneers Can Improve</h2>
           <p className="text-gray-600 mb-6 max-w-3xl">
             Without referencing any individual patient, the smile gallery already proves veneers can handle the most
             common cosmetic priorities.
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <div className="grid gap-6 md:grid-cols-2">
+            <ul className="list-disc space-y-2 pl-5 text-gray-700">
               <li>Whiter, brighter enamel that stays stable for years</li>
               <li>Smoother, more uniform tooth edges and contours</li>
               <li>Improved width, fullness, and midline alignment</li>
               <li>Visually corrected spacing, minor rotation, and uneven angling</li>
             </ul>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <ul className="list-disc space-y-2 pl-5 text-gray-700">
               <li>Custom color palettes ranging from soft ivory to high-gloss white</li>
               <li>Balanced left-to-right proportions that feel intentional</li>
               <li>Cleaner gumline transitions for a healthier frame</li>
@@ -81,16 +81,16 @@ const VeneersBeforeAfterContent = () => {
 
       <section className="bg-slate-50 py-14 md:py-20">
         <div className={`${wideContainer}`}>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-            <div>
+          <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="min-w-0">
               <p className="text-sm font-semibold text-primary mb-2">Veneer Transformations</p>
-              <h2 className="text-3xl font-semibold">Real Cases, Anonymous Presentation</h2>
+              <h2 className="text-2xl font-semibold sm:text-3xl">Real Cases, Anonymous Presentation</h2>
               <p className="text-gray-600 mt-3 max-w-2xl">
                 Each slider below pulls directly from our in-house smile gallery with names anonymized. Focus on the
                 luminance, symmetry, and edge refinement.
               </p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="h-auto w-full shrink-0 whitespace-normal lg:w-auto">
               <Link to="/smile-gallery/">Browse Full Smile Gallery</Link>
             </Button>
           </div>
@@ -104,16 +104,16 @@ const VeneersBeforeAfterContent = () => {
 
       <section className="py-14 md:py-20">
         <div className={`${wideContainer}`}>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-            <div>
+          <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="min-w-0">
               <p className="text-sm font-semibold text-primary mb-2">Detail Study</p>
-              <h2 className="text-3xl font-semibold">Up Close Veneer Precision</h2>
+              <h2 className="text-2xl font-semibold sm:text-3xl">Up Close Veneer Precision</h2>
               <p className="text-gray-600 mt-3 max-w-2xl">
                 Layering, translucency, and incisal texture are easiest to see up close. These cases show how veneers can
                 refine chips, gaps, and worn edges without resorting to bulky shapes.
               </p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="h-auto w-full shrink-0 whitespace-normal lg:w-auto">
               <Link to="/smile-gallery/#smile-gallery-sliders">View More Close-Ups</Link>
             </Button>
           </div>
@@ -127,7 +127,7 @@ const VeneersBeforeAfterContent = () => {
 
       <section className={`${sectionContainer} py-12 md:py-16 space-y-12`}>
         <div className="space-y-6">
-          <h2 className="text-3xl font-semibold">How These Transformations Stay Natural</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">How These Transformations Stay Natural</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
@@ -156,13 +156,13 @@ const VeneersBeforeAfterContent = () => {
         </div>
 
         <div>
-          <h2 className="text-3xl font-semibold mb-4">What to Expect from Veneers in Los Angeles</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl mb-4">What to Expect from Veneers in Los Angeles</h2>
           <p className="text-gray-600 mb-4 max-w-3xl">
             Patients choose porcelain veneers for confidence, symmetry, youthful energy, and long-term stain resistance.
             Common treatment ranges are 2, 4, 6, or 8+ veneers depending on how many teeth show when you smile, something
             your consultation will determine precisely.
           </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <ul className="list-disc space-y-2 pl-5 text-gray-700">
             <li>Bright, stable color that will not fade like natural enamel</li>
             <li>Custom shapes that fit your personality and profession</li>
             <li>Improved proportions and subtle alignment adjustments</li>
@@ -171,7 +171,7 @@ const VeneersBeforeAfterContent = () => {
         </div>
 
         <div>
-          <h2 className="text-3xl font-semibold mb-6">Veneer FAQs</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl mb-6">Veneer FAQs</h2>
           <div className="space-y-4">
             {[
               {
@@ -203,16 +203,16 @@ const VeneersBeforeAfterContent = () => {
       <section className="bg-gradient-to-br from-primary/10 via-white to-white py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
           <p className="text-sm font-semibold tracking-wide text-primary">Ready to see your options?</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Start Your Smile Transformation</h2>
+          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">Start Your Smile Transformation</h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             The gallery shows what is possible. A one-on-one consultation with Dr. Alexie Aguil delivers your custom
             veneer count, quote, and smile preview, without guesswork or pressure.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+          <div className="flex flex-col gap-3 justify-center lg:flex-row lg:gap-4">
+            <Button size="lg" asChild className="h-auto w-full whitespace-normal lg:w-auto">
               <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild className="h-auto w-full whitespace-normal lg:w-auto">
               <Link to="/veneers/front-teeth-veneers-los-angeles/">
                 Review Veneer Pricing Guides
               </Link>
