@@ -44,6 +44,7 @@ The floating-widget line is approved compact conversion copy, not a replacement 
 - Keep the standard launcher at 288px wide. Below 376px, use `min(288px, calc(100vw - 88px))` so the full copy can wrap without colliding with the bottom-left concierge.
 - Allow the supporting line to wrap on narrow screens. Do not clip it, hide it, or apply an ellipsis.
 - Keep the launcher above the mobile quick-action bar and below consent, navigation, and dialog overlays.
+- A fixed launcher overlaying nearby headings or body copy while the visitor scrolls is expected. Do not shrink it, hide it, or add page padding solely to clear that overlay.
 - Preserve a minimum 44px interactive target and verify 320px as the narrow-device regression case.
 
 ## Required Coverage
