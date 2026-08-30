@@ -20,6 +20,8 @@ import LegacyRedirectHandler from "@/components/LegacyRedirectHandler";
 import SkipToContent from "@/components/SkipToContent";
 import Index from "@/pages/Index";
 
+// Keep the entry route in the initial graph so a cold visit can render the hero
+// immediately. All secondary routes remain split below.
 const About = lazy(() => import("@/pages/About"));
 const TeamExcellence = lazy(() => import("@/pages/TeamExcellence"));
 const Tour = lazy(() => import("@/pages/Tour"));
@@ -87,6 +89,7 @@ const SameDayDentist = lazy(() => import("@/pages/SameDayDentist"));
 const StaticSitemap = lazy(() => import("@/components/StaticSitemap"));
 const BlogPostContainer = lazy(() => import("@/components/blog/BlogPostContainer"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
+// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -107,10 +110,14 @@ const PageLoaderComponent = () => {
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap';
+  
+  // Fix section gaps and background consistency
   useSectionFix(300);
 
+  // Set proper content type for XML sitemap route
   useEffect(() => {
     if (location.pathname === '/sitemap.xml') {
+      // This is a hint for the browser, actual content-type is handled by server config
       document.title = 'XML Sitemap';
     }
   }, [location.pathname]);
@@ -126,78 +133,218 @@ const AppRoutes = () => {
         {!isSitemapPage ? (
           <PageTransition>
             <Routes>
-              <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}><Index /></Suspense>} />
-              <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}><About /></Suspense>} />
-              <Route path="/why-us/team-excellence" element={<Suspense fallback={<PageLoaderComponent />}><TeamExcellence /></Suspense>} />
-              <Route path="/tour" element={<Suspense fallback={<PageLoaderComponent />}><Tour /></Suspense>} />
-              <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}><Services /></Suspense>} />
-              <Route path="/locations" element={<Suspense fallback={<PageLoaderComponent />}><Locations /></Suspense>} />
-              <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}><ClientExperience /></Suspense>} />
-              <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}><Testimonials /></Suspense>} />
-              <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}><Contact /></Suspense>} />
-              <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}><ScheduleConsultation /></Suspense>} />
-              <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}><PaymentPlans /></Suspense>} />
-              <Route path="/insurance" element={<Suspense fallback={<PageLoaderComponent />}><Insurance /></Suspense>} />
-              <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}><Wedding /></Suspense>} />
-              <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}><Graduation /></Suspense>} />
-              <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}><FAQs /></Suspense>} />
-              <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}><SmileGallery /></Suspense>} />
-              <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}><Blog /></Suspense>} />
-              <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}><BlogPostContainer /></Suspense>} />
-              <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}><PrivacyPolicy /></Suspense>} />
-              <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}><TermsOfService /></Suspense>} />
-              <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}><HipaaCompliance /></Suspense>} />
-              <Route path="/editorial-policy" element={<Suspense fallback={<PageLoaderComponent />}><EditorialPolicy /></Suspense>} />
-              <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}><Veneers /></Suspense>} />
-              <Route path="/veneers/front-teeth-veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><FrontTeethVeneers /></Suspense>} />
-              <Route path="/veneers/2-front-teeth-veneers-cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><VeneersCostLosAngeles /></Suspense>} />
-              <Route path="/veneers/1-tooth-veneer-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><OneToothVeneerLosAngeles /></Suspense>} />
-              <Route path="/veneers/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><VeneersCostGuideLosAngeles /></Suspense>} />
-              <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}><ZoomWhitening /></Suspense>} />
-              <Route path="/invisalign" element={<Suspense fallback={<PageLoaderComponent />}><Invisalign /></Suspense>} />
-              <Route path="/invisalign/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><InvisalignCostLosAngeles /></Suspense>} />
-              <Route path="/invisalign-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}><InvisalignBeverlyHills /></Suspense>} />
-              <Route path="/itero-scanner" element={<Suspense fallback={<PageLoaderComponent />}><IteroScanner /></Suspense>} />
-              <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}><TeethWhitening /></Suspense>} />
-              <Route path="/teeth-whitening/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><TeethWhiteningCostLosAngeles /></Suspense>} />
-              <Route path="/teeth-whitening-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}><TeethWhiteningBeverlyHills /></Suspense>} />
-              <Route path="/culver-city-teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}><CulverCityTeethWhitening /></Suspense>} />
-              <Route path="/teeth-cleaning" element={<Suspense fallback={<PageLoaderComponent />}><TeethCleaning /></Suspense>} />
-              <Route path="/dental-implants" element={<Suspense fallback={<PageLoaderComponent />}><DentalImplants /></Suspense>} />
-              <Route path="/dental-implants/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><DentalImplantsCostLosAngeles /></Suspense>} />
-              <Route path="/santa-monica-dental-implants" element={<Suspense fallback={<PageLoaderComponent />}><SantaMonicaDentalImplants /></Suspense>} />
-              <Route path="/dental-bridge" element={<Suspense fallback={<PageLoaderComponent />}><DentalBridge /></Suspense>} />
-              <Route path="/dental-crowns" element={<Suspense fallback={<PageLoaderComponent />}><DentalCrowns /></Suspense>} />
-              <Route path="/cosmetic-dentistry" element={<Suspense fallback={<PageLoaderComponent />}><CosmeticDentistry /></Suspense>} />
-              <Route path="/smile-makeover-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}><SmileMakeoverLosAngeles /></Suspense>} />
-              <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}><EmergencyDentist /></Suspense>} />
-              <Route path="/same-day-dentist" element={<Suspense fallback={<PageLoaderComponent />}><SameDayDentist /></Suspense>} />
-              <Route path="/root-canal" element={<Suspense fallback={<PageLoaderComponent />}><RootCanal /></Suspense>} />
-              <Route path="/pain-free-dentistry" element={<Suspense fallback={<PageLoaderComponent />}><PainFreeDentistry /></Suspense>} />
-              <Route path="/oral-cancer-screening" element={<Suspense fallback={<PageLoaderComponent />}><OralCancerScreening /></Suspense>} />
-              <Route path="/transformation-stories" element={<Suspense fallback={<PageLoaderComponent />}><TransformationStories /></Suspense>} />
-              <Route path="/transformation-stories/:slug" element={<Suspense fallback={<PageLoaderComponent />}><TransformationStoryPage /></Suspense>} />
-              <Route path="/share-your-story" element={<Suspense fallback={<PageLoaderComponent />}><ShareYourStory /></Suspense>} />
-              <Route path="/west-hollywood-dentist" element={<Suspense fallback={<PageLoaderComponent />}><WestHollywoodDentist /></Suspense>} />
-              <Route path="/beverly-hills-dentist" element={<Suspense fallback={<PageLoaderComponent />}><BeverlyHillsDentist /></Suspense>} />
-              <Route path="/culver-city-dentist" element={<Suspense fallback={<PageLoaderComponent />}><CulverCityDentist /></Suspense>} />
-              <Route path="/west-la-dentist" element={<Suspense fallback={<PageLoaderComponent />}><WestLADentist /></Suspense>} />
-              <Route path="/bel-air-dentist" element={<Suspense fallback={<PageLoaderComponent />}><BelAirDentist /></Suspense>} />
-              <Route path="/90048-dentist" element={<Suspense fallback={<PageLoaderComponent />}><Zip90048Dentist /></Suspense>} />
-              <Route path="/melrose-dentist" element={<Suspense fallback={<PageLoaderComponent />}><MelroseDentist /></Suspense>} />
-              <Route path="/westwood-dentist" element={<Suspense fallback={<PageLoaderComponent />}><WestwoodDentist /></Suspense>} />
-              <Route path="/miracle-mile-dentist" element={<Suspense fallback={<PageLoaderComponent />}><MiracleMileDentist /></Suspense>} />
-              <Route path="/larchmont-dentist" element={<Suspense fallback={<PageLoaderComponent />}><LarchmontDentist /></Suspense>} />
-              <Route path="/hancock-park-dentist" element={<Suspense fallback={<PageLoaderComponent />}><HancockParkDentist /></Suspense>} />
-              <Route path="/mid-wilshire-dentist" element={<Suspense fallback={<PageLoaderComponent />}><MidWilshireDentist /></Suspense>} />
-              <Route path="/koreatown-dentist" element={<Suspense fallback={<PageLoaderComponent />}><KoreatownDentist /></Suspense>} />
-              <Route path="/fairfax-district-dentist" element={<Suspense fallback={<PageLoaderComponent />}><FairfaxDistrictDentist /></Suspense>} />
-              <Route path="*" element={<Suspense fallback={<PageLoaderComponent />}><NotFound /></Suspense>} />
+              <Route path="/" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Index />
+              </Suspense>} />
+              <Route path="/about" element={<Suspense fallback={<PageLoaderComponent />}>
+                <About />
+              </Suspense>} />
+              <Route path="/why-us/team-excellence" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeamExcellence />
+              </Suspense>} />
+              <Route path="/tour" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Tour />
+              </Suspense>} />
+              <Route path="/services" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Services />
+              </Suspense>} />
+              <Route path="/locations" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Locations />
+              </Suspense>} />
+              <Route path="/client-experience" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ClientExperience />
+              </Suspense>} />
+              <Route path="/testimonials" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Testimonials />
+              </Suspense>} />
+              <Route path="/contact" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Contact />
+              </Suspense>} />
+              <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ScheduleConsultation />
+              </Suspense>} />
+              <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}>
+                <PaymentPlans />
+              </Suspense>} />
+              <Route path="/insurance" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Insurance />
+              </Suspense>} />
+              <Route path="/wedding" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Wedding />
+              </Suspense>} />
+              <Route path="/graduation" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Graduation />
+              </Suspense>} />
+              <Route path="/faqs" element={<Suspense fallback={<PageLoaderComponent />}>
+                <FAQs />
+              </Suspense>} />
+              <Route path="/smile-gallery" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SmileGallery />
+              </Suspense>} />
+              
+              <Route path="/blog" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Blog />
+              </Suspense>} />
+              <Route path="/blog/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+                <BlogPostContainer />
+              </Suspense>} />
+              
+              <Route path="/privacy-policy" element={<Suspense fallback={<PageLoaderComponent />}>
+                <PrivacyPolicy />
+              </Suspense>} />
+              <Route path="/terms-of-service" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TermsOfService />
+              </Suspense>} />
+              <Route path="/hipaa-compliance" element={<Suspense fallback={<PageLoaderComponent />}>
+                <HipaaCompliance />
+              </Suspense>} />
+              <Route path="/editorial-policy" element={<Suspense fallback={<PageLoaderComponent />}>
+                <EditorialPolicy />
+              </Suspense>} />
+              
+              <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Veneers />
+              </Suspense>} />
+              <Route path="/veneers/front-teeth-veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <FrontTeethVeneers />
+              </Suspense>} />
+              <Route path="/veneers/2-front-teeth-veneers-cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersCostLosAngeles />
+              </Suspense>} />
+              <Route path="/veneers/1-tooth-veneer-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <OneToothVeneerLosAngeles />
+              </Suspense>} />
+              <Route path="/veneers/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersCostGuideLosAngeles />
+              </Suspense>} />
+              <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ZoomWhitening />
+              </Suspense>} />
+              <Route path="/invisalign" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Invisalign />
+              </Suspense>} />
+              <Route path="/invisalign/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <InvisalignCostLosAngeles />
+              </Suspense>} />
+              <Route path="/invisalign-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}>
+                <InvisalignBeverlyHills />
+              </Suspense>} />
+              <Route path="/itero-scanner" element={<Suspense fallback={<PageLoaderComponent />}>
+                <IteroScanner />
+              </Suspense>} />
+              <Route path="/teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhitening />
+              </Suspense>} />
+              <Route path="/teeth-whitening/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhiteningCostLosAngeles />
+              </Suspense>} />
+              <Route path="/teeth-whitening-beverly-hills" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethWhiteningBeverlyHills />
+              </Suspense>} />
+              <Route path="/culver-city-teeth-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <CulverCityTeethWhitening />
+              </Suspense>} />
+              <Route path="/teeth-cleaning" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TeethCleaning />
+              </Suspense>} />
+              <Route path="/dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalImplants />
+              </Suspense>} />
+              <Route path="/dental-implants/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalImplantsCostLosAngeles />
+              </Suspense>} />
+              <Route path="/santa-monica-dental-implants" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SantaMonicaDentalImplants />
+              </Suspense>} />
+              <Route path="/dental-bridge" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalBridge />
+              </Suspense>} />
+              <Route path="/dental-crowns" element={<Suspense fallback={<PageLoaderComponent />}>
+                <DentalCrowns />
+              </Suspense>} />
+              <Route path="/cosmetic-dentistry" element={<Suspense fallback={<PageLoaderComponent />}>
+                <CosmeticDentistry />
+              </Suspense>} />
+              <Route path="/smile-makeover-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SmileMakeoverLosAngeles />
+              </Suspense>} />
+              <Route path="/emergency-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <EmergencyDentist />
+              </Suspense>} />
+              <Route path="/same-day-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <SameDayDentist />
+              </Suspense>} />
+              <Route path="/root-canal" element={<Suspense fallback={<PageLoaderComponent />}>
+                <RootCanal />
+              </Suspense>} />
+              <Route path="/pain-free-dentistry" element={<Suspense fallback={<PageLoaderComponent />}>
+                <PainFreeDentistry />
+              </Suspense>} />
+              <Route path="/oral-cancer-screening" element={<Suspense fallback={<PageLoaderComponent />}>
+                <OralCancerScreening />
+              </Suspense>} />
+              
+              <Route path="/transformation-stories" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TransformationStories />
+              </Suspense>} />
+              <Route path="/transformation-stories/:slug" element={<Suspense fallback={<PageLoaderComponent />}>
+                <TransformationStoryPage />
+              </Suspense>} />
+              <Route path="/share-your-story" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ShareYourStory />
+              </Suspense>} />
+              <Route path="/west-hollywood-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <WestHollywoodDentist />
+              </Suspense>} />
+              <Route path="/beverly-hills-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <BeverlyHillsDentist />
+              </Suspense>} />
+              <Route path="/culver-city-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <CulverCityDentist />
+              </Suspense>} />
+              <Route path="/west-la-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <WestLADentist />
+              </Suspense>} />
+              <Route path="/bel-air-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <BelAirDentist />
+              </Suspense>} />
+              <Route path="/90048-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <Zip90048Dentist />
+              </Suspense>} />
+              <Route path="/melrose-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <MelroseDentist />
+              </Suspense>} />
+              <Route path="/westwood-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <WestwoodDentist />
+              </Suspense>} />
+              <Route path="/miracle-mile-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <MiracleMileDentist />
+              </Suspense>} />
+              <Route path="/larchmont-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <LarchmontDentist />
+              </Suspense>} />
+              <Route path="/hancock-park-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <HancockParkDentist />
+              </Suspense>} />
+              <Route path="/mid-wilshire-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <MidWilshireDentist />
+              </Suspense>} />
+              <Route path="/koreatown-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <KoreatownDentist />
+              </Suspense>} />
+              <Route path="/fairfax-district-dentist" element={<Suspense fallback={<PageLoaderComponent />}>
+                <FairfaxDistrictDentist />
+              </Suspense>} />
+              <Route path="*" element={<Suspense fallback={<PageLoaderComponent />}>
+                <NotFound />
+              </Suspense>} />
             </Routes>
           </PageTransition>
         ) : (
           <Routes>
-            <Route path="/sitemap" element={<Suspense fallback={<PageLoaderComponent />}><StaticSitemap /></Suspense>} />
+            <Route path="/sitemap" element={<Suspense fallback={<PageLoaderComponent />}>
+              <StaticSitemap />
+          </Suspense>} />
           </Routes>
         )}
       </main>
@@ -207,6 +354,7 @@ const AppRoutes = () => {
 };
 
 const App = () => {
+  // Initialize error reduction on app start
   React.useEffect(() => {
     setupErrorReduction();
   }, []);
