@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost, getBlogPostDateTime, getBlogPostModifiedDateTime } from '@/data/blogPosts';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { decodeBlogTitle } from '@/utils/blogContent';
 
 interface BlogStructuredDataProps {
   post: BlogPost;
@@ -50,7 +51,7 @@ const BlogStructuredData: React.FC<BlogStructuredDataProps> = ({ post }) => {
   const blogPostData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: post.title,
+    headline: decodeBlogTitle(post.title),
     description: post.excerpt,
     url: postUrl,
     image:

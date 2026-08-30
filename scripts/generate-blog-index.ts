@@ -13,6 +13,7 @@ import {
   getBlogPostTimestamp,
   getBlogPostIsoDate,
 } from "../src/data/blogPosts";
+import { decodeBlogTitle } from "../src/utils/decodeBlogTitle";
 
 // type-only import (erased at runtime) — a value import here would load
 // blogIndex.json, the very file this script writes
@@ -24,7 +25,7 @@ const buildIndex = (): BlogIndexEntry[] =>
   getPublishedPosts().map((post) => ({
     id: post.id,
     slug: post.slug,
-    title: post.title,
+    title: decodeBlogTitle(post.title),
     excerpt: post.excerpt,
     category: post.category,
     tags: post.tags,

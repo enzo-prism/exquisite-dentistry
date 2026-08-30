@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getBlogIndexEntryDateTime, type BlogIndexEntry } from '@/data/blogIndex';
 import { toAbsoluteUrl } from '@/utils/centralizedSchemas';
+import { decodeBlogTitle } from '@/utils/blogContent';
 
 interface BlogListingStructuredDataProps {
   posts: BlogIndexEntry[];
@@ -34,7 +35,7 @@ const BlogListingStructuredData: React.FC<BlogListingStructuredDataProps> = ({ p
     },
     blogPost: posts.slice(0, 10).map(post => ({
       '@type': 'BlogPosting',
-      headline: post.title,
+      headline: decodeBlogTitle(post.title),
       url: `https://exquisitedentistryla.com/blog/${post.slug}`,
       datePublished: getBlogIndexEntryDateTime(post),
       author: {

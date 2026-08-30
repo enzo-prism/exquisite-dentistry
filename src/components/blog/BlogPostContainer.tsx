@@ -16,7 +16,7 @@ import VeneerCTA from '@/components/VeneerCTA';
 import BlogStructuredData from '@/components/BlogStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import BlogErrorBoundary from './BlogErrorBoundary';
-import { sanitizeBlogHtml } from '@/utils/blogContent';
+import { decodeBlogTitle, sanitizeBlogHtml } from '@/utils/blogContent';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Lazy load specific-blog components
@@ -29,6 +29,8 @@ interface BlogPostContainerProps {
 
 const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   const sanitizedContent = useMemo(() => sanitizeBlogHtml(post), [post]);
+  const displayTitle = decodeBlogTitle(post.title);
+  const displaySeoTitle = decodeBlogTitle(post.seoTitle || post.title);
 
   // Handle component-based blog posts
   if (post.content === 'single-tooth-veneers') {
@@ -43,9 +45,9 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   return (
     <>
       <BlogStructuredData post={post} />
-      {post.faqs?.length ? <FAQStructuredData faqs={post.faqs} about={post.title} /> : null}
+      {post.faqs?.length ? <FAQStructuredData faqs={post.faqs} about={displayTitle} /> : null}
       <PageSEO
-        title={post.seoTitle || post.title}
+        title={displaySeoTitle}
         description={post.seoDescription || post.excerpt}
         keywords={post.seoKeywords}
         path={`/blog/${post.slug}`}
@@ -69,7 +71,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
             </div>
 
             <h1 className="mb-6 break-words text-balance text-3xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
-              {post.title}
+              {displayTitle}
             </h1>
             
             <p className="break-words text-lg leading-relaxed text-gray-600 sm:text-xl">
