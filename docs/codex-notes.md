@@ -25,6 +25,7 @@ Quick pointers to keep changes safe and avoid common pitfalls in this repo.
 - Redirect verification: `node scripts/test-redirects.mjs` (set `REDIRECT_TEST_BASE` when testing preview/production instead of local Vercel dev).
 - Browser smoke: `node test-browser.js` against a running server (`npm run dev` or `npm run preview`).
 - Cherry responsive regression: `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`.
+- Blog article layout: `npx playwright test src/__tests__/blog-posts.design.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`. Do not wrap imported HTML in a second `.prose` shell.
 
 ## Hero Media & Floating UI
 - Hero background videos go through one shared chain: `VideoHero` → `Desktop/MobileVideoHero` → `VideoBackground` (~23 pages, no inline hero videos). They lazy-load via IntersectionObserver + `requestIdleCallback`.

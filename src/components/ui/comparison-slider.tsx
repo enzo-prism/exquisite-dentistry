@@ -105,7 +105,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
         showLoadingSkeleton={true}
       />
 
-      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/75 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+      <span className="pointer-events-none absolute right-2 top-2 rounded-full bg-black/75 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white sm:right-3 sm:top-3 sm:px-3 sm:text-xs sm:tracking-wider">
         After
       </span>
 
@@ -126,7 +126,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
         />
       </div>
 
-      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/75 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+      <span className="pointer-events-none absolute left-2 top-2 rounded-full bg-black/75 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white sm:left-3 sm:top-3 sm:px-3 sm:text-xs sm:tracking-wider">
         Before
       </span>
 
