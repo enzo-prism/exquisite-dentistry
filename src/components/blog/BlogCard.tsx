@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { BlogIndexEntry } from '@/data/blogIndex';
+import { decodeBlogTitle } from '@/utils/blogContent';
 
 interface BlogCardProps {
   post: BlogIndexEntry;
@@ -13,7 +14,7 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
-  const title = post.title.replace(/&#038;|&amp;/g, '&');
+  const title = decodeBlogTitle(post.title);
   const displayTags = post.tags?.every((tag) => !tag.trim().includes(' ')) && post.tags.length >= 5
     ? []
     : post.tags ?? [];
