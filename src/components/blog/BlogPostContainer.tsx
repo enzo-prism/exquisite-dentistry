@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useState, useMemo } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
 import { ArrowLeft } from 'lucide-react';
 import {
@@ -57,11 +56,10 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
       />
 
       {/* Header */}
-      <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white py-12 sm:py-16 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Link to="/blog/" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
+            <Link to="/blog/" className="mb-6 inline-flex items-center gap-2 text-gold transition-colors hover:text-gold/80">
               <ArrowLeft size={20} />
               Back to Blog
             </Link>
@@ -70,11 +68,11 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
               <BlogMeta post={post} showTags={true} />
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black leading-tight">
+            <h1 className="mb-6 break-words text-balance text-3xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="break-words text-lg leading-relaxed text-gray-600 sm:text-xl">
               {post.excerpt}
             </p>
 
@@ -88,58 +86,69 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
                 Editorial policy
               </Link>
             </p>
-          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <article className="py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          {post.content === 'veneers-before-after-guide' ? (
-            <Suspense fallback={<PageLoader />}>
-              <VeneersBeforeAfterContent />
-            </Suspense>
-          ) : (
-            <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
-              <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
-            </div>
-          )}
-
-          {post.faqs?.length ? (
-            <section id="faqs" className="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-muted/20 px-6 py-8">
-              <div className="mb-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-gold">FAQs</p>
-                <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
-                  {getFaqHeading(post)}
-                </h2>
-              </div>
-              <div className="space-y-1">
-                {post.faqs.map((faq) => (
-                  <details key={faq.question} className="faq-item">
-                    <summary>{faq.question}</summary>
-                    <p className="faq-answer">{faq.answer}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          ) : null}
-          
-          <InternalLinkingWidget 
-            currentPage={`/blog/${post.slug}`}
-            context={getContext(post)}
-            variant="expanded"
-          />
-          
-          {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
-            <VeneerCTA variant="banner" />
-          )}
-          
-          <RelatedPosts currentPost={post} />
-        </div>
-      </article>
+      {post.content === 'veneers-before-after-guide' ? (
+        <article className="min-w-0 bg-white">
+          <Suspense fallback={<PageLoader />}>
+            <VeneersBeforeAfterContent />
+          </Suspense>
+          <div className="mx-auto max-w-4xl px-4 pb-12 sm:px-6 md:pb-16">
+            <BlogPostFooter post={post} />
+          </div>
+        </article>
+      ) : (
+        <article className="min-w-0 bg-white py-12 md:py-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <div
+              className="prose prose-lg prose-neutral mx-auto max-w-3xl min-w-0 break-words py-4 sm:py-8"
+              dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+            />
+            <BlogPostFooter post={post} />
+          </div>
+        </article>
+      )}
     </>
   );
 };
+
+const BlogPostFooter: React.FC<{ post: BlogPost }> = ({ post }) => (
+  <>
+    {post.faqs?.length ? (
+      <section id="faqs" className="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-muted/20 px-4 py-8 sm:px-6">
+        <div className="mb-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold sm:tracking-[0.35em]">FAQs</p>
+          <h2 className="mt-2 break-words text-balance text-2xl font-bold text-foreground md:text-3xl">
+            {getFaqHeading(post)}
+          </h2>
+        </div>
+        <div className="space-y-1">
+          {post.faqs.map((faq) => (
+            <details key={faq.question} className="faq-item">
+              <summary>
+                <span>{faq.question}</span>
+              </summary>
+              <p className="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    ) : null}
+
+    <InternalLinkingWidget
+      currentPage={`/blog/${post.slug}`}
+      context={getContext(post)}
+      variant="expanded"
+    />
+
+    {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
+      <VeneerCTA variant="banner" />
+    )}
+
+    <RelatedPosts currentPost={post} />
+  </>
+);
 
 // Helper function to determine context for internal linking
 const getContext = (post: BlogPost) => {
