@@ -251,16 +251,54 @@ body {
 
 /* Blog typographic defaults */
 .prose {
-  @apply text-gray-800 leading-relaxed;
+  @apply min-w-0 max-w-full text-gray-800 leading-relaxed;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .prose h2,
 .prose h3 {
-  @apply font-semibold text-gray-900;
+  @apply break-words font-semibold text-gray-900;
+  text-wrap: balance;
 }
 
 .prose a:not([class]) {
   @apply text-primary hover:underline;
+}
+
+.prose a {
+  overflow-wrap: anywhere;
+}
+
+.prose a.inline-flex {
+  max-width: 100%;
+  height: auto;
+  white-space: normal;
+  text-align: center;
+}
+
+.prose :where(img, video, iframe, svg) {
+  @apply h-auto max-w-full;
+}
+
+.prose :where(figure) {
+  background-color: transparent;
+  max-width: 100%;
+}
+
+.prose :where(table) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.prose :where(pre, code) {
+  @apply max-w-full overflow-x-auto;
+}
+
+.prose :where(ul, ol) {
+  padding-inline-start: 1.25rem;
 }
 
 /* Section typography utilities (used on Services / Contact / ClientExperience pages) */
@@ -995,8 +1033,17 @@ details.faq-item summary {
   font-weight: 500;
   list-style: none;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 0.75rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+details.faq-item summary > span {
+  min-width: 0;
+  flex: 1 1 auto;
+  text-align: left;
 }
 
 details.faq-item summary::-webkit-details-marker {
@@ -1005,8 +1052,10 @@ details.faq-item summary::-webkit-details-marker {
 
 details.faq-item summary::after {
   content: '+';
+  flex-shrink: 0;
   font-size: 1.5rem;
   font-weight: 300;
+  line-height: 1;
   transition: transform 0.2s ease;
 }
 
