@@ -13,6 +13,7 @@ import { ArrowLeft, CheckCircle, Heart, Star, Users, BookOpen, Video } from 'luc
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { PHONE_NUMBER_E164 } from '@/constants/contact';
+import { decodeBlogTitle } from '@/utils/blogContent';
 
 const TransformationStoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -286,7 +287,7 @@ const TransformationStoryPage: React.FC = () => {
                         <span className="text-sm font-medium">{post.category}</span>
                       </div>
                       <h3 className="font-semibold mb-2 group-hover:text-gold transition-colors line-clamp-2">
-                        {post.title}
+                        {decodeBlogTitle(post.title)}
                       </h3>
                       <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
                       <span className="text-xs text-muted-foreground mt-3 block">{post.readTime}</span>
