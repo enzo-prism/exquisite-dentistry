@@ -27,9 +27,12 @@ The existing focused specs still matter:
 ```sh
 npm run test:mobile-nav
 npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
+npx playwright test src/__tests__/blog-posts.design.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
 ```
 
-Keep those when editing the header, menu, Cherry financing widget, or global route shell.
+Keep those when editing the header, menu, Cherry financing widget, global route shell, or any blog post template.
+
+The blog design suite loads every published post on Chromium at 320, 390, 768, and 1280, and a template sample on WebKit. It fails on nested `.prose` wrappers, page overflow, and unclipped element overflow.
 
 Safari toolbar collapse can make `window.scrollY` drop while the visitor is mid-page. The Cherry suite includes a hysteresis check so the pill stays visible through that jitter and only hides again at the true top.
 

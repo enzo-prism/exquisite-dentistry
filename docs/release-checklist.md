@@ -27,7 +27,7 @@ Cherry financing copy check:
 - Confirm the floating launcher shows the complete `Pay over time` / `No hard credit checks • 0% APR options` copy at 320px, 390-430px, 667px landscape, 768px tablet, and desktop. Wrapping is allowed; clipping and ellipsis are not.
 - Confirm no overlap with the Concierge or mobile quick-actions FAB, overlays remain above the widget, the target stays at least 44px, and activation opens Cherry.
 - In Safari, confirm the pill stays visible while scrolling down after the first reveal. It should hide again only after returning to the true top of the page.
-- Confirm gold/primary booking buttons use white text on the bronze fill (homepage hero, insurance band, navbar Book). Black-on-gold fails AA with the current gold token.
+- Run `npx playwright test src/__tests__/blog-posts.design.spec.ts --project=chromium --project=webkit --workers=2 --retries=0` after blog template or imported-HTML changes.
 
 Curl checks:
 - curl -I https://exquisitedentistryla.com/
