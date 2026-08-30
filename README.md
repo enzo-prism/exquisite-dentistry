@@ -49,7 +49,7 @@ Copy `.env.example` to `.env` if HTML-based Google Search Console verification i
 **Use GitHub Codespaces**
 
 - Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
+- Click the "Code" button (green button) near the top right.
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
@@ -165,7 +165,7 @@ To verify:
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 
-> The August 10, 2026 responsive design release, root causes, prevention controls, and validation evidence are recorded in `docs/DESIGN_QA_2026-08-10.md`.
+> The August 10, 2026 responsive design release, root causes, prevention controls, and validation evidence are recorded in `docs/DESIGN_QA_2026-08-10.md`. The August 30, 2026 follow-up (gold-button contrast, Safari Cherry visibility, and broken social images) is in `docs/DESIGN_QA_2026-08-30.md`.
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
@@ -199,7 +199,7 @@ Primary CTAs share a single interaction model so motion feels consistent across 
 - **Vercel Analytics & Speed Insights** – visitor/pageview tracking and Real Experience Score collection are both mounted once at the app shell in `src/App.tsx` via `@vercel/analytics/react` and `@vercel/speed-insights/react`. Custom events are centralized in `src/utils/vercelAnalytics.ts`; keep them low-cardinality and free of patient-entered data. See `docs/vercel-analytics-events.md` before adding or renaming events. After shipping to production, open a few live routes on desktop and mobile, trigger key conversion actions, then confirm Analytics pageviews, custom events, and Speed Insights data start appearing in Vercel (content blockers can delay or suppress collection).
 - **GA4 + consent** – Consent Mode defaults are queued in `index.html`; `RouteAwareObservability` sends the single manual SPA page view; safe GA events and redaction live in `src/utils/googleAnalytics.ts`. Vercel Analytics and Speed Insights mount only after opt-in. Do not add automatic page views, direct Ads conversion labels, or patient-entered dimensions. The source and Admin release contract is `docs/ga4-measurement-plan.md`.
 - **Cherry financing copy** – approved credit-score and reporting language lives in `src/constants/cherry.ts`, with placement rules in `docs/cherry-credit-disclosure.md`. Keep "no hard credit check" to short badge copy only; do not use unqualified credit-check claims or older payment-plan wording.
-- **Cherry floating launcher** – the full `Pay over time` / `No hard credit checks • 0% APR options` compact copy remains visible at every width. Follow the responsive and collision contract in `docs/cherry-credit-disclosure.md` and the device checks in `docs/mobile-qa.md`.
+- **Cherry floating launcher** – the full `Pay over time` / `No hard credit checks • 0% APR options` compact copy remains visible at every width. Follow the responsive and collision contract in `docs/cherry-credit-disclosure.md` and the device checks in `docs/mobile-qa.md`. Safari keeps the pill visible through toolbar-collapse jitter after the first reveal; it only hides again at the true page top.
 - **Robots & sitemap** – `public/robots.txt` now blocks only known tracking parameters. Keep it in sync with any new marketing tags and re-submit the sitemap (`https://exquisitedentistryla.com/sitemap.xml`) when URLs change.
 - **Hero media** – all video-backed `VideoHero` routes use the canonical abstract black-and-gold poster at `/public/lovable-uploads/exquisite-black-gold-hero.png`. It remains visible until playback starts and automatically becomes the static fallback for reduced motion, slow connections, and mobile-first hero renders. Route-level overrides require intentional design review; use `disableVideo`/`preferStaticOnMobile` to force static imagery for SEO-critical pages.
 - **Structured data** – the centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx` include map links, service channels, and service areas. Update those files when address or offerings change to keep LocalBusiness signals aligned.
