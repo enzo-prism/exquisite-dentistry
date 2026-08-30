@@ -113,7 +113,7 @@ public/lovable-uploads/  # Referenced image ORIGINALS only (not a dumping ground
 - Keep CTA containers `relative overflow-hidden` for the sheen effect
 - For static buttons (pagination, toolbars), add `.button-static` class
 - Arrow icons: wrap with `group` and `transition-transform duration-300 group-hover:translate-x-1.5`
-- **Contrast (WCAG AA)**: buttons are BLACK text on gold (~6.3:1) — do NOT revert to white-on-gold (~3.3:1, fails AA). Gold text/link buttons use gold-dark (~4.7:1 on white); red (destructive) / black buttons keep white text. Set in both `button.tsx` (cva) and the authoritative `!important` overrides in `src/index.css`.
+- **Contrast (WCAG AA)**: brand gold is a dark bronze (`hsl(38 24% 37%)`). Gold/primary buttons use WHITE text (~6.5:1). Do NOT revert to black-on-gold (~3.2:1, fails AA). Gold text/link buttons use gold-dark (~4.7:1 on white); red (destructive) / black buttons keep white text. Set in both `button.tsx` (cva) and the authoritative `!important` overrides in `src/index.css`.
 
 ### Accessibility baseline
 - Reduced motion: `prefers-reduced-motion` media blocks in `src/index.css` cover CSS animation; JS-driven motion (hero video autoplay) checks `usePerformance().isReducedMotion`. (Framer Motion and its `MotionConfig` wrapper were removed with the library.)
@@ -156,6 +156,7 @@ itself, in three parallel jobs:
 ## Financing (Cherry)
 - Cherry is integrated two ways: the app-wide floating estimator (`CherryWidgetProvider` + `useCherryWidgetRegistration`, practice slug in `src/constants/cherry.ts`) and the on-page **pre-approval block** (`CherryPreApprovalSection` on `/payment-plans`) with amount entry, benefit messaging, and an apply QR.
 - **Responsive floating launcher**: show the complete `Pay over time` / `No hard credit checks • 0% APR options` copy at every width. The pill is 288px normally and 232px at 320px via `min(288px, calc(100vw - 88px))`; narrow copy wraps instead of clipping. The reserved left space clears the Concierge, and the homepage FAB remains lifted by safe area +96px above the pill. Preserve these collision rules if you touch any fixed control.
+- **Safari visibility**: keep the launcher `position: fixed` with `transform: none`. Hide it only at the true page top (≤16px) and reveal it after 96px, using visualViewport-aware scroll measurement plus hysteresis so iOS/macOS Safari toolbar jitter cannot hide it mid-scroll.
 - The patient-facing apply link is built by `buildCherryApplyUrl()` in `src/constants/cherry.ts`.
 - **`VERIFY-BEFORE-PUBLIC` convention** (applies to TWO files): (1) regulated Cherry financing figures + the apply/QR URL in `src/constants/cherry.ts`; (2) the Los Angeles veneer **market** cost ranges in `src/constants/veneerCosts.ts`. Both are isolated and tagged with this comment — confirm against the source (Cherry dashboard / practice sign-off) before changing or publishing. The veneer cost page (`/veneers/cost-los-angeles/`) is gated on `VENEER_COST_VERIFIED`: while it is `false` the page shows "confirmed at your consultation" instead of dollar figures. Flip it to `true` ONLY after the practice signs off on the ranges (and update the figures).
 - Financing engagement is tracked via `trackFinancingEngagement` in `src/utils/vercelAnalytics.ts`.
@@ -178,7 +179,6 @@ The site uses one consistent marketing voice — keep new/edited copy on this ba
 
 ## Open follow-ups
 - **Verify veneer cost ranges**: the practice must review `src/constants/veneerCosts.ts`, then set `VENEER_COST_VERIFIED = true` so `/veneers/cost-los-angeles/` shows figures instead of "confirmed at your consultation".
-- **Dangling og:image (social-share 404)**: `src/constants/metadata.ts` references `lovable-uploads/dc09fcc1-…webp`, which has never existed in the repo, so OG/Twitter previews 404 on those routes. Point it at a real asset.
 - **Geo location pages** are thin near-duplicates — differentiate or consolidate.
 
 Resolved (kept for context): the `exquisiteveneersla.com` second domain is **not used** for this site (decision 2026-07-12) — no registrar 301 needed; just never link to it from the site. The "Exquisite Dental" blog typo was fixed at the source exports and regenerated. The ~392KB `blogPosts` chunk was split — list surfaces now use `src/data/blogIndex.ts` (see Blog Pipeline above) and only the blog post view loads the full dataset.
