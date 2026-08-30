@@ -31,6 +31,8 @@ npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromiu
 
 Keep those when editing the header, menu, Cherry financing widget, or global route shell.
 
+Safari toolbar collapse can make `window.scrollY` drop while the visitor is mid-page. The Cherry suite includes a hysteresis check so the pill stays visible through that jitter and only hides again at the true top.
+
 ## Manual Device Matrix
 
 Automated browser emulation catches layout and interaction regressions quickly, but real devices still matter for Safari toolbar resizing, virtual keyboard behavior, safe areas, and touch feel.
