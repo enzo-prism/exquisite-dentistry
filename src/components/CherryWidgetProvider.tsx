@@ -29,9 +29,39 @@ const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease
 const CHERRY_WIDGET_Z_INDEX = '45' as const;
 const CHERRY_WIDGET_CLICK_SELECTOR = `[id="${CHERRY_WIDGET_MOUNT_ID}"], [class*="floatingEstimator"]`;
 const WIDGET_REVEAL_SCROLL_Y = 96;
+const WIDGET_HIDE_SCROLL_Y = 16;
+
+let floatingWidgetRevealed = false;
 
 const setImportantStyle = (target: HTMLElement, property: string, value: string) => {
   target.style.setProperty(property, value, 'important');
+};
+
+const getVisualScrollY = () => {
+  const layoutScrollY = Math.max(
+    window.scrollY || 0,
+    window.pageYOffset || 0,
+    document.documentElement.scrollTop || 0,
+    document.body?.scrollTop || 0,
+  );
+  const visualViewport = window.visualViewport;
+  if (!visualViewport) return layoutScrollY;
+
+  const pageTop = (visualViewport as VisualViewport & { pageTop?: number }).pageTop;
+  const offsetAdjusted = layoutScrollY + (visualViewport.offsetTop || 0);
+  return Math.max(layoutScrollY, typeof pageTop === 'number' ? pageTop : 0, offsetAdjusted);
+};
+
+const shouldHideFloatingWidget = () => {
+  const scrollY = getVisualScrollY();
+
+  if (scrollY >= WIDGET_REVEAL_SCROLL_Y) {
+    floatingWidgetRevealed = true;
+  } else if (scrollY <= WIDGET_HIDE_SCROLL_Y) {
+    floatingWidgetRevealed = false;
+  }
+
+  return !floatingWidgetRevealed;
 };
 
 const ensureFontLink = () => {
@@ -62,13 +92,14 @@ const resetCherryRuntime = () => {
   window._hw_floating_config = undefined;
   window.__cherryWidgetInitQueued = false;
   window['loaded-_hw'] = false;
+  floatingWidgetRevealed = false;
 };
 
 const applyFloatingWidgetStyles = (isMobile: boolean) => {
   const mounts = Array.from(
     document.querySelectorAll<HTMLElement>(`[id="${CHERRY_WIDGET_MOUNT_ID}"]`),
   );
-  const shouldHideNearPageTop = window.scrollY < WIDGET_REVEAL_SCROLL_Y;
+  const shouldHideNearPageTop = shouldHideFloatingWidget();
   const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
@@ -98,7 +129,10 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'opacity', shouldHideNearPageTop ? '0' : '1');
     setImportantStyle(target, 'pointer-events', shouldHideNearPageTop ? 'none' : 'auto');
     setImportantStyle(target, 'margin', '0');
-    setImportantStyle(target, 'transform', 'translate3d(0, 0, 0)');
+    setImportantStyle(target, 'transform', 'none');
+    setImportantStyle(target, '-webkit-transform', 'none');
+    setImportantStyle(target, 'translate', 'none');
+    setImportantStyle(target, 'will-change', 'auto');
     setImportantStyle(target, 'transition', prefersReducedMotion ? 'none' : CHERRY_WIDGET_HIDE_TRANSITION);
     setImportantStyle(target, 'overflow', 'visible');
     setImportantStyle(target, 'width', floatingButtonWidth);
@@ -421,6 +455,8 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
     window.addEventListener('resize', handleViewportChange, { passive: true });
     window.addEventListener('orientationchange', handleViewportChange, { passive: true });
     window.addEventListener('scroll', handleViewportChange, { passive: true });
+    window.visualViewport?.addEventListener('resize', handleViewportChange);
+    window.visualViewport?.addEventListener('scroll', handleViewportChange);
 
     syncFloatingWidgetStyles();
 
@@ -429,6 +465,8 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       window.removeEventListener('resize', handleViewportChange);
       window.removeEventListener('orientationchange', handleViewportChange);
       window.removeEventListener('scroll', handleViewportChange);
+      window.visualViewport?.removeEventListener('resize', handleViewportChange);
+      window.visualViewport?.removeEventListener('scroll', handleViewportChange);
 
       if (syncFrameRef.current !== null) {
         window.cancelAnimationFrame(syncFrameRef.current);
