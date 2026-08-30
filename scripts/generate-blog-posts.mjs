@@ -250,6 +250,17 @@ const canonicalizeTitle = (title) => {
     .replace(/^-|-$/g, '');
 };
 
+const decodeHtmlEntities = (value) =>
+  String(value)
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;|&#039;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+
 const hashContent = (text) => {
   let hash = 0;
   for (let i = 0; i < text.length; i += 1) {
@@ -346,6 +357,8 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     title = sentenceCase(slug.replace(/[-_]+/g, ' '));
     idx += 1;
   }
+
+  title = decodeHtmlEntities(title);
 
   const body = lines.slice(idx).join('\n').trim();
 
