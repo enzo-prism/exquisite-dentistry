@@ -6,6 +6,7 @@ import { Video } from 'lucide-react';
 import { BlogPost, getRelatedPosts } from '@/data/blogPosts';
 import { transformationStories, type TransformationStory } from '@/data/transformationStories';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
+import { decodeBlogTitle } from '@/utils/blogContent';
 
 interface RelatedPostsProps {
   currentPost: BlogPost;
@@ -254,9 +255,9 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         {relatedPosts.map((post) => (
           <Link key={post.slug} to={`/blog/${post.slug}/`} className="group">
             <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold group-hover:text-gold transition-colors">
-                  {post.title}
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="break-words text-lg font-semibold group-hover:text-gold transition-colors">
+                  {decodeBlogTitle(post.title)}
                 </h3>
                 <p className="text-gray-600 mt-2 line-clamp-2">
                   {post.excerpt}
@@ -278,7 +279,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         return (
           <div className="mb-12">
             <h3 className="text-xl font-bold mb-4">Real Patient Stories</h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               {relatedStories.map((story) => (
                 <Link
                   key={story.slug}
