@@ -172,6 +172,10 @@ const main = async () => {
   const generatedSlugs = generatedContent ? extractSlugs(generatedContent) : new Set();
   const allSlugs = new Set([...baseSlugs, ...generatedSlugs]);
 
+  if (generatedContent && /"title"\s*:\s*"[^"]*&(#\d+|#x[0-9a-fA-F]+|\w+);/.test(generatedContent)) {
+    errors.push('HTML entities found in generated blog titles. Decode them in generate-blog-posts.mjs.');
+  }
+
   const duplicates = [...baseSlugs].filter((slug) => generatedSlugs.has(slug));
   if (duplicates.length) {
     errors.push(`Duplicate blog slugs in base + generated data: ${duplicates.join(', ')}`);
@@ -191,6 +195,9 @@ const main = async () => {
     const filePath = path.join(CONTENT_DIR, fileName);
     const raw = await fs.readFile(filePath, 'utf-8');
     const title = extractTitle(raw, slug);
+    if (/&#?\w+;/.test(title)) {
+      errors.push(`HTML entity in Blog-Content title: ${fileName} ("${title}")`);
+    }
     const canonicalTitle = canonicalizeTitle(title);
 
     if (baseSlugs.has(slug)) {

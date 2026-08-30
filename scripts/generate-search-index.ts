@@ -9,6 +9,7 @@ import { locationPageConfigs } from "../src/data/locationPages.ts";
 import { getPublishedPosts } from "../src/data/blogPosts.ts";
 import { transformationStories } from "../src/data/transformationStories.ts";
 import { normalizeInternalHref } from "../src/utils/normalizeInternalHref.ts";
+import { decodeBlogTitle } from "../src/utils/decodeBlogTitle.ts";
 import { manualPages } from "./prerender-static.ts";
 
 type SearchItemType = "page" | "service" | "location" | "blog";
@@ -167,12 +168,13 @@ const buildSearchIndex = (): SearchIndexFile => {
   });
 
   getPublishedPosts().forEach((post) => {
+    const title = decodeBlogTitle(post.title);
     upsertItem({
       type: "blog",
-      title: post.title,
+      title,
       description: post.excerpt,
       href: `/blog/${post.slug}`,
-      h1: post.title,
+      h1: title,
       keywords: uniq([post.category, ...(post.tags ?? []), ...(post.sourceSlug ? [post.sourceSlug] : []), ...splitKeywords(post.seoKeywords)]),
     });
   });
