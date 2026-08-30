@@ -8,6 +8,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { normalizeInternalHref } from "@/utils/normalizeInternalHref";
+import { decodeBlogTitle } from "@/utils/decodeBlogTitle";
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import {
@@ -565,7 +566,7 @@ const SiteSearch: React.FC<SiteSearchProps> = ({ open, onOpenChange }) => {
 
 const SearchResultRow: React.FC<{ item: SearchIndexItem; onSelect: (item: SearchIndexItem) => void }> = ({ item, onSelect }) => {
   const Icon = getTypeIcon(item.type);
-  const displayTitle = item.h1?.trim() || item.title;
+  const displayTitle = decodeBlogTitle(item.h1?.trim() || item.title);
 
   return (
     <CommandItem
