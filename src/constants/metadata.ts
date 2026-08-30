@@ -75,8 +75,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.',
     keywords:
       'Invisalign Los Angeles, clear aligners LA, Invisalign dentist LA, adult orthodontics, clear braces',
-    ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+    ogImage: DEFAULT_OG_IMAGE
   },
   '/invisalign-beverly-hills': {
     title: 'Invisalign Beverly Hills | Exquisite Dentistry',
@@ -84,8 +83,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Invisalign Beverly Hills: clear aligners planned with iTero scans, flexible visits, and comfort-first care at our Wilshire Blvd Los Angeles studio near Beverly Hills.',
     keywords:
       'invisalign beverly hills, invisalign near beverly hills, clear aligners beverly hills, invisalign dentist beverly hills, adult orthodontics beverly hills, itero scan beverly hills',
-    ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+    ogImage: DEFAULT_OG_IMAGE
   },
   '/teeth-whitening': {
     title:
@@ -130,8 +128,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Dental implants in Los Angeles with 3D imaging, restoration-first planning, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd, book a consultation.',
     keywords:
       'dental implants los angeles, implant dentist los angeles, implant crown los angeles, implant bridge los angeles, tooth replacement los angeles, full arch implants los angeles',
-    ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+    ogImage: DEFAULT_OG_IMAGE
   },
   '/santa-monica-dental-implants': {
     title: 'Dental Implants Near Santa Monica | Exquisite Dentistry',
@@ -139,8 +136,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
       'Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles, book a consultation.',
     keywords:
       'santa monica dental implants, dental implants near santa monica, implant dentist santa monica, tooth replacement santa monica, implant crowns santa monica',
-    ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+    ogImage: DEFAULT_OG_IMAGE
   },
   // Searchers use the singular practitioner noun ("cosmetic dentist los angeles")
   // far more than "cosmetic dentistry"; the homepage was absorbing those queries
