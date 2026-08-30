@@ -357,6 +357,23 @@ test.describe('Cherry widget mobile behavior', () => {
     await expectCherryHidden(page);
   });
 
+  test('stays visible through Safari-like toolbar scroll jitter after reveal', async ({ page }) => {
+    await page.goto('/payment-plans/');
+    await stabilizePage(page);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    await page.evaluate(() => window.scrollTo({ top: 48, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    await page.evaluate(() => window.scrollTo({ top: 80, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+    await expectCherryHidden(page);
+  });
+
   test('keeps the floating control keyboard reachable with a 44px touch target', async ({ page }) => {
     await page.goto('/payment-plans/');
     await stabilizePage(page);
