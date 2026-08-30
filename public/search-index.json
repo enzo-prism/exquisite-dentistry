@@ -13,6 +13,35 @@
         "porcelain bridge LA"
       ],
       "id": "service:/dental-bridge/"
+    },
+    {
+      "type": "service",
+      "title": "Dental Crowns in Los Angeles",
+      "description": "Restore cracked, weak, or root canal-treated teeth with custom porcelain crowns fabricated for natural-looking results.",
+      "href": "/dental-crowns/",
+      "h1": "Porcelain Dental Crowns",
+      "keywords": [
+        "dental crowns los angeles",
+        "porcelain crown west hollywood",
+        "cosmetic crown LA"
+      ],
+      "id": "service:/dental-crowns/"
+    },
+    {
+      "type": "service",
+      "title": "Dental Implants Near Santa Monica",
+      "description": "Dental implants near Santa Monica with 3D imaging, guided placement, and custom implant crowns or bridges. Comfort-first care on Wilshire Blvd in Los Angeles, book a consultation.",
+      "href": "/santa-monica-dental-implants/",
+      "h1": "Dental Implants Near Santa Monica",
+      "keywords": [
+        "santa monica dental implants",
+        "dental implants near santa monica",
+        "implant dentist santa monica",
+        "tooth replacement santa monica",
+        "implant crowns santa monica",
+        "implant bridge santa monica"
+      ],
+      "id": "service:/santa-monica-dental-implants/"
     }
   ]
 }
