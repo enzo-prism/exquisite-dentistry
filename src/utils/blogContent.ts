@@ -1,5 +1,8 @@
 import type { BlogPost } from '@/data/blogPosts';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
+import { decodeBlogTitle } from '@/utils/decodeBlogTitle';
+
+export { decodeBlogTitle };
 
 const stripTags = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -16,7 +19,7 @@ const hasStrongTokenOverlap = (heading: string, post: BlogPost) => {
   const headingTokens = tokenize(heading);
   if (headingTokens.length === 0) return false;
 
-  const comparisons = [post.title, post.seoTitle];
+  const comparisons = [decodeBlogTitle(post.title), decodeBlogTitle(post.seoTitle)];
   for (const candidate of comparisons) {
     const titleTokens = tokenize(candidate);
     if (titleTokens.length === 0) continue;
