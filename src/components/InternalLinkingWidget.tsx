@@ -119,7 +119,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             category: 'gallery',
             priority: 8
           },
-          // Underlinked veneer blog posts
           {
             title: 'Veneers vs Bonding Comparison',
             href: '/blog/dental-veneers-vs-bonding-a-comprehensive-comparison-for-your-smile-makeover/',
@@ -184,7 +183,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 17
           }
         ];
-      
       case 'orthodontics':
       case 'invisalign':
         return [
@@ -253,7 +251,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 10
           }
         ];
-      
       case 'whitening':
         return [
           {
@@ -328,7 +325,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 8
           }
         ];
-
       case 'implants':
         return [
           {
@@ -395,7 +391,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 9
           }
         ];
-      
       case 'wedding':
         return [
           {
@@ -441,14 +436,13 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 6
           },
           {
-            title: 'Valentine\'s Dental Tips',
+            title: "Valentine's Dental Tips",
             href: '/blog/how-sweet-ideas-for-keeping-teeth-healthy-on-valentines-day/',
             description: 'Keep your smile healthy for special occasions',
             category: 'blog',
             priority: 7
           }
         ];
-      
       case 'graduation':
         return [
           {
@@ -480,7 +474,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 4
           }
         ];
-      
       case 'consultation':
         return [
           {
@@ -512,7 +505,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 4
           }
         ];
-      
       case 'cost':
         return [
           {
@@ -551,7 +543,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 5
           }
         ];
-      
       case 'experience':
         return [
           {
@@ -612,7 +603,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 8,
             seasonal: true
           },
-          // Underlinked oral health/experience posts
           {
             title: 'Oral Wellness As You Age',
             href: '/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/',
@@ -628,7 +618,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 10
           }
         ];
-
       case 'oral-health':
         return [
           {
@@ -653,9 +642,9 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 3
           },
           {
-            title: 'Cannabis & Gum Disease',
+            title: "Marijuana's effect on periodontal health",
             href: '/blog/marijuana-use-increases-risk-gum-disease/',
-            description: 'Marijuana\'s effect on periodontal health',
+            description: "Marijuana's effect on periodontal health",
             category: 'blog',
             priority: 4
           },
@@ -695,7 +684,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 9
           }
         ];
-
       default:
         return [
           {
@@ -747,7 +735,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             category: 'consultation',
             priority: 7
           },
-          // Underlinked local/professional posts
           {
             title: 'Adult Cosmetic Dentistry',
             href: '/blog/leading-cosmetic-dentist-for-adults-in-los-angeles-transforming-smiles-at-any-age/',
@@ -772,7 +759,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     .filter((link) => !normalizedCurrentPage.includes(normalizeInternalHref(link.href)))
     .sort((a, b) => (a.priority || 99) - (b.priority || 99));
   
-  // Filter out seasonal/special links for compact variant to reduce over-promotion
   const filteredLinks = variant === 'compact' 
     ? links.filter(link => !link.seasonal && link.category !== 'special')
     : links;
@@ -780,7 +766,6 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
   const displayLinks = variant === 'compact' ? filteredLinks.slice(0, 3) : 
                       variant === 'sidebar' ? links.slice(0, 4) : links;
 
-  // Unicode icons instead of Lucide SVGs (~200 bytes saved per icon)
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'service':
@@ -822,7 +807,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
   };
 
   const containerClasses = cn(
-    'bg-gradient-to-r from-gold/5 via-gold/10 to-white rounded-xl p-6 my-8 shadow-sm border border-gold/15',
+    'min-w-0 overflow-hidden bg-gradient-to-r from-gold/5 via-gold/10 to-white rounded-xl p-4 sm:p-6 my-8 shadow-sm border border-gold/15',
     className
   );
 
@@ -830,7 +815,7 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
     'grid gap-4',
     variant === 'sidebar' ? 'grid-cols-1' :
     variant === 'compact' ? 'grid-cols-1' :
-    'grid-cols-1 sm:grid-cols-2'
+    'grid-cols-1 lg:grid-cols-2'
   );
 
   const cardClasses = 'group flex h-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-white/60 bg-white/95 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:shadow-md';
