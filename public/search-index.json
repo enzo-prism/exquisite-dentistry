@@ -42,6 +42,35 @@
         "implant bridge santa monica"
       ],
       "id": "service:/santa-monica-dental-implants/"
+    },
+    {
+      "type": "service",
+      "href": "/invisalign-beverly-hills/",
+      "title": "Invisalign Beverly Hills",
+      "description": "Invisalign Beverly Hills: clear aligners planned with iTero scans, flexible visits, and comfort-first care at our Wilshire Blvd Los Angeles studio near Beverly Hills.",
+      "h1": "Invisalign Beverly Hills",
+      "keywords": [
+        "invisalign beverly hills",
+        "invisalign near beverly hills",
+        "clear aligners beverly hills",
+        "invisalign los angeles",
+        "adult orthodontics beverly hills",
+        "itero scanner"
+      ],
+      "id": "service:/invisalign-beverly-hills/"
+    },
+    {
+      "type": "service",
+      "title": "Oral Cancer Screenings in Los Angeles",
+      "description": "Annual VELscope oral cancer screenings detect cellular changes early. Add a screening to any hygiene visit in West Hollywood.",
+      "href": "/oral-cancer-screening/",
+      "h1": "VELscope® Oral Cancer Screenings",
+      "keywords": [
+        "oral cancer screening los angeles",
+        "velscope dentist LA",
+        "oral cancer exam west hollywood"
+      ],
+      "id": "service:/oral-cancer-screening/"
     }
   ]
 }
