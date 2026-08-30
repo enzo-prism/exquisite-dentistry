@@ -49,7 +49,7 @@ Copy `.env.example` to `.env` if HTML-based Google Search Console verification i
 **Use GitHub Codespaces**
 
 - Navigate to the main page of your repository.
-- Click the "Code" button (green button) near the top right.
+- Click on the "Code" button (green button) near the top right.
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
@@ -165,7 +165,7 @@ To verify:
 
 > Need a refresher on the end-to-end verification checklist (content QA, redirect harness, static build smoke test, and GSC Live URL workflow)? See `docs/verification.md`.
 
-> The August 10, 2026 responsive design release, root causes, prevention controls, and validation evidence are recorded in `docs/DESIGN_QA_2026-08-10.md`. The August 30, 2026 follow-up (gold-button contrast, Safari Cherry visibility, and broken social images) is in `docs/DESIGN_QA_2026-08-30.md`.
+> The August 10, 2026 responsive design release, root causes, prevention controls, and validation evidence are recorded in `docs/DESIGN_QA_2026-08-10.md`. The August 30, 2026 follow-up (gold-button contrast, Safari Cherry visibility, social images, and blog-post layout) is in `docs/DESIGN_QA_2026-08-30.md`.
 
 > Need a deeper walkthrough of each command, required tooling, and common pitfalls? Check `docs/BUILD_WORKFLOW.md` for the full build playbook.
 >
