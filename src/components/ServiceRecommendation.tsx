@@ -61,7 +61,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
   };
 
   return (
-    <div className={`min-w-0 max-w-full overflow-hidden bg-gradient-to-br from-gray-50 to-white rounded-lg p-6 border border-gray-200 ${className}`}>
+    <div className={`min-w-0 max-w-full overflow-hidden bg-gradient-to-br from-gray-50 to-white rounded-lg p-4 sm:p-6 border border-gray-200 ${className}`}>
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {getContextTitle()}
