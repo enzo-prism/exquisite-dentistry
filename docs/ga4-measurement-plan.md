@@ -34,7 +34,7 @@ Event parameters are flat and low-cardinality. Register only `form_type`, `inter
 
 ## Attribution
 
-The landing page synchronously captures these values for the current browser session: `utm_id`, the five standard UTM fields, `gclid`, `gbraid`, `wbraid`, `dclid`, `msclkid`, and `fbclid`. They can accompany a voluntary Formspree submission for operational source reconciliation, but they are not emitted as custom GA parameters. Values are length-limited and rejected when they look like an email address or phone number.
+The landing page synchronously captures these values for the current browser session: `utm_id`, the five standard UTM fields, `gclid`, `gbraid`, `wbraid`, `dclid`, `msclkid`, `fbclid`, and OpenAI's appended `oppref` value. They can accompany a voluntary Formspree submission for operational source reconciliation, but they are not emitted as custom GA parameters. Values are length-limited and rejected when they look like an email address or phone number. Do not invent or place an `{oppref}` macro in campaign URLs; Ads Manager appends the real value.
 
 ## Analytics Admin release checklist
 

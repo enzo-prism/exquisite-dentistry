@@ -93,6 +93,8 @@ export type StaticRoute = {
   links: StaticLink[];
   ogImage?: string;
   ogType?: "website" | "article";
+  robots?: string;
+  searchable?: boolean;
   blogPost?: {
     headline: string;
     authorName: string;
@@ -212,6 +214,37 @@ const ORAL_HEALTH_BLOG_LINKS: StaticLink[] = [
 ];
 
 export const manualPages: StaticRoute[] = [
+  {
+    path: "/lp/chatgpt",
+    title: "Cosmetic & Veneer Consultation in Los Angeles",
+    description:
+      "Request a cosmetic or porcelain veneer consultation with Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles.",
+    h1: "A thoughtful first step toward the smile you have in mind.",
+    paragraphs: [
+      "Meet with Dr. Alexie Aguil to discuss porcelain veneers and other cosmetic options. Your consultation is a conversation, not a commitment.",
+      "Share what you are considering, review options that may be appropriate after an in-person evaluation, and understand the next steps before deciding on treatment.",
+    ],
+    sections: [
+      {
+        heading: "Request a cosmetic consultation",
+        paragraphs: [
+          "Tell us how to reach you. Our team will follow up about scheduling. Please do not include symptoms, medical history, insurance details, or other health information in this initial request.",
+        ],
+      },
+      {
+        heading: "What to expect",
+        bullets: [
+          "Our team contacts you to discuss available consultation times.",
+          "You meet with Dr. Aguil and review options after an in-person evaluation.",
+          "If you choose to continue, the team explains timing, fees, and next steps.",
+        ],
+      },
+    ],
+    links: [],
+    ogImage: "/lovable-uploads/chatgpt-ads/dr-aguil-office-square-1200.jpg",
+    robots: "noindex,nofollow,noarchive",
+    searchable: false,
+  },
   {
     path: "/",
     title: getRouteMetadata("/").title,
@@ -1216,6 +1249,7 @@ const injectSeo = (template: string, route: StaticRoute) => {
   // Remove tags we manage to ensure a single source of truth per prerendered page.
   html = html.replace(/<title[^>]*>[\s\S]*?<\/title>\s*/gi, "");
   html = removeHeadMetaBy(html, "name", "description");
+  html = removeHeadMetaBy(html, "name", "robots");
   html = removeHeadLinkByRel(html, "canonical");
 
   // Open Graph
@@ -1236,6 +1270,9 @@ const injectSeo = (template: string, route: StaticRoute) => {
   const injectedHeadTags = [
     `  <title data-rh="true">${escapeHtml(fullTitle)}</title>`,
     `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
+    route.robots
+      ? `  <meta name="robots" content="${escapeHtml(route.robots)}" data-rh="true" />`
+      : null,
     `  <link rel="canonical" href="${canonicalUrl}" data-rh="true" />`,
     `  <meta property="og:type" content="${escapeHtml(ogType)}" data-rh="true" />`,
     `  <meta property="og:site_name" content="${escapeHtml(OG_SITE_NAME)}" data-rh="true" />`,

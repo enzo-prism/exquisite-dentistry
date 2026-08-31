@@ -24,6 +24,7 @@ export const ATTRIBUTION_FIELDS = [
   'dclid',
   'msclkid',
   'fbclid',
+  'oppref',
 ] as const;
 
 const MAX_ATTRIBUTION_VALUE_LENGTH = 120;

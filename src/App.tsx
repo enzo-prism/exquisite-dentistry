@@ -12,6 +12,7 @@ import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 import WebsiteConcierge from "@/components/WebsiteConcierge";
 import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
+import OpenAIAdsMeasurement from "@/components/OpenAIAdsMeasurement";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -30,6 +31,7 @@ const Locations = lazy(() => import("@/pages/Locations"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const ScheduleConsultation = lazy(() => import("@/pages/ScheduleConsultation"));
+const ChatGPTAdsLanding = lazy(() => import("@/pages/ChatGPTAdsLanding"));
 const PaymentPlans = lazy(() => import("@/pages/PaymentPlans"));
 const Insurance = lazy(() => import("@/pages/Insurance"));
 const ClientExperience = lazy(() => import("@/pages/ClientExperience"));
@@ -110,6 +112,7 @@ const PageLoaderComponent = () => {
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap';
+  const isChatGptAdsLanding = location.pathname.replace(/\/+$/, '') === '/lp/chatgpt';
   
   // Fix section gaps and background consistency
   useSectionFix(300);
@@ -126,9 +129,9 @@ const AppRoutes = () => {
     <>
       <SkipToContent />
       <LegacyRedirectHandler />
-      {!isSitemapPage && <ScrollProgress />}
+      {!isSitemapPage && !isChatGptAdsLanding && <ScrollProgress />}
       {!isSitemapPage && <ScrollToTop />}
-      {!isSitemapPage && <Navbar />}
+      {!isSitemapPage && !isChatGptAdsLanding && <Navbar />}
       <main id="main-content" className="flex-grow">
         {!isSitemapPage ? (
           <PageTransition>
@@ -162,6 +165,9 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/schedule-consultation" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ScheduleConsultation />
+              </Suspense>} />
+              <Route path="/lp/chatgpt" element={<Suspense fallback={<PageLoaderComponent />}>
+                <ChatGPTAdsLanding />
               </Suspense>} />
               <Route path="/payment-plans" element={<Suspense fallback={<PageLoaderComponent />}>
                 <PaymentPlans />
@@ -348,9 +354,16 @@ const AppRoutes = () => {
           </Routes>
         )}
       </main>
-      {!isSitemapPage && <Footer />}
+      {!isSitemapPage && !isChatGptAdsLanding && <Footer />}
     </>
   );
+};
+
+const RouteAwareConcierge = () => {
+  const location = useLocation();
+  const isChatGptAdsLanding = location.pathname.replace(/\/+$/, '') === '/lp/chatgpt';
+
+  return isChatGptAdsLanding ? null : <WebsiteConcierge />;
 };
 
 const App = () => {
@@ -371,10 +384,11 @@ const App = () => {
                 <div className="flex flex-col min-h-screen">
                   <AppRoutes />
                 </div>
-                <WebsiteConcierge />
+                <RouteAwareConcierge />
               </CherryWidgetProvider>
               <RouteAwareObservability />
               <AnalyticsConsentBanner />
+              <OpenAIAdsMeasurement />
             </BrowserRouter>
           </TooltipProvider>
         </PerformanceProvider>

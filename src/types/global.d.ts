@@ -12,6 +12,11 @@ declare global {
     gtag?: (...args: unknown[]) => void;
     __EXQUISITE_ANALYTICS_TEST_HOST__?: string;
     gtagSendEvent?: (url?: string, target?: string, source?: string) => boolean;
+    oaiq?: ((...args: unknown[]) => void) & {
+      q?: unknown[][];
+    };
+    __exquisiteOpenAIAdsConsent?: boolean;
+    __exquisiteOpenAIAdsInitializedPixelIds?: string[];
     _hw?: ((method: string, ...args: unknown[]) => void) & {
       q?: unknown[][];
     };

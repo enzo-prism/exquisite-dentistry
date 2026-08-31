@@ -18,6 +18,7 @@ interface PageSEOProps {
   articleAuthor?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  noarchive?: boolean;
 }
 
 // Sanitize meta description
@@ -82,6 +83,7 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   articleAuthor,
   noindex = false,
   nofollow = false,
+  noarchive = false,
 }) => {
   const isStaging = import.meta.env.VITE_APP_ENV === 'staging';
   const normalizedPath = path === undefined ? '/' : path || '/';
@@ -177,10 +179,14 @@ export const PageSEO: React.FC<PageSEOProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
 
       {/* Robots */}
-      {(effectiveNoindex || effectiveNofollow) && (
+      {(effectiveNoindex || effectiveNofollow || noarchive) && (
         <meta
           name="robots"
-          content={`${effectiveNoindex ? 'noindex' : 'index'},${effectiveNofollow ? 'nofollow' : 'follow'}`}
+          content={[
+            effectiveNoindex ? 'noindex' : 'index',
+            effectiveNofollow ? 'nofollow' : 'follow',
+            ...(noarchive ? ['noarchive'] : []),
+          ].join(',')}
         />
       )}
 
