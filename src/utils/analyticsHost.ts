@@ -5,6 +5,8 @@ export const CANONICAL_ANALYTICS_HOSTS = [
 
 export const ANALYTICS_TEST_HOST_OVERRIDE_KEY = '__EXQUISITE_ANALYTICS_TEST_HOST__';
 
+const ANALYTICS_SUPPRESSED_PATHS = ['/lp/chatgpt'] as const;
+
 type CanonicalAnalyticsHost = (typeof CANONICAL_ANALYTICS_HOSTS)[number];
 
 const normalizeHostname = (hostname: string) => hostname.trim().toLowerCase().replace(/\.$/, '');
@@ -39,4 +41,13 @@ export const isCanonicalAnalyticsHost = (hostname?: string) => {
     : normalizeHostname(hostname);
 
   return isListedCanonicalHost(resolved);
+};
+
+export const isAnalyticsSuppressedPath = (
+  pathname = typeof window === 'undefined' ? '' : window.location.pathname,
+) => {
+  const normalized = pathname === '/' ? '/' : pathname.replace(/\/+$/, '') || '/';
+  return ANALYTICS_SUPPRESSED_PATHS.includes(
+    normalized as (typeof ANALYTICS_SUPPRESSED_PATHS)[number],
+  );
 };

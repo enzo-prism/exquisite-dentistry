@@ -18,12 +18,15 @@ import {
 import { ADDRESS, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 import { ATTRIBUTION_FIELDS, getCurrentUTMParameters, getStoredUTMAttribution } from '@/utils/utmTracking';
 import { trackFormSubmission } from '@/utils/googleAdsTracking';
+import { openAnalyticsPreferences } from '@/utils/googleAnalytics';
 import { trackContactFormFailed, trackContactFormValidationFailed } from '@/utils/vercelAnalytics';
 import { signalChatGptAdsLeadConfirmed } from '@/utils/chatgptAdsTracking';
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_DIGITS_PATTERN = /\d/g;
+const EMAIL_LIKE_PATH = /[^/\s@]+@[^/\s@]+\.[^/\s@]+/;
+const PHONE_LIKE_PATH = /(?:\+?\d[\s().-]*){7,}/;
 
 const INTEREST_OPTIONS = [
   { value: 'porcelain_veneers', label: 'Porcelain veneers' },
@@ -58,6 +61,10 @@ const EMPTY_ERRORS: FormErrors = {
 const sanitizeOperationalUrl = (value: string) => {
   try {
     const url = new URL(value);
+    const decodedPath = decodeURIComponent(url.pathname);
+    if (EMAIL_LIKE_PATH.test(decodedPath) || PHONE_LIKE_PATH.test(decodedPath)) {
+      return url.origin.slice(0, 240);
+    }
     return `${url.origin}${url.pathname}`.slice(0, 240);
   } catch {
     return '';
@@ -67,6 +74,9 @@ const sanitizeOperationalUrl = (value: string) => {
 const appendAttributionMetadata = (formData: FormData) => {
   const currentAttribution = getCurrentUTMParameters();
   const storedAttribution = getStoredUTMAttribution() ?? {};
+  const attribution = Object.keys(currentAttribution).length > 0
+    ? currentAttribution
+    : storedAttribution;
 
   formData.set('site', 'exquisite');
   formData.set('form_key', 'chatgpt_ads_consultation');
@@ -77,7 +87,7 @@ const appendAttributionMetadata = (formData: FormData) => {
   formData.set('referrer', sanitizeOperationalUrl(document.referrer));
 
   for (const field of ATTRIBUTION_FIELDS) {
-    formData.set(field, currentAttribution[field] ?? storedAttribution[field] ?? '');
+    formData.set(field, attribution[field] ?? '');
   }
 };
 
@@ -91,6 +101,7 @@ const ChatGPTAdsLanding = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const interestRef = useRef<HTMLButtonElement | null>(null);
+  const submissionInFlightRef = useRef(false);
 
   const setField = (field: keyof FormValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
@@ -122,7 +133,7 @@ const ChatGPTAdsLanding = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === 'submitting') return;
+    if (status === 'submitting' || submissionInFlightRef.current) return;
 
     if (honeypot) {
       setStatus('success');
@@ -151,6 +162,7 @@ const ChatGPTAdsLanding = () => {
     }
 
     setErrors(EMPTY_ERRORS);
+    submissionInFlightRef.current = true;
     setStatus('submitting');
     setFeedback('');
 
@@ -166,11 +178,20 @@ const ChatGPTAdsLanding = () => {
       formData.set('consultation_interest', selectedInterest?.label ?? 'Not sure yet');
       appendAttributionMetadata(formData);
 
-      const response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      });
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 12_000);
+      let response: Response;
+
+      try {
+        response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+          signal: controller.signal,
+        });
+      } finally {
+        window.clearTimeout(timeout);
+      }
 
       if (!response.ok) throw new Error('Formspree request failed');
 
@@ -189,6 +210,8 @@ const ChatGPTAdsLanding = () => {
         form: 'chatgpt_ads_consultation',
         reason: 'formspree_request_failed',
       });
+    } finally {
+      submissionInFlightRef.current = false;
     }
   };
 
@@ -251,6 +274,16 @@ const ChatGPTAdsLanding = () => {
                   Meet with Dr. Alexie Aguil to discuss porcelain veneers and other cosmetic options. Your consultation is a conversation, not a commitment.
                 </p>
 
+                <Button
+                  asChild
+                  className="mt-7 h-12 rounded-lg bg-stone-950 px-6 text-base font-semibold !text-white shadow-none hover:bg-stone-800 lg:hidden"
+                >
+                  <a href="#consultation-form">
+                    Request a consultation
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </Button>
+
                 <div className="mt-8 overflow-hidden rounded-2xl border border-stone-200 bg-stone-200 shadow-[0_24px_70px_-42px_rgba(28,25,23,0.55)]">
                   <OptimizedImage
                     src="/lovable-uploads/dr-aguil-banner-2024-m.webp"
@@ -284,6 +317,7 @@ const ChatGPTAdsLanding = () => {
                 <p className="mt-3 leading-7 text-stone-600">
                   Tell us how to reach you. Our team will follow up about scheduling.
                 </p>
+                <p className="mt-2 text-sm text-stone-500">All fields are required.</p>
 
                 <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-5">
                   <div className="hidden" aria-hidden="true">
@@ -307,6 +341,9 @@ const ChatGPTAdsLanding = () => {
                       value={values.name}
                       onChange={(event) => setField('name', event.target.value)}
                       autoComplete="name"
+                      required
+                      aria-required="true"
+                      maxLength={100}
                       placeholder="Your name"
                       aria-invalid={Boolean(errors.name)}
                       aria-describedby={errors.name ? 'chatgpt-ads-name-error' : undefined}
@@ -327,6 +364,9 @@ const ChatGPTAdsLanding = () => {
                         onChange={(event) => setField('email', event.target.value)}
                         autoComplete="email"
                         inputMode="email"
+                        required
+                        aria-required="true"
+                        maxLength={160}
                         placeholder="you@example.com"
                         aria-invalid={Boolean(errors.email)}
                         aria-describedby={errors.email ? 'chatgpt-ads-email-error' : undefined}
@@ -346,6 +386,9 @@ const ChatGPTAdsLanding = () => {
                         onChange={(event) => setField('phone', event.target.value)}
                         autoComplete="tel"
                         inputMode="tel"
+                        required
+                        aria-required="true"
+                        maxLength={40}
                         placeholder="(323) 555-0123"
                         aria-invalid={Boolean(errors.phone)}
                         aria-describedby={errors.phone ? 'chatgpt-ads-phone-error' : undefined}
@@ -364,6 +407,7 @@ const ChatGPTAdsLanding = () => {
                       <SelectTrigger
                         ref={interestRef}
                         id="chatgpt-ads-interest"
+                        aria-required="true"
                         aria-invalid={Boolean(errors.consultationInterest)}
                         aria-describedby={errors.consultationInterest ? 'chatgpt-ads-interest-error' : undefined}
                         className={`mt-2 h-12 rounded-lg border-stone-300 bg-white px-4 text-base text-stone-950 focus:ring-[#9b835e] ${errors.consultationInterest ? 'border-red-600' : ''}`}
@@ -471,6 +515,9 @@ const ChatGPTAdsLanding = () => {
             <p>© {new Date().getFullYear()} Exquisite Dentistry. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
               <Link to="/privacy-policy/" className="hover:text-[#d7c49a]">Privacy Policy</Link>
+              <button type="button" className="hover:text-[#d7c49a]" onClick={openAnalyticsPreferences}>
+                Privacy choices
+              </button>
               <Link to="/terms-of-service/" className="hover:text-[#d7c49a]">Terms of Service</Link>
             </div>
           </div>

@@ -5,7 +5,11 @@ import {
   installCanonicalAnalyticsHost,
   LOCAL_AND_PREVIEW_ANALYTICS_HOSTS,
 } from './analyticsTestHost';
-import { CANONICAL_ANALYTICS_HOSTS, isCanonicalAnalyticsHost } from '../utils/analyticsHost';
+import {
+  CANONICAL_ANALYTICS_HOSTS,
+  isAnalyticsSuppressedPath,
+  isCanonicalAnalyticsHost,
+} from '../utils/analyticsHost';
 
 type GtagCommand = [string, string | Date | Record<string, unknown>, Record<string, unknown>?];
 
@@ -534,7 +538,8 @@ test.describe('GA4 host gate', () => {
 
     expect(hostCheckIndex).toBeGreaterThanOrEqual(0);
     expect(firstGtagCall).toBeGreaterThan(hostCheckIndex);
-    expect(snippet.indexOf('if (canonicalAnalyticsHost)')).toBeLessThan(firstGtagCall);
+    expect(snippet.indexOf('if (canonicalAnalyticsHost && !analyticsSuppressedPath)')).toBeLessThan(firstGtagCall);
+    expect(snippet.indexOf("analyticsPath === '/lp/chatgpt'")).toBeLessThan(firstGtagCall);
     expect(configIds).toEqual(['G-1MZGF2XNB5', 'AW-11373090310']);
     expect(snippet).toContain('googletagmanager.com/gtag/js?id=G-1MZGF2XNB5');
     expect(snippet).toContain("analyticsHostname === 'exquisitedentistryla.com'");
@@ -547,6 +552,9 @@ test.describe('GA4 host gate', () => {
     for (const host of LOCAL_AND_PREVIEW_ANALYTICS_HOSTS) {
       expect(isCanonicalAnalyticsHost(host)).toBe(false);
     }
+    expect(isAnalyticsSuppressedPath('/lp/chatgpt')).toBe(true);
+    expect(isAnalyticsSuppressedPath('/lp/chatgpt/')).toBe(true);
+    expect(isAnalyticsSuppressedPath('/contact/')).toBe(false);
   });
 
   test('localhost never queues gtag config/events or loads gtag.js', async ({ page }) => {

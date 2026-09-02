@@ -32,7 +32,7 @@ const PrivacyPolicy: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-8">
-            <strong>Last Updated:</strong> August 23, 2026
+            <strong>Last Updated:</strong> September 2, 2026
           </p>
 
           <section className="mb-8">
@@ -98,10 +98,28 @@ const PrivacyPolicy: React.FC = () => {
               retained for the browser session so a form request can be connected to its source. You
               can review or change your choice at any time using &ldquo;Privacy choices&rdquo; in the footer.
             </p>
+            <p className="text-gray-600 mb-4">
+              On our ChatGPT advertising landing page, Google Analytics, Vercel Web Analytics, and
+              Speed Insights are disabled. If you allow campaign measurement there, an OpenAI Ads
+              conversion tag may record that a consultation request was successfully delivered. We do
+              not provide OpenAI with the name, email address, phone number, consultation selection,
+              or other answers submitted through the form.
+            </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-black">5. Data Security</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-black">5. Online Consultation Requests</h2>
+            <p className="text-gray-600 mb-4">
+              Our online contact forms use Formspree to deliver requests to our team. Formspree may
+              process the contact details and non-clinical consultation selection you choose to
+              provide so that we can respond. Please do not use the initial advertising consultation
+              form to send symptoms, medical history, insurance details, or other health information.
+              Call the practice if you need to discuss care-specific or urgent information.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-black">6. Data Security</h2>
             <p className="text-gray-600 mb-4">
               We implement appropriate security measures to protect your personal information against 
               unauthorized access, alteration, disclosure, or destruction. This includes physical, 
@@ -110,7 +128,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-black">6. Your Rights</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-black">7. Your Rights</h2>
             <p className="text-gray-600 mb-4">You have the right to:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4">
               <li>Access your personal information</li>
@@ -121,7 +139,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-black">7. Contact Us</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-black">8. Contact Us</h2>
             <p className="text-gray-600">
               If you have questions about this Privacy Policy, please contact us at:
             </p>

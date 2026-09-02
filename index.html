@@ -52,8 +52,10 @@
       var canonicalAnalyticsHost =
         analyticsHostname === 'exquisitedentistryla.com' ||
         analyticsHostname === 'www.exquisitedentistryla.com';
+      var analyticsPath = String(window.location.pathname || '/').replace(/\/+$/, '') || '/';
+      var analyticsSuppressedPath = analyticsPath === '/lp/chatgpt';
 
-      if (canonicalAnalyticsHost) {
+      if (canonicalAnalyticsHost && !analyticsSuppressedPath) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = window.gtag || gtag;

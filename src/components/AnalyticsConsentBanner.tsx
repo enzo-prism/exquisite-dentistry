@@ -1,14 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { isAnalyticsSuppressedPath } from '@/utils/analyticsHost';
 import {
   ANALYTICS_PREFERENCES_EVENT,
   getAnalyticsConsent,
   updateAnalyticsConsent,
 } from '@/utils/googleAnalytics';
+import {
+  getChatGptAdsMeasurementConsent,
+  updateChatGptAdsMeasurementConsent,
+} from '@/utils/chatgptAdsTracking';
 
 const AnalyticsConsentBanner = () => {
-  const [isOpen, setIsOpen] = useState(() => getAnalyticsConsent() === null);
+  const { pathname } = useLocation();
+  const campaignMeasurementOnly = isAnalyticsSuppressedPath(pathname);
+  const getCurrentConsent = useCallback(() => (
+    campaignMeasurementOnly ? getChatGptAdsMeasurementConsent() : getAnalyticsConsent()
+  ), [campaignMeasurementOnly]);
+  const [isOpen, setIsOpen] = useState(() => getCurrentConsent() === null);
 
   const openPreferences = useCallback(() => setIsOpen(true), []);
 
@@ -17,9 +27,14 @@ const AnalyticsConsentBanner = () => {
     return () => window.removeEventListener(ANALYTICS_PREFERENCES_EVENT, openPreferences);
   }, [openPreferences]);
 
+  useEffect(() => {
+    setIsOpen(getCurrentConsent() === null);
+  }, [getCurrentConsent]);
+
   const choose = (consent: 'granted' | 'denied') => {
-    const previousConsent = getAnalyticsConsent();
-    updateAnalyticsConsent(consent);
+    const previousConsent = getCurrentConsent();
+    if (campaignMeasurementOnly) updateChatGptAdsMeasurementConsent(consent);
+    else updateAnalyticsConsent(consent);
     setIsOpen(false);
 
     // The Vercel packages leave injected scripts and globals behind when
@@ -38,10 +53,15 @@ const AnalyticsConsentBanner = () => {
     >
       <h2 className="text-lg font-semibold text-white">Your analytics choice</h2>
       <p className="mt-2 text-sm leading-6 text-white/75">
-        We use privacy-limited analytics to understand which pages and marketing work. We do not send
-        your contact-form answers to Google Analytics. You can allow or decline analytics and change
-        this choice later. If you decline, Google may still receive limited cookieless measurement
-        signals, but optional analytics storage and Vercel analytics stay off.
+        {campaignMeasurementOnly ? (
+          <>
+            We use a privacy-limited OpenAI Ads conversion tag to learn whether this ad led to a
+            consultation request. It receives no form answers. Google Analytics and Vercel Analytics
+            are disabled on this page. You can allow or decline this measurement.
+          </>
+        ) : (
+          <>We use privacy-limited analytics to understand which pages and marketing work. We do not send your contact-form answers to Google Analytics. You can allow or decline analytics and change this choice later. If you decline, Google may still receive limited cookieless measurement signals, but optional analytics storage and Vercel analytics stay off.</>
+        )}
       </p>
       <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
@@ -60,7 +80,7 @@ const AnalyticsConsentBanner = () => {
             Decline
           </Button>
           <Button type="button" className="min-h-11 bg-gold text-black hover:bg-gold/90" onClick={() => choose('granted')}>
-            Allow analytics
+            {campaignMeasurementOnly ? 'Allow campaign measurement' : 'Allow analytics'}
           </Button>
         </div>
       </div>

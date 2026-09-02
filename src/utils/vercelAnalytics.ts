@@ -1,5 +1,5 @@
 import { track } from '@vercel/analytics';
-import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isAnalyticsSuppressedPath, isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 import {
   trackGenerateLead,
   trackGoogleContactClick,
@@ -196,6 +196,7 @@ export const trackVercelEvent = (
   if (
     typeof window === 'undefined'
     || !isCanonicalAnalyticsHost()
+    || isAnalyticsSuppressedPath()
     || getAnalyticsConsent() !== 'granted'
   ) return false;
 

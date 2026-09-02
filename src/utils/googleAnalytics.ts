@@ -1,4 +1,4 @@
-import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isAnalyticsSuppressedPath, isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 
 export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v1';
 export const ANALYTICS_PREFERENCES_EVENT = 'exquisite:open-analytics-preferences';
@@ -62,6 +62,7 @@ const canUseGoogleTag = () => (
   typeof window !== 'undefined'
   && typeof window.gtag === 'function'
   && isCanonicalAnalyticsHost()
+  && !isAnalyticsSuppressedPath()
 );
 
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
