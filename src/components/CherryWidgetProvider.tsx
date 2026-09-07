@@ -173,6 +173,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'max-width', floatingButtonWidth);
     setImportantStyle(target, 'min-width', '44px');
     setImportantStyle(target, 'min-height', '52px');
+    setImportantStyle(target, 'height', 'auto');
+    setImportantStyle(target, 'padding', '10px 14px');
+    setImportantStyle(target, 'text-align', 'left');
     setImportantStyle(target, 'overflow', 'visible');
   });
 
@@ -181,7 +184,7 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
     setImportantStyle(target, 'align-items', 'center');
     setImportantStyle(target, 'justify-content', 'flex-start');
     setImportantStyle(target, 'flex-wrap', 'nowrap');
-    setImportantStyle(target, 'min-height', '44px');
+    setImportantStyle(target, 'gap', '10px');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
   });
@@ -193,6 +196,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   textContainers.forEach((target) => {
     setImportantStyle(target, 'display', 'flex');
     setImportantStyle(target, 'flex-direction', 'column');
+    setImportantStyle(target, 'align-items', 'stretch');
+    setImportantStyle(target, 'gap', '2px');
+    setImportantStyle(target, 'text-align', 'left');
     setImportantStyle(target, 'flex', '1 1 auto');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
@@ -200,6 +206,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   });
 
   titleElements.forEach((target) => {
+    setImportantStyle(target, 'text-align', 'left');
+    setImportantStyle(target, 'margin', '0');
+    setImportantStyle(target, 'line-height', '1.25');
     setImportantStyle(target, 'display', 'block');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
@@ -209,6 +218,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   });
 
   subtextElements.forEach((target) => {
+    setImportantStyle(target, 'text-align', 'left');
+    setImportantStyle(target, 'margin', '0');
+    setImportantStyle(target, 'line-height', '1.4');
     setImportantStyle(target, 'min-width', '0');
     setImportantStyle(target, 'max-width', '100%');
     setImportantStyle(target, 'overflow', 'visible');
