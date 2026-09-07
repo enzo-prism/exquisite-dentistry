@@ -48,6 +48,7 @@ Before client review or production:
 Manual flows:
 
 - inspect the full Cherry pill at 320px, 390-430px, 667px landscape, 768px tablet, and desktop. Both `Pay over time` and `No hard credit checks • 0% APR options` must remain visible; wrapping is allowed, clipping and ellipsis are not. Overlaying nearby headings while scrolling is expected; do not shrink the pill to clear body copy.
+- check the Cherry title and all wrapped supporting lines share the same left edge, the icon stays vertically centered, and the gold chip grows with its copy while preserving top/bottom padding.
 - at 320px, confirm the longest wrapped state stays inside the viewport, clears the bottom-left Concierge, and leaves the bottom-right quick-actions FAB above it. Consent, navigation, and dialog overlays must remain above the widget.
 - keyboard-focus the Cherry control, confirm the target remains at least 44px, then activate it and verify the real Cherry experience opens.
 - open homepage, scroll past hero, and expand quick actions. The floating quick-actions button (`FloatingActionButton`) must sit **above** the Cherry pill, not on top of it.
