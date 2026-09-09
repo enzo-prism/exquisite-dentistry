@@ -9,7 +9,7 @@
 
 ## Healthcare route exclusion
 
-The paid ChatGPT Ads landing route `/lp/chatgpt/` is excluded from Google Analytics, Google Ads tags, Vercel Web Analytics, Vercel Speed Insights, and global intent tracking. The inline Google tag checks the normalized path before creating `dataLayer`, defining `gtag`, loading `gtag.js`, or issuing config commands. Runtime event helpers use the same route exclusion.
+The paid ChatGPT Ads landing route `/lp/chatgpt/` (including case/encoded aliases) is excluded from Google Analytics, Google Ads tags, Vercel Web Analytics, Vercel Speed Insights, and global intent tracking. The inline Google tag checks the normalized path before creating `dataLayer`, defining `gtag`, loading `gtag.js`, or issuing config commands. Runtime event helpers use the same route exclusion.
 
 This is intentional. Google's healthcare guidance says healthcare-service pages may be HIPAA-covered, Google does not offer a BAA for Google Analytics, and Consent Mode does not make Analytics appropriate for a HIPAA-covered page. The OpenAI Ads consent-gated conversion source is the campaign-specific measurement path. No Formspree form answers are sent to it.
 
@@ -60,3 +60,5 @@ Register only low-cardinality, approved parameters as event-scoped custom dimens
 - `/lp/chatgpt/` creates no Google or Vercel analytics traffic before or after consent.
 - The ChatGPT landing creates only the consented, PII-free OpenAI conversion after confirmed Formspree success.
 - GA event payloads contain no form values, click IDs as custom parameters, full query strings, hashes, or nested parameter objects.
+
+Crossing the campaign boundary forces a fresh document before vendor initialization, including browser history navigation. Run `node scripts/test-tracking-build.mjs` after building to check the prerendered documents preserve this guard.

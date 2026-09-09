@@ -37,7 +37,7 @@ export const useSwipeGestures = ({
     isDragging: false
   });
 
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLElement | null>(null);
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
     if (disabled) return;

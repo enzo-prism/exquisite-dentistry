@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import React, { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import { useSectionFix } from "@/hooks/use-section-fix";
 import { setupErrorReduction } from "@/utils/errorReduction";
 import { PerformanceProvider } from "@/hooks/use-performance-monitor";
+import { isAnalyticsSuppressedPath } from "@/utils/analyticsHost";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 import WebsiteConcierge from "@/components/WebsiteConcierge";
@@ -112,10 +112,8 @@ const PageLoaderComponent = () => {
 const AppRoutes = () => {
   const location = useLocation();
   const isSitemapPage = location.pathname === '/sitemap';
-  const isChatGptAdsLanding = location.pathname.replace(/\/+$/, '') === '/lp/chatgpt';
+  const isChatGptAdsLanding = isAnalyticsSuppressedPath(location.pathname);
   
-  // Fix section gaps and background consistency
-  useSectionFix(300);
 
   // Set proper content type for XML sitemap route
   useEffect(() => {
@@ -361,7 +359,7 @@ const AppRoutes = () => {
 
 const RouteAwareConcierge = () => {
   const location = useLocation();
-  const isChatGptAdsLanding = location.pathname.replace(/\/+$/, '') === '/lp/chatgpt';
+  const isChatGptAdsLanding = isAnalyticsSuppressedPath(location.pathname);
 
   return isChatGptAdsLanding ? null : <WebsiteConcierge />;
 };

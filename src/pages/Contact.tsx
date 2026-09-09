@@ -14,10 +14,8 @@ import {
 import VideoHero from '@/components/VideoHero';
 import {
   ATTRIBUTION_FIELDS,
-  getCurrentUTMParameters,
-  getStoredUTMAttribution,
+  getUTMAttribution,
 } from '@/utils/utmTracking';
-import { checkForSectionGaps, fixBackgroundConsistency } from '@/utils/sectionAudit';
 import ReviewWidget from '@/components/ReviewWidget';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import PageSEO from '@/components/seo/PageSEO';
@@ -58,16 +56,11 @@ function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
   formData.set('environment', import.meta.env.MODE ?? 'production');
   formData.set('_codex_test', 'false');
 
-  const currentAttribution = getCurrentUTMParameters();
-  const storedAttribution = getStoredUTMAttribution() ?? {};
+  const attribution = getUTMAttribution();
   formData.set('page_path', window.location.pathname);
   formData.set('referrer', sanitizeOperationalUrl(document.referrer));
   for (const field of ATTRIBUTION_FIELDS) {
-    const currentValue = currentAttribution[field];
-    const resolvedValue = currentValue
-      ? currentValue
-      : storedAttribution[field] ?? '';
-    formData.set(field, resolvedValue);
+    formData.set(field, attribution[field] ?? '');
   }
 }
 
@@ -358,14 +351,8 @@ const Contact = () => {
       window.scrollTo(0, 0);
     }, 120);
 
-    const gapCheckTimeout = setTimeout(() => {
-      checkForSectionGaps();
-      fixBackgroundConsistency();
-    }, 500);
-
     return () => {
       clearTimeout(scrollTimeout);
-      clearTimeout(gapCheckTimeout);
     };
   }, [location.hash]);
 

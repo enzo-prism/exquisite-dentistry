@@ -1,6 +1,6 @@
 /**
  * Section Audit Utility
- * This utility helps detect and fix spacing issues between sections
+ * Read-only, explicitly invoked diagnostic. Layout belongs to component CSS.
  */
 
 // Function to check for gaps between sections
@@ -40,56 +40,8 @@ export const checkForSectionGaps = (): {
       
       gapLocations.push(`Gap of ${Math.round(nextTop - currentBottom)}px between "${currentId}" and "${nextId}"`);
       
-      // Fix the gap by adjusting the margin
-      (nextSection as HTMLElement).style.marginTop = '0';
     }
   }
   
   return { hasGaps, gapLocations };
 };
-
-// Function to fix common background color inconsistencies
-export const fixBackgroundConsistency = (): void => {
-  const sections = document.querySelectorAll('section');
-  
-  sections.forEach(section => {
-    // Remove any unwanted margins
-    (section as HTMLElement).style.margin = '0';
-    
-    // Ensure backgrounds extend fully
-    if ((section as HTMLElement).style.backgroundColor || 
-        window.getComputedStyle(section).backgroundColor !== 'rgba(0, 0, 0, 0)') {
-      (section as HTMLElement).classList.add('full-width-section');
-    }
-  });
-};
-
-// Function to ensure balanced padding between sections
-export const balanceSectionPadding = (): void => {
-  const sections = document.querySelectorAll('section');
-  
-  sections.forEach((section, index) => {
-    const sectionStyle = window.getComputedStyle(section);
-    const paddingTop = parseInt(sectionStyle.paddingTop, 10);
-    const paddingBottom = parseInt(sectionStyle.paddingBottom, 10);
-    
-    // If padding is significantly unbalanced (more than 25% difference)
-    if (Math.abs(paddingTop - paddingBottom) > Math.max(paddingTop, paddingBottom) * 0.25) {
-      // Calculate balanced padding
-      const avgPadding = Math.floor((paddingTop + paddingBottom) / 2);
-      
-      // Apply balanced padding
-      (section as HTMLElement).style.paddingTop = `${avgPadding}px`;
-      (section as HTMLElement).style.paddingBottom = `${avgPadding}px`;
-      
-      console.log(`Balanced padding for section ${index + 1}: ${avgPadding}px top and bottom`);
-    }
-  });
-};
-
-// For debugging - add to window object
-if (typeof window !== 'undefined') {
-  window.checkForSectionGaps = checkForSectionGaps;
-  window.fixBackgroundConsistency = fixBackgroundConsistency;
-  window.balanceSectionPadding = balanceSectionPadding;
-}

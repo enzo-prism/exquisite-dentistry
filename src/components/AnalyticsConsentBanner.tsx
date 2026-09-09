@@ -33,13 +33,15 @@ const AnalyticsConsentBanner = () => {
 
   const choose = (consent: 'granted' | 'denied') => {
     const previousConsent = getCurrentConsent();
-    if (campaignMeasurementOnly) updateChatGptAdsMeasurementConsent(consent);
-    else updateAnalyticsConsent(consent);
+    const persisted = campaignMeasurementOnly
+      ? updateChatGptAdsMeasurementConsent(consent)
+      : updateAnalyticsConsent(consent);
     setIsOpen(false);
 
     // The Vercel packages leave injected scripts and globals behind when
     // unmounted. Reload after revocation so the denied state starts clean.
-    if (previousConsent === 'granted' && consent === 'denied') {
+    // If storage rejects this choice, reloading could restore an older grant.
+    if (persisted && previousConsent === 'granted' && consent === 'denied') {
       window.location.reload();
     }
   };

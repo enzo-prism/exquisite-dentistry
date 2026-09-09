@@ -8,11 +8,17 @@ type OpenAIAdsTestWindow = typeof window & {
 test.describe('ChatGPT Ads landing page', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
+      if (window !== window.top) return;
       localStorage.setItem('exquisite_analytics_consent_v1', 'denied');
       localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v1', 'denied');
       window.__EXQUISITE_ANALYTICS_TEST_HOST__ = 'exquisitedentistryla.com';
       (window as typeof window & { __chatGptAdsEvents?: unknown[] }).__chatGptAdsEvents = [];
       (window as OpenAIAdsTestWindow).__openAIAdsCalls = [];
+      window.addEventListener('message', event => {
+        if (event.data?.type === 'test-openai-call') {
+          (window as OpenAIAdsTestWindow).__openAIAdsCalls?.push(event.data.args);
+        }
+      });
       window.addEventListener('exquisite:chatgpt-ads-lead-confirmed', (event) => {
         const customEvent = event as CustomEvent;
         (window as typeof window & { __chatGptAdsEvents?: unknown[] }).__chatGptAdsEvents?.push(customEvent.detail);
@@ -27,7 +33,8 @@ test.describe('ChatGPT Ads landing page', () => {
           const calls = window.__openAIAdsCalls || [];
           const queued = Array.isArray(window.oaiq?.q) ? window.oaiq.q : [];
           window.__openAIAdsCalls = calls;
-          window.oaiq = (...args) => calls.push(args);
+          window.oaiq = (...args) => { calls.push(args); parent.postMessage({ type: 'test-openai-call', args }, '*'); };
+          window.oaiq.loaded = true;
           queued.forEach((args) => window.oaiq(...args));
         })();`,
       });
@@ -125,12 +132,13 @@ test.describe('ChatGPT Ads landing page', () => {
       (window as typeof window & { __chatGptAdsEvents?: unknown[] }).__chatGptAdsEvents ?? []
     ));
     expect(events).toEqual([{
+      eventId: expect.stringMatching(/^[0-9a-f-]{36}$/),
       form: 'chatgpt_ads_consultation',
       source: 'chatgpt_ads',
     }]);
     expect(JSON.stringify(events)).not.toContain('Local Test');
     expect(JSON.stringify(events)).not.toContain('local-test@example.com');
-    expect(JSON.stringify(events)).not.toContain('323');
+    expect(JSON.stringify(events)).not.toContain('(323) 555-0100');
     expect(JSON.stringify(events)).not.toContain('openai_reference_123');
 
     const googleEvents = await page.evaluate(() => window.dataLayer ?? []);
@@ -156,13 +164,14 @@ test.describe('ChatGPT Ads landing page', () => {
         detail: {
           form: 'chatgpt_ads_consultation',
           source: 'chatgpt_ads',
+          eventId: 'd6c13c73-39d5-4b83-874d-a46cbb257ef3',
           ignored_personal_data: 'local-test@example.com',
         },
       }));
     });
 
     await page.waitForFunction(() => (
-      (window as OpenAIAdsTestWindow).__openAIAdsCalls?.some((call) => call[0] === 'init')
+      (window as OpenAIAdsTestWindow).__openAIAdsCalls?.some((call) => call[0] === 'measure')
     ));
 
     const pixelCalls = await page.evaluate(() => (
@@ -174,10 +183,115 @@ test.describe('ChatGPT Ads landing page', () => {
       'measure',
       'lead_created',
       { type: 'customer_action' },
-      { opt_out: true },
+      { opt_out: true, event_id: 'd6c13c73-39d5-4b83-874d-a46cbb257ef3' },
     ]);
     expect(JSON.stringify(pixelCalls)).not.toContain('local-test@example.com');
     expect(JSON.stringify(pixelCalls)).not.toContain('openai_reference_123');
+    expect(await page.evaluate(() => typeof window.oaiq)).toBe('undefined');
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveAttribute('sandbox', 'allow-scripts');
+  });
+
+  test('does not replay denied leads and deduplicates repeated confirmed signals', async ({ page }) => {
+    await page.goto('/lp/chatgpt/');
+    const signal = () => page.evaluate(() => window.dispatchEvent(new CustomEvent('exquisite:chatgpt-ads-lead-confirmed', {
+      detail: { eventId: '00f6ac65-a477-49b3-b52e-ce10a112e118' },
+    })));
+    await signal();
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await page.waitForFunction(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.some(c => c[0] === 'init'));
+    expect(await page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.filter(c => c[0] === 'measure'))).toEqual([]);
+    await signal();
+    await signal();
+    await expect.poll(() => page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.filter(c => c[0] === 'measure').length)).toBe(1);
+  });
+
+  test('honors the consent choice when localStorage is blocked', async ({ page }) => {
+    await page.addInitScript(() => {
+      if (window !== window.top) return;
+      Object.defineProperty(window, 'localStorage', { configurable: true, get() { throw new DOMException('Blocked', 'SecurityError'); } });
+    });
+    await page.goto('/lp/chatgpt/');
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
+    await page.evaluate(() => window.dispatchEvent(new CustomEvent('exquisite:chatgpt-ads-lead-confirmed', {
+      detail: { eventId: '00f6ac65-a477-49b3-b52e-ce10a112e119' },
+    })));
+    await expect.poll(() => page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.filter(c => c[0] === 'measure').length)).toBe(1);
+  });
+
+  test('uses the latest choice when only consent writes fail', async ({ page }) => {
+    await page.addInitScript(() => {
+      if (window !== window.top) return;
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(key, value) {
+        if (key === 'exquisite_chatgpt_ads_measurement_consent_v1') throw new DOMException('Full', 'QuotaExceededError');
+        return original.call(this, key, value);
+      };
+    });
+    await page.goto('/lp/chatgpt/');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
+    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v1'))).toBe('denied');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Decline' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
+  });
+
+  test('does not restore an older grant after a failed consent-revocation write', async ({ page }) => {
+    await page.goto('/lp/chatgpt/');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
+    await page.evaluate(() => {
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(key, value) {
+        if (key === 'exquisite_chatgpt_ads_measurement_consent_v1') throw new DOMException('Full', 'QuotaExceededError');
+        return original.call(this, key, value);
+      };
+    });
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Decline' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
+    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v1'))).toBe('granted');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await expect(page.getByRole('button', { name: 'Allow campaign measurement' })).toBeVisible();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
+  });
+
+  test('removes the measurement frame when consent is revoked in another tab', async ({ page, context }) => {
+    await page.goto('/lp/chatgpt/');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
+    const other = await context.newPage();
+    await other.goto('/robots.txt');
+    await other.evaluate(() => localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v1', 'denied'));
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
+    await other.close();
+  });
+
+  test('recovers a failed SDK download without losing the confirmed lead', async ({ page }) => {
+    let attempts = 0;
+    await page.route('https://bzrcdn.openai.com/sdk/oaiq.min.js', async route => {
+      attempts++;
+      if (attempts === 1) { await route.abort(); return; }
+      await route.fulfill({ contentType: 'application/javascript', body: `
+        const queue = window.oaiq.q;
+        window.oaiq = (...args) => parent.postMessage({type:'test-openai-call',args}, '*');
+        window.oaiq.loaded = true;
+        queue.forEach(args => window.oaiq(...args));
+      ` });
+    });
+    await page.goto('/lp/chatgpt/');
+    await page.getByRole('button', { name: 'Privacy choices' }).click();
+    await page.getByRole('button', { name: 'Allow campaign measurement' }).click();
+    await page.evaluate(() => window.dispatchEvent(new CustomEvent('exquisite:chatgpt-ads-lead-confirmed', {
+      detail: { eventId: '00f6ac65-a477-49b3-b52e-ce10a112e120' },
+    })));
+    await expect.poll(() => page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.filter(c => c[0] === 'measure').length)).toBe(1);
+    expect(attempts).toBe(2);
   });
 
   test('never loads Google or Vercel analytics on the healthcare landing route', async ({ page }) => {
