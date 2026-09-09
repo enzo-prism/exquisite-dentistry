@@ -1,24 +1,26 @@
-/**
- * Privacy-safe handoff point for a future OpenAI Ads conversion integration.
- *
- * A listener may be registered later, after an approved conversion identifier
- * and vendor implementation are available. The event intentionally carries no
- * form contents or patient-identifying data.
- */
+/** Consent and confirmed-submission signals for isolated campaign measurement. */
 export const CHATGPT_ADS_LEAD_CONFIRMED_EVENT = 'exquisite:chatgpt-ads-lead-confirmed';
 export const CHATGPT_ADS_MEASUREMENT_CONSENT_STORAGE_KEY = 'exquisite_chatgpt_ads_measurement_consent_v1';
 export const CHATGPT_ADS_MEASUREMENT_CONSENT_CHANGED_EVENT = 'exquisite:chatgpt-ads-measurement-consent-changed';
 
 export type ChatGptAdsMeasurementConsent = 'granted' | 'denied' | null;
+let memoryConsent: ChatGptAdsMeasurementConsent = null;
+let useMemoryConsent = false;
+
+export const clearChatGptAdsMemoryConsent = () => {
+  memoryConsent = null;
+  useMemoryConsent = false;
+};
 
 export const getChatGptAdsMeasurementConsent = (): ChatGptAdsMeasurementConsent => {
   if (typeof window === 'undefined') return null;
 
+  if (useMemoryConsent) return memoryConsent;
   try {
     const stored = window.localStorage.getItem(CHATGPT_ADS_MEASUREMENT_CONSENT_STORAGE_KEY);
     return stored === 'granted' || stored === 'denied' ? stored : null;
   } catch {
-    return null;
+    return memoryConsent;
   }
 };
 
@@ -27,15 +29,19 @@ export const updateChatGptAdsMeasurementConsent = (
 ) => {
   if (typeof window === 'undefined') return;
 
+  memoryConsent = consent;
   try {
     window.localStorage.setItem(CHATGPT_ADS_MEASUREMENT_CONSENT_STORAGE_KEY, consent);
+    useMemoryConsent = false;
   } catch {
-    // Local storage can be blocked; the in-memory event still fires.
+    // Quota/privacy failures may block writes while reads still return an old choice.
+    useMemoryConsent = true;
   }
 
   window.dispatchEvent(new CustomEvent(CHATGPT_ADS_MEASUREMENT_CONSENT_CHANGED_EVENT, {
     detail: consent,
   }));
+  return !useMemoryConsent;
 };
 
 export const signalChatGptAdsLeadConfirmed = () => {
@@ -43,6 +49,7 @@ export const signalChatGptAdsLeadConfirmed = () => {
 
   window.dispatchEvent(new CustomEvent(CHATGPT_ADS_LEAD_CONFIRMED_EVENT, {
     detail: {
+      eventId: crypto.randomUUID(),
       form: 'chatgpt_ads_consultation',
       source: 'chatgpt_ads',
     },

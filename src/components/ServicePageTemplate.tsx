@@ -40,6 +40,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
     throw new Error(`Service page "${config.slug}" must include at least two internal links.`);
   }
 
+  const { secondaryText, secondaryHref } = config.cta;
   const canonicalUrl = getCanonicalUrl(`/${config.slug}`);
   const trackServiceCta = (source: string, ctaText: string, destination: string) => {
     const normalizedDestination = normalizeInternalHref(destination);
@@ -248,21 +249,21 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ config }) => 
                 </a>
               )}
             </Button>
-            {config.cta.secondaryText && config.cta.secondaryHref && (
+            {secondaryText && secondaryHref && (
               <Button asChild size="lg" variant="outline">
-                {config.cta.secondaryHref.startsWith("/") ? (
+                {secondaryHref.startsWith("/") ? (
                   <Link
-                    to={normalizeInternalHref(config.cta.secondaryHref)}
-                    onClick={() => trackServiceCta('service_page_secondary_cta', config.cta.secondaryText, config.cta.secondaryHref)}
+                    to={normalizeInternalHref(secondaryHref)}
+                    onClick={() => trackServiceCta('service_page_secondary_cta', secondaryText, secondaryHref)}
                   >
-                    {config.cta.secondaryText}
+                    {secondaryText}
                   </Link>
                 ) : (
                   <a
-                    href={config.cta.secondaryHref}
-                    onClick={() => trackServiceCta('service_page_secondary_cta', config.cta.secondaryText, config.cta.secondaryHref)}
+                    href={secondaryHref}
+                    onClick={() => trackServiceCta('service_page_secondary_cta', secondaryText, secondaryHref)}
                   >
-                    {config.cta.secondaryText}
+                    {secondaryText}
                   </a>
                 )}
               </Button>

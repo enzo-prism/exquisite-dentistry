@@ -28,7 +28,7 @@ type ExtendedNavigator = Navigator & {
 };
 
 export const useHardwareAcceleration = <T extends HTMLElement = HTMLDivElement>(enabled: boolean = true) => {
-  const elementRef = useRef<T>(null);
+  const elementRef = useRef<T | null>(null);
   const metricsRef = useRef<PerformanceMetrics>({});
   const isMobile = useRef(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 

@@ -49,8 +49,8 @@ export function preloadImagePair(beforeSrc: string, afterSrc: string): Promise<{
       }
     };
     
-    const handleError = (error: ErrorEvent) => {
-      reject(new Error(`Failed to load image pair: ${error.message}`));
+    const handleError = () => {
+      reject(new Error('Failed to load image pair'));
     };
     
     images.before.onload = handleLoad;

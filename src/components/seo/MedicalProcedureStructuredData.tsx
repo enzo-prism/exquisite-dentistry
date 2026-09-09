@@ -56,6 +56,14 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
 }) => {
   const canonicalUrl = normalizeUrl(url);
   const procedureData = {
+    ...(steps.length > 0 && {
+      howPerformed: steps.map((step, index) => ({
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: step.name,
+        text: step.description,
+      })),
+    }),
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     name: procedureName,
@@ -79,16 +87,6 @@ const MedicalProcedureStructuredData: React.FC<MedicalProcedureStructuredDataPro
       '@id': 'https://exquisitedentistryla.com/#doctor'
     }
   };
-
-  // Add procedure steps if provided
-  if (steps.length > 0) {
-    procedureData['howPerformed'] = steps.map((step, index) => ({
-      '@type': 'HowToStep',
-      position: index + 1,
-      name: step.name,
-      text: step.description
-    }));
-  }
 
   return (
     <Helmet>

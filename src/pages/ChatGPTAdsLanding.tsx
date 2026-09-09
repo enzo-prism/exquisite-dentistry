@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { ADDRESS, PHONE_NUMBER_DISPLAY } from '@/constants/contact';
-import { ATTRIBUTION_FIELDS, getCurrentUTMParameters, getStoredUTMAttribution } from '@/utils/utmTracking';
+import { ATTRIBUTION_FIELDS, getUTMAttribution } from '@/utils/utmTracking';
 import { trackFormSubmission } from '@/utils/googleAdsTracking';
 import { openAnalyticsPreferences } from '@/utils/googleAnalytics';
 import { trackContactFormFailed, trackContactFormValidationFailed } from '@/utils/vercelAnalytics';
@@ -72,11 +72,7 @@ const sanitizeOperationalUrl = (value: string) => {
 };
 
 const appendAttributionMetadata = (formData: FormData) => {
-  const currentAttribution = getCurrentUTMParameters();
-  const storedAttribution = getStoredUTMAttribution() ?? {};
-  const attribution = Object.keys(currentAttribution).length > 0
-    ? currentAttribution
-    : storedAttribution;
+  const attribution = getUTMAttribution();
 
   formData.set('site', 'exquisite');
   formData.set('form_key', 'chatgpt_ads_consultation');

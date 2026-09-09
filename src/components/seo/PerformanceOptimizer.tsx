@@ -58,7 +58,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
 
   // Add performance-aware CSS classes to body
   useEffect(() => {
-    const classes = [];
+    const classes: string[] = [];
     
     if (isSlowConnection) classes.push('slow-connection');
     if (isReducedMotion) classes.push('reduce-motion');

@@ -49,6 +49,9 @@ jobs:
       - name: Content quality (service/location configs)
         run: npm run test:content
 
+      - name: Campaign attribution
+        run: npm run test:attribution
+
       - name: Blog integrity
         run: npm run test:blog
 
@@ -75,6 +78,9 @@ jobs:
 
       - name: Build (image opt + prerender + sitemap + search index)
         run: npm run build
+
+      - name: Production tracking safeguards
+        run: node scripts/test-tracking-build.mjs
 
       - name: SEO smoke (dist/index.html tags)
         run: npm run check:seo

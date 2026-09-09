@@ -13,6 +13,8 @@ const MAX_DIMENSION_LENGTH = 64;
 const EMAIL_LIKE = /[^\s@]+@[^\s@]+\.[^\s@]+/;
 const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
 const recentEvents = new Map<string, number>();
+let memoryConsent: AnalyticsConsent = null;
+let useMemoryConsent = false;
 let previousVirtualLocation: string | undefined;
 let lastPageViewLocation: string | undefined;
 
@@ -66,7 +68,7 @@ const canUseGoogleTag = () => (
 );
 
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
-  if (!canUseGoogleTag()) return false;
+  if (!canUseGoogleTag() || typeof window.gtag !== 'function') return false;
 
   const cleanParameters = Object.fromEntries(
     Object.entries(parameters).filter(([, value]) => value !== undefined),
@@ -99,21 +101,24 @@ const sendDedupedEvent = (
 export const getAnalyticsConsent = (): AnalyticsConsent => {
   if (typeof window === 'undefined') return null;
 
+  if (useMemoryConsent) return memoryConsent;
   try {
     const stored = window.localStorage.getItem(ANALYTICS_CONSENT_STORAGE_KEY);
     return stored === 'granted' || stored === 'denied' ? stored : null;
   } catch {
-    return null;
+    return memoryConsent;
   }
 };
 
 export const updateAnalyticsConsent = (consent: Exclude<AnalyticsConsent, null>) => {
   if (typeof window === 'undefined') return;
 
+  memoryConsent = consent;
   try {
     window.localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, consent);
+    useMemoryConsent = false;
   } catch {
-    // Local storage can be blocked; the in-memory consent event still fires.
+    useMemoryConsent = true;
   }
 
   if (canUseGoogleTag()) {
@@ -126,6 +131,7 @@ export const updateAnalyticsConsent = (consent: Exclude<AnalyticsConsent, null>)
   }
 
   window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_CHANGED_EVENT, { detail: consent }));
+  return !useMemoryConsent;
 };
 
 export const openAnalyticsPreferences = () => {

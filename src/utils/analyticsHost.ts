@@ -46,7 +46,13 @@ export const isCanonicalAnalyticsHost = (hostname?: string) => {
 export const isAnalyticsSuppressedPath = (
   pathname = typeof window === 'undefined' ? '' : window.location.pathname,
 ) => {
-  const normalized = pathname === '/' ? '/' : pathname.replace(/\/+$/, '') || '/';
+  let normalized: string;
+  try {
+    // React Router matches decoded paths without case sensitivity by default.
+    normalized = decodeURIComponent(pathname).toLowerCase().replace(/\/+$/, '') || '/';
+  } catch {
+    return true;
+  }
   return ANALYTICS_SUPPRESSED_PATHS.includes(
     normalized as (typeof ANALYTICS_SUPPRESSED_PATHS)[number],
   );

@@ -28,6 +28,10 @@ const googleSiteVerificationPlugin = (rawToken?: string): Plugin => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+  if (env.VERCEL_ENV === 'production'
+    && !/^[a-zA-Z0-9_-]{1,128}$/.test(env.VITE_OPENAI_ADS_PIXEL_ID?.trim() ?? '')) {
+    throw new Error('Production requires a valid VITE_OPENAI_ADS_PIXEL_ID for campaign measurement.');
+  }
 
   return {
     server: {

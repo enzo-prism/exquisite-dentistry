@@ -27,9 +27,13 @@ Attribution uses the allowlist in `src/utils/utmTracking.ts`. Values are length-
 
 Google Analytics, Google Ads tags, Vercel Web Analytics, Vercel Speed Insights, and global intent tracking are intentionally disabled on `/lp/chatgpt/`. Google states that healthcare-service pages may be HIPAA-covered and that Google Analytics must not be used on HIPAA-covered pages. Consent Mode does not remove that restriction.
 
-The campaign uses only the approved OpenAI Ads conversion source on this route. After consent and a confirmed Formspree success, the app sends the standard `lead_created` event with `{ type: 'customer_action' }` and `{ opt_out: true }`. The Pixel receives no form values, click identifiers, URLs, or manually supplied user object. Automatic advanced matching must remain disabled.
+The campaign uses its configured OpenAI Ads conversion source on this route. After consent and a confirmed Formspree success, the app sends `lead_created` with `{ type: 'customer_action' }`, `{ opt_out: true }`, and a random UUID `event_id`. It never turns page visits, phone clicks, or declined/failed submissions into leads.
 
-The consent banner explicitly names OpenAI Ads. Before consent, the OpenAI SDK is not loaded and the Pixel is not initialized. Declining consent produces no conversion signal.
+The unmodified vendor SDK runs only inside `/measurement/openai.html` in an opaque `sandbox="allow-scripts"` iframe. Never add `allow-same-origin`. Automatic advanced matching is enabled by the current vendor configuration; the sandbox prevents the SDK from accessing the parent form or its fields. Parent/frame messages validate source, channel, origin, and event ID. The SDK receives the consented `oppref` when available and its own generic bridge URL/browser/network metadata; it receives no form values, contact hashes, or manually supplied user object. `opt_out` limits personalization; it does not disable measurement or automatic matching.
+
+This isolation is a tested engineering design, not a vendor-endorsed integration pattern. Both Chromium and WebKit tests run the actual current SDK with matching enabled and intercept all collection. Production ingestion must still be verified in Ads Manager after deployment. Cookie-based browser matching is unavailable inside the opaque frame; click-reference attribution is preserved. Queue acknowledgment is not ingestion confirmation.
+
+The consent banner explicitly names OpenAI Ads. Before consent, the iframe and OpenAI SDK do not load. Declining consent produces no conversion signal. Revocation (including another tab) destroys the frame and discards pending events; route-boundary document navigation removes all prior vendor state. Failed storage writes use the current in-memory choice and never reload into an old stored grant. SDK loading has bounded retries, and duplicate confirmed signals reuse the same event ID. Pending events are memory-only, so navigation or browser termination can still interrupt delivery.
 
 ## Operations and routing
 
@@ -51,3 +55,17 @@ Before treating routing as final, verify in the authenticated Formspree dashboar
 4. Browser network inspection shows no Google or Vercel analytics requests on this route.
 5. Production headers include `nosniff`, strict-origin referrer policy, restricted camera/microphone/geolocation, and same-origin framing.
 6. Recipient routing and response ownership are verified with one approved fictional submission.
+
+
+## September 9 diagnosis
+
+Read-only Ads Manager inspection matched pixel `V7dxjf8kBAWERq3f9VG2wM` to Exquisite Dentistry Website and `ChatGPT Consultation Lead` to base event `lead_created` (one campaign). The selected 14-day overview showed 24 impressions, zero clicks, and $0.00 spend. The warning means no normalized events in the previous 24 complete UTC hours; it is not itself proof of broken JavaScript. No artificial pageview/lead is sent to erase it.
+
+For an approved live diagnostic, distinguish these stages: form accepted by Formspree; SDK request attempted; event visible in the correct data-source stream; event matched to the configured conversion; event attributed to an eligible ad click. A synthetic test without a real click reference must not be presented as an ad-generated patient. `debug:true` is not a sandbox and still sends real events.
+
+Run `npm run test:attribution`, the Playwright suite, `npm run build`, and `node scripts/test-tracking-build.mjs` before release. The latter verifies generated HTML retains route isolation, includes the bridge, and excludes measurement routes from indexing. Recheck the deployed bridge headers and actual event stream after deployment.
+
+Current official references:
+- https://developers.openai.com/ads/measurement-pixel
+- https://developers.openai.com/ads/api-reference/conversion-setup
+- https://help.openai.com/en/articles/20001409-conversion-measurement

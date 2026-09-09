@@ -32,7 +32,7 @@ const PrivacyPolicy: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-8">
-            <strong>Last Updated:</strong> September 2, 2026
+            <strong>Last Updated:</strong> September 9, 2026
           </p>
 
           <section className="mb-8">
@@ -101,7 +101,9 @@ const PrivacyPolicy: React.FC = () => {
             <p className="text-gray-600 mb-4">
               On our ChatGPT advertising landing page, Google Analytics, Vercel Web Analytics, and
               Speed Insights are disabled. If you allow campaign measurement there, an OpenAI Ads
-              conversion tag may record that a consultation request was successfully delivered. We do
+              conversion tag may record that our form provider accepted a consultation request. It may
+              receive an ad click reference, a random event identifier, and basic browser and network
+              information to measure the campaign. We do
               not provide OpenAI with the name, email address, phone number, consultation selection,
               or other answers submitted through the form.
             </p>

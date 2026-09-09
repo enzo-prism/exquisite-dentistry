@@ -28,10 +28,22 @@ export const ATTRIBUTION_FIELDS = [
 ] as const;
 
 const MAX_ATTRIBUTION_VALUE_LENGTH = 120;
+const MAX_CLICK_ID_LENGTH = 2048;
+const CLICK_ID_FIELDS = new Set<string>([
+  'gclid', 'gbraid', 'wbraid', 'dclid', 'msclkid', 'fbclid', 'oppref',
+]);
 const EMAIL_LIKE = /[^\s@]+@[^\s@]+\.[^\s@]+/;
 const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
 
-const cleanAttributionValue = (value: string | null) => {
+const cleanAttributionValue = (field: string, value: string | null) => {
+  // Click IDs are opaque tokens: changing or truncating them destroys attribution.
+  // Reject malformed/oversized input rather than trying to repair it. Numeric
+  // sequences inside an identifier are not evidence of a phone number.
+  if (CLICK_ID_FIELDS.has(field)) {
+    return value && value.length <= MAX_CLICK_ID_LENGTH && /^[A-Za-z0-9._~+/=-]+$/.test(value)
+      ? value
+      : undefined;
+  }
   if (!value) return undefined;
   const cleaned = Array.from(value)
     .filter((character) => {
@@ -55,7 +67,7 @@ export function getCurrentUTMParameters(): Record<string, string> {
   const urlParams = new URLSearchParams(window.location.search);
 
   return ATTRIBUTION_FIELDS.reduce<Record<string, string>>((result, field) => {
-    const value = cleanAttributionValue(urlParams.get(field));
+    const value = cleanAttributionValue(field, urlParams.get(field));
     if (value) result[field] = value;
     return result;
   }, {});
@@ -79,8 +91,7 @@ export function initializeUTMTracking(): void {
   if (Object.keys(attribution).length === 0) return;
 
   try {
-    const existing = getStoredUTMAttribution() ?? {};
-    if (Object.keys(existing).length > 0) return;
+    // Last tagged visit wins as one complete record. Never combine campaigns.
     window.sessionStorage.setItem(
       ATTRIBUTION_STORAGE_KEY,
       JSON.stringify(attribution),
@@ -96,11 +107,13 @@ export function getStoredUTMAttribution(): Record<string, string> | null {
   try {
     const stored = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY);
     if (!stored) return null;
-    const parsed = JSON.parse(stored) as Record<string, unknown>;
+    const parsed: unknown = JSON.parse(stored);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const record = parsed as Record<string, unknown>;
 
     const attribution = ATTRIBUTION_FIELDS.reduce<Record<string, string>>((result, field) => {
-      if (typeof parsed[field] !== 'string') return result;
-      const value = cleanAttributionValue(parsed[field]);
+      if (typeof record[field] !== 'string') return result;
+      const value = cleanAttributionValue(field, record[field] as string);
       if (value) result[field] = value;
       return result;
     }, {});
@@ -109,4 +122,10 @@ export function getStoredUTMAttribution(): Record<string, string> | null {
   } catch {
     return null;
   }
+}
+
+/** Resolve one campaign record, including when session storage is unavailable. */
+export function getUTMAttribution(): Record<string, string> {
+  const current = getCurrentUTMParameters();
+  return Object.keys(current).length > 0 ? current : getStoredUTMAttribution() ?? {};
 }

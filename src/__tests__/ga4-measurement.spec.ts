@@ -339,7 +339,7 @@ test('redacts PII-like URL paths from config and manual page views', async ({ pa
   assertPrivacySafeGaEvents(commands);
 });
 
-test('captures first-touch UTMs and click IDs immediately without emitting click IDs', async ({ page }) => {
+test('captures coherent campaign visits and retains attribution on untagged navigation', async ({ page }) => {
   await page.goto(
     '/?utm_source=google&utm_medium=cpc&utm_campaign=veneers&utm_term=smile&utm_content=hero'
       + '&gclid=gclid-fixture-123&gbraid=gbraid-fixture-456&wbraid=wbraid-fixture-789',
@@ -364,8 +364,10 @@ test('captures first-touch UTMs and click IDs immediately without emitting click
   });
   expect(await findStoredAttribution(page)).toEqual(firstTouch);
 
-  await page.goto('/?utm_source=replacement&utm_campaign=should-not-overwrite');
-  expect(await findStoredAttribution(page)).toEqual(firstTouch);
+  await page.goto('/?utm_source=replacement&utm_campaign=new-campaign');
+  expect(await findStoredAttribution(page)).toEqual({
+    utm_source: 'replacement', utm_campaign: 'new-campaign',
+  });
   assertPrivacySafeGaEvents(await readDataLayer(page));
 });
 

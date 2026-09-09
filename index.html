@@ -33,6 +33,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
+    <!-- Cross the campaign privacy boundary with a fresh document. Install before
+         vendors or the router so a previously loaded SDK cannot observe the
+         excluded route through SPA history updates. Keep the path in sync with
+         src/utils/analyticsHost.ts. -->
+    <script>
+      (function () {
+        function isCampaignPath(pathname) {
+          try {
+            return decodeURIComponent(pathname).toLowerCase().replace(/\/+$/, '') === '/lp/chatgpt';
+          } catch (error) {
+            return true;
+          }
+        }
+        var documentIsCampaign = isCampaignPath(window.location.pathname);
+        function crossesBoundary(url) {
+          return url.origin === window.location.origin &&
+            isCampaignPath(url.pathname) !== documentIsCampaign;
+        }
+
+        document.addEventListener('click', function (event) {
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
+              event.ctrlKey || event.shiftKey || event.altKey) return;
+          var anchor = event.target instanceof Element ? event.target.closest('a[href]') : null;
+          if (!anchor || anchor.hasAttribute('download') ||
+              (anchor.target && anchor.target !== '_self')) return;
+          var destination = new URL(anchor.href, window.location.href);
+          if (!crossesBoundary(destination)) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          window.location.assign(destination.href);
+        }, true);
+
+        ['pushState', 'replaceState'].forEach(function (method) {
+          var original = window.history[method];
+          window.history[method] = function (state, unused, url) {
+            if (url != null) {
+              var destination = new URL(url, window.location.href);
+              if (crossesBoundary(destination)) {
+                if (method === 'replaceState') window.location.replace(destination.href);
+                else window.location.assign(destination.href);
+                return;
+              }
+            }
+            return original.apply(this, arguments);
+          };
+        });
+
+        window.addEventListener('popstate', function (event) {
+          if (documentIsCampaign === isCampaignPath(window.location.pathname)) return;
+          event.stopImmediatePropagation();
+          window.location.reload();
+        }, true);
+      })();
+    </script>
+
     <!-- Consent-aware Google tag. Keep this allowlist in sync with
          src/utils/analyticsHost.ts. Script load, consent, config, and later
          events all stay off localhost and preview hosts. -->
@@ -52,7 +107,13 @@
       var canonicalAnalyticsHost =
         analyticsHostname === 'exquisitedentistryla.com' ||
         analyticsHostname === 'www.exquisitedentistryla.com';
-      var analyticsPath = String(window.location.pathname || '/').replace(/\/+$/, '') || '/';
+      var analyticsPath;
+      try {
+        analyticsPath = decodeURIComponent(String(window.location.pathname || '/')).toLowerCase().replace(/\/+$/, '') || '/';
+      } catch (error) {
+        // Malformed paths fail closed for measurement.
+        analyticsPath = '/lp/chatgpt';
+      }
       var analyticsSuppressedPath = analyticsPath === '/lp/chatgpt';
 
       if (canonicalAnalyticsHost && !analyticsSuppressedPath) {

@@ -29,8 +29,5 @@ declare global {
     __metaTracker?: Map<string, string[]>;
     runUIAudit?: typeof import('../utils/uiAudit').runUIAudit;
     logAuditResults?: typeof import('../utils/uiAudit').logAuditResults;
-    checkForSectionGaps?: typeof import('../utils/sectionAudit').checkForSectionGaps;
-    fixBackgroundConsistency?: typeof import('../utils/sectionAudit').fixBackgroundConsistency;
-    balanceSectionPadding?: typeof import('../utils/sectionAudit').balanceSectionPadding;
   }
 }
