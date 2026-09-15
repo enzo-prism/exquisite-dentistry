@@ -172,7 +172,7 @@ const ChatGPTAdsLanding = () => {
       formData.set('phone', values.phone.trim());
       formData.set('consultation_interest', selectedInterest?.label ?? 'Not sure yet');
       appendAttributionMetadata(formData);
-      const measurement = annotateLeadSubmission(formData);
+      const measurement = annotateLeadSubmission(formData, true);
 
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 12_000);
@@ -263,10 +263,10 @@ const ChatGPTAdsLanding = () => {
                   Cosmetic consultation · Los Angeles
                 </p>
                 <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-950 sm:text-5xl lg:text-[3.6rem]">
-                  A thoughtful first step toward the smile you have in mind.
+                  Porcelain veneers & cosmetic consultations in Los Angeles.
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
-                  Meet with Dr. Alexie Aguil to discuss porcelain veneers and other cosmetic options. Your consultation is a conversation, not a commitment.
+                  Meet with Dr. Alexie Aguil at Exquisite Dentistry to discuss your goals, porcelain veneers, and other cosmetic options. An in-person evaluation helps determine which options may be appropriate for you.
                 </p>
 
                 <Button
@@ -310,7 +310,10 @@ const ChatGPTAdsLanding = () => {
                   Request a cosmetic consultation
                 </h2>
                 <p className="mt-3 leading-7 text-stone-600">
-                  Tell us how to reach you. Our team will follow up about scheduling.
+                  Tell us how to reach you. Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.
+                </p>
+                <p className="mt-3 text-sm leading-6 text-stone-600">
+                  Consultation with Dr. Alexie Aguil at {ADDRESS}. You can ask about consultation fees when scheduling.
                 </p>
                 <p className="mt-2 text-sm text-stone-500">All fields are required.</p>
 

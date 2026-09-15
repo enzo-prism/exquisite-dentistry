@@ -47,7 +47,7 @@ test.describe('ChatGPT Ads landing page', () => {
 
     await expect(page.getByRole('heading', {
       level: 1,
-      name: 'A thoughtful first step toward the smile you have in mind.',
+      name: 'Porcelain veneers & cosmetic consultations in Los Angeles.',
     })).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow,noarchive');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -422,6 +422,11 @@ test.describe('ChatGPT Ads landing page', () => {
       await page.goto('/contact/?utm_source=chatgpt&utm_medium=paid&oppref=retained-click');
       await page.getByRole('button', { name: 'Privacy choices' }).click();
       await page.getByRole('button', { name: 'Allow measurement' }).click();
+      await page.evaluate(() => {
+        const w = window as typeof window & { va: (...args: unknown[]) => void; __vercelEvents: unknown[][] };
+        w.__vercelEvents = [];
+        w.va = (...args) => { w.__vercelEvents.push(args); };
+      });
       await page.getByRole('radio', { name: persona }).evaluate((radio: HTMLInputElement) => radio.click());
       await page.getByLabel('Name', { exact: true }).fill('Sample Person');
       await page.getByLabel('Email', { exact: true }).fill('sample@patient.invalid');
@@ -430,6 +435,12 @@ test.describe('ChatGPT Ads landing page', () => {
       await expect(page.getByText('Thanks for reaching out! We will respond shortly.')).toBeVisible();
       const expected = persona === 'Thinking about becoming a new patient' ? 1 : 0;
       await expect.poll(() => page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls?.filter(c => c[0] === 'measure').length ?? 0)).toBe(expected);
+      const vercelEvents = await page.evaluate(() => (window as typeof window & { __vercelEvents: [string, { name: string }][] }).__vercelEvents);
+      expect(vercelEvents.filter(([type, event]) => type === 'event' && event.name === 'Acquisition Lead')).toHaveLength(expected);
+      expect(vercelEvents.filter(([type, event]) => type === 'event' && event.name === 'Contact Form Submitted')).toHaveLength(1);
+      expect(body).toContain('measurement_ads_consent');
+      expect(body).toContain('measurement_consent_updated_at');
+      expect(body).toContain('measurement_acquisition_lead');
       const calls = await page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls ?? []);
       const leads = calls.filter(c => c[0] === 'measure');
       if (expected) {

@@ -498,7 +498,7 @@ const Contact = () => {
         formData.append('phone', trimmedPhone);
       }
       appendFormspreeOpsMetadata(formData);
-      const measurement = annotateLeadSubmission(formData);
+      const measurement = annotateLeadSubmission(formData, trimmedPersona === 'Thinking about becoming a new patient');
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
