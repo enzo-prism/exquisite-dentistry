@@ -64,3 +64,5 @@ Crossing the campaign layout boundary forces a fresh document before vendor init
 - Initial GA4 page locations retain only validated campaign parameters / supported ad click IDs. Later SPA views and referrers are sanitized. OpenAI `oppref` is never sent to Google or Vercel.
 - Vercel Web Analytics retains validated UTM parameters for campaign reporting; Speed Insights strips every query parameter. General and sensitive URL parameters and hashes are removed.
 - Vercel production Web Analytics was already enabled. The correct project is `prj_AP7khgidjrotghfqfGZ5p46cq2qA` (`exquisite-dentistry`).
+
+- Live `/contact/` verification exposed an existing GA4 custom rule that generated `generate_lead` from `page_view` when `page_path` started with `/contact`. Renamed that rule to the non-key `contact_page_view` and read back the saved definition. The manual confirmed-submission `generate_lead` remains the acquisition key event. Historical lead counts before this correction include page visits and must not be treated as confirmed inquiries. Allow Google's configuration propagation before evaluating the new period.
