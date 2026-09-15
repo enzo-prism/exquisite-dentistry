@@ -52,6 +52,9 @@ jobs:
       - name: Campaign attribution
         run: npm run test:attribution
 
+      - name: Submission consent evidence
+        run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts
+
       - name: Blog integrity
         run: npm run test:blog
 

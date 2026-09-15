@@ -18,6 +18,7 @@ This site uses consent-gated Vercel Web Analytics for pageviews and a small set 
 | `CTA Clicked` | Tracks broader high-intent CTAs, especially hero and service-page buttons that are not always booking links. | `source`, `cta_text`, `destination`, `destination_type` |
 | `Contact Method Clicked` | Tracks calls, SMS, directions, email, or social contact intent without sending visitor contact details. | `method`, `source`, `destination` |
 | `Contact Form Submitted` | Tracks successful non-test Formspree submissions without sending form contents. Only eligible new-patient requests additionally emit acquisition conversions. | `form=website_contact` |
+| `Acquisition Lead` | Tracks the successful non-test new-patient inquiry subset, using the same acquisition gate as GA4 `generate_lead`. This is an inquiry, not a staff-qualified lead or booked appointment. | `form=website_contact` |
 | `Contact Form Validation Failed` | Tracks form friction without sending invalid field values. | `form`, `field_count`, field-level booleans |
 | `Contact Form Failed` | Tracks failed Formspree requests. | `form`, `reason` |
 | `Financing Engagement` | Tracks Cherry financing section views, CTA clicks, widget readiness/errors, and widget clicks. | `action`, `source`, `cta_text`, `destination`, `status` |

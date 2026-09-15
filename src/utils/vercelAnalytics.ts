@@ -309,7 +309,10 @@ export const trackContactFormSubmitted = ({
   trackVercelEvent('Contact Form Submitted', {
     form: 'website_contact',
   });
-  if (acquisitionLead) trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
+  if (acquisitionLead) {
+    trackVercelEvent('Acquisition Lead', { form: 'website_contact' });
+    trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
+  }
 };
 
 export const trackContactFormValidationFailed = ({
