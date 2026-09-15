@@ -1,6 +1,6 @@
 /** Consent and confirmed-submission signals for isolated campaign measurement. */
 export const CHATGPT_ADS_LEAD_CONFIRMED_EVENT = 'exquisite:chatgpt-ads-lead-confirmed';
-export const CHATGPT_ADS_MEASUREMENT_CONSENT_STORAGE_KEY = 'exquisite_chatgpt_ads_measurement_consent_v1';
+export const CHATGPT_ADS_MEASUREMENT_CONSENT_STORAGE_KEY = 'exquisite_chatgpt_ads_measurement_consent_v2';
 export const CHATGPT_ADS_MEASUREMENT_CONSENT_CHANGED_EVENT = 'exquisite:chatgpt-ads-measurement-consent-changed';
 
 export type ChatGptAdsMeasurementConsent = 'granted' | 'denied' | null;
@@ -44,12 +44,12 @@ export const updateChatGptAdsMeasurementConsent = (
   return !useMemoryConsent;
 };
 
-export const signalChatGptAdsLeadConfirmed = () => {
+export const signalChatGptAdsLeadConfirmed = (eventId: string = crypto.randomUUID()) => {
   if (typeof window === 'undefined') return false;
 
   window.dispatchEvent(new CustomEvent(CHATGPT_ADS_LEAD_CONFIRMED_EVENT, {
     detail: {
-      eventId: crypto.randomUUID(),
+      eventId,
       form: 'chatgpt_ads_consultation',
       source: 'chatgpt_ads',
     },

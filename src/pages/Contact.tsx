@@ -1,3 +1,4 @@
+import { annotateLeadSubmission } from '@/utils/leadMeasurement';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -54,7 +55,6 @@ function appendFormspreeOpsMetadata(formData: FormData, formKey = 'contact') {
   formData.set('site', 'exquisite');
   formData.set('form_key', formKey);
   formData.set('environment', import.meta.env.MODE ?? 'production');
-  formData.set('_codex_test', 'false');
 
   const attribution = getUTMAttribution();
   formData.set('page_path', window.location.pathname);
@@ -145,6 +145,7 @@ const BenefitsVerificationForm = () => {
       if (values.phone.trim()) formData.set('phone', values.phone.trim());
       if (values.planName.trim()) formData.set('plan_name', values.planName.trim());
       appendFormspreeOpsMetadata(formData, 'insurance_benefits');
+      const measurement = annotateLeadSubmission(formData);
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -159,6 +160,7 @@ const BenefitsVerificationForm = () => {
       setValues(EMPTY_BENEFITS_FORM);
       setHoneypot('');
       trackFormSubmission('insurance_benefits_request', {
+        ...measurement,
         hasPhone: Boolean(values.phone.trim()),
       });
     } catch (error) {
@@ -496,6 +498,7 @@ const Contact = () => {
         formData.append('phone', trimmedPhone);
       }
       appendFormspreeOpsMetadata(formData);
+      const measurement = annotateLeadSubmission(formData);
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -515,6 +518,7 @@ const Contact = () => {
       setHoneypot('');
       setFieldErrors({ whichBestDescribesYou: '', name: '', email: '', message: '' });
       trackFormSubmission('contact_form', {
+        ...measurement,
         whichBestDescribesYou: trimmedPersona,
         hasPhone: Boolean(trimmedPhone),
       });

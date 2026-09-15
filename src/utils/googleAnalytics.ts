@@ -1,6 +1,6 @@
-import { isAnalyticsSuppressedPath, isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 
-export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v1';
+export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v2';
 export const ANALYTICS_PREFERENCES_EVENT = 'exquisite:open-analytics-preferences';
 export const ANALYTICS_CONSENT_CHANGED_EVENT = 'exquisite:analytics-consent-changed';
 
@@ -60,11 +60,33 @@ const sanitizeLocation = (value: string) => {
 
 const getPageLocation = () => sanitizeLocation(window.location.href) ?? window.location.origin;
 
+const getCampaignPageLocation = (base: string) => {
+  const url = new URL(base);
+  const source = new URLSearchParams(window.location.search);
+  for (const key of ['utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'dclid', 'msclkid', 'fbclid']) {
+    const value = source.get(key);
+    if (value && value.length <= 120 && !value.includes('@') && !PHONE_LIKE.test(value)) {
+      url.searchParams.set(key, value);
+    }
+  }
+  return url.toString();
+};
+
+export const syncAnalyticsConsentFromStorage = () => {
+  memoryConsent = null;
+  useMemoryConsent = false;
+  const consent = getAnalyticsConsent() ?? 'denied';
+  if (canUseGoogleTag()) window.gtag?.('consent', 'update', {
+    analytics_storage: consent,
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+  });
+  window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_CHANGED_EVENT, { detail: consent }));
+};
+
 const canUseGoogleTag = () => (
   typeof window !== 'undefined'
   && typeof window.gtag === 'function'
   && isCanonicalAnalyticsHost()
-  && !isAnalyticsSuppressedPath()
 );
 
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
@@ -87,6 +109,7 @@ const sendDedupedEvent = (
   const now = Date.now();
   const previous = recentEvents.get(dedupeKey);
   if (previous !== undefined && now - previous < windowMs) return false;
+  if (!sendEvent(eventName, parameters)) return false;
   recentEvents.set(dedupeKey, now);
 
   if (recentEvents.size > 100) {
@@ -95,7 +118,7 @@ const sendDedupedEvent = (
     }
   }
 
-  return sendEvent(eventName, parameters);
+  return true;
 };
 
 export const getAnalyticsConsent = (): AnalyticsConsent => {
@@ -154,15 +177,18 @@ export const trackPageView = ({
 
   const initialReferrer = previousVirtualLocation ?? sanitizeLocation(document.referrer);
 
-  lastPageViewLocation = pageLocation;
-  previousVirtualLocation = pageLocation;
-
-  return sendEvent('page_view', {
-    page_location: pageLocation,
+  const sent = sendEvent('page_view', {
+    page_location: lastPageViewLocation
+      ? pageLocation : getCampaignPageLocation(pageLocation),
     page_path: pagePath,
     page_title: title.slice(0, 100),
     page_referrer: initialReferrer,
   });
+  if (sent) {
+    lastPageViewLocation = pageLocation;
+    previousVirtualLocation = pageLocation;
+  }
+  return sent;
 };
 
 export const trackGenerateLead = ({

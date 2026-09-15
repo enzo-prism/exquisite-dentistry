@@ -8,7 +8,7 @@ This site uses consent-gated Vercel Web Analytics for pageviews and a small set 
 - Do not collect Vercel pageviews, Speed Insights, or custom events until analytics consent is explicitly granted.
 - Keep event properties flat. Vercel Analytics supports strings, numbers, booleans, and null values; nested objects are intentionally avoided.
 - Prefer low-cardinality values such as `source`, `destination`, `action`, `result_type`, and query/result buckets.
-- Pageview and event URLs are stripped of query strings and hash fragments by `RouteAwareObservability`; email-like or phone-like paths become `/redacted`.
+- Web Analytics URLs retain only validated UTM campaign fields. Other query parameters, click IDs, and hash fragments are removed; email-like or phone-like paths become `/redacted`. Speed Insights strips all query parameters.
 
 ## Event Taxonomy
 
@@ -17,7 +17,7 @@ This site uses consent-gated Vercel Web Analytics for pageviews and a small set 
 | `Consultation Intent` | Tracks booking intent from navigation, hero CTAs, conversion buttons, mobile quick actions, search actions, and service-page CTAs. | `source`, `cta_text`, `destination`, `destination_type`, `route`, `path`, `viewport` |
 | `CTA Clicked` | Tracks broader high-intent CTAs, especially hero and service-page buttons that are not always booking links. | `source`, `cta_text`, `destination`, `destination_type` |
 | `Contact Method Clicked` | Tracks calls, SMS, directions, email, or social contact intent without sending visitor contact details. | `method`, `source`, `destination` |
-| `Contact Form Submitted` | Tracks successful Formspree submissions without sending form contents. | `form=website_contact` |
+| `Contact Form Submitted` | Tracks successful non-test Formspree submissions without sending form contents. Only eligible new-patient requests additionally emit acquisition conversions. | `form=website_contact` |
 | `Contact Form Validation Failed` | Tracks form friction without sending invalid field values. | `form`, `field_count`, field-level booleans |
 | `Contact Form Failed` | Tracks failed Formspree requests. | `form`, `reason` |
 | `Financing Engagement` | Tracks Cherry financing section views, CTA clicks, widget readiness/errors, and widget clicks. | `action`, `source`, `cta_text`, `destination`, `status` |
@@ -35,5 +35,5 @@ Localhost and preview hosts must not load production analytics vendors. After de
 - Open search, select a result, and try a no-results query.
 - Click a schedule CTA from the header or a service page.
 - Click a phone link and directions link.
-- Submit the contact form with a valid test message and also trigger one validation error.
+- Use intercepted requests to test successful forms; explicitly flagged test submissions must never create production conversions.
 - Scroll to a financing section, click the payment-plans CTA, and confirm the Cherry widget reaches ready state.

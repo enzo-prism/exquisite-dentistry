@@ -35,7 +35,7 @@ test(navigateImmediately
       return route.fulfill({ status: 200, body: '' });
     }
     if (url.hostname === '127.0.0.1' && url.pathname === '/measurement/openai.html') {
-      return route.fulfill({ contentType: 'text/html', body: bridge });
+      return route.fulfill({ contentType: 'text/html', headers: { 'X-Frame-Options': 'SAMEORIGIN' }, body: bridge });
     }
     if (url.hostname === '127.0.0.1' && url.pathname === '/isolation-test') {
       return route.fulfill({ contentType: 'text/html', body: '<!doctype html><form><label>Email<input name="email" type="email" value="sensitive-sentinel@example.test"></label><label>Phone<input name="phone" value="+12125550199"></label><button type="button">Request consultation</button></form>' });

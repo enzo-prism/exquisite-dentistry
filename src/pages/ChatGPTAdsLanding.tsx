@@ -1,3 +1,4 @@
+import { annotateLeadSubmission } from '@/utils/leadMeasurement';
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Phone } from 'lucide-react';
@@ -20,7 +21,6 @@ import { ATTRIBUTION_FIELDS, getUTMAttribution } from '@/utils/utmTracking';
 import { trackFormSubmission } from '@/utils/googleAdsTracking';
 import { openAnalyticsPreferences } from '@/utils/googleAnalytics';
 import { trackContactFormFailed, trackContactFormValidationFailed } from '@/utils/vercelAnalytics';
-import { signalChatGptAdsLeadConfirmed } from '@/utils/chatgptAdsTracking';
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,7 +78,6 @@ const appendAttributionMetadata = (formData: FormData) => {
   formData.set('form_key', 'chatgpt_ads_consultation');
   formData.set('source', 'chatgpt_ads');
   formData.set('environment', import.meta.env.MODE ?? 'production');
-  formData.set('_codex_test', 'false');
   formData.set('page_path', window.location.pathname);
   formData.set('referrer', sanitizeOperationalUrl(document.referrer));
 
@@ -173,6 +172,7 @@ const ChatGPTAdsLanding = () => {
       formData.set('phone', values.phone.trim());
       formData.set('consultation_interest', selectedInterest?.label ?? 'Not sure yet');
       appendAttributionMetadata(formData);
+      const measurement = annotateLeadSubmission(formData);
 
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 12_000);
@@ -196,8 +196,7 @@ const ChatGPTAdsLanding = () => {
       setValues(EMPTY_FORM);
       setHoneypot('');
 
-      trackFormSubmission('chatgpt_ads_consultation', { hasPhone: true });
-      signalChatGptAdsLeadConfirmed();
+      trackFormSubmission('chatgpt_ads_consultation', { hasPhone: true, ...measurement });
     } catch (error) {
       console.error('ChatGPT Ads consultation request failed', error);
       setStatus('error');
