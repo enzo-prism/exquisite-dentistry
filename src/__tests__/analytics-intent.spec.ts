@@ -75,6 +75,7 @@ test.beforeEach(async ({ page }) => {
   await blockAnalyticsVendors(page);
   await page.addInitScript(() => {
     localStorage.setItem('exquisite_analytics_consent_v2', 'granted');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'granted');
   });
   await installAnalyticsRecorders(page);
 });

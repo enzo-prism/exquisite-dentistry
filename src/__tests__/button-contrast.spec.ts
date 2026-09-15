@@ -25,6 +25,7 @@ const isDarkBronze = (value: string) => {
 test('gold booking buttons keep white text on the dark bronze surface', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
   });
   await page.goto('/');
 

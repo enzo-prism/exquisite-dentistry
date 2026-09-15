@@ -54,6 +54,7 @@ const shouldBlockRequest = (url: string) => THIRD_PARTY_HOSTS.some((host) => url
 const preparePage = async (page: Page) => {
   await page.addInitScript(() => {
     localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
   });
   await page.route('**/*', (route) => {
     const url = route.request().url();

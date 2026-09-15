@@ -10,6 +10,7 @@ const SHARED_POSTER = '/lovable-uploads/exquisite-black-gold-hero.png';
 const preparePage = async (page: Page) => {
   await page.addInitScript(() => {
     localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
   });
   await page.route('https://player.vimeo.com/**', (route) => route.abort());
   await page.route('https://files.withcherry.com/**', (route) => route.abort());
