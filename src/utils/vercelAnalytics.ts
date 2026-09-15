@@ -1,5 +1,5 @@
 import { track } from '@vercel/analytics';
-import { isAnalyticsSuppressedPath, isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 import {
   trackGenerateLead,
   trackGoogleContactClick,
@@ -50,11 +50,18 @@ export const normalizeTrackedRoute = (pathname: string) => {
   return normalizedPath || '/';
 };
 
-export const sanitizeTrackedUrl = (value: string) => {
+export const sanitizeTrackedUrl = (value: string, preserveCampaign = false) => {
   try {
     const url = new URL(value);
     url.pathname = sanitizeTrackedPath(url.pathname);
-    url.search = '';
+    const campaign = new URLSearchParams();
+    if (preserveCampaign) {
+      for (const key of ['utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+        const value = url.searchParams.get(key);
+        if (value && value.length <= 120 && !value.includes('@') && !/(?:\+?\d[\s().-]*){7,}/.test(value)) campaign.set(key, value);
+      }
+    }
+    url.search = campaign.toString();
     url.hash = '';
     return url.toString();
   } catch {
@@ -196,7 +203,6 @@ export const trackVercelEvent = (
   if (
     typeof window === 'undefined'
     || !isCanonicalAnalyticsHost()
-    || isAnalyticsSuppressedPath()
     || getAnalyticsConsent() !== 'granted'
   ) return false;
 
@@ -293,15 +299,17 @@ export const trackContactFormSubmitted = ({
   form: _form,
   persona: _persona,
   hasPhone: _hasPhone,
+  acquisitionLead = false,
 }: {
   form: string;
   persona?: string;
   hasPhone?: boolean;
+  acquisitionLead?: boolean;
 }) => {
   trackVercelEvent('Contact Form Submitted', {
     form: 'website_contact',
   });
-  trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
+  if (acquisitionLead) trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
 };
 
 export const trackContactFormValidationFailed = ({

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { readIndexHtml, installCanonicalAnalyticsHost } from './analyticsTestHost';
 
 const boundarySnippet = readIndexHtml().match(
-  /<!-- Cross the campaign privacy boundary[\s\S]*?<script>([\s\S]*?)<\/script>/,
+  /<!-- Cross the campaign layout boundary[\s\S]*?<script>([\s\S]*?)<\/script>/,
 )?.[1];
 if (!boundarySnippet) throw new Error('Missing privacy route boundary bootstrap');
 
@@ -39,11 +39,11 @@ for (const initialPath of ['/lp/chatgpt/', '/privacy-policy']) {
   }
 }
 
-test('landing to privacy and browser back preserve Google isolation and denied consent', async ({ page }) => {
+test('landing to privacy and browser back preserve Google consent mode and denied consent', async ({ page }) => {
   await installCanonicalAnalyticsHost(page);
   await page.addInitScript(() => {
-    localStorage.setItem('exquisite_analytics_consent_v1', 'denied');
-    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v1', 'denied');
+    localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
   });
   const vendorRequests: string[] = [];
   await page.route(/googletagmanager|google-analytics|googleadservices|vercel-insights|\/_vercel\//, async (route) => {
@@ -52,15 +52,15 @@ test('landing to privacy and browser back preserve Google isolation and denied c
   });
   await page.goto('/lp/chatgpt/');
   await expect(page.getByLabel('Name')).toBeVisible();
-  expect(vendorRequests).toEqual([]);
+  expect(vendorRequests.some(url => url.includes('googletagmanager'))).toBe(true);
   await page.getByRole('link', { name: 'Privacy Policy', exact: true }).first().click();
   await expect(page).toHaveURL(/\/privacy-policy\/?$/);
   await expect.poll(() => page.evaluate(() => typeof window.gtag)).toBe('function');
-  expect(await page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('denied');
+  expect(await page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v2'))).toBe('denied');
   await page.goBack();
   await expect(page.getByLabel('Name')).toBeVisible();
-  expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
-  await expect(page.locator('script[data-name="google-tag"], script[src*="/_vercel/"]')).toHaveCount(0);
+  expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
+  await expect(page.locator('script[src*="/_vercel/"]')).toHaveCount(0);
   const requestsAfterBack = vendorRequests.length;
   await page.waitForTimeout(300);
   expect(vendorRequests).toHaveLength(requestsAfterBack);
@@ -72,8 +72,8 @@ for (const alias of ['/LP/CHATGPT/', '/lp/%63hatgpt/']) {
   test(`decoded campaign alias ${alias} keeps the same privacy boundary`, async ({ page }) => {
     await installCanonicalAnalyticsHost(page);
     await page.addInitScript(() => {
-      localStorage.setItem('exquisite_analytics_consent_v1', 'denied');
-      localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v1', 'denied');
+      localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+      localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
     });
     const requests: string[] = [];
     await page.route(/googletagmanager|google-analytics|googleadservices|vercel-insights|\/_vercel\//, async (route) => {
@@ -82,13 +82,13 @@ for (const alias of ['/LP/CHATGPT/', '/lp/%63hatgpt/']) {
     });
     await page.goto(alias);
     await expect(page.getByLabel('Name')).toBeVisible();
-    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
-    expect(requests).toEqual([]);
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
+    expect(requests.some(url => url.includes('googletagmanager'))).toBe(true);
     await expect(page.getByRole('button', { name: 'Open navigation menu' })).toHaveCount(0);
     await page.getByRole('link', { name: 'Privacy Policy', exact: true }).first().click();
     await expect.poll(() => page.evaluate(() => typeof window.gtag)).toBe('function');
     await page.goBack();
     await expect(page.getByLabel('Name')).toBeVisible();
-    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
   });
 }

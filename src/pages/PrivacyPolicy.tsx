@@ -82,14 +82,14 @@ const PrivacyPolicy: React.FC = () => {
             <p className="text-gray-600 mb-4">
               We use Google Analytics and consent-gated Vercel Web Analytics and Speed Insights to understand general website use and improve our
               marketing and visitor experience. Analytics storage is off unless you choose
-              &ldquo;Allow analytics.&rdquo; Advertising personalization remains off. We do not send your
+              &ldquo;Allow measurement.&rdquo; Advertising personalization remains off. We do not send your
               name, email address, phone number, insurance details, message, or other contact-form
               answers to Google Analytics.
             </p>
             <p className="text-gray-600 mb-4">
               We use Google&apos;s advanced consent mode. If you decline analytics, Google may receive
               limited cookieless measurement signals, while optional analytics storage remains off
-              and optional Vercel analytics do not load. Advertising storage, advertising user data, and advertising
+              and optional Vercel analytics do not load. Google advertising storage, advertising user data, and advertising
               personalization remain off regardless of your choice.
             </p>
             <p className="text-gray-600 mb-4">
@@ -99,9 +99,10 @@ const PrivacyPolicy: React.FC = () => {
               can review or change your choice at any time using &ldquo;Privacy choices&rdquo; in the footer.
             </p>
             <p className="text-gray-600 mb-4">
-              On our ChatGPT advertising landing page, Google Analytics, Vercel Web Analytics, and
-              Speed Insights are disabled. If you allow campaign measurement there, an OpenAI Ads
-              conversion tag may record that our form provider accepted a consultation request. It may
+              Google Analytics, Vercel Web Analytics, and Speed Insights also cover our ChatGPT
+              advertising landing page. If you allow measurement, an isolated OpenAI Ads
+              conversion tag on this website may record that our form provider accepted a new-patient
+              consultation request. Test submissions and existing-patient or vendor messages are excluded. It may
               receive an ad click reference, a random event identifier, and basic browser and network
               information to measure the campaign. We do
               not provide OpenAI with the name, email address, phone number, consultation selection,

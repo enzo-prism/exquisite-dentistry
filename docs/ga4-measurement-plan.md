@@ -7,19 +7,13 @@
 - GA4 Admin currently marks the client-emitted `generate_lead` event as a key event.
 - Unidentified destination `G-RECCC1K9GK` remains disabled until an Analytics Admin proves ownership and need.
 
-## Healthcare route exclusion
+## Website and landing-page coverage
 
-The paid ChatGPT Ads landing route `/lp/chatgpt/` (including case/encoded aliases) is excluded from Google Analytics, Google Ads tags, Vercel Web Analytics, Vercel Speed Insights, and global intent tracking. The inline Google tag checks the normalized path before creating `dataLayer`, defining `gtag`, loading `gtag.js`, or issuing config commands. Runtime event helpers use the same route exclusion.
+As of September 15, 2026, the canonical website and `/lp/chatgpt/` both use GA4, consent-gated Vercel Analytics / Speed Insights, and an isolated consent-gated OpenAI conversion tag. This replaces the former campaign route exclusion at the owner's request. The focused landing layout and noindex behavior remain intact.
 
-This is intentional. Google's healthcare guidance says healthcare-service pages may be HIPAA-covered, Google does not offer a BAA for Google Analytics, and Consent Mode does not make Analytics appropriate for a HIPAA-covered page. The OpenAI Ads consent-gated conversion source is the campaign-specific measurement path. No Formspree form answers are sent to it.
+Consent keys are versioned to v2 because the measurement scope changed. An old v1 grant is not reused. The banner explicitly names all three tools. Google advanced Consent Mode remains in use: denied visitors may send limited cookieless Google signals; Vercel and OpenAI do not load until granted. These engineering controls are not a claim of HIPAA compliance.
 
-Official references:
-
-- <https://support.google.com/analytics/answer/13297105>
-- <https://support.google.com/analytics/answer/6366371>
-- <https://support.google.com/analytics/answer/2700409>
-
-## Remaining-site privacy and consent rules
+## Privacy and consent rules
 
 - Google Consent Mode defaults are queued before config commands on eligible routes.
 - `analytics_storage` starts denied. `ad_storage`, `ad_user_data`, and `ad_personalization` remain denied.
@@ -34,7 +28,7 @@ Official references:
 | Event | Trigger | Safe parameters | Key event? |
 | --- | --- | --- | --- |
 | `page_view` | Initial render and each completed eligible React route change | sanitized location, path, title, and referrer | No |
-| `generate_lead` | Formspree success on an eligible site form | allowlisted generic form type, interaction method, CTA location | Yes |
+| `generate_lead` | Confirmed non-test landing consultation or new-patient contact request | allowlisted generic form type, interaction method, CTA location | Yes |
 | `schedule_click` | Visitor opens a scheduling path | interaction method, CTA location | No |
 | `contact_click` | Phone, SMS, email, directions, or social action | interaction method, CTA location | No |
 | `cta_click` | General marketing CTA | CTA type, CTA location | No |
@@ -54,11 +48,19 @@ Register only low-cardinality, approved parameters as event-scoped custom dimens
 
 ## Acceptance checks
 
-- Eligible canonical routes queue one query-free `page_view` per completed route.
+- Eligible canonical routes queue one sanitized `page_view` per completed route.
 - Invalid, honeypot, failed, and timed-out eligible forms create zero `generate_lead` events.
 - Localhost and preview hosts create no Google or Vercel analytics traffic.
-- `/lp/chatgpt/` creates no Google or Vercel analytics traffic before or after consent.
-- The ChatGPT landing creates only the consented, PII-free OpenAI conversion after confirmed Formspree success.
+- `/lp/chatgpt/` initializes GA4 with denied storage by default and Vercel only after consent.
+- The landing and new-patient contact form create a consented, PII-free OpenAI conversion after confirmed Formspree success. Existing-patient, vendor, benefits-only, known test, and explicitly flagged test submissions do not create acquisition conversions.
 - GA event payloads contain no form values, click IDs as custom parameters, full query strings, hashes, or nested parameter objects.
 
-Crossing the campaign boundary forces a fresh document before vendor initialization, including browser history navigation. Run `node scripts/test-tracking-build.mjs` after building to check the prerendered documents preserve this guard.
+Crossing the campaign layout boundary forces a fresh document before vendor initialization, including browser history navigation. Run `node scripts/test-tracking-build.mjs` after building to check the prerendered documents preserve this guard.
+
+## September 15 verification
+
+- Live GA4 Admin confirmed stream `11536123489`, canonical URL, measurement ID `G-1MZGF2XNB5`, and `generate_lead` marked as a key event.
+- Disabled automatic history-based page views, form interactions, site search, outbound clicks, video, and file downloads. Manual safe events cover supported interactions; automatic scroll measurement remains enabled.
+- Initial GA4 page locations retain only validated campaign parameters / supported ad click IDs. Later SPA views and referrers are sanitized. OpenAI `oppref` is never sent to Google or Vercel.
+- Vercel Web Analytics retains validated UTM parameters for campaign reporting; Speed Insights strips every query parameter. General and sensitive URL parameters and hashes are removed.
+- Vercel production Web Analytics was already enabled. The correct project is `prj_AP7khgidjrotghfqfGZ5p46cq2qA` (`exquisite-dentistry`).

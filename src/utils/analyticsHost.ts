@@ -5,7 +5,7 @@ export const CANONICAL_ANALYTICS_HOSTS = [
 
 export const ANALYTICS_TEST_HOST_OVERRIDE_KEY = '__EXQUISITE_ANALYTICS_TEST_HOST__';
 
-const ANALYTICS_SUPPRESSED_PATHS = ['/lp/chatgpt'] as const;
+const CHATGPT_ADS_LANDING_PATHS = ['/lp/chatgpt'] as const;
 
 type CanonicalAnalyticsHost = (typeof CANONICAL_ANALYTICS_HOSTS)[number];
 
@@ -43,7 +43,7 @@ export const isCanonicalAnalyticsHost = (hostname?: string) => {
   return isListedCanonicalHost(resolved);
 };
 
-export const isAnalyticsSuppressedPath = (
+export const isChatGptAdsLandingPath = (
   pathname = typeof window === 'undefined' ? '' : window.location.pathname,
 ) => {
   let normalized: string;
@@ -53,7 +53,7 @@ export const isAnalyticsSuppressedPath = (
   } catch {
     return true;
   }
-  return ANALYTICS_SUPPRESSED_PATHS.includes(
-    normalized as (typeof ANALYTICS_SUPPRESSED_PATHS)[number],
+  return CHATGPT_ADS_LANDING_PATHS.includes(
+    normalized as (typeof CHATGPT_ADS_LANDING_PATHS)[number],
   );
 };

@@ -74,7 +74,7 @@ const preventAnchorNavigation = async (page: Page, selector: string) => {
 test.beforeEach(async ({ page }) => {
   await blockAnalyticsVendors(page);
   await page.addInitScript(() => {
-    localStorage.setItem('exquisite_analytics_consent_v1', 'granted');
+    localStorage.setItem('exquisite_analytics_consent_v2', 'granted');
   });
   await installAnalyticsRecorders(page);
 });
@@ -150,4 +150,12 @@ test('Vercel path helpers redact PII-like routes without a production host', () 
   expect(sanitizeTrackedPath('/privacy-fixture%40example.test')).toBe('/redacted');
   expect(sanitizeTrackedUrl('https://127.0.0.1:4179/privacy-fixture@example.test?email=a@b.com#hash'))
     .toBe('https://127.0.0.1:4179/redacted');
+});
+
+
+test('Vercel campaign reporting preserves only safe UTMs', () => {
+  expect(sanitizeTrackedUrl('https://exquisitedentistryla.com/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=pilot&oppref=opaque&email=person%40example.com&phone=3235550199#private', true))
+    .toBe('https://exquisitedentistryla.com/lp/chatgpt?utm_source=chatgpt&utm_medium=paid&utm_campaign=pilot');
+  expect(sanitizeTrackedUrl('https://exquisitedentistryla.com/?utm_source=person%40example.com&utm_campaign=3235550199', true))
+    .toBe('https://exquisitedentistryla.com/');
 });

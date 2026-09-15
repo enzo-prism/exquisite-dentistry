@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { isAnalyticsSuppressedPath } from '@/utils/analyticsHost';
 import {
   ANALYTICS_PREFERENCES_EVENT,
   getAnalyticsConsent,
@@ -13,11 +12,11 @@ import {
 } from '@/utils/chatgptAdsTracking';
 
 const AnalyticsConsentBanner = () => {
-  const { pathname } = useLocation();
-  const campaignMeasurementOnly = isAnalyticsSuppressedPath(pathname);
-  const getCurrentConsent = useCallback(() => (
-    campaignMeasurementOnly ? getChatGptAdsMeasurementConsent() : getAnalyticsConsent()
-  ), [campaignMeasurementOnly]);
+  const getCurrentConsent = useCallback(() => {
+    const analytics = getAnalyticsConsent();
+    const ads = getChatGptAdsMeasurementConsent();
+    return analytics === ads ? analytics : null;
+  }, []);
   const [isOpen, setIsOpen] = useState(() => getCurrentConsent() === null);
 
   const openPreferences = useCallback(() => setIsOpen(true), []);
@@ -32,16 +31,17 @@ const AnalyticsConsentBanner = () => {
   }, [getCurrentConsent]);
 
   const choose = (consent: 'granted' | 'denied') => {
-    const previousConsent = getCurrentConsent();
-    const persisted = campaignMeasurementOnly
-      ? updateChatGptAdsMeasurementConsent(consent)
-      : updateAnalyticsConsent(consent);
+    const previouslyGranted = getAnalyticsConsent() === 'granted'
+      || getChatGptAdsMeasurementConsent() === 'granted';
+    const analyticsPersisted = updateAnalyticsConsent(consent);
+    const adsPersisted = updateChatGptAdsMeasurementConsent(consent);
+    const persisted = analyticsPersisted && adsPersisted;
     setIsOpen(false);
 
     // The Vercel packages leave injected scripts and globals behind when
     // unmounted. Reload after revocation so the denied state starts clean.
     // If storage rejects this choice, reloading could restore an older grant.
-    if (persisted && previousConsent === 'granted' && consent === 'denied') {
+    if (persisted && previouslyGranted && consent === 'denied') {
       window.location.reload();
     }
   };
@@ -55,15 +55,11 @@ const AnalyticsConsentBanner = () => {
     >
       <h2 className="text-lg font-semibold text-white">Your analytics choice</h2>
       <p className="mt-2 text-sm leading-6 text-white/75">
-        {campaignMeasurementOnly ? (
-          <>
-            We use a privacy-limited OpenAI Ads conversion tag to learn whether this ad led to a
-            consultation request. It receives no form answers. Google Analytics and Vercel Analytics
-            are disabled on this page. You can allow or decline this measurement.
-          </>
-        ) : (
-          <>We use privacy-limited analytics to understand which pages and marketing work. We do not send your contact-form answers to Google Analytics. You can allow or decline analytics and change this choice later. If you decline, Google may still receive limited cookieless measurement signals, but optional analytics storage and Vercel analytics stay off.</>
-        )}
+        We use Google Analytics, Vercel Analytics, and a privacy-limited OpenAI Ads conversion tag
+        to understand which pages and ads lead to consultation requests. We do not send your form
+        answers to these tools. You can allow or decline measurement and change your choice later.
+        If you decline, Google may still receive limited cookieless signals; optional analytics
+        storage, Vercel Analytics, and OpenAI measurement stay off.
       </p>
       <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
@@ -82,7 +78,7 @@ const AnalyticsConsentBanner = () => {
             Decline
           </Button>
           <Button type="button" className="min-h-11 bg-gold text-black hover:bg-gold/90" onClick={() => choose('granted')}>
-            {campaignMeasurementOnly ? 'Allow campaign measurement' : 'Allow analytics'}
+            Allow measurement
           </Button>
         </div>
       </div>

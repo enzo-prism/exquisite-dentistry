@@ -1,13 +1,15 @@
 import { useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { normalizeTrackedRoute, sanitizeTrackedPath, sanitizeTrackedUrl } from "@/utils/vercelAnalytics";
+import { normalizeTrackedRoute, sanitizeTrackedUrl } from "@/utils/vercelAnalytics";
 import { initializeUTMTracking } from "@/utils/utmTracking";
 import GlobalIntentTracking from "@/components/GlobalIntentTracking";
 import { useEffect, useState } from "react";
-import { isAnalyticsSuppressedPath, isCanonicalAnalyticsHost } from "@/utils/analyticsHost";
+import { isCanonicalAnalyticsHost } from "@/utils/analyticsHost";
 import {
   ANALYTICS_CONSENT_CHANGED_EVENT,
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  syncAnalyticsConsentFromStorage,
   getAnalyticsConsent,
   trackPageView,
 } from "@/utils/googleAnalytics";
@@ -15,8 +17,8 @@ import {
 const RouteAwareObservability = () => {
   const { pathname, search } = useLocation();
   const trackedRoute = normalizeTrackedRoute(pathname);
-  const trackedPath = sanitizeTrackedPath(pathname);
-  const analyticsSuppressed = isAnalyticsSuppressedPath(pathname);
+  const trackedUrl = new URL(sanitizeTrackedUrl(`${window.location.origin}${pathname}${search}`, true));
+  const trackedPath = `${trackedUrl.pathname}${trackedUrl.search}`;
   const [optionalAnalyticsAllowed, setOptionalAnalyticsAllowed] = useState(
     () => getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost(),
   );
@@ -29,13 +31,18 @@ const RouteAwareObservability = () => {
     const handleConsentChange = () => {
       setOptionalAnalyticsAllowed(getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost());
     };
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === ANALYTICS_CONSENT_STORAGE_KEY) syncAnalyticsConsentFromStorage();
+    };
+    window.addEventListener('storage', handleStorage);
     window.addEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, handleConsentChange);
-    return () => window.removeEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, handleConsentChange);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener(ANALYTICS_CONSENT_CHANGED_EVENT, handleConsentChange);
+    };
   }, []);
 
   useEffect(() => {
-    if (analyticsSuppressed) return undefined;
-
     let sent = false;
     let settleTimeout = 0;
 
@@ -59,27 +66,27 @@ const RouteAwareObservability = () => {
       window.clearTimeout(settleTimeout);
       window.clearTimeout(fallback);
     };
-  }, [analyticsSuppressed, pathname]);
+  }, [pathname]);
 
   return (
     <>
-      {!analyticsSuppressed && <GlobalIntentTracking />}
-      {optionalAnalyticsAllowed && !analyticsSuppressed && (
+      <GlobalIntentTracking />
+      {optionalAnalyticsAllowed && (
         <>
           <Analytics
             mode={import.meta.env.PROD ? "production" : "development"}
             route={trackedRoute}
             path={trackedPath}
             beforeSend={(event) => (
-              isAnalyticsSuppressedPath() || getAnalyticsConsent() !== 'granted'
+              getAnalyticsConsent() !== 'granted'
                 ? null
-                : { ...event, url: sanitizeTrackedUrl(event.url) }
+                : { ...event, url: sanitizeTrackedUrl(event.url, true) }
             )}
           />
           <SpeedInsights
             route={trackedRoute}
             beforeSend={(event) => (
-              isAnalyticsSuppressedPath() || getAnalyticsConsent() !== 'granted'
+              getAnalyticsConsent() !== 'granted'
                 ? null
                 : { ...event, url: sanitizeTrackedUrl(event.url) }
             )}

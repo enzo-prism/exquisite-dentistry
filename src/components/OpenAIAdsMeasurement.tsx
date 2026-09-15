@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { isCanonicalAnalyticsHost, isAnalyticsSuppressedPath } from '@/utils/analyticsHost';
+import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 import { getUTMAttribution } from '@/utils/utmTracking';
 import {
   CHATGPT_ADS_LEAD_CONFIRMED_EVENT,
@@ -20,7 +20,7 @@ const OpenAIAdsMeasurement = () => {
   useEffect(() => {
     const pixelId = import.meta.env.VITE_OPENAI_ADS_PIXEL_ID?.trim() ?? '';
     if (!/^[a-zA-Z0-9_-]{1,128}$/.test(pixelId)
-      || !isCanonicalAnalyticsHost() || !isAnalyticsSuppressedPath(pathname)) return;
+      || !isCanonicalAnalyticsHost()) return;
 
     let frame: HTMLIFrameElement | undefined;
     let channel = '';
@@ -32,7 +32,7 @@ const OpenAIAdsMeasurement = () => {
     const pending = new Set<string>();
     const seen = new Set<string>();
 
-    const allowed = () => !disposed && isAnalyticsSuppressedPath()
+    const allowed = () => !disposed
       && getChatGptAdsMeasurementConsent() === 'granted';
 
     const removeFrame = () => {

@@ -33,9 +33,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Cross the campaign privacy boundary with a fresh document. Install before
-         vendors or the router so a previously loaded SDK cannot observe the
-         excluded route through SPA history updates. Keep the path in sync with
+    <!-- Cross the campaign layout boundary with a fresh document. Keep consent
+         and vendor initialization consistent across the focused landing page
+         and the full website. Keep the path in sync with
          src/utils/analyticsHost.ts. -->
     <script>
       (function () {
@@ -107,23 +107,14 @@
       var canonicalAnalyticsHost =
         analyticsHostname === 'exquisitedentistryla.com' ||
         analyticsHostname === 'www.exquisitedentistryla.com';
-      var analyticsPath;
-      try {
-        analyticsPath = decodeURIComponent(String(window.location.pathname || '/')).toLowerCase().replace(/\/+$/, '') || '/';
-      } catch (error) {
-        // Malformed paths fail closed for measurement.
-        analyticsPath = '/lp/chatgpt';
-      }
-      var analyticsSuppressedPath = analyticsPath === '/lp/chatgpt';
-
-      if (canonicalAnalyticsHost && !analyticsSuppressedPath) {
+      if (canonicalAnalyticsHost) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = window.gtag || gtag;
 
         var analyticsConsent = null;
         try {
-          analyticsConsent = window.localStorage.getItem('exquisite_analytics_consent_v1');
+          analyticsConsent = window.localStorage.getItem('exquisite_analytics_consent_v2');
         } catch (error) {
           analyticsConsent = null;
         }

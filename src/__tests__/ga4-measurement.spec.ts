@@ -7,7 +7,7 @@ import {
 } from './analyticsTestHost';
 import {
   CANONICAL_ANALYTICS_HOSTS,
-  isAnalyticsSuppressedPath,
+  isChatGptAdsLandingPath,
   isCanonicalAnalyticsHost,
 } from '../utils/analyticsHost';
 
@@ -64,7 +64,7 @@ const consentCommands = (commands: GtagCommand[], action: 'default' | 'update') 
 
 const acceptAnalytics = async (page: Page) => {
   const button = page.getByRole('button', {
-    name: /accept(?: all| analytics)?|allow analytics/i,
+    name: /accept(?: all| analytics)?|allow measurement/i,
   });
   await expect(button).toBeVisible();
   await button.click();
@@ -123,9 +123,10 @@ const assertPrivacySafeGaEvents = (commands: GtagCommand[]) => {
   }
 
   expect(serialized).not.toMatch(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i);
-  expect(serialized).not.toContain('gclid-fixture-123');
-  expect(serialized).not.toContain('gbraid-fixture-456');
-  expect(serialized).not.toContain('wbraid-fixture-789');
+  const nonPageEvents = events.filter(event => event[1] !== 'page_view');
+  expect(JSON.stringify(nonPageEvents)).not.toContain('gclid-fixture-123');
+  expect(JSON.stringify(nonPageEvents)).not.toContain('gbraid-fixture-456');
+  expect(JSON.stringify(nonPageEvents)).not.toContain('wbraid-fixture-789');
 
   for (const command of events) {
     const params = command[2] ?? {};
@@ -212,7 +213,7 @@ test('queues denied consent by default and honors explicit accept or reject', as
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   });
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('granted');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v2'))).toBe('granted');
   await page.waitForTimeout(100);
   expect(vendorRequests).toEqual([
     expect.stringContaining('googletagmanager.com/gtag/js?id=G-1MZGF2XNB5'),
@@ -230,14 +231,34 @@ test('queues denied consent by default and honors explicit accept or reject', as
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   });
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('denied');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v2'))).toBe('denied');
+});
+
+test('cross-tab consent revocation updates Google storage and blocks Vercel events', async ({ page, context }) => {
+  await page.goto('/lp/chatgpt/');
+  await acceptAnalytics(page);
+  const other = await context.newPage();
+  await blockAnalyticsVendors(other);
+  await other.goto('/privacy-policy/');
+  await other.evaluate(() => localStorage.setItem('exquisite_analytics_consent_v2', 'denied'));
+  await expect.poll(async () => consentCommands(await readDataLayer(page), 'update').at(-1)?.[2]?.analytics_storage).toBe('denied');
+  await page.evaluate(() => {
+    (window as typeof window & { recordedVa?: unknown[] }).recordedVa = [];
+    window.va = (...args: unknown[]) => { (window as typeof window & { recordedVa?: unknown[] }).recordedVa?.push(args); };
+  });
+  const phone = page.locator('a[href^="tel:"]').first();
+  await phone.evaluate(anchor => anchor.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await phone.click();
+  expect(await page.evaluate(() => (window as typeof window & { recordedVa?: unknown[] }).recordedVa)).toEqual([]);
+  await other.close();
 });
 
 test('reopens privacy choices on mobile and persists consent revocation', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 667 });
   await page.addInitScript(() => {
-    if (localStorage.getItem('exquisite_analytics_consent_v1') === null) {
-      localStorage.setItem('exquisite_analytics_consent_v1', 'granted');
+    if (localStorage.getItem('exquisite_analytics_consent_v2') === null) {
+      localStorage.setItem('exquisite_analytics_consent_v2', 'granted');
+      localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'granted');
     }
   });
   await page.goto('/');
@@ -247,7 +268,7 @@ test('reopens privacy choices on mobile and persists consent revocation', async 
   await privacyChoices.click();
 
   const decline = page.getByRole('button', { name: 'Decline' });
-  const allow = page.getByRole('button', { name: 'Allow analytics' });
+  const allow = page.getByRole('button', { name: 'Allow measurement' });
   await expect(decline).toBeVisible();
   await expect(allow).toBeVisible();
   for (const control of [decline, allow]) {
@@ -259,7 +280,7 @@ test('reopens privacy choices on mobile and persists consent revocation', async 
     page.waitForLoadState('domcontentloaded'),
     decline.click(),
   ]);
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v1'))).toBe('denied');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v2'))).toBe('denied');
   await expect(page.getByRole('region', { name: 'Analytics preferences' })).toBeHidden();
   await expect.poll(async () => {
     const defaults = consentCommands(await readDataLayer(page), 'default');
@@ -300,12 +321,13 @@ test('emits one sanitized manual page_view per initial and SPA route', async ({ 
   expect(views[0]?.[2]).not.toHaveProperty('page_referrer');
   for (const view of views) {
     expect(view[2]?.page_title).toEqual(expect.any(String));
-    expect(String(view[2]?.page_location)).not.toMatch(/[?#]/);
+    expect(String(view[2]?.page_location)).not.toContain('#');
+    expect(String(view[2]?.page_location)).not.toContain('email=');
     if (view[2]?.page_referrer) {
       expect(String(view[2].page_referrer)).not.toMatch(/[?#]/);
     }
   }
-  expect(JSON.stringify(views)).not.toContain('?');
+  expect(String(views[0]?.[2]?.page_location)).toContain('utm_source=google');
   expect(JSON.stringify(views)).not.toContain('#');
   assertPrivacySafeGaEvents(views);
 });
@@ -453,7 +475,7 @@ test('successful Formspree response emits exactly one privacy-safe generate_lead
   assertPrivacySafeGaEvents(commands);
 });
 
-test('successful benefits request emits one generic lead without insurance details', async ({ page }) => {
+test('successful benefits request does not count as a new-patient lead', async ({ page }) => {
   await page.route(FORM_ENDPOINT, async (route) => {
     await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
   });
@@ -471,11 +493,7 @@ test('successful benefits request emits one generic lead without insurance detai
 
   const commands = await readDataLayer(page);
   const leads = eventCommands(commands, 'generate_lead');
-  expect(leads).toHaveLength(1);
-  expect(leads[0]?.[2]).toMatchObject({
-    form_type: 'website_contact',
-    interaction_method: 'form',
-  });
+  expect(leads).toHaveLength(0);
   const serialized = JSON.stringify(leads).toLowerCase();
   expect(serialized).not.toContain('private carrier fixture');
   expect(serialized).not.toContain('private plan fixture');
@@ -554,9 +572,9 @@ test.describe('GA4 host gate', () => {
     for (const host of LOCAL_AND_PREVIEW_ANALYTICS_HOSTS) {
       expect(isCanonicalAnalyticsHost(host)).toBe(false);
     }
-    expect(isAnalyticsSuppressedPath('/lp/chatgpt')).toBe(true);
-    expect(isAnalyticsSuppressedPath('/lp/chatgpt/')).toBe(true);
-    expect(isAnalyticsSuppressedPath('/contact/')).toBe(false);
+    expect(isChatGptAdsLandingPath('/lp/chatgpt')).toBe(true);
+    expect(isChatGptAdsLandingPath('/lp/chatgpt/')).toBe(true);
+    expect(isChatGptAdsLandingPath('/contact/')).toBe(false);
   });
 
   test('localhost never queues gtag config/events or loads gtag.js', async ({ page }) => {
