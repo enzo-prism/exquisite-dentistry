@@ -270,10 +270,6 @@ const ChatGPTAdsLanding = () => {
                 <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-950 sm:text-5xl lg:text-[3.6rem]">
                   Porcelain veneers & cosmetic consultations in Los Angeles.
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
-                  Meet with Dr. Alexie Aguil at Exquisite Dentistry to discuss your goals, porcelain veneers, and other cosmetic options. An in-person evaluation helps determine which options may be appropriate for you.
-                </p>
-
                 <Button
                   asChild
                   className="mt-7 h-12 rounded-lg bg-stone-950 px-6 text-base font-semibold !text-white shadow-none hover:bg-stone-800 lg:hidden"
@@ -283,6 +279,10 @@ const ChatGPTAdsLanding = () => {
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </Button>
+
+                <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
+                  Meet with Dr. Alexie Aguil at Exquisite Dentistry to discuss your goals, porcelain veneers, and other cosmetic options. An in-person evaluation helps determine which options may be appropriate for you.
+                </p>
 
                 <div className="mt-8 overflow-hidden rounded-2xl border border-stone-200 bg-stone-200 shadow-[0_24px_70px_-42px_rgba(28,25,23,0.55)]">
                   <OptimizedImage

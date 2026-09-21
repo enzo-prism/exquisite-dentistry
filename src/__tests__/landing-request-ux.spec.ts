@@ -12,13 +12,19 @@ for (const width of [320, 390]) {
     const banner = page.getByRole('region', { name: 'Analytics preferences' });
     await expect(banner).toBeVisible();
     await expect(banner).toContainText('OpenAI Ads conversion tag');
+    await page.evaluate(() => document.fonts.ready);
     const box = await banner.boundingBox();
     expect(box!.height).toBeLessThan(280);
     const cta = page.getByRole('link', { name: 'Request a consultation' }).first();
     await expect(cta).toBeVisible();
     const ctaBox = await cta.boundingBox();
-    if (width === 390) expect(ctaBox!.y + ctaBox!.height).toBeLessThanOrEqual(box!.y);
-    await cta.evaluate(el => el.scrollIntoView({ block: 'start' }));
+    expect(ctaBox!.y + ctaBox!.height).toBeLessThanOrEqual(box!.y);
+    expect(ctaBox!.y).toBeGreaterThanOrEqual(0);
+    // Verify the initial view itself: no preparatory scrolling to bypass an overlay.
+    expect(await cta.evaluate(el => {
+      const bounds = el.getBoundingClientRect();
+      return el.contains(document.elementFromPoint(bounds.x + bounds.width / 2, bounds.bottom - 1));
+    })).toBe(true);
     await expect(cta).toBeInViewport();
     await cta.click();
     await expect(page.locator('#consultation-form')).toBeInViewport();
