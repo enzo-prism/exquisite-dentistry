@@ -1,4 +1,5 @@
 import { annotateLeadSubmission } from '@/utils/leadMeasurement';
+import { submitContactRequest } from '@/utils/submitContactRequest';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -87,6 +88,7 @@ const BenefitsVerificationForm = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const carrierRef = useRef<HTMLInputElement | null>(null);
+  const submissionInFlightRef = useRef(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -99,7 +101,7 @@ const BenefitsVerificationForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === 'submitting') return;
+    if (status === 'submitting' || submissionInFlightRef.current) return;
 
     if (honeypot) {
       setStatus('success');
@@ -133,6 +135,7 @@ const BenefitsVerificationForm = () => {
     }
 
     setErrors(nextErrors);
+    submissionInFlightRef.current = true;
     setStatus('submitting');
     setFeedback('');
 
@@ -147,13 +150,7 @@ const BenefitsVerificationForm = () => {
       appendFormspreeOpsMetadata(formData, 'insurance_benefits');
       const measurement = annotateLeadSubmission(formData);
 
-      const response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      });
-
-      if (!response.ok) throw new Error('Network response was not ok');
+      await submitContactRequest(FORM_ENDPOINT, formData);
 
       setStatus('success');
       setFeedback('Thank you. Our team will follow up about your PPO benefits.');
@@ -166,11 +163,13 @@ const BenefitsVerificationForm = () => {
     } catch (error) {
       console.error('Benefits verification request failed', error);
       setStatus('error');
-      setFeedback(`We couldn't send this request. Please call ${PHONE_NUMBER_DISPLAY}.`);
+      setFeedback(`We couldn't confirm your request. Please call ${PHONE_NUMBER_DISPLAY} for help.`);
       trackContactFormFailed({
         form: 'insurance_benefits_request',
         reason: 'formspree_request_failed',
       });
+    } finally {
+      submissionInFlightRef.current = false;
     }
   };
 
@@ -335,6 +334,7 @@ const Contact = () => {
   const nameFieldRef = useRef<HTMLInputElement | null>(null);
   const emailFieldRef = useRef<HTMLInputElement | null>(null);
   const messageFieldRef = useRef<HTMLTextAreaElement | null>(null);
+  const submissionInFlightRef = useRef(false);
 
   useEffect(() => {
     // Run after the app-level route scroll reset so direct hash navigation is
@@ -401,7 +401,7 @@ const Contact = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (formStatus === 'submitting') return;
+    if (formStatus === 'submitting' || submissionInFlightRef.current) return;
 
     setFeedback('');
 
@@ -485,6 +485,7 @@ const Contact = () => {
     }
 
     setFieldErrors(nextErrors);
+    submissionInFlightRef.current = true;
     setFormStatus('submitting');
 
     try {
@@ -500,17 +501,7 @@ const Contact = () => {
       appendFormspreeOpsMetadata(formData);
       const measurement = annotateLeadSubmission(formData, trimmedPersona === 'Thinking about becoming a new patient');
 
-      const response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json'
-        },
-        body: formData
-      });
-      
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      await submitContactRequest(FORM_ENDPOINT, formData);
 
       setFormStatus('success');
       setFeedback('Thanks for reaching out! We will respond shortly.');
@@ -525,11 +516,13 @@ const Contact = () => {
     } catch (error) {
       console.error('Contact form submission failed', error);
       setFormStatus('error');
-      setFeedback('Something went wrong. Please try again.');
+      setFeedback(`We couldn't confirm your request. Please call ${PHONE_NUMBER_DISPLAY} for help.`);
       trackContactFormFailed({
         form: 'contact_form',
         reason: 'formspree_request_failed',
       });
+    } finally {
+      submissionInFlightRef.current = false;
     }
   };
 

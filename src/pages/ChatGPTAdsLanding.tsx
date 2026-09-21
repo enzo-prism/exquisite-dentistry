@@ -1,5 +1,5 @@
 import { annotateLeadSubmission } from '@/utils/leadMeasurement';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Phone } from 'lucide-react';
 import ImageComponent from '@/components/Image';
@@ -97,6 +97,11 @@ const ChatGPTAdsLanding = () => {
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const interestRef = useRef<HTMLButtonElement | null>(null);
   const submissionInFlightRef = useRef(false);
+  const receiptRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    if (status === 'success') receiptRef.current?.focus();
+  }, [status]);
 
   const setField = (field: keyof FormValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
@@ -200,7 +205,7 @@ const ChatGPTAdsLanding = () => {
     } catch (error) {
       console.error('ChatGPT Ads consultation request failed', error);
       setStatus('error');
-      setFeedback(`We couldn't send your request. Please call ${PHONE_NUMBER_DISPLAY}.`);
+      setFeedback(`We couldn't confirm your request. Please call ${PHONE_NUMBER_DISPLAY} for help.`);
       trackContactFormFailed({
         form: 'chatgpt_ads_consultation',
         reason: 'formspree_request_failed',
@@ -306,15 +311,26 @@ const ChatGPTAdsLanding = () => {
 
               <div id="consultation-form" className="rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_30px_90px_-50px_rgba(28,25,23,0.55)] sm:p-8 lg:p-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#725f43]">Private consultation request</p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">
-                  Request a cosmetic consultation
+                <h2 ref={receiptRef} tabIndex={status === 'success' ? -1 : undefined} className="mt-3 text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">
+                  {status === 'success' ? 'Request received' : 'Request a cosmetic consultation'}
                 </h2>
                 <p className="mt-3 leading-7 text-stone-600">
-                  Tell us how to reach you. Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.
+                  {status === 'success'
+                    ? 'Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.'
+                    : 'Tell us how to reach you. Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.'}
                 </p>
                 <p className="mt-3 text-sm leading-6 text-stone-600">
                   Consultation with Dr. Alexie Aguil at {ADDRESS}. You can ask about consultation fees when scheduling.
                 </p>
+                {status === 'success' ? (
+                  <div role="status" className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
+                    <p>{feedback}</p>
+                    <p className="mt-3 text-sm leading-6">Your appointment is not booked yet. The team will help arrange a time and answer questions about consultation fees.</p>
+                    <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} analyticsSource="chatgpt_ads_receipt" className="mt-4 min-h-11 font-semibold underline underline-offset-4">
+                      Call {PHONE_NUMBER_DISPLAY}
+                    </PhoneLink>
+                  </div>
+                ) : <>
                 <p className="mt-2 text-sm text-stone-500">All fields are required.</p>
 
                 <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -440,13 +456,14 @@ const ChatGPTAdsLanding = () => {
                     <div
                       role={status === 'error' ? 'alert' : 'status'}
                       aria-live="polite"
-                      className={`rounded-lg border p-4 text-sm leading-6 ${
-                        status === 'success'
-                          ? 'border-emerald-200 bg-emerald-50 text-emerald-900'
-                          : 'border-red-200 bg-red-50 text-red-900'
-                      }`}
+                      className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-900"
                     >
                       {feedback}
+                      {status === 'error' && !Object.values(errors).some(Boolean) ? (
+                        <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} analyticsSource="chatgpt_ads_recovery" className="mt-2 flex min-h-11 font-semibold underline underline-offset-4">
+                          Call {PHONE_NUMBER_DISPLAY}
+                        </PhoneLink>
+                      ) : null}
                     </div>
                   ) : null}
 
@@ -458,6 +475,7 @@ const ChatGPTAdsLanding = () => {
                     .
                   </p>
                 </form>
+                </>}
               </div>
             </div>
           </section>

@@ -51,24 +51,21 @@ const AnalyticsConsentBanner = () => {
   return (
     <section
       aria-label="Analytics preferences"
-      className="fixed bottom-3 left-1/2 z-[100] w-[calc(100%-1.5rem)] max-w-3xl -translate-x-1/2 rounded-2xl border border-white/15 bg-black/95 p-5 text-white shadow-2xl backdrop-blur md:bottom-6 md:p-6"
+      className="fixed bottom-3 left-1/2 z-[100] w-[calc(100%-1.5rem)] max-w-3xl -translate-x-1/2 rounded-2xl border border-white/15 bg-black/95 p-4 text-white shadow-2xl backdrop-blur md:bottom-6 md:p-6"
     >
-      <h2 className="text-lg font-semibold text-white">Your analytics choice</h2>
-      <p className="mt-2 text-sm leading-6 text-white/75">
-        We use Google Analytics, Vercel Analytics, and a privacy-limited OpenAI Ads conversion tag
-        to understand which pages and ads lead to consultation requests. We do not send your form
-        answers to these tools. You can allow or decline measurement and change your choice later.
-        If you decline, Google may still receive limited cookieless signals; optional analytics
-        storage, Vercel Analytics, and OpenAI measurement stay off.
+      <h2 className="text-base font-semibold text-white">Your analytics choice</h2>
+      <p className="mt-2 text-sm leading-5 text-white/75">
+        Allow Google Analytics, Vercel Analytics, and the OpenAI Ads conversion tag to measure visits and requests? We do not send your form answers.
       </p>
-      <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <Link
-          className="inline-flex min-h-11 items-center text-sm text-gold-light underline underline-offset-4"
-          to="/privacy-policy/"
-        >
-          Privacy Policy
-        </Link>
-        <div className="flex flex-col gap-2 sm:flex-row">
+      <details className="mt-2 text-xs leading-5 text-white/75">
+        <summary className="cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light">Details and privacy</summary>
+        <p className="mt-2">
+          If you decline, Google may still receive limited cookieless signals; optional analytics storage, Vercel Analytics, and OpenAI measurement stay off. You can change your choice later.
+        </p>
+        <Link className="inline-flex min-h-11 items-center text-white underline underline-offset-4" to="/privacy-policy/">Privacy Policy</Link>
+      </details>
+      <div className="mt-3">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:justify-end">
           <Button
             type="button"
             variant="outline"

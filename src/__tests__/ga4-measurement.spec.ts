@@ -519,7 +519,7 @@ test('failed, invalid, and honeypot submissions emit zero generate_lead events',
   await clearDataLayer(page);
   await fillValidContactForm(page);
   await page.getByRole('button', { name: 'Send Message' }).click();
-  await expect(page.getByText('Something went wrong')).toBeVisible();
+  await expect(page.getByText("We couldn't confirm your request")).toBeVisible();
   expect(eventCommands(await readDataLayer(page), 'generate_lead')).toHaveLength(0);
   expect(formspreeRequests).toBe(1);
 

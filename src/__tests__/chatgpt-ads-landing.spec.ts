@@ -382,7 +382,7 @@ test.describe('ChatGPT Ads landing page', () => {
     await page.getByRole('option', { name: 'Cosmetic consultation' }).click();
     await page.getByRole('button', { name: 'Request my consultation' }).click();
 
-    await expect(page.getByRole('alert')).toContainText("We couldn't send your request");
+    await expect(page.getByRole('alert')).toContainText("We couldn't confirm your request");
     await expect(page.getByRole('button', { name: 'Request my consultation' })).toBeEnabled();
   });
   for (const fixture of [
