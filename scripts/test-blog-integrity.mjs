@@ -226,6 +226,26 @@ const main = async () => {
     errors.push(`Invalid blog links detected:\n  ${brokenLinks.join('\n  ')}`);
   }
 
+  // Un-decoded HTML entities survive the WordPress export and render literally
+  // in <title> and on-page headings — "USA &#038; the World" was live in
+  // Google's results for months. Catch them at the source.
+  const entityHits = [];
+  for (const fileName of contentFiles) {
+    const filePath = path.join(CONTENT_DIR, fileName);
+    const raw = await fs.readFile(filePath, 'utf-8');
+    for (const match of raw.match(/&#[0-9]+;|&(amp|quot|lsquo|rsquo|ldquo|rdquo|nbsp|hellip);/g) ?? []) {
+      entityHits.push(`${path.relative(ROOT, filePath)} -> ${match}`);
+    }
+  }
+
+  if (entityHits.length) {
+    errors.push(
+      `Un-decoded HTML entities in blog sources (write the literal character instead):\n  ${[
+        ...new Set(entityHits),
+      ].join('\n  ')}`,
+    );
+  }
+
   if (errors.length) {
     console.error('Blog integrity check failed:\n');
     errors.forEach((error) => console.error(`- ${error}`));

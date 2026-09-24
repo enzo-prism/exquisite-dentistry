@@ -1,3 +1,27 @@
+# ============================================================================
+# ⚠️  INERT ON VERCEL — DO NOT PORT THIS FILE WHOLESALE TO vercel.json
+# ============================================================================
+# This is Netlify syntax. Vercel (the production host) ignores it entirely.
+# The authoritative redirect table is `vercel.json`.
+#
+# The specific legacy URLs worth keeping were ported to vercel.json on
+# 2026-09-23. The WILDCARD rules below were deliberately NOT ported because
+# they would capture live routes and take real pages offline:
+#
+#   /*hills*      -> would swallow /beverly-hills-dentist/,
+#                    /invisalign-beverly-hills/, /teeth-whitening-beverly-hills/
+#   /*hollywood*  -> would swallow /west-hollywood-dentist/
+#   /*-veneers*   -> would swallow /veneers/front-teeth-veneers-los-angeles/,
+#                    /veneers/2-front-teeth-veneers-cost-los-angeles/
+#   /*-whitening* -> would swallow /zoom-whitening/, /teeth-whitening/,
+#                    /teeth-whitening-beverly-hills/, /culver-city-teeth-whitening/,
+#                    /teeth-whitening/cost-los-angeles/
+#
+# They were safe on the old Netlify site because those routes did not exist yet.
+# `npm run test:redirect-config` fails the build if such a wildcard reaches
+# vercel.json. Kept only for `netlify dev`-based redirect testing and history.
+# ============================================================================
+
 # Canonical host enforcement (MUST BE FIRST to avoid duplicate hosts in Google)
 https://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!
 http://www.exquisitedentistryla.com/* https://exquisitedentistryla.com/:splat 301!

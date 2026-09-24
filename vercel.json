@@ -203,12 +203,12 @@
     },
     {
       "source": "/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
-      "destination": "/blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers/",
+      "destination": "/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
       "permanent": true
     },
     {
       "source": "/female-smokers-are-at-a-higher-risk-of-oral-cancer",
-      "destination": "/blog/why-female-smokers-are-at-a-high-risk-for-oral-cancer-unpacking-the-dangers/",
+      "destination": "/blog/female-smokers-are-at-a-higher-risk-of-oral-cancer/",
       "permanent": true
     },
     {
@@ -489,6 +489,166 @@
     {
       "source": "/choosing-veneers-for-the-front-4-teeth",
       "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/invisalign.html",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/invisalign-los-angeles.html",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/teeth-whitening.html",
+      "destination": "/teeth-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-implants.html",
+      "destination": "/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentistry.html",
+      "destination": "/cosmetic-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/emergency-dentist.html",
+      "destination": "/emergency-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/veneers-los-angeles.html",
+      "destination": "/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/hollywood-cosmetic-dentist.html",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/dentist-west-hollywood.html",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/front-teeth-veneers-complete-guide.html",
+      "destination": "/veneers/front-teeth-veneers-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/our-practice/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/our-practice",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/about-dr-alexie-aguil/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/about-dr-alexie-aguil",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/high-end-dentistry/",
+      "destination": "/cosmetic-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/high-end-dentistry",
+      "destination": "/cosmetic-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/the-best-teeth-straightening-for-adults/",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/the-best-teeth-straightening-for-adults",
+      "destination": "/invisalign/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-west-hollywood-ca/",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-west-hollywood-ca",
+      "destination": "/west-hollywood-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-redondo-beach-ca/",
+      "destination": "/west-la-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/cosmetic-dentist-redondo-beach-ca",
+      "destination": "/west-la-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/",
+      "destination": "/transformation-stories/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/transformation-stories/",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-veneers-for-just-one-tooth/",
+      "destination": "/veneers/1-tooth-veneer-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-veneers-for-just-one-tooth",
+      "destination": "/veneers/1-tooth-veneer-los-angeles/",
+      "permanent": true
+    },
+    {
+      "source": "/5-ways-to-improve-oral-care-while-youre-at-work/",
+      "destination": "/blog/improve-oral-care-at-work/",
+      "permanent": true
+    },
+    {
+      "source": "/5-ways-to-improve-oral-care-while-youre-at-work",
+      "destination": "/blog/improve-oral-care-at-work/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5-ways-to-improve-oral-care-while-youre-at-work/",
+      "destination": "/blog/improve-oral-care-at-work/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5-ways-to-improve-oral-care-while-youre-at-work",
+      "destination": "/blog/improve-oral-care-at-work/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/single-tooth-veneers-guide/",
+      "destination": "/blog/single-tooth-veneers-perfect-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/single-tooth-veneers-guide",
+      "destination": "/blog/single-tooth-veneers-perfect-solutions/",
       "permanent": true
     }
   ],

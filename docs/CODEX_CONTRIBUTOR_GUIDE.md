@@ -50,7 +50,7 @@ Quick rules:
 - **Navigation changes**: `src/components/Navbar.tsx` controls both desktop + mobile menu with shared data arrays. When adjusting mobile layout, test focus management (`tab`, `Escape`) and body scroll locking.
 - **Image swaps**: Add new assets to `public/lovable-uploads`, run `npm run build:prod` to generate optimized variants, and reference them via plain paths (e.g., `/lovable-uploads/foo.png`).
 - **Blog updates**: Drop markdown/text exports into `Blog-Content/exq_dental_blog_posts`, run `npm run generate:blog`, and commit the regenerated file. Keep one source file per topic—if a post lives in `src/data/blogPosts.ts`, remove the duplicate `Blog-Content` file to prevent re-generating it.
-- **Animations/perf**: Hooks like `use-mobile-gestures`, `use-hardware-acceleration`, and `use-performance-monitor` already throttle effects on mobile. Prefer reusing them instead of reinventing scroll/gesture logic.
+- **Animations/perf**: Hooks like `use-hardware-acceleration` and `use-performance-monitor` already throttle effects on mobile. Prefer reusing them instead of reinventing scroll logic.
 - **SEO & head tags**: Route components own their `<PageSEO>` config. Keep canonical URLs aligned with `getCanonicalUrl` helper to avoid drift.
   - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
   - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
