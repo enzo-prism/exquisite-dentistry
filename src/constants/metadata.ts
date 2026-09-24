@@ -64,7 +64,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     keywords:
       'Invisalign Los Angeles, clear aligners LA, Invisalign dentist LA, adult orthodontics, clear braces',
     ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+      DEFAULT_OG_IMAGE
   },
   '/invisalign-beverly-hills': {
     title: 'Invisalign Beverly Hills | Exquisite Dentistry',
@@ -73,7 +73,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     keywords:
       'invisalign beverly hills, invisalign near beverly hills, clear aligners beverly hills, invisalign dentist beverly hills, adult orthodontics beverly hills, itero scan beverly hills',
     ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+      DEFAULT_OG_IMAGE
   },
   '/teeth-whitening': {
     title:
@@ -119,7 +119,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     keywords:
       'dental implants los angeles, implant dentist los angeles, implant crown los angeles, implant bridge los angeles, tooth replacement los angeles, full arch implants los angeles',
     ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+      DEFAULT_OG_IMAGE
   },
   '/santa-monica-dental-implants': {
     title: 'Dental Implants Near Santa Monica | Exquisite Dentistry',
@@ -128,7 +128,7 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     keywords:
       'santa monica dental implants, dental implants near santa monica, implant dentist santa monica, tooth replacement santa monica, implant crowns santa monica',
     ogImage:
-      'https://exquisitedentistryla.com/lovable-uploads/dc09fcc1-c9b0-4ab9-9244-4bbdffa8b5cb.webp'
+      DEFAULT_OG_IMAGE
   },
   '/cosmetic-dentistry': {
     title: 'Cosmetic Dentistry Los Angeles | Exquisite Dentistry',
