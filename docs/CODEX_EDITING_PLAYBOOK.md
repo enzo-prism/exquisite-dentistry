@@ -12,7 +12,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 
 ### Layout primitives
 - Shared sections/components live in `src/components`. UI primitives from shadcn are under `src/components/ui`, while marketing assemblies (VideoHero, DoctorIntroSection, etc.) live at the root.
-- Hooks under `src/hooks` handle motion (`use-scroll-animations`), responsive tweaks (`use-responsive-scaling`), accessibility (`use-scroll-to-top`, `use-cleanup-effect`), and visual QA automation (`use-section-fix` → `src/hooks/use-section-fix.ts`).
+- Hooks under `src/hooks` handle motion (`use-scroll-animations`, `use-reveal-on-scroll`), accessibility (`useScrollToTop`), and visual QA automation (`use-section-fix` → `src/hooks/use-section-fix.ts`).
 
 ### Content & data
 - Static datasets (services, transformations, testimonials) sit in `src/data`. Legacy WordPress blog exports are stored in `Blog-Content/exq_dental_blog_posts`; run `npm run generate:blog` to refresh `src/data/generatedBlogPosts.ts`.
@@ -48,8 +48,8 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 
 ### 3.1 Layout + Navigation
 - `Navbar` + `Footer` wrap every non-sitemap route (`src/App.tsx`). The navbar exports shared link arrays; mobile and desktop menus read from the same source to keep copy in sync.
-- `ScrollProgress`, `FloatingActionButton`, and `ProgressiveLoader` (mobile) read scroll state—avoid redundant listeners; piggyback on `useScroll` / `useScrollToTop`.
-- `useSectionFix` + `sectionAudit` utilities auto-patch layout gaps post-render. When introducing new background colors/gradients, rely on `.section-container` (see `src/index.css`) to keep these audits passing.
+- `ScrollProgress` reads scroll state—avoid redundant listeners; piggyback on it or `useScrollToTop`.
+- `useSectionFix` auto-patches layout gaps post-render. When introducing new background colors/gradients, rely on `.section-container` (see `src/index.css`) to keep these audits passing.
 
 ### 3.2 SEO & Structured Data
 - `<PageSEO>` sanitizes meta descriptions and guards against duplicate canonicals/description tags. Always pass `description` and `path`; prefer `ogType="article"` on blog posts and include `articlePublishedTime`.
@@ -64,8 +64,8 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 - Gallery/media: `public/lovable-uploads` houses source images. Use `scripts/optimize-images.js` (or `npm run build:prod`) to refresh derivatives in `public/optimized`.
 
 ### 3.4 Animation & Performance Hooks
-- `use-scroll-animations`, `use-reveal-on-scroll`, and `use-responsive-scaling` cooperate with Framer Motion to stagger reveals without tanking FPS.
-- `use-cleanup-effect` and `useEventListener` enforce consistent teardown for listeners/timeouts. Any custom animation effect **must** leverage these to avoid duplicated observers across route transitions.
+- `use-scroll-animations` and `use-reveal-on-scroll` stagger CSS reveals without tanking FPS. (Framer Motion was removed in `936f6f0` — don't reintroduce it.)
+- Any custom animation effect **must** return a cleanup that removes its listeners/observers, or route transitions accumulate duplicates.
 - `setupErrorReduction` (`src/utils/errorReduction.ts`) downgrades noisy console warnings; leave it initialized in `App` unless debugging deep React issues.
 
 ### 3.5 Automation Scripts
@@ -153,7 +153,7 @@ This playbook translates the Exquisite Dentistry codebase into the exact checkpo
 - **Canonical drift:** Always pass the `path` prop to `<PageSEO>` so `getCanonicalUrl` enforces trailing slashes. Hard-coded `<link rel="canonical">` tags elsewhere will get stripped by dev guards.
 - **Navbar/scroll locking:** Mobile nav sets `document.body.style.position = 'fixed'`. When creating modals/drawers, reuse the same lock helpers or ensure cleanup on unmount.
 - **Legacy redirects:** Don't delete entries from `vercel.json`, `LegacyRedirectHandler`, or redirect fixtures unless you confirm the indexed URL is gone. Production behavior is Vercel-first.
-- **Animations:** Framer Motion + scroll observers can introduce layout thrash. Use `willChange` sparingly and rely on `use-cleanup-effect` utilities.
+- **Animations:** scroll observers can introduce layout thrash. Use `willChange` sparingly and always clean observers up in the effect teardown.
 - **Static SEO page:** `public/emergency-dentist.html` serves as the SEO smoke-test fixture. Keep its head tags aligned with `<PageSEO>` defaults.
 
 ---

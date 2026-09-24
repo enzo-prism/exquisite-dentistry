@@ -51,7 +51,7 @@ Manual flows:
 - check the Cherry title and all wrapped supporting lines share the same left edge, the icon stays vertically centered, and the gold chip grows with its copy while preserving top/bottom padding.
 - at 320px, confirm the longest wrapped state stays inside the viewport, clears the bottom-left Concierge, and leaves the bottom-right quick-actions FAB above it. Consent, navigation, and dialog overlays must remain above the widget.
 - keyboard-focus the Cherry control, confirm the target remains at least 44px, then activate it and verify the real Cherry experience opens.
-- open homepage, scroll past hero, and expand quick actions. The floating quick-actions button (`FloatingActionButton`) must sit **above** the Cherry pill, not on top of it.
+- open homepage and scroll past the hero. The Cherry "Pay over time" pill is the only bottom-right fixed control (the floating quick-actions button was removed); confirm nothing overlaps it.
 - on every video-backed hero, confirm the shared abstract black-and-gold poster is visible before playback, remains visible through player initialization or failure, has a clean center crop with readable copy, and crossfades only when the looping video starts.
 - open mobile menu, expand Popular Services, navigate to one service route, confirm the drawer closes.
 - open search, type `veneers`, choose a result, confirm navigation.
