@@ -1451,7 +1451,12 @@ const baseBlogPosts: BlogPost[] = [
     seoTitle: 'Netflix During Dental Procedures | Entertainment at Exquisite Dentistry LA',
     seoDescription: 'Experience anxiety-free cosmetic dentistry while streaming Netflix\'s hottest shows. Discover how our entertainment-focused approach transforms dental visits into relaxing, enjoyable experiences.',
     seoKeywords: 'entertainment during dental procedures, Netflix dentist office, comfortable cosmetic dentistry, dental anxiety relief, relaxing dental experience Los Angeles',
-    published: true
+    // Retired rewrite. The surviving version is
+    // top-4-netflix-shows-to-explore-from-the-dentists-chair, which still ranks.
+    // vercel.json 301s this slug to /blog/; keeping it published also kept its
+    // sitemap entry and prerendered page, so the sitemap pointed Google at a URL
+    // that immediately redirected away.
+    published: false
   },
 ];
 
