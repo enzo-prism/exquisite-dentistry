@@ -64,7 +64,24 @@ for (const { source } of redirects) {
   }
 }
 
-// 5. Every legacy URL under test must have a rule with the expected target.
+// 5. A redirect source must not also be a live route or a published post.
+//    Otherwise the sitemap and prerenderer advertise a URL that immediately
+//    301s away — wasted crawl budget and a contradictory signal. Retiring a
+//    post means unpublishing it (published: false, or UNPUBLISHED_SLUGS for
+//    Blog-Content posts) as well as adding the redirect.
+for (const { source, destination } of redirects) {
+  const s = norm(source);
+  if (routes.has(s) || routes.has(`${s}/`)) {
+    fail(`redirect source is still a live route: ${source} -> ${destination}`);
+  } else if (blogSlugs.has(s)) {
+    fail(
+      `redirect source is still a published post: ${source} -> ${destination}` +
+        ` (unpublish the post so it leaves the sitemap and prerender)`,
+    );
+  }
+}
+
+// 6. Every legacy URL under test must have a rule with the expected target.
 const map = JSON.parse(await readFile('scripts/redirect-tests/canonical-map.json', 'utf8'));
 const bySource = new Map(redirects.map((r) => [r.source, r.destination]));
 for (const [legacy, expected] of Object.entries(map)) {

@@ -164,13 +164,45 @@ const main = async () => {
     errors.push(`Missing redirects file: ${REDIRECTS_PATH}`);
   }
 
-  if (baseContent && /published:\s*false/.test(baseContent)) {
-    errors.push('Draft blog posts found in src/data/blogPosts.ts (published: false).');
+  // An unpublished post is only a problem when nothing redirects it.
+  //
+  // This used to reject every `published: false` in blogPosts.ts, which also
+  // blocked the legitimate way to retire a post. Retiring means unpublishing
+  // (so the slug leaves blogIndex.json, the sitemap and the prerender) AND
+  // adding a 301 — leaving it published keeps a sitemap entry that redirects
+  // away. An unpublished slug with no redirect is a true orphan: a draft
+  // shipped by accident, or a post that now 404s.
+  let indexedSlugs = new Set();
+  try {
+    const indexRaw = await fs.readFile(path.join(ROOT, 'src', 'data', 'blogIndex.json'), 'utf-8');
+    const parsed = JSON.parse(indexRaw);
+    indexedSlugs = new Set((Array.isArray(parsed) ? parsed : parsed.posts).map((post) => post.slug));
+  } catch (error) {
+    errors.push('Missing or unreadable src/data/blogIndex.json (run `npm run generate:blog-index`).');
+  }
+
+  let redirectSources = new Set();
+  try {
+    const vercelRaw = await fs.readFile(path.join(ROOT, 'vercel.json'), 'utf-8');
+    redirectSources = new Set(
+      (JSON.parse(vercelRaw).redirects ?? []).map((rule) => rule.source.replace(/\/$/, '')),
+    );
+  } catch (error) {
+    errors.push('Missing or unreadable vercel.json.');
   }
 
   const baseSlugs = baseContent ? extractSlugs(baseContent) : new Set();
   const generatedSlugs = generatedContent ? extractSlugs(generatedContent) : new Set();
   const allSlugs = new Set([...baseSlugs, ...generatedSlugs]);
+
+  const orphanedDrafts = [...allSlugs].filter(
+    (slug) => !indexedSlugs.has(slug) && !redirectSources.has(`/blog/${slug}`),
+  );
+  if (orphanedDrafts.length) {
+    errors.push(
+      `Unpublished blog posts with no redirect (retire them with a 301, or publish them):\n  ${orphanedDrafts.join('\n  ')}`,
+    );
+  }
 
   const duplicates = [...baseSlugs].filter((slug) => generatedSlugs.has(slug));
   if (duplicates.length) {
