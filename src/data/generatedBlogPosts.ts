@@ -1028,8 +1028,8 @@ export const generatedBlogPosts: BlogPost[] = [
     "dental",
     "veneers"
   ],
-  "seoTitle": "The Shapes and Styles of Dental Veneers",
-  "seoDescription": "Dental veneers have become a popular way for people in Los Angeles to significantly improve their smile.  Veneers are thin structures of porcelain that can be bonded to your teeth to give them a naturally-bright white look, as well as to improve their shape…",
+  "seoTitle": "Veneer Shapes and Styles: Choosing a Natural Look",
+  "seoDescription": "A plain-language look at common veneer shapes and styles, how shape changes the way a smile reads, and what to weigh when choosing with your dentist.",
   "seoKeywords": "shapes, styles, dental, veneers",
   "published": true
 },

@@ -1873,9 +1873,16 @@ const getBlogSupportLinks = (post: BlogPost): StaticLink[] => {
   const links: StaticLink[] = [];
 
   if (tagText.includes("veneer") || tagText.includes("bonding") || tagText.includes("crown")) {
+    // Link the whole veneers money cluster, money pages first.
+    //
+    // This used to push only the pillar plus the front-teeth hub, which left
+    // /veneers/1-tooth-veneer-los-angeles/ and the two cost pages with no
+    // crawler-visible internal link from the blog — even though the posts rank
+    // for exactly those queries ("1 tooth veneer", "2 front teeth veneers
+    // cost"). The prerendered HTML is the crawler's view of the link graph;
+    // the richer set rendered by InternalLinkingWidget never reaches it.
+    links.push(...VENEER_CLUSTER_LINKS);
     links.push(...VENEER_BLOG_LINKS);
-    links.push({ label: "Porcelain Veneers", href: "/veneers" });
-    links.push({ label: "Front Teeth Veneers", href: "/veneers/front-teeth-veneers-los-angeles" });
   }
 
   if (tagText.includes("implant")) {

@@ -39,6 +39,15 @@ const UNPUBLISHED_SLUGS = new Set(['choosing-veneers-for-just-one-tooth']);
 // of editing generatedBlogPosts.ts — hand edits to the generated file are
 // silently lost on the next `npm run generate:blog`.
 const SEO_OVERRIDES = {
+  // Sits at ~position 9 for "veneer shapes" and "veneer styles" (534
+  // impressions/quarter) but converts at 0.56% against a ~2.7% curve. The
+  // default title/excerpt never mention shape or style, so the snippet does
+  // not match the query it ranks for.
+  'the-shapes-and-styles-of-dental-veneers': {
+    seoTitle: 'Veneer Shapes and Styles: Choosing a Natural Look',
+    seoDescription:
+      'A plain-language look at common veneer shapes and styles, how shape changes the way a smile reads, and what to weigh when choosing with your dentist.'
+  },
   'choosing-veneers-for-the-four-front-teeth': {
     seoTitle: 'Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide',
     seoDescription:

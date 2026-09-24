@@ -30,7 +30,8 @@
     "prerender:static": "node --import tsx scripts/prerender-static.ts",
     "generate:search-index": "node --import tsx scripts/generate-search-index.ts",
     "generate:blog-index": "node --import tsx scripts/generate-blog-index.ts",
-    "test:attribution": "node --import tsx --test src/__tests__/utmTracking.unit.ts"
+    "test:attribution": "node --import tsx --test src/__tests__/utmTracking.unit.ts",
+    "test:redirect-config": "node scripts/test-redirect-config.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

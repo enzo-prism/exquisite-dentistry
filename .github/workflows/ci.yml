@@ -55,6 +55,9 @@ jobs:
       - name: Submission consent evidence
         run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts
 
+      - name: Redirect config (targets resolve, no chains, no route-eating wildcards)
+        run: npm run test:redirect-config
+
       - name: Blog integrity
         run: npm run test:blog
 
