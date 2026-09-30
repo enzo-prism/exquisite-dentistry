@@ -87,7 +87,16 @@ export function getSocialMediaUrls(baseUrl: string = window.location.origin) {
 
 export function initializeUTMTracking(): void {
   if (typeof window === 'undefined') return;
+  try {
+    const legacy = JSON.parse(window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) ?? 'null');
+    if (legacy && typeof legacy === 'object' && Object.prototype.hasOwnProperty.call(legacy, 'oppref')) {
+      delete legacy.oppref;
+      window.sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(legacy));
+    }
+  } catch { /* Legacy migration never blocks a new visit. */ }
   const attribution = getCurrentUTMParameters();
+  // OpenAI identity is retained separately, only after measurement consent.
+  delete attribution.oppref;
   if (Object.keys(attribution).length === 0) return;
 
   try {
@@ -112,7 +121,7 @@ export function getStoredUTMAttribution(): Record<string, string> | null {
     const record = parsed as Record<string, unknown>;
 
     const attribution = ATTRIBUTION_FIELDS.reduce<Record<string, string>>((result, field) => {
-      if (typeof record[field] !== 'string') return result;
+      if (field === 'oppref' || typeof record[field] !== 'string') return result;
       const value = cleanAttributionValue(field, record[field] as string);
       if (value) result[field] = value;
       return result;
