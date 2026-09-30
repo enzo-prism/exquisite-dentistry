@@ -1,3 +1,4 @@
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import {
   ADDRESS,
   BUSINESS_HOURS,
@@ -71,7 +72,7 @@ export const ZOOM_WHITENING_HUB_SECTIONS: ZoomWhiteningHubSection[] = [
       'Pricing varies based on your starting shade, sensitivity history, and whether take-home boosters are included for maintenance.'
     ],
     bullets: [
-      'In-office Zoom whitening typically starts around $595 (confirm after your exam and shade check)',
+      getTreatmentCostAnswer('whiteningInOffice'),
       'Existing veneers, crowns, or bonding may require shade-matching planning',
       'A maintenance plan (touch-up gel or trays) can extend longevity for coffee/tea/wine habits'
     ],

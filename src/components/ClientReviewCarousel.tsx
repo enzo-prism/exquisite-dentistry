@@ -46,7 +46,7 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
     return (
       <div className="mt-10 mx-auto max-w-xl rounded-2xl border border-black/5 bg-white/90 p-6 shadow-[0_25px_45px_-30px_rgba(15,23,42,0.25)]">
         <div className="flex flex-col gap-1 text-center">
-          <span className="text-xs uppercase tracking-[0.4em] text-gold-dark">5-STAR PROOF</span>
+          <span className="text-xs uppercase tracking-[0.4em] text-gold-dark">PATIENT EXPERIENCES</span>
         </div>
         <div className="mt-6 flex flex-col gap-4 text-left">
           <div className="flex items-center gap-3">
@@ -110,11 +110,11 @@ const ClientReviewCarousel: React.FC<ClientReviewCarouselProps> = ({ reviews, va
     <div className="mt-12 rounded-3xl border border-black/5 bg-white/95 shadow-[0_45px_90px_-60px_rgba(15,23,42,0.5)] p-6 sm:p-8 md:p-10">
       <div className="flex flex-col gap-4 text-center max-w-3xl mx-auto">
         <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-gold-dark">
-          5-STAR PROOF
+          PATIENT EXPERIENCES
         </span>
         <h3 className="text-2xl sm:text-3xl font-semibold text-black">Why Angelenos Stay With Us Year After Year</h3>
         <p className="text-black-light/80">
-          200+ Google reviews and 100+ Yelp reviews rave about the gentle care, cutting-edge technology, and anxiety-free experience our team delivers daily.
+          Patients describe the care, communication, and comfort they experienced at Exquisite Dentistry. Read a selection of their words below.
         </p>
       </div>
 

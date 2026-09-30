@@ -15,7 +15,7 @@ import LastUpdated from '@/components/LastUpdated';
 import FeaturedReviewWall from '@/components/FeaturedReviewWall';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { featuredReviews } from '@/data/featuredReviews';
-import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { consultationHref } from '@/data/consultation';
 import {
   createFAQSchema,
   createMedicalProcedureSchema,
@@ -23,6 +23,7 @@ import {
   createBreadcrumbSchema
 } from '@/utils/centralizedSchemas';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 
 const Veneers = () => {
   const meta = ROUTE_METADATA['/veneers'];
@@ -35,7 +36,7 @@ const Veneers = () => {
     {
       icon: <Shield className="h-8 w-8 text-secondary" />,
       title: "Durable & Long-lasting",
-      description: "High-quality porcelain veneers can last 10 to 15 years with proper care"
+      description: "High-quality porcelain veneers can last many years with appropriate care; longevity varies"
     },
     {
       icon: <Star className="h-8 w-8 text-secondary" />,
@@ -106,7 +107,7 @@ const Veneers = () => {
     },
     {
       question: "Are veneers reversible?",
-      answer: "Porcelain veneers require minimal tooth preparation, so while the process involves some alteration to your natural teeth, our conservative approach preserves most of your tooth structure."
+      answer: "Veneers that involve enamel removal are not reversible. Dr. Aguil evaluates how much preparation your teeth would need and discusses alternatives before you decide."
     },
     {
       question: "Do veneers look natural?",
@@ -190,7 +191,7 @@ const Veneers = () => {
           subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil using digital smile design and careful lab fabrication."
           primaryCta={{
             text: "Schedule Consultation",
-            href: SCHEDULE_CONSULTATION_PATH
+            href: consultationHref('porcelain-veneers')
           }}
           height="medium"
         />
@@ -352,6 +353,12 @@ const Veneers = () => {
           description="Right after reviewing front-teeth veneer options and transparent planning guidance, our Cherry financing page lets you explore monthly payment options before moving into the full treatment process."
         />
 
+        <section className="section-container max-w-4xl py-10">
+          <h2 className="mb-4 text-2xl font-semibold">Understand your veneer estimate</h2>
+          <p className="mb-4 leading-relaxed text-muted-foreground">{getTreatmentCostAnswer('porcelainVeneer')}</p>
+          <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/" className="inline-flex min-h-11 items-center text-secondary underline">Planning just two front teeth? Compare the cost factors.</Link>
+        </section>
+
         {/* Process Section */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
@@ -473,6 +480,11 @@ const Veneers = () => {
               ))}
             </div>
 
+            <p className="mx-auto mt-6 max-w-3xl text-sm text-muted-foreground">
+              Learn more about veneer preparation and care from the{' '}
+              <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" target="_blank" rel="noopener noreferrer" className="text-secondary underline underline-offset-4">American Dental Association</a>.
+            </p>
+
             {/* Internal Linking and Service Recommendations */}
             <div className="mx-auto mt-12 max-w-5xl space-y-8">
               <InternalLinkingWidget 
@@ -490,7 +502,6 @@ const Veneers = () => {
                     href: "/zoom-whitening",
                     description: "Complement your veneer results with professional whitening",
                     duration: "1 hour",
-                    popularity: 75,
                     combination: true
                   },
                   {
@@ -498,14 +509,12 @@ const Veneers = () => {
                     href: "/services#cosmetic",
                     description: "Frame your veneers with balanced gum lines",
                     duration: "30 to 60 min",
-                    popularity: 45
                   },
                   {
                     title: "Smile Makeover",
                     href: "/smile-makeover-los-angeles",
                     description: "Complete transformation with multiple procedures",
                     duration: "Multiple visits",
-                    popularity: 60
                   }
                   ]}
                 />
@@ -559,7 +568,7 @@ const Veneers = () => {
                   size="lg"
                   asChild
                 >
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>Schedule Consultation</Link>
+                  <Link to={consultationHref('porcelain-veneers')}>Schedule Consultation</Link>
                 </Button>
                 <Button 
                   variant="outline" 

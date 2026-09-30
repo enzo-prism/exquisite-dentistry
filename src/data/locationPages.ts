@@ -1,3 +1,5 @@
+import { featuredReviews } from "@/data/featuredReviews";
+import { PRACTICE_FACTS } from "@/data/practiceFacts";
 import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 
@@ -64,6 +66,11 @@ const normalizeInternalHref = (href: string): string => {
   const normalizedPath = pathPart.endsWith("/") ? pathPart : `${pathPart}/`;
   return hashPart ? `${normalizedPath}#${hashPart}` : normalizedPath;
 };
+
+// Actual bundled patient quotes, without implying a patient's neighborhood.
+const PRACTICE_TESTIMONIALS = featuredReviews
+  .filter((review) => ['Deena Bowman', 'Ziggy Valdez', 'Lukas Holm'].includes(review.name))
+  .map((review) => ({ quote: review.quote!, author: review.name }));
 
 const DOCTOR_IMAGE = {
   src: "/lovable-uploads/7fc03f27-6c3a-4d2a-bba6-961af127a9f0.webp",
@@ -172,16 +179,10 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     services: [
       "Porcelain veneers for natural-looking, confident smiles",
       "Zoom whitening boosts scheduled before premieres and panels",
-      "Emergency dentistry with discreet same-day relief and sedation",
+      "Emergency dental evaluations; call to confirm availability",
       "Invisalign programs tailored to entertainment professionals",
     ],
-    testimonials: [
-      {
-        quote:
-          "They treat you like family in the heart of West Hollywood. Comfort, privacy, and stunning results.",
-        author: "Shannon L.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "How do I get to your office from West Hollywood?",
@@ -191,7 +192,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Where should I park?",
         answer:
-          "There is a paid parking lot on-site at our building. It is operated separately from the practice and charges a cash fee, so plan accordingly. Street parking in the surrounding blocks is limited — read the posted signs carefully if you park on the street.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Can you check my dental insurance before I book?",
@@ -248,12 +249,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Dental implants planned with advanced imaging for enduring bite strength",
       "Full-mouth reconstruction that balances function, health, and high fashion",
     ],
-    testimonials: [
-      {
-        quote: "A Beverly Hills-level experience without crossing town. My veneers look flawless.",
-        author: "Taylor V.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "How far is the office from Beverly Hills?",
@@ -263,7 +259,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Is there parking at the building?",
         answer:
-          "Yes. A paid parking lot operates on-site at 6227 Wilshire Blvd; it is not our lot and charges a cash fee. If you prefer not to drive, rideshare drop-off at the entrance is easy.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Do you take PPO insurance?",
@@ -328,12 +324,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Professional teeth whitening (in-office and take-home) timed around headshots and events",
       "Dental crowns that restore durability without sacrificing aesthetics",
     ],
-    testimonials: [
-      {
-        quote: "Worth the quick drive from Culver City. Efficient, luxurious, and always on schedule.",
-        author: "Nick S.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "What’s the best route from Culver City?",
@@ -348,7 +339,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "How does parking work when I arrive?",
         answer:
-          "A paid parking lot operates at our building — it is run separately from the practice and takes a cash fee. Street parking nearby is limited, so most patients use the lot or a rideshare.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Will you verify my PPO benefits?",
@@ -398,12 +389,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Emergency care that saves commutes with rapid response times",
       "Teeth whitening packages coordinated around board meetings and events",
     ],
-    testimonials: [
-      {
-        quote: "Driving in from West LA is simple and the team makes every visit feel restorative.",
-        author: "Chris R.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "How do I reach you from West LA?",
@@ -413,11 +399,11 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Is parking easy once I arrive?",
         answer:
-          "There is a paid lot on-site at the building (separately operated, cash fee). Street parking in the surrounding blocks is limited and heavily signed, so the lot or a rideshare is usually the smoother option.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Do you handle dental emergencies for Westside patients?",
-        answer: `Yes. We offer same-day treatment for toothaches, fractures, and other urgent problems whenever the schedule allows. Call ${PHONE_NUMBER_DISPLAY} first so we can prepare for your arrival.`,
+        answer: PRACTICE_FACTS.emergencyAvailability,
       },
       {
         question: "Can you verify my insurance before the first visit?",
@@ -451,7 +437,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     slug: "bel-air-dentist",
     cityLabel: "Bel Air",
     description:
-      "Discreet dentistry with careful attention to privacy for Bel Air residents. Private lounge service, personalized sedation, and quick lab turnarounds help keep appointments on schedule.",
+      "Discreet dentistry with careful attention to privacy for Bel Air residents. Personalized care and clear scheduling help keep appointments on schedule.",
     heroStats: [
       { label: "Caring for LA smiles", value: "Since 2006" },
       { label: "A practice focused on adult care", value: "Adults" },
@@ -468,12 +454,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "TMJ therapy to relieve clenching brought on by high-pressure calendars",
       "Holistic preventive care with spa-level comforts and aromatherapy",
     ],
-    testimonials: [
-      {
-        quote: "Discreet, detail-oriented dentistry that matches Bel Air expectations.",
-        author: "Virginia M.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "What’s the drive like from Bel Air?",
@@ -488,7 +469,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "How should I handle parking or drop-off?",
         answer:
-          "Many Bel Air patients prefer a car service or rideshare directly to the entrance. If you drive, a paid parking lot operates at the building — note that it is separately run and charges a cash fee.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Do you work with dental insurance?",
@@ -530,7 +511,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     highlights: [
       "At 6227 Wilshire Blvd near Crescent Heights, inside 90048",
       "Walkable for neighbors along the Wilshire corridor",
-      "Same-day emergency availability",
+      "Emergency appointments subject to availability",
     ],
     services: [
       "Preventive cleanings with gentle techniques for sensitive enamel",
@@ -538,12 +519,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Dental bridges that close gaps quickly when implants aren’t ideal",
       "Invisalign Express options for subtle alignment on tighter timelines",
     ],
-    testimonials: [
-      {
-        quote: "Living in 90048 means Exquisite Dentistry is my go-to spot for quick, beautiful care.",
-        author: "Alex D.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "Where in 90048 are you located?",
@@ -553,11 +529,11 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Should I walk or drive?",
         answer:
-          "If you live nearby, walking is often easiest. Drivers can use the paid parking lot at the building (separately operated, cash fee). Street parking in the surrounding residential blocks is limited, so read the signs carefully.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Can I be seen the same day for an urgent problem?",
-        answer: `Often, yes. We hold room in the schedule for same-day treatment of toothaches, chips, and other urgent issues. Call ${PHONE_NUMBER_DISPLAY} as early in the day as you can and we will find the soonest opening.`,
+        answer: PRACTICE_FACTS.emergencyAvailability,
       },
       {
         question: "Do you accept PPO dental insurance?",
@@ -607,12 +583,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Same-day repairs for chipped teeth between rehearsals",
       "Pain-free dentistry with NuCalm-style relaxation methods",
     ],
-    testimonials: [
-      {
-        quote: "Perfect for quick smile upgrades between shoots on Melrose.",
-        author: "Brandon G.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "How do I get there from Melrose Avenue?",
@@ -622,12 +593,12 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Can you fix a chipped tooth quickly?",
         answer:
-          "In many cases, yes. Cosmetic bonding and same-day repairs can often be completed in a single visit, and we hold schedule room for urgent problems. Call ahead so we can confirm timing for your specific situation.",
+          PRACTICE_FACTS.emergencyAvailability,
       },
       {
         question: "What’s the parking situation?",
         answer:
-          "A paid parking lot operates at our building — it isn’t run by the practice and charges a cash fee. Street parking in the neighborhood is limited and closely signed, so budget a few extra minutes if you plan to hunt for a spot.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Will my PPO insurance cover cosmetic work?",
@@ -677,12 +648,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       "Preventive cleanings with VELscope screenings at every visit",
       "Oral cancer screenings that support long-term wellness goals",
     ],
-    testimonials: [
-      {
-        quote: "Driving from Westwood is worth it, appointments start on time and the results are unmatched.",
-        author: "Emily R.",
-      },
-    ],
+    testimonials: PRACTICE_TESTIMONIALS,
     faqs: [
       {
         question: "What’s the easiest route from Westwood?",
@@ -697,7 +663,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Where do I park when I arrive?",
         answer:
-          "Use the paid lot at the building — it is separately operated and charges a cash fee. Street parking on the surrounding blocks is limited, so the lot is usually the faster choice before a timed appointment.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Can you verify my PPO plan before I commit to treatment?",
@@ -763,7 +729,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Is there parking if I drive?",
         answer:
-          "A paid parking lot operates on-site at the building. It is not run by the practice and charges a cash fee. Street parking in the blocks around the Miracle Mile is limited and closely signed, so check postings carefully.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Do you see patients before work?",
@@ -837,7 +803,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Where do I park when I arrive?",
         answer:
-          "A paid parking lot operates at our building; it is separately run and charges a cash fee. Street parking around the office is limited — different from Larchmont Boulevard’s metered spots — so most patients use the lot.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "I’m interested in Invisalign. How does it start?",
@@ -906,7 +872,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Is parking difficult near the office?",
         answer:
-          "There is a paid parking lot on-site at the building (separately operated, cash fee). Street parking in the surrounding blocks is limited and permit-signed in places, so the lot is the reliable option.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "Do you see children?",
@@ -954,7 +920,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     highlights: [
       "On Wilshire Boulevard at Crescent Heights, in the 90048 zip code",
       "Metro buses along Wilshire stop close to the office",
-      "Same-day emergency appointments when something can’t wait",
+      "Emergency appointments subject to availability",
     ],
     services: [
       "Comprehensive exams, cleanings, and digital x-rays",
@@ -982,7 +948,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       },
       {
         question: "What if I have a dental emergency?",
-        answer: `Call ${PHONE_NUMBER_DISPLAY} as early as you can. We offer same-day treatment for toothaches, fractures, and other urgent problems whenever the schedule allows, and we will tell you honestly what can be done that day.`,
+        answer: PRACTICE_FACTS.emergencyAvailability,
       },
       {
         question: "Do you verify PPO insurance benefits?",
@@ -1052,7 +1018,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Is parking easier than in Koreatown?",
         answer:
-          "There is a paid parking lot on-site at our building — it is separately operated and charges a cash fee. Street parking nearby is limited, so the lot is the dependable choice; rideshare drop-off at the entrance also works well.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "What cosmetic treatments do you offer?",
@@ -1122,7 +1088,7 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
       {
         question: "Should I drive or can I walk?",
         answer:
-          "Most Fairfax District patients drive or take a short rideshare, since the office sits at the district’s southern edge on Wilshire. If you drive, a paid lot operates at the building (cash fee, separately run); street parking nearby is limited.",
+          PRACTICE_FACTS.parking,
       },
       {
         question: "I get nervous at the dentist. How do you handle that?",

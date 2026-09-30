@@ -3,13 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from '@/components/ui/carousel';
 
 interface ServiceItemProps {
   title: string;
@@ -22,7 +15,7 @@ const services: ServiceItemProps[] = [
   {
     title: "Porcelain Veneers",
     description: "Transform your smile with custom-designed, ultra-thin porcelain shells that cover imperfections and create a naturally beautiful appearance.",
-    href: "/services#cosmetic",
+    href: "/veneers/",
     index: 0
   },
   {
@@ -34,13 +27,13 @@ const services: ServiceItemProps[] = [
   {
     title: "Invisalign",
     description: "Discreet clear aligners that gradually straighten teeth without the need for traditional metal braces.",
-    href: "/services#specialty",
+    href: "/invisalign/",
     index: 2
   },
   {
     title: "Dental Implants",
     description: "Permanent, natural-looking tooth replacements that restore both function and aesthetics to your smile.",
-    href: "/services#restorative",
+    href: "/dental-implants/",
     index: 3
   },
   {

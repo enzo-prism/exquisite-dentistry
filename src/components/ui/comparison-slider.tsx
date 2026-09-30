@@ -7,6 +7,9 @@ interface ComparisonSliderProps {
   afterImage: string;
   beforeAlt: string;
   afterAlt: string;
+  label?: string;
+  beforeObjectPosition?: string;
+  afterObjectPosition?: string;
   objectPosition?: string;
   className?: string;
   aspectRatio?: number;
@@ -19,6 +22,9 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   afterImage,
   beforeAlt,
   afterAlt,
+  label,
+  beforeObjectPosition,
+  afterObjectPosition,
   objectPosition = 'center 30%',
   className,
   aspectRatio,
@@ -49,9 +55,17 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
     updateSliderPosition(e.touches[0].clientX);
   };
 
-  const handleImageLoad = (type: 'before' | 'after') => {
-    setImagesLoaded(prev => ({ ...prev, [type]: true }));
-  };
+  const handleBeforeLoad = useCallback(() => {
+    setImagesLoaded((previous) => previous.before ? previous : { ...previous, before: true });
+  }, []);
+  const handleAfterLoad = useCallback(() => {
+    setImagesLoaded((previous) => previous.after ? previous : { ...previous, after: true });
+  }, []);
+
+  useEffect(() => {
+    setImagesLoaded({ before: false, after: false });
+    setSliderPosition(50);
+  }, [beforeImage, afterImage]);
 
   // Handlers are created inside the effect so the exact listener instances that
   // were added are the ones removed on cleanup. Defining them in the component
@@ -73,21 +87,39 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
     document.addEventListener('mouseup', stopDragging);
     document.addEventListener('touchmove', handleTouchMove);
     document.addEventListener('touchend', stopDragging);
+    document.addEventListener('touchcancel', stopDragging);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', stopDragging);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', stopDragging);
+      document.removeEventListener('touchcancel', stopDragging);
     };
   }, [isDragging, updateSliderPosition]);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const deltas: Record<string, number> = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 };
+    if (!(event.key in deltas) && event.key !== 'Home' && event.key !== 'End') return;
+    event.preventDefault();
+    setSliderPosition((position) => event.key === 'Home' ? 0 : event.key === 'End' ? 100 : Math.max(0, Math.min(100, position + deltas[event.key])));
+  };
 
   const allImagesLoaded = imagesLoaded.before && imagesLoaded.after;
 
   return (
     <div 
       ref={containerRef}
-      className={cn("relative group cursor-col-resize select-none", className)}
+      className={cn("relative group cursor-col-resize select-none touch-pan-y focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-dark", className)}
+      role="slider"
+      tabIndex={0}
+      aria-label={label || `Compare ${beforeAlt} and ${afterAlt}`}
+      aria-orientation="horizontal"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(sliderPosition)}
+      aria-valuetext={`${Math.round(sliderPosition)}% before photo`}
+      onKeyDown={handleKeyDown}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onMouseDown={handleMouseDown}
@@ -97,11 +129,11 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
       <SmartImage
         src={afterImage}
         alt={afterAlt}
-        objectPosition={objectPosition}
+        objectPosition={afterObjectPosition || objectPosition}
         fallbackAspectRatio={aspectRatio}
         minAspectRatio={minAspectRatio}
         maxAspectRatio={maxAspectRatio}
-        onLoad={() => handleImageLoad('after')}
+        onLoad={handleAfterLoad}
         showLoadingSkeleton={true}
       />
 
@@ -117,11 +149,11 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
         <SmartImage
           src={beforeImage}
           alt={beforeAlt}
-          objectPosition={objectPosition}
+          objectPosition={beforeObjectPosition || objectPosition}
           fallbackAspectRatio={aspectRatio}
           minAspectRatio={minAspectRatio}
           maxAspectRatio={maxAspectRatio}
-          onLoad={() => handleImageLoad('before')}
+          onLoad={handleBeforeLoad}
           showLoadingSkeleton={false}
         />
       </div>

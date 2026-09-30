@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { PRACTICE_FACTS } from '@/data/practiceFacts';
+import FeaturedReviewWall from '@/components/FeaturedReviewWall';
+import { featuredReviews } from '@/data/featuredReviews';
 import { Link } from 'react-router-dom';
 import {
   Headphones,
@@ -34,7 +37,7 @@ const ClientExperience = () => {
     },
     {
       title: "Convenient Scheduling",
-      description: "Same-day emergency appointments, early morning/lunchtime slots, and family block appointments.",
+      description: "Ask the team about available appointment times and let us know about your scheduling needs.",
       icon: <Calendar size={20} />
     },
     {
@@ -75,23 +78,6 @@ const ClientExperience = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      quote: '“I watched Netflix, sipped espresso, and forgot I was at the dentist.”',
-      name: 'Morgan S.',
-      service: 'Porcelain Veneers'
-    },
-    {
-      quote: '“They scheduled my Invisalign visits around set days, concierge dentistry at its best.”',
-      name: 'Nick R.',
-      service: 'Invisalign'
-    },
-    {
-      quote: '“The anxiety menu, aromatherapy, and sedation options made me feel in control again.”',
-      name: 'Chloe F.',
-      service: 'Smile Refresh'
-    }
-  ];
 
   const comfortMenu = [
     { title: 'Soundtrack Bar', description: 'Pick cinematic, lo-fi, or guided meditation audio.' },
@@ -103,10 +89,10 @@ const ClientExperience = () => {
   ];
 
   const safetyAssurances = [
-    'IV & oral sedation options for anxious guests',
-    'Emergency availability with same-day pain relief',
-    'On-call concierge line for post-visit support',
-    'Sterile suites with hospital-grade purification'
+    PRACTICE_FACTS.sedation,
+    PRACTICE_FACTS.emergencyAvailability,
+    PRACTICE_FACTS.postVisitSupport,
+    'Tell us about any health or comfort considerations before your appointment'
   ];
 
   useEffect(() => {
@@ -117,7 +103,7 @@ const ClientExperience = () => {
     <>
       <PageSEO 
         title="Comfort-Focused Dentistry in LA | Exquisite Dentistry"
-        description="Comfortable dental care in LA with spa amenities, sedation options, and personalized comfort, especially for anxious patients."
+        description="Explore dental care in Los Angeles with personalized comfort planning, clear communication, and support for anxious patients."
         keywords="luxury dental experience, spa dentistry Los Angeles, comfortable dental care, dental anxiety relief, premium dental office, Beverly Hills dental spa"
         path="/client-experience"
       />
@@ -266,7 +252,7 @@ const ClientExperience = () => {
                     { title: 'Digital Preview Suite', body: 'iTero scans + 3D rendering let you visualize movements before we begin.' },
                     { title: 'Comfort Signals', body: 'Hand-held pause buttons and real-time updates ensure you guide the pace.' },
                     { title: 'Finish & Glow', body: 'Custom lip hydration, take-home care kits, and text follow-ups complete the visit.' },
-                    { title: 'On-Call Support', body: '24/7 concierge texting keeps you connected to Dr. Aguil’s team.' }
+                    { title: 'Aftercare Questions', body: PRACTICE_FACTS.postVisitSupport }
                   ].map((item) => (
                     <div key={item.title} className="p-4 rounded-2xl bg-gray-50 border border-gray-100 shadow-sm">
                       <p className="text-sm font-semibold text-black">{item.title}</p>
@@ -275,20 +261,9 @@ const ClientExperience = () => {
                   ))}
                 </div>
               </div>
-              <div className="bg-black text-white rounded-3xl p-6 space-y-6">
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="text-gold" size={24} />
-                  <p className="text-sm uppercase tracking-[0.35em] text-gold/80">Client Notes</p>
-                </div>
-                <div className="grid gap-4">
-                  {testimonials.map((item) => (
-                    <div key={item.name} className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-3">
-                      <p className="text-white/90 text-sm leading-relaxed">“{item.quote.replace(/(^“|”$)/g, '')}”</p>
-                      <div className="text-xs uppercase tracking-widest text-gold">{item.service}</div>
-                      <div className="text-sm text-white/70">{item.name}</div>
-                    </div>
-                  ))}
-                </div>
+              <div className="space-y-5">
+                <h3 className="text-xl font-semibold text-black">Patient experiences</h3>
+                <FeaturedReviewWall reviews={featuredReviews.filter((review) => ['Ziggy Valdez', 'Deena Bowman', 'Jody Kieler'].includes(review.name))} />
               </div>
             </div>
           </div>
@@ -329,7 +304,7 @@ const ClientExperience = () => {
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
               <div className="space-y-6">
                 <span className="inline-block text-sm text-gold font-medium">Calm + Clinical Precision</span>
-                <h2 className="heading-lg">Sedation, Emergency Care & 24/7 Concierge Support</h2>
+                <h2 className="heading-lg">Comfort Planning, Urgent Visits & Aftercare</h2>
                 <p className="paragraph">
                   Whether you’re planning a full veneer case or need urgent relief, our team ensures you feel safe, heard, and cared for long after you leave the chair.
                 </p>

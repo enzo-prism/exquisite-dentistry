@@ -1,10 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import VideoHero from '@/components/VideoHero';
-import { patientTransformations } from '@/data/patientTransformations';
+import { patientTransformations, type GalleryCategory } from '@/data/patientTransformations';
 import PatientTransformationCard from '@/components/PatientTransformation';
 import { closeUpTransformations } from '@/data/closeUpTransformations';
 import CloseUpTransformationCard from '@/components/CloseUpTransformation';
@@ -21,6 +21,24 @@ const SmileGallery = () => {
     window.scrollTo(0, 0);
   }, []);
   
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filters: { value: GalleryCategory | 'all'; label: string }[] = [
+    { value: 'all', label: 'All treatments' },
+    { value: 'veneers', label: 'Veneers' },
+    { value: 'alignment', label: 'Alignment' },
+    { value: 'implants', label: 'Implants' },
+    { value: 'combined', label: 'Combined treatments' },
+  ];
+  const requestedCategory = searchParams.get('treatment');
+  const category = filters.find((filter) => filter.value === requestedCategory)?.value || 'all';
+  const setCategory = (nextCategory: GalleryCategory | 'all') => {
+    const nextParams = new URLSearchParams(searchParams);
+    if (nextCategory === 'all') nextParams.delete('treatment');
+    else nextParams.set('treatment', nextCategory);
+    setSearchParams(nextParams, { preventScrollReset: true });
+  };
+  const filteredPatients = patientTransformations.filter((patient) => category === 'all' || patient.categories.includes(category));
+
   const meta = ROUTE_METADATA['/smile-gallery'];
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
@@ -73,7 +91,7 @@ const SmileGallery = () => {
       </div>
 
       {/* Patient Stories Section */}
-      <section className="bg-white py-10 md:py-16">
+      <section ref={sliderSectionRef} id="smile-gallery-cases" className="scroll-mt-28 bg-white py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-semibold mb-4">Client Smile Transformations</h2>
@@ -109,10 +127,27 @@ const SmileGallery = () => {
             </div>
           </div>
           
-          {/* Patient transformations grid - standardized responsive breakpoints */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {patientTransformations.map((patient, index) => (
-              <PatientTransformationCard key={`patient-${index}`} patient={patient} />
+          <div role="group" aria-label="Filter transformations by treatment" className="mb-5 flex flex-wrap justify-center gap-3">
+            {filters.map((filter) => (
+              <button
+                key={filter.value}
+                type="button"
+                aria-pressed={category === filter.value}
+                aria-controls="patient-cases"
+                onClick={() => setCategory(filter.value)}
+                className={`min-h-11 rounded-sm border px-4 py-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-dark ${category === filter.value ? 'border-black bg-black text-white' : 'border-gold/40 bg-white text-gray-900 hover:bg-gold/10'}`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+          <p role="status" aria-live="polite" aria-atomic="true" className="mb-3 text-center text-sm text-gray-600">
+            Showing {filteredPatients.length} of {patientTransformations.length} patient cases
+          </p>
+          <p className="mb-8 text-center text-sm text-gray-600">Drag a comparison, or use the arrow keys when it has focus. Results vary by patient.</p>
+          <div id="patient-cases" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {filteredPatients.map((patient) => (
+              <PatientTransformationCard key={patient.name} patient={patient} />
             ))}
           </div>
         </div>
@@ -121,7 +156,6 @@ const SmileGallery = () => {
       {/* Up Close Transformations Section */}
       <section
         className="bg-gray-50 py-12 md:py-20"
-        ref={sliderSectionRef}
         id="smile-gallery-sliders"
       >
         <div className="container mx-auto px-4 max-w-6xl">
@@ -129,7 +163,8 @@ const SmileGallery = () => {
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
               See the detail and precision of our cosmetic dental work.
-              Drag the slider to compare the before and after results.
+              Drag the slider or use the arrow keys to compare the photos. These additional
+              close-ups have no treatment labels and are shown separately from the filtered cases.
             </p>
           </div>
           

@@ -14,6 +14,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { marked } from 'marked';
+import { validateClinicalReviews } from './lib/clinical-review.mjs';
 
 marked.setOptions({
   gfm: true,
@@ -27,6 +28,8 @@ const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, 'Blog-Content', 'exq_dental_blog_posts');
 const GENERATED_FILE = path.join(ROOT, 'src', 'data', 'generatedBlogPosts.ts');
 const BASE_BLOG_FILE = path.join(ROOT, 'src', 'data', 'blogPosts.ts');
+// Authorship and edit dates cannot stand in for documented clinical review.
+const CLINICAL_REVIEWS = validateClinicalReviews(JSON.parse(await fs.readFile(path.join(ROOT, 'src', 'data', 'blogClinicalReviews.json'), 'utf8')));
 
 // Retired posts that must stay unpublished on regeneration. These slugs 301
 // elsewhere (see vercel.json) — e.g. choosing-veneers-for-just-one-tooth →
@@ -44,9 +47,9 @@ const SEO_OVERRIDES = {
   // default title/excerpt never mention shape or style, so the snippet does
   // not match the query it ranks for.
   'the-shapes-and-styles-of-dental-veneers': {
-    seoTitle: 'Veneer Shapes and Styles: Choosing a Natural Look',
+    seoTitle: 'Veneer Shapes and Styles: Compare Options for Your Smile',
     seoDescription:
-      'A plain-language look at common veneer shapes and styles, how shape changes the way a smile reads, and what to weigh when choosing with your dentist.'
+      'Compare veneer shapes and styles, from softer curves to square edges. See what to discuss about tooth length, proportions, bite, and the look you want.'
   },
   'choosing-veneers-for-the-four-front-teeth': {
     seoTitle: 'Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide',
@@ -59,6 +62,10 @@ const SEO_OVERRIDES = {
 // untouched; only add an entry when the corresponding source article receives
 // a substantive review or revision.
 const MODIFIED_AT_OVERRIDES = {
+  'the-shapes-and-styles-of-dental-veneers': '2026-09-30',
+  'the-cost-of-dental-veneers-in-los-angeles': '2026-09-30',
+  'top-la-cosmetic-dentist-answers-your-questions-are-veneers-a-good-investment': '2026-09-30',
+  'top-la-cosmetic-dentist-answers-your-questions-is-invisalign-a-good-investment': '2026-09-30',
   'are-veneers-covered-by-insurance': '2026-08-23'
 };
 
@@ -411,6 +418,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     seoTitle: SEO_OVERRIDES[slug]?.seoTitle ?? title,
     seoDescription: SEO_OVERRIDES[slug]?.seoDescription ?? excerpt,
     seoKeywords: tags.join(', '),
+    clinicalReview: CLINICAL_REVIEWS[slug] ?? { status: 'pending' },
     published: !UNPUBLISHED_SLUGS.has(slug)
   };
 };

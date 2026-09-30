@@ -31,7 +31,9 @@
     "generate:search-index": "node --import tsx scripts/generate-search-index.ts",
     "generate:blog-index": "node --import tsx scripts/generate-blog-index.ts",
     "test:attribution": "node --import tsx --test src/__tests__/utmTracking.unit.ts",
-    "test:redirect-config": "node scripts/test-redirect-config.mjs"
+    "test:redirect-config": "node scripts/test-redirect-config.mjs",
+    "test:patient-confidence": "node --import tsx --test src/__tests__/appointmentOutcomes.unit.ts src/__tests__/pricingTrust.unit.ts src/__tests__/sharedTreatment.unit.tsx",
+    "report:appointment-outcomes": "node --import tsx scripts/report-appointment-outcomes.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.0",

@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect, useState, useMemo } from 'react';
+import ClinicalReviewCredit from '@/components/ClinicalReviewCredit';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
@@ -78,16 +79,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
               {post.excerpt}
             </p>
 
-            <p className="mt-4 text-sm text-gray-500">
-              Clinically reviewed by{' '}
-              <Link to="/about/" className="text-gold underline-offset-4 hover:underline">
-                Dr. Alexie Aguil
-              </Link>{' '}
-              ·{' '}
-              <Link to="/editorial-policy/" className="text-gold underline-offset-4 hover:underline">
-                Editorial policy
-              </Link>
-            </p>
+            <ClinicalReviewCredit review={post.clinicalReview} />
           </div>
         </div>
       </div>

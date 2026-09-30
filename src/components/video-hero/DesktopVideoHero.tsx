@@ -25,7 +25,7 @@ const DesktopVideoHero: React.FC<VideoHeroProps> = ({
   const shouldRenderVideo = !disableVideo && !useGradient;
   const heroProofLinks = proofLinks ?? [
     {
-      text: '5-star experience · 200+ Google reviews · 100+ Yelp reviews',
+      text: 'Read patient experiences',
       href: '/testimonials/'
     }
   ];

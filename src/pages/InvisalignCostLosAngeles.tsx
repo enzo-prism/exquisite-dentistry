@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import { PageSEO } from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -24,8 +25,7 @@ import { trackCTAClick } from '@/utils/googleAdsTracking';
 const faqs = [
   {
     question: 'How much does Invisalign cost in Los Angeles?',
-    answer:
-      'It depends on your case. A short plan that tidies mild crowding involves fewer aligners and visits than a longer plan that corrects the bite, so the two are priced differently. After a scan and exam, we give you a written quote for your specific plan. The most reliable number is the one built for your teeth at a consultation.',
+    answer: getTreatmentCostAnswer('invisalign'),
   },
   {
     question: 'What makes one Invisalign case cost more than another?',

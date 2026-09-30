@@ -75,9 +75,9 @@
     {
       "type": "service",
       "title": "Pain-Free Dentistry in Los Angeles",
-      "description": "Experience stress-free visits with sedation, advanced anesthesia, and a concierge comfort menu designed for anxious patients.",
+      "description": "Explore dental anxiety support, clear communication, and comfort planning for your visit. Ask the team about available options.",
       "href": "/pain-free-dentistry/",
-      "h1": "Pain-Free Dentistry for Every Visit",
+      "h1": "Dental Care Planned Around Your Comfort",
       "keywords": [
         "pain free dentist LA",
         "sedation dentistry west hollywood",
@@ -88,7 +88,7 @@
     {
       "type": "service",
       "title": "Root Canal Therapy in Los Angeles",
-      "description": "Experience sedation options, modern imaging, and compassionate care during root canal therapy in West Hollywood.",
+      "description": "Explore root canal evaluations, imaging, and comfort planning in West Hollywood.",
       "href": "/root-canal/",
       "h1": "Root Canal Therapy Without the Stress",
       "keywords": [
@@ -161,7 +161,7 @@
     {
       "type": "location",
       "title": "Bel Air Dentist",
-      "description": "Discreet dentistry with careful attention to privacy for Bel Air residents. Private lounge service, personalized sedation, and quick lab turnarounds help keep appointments on schedule.",
+      "description": "Discreet dentistry with careful attention to privacy for Bel Air residents. Personalized care and clear scheduling help keep appointments on schedule.",
       "href": "/bel-air-dentist/",
       "h1": "Bel Air’s Boutique Dental Experience",
       "keywords": [
@@ -479,10 +479,10 @@
     },
     {
       "type": "page",
-      "title": "Cost of 2 Front Teeth Veneers in Los Angeles (2026 Guide)",
-      "description": "Learn what impacts the cost of 2 front teeth veneers in Los Angeles and when a 2-tooth smile-zone plan is the right fit.",
+      "title": "Cost of 2 Front Teeth Veneers in Los Angeles",
+      "description": "Compare the cost factors for two front teeth veneers, what to ask about a quote, and whether two veneers suit your smile. Plan with Dr. Aguil in Los Angeles.",
       "href": "/veneers/2-front-teeth-veneers-cost-los-angeles/",
-      "h1": "Cost of 2 Front Teeth Veneers in Los Angeles",
+      "h1": "How Much Do 2 Front Teeth Veneers Cost in Los Angeles?",
       "id": "page:/veneers/2-front-teeth-veneers-cost-los-angeles/"
     },
     {
@@ -609,13 +609,12 @@
       "type": "page",
       "href": "/emergency-dentist/",
       "title": "Emergency Dentist Los Angeles | Exquisite Dentistry",
-      "description": "Emergency dentist in Los Angeles providing same-day appointments, after-hours guidance, and concierge treatment for urgent dental needs.",
+      "description": "Emergency dentist in Los Angeles for urgent dental concerns. Call during office hours to confirm the soonest available appointment.",
       "h1": "Emergency Dentist Los Angeles",
       "keywords": [
         "emergency dentist Los Angeles",
-        "same-day dental care LA",
-        "urgent dentist",
-        "after-hours dentist LA"
+        "urgent dental care LA",
+        "dental emergency evaluation"
       ],
       "id": "page:/emergency-dentist/"
     },
@@ -784,7 +783,7 @@
     {
       "type": "page",
       "title": "Same-Day Dentist in Los Angeles | Exquisite Dentistry",
-      "description": "Same-day dental care in Los Angeles: urgent exams, pain relief, in-office whitening, and honest guidance on what takes more than one visit. Call to be seen.",
+      "description": "Same-day dental care in Los Angeles depends on appointment availability and your needs. Call during office hours to discuss the next step.",
       "href": "/same-day-dentist/",
       "h1": "Same-Day Dentist in Los Angeles",
       "id": "page:/same-day-dentist/"
@@ -927,7 +926,7 @@
     {
       "type": "page",
       "title": "Veneers Cost in Los Angeles | Exquisite Dentistry",
-      "description": "What veneers cost in Los Angeles: porcelain vs composite ranges, what changes the price, financing, and insurance. Your exact cost is set at a consultation.",
+      "description": "What changes veneer cost in Los Angeles: materials, treatment scope, quote inclusions, financing, and insurance. Your exact cost follows an evaluation.",
       "href": "/veneers/cost-los-angeles/",
       "h1": "Veneers Cost in Los Angeles",
       "id": "page:/veneers/cost-los-angeles/"
@@ -1402,10 +1401,10 @@
     },
     {
       "type": "blog",
-      "title": "Finding the Best Cosmetic Dentist in the USA &#038; the World",
+      "title": "Finding the Best Cosmetic Dentist in the USA & the World",
       "description": "Medical professionals don’t like to brag, in dentistry, the top spot is one hard claim to prove.  While we can’t say for certain who the best is, we know what the one who is can do for you.",
       "href": "/blog/finding-the-best-cosmetic-dentist-in-the-usa-the-world/",
-      "h1": "Finding the Best Cosmetic Dentist in the USA &#038; the World",
+      "h1": "Finding the Best Cosmetic Dentist in the USA & the World",
       "keywords": [
         "Cosmetic Dentistry",
         "finding",
@@ -1677,27 +1676,6 @@
     },
     {
       "type": "blog",
-      "title": "Relax and Binge Netflix's Hottest Shows During Your Cosmetic Dentistry Visit",
-      "description": "Turn your dental anxiety into entertainment bliss! Discover how streaming Netflix during cosmetic procedures at Exquisite Dentistry creates a spa-like experience while achieving your perfect smile.",
-      "href": "/blog/netflix-streaming-during-dental-procedures/",
-      "h1": "Relax and Binge Netflix's Hottest Shows During Your Cosmetic Dentistry Visit",
-      "keywords": [
-        "Patient Experience",
-        "patient comfort",
-        "entertainment",
-        "dental anxiety",
-        "netflix",
-        "cosmetic dentistry",
-        "entertainment during dental procedures",
-        "Netflix dentist office",
-        "comfortable cosmetic dentistry",
-        "dental anxiety relief",
-        "relaxing dental experience Los Angeles"
-      ],
-      "id": "blog:/blog/netflix-streaming-during-dental-procedures/"
-    },
-    {
-      "type": "blog",
       "title": "Restoration and Maintenance for Dental Veneers",
       "description": "For patients looking for a beautiful, radiant smile, dental veneer restoration may be the answer.  Veneers are translucent, yet durable pieces of porcelain that are bonded to the front of teeth to enhance their color and shape, as well as fix damage.",
       "href": "/blog/restoration-and-maintenance-for-dental-veneers/",
@@ -1786,7 +1764,7 @@
     {
       "type": "blog",
       "title": "The Cost of Dental Veneers in Los Angeles",
-      "description": "A brilliant smile is priceless.  Here in Los Angeles, celebrities and business leaders are famous for the smiles their careers are built on.",
+      "description": "Veneers are quoted for the teeth being treated, the material, and any preparation needed.  A price from another patient or an old article may not describe your plan.",
       "href": "/blog/the-cost-of-dental-veneers-in-los-angeles/",
       "h1": "The Cost of Dental Veneers in Los Angeles",
       "keywords": [
@@ -1827,21 +1805,6 @@
         "replacemen"
       ],
       "id": "blog:/blog/the-process-of-veneer-replacemen/"
-    },
-    {
-      "type": "blog",
-      "title": "The Shapes and Styles of Dental Veneers",
-      "description": "Dental veneers have become a popular way for people in Los Angeles to significantly improve their smile.  Veneers are thin structures of porcelain that can be bonded to your teeth to give them a naturally-bright white look, as well as to improve their shape…",
-      "href": "/blog/the-shapes-and-styles-of-dental-veneers/",
-      "h1": "The Shapes and Styles of Dental Veneers",
-      "keywords": [
-        "Cosmetic Dentistry",
-        "shapes",
-        "styles",
-        "dental",
-        "veneers"
-      ],
-      "id": "blog:/blog/the-shapes-and-styles-of-dental-veneers/"
     },
     {
       "type": "blog",
@@ -1898,6 +1861,21 @@
         "investment"
       ],
       "id": "blog:/blog/top-la-cosmetic-dentist-answers-your-questions-is-invisalign-a-good-investment/"
+    },
+    {
+      "type": "blog",
+      "title": "Veneer Shapes and Styles: Choosing a Natural Look",
+      "description": "Veneer shape, length, edge detail, and shade all contribute to the look of a smile.  Start with the changes you want to see: softer corners, more even edges, or a brighter shade.",
+      "href": "/blog/the-shapes-and-styles-of-dental-veneers/",
+      "h1": "Veneer Shapes and Styles: Choosing a Natural Look",
+      "keywords": [
+        "Cosmetic Dentistry",
+        "shapes",
+        "styles",
+        "dental",
+        "veneers"
+      ],
+      "id": "blog:/blog/the-shapes-and-styles-of-dental-veneers/"
     },
     {
       "type": "blog",

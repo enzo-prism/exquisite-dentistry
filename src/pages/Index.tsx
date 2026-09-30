@@ -1,26 +1,21 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import VideoHero from '@/components/VideoHero';
-import ClientExperienceSection from '@/components/PatientExperienceSection';
 import PageSEO from '@/components/seo/PageSEO';
 import ServicesSection from '@/components/ServicesSection';
-import SeasonalTreatments from '@/components/SeasonalTreatments';
-import PracticeVideoSection from '@/components/PracticeVideoSection';
 import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
-import DoctorIntroSection from '@/components/DoctorIntroSection';
 import ReviewCarousel from '@/components/reviews/ReviewCarousel';
 import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
-import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import InsurancePaymentBand from '@/components/InsurancePaymentBand';
-import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { Button } from '@/components/ui/button';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
-import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { featuredReviews } from '@/data/featuredReviews';
+import HomepageDoctorProof from '@/components/HomepageDoctorProof';
+import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { HOMEPAGE_HERO_PROOF_LINKS, INSURANCE_HERO_BADGE } from '@/data/insurance';
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
@@ -54,66 +49,8 @@ const HOMEPAGE_TESTIMONIALS: VideoTestimonialItem[] = VIDEO_TESTIMONIALS.map(
  */
 const HOMEPAGE_WRITTEN_REVIEWS = featuredReviews.filter((review) => review.quote).slice(0, 12);
 
-const SmileGalleryPreview = React.lazy(() => import('@/components/SmileGalleryPreview'));
-
-const DeferredSmileGallery: React.FC = () => {
-  const anchorRef = useRef<HTMLDivElement>(null);
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    const anchor = anchorRef.current;
-    if (!anchor || typeof IntersectionObserver === 'undefined') {
-      setShouldRender(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setShouldRender(true);
-        observer.disconnect();
-      },
-      { rootMargin: '900px 0px' },
-    );
-
-    observer.observe(anchor);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={anchorRef}>
-      {shouldRender ? (
-        <Suspense fallback={null}>
-          <SmileGalleryPreview />
-        </Suspense>
-      ) : (
-        <section className="bg-gray-50 py-20" aria-label="Smile gallery preview">
-          <div className="mx-auto max-w-4xl px-4 text-center">
-            <h2 className="text-4xl font-bold text-gray-900">See Your Potential Results</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-              Explore real before-and-after smile transformations planned by Dr. Aguil.
-            </p>
-            <Link className="mt-6 inline-flex font-semibold text-primary underline" to="/smile-gallery/">
-              View the smile gallery
-            </Link>
-          </div>
-        </section>
-      )}
-    </div>
-  );
-};
-
 const IndexPage: React.FC = () => {
   const meta = ROUTE_METADATA['/'];
-
-  // CSS-based reveal animations (replacing Framer Motion)
-  const practiceVideo = useRevealOnScroll({ animation: 'up' });
-  const doctorIntro = useRevealOnScroll({ animation: 'up', delayClass: 'stagger-1' });
-  const smileGallery = useRevealOnScroll({ animation: 'up' });
-  const services = useRevealOnScroll({ animation: 'up' });
-  const seasonal = useRevealOnScroll({ animation: 'fade' });
-  const clientExperience = useRevealOnScroll({ animation: 'scale' });
-  const testimonials = useRevealOnScroll({ animation: 'fade' });
 
   return (
     <>
@@ -148,82 +85,12 @@ const IndexPage: React.FC = () => {
         preferStaticOnMobile={true}
       />
 
-      <section className="bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-xs tracking-[0.35em] uppercase text-gold-light">
-                Most Requested
-              </p>
-              <h2 className="text-lg font-semibold text-white">
-                Popular Pages
-              </h2>
-            </div>
-            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-6 lg:w-auto lg:grid-cols-5">
-              {[
-                { to: '/dental-implants/', label: 'Dental Implants' },
-                { to: '/veneers/', label: 'Porcelain Veneers' },
-                { to: '/beverly-hills-dentist/', label: 'Beverly Hills Dentist' },
-                { to: '/smile-gallery/', label: 'Smile Gallery' },
-                { to: '/schedule-consultation/', label: 'Schedule Consultation' }
-              ].map((item, index) => (
-                <Button
-                  key={item.to}
-                  variant="outline"
-                  className={`w-full border-gold/40 !text-white hover:bg-white/10 hover:!text-white lg:col-span-1 ${
-                    index >= 3 ? 'sm:col-span-3' : 'sm:col-span-2'
-                  }`}
-                  asChild
-                >
-                  <Link to={item.to}>{item.label}</Link>
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <TreatmentDecisionBand
-        eyebrow="Start Here"
-        title="Find proof, pricing clarity, and a next step without digging."
-        description="New visitors often arrive comparing veneers, smile makeovers, insurance, and financing. These paths keep the decision simple."
-      />
-      
-      <div ref={practiceVideo.ref} className={practiceVideo.animationClass}>
-        <PracticeVideoSection />
-      </div>
-
-      <div ref={doctorIntro.ref} className={doctorIntro.animationClass}>
-        <DoctorIntroSection />
-      </div>
-
-      <div ref={smileGallery.ref} className={smileGallery.animationClass}>
-        <DeferredSmileGallery />
-      </div>
-
-      <div ref={services.ref} className={services.animationClass}>
-        <ServicesSection />
-      </div>
-
+      <HomepageDoctorProof />
+      <SmileGalleryPreview />
+      <ServicesSection />
       <InsurancePaymentBand />
 
-      <FinancingOptionsSection
-        title="A smoother way to plan your smile investment."
-        description="If you already know insurance is only part of the picture, you can explore Cherry payment options before you schedule veneers, Invisalign, whitening, implants, or a larger smile makeover."
-      />
-
-      <div ref={seasonal.ref} className={seasonal.animationClass}>
-        <SeasonalTreatments />
-      </div>
-
-      <div ref={clientExperience.ref} className={clientExperience.animationClass}>
-        <ClientExperienceSection />
-      </div>
-      
-      <section
-        ref={testimonials.ref}
-        className={`py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white ${testimonials.animationClass}`}
-      >
+      <section className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block text-sm text-gold-dark font-medium mb-3">
@@ -282,95 +149,21 @@ const IndexPage: React.FC = () => {
         </div>
       </section>
 
-      {/* SEO-Rich Content Section */}
-      <section className="relative z-10 bg-background py-16">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Cosmetic Dentistry in Los Angeles, Designed for You
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Located in Los Angeles near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign, professional whitening, implants, and complete smile makeovers. Dr. Alexie Aguil uses digital smile design and close lab collaboration to deliver natural-looking results that fit your facial features and bite.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-3xl font-semibold text-foreground mb-4">
-                  Why Choose Exquisite Dentistry?
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  Located in Los Angeles and serving Beverly Hills and nearby neighborhoods, our practice combines advanced dental technology with artistic planning to create natural-looking smile transformations. Dr. Aguil focuses on conservative care, clear communication, and results that look believable in real life.
-                </p>
-                <p className="text-muted-foreground">
-                  With more than a decade in practice, Dr. Aguil understands that every smile is unique. He takes time to listen
-                  to your goals and creates personalized treatment plans that enhance your 
-                  natural beauty while improving oral health and function.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-3xl font-semibold text-foreground mb-4">
-                  Our Signature Services
-                </h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Porcelain Veneers:</strong> Ultra-thin, custom-crafted shells 
-                      designed to refine shape, color, and symmetry
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Professional Teeth Whitening:</strong> Safe, effective treatments 
-                      that often brighten teeth several shades in one visit
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold mr-2">•</span>
-                    <div>
-                      <strong>Invisalign:</strong> Discreet clear aligners that straighten 
-                      teeth without the appearance of traditional braces
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="bg-card p-8 rounded-lg border">
-              <h3 className="text-3xl font-semibold text-foreground mb-4 text-center">
-                Advanced Technology for Superior Results
-              </h3>
-              <p className="text-muted-foreground text-center mb-6">
-                Our Los Angeles practice near Beverly Hills features cutting-edge dental technology including 
-                digital X-rays, 3D imaging, computer-guided treatment planning, and same-day 
-                crown technology. This advanced equipment allows for more precise diagnoses, 
-                comfortable treatments, and exceptional results.
-              </p>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">Digital Smile Design</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Preview your new smile before treatment begins with advanced imaging technology
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">Minimally Invasive</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Preserve more natural tooth structure while achieving beautiful results
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">Comfort Focused</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Calm environment with sedation options for anxious patients
-                  </p>
-                </div>
-              </div>
-            </div>
+      <section className="bg-black py-10 text-white md:py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <h2 className="text-2xl font-semibold md:text-3xl">Cosmetic dentistry in Los Angeles, designed for you</h2>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-white/80">
+            Near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign,
+            professional whitening, dental implants, and smile makeovers. Explore your options,
+            see real patient cases, and discuss your goals with Dr. Aguil.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild className="!bg-gold !text-white hover:!bg-gold-dark hover:!text-white">
+              <Link to="/schedule-consultation/">Plan your first visit</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-gold/40 !bg-transparent !text-white hover:!bg-white/10">
+              <Link to="/beverly-hills-dentist/">Serving Beverly Hills</Link>
+            </Button>
           </div>
         </div>
       </section>

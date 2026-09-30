@@ -84,7 +84,7 @@ const Tour = () => {
             to="/testimonials/"
             className="inline-flex justify-center text-xs uppercase tracking-[0.35em] text-white/70 hover:text-white transition"
           >
-            200+ Google reviews · 100+ Yelp reviews
+            Read patient experiences
           </Link>
           <div>
             <Link

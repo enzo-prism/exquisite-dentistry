@@ -36,8 +36,9 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   // Always use the lg size (h-11 = 44px) so the primary CTA meets the 44px
   // touch-target guideline on mobile, not the 40px "default".
   const buttonSize = "lg";
-  const containerClass = isMobile ? "flex flex-col sm:flex-row gap-4" : "flex flex-wrap items-center gap-4";
-  const primaryButtonClass = isMobile ? "w-full sm:w-auto" : "";
+  const containerClass = isMobile ? "flex w-full flex-col gap-4 sm:w-auto sm:flex-row" : "flex flex-wrap items-center gap-4";
+  const primaryButtonClass = isMobile ? "w-full min-w-0 sm:w-auto" : "";
+  const mobileButtonClass = isMobile ? "h-auto min-h-11 min-w-0 w-full whitespace-normal [overflow-wrap:anywhere] px-4 py-3 text-center" : "";
 
   const trackHeroCta = (source: string, ctaText: string, destination?: string) => {
     const normalizedDestination = destination ? normalizeInternalHref(destination) : undefined;
@@ -92,7 +93,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               primaryCta.onClick?.();
             }}
             type="button"
-            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
+            className={`group ${mobileButtonClass} ${primaryCta.className ?? ''}`}
           >
             {primaryCta.text}
             <ArrowRight
@@ -111,7 +112,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             asChild
             variant="default"
             size={buttonSize}
-            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
+            className={`group ${mobileButtonClass} ${primaryCta.className ?? ''}`}
           >
             <a href={buttonHref} onClick={handleHashClick(buttonHref, primaryCta.text, 'hero_primary_button')}>
               {primaryCta.text}
@@ -133,7 +134,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             asChild
             variant="default"
             size={buttonSize}
-            className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
+            className={`group ${mobileButtonClass} ${primaryCta.className ?? ''}`}
           >
             <a
               href={normalizedHref}
@@ -159,7 +160,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           asChild
           variant="default"
           size={buttonSize}
-          className={`group ${isMobile ? 'w-full' : ''} ${primaryCta.className ?? ''}`}
+          className={`group ${mobileButtonClass} ${primaryCta.className ?? ''}`}
         >
           <Link
             to={normalizedHref}
@@ -193,7 +194,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               <Button
                 variant="black"
                 size={buttonSize}
-                className={`group ${isMobile ? 'w-full' : ''}`}
+                className={`group ${mobileButtonClass}`}
                 onClick={() => {
                   trackHeroCta('hero_secondary_button', secondaryCta.text);
                   secondaryCta.onClick?.();
@@ -221,7 +222,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
                 asChild
                 variant="black"
                 size={buttonSize}
-                className={`group ${isMobile ? 'w-full' : ''}`}
+                className={`group ${mobileButtonClass}`}
               >
                 <a href={buttonHref} onClick={handleHashClick(buttonHref, secondaryCta.text, 'hero_secondary_button')}>
                   {secondaryCta.text}
@@ -242,7 +243,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
                 asChild
                 variant="black"
                 size={buttonSize}
-                className={`group ${isMobile ? 'w-full' : ''}`}
+                className={`group ${mobileButtonClass}`}
               >
                 <a
                   href={normalizedHref}
@@ -267,7 +268,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
               asChild
               variant="black"
               size={buttonSize}
-              className={`group ${isMobile ? 'w-full' : ''}`}
+              className={`group ${mobileButtonClass}`}
             >
               <Link
                 to={normalizedHref ?? buttonHref}

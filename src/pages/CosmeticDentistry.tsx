@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
@@ -234,7 +235,7 @@ const CosmeticDentistry = () => {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 We try to fit treatment around your schedule, with early-morning visits, shorter touch-ups between meetings, and flexible timing when you travel.
-                We also offer private scheduling, quiet entry options, and sedation dentistry for patients who want added comfort.
+                Tell us about your scheduling needs and any dental anxiety so the team can confirm available options for your visit.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 If you speak or perform, we check speech clarity after treatment.
@@ -258,13 +259,13 @@ const CosmeticDentistry = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    A cosmetic consultation begins with a smile analysis ($195, credited toward treatment). Veneers range from $2,200 to $3,000 per tooth, same-day bonding begins at $450 per tooth, and professional whitening packages start at $350. Full smile makeovers are quoted individually, with a timeline and details.
+                    {getTreatmentCostAnswer('cosmeticConsultation')}
                   </p>
                   <p>
-                    We work with financing partners, accept FSA/HSA payments, and offer loyalty pricing for patients who continue with maintenance memberships. Each proposal breaks down lab costs, chairside work, and follow-up care so you can see what you are paying for.
+                    Ask for an itemized treatment estimate and check your payment options before you decide. Veneers, bonding, whitening, and combined plans are priced according to your needs.
                   </p>
                   <p>
-                    After-hours appointments and on-set visits can be arranged when scheduling requires it.
+                    Contact the team to discuss available appointment times and any scheduling needs.
                   </p>
                 </CardContent>
               </Card>
@@ -305,19 +306,19 @@ const CosmeticDentistry = () => {
                       href: "/veneers/",
                       description: "Custom veneers to even out shape, color, and spacing.",
                       combination: true,
-                      popularity: 76
+
                     },
                     {
                       title: "Invisalign",
                       href: "/invisalign",
                       description: "Align teeth before cosmetic finishing for balanced results.",
-                      popularity: 63
+
                     },
                     {
                       title: "Smile Gallery",
                       href: "/smile-gallery",
                       description: "See cosmetic dentistry before-and-after results.",
-                      popularity: 82
+
                     }
                   ]}
                 />

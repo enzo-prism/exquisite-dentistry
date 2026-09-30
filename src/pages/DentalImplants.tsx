@@ -161,11 +161,6 @@ const DentalImplants = () => {
                 Dental Implant Planning & Restorations in Los Angeles
               </h2>
               <p className="mt-4 text-sm text-muted-foreground">
-                Clinically reviewed by{' '}
-                <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                  Dr. Alexie Aguil
-                </Link>{' '}
-                ·{' '}
                 <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
                   Editorial policy
                 </Link>
@@ -437,20 +432,20 @@ const DentalImplants = () => {
                       title: "Cosmetic Dentistry",
                       href: "/cosmetic-dentistry",
                       description: "Blend implants with veneers and bonding for seamless esthetics.",
-                      popularity: 61,
+
                       combination: true
                     },
                     {
                       title: "Emergency Dentist",
                       href: "/emergency-dentist/",
                       description: "Immediate care if you experience trauma affecting existing implants or teeth.",
-                      popularity: 32
+
                     },
                     {
                       title: "Client Experience",
                       href: "/client-experience",
                       description: "See how we elevate comfort and support during extensive treatments.",
-                      popularity: 54
+
                     }
                   ]}
                 />

@@ -25,7 +25,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
   const shouldRenderVideo = !disableVideo && !useGradient;
   const heroProofLinks = proofLinks ?? [
     {
-      text: '5-star experience · 200+ Google · 100+ Yelp',
+      text: 'Read patient experiences',
       href: '/testimonials/'
     }
   ];
@@ -34,12 +34,8 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
     <section 
       className={cn(
         "relative flex items-center justify-center overflow-hidden bg-slate-900", 
-        heightClasses.mobile,
-        "supports-[height:100dvh]:min-h-[100dvh] supports-[height:100svh]:min-h-[100svh]"
+        heightClasses.mobile
       )}
-      style={{
-        minHeight: '100svh' // Safari mobile viewport, fallback handled by CSS
-      }}
     >
       {useGradient ? (
         <GradientBackground variant="dental" intensity="moderate" />
@@ -73,9 +69,9 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         </div>
       )}
       
-      <div className="relative z-20 text-white px-6 w-full max-w-lg mx-auto text-center">
+      <div className="relative z-20 mx-auto w-full max-w-lg px-5 py-10 text-center text-white sm:py-12">
         <h1 
-          className="text-4xl sm:text-5xl font-bold mb-8 leading-tight mobile-text-shadow"
+          className="mb-5 text-[clamp(1.875rem,7vw,2.5rem)] font-bold leading-tight [overflow-wrap:anywhere] mobile-text-shadow"
           style={{ 
             willChange: 'auto',
             contain: 'layout style',
@@ -87,7 +83,7 @@ const MobileVideoHero: React.FC<VideoHeroProps> = ({
         
         {subtitle && (
           <p 
-            className="text-lg sm:text-xl mb-10 text-white/95 md:text-white/90 leading-relaxed max-w-md mx-auto mobile-text-shadow"
+            className="mx-auto mb-6 max-w-md text-base leading-relaxed text-white/95 mobile-text-shadow sm:text-lg"
             style={{ 
               contain: 'layout',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6)'

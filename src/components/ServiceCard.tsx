@@ -15,9 +15,9 @@ interface ServiceCardProps {
   index?: number;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ 
-  title, 
-  description, 
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  title,
+  description,
   href,
   className,
   index = 0
@@ -26,11 +26,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const normalizedHref = href ? normalizeInternalHref(href) : undefined;
 
   return (
-    <div 
+    <div
       ref={ref}
       className={cn(
         'bg-white rounded-sm p-6 sm:p-8 transition-all duration-500 shadow-lg hover:shadow-xl border border-gray-100 h-full gpu-accelerated hover-lift',
-        index % 2 === 0 ? 'animate-fade-in-right' : 'animate-fade-in-left',
+        'animate-fade-in',
         className
       )}
       style={{ animationDelay: `${index * 150}ms` }}
@@ -41,16 +41,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-black">{title}</h3>
       <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{description}</p>
       {normalizedHref && (
-        <Link to={normalizedHref} className="mt-auto block">
-          <Button 
-            variant="outline" 
+        <Button
+            asChild
+            variant="outline"
             size="sm"
             className="group h-auto min-h-10 w-full justify-between whitespace-normal border-gold-dark !bg-white px-3 text-left !text-gold-dark hover:!bg-gold-dark hover:!text-white sm:w-auto sm:justify-center sm:text-center smooth-animation"
           >
-            <span className="min-w-0">View Details</span>
-            <ArrowRight className="ml-2 h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            <Link to={normalizedHref}>
+              <span className="min-w-0">Explore {title}</span>
+              <ArrowRight className="ml-2 h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
           </Button>
-        </Link>
       )}
     </div>
   );

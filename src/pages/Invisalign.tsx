@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
@@ -293,13 +294,13 @@ const Invisalign = () => {
                   Orthodontics That Works Around Your Schedule
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Invisalign patients at our Wilshire Boulevard studio have access to morning and late-afternoon appointments, same-day attachment repairs, and aligner delivery to your home or production lot.
+                  Ask the team about appointment times and what to do if an attachment or aligner needs attention between visits.
                   We can coordinate timing with managers, stylists, and event planners when public appearances are on the calendar.
                   Comfort amenities, including a streaming lounge, noise-canceling headphones, and aromatherapy, are available during visits.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Dr. Aguil has completed hundreds of clear aligner cases across West Hollywood, Beverly Hills, and central Los Angeles.
-                  Because Dr. Aguil personally reviews each ClinCheck stage, refinements are minimized, and you stay confident that every detail contributes to a polished, balanced smile.
+                  Dr. Aguil uses digital planning to assess tooth movements. The team can explain monitoring, potential refinements, and what your individual plan involves.
                   Pair Invisalign with <Link to="/veneers/" className="text-secondary underline-offset-4 hover:underline">hand-layered porcelain veneers</Link> or <Link to="/teeth-whitening/" className="text-secondary underline-offset-4 hover:underline">LED-accelerated whitening</Link> for a comprehensive cosmetic plan.
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -387,16 +388,14 @@ const Invisalign = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Comprehensive Invisalign treatment with Dr. Aguil ranges from $4,500 to $6,800 depending on case complexity and whether refinements or whitening are bundled into your plan.
-                    We honor FSA/HSA payments, accept major insurances with orthodontic benefits, and collaborate with third-party lenders for 0% promotional financing.
+                    {getTreatmentCostAnswer('invisalign')}
+
                   </p>
                   <p>
-                    We outline every cost up front in a treatment calendar that covers aligners, attachments, refinements, retainers, and in-office comfort upgrades.
-                    A single point of contact handles scheduling and billing questions throughout treatment.
+                    Ask the team to check any orthodontic insurance benefits and explain your estimated out-of-pocket cost. Monthly payment options are available on our payment plans page.
                   </p>
                   <p>
-                    Patients who combine Invisalign with veneers, implants, or whitening receive bundled pricing and grouped appointment blocks.
-                    Ask about our &ldquo;LA Smile Set&rdquo; package, which combines Invisalign, in-office Zoom whitening, and cosmetic bonding.
+                    If you are considering Invisalign with veneers, implants, or whitening, ask how the treatments would be sequenced and itemized in your estimate.
                   </p>
                 </CardContent>
               </Card>
@@ -437,23 +436,23 @@ const Invisalign = () => {
                       href: "/veneers",
                       description: "Refine tooth shape and brightness after alignment for a clean, even finish.",
                       combination: true,
-                      priceRange: "$$$$",
-                      popularity: 62
+
+
                     },
                     {
                       title: "Teeth Whitening",
                       href: "/teeth-whitening",
                       description: "Boost brightness with LED-accelerated whitening once aligners come off.",
                       combination: true,
-                      priceRange: "$$",
-                      popularity: 74
+
+
                     },
                     {
                       title: "Dental Implants",
                       href: "/dental-implants",
                       description: "Replace missing teeth before or after alignment for a complete bite.",
-                      priceRange: "$$$$",
-                      popularity: 38
+
+
                     }
                   ]}
                 />

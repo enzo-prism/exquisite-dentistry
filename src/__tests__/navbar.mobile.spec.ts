@@ -119,7 +119,11 @@ for (const viewport of mobileViewports) {
         const doc = document.documentElement;
         return doc.scrollWidth - doc.clientWidth;
       });
-      expect(pageOverflow).toBeLessThanOrEqual(1);
+      const overflowingElements = await page.evaluate(() => Array.from(document.querySelectorAll('body *')).filter(el => {
+        const box = el.getBoundingClientRect();
+        return box.right > window.innerWidth + 1 && box.width > 0;
+      }).slice(0, 5).map(el => ({ tag: el.tagName, class: el.className, right: el.getBoundingClientRect().right })));
+      expect(pageOverflow, JSON.stringify(overflowingElements)).toBeLessThanOrEqual(1);
 
       const headerBox = await header.boundingBox();
       expect(headerBox).not.toBeNull();
@@ -193,7 +197,11 @@ for (const viewport of tabletViewports) {
       const doc = document.documentElement;
       return doc.scrollWidth - doc.clientWidth;
     });
-    expect(pageOverflow).toBeLessThanOrEqual(1);
+    const overflowingElements = await page.evaluate(() => Array.from(document.querySelectorAll('body *')).filter(el => {
+        const box = el.getBoundingClientRect();
+        return box.right > window.innerWidth + 1 && box.width > 0;
+      }).slice(0, 5).map(el => ({ tag: el.tagName, class: el.className, right: el.getBoundingClientRect().right })));
+      expect(pageOverflow, JSON.stringify(overflowingElements)).toBeLessThanOrEqual(1);
 
     const menuDialog = await openMobileMenu(page);
     const menuBox = await menuDialog.boundingBox();
@@ -278,3 +286,52 @@ test('desktop services dropdown keeps readable contrast and remains on-screen', 
     await expect(label).not.toHaveText('');
   }
 });
+
+for (const width of [320, 390, 768]) {
+  test(`${width}px enlarged text keeps booking, search and navigation reachable`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.addInitScript(() => {
+      localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
+      localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
+    });
+    await page.route(/player.vimeo.com|files.withcherry.com/, route => route.abort());
+    await page.goto('/');
+    await stabilizePage(page);
+    await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+    const header = page.locator('header');
+    const controls = [
+      header.getByRole('link', { name: 'Book', exact: true }),
+      header.getByRole('button', { name: 'Search site', exact: true }),
+      header.getByRole('button', { name: 'Open navigation menu', exact: true }),
+    ];
+    expect(await header.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+    for (const control of controls) {
+      await expect(control).toBeVisible();
+      const box = await control.boundingBox();
+      expect(box!.x).toBeGreaterThanOrEqual(0);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(width + 1);
+      expect(box!.width).toBeGreaterThanOrEqual(44);
+      expect(box!.height).toBeGreaterThanOrEqual(44);
+      expect(await control.evaluate(el => {
+        const rect = el.getBoundingClientRect();
+        return el.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2));
+      })).toBe(true);
+    }
+    await controls[1].click();
+    const searchInput = page.getByPlaceholder('Search services, locations, pages, or blog posts…');
+    await expect(searchInput).toBeVisible();
+    await searchInput.fill('veneers');
+    await expect(searchInput).toHaveValue('veneers');
+    await page.getByRole('button', { name: 'Close search', exact: true }).click();
+    const menu = await openMobileMenu(page);
+    const menuBounds = await menu.boundingBox();
+    expect(menuBounds!.x).toBeGreaterThanOrEqual(0);
+    expect(menuBounds!.x + menuBounds!.width).toBeLessThanOrEqual(width + 1);
+    const booking = menu.getByRole('link', { name: 'Schedule Consultation', exact: true });
+    await expect(booking).toBeVisible();
+    expect(await booking.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+    await booking.click();
+    await expect(page).toHaveURL(/\/schedule-consultation\/?$/);
+    await expect(menu).toBeHidden();
+  });
+}

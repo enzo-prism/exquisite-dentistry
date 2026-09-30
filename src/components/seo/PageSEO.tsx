@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
+import { buildSeoTitle, toMeta } from '@/utils/seoText';
 
 const BASE_URL = 'https://exquisitedentistryla.com';
 const OG_SITE_NAME = 'Exquisite Dentistry';
@@ -20,27 +21,6 @@ interface PageSEOProps {
   nofollow?: boolean;
   noarchive?: boolean;
 }
-
-// Sanitize meta description
-const toMeta = (input: string, max = 155) => {
-  const text = (input || "")
-    .replace(/<[^>]+>/g, " ")     // strip HTML
-    .replace(/\s+/g, " ")
-    .replace(/["<>]/g, "")
-    .trim();
-  if (text.length <= max) return text;
-  return text.slice(0, max).replace(/\s+\S*$/, "");
-};
-
-const stripTrailingSeparators = (input: string) =>
-  input.replace(/[\s|–—:-]+$/g, "").trim();
-
-// Truncate title to max length without breaking words
-const truncateTitle = (input: string, max = 70) => {
-  const text = stripTrailingSeparators(input);
-  if (text.length <= max) return text;
-  return stripTrailingSeparators(text.slice(0, max).replace(/\s+\S*$/, ""));
-};
 
 const toAbsoluteUrl = (value: string) => {
   const raw = (value || "").trim();
@@ -93,21 +73,7 @@ export const PageSEO: React.FC<PageSEOProps> = ({
   const effectiveNoindex = noindex || isStaging;
   const effectiveNofollow = nofollow || isStaging;
 
-  // Differentiate <title> from on-page H1 by adding brand suffix
-  const brandSuffix = 'Exquisite Dentistry Los Angeles';
-  const lowerTitle = title.toLowerCase();
-  const shouldAppendBrand = !lowerTitle.includes('exquisite dentistry');
-  
-  const separator = ' | ';
-  const brandedTitle: string = shouldAppendBrand
-    ? `${title}${separator}${brandSuffix}`
-    : title;
-
-  // Final safety check: ensure total length is within limit
-  const fullTitle =
-    shouldAppendBrand && brandedTitle.length > 70
-      ? truncateTitle(title, 70)
-      : truncateTitle(brandedTitle, 70);
+  const fullTitle = buildSeoTitle(title);
 
   React.useEffect(() => {
     if (typeof document === 'undefined') return;

@@ -34,6 +34,7 @@ import {
   POSTAL_CODE
 } from '@/constants/contact';
 import OpenInMapsButton from '@/components/OpenInMapsButton';
+import { PRACTICE_FACTS } from '@/data/practiceFacts';
 
 // Social media URLs - removed X (Twitter)
 const SOCIAL_URLS = {
@@ -943,7 +944,7 @@ const Contact = () => {
             <div className="text-center max-w-3xl mx-auto mb-14">
               <h2 className="heading-lg mb-5">Our Location</h2>
               <p className="paragraph">
-                Conveniently located on Wilshire Blvd, our office is easily accessible with ample parking available.
+                {PRACTICE_FACTS.parking}
               </p>
             </div>
             

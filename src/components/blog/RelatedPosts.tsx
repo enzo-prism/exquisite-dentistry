@@ -123,21 +123,18 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             title: "Porcelain Veneers Consultation",
             href: "/veneers",
             description: "Schedule your custom veneer consultation",
-            duration: "60 min",
-            popularity: 90
           },
           {
             title: "Smile Gallery",
             href: "/smile-gallery",
             description: "See real veneer transformations",
-            popularity: 85
           },
           {
             title: "Wedding Preparation",
             href: "/wedding",
-            description: "Perfect veneers for your special day",
-            duration: "2-3 weeks",
-            popularity: 70,
+            description: "Discuss treatment options and timing before your event",
+
+
             combination: true
           }
         ];
@@ -145,16 +142,13 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
         return [
           {
             title: "Invisalign Consultation",
-            href: "/services#invisalign",
-            description: "Free Invisalign assessment and planning",
-            duration: "45 min",
-            popularity: 95
+            href: "/invisalign/",
+            description: "Discuss alignment goals, treatment options, and a written estimate",
           },
           {
             title: "Digital Treatment Preview",
             href: "/contact",
             description: "See your future smile before treatment",
-            popularity: 88
           }
         ];
       case 'whitening':
@@ -163,21 +157,16 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             title: "Teeth Whitening Consultation",
             href: "/teeth-whitening",
             description: "Compare in-office whitening, custom trays, and hybrid plans",
-            duration: "45 min",
-            popularity: 92
           },
           {
             title: "Zoom Whitening",
             href: "/zoom-whitening",
             description: "Fast in-office brightening for photo-ready results",
-            duration: "60 min",
-            popularity: 88
           },
           {
             title: "Schedule Consultation",
             href: "/schedule-consultation",
             description: "Book a whitening plan tailored to your timeline",
-            popularity: 80
           }
         ];
       case 'wedding':
@@ -186,20 +175,16 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             title: "Wedding Smile Makeover",
             href: "/wedding",
             description: "Compare bridal, groom, and wedding-party smile timelines",
-            duration: "45 min",
-            popularity: 94
           },
           {
             title: "Porcelain Veneers",
             href: "/veneers",
             description: "Explore veneer design and smile-makeover options",
-            popularity: 89
           },
           {
             title: "Schedule Consultation",
             href: "/schedule-consultation",
             description: "Map your treatment plan to the wedding date",
-            popularity: 86
           }
         ];
       case 'oral-health':
@@ -208,20 +193,16 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             title: "Dental Health Checkup",
             href: "/contact",
             description: "Comprehensive oral health evaluation",
-            duration: "45 min",
-            popularity: 90
           },
           {
             title: "Restorative Options",
-            href: "/services#restorative",
+            href: "/dental-implants/",
             description: "Solutions for damaged or aging teeth",
-            popularity: 75
           },
           {
             title: "Preventive Care",
             href: "/services",
-            description: "Protect your teeth for life",
-            popularity: 85
+            description: "Discuss preventive care for your teeth and gums",
           }
         ];
       default:
@@ -230,14 +211,11 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ currentPost, limit = 3 }) =
             title: "Complete Consultation",
             href: "/contact",
             description: "Comprehensive smile analysis and planning",
-            duration: "60 min",
-            popularity: 85
           },
           {
             title: "Smile Gallery",
             href: "/smile-gallery",
             description: "Explore transformation possibilities",
-            popularity: 80
           }
         ];
     }

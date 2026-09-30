@@ -1,101 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { PageSEO } from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
-import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
-import FinancingOptionsSection from '@/components/FinancingOptionsSection';
-import { Button } from '@/components/ui/button';
-import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
-import { trackCTAClick } from '@/utils/googleAdsTracking';
+import TwoFrontVeneersContent from '@/components/treatments/TwoFrontVeneersContent';
+import { TWO_FRONT_VENEERS } from '@/data/twoFrontVeneers';
+import { createFAQSchema } from '@/utils/centralizedSchemas';
 
-const VeneersCostLosAngeles = () => {
+export default function VeneersCostLosAngeles() {
   return (
     <>
-      <MasterStructuredData includeBusiness includeWebsite />
-      <PageSEO
-        title="Cost of 2 Front Teeth Veneers in Los Angeles (2026 Guide)"
-        description="Wondering how much 2 front teeth veneers cost in Los Angeles? Learn key pricing factors, treatment options, and next steps at Exquisite Dentistry."
-        keywords="2 front teeth veneers cost near me, cost of 2 front teeth veneers, how much are 2 veneers, front teeth veneer cost los angeles"
-        path="/veneers/2-front-teeth-veneers-cost-los-angeles"
-      />
-
-      <MedicalProcedureStructuredData
-        procedureName="2 Front Teeth Veneers"
-        description="Pricing and treatment planning for two front teeth veneers in Los Angeles."
-        url="/veneers/2-front-teeth-veneers-cost-los-angeles"
-        procedureType="Cosmetic Dental Procedure"
-        bodyLocation="Front teeth"
-        steps={[
-          { name: 'Consultation', description: 'Smile goals, exam, and treatment options review.' },
-          { name: 'Planning', description: 'Determine whether 2 veneers or a broader smile-zone plan is best.' },
-          { name: 'Placement', description: 'Custom veneer placement with bite and esthetic refinement.' }
-        ]}
-      />
-
-      <div className="min-h-screen bg-background">
-        <section className="py-16 md:py-24 bg-gradient-to-b from-gold/10 to-white">
-          <div className="max-w-5xl mx-auto px-4">
-            <p className="uppercase tracking-[0.2em] text-secondary font-semibold text-sm">Veneers Cost Guide</p>
-            <h1 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">How Much Do 2 Front Teeth Veneers Cost in Los Angeles?</h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-              If you're comparing the cost of 2 front teeth veneers, the key is not just price. It's natural esthetics, long-term durability, and whether 2 veneers are the right scope for your smile.
-            </p>
-            <p className="mt-4 text-base text-muted-foreground max-w-3xl">
-              This page focuses on two front teeth specifically. For general veneer pricing across the whole smile &mdash;
-              porcelain vs composite ranges and what changes the price &mdash; see our{' '}
-              <Link to="/veneers/cost-los-angeles/" className="text-secondary underline-offset-4 hover:underline">veneers cost in Los Angeles guide</Link>.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('veneers_cost_page_book_click', 'Book a Veneers Consultation')}>
-                  Book a Veneers Consultation
-                </Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link to="/veneers/" onClick={() => trackCTAClick('veneers_cost_page_pillar_click', 'View Veneers Overview')}>
-                  View Veneers Overview
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-14 bg-background">
-          <div className="max-w-5xl mx-auto px-4 grid gap-8">
-            <div>
-              <h2 className="text-2xl font-semibold text-foreground mb-3">What affects veneer cost most?</h2>
-              <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-                <li>Material and lab quality (porcelain craftsmanship)</li>
-                <li>Complexity of shape, shade, and smile-line design</li>
-                <li>Existing tooth condition and prep requirements</li>
-                <li>Whether 2 veneers are enough or 4+ gives a better match</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold text-foreground mb-3">2 veneers vs alternatives</h2>
-              <p className="text-muted-foreground">Two veneers can be ideal for localized front-tooth correction. In some cases, bonding or crowns may be better depending on structure and long-term goals.</p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold text-foreground mb-3">Related pages</h2>
-              <div className="flex flex-col gap-2 text-secondary">
-                <Link to="/veneers/cost-los-angeles/">Veneers Cost in Los Angeles (full guide)</Link>
-                <Link to="/veneers/1-tooth-veneer-los-angeles/">Single-Tooth Veneer in Los Angeles</Link>
-                <Link to="/veneers/front-teeth-veneers-los-angeles/">Front Teeth Veneers in Los Angeles</Link>
-                <Link to="/veneers/">Porcelain Veneers Los Angeles</Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <FinancingOptionsSection
-          title="Need clarity on veneers cost and monthly payment options?"
-          description="If you are comparing the investment for two front veneers or a broader smile-zone plan, our Cherry financing page lets you explore monthly payment options before your consultation."
-        />
-      </div>
+      <PageSEO title={TWO_FRONT_VENEERS.title} description={TWO_FRONT_VENEERS.description} path={TWO_FRONT_VENEERS.path} />
+      <MasterStructuredData includeBusiness includeWebsite additionalSchemas={[createFAQSchema(TWO_FRONT_VENEERS.faqItems.map((faq) => ({ ...faq }))), { '@type': 'WebPage', name: TWO_FRONT_VENEERS.h1, url: `https://exquisitedentistryla.com${TWO_FRONT_VENEERS.path}/`, description: TWO_FRONT_VENEERS.description }]} />
+      <TwoFrontVeneersContent />
     </>
   );
-};
-
-export default VeneersCostLosAngeles;
+}
