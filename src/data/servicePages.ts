@@ -1,3 +1,4 @@
+import { PRACTICE_FACTS } from "@/data/practiceFacts";
 import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from "@/constants/contact";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "@/data/smile-makeover-los-angeles-faqs";
@@ -528,7 +529,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       highlights: [
         "CBCT 3D imaging + digital treatment planning",
         "Guided placement + custom implant restorations",
-        "Sedation options + comfort-first aftercare",
+        "Comfort planning + aftercare guidance",
       ],
     },
     overview: {
@@ -550,7 +551,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
         {
           title: "Comfort + follow-up",
           description:
-            "We tailor anesthesia and sedation options, coordinate aftercare, and provide clear next steps so you’re supported throughout healing.",
+            PRACTICE_FACTS.sedation,
         },
       ],
     },
@@ -645,7 +646,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Gentle Root Canal Therapy in Los Angeles | Exquisite Dentistry",
       description:
-        "Experience sedation options, modern imaging, and compassionate care during root canal therapy in West Hollywood.",
+        "Explore root canal evaluations, imaging, and comfort planning in West Hollywood.",
       keywords: ["root canal los angeles", "endodontic therapy LA", "root canal west hollywood"],
     },
     hero: {
@@ -654,9 +655,9 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       subheading:
         "We combine advanced imaging, laser-assisted disinfection, and comfort-focused protocols so you relax while we rescue your tooth.",
       highlights: [
-        "Same-day pain relief",
+        "Call to confirm appointment availability",
         "Digital 3D imaging",
-        "Sedation & comfort menu included",
+        "Discuss your comfort needs",
       ],
     },
     overview: {
@@ -700,7 +701,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       },
     ],
     treatmentSteps: [
-      { title: "01. Diagnosis & Comfort Plan", detail: "We confirm infection, discuss sedation, and outline your visit." },
+      { title: "01. Diagnosis & Comfort Plan", detail: "We evaluate the problem, discuss your comfort needs, and outline care options." },
       { title: "02. Precise Therapy", detail: "Infected tissue is removed, canals are shaped, disinfected, and sealed." },
       { title: "03. Beautiful Finalization", detail: "We protect the tooth with a crown or onlay that restores strength and aesthetics." },
     ],
@@ -708,7 +709,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         question: "Will my root canal hurt?",
         answer:
-          "With modern anesthesia, sedation options, and gentle techniques, most patients feel immediate relief. You may feel mild tenderness afterward, but it fades quickly with over-the-counter medication.",
+          "Tell the team about your concerns before treatment. Your dentist can explain anesthesia, comfort planning, and the aftercare appropriate for your procedure.",
       },
       {
         question: "How long does treatment take?",
@@ -876,22 +877,22 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Pain-Free Dentistry & Dental Anxiety Relief | Los Angeles",
       description:
-        "Experience stress-free visits with sedation, advanced anesthesia, and a concierge comfort menu designed for anxious patients.",
+        "Explore dental anxiety support, clear communication, and comfort planning for your visit. Ask the team about available options.",
       keywords: ["pain free dentist LA", "sedation dentistry west hollywood", "dental anxiety help"],
     },
     hero: {
       eyebrow: "Comfort & Technology",
-      heading: "Pain-Free Dentistry for Every Visit",
+      heading: "Dental Care Planned Around Your Comfort",
       subheading:
-        "From painless injections to cozy amenities, we build every appointment around relaxation and control.",
-      highlights: ["Sedation options", "Calming environment", "Extended appointments"],
+        "Talk with us about dental anxiety so we can plan communication, pacing, and comfort around your needs.",
+      highlights: ["Discuss comfort options", "Calming environment", "Personalized pacing"],
     },
     overview: {
       intro: [
         "We believe dentistry should feel restorative, not stressful. Whether you need a simple cleaning or a full smile makeover, we adapt pacing, anesthesia, and communication to your comfort level.",
       ],
       callouts: [
-        { title: "Sedation Choices", description: "Nitrous oxide, oral medication, and NuCalm®-style relaxation keep anxiety low." },
+        { title: "Sedation Choices", description: PRACTICE_FACTS.sedation },
         { title: "Comfort Menu", description: "Warm neck wraps, aromatherapy, weighted blankets, and curated playlists help you unwind." },
         { title: "Transparent Communication", description: "We walk through every step before we begin, with pause signals anytime you need a break." },
       ],
@@ -903,14 +904,14 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     ],
     treatmentSteps: [
       { title: "01. Consultation", detail: "Share past experiences, triggers, and goals so we can personalize your visit." },
-      { title: "02. Comfort Roadmap", detail: "Choose sedation, timing, and amenities that help you feel in control." },
+      { title: "02. Comfort Roadmap", detail: "Discuss your medical history, concerns, and available comfort options before treatment." },
       { title: "03. Supportive Care", detail: "We provide post-visit check-ins and collaborative scheduling to keep momentum." },
     ],
     faqs: [
       {
         question: "Do you offer sedation dentistry?",
         answer:
-          "Yes. We provide nitrous oxide and oral sedation for eligible patients. We’ll review medical history and tailor the approach to keep you safe and relaxed.",
+          PRACTICE_FACTS.sedation,
       },
       {
         question: "Can I bring a friend or headphones?",
@@ -920,7 +921,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
       {
         question: "Is pain-free dentistry more expensive?",
         answer:
-          "Comfort amenities are included. Sedation options may have a modest fee, and we’ll review that transparently before scheduling.",
+          "Ask the team to confirm the available comfort options and any additional fees before your visit.",
       },
     ],
     cta: {

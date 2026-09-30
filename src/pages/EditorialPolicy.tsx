@@ -31,7 +31,7 @@ const EditorialPolicy: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-8">
-            <strong>Last Updated:</strong> December 12, 2025
+            <strong>Last Updated:</strong> September 30, 2026
           </p>
 
           <section className="mb-8">
@@ -46,9 +46,10 @@ const EditorialPolicy: React.FC = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-black">2. Clinical Review</h2>
             <p className="text-gray-600 mb-4">
-              Medical‑adjacent pages (services, treatment guides, and FAQs) are reviewed by a licensed dentist on our team
-              for accuracy, clarity, and consistency with current standards of care. When a treatment depends on your
-              specific dental health, we say so.
+              Clinical review is recorded separately from authorship and website updates. An article displays a clinical-review
+              credit only when the completed review, reviewer, and review date have been documented. An author name
+              or publication date alone does not establish clinical review. Treatment suitability depends on your
+              dental evaluation.
             </p>
           </section>
 
@@ -64,8 +65,9 @@ const EditorialPolicy: React.FC = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-black">4. Updates and Corrections</h2>
             <p className="text-gray-600 mb-4">
-              Pages are reviewed periodically and updated when technology, materials, or clinical guidance changes.
-              Each medical‑adjacent page includes a “Last updated” date so you can see when it was most recently reviewed.
+              We update content when corrections or changes are needed. A “Last updated” date records a content change;
+              it does not by itself mean a dentist has clinically reviewed that page. Where a completed clinical
+              review is documented, the article identifies the reviewer and review date.
             </p>
           </section>
 

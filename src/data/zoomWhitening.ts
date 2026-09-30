@@ -1,3 +1,5 @@
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
+
 export type FAQItem = {
   question: string;
   answer: string;
@@ -12,7 +14,7 @@ export const ZOOM_WHITENING_FAQS: FAQItem[] = [
   {
     question: 'How much does Zoom whitening cost in Los Angeles?',
     answer:
-      'Pricing depends on your starting shade, sensitivity history, and whether we include take-home touch-up gel for maintenance. In-office Zoom whitening typically starts around $595, and we’ll confirm candidacy and provide a clear estimate before starting.'
+      getTreatmentCostAnswer('whiteningInOffice')
   },
   {
     question: 'How many shades whiter can Zoom whitening make my teeth?',

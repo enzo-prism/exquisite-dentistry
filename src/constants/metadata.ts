@@ -162,9 +162,9 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/emergency-dentist': {
     title: 'Emergency Dentist Los Angeles | Exquisite Dentistry',
     description:
-      'Emergency dentist in Los Angeles providing same-day appointments, after-hours guidance, and concierge treatment for urgent dental needs.',
+      'Emergency dentist in Los Angeles for urgent dental concerns. Call during office hours to confirm the soonest available appointment.',
     keywords:
-      'emergency dentist Los Angeles, same-day dental care LA, urgent dentist, after-hours dentist LA',
+      'emergency dentist Los Angeles, urgent dental care LA, dental emergency evaluation',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },

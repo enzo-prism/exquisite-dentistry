@@ -1,3 +1,6 @@
+import { getTreatmentCostAnswer } from './treatmentPricing';
+import clinicalReviews from './blogClinicalReviews.json';
+import type { ClinicalReview } from './clinicalReview';
 import { SCHEDULE_CONSULTATION_PATH } from '../constants/urls';
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '../constants/contact';
 import type { BlogPost } from './blogTypes';
@@ -680,14 +683,14 @@ const baseBlogPosts: BlogPost[] = [
 
         <h2>3. Porcelain vs. Composite vs. Crowns</h2>
         <p>
-          <strong>Porcelain veneers</strong> in Los Angeles typically range from $1,000-$2,500+ per tooth depending on experience, lab partnership, and complexity, lasting 10-15 years or longer with excellent care.
+          <strong>Porcelain veneers</strong> are quoted for your teeth and treatment plan. Materials, laboratory work, and preparation affect the total; ask for an itemized estimate.
           <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
           <a href="https://laurelsmilesdentalcare.com/blog/can-porcelain-veneers-last-30-years-listen-from-a-dentist-in-laurel/" rel="noreferrer">[5]</a>
           They resist stains better than natural enamel.
           <a href="https://my.clevelandclinic.org/health/treatments/23522-dental-veneers" rel="noreferrer">[6]</a>
         </p>
         <p>
-          <strong>Composite veneers</strong> cost less ($250-$1,500 per tooth) but typically last 5-7 years and stain faster.
+          <strong>Composite veneers</strong> and porcelain differ in material, maintenance, and cost. Ask your dentist to compare suitable options for your teeth.
           <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
           Crowns cover the entire tooth and are reserved for teeth that need structural reinforcement rather than cosmetic resurfacing.
           <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" rel="noreferrer">[1]</a>
@@ -713,9 +716,9 @@ const baseBlogPosts: BlogPost[] = [
           for transparent pricing on 2 or 4 veneers and real case breakdowns.
         </p>
 
-        <h2>5. Real 2025 Pricing in Los Angeles</h2>
+        <h2>5. Understanding Your Veneer Quote</h2>
         <p>
-          Expect porcelain veneers in LA or Beverly Hills to fall between <strong>$950 and $2,500+ per tooth</strong>, with total investments ranging from high four figures for two veneers to $15,000-$30,000+ for a full upper smile makeover.
+          ${getTreatmentCostAnswer('porcelainVeneer')}
           <a href="https://porterranchdentalstudio.com/how-expensive-are-veneers-in-california/" rel="noreferrer">[4]</a>
           <a href="https://www.pearldentalgroup.com/blog/porcelain-veneer-cost-guide/" rel="noreferrer">[9]</a>
         </p>
@@ -1552,7 +1555,8 @@ const buildBlogPosts = (): BlogPost[] => {
     if (aliasSet.has(post.slug)) return;
     if (titleSet.has(normalizedTitle)) return;
 
-    merged.push(post);
+    const clinicalReview = (clinicalReviews as Record<string, ClinicalReview>)[post.slug] ?? post.clinicalReview ?? { status: 'pending' as const };
+    merged.push({ ...post, clinicalReview });
     slugSet.add(post.slug);
     titleSet.add(normalizedTitle);
 

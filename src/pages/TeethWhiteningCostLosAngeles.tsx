@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import { PageSEO } from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -24,8 +25,7 @@ import { trackCTAClick } from '@/utils/googleAdsTracking';
 const faqs = [
   {
     question: 'How much does professional teeth whitening cost in Los Angeles?',
-    answer:
-      'It depends on the option you choose. An in-office whitening session, a custom take-home tray kit, and a hybrid plan that combines both are priced differently because they involve different chair time, materials, and follow-up. We confirm the exact fee for the option that fits your teeth at a consultation, before anything is scheduled.',
+    answer: getTreatmentCostAnswer('whitening'),
   },
   {
     question: 'Which costs more: in-office whitening or take-home trays?',

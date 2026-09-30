@@ -137,12 +137,7 @@ const InvisalignBeverlyHills = () => {
                 Invisalign Beverly Hills: What to Expect
               </h2>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Clinically reviewed by{" "}
-                  <Link to="/about/" className="text-secondary underline-offset-4 hover:underline">
-                    Dr. Alexie Aguil
-                  </Link>{" "}
-                  ·{" "}
-                  <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
+                <Link to="/editorial-policy/" className="text-secondary underline-offset-4 hover:underline">
                     Editorial policy
                   </Link>
                 </p>

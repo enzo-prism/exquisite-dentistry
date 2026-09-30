@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PageSEO from "@/components/seo/PageSEO";
 import WebPageStructuredData from "@/components/WebPageStructuredData";
@@ -7,15 +7,16 @@ import { Button } from "@/components/ui/button";
 import PhoneLink from "@/components/PhoneLink";
 import { PHONE_NUMBER_DISPLAY } from "@/constants/contact";
 import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from "@/constants/cherry";
-import { useCherryWidgetRegistration } from "@/hooks/use-cherry-widget-registration";
 import { INSURANCE_PATH, PAYMENT_PLANS_PATH, SCHEDULING_URL } from "@/constants/urls";
 import { ROUTE_METADATA } from "@/constants/metadata";
 import { INSURANCE_PAGE_LINKS } from "@/data/insurance";
+import ConsultationCallbackForm from "@/components/ConsultationCallbackForm";
+import { CONSULTATION_DETAILS, getConsultationService } from "@/data/consultation";
 
 const ScheduleConsultation = () => {
   const meta = ROUTE_METADATA["/schedule-consultation"];
-
-  useCherryWidgetRegistration({ enabled: true });
+  const { search } = useLocation();
+  const service = getConsultationService(new URLSearchParams(search).get('service'));
 
   return (
     <>
@@ -50,9 +51,8 @@ const ScheduleConsultation = () => {
                 Schedule Consultation
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Planning porcelain veneers or dental implants near Beverly Hills?
-                Use this page to book time with our team at Exquisite Dentistry on
-                Wilshire Blvd in Los Angeles.
+                Book a visit with Exquisite Dentistry on Wilshire Blvd in Los Angeles,
+                or request a callback to ask questions before choosing an appointment.
               </p>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 Prefer to speak with someone first? Call{" "}
@@ -70,7 +70,7 @@ const ScheduleConsultation = () => {
                   <a href="#book-online">Book Online</a>
                 </Button>
                 <Button asChild variant="outline" className="w-full sm:w-auto">
-                  <Link to={INSURANCE_PAGE_LINKS.contact}>Verify Insurance</Link>
+                  <a href="#request-callback">Request a callback</a>
                 </Button>
                 <Button
                   variant="outline"
@@ -86,10 +86,25 @@ const ScheduleConsultation = () => {
                 </Button>
               </div>
 
-              <div className="mt-10" id="book-online">
+              <section className="mt-10" aria-labelledby="first-visit-heading">
+                <h2 id="first-visit-heading" className="text-2xl font-semibold text-foreground">Plan your first visit</h2>
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  {CONSULTATION_DETAILS.map(detail => (
+                    <div key={detail.title} className="rounded-2xl border border-border bg-stone-50 p-5">
+                      <h3 className="font-semibold text-foreground">{detail.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">{detail.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <ConsultationCallbackForm key={service?.id ?? 'general'} initialService={service?.id} />
+
+              <div className="mt-10 scroll-mt-24" id="book-online">
                 <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
                   Book Online
                 </h2>
+                {service && <p className="mt-3 text-muted-foreground">Interested in {service.label}? Please tell the team when booking. Your selection is included if you send a callback request above.</p>}
                 <p className="mt-3 text-muted-foreground leading-relaxed">
                   If the scheduler doesn’t load,{" "}
                   <a
@@ -150,6 +165,9 @@ const ScheduleConsultation = () => {
                     </Button>
                     <Button asChild variant="outline">
                       <Link to={INSURANCE_PATH}>Insurance Options</Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link to={INSURANCE_PAGE_LINKS.contact}>Verify insurance benefits</Link>
                     </Button>
                   </div>
                 </div>

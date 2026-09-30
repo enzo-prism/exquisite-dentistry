@@ -1,4 +1,6 @@
 import React from 'react';
+import { PRACTICE_FACTS } from '@/data/practiceFacts';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
@@ -30,13 +32,13 @@ const EmergencyDentist = () => {
   const rapidResponse = [
     {
       icon: <AlarmClock className="h-8 w-8 text-secondary" />,
-      title: "Same-Day Relief",
-      description: "Priority scheduling, virtual triage, and extended hours ensure you are seen when emergencies strike."
+      title: "Appointment Availability",
+      description: PRACTICE_FACTS.emergencyAvailability
     },
     {
       icon: <PhoneCall className="h-8 w-8 text-secondary" />,
       title: "Direct Communication",
-      description: "Reach our on-call team via phone, text, or video consults to receive immediate guidance before you arrive."
+      description: "Call during office hours to discuss your concern and confirm next steps before arriving."
     },
     {
       icon: <ShieldCheck className="h-8 w-8 text-secondary" />,
@@ -46,33 +48,33 @@ const EmergencyDentist = () => {
     {
       icon: <HeartPulse className="h-8 w-8 text-secondary" />,
       title: "Comfort-First Approach",
-      description: "Sedation options, comforting amenities, and compassionate clinicians help you feel calm in stressful moments."
+      description: PRACTICE_FACTS.sedation
     }
   ];
 
   const emergencyTypes = [
     {
       heading: "Tooth or Veneer Fractures",
-      details: "We provide bonding, temporary crowns, or fast-track veneer replacement to restore your smile before events or filming schedules."
+      details: "An evaluation helps determine whether bonding, a temporary restoration, or another repair is appropriate. Availability and treatment time depend on the injury."
     },
     {
       heading: "Severe Toothaches",
-      details: "Diagnosis with digital imaging pinpoints infection sources. Root canal therapy, medicated rinses, and antibiotics offer immediate relief."
+      details: "An evaluation helps identify the cause of a toothache. Treatment recommendations depend on the diagnosis."
     },
     {
       heading: "Knocked-Out Teeth",
-      details: "We reimplant teeth whenever possible or place same-day implants and provisionals to maintain esthetics and function."
+      details: "Call to discuss a knocked-out tooth and confirm where to seek prompt evaluation. The appropriate care depends on the injury and your dental health."
     },
     {
       heading: "Gum & Soft Tissue Injuries",
-      details: "Laser therapy, suturing, and medicated dressings stop bleeding and protect healing tissue."
+      details: "The team can assess dental injuries and discuss treatment or referral based on the care needed."
     }
   ];
 
   const faqs = [
     {
       question: "Do you accept walk-in emergencies?",
-      answer: "Yes. Call ahead so we can prepare, but if you arrive during office hours we prioritize emergencies immediately. After hours, our on-call team will guide you to the fastest available solution."
+      answer: PRACTICE_FACTS.emergencyAvailability
     },
     {
       question: "Can you help if I am visiting Los Angeles?",
@@ -94,8 +96,8 @@ const EmergencyDentist = () => {
           '@type': 'WebPage',
           '@id': getCanonicalUrl('/emergency-dentist') + '#webpage',
           url: getCanonicalUrl('/emergency-dentist'),
-          name: 'Emergency Dentist Los Angeles | Same-Day Dental Care',
-          description: 'Emergency dental services in Los Angeles offering same-day care for toothaches, fractures, infections, and dental trauma.',
+          name: 'Emergency Dentist Los Angeles | Exquisite Dentistry',
+          description: 'Emergency dental evaluations in Los Angeles for toothaches, fractures, infections, and dental trauma. Call to confirm availability.',
           isPartOf: {
             '@id': 'https://exquisitedentistryla.com/#website'
           },
@@ -116,7 +118,7 @@ const EmergencyDentist = () => {
 
       <WebPageStructuredData
         title="Emergency Dentist in Los Angeles"
-        description="Contact Exquisite Dentistry for emergency dental care in Los Angeles. Same-day relief for toothaches, broken teeth, infections, and trauma."
+        description="Contact Exquisite Dentistry for emergency dental care in Los Angeles. Call during office hours to confirm availability for toothaches, broken teeth, infections, and trauma."
         url="https://exquisitedentistryla.com/emergency-dentist/"
         breadcrumbs={[
           { name: 'Services', url: 'https://exquisitedentistryla.com/services/' },
@@ -176,12 +178,12 @@ const EmergencyDentist = () => {
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Dental emergencies can strike at the worst times: a board presentation, a flight out of LAX, or a weekend getaway in Malibu.
-                Exquisite Dentistry provides same-day treatment, virtual triage, and extended availability to safeguard your smile and comfort.
+                {PRACTICE_FACTS.emergencyAvailability}
                 From severe toothaches to cracked veneers, our team resolves pain, restores appearance, and coordinates follow-up so you can get back to what matters.
               </p>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Our Wilshire Boulevard location is centrally positioned for quick arrivals from Beverly Hills, West Hollywood, Miracle Mile, and DTLA.
-                We are equipped with digital imaging, in-house milling for temporary restorations, and sedation dentistry options to transform stressful situations into calm, controlled visits.
+                We evaluate the problem and discuss treatment options. Tell the team about any dental anxiety or medical considerations so they can plan your visit.
                 Visitors from out of town receive concierge support with hotels, transportation, and communication with home dentists.
               </p>
             </div>
@@ -222,8 +224,8 @@ const EmergencyDentist = () => {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   Once the source is identified, we stabilize the area with medication, bonding, sutures, or provisional restorations.
-                  If root canal therapy or implant placement is necessary, we coordinate with our in-house specialists or trusted partners the same day.
-                  Before you leave, we map next steps, review costs transparently, and arrange virtual check-ins to monitor healing.
+                  If root canal therapy, implant care, or a specialist referral is needed, the team will discuss the appropriate next steps and availability.
+                  Before you leave, ask about next steps, treatment costs, and follow-up instructions.
                 </p>
 	                <div className="flex flex-wrap gap-4">
 	                  <Button size="lg" asChild>
@@ -288,7 +290,7 @@ const EmergencyDentist = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Emergency examinations begin at $150 and include diagnostic imaging and same-day stabilization.
+                    {getTreatmentCostAnswer('emergencyExam')}
                     Pain management, medication, or temporary restorations are provided immediately, with transparent pricing for definitive treatment before any procedure.
                   </p>
                   <p>
@@ -296,7 +298,7 @@ const EmergencyDentist = () => {
                     For extensive emergency treatment, financing options and payment plans are available to remove barriers to care.
                   </p>
                   <p>
-                    After-hours care is available for established patients and travelers with urgent needs. Call or text to connect with our on-call team.
+                    {PRACTICE_FACTS.postVisitSupport}
                   </p>
                 </CardContent>
               </Card>
@@ -342,19 +344,19 @@ const EmergencyDentist = () => {
 	                      title: "Dental Implants",
 	                      href: "/dental-implants/",
 	                      description: "Replace teeth lost to trauma with permanent solutions.",
-	                      popularity: 47
+
 	                    },
 	                    {
 	                      title: "Cosmetic Dentistry",
 	                      href: "/cosmetic-dentistry/",
 	                      description: "Restore aesthetics after emergency repairs and long-term healing.",
-	                      popularity: 58
+
 	                    },
 	                    {
 	                      title: "FAQs",
 	                      href: "/faqs/",
 	                      description: "Review preventive tips and solutions for common oral health questions.",
-	                      popularity: 62
+
 	                    }
 	                  ]}
 	                />
@@ -401,7 +403,7 @@ const EmergencyDentist = () => {
                 We Are Here When You Need Us Most
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Dental emergencies do not wait, and neither should you. Call or message us now for concierge-level emergency care in the heart of Los Angeles.
+                Call during office hours to discuss your concern and confirm the soonest available appointment.
               </p>
 	              <div className="flex flex-wrap justify-center gap-4">
 	                <Button size="lg" asChild>

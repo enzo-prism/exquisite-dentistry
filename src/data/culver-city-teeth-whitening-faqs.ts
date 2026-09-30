@@ -1,3 +1,5 @@
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
+
 export const CULVER_CITY_TEETH_WHITENING_FAQS = [
   {
     question: 'Do you offer Culver City teeth whitening?',
@@ -12,7 +14,7 @@ export const CULVER_CITY_TEETH_WHITENING_FAQS = [
   {
     question: 'How much does teeth whitening cost near Culver City?',
     answer:
-      'Fees vary based on whether you choose in-office whitening, custom trays, or a hybrid plan. In-office whitening typically starts around $595 and includes comfort steps and aftercare guidance. Custom tray systems often start around $350. After an exam and shade assessment, we’ll provide a clear estimate for your specific plan.',
+      getTreatmentCostAnswer('whitening'),
   },
   {
     question: 'Will whitening work if I have veneers, crowns, or bonding?',

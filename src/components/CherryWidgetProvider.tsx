@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
   CherryWidgetContext,
@@ -95,11 +96,11 @@ const resetCherryRuntime = () => {
   floatingWidgetRevealed = false;
 };
 
-const applyFloatingWidgetStyles = (isMobile: boolean) => {
+const applyFloatingWidgetStyles = (isMobile: boolean, suppressFloating = false) => {
   const mounts = Array.from(
     document.querySelectorAll<HTMLElement>(`[id="${CHERRY_WIDGET_MOUNT_ID}"]`),
   );
-  const shouldHideNearPageTop = shouldHideFloatingWidget();
+  const shouldHideNearPageTop = suppressFloating || shouldHideFloatingWidget();
   const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
@@ -118,6 +119,9 @@ const applyFloatingWidgetStyles = (isMobile: boolean) => {
   ];
 
   styleTargets.forEach((target) => {
+    // Visibility must also remove the vendor controls from keyboard navigation.
+    target.inert = shouldHideNearPageTop;
+    target.setAttribute('aria-hidden', String(shouldHideNearPageTop));
     setImportantStyle(target, 'position', 'fixed');
     setImportantStyle(target, 'left', 'auto');
     setImportantStyle(target, 'right', rightOffset);
@@ -261,16 +265,27 @@ const createCherryQueue = () => {
 
 export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile();
+  const { pathname } = useLocation();
+  const isFormRoute = /^\/(schedule-consultation|contact)\/?$/.test(pathname);
   const [status, setStatus] = useState<CherryWidgetStatus>('idle');
   const [activeWidgetIds, setActiveWidgetIds] = useState<Set<string>>(() => new Set());
   const teardownTimerRef = useRef<number | null>(null);
+  const readyTimerRef = useRef<number | null>(null);
   const syncFrameRef = useRef<number | null>(null);
   const isMobileRef = useRef(isMobile);
+  const suppressFloatingRef = useRef(isFormRoute);
   const hasTrackedReadyRef = useRef(false);
   const hasTrackedErrorRef = useRef(false);
   const lastWidgetClickAtRef = useRef(0);
 
-  const hasActiveWidgets = activeWidgetIds.size > 0;
+  // Financing stays optional on appointment and contact flows. Nested preview
+  // sections cannot accidentally register an overlay over a form.
+  const hasActiveWidgets = activeWidgetIds.size > 0 && !isFormRoute;
+
+  useEffect(() => {
+    suppressFloatingRef.current = isFormRoute;
+    applyFloatingWidgetStyles(isMobileRef.current, isFormRoute);
+  }, [isFormRoute]);
 
   useEffect(() => {
     isMobileRef.current = isMobile;
@@ -356,18 +371,20 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
     }
 
     syncFrameRef.current = window.requestAnimationFrame(() => {
-      applyFloatingWidgetStyles(isMobileRef.current);
+      applyFloatingWidgetStyles(isMobileRef.current, suppressFloatingRef.current);
       syncFrameRef.current = null;
     });
   }, []);
 
   const renderWidget = useCallback(() => {
+    if (readyTimerRef.current !== null) window.clearTimeout(readyTimerRef.current);
     resetWidgetContainers();
     window._hw?.(CHERRY_WIDGET_CONTAINER_ID);
 
-    window.setTimeout(() => {
+    readyTimerRef.current = window.setTimeout(() => {
       syncFloatingWidgetStyles();
       setStatus('ready');
+      readyTimerRef.current = null;
     }, 150);
   }, [syncFloatingWidgetStyles]);
 
@@ -375,6 +392,10 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
     if (typeof window === 'undefined') return;
 
     if (!hasActiveWidgets) {
+      if (readyTimerRef.current !== null) {
+        window.clearTimeout(readyTimerRef.current);
+        readyTimerRef.current = null;
+      }
       if (teardownTimerRef.current !== null) {
         window.clearTimeout(teardownTimerRef.current);
       }
@@ -497,6 +518,10 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
 
       if (syncFrameRef.current !== null) {
         window.cancelAnimationFrame(syncFrameRef.current);
+      }
+
+      if (readyTimerRef.current !== null) {
+        window.clearTimeout(readyTimerRef.current);
       }
 
       resetCherryRuntime();

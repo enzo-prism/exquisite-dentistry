@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
@@ -277,17 +278,17 @@ const TeethWhitening = () => {
             <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
               <Card className="bg-gradient-to-br from-white to-secondary/10 border border-border/60 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-foreground">Whitening Investment & Memberships</CardTitle>
+                  <CardTitle className="text-2xl text-foreground">Whitening Costs & What to Ask</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    In-office Zoom whitening begins at $595 and includes desensitizing care, take-home boosters, and shade tracking. Custom tray systems start at $350, and hybrid pathways range from $650 to $850 depending on the number of gel refills.
+                    {getTreatmentCostAnswer('whitening')}
                   </p>
                   <p>
-                    Members of our Glow Maintenance Club receive quarterly touch-up kits, complimentary gel refills, priority booking, and member rates on cosmetic treatments. We also offer group bookings for weddings and special events.
+                    Ask whether take-home trays, touch-up gel, and follow-up visits are included in your estimate, and how maintenance supplies are priced.
                   </p>
                   <p>
-                    Whitening packages can be bundled with veneers, bonding, and Invisalign, with pricing laid out up front.
+                    If you are also considering veneers, bonding, or Invisalign, discuss the treatment order and request an itemized estimate.
                   </p>
                 </CardContent>
               </Card>
@@ -327,26 +328,26 @@ const TeethWhitening = () => {
                       title: "Zoom Whitening",
                       href: "/zoom-whitening/",
                       description: "Learn about our in-office whitening technology for immediate results.",
-                      popularity: 88,
+
                       combination: true
                     },
                     {
                       title: "Wedding Smile Package",
                       href: "/wedding/",
                       description: "Pair whitening with veneers and Invisalign before your celebration.",
-                      popularity: 46
+
                     },
                     {
                       title: "Graduation Smile Prep",
                       href: "/graduation/",
                       description: "Brighten your smile before ceremonies and professional headshots.",
-                      popularity: 42
+
                     },
                     {
                       title: "Client Experience",
                       href: "/client-experience/",
                       description: "See the comfort details that make whitening an easy, low-stress visit.",
-                      popularity: 52
+
                     }
                   ]}
                 />

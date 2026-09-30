@@ -55,6 +55,9 @@ jobs:
       - name: Submission consent evidence
         run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts
 
+      - name: Patient confidence contracts (outcomes, pricing, shared rendering)
+        run: npm run test:patient-confidence
+
       - name: Redirect config (targets resolve, no chains, no route-eating wildcards)
         run: npm run test:redirect-config
 
@@ -87,6 +90,20 @@ jobs:
 
       - name: Production tracking safeguards
         run: node scripts/test-tracking-build.mjs
+
+      - name: Install Chromium for production hydration checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Production treatment document and hydration
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4188 > /tmp/exquisite-preview.log 2>&1 &
+          PREVIEW_PID=$!
+          trap "kill $PREVIEW_PID" EXIT
+          for attempt in $(seq 1 30); do
+            curl --silent --fail http://127.0.0.1:4188/ > /dev/null && break
+            sleep 1
+          done
+          TREATMENT_PREVIEW_URL=http://127.0.0.1:4188 npx playwright test src/__tests__/shared-treatment.pilot.spec.ts --project=chromium
 
       - name: SEO smoke (dist/index.html tags)
         run: npm run check:seo

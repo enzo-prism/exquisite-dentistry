@@ -1,3 +1,5 @@
+import type { ClinicalReview } from './clinicalReview';
+
 export interface BlogFaq {
   question: string;
   answer: string;
@@ -24,4 +26,5 @@ export interface BlogPost {
   seoKeywords?: string;
   faqs?: BlogFaq[];
   published: boolean;
+  clinicalReview?: ClinicalReview;
 }

@@ -1,3 +1,4 @@
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageSEO from '@/components/seo/PageSEO';
@@ -419,7 +420,7 @@ const ZoomWhitening = () => {
 		              <Card className="border border-border/60 bg-white shadow-sm">
 		                <CardContent className="p-8 space-y-4">
 		                  <ul className="list-disc pl-5 space-y-2 text-muted-foreground leading-relaxed">
-		                    <li>In-office Zoom whitening typically starts around $595 (confirm after your exam and shade check)</li>
+		                    <li>{getTreatmentCostAnswer('whiteningInOffice')}</li>
 		                    <li>Existing veneers, crowns, or bonding may require shade matching to keep results consistent</li>
 		                    <li>Maintenance items (touch-up gel or trays) can extend longevity for coffee/tea/wine habits</li>
 		                  </ul>

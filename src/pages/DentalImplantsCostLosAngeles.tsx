@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 import { Link } from 'react-router-dom';
 import { PageSEO } from '@/components/seo/PageSEO';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
@@ -24,8 +25,7 @@ import { trackCTAClick } from '@/utils/googleAdsTracking';
 const faqs = [
   {
     question: 'How much do dental implants cost in Los Angeles?',
-    answer:
-      'It varies enough from case to case that a single number would be misleading. The total depends on how many teeth are being replaced, whether foundation work like bone grafting is needed, and the type of restoration on top of the implant. After an exam and imaging, we give you a written quote for your specific plan, so the most reliable number is the one built for you at a consultation.',
+    answer: getTreatmentCostAnswer('dentalImplants'),
   },
   {
     question: 'Why do implant quotes from different offices look so different?',

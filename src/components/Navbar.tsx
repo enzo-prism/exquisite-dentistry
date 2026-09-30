@@ -41,7 +41,7 @@ const DESKTOP_ICON_BUTTON_CLASS =
   'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/85 transition-colors duration-200 hover:bg-white/[0.11] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
 
 const MOBILE_ICON_BUTTON_CLASS =
-  'inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+  'inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-md text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
 
 const MOBILE_LINK_BASE_CLASS =
   'block min-h-11 w-full rounded-xl px-3.5 py-3 text-[15px] font-medium leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
@@ -172,7 +172,7 @@ const Navbar = () => {
         )}
       >
         <div className="mx-auto w-full max-w-[1380px] px-3 sm:px-5 lg:px-6">
-          <div className="flex h-16 items-center gap-2 sm:h-[4.5rem] sm:gap-3">
+          <div className="flex min-h-16 flex-wrap items-center gap-2 py-2 sm:min-h-[4.5rem] sm:gap-3 lg:h-[4.5rem] lg:flex-nowrap lg:py-0">
             <Link
               to="/"
               className="group relative inline-flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
@@ -392,7 +392,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="ml-auto flex items-center gap-1.5 lg:hidden">
+            <div className="ml-auto flex max-w-full flex-wrap items-center justify-end gap-[6px] lg:hidden">
               <PhoneLink
                 phoneNumber={PHONE_NUMBER_DISPLAY}
                 analyticsSource="mobile_nav_icon"
@@ -405,7 +405,7 @@ const Navbar = () => {
               <Button
                 size="sm"
                 asChild
-                className="inline-flex h-11 rounded-full bg-gold px-3.5 text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white sm:px-4"
+                className="inline-flex h-auto min-h-[44px] rounded-full bg-gold px-[14px] py-[10px] text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white sm:px-4"
               >
                 <Link
                   to={SCHEDULE_CONSULTATION_PATH}
@@ -444,11 +444,11 @@ const Navbar = () => {
 
                 <SheetContent
                   side="right"
-                  className="w-full max-w-none overflow-hidden border-l border-white/10 bg-zinc-950 p-0 text-white sm:w-[26rem] sm:max-w-none md:w-[30rem] [&>button]:right-4 [&>button]:top-4 [&>button]:inline-flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/20 [&>button]:bg-black/65 [&>button]:text-white [&>button]:opacity-100"
+                  className="w-full max-w-[100vw] overflow-hidden border-l border-white/10 bg-zinc-950 p-0 text-white sm:w-[26rem] sm:max-w-[100vw] md:w-[30rem] [&>button]:right-4 [&>button]:top-4 [&>button]:inline-flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/20 [&>button]:bg-black/65 [&>button]:text-white [&>button]:opacity-100"
                 >
                   <div className="flex h-full flex-col bg-[radial-gradient(circle_at_88%_8%,rgba(212,175,55,0.14),transparent_42%),linear-gradient(to_bottom,rgba(24,24,27,0.98),rgba(9,9,11,0.98))]">
-                    <div className="border-b border-white/10 px-5 pb-5 pt-6 sm:px-6">
-                      <SheetTitle className="text-left text-base font-semibold text-white">Book Your Visit</SheetTitle>
+                    <div className="shrink-0 border-b border-white/10 px-5 pb-5 pt-6 sm:px-6">
+                      <SheetTitle className="pr-[44px] text-left text-base font-semibold text-white [overflow-wrap:anywhere]">Book Your Visit</SheetTitle>
                       <SheetDescription className="mt-1 text-left text-sm text-white/70">
                         New patients can schedule online in under a minute.
                       </SheetDescription>
@@ -457,7 +457,7 @@ const Navbar = () => {
                         <Button
                           asChild
                           size="lg"
-                          className="h-12 w-full rounded-full bg-gold text-sm font-semibold text-black hover:bg-gold/90"
+                          className="h-auto min-h-12 w-full whitespace-normal rounded-full bg-gold px-4 py-3 text-sm font-semibold text-black [overflow-wrap:anywhere] hover:bg-gold/90"
                         >
                           <Link
                             to={SCHEDULE_CONSULTATION_PATH}
@@ -474,7 +474,7 @@ const Navbar = () => {
                           phoneNumber={PHONE_NUMBER_DISPLAY}
                           analyticsSource="mobile_menu"
                           onClick={closeMobileMenu}
-                          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+                          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white [overflow-wrap:anywhere] transition-colors duration-200 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
                         >
                           <Phone className="h-4 w-4" aria-hidden="true" />
                           <span>{`Call ${PHONE_NUMBER_DISPLAY}`}</span>

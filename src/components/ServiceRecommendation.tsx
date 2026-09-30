@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Clock, DollarSign } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 interface ServiceItem {
@@ -8,8 +8,6 @@ interface ServiceItem {
   href: string;
   description: string;
   duration?: string;
-  popularity?: number;
-  priceRange?: string;
   combination?: boolean;
 }
 
@@ -39,7 +37,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
       case 'upgrade':
         return 'Enhanced Treatments';
       case 'combination':
-        return 'Popular Combinations';
+        return 'Treatment Combinations';
       default:
         return 'Patients Also Consider';
     }
@@ -54,7 +52,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
       case 'upgrade':
         return 'Additional options for enhanced results';
       case 'combination':
-        return 'Popular treatment packages for comprehensive results';
+        return 'Options to discuss together as part of your treatment plan';
       default:
         return 'Recommended treatments based on your interest';
     }
@@ -86,7 +84,7 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
                   </h4>
                   {service.combination && (
                     <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                      Popular Combo
+                      Combined plan
                     </span>
                   )}
                 </div>
@@ -100,20 +98,6 @@ const ServiceRecommendation: React.FC<ServiceRecommendationProps> = ({
                     <div className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       <span>{service.duration}</span>
-                    </div>
-                  )}
-                  
-                  {service.popularity && (
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 h-3" />
-                      <span>{service.popularity}% choose this</span>
-                    </div>
-                  )}
-                  
-                  {service.priceRange && (
-                    <div className="flex items-center gap-1">
-                      <DollarSign className="w-3 h-3" />
-                      <span>{service.priceRange}</span>
                     </div>
                   )}
                 </div>

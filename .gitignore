@@ -41,3 +41,6 @@ playwright-report/
 bun.lockb
 deno.lock
 .env.local
+
+# Local implementation scratch files
+work/

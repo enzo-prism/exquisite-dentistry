@@ -1,3 +1,11 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import { TreatmentPilotBody } from '../src/components/treatments/HydratedTreatmentPilot';
+import { TWO_FRONT_VENEERS } from '../src/data/twoFrontVeneers';
+import { PRACTICE_FACTS } from '../src/data/practiceFacts';
+import { getTreatmentCostAnswer } from '../src/data/treatmentPricing';
+import { toMeta, buildSeoTitle } from '../src/utils/seoText';
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { servicePageConfigs } from "../src/data/servicePages";
@@ -353,6 +361,7 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Porcelain and composite veneers are thin shells bonded to the front of the teeth to adjust shape, color, and minor alignment. Dr. Alexie Aguil plans each case tooth by tooth, using conservative preparation to keep as much natural enamel as possible.",
       "We review the veneer count, shade, and sequence with you before any work begins, whether the plan covers a single tooth, the front two to four, or a wider set.",
+      getTreatmentCostAnswer('porcelainVeneer'),
     ],
     links: [
       ...VENEER_CLUSTER_LINKS.filter((link) => link.href !== "/veneers/"),
@@ -521,7 +530,7 @@ export const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/emergency-dentist").description,
     h1: "Emergency Dentist Los Angeles",
     paragraphs: [
-      "Immediate, compassionate care when dental emergencies disrupt your day.",
+      PRACTICE_FACTS.emergencyAvailability,
     ],
     links: defaultNavLinks,
   },
@@ -740,23 +749,27 @@ export const manualPages: StaticRoute[] = [
     path: "/veneers/cost-los-angeles",
     title: "Veneers Cost in Los Angeles | Exquisite Dentistry",
     description:
-      "What veneers cost in Los Angeles: porcelain vs composite ranges, what changes the price, financing, and insurance. Your exact cost is set at a consultation.",
+      "What changes veneer cost in Los Angeles: materials, treatment scope, quote inclusions, financing, and insurance. Your exact cost follows an evaluation.",
     h1: "Veneers Cost in Los Angeles",
     paragraphs: [
-      "A plain guide to what veneers cost in Los Angeles: the factors that move the price, porcelain vs composite, insurance, and financing. Your exact cost is confirmed at a consultation.",
+      getTreatmentCostAnswer('porcelainVeneer'),
     ],
     faqItems: VENEERS_COST_FAQS.map(({ question, answer }) => ({ question, answer })),
     links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
-    path: "/veneers/2-front-teeth-veneers-cost-los-angeles",
-    title: "Cost of 2 Front Teeth Veneers in Los Angeles (2026 Guide)",
-    description:
-      "Learn what impacts the cost of 2 front teeth veneers in Los Angeles and when a 2-tooth smile-zone plan is the right fit.",
-    h1: "Cost of 2 Front Teeth Veneers in Los Angeles",
-    paragraphs: [
-      "Understand pricing factors, alternatives, and consultation next steps for 2 front teeth veneer treatment.",
-    ],
+    path: TWO_FRONT_VENEERS.path,
+    title: TWO_FRONT_VENEERS.title,
+    description: TWO_FRONT_VENEERS.description,
+    h1: TWO_FRONT_VENEERS.h1,
+    paragraphs: [TWO_FRONT_VENEERS.answer, TWO_FRONT_VENEERS.introduction],
+    sections: TWO_FRONT_VENEERS.sections.map((section) => ({
+      heading: section.heading,
+      paragraphs: [...section.paragraphs],
+      ...('bullets' in section ? { bullets: [...section.bullets] } : {}),
+      ...('links' in section ? { links: section.links.map((link) => ({ ...link })) } : {}),
+    })),
+    faqItems: TWO_FRONT_VENEERS.faqItems.map((faq) => ({ ...faq })),
     links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
   {
@@ -778,7 +791,7 @@ export const manualPages: StaticRoute[] = [
     h1: "Dental Implants Cost in Los Angeles",
     ogImage: "/lovable-uploads/restorative-dentistry.webp",
     paragraphs: [
-      "A plain guide to what shapes dental implant cost in Los Angeles — the number of teeth, any foundation work, materials, insurance, and financing. Your exact quote is confirmed at a consultation.",
+      getTreatmentCostAnswer('dentalImplants'),
     ],
     links: [
       { label: "Dental Implants", href: "/dental-implants" },
@@ -796,7 +809,7 @@ export const manualPages: StaticRoute[] = [
     h1: "Invisalign Cost in Los Angeles",
     ogImage: "/lovable-uploads/specialty-services.webp",
     paragraphs: [
-      "A plain guide to what shapes Invisalign cost in Los Angeles — case complexity, treatment length, refinements, retainers, insurance, and monthly financing. Your exact cost is confirmed at a consultation.",
+      getTreatmentCostAnswer('invisalign'),
     ],
     links: [
       { label: "Invisalign", href: "/invisalign" },
@@ -814,7 +827,7 @@ export const manualPages: StaticRoute[] = [
     h1: "Teeth Whitening Cost in Los Angeles",
     ogImage: "/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.webp",
     paragraphs: [
-      "A plain guide to what professional teeth whitening depends on in Los Angeles — in-office vs take-home options, sensitivity care, maintenance, insurance, and financing. Your exact cost is confirmed at a consultation.",
+      getTreatmentCostAnswer('whitening'),
     ],
     links: [
       { label: "Teeth Whitening", href: "/teeth-whitening" },
@@ -828,11 +841,11 @@ export const manualPages: StaticRoute[] = [
     path: "/same-day-dentist",
     title: "Same-Day Dentist in Los Angeles | Exquisite Dentistry",
     description:
-      "Same-day dental care in Los Angeles: urgent exams, pain relief, in-office whitening, and honest guidance on what takes more than one visit. Call to be seen.",
+      "Same-day dental care in Los Angeles depends on appointment availability and your needs. Call during office hours to discuss the next step.",
     h1: "Same-Day Dentist in Los Angeles",
     ogImage: "/lovable-uploads/client-experience.webp",
     paragraphs: [
-      "Honest guidance on same-day dental care in Los Angeles — what can often be handled in one visit (urgent exams, pain relief, in-office whitening) and what takes more than one. Call to see if we can see you today.",
+      PRACTICE_FACTS.emergencyAvailability,
     ],
     links: [
       { label: "Emergency Dentist", href: "/emergency-dentist" },
@@ -948,7 +961,9 @@ export const manualPages: StaticRoute[] = [
       "How Exquisite Dentistry creates, reviews, and updates dental information to keep our content accurate and patient‑focused.",
     h1: "Editorial Policy",
     paragraphs: [
-      "Our clinical content is written for patients and reviewed by licensed dental professionals. Each medical‑adjacent page includes a last‑updated date.",
+      "Our website helps patients understand cosmetic and restorative dentistry options. Information does not replace an in-person dental evaluation.",
+      "Clinical review is recorded separately from authorship and website updates. An article displays a clinical-review credit only when the completed review, reviewer, and review date have been documented. An author name or publication date alone does not establish clinical review.",
+      "A last-updated date records a content change; it does not by itself mean a dentist has clinically reviewed that page. Where a completed review is documented, the article identifies the reviewer and review date.",
     ],
     links: defaultNavLinks,
   },
@@ -981,31 +996,6 @@ const stripHtml = (value: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
-// Descriptions longer than `max` used to be sliced at a word boundary and shipped
-// with no terminator, so 74 of 138 prerendered pages served a snippet that stopped
-// mid-sentence ("...Your exact cost is set at a"). Prefer the last complete sentence
-// that fits; only fall back to a word cut (with an ellipsis) when no sentence ends
-// late enough to leave a usable snippet.
-const MIN_SENTENCE_RATIO = 0.6;
-
-const toMeta = (input: string, max = 155) => {
-  const text = stripHtml(input || "").replace(/["<>]/g, "").trim();
-  if (text.length <= max) return text;
-
-  const window = text.slice(0, max);
-  const lastSentenceEnd = Math.max(
-    window.lastIndexOf(". "),
-    window.lastIndexOf("! "),
-    window.lastIndexOf("? "),
-  );
-  if (lastSentenceEnd >= max * MIN_SENTENCE_RATIO) {
-    return window.slice(0, lastSentenceEnd + 1).trim();
-  }
-
-  const trimmed = window.replace(/\s+\S*$/, "").replace(/[\s,;:—–-]+$/, "");
-  return `${trimmed}…`;
-};
-
 const parseSeoKeywords = (value?: string) => {
   const raw = (value || "").trim();
   if (!raw) return undefined;
@@ -1014,15 +1004,6 @@ const parseSeoKeywords = (value?: string) => {
     .map((part) => part.trim())
     .filter(Boolean);
   return parts.length ? parts : undefined;
-};
-
-const stripTrailingSeparators = (input: string) =>
-  input.replace(/[\s|–—:-]+$/g, "").trim();
-
-const truncateTitle = (input: string, max = 70) => {
-  const text = stripTrailingSeparators(input);
-  if (text.length <= max) return text;
-  return stripTrailingSeparators(text.slice(0, max).replace(/\s+\S*$/, ""));
 };
 
 const normalizeInternalHref = (href: string) => {
@@ -1040,19 +1021,6 @@ const normalizeInternalHref = (href: string) => {
   if (/\/[^/]+\.[^/]+$/.test(pathname)) return href;
 
   return `${pathname}/${suffix}`;
-};
-
-const buildSeoTitle = (title: string) => {
-  const brandSuffix = "Exquisite Dentistry Los Angeles";
-  const lowerTitle = title.toLowerCase();
-  const shouldAppendBrand = !lowerTitle.includes("exquisite dentistry");
-  const separator = " | ";
-  const brandedTitle = shouldAppendBrand
-    ? `${title}${separator}${brandSuffix}`
-    : title;
-  return shouldAppendBrand && brandedTitle.length > 70
-    ? truncateTitle(title, 70)
-    : truncateTitle(brandedTitle, 70);
 };
 
 const uniqueLinks = (links: StaticLink[]) => {
@@ -1799,6 +1767,10 @@ const getSchemasForRoute = (route: StaticRoute) => {
     }
   }
 
+  if (routePath === TWO_FRONT_VENEERS.path) {
+    schemas.push(createFAQSchema(TWO_FRONT_VENEERS.faqItems.map((faq) => ({ ...faq })), TWO_FRONT_VENEERS.h1));
+  }
+
   if (routePath === "/faqs") {
     schemas.push(
       createFAQSchema(
@@ -2051,7 +2023,13 @@ export const buildRoutes = (): StaticRoute[] => {
   return Array.from(byPath.values());
 };
 
-const renderRoute = (template: string, route: StaticRoute) => {
+export const renderRoute = (template: string, route: StaticRoute) => {
+  if (route.path === TWO_FRONT_VENEERS.path) {
+    const content = renderToString(React.createElement(StaticRouter, { location: route.path }, React.createElement(TreatmentPilotBody)));
+    return injectRoot(injectJsonLd(injectSeo(template, route), getSchemasForRoute(route), route.path), content)
+      .replace('<div id="root">', '<div id="root" data-treatment-pilot="two-front-veneers">');
+  }
+
   const paragraphsHtml = route.paragraphs
     .filter(Boolean)
     .map(
