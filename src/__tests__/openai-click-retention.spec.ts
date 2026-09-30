@@ -131,3 +131,47 @@ test('a delayed cross-tab withdrawal cancels an old SDK queue after storage alre
   await expect.poll(()=>payloads.flatMap(p=>p.events??[]).filter(e=>e.type==='lead_created').length).toBe(1);
   expect(payloads.flatMap(p=>p.events??[]).find(e=>e.type==='lead_created')!.id).toBe(newId);
 });
+
+test('a retired frame error and queued retry cannot recreate old click identity after regrant', async ({page}) => {
+  await page.addInitScript(()=>{
+    if(window!==window.top)return;
+    window.__EXQUISITE_ANALYTICS_TEST_HOST__='exquisitedentistryla.com';
+    localStorage.setItem('exquisite_analytics_consent_v2','denied');
+    localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2','granted');
+  });
+  await page.route('**/*',async route=>{
+    const url=new URL(route.request().url());
+    if(url.href===SDK_URL)return route.fulfill({contentType:'application/javascript',body:sdk});
+    if(url.hostname==='bzrcdn.openai.com')return route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:'{"automatic_advanced_matching_enabled":true}'});
+    if(url.hostname==='bzr.openai.com')return route.fulfill({status:200,body:''});
+    if(url.hostname==='127.0.0.1')return route.continue();return route.abort();
+  });
+  await page.goto(`/lp/chatgpt/?oppref=${CLICK}`);
+  await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
+  await page.evaluate(async()=>{
+    const frame=document.querySelector<HTMLIFrameElement>('#openai-ads-measurement-frame')!;
+    const retiredError=frame.onerror!;
+    const realTimeout=window.setTimeout;
+    let queuedRetry:(()=>void)|undefined;
+    window.setTimeout=((handler:TimerHandler,delay?:number,...args:unknown[])=>{
+      if(delay===1000 && typeof handler==='function'){
+        queuedRetry=handler as ()=>void;
+        return realTimeout(()=>{},60000);
+      }
+      return realTimeout(handler,delay,...args);
+    }) as typeof window.setTimeout;
+    frame.dispatchEvent(new Event('error')); // Retires the frame and schedules a retry.
+    window.setTimeout=realTimeout;
+    if(!queuedRetry)throw new Error('Expected a pending retry');
+    const module=await import(String('/src/utils/chatgptAdsTracking.ts'));
+    module.updateChatGptAdsMeasurementConsent('denied');
+    module.updateChatGptAdsMeasurementConsent('granted');
+    // Simulate a callback already queued before cancellation, plus a late frame error.
+    queuedRetry();
+    retiredError.call(frame,new Event('error'));
+  });
+  await page.waitForTimeout(1200);
+  const frames=page.locator('iframe[src*="/measurement/openai.html"]');
+  await expect(frames).toHaveCount(1);
+  expect(await frames.first().getAttribute('src')).not.toContain('oppref');
+});

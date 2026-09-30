@@ -44,17 +44,20 @@ const OpenAIAdsMeasurement = () => {
       transports.clear();
     };
     const flush = (transport: Transport) => {
-      if (!transport.ready || !transport.frame?.contentWindow || !allowed()) return;
+      if (!transport.ready || !transport.frame?.contentWindow || !allowed()
+          || transports.get(transport.reference ?? '') !== transport) return;
       for (const eventId of transport.pending) {
         transport.frame.contentWindow.postMessage({ type: 'exquisite:openai-lead', channel: transport.channel, eventId }, '*');
       }
     };
     const recover = (transport: Transport) => {
+      if (transports.get(transport.reference ?? '') !== transport) return;
       removeFrame(transport);
       if (allowed() && transport.attempts < 3) transport.retryTimer = window.setTimeout(() => initialize(transport), transport.attempts * 1_000);
     };
     function initialize(transport: Transport) {
       if (!allowed() || transport.frame || transport.attempts >= 3) return;
+      if (transports.get(transport.reference ?? '') !== transport) return;
       transport.attempts += 1; transport.channel = crypto.randomUUID();
       const url = new URL('/measurement/openai.html', window.location.origin);
       url.searchParams.set('pixel_id', pixelId); url.searchParams.set('channel', transport.channel);
