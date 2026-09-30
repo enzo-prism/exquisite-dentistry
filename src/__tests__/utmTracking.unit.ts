@@ -26,7 +26,7 @@ afterEach(() => {
   else Reflect.deleteProperty(globalThis, 'window');
 });
 
-test('replaces a previous campaign as a whole and retains the new click on untagged routes', () => {
+test('replaces a previous campaign as a whole and retains campaign tags on untagged routes', () => {
   browser.location.search = '?utm_source=google&utm_campaign=old&gclid=old-click';
   initializeUTMTracking();
   browser.location.search = '?utm_source=chatgpt&oppref=new-reference';
@@ -34,7 +34,7 @@ test('replaces a previous campaign as a whole and retains the new click on untag
   initializeUTMTracking();
   browser.location.search = '';
   initializeUTMTracking();
-  assert.deepEqual(getUTMAttribution(), { utm_source: 'chatgpt', oppref: 'new-reference' });
+  assert.deepEqual(getUTMAttribution(), { utm_source: 'chatgpt' });
 });
 
 test('keeps long click IDs and numeric runs byte-for-byte', () => {
@@ -42,7 +42,7 @@ test('keeps long click IDs and numeric runs byte-for-byte', () => {
   browser.location.search = `?oppref=${token}&gclid=12345678901234567890`;
   initializeUTMTracking();
   assert.equal(getCurrentUTMParameters().oppref, token);
-  assert.equal(getStoredUTMAttribution()?.oppref, token);
+  assert.equal(getStoredUTMAttribution()?.oppref, undefined);
   assert.equal(getStoredUTMAttribution()?.gclid, '12345678901234567890');
 });
 

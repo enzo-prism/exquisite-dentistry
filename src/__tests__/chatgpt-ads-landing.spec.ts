@@ -11,7 +11,6 @@ test.describe('ChatGPT Ads landing page', () => {
     await page.addInitScript(() => {
       if (window !== window.top) return;
       localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
-      localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
       window.__EXQUISITE_ANALYTICS_TEST_HOST__ = 'exquisitedentistryla.com';
       (window as typeof window & { __chatGptAdsEvents?: unknown[] }).__chatGptAdsEvents = [];
       (window as OpenAIAdsTestWindow).__openAIAdsCalls = [];
@@ -116,6 +115,7 @@ test.describe('ChatGPT Ads landing page', () => {
     });
 
     await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=veneer_pilot&oppref=openai_reference_123');
+    await page.getByRole('button', { name: 'Allow measurement' }).click();
     await page.getByLabel('Name').fill('Local Test');
     await page.getByLabel('Email').fill('sample@patient.invalid');
     await page.getByLabel('Phone').fill('(323) 555-0100');
@@ -134,22 +134,21 @@ test.describe('ChatGPT Ads landing page', () => {
     ));
     expect(events).toEqual([{
       eventId: expect.stringMatching(/^[0-9a-f-]{36}$/),
+      openaiClickReference: 'openai_reference_123',
+      consentUpdatedAt: expect.any(String),
       form: 'chatgpt_ads_consultation',
       source: 'chatgpt_ads',
     }]);
     expect(JSON.stringify(events)).not.toContain('Local Test');
     expect(JSON.stringify(events)).not.toContain('sample@patient.invalid');
     expect(JSON.stringify(events)).not.toContain('(323) 555-0100');
-    expect(JSON.stringify(events)).not.toContain('openai_reference_123');
+    expect(events[0]).toMatchObject({ openaiClickReference: 'openai_reference_123' });
 
     const googleEvents = await page.evaluate(() => window.dataLayer ?? []);
     expect(JSON.stringify(googleEvents)).not.toContain('sample@patient.invalid');
     expect(JSON.stringify(googleEvents)).toContain('generate_lead');
 
-    const pixelCalls = await page.evaluate(() => (
-      (window as OpenAIAdsTestWindow).__openAIAdsCalls ?? []
-    ));
-    expect(pixelCalls.some((call) => call[0] === 'measure')).toBe(false);
+    await expect.poll(() => page.evaluate(() => ((window as OpenAIAdsTestWindow).__openAIAdsCalls ?? []).some(call => call[0] === 'measure'))).toBe(true);
   });
 
   test('sends a consented PII-free OpenAI lead event', async ({ page }) => {
@@ -235,7 +234,7 @@ test.describe('ChatGPT Ads landing page', () => {
     await page.getByRole('button', { name: 'Privacy choices' }).click();
     await page.getByRole('button', { name: 'Allow measurement' }).click();
     await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(1);
-    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v2'))).toBe('denied');
+    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v2'))).toBeNull();
     await page.getByRole('button', { name: 'Privacy choices' }).click();
     await page.getByRole('button', { name: 'Decline' }).click();
     await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
@@ -256,7 +255,9 @@ test.describe('ChatGPT Ads landing page', () => {
     await page.getByRole('button', { name: 'Privacy choices' }).click();
     await page.getByRole('button', { name: 'Decline' }).click();
     await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
-    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v2'))).toBe('granted');
+    expect(await page.evaluate(() => localStorage.getItem('exquisite_chatgpt_ads_measurement_consent_v2'))).toBeNull();
+    await page.reload();
+    await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
     await page.getByRole('button', { name: 'Privacy choices' }).click();
     await expect(page.getByRole('button', { name: 'Allow measurement' })).toBeVisible();
     await expect(page.locator('#openai-ads-measurement-frame')).toHaveCount(0);
@@ -350,6 +351,7 @@ test.describe('ChatGPT Ads landing page', () => {
 
     await page.goto('/?utm_source=old_source&utm_campaign=old_campaign');
     await page.goto('/lp/chatgpt/?oppref=current_openai_reference');
+    await page.getByRole('button', { name: 'Allow measurement' }).click();
     await page.getByLabel('Name').fill('Local Test');
     await page.getByLabel('Email').fill('sample@patient.invalid');
     await page.getByLabel('Phone').fill('(323) 555-0100');

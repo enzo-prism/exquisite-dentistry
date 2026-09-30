@@ -77,6 +77,8 @@ export function trackFormSubmission(formType: string, additionalData?: Record<st
   if (acquisitionLead) {
     signalChatGptAdsLeadConfirmed(
       typeof additionalData?.eventId === 'string' ? additionalData.eventId : undefined,
+      typeof additionalData?.openaiClickReference === 'string' ? additionalData.openaiClickReference : undefined,
+      additionalData?.consentUpdatedAt === null || typeof additionalData?.consentUpdatedAt === 'string' ? additionalData.consentUpdatedAt : undefined,
     );
   }
 }
