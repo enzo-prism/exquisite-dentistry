@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import PhoneLink from '@/components/PhoneLink';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
@@ -94,41 +95,68 @@ const ConsultationCallbackForm = ({ initialService }: { initialService?: string 
     }
   };
 
-  const inputClass = 'mt-2 w-full min-h-11 rounded-lg border border-border bg-background px-3 py-3 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-secondary';
+  const fieldClass = 'block w-full h-12 rounded-xl border border-black/10 bg-white px-4 text-base text-ink shadow-[inset_0_1px_2px_rgba(23,18,10,0.04)] transition-[border-color,box-shadow] duration-300 placeholder:text-gray-400 hover:border-gold/40 focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/15 disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-red-600 aria-[invalid=true]:focus:ring-red-600/15';
+  const inputClass = `mt-2 ${fieldClass}`;
+  const labelClass = 'block text-sm font-semibold text-ink';
+  const fieldLabels = {
+    name: ['Name', 'required'],
+    phone: ['Phone', 'required'],
+    email: ['Email', 'optional'],
+  } as const;
+  const labelHint = (hint: 'required' | 'optional') => (
+    <span className={hint === 'required' ? 'text-xs font-medium text-gold-dark' : 'text-xs font-normal text-gray-500'}>({hint})</span>
+  );
 
   return (
-    <section id="request-callback" className="scroll-mt-24 mt-10 rounded-2xl border border-border bg-stone-50 p-5 md:p-6" aria-labelledby="callback-heading">
-      <h2 id="callback-heading" className="text-2xl font-semibold text-foreground">Request a callback</h2>
-      <p className="mt-3 text-muted-foreground">Have questions before booking? Leave your number so our team can help you plan your visit.</p>
-      <form ref={formRef} action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-6 space-y-5" aria-busy={status === 'submitting'}>
+    <section id="request-callback" className="scroll-mt-24 rounded-2xl border border-gold/15 bg-white p-5 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)] sm:p-7 md:p-9" aria-labelledby="callback-heading">
+      <h2 id="callback-heading" className="text-[1.65rem] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-3xl">Request a callback</h2>
+      <p className="mt-3 max-w-xl text-base leading-7 text-gray-600">Have questions before booking? Leave your number so our team can help you plan your visit.</p>
+      <span aria-hidden="true" className="mt-6 block h-px w-full bg-gradient-to-r from-gold/30 via-gold/10 to-transparent" />
+      <form ref={formRef} action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-6 space-y-6" aria-busy={status === 'submitting'}>
         <div className="hidden" aria-hidden="true">
           <label htmlFor="callback-honeypot">Leave this empty</label>
           <input id="callback-honeypot" name="_gotcha" value={honeypot} onChange={event => setHoneypot(event.target.value)} tabIndex={-1} autoComplete="off" />
         </div>
         {status !== 'success' && <>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
             {(['name', 'phone', 'email'] as const).map(field => (
               <div key={field}>
-                <label htmlFor={`callback-${field}`} className="text-sm font-semibold text-foreground">{field === 'name' ? 'Name (required)' : field === 'phone' ? 'Phone (required)' : 'Email (optional)'}</label>
+                <label htmlFor={`callback-${field}`} className={labelClass}>{fieldLabels[field][0]} {labelHint(fieldLabels[field][1])}</label>
                 <input id={`callback-${field}`} name={field} type={field === 'phone' ? 'tel' : field === 'email' ? 'email' : 'text'} autoComplete={field === 'phone' ? 'tel' : field} maxLength={field === 'name' ? 100 : field === 'phone' ? 30 : 254} required={field !== 'email'} disabled={status === 'submitting'} value={values[field]} onChange={handleChange} className={inputClass} aria-invalid={Boolean(errors[field])} aria-describedby={errors[field] ? `callback-${field}-error` : undefined} />
-                {errors[field] && <p id={`callback-${field}-error`} className="mt-2 text-sm text-red-700">{errors[field]}</p>}
+                {errors[field] && <p id={`callback-${field}-error`} className="mt-2 text-sm leading-5 text-red-700">{errors[field]}</p>}
               </div>
             ))}
             <div>
-              <label htmlFor="callback-service" className="text-sm font-semibold text-foreground">Interested in (optional)</label>
-              <div className="relative">
-                <select id="callback-service" name="service" value={values.service} disabled={status === 'submitting'} onChange={handleChange} className={`${inputClass} h-12 appearance-none !py-2 pr-10`}>
+              <label htmlFor="callback-service" className={labelClass}>Interested in {labelHint('optional')}</label>
+              <div className="relative mt-2">
+                <select id="callback-service" name="service" value={values.service} disabled={status === 'submitting'} onChange={handleChange} className={`${fieldClass} appearance-none !py-2 pr-11`}>
                   <option value="">Help me choose</option>
                   {CONSULTATION_SERVICES.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 mt-1 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gold" aria-hidden="true" />
               </div>
             </div>
           </div>
-          <p className="text-sm leading-6 text-muted-foreground">By sending this request, you ask our team to contact you about your visit. Please do not include medical details. Read our <Link to="/privacy-policy/" className="text-secondary underline underline-offset-4">privacy policy</Link>.</p>
-          <Button type="submit" disabled={status === 'submitting'} className="w-full sm:w-auto">{status === 'submitting' ? 'Sending request…' : 'Request a callback'}</Button>
+          <div className="flex flex-col gap-5 border-t border-gold/10 pt-6 md:flex-row-reverse md:items-center md:justify-between md:gap-8">
+            <Button type="submit" size="lg" disabled={status === 'submitting'} className="group h-12 w-full shrink-0 px-8 text-[15px] font-semibold md:w-auto">
+              {status === 'submitting' ? 'Sending request…' : 'Request a callback'}
+              <ArrowRight className="transition-transform duration-300 motion-reduce:transform-none group-hover:translate-x-1" aria-hidden="true" />
+            </Button>
+            <p className="text-sm leading-6 text-gray-600 md:max-w-sm">By sending this request, you ask our team to contact you about your visit. Please do not include medical details. Read our <Link to="/privacy-policy/" className="font-medium text-gold-dark underline underline-offset-4 hover:no-underline">privacy policy</Link>.</p>
+          </div>
         </>}
-        <div ref={feedbackRef} tabIndex={-1} role={status === 'error' ? 'alert' : 'status'} aria-live="polite" className="text-sm leading-6 text-foreground">
+        <div
+          ref={feedbackRef}
+          tabIndex={-1}
+          role={status === 'error' ? 'alert' : 'status'}
+          aria-live="polite"
+          className={cn(
+            'text-sm leading-6 text-ink outline-none',
+            status === 'success' && 'flex items-start gap-3 rounded-xl border border-emerald-700/15 bg-emerald-50/70 p-4 text-[15px] leading-7',
+            status === 'error' && 'rounded-xl border border-red-700/15 bg-red-50/70 p-4',
+          )}
+        >
+          {status === 'success' && <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-700" aria-hidden="true" />}
           {status === 'success' && SUCCESS_MESSAGE}
           {status === 'error' && <>We couldn’t confirm your request. Your details are still here. You can try again or call <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="text-secondary underline">{PHONE_NUMBER_DISPLAY}</PhoneLink> for help.</>}
         </div>

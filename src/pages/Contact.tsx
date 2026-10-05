@@ -3,7 +3,7 @@ import { submitContactRequest } from '@/utils/submitContactRequest';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConversionButton from '@/components/ConversionButton';
 import PhoneLink from '@/components/PhoneLink';
@@ -13,7 +13,11 @@ import {
   trackContactFormValidationFailed,
   trackContactMethodClick,
 } from '@/utils/vercelAnalytics';
-import VideoHero from '@/components/VideoHero';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
+import Reveal from '@/components/motion/Reveal';
+import SectionHeading from '@/components/SectionHeading';
+import OfficeStatus from '@/components/OfficeStatus';
+import { OptimizedImage } from '@/components/seo';
 import {
   ATTRIBUTION_FIELDS,
   getUTMAttribution,
@@ -43,6 +47,9 @@ const SOCIAL_URLS = {
 };
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xkgknpkl';
+const CONTACT_LABEL_CLASS = 'mb-2 text-sm font-semibold text-ink';
+const CONTACT_FIELD_CLASS =
+  'block h-12 w-full rounded-xl border border-black/10 bg-white px-4 text-base text-ink placeholder:text-gray-400 shadow-[inset_0_1px_2px_rgba(23,18,10,0.04)] transition-[border-color,box-shadow] duration-300 hover:border-gold/40 focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/15 aria-[invalid=true]:border-red-600 aria-[invalid=true]:focus:ring-red-600/15';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const sanitizeOperationalUrl = (value: string) => {
   try {
@@ -175,7 +182,7 @@ const BenefitsVerificationForm = () => {
   };
 
   const inputClassName =
-    'w-full rounded-sm border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 transition-shadow focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold';
+    'block h-12 w-full rounded-xl border border-black/10 bg-white px-4 text-base text-ink placeholder:text-gray-400 transition-[border-color,box-shadow] duration-300 hover:border-gold/40 focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/15';
 
   return (
     <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -283,8 +290,8 @@ const BenefitsVerificationForm = () => {
         </div>
       </div>
 
-      <div className="rounded-xl border border-gold/25 bg-gold/5 p-4 text-sm leading-6 text-foreground/80">
-        <p className="font-semibold text-foreground">Protect your privacy</p>
+      <div className="rounded-xl border border-gold/20 bg-white p-4 text-sm leading-6 text-gray-700">
+        <p className="font-semibold text-ink">Protect your privacy</p>
         <p className="mt-1">
           Do not enter a Social Security number, full member ID, date of birth, medical history,
           diagnosis, or treatment records here. This initial form only starts the conversation;
@@ -293,7 +300,7 @@ const BenefitsVerificationForm = () => {
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Button type="submit" size="lg" disabled={status === 'submitting'}>
+        <Button type="submit" size="lg" disabled={status === 'submitting'} className="h-12 w-full px-8 text-[15px] font-semibold sm:w-auto">
           {status === 'submitting' ? 'Sending...' : 'Request Benefits Review'}
         </Button>
         {feedback ? (
@@ -386,18 +393,6 @@ const Contact = () => {
       top: Math.max(targetPosition, 0),
       behavior: 'smooth'
     });
-  };
-
-  const handleScrollToForm = () => {
-    const targetElement = personaFieldsetRef.current || nameFieldRef.current || formSectionRef.current;
-    if (!targetElement) return;
-
-    if (typeof window === 'undefined' || typeof window.scrollTo !== 'function') {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    centerElementInViewport(targetElement);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -558,329 +553,356 @@ const Contact = () => {
         ogImage={meta.ogImage}
       />
 
-      <div className="min-h-screen overflow-hidden">
-        {/* Hero Section with Full Video Background */}
-        <section className="relative min-h-screen bg-black overflow-hidden">
-          <VideoHero
-            title={<>Contact <span className="text-gold">Us</span></>}
-            subtitle="We're here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil."
-            primaryCta={{
-              text: 'Send Us a Message',
-              onClick: handleScrollToForm
-            }}
-            height="large"
-            badgeText="REACH OUT"
-            scrollIndicator={false}
-            className="absolute inset-0 h-full"
-          />
-          
-          {/* Floating Contact Card - positioned to allow video background behind */}
-          <div className="relative z-30 flex items-center justify-center min-h-screen py-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="bg-white shadow-2xl rounded-sm max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-3">
-                  {/* Contact Details */}
-                  <div className="bg-black text-white p-10 lg:p-14">
-                    <h2 className="text-2xl font-semibold mb-10">Contact Information</h2>
-                    
-                    <div className="space-y-8">
-                      <div className="flex items-start">
-                        <Phone size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-medium mb-1.5">Phone</h3>
-                          <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="text-white/80 hover:text-gold transition-colors">
-                            {PHONE_NUMBER_DISPLAY}
-                          </PhoneLink>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <Mail size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-medium mb-1.5">Email</h3>
-                          <p className="text-white/80">{EMAIL}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <MapPin size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-medium mb-1.5">Address</h3>
-                          <a
-                            href="https://maps.app.goo.gl/uZPw5AKARk8HuNh9A"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => trackContactMethodClick({
-                              method: 'directions',
-                              source: 'contact_page_card',
-                              destination: 'https://maps.app.goo.gl/uZPw5AKARk8HuNh9A',
-                            })}
-                            className="text-white/80 hover:text-gold transition-colors inline-block"
-                          >
-                            {STREET_ADDRESS}<br />
-                            {ADDRESS_LOCALITY}, {ADDRESS_REGION} {POSTAL_CODE}
-                          </a>
-                          <div className="mt-3">
-                            <OpenInMapsButton
-                              source="contact_page"
-                              className="border-white/40 !text-white hover:!bg-white/10 hover:!text-white"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <Clock size={20} className="text-gold mt-1 mr-5 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-medium mb-1.5">Hours</h3>
-                          <div className="text-white/80 space-y-1">
-                            <p>Monday-Thursday: 8AM-6PM</p>
-                            <p>Friday: Closed</p>
-                            <p>Saturday: Closed</p>
-                            <p>Sunday: Closed</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-14 pt-8 border-t border-white/20">
-                      <h3 className="font-medium mb-5">Follow Us</h3>
-                      <div className="flex space-x-5">
-                        <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Instagram (opens in a new tab)" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                          </svg>
-                        </a>
-                        <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Facebook (opens in a new tab)" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-white transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
+      <div className="min-h-screen overflow-hidden bg-ivory">
+        {/* Compact header: who to reach and whether the office is open, then straight to the details. */}
+        <section className="relative isolate overflow-hidden bg-black text-white">
+          <div aria-hidden="true" className="absolute inset-0 -z-10">
+            <OptimizedImage
+              src="/lovable-uploads/exquisite-black-gold-hero.png"
+              alt=""
+              priority
+              className="h-full w-full object-cover object-[70%_center] opacity-80"
+              sizes="100vw"
+            />
+            <span className="absolute inset-0 bg-[linear-gradient(100deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.7)_45%,rgba(0,0,0,0.35)_100%)]" />
+            <span className="hero-lights" />
+          </div>
+          <div className="section-container pb-20 pt-8 sm:pb-24 md:pb-36 md:pt-16 lg:pb-40 lg:pt-20">
+            <p className="hero-rise eyebrow eyebrow--light" style={{ '--d': '60ms' } as React.CSSProperties}>
+              Reach out
+            </p>
+            <h1 className="hero-title mt-4 text-[clamp(2.4rem,9vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.025em] md:mt-5">
+              <AnimatedHeadline>
+                <>Contact <span className="text-gold">Us</span></>
+              </AnimatedHeadline>
+            </h1>
+            <p
+              className="hero-rise mt-4 max-w-xl text-[15px] leading-7 text-white/80 md:mt-6 md:text-lg md:leading-8"
+              style={{ '--d': '420ms' } as React.CSSProperties}
+            >
+              We&apos;re here to answer your questions and help you schedule your appointment with Dr. Alexie Aguil.
+            </p>
+            <div
+              className="hero-rise mt-5 hidden gap-3 sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 md:mt-8"
+              style={{ '--d': '560ms' } as React.CSSProperties}
+            >
+              <PhoneLink
+                phoneNumber={PHONE_NUMBER_DISPLAY}
+                analyticsSource="contact_hero_phone"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/30 bg-white/[0.06] px-5 py-3 text-[15px] font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/55 hover:bg-white/[0.14]"
+              >
+                <Phone className="h-4 w-4 text-champagne" aria-hidden="true" />
+                Call {PHONE_NUMBER_DISPLAY}
+              </PhoneLink>
+              <OfficeStatus className="min-h-6" />
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-10 -mt-12 pb-16 sm:-mt-14 md:-mt-24 md:pb-24 lg:-mt-28">
+          <div className="section-container">
+            <Reveal
+              variant="up"
+              className="grid overflow-hidden rounded-2xl border border-gold/15 bg-white shadow-[0_40px_90px_-50px_rgba(23,18,10,0.55)] lg:grid-cols-[minmax(0,5fr)_minmax(0,8fr)]"
+            >
+              {/* Contact Details */}
+              <div className="border-b border-gold/15 bg-ivory/70 p-5 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+                <h2 className="eyebrow">Contact Information</h2>
+
+                <dl className="mt-4 divide-y divide-gold/15 md:grid md:grid-cols-2 md:gap-x-10 md:divide-y-0 lg:mt-6 lg:block lg:divide-y">
+                  <div className="flex items-start gap-4 py-3 sm:py-4 first:pt-0">
+                    <dt className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-white text-gold sm:h-10 sm:w-10">
+                      <Phone className="h-4 w-4" aria-hidden="true" />
+                      <span className="sr-only">Phone</span>
+                    </dt>
+                    <dd className="min-w-0">
+                      <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="min-h-6 text-lg font-semibold tracking-[-0.01em] text-ink transition-colors hover:text-gold-dark">
+                        {PHONE_NUMBER_DISPLAY}
+                      </PhoneLink>
+                      <p className="text-sm text-gray-600">Front desk, during office hours</p>
+                    </dd>
                   </div>
-                  
-                  {/* Direct Contact Form */}
-                  <div ref={formSectionRef} className="col-span-2 p-8 sm:p-10 lg:p-14" id="contact-form">
-                    <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
-                    <p className="text-gray-600 mb-10">
-                      Have a question about treatment options, financing, or scheduling? Share a few details below and our team will follow up via email.
-                    </p>
-                    <form
-                      action={FORM_ENDPOINT}
-                      method="POST"
-                      noValidate
-                      onSubmit={handleSubmit}
-                      className="space-y-8"
-                    >
-                      <div className="hidden">
-                        <label htmlFor="bot-field">
-                          Don't fill this out if you&apos;re human:
-                          <input
-                            id="bot-field"
-                            name="bot-field"
-                            value={honeypot}
-                            onChange={handleHoneypotChange}
-                          />
-                        </label>
-                      </div>
 
-                      <fieldset
-                        ref={personaFieldsetRef}
-                        aria-invalid={Boolean(fieldErrors.whichBestDescribesYou)}
-                        aria-describedby={fieldErrors.whichBestDescribesYou ? 'which-best-describes-you-error' : undefined}
-                        className="flex flex-col text-left"
+                  <div className="flex items-start gap-4 py-3 sm:py-4">
+                    <dt className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-white text-gold sm:h-10 sm:w-10">
+                      <Mail className="h-4 w-4" aria-hidden="true" />
+                      <span className="sr-only">Email</span>
+                    </dt>
+                    <dd className="min-w-0 pt-1.5 sm:pt-2">
+                      <a
+                        href={`mailto:${EMAIL}`}
+                        className="group inline-flex min-h-6 max-w-full items-center text-[15px] font-medium text-ink transition-colors hover:text-gold-dark [overflow-wrap:anywhere]"
                       >
-                        <legend className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
-                          Which best describes you? <span className="text-red-600">*</span>
-                        </legend>
-                        <div role="radiogroup" className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          {CONTACT_PERSONA_OPTIONS.map((option, index) => {
-                            const optionId = `which-best-describes-you-${option.value}`;
-                            const isSelected = formState.whichBestDescribesYou === option.label;
+                        <span className="link-sweep">{EMAIL}</span>
+                      </a>
+                    </dd>
+                  </div>
 
-                            return (
-                              <div key={option.value} className="relative">
-                                <input
-                                  id={optionId}
-                                  name="whichBestDescribesYou"
-                                  type="radio"
-                                  value={option.label}
-                                  checked={isSelected}
-                                  onChange={handleChange}
-                                  required
-                                  ref={index === 0 ? personaFirstOptionRef : undefined}
-                                  className="peer sr-only"
-                                />
-                                <label
-                                  htmlFor={optionId}
-                                  className={`flex cursor-pointer items-center justify-between gap-3 rounded-sm border bg-white px-4 py-3 text-sm font-medium text-gray-900 transition-shadow peer-focus:outline-none peer-focus:ring-2 ${
-                                    fieldErrors.whichBestDescribesYou
-                                      ? 'border-red-500 peer-focus:ring-red-500'
-                                      : 'border-gray-200 hover:border-gold peer-focus:ring-gold'
-                                  } ${isSelected ? 'border-gold bg-gold/5 shadow-sm' : ''}`}
-                                >
-                                  <span className="min-w-0">{option.label}</span>
-                                  <span
-                                    aria-hidden="true"
-                                    className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                                      isSelected ? 'border-gold' : 'border-gray-300'
-                                    }`}
-                                  >
-                                    <span className={`h-2 w-2 rounded-full bg-gold ${isSelected ? 'opacity-100' : 'opacity-0'}`} />
-                                  </span>
-                                </label>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        {fieldErrors.whichBestDescribesYou && (
-                          <p id="which-best-describes-you-error" className="mt-2 text-sm text-red-600">
-                            {fieldErrors.whichBestDescribesYou}
-                          </p>
-                        )}
-                      </fieldset>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col text-left">
-                          <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
-                            Name
-                          </label>
-                          <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            value={formState.name}
-                            onChange={handleChange}
-                            required
-                            placeholder="Full name"
-                            autoComplete="name"
-                            ref={nameFieldRef}
-                            aria-invalid={Boolean(fieldErrors.name)}
-                            aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-                            className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow ${
-                              fieldErrors.name
-                                ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
-                                : 'border border-gray-200 focus:ring-gold focus:border-gold'
-                            }`}
-                          />
-                          {fieldErrors.name && (
-                            <p id="name-error" className="mt-2 text-sm text-red-600">
-                              {fieldErrors.name}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className="flex flex-col text-left">
-                          <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
-                            Email
-                          </label>
-                          <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            value={formState.email}
-                            onChange={handleChange}
-                            required
-                            placeholder="you@example.com"
-                            autoComplete="email"
-                            ref={emailFieldRef}
-                            aria-invalid={Boolean(fieldErrors.email)}
-                            aria-describedby={fieldErrors.email ? 'email-error' : undefined}
-                            className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow ${
-                              fieldErrors.email
-                                ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
-                                : 'border border-gray-200 focus:ring-gold focus:border-gold'
-                            }`}
-                          />
-                          {fieldErrors.email && (
-                            <p id="email-error" className="mt-2 text-sm text-red-600">
-                              {fieldErrors.email}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex flex-col text-left md:col-span-2">
-                          <label htmlFor="phone" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
-                            Phone (optional)
-                          </label>
-                          <input
-                            id="phone"
-                            name="phone"
-                            type="tel"
-                            value={formState.phone}
-                            onChange={handleChange}
-                            placeholder="(323) 555-0123"
-                            autoComplete="tel"
-                            className="w-full border border-gray-200 bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-shadow"
-                          />
-                        </div>
+                  <div className="flex items-start gap-4 py-3 sm:py-4">
+                    <dt className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-white text-gold sm:h-10 sm:w-10">
+                      <MapPin className="h-4 w-4" aria-hidden="true" />
+                      <span className="sr-only">Address</span>
+                    </dt>
+                    <dd className="min-w-0 pt-1.5 sm:pt-2">
+                      <a
+                        href="https://maps.app.goo.gl/uZPw5AKARk8HuNh9A"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackContactMethodClick({
+                          method: 'directions',
+                          source: 'contact_page_card',
+                          destination: 'https://maps.app.goo.gl/uZPw5AKARk8HuNh9A',
+                        })}
+                        className="inline-block text-[15px] leading-6 text-ink transition-colors hover:text-gold-dark"
+                      >
+                        <span className="font-medium">{STREET_ADDRESS}</span><br />
+                        {ADDRESS_LOCALITY}, {ADDRESS_REGION} {POSTAL_CODE}
+                      </a>
+                      <div className="mt-3">
+                        <OpenInMapsButton source="contact_page" />
                       </div>
+                    </dd>
+                  </div>
 
-                      <div className="flex flex-col text-left">
-                        <label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600 mb-2">
-                          Message
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          value={formState.message}
-                          onChange={handleChange}
-                          required
-                          ref={messageFieldRef}
-                          aria-invalid={Boolean(fieldErrors.message)}
-                          aria-describedby={fieldErrors.message ? 'message-error' : undefined}
-                          rows={6}
-                          placeholder="Tell us how we can help..."
-                          className={`w-full bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 rounded-sm focus:outline-none focus:ring-2 transition-shadow resize-none ${
-                            fieldErrors.message
-                              ? 'border border-red-500 focus:ring-red-500 focus:border-red-500'
-                              : 'border border-gray-200 focus:ring-gold focus:border-gold'
-                          }`}
-                        />
-                        {fieldErrors.message && (
-                          <p id="message-error" className="mt-2 text-sm text-red-600">
-                            {fieldErrors.message}
-                          </p>
-                        )}
-                      </div>
+                  <div className="flex items-start gap-4 py-3 sm:py-4 last:pb-0">
+                    <dt className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-white text-gold sm:h-10 sm:w-10">
+                      <Clock className="h-4 w-4" aria-hidden="true" />
+                      <span className="sr-only">Hours</span>
+                    </dt>
+                    <dd className="min-w-0 pt-1.5 sm:pt-2 text-[15px] leading-6 text-ink">
+                      <p><span className="font-medium">Mon–Thu</span> · 8AM–6PM</p>
+                      <p className="text-gray-600">Fri–Sun · Closed</p>
+                      <OfficeStatus tone="light" className="mt-1.5" />
+                    </dd>
+                  </div>
+                </dl>
 
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 space-y-4 lg:space-y-0">
-                        <Button
-                          type="submit"
-                          size="lg"
-                          disabled={formStatus === 'submitting'}
-                          className="w-full lg:w-auto px-10 py-6 text-base tracking-wide uppercase"
-                        >
-                          {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
-                        </Button>
-                        {feedback && (
-                          <div
-                            className={`text-sm ${formStatus === 'success' ? 'text-emerald-600' : formStatus === 'error' ? 'text-red-600' : 'text-gray-500'}`}
-                            aria-live="polite"
-                          >
-                            <p>{feedback}</p>
-                            {formStatus === 'error' && (
-                              <p className="mt-1 text-sm text-gray-600">
-                                If this fails, please call the office or email us at{' '}
-                                <a
-                                  href={`mailto:${EMAIL}`}
-                                  className="text-secondary underline underline-offset-4 hover:no-underline"
-                                >
-                                  {EMAIL}
-                                </a>
-                                .
-                              </p>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </form>
+                <div className="mt-8 hidden border-t border-gold/15 pt-6 lg:block">
+                  <h3 className="text-sm font-semibold text-ink">Follow Us</h3>
+                  <div className="mt-4 flex gap-3">
+                    <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Instagram (opens in a new tab)" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/25 bg-white text-gold-dark transition-colors hover:border-gold hover:bg-gold hover:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                      </svg>
+                    </a>
+                    <a href={SOCIAL_URLS.FACEBOOK} target="_blank" rel="noopener noreferrer" aria-label="Follow Exquisite Dentistry on Facebook (opens in a new tab)" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/25 bg-white text-gold-dark transition-colors hover:border-gold hover:bg-gold hover:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>
-            </div>
+
+              {/* Direct Contact Form */}
+              <div ref={formSectionRef} className="scroll-mt-24 p-5 sm:p-8 lg:p-12" id="contact-form">
+                <h2 className="text-[1.65rem] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-3xl">Send Us a Message</h2>
+                <p className="mt-3 max-w-xl text-base leading-7 text-gray-600">
+                  Have a question about treatment options, financing, or scheduling? Share a few details below and our team will follow up via email.
+                </p>
+                <span aria-hidden="true" className="mt-6 block h-px w-full bg-gradient-to-r from-gold/30 via-gold/10 to-transparent" />
+                <form
+                  action={FORM_ENDPOINT}
+                  method="POST"
+                  noValidate
+                  onSubmit={handleSubmit}
+                  className="mt-6 space-y-6"
+                >
+                  <div className="hidden">
+                    <label htmlFor="bot-field">
+                      Don't fill this out if you&apos;re human:
+                      <input
+                        id="bot-field"
+                        name="bot-field"
+                        value={honeypot}
+                        onChange={handleHoneypotChange}
+                      />
+                    </label>
+                  </div>
+
+                  <fieldset
+                    ref={personaFieldsetRef}
+                    aria-invalid={Boolean(fieldErrors.whichBestDescribesYou)}
+                    aria-describedby={fieldErrors.whichBestDescribesYou ? 'which-best-describes-you-error' : undefined}
+                    className="flex flex-col text-left"
+                  >
+                    <legend className="mb-2 text-sm font-semibold text-ink">
+                      Which best describes you? <span className="text-red-600">*</span>
+                    </legend>
+                    <div role="radiogroup" className="grid grid-cols-1 gap-2.5 sm:grid-cols-3 sm:gap-3">
+                      {CONTACT_PERSONA_OPTIONS.map((option, index) => {
+                        const optionId = `which-best-describes-you-${option.value}`;
+                        const isSelected = formState.whichBestDescribesYou === option.label;
+
+                        return (
+                          <div key={option.value} className="relative">
+                            <input
+                              id={optionId}
+                              name="whichBestDescribesYou"
+                              type="radio"
+                              value={option.label}
+                              checked={isSelected}
+                              onChange={handleChange}
+                              required
+                              ref={index === 0 ? personaFirstOptionRef : undefined}
+                              className="peer sr-only"
+                            />
+                            <label
+                              htmlFor={optionId}
+                              className={`flex h-full min-h-12 cursor-pointer items-center justify-between gap-3 rounded-xl border bg-white px-4 py-3 text-sm font-medium leading-5 text-ink transition-[border-color,box-shadow,background-color] duration-300 peer-focus-visible:outline-none peer-focus-visible:ring-4 ${
+                                fieldErrors.whichBestDescribesYou
+                                  ? 'border-red-600 peer-focus-visible:ring-red-600/15'
+                                  : 'border-black/10 hover:border-gold/50 peer-focus-visible:border-gold peer-focus-visible:ring-gold/15'
+                              } ${isSelected ? '!border-gold bg-gold/[0.06] shadow-[0_10px_30px_-20px_rgba(23,18,10,0.5)]' : ''}`}
+                            >
+                              <span className="min-w-0">{option.label}</span>
+                              <span
+                                aria-hidden="true"
+                                className={`flex h-[1.125rem] w-[1.125rem] shrink-0 items-center justify-center rounded-full border transition-colors ${
+                                  isSelected ? 'border-gold' : 'border-gray-300'
+                                }`}
+                              >
+                                <span className={`h-2 w-2 rounded-full bg-gold transition-transform duration-300 ${isSelected ? 'scale-100' : 'scale-0'}`} />
+                              </span>
+                            </label>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {fieldErrors.whichBestDescribesYou && (
+                      <p id="which-best-describes-you-error" className="mt-2 text-sm text-red-700">
+                        {fieldErrors.whichBestDescribesYou}
+                      </p>
+                    )}
+                  </fieldset>
+
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div className="flex flex-col text-left">
+                      <label htmlFor="name" className={CONTACT_LABEL_CLASS}>
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formState.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Full name"
+                        autoComplete="name"
+                        ref={nameFieldRef}
+                        aria-invalid={Boolean(fieldErrors.name)}
+                        aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+                        className={CONTACT_FIELD_CLASS}
+                      />
+                      {fieldErrors.name && (
+                        <p id="name-error" className="mt-2 text-sm text-red-700">
+                          {fieldErrors.name}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col text-left">
+                      <label htmlFor="email" className={CONTACT_LABEL_CLASS}>
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formState.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        ref={emailFieldRef}
+                        aria-invalid={Boolean(fieldErrors.email)}
+                        aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+                        className={CONTACT_FIELD_CLASS}
+                      />
+                      {fieldErrors.email && (
+                        <p id="email-error" className="mt-2 text-sm text-red-700">
+                          {fieldErrors.email}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col text-left md:col-span-2">
+                      <label htmlFor="phone" className={CONTACT_LABEL_CLASS}>
+                        Phone (optional)
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formState.phone}
+                        onChange={handleChange}
+                        placeholder="(323) 555-0123"
+                        autoComplete="tel"
+                        className={CONTACT_FIELD_CLASS}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col text-left">
+                    <label htmlFor="message" className={CONTACT_LABEL_CLASS}>
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formState.message}
+                      onChange={handleChange}
+                      required
+                      ref={messageFieldRef}
+                      aria-invalid={Boolean(fieldErrors.message)}
+                      aria-describedby={fieldErrors.message ? 'message-error' : undefined}
+                      rows={5}
+                      placeholder="Tell us how we can help..."
+                      className={`${CONTACT_FIELD_CLASS} h-auto min-h-[8.5rem] resize-none py-3`}
+                    />
+                    {fieldErrors.message && (
+                      <p id="message-error" className="mt-2 text-sm text-red-700">
+                        {fieldErrors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col gap-4 border-t border-gold/10 pt-6 lg:flex-row lg:items-center lg:gap-6">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={formStatus === 'submitting'}
+                      className="group h-12 w-full shrink-0 px-8 text-[15px] font-semibold lg:w-auto"
+                    >
+                      {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                      <ArrowRight className="transition-transform duration-300 motion-reduce:transform-none group-hover:translate-x-1" aria-hidden="true" />
+                    </Button>
+                    {feedback && (
+                      <div
+                        className={`text-sm leading-6 ${formStatus === 'success' ? 'text-emerald-700' : formStatus === 'error' ? 'text-red-700' : 'text-gray-500'}`}
+                        aria-live="polite"
+                      >
+                        <p>{feedback}</p>
+                        {formStatus === 'error' && (
+                          <p className="mt-1 text-sm text-gray-600">
+                            If this fails, please call the office or email us at{' '}
+                            <a
+                              href={`mailto:${EMAIL}`}
+                              className="text-secondary underline underline-offset-4 hover:no-underline"
+                            >
+                              {EMAIL}
+                            </a>
+                            .
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </form>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -888,45 +910,45 @@ const Contact = () => {
           ref={benefitsSectionRef}
           id="benefits-verification"
           aria-labelledby="benefits-verification-heading"
-          className="scroll-mt-24 border-y border-gold/20 bg-stone-50 py-16 md:py-20"
+          className="scroll-mt-24 border-y border-gold/15 bg-white py-16 md:py-24"
         >
-          <div className="container mx-auto px-4">
-            <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
-              <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
-                  <ShieldCheck size={22} />
+          <div className="section-container">
+            <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-14">
+              <Reveal variant="up">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/25 bg-ivory text-gold">
+                  <ShieldCheck size={22} aria-hidden="true" />
                 </div>
-                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+                <p className="eyebrow mt-6">
                   PPO Benefits Verification
                 </p>
                 <h2
                   id="benefits-verification-heading"
-                  className="mt-3 text-3xl font-semibold text-foreground md:text-4xl"
+                  className="mt-4 text-[clamp(1.85rem,4.2vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-ink"
                 >
                   Start with basic plan information.
                 </h2>
-                <p className="mt-4 text-base leading-7 text-muted-foreground">
+                <p className="mt-5 text-base leading-7 text-gray-600">
                   If you have a PPO plan, there is a strong chance we can help you use your
                   benefits. Send only the basic details below. Coverage is not guaranteed until
                   our team verifies your specific plan.
                 </p>
-                <p className="mt-4 text-base leading-7 text-muted-foreground">
+                <p className="mt-4 text-base leading-7 text-gray-600">
                   Prefer to speak with us? Call{' '}
-                  <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="font-semibold text-secondary">
+                  <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} className="font-semibold text-gold-dark underline underline-offset-4 hover:no-underline">
                     {PHONE_NUMBER_DISPLAY}
                   </PhoneLink>
                   .
                 </p>
-              </div>
+              </Reveal>
 
-              <div className="rounded-[2rem] border border-border bg-white p-6 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.3)] md:p-8">
-                <h3 className="text-2xl font-semibold text-foreground">Request a benefits review</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              <Reveal variant="up" delay={120} className="rounded-2xl border border-gold/15 bg-ivory/60 p-5 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)] sm:p-8">
+                <h3 className="text-2xl font-semibold tracking-[-0.02em] text-ink">Request a benefits review</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600">
                   We will use these details to contact you and determine the safest next step for
                   verifying benefits.
                 </p>
                 <BenefitsVerificationForm />
-              </div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -939,63 +961,69 @@ const Contact = () => {
         />
 
         {/* Map Section */}
-        <section className="mb-0 py-28 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <h2 className="heading-lg mb-5">Our Location</h2>
-              <p className="paragraph">
-                {PRACTICE_FACTS.parking}
-              </p>
-            </div>
-            
-            <div className="aspect-video bg-gray-200 rounded-sm overflow-hidden shadow-lg">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7467390070256!2d-118.3650287!3d34.063844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93cca04c0c3%3A0x98b9bda196f7b6bf!2s6227%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090048!5e0!3m2!1sen!2sus!4v1653485691058!5m2!1sen!2sus"
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Exquisite Dentistry Location"
-              ></iframe>
-            </div>
+        <section className="bg-ivory py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Visit"
+              title={<>Our <em>Location</em></>}
+              description={PRACTICE_FACTS.parking}
+            />
+            <Reveal variant="wipe" className="mt-10 overflow-hidden rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)] md:mt-14">
+              <div className="aspect-[4/3] sm:aspect-video">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7467390070256!2d-118.3650287!3d34.063844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93cca04c0c3%3A0x98b9bda196f7b6bf!2s6227%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090048!5e0!3m2!1sen!2sus!4v1653485691058!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Exquisite Dentistry Location"
+                  className="block h-full w-full"
+                ></iframe>
+              </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Review Widget Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-                What Our Clients <span className="text-gold">Say</span>
-              </h2>
-              <p className="text-lg text-black-light">
-                Read verified reviews from our satisfied clients
-              </p>
+        <section className="border-t border-gold/10 bg-white py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Patient reviews"
+              title={<>What patients <em>say</em></>}
+              description="Reviews from patients of Exquisite Dentistry."
+            />
+            <div className="mt-10 md:mt-14">
+              <ReviewWidget />
             </div>
-            <ReviewWidget />
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-28 bg-black w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-sans font-semibold text-white leading-tight mb-8">
-                Schedule <span className="text-gold">Consultation</span>
-              </h2>
-              <p className="text-xl text-white/80 mb-12 font-light">
-                Schedule your consultation today and experience the Exquisite Dentistry difference.
-              </p>
-              <ConversionButton 
-                size="lg" 
+        <section className="w-full bg-black py-20 md:py-28">
+          <div className="section-container text-center">
+            <SectionHeading
+              tone="dark"
+              eyebrow="When you are ready"
+              title={<>Schedule <em>Consultation</em></>}
+              description="Choose a time online, request a callback, or call the office. The team can help you plan your first visit."
+            />
+            <Reveal variant="up" delay={260} className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+              <ConversionButton
+                size="lg"
                 className="px-8 py-3.5"
                 href={SCHEDULE_CONSULTATION_PATH}
               >
                 Schedule Consultation
               </ConversionButton>
-            </div>
+              <Button asChild variant="glass" size="lg" className="h-12 px-7">
+                <PhoneLink phoneNumber={PHONE_NUMBER_DISPLAY} analyticsSource="contact_page_cta">
+                  <Phone className="h-4 w-4 text-champagne" aria-hidden="true" />
+                  Call {PHONE_NUMBER_DISPLAY}
+                </PhoneLink>
+              </Button>
+            </Reveal>
           </div>
         </section>
       </div>
