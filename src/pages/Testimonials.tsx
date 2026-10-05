@@ -13,7 +13,10 @@ import ReviewCarousel from '@/components/reviews/ReviewCarousel';
 import WrittenReviewsSection from '@/components/reviews/WrittenReviewsSection';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
-import { PHONE_NUMBER_E164 } from '@/constants/contact';
+import { Button } from '@/components/ui/button';
+import SectionHeading from '@/components/SectionHeading';
+import Reveal from '@/components/motion/Reveal';
+import ConsultationCtaBand from '@/components/about/ConsultationCtaBand';
 import { bundledReviewCount, reviewArchive } from '@/data/reviewArchive';
 
 const TestimonialsPage: React.FC = () => {
@@ -152,21 +155,20 @@ const TestimonialsPage: React.FC = () => {
           text: "Read Testimonials",
           href: "#five-star-proof"
         }}
+        phoneCta
       />
       
-      <section className="py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-sm text-gold font-medium mb-3">REVIEWS</span>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              What Our Clients Are Saying
-            </h2>
-            <div className="separator mx-auto"></div>
-          </div>
+          <SectionHeading
+            className="mb-12 md:mb-16"
+            eyebrow="Reviews"
+            title={<>What Our Clients <em>Are Saying</em></>}
+          />
           
           {/* Video reviews — carousel keeps the set to ~3 in view instead of a
               nine-card wall, while every card stays in the DOM for crawlers. */}
-          <div className="mb-16">
+          <Reveal variant="fade" className="mb-12">
             <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
               Video Reviews
             </h3>
@@ -179,53 +181,54 @@ const TestimonialsPage: React.FC = () => {
                 />
               ))}
             </ReviewCarousel>
+          </Reveal>
+          <div className="mb-16 flex justify-center">
+            <Button asChild variant="outline" size="lg" className="group">
+              <Link to="/transformation-stories/">
+                View Transformation Stories
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
-          <div className="flex justify-center mb-16">
-            <Link
-              to="/transformation-stories/"
-              className="inline-flex items-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition"
-            >
-              View Transformation Stories
-              <ArrowRight size={16} className="ml-2" />
-            </Link>
-          </div>
-          
-          <div id="five-star-proof" className="space-y-8">
-            <div className="text-center max-w-4xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
+        </div>
+      </section>
+
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div id="five-star-proof" className="mb-10 scroll-mt-28 md:mb-12">
+            <div className="text-center max-w-4xl mx-auto">
+              <Reveal as="p" variant="fade" className="eyebrow eyebrow--center">
                 5-STAR PROOF
-              </span>
-              <h3 className="text-3xl md:text-4xl font-semibold text-black">Written Reviews</h3>
-              <p className="text-black-light/80 text-base md:text-lg">
+              </Reveal>
+              <Reveal as="h3" variant="blur" delay={90} className="mt-4 text-[clamp(1.85rem,4.2vw,3rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-ink">
+                Written Reviews
+              </Reveal>
+              <Reveal as="p" variant="up" delay={180} className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-600 md:text-lg md:leading-8">
                 Explore {bundledReviewCount} written reviews currently published on this site.
                 Filter by what matters to you, then talk with our team about your own visit.
-              </p>
+              </Reveal>
             </div>
           </div>
 
           <WrittenReviewsSection />
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link
-              to={SCHEDULE_CONSULTATION_PATH}
-              className="w-full sm:w-auto"
-            >
-              <span className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-black px-6 py-3 text-white text-sm font-semibold hover:bg-black/90 transition">
-                Schedule Consultation
-              </span>
-            </Link>
-            <a href={`tel:${PHONE_NUMBER_E164}`} className="w-full sm:w-auto">
-              <span className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm border border-black px-6 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white transition">
-                Call The Concierge
-              </span>
-            </a>
-          </div>
-
-          <div className="bg-white shadow-lg rounded-sm border border-gray-100 p-8">
-            <ReviewWidget />
-          </div>
+          <Reveal variant="fade" className="mt-12">
+            <div className="rounded-2xl border border-gold/15 bg-white p-6 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)] sm:p-8">
+              <ReviewWidget />
+            </div>
+          </Reveal>
         </div>
       </section>
+
+      <ConsultationCtaBand
+        closing
+        id="testimonials-consultation"
+        className="bg-white"
+        source="testimonials_cta"
+        eyebrow="Your visit"
+        title={<>Talk with our team about <em className="whitespace-nowrap">your own visit</em></>}
+        description="Book a consultation to review timing, treatment fit, PPO benefits, and next steps."
+      />
     </>
   );
 };

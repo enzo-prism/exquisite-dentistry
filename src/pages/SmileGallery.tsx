@@ -15,6 +15,9 @@ import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import { CHERRY_CREDIT_REPORTING_DISCLOSURE } from '@/constants/cherry';
+import SectionHeading from '@/components/SectionHeading';
+import Reveal from '@/components/motion/Reveal';
+import ConsultationCtaBand from '@/components/about/ConsultationCtaBand';
 
 const SmileGallery = () => {
   useEffect(() => {
@@ -91,24 +94,25 @@ const SmileGallery = () => {
       </div>
 
       {/* Patient Stories Section */}
-      <section ref={sliderSectionRef} id="smile-gallery-cases" className="scroll-mt-28 bg-white py-10 md:py-16">
+      <section ref={sliderSectionRef} id="smile-gallery-cases" className="scroll-mt-28 bg-white py-12 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold mb-4">Client Smile Transformations</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Real transformations from our clients who trusted us with their smiles
-            </p>
-              <p className="mt-4 text-sm text-gray-600 max-w-2xl mx-auto">
+          <div className="mb-12">
+            <SectionHeading
+              eyebrow="Patient cases"
+              title={<>Client <em>Smile Transformations</em></>}
+              description="Real transformations from our clients who trusted us with their smiles"
+            />
+            <Reveal as="p" variant="up" delay={220} className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-600">
               Planning a full transformation? Explore our{" "}
-              <Link to="/smile-makeover-los-angeles/" className="text-primary underline underline-offset-4">
+              <Link to="/smile-makeover-los-angeles/" className="text-gold-dark underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold">
                 Smile Makeover in Los Angeles guide
               </Link>
               .
-            </p>
-            <div className="mt-8 border-y border-gold/20 bg-stone-50/80 px-4 py-6 text-left md:px-8">
-              <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+            </Reveal>
+            <Reveal variant="up" delay={280} className="mx-auto mt-10 max-w-4xl">
+              <div className="grid gap-5 rounded-2xl border border-gold/15 bg-ivory px-6 py-6 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-8 md:px-8">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-secondary">
+                  <p className="eyebrow">
                     Real Patients, Real Results
                   </p>
                   <p className="mt-3 text-base leading-7 text-gray-600">
@@ -119,12 +123,12 @@ const SmileGallery = () => {
                 </div>
                 <Link
                   to="/testimonials/"
-                  className="inline-flex items-center justify-center rounded-md border border-gold/40 px-5 py-3 text-sm font-semibold text-secondary transition hover:border-gold hover:bg-white"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-gold/40 bg-white px-5 py-3 text-sm font-semibold text-gold-dark transition hover:border-gold"
                 >
                   Read Patient Reviews
                 </Link>
               </div>
-            </div>
+            </Reveal>
           </div>
           
           <div role="group" aria-label="Filter transformations by treatment" className="mb-5 flex flex-wrap justify-center gap-3">
@@ -146,8 +150,10 @@ const SmileGallery = () => {
           </p>
           <p className="mb-8 text-center text-sm text-gray-600">Drag a comparison, or use the arrow keys when it has focus. Results vary by patient.</p>
           <div id="patient-cases" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredPatients.map((patient) => (
-              <PatientTransformationCard key={patient.name} patient={patient} />
+            {filteredPatients.map((patient, index) => (
+              <Reveal key={patient.name} variant="up" delay={(index % 3) * 80} className="h-full">
+                <PatientTransformationCard patient={patient} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -155,34 +161,46 @@ const SmileGallery = () => {
 
       {/* Up Close Transformations Section */}
       <section
-        className="bg-gray-50 py-12 md:py-20"
+        className="bg-ivory py-16 md:py-24"
         id="smile-gallery-sliders"
       >
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">Up Close Transformations</h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+          <SectionHeading
+            className="mb-12"
+            eyebrow="In detail"
+            title={<>Up Close <em>Transformations</em></>}
+            description={<>
               See the detail and precision of our cosmetic dental work.
               Drag the slider or use the arrow keys to compare the photos. These additional
               close-ups have no treatment labels and are shown separately from the filtered cases.
-            </p>
-          </div>
+            </>}
+          />
           
           {/* Close-up transformations grid - standardized responsive breakpoints */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {closeUpTransformations.map((transformation) => (
-              <CloseUpTransformationCard 
-                key={transformation.id} 
-                transformation={transformation}
-                className="animate-fade-in"
-              />
+            {closeUpTransformations.map((transformation, index) => (
+              <Reveal key={transformation.id} variant="up" delay={(index % 3) * 80} className="h-full">
+                <CloseUpTransformationCard
+                  transformation={transformation}
+                  className="h-full rounded-2xl border border-gold/15 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]"
+                />
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <FinancingOptionsSection
+      <ConsultationCtaBand
+        id="smile-gallery-consultation"
         className="bg-white"
+        source="smile_gallery_cta"
+        eyebrow="Your smile"
+        title={<>Talk through <em className="whitespace-nowrap">your own</em> smile goals</>}
+        description="Bring the cases you liked to a consultation. Dr. Aguil will look at your teeth and explain which options fit your case. Results vary by patient."
+      />
+
+      <FinancingOptionsSection
+        className="bg-ivory"
         eyebrow="Smile Gallery Financing"
         title="Inspired by a transformation? Review payment options before you book."
         description="If one of these real patient cases helps you picture a larger smile plan, Cherry can help eligible patients review possible monthly payment options for veneers, implants, Invisalign, whitening, or a complete smile makeover."

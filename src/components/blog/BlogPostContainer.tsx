@@ -1,9 +1,10 @@
-import React, { Suspense, useEffect, useState, useMemo } from 'react';
+import React, { Suspense, useEffect, useState, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import ClinicalReviewCredit from '@/components/ClinicalReviewCredit';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import PageSEO from '@/components/seo/PageSEO';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import {
   BlogPost,
   getBlogPostDateTime,
@@ -20,6 +21,11 @@ import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import BlogErrorBoundary from './BlogErrorBoundary';
 import { sanitizeBlogHtml } from '@/utils/blogContent';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { trackConsultationIntent } from '@/utils/vercelAnalytics';
+import { BlogConsultationBlock, BlogInlineConsultCard } from './BlogConsultationCta';
+import { isVeneerPost } from './blogCta';
+import { useInlineArticleSlot } from './useInlineArticleSlot';
 
 // Lazy load specific-blog components
 const SingleToothVeneersBlog = React.lazy(() => import('@/pages/SingleToothVeneersBlog'));
@@ -31,6 +37,10 @@ interface BlogPostContainerProps {
 
 const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   const sanitizedContent = useMemo(() => sanitizeBlogHtml(post), [post]);
+  const articleBodyRef = useRef<HTMLElement>(null);
+  const isComponentPost = post.content === 'single-tooth-veneers' || post.content === 'veneers-before-after-guide';
+  const inlineCtaSlot = useInlineArticleSlot(articleBodyRef, sanitizedContent, !isComponentPost);
+  const veneerPost = isVeneerPost(post);
 
   // Handle component-based blog posts
   if (post.content === 'single-tooth-veneers') {
@@ -58,12 +68,11 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
       />
 
       {/* Header */}
-      <div className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gold/15 via-gold/8 to-white">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold/25 to-transparent"></div>
+      <section className="relative overflow-hidden border-b border-gold/10 bg-[linear-gradient(180deg,hsl(var(--ivory))_0%,#ffffff_100%)] py-14 md:py-20">
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Link to="/blog/" className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6">
-              <ArrowLeft size={20} />
+            <Link to="/blog/" className="group mb-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-dark transition-colors hover:text-ink">
+              <ArrowLeft size={18} className="transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
               Back to Blog
             </Link>
             
@@ -71,18 +80,34 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
               <BlogMeta post={post} showTags={true} />
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black leading-tight">
+            <h1 className="mb-6 text-[clamp(2rem,4.6vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-ink">
               {post.title}
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-lg leading-8 text-gray-600 md:text-xl md:leading-9">
               {post.excerpt}
             </p>
 
-            <ClinicalReviewCredit review={post.clinicalReview} />
+            <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-1">
+              <ClinicalReviewCredit review={post.clinicalReview} />
+              <Link
+                to={SCHEDULE_CONSULTATION_PATH}
+                onClick={() =>
+                  trackConsultationIntent({
+                    source: 'blog_post_cta',
+                    ctaText: 'Ask Dr. Aguil at a consultation',
+                    destination: SCHEDULE_CONSULTATION_PATH,
+                  })
+                }
+                className="group mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink"
+              >
+                <span className="link-sweep pb-0.5">Ask Dr. Aguil at a consultation</span>
+                <ArrowRight size={16} className="text-gold transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Content */}
       <article className="py-12 md:py-16 bg-white">
@@ -93,15 +118,16 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
             </Suspense>
           ) : (
             <div className="prose prose-lg prose-neutral mx-auto max-w-3xl py-8 px-4">
-              <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+              <article ref={articleBodyRef} dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+              {inlineCtaSlot ? createPortal(<BlogInlineConsultCard post={post} />, inlineCtaSlot) : null}
             </div>
           )}
 
           {post.faqs?.length ? (
-            <section id="faqs" className="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-muted/20 px-6 py-8">
+            <section id="faqs" className="mx-auto mt-12 max-w-3xl rounded-2xl border border-gold/15 bg-white px-6 py-8 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)] sm:px-8">
               <div className="mb-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-gold">FAQs</p>
-                <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
+                <p className="eyebrow">FAQs</p>
+                <h2 className="mt-4 text-2xl font-semibold tracking-[-0.02em] text-ink md:text-3xl">
                   {getFaqHeading(post)}
                 </h2>
               </div>
@@ -115,6 +141,8 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
               </div>
             </section>
           ) : null}
+
+          <BlogConsultationBlock post={post} />
           
           <InternalLinkingWidget 
             currentPage={`/blog/${post.slug}`}
@@ -122,7 +150,8 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
             variant="expanded"
           />
           
-          {(post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
+          {/* Veneer posts already link to /veneers/ from the consultation block. */}
+          {!veneerPost && (post.tags?.includes('cosmetic dentistry') || post.tags?.includes('veneers') || post.category === 'Cosmetic Dentistry') && (
             <VeneerCTA variant="banner" />
           )}
           

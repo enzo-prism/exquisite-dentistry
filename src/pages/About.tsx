@@ -1,22 +1,73 @@
 import React, { useEffect } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Clock, UserPlus, Sparkles, Cpu, Handshake, Gem, HeartHandshake } from 'lucide-react';
+import { ArrowRight, Award, Clock, Cpu, Gem, GraduationCap, Handshake, HeartHandshake, Sparkles, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import VideoHero from '@/components/VideoHero';
 
-import { Card, CardContent } from '@/components/ui/card';
 import ReviewWidget from '@/components/ReviewWidget';
 import { cn } from '@/lib/utils';
-import ImageComponent from '@/components/Image';
+import { OptimizedImage } from '@/components/seo';
+import SectionHeading from '@/components/SectionHeading';
+import Reveal from '@/components/motion/Reveal';
+import CountUp from '@/components/motion/CountUp';
+import ConsultationCtaBand from '@/components/about/ConsultationCtaBand';
+import { trackConsultationIntent } from '@/utils/vercelAnalytics';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { drAguilImages } from '@/data/drAguilImages';
-import useRevealOnScroll from '@/hooks/use-reveal-on-scroll';
 import PracticeVideoSection from '@/components/PracticeVideoSection';
 import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+
+const CARD_CLASS = 'rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]';
+
+/** Credentials as published on this page. */
+const CREDENTIALS = [
+  { icon: GraduationCap, label: 'UCLA School of Dentistry graduate' },
+  { icon: Award, label: 'Invisalign Lifetime Achievement Award' },
+  { icon: UserPlus, label: 'Member of the American Academy of Cosmetic Dentistry' },
+  { icon: Clock, label: 'Over 1,000 smile transformations completed' },
+] as const;
+
+const PHILOSOPHY = [
+  {
+    icon: Handshake,
+    title: 'Care built around you',
+    body: 'Dr. Aguil starts by understanding your goals and concerns, then builds a plan that fits your teeth and your timeline.',
+  },
+  {
+    icon: Gem,
+    title: 'Materials chosen with care',
+    body: 'Dr. Aguil uses quality materials and works with experienced dental laboratories, so your restorations fit well and look natural.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'A calm, comfortable visit',
+    body: 'We keep the setting calm and take the time to explain your options, so each visit feels unhurried and you know what to expect.',
+  },
+] as const;
+
+const TECHNOLOGY = [
+  {
+    icon: Sparkles,
+    title: 'iTero 3D Scanning',
+    body: 'Mess-free digital impressions capture every angle of your smile for Invisalign, veneers, crowns, and more. The scan uploads instantly so you can preview results with Dr. Aguil in real time.',
+    href: '/itero-scanner/',
+    linkText: 'Learn about the iTero scanner',
+  },
+  {
+    icon: Cpu,
+    title: 'Pearl AI Diagnostics',
+    body: 'Artificial intelligence reviews every radiograph alongside Dr. Aguil, highlighting microfractures, incipient decay, and bone changes so treatment stays proactive and precise.',
+    href: '/services/#technology',
+    linkText: 'Explore our technology suite',
+  },
+] as const;
+
+const trackBooking = (ctaText: string, source: string) =>
+  trackConsultationIntent({ source, ctaText, destination: SCHEDULE_CONSULTATION_PATH });
 
 const About = () => {
   useEffect(() => {
@@ -25,21 +76,6 @@ const About = () => {
 
   const meta = ROUTE_METADATA['/about'];
 
-  const introHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const introParagraph = useRevealOnScroll({ delayClass: 'reveal-delay-200' });
-  const doctorText = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
-  const doctorImage = useRevealOnScroll({ animation: 'skew', delayClass: 'reveal-delay-200' });
-  const philosophyCards = [
-    useRevealOnScroll({ delayClass: 'reveal-delay-100' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-200' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-300' })
-  ];
-  const techHeading = useRevealOnScroll();
-  const techCards = [
-    useRevealOnScroll({ delayClass: 'reveal-delay-100', animation: 'scale' }),
-    useRevealOnScroll({ delayClass: 'reveal-delay-200', animation: 'scale' })
-  ];
-  const reviewsHeading = useRevealOnScroll({ delayClass: 'reveal-delay-100' });
   const mainPortrait = drAguilImages.professionalPortrait;
   const getAspectRatio = (ratio?: string, fallback = '4 / 5') => {
     if (!ratio) return fallback;
@@ -110,6 +146,7 @@ const About = () => {
         secondaryCta={{ text: "View Services", href: "/services/" }}
         height="medium"
         badgeText="MEET THE DOCTOR"
+        phoneCta
         scrollIndicator={true}
       />
 
@@ -121,283 +158,229 @@ const About = () => {
       />
 
       {/* Dr. Aguil Introduction */}
-      <section className="py-12 sm:py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Content Column */}
-            <div
-              ref={doctorText.ref}
-              className={`space-y-5 sm:space-y-6 ${doctorText.animationClass}`}
-            >
-              <div className="space-y-3">
-                <span className="inline-block text-xs font-semibold tracking-[0.18em] text-secondary">MEET THE DOCTOR</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-black leading-tight">
-                  The Dentist Behind Natural-Looking Smile Transformations
-                </h2>
-              </div>
+      <section className="bg-white py-16 md:py-24">
+        <div className="section-container grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <SectionHeading
+              align="left"
+              eyebrow="Meet the doctor"
+              title={<>The Dentist Behind <em>Natural-Looking</em> Smile Transformations</>}
+            />
 
-              <div className="space-y-4 text-base sm:text-lg text-black-light">
-                <p>
-                  Dr. Alexie Aguil is a UCLA School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Dr. Aguil&apos;s approach blends clinical precision with an eye for proportion, shade, and facial balance.
-                </p>
-                
-                <p>
-                  With more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers, Dr. Aguil starts with digital scans and a conversation about your goals so the final result feels like you, not a template.
-                </p>
-                
-                <p>
-                  Patients often comment on the calm setting and the time our team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
-                </p>
-              </div>
+            <Reveal variant="up" delay={200} className="mt-6 space-y-4 text-base leading-8 text-gray-600 md:text-lg">
+              <p>
+                Dr. Alexie Aguil is a UCLA School of Dentistry graduate who focuses on cosmetic and restorative dentistry in Los Angeles. Dr. Aguil&apos;s approach blends clinical precision with an eye for proportion, shade, and facial balance.
+              </p>
+              <p>
+                With more than a decade of experience planning porcelain veneers, Invisalign, whitening, and full smile makeovers, Dr. Aguil starts with digital scans and a conversation about your goals so the final result feels like you, not a template.
+              </p>
+              <p>
+                Patients often comment on the calm setting and the time our team takes to explain options. From design to aftercare, the focus stays on comfort, clear expectations, and long-term oral health.
+              </p>
+            </Reveal>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link to="/services/" className="w-full sm:w-auto">
-                  <Button className="w-full sm:w-auto justify-center">
-                    Explore Our Services
-                    <ArrowRight size={16} className="ml-2" />
-                  </Button>
+            <Reveal variant="up" delay={280} className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <Button asChild size="lg" className="group w-full justify-center sm:w-auto">
+                <Link to="/services/">
+                  Explore Our Services
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
-                <Button variant="outline" className="w-full sm:w-auto justify-center" asChild>
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>
-                    Schedule Consultation
-                    <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                </Button>
-              </div>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="w-full justify-center sm:w-auto">
+                <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackBooking('Schedule Consultation', 'about_intro')}>
+                  Schedule Consultation
+                </Link>
+              </Button>
+            </Reveal>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <div className="flex items-center gap-3 rounded-md border border-gray-200 bg-gray-50 px-4 py-3">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-gray-200">
-                    <Award size={18} className="text-secondary" />
-                  </div>
-                  <div className="text-sm">
-                    <p className="font-semibold text-black">Invisalign Lifetime Achievement</p>
-                    <p className="text-black-light">Lifetime Achievement Award provider serving Beverly Hills & West Hollywood</p>
-                  </div>
-                </div>
+            <Reveal variant="up" delay={340} className="mt-8 flex items-start gap-4 border-t border-gold/20 pt-6">
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-gold/25 bg-ivory text-gold">
+                <Award className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <div className="text-sm leading-6">
+                <p className="font-semibold text-ink">Invisalign Lifetime Achievement</p>
+                <p className="text-gray-600">Lifetime Achievement Award provider serving Beverly Hills &amp; West Hollywood</p>
               </div>
-            </div>
-            
-            {/* Image Column */}
-            <div
-              ref={doctorImage.ref}
-              className={`space-y-4 ${doctorImage.animationClass}`}
+            </Reveal>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:gap-5">
+            <Reveal
+              variant="wipe"
+              className="relative col-span-2 aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-black/5 shadow-[0_40px_80px_-48px_rgba(23,18,10,0.55)] lg:aspect-[5/4]"
             >
-              <div className="grid grid-cols-2 gap-4 sm:gap-5">
-                <div className="col-span-2 rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm">
-                  <div
-                    className="relative w-full"
-                    style={{ aspectRatio: getAspectRatio(mainPortrait.aspectRatio, '3 / 4') }}
-                  >
-                    <ImageComponent
-                      src={mainPortrait.src}
-                      alt={mainPortrait.alt}
-                      fill
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
+              <OptimizedImage
+                src={mainPortrait.src}
+                alt={mainPortrait.alt}
+                className="absolute inset-0 h-full w-full object-cover object-[72%_center]"
+                sizes="(min-width: 1024px) 760px, 100vw"
+              />
+            </Reveal>
 
-                {patientImages.map((image) => (
-                  <div
-                    key={image.src}
-                    className="rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm"
-                  >
-                    <div
-                      className="relative w-full"
-                      style={{ aspectRatio: getAspectRatio(image.aspectRatio) }}
-                    >
-                      <ImageComponent
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        objectFit="cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {patientImages.map((image, index) => (
+              <Reveal
+                key={image.src}
+                variant="up"
+                delay={160 + index * 90}
+                className="relative overflow-hidden rounded-2xl bg-black/5"
+                style={{ aspectRatio: getAspectRatio(image.aspectRatio) }}
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  sizes="(min-width: 1024px) 300px, 50vw"
+                />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Dr. Aguil's Expertise */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={introHeading.ref} className={`text-center max-w-3xl mx-auto mb-12 md:mb-16 ${introHeading.animationClass}`}>
-            <span className="inline-block text-sm text-secondary font-medium mb-3">EXPERTISE</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-4">
-              Meet Dr. Alexie Aguil
-            </h2>
-            <p ref={introParagraph.ref} className={`text-lg text-black-light ${introParagraph.animationClass}`}>
-              Dr. Aguil practices cosmetic and restorative dentistry in Los Angeles, planning each case around the details of your teeth, bite, and goals.
-            </p>
-          </div>
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="section-container">
+          <SectionHeading
+            eyebrow="Expertise"
+            title={<>Meet <em>Dr. Alexie Aguil</em></>}
+            description="Dr. Aguil practices cosmetic and restorative dentistry in Los Angeles, planning each case around the details of your teeth, bite, and goals."
+          />
 
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-start max-w-5xl mx-auto">
-            <div className="space-y-4">
-              <div className="rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <div
-                  className="relative w-full"
-                  style={{ aspectRatio: getAspectRatio(soloPortraits[0].aspectRatio, '3 / 4') }}
-                >
-                  <ImageComponent
-                    src={soloPortraits[0].src}
-                    alt={soloPortraits[0].alt}
-                    fill
-                    objectFit="cover"
-                  />
+          <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 md:mt-16 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-8">
+            <Reveal
+              variant="wipe"
+              className="relative overflow-hidden rounded-2xl bg-black/5"
+              style={{ aspectRatio: getAspectRatio(soloPortraits[0].aspectRatio, '3 / 4') }}
+            >
+              <OptimizedImage
+                src={soloPortraits[0].src}
+                alt={soloPortraits[0].alt}
+                className="absolute inset-0 h-full w-full object-cover"
+                sizes="(min-width: 768px) 440px, 100vw"
+              />
+            </Reveal>
+
+            <Reveal variant="up" delay={120} className="flex">
+              <div className={cn(CARD_CLASS, 'flex w-full flex-col justify-center p-6 sm:p-10')}>
+                <h3 className="text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">Dr. Alexie Aguil</h3>
+                <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-gold-dark">Founder &amp; Lead Dentist</p>
+
+                <p className="mt-6 text-base leading-8 text-gray-600 md:text-lg">
+                  With more than a decade of experience in cosmetic and restorative dentistry, Dr. Aguil pairs careful technique with attention to proportion, shade, and balance, so results look natural.
+                </p>
+
+                <div className="mt-8 flex items-end gap-4 border-y border-gold/20 py-5">
+                  <CountUp value={1000} suffix="+" className="text-5xl font-semibold tracking-[-0.03em] text-ink" />
+                  <p className="pb-1 text-sm leading-5 text-gray-600">smile transformations<br />completed</p>
+                </div>
+
+                <div className="mt-8">
+                  <Button asChild variant="outline" className="w-full justify-center sm:w-auto">
+                    <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackBooking('Schedule Consultation', 'about_bio')}>
+                      Schedule Consultation
+                    </Link>
+                  </Button>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 sm:p-8 space-y-6">
-              <div className="space-y-1">
-                <h3 className="text-2xl sm:text-3xl font-semibold text-black">Dr. Alexie Aguil</h3>
-                <p className="text-secondary font-medium">Founder & Lead Dentist</p>
-              </div>
-
-              <p className="text-lg text-black-light">
-                With more than a decade of experience in cosmetic and restorative dentistry, Dr. Aguil pairs careful technique with attention to proportion, shade, and balance, so results look natural.
-              </p>
-              
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Award size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Invisalign Lifetime Achievement Award</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <UserPlus size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Member of the American Academy of Cosmetic Dentistry</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Clock size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                  <span>Over 1,000 smile transformations completed</span>
-                </li>
-              </ul>
-
-              <div>
-                <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center" asChild>
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>
-                    Schedule Consultation
-                    <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
+            </Reveal>
           </div>
+
+          {/* Credentials strip */}
+          <ul
+            aria-label="Credentials"
+            className="mx-auto mt-10 grid max-w-5xl gap-px overflow-hidden rounded-2xl border border-gold/15 bg-gold/15 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {CREDENTIALS.map(({ icon: Icon, label }, index) => (
+              <Reveal
+                as="li"
+                key={label}
+                variant="fade"
+                delay={index * 80}
+                className="flex items-center gap-3 bg-white px-5 py-5 text-[15px] leading-6 text-gray-800"
+              >
+                <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-gold/25 bg-ivory text-gold">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                {label}
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* Philosophy */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <span className="inline-block text-sm text-secondary font-medium mb-3">OUR PHILOSOPHY</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-semibold text-black leading-tight mb-6">
-              Our Approach to Dental Care
-            </h2>
-            <div className="h-1 w-20 bg-secondary rounded-full mx-auto mb-8"></div>
-          </div>
+      <section className="bg-white py-16 md:py-24">
+        <div className="section-container">
+          <SectionHeading eyebrow="Our philosophy" title={<>Our Approach to <em>Dental Care</em></>} />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card ref={philosophyCards[0].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[0].animationClass}`}>
-              <CardContent className="p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
-                  <Handshake className="h-6 w-6" />
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 md:mt-16 md:grid-cols-3">
+            {PHILOSOPHY.map(({ icon: Icon, title, body }, index) => (
+              <Reveal key={title} variant="up" delay={index * 90} className="flex">
+                <div className={cn(CARD_CLASS, 'lift-card w-full p-7')}>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/25 bg-ivory text-gold" aria-hidden="true">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold tracking-[-0.01em] text-ink">{title}</h3>
+                  <p className="mt-3 leading-7 text-gray-600">{body}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Care built around you</h3>
-                <p className="text-black-light">
-                  Dr. Aguil starts by understanding your goals and concerns, then builds a plan that fits your teeth and your timeline.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card ref={philosophyCards[1].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[1].animationClass}`}>
-              <CardContent className="p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
-                  <Gem className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Materials chosen with care</h3>
-                <p className="text-black-light">
-                  Dr. Aguil uses quality materials and works with experienced dental laboratories, so your restorations fit well and look natural.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card ref={philosophyCards[2].ref} className={`bg-white shadow-md rounded-sm border-none hover:-translate-y-1 transition ${philosophyCards[2].animationClass}`}>
-              <CardContent className="p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10 text-secondary" aria-hidden="true">
-                  <HeartHandshake className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">A calm, comfortable visit</h3>
-                <p className="text-black-light">
-                  We keep the setting calm and take the time to explain your options, so each visit feels unhurried and you know what to expect.
-                </p>
-              </CardContent>
-            </Card>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section ref={techHeading.ref} className={`py-16 md:py-24 bg-black text-white ${techHeading.animationClass}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block text-xs tracking-[0.32em] text-gold font-semibold mb-3">TECHNOLOGY</span>
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold mb-4">Precision Tools, Human Touch</h2>
-            <p className="text-white/80">
-              From Pearl AI diagnostics to the iTero Element 5D scanner, every piece of technology in our studio is selected to make care more
-              accurate, more comfortable, and more collaborative.
-            </p>
-          </div>
+      {/* Technology */}
+      <section className="bg-black py-16 text-white md:py-24">
+        <div className="section-container">
+          <SectionHeading
+            tone="dark"
+            eyebrow="Technology"
+            title={<>Precision Tools, <em>Human Touch</em></>}
+            description="From Pearl AI diagnostics to the iTero Element 5D scanner, every piece of technology in our studio is selected to make care more accurate, more comfortable, and more collaborative."
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div ref={techCards[0].ref} className={`bg-white/5 rounded-2xl border border-white/10 p-6 space-y-4 hover:border-gold/30 transition ${techCards[0].animationClass}`}>
-              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                <Sparkles className="w-6 h-6 animate-pulse-sparkle" />
-              </div>
-              <h3 className="text-xl font-semibold">iTero 3D Scanning</h3>
-              <p className="text-white/80">
-                Mess-free digital impressions capture every angle of your smile for Invisalign, veneers, crowns, and more.
-                The scan uploads instantly so you can preview results with Dr. Aguil in real time.
-              </p>
-              <Link to="/itero-scanner/" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
-                Learn about the iTero scanner
-                <ArrowRight size={16} className="ml-1" />
-              </Link>
-            </div>
-            <div ref={techCards[1].ref} className={`bg-white/5 rounded-2xl border border-white/10 p-6 space-y-4 hover:border-gold/30 transition ${techCards[1].animationClass}`}>
-              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                <Cpu className="w-6 h-6 animate-pulse-sparkle" />
-              </div>
-              <h3 className="text-xl font-semibold">Pearl AI Diagnostics</h3>
-              <p className="text-white/80">
-                Artificial intelligence reviews every radiograph alongside Dr. Aguil, highlighting microfractures, incipient decay, and bone changes
-                so treatment stays proactive and precise.
-              </p>
-              <Link to="/services/#technology" className="inline-flex items-center text-gold font-semibold hover:text-gold/80 transition-colors">
-                Explore our technology suite
-                <ArrowRight size={16} className="ml-1" />
-              </Link>
-            </div>
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
+            {TECHNOLOGY.map(({ icon: Icon, title, body, href, linkText }, index) => (
+              <Reveal key={title} variant="up" delay={index * 90} className="flex">
+                <div className="lift-card flex w-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-7 hover:border-champagne/35">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-champagne/30 text-champagne" aria-hidden="true">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold">{title}</h3>
+                  <p className="mt-3 flex-1 leading-7 text-white/75">{body}</p>
+                  <Link to={href} className="group mt-6 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-champagne">
+                    <span className="link-sweep pb-0.5">{linkText}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section ref={reviewsHeading.ref} className={`py-16 md:py-24 bg-gray-50 ${reviewsHeading.animationClass}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-sans font-semibold text-black mb-6">
-              Patient <span className="text-gold">Reviews</span>
-            </h2>
-            <p className="text-lg text-black-light">
-              See what our patients say about their experience with Dr. Aguil
-            </p>
-          </div>
-          <ReviewWidget />
+      {/* Reviews */}
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="section-container">
+          <SectionHeading
+            eyebrow="In their words"
+            title={<>Patient <em>Reviews</em></>}
+            description="See what our patients say about their experience with Dr. Aguil"
+          />
+          <Reveal variant="fade" delay={120} className="mt-12">
+            <ReviewWidget />
+          </Reveal>
         </div>
       </section>
+
+      <ConsultationCtaBand
+        id="about-consultation"
+        className="bg-white"
+        source="about_closing_cta"
+        eyebrow="Schedule a consultation"
+        title={<>Start with a conversation with <em className="whitespace-nowrap">Dr. Aguil</em></>}
+        description="Book a consultation to review timing, treatment fit, PPO benefits, and next steps."
+      />
 
       <PracticeVideoSection />
     </>
