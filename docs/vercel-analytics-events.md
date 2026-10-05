@@ -14,7 +14,7 @@ This site uses consent-gated Vercel Web Analytics for pageviews and a small set 
 
 | Event | Purpose | Common properties |
 | --- | --- | --- |
-| `Consultation Intent` | Tracks booking intent from navigation, hero CTAs, conversion buttons, mobile quick actions, search actions, and service-page CTAs. | `source`, `cta_text`, `destination`, `destination_type`, `route`, `path`, `viewport` |
+| `Consultation Intent` | Tracks booking intent from navigation, hero CTAs, conversion buttons, the mobile action bar (`mobile_action_bar`), the homepage first-visit band (`homepage_first_visit`), the footer CTA (`footer_cta`), search actions, and service-page CTAs. | `source`, `cta_text`, `destination`, `destination_type`, `route`, `path`, `viewport` |
 | `CTA Clicked` | Tracks broader high-intent CTAs, especially hero and service-page buttons that are not always booking links. | `source`, `cta_text`, `destination`, `destination_type` |
 | `Contact Method Clicked` | Tracks calls, SMS, directions, email, or social contact intent without sending visitor contact details. | `method`, `source`, `destination` |
 | `Contact Form Submitted` | Tracks successful non-test Formspree submissions without sending form contents. Only eligible new-patient requests additionally emit acquisition conversions. | `form=website_contact` |

@@ -92,4 +92,4 @@ Responsive widget checks:
 npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
 ```
 
-Confirm the full floating copy is visible at 320px, 500px, and desktop widths, with no viewport overflow or overlap with the concierge and mobile quick actions.
+Confirm the full floating copy is visible at 320px, 500px, and desktop widths, with no viewport overflow or overlap with the concierge and the mobile action bar.

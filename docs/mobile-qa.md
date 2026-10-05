@@ -19,7 +19,7 @@ The suite in `src/__tests__/mobile-design.spec.ts` checks:
 - mobile search drawer layout, typing, results, and result navigation.
 - mobile navigation sheet sizing, scrollability, service expansion, and close-on-navigation behavior.
 - contact form mobile validation visibility.
-- homepage mobile quick actions after scroll.
+- mobile action bar (Call · Book) after scroll, and no redundant quick-actions FAB.
 - reduced-motion hero behavior so mobile visitors who prefer less motion get static media.
 
 The existing focused specs still matter:
@@ -49,9 +49,9 @@ Manual flows:
 
 - inspect the full Cherry pill at 320px, 390-430px, 667px landscape, 768px tablet, and desktop. Both `Pay over time` and `No hard credit checks • 0% APR options` must remain visible; wrapping is allowed, clipping and ellipsis are not. Overlaying nearby headings while scrolling is expected; do not shrink the pill to clear body copy.
 - check the Cherry title and all wrapped supporting lines share the same left edge, the icon stays vertically centered, and the gold chip grows with its copy while preserving top/bottom padding.
-- at 320px, confirm the longest wrapped state stays inside the viewport, clears the bottom-left Concierge, and leaves the bottom-right quick-actions FAB above it. Consent, navigation, and dialog overlays must remain above the widget.
+- at 320px, confirm the longest wrapped state stays inside the viewport, clears the bottom-left Concierge, and sits just above the mobile action bar once the bar slides up. Consent, navigation, and dialog overlays must remain above the widget.
 - keyboard-focus the Cherry control, confirm the target remains at least 44px, then activate it and verify the real Cherry experience opens.
-- open homepage and scroll past the hero. The Cherry "Pay over time" pill is the only bottom-right fixed control (the floating quick-actions button was removed); confirm nothing overlaps it.
+- open homepage and scroll past the hero. The mobile action bar (Concierge · Call · Book consultation) slides up; the floating Concierge launcher is not shown on phones where the bar exists (the bar holds the Concierge button). On a Cherry page (e.g. `/veneers/`, `/payment-plans/`) the pill must sit fully above the bar with no overlap, and the bar must hide while typing in a form field.
 - on every video-backed hero, confirm the shared abstract black-and-gold poster is visible before playback, remains visible through player initialization or failure, has a clean center crop with readable copy, and crossfades only when the looping video starts.
 - open mobile menu, expand Popular Services, navigate to one service route, confirm the drawer closes.
 - open search, type `veneers`, choose a result, confirm navigation.

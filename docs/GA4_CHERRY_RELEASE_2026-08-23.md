@@ -29,7 +29,7 @@ The bottom-right launcher shows the complete compact copy on every device:
 >
 > No hard credit checks • 0% APR options
 
-The launcher is 288px wide on standard screens. On narrow mobile screens it uses `min(288px, calc(100vw - 88px))`, allowing the supporting line to wrap while reserving space for the bottom-left concierge. It must not collapse to icon-only, clip, or overlap the concierge or mobile quick actions.
+The launcher is 288px wide on standard screens. On narrow mobile screens it uses `min(288px, calc(100vw - 88px))`, allowing the supporting line to wrap while reserving space for the bottom-left concierge. It must not collapse to icon-only, clip, or overlap the concierge or the mobile action bar (on phones its bottom offset adds `--mobile-action-bar-h`).
 
 This compact launcher copy does not replace the full financing disclosure required by `cherry-credit-disclosure.md` on financing-detail surfaces.
 

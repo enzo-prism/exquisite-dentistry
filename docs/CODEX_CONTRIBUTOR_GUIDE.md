@@ -55,7 +55,7 @@ Quick rules:
   - `<PageSEO>` now always overwrites the canonical tag via Helmet—just pass `path="/route-slug"` and it emits the correct `<link rel="canonical">`. Skip one-off Helmet canonicals unless you have a special case.
   - For structured data, reuse `getCanonicalUrl('/slug')` inside new templates (services, geos, blogs) so schema + canonical references stay consistent across SPA, SSR, and static fallbacks.
 - **Global analytics**: Consent defaults and tag configuration live in `index.html`; `RouteAwareObservability` emits one manual GA page view per completed React route and mounts Vercel Analytics/Speed Insights only after opt-in. Safe GA events live in `src/utils/googleAnalytics.ts`; Vercel custom events live in `src/utils/vercelAnalytics.ts`. Never add automatic page views, direct Ads conversion labels, or patient-entered dimensions. Follow `docs/ga4-measurement-plan.md`.
-- **Cherry floating widget**: `CherryWidgetProvider` must preserve the full compact copy at every width, allow narrow wrapping, and clear the Concierge and mobile quick-actions FAB. Use `docs/cherry-credit-disclosure.md` as the copy/layout contract.
+- **Cherry floating widget**: `CherryWidgetProvider` must preserve the full compact copy at every width, allow narrow wrapping, and clear the Concierge, and ride above the mobile action bar on phones via `--mobile-action-bar-h`. Use `docs/cherry-credit-disclosure.md` as the copy/layout contract.
 - **Prerendered routes**: `npm run build` runs `prerender:static` (writes `dist/<route>/index.html` for marketing, services/geos, and blog posts). `npm run generate:fallbacks` remains available for manually refreshing legacy `public/<slug>.html` fallback files.
 
 ## Testing Expectations
