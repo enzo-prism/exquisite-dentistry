@@ -8,7 +8,9 @@ import SimpleTestimonialEmbed from '@/components/SimpleTestimonialEmbed';
 import ReviewCarousel from '@/components/reviews/ReviewCarousel';
 import WrittenReviewCard from '@/components/reviews/WrittenReviewCard';
 import InsurancePaymentBand from '@/components/InsurancePaymentBand';
-import { Button } from '@/components/ui/button';
+import SectionHeading from '@/components/SectionHeading';
+import Reveal from '@/components/motion/Reveal';
+import FirstVisitSteps from '@/components/FirstVisitSteps';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import type { VideoTestimonialItem } from '@/components/video-hero/video-constants';
 import { VIDEO_TESTIMONIALS } from '@/components/video-hero/video-constants';
@@ -16,7 +18,7 @@ import { ROUTE_METADATA } from '@/constants/metadata';
 import { featuredReviews } from '@/data/featuredReviews';
 import HomepageDoctorProof from '@/components/HomepageDoctorProof';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
-import { HOMEPAGE_HERO_PROOF_LINKS, INSURANCE_HERO_BADGE } from '@/data/insurance';
+import { HOMEPAGE_HERO_PROOF_LINKS } from '@/data/insurance';
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
   const match = thumbnailUrl.match(/^\/lovable-uploads\/([^/]+)\.(png|jpe?g)$/i);
@@ -79,7 +81,9 @@ const IndexPage: React.FC = () => {
           text: "Smile Gallery",
           href: "/smile-gallery/"
         }}
-        badgeText={INSURANCE_HERO_BADGE}
+        eyebrow="Near Beverly Hills · Since 2006"
+        phoneCta
+        height="large"
         proofLinks={[...HOMEPAGE_HERO_PROOF_LINKS]}
         useGradient={false}
         preferStaticOnMobile={true}
@@ -90,24 +94,18 @@ const IndexPage: React.FC = () => {
       <ServicesSection />
       <InsurancePaymentBand />
 
-      <section className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block text-sm text-gold-dark font-medium mb-3">
-              TESTIMONIALS
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
-              Client <span className="text-gold">Reviews</span>
-            </h2>
-            <div className="separator mx-auto" />
-            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-              See what our clients are saying about their experience at Exquisite Dentistry
-            </p>
-          </div>
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="section-container">
+          <SectionHeading
+            eyebrow="Testimonials"
+            title={<>Client <em>Reviews</em></>}
+            description="See what our clients are saying about their experience at Exquisite Dentistry"
+            className="mb-12 md:mb-14"
+          />
 
           {/* Video reviews — every card stays in the DOM; the carousel only
               changes how many are in view at once. */}
-          <div className="mb-16">
+          <Reveal variant="up" className="mb-16">
             <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
               Video Reviews
             </h3>
@@ -120,10 +118,10 @@ const IndexPage: React.FC = () => {
                 />
               ))}
             </ReviewCarousel>
-          </div>
+          </Reveal>
 
           {/* Written reviews, kept visually distinct from the video set. */}
-          <div>
+          <Reveal variant="up">
             <h3 className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.35em] text-gold-dark">
               Written Reviews
             </h3>
@@ -136,38 +134,18 @@ const IndexPage: React.FC = () => {
                 />
               ))}
             </ReviewCarousel>
-          </div>
+          </Reveal>
 
           <div className="mt-12 flex justify-center">
-            <Link to="/testimonials/" className="w-full sm:w-auto">
-              <span className="inline-flex w-full items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-semibold text-white transition hover:bg-black/90 sm:w-auto">
-                Read More Reviews
-                <ArrowRight size={16} className="ml-2" aria-hidden="true" />
-              </span>
+            <Link to="/testimonials/" className="group inline-flex min-h-12 w-full items-center justify-center rounded-full bg-black px-8 text-sm font-semibold text-white transition hover:bg-black/90 sm:w-auto">
+              Read More Reviews
+              <ArrowRight size={16} className="ml-2 transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-black py-10 text-white md:py-14">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="text-2xl font-semibold md:text-3xl">Cosmetic dentistry in Los Angeles, designed for you</h2>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-white/80">
-            Near Beverly Hills, Exquisite Dentistry provides porcelain veneers, Invisalign,
-            professional whitening, dental implants, and smile makeovers. Explore your options,
-            see real patient cases, and discuss your goals with Dr. Aguil.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild className="!bg-gold !text-white hover:!bg-gold-dark hover:!text-white">
-              <Link to="/schedule-consultation/">Plan your first visit</Link>
-            </Button>
-            <Button asChild variant="outline" className="border-gold/40 !bg-transparent !text-white hover:!bg-white/10">
-              <Link to="/beverly-hills-dentist/">Serving Beverly Hills</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
+      <FirstVisitSteps />
     </>
   );
 };

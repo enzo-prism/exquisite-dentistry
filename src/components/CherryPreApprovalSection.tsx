@@ -171,8 +171,8 @@ const CherryPreApprovalSection: React.FC<CherryPreApprovalSectionProps> = ({
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-white via-stone-50 to-white shadow-[0_30px_90px_-50px_rgba(0,0,0,0.45)]">
           <div className="absolute inset-0" aria-hidden="true">
-            <div className="absolute left-[-8rem] top-[-8rem] h-56 w-56 rounded-full bg-gold/15 blur-3xl" />
-            <div className="absolute bottom-[-10rem] right-[-6rem] h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+            <div className="absolute left-[-12rem] top-[-12rem] h-[22rem] w-[22rem] bg-[radial-gradient(closest-side,hsl(var(--gold)/0.16),transparent)]" />
+            <div className="absolute bottom-[-14rem] right-[-10rem] h-[24rem] w-[24rem] bg-[radial-gradient(closest-side,hsl(var(--primary)/0.10),transparent)]" />
           </div>
 
           <div className="relative grid gap-8 p-8 md:p-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">

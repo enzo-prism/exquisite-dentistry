@@ -16,6 +16,7 @@ const buttonVariants = cva(
         link: "text-gold-dark underline-offset-4 hover:underline link-variant",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         secondary: "cta-glow bg-secondary !text-white shadow-md hover:bg-secondary/80 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
+        glass: "border border-white/30 bg-white/[0.06] !text-white backdrop-blur-sm hover:border-white/55 hover:bg-white/[0.14] hover:!text-white",
         destructive: "cta-glow bg-destructive !text-white shadow-md hover:bg-destructive/90 hover:!text-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:scale-[1.01] hover:shadow-xl",
       },
       size: {

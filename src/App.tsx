@@ -11,6 +11,7 @@ import { isChatGptAdsLandingPath } from "@/utils/analyticsHost";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 import WebsiteConcierge from "@/components/WebsiteConcierge";
+import MobileActionBar from "@/components/MobileActionBar";
 import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
 import OpenAIAdsMeasurement from "@/components/OpenAIAdsMeasurement";
 
@@ -383,6 +384,7 @@ const App = () => {
                   <AppRoutes />
                 </div>
                 <RouteAwareConcierge />
+                <MobileActionBar />
               </CherryWidgetProvider>
               <RouteAwareObservability />
               <AnalyticsConsentBanner />

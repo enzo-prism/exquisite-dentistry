@@ -1,6 +1,9 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SmartImage } from './smart-image';
 import { cn } from '@/lib/utils';
+import { useInView } from '@/hooks/use-in-view';
+import { easeInOutCubic, prefersReducedMotion } from '@/lib/motion';
 
 interface ComparisonSliderProps {
   beforeImage: string;
@@ -15,6 +18,8 @@ interface ComparisonSliderProps {
   aspectRatio?: number;
   minAspectRatio?: number;
   maxAspectRatio?: number;
+  /** One gentle sweep the first time the comparison scrolls into view, to show it can be dragged. */
+  autoPeek?: boolean;
 }
 
 export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
@@ -29,13 +34,27 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   className,
   aspectRatio,
   minAspectRatio = 3/4,
-  maxAspectRatio = 16/9
+  maxAspectRatio = 16/9,
+  autoPeek = true
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({ before: false, after: false });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const userTookControl = useRef(false);
+  const peekFrame = useRef(0);
+  const { ref: inViewRef, inView } = useInView<HTMLDivElement>({ threshold: 0.55, rootMargin: '0px' });
+  const setRefs = useCallback((node: HTMLDivElement | null) => {
+    containerRef.current = node;
+    (inViewRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+  }, [inViewRef]);
+
+  const takeControl = useCallback(() => {
+    userTookControl.current = true;
+    if (peekFrame.current) cancelAnimationFrame(peekFrame.current);
+    peekFrame.current = 0;
+  }, []);
 
   const updateSliderPosition = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -46,11 +65,13 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    takeControl();
     setIsDragging(true);
     updateSliderPosition(e.clientX);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    takeControl();
     setIsDragging(true);
     updateSliderPosition(e.touches[0].clientX);
   };
@@ -102,14 +123,47 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
     const deltas: Record<string, number> = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 };
     if (!(event.key in deltas) && event.key !== 'Home' && event.key !== 'End') return;
     event.preventDefault();
+    takeControl();
     setSliderPosition((position) => event.key === 'Home' ? 0 : event.key === 'End' ? 100 : Math.max(0, Math.min(100, position + deltas[event.key])));
   };
 
   const allImagesLoaded = imagesLoaded.before && imagesLoaded.after;
 
+  // Peek: 50 → 18 → 82 → 50 once, after both photos have painted. Any pointer,
+  // touch, focus or key input cancels it immediately and hands over control.
+  useEffect(() => {
+    if (!autoPeek || !inView || !allImagesLoaded || userTookControl.current || prefersReducedMotion()) return;
+    const stops = [50, 18, 82, 50];
+    const segment = 700;
+    let start = 0;
+    const tick = (now: number) => {
+      if (userTookControl.current) return;
+      if (!start) start = now;
+      const elapsed = now - start;
+      const index = Math.min(stops.length - 2, Math.floor(elapsed / segment));
+      const t = Math.min(1, (elapsed - index * segment) / segment);
+      const from = stops[index];
+      const to = stops[index + 1];
+      setSliderPosition(from + (to - from) * easeInOutCubic(t));
+      if (elapsed < segment * (stops.length - 1)) {
+        peekFrame.current = requestAnimationFrame(tick);
+      } else {
+        userTookControl.current = true;
+        peekFrame.current = 0;
+      }
+    };
+    const delay = window.setTimeout(() => {
+      peekFrame.current = requestAnimationFrame(tick);
+    }, 250);
+    return () => {
+      window.clearTimeout(delay);
+      if (peekFrame.current) cancelAnimationFrame(peekFrame.current);
+    };
+  }, [autoPeek, inView, allImagesLoaded]);
+
   return (
     <div 
-      ref={containerRef}
+      ref={setRefs}
       className={cn("relative group cursor-col-resize select-none touch-pan-y focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-dark", className)}
       role="slider"
       tabIndex={0}
@@ -120,6 +174,7 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
       aria-valuenow={Math.round(sliderPosition)}
       aria-valuetext={`${Math.round(sliderPosition)}% before photo`}
       onKeyDown={handleKeyDown}
+      onFocus={takeControl}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onMouseDown={handleMouseDown}
@@ -164,21 +219,24 @@ export const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
 
       {/* Slider Handle */}
       {allImagesLoaded && (
-        <>
-          <div 
+        <div
+          className="pointer-events-none absolute inset-y-0 z-10 w-0"
+          style={{ left: `${sliderPosition}%` }}
+          aria-hidden="true"
+        >
+          <div className="absolute inset-y-0 -left-px w-0.5 bg-white/90 shadow-[0_0_12px_rgba(0,0,0,0.35)]" />
+          <div
             className={cn(
-              "absolute top-0 bottom-0 w-1 bg-white shadow-lg transition-opacity duration-200",
-              "before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
-              "before:w-11 before:h-11 before:bg-white before:rounded-full before:shadow-lg",
-              "before:flex before:items-center before:justify-center",
-              "after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2",
-              "after:w-4 after:h-4 after:border-2 after:border-primary after:rounded-full",
-              isHovering || isDragging ? "opacity-100" : "opacity-70"
+              "absolute left-0 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full",
+              "border border-white/70 bg-white/90 text-gold-dark shadow-[0_10px_30px_-8px_rgba(0,0,0,0.45)] backdrop-blur",
+              "transition-transform duration-300 ease-out",
+              isHovering || isDragging ? "scale-110" : "scale-100"
             )}
-            style={{ left: `${sliderPosition}%` }}
-          />
-          
-        </>
+          >
+            <ChevronLeft className="-mr-1 h-4 w-4" />
+            <ChevronRight className="-ml-1 h-4 w-4" />
+          </div>
+        </div>
       )}
     </div>
   );

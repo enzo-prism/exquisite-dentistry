@@ -29,6 +29,10 @@ export interface VideoHeroProps {
   contentClassName?: string;
   height?: 'small' | 'medium' | 'large' | 'full' | 'auto';
   badgeText?: string;
+  /** Small uppercase line above the title (e.g. location). */
+  eyebrow?: string;
+  /** Adds a tap-to-call action (full-width button on mobile, text link on desktop) and the live office status. */
+  phoneCta?: boolean;
   proofLinks?: Array<{
     text: string;
     href: string;

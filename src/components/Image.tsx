@@ -20,9 +20,11 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 
 // Logo sources configuration
 const LOGO_SOURCES = {
+  // The 413px original (2KB webp) is the sharpest source we have; the 120/200px
+  // derivatives were upscaled ~3x on retina phones and read as blurry.
   main: {
-    desktop: { webp: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.webp', png: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-desktop.png', width: 200, height: 37 },
-    mobile: { webp: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.webp', png: '/optimized/logos/fd45d438-10a2-4bde-9162-a38816b28958-mobile.png', width: 120, height: 22 },
+    desktop: { webp: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp', png: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png', width: 200, height: 37 },
+    mobile: { webp: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.webp', png: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png', width: 120, height: 22 },
     fallback: '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png'
   },
   alt: {

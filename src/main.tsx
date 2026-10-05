@@ -6,10 +6,13 @@ import './index.css';
 import App from './App.tsx';
 import { initializeUTMTracking } from './utils/utmTracking';
 import { initializeGoogleAdsTracking } from './utils/googleAdsTracking';
+import { enableMotion } from './lib/motion';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
 
 // Capture campaign parameters before React can change the landing URL.
 initializeUTMTracking();
 initializeGoogleAdsTracking();
+enableMotion();
 
 const rootElement = document.getElementById('root');
 

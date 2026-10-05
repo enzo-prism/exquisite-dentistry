@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CalendarDays, Languages, MapPin, MessageCircle, Phone, ShieldAlert, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,7 @@ import {
 import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
 import { GOOGLE_MAPS_SHORT_URL, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { cn } from '@/lib/utils';
+import { OPEN_CONCIERGE_EVENT, useMobileActionBarEnabled } from '@/lib/mobileActionBar';
 
 type Language = 'en' | 'es';
 type Topic = 'insurance' | 'services' | 'directions' | 'scheduling';
@@ -97,20 +98,54 @@ const WebsiteConcierge: React.FC = () => {
   const location = useLocation();
   const [language, setLanguage] = useState<Language>('en');
   const [topic, setTopic] = useState<Topic>('insurance');
+  const [open, setOpen] = useState(false);
+  // Phones with the action bar reach the concierge from the bar instead.
+  const actionBarEnabled = useMobileActionBarEnabled();
+
+  // Icon-only near the top of the page so it never sits on hero copy; the
+  // label returns once the visitor scrolls.
+  const [compact, setCompact] = useState(true);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setCompact(window.scrollY < 240);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const openFromActionBar = () => setOpen(true);
+    window.addEventListener(OPEN_CONCIERGE_EVENT, openFromActionBar);
+    return () => window.removeEventListener(OPEN_CONCIERGE_EVENT, openFromActionBar);
+  }, []);
   const copy = COPY[language];
   const selected = copy.topics[topic];
 
   if (location.pathname === '/sitemap') return null;
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="fixed bottom-4 left-4 z-40 gap-2 rounded-full bg-black px-4 text-white shadow-xl hover:bg-black/90 md:bottom-6 md:left-6"
+          className={cn(
+            'fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] left-4 z-40 h-11 min-w-11 gap-2 rounded-full border border-white/10 bg-black/90 px-4 text-white shadow-[0_18px_40px_-16px_rgba(0,0,0,0.65)] backdrop-blur hover:bg-black md:bottom-6 md:left-6',
+            'transition-[opacity,transform] duration-500',
+            compact && 'w-11 px-0',
+            actionBarEnabled && 'max-md:hidden'
+          )}
           aria-label={copy.trigger}
         >
           <MessageCircle className="h-4 w-4 text-gold" aria-hidden="true" />
-          <span className="hidden sm:inline">{copy.trigger}</span>
+          <span className={compact ? 'hidden' : 'hidden sm:inline'}>{copy.trigger}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto rounded-2xl p-0">

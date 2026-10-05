@@ -40,6 +40,9 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				champagne: 'hsl(39 48% 72%)',
+				ivory: 'hsl(var(--ivory))',
+				ink: 'hsl(var(--ink))',
 				black: {
 					light: 'hsl(0 0% 16%)',
 					DEFAULT: 'hsl(0 0% 9%)',

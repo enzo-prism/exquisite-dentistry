@@ -36,6 +36,7 @@
     "report:appointment-outcomes": "node --import tsx scripts/report-appointment-outcomes.ts"
   },
   "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.2",

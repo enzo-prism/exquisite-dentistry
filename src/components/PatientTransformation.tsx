@@ -23,7 +23,7 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
   const objectPosition = patient.beforeObjectPosition || patient.afterObjectPosition || 'center 25%';
 
   return (
-    <article aria-label={`${patient.name}: ${patient.procedure}`} className={cn("bg-white shadow-md rounded-sm overflow-hidden group flex h-full flex-col", className)}>
+    <article aria-label={`${patient.name}: ${patient.procedure}`} className={cn("group flex h-full flex-col overflow-hidden rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]", className)}>
       <ComparisonSlider
         beforeImage={patient.beforeImage}
         afterImage={patient.afterImage}
@@ -38,15 +38,15 @@ const PatientTransformationCard: React.FC<PatientTransformationCardProps> = ({
         aspectRatio={aspectRatioBounds.default}
       />
       
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-lg font-medium">{patient.name}</h3>
-        <p className="mt-1 text-sm font-semibold text-gold-dark">{patient.procedure}</p>
+      <div className="flex flex-1 flex-col p-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-dark">{patient.procedure}</p>
+        <h3 className="mt-1.5 text-xl font-semibold tracking-[-0.01em] text-ink">{patient.name}</h3>
         {patient.description && <p className="mt-2 text-sm leading-6 text-gray-600">{patient.description}</p>}
-        <div className="mt-auto flex flex-col gap-2 pt-4">
-          <Link to={patient.serviceHref} className="inline-flex min-h-11 items-center text-sm font-semibold text-gold-dark underline underline-offset-4">
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1 pt-4">
+          <Link to={patient.serviceHref} className="inline-flex min-h-11 items-center text-sm font-semibold text-gold-dark underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold">
             Explore {patient.serviceId === 'smile-makeover' ? 'smile makeovers' : patient.serviceId === 'invisalign' ? 'Invisalign' : patient.serviceId === 'dental-implants' ? 'dental implants' : 'porcelain veneers'}
           </Link>
-          <Link to={consultationHref(patient.serviceId)} className="inline-flex min-h-11 items-center text-sm font-semibold text-gray-900 underline underline-offset-4">
+          <Link to={consultationHref(patient.serviceId)} className="inline-flex min-h-11 items-center text-sm font-semibold text-ink underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black">
             Discuss this treatment
           </Link>
         </div>

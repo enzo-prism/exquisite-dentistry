@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { trackConsultationIntent } from '@/utils/vercelAnalytics';
 import {
   Phone,
   Mail,
@@ -21,7 +23,8 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 import PhoneLink from '@/components/PhoneLink';
-import { useScrollAnimation } from '@/hooks/use-scroll-animations';
+import OfficeStatus from '@/components/OfficeStatus';
+import { useHasClosingCta } from '@/lib/closingCta';
 import {
   PHONE_NUMBER_DISPLAY,
   EMAIL,
@@ -108,10 +111,11 @@ const reviewStars = Array.from({ length: 5 });
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { ref: footerRef } = useScrollAnimation({
-    animationClass: 'gpu-slide-in',
-    threshold: 0.1
-  });
+  const { pathname } = useLocation();
+  // Pages that already end on their own booking actions skip the duplicate panel.
+  const pageHasClosingCta = useHasClosingCta();
+  const showCtaPanel =
+    !pageHasClosingCta && !['/', '/schedule-consultation/', '/schedule-consultation', '/contact/', '/contact'].includes(pathname);
 
   const renderLinks = (links: FooterLink[]) => (
     <ul className="space-y-3 text-sm text-white/80">
@@ -152,48 +156,54 @@ const Footer = () => {
   );
 
   return (
-    <footer
-      ref={footerRef}
-      className="bg-black text-white relative overflow-hidden gpu-accelerated"
-      style={{ contain: 'layout', containIntrinsicSize: '100% 420px' }}
-    >
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute -top-32 -right-10 h-64 w-64 rounded-full bg-gold/20 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-white/5 blur-[160px]" />
-      </div>
+    <footer className="relative overflow-hidden bg-black pb-[var(--mobile-action-bar-space,0px)] text-white md:pb-0">
+      {/* Ambient glow as plain gradients: huge `filter: blur()` blobs made WebKit
+          drop paint tiles near the top of long pages. */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_24rem_at_100%_0%,rgba(185,162,124,0.12),transparent_70%),radial-gradient(36rem_28rem_at_0%_100%,rgba(255,255,255,0.03),transparent_70%)]"
+        aria-hidden="true"
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
         {/* CTA Panel */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-white/10 pb-8">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.35em] uppercase text-gold-light mb-2">
-              Ready to start?
-            </p>
-            <h2 className="text-2xl md:text-3xl font-semibold">
-              Transform your smile with concierge care in Los Angeles.
-            </h2>
+        {showCtaPanel && (
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[radial-gradient(120%_140%_at_100%_0%,rgba(185,162,124,0.22),transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] p-6 sm:p-8 md:p-10">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="eyebrow eyebrow--light">Ready to start?</p>
+                <h2 className="mt-4 text-[clamp(1.6rem,3.2vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+                  Plan your visit with <span className="accent-serif text-champagne">Dr. Aguil</span>
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/70 md:text-base">
+                  Book online, request a callback, or call the office. Our team will help you choose the right appointment.
+                </p>
+                <OfficeStatus className="mt-5" />
+              </div>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <Button className="h-12 w-full whitespace-nowrap bg-gold px-7 text-[15px] font-semibold sm:w-auto" asChild>
+                  <Link
+                    to={SCHEDULE_CONSULTATION_PATH}
+                    onClick={() => trackConsultationIntent({ source: 'footer_cta', ctaText: 'Schedule Consultation', destination: SCHEDULE_CONSULTATION_PATH })}
+                    className="inline-flex w-full justify-center sm:w-auto"
+                  >
+                    Schedule Consultation
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </Button>
+                <Button variant="glass" className="h-12 w-full whitespace-nowrap px-6 text-[15px] sm:w-auto" asChild>
+                  <PhoneLink
+                    phoneNumber={PHONE_NUMBER_DISPLAY}
+                    analyticsSource="footer_cta"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <Phone size={16} className="text-champagne" aria-hidden="true" />
+                    <span className="font-semibold tracking-wide">Call {PHONE_NUMBER_DISPLAY}</span>
+                  </PhoneLink>
+                </Button>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <Button className="bg-gold text-black hover:bg-gold/90 px-6 whitespace-nowrap w-full sm:w-auto" asChild>
-              <Link to="/schedule-consultation/" className="inline-flex w-full sm:w-auto justify-center">
-                Schedule Consultation
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="border-gold/40 text-white hover:text-black hover:bg-gold/90 whitespace-nowrap px-4 w-full sm:w-auto"
-              asChild
-            >
-              <PhoneLink
-                phoneNumber={PHONE_NUMBER_DISPLAY}
-                className="flex items-center justify-center gap-2"
-              >
-                <Phone size={16} className="text-gold" />
-                <span className="font-semibold tracking-wide">Call {PHONE_NUMBER_DISPLAY}</span>
-              </PhoneLink>
-            </Button>
-          </div>
-        </div>
+        )}
 
         {/* Reviews + Social */}
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

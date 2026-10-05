@@ -109,7 +109,7 @@ const IteroScanner = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-gold/30 to-transparent blur-3xl opacity-70" />
+              <div className="allow-gradient-transparency absolute -inset-8 rounded-[48px] bg-[radial-gradient(closest-side,hsl(var(--gold)/0.3),transparent)] opacity-70" />
               <div className="relative rounded-[28px] border border-gold/30 bg-black/40 p-4 backdrop-blur">
                 <OptimizedImage
                   src={heroImage}

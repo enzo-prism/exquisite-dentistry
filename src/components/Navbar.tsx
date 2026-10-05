@@ -35,7 +35,7 @@ import {
 const LazySiteSearch = lazy(() => import('@/components/search/SiteSearch'));
 
 const DESKTOP_LINK_BASE_CLASS =
-  'inline-flex h-10 items-center rounded-full px-2.5 text-[13px] font-medium transition-colors duration-200 xl:px-3 xl:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+  'inline-flex h-10 items-center whitespace-nowrap rounded-full px-2.5 text-[13px] font-medium transition-colors duration-200 xl:px-3 xl:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
 
 const DESKTOP_ICON_BUTTON_CLASS =
   'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/85 transition-colors duration-200 hover:bg-white/[0.11] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
@@ -168,7 +168,8 @@ const Navbar = () => {
       <header
         className={cn(
           'sticky top-0 z-50 w-full border-b border-white/10 backdrop-blur-xl transition-[background-color,box-shadow] duration-300',
-          scrolled ? 'bg-black shadow-[0_24px_42px_-30px_rgba(0,0,0,0.95)]' : 'bg-black',
+          // Once content scrolls beneath it, the bar turns to smoked glass.
+          scrolled ? 'bg-black/[0.82] shadow-[0_24px_42px_-30px_rgba(0,0,0,0.95)]' : 'bg-black',
         )}
       >
         <div className="mx-auto w-full max-w-[1380px] px-3 sm:px-5 lg:px-6">
@@ -513,7 +514,7 @@ const Navbar = () => {
                         <button
                           type="button"
                           onClick={() => setIsMobileServicesOpen((prev) => !prev)}
-                          className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+                          className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10 focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
                           aria-expanded={isMobileServicesOpen}
                           aria-controls="mobile-service-links"
                         >

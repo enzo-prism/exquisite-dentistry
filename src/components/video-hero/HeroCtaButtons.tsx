@@ -36,9 +36,11 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
   // Always use the lg size (h-11 = 44px) so the primary CTA meets the 44px
   // touch-target guideline on mobile, not the 40px "default".
   const buttonSize = "lg";
-  const containerClass = isMobile ? "flex w-full flex-col gap-4 sm:w-auto sm:flex-row" : "flex flex-wrap items-center gap-4";
+  const containerClass = isMobile ? "flex w-full flex-col gap-3 sm:w-auto sm:flex-row" : "flex flex-wrap items-center gap-3";
   const primaryButtonClass = isMobile ? "w-full min-w-0 sm:w-auto" : "";
-  const mobileButtonClass = isMobile ? "h-auto min-h-11 min-w-0 w-full whitespace-normal [overflow-wrap:anywhere] px-4 py-3 text-center" : "";
+  const mobileButtonClass = isMobile
+    ? "h-auto min-h-12 min-w-0 w-full whitespace-normal [overflow-wrap:anywhere] px-4 py-3 text-center text-[15px] font-semibold"
+    : "h-12 px-7 text-[15px] font-semibold tracking-[0.01em]";
 
   const trackHeroCta = (source: string, ctaText: string, destination?: string) => {
     const normalizedDestination = destination ? normalizeInternalHref(destination) : undefined;
@@ -192,7 +194,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           return (
             <div className={wrapperClass}>
               <Button
-                variant="black"
+                variant="glass"
                 size={buttonSize}
                 className={`group ${mobileButtonClass}`}
                 onClick={() => {
@@ -220,7 +222,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             <div className={wrapperClass}>
               <Button
                 asChild
-                variant="black"
+                variant="glass"
                 size={buttonSize}
                 className={`group ${mobileButtonClass}`}
               >
@@ -241,7 +243,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
             <div className={wrapperClass}>
               <Button
                 asChild
-                variant="black"
+                variant="glass"
                 size={buttonSize}
                 className={`group ${mobileButtonClass}`}
               >
@@ -266,7 +268,7 @@ const HeroCtaButtons: React.FC<CtaButtonsProps> = ({
           <div className={wrapperClass}>
             <Button
               asChild
-              variant="black"
+              variant="glass"
               size={buttonSize}
               className={`group ${mobileButtonClass}`}
             >

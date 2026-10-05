@@ -26,7 +26,7 @@ import {
 } from '@/constants/cherry';
 import { trackFinancingEngagement } from '@/utils/vercelAnalytics';
 
-const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease' as const;
+const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease, bottom 450ms cubic-bezier(0.16, 1, 0.3, 1)' as const;
 const CHERRY_WIDGET_Z_INDEX = '45' as const;
 const CHERRY_WIDGET_CLICK_SELECTOR = `[id="${CHERRY_WIDGET_MOUNT_ID}"], [class*="floatingEstimator"]`;
 const WIDGET_REVEAL_SCROLL_Y = 96;
@@ -106,7 +106,10 @@ const applyFloatingWidgetStyles = (isMobile: boolean, suppressFloating = false) 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
 
   const rightOffset = isMobile ? '8px' : '16px';
-  const bottomOffset = isMobile ? 'calc(env(safe-area-inset-bottom, 0px) + 16px)' : '24px';
+  // On phones the pill rides above the mobile action bar (0px when the bar is down).
+  const bottomOffset = isMobile
+    ? 'calc(env(safe-area-inset-bottom, 0px) + 16px + var(--mobile-action-bar-h, 0px))'
+    : '24px';
   const floatingButtonWidth = isMobile
     ? 'min(288px, calc(100vw - 88px))'
     : '288px';

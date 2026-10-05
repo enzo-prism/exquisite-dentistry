@@ -76,8 +76,8 @@ const PaymentPlans = () => {
       <div className="min-h-screen bg-background">
         <section className="relative overflow-hidden border-b border-border/60 bg-gradient-to-br from-white via-stone-50 to-white">
           <div className="absolute inset-0">
-            <div className="absolute left-[-10%] top-[-18rem] h-[28rem] w-[28rem] rounded-full bg-gold/18 blur-[140px]" />
-            <div className="absolute bottom-[-12rem] right-[-8%] h-[24rem] w-[24rem] rounded-full bg-primary/10 blur-[150px]" />
+            <div className="absolute left-[-20%] top-[-26rem] h-[44rem] w-[44rem] bg-[radial-gradient(closest-side,hsl(var(--gold)/0.16),transparent)]" />
+            <div className="absolute bottom-[-20rem] right-[-18%] h-[40rem] w-[40rem] bg-[radial-gradient(closest-side,hsl(var(--primary)/0.10),transparent)]" />
           </div>
 
           <div className="relative container mx-auto px-4 py-16 md:py-24">

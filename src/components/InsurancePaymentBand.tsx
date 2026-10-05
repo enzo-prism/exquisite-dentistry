@@ -1,60 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CreditCard, ShieldCheck, Star } from 'lucide-react';
+import { ArrowRight, CreditCard, ShieldCheck, Star } from 'lucide-react';
 
 import {
   HOMEPAGE_INSURANCE_PANELS,
   INSURANCE_HERO_HOOK,
 } from '@/data/insurance';
 import { Button } from '@/components/ui/button';
+import Reveal from '@/components/motion/Reveal';
 
 const panelIcons = [ShieldCheck, CreditCard, Star] as const;
 
 const InsurancePaymentBand: React.FC = () => {
   return (
-    <section className="bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] py-14 md:py-16">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-secondary">
+    <section className="bg-white py-16 md:py-24">
+      <div className="section-container">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal as="p" variant="fade" className="eyebrow">
               Insurance & Payment
-            </p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            </Reveal>
+            <Reveal as="h2" variant="blur" delay={90} className="mt-4 text-[clamp(1.6rem,3vw,2.35rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-ink">
               {INSURANCE_HERO_HOOK}
-            </h2>
-            <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
+            </Reveal>
+            <Reveal as="p" variant="up" delay={180} className="mt-5 text-base leading-7 text-gray-600 md:text-lg md:leading-8">
               Our team works with many PPO plans and PPO network relationships, and we can help
               verify your benefits before treatment. If you still have an out-of-pocket balance
               after benefits are reviewed, Cherry can help eligible patients explore monthly
               payment options.
-            </p>
+            </Reveal>
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-5">
             {HOMEPAGE_INSURANCE_PANELS.map((panel, index) => {
               const Icon = panelIcons[index];
 
               return (
-                <article
-                  key={panel.title}
-                  className="flex h-full flex-col rounded-[1.75rem] border border-gold/15 bg-white p-6 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.28)]"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="mt-5 text-xl font-semibold text-foreground">{panel.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
-                    {panel.description}
-                  </p>
-                  <div className="mt-6 flex flex-col gap-3">
-                    <Button asChild>
-                      <Link to={panel.primaryCtaHref}>{panel.primaryCtaLabel}</Link>
-                    </Button>
-                    <Button asChild variant="outline">
-                      <Link to={panel.secondaryCtaHref}>{panel.secondaryCtaLabel}</Link>
-                    </Button>
-                  </div>
-                </article>
+                <Reveal key={panel.title} variant="up" delay={index * 120}>
+                  <article className="lift-card group flex h-full flex-col gap-5 rounded-2xl border border-gold/15 bg-ivory p-6 sm:flex-row sm:items-start sm:p-7">
+                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-full border border-gold/25 bg-white text-gold transition-transform duration-500 group-hover:scale-105">
+                      <Icon size={20} aria-hidden="true" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold tracking-[-0.01em] text-ink md:text-xl">{panel.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-gray-600">
+                        {panel.description}
+                      </p>
+                      <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+                        <Button asChild className="h-11 px-6">
+                          <Link to={panel.primaryCtaHref}>{panel.primaryCtaLabel}</Link>
+                        </Button>
+                        <Link
+                          to={panel.secondaryCtaHref}
+                          className="group/link inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-gold-dark"
+                        >
+                          {panel.secondaryCtaLabel}
+                          <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover/link:translate-x-1" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
               );
             })}
           </div>

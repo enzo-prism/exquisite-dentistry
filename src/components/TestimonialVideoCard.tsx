@@ -46,8 +46,9 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
   }, [analyticsCategory, videoId, trackCompletion]);
 
   return (
-    <figure className={cn('overflow-hidden rounded-lg bg-gray-50 shadow-lg', className)}>
-      <div className="aspect-video w-full">
+    <figure className={cn('overflow-hidden rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.45)]', className)}>
+      {/* Branded placeholder so lazy thumbnails never read as empty black tiles. */}
+      <div className="aspect-video w-full bg-[radial-gradient(120%_120%_at_30%_20%,#3a3226_0%,#14120e_55%,#0b0a08_100%)]">
       {testimonial.type === 'vimeo' ? (
         <UniversalVideoPlayer
           platform="vimeo"
@@ -73,7 +74,7 @@ const TestimonialVideoCard: React.FC<TestimonialVideoCardProps> = ({
         />
       )}
       </div>
-      <figcaption className="border-t border-black/5 bg-white px-4 py-3 text-sm font-semibold text-black">
+      <figcaption className="border-t border-black/5 bg-white px-5 py-4 text-sm font-semibold text-ink">
         {testimonial.title}
       </figcaption>
     </figure>
