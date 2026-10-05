@@ -4,8 +4,14 @@ import DoctorExperienceSection from "@/components/DoctorExperienceSection";
 import PageSEO from "@/components/seo/PageSEO";
 import PracticeLocationSection from "@/components/PracticeLocationSection";
 import { LocationPageConfig } from "@/data/locationPages";
-import { Button } from "@/components/ui/button";
-import { Quote } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/motion/Reveal";
+import ConsultationBand from "@/components/service/ConsultationBand";
+import DarkPageHero from "@/components/service/DarkPageHero";
+import ServiceFaqList from "@/components/service/ServiceFaqList";
+import { SCHEDULE_CONSULTATION_PATH } from "@/constants/urls";
+import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { createBreadcrumbSchema, createWebPageSchema } from "@/utils/centralizedSchemas";
@@ -17,7 +23,7 @@ interface LocationPageTemplateProps {
 
 const MIN_WORD_COUNT = 150;
 
-const isHttpUrl = (href: string) => /^https?:\/\//i.test(href);
+const CARD = "rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]";
 
 const LOCATION_LINKS = [
   { label: "Miracle Mile Dentist", href: "/miracle-mile-dentist/" },
@@ -87,8 +93,18 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
     ]
   };
 
+  // Booking CTAs are internal routes; a non-route href falls back to the consultation page.
+  const primaryHref = config.cta.primaryHref.startsWith("/")
+    ? normalizeInternalHref(config.cta.primaryHref)
+    : SCHEDULE_CONSULTATION_PATH;
+  // tel: secondaries are covered by the band's tracked PhoneLink.
+  const secondaryLink =
+    config.cta.secondaryText && config.cta.secondaryHref?.startsWith("/")
+      ? { text: config.cta.secondaryText, href: normalizeInternalHref(config.cta.secondaryHref) }
+      : undefined;
+
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-ink">
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
@@ -99,60 +115,62 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         path={`/${config.slug}`}
       />
 
-      <div className="bg-black text-white">
-        <div className="mx-auto max-w-5xl px-4 py-4">
+      <DarkPageHero
+        align="center"
+        eyebrow={config.cityLabel}
+        title={config.hero.heading}
+        subtitle={config.hero.subheading}
+        primaryCta={{ text: config.cta.primaryText, href: primaryHref }}
+        phoneSource="location_page_hero_phone"
+        topSlot={
           <LocationBreadcrumbs
             items={[
               { label: "Locations", to: "/locations/" },
               { label: `${config.cityLabel} Dentist`, to: `/${config.slug}/` }
             ]}
           />
-        </div>
-      </div>
-
-      <section className="bg-gradient-to-br from-black via-black to-primary/30 text-white">
-        <div className="mx-auto max-w-5xl px-4 pb-20 pt-12 md:pb-24 md:pt-16">
-          <div className="text-center">
-            <p className="text-sm uppercase tracking-[0.4em] text-gold">{config.cityLabel}</p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">{config.hero.heading}</h1>
-            <p className="mt-4 text-lg text-white/80">{config.hero.subheading}</p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              {config.hero.stats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                  <p className="text-3xl font-bold text-gold">{stat.value}</p>
-                  <p className="text-sm uppercase tracking-widest text-white/70">{stat.label}</p>
-                </div>
-              ))}
+        }
+      >
+        <dl className="mx-auto grid max-w-4xl divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {config.hero.stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex items-baseline justify-between gap-4 px-5 py-4 text-left sm:flex-col-reverse sm:items-center sm:justify-end sm:gap-2 sm:px-6 sm:py-7 sm:text-center"
+            >
+              <dt className="min-w-0 text-xs font-medium uppercase leading-5 tracking-[0.16em] text-white/65">{stat.label}</dt>
+              <dd className="shrink-0 text-xl font-semibold tracking-[-0.01em] text-champagne sm:text-3xl">{stat.value}</dd>
             </div>
-          </div>
-        </div>
-      </section>
+          ))}
+        </dl>
+      </DarkPageHero>
 
       {config.practiceLocation ? (
         <PracticeLocationSection config={config.practiceLocation} />
       ) : null}
 
-      <section className="mx-auto max-w-5xl px-4 py-16 md:py-20">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div>
-            <h2 className="text-2xl font-semibold">Why {config.cityLabel} Patients Visit Us</h2>
-            <ul className="mt-6 space-y-4 text-muted-foreground">
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="section-container grid gap-12 md:grid-cols-2 md:gap-10 lg:gap-16">
+          <div className="min-w-0">
+            <SectionHeading align="left" eyebrow="Nearby care" title={`Why ${config.cityLabel} Patients Visit Us`} />
+            <Reveal as="ul" variant="up" delay={120} className={cn(CARD, "mt-8 divide-y divide-gold/10 px-5 sm:px-6")}>
               {config.neighborhoodHighlights.map((item) => (
-                <li key={item} className="rounded-2xl border border-border/60 bg-muted/30 p-4">
-                  {item}
+                <li key={item} className="flex gap-3 py-4 text-base leading-7 text-gray-600">
+                  <Check className="mt-1.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                  <span className="min-w-0">{item}</span>
                 </li>
               ))}
-            </ul>
+            </Reveal>
           </div>
-          <div>
-            <h2 className="text-2xl font-semibold">Signature Services</h2>
-            <ul className="mt-6 space-y-3 text-muted-foreground">
+          <div className="min-w-0">
+            <SectionHeading align="left" eyebrow="Treatments" title="Signature Services" />
+            <Reveal as="ul" variant="up" delay={120} className={cn(CARD, "mt-8 divide-y divide-gold/10 px-5 sm:px-6")}>
               {config.signatureServices.map((service) => (
-                <li key={service} className="rounded-xl border border-border/60 bg-background p-4 shadow-sm">
-                  {service}
+                <li key={service} className="flex gap-3 py-4 text-base leading-7 text-gray-600">
+                  <Check className="mt-1.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                  <span className="min-w-0">{service}</span>
                 </li>
               ))}
-            </ul>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -161,100 +179,105 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
         <DoctorExperienceSection config={config.doctorSection} />
       ) : null}
 
-      <section className="bg-muted/30">
-        <div className="mx-auto max-w-4xl px-4 py-16 md:py-20">
-          {config.testimonials.map((testimonial) => (
-            <div key={testimonial.author} className="rounded-3xl border border-primary/20 bg-background p-8 text-center shadow-sm">
-              <Quote className="mx-auto mb-4 h-10 w-10 text-primary" />
-              <p className="text-xl text-muted-foreground">&ldquo;{testimonial.quote}&rdquo;</p>
-              <p className="mt-4 font-semibold text-primary">{testimonial.author}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-4 py-16 md:py-20">
-        <h2 className="text-2xl font-semibold">Frequently Asked Questions</h2>
-        <div className="mt-8 space-y-6">
-          {config.faqs.map((faq) => (
-            <div key={faq.question} className="rounded-2xl border border-border bg-muted/20 p-6">
-              <p className="text-lg font-semibold">{faq.question}</p>
-              <p className="mt-2 text-muted-foreground">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {filteredLocationLinks.length > 0 ? (
-        <section className="mx-auto max-w-4xl px-4 pb-12">
-          <div className="rounded-3xl border border-border bg-background p-8">
-            <p className="text-sm uppercase tracking-[0.4em] text-primary">Nearby Neighborhoods</p>
-            <h2 className="mt-3 text-3xl font-semibold">Explore Nearby Locations</h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {filteredLocationLinks.map((location) => (
-                <Link
-                  key={location.href}
-                  to={normalizeInternalHref(location.href)}
-                  className="flex items-center justify-between rounded-2xl border border-border/80 bg-background px-5 py-4 text-primary transition hover:border-primary hover:bg-primary/5"
+      {config.testimonials.length > 0 ? (
+        <section className="bg-ivory py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading eyebrow="Patient reviews" title={<>In our patients&rsquo; <em>own words</em></>} />
+            <div
+              className={cn(
+                "mt-12 grid gap-5",
+                config.testimonials.length === 1 ? "mx-auto max-w-2xl" : config.testimonials.length === 2
+                    ? "sm:grid-cols-2"
+                    : "sm:grid-cols-2 lg:grid-cols-3 sm:[&>*:nth-child(3)]:col-span-2 lg:[&>*:nth-child(3)]:col-span-1",
+              )}
+            >
+              {config.testimonials.map((testimonial, index) => (
+                <Reveal
+                  as="figure"
+                  key={testimonial.author}
+                  variant="up"
+                  delay={index * 80}
+                  className={cn(CARD, "flex h-full flex-col p-6 sm:p-7")}
                 >
-                  <span>{location.label}</span>
-                  <span aria-hidden="true">→</span>
-                </Link>
+                  <span className="h-8 text-5xl leading-none" aria-hidden="true"><span className="accent-serif text-gold">&ldquo;</span></span>
+                  <blockquote className="mt-2 flex-1 text-base leading-7 text-ink/85">&ldquo;{testimonial.quote}&rdquo;</blockquote>
+                  <figcaption className="mt-5 text-sm font-semibold text-ink">{testimonial.author}</figcaption>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-4xl px-4 pb-12">
-        <div className="rounded-3xl border border-border bg-muted/20 p-8">
-          <p className="text-sm uppercase tracking-[0.4em] text-primary">Popular Services</p>
-          <h2 className="mt-3 text-3xl font-semibold">Plan Your Visit</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {config.relatedServices.map((service) => (
-              <Link
-                key={service.href}
-                to={normalizeInternalHref(service.href)}
-                className="flex items-center justify-between rounded-2xl border border-border/80 bg-background px-5 py-4 text-primary transition hover:border-primary hover:bg-primary/5"
-              >
-                <span>{service.label}</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-            ))}
-          </div>
+      <ConsultationBand
+        eyebrow="Plan your visit"
+        title={<>Plan your first visit <em>from {config.cityLabel}</em></>}
+        description="Book a consultation online or call the office. We see patients Monday through Thursday, 8AM to 6PM."
+        href={primaryHref}
+        ctaText={config.cta.primaryText}
+        source="location_page_mid_cta"
+      />
+
+      <section className="pb-16 pt-4 md:pb-24 md:pt-8">
+        <div className="section-container">
+          <SectionHeading eyebrow="Answers" title={<>Frequently Asked <em>Questions</em></>} />
+          <Reveal variant="up" className="mx-auto mt-10 max-w-3xl">
+            <ServiceFaqList faqs={config.faqs} openFirst />
+          </Reveal>
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 pb-16 md:pb-24">
-        <div className="rounded-3xl border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 p-10 text-center">
-          <h2 className="text-3xl font-semibold">{config.cta.heading}</h2>
-          <p className="mt-4 text-lg text-muted-foreground">{config.cta.description}</p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" asChild>
-              {config.cta.primaryHref.startsWith("/") ? (
-                <Link to={normalizeInternalHref(config.cta.primaryHref)}>{config.cta.primaryText}</Link>
-              ) : (
-                <a
-                  href={config.cta.primaryHref}
-                  target={isHttpUrl(config.cta.primaryHref) ? "_blank" : undefined}
-                  rel={isHttpUrl(config.cta.primaryHref) ? "noopener noreferrer" : undefined}
-                >
-                  {config.cta.primaryText}
-                </a>
-              )}
-            </Button>
-            {config.cta.secondaryText && config.cta.secondaryHref && (
-              <Button size="lg" variant="outline" asChild>
-                {config.cta.secondaryHref.startsWith("/") ? (
-                  <Link to={normalizeInternalHref(config.cta.secondaryHref)}>{config.cta.secondaryText}</Link>
-                ) : (
-                  <a href={config.cta.secondaryHref}>{config.cta.secondaryText}</a>
-                )}
-              </Button>
-            )}
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="section-container grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="min-w-0">
+            <SectionHeading align="left" eyebrow="Popular Services" title="Plan Your Visit" />
+            <ul className="mt-8 grid gap-3">
+              {config.relatedServices.map((service, index) => (
+                <Reveal as="li" key={service.href} variant="up" delay={index * 50}>
+                  <Link
+                    to={normalizeInternalHref(service.href)}
+                    className={cn(CARD, "lift-card group flex min-h-14 items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-ink")}
+                  >
+                    <span className="link-sweep min-w-0 pb-0.5">{service.label}</span>
+                    <ArrowRight className="h-4 w-4 shrink-0 text-gold transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                </Reveal>
+              ))}
+            </ul>
           </div>
+
+          {filteredLocationLinks.length > 0 ? (
+            <div className="min-w-0">
+              <SectionHeading align="left" eyebrow="Nearby Neighborhoods" title="Explore Nearby Locations" />
+              <Reveal as="ul" variant="up" delay={120} className="mt-8 flex flex-wrap gap-2.5">
+                {filteredLocationLinks.map((location) => (
+                  <li key={location.href}>
+                    <Link
+                      to={normalizeInternalHref(location.href)}
+                      className="inline-flex min-h-11 items-center rounded-full border border-gold/20 bg-white px-4 text-sm font-medium text-ink transition-colors hover:border-gold hover:text-gold-dark"
+                    >
+                      {location.label}
+                    </Link>
+                  </li>
+                ))}
+              </Reveal>
+            </div>
+          ) : null}
         </div>
       </section>
+
+      <ConsultationBand
+        closing
+        tone="light"
+        eyebrow="Visit us"
+        title={config.cta.heading}
+        description={config.cta.description}
+        href={primaryHref}
+        ctaText={config.cta.primaryText}
+        source="location_page_final_cta"
+        secondaryLink={secondaryLink}
+        className="pb-16 md:pb-24"
+      />
     </div>
   );
 };

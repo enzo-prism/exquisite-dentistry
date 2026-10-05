@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PageSEO from '@/components/seo/PageSEO';
 import VideoHero from '@/components/VideoHero';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Check, Star, Clock, Shield, Sparkles, ArrowRight } from 'lucide-react';
+import { Check, Star, Clock, Shield, Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import FinancingOptionsSection from '@/components/FinancingOptionsSection';
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import ServiceRecommendation from '@/components/ServiceRecommendation';
 import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
-import FeaturedReviewWall from '@/components/FeaturedReviewWall';
-import SmileGalleryPreview from '@/components/SmileGalleryPreview';
-import { featuredReviews } from '@/data/featuredReviews';
+import SectionHeading from '@/components/SectionHeading';
+import Reveal from '@/components/motion/Reveal';
+import ConsultationBand from '@/components/service/ConsultationBand';
+import ServiceFaqList from '@/components/service/ServiceFaqList';
+import ServiceProofSection from '@/components/service/ServiceProofSection';
 import { consultationHref } from '@/data/consultation';
 import {
   createFAQSchema,
@@ -25,26 +25,29 @@ import {
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { getTreatmentCostAnswer } from '@/data/treatmentPricing';
 
+const CARD = 'rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]';
+const VENEER_CONSULTATION_HREF = consultationHref('porcelain-veneers');
+
 const Veneers = () => {
   const meta = ROUTE_METADATA['/veneers'];
   const benefits = [
     {
-      icon: <Sparkles className="h-8 w-8 text-secondary" />,
+      icon: <Sparkles className="h-5 w-5" />,
       title: "A Refreshed Smile",
       description: "Improve your smile's appearance in just a few visits"
     },
     {
-      icon: <Shield className="h-8 w-8 text-secondary" />,
+      icon: <Shield className="h-5 w-5" />,
       title: "Durable & Long-lasting",
       description: "High-quality porcelain veneers can last many years with appropriate care; longevity varies"
     },
     {
-      icon: <Star className="h-8 w-8 text-secondary" />,
+      icon: <Star className="h-5 w-5" />,
       title: "Natural Appearance",
       description: "Custom-crafted to match your facial features and desired aesthetic"
     },
     {
-      icon: <Clock className="h-8 w-8 text-secondary" />,
+      icon: <Clock className="h-5 w-5" />,
       title: "Minimal Tooth Preparation",
       description: "Conservative approach that preserves most of your natural tooth structure"
     }
@@ -168,6 +171,7 @@ const Veneers = () => {
     createFAQSchema(faqs, "Porcelain Veneers")
   ];
 
+
   return (
     <>
       <MasterStructuredData
@@ -186,17 +190,19 @@ const Veneers = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <VideoHero 
+        <VideoHero
+          eyebrow="Porcelain veneers"
           title={<>Dental Veneers in <span className="text-gold">Los Angeles</span></>}
           subtitle="Ultra-thin, custom-crafted porcelain veneers designed to correct chips, gaps, discoloration, and uneven edges while preserving healthy enamel. Planned by Dr. Alexie Aguil using digital smile design and careful lab fabrication."
           primaryCta={{
             text: "Schedule Consultation",
-            href: consultationHref('porcelain-veneers')
+            href: VENEER_CONSULTATION_HREF
           }}
+          phoneCta
           height="medium"
         />
 
-        <div className="container mx-auto px-4 mt-6">
+        <div className="section-container mt-6">
           <Breadcrumbs
             items={[
               { label: 'Services', to: '/services/' },
@@ -206,342 +212,252 @@ const Veneers = () => {
         </div>
 
         {/* Introduction */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Porcelain Veneers, Planned for Natural Results
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Porcelain veneers are thin ceramic shells bonded to the front of teeth to improve shape, color, and minor alignment. We start with digital smile design and conservative preparation to keep as much natural tooth structure as possible. Each veneer is fabricated by a dental lab to match your facial features and bite for a natural-looking finish.
-              </p>
-            </div>
+        <section className="bg-background pb-14 pt-12 md:pb-20 md:pt-16">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Porcelain veneers"
+              title={<>Porcelain Veneers, Planned for <em>Natural Results</em></>}
+              description="Porcelain veneers are thin ceramic shells bonded to the front of teeth to improve shape, color, and minor alignment. We start with digital smile design and conservative preparation to keep as much natural tooth structure as possible. Each veneer is fabricated by a dental lab to match your facial features and bite for a natural-looking finish."
+            />
           </div>
         </section>
 
+        {/* Proof first: real comparisons, verbatim reviews, one clear next step */}
+        <ServiceProofSection
+          caseNames={['Brittany', 'Jessica', 'Abigail']}
+          reviewNames={['Wylie S', 'Nik Nak', 'Ziggy Valdez']}
+          consultationHref={VENEER_CONSULTATION_HREF}
+          source="veneers_proof_section"
+        />
+
         {/* Veneers Designed for Everyday Confidence */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Veneers Designed for Everyday Confidence
-              </h2>
-            </div>
-            <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
+        <section className="bg-background py-16 md:py-24">
+          <div className="section-container grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+            <SectionHeading
+              align="left"
+              eyebrow="Designed around you"
+              title={<>Veneers Designed for <em>Everyday Confidence</em></>}
+            />
+            <Reveal variant="up" delay={120} className="space-y-6 text-lg leading-8 text-gray-600 lg:pt-12">
               <p>
                 Every veneer plan starts with a smile discovery session. We look at your facial proportions, how you speak, and how you want your smile to feel day to day, then design porcelain that fits your features rather than covering them. The goal is a smile that photographs well, speaks naturally, and still looks like you.
               </p>
               <p>
                 Dr. Alexie Aguil works with Los Angeles ceramists to shape each veneer by hand. Layers of porcelain are chosen to match your complexion and the way your teeth catch light. The finished result looks consistent in person and on camera, and is built to hold up over years of everyday use.
               </p>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Benefits Grid */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Why Choose Veneers?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Discover the transformative benefits of porcelain veneers
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <section className="bg-ivory py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Benefits"
+              title={<>Why Choose <em>Veneers?</em></>}
+              description="Discover the transformative benefits of porcelain veneers"
+            />
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map((benefit, index) => (
-                <Card key={`benefit-${benefit.title.replace(/[^a-zA-Z0-9]/g, '')}`} className="text-center border-0 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <CardContent className="pt-8 pb-6">
-                    <div className="flex justify-center mb-4">
-                      {benefit.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <Reveal
+                  key={`benefit-${benefit.title.replace(/[^a-zA-Z0-9]/g, '')}`}
+                  variant="up"
+                  delay={index * 80}
+                  className={`${CARD} flex h-full items-start gap-4 p-5 sm:block sm:p-6`}
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold" aria-hidden="true">
+                    {benefit.icon}
+                  </span>
+                  <div className="min-w-0 sm:mt-5">
+                    <h3 className="text-lg font-semibold tracking-[-0.01em] text-ink">{benefit.title}</h3>
+                    <p className="mt-1.5 text-sm leading-6 text-gray-600 sm:mt-2">{benefit.description}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Front teeth scenarios */}
-        <section className="py-14 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Only need your front teeth transformed?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Plan for 2 or 4 veneers with transparent pricing, shade strategy, and conservative prep.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <Card className="border-gold/25 shadow-sm">
-                <CardContent className="p-6 space-y-3">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">2 veneers</p>
-                  <h3 className="text-xl font-semibold text-foreground">Targeted front tooth fixes</h3>
-                  <p className="text-muted-foreground">A good option for a single dark tooth, chips, or peg laterals after whitening.</p>
-                  <Button variant="link" className="px-0" asChild>
-                    <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
-                      Explore 2 veneer plans
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-              <Card className="border-gold/25 shadow-sm">
-                <CardContent className="p-6 space-y-3">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">4 veneers</p>
-                  <h3 className="text-xl font-semibold text-foreground">Balance the entire smile zone</h3>
-                  <p className="text-muted-foreground">Prevent shade mismatch and create even, natural symmetry across your front teeth.</p>
-                  <Button variant="link" className="px-0" asChild>
-                    <Link to="/veneers/front-teeth-veneers-los-angeles/" className="inline-flex items-center">
-                      Explore 4 veneer plans
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/*
-          Cluster index. This pillar previously linked only to the front-teeth child,
-          so the cost and single-tooth pages had no internal path in from the hub —
-          Search Console listed the sitemap as their only referring URL.
-        */}
-        <section className="py-14 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Veneer guides
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Detail on the questions that come up most often before a veneer consultation.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {veneerGuides.map((guide) => (
-                <Card key={guide.href} className="border-gold/25 shadow-sm">
-                  <CardContent className="p-6 space-y-3">
-                    <h3 className="text-xl font-semibold text-foreground">{guide.title}</h3>
-                    <p className="text-muted-foreground">{guide.description}</p>
-                    <Button variant="link" className="px-0" asChild>
-                      <Link to={guide.href} className="inline-flex items-center">
-                        {guide.cta}
-                        <ArrowRight className="h-4 w-4 ml-1" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <FinancingOptionsSection
-          className="bg-background pt-0 md:pt-2"
-          title="Comparing 2 veneers, 4 veneers, or a fuller veneer plan?"
-          description="Right after reviewing front-teeth veneer options and transparent planning guidance, our Cherry financing page lets you explore monthly payment options before moving into the full treatment process."
-        />
-
-        <section className="section-container max-w-4xl py-10">
-          <h2 className="mb-4 text-2xl font-semibold">Understand your veneer estimate</h2>
-          <p className="mb-4 leading-relaxed text-muted-foreground">{getTreatmentCostAnswer('porcelainVeneer')}</p>
-          <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/" className="inline-flex min-h-11 items-center text-secondary underline">Planning just two front teeth? Compare the cost factors.</Link>
         </section>
 
         {/* Process Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Our Veneer Process
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A careful approach to designing your new smile
-              </p>
+        <section className="bg-background py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="What to expect"
+              title={<>Our Veneer <em>Process</em></>}
+              description="A careful approach to designing your new smile"
+            />
+            <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {process.map((step, index) => (
+                <Reveal as="li" key={`process-step-${step.step}`} variant="up" delay={index * 80} className={`${CARD} relative flex h-full items-start gap-4 p-5 sm:block sm:p-6`}>
+                  <span className="w-10 shrink-0 text-3xl leading-none sm:block sm:text-4xl" aria-hidden="true">
+                    <span className="accent-serif text-gold">{step.step}</span>
+                  </span>
+                  <div className="min-w-0 sm:mt-4">
+                    <h3 className="text-lg font-semibold tracking-[-0.01em] text-ink">{step.title}</h3>
+                    <p className="mt-1.5 text-sm leading-6 text-gray-600 sm:mt-2">{step.description}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <ConsultationBand
+          eyebrow="Veneer consultation"
+          title={<>Start with a <em>veneer consultation</em></>}
+          description="Dr. Aguil looks at your goals, your bite, and how much preparation your teeth would need, and talks through alternatives before you decide."
+          href={VENEER_CONSULTATION_HREF}
+          source="veneers_mid_cta"
+          className="bg-background pt-0 md:pt-0"
+        />
+
+        {/* Front teeth scenarios + cluster index */}
+        <section className="bg-ivory py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Front teeth"
+              title={<>Only need your front teeth <em>transformed?</em></>}
+              description="Plan for 2 or 4 veneers with transparent pricing, shade strategy, and conservative prep."
+            />
+            <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
+              {[
+                {
+                  label: '2 veneers',
+                  title: 'Targeted front tooth fixes',
+                  description: 'A good option for a single dark tooth, chips, or peg laterals after whitening.',
+                  cta: 'Explore 2 veneer plans',
+                },
+                {
+                  label: '4 veneers',
+                  title: 'Balance the entire smile zone',
+                  description: 'Prevent shade mismatch and create even, natural symmetry across your front teeth.',
+                  cta: 'Explore 4 veneer plans',
+                },
+              ].map((option, index) => (
+                <Reveal key={option.label} variant="up" delay={index * 80} className="h-full">
+                  <Link
+                    to="/veneers/front-teeth-veneers-los-angeles/"
+                    className={`${CARD} lift-card group flex h-full flex-col p-7`}
+                  >
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold-dark">{option.label}</span>
+                    <span className="mt-2 text-xl font-semibold tracking-[-0.01em] text-ink">{option.title}</span>
+                    <span className="mt-2 text-base leading-7 text-gray-600">{option.description}</span>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-dark">
+                      <span className="link-sweep pb-0.5">{option.cta}</span>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </Reveal>
+              ))}
             </div>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8">
-                {process.map((step, index) => (
-                  <div key={`process-step-${step.step}`} className="flex gap-6">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-bold text-secondary">{step.step}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
+            {/*
+              Cluster index. This pillar previously linked only to the front-teeth child,
+              so the cost and single-tooth pages had no internal path in from the hub —
+              Search Console listed the sitemap as their only referring URL.
+            */}
+            <div className="mx-auto mt-16 max-w-5xl md:mt-20">
+              <SectionHeading
+                eyebrow="Guides"
+                title="Veneer guides"
+                description="Detail on the questions that come up most often before a veneer consultation."
+              />
+              <div className="mt-10 grid gap-4 md:grid-cols-2">
+                {veneerGuides.map((guide, index) => (
+                  <Reveal key={guide.href} variant="up" delay={(index % 2) * 80} className="h-full">
+                    <Link to={guide.href} className={`${CARD} lift-card group flex h-full flex-col p-6`}>
+                      <span className="text-lg font-semibold tracking-[-0.01em] text-ink">{guide.title}</span>
+                      <span className="mt-2 text-sm leading-6 text-gray-600">{guide.description}</span>
+                      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-dark">
+                        <span className="link-sweep pb-0.5">{guide.cta}</span>
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                      </span>
+                    </Link>
+                  </Reveal>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Los Angeles-Focused Veneer Planning */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
-                Los Angeles-Focused Veneer Planning
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                In Los Angeles, your smile shows up on video calls, in photos, and in everyday conversation. We look at how your teeth move as you speak, laugh, and smile, and if your gum levels need refining we can pair veneers with gentle laser recontouring. Some patients prefer slightly warmer undertones and others prefer a brighter, cooler shade. We plan the shade with you so it suits your face and the light you are usually in.
-              </p>
-            </div>
+        {/* Estimate + financing */}
+        <section className="bg-background pb-4 pt-16 md:pt-24">
+          <div className="section-container">
+            <Reveal variant="up" className={`${CARD} mx-auto max-w-4xl p-7 md:p-10`}>
+              <p className="eyebrow">Cost</p>
+              <h2 className="mt-4 text-2xl font-semibold tracking-[-0.02em] text-ink md:text-3xl">Understand your veneer estimate</h2>
+              <p className="mt-4 text-base leading-7 text-gray-600">{getTreatmentCostAnswer('porcelainVeneer')}</p>
+              <Link
+                to="/veneers/2-front-teeth-veneers-cost-los-angeles/"
+                className="group mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-dark"
+              >
+                <span className="link-sweep pb-0.5">Planning just two front teeth? Compare the cost factors.</span>
+                <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </Reveal>
           </div>
         </section>
 
-        {/* Caring for Your Veneers */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
-                Caring for Your Veneers
-              </h2>
-              <ul className="max-w-3xl mx-auto space-y-4">
-                <li className="flex gap-3">
-                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">
-                    Attend professional cleanings every 3 to 4 months with hygienists trained in veneer-safe polishing paste.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">
-                    Wear your nightguard nightly to protect porcelain edges from clenching and grinding.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">
-                    Use non-abrasive toothpaste and gentle floss to protect the finish and keep the margins clean.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">
-                    Schedule quick bite checks after major orthodontic changes or new restorative work to keep veneers balanced.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <Check className="h-6 w-6 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">
-                    Keep a travel-safe whitening pen and veneer case in your bag for touch-ups while you travel.
-                  </span>
-                </li>
-              </ul>
+        <FinancingOptionsSection
+          className="bg-background"
+          title="Comparing 2 veneers, 4 veneers, or a fuller veneer plan?"
+          description="Right after reviewing front-teeth veneer options and transparent planning guidance, our Cherry financing page lets you explore monthly payment options before moving into the full treatment process."
+        />
+
+        {/* Los Angeles planning + care */}
+        <section className="bg-ivory py-16 md:py-24">
+          <div className="section-container grid gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <SectionHeading
+                align="left"
+                eyebrow="Shade and planning"
+                title={<>Los Angeles-Focused <em>Veneer Planning</em></>}
+              />
+              <Reveal as="p" variant="up" delay={120} className="mt-6 text-lg leading-8 text-gray-600">
+                In Los Angeles, your smile shows up on video calls, in photos, and in everyday conversation. We look at how your teeth move as you speak, laugh, and smile, and if your gum levels need refining we can pair veneers with gentle laser recontouring. Some patients prefer slightly warmer undertones and others prefer a brighter, cooler shade. We plan the shade with you so it suits your face and the light you are usually in.
+              </Reveal>
+            </div>
+            <div>
+              <SectionHeading
+                align="left"
+                eyebrow="Aftercare"
+                title={<>Caring for Your <em>Veneers</em></>}
+              />
+              <Reveal as="ul" variant="up" delay={120} className={`${CARD} mt-6 divide-y divide-gold/10 px-6`}>
+                {[
+                  'Attend professional cleanings every 3 to 4 months with hygienists trained in veneer-safe polishing paste.',
+                  'Wear your nightguard nightly to protect porcelain edges from clenching and grinding.',
+                  'Use non-abrasive toothpaste and gentle floss to protect the finish and keep the margins clean.',
+                  'Schedule quick bite checks after major orthodontic changes or new restorative work to keep veneers balanced.',
+                  'Keep a travel-safe whitening pen and veneer case in your bag for touch-ups while you travel.',
+                ].map((tip) => (
+                  <li key={tip} className="flex gap-3 py-4">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                    <span className="text-base leading-7 text-gray-600">{tip}</span>
+                  </li>
+                ))}
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Everything you need to know about porcelain veneers
+        <section className="bg-background py-16 md:py-24">
+          <div className="section-container">
+            <SectionHeading
+              eyebrow="Answers"
+              title={<>Frequently Asked <em>Questions</em></>}
+              description="Everything you need to know about porcelain veneers"
+            />
+            <Reveal variant="up" className="mx-auto mt-10 max-w-3xl">
+              <ServiceFaqList faqs={faqs} openFirst />
+              <p className="mt-6 text-sm leading-6 text-gray-600">
+                Learn more about veneer preparation and care from the{' '}
+                <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" target="_blank" rel="noopener noreferrer" className="font-medium text-gold-dark underline underline-offset-4">American Dental Association</a>.
               </p>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              {faqs.map((faq, index) => (
-                <details
-                  key={`veneer-faq-${index}`}
-                  className="faq-item"
-                >
-                  <summary className="text-left font-medium text-foreground">
-                    {faq.question}
-                  </summary>
-                  <p className="faq-answer">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
-
-            <p className="mx-auto mt-6 max-w-3xl text-sm text-muted-foreground">
-              Learn more about veneer preparation and care from the{' '}
-              <a href="https://www.mouthhealthy.org/all-topics-a-z/veneers" target="_blank" rel="noopener noreferrer" className="text-secondary underline underline-offset-4">American Dental Association</a>.
-            </p>
-
-            {/* Internal Linking and Service Recommendations */}
-            <div className="mx-auto mt-12 max-w-5xl space-y-8">
-              <InternalLinkingWidget 
-                context="veneer" 
-                variant="expanded"
-                currentPage="/veneers"
-              />
-              <div className="mx-auto max-w-3xl">
-                <ServiceRecommendation
-                  currentService="Porcelain Veneers"
-                  context="complement"
-                  recommendations={[
-                  {
-                    title: "Teeth Whitening",
-                    href: "/zoom-whitening",
-                    description: "Complement your veneer results with professional whitening",
-                    duration: "1 hour",
-                    combination: true
-                  },
-                  {
-                    title: "Gum Contouring",
-                    href: "/services#cosmetic",
-                    description: "Frame your veneers with balanced gum lines",
-                    duration: "30 to 60 min",
-                  },
-                  {
-                    title: "Smile Makeover",
-                    href: "/smile-makeover-los-angeles",
-                    description: "Complete transformation with multiple procedures",
-                    duration: "Multiple visits",
-                  }
-                  ]}
-                />
-              </div>
-            </div>
+            </Reveal>
           </div>
         </section>
-
-        {/* Social Proof: Patient Reviews */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                What Our Patients Say
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A selection of reviews from patients at Exquisite Dentistry.
-              </p>
-            </div>
-            <div className="max-w-6xl mx-auto">
-              <FeaturedReviewWall reviews={featuredReviews.slice(0, 6)} />
-            </div>
-          </div>
-        </section>
-
-        {/* Before & After Transformations */}
-        <SmileGalleryPreview />
 
         {/* Related Articles Section */}
         <RelatedArticles
@@ -551,50 +467,68 @@ const Veneers = () => {
           subtitle="Explore our blog for expert insights on porcelain veneers, costs, and care"
         />
 
-        {/* CTA Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Ready to Transform Your Smile?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Schedule a consultation to learn how porcelain veneers could fit your
-                smile and your goals.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  variant="default" 
-                  size="lg"
-                  asChild
-                >
-                  <Link to={consultationHref('porcelain-veneers')}>Schedule Consultation</Link>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  asChild
-                >
-                  <Link to="/contact/">
-                    Contact Us
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Additional Internal Links near CTA */}
-              <div className="mt-12 pt-8 border-t border-muted">
-                <InternalLinkingWidget 
-                  context="veneer" 
-                  variant="compact"
-                  currentPage="/veneers/"
-                  title="Explore Related Services"
+        {/* Related services and resources, collapsed so they don't bury the next step */}
+        <section className="bg-background pt-12 md:pt-16">
+          <div className="section-container">
+            <details className={`${CARD} group mx-auto max-w-5xl`}>
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 sm:px-8 [&::-webkit-details-marker]:hidden">
+                <span className="min-w-0">
+                  <span className="block text-lg font-semibold tracking-[-0.01em] text-ink">More veneer resources</span>
+                  <span className="mt-1 block text-sm text-gray-600">Related treatments, cost guides, and planning articles</span>
+                </span>
+                <ChevronDown className="h-5 w-5 shrink-0 text-gold transition-transform duration-300 group-open:rotate-180" aria-hidden="true" />
+              </summary>
+              <div className="space-y-6 border-t border-gold/10 px-4 pb-6 pt-2 sm:px-8">
+                <InternalLinkingWidget
+                  context="veneer"
+                  variant="expanded"
+                  currentPage="/veneers"
+                  className="my-4"
+                />
+                <ServiceRecommendation
+                  currentService="Porcelain Veneers"
+                  context="complement"
+                  recommendations={[
+                    {
+                      title: "Teeth Whitening",
+                      href: "/zoom-whitening",
+                      description: "Complement your veneer results with professional whitening",
+                      duration: "1 hour",
+                      combination: true
+                    },
+                    {
+                      title: "Gum Contouring",
+                      href: "/services#cosmetic",
+                      description: "Frame your veneers with balanced gum lines",
+                      duration: "30 to 60 min",
+                    },
+                    {
+                      title: "Smile Makeover",
+                      href: "/smile-makeover-los-angeles",
+                      description: "Complete transformation with multiple procedures",
+                      duration: "Multiple visits",
+                    }
+                  ]}
                 />
               </div>
-
-              <LastUpdated date="December 2025" className="text-center" />
-            </div>
+            </details>
           </div>
         </section>
+
+        {/* CTA Section */}
+        <ConsultationBand
+        closing
+          tone="light"
+          eyebrow="Your consultation"
+          title={<>Ready to Transform <em>Your Smile?</em></>}
+          description="Schedule a consultation to learn how porcelain veneers could fit your smile and your goals."
+          href={VENEER_CONSULTATION_HREF}
+          source="veneers_final_cta"
+          secondaryLink={{ text: 'Contact Us', href: '/contact/' }}
+        />
+        <div className="section-container pb-12">
+          <LastUpdated date="December 2025" className="mt-0 text-center" />
+        </div>
       </div>
     </>
   );

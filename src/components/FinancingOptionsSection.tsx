@@ -170,19 +170,19 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
           className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-white via-stone-50 to-white shadow-[0_30px_90px_-50px_rgba(0,0,0,0.45)]"
         >
           <div className="absolute inset-0">
-            <div className="absolute left-[-8rem] top-[-8rem] h-56 w-56 rounded-full bg-gold/15 blur-3xl" />
-            <div className="absolute bottom-[-10rem] right-[-6rem] h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+            <div className="absolute left-[-12rem] top-[-12rem] h-[22rem] w-[22rem] bg-[radial-gradient(closest-side,hsl(var(--gold)/0.16),transparent)]" />
+            <div className="absolute bottom-[-14rem] right-[-10rem] h-[24rem] w-[24rem] bg-[radial-gradient(closest-side,hsl(var(--primary)/0.10),transparent)]" />
           </div>
 
           <div className="relative grid gap-8 p-8 md:p-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-secondary">
+              <p className="eyebrow">
                 {eyebrow}
               </p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <h2 className="mt-4 text-[clamp(1.6rem,3.4vw,2.4rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-ink">
                 {title}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-base leading-7 text-gray-600 md:text-lg md:leading-8">
                 {description}
               </p>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">
@@ -193,7 +193,7 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-ink">
                       Insurance can be checked first.
                     </p>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
@@ -221,12 +221,12 @@ const FinancingOptionsSection: React.FC<FinancingOptionsSectionProps> = ({
               {defaultHighlights.map(({ title: highlightTitle, description: highlightDescription, Icon }) => (
                 <div
                   key={highlightTitle}
-                  className="rounded-[1.5rem] border border-border/80 bg-white/90 p-5 shadow-[0_20px_40px_-32px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+                  className="rounded-2xl border border-gold/15 bg-white p-5 shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/10 text-gold">
                     <Icon size={20} />
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">{highlightTitle}</h3>
+                  <h3 className="mt-4 text-base font-semibold text-ink">{highlightTitle}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{highlightDescription}</p>
                 </div>
               ))}
