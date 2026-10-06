@@ -12,13 +12,15 @@ const tabletViewports = [
 ] as const;
 
 const primaryMobileLinks = [
-  'Services',
   'Smile Gallery',
   'Patient Reviews',
   'About Dr. Aguil',
+  'Financing',
   'Locations',
   'Contact',
 ] as const;
+
+const CALL_LINK = 'a[aria-label="Call (323) 272-2388"]:visible';
 
 const parseRgb = (color: string) => {
   const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
@@ -98,14 +100,14 @@ for (const viewport of mobileViewports) {
     test('header fits viewport and controls have adequate touch targets', async ({ page }) => {
       const header = page.locator('header').first();
       const logoLink = page.locator('header a[href="/"]').first();
-      const searchButton = page.locator('button[aria-label="Search site"]:visible').first();
+      const callButton = header.locator(CALL_LINK).first();
       const menuButton = page
         .locator('button[aria-label="Open navigation menu"]:visible, button[aria-label="Close navigation menu"]:visible')
         .first();
 
       await expect(header).toBeVisible();
       await expect(logoLink).toBeVisible();
-      await expect(searchButton).toBeVisible();
+      await expect(callButton).toBeVisible();
       await expect(menuButton).toBeVisible();
       await expect(header.locator('a[href^="/schedule-consultation"]:visible').first()).toHaveCSS(
         'color',
@@ -131,12 +133,12 @@ for (const viewport of mobileViewports) {
       expect(headerBox!.height).toBeLessThanOrEqual(84);
 
       const logoBox = await logoLink.boundingBox();
-      const searchBox = await searchButton.boundingBox();
+      const callBox = await callButton.boundingBox();
       expect(logoBox).not.toBeNull();
-      expect(searchBox).not.toBeNull();
-      expect(logoBox!.x + logoBox!.width + 6).toBeLessThanOrEqual(searchBox!.x);
+      expect(callBox).not.toBeNull();
+      expect(logoBox!.x + logoBox!.width + 6).toBeLessThanOrEqual(callBox!.x);
 
-      for (const control of [searchButton, menuButton]) {
+      for (const control of [callButton, menuButton]) {
         const controlBox = await control.boundingBox();
         expect(controlBox).not.toBeNull();
         expect(controlBox!.width).toBeGreaterThanOrEqual(44);
@@ -149,6 +151,7 @@ for (const viewport of mobileViewports) {
 
       await expect(menuDialog.getByRole('link', { name: 'Schedule Consultation' })).toBeVisible();
       await expect(menuDialog.getByRole('link', { name: /Call \(323\) 272-2388/i })).toBeVisible();
+      await expect(menuDialog.getByRole('button', { name: 'Search site', exact: true })).toBeVisible();
 
       for (const label of primaryMobileLinks) {
         await expect(menuDialog.getByRole('link', { name: label })).toBeVisible();
@@ -156,8 +159,11 @@ for (const viewport of mobileViewports) {
 
       await expectMenuLayoutIsReadable(page);
 
-      const popularServicesButton = menuDialog.getByRole('button', { name: 'Popular Services' });
-      await popularServicesButton.click();
+      const servicesButton = menuDialog.getByRole('button', { name: 'Services', exact: true });
+      await expect(servicesButton).toHaveAttribute('aria-expanded', 'false');
+      await servicesButton.click();
+      await expect(servicesButton).toHaveAttribute('aria-expanded', 'true');
+      await expect(menuDialog.getByRole('link', { name: 'All services' })).toBeVisible();
       await expect(menuDialog.getByRole('link', { name: 'Porcelain Veneers' })).toBeVisible();
       await expect(menuDialog.getByRole('link', { name: 'Emergency Dentist' })).toBeVisible();
 
@@ -187,7 +193,7 @@ for (const viewport of tabletViewports) {
     const header = page.locator('header').first();
     await expect(header).toBeVisible();
     await expect(header.locator('a[href^="/schedule-consultation"]:visible').first()).toBeVisible();
-    await expect(page.locator('button[aria-label="Search site"]:visible').first()).toBeVisible();
+    await expect(header.locator(CALL_LINK).first()).toBeVisible();
     await expect(page.locator('button[aria-label="Open navigation menu"]:visible').first()).toBeVisible();
 
     const headerOverflow = await header.evaluate((el) => el.scrollWidth - el.clientWidth);
@@ -255,36 +261,147 @@ test('desktop compact mode uses inline nav and keeps actions unclipped', async (
   expect(headerOverflow).toBeLessThanOrEqual(1);
 });
 
-test('desktop services dropdown keeps readable contrast and remains on-screen', async ({ page }) => {
+test('desktop services mega menu is readable, on-screen and keyboard operable', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await stabilizePage(page);
 
-  await page.getByRole('button', { name: 'Browse services' }).click();
-  const servicesMenu = page.locator('[role="menu"]').first();
-  await expect(servicesMenu).toBeVisible();
+  const trigger = page.getByRole('button', { name: 'Browse services' });
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await trigger.click();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
 
-  const menuBackground = await servicesMenu.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(menuBackground).not.toContain('255, 255, 255');
+  const panel = page.locator('#nav-panel-services');
+  await expect(panel).toBeVisible();
 
-  const menuBounds = await servicesMenu.boundingBox();
-  expect(menuBounds).not.toBeNull();
-  expect(menuBounds!.x).toBeGreaterThanOrEqual(8);
-  expect(menuBounds!.x + menuBounds!.width).toBeLessThanOrEqual(1432);
+  const panelBackground = await panel.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(relativeLuminance(parseRgb(panelBackground))).toBeLessThan(40);
 
-  const serviceCards = servicesMenu.locator('a[href]');
-  await expect(serviceCards).toHaveCount(6);
+  const bounds = await panel.boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x).toBeGreaterThanOrEqual(0);
+  expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(1440);
+  expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(900);
 
-  for (let i = 0; i < 6; i += 1) {
-    const card = serviceCards.nth(i);
-    const box = await card.boundingBox();
-    expect(box).not.toBeNull();
-    expect(box!.height).toBeGreaterThanOrEqual(58);
-
-    const label = card.locator('span').first();
-    await expect(label).toBeVisible();
-    await expect(label).not.toHaveText('');
+  for (const label of ['Porcelain Veneers', 'Dental Implants', 'Invisalign', 'Emergency Dentist', 'iTero Scanner']) {
+    const link = panel.getByRole('link', { name: new RegExp(`^${label}`) });
+    await expect(link).toBeVisible();
+    const box = await link.boundingBox();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
   }
+  await expect(panel.getByRole('link', { name: 'View all services' })).toBeVisible();
+  await expect(panel.getByRole('link', { name: 'Book a consultation' })).toBeVisible();
+
+  // Escape closes the panel and hands focus back to the trigger.
+  await panel.getByRole('link', { name: /^Porcelain Veneers/ }).focus();
+  await page.keyboard.press('Escape');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await expect(panel).toBeHidden();
+  await expect(trigger).toBeFocused();
+
+  // ArrowDown on the trigger opens it and moves into the first link; choosing a link navigates and closes.
+  await page.keyboard.press('ArrowDown');
+  await expect(panel).toBeVisible();
+  await expect(panel.getByRole('link', { name: /^Porcelain Veneers/ })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/veneers\/?$/);
+  await expect(panel).toBeHidden();
+  await expect(page.locator('nav[aria-label="Primary"] button[aria-label="Browse services"]')).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('desktop More panel opens on hover intent and closes on outside click', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/');
+  await stabilizePage(page);
+
+  const trigger = page.getByRole('button', { name: 'More pages' });
+  await trigger.hover();
+  const panel = page.locator('#nav-panel-more');
+  await expect(panel).toBeVisible();
+  await expect(panel.getByRole('link', { name: 'Insurance' })).toBeVisible();
+  await expect(panel.getByRole('link', { name: 'Contact' })).toBeVisible();
+  const bounds = await panel.boundingBox();
+  expect(bounds!.x).toBeGreaterThanOrEqual(0);
+  expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(1280);
+
+  await page.mouse.click(640, 700);
+  await expect(panel).toBeHidden();
+});
+
+test('desktop panels survive clicks inside and swallow the dismissing click', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await stabilizePage(page);
+
+  // A press on a non-focusable spot inside the open panel must not close it.
+  const trigger = page.getByRole('button', { name: 'Browse services' });
+  await trigger.click();
+  const panel = page.locator('#nav-panel-services');
+  await expect(panel).toBeVisible();
+  await panel.getByText('Change how your smile looks.').click();
+  await page.waitForTimeout(300);
+  await expect(panel).toBeVisible();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+
+  // Clicking the dimmed page closes the More panel without activating what lies beneath.
+  const heroCta = page.locator('main a[href^="/schedule-consultation"]').first();
+  await expect(heroCta).toBeVisible();
+  const ctaBox = await heroCta.boundingBox();
+  await page.getByRole('button', { name: 'More pages' }).click();
+  await expect(page.locator('#nav-panel-more')).toBeVisible();
+  await page.mouse.click(ctaBox!.x + ctaBox!.width / 2, ctaBox!.y + ctaBox!.height / 2);
+  await expect(page.locator('#nav-panel-more')).toBeHidden();
+  await page.waitForTimeout(400);
+  await expect(page).toHaveURL(/\/$/);
+});
+
+for (const width of [1024, 1100, 1280, 1440, 1920, 2560]) {
+  test(`desktop header at ${width}px keeps every control on one row without overlap`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await stabilizePage(page);
+
+    const header = page.locator('header').first();
+    expect(await header.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+
+    const boxes = await page.evaluate(() => {
+      const pick = (selector: string) => {
+        const el = document.querySelector(selector);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+      };
+      return {
+        logo: pick('header a[href="/"]'),
+        nav: pick('nav[aria-label="Primary"] > ul'),
+        search: pick('header button[aria-label="Search site"]'),
+        book: pick('header a[href^="/schedule-consultation"]'),
+      };
+    });
+
+    expect(boxes.logo && boxes.nav && boxes.search && boxes.book).toBeTruthy();
+    expect(boxes.logo!.right).toBeLessThan(boxes.nav!.left);
+    expect(boxes.nav!.right).toBeLessThan(boxes.search!.left);
+    expect(boxes.book!.right).toBeLessThanOrEqual(width);
+    // Single row: all controls share the main bar.
+    expect(Math.abs(boxes.nav!.top - boxes.search!.top)).toBeLessThanOrEqual(1);
+  });
+}
+
+test('desktop utility strip scrolls away without shifting page content', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await stabilizePage(page);
+
+  const header = page.locator('header').first();
+  const mainTop = await page.evaluate(() => document.querySelector('main')!.getBoundingClientRect().top + window.scrollY);
+  await page.evaluate(() => window.scrollTo(0, 600));
+  await expect.poll(() => header.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(-36);
+  const mainTopAfter = await page.evaluate(() => document.querySelector('main')!.getBoundingClientRect().top + window.scrollY);
+  expect(mainTopAfter).toBe(mainTop);
+  await expect(page.locator('nav[aria-label="Primary"]')).toBeInViewport();
 });
 
 for (const width of [320, 390, 768]) {
@@ -301,7 +418,7 @@ for (const width of [320, 390, 768]) {
     const header = page.locator('header');
     const controls = [
       header.getByRole('link', { name: 'Book', exact: true }),
-      header.getByRole('button', { name: 'Search site', exact: true }),
+      header.getByRole('link', { name: 'Call (323) 272-2388', exact: true }),
       header.getByRole('button', { name: 'Open navigation menu', exact: true }),
     ];
     expect(await header.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
@@ -317,7 +434,9 @@ for (const width of [320, 390, 768]) {
         return el.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2));
       })).toBe(true);
     }
-    await controls[1].click();
+    // Search lives at the top of the menu.
+    const searchMenu = await openMobileMenu(page);
+    await searchMenu.getByRole('button', { name: 'Search site', exact: true }).click();
     const searchInput = page.getByPlaceholder('Search services, locations, pages, or blog posts…');
     await expect(searchInput).toBeVisible();
     await searchInput.fill('veneers');

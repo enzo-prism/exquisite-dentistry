@@ -278,7 +278,11 @@ test('mobile search drawer fits, accepts input, and navigates from a result', as
   await page.goto('/');
   await stabilizePage(page);
 
-  await page.getByRole('button', { name: 'Search site' }).click();
+  // Search is the first control inside the menu on phones.
+  await page.getByRole('button', { name: 'Open navigation menu' }).click();
+  const navMenu = page.locator('[role="dialog"]').filter({ hasText: 'Book Your Visit' }).first();
+  await navMenu.getByRole('button', { name: 'Search site', exact: true }).click();
+  await expect(navMenu).toHaveCount(0);
 
   const searchInput = page.getByRole('combobox');
   await expect(searchInput).toBeVisible();
@@ -317,7 +321,7 @@ test('mobile menu remains scrollable, readable, and closes after navigation', as
   expect(menuBox!.x + menuBox!.width).toBeLessThanOrEqual(391);
   expect(menuBox!.height).toBeLessThanOrEqual(667);
 
-  await menuDialog.getByRole('button', { name: 'Popular Services' }).click();
+  await menuDialog.getByRole('button', { name: 'Services', exact: true }).click();
   await expect(menuDialog.getByRole('link', { name: 'Emergency Dentist' })).toBeVisible();
   const menuIssues = await inspectCurrentMobileViewport(page, 'mobile navigation sheet');
   expect(menuIssues, JSON.stringify(menuIssues, null, 2)).toEqual([]);

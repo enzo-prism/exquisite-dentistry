@@ -64,7 +64,9 @@ test.describe('ChatGPT Ads landing page', () => {
     await expect(page.getByLabel('Phone')).toHaveAttribute('required', '');
     await expect(page.locator('textarea')).toHaveCount(0);
     await expect(page.locator('video, iframe')).toHaveCount(0);
-    await expect(page.getByRole('button', { name: 'Ask the Concierge' })).toHaveCount(0);
+    // The isolated landing page carries no site-wide floating controls.
+    await expect(page.locator('nav[aria-label="Quick contact"]')).toHaveCount(0);
+    await expect(page.getByText('Pay over time')).toHaveCount(0);
     await expect(page.getByText(/do not include symptoms, medical history, insurance details/i)).toBeVisible();
   });
 

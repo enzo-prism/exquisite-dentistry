@@ -3,6 +3,8 @@ import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { isTwoFrontVeneersPath } from './data/twoFrontVeneers';
 import './index.css';
+// Imported here, not from Navbar: the prerender and unit tests load components in plain Node, which can't import CSS.
+import './components/nav/nav.css';
 import App from './App.tsx';
 import { initializeUTMTracking } from './utils/utmTracking';
 import { initializeGoogleAdsTracking } from './utils/googleAdsTracking';

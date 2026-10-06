@@ -10,7 +10,6 @@ import { PerformanceProvider } from "@/hooks/use-performance-monitor";
 import { isChatGptAdsLandingPath } from "@/utils/analyticsHost";
 import RouteAwareObservability from "@/components/RouteAwareObservability";
 import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
-import WebsiteConcierge from "@/components/WebsiteConcierge";
 import MobileActionBar from "@/components/MobileActionBar";
 import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
 import OpenAIAdsMeasurement from "@/components/OpenAIAdsMeasurement";
@@ -358,12 +357,6 @@ const AppRoutes = () => {
   );
 };
 
-const RouteAwareConcierge = () => {
-  const location = useLocation();
-  const isChatGptAdsLanding = isChatGptAdsLandingPath(location.pathname);
-
-  return isChatGptAdsLanding ? null : <WebsiteConcierge />;
-};
 
 const App = () => {
   // Initialize error reduction on app start
@@ -383,7 +376,6 @@ const App = () => {
                 <div className="flex flex-col min-h-screen">
                   <AppRoutes />
                 </div>
-                <RouteAwareConcierge />
                 <MobileActionBar />
               </CherryWidgetProvider>
               <RouteAwareObservability />

@@ -1,0 +1,149 @@
+/*
+ * Header + menu motion for the nav components. Imported from src/main.tsx
+ * (never from a component: the prerender loads components in plain Node).
+ * Rules: transform/opacity only, one shared ease, no idle loops, and every
+ * element's resting (non-animated) state is its final visible state, so
+ * `animation: none` (reduced motion, tests) always shows the full menu.
+ */
+:root {
+  --nav-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Mobile menu dialog ---------- */
+@keyframes nav-overlay-in { from { opacity: 0; } }
+@keyframes nav-overlay-out { to { opacity: 0; } }
+@keyframes nav-sheet-in { from { opacity: 0; transform: translate3d(0, -12px, 0); } }
+@keyframes nav-sheet-out { to { opacity: 0; transform: translate3d(0, -8px, 0); } }
+@keyframes nav-panel-in { from { opacity: 0.4; transform: translate3d(100%, 0, 0); } }
+@keyframes nav-panel-out { to { opacity: 0.4; transform: translate3d(100%, 0, 0); } }
+@keyframes nav-rise { from { opacity: 0; transform: translate3d(0, 14px, 0); } }
+@keyframes nav-fade { from { opacity: 0; } }
+
+.nav-overlay[data-state='open'] { animation: nav-overlay-in 0.45s var(--nav-ease) both; }
+.nav-overlay[data-state='closed'] { animation: nav-overlay-out 0.25s ease both; }
+
+/* Phones: the sheet is the whole screen, it settles down from the header. */
+.nav-sheet[data-state='open'] { animation: nav-sheet-in 0.5s var(--nav-ease) both; }
+.nav-sheet[data-state='closed'] { animation: nav-sheet-out 0.22s ease-in both; }
+
+/* Tablets: a panel that glides in from the right edge. */
+@media (min-width: 640px) {
+  .nav-sheet[data-state='open'] { animation: nav-panel-in 0.6s var(--nav-ease) both; }
+  .nav-sheet[data-state='closed'] { animation: nav-panel-out 0.3s cubic-bezier(0.7, 0, 0.84, 0) both; }
+}
+
+/* Staggered entrance for menu rows: set --i on each row. */
+.nav-sheet[data-state='open'] .nav-stagger {
+  animation: nav-rise 0.6s var(--nav-ease) both;
+  animation-delay: calc(80ms + var(--i, 0) * 34ms);
+}
+
+/* Rows revealed by expanding the Services group. */
+.nav-expand-item {
+  animation: nav-rise 0.45s var(--nav-ease) both;
+  animation-delay: calc(var(--i, 0) * 22ms);
+}
+
+/* ---------- Desktop disclosure panels (mega menu + More) ---------- */
+.nav-panel {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, -6px, 0);
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.24s var(--nav-ease),
+    visibility 0s linear 0.24s;
+}
+
+.nav-panel[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 0.32s var(--nav-ease),
+    transform 0.5s var(--nav-ease),
+    visibility 0s;
+}
+
+.nav-panel .nav-panel-item {
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.nav-panel[data-open='true'] .nav-panel-item {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s var(--nav-ease),
+    transform 0.6s var(--nav-ease);
+  transition-delay: calc(60ms + var(--i, 0) * 28ms);
+}
+
+/* The scrim takes pointer input until its visibility delay ends, so the tap
+   that dismisses a panel never also clicks the link or video beneath it. */
+.nav-scrim {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.nav-scrim[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s var(--nav-ease), visibility 0s;
+}
+
+/* Gliding gold hairline under the desktop links. */
+.nav-indicator {
+  transform-origin: 0 50%;
+  transition:
+    transform 0.5s var(--nav-ease),
+    opacity 0.3s ease;
+}
+
+/* Utility strip content fades as it scrolls under the main bar. */
+.nav-strip-content {
+  transition: opacity 0.35s ease;
+}
+
+/* Hamburger -> X. */
+.nav-glyph-line {
+  transition: transform 0.45s var(--nav-ease), opacity 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-overlay[data-state],
+  .nav-sheet[data-state],
+  .nav-sheet[data-state='open'] .nav-stagger,
+  .nav-expand-item {
+    animation: none !important;
+  }
+
+  .nav-panel,
+  .nav-panel[data-open='true'],
+  .nav-panel .nav-panel-item,
+  .nav-panel[data-open='true'] .nav-panel-item,
+  .nav-indicator,
+  .nav-glyph-line {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  .nav-panel,
+  .nav-panel .nav-panel-item {
+    transform: none;
+  }
+
+  /* No fade, but keep the visibility delay that swallows the dismissing tap. */
+  .nav-scrim {
+    transition: visibility 0s linear 0.25s;
+  }
+
+  .nav-scrim[data-open='true'] {
+    transition: none;
+  }
+}

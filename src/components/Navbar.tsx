@@ -1,56 +1,35 @@
-import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { ChevronDown, Menu, Phone, Search, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowRight, Phone, Search } from 'lucide-react';
 import ImageComponent from '@/components/Image';
 import PhoneLink from '@/components/PhoneLink';
 import { cn } from '@/lib/utils';
 import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
-import {
-  DESKTOP_CORE_LINKS,
-  DESKTOP_EXPANDED_LINKS,
-  DESKTOP_MORE_LINKS,
-  MOBILE_PRIMARY_LINKS,
-  MOBILE_SECONDARY_LINKS,
-  POPULAR_SERVICE_LINKS,
-  SERVICE_SECTION_MATCHES,
-  SERVICE_MENU_LINKS,
-} from '@/constants/navigation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { trackConsultationIntent, trackSiteSearchOpened } from '@/utils/vercelAnalytics';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import DesktopNav from '@/components/nav/DesktopNav';
+import MenuGlyph from '@/components/nav/MenuGlyph';
+import MobileMenu from '@/components/nav/MobileMenu';
+import UtilityStrip from '@/components/nav/UtilityStrip';
 
 const LazySiteSearch = lazy(() => import('@/components/search/SiteSearch'));
 
-const DESKTOP_LINK_BASE_CLASS =
-  'inline-flex h-10 items-center whitespace-nowrap rounded-full px-2.5 text-[13px] font-medium transition-colors duration-200 xl:px-3 xl:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+const LOGO_SRC = '/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png';
 
-const DESKTOP_ICON_BUTTON_CLASS =
-  'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/85 transition-colors duration-200 hover:bg-white/[0.11] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+/** Scroll distance after which the bar turns to smoked glass and the strip fades. */
+const SCROLLED_AT = 12;
 
-const MOBILE_ICON_BUTTON_CLASS =
-  'inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-md text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
+const RING = 'focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-champagne/70';
 
-const MOBILE_LINK_BASE_CLASS =
-  'block min-h-11 w-full rounded-xl px-3.5 py-3 text-[15px] font-medium leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50';
-
-const DESKTOP_COMPACT_ONLY_MORE_LINKS = new Set(
-  DESKTOP_EXPANDED_LINKS.map((item) => item.to),
+const DESKTOP_ICON_BUTTON_CLASS = cn(
+  'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.14] text-white/80 transition-colors duration-200 hover:border-white/30 hover:bg-white/[0.06] hover:text-white',
+  RING,
 );
 
-const matchesPath = (pathname: string, to: string) => pathname === to || pathname.startsWith(`${to}/`);
+const MOBILE_ICON_BUTTON_CLASS = cn(
+  'inline-flex h-11 min-h-[44px] w-11 min-w-[44px] shrink-0 items-center justify-center rounded-full text-white transition-colors duration-200 hover:bg-white/10',
+  RING,
+);
 
 const Navbar = () => {
   const location = useLocation();
@@ -58,16 +37,7 @@ const Navbar = () => {
   const [shouldMountSearch, setShouldMountSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-
-  const isServicesSectionActive = useMemo(
-    () => SERVICE_SECTION_MATCHES.some((path) => matchesPath(location.pathname, path)),
-    [location.pathname],
-  );
-  const isDesktopMoreActive = useMemo(
-    () => DESKTOP_MORE_LINKS.some((item) => matchesPath(location.pathname, item.to)),
-    [location.pathname],
-  );
+  const [isDesktopPanelOpen, setIsDesktopPanelOpen] = useState(false);
 
   const prefetchSearch = useCallback(() => {
     import('@/components/search/SiteSearch').catch(() => undefined);
@@ -75,7 +45,6 @@ const Navbar = () => {
 
   const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
-    setIsMobileServicesOpen(false);
   }, []);
 
   const openSearch = useCallback(() => {
@@ -95,7 +64,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
+      setScrolled(window.scrollY > SCROLLED_AT);
     };
 
     handleScroll();
@@ -103,6 +72,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // ⌘K / Ctrl+K opens search from anywhere except while typing.
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -135,12 +105,7 @@ const Navbar = () => {
     closeMobileMenu();
   }, [location.pathname, closeMobileMenu]);
 
-  useEffect(() => {
-    if (!isMobileMenuOpen) {
-      setIsMobileServicesOpen(false);
-    }
-  }, [isMobileMenuOpen]);
-
+  // Widening to the desktop layout closes the phone/tablet menu.
   useEffect(() => {
     if (!isMobileMenuOpen || typeof window === 'undefined') return;
 
@@ -163,428 +128,148 @@ const Navbar = () => {
     return () => mediaQuery.removeListener(handleDesktop);
   }, [isMobileMenuOpen, closeMobileMenu]);
 
+  const glass = scrolled || isDesktopPanelOpen;
+
   return (
     <>
-      <header
-        className={cn(
-          'sticky top-0 z-50 w-full border-b border-white/10 backdrop-blur-xl transition-[background-color,box-shadow] duration-300',
-          // Once content scrolls beneath it, the bar turns to smoked glass.
-          scrolled ? 'bg-black/[0.82] shadow-[0_24px_42px_-30px_rgba(0,0,0,0.95)]' : 'bg-black',
-        )}
-      >
-        <div className="mx-auto w-full max-w-[1380px] px-3 sm:px-5 lg:px-6">
-          <div className="flex min-h-16 flex-wrap items-center gap-2 py-2 sm:min-h-[4.5rem] sm:gap-3 lg:h-[4.5rem] lg:flex-nowrap lg:py-0">
-            <Link
-              to="/"
-              className="group relative inline-flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      {/*
+        Sticky with a negative top on desktop: the 36px utility strip scrolls
+        away with the page while the main bar stays pinned. Nothing about the
+        header's box changes on scroll, so page content never shifts (CLS 0).
+      */}
+      <header className="sticky top-0 z-50 w-full text-white lg:-top-9">
+        {/* Background lives on its own layer so the header itself never becomes
+            a backdrop-filter root (the mega menu needs to blur the page). */}
+        <div
+          aria-hidden="true"
+          className={cn(
+            'pointer-events-none absolute inset-0 -z-10 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+            glass
+              ? 'border-white/[0.08] bg-[rgba(10,9,8,0.86)] shadow-[0_18px_40px_-28px_rgba(0,0,0,0.45)] backdrop-blur-xl backdrop-saturate-150'
+              : 'border-white/[0.06] bg-black',
+          )}
+        />
+
+        <UtilityStrip hidden={scrolled} />
+
+        {/*
+          One row for every width (a single logo link keeps `header a[href="/"]` unambiguous):
+          <1024px  logo · call · book · menu   (wraps, never overflows, under large text)
+          ≥1024px  logo · centered navigation · search, call, book
+        */}
+        <div className="mx-auto flex min-h-16 w-full max-w-[1440px] flex-wrap items-center justify-between gap-x-2 gap-y-1 px-3 py-[10px] min-[360px]:px-4 sm:px-6 lg:grid lg:h-[72px] lg:min-h-0 lg:grid-cols-[1fr_auto_1fr] lg:gap-4 lg:py-0 xl:gap-6 xl:px-8">
+          <Link
+            to="/"
+            className="group inline-flex min-h-11 shrink-0 items-center justify-self-start rounded-md focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-champagne/70 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
+          >
+            <ImageComponent
+              src={LOGO_SRC}
+              alt="Exquisite Dentistry Logo"
+              responsive
+              logoType="main"
+              priority
+              className="block h-auto w-[112px] object-contain transition-opacity duration-300 group-hover:opacity-85 min-[360px]:w-[124px] sm:w-[136px] lg:w-[142px] xl:w-[156px] 2xl:w-[164px]"
+            />
+          </Link>
+
+          <div className="hidden lg:flex lg:justify-center">
+            <DesktopNav
+              pathname={location.pathname}
+              onBookClick={trackNavbarConsultation}
+              onPanelOpenChange={setIsDesktopPanelOpen}
+            />
+          </div>
+
+          <div className="hidden shrink-0 items-center justify-self-end gap-2 lg:flex">
+            <button
+              type="button"
+              onClick={openSearch}
+              onMouseEnter={prefetchSearch}
+              onFocus={prefetchSearch}
+              className={DESKTOP_ICON_BUTTON_CLASS}
+              aria-label="Search site"
+              aria-keyshortcuts="Meta+K Control+K"
+              title="Search (⌘K)"
             >
-              <span
+              <Search className="h-4 w-4" aria-hidden="true" />
+            </button>
+
+            <PhoneLink
+              phoneNumber={PHONE_NUMBER_DISPLAY}
+              analyticsSource="desktop_nav_icon"
+              className={DESKTOP_ICON_BUTTON_CLASS}
+              aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
+              title={`Call ${PHONE_NUMBER_DISPLAY}`}
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+            </PhoneLink>
+
+            <Link
+              to={SCHEDULE_CONSULTATION_PATH}
+              // ctaText stays 'Schedule Consultation' so existing dashboards keep one series.
+              onClick={() => trackNavbarConsultation('desktop_nav_book_button', 'Schedule Consultation')}
+              className={cn(
+                'group ml-1 inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-gold px-[18px] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_10px_30px_-12px_rgba(166,138,92,0.7)] transition-[background-color,box-shadow] duration-300',
+                'focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-champagne/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+              )}
+            >
+              Book Consultation
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 motion-reduce:transition-none"
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-2 rounded-xl bg-gold/10 opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-100"
-              />
-              <ImageComponent
-                src="/lovable-uploads/fd45d438-10a2-4bde-9162-a38816b28958.png"
-                alt="Exquisite Dentistry Logo"
-                responsive
-                logoType="main"
-                priority
-                className="relative h-6 w-auto max-w-[124px] object-contain transition-transform duration-200 ease-out group-hover:scale-[1.02] sm:h-7 sm:max-w-[154px] md:h-8 md:max-w-[182px] lg:h-7 lg:max-w-[148px] xl:h-8 xl:max-w-[176px] 2xl:h-9 2xl:max-w-[192px]"
-                style={{ objectPosition: 'center' }}
               />
             </Link>
+          </div>
 
-            <div className="ml-auto hidden min-w-0 items-center gap-1.5 lg:flex">
-              <nav aria-label="Primary" className="min-w-0 items-center gap-0.5 xl:gap-1 lg:flex">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      type="button"
-                      className={cn(
-                        DESKTOP_LINK_BASE_CLASS,
-                        'gap-1.5',
-                        isServicesSectionActive
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
-                      )}
-                      aria-label="Browse services"
-                    >
-                      Services
-                      <ChevronDown size={16} aria-hidden="true" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="start"
-                    sideOffset={10}
-                    className="w-[22rem] max-h-[min(70vh,34rem)] max-w-[calc(100vw-2rem)] overflow-y-auto border border-zinc-700/70 !bg-zinc-950/95 p-2.5 text-zinc-100 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md xl:w-[24rem] 2xl:w-[26rem]"
-                  >
-                    <div className="px-3 pb-2 pt-1">
-                      <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-400">
-                        Most Requested
-                      </p>
-                      <p className="mt-1 text-xs leading-relaxed text-zinc-500">
-                        High-interest treatments patients ask about first.
-                      </p>
-                    </div>
-                    {SERVICE_MENU_LINKS.map((item) => (
-                      <DropdownMenuItem
-                        key={item.to}
-                        asChild
-                        className="cursor-pointer rounded-xl p-0 text-white focus:bg-transparent focus:text-white data-[highlighted]:bg-transparent data-[highlighted]:text-white"
-                      >
-                        <NavLink
-                          to={item.to}
-                          className={({ isActive }) => {
-                            const isCurrent = item.to === '/services' ? isServicesSectionActive : isActive;
+          <div className="ml-auto flex max-w-full flex-wrap items-center justify-end gap-1.5 sm:gap-2 lg:hidden">
+            <PhoneLink
+              phoneNumber={PHONE_NUMBER_DISPLAY}
+              analyticsSource="mobile_nav_icon"
+              className={cn(MOBILE_ICON_BUTTON_CLASS, 'border border-white/[0.16] text-champagne hover:text-white')}
+              aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
+            >
+              <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
+            </PhoneLink>
 
-                            return cn(
-                              'group flex w-full flex-col items-start gap-1.5 whitespace-normal rounded-xl border px-3.5 py-3 text-left transition-colors duration-150',
-                              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
-                              isCurrent
-                                ? 'border-gold/35 bg-gold/10 text-white'
-                                : 'border-white/10 bg-white/[0.03] text-white/95 hover:border-white/25 hover:bg-white/[0.08]',
-                            );
-                          }}
-                        >
-                          <span className="text-[15px] font-semibold leading-tight text-white">
-                            {item.label}
-                          </span>
-                          {item.description ? (
-                            <span className="max-w-[34ch] text-[13px] leading-snug text-white/70 group-hover:text-white/90">
-                              {item.description}
-                            </span>
-                          ) : null}
-                        </NavLink>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+            <Link
+              to={SCHEDULE_CONSULTATION_PATH}
+              onClick={() => trackNavbarConsultation('mobile_nav_book_button', 'Book')}
+              className={cn(
+                'inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full bg-gold px-[18px] text-sm font-semibold text-white',
+                'focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-champagne/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+              )}
+            >
+              Book
+            </Link>
 
-                {DESKTOP_CORE_LINKS.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      cn(
-                        DESKTOP_LINK_BASE_CLASS,
-                        isActive
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
-                      )
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                ))}
-
-                {DESKTOP_EXPANDED_LINKS.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      cn(
-                        DESKTOP_LINK_BASE_CLASS,
-                        'hidden min-[1240px]:inline-flex',
-                        isActive
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
-                      )
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                ))}
-
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      type="button"
-                      className={cn(
-                        DESKTOP_LINK_BASE_CLASS,
-                        'gap-1',
-                        isDesktopMoreActive
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/85 hover:bg-white/[0.07] hover:text-white',
-                      )}
-                      aria-label="More pages"
-                    >
-                      More
-                      <ChevronDown size={14} aria-hidden="true" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="end"
-                    className="w-52 border border-white/10 bg-black/95 p-1.5 text-white shadow-xl"
-                  >
-                    {DESKTOP_MORE_LINKS.map((item) => (
-                      <DropdownMenuItem
-                        key={item.to}
-                        asChild
-                        className="cursor-pointer rounded-lg p-0 text-white focus:bg-white/10 focus:text-white data-[highlighted]:bg-white/10 data-[highlighted]:text-white"
-                      >
-                        <NavLink
-                          to={item.to}
-                          className={({ isActive }) =>
-                            cn(
-                              'block w-full rounded-lg px-3 py-2 text-sm transition-colors',
-                              DESKTOP_COMPACT_ONLY_MORE_LINKS.has(item.to) && 'min-[1240px]:hidden',
-                              isActive ? 'bg-white/10 text-white' : 'text-white/90',
-                            )
-                          }
-                        >
-                          {item.label}
-                        </NavLink>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </nav>
-
-              <div className="ml-1 flex shrink-0 items-center gap-1 lg:gap-1.5">
+            <MobileMenu
+              open={isMobileMenuOpen}
+              onOpenChange={setIsMobileMenuOpen}
+              pathname={location.pathname}
+              onSearch={openSearch}
+              onSearchIntent={prefetchSearch}
+              onBookClick={trackNavbarConsultation}
+              trigger={
                 <button
                   type="button"
-                  onClick={openSearch}
-                  onMouseEnter={prefetchSearch}
-                  onFocus={prefetchSearch}
-                  className={cn(
-                    DESKTOP_ICON_BUTTON_CLASS,
-                    'min-[1450px]:w-auto min-[1450px]:gap-2 min-[1450px]:px-3',
-                  )}
-                  aria-label="Search site"
+                  className={MOBILE_ICON_BUTTON_CLASS}
+                  aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  aria-expanded={isMobileMenuOpen}
                 >
-                  <Search className="h-4 w-4" aria-hidden="true" />
-                  <span className="hidden min-[1450px]:inline">Search</span>
-                  <kbd className="hidden rounded bg-black/45 px-2 py-0.5 text-[10px] text-white/70 min-[1700px]:inline-flex">
-                    ⌘K
-                  </kbd>
+                  <MenuGlyph open={isMobileMenuOpen} />
                 </button>
-
-                <PhoneLink
-                  phoneNumber={PHONE_NUMBER_DISPLAY}
-                  analyticsSource="desktop_nav_icon"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-light/50 bg-white/10 text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[1320px]:hidden"
-                  aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
-                >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                </PhoneLink>
-
-                <PhoneLink
-                  phoneNumber={PHONE_NUMBER_DISPLAY}
-                  analyticsSource="desktop_nav_text"
-                  className="hidden h-10 items-center gap-2 rounded-full border border-gold-light/50 bg-white/10 px-3.5 text-sm font-semibold text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[1320px]:inline-flex"
-                >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  <span>Call</span>
-                </PhoneLink>
-
-                <Button
-                  size="sm"
-                  asChild
-                  className="h-10 rounded-full bg-gold px-3.5 text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white min-[1480px]:px-4"
-                >
-                  <Link
-                    to={SCHEDULE_CONSULTATION_PATH}
-                    onClick={() => trackNavbarConsultation('desktop_nav_book_button', 'Schedule Consultation')}
-                  >
-                    <span className="min-[1480px]:hidden">Book</span>
-                    <span className="hidden min-[1480px]:inline min-[1680px]:hidden">Book Now</span>
-                    <span className="hidden min-[1680px]:inline">Schedule Consultation</span>
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="ml-auto flex max-w-full flex-wrap items-center justify-end gap-[6px] lg:hidden">
-              <PhoneLink
-                phoneNumber={PHONE_NUMBER_DISPLAY}
-                analyticsSource="mobile_nav_icon"
-                className="hidden h-11 w-11 items-center justify-center rounded-full border border-gold-light/50 bg-white/10 text-gold-light transition-colors duration-200 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light/70 min-[400px]:inline-flex"
-                aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
-              >
-                <Phone className="h-5 w-5" aria-hidden="true" />
-              </PhoneLink>
-
-              <Button
-                size="sm"
-                asChild
-                className="inline-flex h-auto min-h-[44px] rounded-full bg-gold px-[14px] py-[10px] text-sm font-semibold !text-white hover:bg-gold/90 hover:!text-white sm:px-4"
-              >
-                <Link
-                  to={SCHEDULE_CONSULTATION_PATH}
-                  onClick={() => trackNavbarConsultation('mobile_nav_book_button', 'Book')}
-                >
-                  Book
-                </Link>
-              </Button>
-
-              <button
-                type="button"
-                onClick={openSearch}
-                onMouseEnter={prefetchSearch}
-                onFocus={prefetchSearch}
-                className={MOBILE_ICON_BUTTON_CLASS}
-                aria-label="Search site"
-              >
-                <Search className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
-              </button>
-
-              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <button
-                    type="button"
-                    className={MOBILE_ICON_BUTTON_CLASS}
-                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                    aria-expanded={isMobileMenuOpen}
-                  >
-                    {isMobileMenuOpen ? (
-                      <X className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
-                    ) : (
-                      <Menu className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
-                    )}
-                  </button>
-                </SheetTrigger>
-
-                <SheetContent
-                  side="right"
-                  className="w-full max-w-[100vw] overflow-hidden border-l border-white/10 bg-zinc-950 p-0 text-white sm:w-[26rem] sm:max-w-[100vw] md:w-[30rem] [&>button]:right-4 [&>button]:top-4 [&>button]:inline-flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:border [&>button]:border-white/20 [&>button]:bg-black/65 [&>button]:text-white [&>button]:opacity-100"
-                >
-                  <div className="flex h-full flex-col bg-[radial-gradient(circle_at_88%_8%,rgba(212,175,55,0.14),transparent_42%),linear-gradient(to_bottom,rgba(24,24,27,0.98),rgba(9,9,11,0.98))]">
-                    <div className="shrink-0 border-b border-white/10 px-5 pb-5 pt-6 sm:px-6">
-                      <SheetTitle className="pr-[44px] text-left text-base font-semibold text-white [overflow-wrap:anywhere]">Book Your Visit</SheetTitle>
-                      <SheetDescription className="mt-1 text-left text-sm text-white/70">
-                        New patients can schedule online in under a minute.
-                      </SheetDescription>
-
-                      <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                        <Button
-                          asChild
-                          size="lg"
-                          className="h-auto min-h-12 w-full whitespace-normal rounded-full bg-gold px-4 py-3 text-sm font-semibold text-black [overflow-wrap:anywhere] hover:bg-gold/90"
-                        >
-                          <Link
-                            to={SCHEDULE_CONSULTATION_PATH}
-                            onClick={() => {
-                              trackNavbarConsultation('mobile_menu_schedule_button', 'Schedule Consultation');
-                              closeMobileMenu();
-                            }}
-                          >
-                            Schedule Consultation
-                          </Link>
-                        </Button>
-
-                        <PhoneLink
-                          phoneNumber={PHONE_NUMBER_DISPLAY}
-                          analyticsSource="mobile_menu"
-                          onClick={closeMobileMenu}
-                          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-4 py-3 text-sm font-semibold text-white [overflow-wrap:anywhere] transition-colors duration-200 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
-                        >
-                          <Phone className="h-4 w-4" aria-hidden="true" />
-                          <span>{`Call ${PHONE_NUMBER_DISPLAY}`}</span>
-                        </PhoneLink>
-                      </div>
-                    </div>
-
-                    <nav
-                      className="flex flex-1 flex-col items-stretch justify-start overflow-y-auto px-4 pb-6 pt-4 sm:px-5"
-                      aria-label="Mobile"
-                    >
-                      <ul className="space-y-1.5">
-                        {MOBILE_PRIMARY_LINKS.map((item) => (
-                          <li key={item.to}>
-                            <NavLink
-                              to={item.to}
-                              onClick={closeMobileMenu}
-                              className={({ isActive }) => {
-                                const isCurrent = item.to === '/services' ? isServicesSectionActive : isActive;
-
-                                return cn(
-                                  MOBILE_LINK_BASE_CLASS,
-                                  isCurrent
-                                    ? 'border border-white/15 bg-white/10 text-gold'
-                                    : 'text-white/90 hover:bg-white/[0.08] hover:text-white',
-                                );
-                              }}
-                            >
-                              {item.label}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-5 rounded-2xl border border-white/12 bg-white/[0.03] p-2.5">
-                        <button
-                          type="button"
-                          onClick={() => setIsMobileServicesOpen((prev) => !prev)}
-                          className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10 focus-visible:!outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
-                          aria-expanded={isMobileServicesOpen}
-                          aria-controls="mobile-service-links"
-                        >
-                          <span>Popular Services</span>
-                          <ChevronDown
-                            className={cn(
-                              'h-4 w-4 transition-transform duration-200',
-                              isMobileServicesOpen ? 'rotate-180 text-gold' : 'text-white/70',
-                            )}
-                            aria-hidden="true"
-                          />
-                        </button>
-
-                        {isMobileServicesOpen ? (
-                          <ul id="mobile-service-links" className="mt-2 space-y-1.5 pb-1">
-                            {POPULAR_SERVICE_LINKS.map((item) => (
-                              <li key={item.to}>
-                                <NavLink
-                                  to={item.to}
-                                  onClick={closeMobileMenu}
-                                  className={({ isActive }) =>
-                                    cn(
-                                      'block w-full rounded-xl px-3.5 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
-                                      isActive
-                                        ? 'bg-white/10 text-gold'
-                                        : 'text-white/85 hover:bg-white/10 hover:text-white',
-                                    )
-                                  }
-                                >
-                                  {item.label}
-                                </NavLink>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </div>
-
-                      <div className="mt-6 border-t border-white/10 pt-4">
-                        <p className="px-3.5 text-[11px] uppercase tracking-[0.18em] text-white/45">
-                          More Resources
-                        </p>
-                        <ul className="mt-2 space-y-1.5">
-                          {MOBILE_SECONDARY_LINKS.map((item) => (
-                            <li key={item.to}>
-                              <NavLink
-                                to={item.to}
-                                onClick={closeMobileMenu}
-                                className={({ isActive }) =>
-                                  cn(
-                                    'block w-full rounded-xl px-3.5 py-2.5 text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50',
-                                    isActive
-                                      ? 'bg-white/[0.08] text-gold'
-                                      : 'text-white/75 hover:bg-white/[0.07] hover:text-white',
-                                  )
-                                }
-                              >
-                                {item.label}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </nav>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
+              }
+            />
           </div>
         </div>
       </header>
+
+      {/* Dims the page under an open desktop panel: below the header, above floating widgets. */}
+      <div
+        aria-hidden="true"
+        data-open={isDesktopPanelOpen}
+        className="nav-scrim fixed inset-0 z-[48] hidden bg-black/45 lg:block"
+      />
 
       {shouldMountSearch ? (
         <Suspense fallback={null}>

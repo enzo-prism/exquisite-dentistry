@@ -41,7 +41,7 @@ The floating-widget line is approved compact conversion copy, not a replacement 
 ## Floating Widget Layout Contract
 
 - Show the complete title and supporting line in the bottom-right Cherry launcher at every viewport size. Do not collapse the launcher to an icon-only button.
-- Keep the standard launcher at 288px wide. Below 376px, use `min(288px, calc(100vw - 88px))` so the full copy can wrap without colliding with the bottom-left concierge.
+- Keep the standard launcher at 288px wide. On phones, use `min(288px, calc(100vw - 24px))` so the full copy can wrap inside the viewport (the bottom-left concierge was removed 2026-10-05).
 - Allow the supporting line to wrap on narrow screens. Do not clip it, hide it, or apply an ellipsis.
 - Keep the launcher above the mobile quick-action bar and below consent, navigation, and dialog overlays.
 - A fixed launcher overlaying nearby headings or body copy while the visitor scrolls is expected. Do not shrink it, hide it, or add page padding solely to clear that overlay.
@@ -92,4 +92,4 @@ Responsive widget checks:
 npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0
 ```
 
-Confirm the full floating copy is visible at 320px, 500px, and desktop widths, with no viewport overflow or overlap with the concierge and the mobile action bar.
+Confirm the full floating copy is visible at 320px, 500px, and desktop widths, with no viewport overflow or overlap with the mobile action bar.

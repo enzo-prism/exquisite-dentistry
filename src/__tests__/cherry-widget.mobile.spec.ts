@@ -247,12 +247,9 @@ const getCherryResponsiveState = async (page: Page) =>
     const desktopRect = desktop.getBoundingClientRect();
     const mobileRect = mobile.getBoundingClientRect();
     const visibleCopyRect = getComputedStyle(mobile).display !== 'none' ? mobileRect : desktopRect;
-    const concierge = document.querySelector('[aria-label="Ask the Concierge"]') as HTMLElement | null;
-    const conciergeRect = concierge?.getBoundingClientRect();
-    const quickActions = Array.from(document.querySelectorAll<HTMLButtonElement>('button')).find(
-      (candidate) => candidate.textContent?.includes('Open quick actions'),
-    );
-    const quickActionsRect = quickActions?.getBoundingClientRect();
+    const actionBar = document.querySelector('nav[aria-label="Quick contact"]') as HTMLElement | null;
+    const actionBarVisible = Boolean(actionBar && actionBar.closest('[data-visible="true"]'));
+    const actionBarRect = actionBarVisible ? actionBar!.getBoundingClientRect() : undefined;
 
     const overlaps = (other?: DOMRect) => Boolean(
       other
@@ -269,8 +266,7 @@ const getCherryResponsiveState = async (page: Page) =>
       subtextDisplay: getComputedStyle(subtext).display,
       desktopText: desktop.textContent,
       buttonWidth: buttonRect.width,
-      overlapsConcierge: overlaps(conciergeRect),
-      overlapsQuickActions: overlaps(quickActionsRect),
+      overlapsActionBar: overlaps(actionBarRect),
       overflowsViewport:
         buttonRect.right > window.innerWidth + 0.5 ||
         visibleCopyRect.right > buttonRect.right + 0.5,
@@ -313,43 +309,52 @@ test.describe('Cherry widget mobile behavior', () => {
     await mockCherryRuntime(page);
   });
 
-  test('keeps exactly one floating widget through internal navigation and tears down on non-Cherry routes', async ({
-    page,
-  }) => {
+  test('keeps exactly one floating widget on every route through internal navigation', async ({ page }) => {
     await page.goto('/schedule-consultation/');
     await stabilizePage(page);
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-
-    await page.getByText('Financing and insurance options').click();
-    await page.getByRole('link', { name: 'Open Payment Plans' }).click();
-    await expect(page).toHaveURL(/\/payment-plans\/?$/);
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await expectCherryHidden(page);
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
 
+    await page.getByText('Financing and insurance options').click();
+    await page.getByRole('link', { name: 'Open Payment Plans' }).click();
+    await expect(page).toHaveURL(/\/payment-plans\/?$/);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
     const menuDialog = await openMobileMenu(page);
-    await menuDialog.getByRole('link', { name: 'About Dr. Aguil' }).click();
+    await menuDialog.getByRole('link', { name: 'About Dr. Aguil' }).first().click();
     await expect(page).toHaveURL(/\/about\/?$/);
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 
     await page.locator('header a[href="/"]').first().click();
     await expect(page).toHaveURL(/\/$/);
     await page.getByRole('heading', { name: 'Los Angeles Cosmetic Dentist' }).waitFor({ state: 'attached' });
-    await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expect(page.locator('script#_hw')).toHaveCount(1);
   });
 
-  test('keeps the homepage clear while patients browse proof and treatments', async ({ page }) => {
+  test('shows the financing pill on the homepage once the visitor starts scrolling', async ({ page }) => {
     await page.goto('/');
     await stabilizePage(page);
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await expectCherryHidden(page);
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' }));
-    await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+    await expectCherryVisible(page);
+  });
+
+  test('rides above the mobile action bar without overlapping it', async ({ page }) => {
+    await page.goto('/');
+    await stabilizePage(page);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 2200, behavior: 'auto' }));
+    await expect(page.locator('nav[aria-label="Quick contact"]')).toBeVisible();
+    await expectCherryVisible(page);
+    await expect
+      .poll(() => getCherryResponsiveState(page), { timeout: 10000 })
+      .toMatchObject({ exists: true, overlapsActionBar: false, overflowsViewport: false });
   });
 
   test('stays visible through Safari-like toolbar scroll jitter after reveal', async ({ page }) => {
@@ -387,17 +392,52 @@ test.describe('Cherry widget mobile behavior', () => {
     await expect(button).toBeFocused();
   });
 
-  test('keeps booking and contact forms clear throughout the page', async ({ page }) => {
-    for (const path of ['/schedule-consultation/', '/contact/']) {
+  test('steps aside while a booking or contact field is focused on phones', async ({ page }) => {
+    for (const [path, field] of [
+      ['/schedule-consultation/', '#callback-name'],
+      ['/contact/', '#contact-form input[type="email"]:visible'],
+    ] as const) {
       await page.goto(path);
       await stabilizePage(page);
-      await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-      await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
-      await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-      await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' }));
-      await expectCherryCounts(page, { buttons: 0, mounts: 0 });
-      await expect(page.locator('script#_hw')).toHaveCount(0);
+      await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+      await page.evaluate(() => window.scrollTo({ top: 400, behavior: 'auto' }));
+      await expectCherryVisible(page);
+
+      await page.locator(field).first().focus();
+      await expectCherryHidden(page);
+
+      await page.locator(field).first().blur();
+      await expectCherryVisible(page);
     }
+  });
+
+  test('steps aside while the embedded online scheduler has focus on phones', async ({ page }) => {
+    // Keep the third-party scheduler offline; only the parent page's focus matters.
+    await page.route('https://scheduling.simplifeye.co/**', (route) =>
+      route.fulfill({ contentType: 'text/html', body: '<!doctype html><input aria-label="Name">' }),
+    );
+    await page.goto('/schedule-consultation/');
+    await stabilizePage(page);
+    await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+    await page.evaluate(() => window.scrollTo({ top: 400, behavior: 'auto' }));
+    await expectCherryVisible(page);
+
+    const scheduler = page.locator('iframe[title="Online scheduling"]');
+    await scheduler.scrollIntoViewIfNeeded();
+    const schedulerInput = page.frameLocator('iframe[title="Online scheduling"]').getByLabel('Name');
+    await schedulerInput.click();
+    await expectCherryHidden(page);
+
+    // Tapping back onto the page restores it, even though Safari keeps the
+    // iframe as the active element. Tap the gutter so nothing scrolls to the
+    // top, where the pill hides by design.
+    const box = await scheduler.boundingBox();
+    await page.mouse.click(4, Math.max(120, box!.y - 24));
+    await expectCherryVisible(page);
+
+    // Going back into the scheduler hides it again.
+    await schedulerInput.click();
+    await expectCherryHidden(page);
   });
 
   test('keeps the mobile navigation sheet above Cherry when both are present', async ({ page }) => {
@@ -452,12 +492,12 @@ test('Cherry removes its reveal transition when reduced motion is requested', as
     .toMatchObject({ exists: true, transition: 'none' });
 });
 
-test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ page }) => {
+test('Cherry stays singular across pages on desktop', async ({ page }) => {
   await mockCherryRuntime(page);
   await page.setViewportSize(desktopViewport);
   await page.goto('/schedule-consultation/');
   await stabilizePage(page);
-  await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+  await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 
   await page.getByText('Financing and insurance options').click();
   await page.getByRole('link', { name: 'Open Payment Plans' }).click();
@@ -468,7 +508,8 @@ test('Cherry stays singular across Cherry-enabled pages on desktop', async ({ pa
   await expect(page).toHaveURL(/\/$/);
   await page.getByRole('heading', { name: 'Los Angeles Cosmetic Dentist' }).waitFor({ state: 'attached' });
   await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
-  await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+  await expectCherryCounts(page, { buttons: 1, mounts: 1 });
+  await expectCherryVisible(page);
 
   // Re-enter financing through the visible homepage option; no duplicate mounts.
   await page.locator('main a[href="/payment-plans/"]').first().click();
@@ -496,8 +537,7 @@ test('Cherry keeps its full conversion copy visible at every viewport size', asy
       subtextDisplay: 'block',
       desktopText: 'No hard credit checks • 0% APR options',
       buttonWidth: 288,
-      overlapsConcierge: false,
-      overlapsQuickActions: false,
+      overlapsActionBar: false,
       overflowsViewport: false,
     });
 
@@ -512,8 +552,7 @@ test('Cherry keeps its full conversion copy visible at every viewport size', asy
       subtextDisplay: 'block',
       desktopText: 'No hard credit checks • 0% APR options',
       buttonWidth: 288,
-      overlapsConcierge: false,
-      overlapsQuickActions: false,
+      overlapsActionBar: false,
       overflowsViewport: false,
     });
 
@@ -527,9 +566,18 @@ test('Cherry keeps its full conversion copy visible at every viewport size', asy
       mobileDisplay: 'none',
       subtextDisplay: 'block',
       desktopText: 'No hard credit checks • 0% APR options',
-      buttonWidth: 232,
-      overlapsConcierge: false,
-      overlapsQuickActions: false,
+      buttonWidth: 288,
+      overlapsActionBar: false,
       overflowsViewport: false,
     });
+});
+
+test('the isolated ChatGPT Ads landing page never loads Cherry', async ({ page }) => {
+  await mockCherryRuntime(page);
+  await page.setViewportSize(mobileViewport);
+  await page.goto('/lp/chatgpt/');
+  await stabilizePage(page);
+  await page.evaluate(() => window.scrollTo({ top: 400, behavior: 'auto' }));
+  await expectCherryCounts(page, { buttons: 0, mounts: 0 });
+  await expect(page.locator('script#_hw')).toHaveCount(0);
 });

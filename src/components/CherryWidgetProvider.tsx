@@ -25,6 +25,7 @@ import {
   createCherryWidgetConfig,
 } from '@/constants/cherry';
 import { trackFinancingEngagement } from '@/utils/vercelAnalytics';
+import { isChatGptAdsLandingPath } from '@/utils/analyticsHost';
 
 const CHERRY_WIDGET_HIDE_TRANSITION = 'opacity 180ms ease, visibility 180ms ease, bottom 450ms cubic-bezier(0.16, 1, 0.3, 1)' as const;
 const CHERRY_WIDGET_Z_INDEX = '45' as const;
@@ -105,13 +106,15 @@ const applyFloatingWidgetStyles = (isMobile: boolean, suppressFloating = false) 
 
   mounts.slice(0, -1).forEach((mount) => mount.remove());
 
-  const rightOffset = isMobile ? '8px' : '16px';
+  // Phones: align with the action bar's 12px gutters.
+  const rightOffset = isMobile ? '12px' : '16px';
   // On phones the pill rides above the mobile action bar (0px when the bar is down).
   const bottomOffset = isMobile
     ? 'calc(env(safe-area-inset-bottom, 0px) + 16px + var(--mobile-action-bar-h, 0px))'
     : '24px';
+  // Full width minus the 12px edge gutters on narrow phones (no Concierge to clear anymore).
   const floatingButtonWidth = isMobile
-    ? 'min(288px, calc(100vw - 88px))'
+    ? 'min(288px, calc(100vw - 24px))'
     : '288px';
 
   const styleTargets = [
@@ -269,26 +272,74 @@ const createCherryQueue = () => {
 export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile();
   const { pathname } = useLocation();
-  const isFormRoute = /^\/(schedule-consultation|contact)\/?$/.test(pathname);
+  // The pill is site-wide (it converts well). Only the isolated ChatGPT Ads
+  // landing page and the bare sitemap opt out.
+  const isExcludedRoute = isChatGptAdsLandingPath(pathname) || pathname.replace(/\/+$/, '') === '/sitemap';
+  const [isTyping, setIsTyping] = useState(false);
+  // On phones, step aside while the keyboard is up so the pill never covers a field.
+  const suppressFloating = isMobile && isTyping;
   const [status, setStatus] = useState<CherryWidgetStatus>('idle');
-  const [activeWidgetIds, setActiveWidgetIds] = useState<Set<string>>(() => new Set());
+  // Registrations are still tracked so page sections can keep calling the hook,
+  // but they no longer gate (or re-render) the site-wide pill.
+  const [, setActiveWidgetIds] = useState<Set<string>>(() => new Set());
   const teardownTimerRef = useRef<number | null>(null);
   const readyTimerRef = useRef<number | null>(null);
   const syncFrameRef = useRef<number | null>(null);
   const isMobileRef = useRef(isMobile);
-  const suppressFloatingRef = useRef(isFormRoute);
+  const suppressFloatingRef = useRef(suppressFloating);
   const hasTrackedReadyRef = useRef(false);
   const hasTrackedErrorRef = useRef(false);
   const lastWidgetClickAtRef = useRef(0);
 
-  // Financing stays optional on appointment and contact flows. Nested preview
-  // sections cannot accidentally register an overlay over a form.
-  const hasActiveWidgets = activeWidgetIds.size > 0 && !isFormRoute;
+  // Page sections may still register (financing blocks do), but the floating
+  // pill no longer depends on it: every eligible route shows it.
+  const hasActiveWidgets = !isExcludedRoute;
 
   useEffect(() => {
-    suppressFloatingRef.current = isFormRoute;
-    applyFloatingWidgetStyles(isMobileRef.current, isFormRoute);
-  }, [isFormRoute]);
+    // An embedded iframe (the online scheduler) only reports focus as the
+    // <iframe> itself, so treat it as text entry too. Cherry's own calculator
+    // never counts, or the pill would hide itself mid-typing.
+    const isTextEntry = (element: Element | null) =>
+      !!element &&
+      !element.closest(CHERRY_WIDGET_CLICK_SELECTOR) &&
+      (element.matches('input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]), textarea, select, iframe') ||
+        (element as HTMLElement).isContentEditable);
+    let pendingCheck: number | undefined;
+    const syncFromActiveElement = () => {
+      window.clearTimeout(pendingCheck);
+      pendingCheck = window.setTimeout(() => setIsTyping(isTextEntry(document.activeElement)), 0);
+    };
+    // A press on this page means the visitor has left any iframe, even when the
+    // browser (Safari) keeps reporting the iframe as the active element.
+    const onPointerDown = () => {
+      window.clearTimeout(pendingCheck);
+      pendingCheck = window.setTimeout(() => {
+        const active = document.activeElement;
+        setIsTyping(active?.tagName !== 'IFRAME' && isTextEntry(active));
+      }, 0);
+    };
+    const onFocusIn = (event: FocusEvent) => setIsTyping(isTextEntry(event.target as Element));
+    document.addEventListener('focusin', onFocusIn);
+    document.addEventListener('focusout', syncFromActiveElement);
+    // Focus moving into or out of an iframe fires no focusin/focusout here:
+    // re-check on window focus changes and on any press back on this page.
+    window.addEventListener('blur', syncFromActiveElement);
+    window.addEventListener('focus', syncFromActiveElement);
+    document.addEventListener('pointerdown', onPointerDown, true);
+    return () => {
+      window.clearTimeout(pendingCheck);
+      document.removeEventListener('focusin', onFocusIn);
+      document.removeEventListener('focusout', syncFromActiveElement);
+      window.removeEventListener('blur', syncFromActiveElement);
+      window.removeEventListener('focus', syncFromActiveElement);
+      document.removeEventListener('pointerdown', onPointerDown, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    suppressFloatingRef.current = suppressFloating;
+    applyFloatingWidgetStyles(isMobileRef.current, suppressFloating);
+  }, [suppressFloating]);
 
   useEffect(() => {
     isMobileRef.current = isMobile;
@@ -466,7 +517,7 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
       script?.removeEventListener('load', handleLoad);
       script?.removeEventListener('error', handleError);
     };
-  }, [activeWidgetIds, hasActiveWidgets, renderWidget]);
+  }, [hasActiveWidgets, renderWidget]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !hasActiveWidgets || status === 'error') return;

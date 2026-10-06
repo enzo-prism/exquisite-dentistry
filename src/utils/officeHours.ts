@@ -8,6 +8,9 @@ const OPEN_MINUTE = 8 * 60;
 const CLOSE_MINUTE = 18 * 60;
 const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+/** Compact display form of the same hours, for tight UI such as the mobile menu. */
+export const OFFICE_HOURS_SHORT = 'Mon–Thu 8 AM–6 PM';
+
 export type OfficeStatus = {
   isOpen: boolean;
   /** Short, calm sentence, e.g. "Open now · until 6 PM" or "Opens Monday at 8 AM". */
