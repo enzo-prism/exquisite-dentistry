@@ -16,7 +16,7 @@ const EXCLUDED_PATHS = ['/schedule-consultation', '/contact', '/sitemap'];
 const normalize = (pathname: string) => pathname.replace(/\/+$/, '') || '/';
 
 const isTextEntry = (element: Element | null) =>
-  !!element && (element.matches('input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]), textarea, select') || (element as HTMLElement).isContentEditable);
+  !!element && (element.matches('input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, select') || (element as HTMLElement).isContentEditable);
 
 /**
  * Phone-only bottom bar with the two actions patients actually take: call, or

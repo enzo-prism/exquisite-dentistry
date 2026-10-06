@@ -302,7 +302,7 @@ export const CherryWidgetProvider: React.FC<{ children: ReactNode }> = ({ childr
     const isTextEntry = (element: Element | null) =>
       !!element &&
       !element.closest(CHERRY_WIDGET_CLICK_SELECTOR) &&
-      (element.matches('input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]), textarea, select, iframe') ||
+      (element.matches('input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, select, iframe') ||
         (element as HTMLElement).isContentEditable);
     let pendingCheck: number | undefined;
     const syncFromActiveElement = () => {

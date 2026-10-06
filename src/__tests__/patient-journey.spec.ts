@@ -70,15 +70,16 @@ test('before and after comparisons work with arrow keys, Home, and End', async (
   const slider = page.getByRole('slider', { name: 'Compare Brittany before and after Porcelain Veneers' });
   await slider.scrollIntoViewIfNeeded();
   await slider.focus();
-  await expect(slider).toHaveAttribute('aria-valuenow', '50');
+  await expect(slider).toHaveValue('50');
+  await expect(slider).toHaveAttribute('aria-valuetext', 'Before photo 50%, after photo 50%');
   await slider.press('ArrowRight');
-  await expect(slider).toHaveAttribute('aria-valuenow', '55');
+  await expect(slider).toHaveValue('55');
   await slider.press('Home');
-  await expect(slider).toHaveAttribute('aria-valuenow', '0');
+  await expect(slider).toHaveValue('0');
   await slider.press('End');
-  await expect(slider).toHaveAttribute('aria-valuenow', '100');
+  await expect(slider).toHaveValue('100');
   await slider.press('ArrowLeft');
-  await expect(slider).toHaveAttribute('aria-valuenow', '95');
+  await expect(slider).toHaveValue('95');
 });
 
 test.describe('mobile homepage width', () => {

@@ -33,7 +33,7 @@ Full contract in CLAUDE.md, "Motion & conversion system".
   - words rise in masks, then copy, CTAs and proof cascade in;
   - desktop gets a gentle parallax.
   - Mount-time only; transform/opacity only.
-- **Before/after sliders** sweep once (50→18→82→50) when they come into view, so visitors learn they can drag. Any input cancels the sweep.
+- **Before/after sliders** sweep once (50→18→82→50) when they come into view, so visitors learn they can drag. Any input cancels the sweep. The drag itself was rebuilt on 2026-10-06 for every device: desktop drags are no longer hijacked by native image drag, page scrolls that start on a photo no longer move the divider, and taps jump it. See `docs/comparison-slider.md`.
 - **Other motion:**
   - count-up on "1,000+ smile transformations";
   - gold rules that draw themselves;

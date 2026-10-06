@@ -57,6 +57,7 @@ Manual flows:
 - open search, type `veneers`, choose a result, confirm navigation.
 - open `/contact/`, submit empty form, confirm errors are visible and focus lands on the first issue.
 - open `/schedule-consultation/` and `/payment-plans/`, confirm Cherry/payment CTAs fit and stay reachable.
+- before/after comparisons (homepage "Compare smile transformations", `/smile-gallery/`): start a vertical scroll with your finger on a photo and confirm the page scrolls while the divider stays put. Then drag a divider sideways (it follows the finger) and tap the left or right side (it jumps there). Automated version: `npx playwright test src/__tests__/comparison-slider.spec.ts`. Contract: `docs/comparison-slider.md`.
 - rotate portrait to landscape on a long page and confirm no horizontal panning appears.
 - test with reduced motion enabled and confirm hero/video-heavy sections stay calm.
 
