@@ -45,7 +45,7 @@ Full contract in CLAUDE.md, "Motion & conversion system".
 - No motion library was added. The only new dependency is `@fontsource/cormorant-garamond`: the latin 500-italic file, about 24KB woff2, self-hosted, used for the gold accent words in headings.
 
 ### Conversion
-- **Mobile action bar** (Concierge · Call · Book consultation).
+- **Mobile action bar** (Call · Book consultation; the Concierge button was dropped in the follow-up below).
   - Slides up after the hero and lifts the Cherry pill.
   - Hides while typing.
   - Excluded on the booking and contact pages.
@@ -114,3 +114,16 @@ Full contract in CLAUDE.md, "Motion & conversion system".
 - **Measurement.** Restore GSC OAuth and Vercel MCP access, register GA4 custom dimensions `cta_location` / `interaction_method`, and add a bot filter.
 - **Online scheduler.** The Simplifeye iframe is third-party styled (green, asks for DOB first). Ask the vendor for brand colors / a shorter first step.
 - **Content freshness.** Blog post dates are still interpolated, and "Last updated" stamps need real dates.
+
+## Follow-up, same day: simplify, Cherry everywhere, new navigation
+
+The owner's direction on 2026-10-05.
+
+- **Website Concierge removed.** The floating launcher, its dialog, the action-bar button and its spec are gone. Fewer floating controls.
+- **Cherry "Pay over time" pill on every page.**
+  - It had converted well before. It now covers the homepage, booking and contact pages; only the isolated `/lp/chatgpt/` and `/sitemap` are excluded.
+  - On phones it rides above the action bar.
+  - It steps aside while a text field is focused, so it never sits on a form field.
+  - Page sections still register with the provider, but registration no longer gates the pill.
+- **`/contact/` no longer force-scrolls to the top 120ms after load.** It used to yank visitors who started scrolling right away.
+- **Top navigation fully redesigned.** See the "Navigation" section of CLAUDE.md.

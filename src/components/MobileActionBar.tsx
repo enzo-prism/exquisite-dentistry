@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, MessageCircle, Phone } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import PhoneLink from '@/components/PhoneLink';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -8,7 +8,7 @@ import { PHONE_NUMBER_DISPLAY } from '@/constants/contact';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { isChatGptAdsLandingPath } from '@/utils/analyticsHost';
 import { trackConsultationIntent } from '@/utils/vercelAnalytics';
-import { MOBILE_ACTION_BAR_HEIGHT_PX, OPEN_CONCIERGE_EVENT, setMobileActionBarEnabled, setMobileActionBarVisible } from '@/lib/mobileActionBar';
+import { MOBILE_ACTION_BAR_HEIGHT_PX, setMobileActionBarVisible } from '@/lib/mobileActionBar';
 
 /** Pages that already lead with booking/contact actions (or have their own funnel). */
 const EXCLUDED_PATHS = ['/schedule-consultation', '/contact', '/sitemap'];
@@ -77,11 +77,6 @@ const MobileActionBar: React.FC = () => {
   useEffect(() => () => setMobileActionBarVisible(false), []);
 
   useEffect(() => {
-    setMobileActionBarEnabled(enabled);
-    return () => setMobileActionBarEnabled(false);
-  }, [enabled]);
-
-  useEffect(() => {
     document.documentElement.style.setProperty('--mobile-action-bar-space', enabled ? `calc(${MOBILE_ACTION_BAR_HEIGHT_PX}px + env(safe-area-inset-bottom, 0px))` : '0px');
   }, [enabled]);
 
@@ -101,14 +96,6 @@ const MobileActionBar: React.FC = () => {
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-champagne/60 to-transparent allow-gradient-transparency" aria-hidden="true" />
         <div className="mx-auto flex max-w-lg items-stretch gap-2">
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event(OPEN_CONCIERGE_EVENT))}
-            className="flex h-12 w-12 flex-none items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-champagne transition-colors active:bg-white/15"
-            aria-label="Open concierge"
-          >
-            <MessageCircle className="h-5 w-5" aria-hidden="true" />
-          </button>
           <PhoneLink
             phoneNumber={PHONE_NUMBER_DISPLAY}
             analyticsSource="mobile_action_bar"
@@ -116,7 +103,7 @@ const MobileActionBar: React.FC = () => {
             aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
           >
             <Phone className="h-4 w-4 text-champagne" aria-hidden="true" />
-            Call
+            Call us
           </PhoneLink>
           <Link
             to={SCHEDULE_CONSULTATION_PATH}
@@ -124,11 +111,10 @@ const MobileActionBar: React.FC = () => {
               trackConsultationIntent({ source: 'mobile_action_bar', ctaText: 'Book consultation', destination: SCHEDULE_CONSULTATION_PATH })
             }
             className={cn(
-              'group flex h-12 flex-[1.6] items-center justify-center gap-2 rounded-xl bg-gold px-3 text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(185,162,124,0.8)] transition-colors active:bg-gold-dark',
+              'group flex h-12 flex-[1.5] items-center justify-center gap-2 rounded-xl bg-gold px-3 text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(185,162,124,0.8)] transition-colors active:bg-gold-dark',
             )}
           >
-            <span className="min-[370px]:hidden">Book visit</span>
-            <span className="hidden min-[370px]:inline">Book consultation</span>
+            Book consultation
             <ArrowRight className="h-4 w-4 transition-transform duration-500 group-active:translate-x-0.5" aria-hidden="true" />
           </Link>
         </div>

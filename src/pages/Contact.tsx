@@ -355,10 +355,9 @@ const Contact = () => {
 
       if (location.hash === '#contact-form' && formSectionRef.current) {
         formSectionRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
-        return;
       }
-
-      window.scrollTo(0, 0);
+      // No hash: the app-level route reset already started us at the top. A
+      // delayed scrollTo(0, 0) here yanked visitors who began scrolling early.
     }, 120);
 
     return () => {
