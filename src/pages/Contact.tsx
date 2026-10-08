@@ -1,4 +1,5 @@
 import { annotateLeadSubmission } from '@/utils/leadMeasurement';
+import { useContactFormMeasurement } from '@/hooks/useContactFormMeasurement';
 import { submitContactRequest } from '@/utils/submitContactRequest';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -88,6 +89,7 @@ const EMPTY_BENEFITS_FORM = {
 };
 
 const BenefitsVerificationForm = () => {
+  const { recordStart, recordAttempt } = useContactFormMeasurement('insurance_benefits_request');
   const [values, setValues] = useState(EMPTY_BENEFITS_FORM);
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -119,6 +121,7 @@ const BenefitsVerificationForm = () => {
       return;
     }
 
+    recordAttempt();
     const nextErrors = {
       name: values.name.trim() ? '' : 'Please enter your name.',
       email: !values.email.trim()
@@ -130,6 +133,13 @@ const BenefitsVerificationForm = () => {
     };
 
     if (Object.values(nextErrors).some(Boolean)) {
+      trackContactFormValidationFailed({
+        form: 'insurance_benefits_request',
+        fieldCount: Object.values(nextErrors).filter(Boolean).length,
+        personaMissing: false, nameMissing: Boolean(nextErrors.name),
+        emailMissing: !values.email.trim(), emailInvalid: Boolean(values.email.trim() && nextErrors.email),
+        messageMissing: false,
+      });
       setErrors(nextErrors);
       setStatus('error');
       setFeedback('Please correct the highlighted fields and try again.');
@@ -185,7 +195,7 @@ const BenefitsVerificationForm = () => {
     'block h-12 w-full rounded-xl border border-black/10 bg-white px-4 text-base text-ink placeholder:text-gray-400 transition-[border-color,box-shadow] duration-300 hover:border-gold/40 focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/15';
 
   return (
-    <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-6">
+    <form action={FORM_ENDPOINT} method="POST" noValidate onChangeCapture={recordStart} onSubmit={handleSubmit} className="mt-8 space-y-6">
       <div className="hidden" aria-hidden="true">
         <label htmlFor="benefits-bot-field">
           Do not fill this out
@@ -317,6 +327,7 @@ const BenefitsVerificationForm = () => {
 };
 
 const Contact = () => {
+  const { recordStart, recordAttempt } = useContactFormMeasurement('contact_form');
   const meta = ROUTE_METADATA['/contact'];
   const location = useLocation();
   const [formState, setFormState] = useState({
@@ -410,6 +421,7 @@ const Contact = () => {
       return;
     }
 
+    recordAttempt();
     const trimmedPersona = formState.whichBestDescribesYou.trim();
     const trimmedName = formState.name.trim();
     const trimmedEmail = formState.email.trim();
@@ -706,6 +718,7 @@ const Contact = () => {
                   action={FORM_ENDPOINT}
                   method="POST"
                   noValidate
+                  onChangeCapture={recordStart}
                   onSubmit={handleSubmit}
                   className="mt-6 space-y-6"
                 >

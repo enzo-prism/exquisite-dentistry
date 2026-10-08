@@ -1,5 +1,6 @@
 import { track } from '@vercel/analytics';
 import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { getUTMAttribution } from '@/utils/utmTracking';
 import {
   trackGenerateLead,
   trackGoogleContactClick,
@@ -14,6 +15,10 @@ type VercelAnalyticsValue = string | number | boolean | null;
 type VercelAnalyticsProperties = Record<string, VercelAnalyticsValue | undefined>;
 
 const MAX_PROPERTY_LENGTH = 120;
+// The team's current Web Analytics Pro plan accepts two custom properties.
+// Route, device, and URL campaign dimensions belong to Vercel's native context.
+export const MAX_VERCEL_EVENT_PROPERTIES = 2;
+const TEST_SESSION_KEY = 'exquisite_vercel_test_session_v1';
 const INTENT_DEDUPE_WINDOW_MS = 1_000;
 const recentIntentEvents = new Map<string, number>();
 
@@ -69,6 +74,30 @@ export const sanitizeTrackedUrl = (value: string, preserveCampaign = false) => {
   }
 };
 
+/** An explicit QA visit stays excluded across navigation within this tab. */
+export const isVercelTestTraffic = () => {
+  if (typeof window === 'undefined') return false;
+  const explicitTest = new URLSearchParams(window.location.search).get('_codex_test') === 'true';
+  try {
+    if (explicitTest) window.sessionStorage.setItem(TEST_SESSION_KEY, 'true');
+    return explicitTest || window.sessionStorage.getItem(TEST_SESSION_KEY) === 'true';
+  } catch {
+    return explicitTest;
+  }
+};
+
+/** Keep the last tagged visit on subsequent SPA events without forwarding click IDs. */
+export const getVercelAnalyticsUrl = (value: string) => {
+  const safeUrl = new URL(sanitizeTrackedUrl(value, true));
+  if (!safeUrl.search) {
+    const attribution = getUTMAttribution();
+    for (const key of ['utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      if (attribution[key]) safeUrl.searchParams.set(key, attribution[key]);
+    }
+  }
+  return sanitizeTrackedUrl(safeUrl.toString(), true);
+};
+
 const getCurrentPath = () => {
   if (typeof window === 'undefined') return '/';
   return sanitizeTrackedPath(window.location.pathname);
@@ -99,12 +128,10 @@ const shouldTrackIntent = (key: string) => {
   return true;
 };
 
-const getViewportCategory = () => {
-  if (typeof window === 'undefined') return undefined;
-  return window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
-};
-
 const cleanString = (value: string) => {
+  let decoded = value;
+  try { decoded = decodeURIComponent(value); } catch { return undefined; }
+  if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(decoded) || /(?:\+?\d[\s().-]*){7,}/.test(decoded)) return undefined;
   const cleaned = value.replace(/\s+/g, ' ').trim();
   if (!cleaned) return undefined;
   return cleaned.slice(0, MAX_PROPERTY_LENGTH);
@@ -123,7 +150,7 @@ const cleanProperties = (properties: VercelAnalyticsProperties) => {
         return cleanedProperties;
       }
 
-      cleanedProperties[key] = value;
+      if (typeof value !== 'number' || Number.isFinite(value)) cleanedProperties[key] = value;
       return cleanedProperties;
     },
     {},
@@ -204,16 +231,15 @@ export const trackVercelEvent = (
     typeof window === 'undefined'
     || !isCanonicalAnalyticsHost()
     || getAnalyticsConsent() !== 'granted'
+    || isVercelTestTraffic()
   ) return false;
 
+  // Consent may be granted just before React mounts the SDK. Match the SDK's
+  // queue so an immediate interaction is retained instead of silently lost.
+  if (!window.va) window.va = (...params) => { (window.vaq ??= []).push(params); };
   track(
     eventName,
-    cleanProperties({
-      route: getCurrentRoute(),
-      path: getCurrentPath(),
-      viewport: getViewportCategory(),
-      ...properties,
-    }),
+    Object.fromEntries(Object.entries(cleanProperties(properties)).slice(0, MAX_VERCEL_EVENT_PROPERTIES)),
   );
 
   return true;
@@ -239,8 +265,8 @@ export const trackConsultationIntent = ({
 
   trackVercelEvent('Consultation Intent', {
     source,
-    cta_text: ctaText,
     destination: normalizedDestination,
+    cta_text: ctaText,
     destination_type: getDestinationType(destination),
   });
   trackScheduleClick({ ctaLocation: source });
@@ -259,8 +285,8 @@ export const trackCtaClick = ({
 }) => {
   trackVercelEvent('CTA Clicked', {
     source,
-    cta_text: ctaText,
     destination: normalizeAnalyticsDestination(destination),
+    cta_text: ctaText,
     destination_type: getDestinationType(destination),
   });
   trackGoogleCtaClick({ ctaType: source, ctaLocation: source });
@@ -295,8 +321,21 @@ export const trackContactMethodClick = ({
   return true;
 };
 
+const getSafeFormLabel = (form: string) => (
+  form === 'chatgpt_ads_consultation' ? 'consultation_request'
+    : form === 'contact_form' ? 'website_contact' : 'website_other'
+);
+
+export const trackContactFormStarted = (form: string) => (
+  trackVercelEvent('Contact Form Started', { form: getSafeFormLabel(form) })
+);
+
+export const trackContactFormAttempted = (form: string) => (
+  trackVercelEvent('Contact Form Submit Attempted', { form: getSafeFormLabel(form) })
+);
+
 export const trackContactFormSubmitted = ({
-  form: _form,
+  form,
   persona: _persona,
   hasPhone: _hasPhone,
   acquisitionLead = false,
@@ -307,16 +346,16 @@ export const trackContactFormSubmitted = ({
   acquisitionLead?: boolean;
 }) => {
   trackVercelEvent('Contact Form Submitted', {
-    form: 'website_contact',
+    form: getSafeFormLabel(form),
   });
   if (acquisitionLead) {
-    trackVercelEvent('Acquisition Lead', { form: 'website_contact' });
+    trackVercelEvent('Acquisition Lead', { form: getSafeFormLabel(form) });
     trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
   }
 };
 
 export const trackContactFormValidationFailed = ({
-  form: _form,
+  form,
   fieldCount,
   personaMissing,
   nameMissing,
@@ -333,7 +372,7 @@ export const trackContactFormValidationFailed = ({
   messageMissing: boolean;
 }) => {
   trackVercelEvent('Contact Form Validation Failed', {
-    form: 'website_contact',
+    form: getSafeFormLabel(form),
     field_count: fieldCount,
     persona_missing: personaMissing,
     name_missing: nameMissing,
@@ -344,14 +383,14 @@ export const trackContactFormValidationFailed = ({
 };
 
 export const trackContactFormFailed = ({
-  form: _form,
+  form,
   reason,
 }: {
   form: string;
   reason: string;
 }) => {
   trackVercelEvent('Contact Form Failed', {
-    form: 'website_contact',
+    form: getSafeFormLabel(form),
     reason,
   });
 };
@@ -410,12 +449,12 @@ export const trackSiteSearchResultSelected = ({
   destination: string;
 }) => {
   trackVercelEvent('Site Search Result Selected', {
+    result_type: resultType,
+    destination: normalizeAnalyticsDestination(destination),
     query_state: queryLength > 0 ? 'query' : 'popular',
     query_length_bucket: getQueryLengthBucket(queryLength),
     token_count: tokenCount,
     result_count_bucket: getResultCountBucket(resultCount),
-    result_type: resultType,
-    destination: normalizeAnalyticsDestination(destination),
   });
 };
 

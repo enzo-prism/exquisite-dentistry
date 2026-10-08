@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { normalizeTrackedRoute, sanitizeTrackedUrl } from "@/utils/vercelAnalytics";
+import { normalizeTrackedRoute, sanitizeTrackedUrl, getVercelAnalyticsUrl, isVercelTestTraffic } from "@/utils/vercelAnalytics";
 import { initializeUTMTracking } from "@/utils/utmTracking";
 import GlobalIntentTracking from "@/components/GlobalIntentTracking";
 import { useEffect, useState } from "react";
@@ -17,8 +17,10 @@ import {
 const RouteAwareObservability = () => {
   const { pathname, search } = useLocation();
   const trackedRoute = normalizeTrackedRoute(pathname);
-  const trackedUrl = new URL(sanitizeTrackedUrl(`${window.location.origin}${pathname}${search}`, true));
-  const trackedPath = `${trackedUrl.pathname}${trackedUrl.search}`;
+  const trackedUrl = new URL(getVercelAnalyticsUrl(`${window.location.origin}${pathname}${search}`));
+  // The SDK treats `path` as a pathname, so queries here become encoded path
+  // text. Restore safe campaign queries on the full URL in beforeSend instead.
+  const trackedPath = trackedUrl.pathname;
   const [optionalAnalyticsAllowed, setOptionalAnalyticsAllowed] = useState(
     () => getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost(),
   );
@@ -71,22 +73,23 @@ const RouteAwareObservability = () => {
   return (
     <>
       <GlobalIntentTracking />
-      {optionalAnalyticsAllowed && (
+      {optionalAnalyticsAllowed && !isVercelTestTraffic() && (
         <>
           <Analytics
             mode={import.meta.env.PROD ? "production" : "development"}
             route={trackedRoute}
             path={trackedPath}
             beforeSend={(event) => (
-              getAnalyticsConsent() !== 'granted'
+              getAnalyticsConsent() !== 'granted' || isVercelTestTraffic()
                 ? null
-                : { ...event, url: sanitizeTrackedUrl(event.url, true) }
+                : { ...event, url: getVercelAnalyticsUrl(event.url) }
             )}
           />
           <SpeedInsights
             route={trackedRoute}
+            sampleRate={1}
             beforeSend={(event) => (
-              getAnalyticsConsent() !== 'granted'
+              getAnalyticsConsent() !== 'granted' || isVercelTestTraffic()
                 ? null
                 : { ...event, url: sanitizeTrackedUrl(event.url) }
             )}
