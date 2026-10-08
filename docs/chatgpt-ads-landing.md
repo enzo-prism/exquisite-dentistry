@@ -17,7 +17,7 @@ The form posts to the established Formspree endpoint with stable operational met
 - `source=chatgpt_ads`
 - `site=exquisite`
 
-It requires name and email; phone and the non-clinical consultation-interest choice are optional. Interest defaults to “Not sure yet.” A supplied phone is validated, and analytics records whether a phone was actually supplied. There is no free-text field. Required-field validation, a honeypot, a synchronous double-submit lock, and a 12-second request timeout protect the flow. OpenAI conversion measurement runs only after Formspree returns success.
+It requires name and email; phone and the non-clinical consultation-interest choice are optional. Interest defaults to “Not sure yet.” A supplied phone is validated, and the confirmed-submission helper receives whether a phone was actually supplied. There is no free-text field. Required-field validation, a honeypot, a synchronous double-submit lock, and a 12-second request timeout protect the flow. OpenAI conversion measurement runs only after Formspree returns success.
 
 The page asks visitors not to submit symptoms, medical history, insurance information, or other health information. Formspree is treated as a non-PHI intake provider unless the practice has separate written vendor and BAA confirmation. The privacy policy names Formspree and explains this limited use.
 
