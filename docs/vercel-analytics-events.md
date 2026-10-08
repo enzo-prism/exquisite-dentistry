@@ -18,6 +18,8 @@ The table lists the first two properties retained by the current plan. Other int
 
 Safe UTMs are retained on pageview and event URLs across same-tab navigation from the last tagged visit. Click references, arbitrary queries and hash fragments are removed. Campaign/ad tagging must exist upstream; the site cannot infer which creative was clicked. GA4 can report the campaign dimensions under the existing setup.
 
+The React SDK `path` receives only the normalized pathname. Safe UTMs are restored on the complete event URL in `beforeSend`; putting a query string in `path` makes the collector encode it as pathname text.
+
 Explicit `_codex_test=true` visits suppress Vercel pageviews, events and Speed Insights for the rest of that tab session, including subsequent untagged navigation. Use this marker for production QA, and close that tab after testing. Identified test form submissions also remain excluded from successful acquisition events.
 
 ## Event Taxonomy

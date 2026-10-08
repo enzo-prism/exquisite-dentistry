@@ -116,11 +116,11 @@ test('explicit QA visits stay excluded across document navigation', async ({ pag
 test('campaign context survives navigation and sends no click references or personal query values', async ({ page }) => {
   await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=local_fixture&utm_content=02_veneer_intent&oppref=opaque&email=fixture%40example.test#private');
   await expect.poll(() => pageviewPaths(page)).toEqual([
-    '/lp/chatgpt?utm_source=chatgpt&utm_medium=paid&utm_campaign=local_fixture&utm_content=02_veneer_intent',
+    '/lp/chatgpt',
   ]);
   await page.goto('/contact/');
   await expect.poll(() => pageviewPaths(page)).toEqual([
-    '/contact?utm_source=chatgpt&utm_medium=paid&utm_campaign=local_fixture&utm_content=02_veneer_intent',
+    '/contact',
   ]);
   const measuredUrl = await page.evaluate(() => (window as unknown as MeasurementWindow).analyticsBeforeSend?.({
     type: 'event', url: window.location.href,

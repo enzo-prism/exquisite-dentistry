@@ -18,7 +18,9 @@ const RouteAwareObservability = () => {
   const { pathname, search } = useLocation();
   const trackedRoute = normalizeTrackedRoute(pathname);
   const trackedUrl = new URL(getVercelAnalyticsUrl(`${window.location.origin}${pathname}${search}`));
-  const trackedPath = `${trackedUrl.pathname}${trackedUrl.search}`;
+  // The SDK treats `path` as a pathname, so queries here become encoded path
+  // text. Restore safe campaign queries on the full URL in beforeSend instead.
+  const trackedPath = trackedUrl.pathname;
   const [optionalAnalyticsAllowed, setOptionalAnalyticsAllowed] = useState(
     () => getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost(),
   );
