@@ -46,7 +46,7 @@ test.describe('ChatGPT Ads landing page', () => {
 
     await expect(page.getByRole('heading', {
       level: 1,
-      name: 'Porcelain veneers & cosmetic consultations in Los Angeles.',
+      name: 'Explore your smile options with Dr. Aguil.',
     })).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow,noarchive');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -58,10 +58,10 @@ test.describe('ChatGPT Ads landing page', () => {
     await expect(page.getByLabel('Email')).toBeVisible();
     await expect(page.getByLabel('Phone')).toBeVisible();
     await expect(page.getByLabel('Consultation interest')).toBeVisible();
-    await expect(page.getByText('All fields are required.')).toBeVisible();
+    await expect(page.getByText('Only name and email are required.')).toBeVisible();
     await expect(page.getByLabel('Name')).toHaveAttribute('required', '');
     await expect(page.getByLabel('Email')).toHaveAttribute('required', '');
-    await expect(page.getByLabel('Phone')).toHaveAttribute('required', '');
+    await expect(page.getByLabel('Phone')).not.toHaveAttribute('required', '');
     await expect(page.locator('textarea')).toHaveCount(0);
     await expect(page.locator('video, iframe')).toHaveCount(0);
     // The isolated landing page carries no site-wide floating controls.
@@ -82,6 +82,43 @@ test.describe('ChatGPT Ads landing page', () => {
 
     await primaryCta.click();
     await expect(page.locator('#consultation-form')).toBeInViewport();
+  });
+
+  test('accepts an email-only request and preserves campaign attribution', async ({ page }) => {
+    let postData = '';
+    let submissions = 0;
+    await page.route('https://formspree.io/**', async route => {
+      submissions += 1;
+      postData = route.request().postData() ?? '';
+      await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
+    });
+    await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=la_patient_consults_202610');
+    await page.getByLabel('Name').fill('Local Visitor');
+    await page.getByLabel('Email').fill('visitor@patient.invalid');
+    await page.getByRole('button', { name: 'Request my consultation' }).click();
+    await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
+    expect(submissions).toBe(1);
+    expect(postData).toContain('visitor@patient.invalid');
+    expect(postData).toContain('Not sure yet');
+    expect(postData).toContain('la_patient_consults_202610');
+    await expect(page.getByRole('status')).toContainText('Your appointment is not booked yet');
+    expect(await page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls ?? [])).toEqual([]);
+  });
+
+  test('validates an optional phone when supplied without posting an invalid request', async ({ page }) => {
+    let submissions = 0;
+    await page.route('https://formspree.io/**', async route => {
+      submissions += 1;
+      await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
+    });
+    await page.goto('/lp/chatgpt/');
+    await page.getByLabel('Name').fill('Local Visitor');
+    await page.getByLabel('Email').fill('visitor@patient.invalid');
+    await page.getByLabel('Phone').fill('123');
+    await page.getByRole('button', { name: 'Request my consultation' }).click();
+    await expect(page.getByText('Please enter a valid phone number.')).toBeVisible();
+    await expect(page.getByLabel('Phone')).toBeFocused();
+    expect(submissions).toBe(0);
   });
 
   test('uses an explicit reversible choice for analytics and OpenAI measurement', async ({ page }) => {

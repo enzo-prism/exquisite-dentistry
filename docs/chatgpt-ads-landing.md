@@ -4,7 +4,7 @@
 
 - Route: `/lp/chatgpt/`
 - Audience: paid ChatGPT Ads visitors considering a Los Angeles cosmetic or porcelain veneer consultation.
-- Campaign: `Exquisite LA Cosmetic Consults 30D Pilot`, scheduled September 1–30, 2026.
+- Campaign: the original `Exquisite LA Cosmetic Consults 30D Pilot` ended October 7, 2026 at 5 pm Pacific after an extension. The October replacement is a proposal until confirmed and created in Ads Manager.
 - Experience: focused header and footer, approved practice photography, no video, no concierge overlay, and a dedicated consultation form.
 
 The route is paid-only. Runtime and prerendered HTML emit `noindex,nofollow,noarchive`, the route is absent from `sitemap.xml` and site search, and the canonical URL is `https://exquisitedentistryla.com/lp/chatgpt/`.
@@ -17,7 +17,7 @@ The form posts to the established Formspree endpoint with stable operational met
 - `source=chatgpt_ads`
 - `site=exquisite`
 
-It collects name, email, phone, and one non-clinical consultation-interest choice. There is no free-text field. Required-field validation, a honeypot, a synchronous double-submit lock, and a 12-second request timeout protect the flow. OpenAI conversion measurement runs only after Formspree returns success.
+It requires name and email; phone and the non-clinical consultation-interest choice are optional. Interest defaults to “Not sure yet.” A supplied phone is validated, and the confirmed-submission helper receives whether a phone was actually supplied. There is no free-text field. Required-field validation, a honeypot, a synchronous double-submit lock, and a 12-second request timeout protect the flow. OpenAI conversion measurement runs only after Formspree returns success.
 
 The page asks visitors not to submit symptoms, medical history, insurance information, or other health information. Formspree is treated as a non-PHI intake provider unless the practice has separate written vendor and BAA confirmation. The privacy policy names Formspree and explains this limited use.
 
@@ -77,3 +77,7 @@ The shared confirmed-submission handler emits `generate_lead` and OpenAI `lead_c
 `_codex_test=true`, known Codex Tracking Test / Exquisite Launch Test names, and reserved example/test email domains mark operational records as tests and suppress conversion events. These checks are local and never send personal input to analytics. Use intercepted Formspree/vendor requests for automated testing; do not create fake production conversions.
 
 GA4 and Vercel do not forward reports to Ads Manager. The existing isolated OpenAI pixel is the direct feedback path. Matching data source and campaign conversion, actual event ingestion, and ad attribution require Ads Manager readback; website checks alone do not prove optimization is occurring.
+
+## October 8 consultation flow
+
+The paid landing page names Dr. Aguil in the headline and shows a compact practitioner card on mobile so the request form appears before a large photograph. Desktop retains the existing practice photograph. The form requires only name and email; phone and interest are optional. Fee and scheduling FAQs clarify that submitting is a request, not a confirmed appointment, and that patients can ask about consultation fees before booking. No fee waiver, response-time promise, treatment guarantee, or outcome claim is added.

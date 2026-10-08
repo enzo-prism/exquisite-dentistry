@@ -26,7 +26,7 @@ test('a separate tab sends the original consented click with an accepted lead an
   await expect(second.locator('#openai-ads-measurement-frame')).toHaveAttribute('src',new RegExp(CLICK));
   await second.getByLabel('Name',{exact:true}).fill('Measurement validation');
   await second.getByLabel('Email',{exact:true}).fill('sentinel@prism.invalid');
-  await second.getByLabel('Phone',{exact:true}).fill('3235550119');
+  await second.getByLabel('Phone (optional)',{exact:true}).fill('3235550119');
   await second.getByLabel('Consultation interest').click();await second.getByRole('option',{name:'Porcelain veneers'}).click();
   await second.getByRole('button',{name:'Request my consultation'}).click();
   await expect(second.getByRole('status')).toContainText('Our team will contact you soon');
@@ -40,7 +40,7 @@ test('a separate tab sends the original consented click with an accepted lead an
   await page.clock.setFixedTime(capturedAt + 30*24*60*60*1000 + 1);
   await page.getByLabel('Name',{exact:true}).fill('Second validation');
   await page.getByLabel('Email',{exact:true}).fill('sentinel@prism.invalid');
-  await page.getByLabel('Phone',{exact:true}).fill('3235550119');
+  await page.getByLabel('Phone (optional)',{exact:true}).fill('3235550119');
   await page.getByLabel('Consultation interest').click();await page.getByRole('option',{name:'Porcelain veneers'}).click();
   await page.getByRole('button',{name:'Request my consultation'}).click();
   await expect.poll(()=>payloads.flatMap(p=>p.events??[]).filter(e=>e.type==='lead_created').length).toBe(2);

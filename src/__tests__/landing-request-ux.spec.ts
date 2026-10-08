@@ -42,7 +42,7 @@ test('accepted request replaces form with a focused receipt', async ({ page }) =
   await page.getByRole('button', { name: 'Decline', exact: true }).click();
   await page.getByLabel('Name', { exact: true }).fill('Local Test');
   await page.getByLabel('Email', { exact: true }).fill('test@example.com');
-  await page.getByLabel('Phone', { exact: true }).fill('+44 20 7946 0958');
+  await page.getByLabel('Phone (optional)', { exact: true }).fill('+44 20 7946 0958');
   await page.getByLabel('Consultation interest').click();
   await page.getByRole('option', { name: 'Not sure yet' }).click();
   await page.getByRole('button', { name: 'Request my consultation' }).click();
@@ -59,7 +59,7 @@ test('failed request preserves details and offers callable recovery', async ({ p
   await page.getByRole('button', { name: 'Decline', exact: true }).click();
   await page.getByLabel('Name', { exact: true }).fill('Local Test');
   await page.getByLabel('Email', { exact: true }).fill('test@example.com');
-  await page.getByLabel('Phone', { exact: true }).fill('+44 20 7946 0958');
+  await page.getByLabel('Phone (optional)', { exact: true }).fill('+44 20 7946 0958');
   await page.getByLabel('Consultation interest').click();
   await page.getByRole('option', { name: 'Not sure yet' }).click();
   await page.getByRole('button', { name: 'Request my consultation' }).click();
