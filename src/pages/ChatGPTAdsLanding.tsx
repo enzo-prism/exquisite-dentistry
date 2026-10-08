@@ -1,4 +1,5 @@
 import { annotateLeadSubmission } from '@/utils/leadMeasurement';
+import { useContactFormMeasurement } from '@/hooks/useContactFormMeasurement';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Phone } from 'lucide-react';
@@ -87,6 +88,7 @@ const appendAttributionMetadata = (formData: FormData) => {
 };
 
 const ChatGPTAdsLanding = () => {
+  const { recordStart, recordAttempt } = useContactFormMeasurement('chatgpt_ads_consultation');
   const [values, setValues] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>(EMPTY_ERRORS);
   const [honeypot, setHoneypot] = useState('');
@@ -141,6 +143,7 @@ const ChatGPTAdsLanding = () => {
       return;
     }
 
+    recordAttempt();
     const nextErrors = validate();
     if (Object.values(nextErrors).some(Boolean)) {
       setErrors(nextErrors);
@@ -345,7 +348,7 @@ const ChatGPTAdsLanding = () => {
                 ) : <>
                 <p className="mt-2 text-sm text-stone-500">Only name and email are required.</p>
 
-                <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-6 space-y-5">
+                <form action={FORM_ENDPOINT} method="POST" noValidate onChangeCapture={recordStart} onSubmit={handleSubmit} className="mt-6 space-y-5">
                   <div className="hidden" aria-hidden="true">
                     <Label htmlFor="chatgpt-ads-bot-field">Do not fill this out</Label>
                     <Input
