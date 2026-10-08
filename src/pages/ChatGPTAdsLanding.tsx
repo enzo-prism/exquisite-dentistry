@@ -48,7 +48,7 @@ const EMPTY_FORM: FormValues = {
   name: '',
   email: '',
   phone: '',
-  consultationInterest: '',
+  consultationInterest: 'not_sure',
 };
 
 const EMPTY_ERRORS: FormErrors = {
@@ -117,9 +117,7 @@ const ChatGPTAdsLanding = () => {
     if (!name) nextErrors.name = 'Please enter your name.';
     if (!email) nextErrors.email = 'Please enter your email address.';
     else if (!EMAIL_PATTERN.test(email)) nextErrors.email = 'Please enter a valid email address.';
-    if (!values.phone.trim()) nextErrors.phone = 'Please enter your phone number.';
-    else if (phoneDigits < 7) nextErrors.phone = 'Please enter a valid phone number.';
-    if (!values.consultationInterest) nextErrors.consultationInterest = 'Please choose a consultation interest.';
+    if (values.phone.trim() && phoneDigits < 7) nextErrors.phone = 'Please enter a valid phone number.';
 
     return nextErrors;
   };
@@ -201,7 +199,7 @@ const ChatGPTAdsLanding = () => {
       setValues(EMPTY_FORM);
       setHoneypot('');
 
-      trackFormSubmission('chatgpt_ads_consultation', { hasPhone: true, ...measurement });
+      trackFormSubmission('chatgpt_ads_consultation', { hasPhone: Boolean(values.phone.trim()), ...measurement });
     } catch (error) {
       console.error('ChatGPT Ads consultation request failed', error);
       setStatus('error');
@@ -262,13 +260,13 @@ const ChatGPTAdsLanding = () => {
         <div>
           <section className="relative overflow-hidden border-b border-stone-200">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(181,160,119,0.20),transparent_34%)]" />
-            <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.03fr_0.97fr] lg:items-start lg:gap-16 lg:px-8 lg:py-20">
+            <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-[1.03fr_0.97fr] lg:items-start lg:gap-16 lg:px-8 lg:py-20">
               <div className="pt-2 lg:sticky lg:top-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#725f43]">
                   Cosmetic consultation · Los Angeles
                 </p>
                 <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-950 sm:text-5xl lg:text-[3.6rem]">
-                  Porcelain veneers & cosmetic consultations in Los Angeles.
+                  Explore your smile options with Dr. Aguil.
                 </h1>
                 <Button
                   asChild
@@ -281,10 +279,24 @@ const ChatGPTAdsLanding = () => {
                 </Button>
 
                 <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
-                  Meet with Dr. Alexie Aguil at Exquisite Dentistry to discuss your goals, porcelain veneers, and other cosmetic options. An in-person evaluation helps determine which options may be appropriate for you.
+                  Considering porcelain veneers or cosmetic dentistry? Meet Dr. Alexie Aguil in Los Angeles, discuss your goals, and understand your options before deciding on treatment.
                 </p>
 
-                <div className="mt-8 overflow-hidden rounded-2xl border border-stone-200 bg-stone-200 shadow-[0_24px_70px_-42px_rgba(28,25,23,0.55)]">
+                <div className="mt-6 flex items-center gap-4 rounded-xl border border-stone-200 bg-white/70 p-4 lg:hidden">
+                  <img
+                    src="/lovable-uploads/chatgpt-ads/dr-aguil-office-square-1200.jpg"
+                    alt="Dr. Alexie Aguil"
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 shrink-0 rounded-lg object-cover"
+                  />
+                  <div>
+                    <p className="font-semibold text-stone-950">Dr. Alexie Aguil</p>
+                    <p className="mt-1 text-sm text-stone-600">Exquisite Dentistry · Wilshire Blvd, Los Angeles</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 hidden overflow-hidden rounded-2xl border border-stone-200 bg-stone-200 shadow-[0_24px_70px_-42px_rgba(28,25,23,0.55)] lg:block">
                   <OptimizedImage
                     src="/lovable-uploads/dr-aguil-banner-2024-m.webp"
                     alt="Dr. Alexie Aguil at Exquisite Dentistry"
@@ -297,7 +309,7 @@ const ChatGPTAdsLanding = () => {
                   />
                 </div>
 
-                <ul className="mt-7 grid gap-3 text-sm text-stone-700 sm:grid-cols-3">
+                <ul className="mt-7 hidden gap-3 text-sm text-stone-700 lg:grid lg:grid-cols-3">
                   {['Discuss your goals', 'Review appropriate options', 'Understand next steps'].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9b835e] text-white">
@@ -312,15 +324,15 @@ const ChatGPTAdsLanding = () => {
               <div id="consultation-form" className="rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_30px_90px_-50px_rgba(28,25,23,0.55)] sm:p-8 lg:p-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#725f43]">Private consultation request</p>
                 <h2 ref={receiptRef} tabIndex={status === 'success' ? -1 : undefined} className="mt-3 text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">
-                  {status === 'success' ? 'Request received' : 'Request a cosmetic consultation'}
+                  {status === 'success' ? 'Request received' : 'Request your consultation'}
                 </h2>
                 <p className="mt-3 leading-7 text-stone-600">
                   {status === 'success'
                     ? 'Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.'
-                    : 'Tell us how to reach you. Our team will contact you to discuss available times. Your appointment is confirmed once you arrange a time with the team.'}
+                    : 'Leave your name and email. Our team will follow up to help arrange a time with Dr. Aguil.'}
                 </p>
                 <p className="mt-3 text-sm leading-6 text-stone-600">
-                  Consultation with Dr. Alexie Aguil at {ADDRESS}. You can ask about consultation fees when scheduling.
+                  Visit us at {ADDRESS}. Ask the team about consultation fees before booking.
                 </p>
                 {status === 'success' ? (
                   <div role="status" className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
@@ -331,9 +343,9 @@ const ChatGPTAdsLanding = () => {
                     </PhoneLink>
                   </div>
                 ) : <>
-                <p className="mt-2 text-sm text-stone-500">All fields are required.</p>
+                <p className="mt-2 text-sm text-stone-500">Only name and email are required.</p>
 
-                <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-8 space-y-5">
+                <form action={FORM_ENDPOINT} method="POST" noValidate onSubmit={handleSubmit} className="mt-6 space-y-5">
                   <div className="hidden" aria-hidden="true">
                     <Label htmlFor="chatgpt-ads-bot-field">Do not fill this out</Label>
                     <Input
@@ -390,7 +402,7 @@ const ChatGPTAdsLanding = () => {
                     </div>
 
                     <div>
-                      <Label htmlFor="chatgpt-ads-phone" className="text-stone-800">Phone</Label>
+                      <Label htmlFor="chatgpt-ads-phone" className="text-stone-800">Phone <span className="font-normal text-stone-500">(optional)</span></Label>
                       <Input
                         ref={phoneRef}
                         id="chatgpt-ads-phone"
@@ -400,8 +412,6 @@ const ChatGPTAdsLanding = () => {
                         onChange={(event) => setField('phone', event.target.value)}
                         autoComplete="tel"
                         inputMode="tel"
-                        required
-                        aria-required="true"
                         maxLength={40}
                         placeholder="(323) 555-0123"
                         aria-invalid={Boolean(errors.phone)}
@@ -413,7 +423,7 @@ const ChatGPTAdsLanding = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="chatgpt-ads-interest" className="text-stone-800">Consultation interest</Label>
+                    <Label htmlFor="chatgpt-ads-interest" className="text-stone-800">Consultation interest <span className="font-normal text-stone-500">(optional)</span></Label>
                     <Select
                       value={values.consultationInterest}
                       onValueChange={(value: Interest) => setField('consultationInterest', value)}
@@ -421,7 +431,6 @@ const ChatGPTAdsLanding = () => {
                       <SelectTrigger
                         ref={interestRef}
                         id="chatgpt-ads-interest"
-                        aria-required="true"
                         aria-invalid={Boolean(errors.consultationInterest)}
                         aria-describedby={errors.consultationInterest ? 'chatgpt-ads-interest-error' : undefined}
                         className={`mt-2 h-12 rounded-lg border-stone-300 bg-white px-4 text-base text-stone-950 focus:ring-[#9b835e] ${errors.consultationInterest ? 'border-red-600' : ''}`}
@@ -507,6 +516,24 @@ const ChatGPTAdsLanding = () => {
                   </li>
                 ))}
               </ol>
+            </div>
+          </section>
+
+          <section className="border-t border-stone-200 bg-[#f7f5f0] py-12 sm:py-16">
+            <div className="mx-auto max-w-3xl px-4 sm:px-6">
+              <h2 className="text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">Before you request a consultation</h2>
+              <div className="mt-6 divide-y divide-stone-200">
+                {[
+                  ['Do I need to know which treatment I want?', 'No. Choose “Not sure yet” and use your consultation to discuss your goals. An in-person evaluation helps determine which options may be appropriate.'],
+                  ['Does this request book an appointment?', 'The team will contact you to discuss available times. Your appointment is confirmed after you arrange a time with the team.'],
+                  ['What will the consultation cost?', 'Ask the team about consultation fees when scheduling, before you book your visit.'],
+                ].map(([question, answer]) => (
+                  <details key={question} className="group py-5">
+                    <summary className="cursor-pointer rounded-sm font-semibold text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9b835e]">{question}</summary>
+                    <p className="mt-3 leading-7 text-stone-600">{answer}</p>
+                  </details>
+                ))}
+              </div>
             </div>
           </section>
 
