@@ -53,7 +53,10 @@ jobs:
         run: npm run test:attribution
 
       - name: Submission consent evidence
-        run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts
+        run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts src/__tests__/legacyVeneers.unit.ts
+
+      - name: Archived veneers content and asset integrity
+        run: node scripts/test-veneers-archive.mjs
 
       - name: Patient confidence contracts (outcomes, pricing, shared rendering)
         run: npm run test:patient-confidence
@@ -86,6 +89,10 @@ jobs:
         run: npm ci
 
       - name: Build (image opt + prerender + sitemap + search index)
+        # Provider transport is mocked in preview tests. Production Vercel
+        # builds use the separately configured real public pixel identifier.
+        env:
+          VITE_OPENAI_ADS_PIXEL_ID: playwright-test-pixel
         run: npm run build
 
       - name: Production tracking safeguards
@@ -104,6 +111,7 @@ jobs:
             sleep 1
           done
           TREATMENT_PREVIEW_URL=http://127.0.0.1:4188 npx playwright test src/__tests__/shared-treatment.pilot.spec.ts --project=chromium
+          VENEERS_TEST_ORIGIN=http://127.0.0.1:4188 npx playwright test --config playwright.veneers.config.ts --project=chromium
 
       - name: SEO smoke (dist/index.html tags)
         run: npm run check:seo

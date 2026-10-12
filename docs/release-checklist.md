@@ -25,7 +25,7 @@ Cherry financing copy check:
 - Confirm `dist/payment-plans/index.html` contains the full soft-check/reporting disclosure after `npm run build`.
 - Run `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`.
 - Confirm the floating launcher shows the complete `Pay over time` / `No hard credit checks • 0% APR options` copy at 320px, 390-430px, 667px landscape, 768px tablet, and desktop. Wrapping is allowed; clipping and ellipsis are not.
-- Confirm the pill appears on every route (except `/lp/chatgpt/`), with no overlap with the mobile action bar, overlays remain above the widget, the target stays at least 44px, and activation opens Cherry.
+- Confirm the pill appears on every main React route (except `/lp/chatgpt/`), with no overlap with the mobile action bar, overlays remain above the widget, the target stays at least 44px, and activation opens Cherry.
 - In Safari, confirm the pill stays visible while scrolling down after the first reveal. It should hide again only after returning to the true top of the page.
 - Confirm gold/primary booking buttons use white text on the bronze fill (homepage hero, insurance band, navbar Book). Black-on-gold fails AA with the current gold token.
 
@@ -55,6 +55,15 @@ Analytics check:
 - Visit a few production routes after deploy and confirm the Vercel Analytics dashboard starts recording pageviews for production traffic.
 - Trigger at least two high-signal custom events from `docs/vercel-analytics-events.md` such as a schedule CTA, site search result, phone click, or financing CTA, then confirm they appear in Vercel Analytics.
 - Give Vercel Speed Insights a minute to ingest traffic, then confirm the dashboard stops showing "No data available" for the visited routes. Test at least one desktop and one mobile session with content blockers disabled.
+
+Veneers archive release:
+- Follow `docs/VENEERS_MIGRATION.md` for the static-document boundary and source preservation contract.
+- Run `python3 scripts/archive-veneers.py --offline` after archive shell/runtime edits, then `npm run test:veneers`.
+- Run `npm run test:veneers:shell` against the built preview. Providers are blocked or mocked; local simulation never sends a lead.
+- Verify shared consent and footer Analytics preferences. The isolated measurement bridge must not change original body styles or load retired trackers.
+- After deployment, run `npm run verify:veneers` from the released revision and `VENEERS_TEST_ORIGIN=https://exquisitedentistryla.com npm run test:veneers:shell`.
+- Confirm all 35 documents and archived assets match the release manifest, all 23 indexable pages appear in sitemap/search, and existing main-layout veneer guides still work.
+- Treat old-domain redirects/retirement and live lead/booking delivery as separate operational checks.
 
 Canonical verification (apex only):
 - Confirm <link rel="canonical"> uses https://exquisitedentistryla.com/... on key pages.

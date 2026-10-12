@@ -13,6 +13,8 @@ import { CherryWidgetProvider } from "@/components/CherryWidgetProvider";
 import MobileActionBar from "@/components/MobileActionBar";
 import AnalyticsConsentBanner from "@/components/AnalyticsConsentBanner";
 import OpenAIAdsMeasurement from "@/components/OpenAIAdsMeasurement";
+import LegacyVeneersRedirect from "@/components/LegacyVeneersRedirect";
+import { isLegacyVeneersPath } from "@/constants/legacyVeneers";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -44,7 +46,6 @@ const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const HipaaCompliance = lazy(() => import("@/pages/HipaaCompliance"));
 const EditorialPolicy = lazy(() => import("@/pages/EditorialPolicy"));
 const Blog = lazy(() => import("@/pages/Blog"));
-const Veneers = lazy(() => import("@/pages/Veneers"));
 const ZoomWhitening = lazy(() => import("@/pages/ZoomWhitening"));
 const Invisalign = lazy(() => import("@/pages/Invisalign"));
 const InvisalignBeverlyHills = lazy(() => import("@/pages/InvisalignBeverlyHills"));
@@ -206,9 +207,6 @@ const AppRoutes = () => {
                 <EditorialPolicy />
               </Suspense>} />
               
-              <Route path="/veneers" element={<Suspense fallback={<PageLoaderComponent />}>
-                <Veneers />
-              </Suspense>} />
               <Route path="/veneers/front-teeth-veneers-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
                 <FrontTeethVeneers />
               </Suspense>} />
@@ -357,6 +355,25 @@ const AppRoutes = () => {
   );
 };
 
+const AppContent = () => {
+  const location = useLocation();
+  if (isLegacyVeneersPath(location.pathname)) return <LegacyVeneersRedirect />;
+
+  return (
+    <>
+      <CherryWidgetProvider>
+        <div className="flex flex-col min-h-screen">
+          <AppRoutes />
+        </div>
+        <MobileActionBar />
+      </CherryWidgetProvider>
+      <RouteAwareObservability />
+      <AnalyticsConsentBanner />
+      <OpenAIAdsMeasurement />
+    </>
+  );
+};
+
 
 const App = () => {
   // Initialize error reduction on app start
@@ -372,15 +389,7 @@ const App = () => {
             <Toaster />
             <Sonner />
             <BrowserRouter>
-              <CherryWidgetProvider>
-                <div className="flex flex-col min-h-screen">
-                  <AppRoutes />
-                </div>
-                <MobileActionBar />
-              </CherryWidgetProvider>
-              <RouteAwareObservability />
-              <AnalyticsConsentBanner />
-              <OpenAIAdsMeasurement />
+              <AppContent />
             </BrowserRouter>
           </TooltipProvider>
         </PerformanceProvider>

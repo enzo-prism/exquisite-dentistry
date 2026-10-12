@@ -1,0 +1,130 @@
+/*
+Theme Name: RVC Base Framework
+Theme URI: https://rodriguezvalle.com/
+Description: We are leading a national movement of exceptional, diverse public charter schools that teach Modern Hebrew to children of all backgrounds and prepare them to be successful global citizens.
+Author: Rodriguez Valle Creative
+Author URI: https://rodriguezvalle.com/
+Template: oceanwp
+Version: 1.0
+*/
+
+/* Parent stylesheet is loaded from functions.php not using @import */
+
+/* Brand Colors
+    Black: #222222;
+    Dark Tan: #9A8361
+    Light Tan: #BEAC93
+*/
+
+/* Available Font Weights:100-900 */
+
+html, body {font-size:16px;}
+#footer-bottom #copyright {text-align:left !important;}
+.oceanwp-mobile-menu-icon a {font-size:20px !important;}
+.oceanwp-mobile-menu-icon a.mobile-menu .oceanwp-text {display:none;}
+.icon-magnifier:before {font-weight:700;}
+#footer {border-top:1px solid #f1f1f1;}
+
+.ev-page {background:#222222;}
+
+p {
+    font-size:1rem;
+    line-height:1.75rem;
+    font-weight:300;
+    margin:0 0 20px 0;
+}
+
+.ev-pop .form-row label {font-family: 'Montserrat', sans-serif; font-weight:300;}
+.ev-pop .phone-row a {font-weight:300; letter-spacing:.065rem; color:#222222;}
+.ev-pop .phone-row a:hover {color:#ffffff;}
+.ev-pop .phone-row a:focus {outline: none !important; box-shadow: none !important;}
+
+.pos-header .phone-row a:focus {outline: none !important; box-shadow: none !important;}
+.pos-header .phone-row a {font-weight:300; letter-spacing:.065rem; color:#222222;}
+.pos-header .phone-row a:hover {color:#9A8361;}
+
+.neg-header .phone-row a:focus {outline: none !important; box-shadow: none !important;}
+.neg-header .phone-row a {font-weight:300; letter-spacing:.065rem; color:#9A8361;}
+.neg-header .phone-row a:hover {color:#ffffff;}
+
+.ev-la-socket p {margin:0; color:#222222; font-size:.875rem; line-height:1.25rem; font-weight:400; text-transform:none;}
+.ev-la-socket a {color:#fff;}
+.ev-footer-bottom .col-c p {margin:0; color:#9A8361; font-size:1.125rem; line-height:1.65rem; font-weight:200; text-transform:uppercase;}
+.ev-footer-bottom a {color:#BEAC93;}
+.ev-footer-bottom a:hover {color:#fff;}
+.special {font-weight:400;}
+.ev-footer-bottom .col-c label {font-family: 'Montserrat', sans-serif; font-weight:300;}
+
+/* Case Studies */
+.ev-la-cs {background:#222222;}
+.ev-la-cs h4 {color:#9A8361; text-transform:uppercase; font-weight:200; font-size:3rem;}
+
+/* Page Intro */
+.intro h1 {color:#9A8361; font-size:2.5rem; font-weight:200; text-transform:uppercase;}
+.intro p {color:#fff;}
+.intro a {color:#BEAC93;}
+.intro a:hover {color:#fff;}
+
+.page-copy-w p {color:#fff;margin:0;}
+.page-copy-w a {color:#BEAC93;}
+.page-copy-w a:hover {color:#fff;}
+
+.home-section h2 {color:#9A8361; font-size:2.5rem; font-weight:200; text-transform:uppercase;}
+.ko p {color:#fff;}
+.ko .part-a p {font-size:1.25rem; line-height:2rem;}
+.ko .part-b p {font-size:1rem;}
+
+.cta-1 .head p {margin:0; color:#BEAC93; font-size:3rem; line-height:3rem; font-weight:100; text-transform:uppercase;}
+.cta-1 .body p {font-size:1.5rem; color:#BEAC93; margin:0;}
+.cta-1 .cta-button .elementor-button {text-transform:uppercase; font-size:.875rem; letter-spacing:.05rem; border-radius:0; background-color:#9A8361; border-bottom:1px solid #9A8361;}
+.cta-1 .cta-button .elementor-button:hover {background-color:#222222; border-bottom:1px solid #9A8361;}
+
+.single-post .page-header {display:none;}
+.single-post #site-header {display:none;}
+.single-post #top-bar-wrap {display:none;}
+.single-post #main #content-wrap {padding-top:0;}
+.ev-blog-single h2 {color:#BEAC93;}
+
+.ev-la-posts a:hover {color:#fff !important;} 
+.ev-la-contact h1 {color:#9A8361; font-size:2.5rem; font-weight:200; text-transform:uppercase;}
+.ev-la-contact h1 a {color:#fff;}
+.ev-la-contact p {color:#fff;}
+
+.page-content h2 {color:#9A8361; font-size:2.5rem; font-weight:200; text-transform:none;}
+.page-content p {color:#fff;margin:30px 0;}
+
+ul li {color:#fff;}
+
+
+
+
+
+
+
+
+/* Media Queries */
+@media only screen and (max-width: 1400px){   
+    .intro {padding:30px;}
+    .page-copy-w {padding:30px;}
+}
+
+@media only screen and (max-width: 1200px){  
+    .intro h1 {font-size:2rem;}
+    .ev-la-contact h1 {font-size:2rem;}
+    .ev-la-cs h4 {font-size:2rem;}
+    .home-section h2 {font-size:2rem;}
+    .cta-1 .head p {font-size:2rem; line-height:2rem;}
+    .cta-1 .body p {font-size:1.25rem;}
+}
+
+@media only screen and (max-width: 900px){   
+
+}
+
+@media only screen and (max-width: 767px){
+
+}
+
+@media only screen and (max-width: 500px){
+    
+}

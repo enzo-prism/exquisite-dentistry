@@ -3,6 +3,7 @@ import { getBlogIndex } from '../data/blogIndex';
 import { transformationStories } from '../data/transformationStories';
 import { getCanonicalUrl } from './schemaValidation';
 import pageLastmod from '../data/pageLastmod.json';
+import { LEGACY_VENEERS_PAGES, isLegacyVeneersPath } from '../constants/legacyVeneers';
 
 // Real per-file last-modified dates (git commit date, mtime fallback), generated
 // by scripts/generate-file-dates.mjs at build time. Replaces the old hash-based
@@ -11,7 +12,7 @@ const PAGE_LASTMOD: Record<string, string> = pageLastmod as Record<string, strin
 
 export interface SitemapUrl {
   loc: string;
-  lastmod: string;
+  lastmod?: string;
   changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority: number;
 }
@@ -443,7 +444,23 @@ export const generateSitemapData = (): SitemapUrl[] => {
     priority: 0.7
   }));
 
-  return [...staticPages, ...blogPages, ...transformationStoryPages].sort((a, b) => b.priority - a.priority);
+  const legacyPages: SitemapUrl[] = LEGACY_VENEERS_PAGES
+    .filter((page) => page.indexable)
+    .map((page) => ({
+      loc: getCanonicalUrl(page.path),
+      // Preserve the source's actual modification date. Unknown dates are
+      // omitted rather than being replaced with the migration/build date.
+      lastmod: page.lastModified?.split('T')[0],
+      changefreq: 'monthly',
+      priority: page.path === '/veneers/' ? 0.9 : page.path.includes('/blog/') ? 0.7 : 0.8,
+    }));
+
+  return [
+    ...staticPages.filter((page) => !isLegacyVeneersPath(new URL(page.loc).pathname)),
+    ...legacyPages,
+    ...blogPages,
+    ...transformationStoryPages,
+  ].sort((a, b) => b.priority - a.priority);
 };
 
 export const generateXmlSitemap = (): string => {
@@ -451,8 +468,7 @@ export const generateXmlSitemap = (): string => {
   
   const urlsXml = urls.map(url => `  <url>
     <loc>${url.loc}</loc>
-    <lastmod>${url.lastmod}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
+${url.lastmod ? `    <lastmod>${url.lastmod}</lastmod>\n` : ''}    <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`).join('\n');
 

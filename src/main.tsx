@@ -9,12 +9,28 @@ import App from './App.tsx';
 import { initializeUTMTracking } from './utils/utmTracking';
 import { initializeGoogleAdsTracking } from './utils/googleAdsTracking';
 import { enableMotion } from './lib/motion';
+import { getLegacyVeneersDocumentUrl } from './constants/legacyVeneers';
 import '@fontsource/cormorant-garamond/latin-500-italic.css';
 
 // Capture campaign parameters before React can change the landing URL.
 initializeUTMTracking();
 initializeGoogleAdsTracking();
 enableMotion();
+
+// All main-site entry points, including shared treatment navigation, open the
+// standalone archive document before React Router can pushState into its shell.
+document.addEventListener('click', (event) => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (!(event.target instanceof Element)) return;
+  const anchor = event.target.closest<HTMLAnchorElement>('a[href]');
+  if (!anchor || anchor.hasAttribute('download') || (anchor.target && anchor.target !== '_self')) return;
+  const destination = getLegacyVeneersDocumentUrl(new URL(anchor.href, window.location.href), window.location.origin);
+  if (!destination) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+  window.location.assign(destination);
+}, true);
 
 const rootElement = document.getElementById('root');
 

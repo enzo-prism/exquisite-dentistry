@@ -347,6 +347,28 @@
     },
     {
       "type": "page",
+      "title": "About - Exquisite Veneers LA",
+      "href": "/veneers/about/",
+      "h1": "About Dr. Alexie Aguil",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/about/"
+    },
+    {
+      "type": "page",
+      "title": "Blog - Exquisite Veneers LA",
+      "href": "/veneers/blog/",
+      "h1": "Blog",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/blog/"
+    },
+    {
+      "type": "page",
       "title": "Bridal Smile Makeover LA | Perfect Wedding Dentistry | Exquisite",
       "description": "Wedding smile prep in Los Angeles: veneers, whitening, and alignment timed to your big day. Concierge planning with Dr. Alexie Aguil.",
       "href": "/wedding/",
@@ -394,6 +416,17 @@
         "smile confidence LA"
       ],
       "id": "page:/transformation-stories/nick-invisalign/"
+    },
+    {
+      "type": "page",
+      "title": "Contact - Exquisite Veneers LA",
+      "href": "/veneers/contact/",
+      "h1": "CONTACT US AT (323) 767-0617 TO SCHEDULE YOUR VENEER CONSULTATION. YOUR EXQUISITE SMILE AWAITS.",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/contact/"
     },
     {
       "type": "page",
@@ -498,21 +531,6 @@
         "professional whitening los angeles"
       ],
       "id": "page:/culver-city-teeth-whitening/"
-    },
-    {
-      "type": "page",
-      "href": "/veneers/",
-      "title": "Dental & Porcelain Veneers Los Angeles | Exquisite Dentistry",
-      "description": "Porcelain and composite dental veneers in Los Angeles. Dr. Alexie Aguil plans each case tooth by tooth, with conservative prep and natural shade matching.",
-      "h1": "Dental Veneers in Los Angeles",
-      "keywords": [
-        "dental veneers Los Angeles",
-        "veneers Los Angeles",
-        "porcelain veneers Los Angeles",
-        "composite veneers Los Angeles",
-        "cosmetic veneers Los Angeles"
-      ],
-      "id": "page:/veneers/"
     },
     {
       "type": "page",
@@ -670,6 +688,17 @@
     },
     {
       "type": "page",
+      "title": "Home - Exquisite Veneers LA",
+      "href": "/veneers/",
+      "h1": "The Naturally Radiant Smile You’ve Always Dreamed Of",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/"
+    },
+    {
+      "type": "page",
       "href": "/invisalign/",
       "title": "Invisalign Clear Aligners Los Angeles | Exquisite Dentistry",
       "description": "Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.",
@@ -761,6 +790,39 @@
       "href": "/privacy-policy/",
       "h1": "Privacy Policy",
       "id": "page:/privacy-policy/"
+    },
+    {
+      "type": "page",
+      "title": "Process - Exquisite Veneers LA",
+      "href": "/veneers/process/",
+      "h1": "Our Process: Experience the Power of Precision",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/process/"
+    },
+    {
+      "type": "page",
+      "title": "Resources - Exquisite Veneers LA",
+      "href": "/veneers/resources/",
+      "h1": "Resources",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/resources/"
+    },
+    {
+      "type": "page",
+      "title": "Results - Exquisite Veneers LA",
+      "href": "/veneers/results/",
+      "h1": "Results Beyond Expectations",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/results/"
     },
     {
       "type": "page",
@@ -1043,6 +1105,18 @@
     },
     {
       "type": "blog",
+      "title": "7 Myths About Porcelain Veneers (Busted!) - Exquisite Veneers LA",
+      "description": "Here at Exquisite Veneers, we're major advocates for porcelain veneers, which is why knowing that misinformation exists is frustrating, especially knowing it could potentially steer people away from this life-changing dental solution.",
+      "href": "/veneers/7-myths-about-porcelain-veneers-busted/",
+      "h1": "7 Myths About Porcelain Veneers (Busted!)",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/7-myths-about-porcelain-veneers-busted/"
+    },
+    {
+      "type": "blog",
       "title": "A Dentist for Adults in Los Angeles",
       "description": "Experience a spa-inspired dental visit designed exclusively for adults with concierge comforts, comprehensive care, and cosmetic enhancements in West Hollywood.",
       "href": "/blog/dentist-for-adults-los-angeles/",
@@ -1101,6 +1175,18 @@
     },
     {
       "type": "blog",
+      "title": "Are Porcelain Veneers Right for You? (Find Out Now!) - Exquisite Veneers LA",
+      "description": "Especially since veneers are permanent, it’s important to spend time considering if they’re the right aesthetic and structural fit for you.",
+      "href": "/veneers/are-porcelain-veneers-right-for-you-find-out-now/",
+      "h1": "Are Porcelain Veneers Right for You? (Find Out Now!)",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/are-porcelain-veneers-right-for-you-find-out-now/"
+    },
+    {
+      "type": "blog",
       "title": "Are Veneers Covered by Insurance?",
       "description": "Porcelain veneers are usually considered a cosmetic treatment, which means most dental insurance plans do not cover veneers themselves.  That is the part most patients hear first, and it is often true.",
       "href": "/blog/are-veneers-covered-by-insurance/",
@@ -1113,6 +1199,41 @@
         "insurance"
       ],
       "id": "blog:/blog/are-veneers-covered-by-insurance/"
+    },
+    {
+      "type": "blog",
+      "title": "Award-Worthy Celebrity Smiles: Let’s Rank the Best on the 2024 Red Carpets - Exquisite Veneers LA",
+      "description": "An award-winning smile is not just about perfectly aligned teeth; it's about charisma, confidence, and that indescribable sparkle that lights up the room.",
+      "href": "/veneers/award-worthy-celebrity-smiles-lets-rank-the-best-on-the-2024-red-carpets/",
+      "h1": "Award-Worthy Celebrity Smiles: Let’s Rank the Best on the 2024 Red Carpets",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/award-worthy-celebrity-smiles-lets-rank-the-best-on-the-2024-red-carpets/"
+    },
+    {
+      "type": "blog",
+      "title": "Best Toothpaste for Porcelain Veneers - Exquisite Veneers LA",
+      "description": "Selecting the right toothpaste for your veneers is key to maintaining the look, feel, and overall health of your teeth and gums.",
+      "href": "/veneers/best-toothpaste-for-porcelain-veneers/",
+      "h1": "Best Toothpaste for Porcelain Veneers",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/best-toothpaste-for-porcelain-veneers/"
+    },
+    {
+      "type": "blog",
+      "title": "Broken Porcelain Veneer? Here's What to Do - Exquisite Veneers LA",
+      "href": "/veneers/broken-porcelain-veneer-heres-what-to-do/",
+      "h1": "Broken Porcelain Veneer? Here's What to Do",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/broken-porcelain-veneer-heres-what-to-do/"
     },
     {
       "type": "blog",
@@ -1130,6 +1251,18 @@
         "naturally"
       ],
       "id": "blog:/blog/can-damaged-teeth-repair-themselves-naturally/"
+    },
+    {
+      "type": "blog",
+      "title": "Can Veneers Be Used for Crooked Teeth? (Answered) - Exquisite Veneers LA",
+      "description": "Cosmetic veneers are a great solution for achieving a straight, flawless smile without the need for traditional braces.",
+      "href": "/veneers/can-veneers-be-used-for-crooked-teeth-answered/",
+      "h1": "Can Veneers Be Used for Crooked Teeth? (Answered)",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/can-veneers-be-used-for-crooked-teeth-answered/"
     },
     {
       "type": "blog",
@@ -1161,6 +1294,18 @@
         "teeth"
       ],
       "id": "blog:/blog/choosing-veneers-or-implants-for-your-teeth/"
+    },
+    {
+      "type": "blog",
+      "title": "Common Questions About Porcelain Veneers Answered - Exquisite Veneers LA",
+      "description": "In this blog, discover answers to the most common questions about porcelain veneers and how they can transform your smile at Exquisite Veneers.",
+      "href": "/veneers/common-questions-about-porcelain-veneers-answered/",
+      "h1": "Common Questions About Porcelain Veneers Answered",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/common-questions-about-porcelain-veneers-answered/"
     },
     {
       "type": "blog",
@@ -1417,6 +1562,29 @@
     },
     {
       "type": "blog",
+      "title": "Give Yourself a Smile Makeover at Exquisite Veneers - Exquisite Veneers LA",
+      "description": "For something more long-lasting and impactful, you may need a smile makeover to boost your appearance and self-esteem.",
+      "href": "/veneers/give-yourself-a-smile-makeover-at-exquisite-veneers/",
+      "h1": "Give Yourself a Smile Makeover at Exquisite Veneers",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/give-yourself-a-smile-makeover-at-exquisite-veneers/"
+    },
+    {
+      "type": "blog",
+      "title": "Give Yourself the Gift of Porcelain Veneers for Your Birthday - Exquisite Veneers LA",
+      "href": "/veneers/give-yourself-the-gift-of-porcelain-veneers-for-your-birthday/",
+      "h1": "Give Yourself the Gift of Porcelain Veneers for Your Birthday",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/give-yourself-the-gift-of-porcelain-veneers-for-your-birthday/"
+    },
+    {
+      "type": "blog",
       "title": "How Alcohol Affects Your Teeth",
       "description": "A glass of wine with a good meal or an ice-cold beer while you’re watching the game—for some people, these are some of life’s simplest pleasures.  Unfortunately, the effect alcohol has on your dental health is not as pleasant.",
       "href": "/blog/how-alcohol-affects-your-teeth/",
@@ -1533,6 +1701,17 @@
     },
     {
       "type": "blog",
+      "title": "How to Choose the Right Porcelain Veneers for You - Exquisite Veneers LA",
+      "href": "/veneers/how-to-choose-the-right-porcelain-veneers-for-you/",
+      "h1": "How to Choose the Right Porcelain Veneers for You",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/how-to-choose-the-right-porcelain-veneers-for-you/"
+    },
+    {
+      "type": "blog",
       "title": "How to Maintain the Perfect Wedding Smile",
       "description": "A wedding is one of the most memorable days in a person’s life.  With all eyes on the bride and groom, it’s essential to ensure that your smile is as perfect as your outfit.",
       "href": "/blog/how-to-maintain-the-perfect-wedding-smile/",
@@ -1618,6 +1797,18 @@
     },
     {
       "type": "blog",
+      "title": "New Year, Brighter Smile: Boost Your Confidence in 2024 - Exquisite Veneers LA",
+      "description": "Whether you're aiming for career advancements, personal growth, or enhancing your social connections, a set of porcelain veneers can amplify your charisma and leave a lasting impression.",
+      "href": "/veneers/new-year-brighter-smile-boost-your-confidence-in-2024/",
+      "h1": "New Year, Brighter Smile: Boost Your Confidence in 2024",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/new-year-brighter-smile-boost-your-confidence-in-2024/"
+    },
+    {
+      "type": "blog",
       "title": "Oral Wellness with Age: How to Protect Your Teeth as You Grow Older",
       "description": "Actor Anthony Hopkins once ironically stated, “Getting old ain’t for the faint of heart. ” How true that is!",
       "href": "/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/",
@@ -1635,6 +1826,29 @@
         "older"
       ],
       "id": "blog:/blog/oral-wellness-with-age-how-to-protect-your-teeth-as-you-grow-older/"
+    },
+    {
+      "type": "blog",
+      "title": "Porcelain Veneer Process: A Step-By-Step Guide - Exquisite Veneers LA",
+      "description": "If you've ever considered enhancing your smile with porcelain veneers, you might have wondered about the process behind it.",
+      "href": "/veneers/porcelain-veneer-process-a-step-by-step-guide/",
+      "h1": "Porcelain Veneer Process: A Step-By-Step Guide",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/porcelain-veneer-process-a-step-by-step-guide/"
+    },
+    {
+      "type": "blog",
+      "title": "Porcelain Veneers for a More Confident Smile - Exquisite Veneers LA",
+      "href": "/veneers/porcelain-veneers-for-a-more-confident-smile/",
+      "h1": "Porcelain Veneers for a More Confident Smile",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/porcelain-veneers-for-a-more-confident-smile/"
     },
     {
       "type": "blog",
@@ -1657,6 +1871,18 @@
         "Dr. Alexie Aguil veneers"
       ],
       "id": "blog:/blog/porcelain-veneers-los-angeles-buyers-guide/"
+    },
+    {
+      "type": "blog",
+      "title": "Pre-Vacation Smile Makeover: Get Veneers for Vacation Bliss - Exquisite Veneers LA",
+      "description": "Whether you're heading to a tropical paradise, exploring a bustling city, or simply relaxing at a countryside retreat, there's one thing every vacationer wants—a picture-perfect smile.",
+      "href": "/veneers/pre-vacation-smile-makeover-get-veneers-for-vacation-bliss/",
+      "h1": "Pre-Vacation Smile Makeover: Get Veneers for Vacation Bliss",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/pre-vacation-smile-makeover-get-veneers-for-vacation-bliss/"
     },
     {
       "type": "blog",
@@ -1731,6 +1957,17 @@
         "dental veneers Los Angeles"
       ],
       "id": "blog:/blog/single-tooth-veneers-perfect-solutions/"
+    },
+    {
+      "type": "blog",
+      "title": "The Benefits of Porcelain Veneers Over Other Cosmetic Dentistry Options - Exquisite Veneers LA",
+      "href": "/veneers/the-benefits-of-porcelain-veneers-over-other-cosmetic-dentistry-options/",
+      "h1": "The Benefits of Porcelain Veneers Over Other Cosmetic Dentistry Options",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/the-benefits-of-porcelain-veneers-over-other-cosmetic-dentistry-options/"
     },
     {
       "type": "blog",
@@ -2054,6 +2291,18 @@
         "bridal smile makeover Los Angeles"
       ],
       "id": "blog:/blog/when-to-start-wedding-smile-prep-los-angeles/"
+    },
+    {
+      "type": "blog",
+      "title": "Where Can I Get the Best Porcelain Veneers in Los Angeles? - Exquisite Veneers LA",
+      "description": "For those considering porcelain veneers to enhance their smile and boost their confidence, it’s also the city chock-a-block with cosmetic dentists.",
+      "href": "/veneers/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/",
+      "h1": "Where Can I Get the Best Porcelain Veneers in Los Angeles?",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "blog:/veneers/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/"
     },
     {
       "type": "blog",

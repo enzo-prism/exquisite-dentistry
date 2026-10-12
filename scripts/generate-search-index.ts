@@ -193,6 +193,36 @@ const buildSearchIndex = (): SearchIndexFile => {
     });
   });
 
+  // The veneers collection is a separate document experience. Its original
+  // titles must win over metadata for the former React veneers landing page.
+  const veneersManifestPath = path.join(process.cwd(), 'public', 'veneers', 'manifest.json');
+  if (fs.existsSync(veneersManifestPath)) {
+    const archive = JSON.parse(fs.readFileSync(veneersManifestPath, 'utf8')) as {
+      pages: Array<{
+        path: string;
+        title: string;
+        description?: string;
+        h1?: string;
+        kind?: string;
+        indexable?: boolean;
+      }>;
+    };
+    for (const page of archive.pages) {
+      if (page.indexable === false) continue;
+      const href = normalizeHref(page.path);
+      byHref.set(href.toLowerCase(), {
+        type: page.kind === 'post' ? 'blog' : 'page',
+        title: page.title,
+        description: page.description,
+        href,
+        // Some original post templates contain a hidden generic "Blog" H1.
+        // Search should display the article's actual original title.
+        h1: page.kind === 'post' ? page.title.replace(/ - Exquisite Veneers LA$/, '') : page.h1,
+        keywords: ['veneers', 'Exquisite Veneers LA'],
+      });
+    }
+  }
+
   const typeOrder: Record<SearchItemType, number> = {
     service: 0,
     location: 1,

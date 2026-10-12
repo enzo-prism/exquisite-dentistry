@@ -15,10 +15,13 @@ import { readFile } from 'node:fs/promises';
 const cfg = JSON.parse(await readFile('vercel.json', 'utf8'));
 const appSource = await readFile('src/App.tsx', 'utf8');
 const blogIndex = JSON.parse(await readFile('src/data/blogIndex.json', 'utf8'));
+const veneersManifest = JSON.parse(await readFile('src/constants/legacyVeneersManifest.json', 'utf8'));
 
 const routes = new Set(
   (appSource.match(/path="[^"]*"/g) ?? []).map((s) => s.slice(6, -1).replace(/\/$/, '')),
 );
+// Static archive routes are generated from the manifest rather than JSX paths.
+for (const page of veneersManifest.pages) routes.add(page.path.replace(/\/$/, ''));
 const blogSlugs = new Set(
   (Array.isArray(blogIndex) ? blogIndex : blogIndex.posts).map((p) => `/blog/${p.slug}`),
 );

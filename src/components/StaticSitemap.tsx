@@ -290,7 +290,7 @@ const StaticSitemap = () => {
                         {getBlogTitle(url.loc)}
                       </h3>
                       <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
-                        <span>Updated: {new Date(url.lastmod).toLocaleDateString()}</span>
+                        {url.lastmod && <span>Updated: {new Date(url.lastmod).toLocaleDateString()}</span>}
                         <span>Priority: {url.priority}</span>
                       </div>
                     </Link>

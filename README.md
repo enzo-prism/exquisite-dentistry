@@ -81,17 +81,31 @@ This command hydrates `src/data/generatedBlogPosts.ts`, which is merged with the
 
 Rendered blog HTML is wrapped with Tailwind’s `@tailwindcss/typography` plugin. Customize headings, paragraphs, and links by updating the `.prose` utility overrides in `src/index.css`. Avoid reintroducing the legacy `.blog-content` class—new typography adjustments should rely on Tailwind prose modifiers (e.g., `prose-lg`, `prose-neutral`) so component CTAs and widgets retain consistent spacing.
 
+## Veneers Mini Site
+
+`/veneers/` preserves the former `exquisiteveneersla.com` site as standalone static documents in `public/veneers/`. Original body copy, images, fonts, generated Elementor/OceanWP styles, article pages, and comparison sliders remain local. A refreshed shared header and footer connect the six original veneer navigation pages to the main practice, consultation inquiry, current contact details, and legal pages.
+
+Known archive routes use full document navigation, keeping the main React/Tailwind styles and app shell outside the mini site. The route inventory is shared through `src/constants/legacyVeneersManifest.json`; main-site guides such as `/veneers/cost-los-angeles/` and `/veneers/front-teeth-veneers-los-angeles/` remain React pages. Ordinary builds copy the checked-in archive and do not contact the retiring domain.
+
+An isolated measurement bridge preserves the current practice's consent controls and privacy rules without restyling the original document. It shares sanitized attribution and reports only confirmed, eligible production form successes as leads; localhost simulation, tests, failures, and honeypot submissions must never become acquisition conversions. Retired source-site trackers remain removed.
+
+Run `npm run test:veneers` for archive integrity. With preview running, use `VENEERS_TEST_ORIGIN=http://localhost:4173 npm run test:veneers -- --browser` for the archive browser checks and `npm run test:veneers:shell` for the focused Chromium/WebKit shell, navigation, and mocked measurement suites. Use the local fixture build command in the build workflow for compiled bridge tests. After release, `npm run verify:veneers` reads the published archive and compares it with the local release manifest without submitting forms.
+
+Regeneration uses the committed capture bundle and provenance in `archive-source/veneers/` and refreshes the audit manifest, route mirror, and source-content search index. See [the migration notes](docs/VENEERS_MIGRATION.md) and [build workflow](docs/BUILD_WORKFLOW.md) before editing generated HTML. Localhost contact submissions are simulated; successful local tests do not prove production provider delivery.
+
 ## How can I deploy this project?
 
-This repo is linked to Vercel through [`.vercel/project.json`](.vercel/project.json).
+Production is hosted on Vercel. Local CLI linkage lives in the gitignored `.vercel/project.json`; confirm the intended project before deploying from a fresh checkout.
 
 Recommended flow:
 
 1. Work on a non-`main` branch.
-2. Run local QA: `npm run lint` and `npm run build`.
+2. Run local QA: `npm run lint`, `npm run typecheck`, and `npm run build`, plus the applicable content, SEO, and veneers checks in `docs/verification.md`.
 3. Push the branch to GitHub to trigger a Vercel preview deployment.
 4. For client review, generate a shareable no-login Vercel preview link instead of sending the raw protected preview URL.
 5. Only update production after preview approval, by merging/pushing `main`.
+
+After deployment, verify the main-domain routes and deployed revision using [the release checks](docs/verification.md). A completed push or successful local preview alone does not establish that production serves the change.
 
 Production domain:
 

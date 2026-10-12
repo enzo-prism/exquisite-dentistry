@@ -13,6 +13,7 @@ import { locationPageConfigs } from "../src/data/locationPages";
 import { getBlogPostIsoDate, getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata, ROUTE_METADATA } from "../src/constants/metadata";
+import { isLegacyVeneersPath } from "../src/constants/legacyVeneers";
 import { VIDEO_HERO_POSTERS_BY_ROUTE } from "../src/components/video-hero/route-posters";
 import { generateResponsiveImageUrls } from "../src/utils/imageOptimization";
 import {
@@ -2164,7 +2165,9 @@ export const renderRoute = (template: string, route: StaticRoute) => {
 
 const main = async () => {
   const template = await readFile(TEMPLATE_PATH, "utf8");
-  const routes = buildRoutes();
+  // Vite has already copied these standalone documents from public/veneers.
+  // A modern-shell snapshot would overwrite the preserved legacy design.
+  const routes = buildRoutes().filter((route) => !isLegacyVeneersPath(route.path));
 
   for (const route of routes) {
     const outputPath = routeToOutputPath(route.path);

@@ -13,6 +13,12 @@ As of September 15, 2026, the canonical website and `/lp/chatgpt/` both use GA4,
 
 Consent keys are versioned to v2 because the measurement scope changed. An old v1 grant is not reused. The banner explicitly names all three tools. Google advanced Consent Mode remains in use: denied visitors may send limited cookieless Google signals; Vercel and OpenAI do not load until granted. These engineering controls are not a claim of HIPAA compliance.
 
+## Preserved veneers documents
+
+The `/veneers/` archive uses full document navigation and an isolated compiled bridge in `src/legacy/veneersMeasurement.tsx`. It reuses the same consent choices, route observability, attribution helpers, and OpenAI transport. The original Google/Site Kit/GTM, Meta, Hotjar, and Crazy Egg embeds remain removed. Footer Analytics preferences reopens the current banner inside a shadow root without applying main-site styles to the original body.
+
+The archived consultation form is an acquisition inquiry. Only an accepted Formspree response may confirm its snapshot and emit an eligible lead; failed, honeypot, noncanonical, flagged QA, and localhost simulation outcomes are excluded. Patient answers stay in the form payload and never become analytics parameters. Measurement tests mock provider transport, so passing tests do not establish live provider delivery or reporting accuracy.
+
 ## Privacy and consent rules
 
 - Google Consent Mode defaults are queued before config commands on eligible routes.
@@ -27,8 +33,8 @@ Consent keys are versioned to v2 because the measurement scope changed. An old v
 
 | Event | Trigger | Safe parameters | Key event? |
 | --- | --- | --- | --- |
-| `page_view` | Initial render and each completed eligible React route change | sanitized location, path, title, and referrer | No |
-| `generate_lead` | Confirmed non-test landing consultation or new-patient contact request | allowlisted generic form type, interaction method, CTA location | Yes |
+| `page_view` | Initial document render and each completed eligible React route change | sanitized location, path, title, and referrer | No |
+| `generate_lead` | Confirmed non-test landing consultation, archived veneers inquiry, or new-patient contact request | allowlisted generic form type, interaction method, CTA location | Yes |
 | `schedule_click` | Visitor opens a scheduling path | interaction method, CTA location | No |
 | `contact_click` | Phone, SMS, email, directions, or social action | interaction method, CTA location | No |
 | `cta_click` | General marketing CTA | CTA type, CTA location | No |

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="387px" height="228px" viewBox="0 0 387 228" version="1.1">
+  <title>evla-ba-icon</title>
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="1800x1800-copy-2" transform="translate(-377.000000, -2021.000000)">
+      <g id="Group" transform="translate(377.000000, 2021.000000)">
+        <rect id="Rectangle" fill-opacity="0.0959626311" fill="#9A8361" x="0" y="1" width="387" height="227"></rect>
+        <line x1="260.5" y1="0.5" x2="260.5" y2="227.5" id="Line" stroke="#9A8361" stroke-linecap="square"></line>
+        <circle id="Oval" stroke="#9A8361" fill="#222222" cx="260.5" cy="108.5" r="13"></circle>
+        <polygon id="Triangle" fill="#9A8361" transform="translate(265.000000, 109.000000) rotate(-270.000000) translate(-265.000000, -109.000000) " points="265 107 268 111 262 111"></polygon>
+        <polygon id="Triangle-Copy" fill="#9A8361" transform="translate(256.000000, 109.000000) rotate(-90.000000) translate(-256.000000, -109.000000) " points="256 107 259 111 253 111"></polygon>
+        <rect id="Rectangle" stroke="#9A8361" x="0.5" y="0.5" width="386" height="227"></rect>
+      </g>
+    </g>
+  </g>
+</svg>
