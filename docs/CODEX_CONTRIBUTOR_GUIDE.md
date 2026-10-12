@@ -49,7 +49,7 @@ Quick rules:
 | `npm run test:veneers` | Archive changes | Verifies generated document/asset/integration hashes, preserved content, dependencies, and routes. |
 | `npm run test:veneers:shell` | Built preview | Chromium/WebKit shell, navigation, and mocked measurement specs; requires a running preview, default port 4173. |
 | `npm run verify:veneers` | After release | Read-only production document/asset proof against the local release manifest; no form submissions. |
-| `node test-browser.js` | Optional smoke test | Puppeteer suite; requires dev/preview server. |
+| `npm run test:e2e` | Browser regressions | Maintained Chromium/WebKit Playwright suite; starts its own dev server. |
 
 ## Frequent Tasks & Tips
 
@@ -83,7 +83,7 @@ Run the extras when applicable:
 - Veneers changes: `npm run test:veneers`, then `VENEERS_TEST_ORIGIN=http://localhost:4173 npm run test:veneers -- --browser` and `npm run test:veneers:shell` against a running preview. For the compiled local bridge tests, first build with `VITE_OPENAI_ADS_PIXEL_ID=playwright-test-pixel npm run build`. The shell command uses `playwright.veneers.config.ts` for Chromium/WebKit; normal CI uses the existing dev-server config. Localhost form handling is simulated; do not turn a UI test into a real lead submission.
 - Bridge changes: `npx playwright test src/__tests__/veneers-measurement.spec.ts --project=chromium --project=webkit` runs mocked-provider consent/lead/privacy regressions with the normal dev-server configuration. Production-provider delivery remains a separate authorized check.
 - `npx playwright test src/__tests__/cherry-widget.mobile.spec.ts --project=chromium --project=webkit --workers=2 --retries=0`: Cherry copy, responsive width, overlay, and collision coverage.
-- `node test-browser.js`: after starting `npm run dev` or `npm run preview` when verifying high-traffic flows (e.g., `/services/zoom-whitening`).
+- `npm run test:e2e`: run the full Chromium/WebKit regression suite for changes to shared navigation and routing. The old Puppeteer script is superseded.
 - `vercel.json` / canonical work:
   ```sh
   npx vercel dev --listen 127.0.0.1:8899 --yes

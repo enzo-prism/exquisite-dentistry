@@ -58,7 +58,7 @@ Analytics check:
 
 Veneers archive release:
 - Follow `docs/VENEERS_MIGRATION.md` for the static-document boundary and source preservation contract.
-- Run `python3 scripts/archive-veneers.py --offline` after archive shell/runtime edits, then `npm run test:veneers`.
+- Run `python3 scripts/archive-veneers.py --offline` after archive shell/runtime edits, stage all archive files, then run `npm run test:veneers -- --tracked`. Nested WordPress `dist` directories contain published assets; only root build output is ignored.
 - Run `npm run test:veneers:shell` against the built preview. Providers are blocked or mocked; local simulation never sends a lead.
 - Verify shared consent and footer Analytics preferences. The isolated measurement bridge must not change original body styles or load retired trackers.
 - After deployment, run `npm run verify:veneers` from the released revision and `VENEERS_TEST_ORIGIN=https://exquisitedentistryla.com npm run test:veneers:shell`.

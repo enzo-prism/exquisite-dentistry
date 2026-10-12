@@ -28,7 +28,7 @@ npm run dev          # Vite dev server @ http://localhost:8080
 | 4 | `npm run build` | Optimizes assets, builds Vite, then prerenders route HTML and generates SEO/search output in `dist/`. |
 | 5 | `npm run check:seo` | Verifies canonical, OG, and JSON-LD tags inside `dist/index.html`. |
 | 6 | `npm run preview` | Serves `dist/` on `http://localhost:4173` for smoke checks. |
-| 7 | `node test-browser.js` | (Optional) Puppeteer smoke test. Requires a running dev/preview server. |
+| 7 | `npm run test:e2e` | Chromium/WebKit Playwright suite; starts its own dev server. Run focused specs when only one flow changed. |
 | 8 | `npm run test:redirects` | Requires `npx vercel dev --listen 127.0.0.1:8899 --yes` or `REDIRECT_TEST_BASE` pointed at a Vercel deployment. |
 
 > **`npm run build` never runs `tsc`.** Vite strips TypeScript with esbuild, which is
@@ -123,7 +123,7 @@ After the automated steps pass, run through the high-impact UX flows below. Thes
 | --- | --- |
 | `sharp` fails to install | Install libvips (`brew install vips` or `apt install libvips-dev`) and rerun `npm install`. |
 | ESLint exits with React Hook dependency warnings | Address upstream, or suppress per-file only with a short inline justification. |
-| Puppeteer test hangs | Ensure `npm run dev` or `npm run preview` is running on port 5173/4173 before invoking `node test-browser.js`. |
+| Playwright browser missing | Run `npx playwright install chromium webkit`; CI also installs system dependencies with `--with-deps`. The old Puppeteer script is superseded. |
 | Formspree returns 403 | The endpoint rate-limits unknown origins. Ensure your dev build runs on `http://localhost:8080` or configure the Formspree project to trust your domain. |
 
 Keep this document up to date whenever you add new build steps, scripts, or verification tooling so future contributors can follow a single source of truth.

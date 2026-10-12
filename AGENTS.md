@@ -12,7 +12,8 @@
 - `npm run preview` serves the built bundle locally for smoke checks.
 - `npm run lint` runs the flat ESLint config (TypeScript + React Hooks). Append `-- --fix` for autofixes.
 - `npm run typecheck` runs `tsc -p tsconfig.app.json --noEmit`. **`npm run build` does not typecheck** — Vite strips types with esbuild and never calls `tsc`, so type errors sail through an otherwise green build. Run this as its own step.
-- `node test-browser.js` executes the Puppeteer smoke test against a running server; install `puppeteer` locally if prompted.
+- `npm run test:e2e` runs the maintained Chromium/WebKit Playwright suite and starts its own dev server. Install browsers with `npx playwright install chromium webkit` if needed.
+- `npm run test:veneers -- --tracked` checks staged archive coverage and hashes before release. `npm run test:veneers:shell` checks an already-running built preview; see `docs/VENEERS_MIGRATION.md`.
 
 ## Coding Style & Naming Conventions
 - Use 2-space indentation, TypeScript modules, and React function components. Tailwind utility strings stay in `className`, with variants composed via helpers in `@/lib`.
@@ -21,7 +22,7 @@
 
 ## Testing Guidelines
 - Treat `npm run lint`, `npm run typecheck`, `npm run build`, and (when relevant) `npm run build:prod` as mandatory gates before merging. `.github/workflows/ci.yml` enforces the first three plus the content/SEO/E2E suites on every PR.
-- Run `node test-browser.js` after starting `npm run dev` or `npm run preview` to confirm high-traffic routes like `/services/zoom-whitening`.
+- Run the applicable Playwright specs for high-traffic routes and shared navigation. For veneers, verify the compiled preview and published archive with the commands in `docs/verification.md`. The old `test-browser.js` Puppeteer script is superseded by Playwright.
 - Place future automated specs in `src/__tests__/` so discovery stays predictable for tooling such as Vitest or Jest.
 
 ## Commit & Pull Request Guidelines
