@@ -37,11 +37,14 @@ addEventListener('message', event => {
 parent.postMessage({type:'exquisite:openai-ready',channel}, '*');
 </script>` });
     }
+    // A published-site run already has the correct document origin. Proxy only
+    // virtual origins used by local fixtures; late asset fulfillment can race
+    // with WebKit reload cancellation when the actual origin is proxied.
+    if (url.origin === new URL(baseURL).origin) return route.continue();
     if (url.origin === documentOrigin && production) {
       const response = await page.request.get(`${baseURL}${url.pathname}${url.search}`, { maxRedirects: 0 });
       return route.fulfill({ response });
     }
-    if (url.origin === new URL(baseURL).origin) return route.continue();
     return route.abort();
   });
   return { submissions, setStatus: (value: number) => { status = value; } };
