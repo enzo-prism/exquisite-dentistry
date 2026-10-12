@@ -2,13 +2,34 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 
 const root = process.cwd();
 const directory = path.join(root, 'public/veneers');
 const manifestText = fs.readFileSync(path.join(directory, 'manifest.json'), 'utf8');
 const manifest = JSON.parse(manifestText);
 const digest = data => crypto.createHash('sha256').update(data).digest('hex');
+// WordPress publishes real assets inside nested dist folders. A broad build
+// ignore can leave local tests green while silently excluding them from Git.
+const releasePaths = [...new Set([
+  'public/veneers/manifest.json',
+  ...manifest.pages.map(page => `public${page.path}index.html`),
+  ...manifest.assets.map(asset => `public${asset.path}`),
+  ...manifest.integrationFiles.map(asset => `public${asset.path}`),
+  `public${manifest.searchIndex.path}`,
+])];
+const ignored = spawnSync('git', ['check-ignore', '--no-index', '--stdin'], {
+  cwd: root,
+  input: `${releasePaths.join('\n')}\n`,
+  encoding: 'utf8',
+});
+assert.equal(ignored.error, undefined, 'Git ignore audit can run');
+assert.ok(ignored.status === 0 || ignored.status === 1, `Git ignore audit succeeds: ${ignored.stderr}`);
+assert.equal(ignored.stdout.trim(), '', `Every archive dependency can be committed: ${ignored.stdout}`);
+if (process.argv.includes('--tracked')) {
+  const tracked = new Set(execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' }).split('\0'));
+  assert.deepEqual(releasePaths.filter(file => !tracked.has(file)), [], 'Every archive dependency is included in the release index');
+}
 assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, 'src/constants/legacyVeneersManifest.json'), 'utf8')).pages, manifest.pages, 'Client route inventory matches static archive');
 assert.equal(manifest.pages.filter(page => page.kind === 'page').length, 8, 'All eight published pages retained');
 assert.equal(manifest.pages.filter(page => page.kind === 'post').length, 16, 'All sixteen published articles retained');
