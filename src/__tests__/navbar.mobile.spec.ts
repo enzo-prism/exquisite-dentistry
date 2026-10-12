@@ -306,7 +306,10 @@ test('desktop services mega menu is readable, on-screen and keyboard operable', 
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/veneers\/?$/);
   await expect(panel).toBeHidden();
-  await expect(page.locator('nav[aria-label="Primary"] button[aria-label="Browse services"]')).toHaveAttribute('aria-expanded', 'false');
+  // This service now crosses into the preserved document's own navigation.
+  await expect(page.locator('#root')).toHaveCount(0);
+  await expect(page.locator('#veneers-shell-header')).toBeVisible();
+  await expect(page.locator('nav[aria-label="Primary"] button[aria-label="Browse services"]')).toHaveCount(0);
 });
 
 test('desktop More panel opens on hover intent and closes on outside click', async ({ page }) => {

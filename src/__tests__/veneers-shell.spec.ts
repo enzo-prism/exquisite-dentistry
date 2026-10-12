@@ -146,7 +146,12 @@ test('new shell links load documents and expose the current practice contact and
     await expect(footer.locator(`a[href="${path}"]`)).toHaveCount(1);
     const response = await request.get(path);
     expect(response.status(), path).toBe(200);
-    expect(await response.text(), path).toMatch(new RegExp(`<h1\\b[^>]*>${title}</h1>`));
+    // Vite dev serves the main React shell; built/production serves its
+    // prerendered copy. Verify the actual destination in both environments.
+    await navigateFreshDocument(page, path, () => footer.locator(`a[href="${path}"]`).click());
+    await expect(page.getByRole('heading', { level: 1, name: title, exact: true })).toBeVisible();
+    await expect(page.locator('#root')).toHaveCount(1);
+    await page.goto('/veneers/process/');
   }
 
   await navigateFreshDocument(page, '/', () => header.getByRole('link', { name: /Main website/ }).click());
