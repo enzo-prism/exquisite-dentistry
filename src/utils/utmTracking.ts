@@ -34,8 +34,15 @@ const CLICK_ID_FIELDS = new Set<string>([
 ]);
 const EMAIL_LIKE = /[^\s@]+@[^\s@]+\.[^\s@]+/;
 const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
+const OPENAI_ENTITY_ID_FIELDS: Record<string, RegExp> = {
+  utm_id: /^cmpn_[a-f0-9]{32}$/i,
+  utm_content: /^ad_[a-f0-9]{32}$/i,
+};
 
 const cleanAttributionValue = (field: string, value: string | null) => {
+  // Campaign/ad macros expand to structured entity IDs, not personal input.
+  // Preserve only their exact known format; freeform tags keep PII filtering.
+  if (value && OPENAI_ENTITY_ID_FIELDS[field]?.test(value)) return value;
   // Click IDs are opaque tokens: changing or truncating them destroys attribution.
   // Reject malformed/oversized input rather than trying to repair it. Numeric
   // sequences inside an identifier are not evidence of a phone number.

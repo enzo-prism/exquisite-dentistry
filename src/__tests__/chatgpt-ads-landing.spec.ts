@@ -84,7 +84,7 @@ test.describe('ChatGPT Ads landing page', () => {
     await expect(page.locator('#consultation-form')).toBeInViewport();
   });
 
-  test('accepts an email-only request and preserves campaign attribution', async ({ page }) => {
+  test('accepts an email-only request and preserves campaign and ad attribution after navigation', async ({ page }) => {
     let postData = '';
     let submissions = 0;
     await page.route('https://formspree.io/**', async route => {
@@ -92,7 +92,10 @@ test.describe('ChatGPT Ads landing page', () => {
       postData = route.request().postData() ?? '';
       await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
     });
-    await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=la_patient_consults_202610');
+    const campaignId = 'cmpn_1234567890abcdef1234567890abcdef';
+    const adId = 'ad_abcdef1234567890abcdef1234567890';
+    await page.goto(`/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=la_patient_consults_202610&utm_id=${campaignId}&utm_content=${adId}`);
+    await page.goto('/lp/chatgpt/');
     await page.getByLabel('Name').fill('Local Visitor');
     await page.getByLabel('Email').fill('visitor@patient.invalid');
     await page.getByRole('button', { name: 'Request my consultation' }).click();
@@ -101,6 +104,8 @@ test.describe('ChatGPT Ads landing page', () => {
     expect(postData).toContain('visitor@patient.invalid');
     expect(postData).toContain('Not sure yet');
     expect(postData).toContain('la_patient_consults_202610');
+    expect(postData).toContain(campaignId);
+    expect(postData).toContain(adId);
     await expect(page.getByRole('status')).toContainText('Your appointment is not booked yet');
     expect(await page.evaluate(() => (window as OpenAIAdsTestWindow).__openAIAdsCalls ?? [])).toEqual([]);
   });
