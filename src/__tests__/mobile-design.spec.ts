@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 const CRITICAL_ROUTES = [
   { path: '/', expectedText: 'Los Angeles Cosmetic Dentist' },
   { path: '/services/', expectedText: 'Advanced Cosmetic' },
-  { path: '/veneers/', expectedText: 'Dental Veneers in Los Angeles' },
+  { path: '/veneers/', expectedText: 'The Naturally Radiant Smile You’ve Always Dreamed Of' },
   { path: '/smile-gallery/', expectedText: 'Smile Gallery' },
   { path: '/schedule-consultation/', expectedText: 'Schedule Consultation' },
   { path: '/payment-plans/', expectedText: 'Payment Plans' },
@@ -286,8 +286,8 @@ test('mobile search drawer fits, accepts input, and navigates from a result', as
 
   const searchInput = page.getByRole('combobox');
   await expect(searchInput).toBeVisible();
-  await searchInput.fill('veneers');
-  await expect(page.getByRole('option', { name: /Dental Veneers in Los Angeles/i })).toBeVisible();
+  await searchInput.fill('naturally radiant');
+  await expect(page.getByRole('option', { name: /The Naturally Radiant Smile/i })).toBeVisible();
 
   const drawer = page.locator('[role="dialog"], [data-vaul-drawer]').first();
   const drawerBox = await drawer.boundingBox();
@@ -298,7 +298,7 @@ test('mobile search drawer fits, accepts input, and navigates from a result', as
 
   const searchIssues = await inspectCurrentMobileViewport(page, 'mobile search drawer');
   expect(searchIssues, JSON.stringify(searchIssues, null, 2)).toEqual([]);
-  await page.getByRole('option', { name: /Dental Veneers in Los Angeles/i }).click();
+  await page.getByRole('option', { name: /The Naturally Radiant Smile/i }).click();
   await expect(page).toHaveURL(/\/veneers\/?$/);
 });
 

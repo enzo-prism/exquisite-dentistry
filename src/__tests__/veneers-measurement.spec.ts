@@ -47,6 +47,12 @@ parent.postMessage({type:'exquisite:openai-ready',channel}, '*');
   return { submissions, setStatus: (value: number) => { status = value; } };
 }
 
+// Document reloads can leave mocked font fetches in flight in WebKit. Drain
+// their handlers before closing the page so teardown cannot mask assertions.
+test.afterEach(async ({ page }) => {
+  await page.unrouteAll({ behavior: 'wait' });
+});
+
 async function readCommands(page: Page) {
   return page.evaluate(() => (window.dataLayer ?? []).map(entry => Array.from(entry as ArrayLike<unknown>)));
 }

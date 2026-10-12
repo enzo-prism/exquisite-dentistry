@@ -43,11 +43,11 @@ No further actionable P0/P1/P2 issues were found after these fixes. New header/f
 
 ## Functional and build evidence
 
-- Production preview: 20 tests pass across Chromium and WebKit, including main-site service/search entry, fresh document navigation, original route/content retention, legal/contact contracts, mobile keyboard routes, Escape/outside close, hidden-link focus exclusion, 320px overflow, and automatic focus transfer in both resize directions.
+- Production preview: 34 tests pass without retries across Chromium and WebKit, including main-site service/search entry, fresh document navigation, original route/content retention, legal/contact contracts, mobile keyboard routes, Escape/outside close, hidden-link focus exclusion, 320px overflow, and automatic focus transfer in both resize directions.
 - Full archive browser pass: all 35 routes, source headings, local CSS/JS MIME and errors, comparison drag, original-content search and decoded card imagery, and localhost contact success/error. Zero real form submissions and no missing local resources or runtime errors in the checked flows.
 - Native mobile disclosure navigation also works with JavaScript disabled.
-- Archive integrity: 35 routes, 425 asset records, 51 scripts parse, and local dependency references pass. Built output contains byte-identical archive files. Sitemap and main search include all 23 indexable archive pages.
-- TypeScript, production build, and lint pass. Lint has nine existing warnings and zero errors. `git diff --check` passes.
+- Archive integrity: 35 routes, 425 asset records, 51 scripts parse, and local dependency references pass. Built output contains 378 byte-identical archive files. Sitemap and main search include all 23 indexable archive pages.
+- TypeScript, production build, metadata/redirect SEO acceptance, and lint pass. Lint has nine existing warnings and zero errors. `git diff --check` passes.
 
 Browser evidence uses `work/shell-production-tests-final.log`, `work/shell-archive-tests.log`, `work/shell-content-verification.json`, `work/final-build-verification.json`, and `work/visual-evidence/shell-visual-review.json`. Local contact responses are simulated. The retained external booking provider was visually checked without submitting patient information; live lead delivery and appointment completion are not claimed. This section records the pre-release design review, before the separately authorized main/production release. Publication status must be established from the exact Git revision, Vercel deployment, and public-domain readback; see `docs/verification.md`.
 
@@ -66,3 +66,7 @@ Browser evidence uses `work/shell-production-tests-final.log`, `work/shell-archi
 The release adds the repository-owned source bundle and an isolated bridge to current consent/measurement. Analytics preferences is appended to the legal row. The main site's consent banner renders in a shadow root so its styles cannot change the archived body. Provider responses are mocked in measurement regressions, including approved/declined consent, failed responses, deduplicated eligible successes, and explicit QA/local exclusions. The metadata repair uses retained source evidence and does not rewrite visible body content.
 
 Repeat the build, archive integrity, original-body comparison, both browser engines, and read-only live byte verification for the final integrated release. The screenshot paths above are historical review evidence in the task workspace; they are not required to regenerate the site. Durable generation evidence lives in `archive-source/veneers/provenance.json`, `public/veneers/manifest.json`, the static checker, and the browser specs.
+
+The integrated mobile scanner found compact practice/contact/legal hit areas below 24px. Their clickable boxes now meet that minimum; primary/menu actions remain at least 44px. Header vertical padding accommodates the larger practice-context box while retaining the 96px/80px shell heights. The original body remains unchanged.
+
+A fresh empty source cache regenerated the final release manifest unchanged with subprocess network retrieval forbidden. Final preview tests cover isolated consent, exact campaign/ad identifiers after integration with current main, QA exclusions, and optional measurement failures as well as the shell flows.

@@ -294,12 +294,12 @@ test('emits one sanitized manual page_view per initial and SPA route', async ({ 
 
   await expect.poll(async () => eventCommands(await readDataLayer(page), 'page_view').length).toBe(1);
   await page.evaluate(() => {
-    history.pushState({}, '', '/veneers/?utm_content=private#results');
+    history.pushState({}, '', '/veneers/cost-los-angeles/?utm_content=private#results');
     window.dispatchEvent(new PopStateEvent('popstate'));
   });
-  await expect(page).toHaveURL(/\/veneers\//);
+  await expect(page).toHaveURL(/\/veneers\/cost-los-angeles\//);
   await expect.poll(async () => eventCommands(await readDataLayer(page), 'page_view').length).toBe(2);
-  const veneersTitle = await page.title();
+  const veneersGuideTitle = await page.title();
 
   await page.evaluate(() => {
     history.pushState({}, '', '/contact/?email=privacy-fixture%40example.test#contact-form');
@@ -310,13 +310,13 @@ test('emits one sanitized manual page_view per initial and SPA route', async ({ 
   const contactTitle = await page.title();
 
   const views = eventCommands(await readDataLayer(page), 'page_view');
-  expect(views.map((view) => view[2]?.page_path)).toEqual(['/', '/veneers', '/contact']);
+  expect(views.map((view) => view[2]?.page_path)).toEqual(['/', '/veneers/cost-los-angeles', '/contact']);
   expect(views.map((view) => new URL(String(view[2]?.page_location)).pathname.replace(/\/+$/, '') || '/')).toEqual([
     '/',
-    '/veneers',
+    '/veneers/cost-los-angeles',
     '/contact',
   ]);
-  expect(views[1]?.[2]?.page_title).toBe(veneersTitle);
+  expect(views[1]?.[2]?.page_title).toBe(veneersGuideTitle);
   expect(views[2]?.[2]?.page_title).toBe(contactTitle);
   expect(views[0]?.[2]).not.toHaveProperty('page_referrer');
   for (const view of views) {

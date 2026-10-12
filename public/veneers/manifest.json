@@ -52,9 +52,9 @@
       "lastModified": "2024-09-11T17:55:52Z",
       "lastmod": "2024-09-11T17:55:52Z",
       "h1": "Results Beyond Expectations",
-      "description": "The beauty of Exquisite Dentistry smiles speak for themselves. Explore our impressive results and be inspired. Dr.",
-      "sha256": "67daf4f0fd8efbbde5ba1b534cbeff8e1100a708c5b545a9bb55893f1a19133a",
-      "bytes": 75256
+      "description": "The beauty of Exquisite Dentistry smiles speak for themselves. Explore our impressive results and be inspired.",
+      "sha256": "00f125f139ba1c206ed1988bd765e712e93ff137848a38fa071b05d82418559d",
+      "bytes": 75244
     },
     {
       "path": "/veneers/process/",
@@ -3864,8 +3864,8 @@
   "integrationFiles": [
     {
       "path": "/veneers/shell.css",
-      "sha256": "651eca7debf114c2463d3de390b251bdc680483c868aa0e41bca5e93ade06813",
-      "bytes": 9332
+      "sha256": "b931fd172ccfd11425c931df4261a492867e001e6fab304aaaf1d2add8a92da8",
+      "bytes": 9569
     },
     {
       "path": "/veneers/shell.js",

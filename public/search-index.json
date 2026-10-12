@@ -348,6 +348,7 @@
     {
       "type": "page",
       "title": "About - Exquisite Veneers LA",
+      "description": "Behind every masterwork of cosmetic dentistry is a master artist. Dr. Alexie Aguil brings decades of expertise and training to each smile he designs.",
       "href": "/veneers/about/",
       "h1": "About Dr. Alexie Aguil",
       "keywords": [
@@ -359,6 +360,7 @@
     {
       "type": "page",
       "title": "Blog - Exquisite Veneers LA",
+      "description": "Read porcelain veneer articles, smile makeover stories, and care guidance from Exquisite Veneers LA and Exquisite Dentistry in Los Angeles.",
       "href": "/veneers/blog/",
       "h1": "Blog",
       "keywords": [
@@ -420,6 +422,7 @@
     {
       "type": "page",
       "title": "Contact - Exquisite Veneers LA",
+      "description": "Contact Exquisite Dentistry about porcelain veneers and consultation options at 6227 Wilshire Boulevard in Los Angeles.",
       "href": "/veneers/contact/",
       "h1": "CONTACT US AT (323) 767-0617 TO SCHEDULE YOUR VENEER CONSULTATION. YOUR EXQUISITE SMILE AWAITS.",
       "keywords": [
@@ -689,6 +692,7 @@
     {
       "type": "page",
       "title": "Home - Exquisite Veneers LA",
+      "description": "Explore custom porcelain veneers at Exquisite Dentistry in Los Angeles, including Dr. Aguil’s process, smile results, and consultation options.",
       "href": "/veneers/",
       "h1": "The Naturally Radiant Smile You’ve Always Dreamed Of",
       "keywords": [
@@ -794,6 +798,7 @@
     {
       "type": "page",
       "title": "Process - Exquisite Veneers LA",
+      "description": "Discover how Dr. Aguil’s personalized process, meticulous care, and commitment to excellence yield radiant results.",
       "href": "/veneers/process/",
       "h1": "Our Process: Experience the Power of Precision",
       "keywords": [
@@ -805,6 +810,7 @@
     {
       "type": "page",
       "title": "Resources - Exquisite Veneers LA",
+      "description": "Experience the extraordinary with Exquisite Dentistry. We’ll keep this page updated with our latest resources for refining and maintaining your smile.",
       "href": "/veneers/resources/",
       "h1": "Resources",
       "keywords": [
@@ -816,6 +822,7 @@
     {
       "type": "page",
       "title": "Results - Exquisite Veneers LA",
+      "description": "The beauty of Exquisite Dentistry smiles speak for themselves. Explore our impressive results and be inspired.",
       "href": "/veneers/results/",
       "h1": "Results Beyond Expectations",
       "keywords": [
@@ -1227,6 +1234,7 @@
     {
       "type": "blog",
       "title": "Broken Porcelain Veneer? Here's What to Do - Exquisite Veneers LA",
+      "description": "No one wants to go through the experience of breaking a veneer.",
       "href": "/veneers/broken-porcelain-veneer-heres-what-to-do/",
       "h1": "Broken Porcelain Veneer? Here's What to Do",
       "keywords": [
@@ -1575,6 +1583,7 @@
     {
       "type": "blog",
       "title": "Give Yourself the Gift of Porcelain Veneers for Your Birthday - Exquisite Veneers LA",
+      "description": "Imagine this year, instead of the usual birthday gifts, you give yourself a gift that will keep on giving—a stunning smile.",
       "href": "/veneers/give-yourself-the-gift-of-porcelain-veneers-for-your-birthday/",
       "h1": "Give Yourself the Gift of Porcelain Veneers for Your Birthday",
       "keywords": [
@@ -1702,6 +1711,7 @@
     {
       "type": "blog",
       "title": "How to Choose the Right Porcelain Veneers for You - Exquisite Veneers LA",
+      "description": "Your smile is your signature. And when something’s not right, porcelain veneers can transform your teeth for a smile that is beautiful, natural-looking and…",
       "href": "/veneers/how-to-choose-the-right-porcelain-veneers-for-you/",
       "h1": "How to Choose the Right Porcelain Veneers for You",
       "keywords": [
@@ -1842,6 +1852,7 @@
     {
       "type": "blog",
       "title": "Porcelain Veneers for a More Confident Smile - Exquisite Veneers LA",
+      "description": "Your smile is one of the most powerful tools in your social arsenal, with the potential to communicate warmth, approachability, and confidence.",
       "href": "/veneers/porcelain-veneers-for-a-more-confident-smile/",
       "h1": "Porcelain Veneers for a More Confident Smile",
       "keywords": [
@@ -1961,6 +1972,7 @@
     {
       "type": "blog",
       "title": "The Benefits of Porcelain Veneers Over Other Cosmetic Dentistry Options - Exquisite Veneers LA",
+      "description": "When it comes to enhancing your smile, cosmetic dentistry offers a variety of solutions.",
       "href": "/veneers/the-benefits-of-porcelain-veneers-over-other-cosmetic-dentistry-options/",
       "h1": "The Benefits of Porcelain Veneers Over Other Cosmetic Dentistry Options",
       "keywords": [

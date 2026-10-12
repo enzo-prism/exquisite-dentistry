@@ -228,7 +228,7 @@ def fill_indexable_metadata(s,entry,shell):
    paragraphs=[shell['text_of'](s,node) for node in tree.elements if node.tag=='p' and node.closest(lambda parent:parent.attrs.get('id')=='main')]
    description=next((text for text in paragraphs if len(text)>=50),entry.get('h1') or scan.title)
    if len(description)>160:
-    sentences=re.split(r'(?<=[.!?])\s+',description);complete=''
+    sentences=re.split(r'(?<!Dr\.)(?<=[.!?])\s+',description);complete=''
     for sentence in sentences:
      candidate=(complete+' '+sentence).strip()
      if len(candidate)>160:break

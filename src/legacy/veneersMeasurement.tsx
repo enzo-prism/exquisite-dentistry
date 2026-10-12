@@ -88,7 +88,7 @@ const mount = () => {
   host.id = 'veneers-measurement';
   const shadow = host.attachShadow({ mode: 'open' });
   const style = document.createElement('style');
-  style.textContent = `${styles}\n:host{all:initial;display:contents;font-family:Montserrat,Arial,sans-serif;--gold:38 24% 37%;--gold-light:42 30% 65%;--primary:38 24% 37%;--ring:38 23% 40%;--background:0 0% 100%}.veneers-preferences{font:inherit;font-size:12px;color:#c9c5bf;background:transparent;border:0;padding:0;cursor:pointer;line-height:1.8}.veneers-preferences:hover{text-decoration:underline}.veneers-preferences:focus-visible{outline:2px solid #b4a582;outline-offset:4px}section[aria-label="Analytics preferences"]{z-index:2147483646}`;
+  style.textContent = `${styles}\n:host{all:initial;display:contents;font-family:Montserrat,Arial,sans-serif;--gold:38 24% 37%;--gold-light:42 30% 65%;--primary:38 24% 37%;--ring:38 23% 40%;--background:0 0% 100%}.veneers-preferences{display:inline-flex;align-items:center;min-height:24px;font:inherit;font-size:12px;color:#c9c5bf;background:transparent;border:0;padding:0;cursor:pointer;line-height:1.8}.veneers-preferences:hover{text-decoration:underline}.veneers-preferences:focus-visible{outline:2px solid #b4a582;outline-offset:4px}section[aria-label="Analytics preferences"]{z-index:2147483646}`;
   shadow.append(style);
   const root = document.createElement('span');
   shadow.append(root);
