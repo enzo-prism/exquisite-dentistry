@@ -4,7 +4,7 @@
 
 - Route: `/lp/chatgpt/`
 - Audience: paid ChatGPT Ads visitors considering a Los Angeles cosmetic or porcelain veneer consultation.
-- Campaign: the original `Exquisite LA Cosmetic Consults 30D Pilot` ended October 7, 2026 at 5 pm Pacific after an extension. The October replacement is a proposal until confirmed and created in Ads Manager.
+- Campaign: the original `Exquisite LA Cosmetic Consults 30D Pilot` ended October 7, 2026. A read-only October 12 inspection verified `Exquisite LA Patient Consults — 7D Launch` is serving, with an October 15 end date, a Clicks objective, and Maximize Results bidding.
 - Experience: focused header and footer, approved practice photography, no video, no concierge overlay, and a dedicated consultation form.
 
 The route is paid-only. Runtime and prerendered HTML emit `noindex,nofollow,noarchive`, the route is absent from `sitemap.xml` and site search, and the canonical URL is `https://exquisitedentistryla.com/lp/chatgpt/`.
@@ -81,3 +81,18 @@ GA4 and Vercel do not forward reports to Ads Manager. The existing isolated Open
 ## October 8 consultation flow
 
 The paid landing page names Dr. Aguil in the headline and shows a compact practitioner card on mobile so the request form appears before a large photograph. Desktop retains the existing practice photograph. The form requires only name and email; phone and interest are optional. Fee and scheduling FAQs clarify that submitting is a request, not a confirmed appointment, and that patients can ask about consultation fees before booking. No fee waiver, response-time promise, treatment guarantee, or outcome claim is added.
+
+## October 12 attribution and fallback correction
+
+The prerendered paid landing now matches the interactive headline and offer. It includes fee and appointment expectations and working phone/contact links when JavaScript or the form is unavailable.
+
+OpenAI entity IDs contain hexadecimal digits. The generic phone-number filter previously rejected IDs containing seven consecutive digits. Only `utm_id=cmpn_` followed by exactly 32 hex characters and `utm_content=ad_` followed by exactly 32 hex characters bypass that filter. Other campaign values retain personal-data filtering. The same validation applies when reading saved session tags. Unit and intercepted browser tests verify persistence through untagged navigation and inclusion in an accepted Formspree request.
+
+The proposed campaign tracking template is `utm_id={campaign_id}&utm_content={ad_id}`. Existing ad URLs already supply source, medium, and the readable campaign name; preserve those tags and confirm lower-level templates do not override the new keys. Supported macros expand at ad delivery, so a local test does not prove live macro expansion. The site patch does not enable server-to-server conversion forwarding or change the existing pixel/consent implementation.
+
+Before expanding OpenAI conversion measurement or moving to conversion optimization, confirm that the intended dental-consultation signal is eligible under the current Conversion Terms and Ad Tools Terms. Removing form values alone does not establish that eligibility. Keep first-party request counts separate from platform-attributed conversions, and never count a phone click as a booked appointment.
+
+References:
+- https://help.openai.com/en/articles/20001214-measure-results
+- https://openai.com/policies/conversion-terms/
+- https://openai.com/policies/ad-tools-terms/

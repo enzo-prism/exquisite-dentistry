@@ -56,6 +56,32 @@ test('continues filtering personal data from freeform campaign values', () => {
   assert.deepEqual(getCurrentUTMParameters(), { utm_source: 'chatgpt' });
 });
 
+test('retains structured OpenAI campaign and ad IDs across untagged navigation', () => {
+  const campaignId = 'cmpn_1234567890abcdef1234567890abcdef';
+  const adId = 'ad_abcdef1234567890abcdef1234567890';
+  browser.location.search = `?utm_source=chatgpt&utm_id=${campaignId}&utm_content=${adId}`;
+  initializeUTMTracking();
+  assert.deepEqual(getUTMAttribution(), {
+    utm_source: 'chatgpt', utm_id: campaignId, utm_content: adId,
+  });
+  browser.location.search = '';
+  assert.deepEqual(getUTMAttribution(), {
+    utm_source: 'chatgpt', utm_id: campaignId, utm_content: adId,
+  });
+});
+
+test('entity ID exception does not admit personal data or IDs in freeform fields', () => {
+  for (const query of [
+    '?utm_id=323-555-0100&utm_content=user%40example.com',
+    '?utm_id=cmpn_3235550100&utm_content=ad_3235550100',
+    '?utm_id=cmpn_1234567890abcdef1234567890abcdef%0A',
+    '?utm_term=ad_abcdef1234567890abcdef1234567890',
+  ]) {
+    browser.location.search = query;
+    assert.deepEqual(getCurrentUTMParameters(), {});
+  }
+});
+
 test('ignores malformed saved records', () => {
   for (const value of ['null', '[]', '{bad-json', '42']) {
     storage.set('exquisite_session_attribution_v2', value);

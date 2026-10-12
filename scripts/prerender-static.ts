@@ -227,25 +227,49 @@ export const manualPages: StaticRoute[] = [
     title: "Cosmetic & Veneer Consultation in Los Angeles",
     description:
       "Request a cosmetic or porcelain veneer consultation with Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles.",
-    h1: "A thoughtful first step toward the smile you have in mind.",
+    h1: "Explore your smile options with Dr. Aguil.",
     paragraphs: [
-      "Meet with Dr. Alexie Aguil to discuss porcelain veneers and other cosmetic options. Your consultation is a conversation, not a commitment.",
-      "Share what you are considering, review options that may be appropriate after an in-person evaluation, and understand the next steps before deciding on treatment.",
+      "Considering porcelain veneers or cosmetic dentistry? Meet Dr. Alexie Aguil in Los Angeles, discuss your goals, and understand your options before deciding on treatment.",
     ],
     sections: [
       {
-        heading: "Request a cosmetic consultation",
+        heading: "Request your consultation",
         paragraphs: [
-          "Tell us how to reach you. Our team will follow up about scheduling. Please do not include symptoms, medical history, insurance details, or other health information in this initial request.",
+          "Only name and email are required for the online consultation request. Our team will follow up to help arrange a time with Dr. Aguil.",
+          `If the online form is unavailable, call ${PHONE_NUMBER_DISPLAY} to request a consultation.`,
+          `Visit us at ${ADDRESS}. Ask the team about consultation fees before booking.`,
+          "Submitting a request does not book an appointment. Your appointment is confirmed after you arrange a time with the team.",
+          "Please do not include symptoms, medical history, insurance details, or other health information in this initial request.",
+        ],
+        links: [
+          { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+          { label: "Contact Exquisite Dentistry", href: "/contact/" },
         ],
       },
       {
-        heading: "What to expect",
+        heading: "Clear information, at your pace.",
+        paragraphs: [
+          "Cosmetic dentistry is personal. The first visit is an opportunity to explain what you are considering, ask questions, and understand what an examination may show before deciding on treatment.",
+        ],
         bullets: [
           "Our team contacts you to discuss available consultation times.",
           "You meet with Dr. Aguil and review options after an in-person evaluation.",
           "If you choose to continue, the team explains timing, fees, and next steps.",
         ],
+      },
+    ],
+    faqItems: [
+      {
+        question: "Do I need to know which treatment I want?",
+        answer: "No. Choose “Not sure yet” and use your consultation to discuss your goals. An in-person evaluation helps determine which options may be appropriate.",
+      },
+      {
+        question: "Does this request book an appointment?",
+        answer: "The team will contact you to discuss available times. Your appointment is confirmed after you arrange a time with the team.",
+      },
+      {
+        question: "What will the consultation cost?",
+        answer: "Ask the team about consultation fees when scheduling, before you book your visit.",
       },
     ],
     links: [],
