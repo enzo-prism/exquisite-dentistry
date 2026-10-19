@@ -41,6 +41,25 @@ test.describe('ChatGPT Ads landing page', () => {
     });
   });
 
+  test('an analytics exception preserves accepted intake and the independent OpenAI handoff', async ({ page }) => {
+    let submissions = 0;
+    await page.route('https://formspree.io/**', async route => {
+      submissions += 1;
+      await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
+    });
+    await page.goto('/lp/chatgpt/?oppref=local_receipt_reference');
+    await page.getByRole('button', { name: 'Allow measurement' }).click();
+    await page.getByLabel('Name', { exact: true }).fill('Local Fixture');
+    await page.getByLabel('Email', { exact: true }).fill('fixture@patient.invalid');
+    await page.evaluate(() => { window.gtag = () => { throw new Error('Optional analytics unavailable'); }; });
+    await page.getByRole('button', { name: 'Request my consultation' }).click();
+    await expect(page.getByRole('status')).toContainText('Our team will contact you soon');
+    await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
+    expect(submissions).toBe(1);
+    const events = await page.evaluate(() => (window as typeof window & { __chatGptAdsEvents?: unknown[] }).__chatGptAdsEvents);
+    expect(events).toHaveLength(1);
+  });
+
   test('is a focused, paid-only, privacy-limited page', async ({ page }) => {
     await page.goto('/lp/chatgpt/');
 
