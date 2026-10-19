@@ -1,4 +1,5 @@
 import { annotateLeadSubmission } from '@/utils/leadMeasurement';
+import { submitContactRequest } from '@/utils/submitContactRequest';
 import { useContactFormMeasurement } from '@/hooks/useContactFormMeasurement';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -180,22 +181,7 @@ const ChatGPTAdsLanding = () => {
       appendAttributionMetadata(formData);
       const measurement = annotateLeadSubmission(formData, true);
 
-      const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 12_000);
-      let response: Response;
-
-      try {
-        response = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: formData,
-          signal: controller.signal,
-        });
-      } finally {
-        window.clearTimeout(timeout);
-      }
-
-      if (!response.ok) throw new Error('Formspree request failed');
+      await submitContactRequest(FORM_ENDPOINT, formData);
 
       setStatus('success');
       setFeedback('Thank you. Our team will contact you soon to discuss consultation times.');

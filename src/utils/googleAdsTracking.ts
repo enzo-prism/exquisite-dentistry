@@ -1,4 +1,5 @@
 import { signalChatGptAdsLeadConfirmed } from '@/utils/chatgptAdsTracking';
+import { createConfirmedSubmissionReporter } from '@/utils/confirmedSubmission';
 import {
   trackContactFormSubmitted,
   trackContactMethodClick,
@@ -60,27 +61,32 @@ export function trackSMSClick(phoneNumber: string, source = 'sms_link'): void {
   trackContactMethodClick({ method: 'sms', source, destination: `sms:${phoneNumber}` });
 }
 
-/** Call only after the form endpoint has confirmed success. */
+const reportConfirmedSubmission = createConfirmedSubmissionReporter();
+
+/** Call only after the form endpoint has confirmed success, with its original receipt ID. */
 export function trackFormSubmission(formType: string, additionalData?: Record<string, unknown>): void {
   if (additionalData?.isTest === true) return;
   const acquisitionLead = formType === 'chatgpt_ads_consultation'
     || (formType === 'contact_form'
       && additionalData?.whichBestDescribesYou === 'Thinking about becoming a new patient');
-  trackContactFormSubmitted({
+  const destinations = [() => trackContactFormSubmitted({
     acquisitionLead,
     form: formType,
     persona: typeof additionalData?.whichBestDescribesYou === 'string'
       ? additionalData.whichBestDescribesYou
       : undefined,
     hasPhone: Boolean(additionalData?.hasPhone),
-  });
+  })];
   if (acquisitionLead) {
-    signalChatGptAdsLeadConfirmed(
-      typeof additionalData?.eventId === 'string' ? additionalData.eventId : undefined,
-      typeof additionalData?.openaiClickReference === 'string' ? additionalData.openaiClickReference : undefined,
-      additionalData?.consentUpdatedAt === null || typeof additionalData?.consentUpdatedAt === 'string' ? additionalData.consentUpdatedAt : undefined,
-    );
+    destinations.push(() => {
+      signalChatGptAdsLeadConfirmed(
+        typeof additionalData?.eventId === 'string' ? additionalData.eventId : undefined,
+        typeof additionalData?.openaiClickReference === 'string' ? additionalData.openaiClickReference : undefined,
+        additionalData?.consentUpdatedAt === null || typeof additionalData?.consentUpdatedAt === 'string' ? additionalData.consentUpdatedAt : undefined,
+      );
+    });
   }
+  reportConfirmedSubmission(additionalData?.eventId, destinations);
 }
 
 export function trackCTAClick(ctaType: string, ctaText: string): void {
