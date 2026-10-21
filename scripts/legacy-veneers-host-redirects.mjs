@@ -2,10 +2,15 @@
  * Host-scoped 301s for the retired exquisiteveneersla.com site.
  *
  * Generated into vercel.json from src/constants/legacyVeneersManifest.json.
- * Each archived path P on (?:www\.)?exquisiteveneersla\.com maps to
+ * Each archived path P on the anchored host
+ * ^(?:(?:www\.)?exquisiteveneersla\.com)$ maps to
  * https://exquisitedentistryla.com/veneers{P}. The nav-test page is the one
- * exception (it lands on /veneers/). A final /:path* catch-all covers
+ * exception (it lands on /veneers/). A final /(.*) catch-all covers
  * WordPress leftovers such as /wp-content/ and /feed/.
+ *
+ * No-slash variants are omitted on purpose: Vercel compiles trailingSlash:true
+ * as 308 routes that run BEFORE every redirect, so /about is already /about/
+ * by the time host rules run. Duplicate no-slash host rules never fire.
  *
  * Uses statusCode: 301 (not permanent: true, which is a 308) and a `has`
  * host condition so /about/, /blog/, /contact/ on exquisitedentistryla.com
@@ -13,8 +18,9 @@
  */
 export const LEGACY_VENEERS_HOST = String.raw`(?:www\.)?exquisiteveneersla\.com`;
 export const CANONICAL_ORIGIN = 'https://exquisitedentistryla.com';
-export const LEGACY_VENEERS_CATCH_ALL = '/:path*';
+export const LEGACY_VENEERS_CATCH_ALL = '/(.*)';
 export const NAV_TEST_SOURCE_PATH = '/nav-test-page-2/';
+export const INDEX_HTML_CATCH_ALL = '/(.*)/index.html';
 
 const hostHas = () => [{ type: 'host', value: LEGACY_VENEERS_HOST }];
 
@@ -48,26 +54,13 @@ export const buildLegacyVeneersHostRedirects = (pages) => {
   };
 
   for (const page of pages) {
-    const sourcePath = withTrailingSlash(page.sourcePath);
-    const destination = destinationForLegacyVeneersPath(sourcePath);
-    add(sourcePath, destination);
-    if (sourcePath !== '/') add(sourcePath.slice(0, -1), destination);
+    add(withTrailingSlash(page.sourcePath), destinationForLegacyVeneersPath(page.sourcePath));
   }
 
+  // Cheap WordPress/export leftovers: /x/index.html → /veneers/x/
+  add('/nav-test-page-2/index.html', `${CANONICAL_ORIGIN}/veneers/`);
+  add('/index.html', `${CANONICAL_ORIGIN}/veneers/`);
+  add(INDEX_HTML_CATCH_ALL, `${CANONICAL_ORIGIN}/veneers/$1/`);
   add(LEGACY_VENEERS_CATCH_ALL, `${CANONICAL_ORIGIN}/veneers/`);
   return rules;
-};
-
-export const buildLegacyVeneersHostFixture = (pages) => {
-  const mappings = {};
-  for (const rule of buildLegacyVeneersHostRedirects(pages)) {
-    mappings[rule.source] = rule.destination;
-  }
-  return {
-    host: LEGACY_VENEERS_HOST,
-    statusCode: 301,
-    canonicalOrigin: CANONICAL_ORIGIN,
-    catchAll: LEGACY_VENEERS_CATCH_ALL,
-    mappings,
-  };
 };
