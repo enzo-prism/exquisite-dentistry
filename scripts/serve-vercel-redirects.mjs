@@ -66,9 +66,12 @@ const matchRedirect = (pathname, requestHost) => {
 
 const hasFileExtension = (pathname) => /\.[A-Za-z0-9]+$/.test(pathname);
 
+const collapseSlashes = (pathname) => pathname.replace(/\/{2,}/g, '/');
+
 const server = createServer((req, res) => {
   const url = new URL(req.url ?? '/', `http://${req.headers.host ?? `${host}:${port}`}`);
   const requestHost = req.headers.host ?? '';
+  url.pathname = collapseSlashes(url.pathname);
   const matched = matchRedirect(url.pathname, requestHost);
 
   if (matched) {
