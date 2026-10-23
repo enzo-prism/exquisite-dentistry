@@ -2,6 +2,435 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/nav-test-page-2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/results/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/results/",
+      "statusCode": 301
+    },
+    {
+      "source": "/process/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/process/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/common-questions-about-porcelain-veneers-answered/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/common-questions-about-porcelain-veneers-answered/",
+      "statusCode": 301
+    },
+    {
+      "source": "/give-yourself-the-gift-of-porcelain-veneers-for-your-birthday/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/give-yourself-the-gift-of-porcelain-veneers-for-your-birthday/",
+      "statusCode": 301
+    },
+    {
+      "source": "/pre-vacation-smile-makeover-get-veneers-for-vacation-bliss/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/pre-vacation-smile-makeover-get-veneers-for-vacation-bliss/",
+      "statusCode": 301
+    },
+    {
+      "source": "/7-myths-about-porcelain-veneers-busted/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/7-myths-about-porcelain-veneers-busted/",
+      "statusCode": 301
+    },
+    {
+      "source": "/broken-porcelain-veneer-heres-what-to-do/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/broken-porcelain-veneer-heres-what-to-do/",
+      "statusCode": 301
+    },
+    {
+      "source": "/can-veneers-be-used-for-crooked-teeth-answered/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/can-veneers-be-used-for-crooked-teeth-answered/",
+      "statusCode": 301
+    },
+    {
+      "source": "/give-yourself-a-smile-makeover-at-exquisite-veneers/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/give-yourself-a-smile-makeover-at-exquisite-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/porcelain-veneer-process-a-step-by-step-guide/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/porcelain-veneer-process-a-step-by-step-guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/best-toothpaste-for-porcelain-veneers/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/best-toothpaste-for-porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/",
+      "statusCode": 301
+    },
+    {
+      "source": "/are-porcelain-veneers-right-for-you-find-out-now/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/are-porcelain-veneers-right-for-you-find-out-now/",
+      "statusCode": 301
+    },
+    {
+      "source": "/new-year-brighter-smile-boost-your-confidence-in-2024/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/new-year-brighter-smile-boost-your-confidence-in-2024/",
+      "statusCode": 301
+    },
+    {
+      "source": "/award-worthy-celebrity-smiles-lets-rank-the-best-on-the-2024-red-carpets/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/award-worthy-celebrity-smiles-lets-rank-the-best-on-the-2024-red-carpets/",
+      "statusCode": 301
+    },
+    {
+      "source": "/how-to-choose-the-right-porcelain-veneers-for-you/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/how-to-choose-the-right-porcelain-veneers-for-you/",
+      "statusCode": 301
+    },
+    {
+      "source": "/porcelain-veneers-for-a-more-confident-smile/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/porcelain-veneers-for-a-more-confident-smile/",
+      "statusCode": 301
+    },
+    {
+      "source": "/the-benefits-of-porcelain-veneers-over-other-cosmetic-dentistry-options/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/the-benefits-of-porcelain-veneers-over-other-cosmetic-dentistry-options/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/nkraus/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/author/nkraus/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/choosing-veneers/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/category/choosing-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/porcelain-veneers/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/category/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/cosmetic-dentistry/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/category/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/page/2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/blog/page/2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/nkraus/page/2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/author/nkraus/page/2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/rvcreativela/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/author/rvcreativela/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/porcelain-veneers/page/2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/category/porcelain-veneers/page/2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/page/1/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/blog/page/1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/nkraus/page/1/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/author/nkraus/page/1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/porcelain-veneers/page/1/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/category/porcelain-veneers/page/1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/nav-test-page-2/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/$1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?exquisiteveneersla\\.com"
+        }
+      ],
+      "destination": "https://exquisitedentistryla.com/veneers/",
+      "statusCode": 301
+    },
+    {
       "source": "/services/teeth-cleaning/",
       "destination": "/teeth-cleaning/",
       "permanent": true

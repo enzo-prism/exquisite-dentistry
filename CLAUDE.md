@@ -206,7 +206,7 @@ The site uses one consistent marketing voice — keep new/edited copy on this ba
 - **Verify veneer cost ranges**: the practice must review `src/constants/veneerCosts.ts`, then set `VENEER_COST_VERIFIED = true` so `/veneers/cost-los-angeles/` shows figures instead of "confirmed at your consultation".
 - **Geo location pages** are thin near-duplicates — differentiate or consolidate.
 
-Resolved (kept for context): the `exquisiteveneersla.com` second domain is **not used** for this site (decision 2026-07-12) — no registrar 301 needed; just never link to it from the site. The "Exquisite Dental" blog typo was fixed at the source exports and regenerated. The ~392KB `blogPosts` chunk was split — list surfaces now use `src/data/blogIndex.ts` (see Blog Pipeline above) and only the blog post view loads the full dataset.
+Resolved (kept for context): On 2026-10-12 the practice decided to **retire `exquisiteveneersla.com`** (apex + www) and 301 it onto `https://exquisitedentistryla.com/veneers/` before Flywheel hosting ends on 2026-10-23. DNS stays at GoDaddy. Host-scoped 301s in `vercel.json` (generated from `src/constants/legacyVeneersManifest.json`) are ready for the cutover — add both hostnames as normal (non-redirect) domains on this Vercel project, then point the GoDaddy A/CNAME here. Do not fetch or edit the Flywheel/WordPress site. The July 2026 "domain not used / no registrar 301 needed" note is superseded. The "Exquisite Dental" blog typo was fixed at the source exports and regenerated. The ~392KB `blogPosts` chunk was split — list surfaces now use `src/data/blogIndex.ts` (see Blog Pipeline above) and only the blog post view loads the full dataset.
 
 ## Troubleshooting
 
