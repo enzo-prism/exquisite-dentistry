@@ -431,6 +431,16 @@
       "statusCode": 301
     },
     {
+      "source": "/services/dental-veneers/",
+      "destination": "/veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/dental-veneers",
+      "destination": "/veneers/",
+      "statusCode": 301
+    },
+    {
       "source": "/services/teeth-cleaning/",
       "destination": "/teeth-cleaning/",
       "permanent": true
