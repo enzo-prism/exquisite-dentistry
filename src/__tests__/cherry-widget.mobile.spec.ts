@@ -320,6 +320,11 @@ test.describe('Cherry widget mobile behavior', () => {
     await page.getByText('Financing and insurance options').click();
     await page.getByRole('link', { name: 'Open Payment Plans' }).click();
     await expect(page).toHaveURL(/\/payment-plans\/?$/);
+    // The site-wide widget survives the route change, so its count cannot
+    // signal that the lazy page has mounted and settled the scroll layout.
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      'Understand your payment options before you commit to treatment.',
+    );
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
     await expectCherryVisible(page);
@@ -327,6 +332,7 @@ test.describe('Cherry widget mobile behavior', () => {
     const menuDialog = await openMobileMenu(page);
     await menuDialog.getByRole('link', { name: 'About Dr. Aguil' }).first().click();
     await expect(page).toHaveURL(/\/about\/?$/);
+    await expect(page.locator('main h1')).toBeVisible();
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
 
     await page.locator('header a[href="/"]').first().click();
