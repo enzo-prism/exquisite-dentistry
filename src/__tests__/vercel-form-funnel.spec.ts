@@ -45,10 +45,11 @@ test('main contact funnel counts start, validation and accepted acquisition with
   await page.getByLabel('Name', { exact: true }).fill('Privacy Fixture Person');
   await page.getByLabel('Name', { exact: true }).fill('Privacy Fixture Person Updated');
   await page.getByRole('button', { name: 'Send Message', exact: true }).click();
+  await expect(page.getByText('Please correct the highlighted fields and try again.', { exact: true })).toBeVisible();
   expect((await events(page)).filter(e => e.name === 'Contact Form Started')).toEqual([
     { name: 'Contact Form Started', data: { form: 'website_contact' } },
   ]);
-  expect((await events(page)).find(e => e.name === 'Contact Form Validation Failed')?.data)
+  await expect.poll(async () => (await events(page)).find(e => e.name === 'Contact Form Validation Failed')?.data)
     .toMatchObject({ form: 'website_contact', field_count: 1 });
   expect(submissions).toBe(0);
   await page.getByLabel('Email', { exact: true }).fill('private-fixture@example.test');

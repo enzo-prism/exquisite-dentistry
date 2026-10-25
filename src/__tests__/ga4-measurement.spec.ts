@@ -235,7 +235,9 @@ test('queues denied consent by default and honors explicit accept or reject', as
 });
 
 test('cross-tab consent revocation updates Google storage and blocks Vercel events', async ({ page, context }) => {
-  await page.goto('/lp/chatgpt/');
+  // Exercise a route where Google is allowed. The paid healthcare landing
+  // intentionally never initializes Google, even when consent is granted.
+  await page.goto('/contact/');
   await acceptAnalytics(page);
   const other = await context.newPage();
   await blockAnalyticsVendors(other);
