@@ -5,7 +5,7 @@ import { normalizeTrackedRoute, sanitizeTrackedUrl, getVercelAnalyticsUrl, isVer
 import { initializeUTMTracking } from "@/utils/utmTracking";
 import GlobalIntentTracking from "@/components/GlobalIntentTracking";
 import { useEffect, useState } from "react";
-import { isCanonicalAnalyticsHost } from "@/utils/analyticsHost";
+import { isSiteAnalyticsAllowed, isChatGptAdsLandingPath } from "@/utils/analyticsHost";
 import {
   ANALYTICS_CONSENT_CHANGED_EVENT,
   ANALYTICS_CONSENT_STORAGE_KEY,
@@ -17,12 +17,14 @@ import {
 const RouteAwareObservability = () => {
   const { pathname, search } = useLocation();
   const trackedRoute = normalizeTrackedRoute(pathname);
+  // Preserve explicit QA exclusion even on routes that load no site analytics.
+  const testTraffic = isVercelTestTraffic();
   const trackedUrl = new URL(getVercelAnalyticsUrl(`${window.location.origin}${pathname}${search}`));
   // The SDK treats `path` as a pathname, so queries here become encoded path
   // text. Restore safe campaign queries on the full URL in beforeSend instead.
   const trackedPath = trackedUrl.pathname;
   const [optionalAnalyticsAllowed, setOptionalAnalyticsAllowed] = useState(
-    () => getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost(),
+    () => getAnalyticsConsent() === 'granted' && isSiteAnalyticsAllowed(),
   );
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const RouteAwareObservability = () => {
 
   useEffect(() => {
     const handleConsentChange = () => {
-      setOptionalAnalyticsAllowed(getAnalyticsConsent() === 'granted' && isCanonicalAnalyticsHost());
+      setOptionalAnalyticsAllowed(getAnalyticsConsent() === 'granted' && isSiteAnalyticsAllowed());
     };
     const handleStorage = (event: StorageEvent) => {
       if (event.key === null || event.key === ANALYTICS_CONSENT_STORAGE_KEY) syncAnalyticsConsentFromStorage();
@@ -72,8 +74,8 @@ const RouteAwareObservability = () => {
 
   return (
     <>
-      <GlobalIntentTracking />
-      {optionalAnalyticsAllowed && !isVercelTestTraffic() && (
+      {!isChatGptAdsLandingPath(pathname) && <GlobalIntentTracking />}
+      {optionalAnalyticsAllowed && !testTraffic && (
         <>
           <Analytics
             mode={import.meta.env.PROD ? "production" : "development"}

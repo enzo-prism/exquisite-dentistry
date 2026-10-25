@@ -25,7 +25,7 @@ Campaign attribution uses the allowlist in `src/utils/utmTracking.ts`: current U
 
 ## Measurement contract
 
-GA4 and consent-gated Vercel Web Analytics / Speed Insights now cover this route and the main website. A new v2 measurement choice names Google, Vercel, and OpenAI explicitly. See `ga4-measurement-plan.md` for the event contract and Google advanced Consent Mode behavior.
+The paid healthcare route excludes GA4, Google Ads tags, Vercel Web Analytics / Speed Insights and global intent tracking before and after consent. Eligible main-site routes keep their existing measurement. A new v2 measurement choice names Google, Vercel, and OpenAI explicitly. See `ga4-measurement-plan.md` for the event contract and Google advanced Consent Mode behavior.
 
 The campaign uses its configured OpenAI Ads conversion source on both the landing and main website. After consent and a confirmed Formspree success, the app sends `lead_created` with `{ type: 'customer_action' }`, `{ opt_out: true }`, and a random UUID `event_id`. It never turns page visits, phone clicks, or declined/failed submissions into leads.
 
@@ -96,3 +96,7 @@ References:
 - https://help.openai.com/en/articles/20001214-measure-results
 - https://openai.com/policies/conversion-terms/
 - https://openai.com/policies/ad-tools-terms/
+
+## October 25 launch preflight
+
+The draft repair restores the campaign route exclusion documented in the September 2 launch system. Only the separately consented OpenAI success event remains on this route. Explicit QA traffic retains its test-session marker across the document boundary. The complete form, provider and campaign readiness evidence is in `launch-readiness-2026-10-25.md`. No production deployment or campaign activation is authorized by this preflight.

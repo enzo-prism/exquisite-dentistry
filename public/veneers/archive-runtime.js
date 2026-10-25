@@ -85,7 +85,7 @@
       showMessage(form, successMessage, true);
       form.reset();
     } catch {
-      showMessage(form, 'Your submission failed because of an error. Please try again or call (323) 790-3637.', false);
+      showMessage(form, 'Your submission failed because of an error. Please try again or call (323) 272-2388.', false);
     } finally {
       clearTimeout(timeout);
       form.dataset.submitting = 'false';

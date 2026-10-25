@@ -107,7 +107,11 @@
       var canonicalAnalyticsHost =
         analyticsHostname === 'exquisitedentistryla.com' ||
         analyticsHostname === 'www.exquisitedentistryla.com';
-      if (canonicalAnalyticsHost) {
+      var campaignAnalyticsExcluded = true;
+      try {
+        campaignAnalyticsExcluded = decodeURIComponent(window.location.pathname).toLowerCase().replace(/\/+$/, '') === '/lp/chatgpt';
+      } catch (error) { /* Malformed paths fail closed. */ }
+      if (canonicalAnalyticsHost && !campaignAnalyticsExcluded) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = window.gtag || gtag;
