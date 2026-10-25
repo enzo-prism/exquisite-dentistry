@@ -33,29 +33,32 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test('consultation funnel counts one start, attempts, validation and accepted acquisition without values', async ({ page }) => {
+test('main contact funnel counts start, validation and accepted acquisition without values', async ({ page }) => {
   let submissions = 0;
   await page.route('https://formspree.io/**', route => {
     submissions++;
     return route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
   });
-  await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_campaign=local_fixture&utm_content=01_practitioner');
+  await page.goto('/contact/?utm_source=chatgpt&utm_campaign=local_fixture&utm_content=01_practitioner');
+  await page.getByText('Thinking about becoming a new patient', { exact: true }).click();
+  await page.getByLabel('Message', { exact: true }).fill('Please contact me.');
   await page.getByLabel('Name', { exact: true }).fill('Privacy Fixture Person');
   await page.getByLabel('Name', { exact: true }).fill('Privacy Fixture Person Updated');
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
+  await page.getByRole('button', { name: 'Send Message', exact: true }).click();
+  await expect(page.getByText('Please correct the highlighted fields and try again.', { exact: true })).toBeVisible();
   expect((await events(page)).filter(e => e.name === 'Contact Form Started')).toEqual([
-    { name: 'Contact Form Started', data: { form: 'consultation_request' } },
+    { name: 'Contact Form Started', data: { form: 'website_contact' } },
   ]);
-  expect((await events(page)).find(e => e.name === 'Contact Form Validation Failed')?.data)
-    .toMatchObject({ form: 'consultation_request', field_count: 1 });
+  await expect.poll(async () => (await events(page)).find(e => e.name === 'Contact Form Validation Failed')?.data)
+    .toMatchObject({ form: 'website_contact', field_count: 1 });
   expect(submissions).toBe(0);
   await page.getByLabel('Email', { exact: true }).fill('private-fixture@example.test');
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
-  await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
+  await page.getByRole('button', { name: 'Send Message', exact: true }).click();
+  await expect(page.getByText('Thanks for reaching out! We will respond shortly.')).toBeVisible();
   const recorded = await events(page);
   expect(recorded.filter(e => e.name === 'Contact Form Submit Attempted')).toHaveLength(2);
   expect(recorded.filter(e => e.name === 'Contact Form Submitted')).toEqual([
-    { name: 'Contact Form Submitted', data: { form: 'consultation_request' } },
+    { name: 'Contact Form Submitted', data: { form: 'website_contact' } },
   ]);
   expect(recorded.filter(e => e.name === 'Acquisition Lead')).toHaveLength(1);
   expect(submissions).toBe(1);
@@ -65,13 +68,15 @@ test('consultation funnel counts one start, attempts, validation and accepted ac
 
 test('provider rejection records failure and no accepted request or acquisition', async ({ page }) => {
   await page.route('https://formspree.io/**', route => route.fulfill({ status: 503 }));
-  await page.goto('/lp/chatgpt/');
+  await page.goto('/contact/');
+  await page.getByText('Thinking about becoming a new patient', { exact: true }).click();
+  await page.getByLabel('Message', { exact: true }).fill('Please contact me.');
   await page.getByLabel('Name', { exact: true }).fill('Fixture Person');
   await page.getByLabel('Email', { exact: true }).fill('fixture@example.test');
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
-  await expect(page.getByRole('alert')).toContainText("couldn't confirm");
+  await page.getByRole('button', { name: 'Send Message', exact: true }).click();
+  await expect(page.getByText("We couldn't confirm your request. Please call (323) 272-2388 for help.", { exact: true })).toBeVisible();
   expect((await events(page)).find(e => e.name === 'Contact Form Failed')?.data)
-    .toEqual({ form: 'consultation_request', reason: 'formspree_request_failed' });
+    .toEqual({ form: 'website_contact', reason: 'formspree_request_failed' });
   expect((await events(page)).filter(e => /Submitted|Acquisition/.test(e.name))).toEqual([]);
 });
 
@@ -90,9 +95,9 @@ test('consent denied blocks funnel; granting later records the next interaction 
     localStorage.setItem('exquisite_analytics_consent_v2', 'denied');
     localStorage.setItem('exquisite_chatgpt_ads_measurement_consent_v2', 'denied');
   });
-  await page.goto('/lp/chatgpt/');
+  await page.goto('/contact/');
   await page.getByLabel('Name', { exact: true }).fill('Fixture');
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
+  await page.getByRole('button', { name: 'Send Message', exact: true }).click();
   expect(await events(page)).toEqual([]);
   await page.getByRole('button', { name: 'Privacy choices' }).click();
   await page.getByRole('button', { name: 'Allow measurement' }).click();
@@ -104,7 +109,7 @@ test('consent denied blocks funnel; granting later records the next interaction 
 test('explicit QA visits stay excluded across document navigation', async ({ page }) => {
   await page.goto('/lp/chatgpt/?_codex_test=true');
   await page.getByLabel('Name', { exact: true }).fill('Fixture');
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
+  await page.getByRole('button', { name: 'Request my consultation', exact: true }).click();
   expect(await events(page)).toEqual([]);
   await expect(page.locator('script[src*="vercel"]')).toHaveCount(0);
   await page.goto('/contact/');
@@ -115,9 +120,7 @@ test('explicit QA visits stay excluded across document navigation', async ({ pag
 
 test('campaign context survives navigation and sends no click references or personal query values', async ({ page }) => {
   await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=local_fixture&utm_content=02_veneer_intent&oppref=opaque&email=fixture%40example.test#private');
-  await expect.poll(() => pageviewPaths(page)).toEqual([
-    '/lp/chatgpt',
-  ]);
+  expect(await pageviewPaths(page)).toEqual([]);
   await page.goto('/contact/');
   await expect.poll(() => pageviewPaths(page)).toEqual([
     '/contact',
@@ -130,18 +133,18 @@ test('campaign context survives navigation and sends no click references or pers
 });
 
 test('honeypots never emit attempts or starts', async ({ page }) => {
-  await page.goto('/lp/chatgpt/');
-  await page.locator('#chatgpt-ads-bot-field').evaluate((el: HTMLInputElement) => {
+  await page.goto('/contact/');
+  await page.locator('#bot-field').evaluate((el: HTMLInputElement) => {
     Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(el, 'bot');
     el.dispatchEvent(new Event('input', { bubbles: true }));
   });
-  await page.getByRole('button', { name: 'Request my consultation' }).click();
-  await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
-  expect(await events(page)).toEqual([]);
+  await page.getByRole('button', { name: 'Send Message', exact: true }).click();
+  await expect(page.getByText('Thanks for reaching out! We will respond shortly.')).toBeVisible();
+  expect((await events(page)).filter(e => /Contact Form|Acquisition/.test(e.name))).toEqual([]);
 });
 
 test('early consented events queue safely before the SDK and redact unsafe properties', async ({ page }) => {
-  await page.goto('/lp/chatgpt/');
+  await page.goto('/contact/');
   const queued = await page.evaluate(async () => {
     const w = window as Window;
     delete w.va;
@@ -150,12 +153,12 @@ test('early consented events queue safely before the SDK and redact unsafe prope
     const { trackVercelEvent } = await import(modulePath);
     const accepted = trackVercelEvent('Fixture Event', {
       private: 'person%40example.test', phone: '+1 323 555 0199',
-      invalid: Number.NaN, form: 'consultation_request', reason: 'fixture', extra: 'unused',
+      invalid: Number.NaN, form: 'website_contact', reason: 'fixture', extra: 'unused',
     });
     return { accepted, queue: w.vaq };
   });
   expect(queued.accepted).toBe(true);
   expect(queued.queue).toEqual([['event', {
-    name: 'Fixture Event', data: { form: 'consultation_request', reason: 'fixture' },
+    name: 'Fixture Event', data: { form: 'website_contact', reason: 'fixture' },
   }]]);
 });

@@ -52,14 +52,14 @@ test('landing to privacy and browser back preserve Google consent mode and denie
   });
   await page.goto('/lp/chatgpt/');
   await expect(page.getByLabel('Name')).toBeVisible();
-  expect(vendorRequests.some(url => url.includes('googletagmanager'))).toBe(true);
+  expect(vendorRequests).toHaveLength(0);
   await page.getByRole('link', { name: 'Privacy Policy', exact: true }).first().click();
   await expect(page).toHaveURL(/\/privacy-policy\/?$/);
   await expect.poll(() => page.evaluate(() => typeof window.gtag)).toBe('function');
   expect(await page.evaluate(() => localStorage.getItem('exquisite_analytics_consent_v2'))).toBe('denied');
   await page.goBack();
   await expect(page.getByLabel('Name')).toBeVisible();
-  expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
+  expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
   await expect(page.locator('script[src*="/_vercel/"]')).toHaveCount(0);
   const requestsAfterBack = vendorRequests.length;
   await page.waitForTimeout(300);
@@ -82,13 +82,13 @@ for (const alias of ['/LP/CHATGPT/', '/lp/%63hatgpt/']) {
     });
     await page.goto(alias);
     await expect(page.getByLabel('Name')).toBeVisible();
-    expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
-    expect(requests.some(url => url.includes('googletagmanager'))).toBe(true);
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
+    expect(requests).toHaveLength(0);
     await expect(page.getByRole('button', { name: 'Open navigation menu' })).toHaveCount(0);
     await page.getByRole('link', { name: 'Privacy Policy', exact: true }).first().click();
     await expect.poll(() => page.evaluate(() => typeof window.gtag)).toBe('function');
     await page.goBack();
     await expect(page.getByLabel('Name')).toBeVisible();
-    expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
   });
 }

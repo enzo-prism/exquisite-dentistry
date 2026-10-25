@@ -57,3 +57,8 @@ export const isChatGptAdsLandingPath = (
     normalized as (typeof CHATGPT_ADS_LANDING_PATHS)[number],
   );
 };
+
+/** Paid healthcare landing retains its separate, consented OpenAI path only. */
+export const isSiteAnalyticsAllowed = () => (
+  isCanonicalAnalyticsHost() && !isChatGptAdsLandingPath()
+);

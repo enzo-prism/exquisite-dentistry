@@ -1,5 +1,5 @@
 import { track } from '@vercel/analytics';
-import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isSiteAnalyticsAllowed } from '@/utils/analyticsHost';
 import { getUTMAttribution } from '@/utils/utmTracking';
 import { getAnalyticsFormType } from '@/constants/measurement';
 import {
@@ -231,7 +231,7 @@ export const trackVercelEvent = (
 ) => {
   if (
     typeof window === 'undefined'
-    || !isCanonicalAnalyticsHost()
+    || !isSiteAnalyticsAllowed()
     || getAnalyticsConsent() !== 'granted'
     || isVercelTestTraffic()
   ) return false;

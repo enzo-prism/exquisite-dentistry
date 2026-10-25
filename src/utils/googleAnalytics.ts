@@ -1,4 +1,4 @@
-import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import { isSiteAnalyticsAllowed } from '@/utils/analyticsHost';
 import type { AnalyticsFormType } from '@/constants/measurement';
 
 export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v2';
@@ -87,7 +87,7 @@ export const syncAnalyticsConsentFromStorage = () => {
 const canUseGoogleTag = () => (
   typeof window !== 'undefined'
   && typeof window.gtag === 'function'
-  && isCanonicalAnalyticsHost()
+  && isSiteAnalyticsAllowed()
 );
 
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {

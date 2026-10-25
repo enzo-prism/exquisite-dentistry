@@ -209,7 +209,7 @@ test.describe('ChatGPT Ads landing page', () => {
 
     const googleEvents = await page.evaluate(() => window.dataLayer ?? []);
     expect(JSON.stringify(googleEvents)).not.toContain('sample@patient.invalid');
-    expect(JSON.stringify(googleEvents)).toContain('generate_lead');
+    expect(googleEvents).toHaveLength(0);
 
     await expect.poll(() => page.evaluate(() => ((window as OpenAIAdsTestWindow).__openAIAdsCalls ?? []).some(call => call[0] === 'measure'))).toBe(true);
   });
@@ -360,15 +360,15 @@ test.describe('ChatGPT Ads landing page', () => {
     expect(attempts).toBe(2);
   });
 
-  test('loads GA4 on the landing route and gates Vercel on consent', async ({ page }) => {
+  test('suppresses Google and Vercel on the paid healthcare route even after consent', async ({ page }) => {
     await page.goto('/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&oppref=opaque-click');
-    expect(await page.evaluate(() => typeof window.gtag)).toBe('function');
+    expect(await page.evaluate(() => typeof window.gtag)).toBe('undefined');
     await expect(page.locator('script[src*="vercel-scripts"], script[src*="/_vercel/"]')).toHaveCount(0);
     await page.getByRole('button', { name: 'Privacy choices' }).click();
     await page.getByRole('button', { name: 'Allow measurement' }).click();
-    await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(1);
+    await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(0);
     const layer = await page.evaluate(() => (window.dataLayer ?? []).map(item => Array.from(item as ArrayLike<unknown>)));
-    expect(layer.some(item => item[0] === 'config' && item[1] === 'G-1MZGF2XNB5')).toBe(true);
+    expect(layer).toHaveLength(0);
     expect(JSON.stringify(layer)).not.toContain('opaque-click');
   });
 

@@ -418,6 +418,8 @@ def main():
   s=re.sub(r'<div class="elementor-field" id="form-field-field_6a65e3f">.*?</div></div>','',s,flags=re.S)
   s=re.sub(r'<script\b[^>]*src=["\'][^"\']*(?:recaptcha|google\.com/recaptcha)[^"\']*["\'][^>]*>.*?</script>','',s,flags=re.I|re.S)
   s=re.sub(r'(src=["\'])https://www\.google\.com/maps/embed/v1/place\?[^"\']+',lambda m:m.group(1)+'https://maps.google.com/maps?q=6227%20Wilshire%20Boulevard%2C%20Los%20Angeles%2C%20CA%2090048&amp;z=12&amp;output=embed',s)
+  # Retired CallRail numbers must not receive consultation calls.
+  s=s.replace('3237670617','+13232722388').replace('(323) 767-0617','(323) 272-2388')
   s=repair_metadata(s)
   s,audit=render_shell(s,entry);content_audit.append(audit)
   s=update_page_seo(s,entry)
