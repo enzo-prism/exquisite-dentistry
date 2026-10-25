@@ -136,6 +136,9 @@ test('confirmed real response records one lead with consented attribution and no
   await expect.poll(async () => (await readCommands(page)).filter(c => c[0] === 'event' && c[1] === 'generate_lead').length).toBe(1);
   await expect.poll(() => page.evaluate(() => (window as TestWindow).__mockLeads!.length)).toBe(1);
   const events = (await readCommands(page)).filter(c => c[0] === 'event');
+  const accepted = events.filter(c => c[1] === 'form_submission_accepted');
+  expect(accepted).toHaveLength(1);
+  expect(accepted[0][2]).toMatchObject({ form_type: 'website_contact', interaction_method: 'form', cta_location: 'veneers_contact' });
   for (const fixture of privateFixtures) expect(JSON.stringify(events)).not.toContain(fixture);
   expect(JSON.stringify(events.filter(c => c[1] !== 'page_view'))).not.toContain('openai-reference');
   expect(JSON.stringify(events.filter(c => c[1] !== 'page_view'))).not.toContain('exact-click-reference');
@@ -159,6 +162,7 @@ test('provider failure and explicit QA success do not record leads', async ({ pa
   expect(mock.submissions).toHaveLength(2);
   expect(mock.submissions[1]).toMatch(/name="_codex_test"\r?\n\r?\ntrue/);
   expect(mock.submissions[1]).toMatch(/name="measurement_acquisition_lead"\r?\n\r?\nfalse/);
+  expect((await readCommands(page)).filter(c => c[0] === 'event' && c[1] === 'form_submission_accepted')).toHaveLength(0);
   expect((await readCommands(page)).filter(c => c[0] === 'event' && c[1] === 'generate_lead')).toHaveLength(0);
   expect(await page.evaluate(() => (window as TestWindow).__mockLeads!.length)).toBe(0);
 });

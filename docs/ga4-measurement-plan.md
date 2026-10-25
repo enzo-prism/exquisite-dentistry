@@ -35,6 +35,7 @@ The archived consultation form is an acquisition inquiry. Only an accepted Forms
 | --- | --- | --- | --- |
 | `page_view` | Initial document render and each completed eligible React route change | sanitized location, path, title, and referrer | No |
 | `generate_lead` | Confirmed non-test landing consultation, archived veneers inquiry, or new-patient contact request | allowlisted generic form type, interaction method, CTA location | Yes |
+| `form_submission_accepted` | Confirmed non-test form intake, including callback and administrative requests | fixed generic form type, interaction method, CTA location | No |
 | `schedule_click` | Visitor opens a scheduling path | interaction method, CTA location | No |
 | `contact_click` | Phone, SMS, email, directions, or social action | interaction method, CTA location | No |
 | `cta_click` | General marketing CTA | CTA type, CTA location | No |
@@ -43,9 +44,37 @@ The archived consultation form is an acquisition inquiry. Only an accepted Forms
 
 Register only low-cardinality, approved parameters as event-scoped custom dimensions. Do not create dimensions from click IDs or user-entered values.
 
+## October 24 implementation and Admin readback
+
+The canonical property now has four event-scoped custom dimensions, created in
+Analytics Admin and independently read back through the GA4 reporting metadata API:
+
+| Display name | Event parameter |
+| --- | --- |
+| CTA location | `cta_location` |
+| Interaction method | `interaction_method` |
+| Interaction action | `action` |
+| Form type | `form_type` |
+
+`form_type` is restricted in source to `website_contact`, `consultation_request`,
+`callback_request`, and `website_other`. It describes the form layout, not treatment
+interest, clinical information, patient identity, or qualification.
+
+Each accepted provider receipt reports once per document. A repeat callback for
+the same receipt is ignored, while distinct receipts accepted within five seconds
+remain distinct. Optional analytics provider failures are isolated. Explicit QA
+sessions remain excluded after navigating away from their original test URL.
+
+Use `form_submission_accepted` to diagnose intake coverage. Keep `generate_lead`
+as the acquisition key event. A callback, existing-patient request, benefits request,
+or vendor message must not become a new-patient lead merely because intake succeeded.
+Neither event proves email notification delivery, qualification, booking, or attendance.
+Appointment outcomes still require the private, evidence-backed workflow in
+`docs/appointment-outcomes.md`; no scheduler or practice-management API is invented.
+
 ## Analytics Admin checklist
 
-1. Keep only the real client-emitted `generate_lead` as a key event; remove any custom event that converts a `/contact` page view into a lead.
+1. Keep website interaction and diagnostic events non-key. The client-emitted `generate_lead` counts confirmed acquisition inquiries, never `/contact` page views. Existing `qualify_lead` and `close_convert_lead` key events are reserved for verified downstream outcomes; this release does not emit them or invent those outcomes.
 2. Disable Enhanced Measurement browser-history page changes so manual SPA page views are not duplicated.
 3. Confirm `G-RECCC1K9GK` remains disabled and remove unexplained routing to property `478101252` unless ownership and purpose are approved.
 4. Link only the canonical property to the correct Google Ads account, enable auto-tagging, and import `generate_lead` once if Google Ads uses GA lead reporting.

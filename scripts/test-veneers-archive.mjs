@@ -109,6 +109,9 @@ for (const page of manifest.pages) {
   assert.ok(page.path.startsWith('/veneers/'));
   const file = path.join(root, 'public', page.path, 'index.html');
   const markup = fs.readFileSync(file, 'utf8');
+  if (page.path === '/veneers/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/') {
+    assert.ok(markup.includes('href="/contact/"'), 'Original main-site consultation link stays on the main contact page');
+  }
   assert.equal(digest(markup), page.sha256, `Page hash matches: ${page.path}`);
   assert.ok(markup.includes(`href="https://exquisitedentistryla.com${page.path}"`), `Correct canonical: ${page.path}`);
   assert.ok(!/https?:\/?\\?\/\/?\\?\/exquisiteveneersla\.com/.test(markup), `No old host dependency: ${page.path}`);
@@ -133,6 +136,15 @@ for (const page of manifest.pages) {
     }
     const schemas = [...markup.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
     assert.ok(schemas.some(schema => schemaHasType(schema, 'BreadcrumbList')), `Breadcrumb schema exists: ${page.path}`);
+    if (page.path === '/veneers/') {
+      assert.equal(page.title, 'Porcelain Veneers in Los Angeles | Exquisite Dentistry');
+      assert.equal(metadata.get('og:title'), page.title);
+      assert.equal(metadata.get('twitter:title'), page.title);
+      assert.ok(!schemas.some(schema => schemaHasType(schema, 'Article')), 'Veneers service hub is not an agency-authored article');
+      const dentist = schemas.flatMap(schema => schema['@graph'] ?? [schema]).find(node => [node['@type']].flat().includes('Dentist'));
+      assert.deepEqual(dentist.openingHours, ['Mo-Th 08:00-18:00']);
+      assert.equal(dentist.name, 'Exquisite Dentistry');
+    }
   }
   for (const match of markup.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>(.*?)<\/script>/gs)) {
     JSON.parse(match[1]);

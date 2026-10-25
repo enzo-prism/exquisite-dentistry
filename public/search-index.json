@@ -347,8 +347,8 @@
     },
     {
       "type": "page",
-      "title": "About - Exquisite Veneers LA",
-      "description": "Behind every masterwork of cosmetic dentistry is a master artist. Dr. Alexie Aguil brings decades of expertise and training to each smile he designs.",
+      "title": "About Dr. Alexie Aguil | Veneers in Los Angeles",
+      "description": "Meet Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Explore his approach to porcelain veneers, smile design, and personalized consultation planning.",
       "href": "/veneers/about/",
       "h1": "About Dr. Alexie Aguil",
       "keywords": [
@@ -356,18 +356,6 @@
         "Exquisite Veneers LA"
       ],
       "id": "page:/veneers/about/"
-    },
-    {
-      "type": "page",
-      "title": "Blog - Exquisite Veneers LA",
-      "description": "Read porcelain veneer articles, smile makeover stories, and care guidance from Exquisite Veneers LA and Exquisite Dentistry in Los Angeles.",
-      "href": "/veneers/blog/",
-      "h1": "Blog",
-      "keywords": [
-        "veneers",
-        "Exquisite Veneers LA"
-      ],
-      "id": "page:/veneers/blog/"
     },
     {
       "type": "page",
@@ -418,18 +406,6 @@
         "smile confidence LA"
       ],
       "id": "page:/transformation-stories/nick-invisalign/"
-    },
-    {
-      "type": "page",
-      "title": "Contact - Exquisite Veneers LA",
-      "description": "Contact Exquisite Dentistry about porcelain veneers and consultation options at 6227 Wilshire Boulevard in Los Angeles.",
-      "href": "/veneers/contact/",
-      "h1": "CONTACT US AT (323) 767-0617 TO SCHEDULE YOUR VENEER CONSULTATION. YOUR EXQUISITE SMILE AWAITS.",
-      "keywords": [
-        "veneers",
-        "Exquisite Veneers LA"
-      ],
-      "id": "page:/veneers/contact/"
     },
     {
       "type": "page",
@@ -691,18 +667,6 @@
     },
     {
       "type": "page",
-      "title": "Home - Exquisite Veneers LA",
-      "description": "Explore custom porcelain veneers at Exquisite Dentistry in Los Angeles, including Dr. Aguil’s process, smile results, and consultation options.",
-      "href": "/veneers/",
-      "h1": "The Naturally Radiant Smile You’ve Always Dreamed Of",
-      "keywords": [
-        "veneers",
-        "Exquisite Veneers LA"
-      ],
-      "id": "page:/veneers/"
-    },
-    {
-      "type": "page",
       "href": "/invisalign/",
       "title": "Invisalign Clear Aligners Los Angeles | Exquisite Dentistry",
       "description": "Invisalign in Los Angeles guided by Dr. Alexie Aguil delivers discreet aligner treatment, digital planning, and concierge check-ins for busy professionals.",
@@ -789,16 +753,20 @@
     },
     {
       "type": "page",
-      "title": "Privacy Policy | Exquisite Dentistry Los Angeles",
-      "description": "Read how Exquisite Dentistry protects and uses personal information in compliance with HIPAA and California privacy standards.",
-      "href": "/privacy-policy/",
-      "h1": "Privacy Policy",
-      "id": "page:/privacy-policy/"
+      "title": "Porcelain Veneers in Los Angeles | Exquisite Dentistry",
+      "description": "Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.",
+      "href": "/veneers/",
+      "h1": "The Naturally Radiant Smile You’ve Always Dreamed Of",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/"
     },
     {
       "type": "page",
-      "title": "Process - Exquisite Veneers LA",
-      "description": "Discover how Dr. Aguil’s personalized process, meticulous care, and commitment to excellence yield radiant results.",
+      "title": "Porcelain Veneers Process | Exquisite Dentistry Los Angeles",
+      "description": "Explore the porcelain veneer process at Exquisite Dentistry in Los Angeles, from consultation and smile planning to preparation, placement, and follow-up.",
       "href": "/veneers/process/",
       "h1": "Our Process: Experience the Power of Precision",
       "keywords": [
@@ -809,8 +777,8 @@
     },
     {
       "type": "page",
-      "title": "Resources - Exquisite Veneers LA",
-      "description": "Experience the extraordinary with Exquisite Dentistry. We’ll keep this page updated with our latest resources for refining and maintaining your smile.",
+      "title": "Porcelain Veneers Questions and Guides | Exquisite Dentistry",
+      "description": "Explore porcelain veneer questions and guides from Exquisite Dentistry in Los Angeles, including treatment planning, smile design, care, and consultation options.",
       "href": "/veneers/resources/",
       "h1": "Resources",
       "keywords": [
@@ -821,15 +789,11 @@
     },
     {
       "type": "page",
-      "title": "Results - Exquisite Veneers LA",
-      "description": "The beauty of Exquisite Dentistry smiles speak for themselves. Explore our impressive results and be inspired.",
-      "href": "/veneers/results/",
-      "h1": "Results Beyond Expectations",
-      "keywords": [
-        "veneers",
-        "Exquisite Veneers LA"
-      ],
-      "id": "page:/veneers/results/"
+      "title": "Privacy Policy | Exquisite Dentistry Los Angeles",
+      "description": "Read how Exquisite Dentistry protects and uses personal information in compliance with HIPAA and California privacy standards.",
+      "href": "/privacy-policy/",
+      "h1": "Privacy Policy",
+      "id": "page:/privacy-policy/"
     },
     {
       "type": "page",
@@ -991,6 +955,42 @@
         "artistic cosmetic dentistry LA"
       ],
       "id": "page:/transformation-stories/virginia/"
+    },
+    {
+      "type": "page",
+      "title": "Veneers Articles and Care Guides | Exquisite Dentistry",
+      "description": "Read porcelain veneer articles and care guides from Exquisite Dentistry in Los Angeles. Explore treatment questions and learn what to discuss at your consultation.",
+      "href": "/veneers/blog/",
+      "h1": "Blog",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/blog/"
+    },
+    {
+      "type": "page",
+      "title": "Veneers Before and After | Exquisite Dentistry Los Angeles",
+      "description": "See real before-and-after veneer results from Exquisite Dentistry in Los Angeles. Explore smile transformations and discuss your goals with Dr. Aguil.",
+      "href": "/veneers/results/",
+      "h1": "Results Beyond Expectations",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/results/"
+    },
+    {
+      "type": "page",
+      "title": "Veneers Consultation in Los Angeles | Exquisite Dentistry",
+      "description": "Request a porcelain veneers consultation with Exquisite Dentistry at 6227 Wilshire Boulevard in Los Angeles. Contact the team to discuss your next step.",
+      "href": "/veneers/contact/",
+      "h1": "CONTACT US AT (323) 767-0617 TO SCHEDULE YOUR VENEER CONSULTATION. YOUR EXQUISITE SMILE AWAITS.",
+      "keywords": [
+        "veneers",
+        "Exquisite Veneers LA"
+      ],
+      "id": "page:/veneers/contact/"
     },
     {
       "type": "page",

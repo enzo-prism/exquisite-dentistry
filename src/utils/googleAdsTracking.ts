@@ -5,6 +5,7 @@ import {
   trackContactMethodClick,
   trackConsultationIntent,
   trackCtaClick,
+  isVercelTestTraffic,
 } from '@/utils/vercelAnalytics';
 import { SCHEDULE_CONSULTATION_PATH, SCHEDULING_URL } from '@/constants/urls';
 
@@ -65,7 +66,7 @@ const reportConfirmedSubmission = createConfirmedSubmissionReporter();
 
 /** Call only after the form endpoint has confirmed success, with its original receipt ID. */
 export function trackFormSubmission(formType: string, additionalData?: Record<string, unknown>): void {
-  if (additionalData?.isTest === true) return;
+  if (additionalData?.isTest === true || isVercelTestTraffic()) return;
   const acquisitionLead = formType === 'chatgpt_ads_consultation'
     || (formType === 'contact_form'
       && additionalData?.whichBestDescribesYou === 'Thinking about becoming a new patient');

@@ -34,6 +34,19 @@ Localhost contact submissions are simulated. Success explicitly says no data was
 
 ## Rebuild and checks
 
+### Maintained search metadata
+
+The seven main archive pages have descriptive, location-relevant page titles,
+descriptions and matching OpenGraph/Twitter titles in `PAGE_SEO` inside the archive
+generator. Search indexes and route manifests use those maintained titles. The
+original visible copy, headings, photographs and page flow remain preserved.
+
+Service/navigation pages use WebPage metadata rather than an inherited agency-authored
+Article node. Genuine archived article authors remain unchanged; no new clinician
+authorship or review credit is asserted. Archived Dentist schema uses the canonical
+practice name, main-site URL and published Monday–Thursday, 8 AM–6 PM office hours.
+The original source provenance remains immutable and generated hashes are refreshed.
+
 Run from the repository root:
 
 ```sh

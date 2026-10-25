@@ -1,4 +1,5 @@
 import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
+import type { AnalyticsFormType } from '@/constants/measurement';
 
 export const ANALYTICS_CONSENT_STORAGE_KEY = 'exquisite_analytics_consent_v2';
 export const ANALYTICS_PREFERENCES_EVENT = 'exquisite:open-analytics-preferences';
@@ -195,18 +196,26 @@ export const trackGenerateLead = ({
   formType,
   ctaLocation,
 }: {
-  formType: string;
+  formType: AnalyticsFormType;
   ctaLocation?: string;
-}) => sendDedupedEvent(
+}) => sendEvent(
   'generate_lead',
   {
-    form_type: 'website_contact',
+    form_type: formType,
     interaction_method: 'form',
     cta_location: normalizeDimension(ctaLocation ?? window.location.pathname, 'unknown'),
   },
-  `lead|${formType}|${window.location.pathname}`,
-  5_000,
 );
+
+/** Provider-accepted intake, including non-acquisition requests. Never a booking. */
+export const trackGoogleFormAccepted = ({ formType, ctaLocation }: {
+  formType: AnalyticsFormType;
+  ctaLocation: string;
+}) => sendEvent('form_submission_accepted', {
+  form_type: formType,
+  interaction_method: 'form',
+  cta_location: normalizeDimension(ctaLocation, 'unknown'),
+});
 
 export const trackGoogleContactClick = ({
   method,

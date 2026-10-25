@@ -472,6 +472,10 @@ test('successful Formspree response emits exactly one privacy-safe generate_lead
   const commands = await readDataLayer(page);
   expect(formspreeRequests).toBe(1);
   expect(eventCommands(commands, 'generate_lead')).toHaveLength(1);
+  expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(1);
+  expect(eventCommands(commands, 'form_submission_accepted')[0][2]).toMatchObject({
+    form_type: 'website_contact', interaction_method: 'form', cta_location: 'contact',
+  });
   assertPrivacySafeGaEvents(commands);
 });
 
@@ -494,6 +498,8 @@ test('successful benefits request does not count as a new-patient lead', async (
   const commands = await readDataLayer(page);
   const leads = eventCommands(commands, 'generate_lead');
   expect(leads).toHaveLength(0);
+  expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(1);
+  expect(eventCommands(commands, 'form_submission_accepted')[0][2]?.form_type).toBe('website_other');
   const serialized = JSON.stringify(leads).toLowerCase();
   expect(serialized).not.toContain('private carrier fixture');
   expect(serialized).not.toContain('private plan fixture');
@@ -514,6 +520,7 @@ test('failed, invalid, and honeypot submissions emit zero generate_lead events',
   await page.getByRole('button', { name: 'Send Message' }).click();
   await expect(page.getByText('Please correct the highlighted fields')).toBeVisible();
   expect(eventCommands(await readDataLayer(page), 'generate_lead')).toHaveLength(0);
+  expect(eventCommands(await readDataLayer(page), 'form_submission_accepted')).toHaveLength(0);
   expect(formspreeRequests).toBe(0);
 
   await clearDataLayer(page);
@@ -521,6 +528,7 @@ test('failed, invalid, and honeypot submissions emit zero generate_lead events',
   await page.getByRole('button', { name: 'Send Message' }).click();
   await expect(page.getByText("We couldn't confirm your request")).toBeVisible();
   expect(eventCommands(await readDataLayer(page), 'generate_lead')).toHaveLength(0);
+  expect(eventCommands(await readDataLayer(page), 'form_submission_accepted')).toHaveLength(0);
   expect(formspreeRequests).toBe(1);
 
   await page.reload();
@@ -534,9 +542,67 @@ test('failed, invalid, and honeypot submissions emit zero generate_lead events',
   await page.getByRole('button', { name: 'Send Message' }).click();
   await expect(page.getByText('Thanks for reaching out!')).toBeVisible();
   expect(eventCommands(await readDataLayer(page), 'generate_lead')).toHaveLength(0);
+  expect(eventCommands(await readDataLayer(page), 'form_submission_accepted')).toHaveLength(0);
   expect(formspreeRequests).toBe(1);
 
   assertPrivacySafeGaEvents(await readDataLayer(page));
+});
+
+test('accepted receipts dedupe individually without dropping distinct rapid inquiries', async ({ page }) => {
+  await page.goto('/contact/');
+  await acceptAnalytics(page);
+  await clearDataLayer(page);
+  await page.evaluate(async () => {
+    const modulePath = '/src/utils/googleAdsTracking.ts';
+    const { trackFormSubmission } = await import(modulePath);
+    const receipt = { eventId: crypto.randomUUID(), whichBestDescribesYou: 'Thinking about becoming a new patient' };
+    trackFormSubmission('contact_form', receipt);
+    trackFormSubmission('contact_form', receipt);
+    trackFormSubmission('contact_form', { ...receipt, eventId: crypto.randomUUID() });
+    trackFormSubmission('consultation_callback', { eventId: crypto.randomUUID() });
+    trackFormSubmission('contact_form', { ...receipt, eventId: crypto.randomUUID(), isTest: true });
+  });
+  const commands = await readDataLayer(page);
+  expect(eventCommands(commands, 'generate_lead')).toHaveLength(2);
+  expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(3);
+  expect(eventCommands(commands, 'form_submission_accepted').map(event => event[2]?.form_type)).toEqual([
+    'website_contact', 'website_contact', 'callback_request',
+  ]);
+  assertPrivacySafeGaEvents(commands);
+});
+
+test('optional accepted-intake tracking failures cannot suppress the lead report', async ({ page }) => {
+  await page.goto('/contact/');
+  await acceptAnalytics(page);
+  await clearDataLayer(page);
+  await page.evaluate(async () => {
+    const original = window.gtag!;
+    window.gtag = (...args) => {
+      if (args[0] === 'event' && args[1] === 'form_submission_accepted') throw new Error('Simulated optional event failure');
+      original(...args);
+    };
+    const modulePath = '/src/utils/googleAdsTracking.ts';
+    const { trackFormSubmission } = await import(modulePath);
+    trackFormSubmission('contact_form', { eventId: crypto.randomUUID(), whichBestDescribesYou: 'Thinking about becoming a new patient' });
+  });
+  expect(eventCommands(await readDataLayer(page), 'generate_lead')).toHaveLength(1);
+});
+
+test('a marked QA session emits no intake or lead events after its query flag is removed', async ({ page }) => {
+  await page.goto('/contact/?_codex_test=true');
+  await acceptAnalytics(page);
+  await clearDataLayer(page);
+  await page.evaluate(async () => {
+    const modulePath = '/src/utils/googleAdsTracking.ts';
+    const { trackFormSubmission } = await import(modulePath);
+    const receipt = () => ({ eventId: crypto.randomUUID(), whichBestDescribesYou: 'Thinking about becoming a new patient' });
+    trackFormSubmission('contact_form', receipt());
+    history.replaceState({}, '', '/contact/');
+    trackFormSubmission('contact_form', receipt());
+  });
+  const commands = await readDataLayer(page);
+  expect(eventCommands(commands, 'generate_lead')).toHaveLength(0);
+  expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(0);
 });
 });
 

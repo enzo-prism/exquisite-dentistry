@@ -169,7 +169,8 @@ def rewrite_urls(s,assets,origin=BASE,is_css=False,is_html=True):
     main_path=p.path or '/'
     if main_path.rstrip('/')=='/services/invisalign':main_path='/invisalign/'
     redirects=json.loads((REPO/'vercel.json').read_text()).get('redirects',[])
-    main_path=next((x['destination'] for x in redirects if x['source']==main_path),main_path)
+    # Old-host redirects must not rewrite links that already target the main site.
+    main_path=next((x['destination'] for x in redirects if x['source']==main_path and not x.get('has') and not x.get('missing')),main_path)
     val=urllib.parse.urlunsplit(('', '',main_path,p.query,p.fragment))
    elif val.startswith('/') and not val.startswith(('/veneers/','//')) and key in ('href','action'):
     val='/veneers'+val
@@ -187,7 +188,15 @@ def repair_metadata(s):
  s=re.sub(r'<meta\b[^>]*>',meta_image,s,flags=re.I)
  def schema(m):
   def walk(value):
-   if isinstance(value,dict):return {key:walk(item) for key,item in value.items()}
+   if isinstance(value,dict):
+    value={key:walk(item) for key,item in value.items()}
+    types=value.get('@type',[]);types=[types] if isinstance(types,str) else types
+    if 'Dentist' in types:
+     value['name']='Exquisite Dentistry'
+     value['alternateName']='Exquisite Veneers LA'
+     value['url']=MAIN+'/'
+     value['openingHours']=['Mo-Th 08:00-18:00']
+    return value
    if isinstance(value,list):return [walk(item) for item in value]
    if isinstance(value,str):
     if value.startswith('/veneers/assets/'):return MAIN+value
@@ -196,6 +205,40 @@ def repair_metadata(s):
   try:return m.group(1)+json.dumps(walk(json.loads(m.group(2))),ensure_ascii=False,separators=(',',':'))+m.group(3)
   except json.JSONDecodeError:return m.group(0)
  return re.sub(r'(<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>)(.*?)(</script\s*>)',schema,s,flags=re.I|re.S)
+
+PAGE_SEO = {
+ '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
+ '/veneers/about/': ('About Dr. Alexie Aguil | Veneers in Los Angeles', 'Meet Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Explore his approach to porcelain veneers, smile design, and personalized consultation planning.'),
+ '/veneers/process/': ('Porcelain Veneers Process | Exquisite Dentistry Los Angeles', 'Explore the porcelain veneer process at Exquisite Dentistry in Los Angeles, from consultation and smile planning to preparation, placement, and follow-up.'),
+ '/veneers/results/': ('Veneers Before and After | Exquisite Dentistry Los Angeles', 'See real before-and-after veneer results from Exquisite Dentistry in Los Angeles. Explore smile transformations and discuss your goals with Dr. Aguil.'),
+ '/veneers/contact/': ('Veneers Consultation in Los Angeles | Exquisite Dentistry', 'Request a porcelain veneers consultation with Exquisite Dentistry at 6227 Wilshire Boulevard in Los Angeles. Contact the team to discuss your next step.'),
+ '/veneers/resources/': ('Porcelain Veneers Questions and Guides | Exquisite Dentistry', 'Explore porcelain veneer questions and guides from Exquisite Dentistry in Los Angeles, including treatment planning, smile design, care, and consultation options.'),
+ '/veneers/blog/': ('Veneers Articles and Care Guides | Exquisite Dentistry', 'Read porcelain veneer articles and care guides from Exquisite Dentistry in Los Angeles. Explore treatment questions and learn what to discuss at your consultation.'),
+}
+
+def update_page_seo(s,entry):
+ """Update head metadata while retaining body content and genuine post attribution."""
+ seo=PAGE_SEO.get(entry['path'])
+ if not seo:return s
+ title,description=seo
+ entry['title']=title;entry['description']=description
+ s=re.sub(r'<title>.*?</title>','<title>'+html.escape(title)+'</title>',s,count=1,flags=re.I|re.S)
+ for attribute,key,value in [('name','description',description),('property','og:title',title),('name','twitter:title',title),('property','og:description',description),('name','twitter:description',description)]:
+  pattern=r'<meta\b[^>]*(?:name|property)=["\']'+re.escape(key)+r'["\'][^>]*>'
+  tag='<meta '+attribute+'="'+key+'" content="'+html.escape(value,quote=True)+'" />'
+  if re.search(pattern,s,re.I):s=re.sub(pattern,lambda _:tag,s,flags=re.I)
+  else:s=s.replace('</head>',tag+'\n</head>')
+ def patch_schema(match):
+  data=json.loads(match.group(2))
+  graph=data.get('@graph') if isinstance(data,dict) else None
+  if graph is not None:
+   # Navigation and service pages are not authored articles. Never invent a
+   # clinical review credit; the original authors remain on actual posts.
+   graph[:]=[node for node in graph if node.get('@type')!='Article' and not (node.get('@type')=='Person' and '/author/' in node.get('@id',''))]
+   for node in graph:
+    if node.get('@type')=='WebPage':node.update(name=title,description=description)
+  return match.group(1)+json.dumps(data,ensure_ascii=False,separators=(',',':'))+match.group(3)
+ return re.sub(r'(<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>)(.*?)(</script\s*>)',patch_schema,s,flags=re.I|re.S)
 
 def fill_indexable_metadata(s,entry,shell):
  """Fill source SEO omissions without changing body copy or existing schema."""
@@ -377,6 +420,7 @@ def main():
   s=re.sub(r'(src=["\'])https://www\.google\.com/maps/embed/v1/place\?[^"\']+',lambda m:m.group(1)+'https://maps.google.com/maps?q=6227%20Wilshire%20Boulevard%2C%20Los%20Angeles%2C%20CA%2090048&amp;z=12&amp;output=embed',s)
   s=repair_metadata(s)
   s,audit=render_shell(s,entry);content_audit.append(audit)
+  s=update_page_seo(s,entry)
   s=fill_indexable_metadata(s,entry,shell)
   # Archive-only form handling runs before Elementor registers its submit listener.
   s=s.replace('</head>','<script src="/veneers/archive-runtime.js"></script>\n<script type="module" src="/veneers/measurement.js"></script>\n</head>')
@@ -395,7 +439,7 @@ def main():
   data=api[p['api_id']]
   content=re.sub(r'<(?:script|style)\b[^>]*>.*?</(?:script|style)>',' ',data['content']['rendered'],flags=re.I|re.S)
   text=html.unescape(re.sub('<[^>]+>',' ',content))
-  item={'path':entry['path'],'title':html.unescape(data['title']['rendered']),'text':' '.join(text.split()),'kind':entry['kind']}
+  item={'path':entry['path'],'title':entry['title'] if entry['path'] in PAGE_SEO else html.unescape(data['title']['rendered']),'text':' '.join(text.split()),'kind':entry['kind']}
   if p['api_id'] in cards:item['cardHtml']=cards[p['api_id']]
   search_pages.append(item)
  search_json=json.dumps({'pages':search_pages},ensure_ascii=False,separators=(',',':'))

@@ -1,8 +1,10 @@
 import { track } from '@vercel/analytics';
 import { isCanonicalAnalyticsHost } from '@/utils/analyticsHost';
 import { getUTMAttribution } from '@/utils/utmTracking';
+import { getAnalyticsFormType } from '@/constants/measurement';
 import {
   trackGenerateLead,
+  trackGoogleFormAccepted,
   trackGoogleContactClick,
   trackGoogleCtaClick,
   trackGoogleFinancingEngagement,
@@ -321,10 +323,7 @@ export const trackContactMethodClick = ({
   return true;
 };
 
-const getSafeFormLabel = (form: string) => (
-  form === 'chatgpt_ads_consultation' ? 'consultation_request'
-    : form === 'contact_form' ? 'website_contact' : 'website_other'
-);
+const getSafeFormLabel = getAnalyticsFormType;
 
 export const trackContactFormStarted = (form: string) => (
   trackVercelEvent('Contact Form Started', { form: getSafeFormLabel(form) })
@@ -345,12 +344,20 @@ export const trackContactFormSubmitted = ({
   hasPhone?: boolean;
   acquisitionLead?: boolean;
 }) => {
-  trackVercelEvent('Contact Form Submitted', {
-    form: getSafeFormLabel(form),
-  });
+  // The caller reserves each accepted provider receipt once, before reporting.
+  // A time-based GA dedupe would lose two distinct receipts accepted close together.
+  const reports = [
+    () => trackVercelEvent('Contact Form Submitted', { form: getSafeFormLabel(form) }),
+    () => trackGoogleFormAccepted({ formType: getSafeFormLabel(form), ctaLocation: getCurrentRoute() }),
+  ];
   if (acquisitionLead) {
-    trackVercelEvent('Acquisition Lead', { form: getSafeFormLabel(form) });
-    trackGenerateLead({ formType: 'website_contact', ctaLocation: getCurrentRoute() });
+    reports.push(
+      () => trackVercelEvent('Acquisition Lead', { form: getSafeFormLabel(form) }),
+      () => trackGenerateLead({ formType: getSafeFormLabel(form), ctaLocation: getCurrentRoute() }),
+    );
+  }
+  for (const report of reports) {
+    try { report(); } catch { /* Optional providers fail independently of intake and each other. */ }
   }
 };
 
