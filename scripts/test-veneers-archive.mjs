@@ -176,12 +176,18 @@ function decodePhoneHaystack(text) {
     .replace(/&mdash;/gi, '-')
     .replace(/&minus;/gi, '-')
     .replace(/&hyphen;/gi, '-')
+    .replace(/&lpar;/gi, '(')
+    .replace(/&period;/gi, '.')
+    .replace(/&dash;/gi, '-')
     .replace(/&#160;/g, ' ')
     .replace(/&#x0*a0;/gi, ' ')
     .replace(/&#8211;/g, '-')
+    .replace(/&#8212;/g, '-')
     .replace(/&#45;/g, '-')
+    .replace(/&#46;/g, '.')
+    .replace(/&#8722;/g, '-')
     .replace(/&#8209;/g, '-')
-    .replace(/&#x201[012];/gi, '-')
+    .replace(/&#x201[0123];/gi, '-')
     .replace(/&#x2212;/gi, '-')
     .replace(/%20/gi, ' ')
     .replace(/%c2%a0/gi, ' ')
@@ -214,6 +220,13 @@ const assertNoRetiredNumber = (label, text) => {
   assert.ok(leftover('Call 790&nbsp;3637 today'), 'Leftover regex decodes &nbsp;');
   assert.ok(leftover('Call 790&nbsp 3637 today'), 'Leftover regex decodes &nbsp without semicolon');
   assert.ok(leftover('Call (323)&#8211;790&#8211;3637'), 'Leftover regex decodes &#8211;');
+  assert.ok(leftover('Call (323)&#x2013;790&#x2013;3637'), 'Leftover regex decodes &#x2013;');
+  assert.ok(leftover('Call (323)&#8212;790&#8212;3637'), 'Leftover regex decodes &#8212;');
+  assert.ok(leftover('Call 323&#46;790&#46;3637'), 'Leftover regex decodes &#46;');
+  assert.ok(leftover('Call (323)&#8722;790&#8722;3637'), 'Leftover regex decodes &#8722;');
+  assert.ok(leftover('Call &lpar;323) 790-3637'), 'Leftover regex decodes &lpar;');
+  assert.ok(leftover('Call 323&period;790&period;3637'), 'Leftover regex decodes &period;');
+  assert.ok(leftover('Call (323)&dash;790&dash;3637'), 'Leftover regex decodes &dash;');
   assert.ok(leftover('Call 323&#45;790&#45;3637'), 'Leftover regex decodes &#45;');
   assert.ok(leftover('CA 90036 323-790-3637'), 'Leftover regex keeps ZIP neighbors');
   assert.ok(leftover('Open 9-5 323-790-3637'), 'Leftover regex keeps hours neighbors');

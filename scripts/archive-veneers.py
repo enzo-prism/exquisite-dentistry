@@ -214,13 +214,16 @@ MAIN_PHONE_E164 = '+13232722388'
 _RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
 # Digit/letter boundaries apply only to bare 7-digit leftovers. A 323-area
 # form keeps the base detector (no glue/hex/extension bounds).
-# ASCII hyphen plus U+2010, U+2011, U+2012, en, em, minus.
-_SEP_DECODED = r'[\s.\-()‐‑‒–—−]*'
-_SEP_RAW = (
- r'(?:[\s.\-()‐‑‒–—−]|&nbsp;?|&ndash;|&mdash;|&minus;|&hyphen;'
- r'|&#160;|&#x0*a0;|&#8211;|&#45;|&#8209;|&#x201[012];|&#x2212;'
- r'|%20|%c2%a0|%2[dDeE]|%28|%29)*'
+# ASCII hyphen, plus, and U+2010/2011/2012, en, em, minus.
+_SEP_CLASS = r'[\s.\-()+‐‑‒–—−]'
+_SEP_DECODED = _SEP_CLASS + r'*'
+_SEP_ATOM = (
+ r'(?:[\s.\-()+‐‑‒–—−]|&nbsp;?|&ndash;|&mdash;|&minus;|&hyphen;|&lpar;|&period;|&dash;'
+ r'|&#160;|&#x0*a0;|&#8211;|&#8212;|&#45;|&#46;|&#8722;|&#8209;|&#x201[0123];|&#x2212;'
+ r'|%20|%c2%a0|%2[bBdDeE]|%28|%29)'
 )
+_SEP_RAW = _SEP_ATOM + r'*'
+_SEP_RAW_ONE = _SEP_ATOM + r'+'
 
 def _phone_bodies(sep):
  return '|'.join(prefix + sep + line for prefix, line in _RETIRED_PHONE_PARTS)
@@ -237,7 +240,10 @@ def _bare_seven_re(sep):
 _AREA_DETECT_RE = _area_coded_re(_SEP_DECODED)
 _AREA_REWRITE_RE = _area_coded_re(_SEP_RAW, rewrite=True)
 _BARE_DETECT_RE = _bare_seven_re(_SEP_DECODED)
-_BARE_REWRITE_RE = _bare_seven_re(_SEP_RAW)
+# Compact 7903637 is detect-only; rewrite needs a visible separator.
+_BARE_REWRITE_RE = _bare_seven_re(_SEP_RAW_ONE)
+# Scheme-boundary + non-empty value: skip hotel:/intel: and the JS "tel:" protocol list.
+_TEL_HREF_RE = re.compile(r'(?<![A-Za-z])tel:([^\s"\'<>]+)', re.I)
 
 def normalize_newlines(text):
  """Match Path.read_text() universal-newline translation."""
@@ -259,6 +265,7 @@ def decode_phone_haystack(text):
  decoded = re.sub(r'&nbsp;?', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%20', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%c2%a0', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%2b', '+', decoded, flags=re.I)
  decoded = re.sub(r'%2d', '-', decoded, flags=re.I)
  decoded = re.sub(r'%2e', '.', decoded, flags=re.I)
  decoded = re.sub(r'%28', '(', decoded, flags=re.I)
@@ -274,6 +281,15 @@ def base_area_coded_detector(text):
 def _is_tel_href(before):
  return bool(re.search(r'tel:\s*$', before or '', re.I))
 
+def _normalize_encoded_plus_in_tel(text):
+ return re.sub(r'(tel:)\s*%2b', r'\1+', text, flags=re.I)
+
+def _noncanonical_tel_href(text):
+ for match in _TEL_HREF_RE.finditer(text or ''):
+  if match.group(1) != MAIN_PHONE_E164:
+   return True
+ return False
+
 def _follows_non_323_area(before):
  return bool(re.search(r'(?<!\d)(?!323)\d{3}' + _SEP_DECODED + r'$', before or ''))
 
@@ -285,6 +301,7 @@ def _replacement_for_phone_match(token, before=''):
 def replace_retired_phones(text):
  """Replace 323-area retired numbers. Bare 7-digit tokens rewrite only when standalone."""
  if not text: return text
+ text = _normalize_encoded_plus_in_tel(text)
  def repl_area(match):
   return _replacement_for_phone_match(match.group(0), text[:match.start()])
  text = _AREA_REWRITE_RE.sub(repl_area, text)
@@ -295,8 +312,14 @@ def replace_retired_phones(text):
  return _BARE_REWRITE_RE.sub(repl_bare, text)
 
 def retired_phone_remains(text):
- decoded = decode_phone_haystack(text or '')
- return bool(_AREA_DETECT_RE.search(decoded) or _BARE_DETECT_RE.search(decoded))
+ text = text or ''
+ decoded = decode_phone_haystack(text)
+ if _AREA_DETECT_RE.search(decoded) or _BARE_DETECT_RE.search(decoded):
+  return True
+ # &#7903637; can vanish under html.unescape; scan the original too.
+ if _AREA_DETECT_RE.search(text) or _BARE_DETECT_RE.search(text):
+  return True
+ return _noncanonical_tel_href(text)
 
 def collect_retired_phone_leftovers(labeled_texts):
  leftovers = []
@@ -324,6 +347,33 @@ def inject_test_leftovers(asset_texts, pending_writes):
   next_texts.append((label, text))
  next_writes = [(path, tainted.get(str(path), body)) for path, body in pending_writes]
  return next_texts, next_writes
+
+def inject_scan_surface_leftovers(labeled_texts):
+ """Test hook: also taint HTML, blog card, title, integration, and tel:%2B."""
+ if os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER') != '1':
+  return labeled_texts
+ extras = []
+ done = set()
+ for label, text in labeled_texts:
+  extra = ''
+  if 'html' not in done and str(label).endswith(' html'):
+   extra += ' leftover 790-3637 tel:%2B13237903637'
+   done.update(('html', 'tel'))
+  elif 'title' not in done and str(label).endswith(' title'):
+   extra += ' leftover 790-3637'
+   done.add('title')
+  elif 'card' not in done and 'search-index.json' in str(label):
+   extra += ' leftover 790-3637'
+   done.add('card')
+  elif (
+   'integration' not in done
+   and str(label).startswith('/veneers/')
+   and str(label).endswith(('.js', '.css'))
+  ):
+   extra += '\n// leftover 767-0617'
+   done.add('integration')
+  extras.append((label, (text or '') + extra))
+ return extras
 
 def _write_payload(path, payload):
  path.parent.mkdir(parents=True, exist_ok=True)
@@ -615,6 +665,6 @@ def main():
  manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
  outputs.append((OUT/'manifest.json',manifest_json))
  outputs.append((REPO/'src/constants/legacyVeneersManifest.json',json.dumps({'pages':routes},indent=2)))
- scan_and_commit(labeled_texts,outputs)
+ scan_and_commit(inject_scan_surface_leftovers(labeled_texts),outputs)
  print('Archive complete',flush=True)
 if __name__=='__main__':main()

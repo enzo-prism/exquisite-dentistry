@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Unit and write-order tests for archive-veneers phone rewrite and leftover guards."""
+import builtins
 import importlib.util
 import os
 import subprocess
@@ -113,6 +114,42 @@ class ReplaceRetiredPhonesTests(unittest.TestCase):
             'href="tel:+13232722388"',
         )
 
+    def test_percent_encoded_plus_tel_rewrites_to_e164(self):
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('tel:%2B13237903637'),
+            'tel:+13232722388',
+        )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('tel:%2b1-323-790-3637'),
+            'tel:+13232722388',
+        )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('href="tel:%2B13237903637"'),
+            'href="tel:+13232722388"',
+        )
+
+    def test_plus_separator_is_rewritten(self):
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('323+790+3637'),
+            '+13232722388',
+        )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('Call 323+790+3637 today'),
+            'Call +13232722388 today',
+        )
+
+    def test_bare_unseparated_is_detect_only(self):
+        samples = (
+            'Order #7903637',
+            'z-index:7903637;',
+            '?id=7903637',
+            '0.7903637',
+            '&#7903637;',
+        )
+        for sample in samples:
+            self.assertEqual(ARCHIVE.replace_retired_phones(sample), sample, sample)
+            self.assertTrue(ARCHIVE.retired_phone_remains(sample), sample)
+
 
 class LeftoverDetectionTests(unittest.TestCase):
     def test_does_not_require_323_prefix(self):
@@ -144,6 +181,7 @@ class LeftoverDetectionTests(unittest.TestCase):
             'Call (323) 790-3637 today',
             '3237903637',
             'id=3237903637123',
+            '323+790+3637',
         )
         for sample in samples:
             if ARCHIVE.base_area_coded_detector(sample):
@@ -197,6 +235,18 @@ class LeftoverDetectionTests(unittest.TestCase):
     def test_detects_js_and_css_text(self):
         self.assertTrue(ARCHIVE.retired_phone_remains('var phone="7903637";'))
         self.assertTrue(ARCHIVE.retired_phone_remains('.cta::after{content:"767-0617"}'))
+
+    def test_plus_separator_is_detected(self):
+        self.assertTrue(ARCHIVE.retired_phone_remains('323+790+3637'))
+        self.assertTrue(ARCHIVE.base_area_coded_detector('323+790+3637'))
+
+    def test_noncanonical_tel_href_is_leftover(self):
+        self.assertTrue(ARCHIVE.retired_phone_remains('tel:%2B13237903637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('tel:%2B+13232722388'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('tel:%2b(323) 272-2388'))
+        self.assertFalse(ARCHIVE.retired_phone_remains('tel:+13232722388'))
+        self.assertFalse(ARCHIVE.retired_phone_remains('.fa-hotel:before{content:"\\f594"}'))
+        self.assertFalse(ARCHIVE.retired_phone_remains('["telnet:","tel:","fax:"]'))
 
 
 class NewlineAndWriteTests(unittest.TestCase):
@@ -261,6 +311,36 @@ class NewlineAndWriteTests(unittest.TestCase):
             self.assertFalse(search.exists())
             self.assertFalse(manifest.exists())
 
+    def test_injected_html_card_title_integration_and_tel_fail_before_write(self):
+        labeled = [
+            ('/veneers/about/ html', '<p>clean</p>'),
+            ('/veneers/about/ title', 'About'),
+            ('public/veneers/search-index.json', '{"cardHtml":"<article>ok</article>"}'),
+            ('/veneers/shell.js', 'console.log(1)'),
+        ]
+        previous = os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER')
+        try:
+            os.environ['ARCHIVE_VENEERS_INJECT_LEFTOVER'] = '1'
+            tainted = ARCHIVE.inject_scan_surface_leftovers(labeled)
+        finally:
+            if previous is None:
+                os.environ.pop('ARCHIVE_VENEERS_INJECT_LEFTOVER', None)
+            else:
+                os.environ['ARCHIVE_VENEERS_INJECT_LEFTOVER'] = previous
+        leftovers = ARCHIVE.collect_retired_phone_leftovers(tainted)
+        self.assertIn('/veneers/about/ html', leftovers)
+        self.assertIn('/veneers/about/ title', leftovers)
+        self.assertIn('public/veneers/search-index.json', leftovers)
+        self.assertIn('/veneers/shell.js', leftovers)
+        html_text = next(text for label, text in tainted if label.endswith(' html'))
+        self.assertIn('tel:%2B13237903637', html_text)
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / 'index.html'
+            dest.write_text('CLEAN')
+            with self.assertRaisesRegex(RuntimeError, 'Retired consultation numbers remain'):
+                ARCHIVE.scan_and_commit(tainted, [(dest, 'DIRTY')])
+            self.assertEqual(dest.read_text(), 'CLEAN')
+
 
 def _is_public_archive_path(path):
     resolved = Path(path).resolve()
@@ -290,6 +370,7 @@ class MainWriteOrderTests(unittest.TestCase):
         events = []
         orig_text = Path.write_text
         orig_bytes = Path.write_bytes
+        orig_open = builtins.open
         orig_collect = ARCHIVE.collect_retired_phone_leftovers
 
         def rec_text(self, *args, **kwargs):
@@ -302,6 +383,16 @@ class MainWriteOrderTests(unittest.TestCase):
                 events.append(('write', str(self)))
             return orig_bytes(self, *args, **kwargs)
 
+        def rec_open(file, mode='r', *args, **kwargs):
+            writing = any(flag in str(mode) for flag in ('w', 'a', 'x', '+'))
+            if writing:
+                try:
+                    if _is_public_archive_path(file):
+                        events.append(('write', str(file)))
+                except Exception:
+                    pass
+            return orig_open(file, mode, *args, **kwargs)
+
         def rec_collect(labeled_texts):
             events.append(('scan',))
             return orig_collect(labeled_texts)
@@ -309,6 +400,7 @@ class MainWriteOrderTests(unittest.TestCase):
         ARCHIVE.collect_retired_phone_leftovers = rec_collect
         Path.write_text = rec_text
         Path.write_bytes = rec_bytes
+        builtins.open = rec_open
         previous = os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER')
         argv = sys.argv
         try:
@@ -320,6 +412,7 @@ class MainWriteOrderTests(unittest.TestCase):
             ARCHIVE.collect_retired_phone_leftovers = orig_collect
             Path.write_text = orig_text
             Path.write_bytes = orig_bytes
+            builtins.open = orig_open
             sys.argv = argv
             if previous is None:
                 os.environ.pop('ARCHIVE_VENEERS_INJECT_LEFTOVER', None)
