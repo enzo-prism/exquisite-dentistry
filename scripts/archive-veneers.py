@@ -206,6 +206,25 @@ def repair_metadata(s):
   except json.JSONDecodeError:return m.group(0)
  return re.sub(r'(<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>)(.*?)(</script\s*>)',schema,s,flags=re.I|re.S)
 
+# Current practice number from src/constants/contact.ts. Retired CallRail
+# numbers are assembled at runtime so a regeneration cannot leave them in
+# served HTML, search indexes, or route manifests.
+MAIN_PHONE_DISPLAY = '(323) 272-2388'
+MAIN_PHONE_E164 = '+13232722388'
+_RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
+
+def replace_retired_phones(text):
+ """Replace retired consultation numbers, preserving display vs tel/E.164 form."""
+ if not text: return text
+ for prefix, line in _RETIRED_PHONE_PARTS:
+  text = text.replace('323' + prefix + line, MAIN_PHONE_E164)
+  text = text.replace(f'(323) {prefix}-{line}', MAIN_PHONE_DISPLAY)
+ return text
+
+def retired_phone_remains(text):
+ compact = re.sub(r'[\s.\-()+]', '', text)
+ return any('323' + prefix + line in compact for prefix, line in _RETIRED_PHONE_PARTS)
+
 PAGE_SEO = {
  '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
  '/veneers/about/': ('About Dr. Alexie Aguil | Veneers in Los Angeles', 'Meet Dr. Alexie Aguil at Exquisite Dentistry in Los Angeles. Explore his approach to porcelain veneers, smile design, and personalized consultation planning.'),
@@ -349,9 +368,9 @@ def main():
   if p.get('api_id') in api:
    entry['lastModified']=api[p['api_id']]['modified_gmt']+'Z';entry['lastmod']=entry['lastModified']
   h1=re.search(r'<h1\b[^>]*>(.*?)</h1>',p['raw'],re.S|re.I)
-  if h1:entry['h1']=html.unescape(re.sub('<[^>]+>','',h1.group(1))).strip()
+  if h1:entry['h1']=replace_retired_phones(html.unescape(re.sub('<[^>]+>','',h1.group(1))).strip())
   scanned=Scan();scanned.feed(p['raw']);desc=scanned.metadata.get('description')
-  if desc:entry['description']=desc
+  if desc:entry['description']=replace_retired_phones(desc)
   routes.append(entry)
  (OUT/'manifest.json').write_text(json.dumps({'source':BASE,'pages':routes},indent=2))
  assets=set()
@@ -419,7 +438,7 @@ def main():
   s=re.sub(r'<script\b[^>]*src=["\'][^"\']*(?:recaptcha|google\.com/recaptcha)[^"\']*["\'][^>]*>.*?</script>','',s,flags=re.I|re.S)
   s=re.sub(r'(src=["\'])https://www\.google\.com/maps/embed/v1/place\?[^"\']+',lambda m:m.group(1)+'https://maps.google.com/maps?q=6227%20Wilshire%20Boulevard%2C%20Los%20Angeles%2C%20CA%2090048&amp;z=12&amp;output=embed',s)
   # Retired CallRail numbers must not receive consultation calls.
-  s=s.replace('3237670617','+13232722388').replace('(323) 767-0617','(323) 272-2388')
+  s=replace_retired_phones(s)
   s=repair_metadata(s)
   s,audit=render_shell(s,entry);content_audit.append(audit)
   s=update_page_seo(s,entry)
@@ -440,17 +459,32 @@ def main():
   if not entry['indexable'] or p.get('api_id') not in api:continue
   data=api[p['api_id']]
   content=re.sub(r'<(?:script|style)\b[^>]*>.*?</(?:script|style)>',' ',data['content']['rendered'],flags=re.I|re.S)
-  text=html.unescape(re.sub('<[^>]+>',' ',content))
+  text=replace_retired_phones(html.unescape(re.sub('<[^>]+>',' ',content)))
   item={'path':entry['path'],'title':entry['title'] if entry['path'] in PAGE_SEO else html.unescape(data['title']['rendered']),'text':' '.join(text.split()),'kind':entry['kind']}
-  if p['api_id'] in cards:item['cardHtml']=cards[p['api_id']]
+  if p['api_id'] in cards:item['cardHtml']=replace_retired_phones(cards[p['api_id']])
   search_pages.append(item)
  search_json=json.dumps({'pages':search_pages},ensure_ascii=False,separators=(',',':'))
  (OUT/'search-index.json').write_text(search_json)
  integration_files=[]
  for name in ('shell.css','shell.js','archive-runtime.js','measurement.js','search-index.json'):
   body=(OUT/name).read_bytes();integration_files.append({'path':'/veneers/'+name,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body)})
+ for entry in routes:
+  for key in ('h1','description','title'):
+   if entry.get(key):entry[key]=replace_retired_phones(entry[key])
+ for audit in content_audit:
+  audit['headings']=[replace_retired_phones(heading) for heading in audit.get('headings',[])]
  manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
  (OUT/'manifest.json').write_text(manifest_json)
  (REPO/'src/constants/legacyVeneersManifest.json').write_text(json.dumps({'pages':routes},indent=2))
+ leftovers=[]
+ if retired_phone_remains(search_json):leftovers.append('public/veneers/search-index.json')
+ for entry in routes:
+  for key in ('h1','description','title'):
+   if entry.get(key) and retired_phone_remains(entry[key]):leftovers.append(f"{entry['path']} {key}")
+  html_path=REPO/'public'/entry['path'].lstrip('/')/'index.html'
+  if html_path.is_file() and retired_phone_remains(html_path.read_text()):leftovers.append(str(html_path.relative_to(REPO)))
+ for audit in content_audit:
+  if any(retired_phone_remains(heading) for heading in audit.get('headings',[])):leftovers.append(audit['path']+' headings')
+ if leftovers:raise RuntimeError('Retired consultation numbers remain in '+', '.join(leftovers))
  print('Archive complete',flush=True)
 if __name__=='__main__':main()

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { PHONE_NUMBER_E164 } from '@/constants/contact';
 
 interface GalleryImage {
   url: string;
@@ -66,7 +67,7 @@ const ImageGalleryStructuredData: React.FC<ImageGalleryStructuredDataProps> = ({
         postalCode: '90048',
         addressCountry: 'US'
       },
-      telephone: '(323) 272-2388'
+      telephone: PHONE_NUMBER_E164
     },
     numberOfItems: images.length,
     genre: galleryType === 'before-after' ? 'Before and After Photos' : 'Smile Transformation Gallery'
