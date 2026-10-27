@@ -212,18 +212,190 @@ def repair_metadata(s):
 MAIN_PHONE_DISPLAY = '(323) 272-2388'
 MAIN_PHONE_E164 = '+13232722388'
 _RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
+# Digit/letter boundaries apply only to bare 7-digit leftovers. A 323-area
+# form keeps the base detector (no glue/hex/extension bounds).
+# ASCII hyphen, plus, and U+2010/2011/2012, en, em, minus.
+_SEP_CLASS = r'[\s.\-()+‐‑‒–—−]'
+_SEP_DECODED = _SEP_CLASS + r'*'
+_SEP_ATOM = (
+ r'(?:[\s.\-()+‐‑‒–—−]|&nbsp;?|&ndash;|&mdash;|&minus;|&hyphen;|&lpar;|&period;|&dash;'
+ r'|&#160;|&#x0*a0;|&#8211;|&#8212;|&#45;|&#46;|&#8722;|&#8209;|&#x201[0123];|&#x2212;'
+ r'|%20|%c2%a0|%2[bBdDeE]|%28|%29)'
+)
+_SEP_RAW = _SEP_ATOM + r'*'
+_SEP_RAW_ONE = _SEP_ATOM + r'+'
+
+def _phone_bodies(sep):
+ return '|'.join(prefix + sep + line for prefix, line in _RETIRED_PHONE_PARTS)
+
+def _area_coded_re(sep, rewrite=False):
+ bodies = '(?:' + _phone_bodies(sep) + ')'
+ area = r'(?:\+?1' + sep + r')?(?:(?:\(|%28)?323(?:\)|%29)?' + sep + r')' + bodies
+ if rewrite: area += r'(?!\d)'
+ return re.compile(area)
+
+def _bare_seven_re(sep):
+ return re.compile(r'(?<![A-Za-z0-9])(?:' + _phone_bodies(sep) + r')(?![A-Za-z0-9])(?!\.\w)')
+
+_AREA_DETECT_RE = _area_coded_re(_SEP_DECODED)
+_AREA_REWRITE_RE = _area_coded_re(_SEP_RAW, rewrite=True)
+_BARE_DETECT_RE = _bare_seven_re(_SEP_DECODED)
+# Compact 7903637 is detect-only; rewrite needs a visible separator.
+_BARE_REWRITE_RE = _bare_seven_re(_SEP_RAW_ONE)
+# Scheme-boundary + non-empty value: skip hotel:/intel: and the JS "tel:" protocol list.
+_TEL_HREF_RE = re.compile(r'(?<![A-Za-z])tel:([^\s"\'<>]+)', re.I)
+
+def normalize_newlines(text):
+ """Match Path.read_text() universal-newline translation."""
+ if not text: return text
+ return text.replace('\r\n', '\n').replace('\r', '\n')
+
+def extract_blog_cards(blog_html):
+ """Pull article cards from in-memory HTML with the same newlines as a written file."""
+ cards = {}
+ for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>', normalize_newlines(blog_html or ''), re.S):
+  post = re.search(r'id=["\']post-(\d+)["\']', card)
+  if post: cards[int(post.group(1))] = card
+ return cards
+
+def decode_phone_haystack(text):
+ """Decode space / dash / paren encodings so leftover digits keep their neighbors."""
+ if not text: return ''
+ decoded = text.replace('\u00a0', ' ')
+ decoded = re.sub(r'&nbsp;?', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%20', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%c2%a0', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%2b', '+', decoded, flags=re.I)
+ decoded = re.sub(r'%2d', '-', decoded, flags=re.I)
+ decoded = re.sub(r'%2e', '.', decoded, flags=re.I)
+ decoded = re.sub(r'%28', '(', decoded, flags=re.I)
+ decoded = re.sub(r'%29', ')', decoded, flags=re.I)
+ decoded = html.unescape(decoded)
+ return decoded.replace('\u00a0', ' ')
+
+def base_area_coded_detector(text):
+ """PR #51 detector: 323 + exchange after stripping spaces/dashes/parens."""
+ compact = re.sub(r'[\s.\-()+]', '', text or '')
+ return any('323' + prefix + line in compact for prefix, line in _RETIRED_PHONE_PARTS)
+
+def _is_tel_href(before):
+ return bool(re.search(r'tel:\s*$', before or '', re.I))
+
+def _normalize_encoded_plus_in_tel(text):
+ return re.sub(r'(tel:)\s*%2b', r'\1+', text, flags=re.I)
+
+def _noncanonical_tel_href(text):
+ for match in _TEL_HREF_RE.finditer(text or ''):
+  if match.group(1) != MAIN_PHONE_E164:
+   return True
+ return False
+
+def _follows_non_323_area(before):
+ return bool(re.search(r'(?<!\d)(?!323)\d{3}' + _SEP_DECODED + r'$', before or ''))
+
+def _replacement_for_phone_match(token, before=''):
+ if _is_tel_href(before) or '+' in token: return MAIN_PHONE_E164
+ if re.search(r'[\s().%&\-‐‑‒–—−]', token): return MAIN_PHONE_DISPLAY
+ return MAIN_PHONE_E164
 
 def replace_retired_phones(text):
- """Replace retired consultation numbers, preserving display vs tel/E.164 form."""
+ """Replace 323-area retired numbers. Bare 7-digit tokens rewrite only when standalone."""
  if not text: return text
- for prefix, line in _RETIRED_PHONE_PARTS:
-  text = text.replace('323' + prefix + line, MAIN_PHONE_E164)
-  text = text.replace(f'(323) {prefix}-{line}', MAIN_PHONE_DISPLAY)
- return text
+ text = _normalize_encoded_plus_in_tel(text)
+ def repl_area(match):
+  return _replacement_for_phone_match(match.group(0), text[:match.start()])
+ text = _AREA_REWRITE_RE.sub(repl_area, text)
+ def repl_bare(match):
+  before = text[:match.start()]
+  if _follows_non_323_area(before): return match.group(0)
+  return _replacement_for_phone_match(match.group(0), before)
+ return _BARE_REWRITE_RE.sub(repl_bare, text)
 
 def retired_phone_remains(text):
- compact = re.sub(r'[\s.\-()+]', '', text)
- return any('323' + prefix + line in compact for prefix, line in _RETIRED_PHONE_PARTS)
+ text = text or ''
+ decoded = decode_phone_haystack(text)
+ if _AREA_DETECT_RE.search(decoded) or _BARE_DETECT_RE.search(decoded):
+  return True
+ # &#7903637; can vanish under html.unescape; scan the original too.
+ if _AREA_DETECT_RE.search(text) or _BARE_DETECT_RE.search(text):
+  return True
+ return _noncanonical_tel_href(text)
+
+def collect_retired_phone_leftovers(labeled_texts):
+ leftovers = []
+ for label, text in labeled_texts:
+  if text and retired_phone_remains(text):
+   leftovers.append(label)
+ return leftovers
+
+def inject_test_leftovers(asset_texts, pending_writes):
+ """Test hook: ARCHIVE_VENEERS_INJECT_LEFTOVER=1 taints one JS and one CSS."""
+ if os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER') != '1':
+  return asset_texts, pending_writes
+ js_done = css_done = False
+ tainted = {}
+ next_texts = []
+ for label, text in asset_texts:
+  extra = ''
+  if (not css_done) and label.endswith('.css'):
+   extra = '\n/* leftover 790-3637 */'; css_done = True
+  elif (not js_done) and label.endswith('.js'):
+   extra = '\n// leftover 767-0617'; js_done = True
+  if extra:
+   text = text + extra
+   tainted[str(REPO/'public'/label.lstrip('/'))] = text.encode()
+  next_texts.append((label, text))
+ next_writes = [(path, tainted.get(str(path), body)) for path, body in pending_writes]
+ return next_texts, next_writes
+
+def inject_scan_surface_leftovers(labeled_texts):
+ """Test hook: also taint HTML, blog card, title, integration, and tel:%2B."""
+ if os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER') != '1':
+  return labeled_texts
+ extras = []
+ done = set()
+ for label, text in labeled_texts:
+  extra = ''
+  if 'html' not in done and str(label).endswith(' html'):
+   extra += ' leftover 790-3637 tel:%2B13237903637'
+   done.update(('html', 'tel'))
+  elif 'title' not in done and str(label).endswith(' title'):
+   extra += ' leftover 790-3637'
+   done.add('title')
+  elif 'card' not in done and 'search-index.json' in str(label):
+   extra += ' leftover 790-3637'
+   done.add('card')
+  elif (
+   'integration' not in done
+   and str(label).startswith('/veneers/')
+   and str(label).endswith(('.js', '.css'))
+  ):
+   extra += '\n// leftover 767-0617'
+   done.add('integration')
+  extras.append((label, (text or '') + extra))
+ return extras
+
+def _write_payload(path, payload):
+ path.parent.mkdir(parents=True, exist_ok=True)
+ if isinstance(payload, (bytes, bytearray)):
+  path.write_bytes(payload)
+ else:
+  path.write_text(payload)
+
+def commit_generated_outputs(outputs, leftovers, write_log=None):
+ """Write public archive files only after leftover detection has passed."""
+ if leftovers:
+  raise RuntimeError('Retired consultation numbers remain in ' + ', '.join(leftovers))
+ for path, payload in outputs:
+  if write_log is not None: write_log.append(str(path))
+  _write_payload(path, payload)
+
+def scan_and_commit(labeled_texts, outputs, write_log=None):
+ """Scan leftovers, then write. Tests record this order."""
+ leftovers = collect_retired_phone_leftovers(labeled_texts)
+ if write_log is not None: write_log.append('scan')
+ commit_generated_outputs(outputs, leftovers, write_log=write_log)
+ return leftovers
 
 PAGE_SEO = {
  '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
@@ -372,7 +544,6 @@ def main():
   scanned=Scan();scanned.feed(p['raw']);desc=scanned.metadata.get('description')
   if desc:entry['description']=replace_retired_phones(desc)
   routes.append(entry)
- (OUT/'manifest.json').write_text(json.dumps({'source':BASE,'pages':routes},indent=2))
  assets=set()
  for p in pages:assets.update(references(strip_tracking(p['raw']),p['url'])[0])
  # Dependencies are loaded on demand by Elementor's dynamic loader rather than in page HTML.
@@ -414,16 +585,19 @@ def main():
  failures=[{'url':u,'status':r['status'],'error':r.get('error')} for u,r in results.items() if r['status']!=200]
  (SOURCE/'asset-fetch-failures.json').write_text(json.dumps(failures,indent=2))
  print('Assets:',len(results),'failures:',len(failures),flush=True)
- asset_manifest=[]
+ asset_manifest=[];asset_texts=[];pending_writes=[]
  for url,r in sorted(results.items()):
   if r['status']!=200:continue
   raw=r['body'];body=raw
   ctype=r['headers'].get('content-type','');is_css='text/css' in ctype or urllib.parse.urlsplit(url).path.endswith('.css');is_js='javascript' in ctype or urllib.parse.urlsplit(url).path.endswith('.js')
-  if is_css or is_js:body=rewrite_urls(raw.decode('utf-8',errors='replace'),assets,url,is_css,False).encode()
-  file=file_for_url(url);file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(body)
+  if is_css or is_js:
+   text=rewrite_urls(raw.decode('utf-8',errors='replace'),assets,url,is_css,False)
+   asset_texts.append((local_asset(url),text));body=text.encode()
+  pending_writes.append((file_for_url(url),body))
   asset_manifest.append({'sourceUrl':url,'path':local_asset(url),'sourceSha256':hashlib.sha256(raw).hexdigest(),'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body),'contentType':ctype})
+ asset_texts,pending_writes=inject_test_leftovers(asset_texts,pending_writes)
  shell=runpy.run_path(str(REPO/'scripts/veneers-shell.py'));render_shell=shell['render_shell']
- content_audit=[]
+ content_audit=[];generated_html=[]
  for p,entry in zip(pages,routes):
   s=strip_tracking(p['raw']);s=rewrite_urls(s,assets,p['url'])
   # Preserve accurate canonical and OpenGraph URLs while links navigate within the mini site.
@@ -445,15 +619,13 @@ def main():
   s=fill_indexable_metadata(s,entry,shell)
   # Archive-only form handling runs before Elementor registers its submit listener.
   s=s.replace('</head>','<script src="/veneers/archive-runtime.js"></script>\n<script type="module" src="/veneers/measurement.js"></script>\n</head>')
-  f=REPO/'public'/entry['path'].lstrip('/')/'index.html';f.parent.mkdir(parents=True,exist_ok=True);f.write_text(s)
+  generated_html.append((entry,s))
   entry['sha256']=hashlib.sha256(s.encode()).hexdigest();entry['bytes']=len(s.encode())
+ html_by_path={entry['path']:s for entry,s in generated_html}
  # Retain original article cards so search uses the archived WordPress presentation.
  cards={}
  for source_path in ('/blog/','/blog/page/2/'):
-  blog_file=REPO/'public'/route_path(source_path).lstrip('/')/'index.html'
-  for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>',blog_file.read_text(),re.S):
-   post=re.search(r'id=["\']post-(\d+)["\']',card)
-   if post:cards[int(post.group(1))]=card
+  cards.update(extract_blog_cards(html_by_path.get(route_path(source_path),'')))
  search_pages=[]
  for p,entry in zip(pages,routes):
   if not entry['indexable'] or p.get('api_id') not in api:continue
@@ -464,27 +636,35 @@ def main():
   if p['api_id'] in cards:item['cardHtml']=replace_retired_phones(cards[p['api_id']])
   search_pages.append(item)
  search_json=json.dumps({'pages':search_pages},ensure_ascii=False,separators=(',',':'))
- (OUT/'search-index.json').write_text(search_json)
- integration_files=[]
- for name in ('shell.css','shell.js','archive-runtime.js','measurement.js','search-index.json'):
-  body=(OUT/name).read_bytes();integration_files.append({'path':'/veneers/'+name,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body)})
+ integration_texts=[]
+ for name in ('shell.css','shell.js','archive-runtime.js','measurement.js'):
+  integration_path=OUT/name
+  if integration_path.is_file() and name.endswith(('.css','.js')):
+   integration_texts.append(('/veneers/'+name,integration_path.read_text(errors='replace')))
  for entry in routes:
   for key in ('h1','description','title'):
    if entry.get(key):entry[key]=replace_retired_phones(entry[key])
  for audit in content_audit:
   audit['headings']=[replace_retired_phones(heading) for heading in audit.get('headings',[])]
- manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
- (OUT/'manifest.json').write_text(manifest_json)
- (REPO/'src/constants/legacyVeneersManifest.json').write_text(json.dumps({'pages':routes},indent=2))
- leftovers=[]
- if retired_phone_remains(search_json):leftovers.append('public/veneers/search-index.json')
- for entry in routes:
+ labeled_texts=[('public/veneers/search-index.json',search_json),*asset_texts,*integration_texts]
+ for entry,s in generated_html:
   for key in ('h1','description','title'):
-   if entry.get(key) and retired_phone_remains(entry[key]):leftovers.append(f"{entry['path']} {key}")
-  html_path=REPO/'public'/entry['path'].lstrip('/')/'index.html'
-  if html_path.is_file() and retired_phone_remains(html_path.read_text()):leftovers.append(str(html_path.relative_to(REPO)))
+   if entry.get(key):labeled_texts.append((f"{entry['path']} {key}",entry[key]))
+  labeled_texts.append((entry['path']+' html',s))
  for audit in content_audit:
-  if any(retired_phone_remains(heading) for heading in audit.get('headings',[])):leftovers.append(audit['path']+' headings')
- if leftovers:raise RuntimeError('Retired consultation numbers remain in '+', '.join(leftovers))
+  for heading in audit.get('headings',[]):
+   labeled_texts.append((audit['path']+' headings',heading))
+ outputs=list(pending_writes)
+ for entry,s in generated_html:
+  outputs.append((REPO/'public'/entry['path'].lstrip('/')/'index.html',s))
+ outputs.append((OUT/'search-index.json',search_json))
+ integration_files=[]
+ for name in ('shell.css','shell.js','archive-runtime.js','measurement.js','search-index.json'):
+  body=search_json.encode() if name=='search-index.json' else (OUT/name).read_bytes()
+  integration_files.append({'path':'/veneers/'+name,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body)})
+ manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
+ outputs.append((OUT/'manifest.json',manifest_json))
+ outputs.append((REPO/'src/constants/legacyVeneersManifest.json',json.dumps({'pages':routes},indent=2)))
+ scan_and_commit(inject_scan_surface_leftovers(labeled_texts),outputs)
  print('Archive complete',flush=True)
 if __name__=='__main__':main()
