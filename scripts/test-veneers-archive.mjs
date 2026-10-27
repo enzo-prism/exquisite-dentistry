@@ -169,6 +169,26 @@ for (const page of manifest.pages) {
   }
   if (!page.indexable) assert.ok(/noindex/.test(markup), `Noindex on noncanonical/test archive ${page.path}`);
 }
+function retiredPhonePattern() {
+  const bodies = [['790', '3637'], ['767', '0617']].map(([prefix, line]) => `${prefix}[\\s.\\-]*${line}`).join('|');
+  return new RegExp(`(?:\\+?1[\\s.\\-]*)?(?:\\(?323\\)?[\\s.\\-]*)?(?:${bodies})`);
+}
+
+const retiredPhones = retiredPhonePattern();
+const assertNoRetiredNumber = (label, text) => {
+  const match = text.match(retiredPhones);
+  assert.equal(match, null, `Retired consultation number remains in ${label}${match ? `: ${match[0]}` : ''}`);
+};
+
+assertNoRetiredNumber('archive search index', searchIndex.toString());
+assertNoRetiredNumber('public search index', fs.readFileSync(path.join(root, 'public/search-index.json'), 'utf8'));
+for (const page of manifest.pages) {
+  assertNoRetiredNumber(`${page.path} h1`, page.h1 || '');
+  assertNoRetiredNumber(`${page.path} title`, page.title || '');
+  assertNoRetiredNumber(`${page.path} description`, page.description || '');
+  assertNoRetiredNumber(`${page.path} html`, fs.readFileSync(path.join(root, 'public', page.path, 'index.html'), 'utf8'));
+}
+
 console.log(`Archive integrity passed: ${manifest.pages.length} routes, ${manifest.assets.length} assets, ${visitedScripts.size} scripts parsed, ${references} local dependency references.`);
 
 if (process.argv.includes('--browser')) {
