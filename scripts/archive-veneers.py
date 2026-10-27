@@ -212,18 +212,48 @@ def repair_metadata(s):
 MAIN_PHONE_DISPLAY = '(323) 272-2388'
 MAIN_PHONE_E164 = '+13232722388'
 _RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
+_RETIRED_PHONE_COMPACT_RE = re.compile(
+ r'(?<!\d)(?:1)?(?:323)?(?:' + '|'.join(prefix + line for prefix, line in _RETIRED_PHONE_PARTS) + r')(?!\d)'
+)
+
+def decode_phone_haystack(text):
+ """Decode %20 / HTML spaces so leftover digits can be compacted."""
+ if not text: return ''
+ decoded = html.unescape(text.replace('\u00a0', ' '))
+ decoded = re.sub(r'%20', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%c2%a0', ' ', decoded, flags=re.I)
+ return decoded.replace('\u00a0', ' ')
 
 def replace_retired_phones(text):
  """Replace retired consultation numbers, preserving display vs tel/E.164 form."""
  if not text: return text
  for prefix, line in _RETIRED_PHONE_PARTS:
-  text = text.replace('323' + prefix + line, MAIN_PHONE_E164)
+  national = '323' + prefix + line
+  # Replace full E.164 first. Replacing only the national digits would turn
+  # tel:+13237903637 into tel:+1+13232722388.
+  text = text.replace('+1' + national, MAIN_PHONE_E164)
+  text = text.replace(national, MAIN_PHONE_E164)
   text = text.replace(f'(323) {prefix}-{line}', MAIN_PHONE_DISPLAY)
  return text
 
 def retired_phone_remains(text):
- compact = re.sub(r'[\s.\-()+]', '', text)
- return any('323' + prefix + line in compact for prefix, line in _RETIRED_PHONE_PARTS)
+ compact = re.sub(r'[\s.\-()+]', '', decode_phone_haystack(text or ''))
+ return bool(_RETIRED_PHONE_COMPACT_RE.search(compact))
+
+def collect_retired_phone_leftovers(labeled_texts):
+ leftovers = []
+ for label, text in labeled_texts:
+  if text and retired_phone_remains(text):
+   leftovers.append(label)
+ return leftovers
+
+def commit_generated_outputs(outputs, leftovers):
+ """Write HTML/manifest files only after leftover detection has passed."""
+ if leftovers:
+  raise RuntimeError('Retired consultation numbers remain in ' + ', '.join(leftovers))
+ for path, text in outputs:
+  path.parent.mkdir(parents=True, exist_ok=True)
+  path.write_text(text)
 
 PAGE_SEO = {
  '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
@@ -372,7 +402,6 @@ def main():
   scanned=Scan();scanned.feed(p['raw']);desc=scanned.metadata.get('description')
   if desc:entry['description']=replace_retired_phones(desc)
   routes.append(entry)
- (OUT/'manifest.json').write_text(json.dumps({'source':BASE,'pages':routes},indent=2))
  assets=set()
  for p in pages:assets.update(references(strip_tracking(p['raw']),p['url'])[0])
  # Dependencies are loaded on demand by Elementor's dynamic loader rather than in page HTML.
@@ -414,16 +443,18 @@ def main():
  failures=[{'url':u,'status':r['status'],'error':r.get('error')} for u,r in results.items() if r['status']!=200]
  (SOURCE/'asset-fetch-failures.json').write_text(json.dumps(failures,indent=2))
  print('Assets:',len(results),'failures:',len(failures),flush=True)
- asset_manifest=[]
+ asset_manifest=[];asset_texts=[]
  for url,r in sorted(results.items()):
   if r['status']!=200:continue
   raw=r['body'];body=raw
   ctype=r['headers'].get('content-type','');is_css='text/css' in ctype or urllib.parse.urlsplit(url).path.endswith('.css');is_js='javascript' in ctype or urllib.parse.urlsplit(url).path.endswith('.js')
-  if is_css or is_js:body=rewrite_urls(raw.decode('utf-8',errors='replace'),assets,url,is_css,False).encode()
+  if is_css or is_js:
+   text=rewrite_urls(raw.decode('utf-8',errors='replace'),assets,url,is_css,False)
+   asset_texts.append((local_asset(url),text));body=text.encode()
   file=file_for_url(url);file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(body)
   asset_manifest.append({'sourceUrl':url,'path':local_asset(url),'sourceSha256':hashlib.sha256(raw).hexdigest(),'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body),'contentType':ctype})
  shell=runpy.run_path(str(REPO/'scripts/veneers-shell.py'));render_shell=shell['render_shell']
- content_audit=[]
+ content_audit=[];generated_html=[]
  for p,entry in zip(pages,routes):
   s=strip_tracking(p['raw']);s=rewrite_urls(s,assets,p['url'])
   # Preserve accurate canonical and OpenGraph URLs while links navigate within the mini site.
@@ -445,13 +476,14 @@ def main():
   s=fill_indexable_metadata(s,entry,shell)
   # Archive-only form handling runs before Elementor registers its submit listener.
   s=s.replace('</head>','<script src="/veneers/archive-runtime.js"></script>\n<script type="module" src="/veneers/measurement.js"></script>\n</head>')
-  f=REPO/'public'/entry['path'].lstrip('/')/'index.html';f.parent.mkdir(parents=True,exist_ok=True);f.write_text(s)
+  generated_html.append((entry,s))
   entry['sha256']=hashlib.sha256(s.encode()).hexdigest();entry['bytes']=len(s.encode())
+ html_by_path={entry['path']:s for entry,s in generated_html}
  # Retain original article cards so search uses the archived WordPress presentation.
  cards={}
  for source_path in ('/blog/','/blog/page/2/'):
-  blog_file=REPO/'public'/route_path(source_path).lstrip('/')/'index.html'
-  for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>',blog_file.read_text(),re.S):
+  blog_html=html_by_path.get(route_path(source_path),'')
+  for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>',blog_html,re.S):
    post=re.search(r'id=["\']post-(\d+)["\']',card)
    if post:cards[int(post.group(1))]=card
  search_pages=[]
@@ -464,27 +496,36 @@ def main():
   if p['api_id'] in cards:item['cardHtml']=replace_retired_phones(cards[p['api_id']])
   search_pages.append(item)
  search_json=json.dumps({'pages':search_pages},ensure_ascii=False,separators=(',',':'))
- (OUT/'search-index.json').write_text(search_json)
- integration_files=[]
- for name in ('shell.css','shell.js','archive-runtime.js','measurement.js','search-index.json'):
-  body=(OUT/name).read_bytes();integration_files.append({'path':'/veneers/'+name,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body)})
+ integration_texts=[]
+ for name in ('shell.css','shell.js','archive-runtime.js','measurement.js'):
+  integration_path=OUT/name
+  if integration_path.is_file() and name.endswith(('.css','.js')):
+   integration_texts.append(('/veneers/'+name,integration_path.read_text(errors='replace')))
  for entry in routes:
   for key in ('h1','description','title'):
    if entry.get(key):entry[key]=replace_retired_phones(entry[key])
  for audit in content_audit:
   audit['headings']=[replace_retired_phones(heading) for heading in audit.get('headings',[])]
- manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
- (OUT/'manifest.json').write_text(manifest_json)
- (REPO/'src/constants/legacyVeneersManifest.json').write_text(json.dumps({'pages':routes},indent=2))
- leftovers=[]
- if retired_phone_remains(search_json):leftovers.append('public/veneers/search-index.json')
- for entry in routes:
+ labeled_texts=[('public/veneers/search-index.json',search_json),*asset_texts,*integration_texts]
+ for entry,s in generated_html:
   for key in ('h1','description','title'):
-   if entry.get(key) and retired_phone_remains(entry[key]):leftovers.append(f"{entry['path']} {key}")
-  html_path=REPO/'public'/entry['path'].lstrip('/')/'index.html'
-  if html_path.is_file() and retired_phone_remains(html_path.read_text()):leftovers.append(str(html_path.relative_to(REPO)))
+   if entry.get(key):labeled_texts.append((f"{entry['path']} {key}",entry[key]))
+  labeled_texts.append((entry['path']+' html',s))
  for audit in content_audit:
-  if any(retired_phone_remains(heading) for heading in audit.get('headings',[])):leftovers.append(audit['path']+' headings')
- if leftovers:raise RuntimeError('Retired consultation numbers remain in '+', '.join(leftovers))
+  for heading in audit.get('headings',[]):
+   labeled_texts.append((audit['path']+' headings',heading))
+ leftovers=collect_retired_phone_leftovers(labeled_texts)
+ outputs=[]
+ for entry,s in generated_html:
+  outputs.append((REPO/'public'/entry['path'].lstrip('/')/'index.html',s))
+ outputs.append((OUT/'search-index.json',search_json))
+ integration_files=[]
+ for name in ('shell.css','shell.js','archive-runtime.js','measurement.js','search-index.json'):
+  body=search_json.encode() if name=='search-index.json' else (OUT/name).read_bytes()
+  integration_files.append({'path':'/veneers/'+name,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body)})
+ manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
+ outputs.append((OUT/'manifest.json',manifest_json))
+ outputs.append((REPO/'src/constants/legacyVeneersManifest.json',json.dumps({'pages':routes},indent=2)))
+ commit_generated_outputs(outputs,leftovers)
  print('Archive complete',flush=True)
 if __name__=='__main__':main()

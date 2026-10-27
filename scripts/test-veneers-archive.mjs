@@ -169,16 +169,35 @@ for (const page of manifest.pages) {
   }
   if (!page.indexable) assert.ok(/noindex/.test(markup), `Noindex on noncanonical/test archive ${page.path}`);
 }
+function decodePhoneHaystack(text) {
+  return String(text)
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&#160;/g, ' ')
+    .replace(/&#x0*a0;/gi, ' ')
+    .replace(/%20/gi, ' ')
+    .replace(/%c2%a0/gi, ' ')
+    .replace(/\u00a0/g, ' ');
+}
+
 function retiredPhonePattern() {
   const bodies = [['790', '3637'], ['767', '0617']].map(([prefix, line]) => `${prefix}[\\s.\\-]*${line}`).join('|');
-  return new RegExp(`(?:\\+?1[\\s.\\-]*)?(?:\\(?323\\)?[\\s.\\-]*)?(?:${bodies})`);
+  return new RegExp(`(?<!\\d)(?:\\+?1[\\s.\\-]*)?(?:\\(?323\\)?[\\s.\\-]*)?(?:${bodies})(?!\\d)`);
 }
 
 const retiredPhones = retiredPhonePattern();
 const assertNoRetiredNumber = (label, text) => {
-  const match = text.match(retiredPhones);
+  const match = decodePhoneHaystack(text).match(retiredPhones);
   assert.equal(match, null, `Retired consultation number remains in ${label}${match ? `: ${match[0]}` : ''}`);
 };
+
+{
+  const leftover = (text) => decodePhoneHaystack(text).match(retiredPhones);
+  assert.ok(leftover('Call 790-3637 today'), 'Leftover regex matches without a 323 prefix');
+  assert.ok(leftover('Call 790%203637 today'), 'Leftover regex decodes %20');
+  assert.ok(leftover('Call 790&nbsp;3637 today'), 'Leftover regex decodes &nbsp;');
+  assert.equal(leftover('ref=12379036379'), null, 'Leftover regex uses digit boundaries');
+  assert.equal(leftover('tel:+13232722388'), null, 'Current E.164 number is not a leftover');
+}
 
 assertNoRetiredNumber('archive search index', searchIndex.toString());
 assertNoRetiredNumber('public search index', fs.readFileSync(path.join(root, 'public/search-index.json'), 'utf8'));
@@ -187,6 +206,14 @@ for (const page of manifest.pages) {
   assertNoRetiredNumber(`${page.path} title`, page.title || '');
   assertNoRetiredNumber(`${page.path} description`, page.description || '');
   assertNoRetiredNumber(`${page.path} html`, fs.readFileSync(path.join(root, 'public', page.path, 'index.html'), 'utf8'));
+}
+const textAssets = [
+  ...manifest.assets.filter((asset) => /\.(js|css)$/i.test(asset.path)),
+  ...manifest.integrationFiles.filter((asset) => /\.(js|css)$/i.test(asset.path)),
+];
+assert.ok(textAssets.length > 0, 'Archive leftover scan includes JS/CSS assets');
+for (const asset of textAssets) {
+  assertNoRetiredNumber(asset.path, fs.readFileSync(path.join(root, 'public', asset.path), 'utf8'));
 }
 
 console.log(`Archive integrity passed: ${manifest.pages.length} routes, ${manifest.assets.length} assets, ${visitedScripts.size} scripts parsed, ${references} local dependency references.`);
