@@ -212,33 +212,62 @@ def repair_metadata(s):
 MAIN_PHONE_DISPLAY = '(323) 272-2388'
 MAIN_PHONE_E164 = '+13232722388'
 _RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
-_RETIRED_PHONE_COMPACT_RE = re.compile(
- r'(?<!\d)(?:1)?(?:323)?(?:' + '|'.join(prefix + line for prefix, line in _RETIRED_PHONE_PARTS) + r')(?!\d)'
-)
+# Boundaries apply on the original (decoded) text, not a digit-stripped
+# compact string. Stripping first glued ZIP/hours onto the number
+# (`CA 90036 323-790-3637`) and hid leftovers before `24 hours`.
+_SEP_DECODED = r'[\s.\-()–—‑]*'
+_SEP_RAW = r'(?:[\s.\-()–—‑]|&nbsp;|&ndash;|&mdash;|&#160;|&#x0*a0;|&#8209;|&#x2011;|%20|%c2%a0|%2[dD]|%28|%29)*'
+_BOUND_L = r'(?<![\dA-Fa-f])'
+_BOUND_R = r'(?![\dA-Fa-f])(?!\.\w)'
+
+def _retired_number_re(sep):
+ bodies = '|'.join(prefix + sep + line for prefix, line in _RETIRED_PHONE_PARTS)
+ area = r'(?:(?:\(|%28)?323(?:\)|%29)?' + sep + r')?'
+ return re.compile(_BOUND_L + r'(?:\+?1' + sep + r')?' + area + r'(?:' + bodies + r')' + _BOUND_R)
+
+_RETIRED_DECODED_RE = _retired_number_re(_SEP_DECODED)
+_RETIRED_RAW_RE = _retired_number_re(_SEP_RAW)
+
+def normalize_newlines(text):
+ """Match Path.read_text() universal-newline translation."""
+ if not text: return text
+ return text.replace('\r\n', '\n').replace('\r', '\n')
+
+def extract_blog_cards(blog_html):
+ """Pull article cards from in-memory HTML with the same newlines as a written file."""
+ cards = {}
+ for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>', normalize_newlines(blog_html or ''), re.S):
+  post = re.search(r'id=["\']post-(\d+)["\']', card)
+  if post: cards[int(post.group(1))] = card
+ return cards
 
 def decode_phone_haystack(text):
- """Decode %20 / HTML spaces so leftover digits can be compacted."""
+ """Decode %20 / dash / paren encodings so leftover digits keep their original neighbors."""
  if not text: return ''
- decoded = html.unescape(text.replace('\u00a0', ' '))
+ decoded = text.replace('\u00a0', ' ')
  decoded = re.sub(r'%20', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%c2%a0', ' ', decoded, flags=re.I)
+ decoded = re.sub(r'%2d', '-', decoded, flags=re.I)
+ decoded = re.sub(r'%28', '(', decoded, flags=re.I)
+ decoded = re.sub(r'%29', ')', decoded, flags=re.I)
+ decoded = html.unescape(decoded)
  return decoded.replace('\u00a0', ' ')
+
+def _replacement_for_phone_match(token):
+ if '+' in token: return MAIN_PHONE_E164
+ if re.search(r'[\s().–—‑%&-]', token): return MAIN_PHONE_DISPLAY
+ return MAIN_PHONE_E164
 
 def replace_retired_phones(text):
  """Replace retired consultation numbers, preserving display vs tel/E.164 form."""
  if not text: return text
- for prefix, line in _RETIRED_PHONE_PARTS:
-  national = '323' + prefix + line
-  # Replace full E.164 first. Replacing only the national digits would turn
-  # tel:+13237903637 into tel:+1+13232722388.
-  text = text.replace('+1' + national, MAIN_PHONE_E164)
-  text = text.replace(national, MAIN_PHONE_E164)
-  text = text.replace(f'(323) {prefix}-{line}', MAIN_PHONE_DISPLAY)
- return text
+ # Replace full E.164 first via the bounded regex. A raw national replace of
+ # 3237903637 would turn tel:+13237903637 into tel:+1+13232722388 and would
+ # also rewrite longer digit runs such as 13237903637 or id=3237903637123.
+ return _RETIRED_RAW_RE.sub(lambda match: _replacement_for_phone_match(match.group(0)), text)
 
 def retired_phone_remains(text):
- compact = re.sub(r'[\s.\-()+]', '', decode_phone_haystack(text or ''))
- return bool(_RETIRED_PHONE_COMPACT_RE.search(compact))
+ return bool(_RETIRED_DECODED_RE.search(decode_phone_haystack(text or '')))
 
 def collect_retired_phone_leftovers(labeled_texts):
  leftovers = []
@@ -247,13 +276,36 @@ def collect_retired_phone_leftovers(labeled_texts):
    leftovers.append(label)
  return leftovers
 
+def inject_test_leftovers(asset_texts, pending_writes):
+ """Test hook: ARCHIVE_VENEERS_INJECT_LEFTOVER=1 taints one JS and one CSS."""
+ if os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER') != '1':
+  return asset_texts, pending_writes
+ js_done = css_done = False
+ tainted = {}
+ next_texts = []
+ for label, text in asset_texts:
+  extra = ''
+  if (not css_done) and label.endswith('.css'):
+   extra = '\n/* leftover 790-3637 */'; css_done = True
+  elif (not js_done) and label.endswith('.js'):
+   extra = '\n// leftover 767-0617'; js_done = True
+  if extra:
+   text = text + extra
+   tainted[str(REPO/'public'/label.lstrip('/'))] = text.encode()
+  next_texts.append((label, text))
+ next_writes = [(path, tainted.get(str(path), body)) for path, body in pending_writes]
+ return next_texts, next_writes
+
 def commit_generated_outputs(outputs, leftovers):
- """Write HTML/manifest files only after leftover detection has passed."""
+ """Write public archive files only after leftover detection has passed."""
  if leftovers:
   raise RuntimeError('Retired consultation numbers remain in ' + ', '.join(leftovers))
- for path, text in outputs:
+ for path, payload in outputs:
   path.parent.mkdir(parents=True, exist_ok=True)
-  path.write_text(text)
+  if isinstance(payload, (bytes, bytearray)):
+   path.write_bytes(payload)
+  else:
+   path.write_text(payload)
 
 PAGE_SEO = {
  '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
@@ -443,7 +495,7 @@ def main():
  failures=[{'url':u,'status':r['status'],'error':r.get('error')} for u,r in results.items() if r['status']!=200]
  (SOURCE/'asset-fetch-failures.json').write_text(json.dumps(failures,indent=2))
  print('Assets:',len(results),'failures:',len(failures),flush=True)
- asset_manifest=[];asset_texts=[]
+ asset_manifest=[];asset_texts=[];pending_writes=[]
  for url,r in sorted(results.items()):
   if r['status']!=200:continue
   raw=r['body'];body=raw
@@ -451,8 +503,9 @@ def main():
   if is_css or is_js:
    text=rewrite_urls(raw.decode('utf-8',errors='replace'),assets,url,is_css,False)
    asset_texts.append((local_asset(url),text));body=text.encode()
-  file=file_for_url(url);file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(body)
+  pending_writes.append((file_for_url(url),body))
   asset_manifest.append({'sourceUrl':url,'path':local_asset(url),'sourceSha256':hashlib.sha256(raw).hexdigest(),'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body),'contentType':ctype})
+ asset_texts,pending_writes=inject_test_leftovers(asset_texts,pending_writes)
  shell=runpy.run_path(str(REPO/'scripts/veneers-shell.py'));render_shell=shell['render_shell']
  content_audit=[];generated_html=[]
  for p,entry in zip(pages,routes):
@@ -482,10 +535,7 @@ def main():
  # Retain original article cards so search uses the archived WordPress presentation.
  cards={}
  for source_path in ('/blog/','/blog/page/2/'):
-  blog_html=html_by_path.get(route_path(source_path),'')
-  for card in re.findall(r'<article\b[^>]*class=["\'][^"\']*blog-entry[^"\']*["\'][^>]*>.*?</article>',blog_html,re.S):
-   post=re.search(r'id=["\']post-(\d+)["\']',card)
-   if post:cards[int(post.group(1))]=card
+  cards.update(extract_blog_cards(html_by_path.get(route_path(source_path),'')))
  search_pages=[]
  for p,entry in zip(pages,routes):
   if not entry['indexable'] or p.get('api_id') not in api:continue
@@ -515,7 +565,7 @@ def main():
   for heading in audit.get('headings',[]):
    labeled_texts.append((audit['path']+' headings',heading))
  leftovers=collect_retired_phone_leftovers(labeled_texts)
- outputs=[]
+ outputs=list(pending_writes)
  for entry,s in generated_html:
   outputs.append((REPO/'public'/entry['path'].lstrip('/')/'index.html',s))
  outputs.append((OUT/'search-index.json',search_json))

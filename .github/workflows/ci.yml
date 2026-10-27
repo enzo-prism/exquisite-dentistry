@@ -55,6 +55,9 @@ jobs:
       - name: Submission consent evidence
         run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts src/__tests__/legacyVeneers.unit.ts
 
+      - name: Archived veneers phone rewrite
+        run: npm run test:veneers-phones
+
       - name: Archived veneers content and asset integrity
         run: node scripts/test-veneers-archive.mjs --tracked
 
