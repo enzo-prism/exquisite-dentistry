@@ -171,42 +171,55 @@ for (const page of manifest.pages) {
 }
 function decodePhoneHaystack(text) {
   return String(text)
-    .replace(/&nbsp;/gi, ' ')
+    .replace(/&nbsp;?/gi, ' ')
     .replace(/&ndash;/gi, '-')
     .replace(/&mdash;/gi, '-')
+    .replace(/&minus;/gi, '-')
+    .replace(/&hyphen;/gi, '-')
     .replace(/&#160;/g, ' ')
     .replace(/&#x0*a0;/gi, ' ')
+    .replace(/&#8211;/g, '-')
+    .replace(/&#45;/g, '-')
     .replace(/&#8209;/g, '-')
-    .replace(/&#x2011;/gi, '-')
+    .replace(/&#x201[012];/gi, '-')
+    .replace(/&#x2212;/gi, '-')
     .replace(/%20/gi, ' ')
     .replace(/%c2%a0/gi, ' ')
     .replace(/%2d/gi, '-')
+    .replace(/%2e/gi, '.')
     .replace(/%28/gi, '(')
     .replace(/%29/gi, ')')
     .replace(/\u00a0/g, ' ')
-    .replace(/[\u2013\u2014\u2011]/g, '-');
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, '-');
 }
 
-function retiredPhonePattern() {
+function leftoverMatch(text) {
+  const decoded = decodePhoneHaystack(text);
   const sep = '[\\s.\\-()]*';
   const bodies = [['790', '3637'], ['767', '0617']].map(([prefix, line]) => `${prefix}${sep}${line}`).join('|');
-  return new RegExp(`(?<![\\dA-Fa-f])(?:\\+?1${sep})?(?:\\(?323\\)?${sep})?(?:${bodies})(?![\\dA-Fa-f])(?!\\.\\w)`);
+  const area = new RegExp(`(?:\\+?1${sep})?\\(?323\\)?${sep}(?:${bodies})`);
+  const bare = new RegExp(`(?<![A-Za-z0-9])(?:${bodies})(?![A-Za-z0-9])(?!\\.\\w)`);
+  return decoded.match(area) || decoded.match(bare);
 }
 
-const retiredPhones = retiredPhonePattern();
 const assertNoRetiredNumber = (label, text) => {
-  const match = decodePhoneHaystack(text).match(retiredPhones);
+  const match = leftoverMatch(text);
   assert.equal(match, null, `Retired consultation number remains in ${label}${match ? `: ${match[0]}` : ''}`);
 };
 
 {
-  const leftover = (text) => decodePhoneHaystack(text).match(retiredPhones);
+  const leftover = leftoverMatch;
   assert.ok(leftover('Call 790-3637 today'), 'Leftover regex matches without a 323 prefix');
   assert.ok(leftover('Call 790%203637 today'), 'Leftover regex decodes %20');
   assert.ok(leftover('Call 790&nbsp;3637 today'), 'Leftover regex decodes &nbsp;');
+  assert.ok(leftover('Call 790&nbsp 3637 today'), 'Leftover regex decodes &nbsp without semicolon');
+  assert.ok(leftover('Call (323)&#8211;790&#8211;3637'), 'Leftover regex decodes &#8211;');
+  assert.ok(leftover('Call 323&#45;790&#45;3637'), 'Leftover regex decodes &#45;');
   assert.ok(leftover('CA 90036 323-790-3637'), 'Leftover regex keeps ZIP neighbors');
   assert.ok(leftover('Open 9-5 323-790-3637'), 'Leftover regex keeps hours neighbors');
   assert.ok(leftover('Call 323-790-3637 24 hours'), 'Leftover regex keeps trailing hours');
+  assert.ok(leftover('Call (323) 790-3637Fax'), 'Area-coded leftovers ignore hex bounds');
+  assert.ok(leftover('(323) 790-3637.Call'), 'Area-coded leftovers ignore extension bounds');
   assert.ok(leftover('Call 790%c2%a03637 today'), 'Leftover regex decodes %c2%a0');
   assert.ok(leftover('Call (323)–790–3637'), 'Leftover regex decodes en dash');
   assert.equal(leftover('ref=12379036379'), null, 'Leftover regex uses digit boundaries');
@@ -215,6 +228,7 @@ const assertNoRetiredNumber = (label, text) => {
   assert.equal(leftover('G-7903637AB'), null, 'Leftover regex skips hex identifiers');
   assert.equal(leftover('7903637.jpg'), null, 'Leftover regex skips filenames');
   assert.equal(leftover('$7.903.637'), null, 'Leftover regex skips money');
+  assert.equal(leftover('width:7903637px'), null, 'Leftover regex skips CSS lengths');
   assert.equal(leftover('tel:+13232722388'), null, 'Current E.164 number is not a leftover');
 }
 

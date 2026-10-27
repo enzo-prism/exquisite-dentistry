@@ -212,21 +212,32 @@ def repair_metadata(s):
 MAIN_PHONE_DISPLAY = '(323) 272-2388'
 MAIN_PHONE_E164 = '+13232722388'
 _RETIRED_PHONE_PARTS = (('790', '3637'), ('767', '0617'))
-# Boundaries apply on the original (decoded) text, not a digit-stripped
-# compact string. Stripping first glued ZIP/hours onto the number
-# (`CA 90036 323-790-3637`) and hid leftovers before `24 hours`.
-_SEP_DECODED = r'[\s.\-()–—‑]*'
-_SEP_RAW = r'(?:[\s.\-()–—‑]|&nbsp;|&ndash;|&mdash;|&#160;|&#x0*a0;|&#8209;|&#x2011;|%20|%c2%a0|%2[dD]|%28|%29)*'
-_BOUND_L = r'(?<![\dA-Fa-f])'
-_BOUND_R = r'(?![\dA-Fa-f])(?!\.\w)'
+# Digit/letter boundaries apply only to bare 7-digit leftovers. A 323-area
+# form keeps the base detector (no glue/hex/extension bounds).
+# ASCII hyphen plus U+2010, U+2011, U+2012, en, em, minus.
+_SEP_DECODED = r'[\s.\-()‐‑‒–—−]*'
+_SEP_RAW = (
+ r'(?:[\s.\-()‐‑‒–—−]|&nbsp;?|&ndash;|&mdash;|&minus;|&hyphen;'
+ r'|&#160;|&#x0*a0;|&#8211;|&#45;|&#8209;|&#x201[012];|&#x2212;'
+ r'|%20|%c2%a0|%2[dDeE]|%28|%29)*'
+)
 
-def _retired_number_re(sep):
- bodies = '|'.join(prefix + sep + line for prefix, line in _RETIRED_PHONE_PARTS)
- area = r'(?:(?:\(|%28)?323(?:\)|%29)?' + sep + r')?'
- return re.compile(_BOUND_L + r'(?:\+?1' + sep + r')?' + area + r'(?:' + bodies + r')' + _BOUND_R)
+def _phone_bodies(sep):
+ return '|'.join(prefix + sep + line for prefix, line in _RETIRED_PHONE_PARTS)
 
-_RETIRED_DECODED_RE = _retired_number_re(_SEP_DECODED)
-_RETIRED_RAW_RE = _retired_number_re(_SEP_RAW)
+def _area_coded_re(sep, rewrite=False):
+ bodies = '(?:' + _phone_bodies(sep) + ')'
+ area = r'(?:\+?1' + sep + r')?(?:(?:\(|%28)?323(?:\)|%29)?' + sep + r')' + bodies
+ if rewrite: area += r'(?!\d)'
+ return re.compile(area)
+
+def _bare_seven_re(sep):
+ return re.compile(r'(?<![A-Za-z0-9])(?:' + _phone_bodies(sep) + r')(?![A-Za-z0-9])(?!\.\w)')
+
+_AREA_DETECT_RE = _area_coded_re(_SEP_DECODED)
+_AREA_REWRITE_RE = _area_coded_re(_SEP_RAW, rewrite=True)
+_BARE_DETECT_RE = _bare_seven_re(_SEP_DECODED)
+_BARE_REWRITE_RE = _bare_seven_re(_SEP_RAW)
 
 def normalize_newlines(text):
  """Match Path.read_text() universal-newline translation."""
@@ -242,32 +253,50 @@ def extract_blog_cards(blog_html):
  return cards
 
 def decode_phone_haystack(text):
- """Decode %20 / dash / paren encodings so leftover digits keep their original neighbors."""
+ """Decode space / dash / paren encodings so leftover digits keep their neighbors."""
  if not text: return ''
  decoded = text.replace('\u00a0', ' ')
+ decoded = re.sub(r'&nbsp;?', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%20', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%c2%a0', ' ', decoded, flags=re.I)
  decoded = re.sub(r'%2d', '-', decoded, flags=re.I)
+ decoded = re.sub(r'%2e', '.', decoded, flags=re.I)
  decoded = re.sub(r'%28', '(', decoded, flags=re.I)
  decoded = re.sub(r'%29', ')', decoded, flags=re.I)
  decoded = html.unescape(decoded)
  return decoded.replace('\u00a0', ' ')
 
-def _replacement_for_phone_match(token):
- if '+' in token: return MAIN_PHONE_E164
- if re.search(r'[\s().–—‑%&-]', token): return MAIN_PHONE_DISPLAY
+def base_area_coded_detector(text):
+ """PR #51 detector: 323 + exchange after stripping spaces/dashes/parens."""
+ compact = re.sub(r'[\s.\-()+]', '', text or '')
+ return any('323' + prefix + line in compact for prefix, line in _RETIRED_PHONE_PARTS)
+
+def _is_tel_href(before):
+ return bool(re.search(r'tel:\s*$', before or '', re.I))
+
+def _follows_non_323_area(before):
+ return bool(re.search(r'(?<!\d)(?!323)\d{3}' + _SEP_DECODED + r'$', before or ''))
+
+def _replacement_for_phone_match(token, before=''):
+ if _is_tel_href(before) or '+' in token: return MAIN_PHONE_E164
+ if re.search(r'[\s().%&\-‐‑‒–—−]', token): return MAIN_PHONE_DISPLAY
  return MAIN_PHONE_E164
 
 def replace_retired_phones(text):
- """Replace retired consultation numbers, preserving display vs tel/E.164 form."""
+ """Replace 323-area retired numbers. Bare 7-digit tokens rewrite only when standalone."""
  if not text: return text
- # Replace full E.164 first via the bounded regex. A raw national replace of
- # 3237903637 would turn tel:+13237903637 into tel:+1+13232722388 and would
- # also rewrite longer digit runs such as 13237903637 or id=3237903637123.
- return _RETIRED_RAW_RE.sub(lambda match: _replacement_for_phone_match(match.group(0)), text)
+ def repl_area(match):
+  return _replacement_for_phone_match(match.group(0), text[:match.start()])
+ text = _AREA_REWRITE_RE.sub(repl_area, text)
+ def repl_bare(match):
+  before = text[:match.start()]
+  if _follows_non_323_area(before): return match.group(0)
+  return _replacement_for_phone_match(match.group(0), before)
+ return _BARE_REWRITE_RE.sub(repl_bare, text)
 
 def retired_phone_remains(text):
- return bool(_RETIRED_DECODED_RE.search(decode_phone_haystack(text or '')))
+ decoded = decode_phone_haystack(text or '')
+ return bool(_AREA_DETECT_RE.search(decoded) or _BARE_DETECT_RE.search(decoded))
 
 def collect_retired_phone_leftovers(labeled_texts):
  leftovers = []
@@ -296,16 +325,27 @@ def inject_test_leftovers(asset_texts, pending_writes):
  next_writes = [(path, tainted.get(str(path), body)) for path, body in pending_writes]
  return next_texts, next_writes
 
-def commit_generated_outputs(outputs, leftovers):
+def _write_payload(path, payload):
+ path.parent.mkdir(parents=True, exist_ok=True)
+ if isinstance(payload, (bytes, bytearray)):
+  path.write_bytes(payload)
+ else:
+  path.write_text(payload)
+
+def commit_generated_outputs(outputs, leftovers, write_log=None):
  """Write public archive files only after leftover detection has passed."""
  if leftovers:
   raise RuntimeError('Retired consultation numbers remain in ' + ', '.join(leftovers))
  for path, payload in outputs:
-  path.parent.mkdir(parents=True, exist_ok=True)
-  if isinstance(payload, (bytes, bytearray)):
-   path.write_bytes(payload)
-  else:
-   path.write_text(payload)
+  if write_log is not None: write_log.append(str(path))
+  _write_payload(path, payload)
+
+def scan_and_commit(labeled_texts, outputs, write_log=None):
+ """Scan leftovers, then write. Tests record this order."""
+ leftovers = collect_retired_phone_leftovers(labeled_texts)
+ if write_log is not None: write_log.append('scan')
+ commit_generated_outputs(outputs, leftovers, write_log=write_log)
+ return leftovers
 
 PAGE_SEO = {
  '/veneers/': ('Porcelain Veneers in Los Angeles | Exquisite Dentistry', 'Explore porcelain veneers in Los Angeles with Dr. Alexie Aguil. See the process, real smile results, and how to request a consultation at Exquisite Dentistry.'),
@@ -564,7 +604,6 @@ def main():
  for audit in content_audit:
   for heading in audit.get('headings',[]):
    labeled_texts.append((audit['path']+' headings',heading))
- leftovers=collect_retired_phone_leftovers(labeled_texts)
  outputs=list(pending_writes)
  for entry,s in generated_html:
   outputs.append((REPO/'public'/entry['path'].lstrip('/')/'index.html',s))
@@ -576,6 +615,6 @@ def main():
  manifest_json=json.dumps({'source':BASE,'pages':routes,'assets':asset_manifest,'assetFailures':failures,'integrationFiles':integration_files,'contentAudit':content_audit,'searchIndex':{'path':'/veneers/search-index.json','sha256':hashlib.sha256(search_json.encode()).hexdigest()}},indent=2)
  outputs.append((OUT/'manifest.json',manifest_json))
  outputs.append((REPO/'src/constants/legacyVeneersManifest.json',json.dumps({'pages':routes},indent=2)))
- commit_generated_outputs(outputs,leftovers)
+ scan_and_commit(labeled_texts,outputs)
  print('Archive complete',flush=True)
 if __name__=='__main__':main()

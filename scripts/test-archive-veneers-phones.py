@@ -84,6 +84,34 @@ class ReplaceRetiredPhonesTests(unittest.TestCase):
             ARCHIVE.replace_retired_phones('Call %28323%29 790-3637'),
             'Call (323) 272-2388',
         )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('Call 323%2E790%2E3637'),
+            'Call (323) 272-2388',
+        )
+
+    def test_area_coded_glued_neighbors_are_rewritten(self):
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('Call (323) 790-3637Fax'),
+            'Call (323) 272-2388Fax',
+        )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('(323) 790-3637.Call'),
+            '(323) 272-2388.Call',
+        )
+
+    def test_does_not_rewrite_foreign_area_or_css_length(self):
+        self.assertEqual(ARCHIVE.replace_retired_phones('(310) 790-3637'), '(310) 790-3637')
+        self.assertEqual(ARCHIVE.replace_retired_phones('width:7903637px'), 'width:7903637px')
+
+    def test_tel_hrefs_rewrite_to_e164(self):
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('tel:323-790-3637'),
+            'tel:+13232722388',
+        )
+        self.assertEqual(
+            ARCHIVE.replace_retired_phones('href="tel:323-790-3637"'),
+            'href="tel:+13232722388"',
+        )
 
 
 class LeftoverDetectionTests(unittest.TestCase):
@@ -100,6 +128,30 @@ class LeftoverDetectionTests(unittest.TestCase):
         self.assertTrue(ARCHIVE.retired_phone_remains('CA 90036 323-790-3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Open 9-5 323-790-3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Call 323-790-3637 24 hours'))
+
+    def test_area_coded_glued_neighbors_are_detected(self):
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323) 790-3637Fax'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('(323) 790-3637.Call'))
+
+    def test_area_coded_detection_matches_base(self):
+        samples = (
+            'Call (323) 790-3637Fax',
+            '(323) 790-3637.Call',
+            'CA 90036 323-790-3637',
+            'Open 9-5 323-790-3637',
+            'Call 323-790-3637 24 hours',
+            'tel:+13237903637',
+            'Call (323) 790-3637 today',
+            '3237903637',
+            'id=3237903637123',
+        )
+        for sample in samples:
+            if ARCHIVE.base_area_coded_detector(sample):
+                self.assertTrue(ARCHIVE.retired_phone_remains(sample), sample)
+
+    def test_detects_foreign_area_but_not_css_length(self):
+        self.assertTrue(ARCHIVE.retired_phone_remains('(310) 790-3637'))
+        self.assertFalse(ARCHIVE.retired_phone_remains('width:7903637px'))
 
     def test_digit_boundaries_ignore_unrelated_runs(self):
         self.assertFalse(ARCHIVE.retired_phone_remains('ref=12379036379'))
@@ -124,8 +176,17 @@ class LeftoverDetectionTests(unittest.TestCase):
         self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)—790—3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)‑790‑3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)&ndash;790&ndash;3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)&minus;790&minus;3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)&hyphen;790&hyphen;3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Call 323%2D790%2D3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call 323%2E790%2E3637'))
         self.assertTrue(ARCHIVE.retired_phone_remains('Call %28323%29 790-3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call 790&nbsp 3637 today'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)&#8211;790&#8211;3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call 323&#45;790&#45;3637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)\u2010790\u20103637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)\u2012790\u20123637'))
+        self.assertTrue(ARCHIVE.retired_phone_remains('Call (323)\u2212790\u22123637'))
 
     def test_skips_hex_filenames_and_money(self):
         self.assertFalse(ARCHIVE.retired_phone_remains('G-7903637AB'))
@@ -180,6 +241,33 @@ class NewlineAndWriteTests(unittest.TestCase):
             ARCHIVE.commit_generated_outputs([(dest, 'tel:+13232722388')], leftovers)
             self.assertEqual(dest.read_text(), 'tel:+13232722388')
 
+    def test_scan_and_commit_records_scan_before_any_write(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            dest_dir = Path(tmp)
+            asset = dest_dir / 'theme.js'
+            html = dest_dir / 'index.html'
+            search = dest_dir / 'search-index.json'
+            manifest = dest_dir / 'manifest.json'
+            log = []
+            with self.assertRaisesRegex(RuntimeError, 'Retired consultation numbers remain'):
+                ARCHIVE.scan_and_commit(
+                    [('theme.js', 'width:auto; /* 790-3637 */')],
+                    [(asset, b'DIRTY'), (html, 'DIRTY'), (search, '{}'), (manifest, '{}')],
+                    write_log=log,
+                )
+            self.assertEqual(log, ['scan'])
+            self.assertFalse(asset.exists())
+            self.assertFalse(html.exists())
+            self.assertFalse(search.exists())
+            self.assertFalse(manifest.exists())
+
+
+def _is_public_archive_path(path):
+    resolved = Path(path).resolve()
+    veneers = (REPO / 'public' / 'veneers').resolve()
+    manifest = (REPO / 'src/constants/legacyVeneersManifest.json').resolve()
+    return resolved == manifest or resolved == veneers or veneers in resolved.parents
+
 
 class MainWriteOrderTests(unittest.TestCase):
     def test_injected_js_and_css_leftovers_fail_before_any_public_write(self):
@@ -196,6 +284,52 @@ class MainWriteOrderTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('Retired consultation numbers remain', result.stderr + result.stdout)
         self.assertEqual(archive_git_status(), '', 'JS/CSS leftovers must not dirty public/')
+
+    def test_main_records_no_public_write_before_scan_passes(self):
+        self.assertEqual(archive_git_status(), '', 'Archive tree must start clean')
+        events = []
+        orig_text = Path.write_text
+        orig_bytes = Path.write_bytes
+        orig_collect = ARCHIVE.collect_retired_phone_leftovers
+
+        def rec_text(self, *args, **kwargs):
+            if _is_public_archive_path(self):
+                events.append(('write', str(self)))
+            return orig_text(self, *args, **kwargs)
+
+        def rec_bytes(self, *args, **kwargs):
+            if _is_public_archive_path(self):
+                events.append(('write', str(self)))
+            return orig_bytes(self, *args, **kwargs)
+
+        def rec_collect(labeled_texts):
+            events.append(('scan',))
+            return orig_collect(labeled_texts)
+
+        ARCHIVE.collect_retired_phone_leftovers = rec_collect
+        Path.write_text = rec_text
+        Path.write_bytes = rec_bytes
+        previous = os.environ.get('ARCHIVE_VENEERS_INJECT_LEFTOVER')
+        argv = sys.argv
+        try:
+            os.environ['ARCHIVE_VENEERS_INJECT_LEFTOVER'] = '1'
+            sys.argv = ['archive-veneers.py', '--offline']
+            with self.assertRaisesRegex(RuntimeError, 'Retired consultation numbers remain'):
+                ARCHIVE.main()
+        finally:
+            ARCHIVE.collect_retired_phone_leftovers = orig_collect
+            Path.write_text = orig_text
+            Path.write_bytes = orig_bytes
+            sys.argv = argv
+            if previous is None:
+                os.environ.pop('ARCHIVE_VENEERS_INJECT_LEFTOVER', None)
+            else:
+                os.environ['ARCHIVE_VENEERS_INJECT_LEFTOVER'] = previous
+        self.assertIn(('scan',), events)
+        self.assertEqual([event for event in events if event[0] == 'write'], [])
+        scan_at = events.index(('scan',))
+        self.assertTrue(all(index > scan_at for index, event in enumerate(events) if event[0] == 'write'))
+        self.assertEqual(archive_git_status(), '')
 
 
 class RegenIdempotenceTests(unittest.TestCase):
