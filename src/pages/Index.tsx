@@ -104,9 +104,9 @@ const IndexPage: React.FC = () => {
           </Link>
         </div>
       </section>
-      <ServicesSection />
       <HomepageDoctorProof />
       <SmileGalleryPreview />
+      <ServicesSection />
       <InsurancePaymentBand />
 
       <section className="bg-ivory py-16 md:py-24">
