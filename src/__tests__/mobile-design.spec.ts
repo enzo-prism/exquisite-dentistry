@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const CRITICAL_ROUTES = [
   { path: '/', expectedText: 'Los Angeles Dentist' },
-  { path: '/services/', expectedText: 'Advanced Cosmetic' },
+  { path: '/services/', expectedText: 'General & Cosmetic Dentistry' },
   { path: '/veneers/', expectedText: 'The Naturally Radiant Smile You’ve Always Dreamed Of' },
   { path: '/smile-gallery/', expectedText: 'Smile Gallery' },
   { path: '/schedule-consultation/', expectedText: 'Schedule Consultation' },

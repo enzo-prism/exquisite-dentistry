@@ -18,6 +18,32 @@ export interface ServiceCategory {
 
 export const serviceCategories: ServiceCategory[] = [
   {
+    id: "preventive",
+    title: "Preventive Care",
+    description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
+    highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
+    iconName: "Shield",
+    image: "/lovable-uploads/preventive-care.webp",
+    treatments: [
+      {
+        name: "Comprehensive Exams",
+        details: "Thorough evaluation of your oral health, including teeth, gums, and supporting structures"
+      },
+      {
+        name: "Professional Cleaning",
+        details: "Removal of plaque and tartar to prevent cavities and gum disease"
+      },
+      {
+        name: "Digital X-Rays",
+        details: "Low-radiation imaging to detect issues not visible during a visual examination"
+      },
+      {
+        name: "Oral Cancer Screenings",
+        details: "Early detection of abnormal tissues that may indicate precancerous conditions"
+      }
+    ]
+  },
+  {
     id: "cosmetic",
     title: "Cosmetic Dentistry",
     description: "Transform your smile with our comprehensive cosmetic dental services. We combine artistic vision with technical precision to create beautiful, natural-looking results that enhance your confidence.",
@@ -82,32 +108,6 @@ export const serviceCategories: ServiceCategory[] = [
       {
         name: "Full & Partial Dentures",
         details: "Removable appliances to replace multiple missing teeth and restore function"
-      }
-    ]
-  },
-  {
-    id: "preventive",
-    title: "Preventive Care",
-    description: "Maintain optimal oral health with our comprehensive preventive care services. Regular preventive care helps detect issues early, saving you time, discomfort, and expense in the long run.",
-    highlight: "Our preventive approach includes thorough oral cancer screenings at every regular check-up.",
-    iconName: "Shield",
-    image: "/lovable-uploads/preventive-care.webp",
-    treatments: [
-      {
-        name: "Comprehensive Exams",
-        details: "Thorough evaluation of your oral health, including teeth, gums, and supporting structures"
-      },
-      {
-        name: "Professional Cleaning",
-        details: "Removal of plaque and tartar to prevent cavities and gum disease"
-      },
-      {
-        name: "Digital X-Rays",
-        details: "Low-radiation imaging to detect issues not visible during a visual examination"
-      },
-      {
-        name: "Oral Cancer Screenings",
-        details: "Early detection of abnormal tissues that may indicate precancerous conditions"
       }
     ]
   },

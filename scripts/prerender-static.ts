@@ -350,11 +350,17 @@ export const manualPages: StaticRoute[] = [
     path: "/services",
     title: getRouteMetadata("/services").title,
     description: getRouteMetadata("/services").description,
-    h1: "Advanced Cosmetic & Restorative Dental Services",
-    paragraphs: [
-      "Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results.",
+    h1: "General & Cosmetic Dentistry in Los Angeles",
+    paragraphs: [getRouteMetadata("/services").description],
+    links: [
+      { label: "Exams and Cleanings", href: "/teeth-cleaning/" },
+      { label: "Same-Day Dental Care", href: "/same-day-dentist/" },
+      { label: "Check PPO Benefits", href: "/insurance/" },
+      { label: "Schedule a Visit", href: "/schedule-consultation/" },
+      ...CORE_SERVICES_LINKS,
+      ...EVENT_LINKS,
+      ...defaultNavLinks,
     ],
-    links: [...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...defaultNavLinks],
   },
   {
     path: "/locations",

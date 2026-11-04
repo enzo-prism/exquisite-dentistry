@@ -31,11 +31,10 @@ import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { serviceCategories } from '@/data/services';
 
 import MasterStructuredData from '@/components/seo/MasterStructuredData';
-import MedicalProcedureStructuredData from '@/components/seo/MedicalProcedureStructuredData';
 import TopicClusterWidget from '@/components/TopicClusterWidget';
 import InternalLinkingWidget from '@/components/InternalLinkingWidget';
 import { ROUTE_METADATA } from '@/constants/metadata';
-import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { INSURANCE_PATH, SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { normalizeInternalHref } from '@/utils/normalizeInternalHref';
 
 const CARD = 'rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]';
@@ -83,6 +82,12 @@ const Services = () => {
 
   const serviceNavigation = [
     {
+      id: 'preventive',
+      title: 'Preventive Care',
+      description: 'Comprehensive exams, cleanings, and proactive screenings to protect your smile.',
+      Icon: Shield
+    },
+    {
       id: 'cosmetic',
       title: 'Cosmetic Dentistry',
       description: 'Signature veneers, whitening, and custom smile makeovers crafted for you.',
@@ -93,12 +98,6 @@ const Services = () => {
       title: 'Restorative Dentistry',
       description: 'Full-mouth rehabilitation, crowns, implants, and tooth-colored restorations.',
       Icon: Wrench
-    },
-    {
-      id: 'preventive',
-      title: 'Preventive Care',
-      description: 'Comprehensive exams, cleanings, and proactive screenings to protect your smile.',
-      Icon: Shield
     },
     {
       id: 'specialty',
@@ -295,38 +294,23 @@ const Services = () => {
         ogImage={meta.ogImage}
       />
 
-      {/* Add structured data for key services */}
-      <MedicalProcedureStructuredData
-        procedureName="Cosmetic Dental Services"
-        description="Comprehensive cosmetic dentistry services including porcelain veneers, teeth whitening, dental implants, and complete smile makeovers"
-        url="/services"
-        procedureType="Cosmetic Dental Procedures"
-        bodyLocation="Oral and Dental System"
-        benefits={[
-          "Enhanced smile aesthetics",
-          "Improved confidence",
-          "Long-lasting results",
-          "Natural appearance"
-        ]}
-      />
-      
       <VideoHero
         vimeoId="1076745525"
         eyebrow="Our services"
-        title={<>Advanced Cosmetic & <span className="text-gold">Restorative Dental Services</span></>}
-        subtitle="Experience the full spectrum of modern dentistry with procedures ranging from preventive care to complex smile makeovers. Our Los Angeles practice near Beverly Hills combines artistic vision with cutting-edge technology to deliver exceptional results."
+        title={<>General &amp; <span className="text-gold">Cosmetic Dentistry</span> in Los Angeles</>}
+        subtitle="See Dr. Alexie Aguil on Wilshire Boulevard for dental exams, cleanings, and urgent visits. We also offer veneers, Invisalign, and restorative care."
         primaryCta={{
-          text: "Schedule Consultation",
+          text: "Schedule a Visit",
           href: SCHEDULE_CONSULTATION_PATH
         }}
-        secondaryCta={{
-          text: "View Smile Gallery",
-          href: "/smile-gallery"
-        }}
+        proofLinks={[
+          { text: 'Read patient experiences', href: '/testimonials/' },
+          { text: 'Check PPO benefits', href: INSURANCE_PATH },
+        ]}
         phoneCta
         overlayColor="gradient"
         height="medium"
-        badgeText="COMPREHENSIVE DENTAL EXCELLENCE"
+        badgeText="CARE ON WILSHIRE BOULEVARD"
         scrollIndicator={false}
       />
 
@@ -337,19 +321,19 @@ const Services = () => {
             <div className="min-w-0">
               <SectionHeading
                 align="left"
-                eyebrow="Signature Care Journey"
-                title={<>Where Technology Meets <em>Artistry</em></>}
-                description="Our Los Angeles practice near Beverly Hills delivers the complete spectrum of modern dentistry, from transformative aesthetics to comprehensive restorative solutions. Dr. Aguil blends time-honored techniques with the latest innovations, ensuring each experience is as precise and personal as it is beautiful."
+                eyebrow="General dentistry"
+                title={<>Start with the <em>care you need</em></>}
+                description="Book a routine exam and cleaning, or call us if you need urgent dental care. If you have a PPO plan, we can help verify your benefits before treatment."
               />
               <Reveal variant="up" delay={200} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <Button className="group h-auto min-h-12 whitespace-normal py-3" size="lg" asChild>
-                  <Link to={SCHEDULE_CONSULTATION_PATH}>
-                    Schedule Consultation
+                  <Link to="/teeth-cleaning/">
+                    Exams and Cleanings
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" className="h-auto min-h-12 whitespace-normal py-3" asChild>
-                  <Link to="/contact/">Contact Us</Link>
+                  <Link to="/same-day-dentist/">Same-Day Dental Care</Link>
                 </Button>
               </Reveal>
             </div>
@@ -372,10 +356,10 @@ const Services = () => {
           <div className="mt-16 md:mt-20">
             <Reveal variant="up" className="max-w-2xl">
               <h3 className="text-xl font-semibold tracking-[-0.01em] text-ink sm:text-2xl">
-                Guided Paths to Your Ideal Smile
+                Explore Dental Services
               </h3>
               <p className="mt-3 text-base leading-7 text-gray-600">
-                Explore comprehensive services tailored to your needs, from artistry-driven cosmetic enhancements to advanced restorative care and precision orthodontics.
+                Find preventive care, repairs for damaged or missing teeth, and options to change the look or alignment of your smile.
               </p>
             </Reveal>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -408,13 +392,6 @@ const Services = () => {
           </div>
         </div>
       </section>
-
-      <TreatmentDecisionBand
-        className="bg-white"
-        eyebrow="Service Finder"
-        title="Choose a treatment path with proof and payment clarity."
-        description="If you are comparing veneers, Invisalign, whitening, implants, or a full smile makeover, start with real outcomes, then review payment options or schedule a consultation."
-      />
 
       {serviceCategories.map((service, index) => (
         <section key={service.id} id={service.id} className={cn("scroll-mt-24 py-16 md:py-24", index % 2 === 0 ? "bg-ivory" : "bg-white")}>
@@ -485,6 +462,13 @@ const Services = () => {
           </div>
         </section>
       ))}
+
+      <TreatmentDecisionBand
+        className="bg-white"
+        eyebrow="Service Finder"
+        title="Choose a treatment path with proof and payment clarity."
+        description="If you are comparing veneers, Invisalign, whitening, implants, or a full smile makeover, start with real outcomes, then review payment options or schedule a consultation."
+      />
 
       <FinancingOptionsSection
         className="bg-background"
