@@ -20,7 +20,8 @@ import HomepageDoctorProof from '@/components/HomepageDoctorProof';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { HOMEPAGE_HERO_PROOF_LINKS } from '@/data/insurance';
 import { BUSINESS_HOURS, STREET_ADDRESS } from '@/constants/contact';
-import { GOOGLE_MAPS_SHORT_URL, INSURANCE_PATH } from '@/constants/urls';
+import { INSURANCE_PATH } from '@/constants/urls';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
   const match = thumbnailUrl.match(/^\/lovable-uploads\/([^/]+)\.(png|jpe?g)$/i);
@@ -94,9 +95,7 @@ const IndexPage: React.FC = () => {
       <section aria-label="Plan your visit" className="border-b border-gold/15 bg-ivory">
         <div className="section-container flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-3 text-sm text-ink">
           <span>Mon–Thu, {BUSINESS_HOURS[0].value}</span>
-          <a href={GOOGLE_MAPS_SHORT_URL} className="inline-flex min-h-11 items-center underline underline-offset-4">
-            Directions to {STREET_ADDRESS}
-          </a>
+          <OpenInMapsButton source="homepage_visit_details" label={`Directions to ${STREET_ADDRESS}`} className="min-h-11" />
           <Link to={INSURANCE_PATH} className="inline-flex min-h-11 items-center underline underline-offset-4">
             Check PPO benefits
           </Link>
