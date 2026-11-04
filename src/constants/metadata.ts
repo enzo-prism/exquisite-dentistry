@@ -38,12 +38,11 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage: DEFAULT_OG_IMAGE
   },
   '/services': {
-    title:
-      'Cosmetic Dentistry Services Los Angeles | Veneers & Implants',
+    title: 'General & Cosmetic Dental Services in Los Angeles | Exquisite Dentistry',
     description:
-      'Explore cosmetic dentistry services in Los Angeles, including porcelain veneers, dental implants, Invisalign, Zoom whitening, crowns, and smile makeovers.',
+      'See Dr. Alexie Aguil on Wilshire Boulevard for dental exams, cleanings, and urgent visits. We also offer veneers, Invisalign, and restorative care.',
     keywords:
-      'cosmetic dental services, porcelain veneers Los Angeles, teeth whitening, dental implants, smile makeover, dental crowns, cosmetic dentistry Beverly Hills',
+      'general dentistry Los Angeles, dental exams, teeth cleaning, urgent dental care, cosmetic dentistry, porcelain veneers, Invisalign, dental implants',
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },

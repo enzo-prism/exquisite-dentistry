@@ -456,23 +456,6 @@
     },
     {
       "type": "page",
-      "href": "/services/",
-      "title": "Cosmetic Dentistry Services Los Angeles | Veneers & Implants",
-      "description": "Explore cosmetic dentistry services in Los Angeles, including porcelain veneers, dental implants, Invisalign, Zoom whitening, crowns, and smile makeovers.",
-      "h1": "Advanced Cosmetic & Restorative Dental Services",
-      "keywords": [
-        "cosmetic dental services",
-        "porcelain veneers Los Angeles",
-        "teeth whitening",
-        "dental implants",
-        "smile makeover",
-        "dental crowns",
-        "cosmetic dentistry Beverly Hills"
-      ],
-      "id": "page:/services/"
-    },
-    {
-      "type": "page",
       "title": "Cost of 2 Front Teeth Veneers in Los Angeles",
       "description": "Compare the cost factors for two front teeth veneers, what to ask about a quote, and whether two veneers suit your smile. Plan with Dr. Aguil in Los Angeles.",
       "href": "/veneers/2-front-teeth-veneers-cost-los-angeles/",
@@ -630,6 +613,24 @@
         "Dr. Aguil patient experience"
       ],
       "id": "page:/transformation-stories/brandon-gray/"
+    },
+    {
+      "type": "page",
+      "href": "/services/",
+      "title": "General & Cosmetic Dental Services in Los Angeles | Exquisite Dentistry",
+      "description": "See Dr. Alexie Aguil on Wilshire Boulevard for dental exams, cleanings, and urgent visits. We also offer veneers, Invisalign, and restorative care.",
+      "h1": "General & Cosmetic Dentistry in Los Angeles",
+      "keywords": [
+        "general dentistry Los Angeles",
+        "dental exams",
+        "teeth cleaning",
+        "urgent dental care",
+        "cosmetic dentistry",
+        "porcelain veneers",
+        "Invisalign",
+        "dental implants"
+      ],
+      "id": "page:/services/"
     },
     {
       "type": "page",
