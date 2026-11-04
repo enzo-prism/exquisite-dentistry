@@ -37,7 +37,7 @@ test('desktop hero keeps the poster until Vimeo playback actually starts', async
   await preparePage(page);
   await page.goto('/');
 
-  const heading = page.getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i });
+  const heading = page.getByRole('heading', { name: /Los Angeles Dentist/i });
   const hero = heading.locator('xpath=ancestor::section[1]');
   const poster = heroPoster(page);
   await expect(heading).toBeVisible();
@@ -83,7 +83,7 @@ test('mobile static hero uses the same crop-safe poster without autoplay media',
   await preparePage(page);
   await page.goto('/');
 
-  const heading = page.getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i });
+  const heading = page.getByRole('heading', { name: /Los Angeles Dentist/i });
   const section = heading.locator('xpath=ancestor::section[1]');
   const poster = heroPoster(page);
 

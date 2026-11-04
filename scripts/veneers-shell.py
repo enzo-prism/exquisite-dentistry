@@ -1,4 +1,4 @@
-"""Replace only the legacy navigation and footer, preserving source body bytes.
+"""Refresh the archive shell and preserve the original page content.
 
 HTMLParser supplies element boundaries. Edits use original source offsets so all
 retained Elementor content, image attributes and inline settings remain exact.
@@ -200,6 +200,20 @@ def render_shell(source, route):
     head_end = source.rfind('</head', head.start_end, head.end)
     if body_end < 0 or head_end < 0:
         raise ValueError('Expected explicit head/body closing tags')
-    for offset, content in sorted([(body.start_end, header), (body_end, footer), (head_end, '<link rel="stylesheet" href="/veneers/shell.css" />\n<script src="/veneers/shell.js" defer></script>\n')], reverse=True):
+    inserts = [(body.start_end, header), (body_end, footer), (head_end, '<link rel="stylesheet" href="/veneers/shell.css" />\n<script src="/veneers/shell.js" defer></script>\n')]
+    if route['path'].rstrip('/') == '/veneers/best-toothpaste-for-porcelain-veneers':
+        main = next(node for node in tree.elements if node.tag == 'main' and node.attrs.get('id') == 'main')
+        main_end = source.rfind('</main', main.start_end, main.end)
+        if main_end < 0:
+            raise ValueError('Expected explicit main closing tag for the consultation block')
+        inserts.append((main_end, '''<aside class="veneers-article-consultation" aria-label="Veneer consultation">
+  <p><strong>Thinking about porcelain veneers?</strong> Talk through your options with Dr. Alexie Aguil.</p>
+  <div>
+    <a class="veneers-shell-cta" href="/veneers/contact/">Request a veneer consultation</a>
+    <a href="/veneers/">Explore porcelain veneers</a>
+  </div>
+</aside>
+'''))
+    for offset, content in sorted(inserts, reverse=True):
         source = source[:offset] + content + source[offset:]
     return source, {'path': route['path'], 'headings': headings, 'heroIds': hero_ids}

@@ -984,8 +984,9 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
   "koreatown-dentist": createLocationConfig({
     slug: "koreatown-dentist",
     cityLabel: "Koreatown",
+    heroHeading: "Dentist Near Koreatown",
     description:
-      "For Koreatown patients, our studio is a straight drive west along Wilshire Boulevard, past Hancock Park and Museum Row. We offer preventive care, Invisalign, whitening, and implant dentistry in a quiet, comfort-focused setting.",
+      "Book a dental exam or cleaning with Dr. Alexie Aguil at 6227 Wilshire Blvd, a straight drive west from Koreatown. Paid parking is available at the building, and our team can verify PPO benefits before treatment.",
     heroStats: [
       { label: "Years of experience", value: "15+" },
       { label: "Benefits verified before treatment", value: "PPO" },

@@ -235,8 +235,8 @@
       "lastmod": "2024-03-13T14:01:36Z",
       "h1": "Blog",
       "description": "Selecting the right toothpaste for your veneers is key to maintaining the look, feel, and overall health of your teeth and gums.",
-      "sha256": "dc58821f37747c9887490da3af339c32be1db9ae7993e66148ed36bd0f2169ee",
-      "bytes": 70858
+      "sha256": "c7d0b5c46c05e6a32dcc1bdd0b8c6d317fa9742ad5809525e6f6ffbd7a6f8542",
+      "bytes": 71217
     },
     {
       "path": "/veneers/where-can-i-get-the-best-porcelain-veneers-in-los-angeles/",
@@ -3864,8 +3864,8 @@
   "integrationFiles": [
     {
       "path": "/veneers/shell.css",
-      "sha256": "b931fd172ccfd11425c931df4261a492867e001e6fab304aaaf1d2add8a92da8",
-      "bytes": 9569
+      "sha256": "7ab384180e041bb91726c16f1eaa5c01c9c92a5f641199eecc5e5abdad381671",
+      "bytes": 10108
     },
     {
       "path": "/veneers/shell.js",
