@@ -13,7 +13,7 @@ for (const width of [320, 390, 768]) {
     });
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/');
-    const heading = page.getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i });
+    const heading = page.getByRole('heading', { name: /Los Angeles Dentist/i });
     const hero = heading.locator('xpath=ancestor::section[1]');
     await expect(heading).toBeVisible();
     await page.evaluate(() => document.fonts.ready);

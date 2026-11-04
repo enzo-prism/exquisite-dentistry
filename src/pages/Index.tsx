@@ -19,6 +19,8 @@ import { featuredReviews } from '@/data/featuredReviews';
 import HomepageDoctorProof from '@/components/HomepageDoctorProof';
 import SmileGalleryPreview from '@/components/SmileGalleryPreview';
 import { HOMEPAGE_HERO_PROOF_LINKS } from '@/data/insurance';
+import { BUSINESS_HOURS, STREET_ADDRESS } from '@/constants/contact';
+import { GOOGLE_MAPS_SHORT_URL, INSURANCE_PATH } from '@/constants/urls';
 
 const toOptimizedLocalThumbnail = (thumbnailUrl: string): { thumbnailUrl: string; thumbnailFallbackUrl?: string } => {
   const match = thumbnailUrl.match(/^\/lovable-uploads\/([^/]+)\.(png|jpe?g)$/i);
@@ -70,8 +72,8 @@ const IndexPage: React.FC = () => {
       />
       
       <VideoHero
-        title={<>Los Angeles <span className="text-gold">Cosmetic Dentist</span></>} 
-        subtitle="High-end cosmetic dentistry near Beverly Hills, focused on porcelain veneers, Invisalign, teeth whitening, and smile makeovers. Have a PPO plan? We can help verify benefits before treatment."
+        title={<>Los Angeles <span className="text-gold">Dentist</span></>}
+        subtitle="Exams, cleanings, and urgent dental visits on Wilshire Boulevard with Dr. Alexie Aguil. Explore porcelain veneers, Invisalign, and smile makeovers when you’re ready."
         primaryCta={{
           text: "Schedule Consultation",
           href: "/schedule-consultation/",
@@ -89,9 +91,23 @@ const IndexPage: React.FC = () => {
         preferStaticOnMobile={true}
       />
 
+      <section aria-label="Plan your visit" className="border-b border-gold/15 bg-ivory">
+        <div className="section-container flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-3 text-sm text-ink">
+          <span>Mon–Thu, {BUSINESS_HOURS[0].value}</span>
+          <a href={GOOGLE_MAPS_SHORT_URL} className="inline-flex min-h-11 items-center underline underline-offset-4">
+            Directions to {STREET_ADDRESS}
+          </a>
+          <Link to={INSURANCE_PATH} className="inline-flex min-h-11 items-center underline underline-offset-4">
+            Check PPO benefits
+          </Link>
+          <Link to="/same-day-dentist/" className="inline-flex min-h-11 items-center underline underline-offset-4">
+            Same-day dental care
+          </Link>
+        </div>
+      </section>
+      <ServicesSection />
       <HomepageDoctorProof />
       <SmileGalleryPreview />
-      <ServicesSection />
       <InsurancePaymentBand />
 
       <section className="bg-ivory py-16 md:py-24">

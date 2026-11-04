@@ -337,7 +337,7 @@ test.describe('Cherry widget mobile behavior', () => {
 
     await page.locator('header a[href="/"]').first().click();
     await expect(page).toHaveURL(/\/$/);
-    await page.getByRole('heading', { name: 'Los Angeles Cosmetic Dentist' }).waitFor({ state: 'attached' });
+    await page.getByRole('heading', { name: 'Los Angeles Dentist' }).waitFor({ state: 'attached' });
     await expectCherryCounts(page, { buttons: 1, mounts: 1 });
     await expect(page.locator('script#_hw')).toHaveCount(1);
   });
@@ -512,7 +512,7 @@ test('Cherry stays singular across pages on desktop', async ({ page }) => {
 
   await page.locator('header a[href="/"]').first().click();
   await expect(page).toHaveURL(/\/$/);
-  await page.getByRole('heading', { name: 'Los Angeles Cosmetic Dentist' }).waitFor({ state: 'attached' });
+  await page.getByRole('heading', { name: 'Los Angeles Dentist' }).waitFor({ state: 'attached' });
   await page.evaluate(() => window.scrollTo({ top: 120, behavior: 'auto' }));
   await expectCherryCounts(page, { buttons: 1, mounts: 1 });
   await expectCherryVisible(page);

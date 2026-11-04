@@ -157,7 +157,7 @@ test('new shell links load documents and expose the current practice contact and
   await navigateFreshDocument(page, '/', () => header.getByRole('link', { name: /Main website/ }).click());
   await expect(page).toHaveURL(new URL('/', baseURL).href);
   await expect(page.locator('#root')).toHaveCount(1);
-  await expect(page.getByRole('heading', { level: 1, name: /Los Angeles Cosmetic Dentist/ })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /Los Angeles Dentist/ })).toBeVisible();
   await expect(page.locator(HEADER)).toHaveCount(0);
 });
 

@@ -282,18 +282,21 @@ export const manualPages: StaticRoute[] = [
     path: "/",
     title: getRouteMetadata("/").title,
     description: getRouteMetadata("/").description,
-    h1: "Los Angeles Cosmetic Dentist",
+    h1: "Los Angeles Dentist",
     paragraphs: [
-      "Cosmetic and restorative dentistry in Los Angeles, near Beverly Hills, with Dr. Alexie Aguil. Veneers, whitening, Invisalign, and implants, planned to look natural.",
+      "Exams, cleanings, and urgent dental visits on Wilshire Boulevard with Dr. Alexie Aguil. Explore porcelain veneers, Invisalign, and smile makeovers when you’re ready.",
     ],
     sections: [
       {
         id: "most-requested",
         heading: "Most Requested",
         paragraphs: [
-          "Start with our most requested pages for porcelain veneers, dental implants, Beverly Hills care, and booking.",
+          "Find routine dental care, same-day visits when available, and cosmetic dentistry.",
         ],
         links: [
+          { label: "Teeth Cleaning", href: "/teeth-cleaning" },
+          { label: "Same-Day Dentist", href: "/same-day-dentist" },
+          { label: "Verify PPO Benefits", href: "/insurance" },
           { label: "Dental Implants", href: "/dental-implants" },
           { label: "Porcelain Veneers", href: "/veneers" },
           { label: "Beverly Hills Dentist", href: "/beverly-hills-dentist" },

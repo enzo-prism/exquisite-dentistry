@@ -11,8 +11,9 @@ import RelatedArticles from '@/components/RelatedArticles';
 import LastUpdated from '@/components/LastUpdated';
 import { Button } from '@/components/ui/button';
 import PhoneLink from '@/components/PhoneLink';
-import { SCHEDULE_CONSULTATION_PATH, PAYMENT_PLANS_PATH } from '@/constants/urls';
-import { BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164 } from '@/constants/contact';
+import OpenInMapsButton from '@/components/OpenInMapsButton';
+import { INSURANCE_PATH, SCHEDULE_CONSULTATION_PATH, PAYMENT_PLANS_PATH } from '@/constants/urls';
+import { BUSINESS_HOURS, PHONE_NUMBER_DISPLAY, PHONE_NUMBER_E164, STREET_ADDRESS } from '@/constants/contact';
 import { trackCTAClick } from '@/utils/googleAdsTracking';
 
 // NOTE: This page makes no promises about specific same-day outcomes. Whether a
@@ -101,17 +102,26 @@ const SameDayDentist = () => {
               <Link to="/emergency-dentist/" className="text-secondary underline-offset-4 hover:underline">emergency dentist page</Link>{' '}
               or call us directly.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
                 <PhoneLink phoneNumber={PHONE_NUMBER_E164} analyticsSource="same_day_dentist_hero_call">
                   Call {PHONE_NUMBER_DISPLAY}
                 </PhoneLink>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link to={SCHEDULE_CONSULTATION_PATH} onClick={() => trackCTAClick('same_day_dentist_book_click', 'Schedule a Visit')}>
                   Schedule a Visit
                 </Link>
               </Button>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              {STREET_ADDRESS} · Mon–Thu, {BUSINESS_HOURS[0].value}
+            </p>
+            <div className="mt-1 flex flex-wrap items-center gap-x-4">
+              <OpenInMapsButton source="same_day_dentist_hero" label="Get directions" className="min-h-11" />
+              <Link to={INSURANCE_PATH} className="inline-flex min-h-11 items-center text-sm font-medium underline underline-offset-4">
+                Check PPO benefits
+              </Link>
             </div>
           </div>
         </section>

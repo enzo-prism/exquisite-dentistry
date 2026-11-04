@@ -12,9 +12,9 @@ const DEFAULT_OG_IMAGE =
 
 export const ROUTE_METADATA: Record<string, PageMetadata> = {
   '/': {
-    title: 'Cosmetic Dentist Los Angeles | Veneers & Smile Makeovers',
+    title: 'Los Angeles Dentist | General & Cosmetic Care | Exquisite Dentistry',
     description:
-      'Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, smile makeovers, PPO verification, and Cherry payment plans.',
+      'Visit Exquisite Dentistry on Wilshire Boulevard for exams, cleanings, urgent care, porcelain veneers, and Invisalign. Ask us to verify your PPO benefits.',
     keywords:
       'cosmetic dentist Los Angeles, porcelain veneers, teeth whitening, smile makeover, Beverly Hills dentist, dental implants, PPO dental benefits, dental financing Los Angeles',
     ogImage:

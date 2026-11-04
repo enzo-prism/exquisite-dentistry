@@ -226,9 +226,9 @@
     {
       "type": "location",
       "title": "Koreatown Dentist",
-      "description": "For Koreatown patients, our studio is a straight drive west along Wilshire Boulevard, past Hancock Park and Museum Row. We offer preventive care, Invisalign, whitening, and implant dentistry in a quiet, comfort-focused setting.",
+      "description": "Book a dental exam or cleaning with Dr. Alexie Aguil at 6227 Wilshire Blvd, a straight drive west from Koreatown. Paid parking is available at the building, and our team can verify PPO benefits before treatment.",
       "href": "/koreatown-dentist/",
-      "h1": "Koreatown’s Boutique Dental Experience",
+      "h1": "Dentist Near Koreatown",
       "keywords": [
         "koreatown dentist",
         "koreatown cosmetic dentist",
@@ -436,24 +436,6 @@
         "veneers and Invisalign LA"
       ],
       "id": "page:/cosmetic-dentistry/"
-    },
-    {
-      "type": "page",
-      "href": "/",
-      "title": "Cosmetic Dentist Los Angeles | Veneers & Smile Makeovers",
-      "description": "Book a Los Angeles cosmetic dentist for porcelain veneers, implants, Invisalign, whitening, smile makeovers, PPO verification, and Cherry payment plans.",
-      "h1": "Los Angeles Cosmetic Dentist",
-      "keywords": [
-        "cosmetic dentist Los Angeles",
-        "porcelain veneers",
-        "teeth whitening",
-        "smile makeover",
-        "Beverly Hills dentist",
-        "dental implants",
-        "PPO dental benefits",
-        "dental financing Los Angeles"
-      ],
-      "id": "page:/"
     },
     {
       "type": "page",
@@ -710,6 +692,24 @@
         "dental office near Beverly Hills"
       ],
       "id": "page:/locations/"
+    },
+    {
+      "type": "page",
+      "href": "/",
+      "title": "Los Angeles Dentist | General & Cosmetic Care | Exquisite Dentistry",
+      "description": "Visit Exquisite Dentistry on Wilshire Boulevard for exams, cleanings, urgent care, porcelain veneers, and Invisalign. Ask us to verify your PPO benefits.",
+      "h1": "Los Angeles Dentist",
+      "keywords": [
+        "cosmetic dentist Los Angeles",
+        "porcelain veneers",
+        "teeth whitening",
+        "smile makeover",
+        "Beverly Hills dentist",
+        "dental implants",
+        "PPO dental benefits",
+        "dental financing Los Angeles"
+      ],
+      "id": "page:/"
     },
     {
       "type": "page",

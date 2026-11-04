@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 const CRITICAL_ROUTES = [
-  { path: '/', expectedText: 'Los Angeles Cosmetic Dentist' },
+  { path: '/', expectedText: 'Los Angeles Dentist' },
   { path: '/services/', expectedText: 'Advanced Cosmetic' },
   { path: '/veneers/', expectedText: 'The Naturally Radiant Smile You’ve Always Dreamed Of' },
   { path: '/smile-gallery/', expectedText: 'Smile Gallery' },
@@ -383,9 +383,9 @@ test.describe('reduced motion mobile behavior', () => {
     await expect
       .poll(() => page.evaluate(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches))
       .toBe(true);
-    await expect(page.locator('main')).toContainText('Los Angeles Cosmetic Dentist');
+    await expect(page.locator('main')).toContainText('Los Angeles Dentist');
     const heroMediaCount = await page
-      .getByRole('heading', { name: /Los Angeles Cosmetic Dentist/i })
+      .getByRole('heading', { name: /Los Angeles Dentist/i })
       .evaluate((heading) => heading.closest('section')?.querySelectorAll('iframe[title="Background video"], video').length ?? -1);
     expect(heroMediaCount).toBe(0);
     const poster = page.locator('section picture img[src="/lovable-uploads/exquisite-black-gold-hero.png"]').first();

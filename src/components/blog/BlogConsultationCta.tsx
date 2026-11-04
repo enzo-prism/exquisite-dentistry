@@ -56,6 +56,11 @@ export const BlogInlineConsultCard: React.FC<{ post: BlogPost }> = ({ post }) =>
             <span className="link-sweep pb-0.5">{ctaText}</span>
             <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
+          {veneer && (
+            <Link to="/veneers/" className="inline-flex min-h-11 items-center text-sm font-semibold text-ink underline underline-offset-4">
+              Explore porcelain veneers
+            </Link>
+          )}
           <PhoneLink
             phoneNumber={PHONE_NUMBER_DISPLAY}
             analyticsSource={ANALYTICS_SOURCE}
