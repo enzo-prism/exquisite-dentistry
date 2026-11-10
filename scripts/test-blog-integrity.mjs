@@ -258,6 +258,32 @@ const main = async () => {
     errors.push(`Invalid blog links detected:\n  ${brokenLinks.join('\n  ')}`);
   }
 
+  const leftoverCtaHits = [];
+  for (const fileName of contentFiles) {
+    const filePath = path.join(CONTENT_DIR, fileName);
+    const raw = await fs.readFile(filePath, 'utf-8');
+    if (/CONTACT EXQUISITE DENTISTRY/.test(raw)) {
+      leftoverCtaHits.push(path.relative(ROOT, filePath));
+    }
+  }
+  if (leftoverCtaHits.length) {
+    errors.push(
+      `Imported posts still contain leftover CONTACT EXQUISITE DENTISTRY CTA text:\n  ${leftoverCtaHits.join('\n  ')}`
+    );
+  }
+
+  if (generatedContent && /CONTACT EXQUISITE DENTISTRY/.test(generatedContent)) {
+    errors.push('Generated blog posts still contain leftover CONTACT EXQUISITE DENTISTRY CTA text.');
+  }
+
+  if (
+    generatedContent &&
+    /"slug":\s*"top-4-netflix-shows-to-explore-from-the-dentists-chair"/.test(generatedContent) &&
+    /Bob Ross|Planet Earth|Parts Unknown/.test(generatedContent)
+  ) {
+    errors.push('Netflix chair post still lists the retired Bob Ross / Planet Earth / Parts Unknown titles.');
+  }
+
   // Un-decoded HTML entities survive the WordPress export and render literally
   // in <title> and on-page headings — "USA &#038; the World" was live in
   // Google's results for months. Catch them at the source.
