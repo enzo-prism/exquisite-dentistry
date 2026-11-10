@@ -193,7 +193,16 @@ const replaceLegacyCtaBoilerplate = (markdown) =>
       /## Restore Your Smile[^\n]*\n\nWith your smile the best it(?:'|[\u2018\u2019])s ever looked[^\n]*\n\n### CONTACT EXQUISITE DENTISTRY\n\n[^\n]*experience true luxury\.[^\n]*/gi,
       VISIT_CTA
     )
+    // Some dumps glued the same block into a paragraph instead of headings.
+    .replace(
+      /\s*Restore Your Smile[^\n.]*Brilliance\s+With your smile the best it(?:'|[\u2018\u2019])s ever looked[^\n]*/gi,
+      ''
+    )
     .replace(/^### CONTACT EXQUISITE DENTISTRY\s*$/gim, '### Contact Exquisite Dentistry')
+    .replace(
+      /^\(323\) 272-2388 Call to schedule your cosmetic dentistry consultation\.?\s*$/gim,
+      'If you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).'
+    )
     .replace(/experience true luxury\.?/gi, 'visit our Los Angeles studio.');
 
 const decorateGeneratedImages = (html) =>

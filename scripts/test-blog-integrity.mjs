@@ -262,7 +262,11 @@ const main = async () => {
   for (const fileName of contentFiles) {
     const filePath = path.join(CONTENT_DIR, fileName);
     const raw = await fs.readFile(filePath, 'utf-8');
-    if (/CONTACT EXQUISITE DENTISTRY/.test(raw)) {
+    if (
+      /CONTACT EXQUISITE DENTISTRY/.test(raw)
+      || /Restore Your Smile/.test(raw)
+      || /Call to schedule your cosmetic dentistry consultation/.test(raw)
+    ) {
       leftoverCtaHits.push(path.relative(ROOT, filePath));
     }
   }
@@ -272,7 +276,12 @@ const main = async () => {
     );
   }
 
-  if (generatedContent && /CONTACT EXQUISITE DENTISTRY/.test(generatedContent)) {
+  if (
+    generatedContent
+    && (/CONTACT EXQUISITE DENTISTRY/.test(generatedContent)
+      || /Restore Your Smile/.test(generatedContent)
+      || /Call to schedule your cosmetic dentistry consultation/.test(generatedContent))
+  ) {
     errors.push('Generated blog posts still contain leftover CONTACT EXQUISITE DENTISTRY CTA text.');
   }
 
