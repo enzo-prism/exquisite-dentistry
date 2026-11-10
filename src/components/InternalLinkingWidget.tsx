@@ -91,6 +91,27 @@ const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
             priority: 5
           },
           {
+            title: 'Porcelain vs No-Prep Veneers',
+            href: '/veneers/porcelain-vs-no-prep/',
+            description: 'How traditional porcelain compares with no-prep and Lumineers-style options',
+            category: 'service',
+            priority: 6
+          },
+          {
+            title: 'Veneers vs Crowns and Bonding',
+            href: '/veneers/vs-crowns-bonding/',
+            description: 'When a veneer, bonding, or a crown is the better covering',
+            category: 'service',
+            priority: 6
+          },
+          {
+            title: 'Veneer Process and Aftercare',
+            href: '/veneers/what-to-expect/',
+            description: 'What the visits look like and how to care for porcelain afterward',
+            category: 'service',
+            priority: 6
+          },
+          {
             title: 'Are Veneers Covered by Insurance?',
             href: '/blog/are-veneers-covered-by-insurance/',
             description: 'Understanding insurance and veneer financing',

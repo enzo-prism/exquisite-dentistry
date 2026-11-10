@@ -66,6 +66,9 @@ const FrontTeethVeneers = lazy(() => import("@/pages/FrontTeethVeneers"));
 const VeneersCostLosAngeles = lazy(() => import("@/pages/VeneersCostLosAngeles"));
 const OneToothVeneerLosAngeles = lazy(() => import("@/pages/OneToothVeneerLosAngeles"));
 const VeneersCostGuideLosAngeles = lazy(() => import("@/pages/VeneersCostGuideLosAngeles"));
+const VeneersPorcelainVsNoPrep = lazy(() => import("@/pages/VeneersPorcelainVsNoPrep"));
+const VeneersVsCrownsBonding = lazy(() => import("@/pages/VeneersVsCrownsBonding"));
+const VeneersWhatToExpect = lazy(() => import("@/pages/VeneersWhatToExpect"));
 const ShareYourStory = lazy(() => import("@/pages/ShareYourStory"));
 const TeethCleaning = lazy(() => import("@/pages/TeethCleaning"));
 const RootCanal = lazy(() => import("@/pages/RootCanal"));
@@ -218,6 +221,15 @@ const AppRoutes = () => {
               </Suspense>} />
               <Route path="/veneers/cost-los-angeles" element={<Suspense fallback={<PageLoaderComponent />}>
                 <VeneersCostGuideLosAngeles />
+              </Suspense>} />
+              <Route path="/veneers/porcelain-vs-no-prep" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersPorcelainVsNoPrep />
+              </Suspense>} />
+              <Route path="/veneers/vs-crowns-bonding" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersVsCrownsBonding />
+              </Suspense>} />
+              <Route path="/veneers/what-to-expect" element={<Suspense fallback={<PageLoaderComponent />}>
+                <VeneersWhatToExpect />
               </Suspense>} />
               <Route path="/zoom-whitening" element={<Suspense fallback={<PageLoaderComponent />}>
                 <ZoomWhitening />

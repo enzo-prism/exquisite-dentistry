@@ -100,6 +100,24 @@ const Veneers = () => {
       description: 'Matching one veneer to the teeth beside it, and when bonding or whitening is the better starting point.',
       href: '/veneers/1-tooth-veneer-los-angeles/',
       cta: 'Read about single-tooth veneers'
+    },
+    {
+      title: 'Porcelain vs no-prep veneers',
+      description: 'How traditional porcelain compares with no-prep and Lumineers-style options, including enamel prep and fit.',
+      href: '/veneers/porcelain-vs-no-prep/',
+      cta: 'Compare prep options'
+    },
+    {
+      title: 'Veneers vs crowns and bonding',
+      description: 'When a veneer is enough, when bonding is a smaller first step, and when a crown needs to cover the whole tooth.',
+      href: '/veneers/vs-crowns-bonding/',
+      cta: 'Compare restorations'
+    },
+    {
+      title: 'Veneer process and aftercare',
+      description: 'What the visits look like, how temporaries are used, and how to care for porcelain after it is bonded.',
+      href: '/veneers/what-to-expect/',
+      cta: 'See what to expect'
     }
   ];
 

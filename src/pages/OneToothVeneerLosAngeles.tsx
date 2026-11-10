@@ -75,6 +75,9 @@ const OneToothVeneerLosAngeles = () => {
               <div className="flex flex-col gap-2 text-secondary">
                 <Link to="/veneers/2-front-teeth-veneers-cost-los-angeles/">Cost of 2 Front Teeth Veneers in Los Angeles</Link>
                 <Link to="/veneers/front-teeth-veneers-los-angeles/">Front Teeth Veneers in Los Angeles</Link>
+                <Link to="/veneers/porcelain-vs-no-prep/">Porcelain vs No-Prep Veneers</Link>
+                <Link to="/veneers/vs-crowns-bonding/">Veneers vs Crowns and Bonding</Link>
+                <Link to="/veneers/what-to-expect/">Veneer Process and Aftercare</Link>
                 <Link to="/veneers/">Porcelain Veneers Los Angeles</Link>
               </div>
             </div>

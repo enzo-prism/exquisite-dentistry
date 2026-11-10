@@ -68,6 +68,13 @@ import { reviewArchive } from "../src/data/reviewArchive";
 import { VIDEO_TESTIMONIALS } from "../src/components/video-hero/video-constants";
 import { ZOOM_WHITENING_FAQS } from "../src/data/zoomWhitening";
 import { VENEERS_COST_FAQS } from "../src/data/veneers-cost-faqs";
+import {
+  getVeneerGuideProcedureSteps,
+  getVeneerGuideStaticSections,
+  VENEER_GUIDE_CLUSTER_LINKS,
+  VENEER_GUIDE_OG_IMAGE,
+  VENEER_GUIDE_PAGE_LIST,
+} from "../src/data/veneerGuidePages";
 import { DENTAL_IMPLANT_FAQS } from "../src/data/dental-implants-faqs";
 import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-whitening-faqs";
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
@@ -208,7 +215,8 @@ const VENEER_CLUSTER_LINKS: StaticLink[] = [
   { label: "Veneers Cost in Los Angeles", href: "/veneers/cost-los-angeles/" },
   { label: "Front Teeth Veneers (2 to 4 Teeth)", href: "/veneers/front-teeth-veneers-los-angeles/" },
   { label: "Cost of 2 Front Teeth Veneers", href: "/veneers/2-front-teeth-veneers-cost-los-angeles/" },
-  { label: "Single Tooth Veneer", href: "/veneers/1-tooth-veneer-los-angeles/" }
+  { label: "Single Tooth Veneer", href: "/veneers/1-tooth-veneer-los-angeles/" },
+  ...VENEER_GUIDE_CLUSTER_LINKS,
 ];
 
 const WEDDING_BLOG_LINKS: StaticLink[] = [
@@ -817,6 +825,17 @@ export const manualPages: StaticRoute[] = [
     ],
     links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
   },
+  ...VENEER_GUIDE_PAGE_LIST.map((guide) => ({
+    path: guide.path,
+    title: guide.title,
+    description: guide.description,
+    h1: guide.h1,
+    ogImage: "/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
+    paragraphs: [...guide.introParagraphs],
+    sections: getVeneerGuideStaticSections(guide),
+    faqItems: guide.faqs.map((faq) => ({ ...faq })),
+    links: [...VENEER_CLUSTER_LINKS, ...VENEER_BLOG_LINKS, ...EVENT_LINKS, ...CORE_SERVICES_LINKS, ...defaultNavLinks],
+  })),
   {
     path: "/dental-implants/cost-los-angeles",
     title: "Dental Implants Cost in Los Angeles | Exquisite Dentistry",
@@ -1803,6 +1822,26 @@ const getSchemasForRoute = (route: StaticRoute) => {
 
   if (routePath === TWO_FRONT_VENEERS.path) {
     schemas.push(createFAQSchema(TWO_FRONT_VENEERS.faqItems.map((faq) => ({ ...faq })), TWO_FRONT_VENEERS.h1));
+  }
+
+  const veneerGuide = VENEER_GUIDE_PAGE_LIST.find((guide) => guide.path === routePath);
+  if (veneerGuide) {
+    schemas.push(
+      createMedicalProcedureSchema({
+        procedureName: veneerGuide.procedureName,
+        description: veneerGuide.procedureDescription,
+        url: `${veneerGuide.path}/`,
+        image: VENEER_GUIDE_OG_IMAGE,
+        procedureType: "Cosmetic Dental Procedure",
+        bodyLocation: "Oral and Dental System",
+        preparation: veneerGuide.preparation,
+        steps: getVeneerGuideProcedureSteps(veneerGuide),
+        followupCare: veneerGuide.followupCare,
+        benefits: veneerGuide.benefits,
+        recoveryTime: veneerGuide.recoveryTime,
+      }),
+    );
+    schemas.push(createFAQSchema(veneerGuide.faqs.map((faq) => ({ ...faq })), veneerGuide.h1));
   }
 
   if (routePath === "/faqs") {
