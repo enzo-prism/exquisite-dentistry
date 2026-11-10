@@ -139,7 +139,8 @@ const formatDate = (date) =>
   date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   });
 
 const chooseCategory = (slug) => {
@@ -173,9 +174,14 @@ const stripHtml = (html) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+const VISIT_CTA_BOOKING =
+  'If you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).';
+const VISIT_CTA_PHONE = 'Call [(323) 272-2388](tel:+13232722388) to talk through a visit.';
 const VISIT_CTA = `## Visit Exquisite Dentistry
 
-If you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).`;
+${VISIT_CTA_BOOKING}
+
+${VISIT_CTA_PHONE}`;
 
 // WordPress imports left a shouty “CONTACT EXQUISITE DENTISTRY / Restore Your
 // Smile’s Brilliance” block in the dump files. Replace it with the calmer
@@ -201,9 +207,16 @@ const replaceLegacyCtaBoilerplate = (markdown) =>
     .replace(/^### CONTACT EXQUISITE DENTISTRY\s*$/gim, '### Contact Exquisite Dentistry')
     .replace(
       /^\(323\) 272-2388 Call to schedule your cosmetic dentistry consultation\.?\s*$/gim,
-      'If you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).'
+      VISIT_CTA_BOOKING
     )
-    .replace(/experience true luxury\.?/gi, 'visit our Los Angeles studio.');
+    .replace(/experience true luxury\.?/gi, 'visit our Los Angeles studio.')
+    // Older generated dumps already had the booking sentence; keep it and add
+    // a separate tel: paragraph so short posts still have enough blocks for
+    // the mid-article consult card.
+    .replace(
+      /## Visit Exquisite Dentistry\n\nIf you would like to talk through treatment, call \(323\) 272-2388 or \[request a consultation\]\(\/schedule-consultation\/\)\.(?!\n\nCall \[)/g,
+      VISIT_CTA
+    );
 
 const decorateGeneratedImages = (html) =>
   html.replace(/<img\b([^>]*?)>/gi, (_match, attrs) => {
@@ -212,8 +225,10 @@ const decorateGeneratedImages = (html) =>
       ? attrs.replace(/\bclass=(["'])(.*?)\1/i, 'class=$1$2 max-w-full h-auto rounded-xl$1')
       : `${attrs} class="max-w-full h-auto rounded-xl"`;
     const withLoading = /\bloading=/i.test(classAttr) ? classAttr : `${classAttr} loading="lazy"`;
-    const withAlt = /\balt=/i.test(withLoading) ? withLoading : `${withLoading} alt=""`;
-    return `<img${withAlt}>`;
+    if (!/\balt=/i.test(withLoading)) {
+      throw new Error(`Generated blog image is missing an alt attribute: <img${attrs}>`);
+    }
+    return `<img${withLoading}>`;
   });
 
 const tokenizeHeading = (value = '') =>
