@@ -16,5 +16,27 @@ for (const path of SHORT_POSTS) {
 
     await expect(page.getByRole('link', { name: 'request a consultation' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Schedule Consultation' }).first()).toBeVisible();
+
+    const visitCtaTogether = await page.evaluate(() => {
+      const booking = [...document.querySelectorAll('p')].find((node) =>
+        node.textContent?.includes('request a consultation'),
+      );
+      const tel = [...document.querySelectorAll('p')].find((node) =>
+        node.textContent?.includes('to talk through a visit'),
+      );
+      if (!booking || !tel) return 'missing';
+      let node = booking.nextElementSibling;
+      while (node && node !== tel) {
+        if (
+          node instanceof HTMLElement &&
+          (node.matches('aside') || node.hasAttribute('data-blog-inline-cta'))
+        ) {
+          return 'split';
+        }
+        node = node.nextElementSibling;
+      }
+      return node === tel ? 'together' : 'apart';
+    });
+    expect(visitCtaTogether).toBe('together');
   });
 }
