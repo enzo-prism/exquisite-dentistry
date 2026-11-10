@@ -21,10 +21,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Playwright 1.58.2 cannot install browsers on ubuntu-latest (Ubuntu 26).
   # Fast feedback: static checks that need neither a build nor a server.
   lint-and-content:
     name: Lint & content QA
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -73,7 +74,7 @@ jobs:
   # Production build + SEO assertions over the prerendered output.
   build-and-seo:
     name: Build & SEO acceptance
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout
@@ -131,7 +132,7 @@ jobs:
   # Mobile UI end-to-end suite (Playwright boots the dev server itself).
   e2e:
     name: E2E (Playwright)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Browser installation plus the full Chromium/WebKit suite can exceed 20 minutes.
     timeout-minutes: 30
     steps:
