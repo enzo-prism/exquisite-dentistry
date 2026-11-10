@@ -55,7 +55,17 @@ const SEO_OVERRIDES = {
     seoTitle: 'Front Teeth Veneers Los Angeles | 4-Tooth Smile Zone Guide',
     seoDescription:
       'Considering veneers for the four front teeth? Learn when a focused smile-zone veneer plan works, what to ask, and how Dr. Aguil plans natural results in Los Angeles.'
+  },
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair': {
+    seoTitle: 'Netflix From the Dentist Chair | Exquisite Dentistry LA',
+    seoDescription:
+      'Four calm Netflix titles that work well during a dental visit, plus a look inside the Exquisite Dentistry treatment rooms on Wilshire Blvd in Los Angeles.'
   }
+};
+
+const FEATURED_IMAGE_OVERRIDES = {
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair':
+    '/lovable-uploads/patient-in-seat-talking-with-dentist.png'
 };
 
 // Truthful editorial update dates for generated posts. Publication dates stay
@@ -66,7 +76,8 @@ const MODIFIED_AT_OVERRIDES = {
   'the-cost-of-dental-veneers-in-los-angeles': '2026-09-30',
   'top-la-cosmetic-dentist-answers-your-questions-are-veneers-a-good-investment': '2026-09-30',
   'top-la-cosmetic-dentist-answers-your-questions-is-invisalign-a-good-investment': '2026-09-30',
-  'are-veneers-covered-by-insurance': '2026-08-23'
+  'are-veneers-covered-by-insurance': '2026-08-23',
+  'top-4-netflix-shows-to-explore-from-the-dentists-chair': '2026-11-10'
 };
 
 const AUTHOR = 'Dr. Alexie Aguil';
@@ -128,7 +139,8 @@ const formatDate = (date) =>
   date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   });
 
 const chooseCategory = (slug) => {
@@ -161,6 +173,63 @@ const stripHtml = (html) =>
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+const VISIT_CTA_BOOKING =
+  'If you would like to talk through treatment, call (323) 272-2388 or [request a consultation](/schedule-consultation/).';
+const VISIT_CTA_PHONE = 'Call [(323) 272-2388](tel:+13232722388) to talk through a visit.';
+const VISIT_CTA = `## Visit Exquisite Dentistry
+
+${VISIT_CTA_BOOKING}
+
+${VISIT_CTA_PHONE}`;
+
+// WordPress imports left a shouty “CONTACT EXQUISITE DENTISTRY / Restore Your
+// Smile’s Brilliance” block in the dump files. Replace it with the calmer
+// visit CTA from the Aug 2026 cleanup — do not touch React CTA components.
+const replaceLegacyCtaBoilerplate = (markdown) =>
+  markdown
+    .replace(
+      /## Restore Your Smile[^\n]*\n\nWith your smile the best it(?:'|[\u2018\u2019])s ever looked[^\n]*\n\n### CONTACT EXQUISITE DENTISTRY\n\n(?:\(323\) 272-2388 Call to schedule your cosmetic dentistry consultation\.)?([^\n]*)/gi,
+      (_match, leftover) => {
+        const extra = String(leftover ?? '').trim();
+        return extra ? `${VISIT_CTA}\n\n${extra}` : VISIT_CTA;
+      }
+    )
+    .replace(
+      /## Restore Your Smile[^\n]*\n\nWith your smile the best it(?:'|[\u2018\u2019])s ever looked[^\n]*\n\n### CONTACT EXQUISITE DENTISTRY\n\n[^\n]*experience true luxury\.[^\n]*/gi,
+      VISIT_CTA
+    )
+    // Some dumps glued the same block into a paragraph instead of headings.
+    .replace(
+      /\s*Restore Your Smile[^\n.]*Brilliance\s+With your smile the best it(?:'|[\u2018\u2019])s ever looked[^\n]*/gi,
+      ''
+    )
+    .replace(/^### CONTACT EXQUISITE DENTISTRY\s*$/gim, '### Contact Exquisite Dentistry')
+    .replace(
+      /^\(323\) 272-2388 Call to schedule your cosmetic dentistry consultation\.?\s*$/gim,
+      VISIT_CTA_BOOKING
+    )
+    .replace(/experience true luxury\.?/gi, 'visit our Los Angeles studio.')
+    // Older generated dumps already had the booking sentence; keep it and add
+    // a separate tel: paragraph so short posts still have enough blocks for
+    // the mid-article consult card.
+    .replace(
+      /## Visit Exquisite Dentistry\n\nIf you would like to talk through treatment, call \(323\) 272-2388 or \[request a consultation\]\(\/schedule-consultation\/\)\.(?!\n\nCall \[)/g,
+      VISIT_CTA
+    );
+
+const decorateGeneratedImages = (html) =>
+  html.replace(/<img\b([^>]*?)>/gi, (_match, attrs) => {
+    const hasClass = /\bclass=/i.test(attrs);
+    const classAttr = hasClass
+      ? attrs.replace(/\bclass=(["'])(.*?)\1/i, 'class=$1$2 max-w-full h-auto rounded-xl$1')
+      : `${attrs} class="max-w-full h-auto rounded-xl"`;
+    const withLoading = /\bloading=/i.test(classAttr) ? classAttr : `${classAttr} loading="lazy"`;
+    if (!/\balt=/i.test(withLoading)) {
+      throw new Error(`Generated blog image is missing an alt attribute: <img${attrs}>`);
+    }
+    return `<img${withLoading}>`;
+  });
 
 const tokenizeHeading = (value = '') =>
   value
@@ -363,7 +432,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     idx += 1;
   }
 
-  const body = lines.slice(idx).join('\n').trim();
+  const body = replaceLegacyCtaBoilerplate(lines.slice(idx).join('\n').trim());
 
   if (!title || !body) {
     return null;
@@ -379,7 +448,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
   const tags = slugToTags(slug);
   const category = chooseCategory(slug);
   const rawHtmlContent = marked.parse(body).trim();
-  const htmlContentBody = stripDuplicateHeading(rawHtmlContent, title);
+  const htmlContentBody = decorateGeneratedImages(stripDuplicateHeading(rawHtmlContent, title));
   const cleanedContent = stripHtml(htmlContentBody).toLowerCase();
   const contentHash = hashContent(cleanedContent.slice(0, 5000));
 
@@ -415,6 +484,7 @@ const buildPostObject = async (fileName, dedupeState, index, total) => {
     readTime,
     category,
     tags,
+    ...(FEATURED_IMAGE_OVERRIDES[slug] ? { featuredImage: FEATURED_IMAGE_OVERRIDES[slug] } : {}),
     seoTitle: SEO_OVERRIDES[slug]?.seoTitle ?? title,
     seoDescription: SEO_OVERRIDES[slug]?.seoDescription ?? excerpt,
     seoKeywords: tags.join(', '),

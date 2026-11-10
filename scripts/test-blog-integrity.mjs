@@ -111,6 +111,39 @@ const extractBlogLinks = (content) => {
   return links;
 };
 
+const NETFLIX_SLUG = 'top-4-netflix-shows-to-explore-from-the-dentists-chair';
+const RETIRED_NETFLIX_TITLES = /Bob Ross|Planet Earth|Parts Unknown/;
+const INLINE_CONSULT_SLUGS = [
+  'how-hollywood-veneers-can-transform-your-smile',
+  'marijuana-use-increases-risk-gum-disease'
+];
+
+const parseGeneratedPosts = (source) => {
+  const start = source.indexOf('= [');
+  const end = source.lastIndexOf(']');
+  if (start < 0 || end < 0) return [];
+  return JSON.parse(source.slice(start + 2, end + 1));
+};
+
+const countProseBlocks = (html) => {
+  const unwrapped = String(html)
+    .replace(/^<div class="prose prose-lg max-w-none">\s*/i, '')
+    .replace(/\s*<\/div>\s*$/i, '');
+  return (unwrapped.match(/<(h[1-6]|p|ul|ol|blockquote|table|figure|pre)\b/gi) || []).length;
+};
+
+const hasLeftoverDumpCta = (text) => {
+  const normalized = String(text).replace(/[\u00a0\u202f\u2007]/g, ' ');
+  return (
+    // All-caps dump heading; do not /i-match "contact Exquisite Dentistry"
+    // in body copy or the kept "### Contact Exquisite Dentistry" heading.
+    /CONTACT\s+EXQUISITE\s+DENTISTRY/.test(normalized)
+    || /restore\s+your\s+smile(?:['’]s)?\s+brilliance/i.test(normalized)
+    || /^#{1,3}\s*restore\s+your\s+smile/im.test(normalized)
+    || /call\s+to\s+schedule\s+your\s+cosmetic\s+dentistry\s+consultation/i.test(normalized)
+  );
+};
+
 const walkFiles = async (dir) => {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   const files = [];
@@ -256,6 +289,61 @@ const main = async () => {
 
   if (brokenLinks.length) {
     errors.push(`Invalid blog links detected:\n  ${brokenLinks.join('\n  ')}`);
+  }
+
+  const leftoverCtaHits = [];
+  for (const fileName of contentFiles) {
+    const filePath = path.join(CONTENT_DIR, fileName);
+    const raw = await fs.readFile(filePath, 'utf-8');
+    if (hasLeftoverDumpCta(raw)) {
+      leftoverCtaHits.push(path.relative(ROOT, filePath));
+    }
+  }
+  if (leftoverCtaHits.length) {
+    errors.push(
+      `Imported posts still contain leftover CONTACT EXQUISITE DENTISTRY CTA text:\n  ${leftoverCtaHits.join('\n  ')}`
+    );
+  }
+
+  if (generatedContent && hasLeftoverDumpCta(generatedContent)) {
+    errors.push('Generated blog posts still contain leftover CONTACT EXQUISITE DENTISTRY CTA text.');
+  }
+
+  const netflixSourcePath = path.join(CONTENT_DIR, `${NETFLIX_SLUG}.txt`);
+  const netflixSource = await fs.readFile(netflixSourcePath, 'utf-8');
+  if (RETIRED_NETFLIX_TITLES.test(netflixSource)) {
+    errors.push('Netflix chair source post still lists the retired Bob Ross / Planet Earth / Parts Unknown titles.');
+  }
+
+  const generatedPosts = generatedContent ? parseGeneratedPosts(generatedContent) : [];
+  const netflixGenerated = generatedPosts.find((post) => post.slug === NETFLIX_SLUG);
+  if (
+    netflixGenerated
+    && RETIRED_NETFLIX_TITLES.test(
+      [netflixGenerated.title, netflixGenerated.excerpt, netflixGenerated.content].join('\n')
+    )
+  ) {
+    errors.push('Netflix chair post still lists the retired Bob Ross / Planet Earth / Parts Unknown titles.');
+  }
+
+  for (const slug of INLINE_CONSULT_SLUGS) {
+    const post = generatedPosts.find((entry) => entry.slug === slug);
+    if (!post) {
+      errors.push(`Missing generated post ${slug}; the inline consult card cannot render.`);
+      continue;
+    }
+    const blocks = countProseBlocks(post.content);
+    if (blocks < 6) {
+      errors.push(
+        `${slug} has ${blocks} article blocks; the mid-article consult card needs at least 6.`
+      );
+    }
+    if (!/tel:\+13232722388/.test(post.content)) {
+      errors.push(`${slug} is missing a tel: visit-CTA paragraph.`);
+    }
+    if (!/schedule-consultation/.test(post.content)) {
+      errors.push(`${slug} is missing the booking consultation CTA.`);
+    }
   }
 
   // Un-decoded HTML entities survive the WordPress export and render literally

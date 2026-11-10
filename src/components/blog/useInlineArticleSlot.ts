@@ -47,6 +47,7 @@ export const useInlineArticleSlot = (
 
     // Never leave a heading stranded above the card.
     if (HEADING.test(blocks[target].tagName)) target += 1;
+    if (target >= blocks.length) return undefined;
 
     let insertBefore: Element | null = null;
     for (let j = target + 1; j < blocks.length && j <= target + 4; j += 1) {
@@ -55,7 +56,14 @@ export const useInlineArticleSlot = (
         break;
       }
     }
-    insertBefore = insertBefore ?? blocks[target + 1] ?? null;
+    if (!insertBefore) {
+      // If 40% landed in the first paragraph of a section with no nearby
+      // following heading, insert before that heading so a visit CTA
+      // (heading + booking line + tel paragraph) stays together.
+      const sectionHeading =
+        target > 0 && HEADING.test(blocks[target - 1].tagName) ? blocks[target - 1] : null;
+      insertBefore = sectionHeading ?? blocks[target + 1] ?? null;
+    }
 
     const insertIndex = insertBefore ? blocks.indexOf(insertBefore) : blocks.length;
     // Skip short articles where the card would sit at the very end.
