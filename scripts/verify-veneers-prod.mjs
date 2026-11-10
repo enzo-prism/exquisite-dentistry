@@ -68,7 +68,7 @@ const measurement = await get('/veneers/measurement-entry.js');
 assert.equal(measurement.status, 200, 'Built modern measurement entry is published');
 assert.match(measurement.headers.get('content-type') || '', /(?:javascript|ecmascript)/);
 
-for (const pathname of ['/veneers/cost-los-angeles/', '/veneers/1-tooth-veneer-los-angeles/', '/veneers/front-teeth-veneers-los-angeles/', '/veneers/2-front-teeth-veneers-cost-los-angeles/']) {
+for (const pathname of ['/veneers/cost-los-angeles/', '/veneers/1-tooth-veneer-los-angeles/', '/veneers/front-teeth-veneers-los-angeles/', '/veneers/2-front-teeth-veneers-cost-los-angeles/', '/veneers/porcelain-vs-no-prep/', '/veneers/vs-crowns-bonding/', '/veneers/what-to-expect/']) {
   const response = await get(pathname);
   assert.equal(response.status, 200, `Existing main-site guide: ${pathname}`);
   assert.match(await response.text(), /id="root"/, `Guide retains React document: ${pathname}`);

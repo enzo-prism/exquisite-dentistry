@@ -67,6 +67,33 @@ export const ROUTE_METADATA: Record<string, PageMetadata> = {
     ogImage:
       'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
   },
+  '/veneers/porcelain-vs-no-prep': {
+    title: 'Porcelain vs No-Prep Veneers in Los Angeles | Exquisite Dentistry',
+    description:
+      'Compare porcelain veneers with no-prep and Lumineers-style options in Los Angeles, including enamel prep, fit, and what a consultation reviews.',
+    keywords:
+      'porcelain vs no-prep veneers, lumineers vs porcelain veneers Los Angeles, no prep veneers, minimal prep veneers, ultra thin veneers Los Angeles',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
+  },
+  '/veneers/vs-crowns-bonding': {
+    title: 'Veneers vs Crowns and Bonding in Los Angeles | Exquisite Dentistry',
+    description:
+      'Compare porcelain veneers with dental bonding and crowns in Los Angeles. See which option fits chips, stains, or damaged teeth before a consultation.',
+    keywords:
+      'veneers vs crowns, veneers vs bonding Los Angeles, porcelain veneers or bonding, dental crown vs veneer, composite bonding vs veneers',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
+  },
+  '/veneers/what-to-expect': {
+    title: 'Veneer Process and Aftercare in Los Angeles | Exquisite Dentistry',
+    description:
+      'What to expect from porcelain veneers in Los Angeles: consultation, conservative prep, placement, and aftercare with Dr. Alexie Aguil.',
+    keywords:
+      'veneer process Los Angeles, what to expect with porcelain veneers, veneer aftercare, veneer recovery, porcelain veneer visits',
+    ogImage:
+      'https://exquisitedentistryla.com/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png'
+  },
   '/invisalign': {
     title:
       'Invisalign Clear Aligners Los Angeles | Exquisite Dentistry',

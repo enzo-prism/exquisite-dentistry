@@ -35,6 +35,9 @@ test('modern veneers treatment guides keep their existing React routes', () => {
     '/veneers/2-front-teeth-veneers-cost-los-angeles/',
     '/veneers/1-tooth-veneer-los-angeles/',
     '/veneers/cost-los-angeles/',
+    '/veneers/porcelain-vs-no-prep/',
+    '/veneers/vs-crowns-bonding/',
+    '/veneers/what-to-expect/',
     '/veneers/not-a-real-page/',
     '/services/',
   ]) assert.equal(isLegacyVeneersPath(path), false, path);
@@ -52,4 +55,7 @@ test('sitemap includes each indexable archive route once with the source modific
   assert.ok(!xml.includes('/veneers/nav-test-page-2/'));
   assert.ok(!xml.includes('<lastmod>undefined</lastmod>'));
   assert.ok(urls.some((url) => url.loc === `${origin}/veneers/cost-los-angeles/`));
+  assert.ok(urls.some((url) => url.loc === `${origin}/veneers/porcelain-vs-no-prep/`));
+  assert.ok(urls.some((url) => url.loc === `${origin}/veneers/vs-crowns-bonding/`));
+  assert.ok(urls.some((url) => url.loc === `${origin}/veneers/what-to-expect/`));
 });

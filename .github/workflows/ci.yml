@@ -53,7 +53,7 @@ jobs:
         run: npm run test:attribution
 
       - name: Submission consent evidence
-        run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts src/__tests__/legacyVeneers.unit.ts
+        run: node --import tsx --test src/__tests__/leadMeasurement.unit.ts src/__tests__/legacyVeneers.unit.ts src/__tests__/veneerGuides.unit.ts
 
       - name: Archived veneers phone rewrite
         run: npm run test:veneers-phones

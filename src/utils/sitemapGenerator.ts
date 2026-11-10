@@ -128,6 +128,24 @@ export const generateSitemapData = (): SitemapUrl[] => {
       priority: 0.8
     },
     {
+      loc: getCanonicalUrl('/veneers/porcelain-vs-no-prep'),
+      lastmod: getFileLastModified('src/pages/VeneersPorcelainVsNoPrep.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      loc: getCanonicalUrl('/veneers/vs-crowns-bonding'),
+      lastmod: getFileLastModified('src/pages/VeneersVsCrownsBonding.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      loc: getCanonicalUrl('/veneers/what-to-expect'),
+      lastmod: getFileLastModified('src/pages/VeneersWhatToExpect.tsx', 7, now),
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
       loc: getCanonicalUrl('/zoom-whitening'),
       lastmod: getFileLastModified('src/pages/ZoomWhitening.tsx', 14, now),
       changefreq: 'monthly',

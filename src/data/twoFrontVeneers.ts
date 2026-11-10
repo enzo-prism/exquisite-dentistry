@@ -23,6 +23,8 @@ export const TWO_FRONT_VENEERS = {
       heading: 'Compare veneers with other options',
       paragraphs: ['Ask whether bonding, whitening, alignment, or a crown is appropriate for your teeth. These options address different concerns; an examination is needed to recommend one. A lower fee alone does not tell you which treatment fits your tooth condition.'],
       links: [
+        { label: 'Veneers versus crowns and bonding', href: '/veneers/vs-crowns-bonding/' },
+        { label: 'Porcelain versus no-prep veneers', href: '/veneers/porcelain-vs-no-prep/' },
         { label: 'Veneers versus bonding', href: '/blog/dental-veneers-vs-bonding-a-comprehensive-comparison-for-your-smile-makeover/' },
         { label: 'Veneers versus crowns', href: '/blog/dental-veneers-vs-crowns/' },
         { label: 'Compare veneer shapes and styles', href: '/blog/the-shapes-and-styles-of-dental-veneers/' },
@@ -36,7 +38,11 @@ export const TWO_FRONT_VENEERS = {
     {
       heading: 'Plan your consultation and payment questions',
       paragraphs: ['Before scheduling, ask the team to confirm the consultation fee, expected duration, and what the visit includes. At the visit, discuss the two-tooth plan and request a written estimate. If you are considering financing, compare the total treatment cost as well as the payment terms.'],
-      links: [{ label: 'Explore payment plans', href: '/payment-plans/' }, { label: 'Read the full Los Angeles veneers cost guide', href: '/veneers/cost-los-angeles/' }],
+      links: [
+        { label: 'Explore payment plans', href: '/payment-plans/' },
+        { label: 'Read the full Los Angeles veneers cost guide', href: '/veneers/cost-los-angeles/' },
+        { label: 'Veneer process and aftercare', href: '/veneers/what-to-expect/' },
+      ],
     },
   ],
   faqItems: [

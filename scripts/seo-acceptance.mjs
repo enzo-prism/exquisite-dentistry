@@ -13,6 +13,9 @@ const TARGET_PAGES = [
   { name: 'Home', route: '/' },
   { name: 'Dental Implants', route: '/dental-implants/' },
   { name: 'Porcelain Veneers', route: '/veneers/' },
+  { name: 'Porcelain vs No-Prep Veneers', route: '/veneers/porcelain-vs-no-prep/', expectH1: 'Porcelain Veneers vs No-Prep Veneers in Los Angeles' },
+  { name: 'Veneers vs Crowns and Bonding', route: '/veneers/vs-crowns-bonding/', expectH1: 'Veneers vs Crowns and Bonding in Los Angeles' },
+  { name: 'Veneer Process and Aftercare', route: '/veneers/what-to-expect/', expectH1: 'The Veneer Process: What to Expect and Aftercare' },
   { name: 'Beverly Hills Dentist', route: '/beverly-hills-dentist/' },
   { name: 'Schedule Consultation', route: '/schedule-consultation/', expectH1: 'Schedule Consultation' },
   { name: 'Smile Gallery', route: '/smile-gallery/' }
