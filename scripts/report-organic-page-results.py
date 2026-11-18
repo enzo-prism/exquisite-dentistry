@@ -31,8 +31,8 @@ def fetch_rows(command, args):
 
 
 def analytics(args, dimensions, metric, *, organic_only=True):
-    for row in fetch_rows(["analytics", "report", PROPERTY, "--dimensions",
-                           ",".join(dimensions), "--metrics", metric], args):
+    command = ["analytics", "report", PROPERTY, "--dimensions", ",".join(dimensions), "--metrics", metric]
+    for row in fetch_rows(command, args):
         values = [v["value"] for v in row["dimensionValues"]]
         host, channel, landing, *rest = values
         path = landing.rstrip("/")
@@ -55,9 +55,12 @@ def main():
                    "--data-state", "FINAL", "--filter",
                    f"page:equals:https://exquisitedentistryla.com{path}/"]
         rows = list(fetch_rows(command, args))
+        us_rows = list(fetch_rows([*command, "--filter", "country:equals:usa"], args))
         results[path] = {
             "page": label, "gsc": rows[0] if rows else None,
+            "gsc_us": us_rows[0] if us_rows else None,
             "all_channel_landing_sessions": 0, "google_organic_sessions": 0,
+            "us_google_organic_sessions": 0,
             "google_organic_acquisition_leads": 0, "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
             "example_consultation_clicks": 0, "phone_taps": 0, "consultation_clicks": 0,
             "accepted_forms": 0, "acquisition_leads": 0,
@@ -73,6 +76,10 @@ def main():
             results[path]["organic_sessions"] += count
             if source == "google / organic":
                 results[path]["google_organic_sessions"] += count
+
+    for path, (_, source, country), count in analytics(args, [*cohort, "sessionSourceMedium", "countryId"], "sessions"):
+        if source == "google / organic" and country == "US":
+            results[path]["us_google_organic_sessions"] += count
 
     # A visit or event anywhere in a session is credited to its entry page.
     # Count events separately from sessions; users can take an action more than once.
