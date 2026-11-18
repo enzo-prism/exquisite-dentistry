@@ -61,6 +61,7 @@ def main():
             "google_organic_acquisition_leads": 0, "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
             "example_consultation_clicks": 0, "phone_taps": 0, "consultation_clicks": 0,
             "accepted_forms": 0, "acquisition_leads": 0,
+            "accepted_callback_requests": 0, "google_organic_callback_requests": 0,
         }
 
     cohort = ["hostName", "sessionDefaultChannelGroup", "landingPage"]
@@ -88,6 +89,15 @@ def main():
             results[path]["acquisition_leads"] += count
             if source == "google / organic":
                 results[path]["google_organic_acquisition_leads"] += count
+
+    # The consultation page accepts callbacks without establishing a new-patient persona.
+    for path, (_, event, form, source), count in analytics(
+        args, [*cohort, "eventName", "customEvent:form_type", "sessionSourceMedium"], "eventCount"
+    ):
+        if event == "form_submission_accepted" and form == "callback_request":
+            results[path]["accepted_callback_requests"] += count
+            if source == "google / organic":
+                results[path]["google_organic_callback_requests"] += count
 
     for path, (_, event, source), count in analytics(args, [*cohort, "eventName", "customEvent:cta_location"], "eventCount"):
         if (event, source) == ("cta_click", "shape_guide_gallery"):
