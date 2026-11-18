@@ -395,6 +395,15 @@ test('captures coherent campaign visits and retains attribution on untagged navi
   assertPrivacySafeGaEvents(await readDataLayer(page));
 });
 
+test('opens the guide gallery link at the filtered patient cases', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  await page.getByRole('link', { name: 'Explore veneer cases in the smile gallery' }).click();
+  await expect(page).toHaveURL(/treatment=veneers#smile-gallery-cases$/);
+  await expect.poll(() => page.locator('#smile-gallery-cases').evaluate(
+    section => Math.abs(section.getBoundingClientRect().top),
+  )).toBeLessThan(180);
+});
+
 test('records the veneer guide case links as intent and leaves leads to accepted intake', async ({ page }) => {
   await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
   const example = page.locator('figure.veneer-shape-example');

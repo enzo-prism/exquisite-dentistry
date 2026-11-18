@@ -1878,6 +1878,13 @@ const getBlogSupportLinks = (post: BlogPost): StaticLink[] => {
   const tagText = `${post.title} ${post.category} ${post.tags.join(" ")}`.toLowerCase();
   const links: StaticLink[] = [];
 
+  if (post.slug === "the-shapes-and-styles-of-dental-veneers") {
+    links.push(
+      { label: "Explore veneer cases in the smile gallery", href: "/smile-gallery/?treatment=veneers#smile-gallery-cases" },
+      { label: "Discuss veneer options with Dr. Aguil", href: "/schedule-consultation/?service=porcelain-veneers" }
+    );
+  }
+
   if (tagText.includes("veneer") || tagText.includes("bonding") || tagText.includes("crown")) {
     // Link the whole veneers money cluster, money pages first.
     //
