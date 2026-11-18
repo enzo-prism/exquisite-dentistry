@@ -58,7 +58,7 @@ def main():
         results[path] = {
             "page": label, "gsc": rows[0] if rows else None,
             "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
-            "example_consultation_clicks": 0, "phone_taps": 0,
+            "example_consultation_clicks": 0, "phone_taps": 0, "consultation_clicks": 0,
             "accepted_forms": 0, "acquisition_leads": 0,
         }
 
@@ -71,6 +71,8 @@ def main():
     for path, (page, event), count in analytics(args, [*cohort, "pagePath", "eventName"], "eventCount"):
         if event == "page_view" and page.rstrip("/") == "/smile-gallery":
             results[path]["gallery_pageviews"] += count
+        if event == "schedule_click":
+            results[path]["consultation_clicks"] += count
         if event == "form_submission_accepted":
             results[path]["accepted_forms"] += count
         if event == "generate_lead":
