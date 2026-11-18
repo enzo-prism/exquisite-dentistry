@@ -30,6 +30,14 @@ def fetch_rows(command, args):
         offset += len(rows)
 
 
+def search_totals(command, args):
+    row = next(fetch_rows(command, args), None)
+    if row is None:
+        return None
+    # The CLI omits numeric zeroes from rows with impressions and no clicks.
+    return {"clicks": 0, "ctr": 0.0, **row}
+
+
 def analytics(args, dimensions, metric, *, organic_only=True):
     command = ["analytics", "report", PROPERTY, "--dimensions", ",".join(dimensions), "--metrics", metric]
     for row in fetch_rows(command, args):
@@ -54,11 +62,9 @@ def main():
         command = ["searchconsole", "query", SITE, "--dimensions", "PAGE",
                    "--data-state", "FINAL", "--filter",
                    f"page:equals:https://exquisitedentistryla.com{path}/"]
-        rows = list(fetch_rows(command, args))
-        us_rows = list(fetch_rows([*command, "--filter", "country:equals:usa"], args))
         results[path] = {
-            "page": label, "gsc": rows[0] if rows else None,
-            "gsc_us": us_rows[0] if us_rows else None,
+            "page": label, "gsc": search_totals(command, args),
+            "gsc_us": search_totals([*command, "--filter", "country:equals:usa"], args),
             "all_channel_landing_sessions": 0, "google_organic_sessions": 0,
             "us_google_organic_sessions": 0,
             "google_organic_acquisition_leads": 0, "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
