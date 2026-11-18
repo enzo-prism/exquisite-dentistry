@@ -18,6 +18,7 @@ let memoryConsent: AnalyticsConsent = null;
 let useMemoryConsent = false;
 // The main document owns its first view. Legacy documents start in React.
 let lastPageViewLocation = typeof window !== 'undefined' ? window.__exquisiteLandingViewLocation : undefined;
+let currentPageReferrer: string | undefined;
 
 const normalizePath = (pathname: string) => {
   const path = pathname || '/';
@@ -93,8 +94,17 @@ const canUseGoogleTag = () => (
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
   if (!canUseGoogleTag() || typeof window.gtag !== 'function') return false;
 
+  // The tag config pins page_location to the document landing URL.
+  // Supply the actual route on SPA interactions and accepted form receipts.
+  const location = getPageLocation();
+  const referrer = location === lastPageViewLocation ? currentPageReferrer : lastPageViewLocation;
+  const contextualParameters: SafeEventParameters = {
+    page_location: location,
+    page_referrer: referrer ?? sanitizeLocation(document.referrer),
+    ...parameters,
+  };
   const cleanParameters = Object.fromEntries(
-    Object.entries(parameters).filter(([, value]) => value !== undefined),
+    Object.entries(contextualParameters).filter(([, value]) => value !== undefined),
   );
 
   window.gtag('event', eventName, cleanParameters);
@@ -187,6 +197,7 @@ export const trackPageView = ({
   });
   if (sent) {
     lastPageViewLocation = pageLocation;
+    currentPageReferrer = initialReferrer;
   }
   return sent;
 };

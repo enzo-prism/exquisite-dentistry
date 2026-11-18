@@ -523,6 +523,30 @@ test('successful Formspree response emits exactly one privacy-safe generate_lead
   assertPrivacySafeGaEvents(commands);
 });
 
+test('credits a confirmed lead to the contact route after client-side navigation', async ({ page }) => {
+  await page.route(FORM_ENDPOINT, route => route.fulfill({
+    status: 200, contentType: 'application/json', body: '{"ok":true}',
+  }));
+  await page.goto('/koreatown-dentist/', { referer: 'https://www.google.com/' });
+  await acceptAnalytics(page);
+  await page.evaluate(() => {
+    history.pushState({}, '', '/contact/?email=private%40example.test');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
+  await fillValidContactForm(page);
+  await page.getByRole('button', { name: 'Send Message' }).click();
+  await expect(page.getByText('Thanks for reaching out!')).toBeVisible();
+  const commands = await readDataLayer(page);
+  for (const event of ['form_submission_accepted', 'generate_lead']) {
+    const receipts = eventCommands(commands, event);
+    expect(receipts).toHaveLength(1);
+    expect(receipts[0][2]).toMatchObject({
+      page_location: new URL('/contact', page.url()).href,
+      page_referrer: new URL('/koreatown-dentist', page.url()).href,
+    });
+  }
+});
+
 test('successful benefits request does not count as a new-patient lead', async ({ page }) => {
   await page.route(FORM_ENDPOINT, async (route) => {
     await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
