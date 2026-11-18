@@ -11,6 +11,12 @@ for (const path of ['dist/index.html', 'dist/lp/chatgpt/index.html', 'dist/priva
   const html = read(path);
   assert.equal(guard(html), sourceGuard, `${path} must retain the layout boundary bootstrap`);
 }
+for (const route of ['koreatown-dentist', 'blog/the-shapes-and-styles-of-dental-veneers', 'veneers/front-teeth-veneers-los-angeles']) {
+  const html = read(`dist/${route}/index.html`);
+  const title = html.search(/<title\b[^>]*>[^<]+<\/title>/i);
+  assert.ok(title >= 0 && title < html.indexOf("gtag('event', 'page_view'"),
+    `${route} must supply its page title before recording the initial view`);
+}
 const landing = read('dist/lp/chatgpt/index.html');
 assert.match(landing, /<meta\s+name="robots"\s+content="noindex,nofollow,noarchive"[^>]*>/);
 const landingBody = landing.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];

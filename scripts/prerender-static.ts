@@ -1269,8 +1269,10 @@ const injectSeo = (template: string, route: StaticRoute) => {
   html = removeHeadMetaBy(html, "name", "twitter:description");
   html = removeHeadMetaBy(html, "name", "twitter:image");
 
+  // Parse the route title before the first-view script runs in the head.
+  html = html.replace(/<head\b[^>]*>/i, (head) => `${head}\n  <title data-rh="true">${escapeHtml(fullTitle)}</title>`);
+
   const injectedHeadTags = [
-    `  <title data-rh="true">${escapeHtml(fullTitle)}</title>`,
     `  <meta name="description" content="${escapeHtml(metaDescription)}" data-rh="true" />`,
     route.robots
       ? `  <meta name="robots" content="${escapeHtml(route.robots)}" data-rh="true" />`

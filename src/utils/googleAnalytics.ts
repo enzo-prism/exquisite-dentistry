@@ -16,8 +16,9 @@ const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
 const recentEvents = new Map<string, number>();
 let memoryConsent: AnalyticsConsent = null;
 let useMemoryConsent = false;
-let previousVirtualLocation: string | undefined;
-let lastPageViewLocation: string | undefined;
+// The main document owns its first view. Legacy documents start in React.
+let lastPageViewLocation = typeof window !== 'undefined' ? window.__exquisiteLandingViewLocation : undefined;
+let currentPageReferrer: string | undefined;
 
 const normalizePath = (pathname: string) => {
   const path = pathname || '/';
@@ -93,8 +94,17 @@ const canUseGoogleTag = () => (
 const sendEvent = (eventName: string, parameters: SafeEventParameters) => {
   if (!canUseGoogleTag() || typeof window.gtag !== 'function') return false;
 
+  // The tag config pins page_location to the document landing URL.
+  // Supply the actual route on SPA interactions and accepted form receipts.
+  const location = getPageLocation();
+  const referrer = location === lastPageViewLocation ? currentPageReferrer : lastPageViewLocation;
+  const contextualParameters: SafeEventParameters = {
+    page_location: location,
+    page_referrer: referrer ?? sanitizeLocation(document.referrer),
+    ...parameters,
+  };
   const cleanParameters = Object.fromEntries(
-    Object.entries(parameters).filter(([, value]) => value !== undefined),
+    Object.entries(contextualParameters).filter(([, value]) => value !== undefined),
   );
 
   window.gtag('event', eventName, cleanParameters);
@@ -176,7 +186,7 @@ export const trackPageView = ({
   const pageLocation = sanitizeLocation(`${window.location.origin}${pagePath}`);
   if (!pageLocation || lastPageViewLocation === pageLocation) return false;
 
-  const initialReferrer = previousVirtualLocation ?? sanitizeLocation(document.referrer);
+  const initialReferrer = lastPageViewLocation ?? sanitizeLocation(document.referrer);
 
   const sent = sendEvent('page_view', {
     page_location: lastPageViewLocation
@@ -187,7 +197,7 @@ export const trackPageView = ({
   });
   if (sent) {
     lastPageViewLocation = pageLocation;
-    previousVirtualLocation = pageLocation;
+    currentPageReferrer = initialReferrer;
   }
   return sent;
 };

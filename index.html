@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title data-rh="true">Exquisite Dentistry</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 <!-- Mobile web app meta tags for iPhone -->
@@ -134,19 +135,19 @@
         gtag('set', 'url_passthrough', true);
         gtag('js', new Date());
 
-        var initialPath = window.location.pathname || '/';
-        try {
-          var decodedInitialPath = decodeURIComponent(initialPath);
-          if (
-            /[^\s@]+@[^\s@]+\.[^\s@]+/.test(decodedInitialPath) ||
-            /(?:\+?\d[\s().-]*){7,}/.test(decodedInitialPath)
-          ) {
-            initialPath = '/redacted';
+        function sanitizedAnalyticsPath(pathname) {
+          try {
+            var decoded = decodeURIComponent(pathname);
+            if (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(decoded) || /(?:\+?\d[\s().-]*){7,}/.test(decoded)) {
+              return '/redacted';
+            }
+            return pathname.replace(/\/+$/, '') || '/';
+          } catch (error) {
+            return '/redacted';
           }
-        } catch (error) {
-          initialPath = '/redacted';
         }
 
+        var initialPath = sanitizedAnalyticsPath(window.location.pathname);
         var initialTagLocation = window.location.origin + initialPath;
         try {
           var sourceUrl = new URL(window.location.href);
@@ -181,6 +182,22 @@
         // Configure Ads at landing time so campaign click context is not deferred.
         // No direct Ads conversion is emitted; the real GA lead is imported once.
         gtag('config', 'AW-11373090310', privacySafeConfig);
+
+        // The prerendered landing page is readable before the app loads.
+        // Queue its view now, after the consent default and both configs.
+        var landingView = {
+          page_path: initialPath,
+          page_location: initialTagLocation,
+          page_title: document.title.slice(0, 100)
+        };
+        if (document.referrer) {
+          try {
+            var referrerUrl = new URL(document.referrer);
+            landingView.page_referrer = referrerUrl.origin + sanitizedAnalyticsPath(referrerUrl.pathname);
+          } catch (error) { /* Ignore unparseable referrers. */ }
+        }
+        gtag('event', 'page_view', landingView);
+        window.__exquisiteLandingViewLocation = window.location.origin + initialPath;
 
         var googleTag = document.createElement('script');
         googleTag.async = true;
