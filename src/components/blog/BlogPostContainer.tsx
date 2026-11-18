@@ -39,7 +39,7 @@ const BlogPostContent: React.FC<BlogPostContainerProps> = ({ post }) => {
   const sanitizedContent = useMemo(() => sanitizeBlogHtml(post), [post]);
   const articleBodyRef = useRef<HTMLElement>(null);
   const isComponentPost = post.content === 'single-tooth-veneers' || post.content === 'veneers-before-after-guide';
-  const inlineCtaSlot = useInlineArticleSlot(articleBodyRef, sanitizedContent, !isComponentPost);
+  const inlineCtaSlot = useInlineArticleSlot(articleBodyRef, sanitizedContent, !isComponentPost && post.slug !== 'the-shapes-and-styles-of-dental-veneers');
   const veneerPost = isVeneerPost(post);
 
   // Handle component-based blog posts

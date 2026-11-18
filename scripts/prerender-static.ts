@@ -770,10 +770,10 @@ export const manualPages: StaticRoute[] = [
     path: "/veneers/front-teeth-veneers-los-angeles",
     // Scoped to the 2-and-4-tooth long tail this page already ranks page one for.
     // The broad Los Angeles veneer head terms belong to the /veneers/ pillar.
-    title: "2 & 4 Front Teeth Veneers in Los Angeles | Cost and Design",
+    title: "Two vs. Four Front Teeth Veneers in Los Angeles | Exquisite Dentistry",
     description:
-      "Veneers for just the 2 or 4 front teeth in Los Angeles: choosing the count, conservative prep, temporaries, and shade matching with Dr. Alexie Aguil.",
-    h1: "Veneers for the Front 2 to 4 Teeth in Los Angeles",
+      "Compare two and four front teeth veneers with Dr. Aguil in Los Angeles. See how the teeth beside them affect shape and shade, and what to ask about costs.",
+    h1: "Two vs. four front teeth veneers: what changes?",
     paragraphs: [
       "This page covers veneers for the front two to four teeth: how the count is chosen, candidacy, timelines, and what to expect. For a wider plan, start with dental veneers in Los Angeles.",
     ],
