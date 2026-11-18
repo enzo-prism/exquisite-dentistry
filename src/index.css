@@ -1460,3 +1460,20 @@ html.motion-ok .draw-rule[data-reveal][data-shown] {
     clip-path: none !important;
   }
 }
+
+/* Keep the two original gallery photos uncropped at every screen size. */
+.veneer-shape-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.veneer-shape-photos img {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0.5rem;
+}
+.veneer-shape-photos span {
+  font-size: 0.875rem;
+  font-weight: 600;
+}

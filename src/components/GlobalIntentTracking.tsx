@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { trackPhoneClick } from '@/utils/googleAdsTracking';
-import { trackConsultationIntent } from '@/utils/vercelAnalytics';
+import { trackConsultationIntent, trackCtaClick } from '@/utils/vercelAnalytics';
 
 const SCHEDULE_PATH = '/schedule-consultation';
 const SCHEDULER_HOSTNAME = 'scheduling.simplifeye.co';
@@ -41,6 +41,11 @@ const GlobalIntentTracking = () => {
           href.replace(/^tel:/i, ''),
           anchor.dataset.analyticsSource || 'unclassified_phone_link',
         );
+        return;
+      }
+
+      if (anchor.dataset.analyticsAction === 'cta' && anchor.dataset.analyticsSource) {
+        trackCtaClick({ source: anchor.dataset.analyticsSource, destination: href });
         return;
       }
 

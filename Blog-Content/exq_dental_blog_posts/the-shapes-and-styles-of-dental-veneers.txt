@@ -12,6 +12,16 @@ Veneer shape, length, edge detail, and shade all contribute to the look of a smi
 | Shade | Do you want to match nearby teeth or discuss a brighter overall smile? |
 | Edge detail | Ask to see examples of the edge shape you prefer. |
 
+<figure class="veneer-shape-example">
+  <div class="veneer-shape-photos">
+    <div><img src="/lovable-uploads/7be70408-3316-4a36-8ad0-68fafc9d0e05.webp" alt="Smile before porcelain veneers" width="700" height="400" loading="lazy" /><span>Before</span></div>
+    <div><img src="/lovable-uploads/52dd6454-e5d1-4a7e-aa17-65a34cbc8044.webp" alt="The same smile after porcelain veneers" width="700" height="400" loading="lazy" /><span>After</span></div>
+  </div>
+  <figcaption>One porcelain veneer case from our smile gallery. Compare the corners of the front teeth and the line their lower edges form. Which details would you want to keep in your own smile?</figcaption>
+  <p><a href="/smile-gallery/?treatment=veneers#smile-gallery-cases" data-analytics-action="cta" data-analytics-source="shape_guide_gallery">Explore veneer cases in the smile gallery</a></p>
+  <p><a href="/schedule-consultation/?service=porcelain-veneers" data-analytics-source="shape_guide_consult">Discuss veneer options with Dr. Aguil</a></p>
+</figure>
+
 Use these choices to describe your preferences. Your dentist still needs to examine your teeth and discuss whether the proposed changes are suitable.
 
 ## Natural, Hollywood, oval, and other veneer styles

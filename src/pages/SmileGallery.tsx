@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import PageSEO from '@/components/seo/PageSEO';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import VideoHero from '@/components/VideoHero';
 import { patientTransformations, type GalleryCategory } from '@/data/patientTransformations';
@@ -20,10 +20,8 @@ import Reveal from '@/components/motion/Reveal';
 import ConsultationCtaBand from '@/components/about/ConsultationCtaBand';
 
 const SmileGallery = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
+  const { hash } = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const filters: { value: GalleryCategory | 'all'; label: string }[] = [
     { value: 'all', label: 'All treatments' },
@@ -44,6 +42,12 @@ const SmileGallery = () => {
 
   const meta = ROUTE_METADATA['/smile-gallery'];
   const sliderSectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (hash === '#smile-gallery-cases') {
+      sliderSectionRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  }, [hash]);
 
   const handleViewGallery = () => {
     sliderSectionRef.current?.scrollIntoView({

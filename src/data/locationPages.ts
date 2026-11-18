@@ -104,6 +104,7 @@ interface LocationConfigInput {
   /** Doubles as the hero subheading and the meta description (existing site convention). */
   description: string;
   heroHeading?: string;
+  seoTitle?: string;
   heroStats: { label: string; value: string }[];
   extraKeywords?: string[];
   highlights: string[];
@@ -124,7 +125,7 @@ const createLocationConfig = (input: LocationConfigInput): LocationPageConfig =>
     slug: input.slug,
     cityLabel: input.cityLabel,
     seo: {
-      title: `${input.cityLabel} Dentist | Exquisite Dentistry in Los Angeles`,
+      title: input.seoTitle ?? `${input.cityLabel} Dentist | Exquisite Dentistry in Los Angeles`,
       description: input.description,
       keywords: [
         `${cityLower} dentist`,
@@ -985,8 +986,9 @@ export const locationPageConfigs: Record<string, LocationPageConfig> = {
     slug: "koreatown-dentist",
     cityLabel: "Koreatown",
     heroHeading: "Dentist Near Koreatown",
+    seoTitle: "Dentist Near Koreatown for Exams & Cleanings | Exquisite Dentistry",
     description:
-      "Book a dental exam or cleaning with Dr. Alexie Aguil at 6227 Wilshire Blvd, a straight drive west from Koreatown. Paid parking is available at the building, and our team can verify PPO benefits before treatment.",
+      "Visit Dr. Aguil for an exam or cleaning at 6227 Wilshire Blvd, west of Koreatown. Paid parking is available. Ask our team to verify your PPO benefits.",
     heroStats: [
       { label: "Years of experience", value: "15+" },
       { label: "Benefits verified before treatment", value: "PPO" },

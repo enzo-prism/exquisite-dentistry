@@ -29,7 +29,7 @@ const FrontTeethVeneers = () => {
       title: '4 Front Teeth',
       range: 'Quoted at your consultation',
       idealFor: 'Symmetry upgrades, closing gaps, and balancing the smile line',
-      notes: 'Stops future shade mismatch between veneers and natural teeth.'
+      notes: 'Ask how the four front teeth would match the shape and shade of the teeth beside them.'
     }
   ];
 
@@ -67,7 +67,7 @@ const FrontTeethVeneers = () => {
   const faqs = [
     {
       question: 'Is it better to veneer 2 or 4 front teeth?',
-      answer: 'Two veneers can fix localized issues, but four veneers prevent future color mismatch and deliver balanced symmetry in photos and video.'
+      answer: 'That depends on which teeth you want to change. Ask Dr. Aguil to compare a plan for the central pair with one that includes the neighboring teeth.'
     },
     {
       question: 'How long do they last?',
@@ -89,8 +89,8 @@ const FrontTeethVeneers = () => {
         belong to the /veneers/ pillar — don't widen this back out.
       */}
       <PageSEO
-        title="2 & 4 Front Teeth Veneers in Los Angeles | Cost and Design"
-        description="Veneers for just the 2 or 4 front teeth in Los Angeles: choosing the count, conservative prep, temporaries, and shade matching with Dr. Alexie Aguil."
+        title="Two vs. Four Front Teeth Veneers in Los Angeles | Exquisite Dentistry"
+        description="Compare two and four front teeth veneers with Dr. Aguil in Los Angeles. See how the teeth beside them affect shape and shade, and what to ask about costs."
         keywords="2 front teeth veneers, 4 front teeth veneers, 2 front teeth veneers cost, 4 front teeth veneers cost, front teeth veneers, smile zone veneers"
         path="/veneers/front-teeth-veneers-los-angeles"
         ogType="article"
@@ -152,10 +152,10 @@ const FrontTeethVeneers = () => {
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="uppercase tracking-[0.3em] text-secondary font-semibold mb-4">Front Teeth Veneers</p>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground max-w-3xl leading-tight">
-              Front teeth veneers designed for symmetry, color, and confidence
+              Two vs. four front teeth veneers: what changes?
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-              Whether you need 2 veneers for a single dark tooth or 4 veneers to harmonize your smile line, Dr. Alexie Aguil designs minimal-prep porcelain that looks believable on- and off-camera.
+              Two veneers focus on the middle pair. Four include the tooth on either side. At a consultation, Dr. Aguil can show you how each option would sit beside the teeth you want to keep as they are.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
@@ -165,7 +165,7 @@ const FrontTeethVeneers = () => {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/smile-gallery/">
+                <Link to="/smile-gallery/?treatment=veneers#smile-gallery-cases">
                   View veneer transformations
                 </Link>
               </Button>
@@ -257,7 +257,7 @@ const FrontTeethVeneers = () => {
             <div className="text-center space-y-3">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Why focus on the front 2 to 4 teeth?</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                The central and lateral incisors define your smile line. Treating them together prevents shade mismatch, gives symmetrical proportions, and keeps photos and video consistent under different lighting.
+                For example, if you like the shape of your lateral incisors, ask how a change to the middle pair would look beside them. If you want to change all four, ask to see both designs before deciding.
               </p>
             </div>
 

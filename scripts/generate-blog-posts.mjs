@@ -62,7 +62,7 @@ const SEO_OVERRIDES = {
 // untouched; only add an entry when the corresponding source article receives
 // a substantive review or revision.
 const MODIFIED_AT_OVERRIDES = {
-  'the-shapes-and-styles-of-dental-veneers': '2026-09-30',
+  'the-shapes-and-styles-of-dental-veneers': '2026-11-18',
   'the-cost-of-dental-veneers-in-los-angeles': '2026-09-30',
   'top-la-cosmetic-dentist-answers-your-questions-are-veneers-a-good-investment': '2026-09-30',
   'top-la-cosmetic-dentist-answers-your-questions-is-invisalign-a-good-investment': '2026-09-30',

@@ -395,6 +395,28 @@ test('captures coherent campaign visits and retains attribution on untagged navi
   assertPrivacySafeGaEvents(await readDataLayer(page));
 });
 
+test('records the veneer guide case links as intent and leaves leads to accepted intake', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  const example = page.locator('figure.veneer-shape-example');
+  await expect(example.locator('img')).toHaveCount(2);
+  await expect(example.getByRole('link', { name: 'Explore veneer cases in the smile gallery' }))
+    .toHaveAttribute('href', '/smile-gallery/?treatment=veneers#smile-gallery-cases');
+  await expect(example.getByRole('link', { name: 'Discuss veneer options with Dr. Aguil' }))
+    .toHaveAttribute('href', '/schedule-consultation/?service=porcelain-veneers');
+  await clearDataLayer(page);
+  for (const link of await example.getByRole('link').all()) {
+    await link.evaluate(anchor => anchor.addEventListener('click', event => event.preventDefault()));
+    await link.click();
+  }
+  const commands = await readDataLayer(page);
+  expect(eventCommands(commands, 'cta_click').map(command => command[2]?.cta_location))
+    .toEqual(['shape_guide_gallery']);
+  expect(eventCommands(commands, 'schedule_click').map(command => command[2]?.cta_location))
+    .toEqual(['shape_guide_consult']);
+  expect(eventCommands(commands, 'generate_lead')).toHaveLength(0);
+  assertPrivacySafeGaEvents(commands);
+});
+
 test('dedupes phone and scheduling intent and keeps GA4 parameters flat', async ({ page }) => {
   await page.goto('/schedule-consultation/');
   await clearDataLayer(page);

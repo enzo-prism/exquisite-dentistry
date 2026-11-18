@@ -226,7 +226,7 @@
     {
       "type": "location",
       "title": "Koreatown Dentist",
-      "description": "Book a dental exam or cleaning with Dr. Alexie Aguil at 6227 Wilshire Blvd, a straight drive west from Koreatown. Paid parking is available at the building, and our team can verify PPO benefits before treatment.",
+      "description": "Visit Dr. Aguil for an exam or cleaning at 6227 Wilshire Blvd, west of Koreatown. Paid parking is available. Ask our team to verify your PPO benefits.",
       "href": "/koreatown-dentist/",
       "h1": "Dentist Near Koreatown",
       "keywords": [
@@ -336,14 +336,6 @@
       "href": "/veneers/1-tooth-veneer-los-angeles/",
       "h1": "Single Tooth Veneer in Los Angeles",
       "id": "page:/veneers/1-tooth-veneer-los-angeles/"
-    },
-    {
-      "type": "page",
-      "title": "2 & 4 Front Teeth Veneers in Los Angeles | Cost and Design",
-      "description": "Veneers for just the 2 or 4 front teeth in Los Angeles: choosing the count, conservative prep, temporaries, and shade matching with Dr. Alexie Aguil.",
-      "href": "/veneers/front-teeth-veneers-los-angeles/",
-      "h1": "Veneers for the Front 2 to 4 Teeth in Los Angeles",
-      "id": "page:/veneers/front-teeth-veneers-los-angeles/"
     },
     {
       "type": "page",
@@ -956,6 +948,14 @@
         "artistic cosmetic dentistry LA"
       ],
       "id": "page:/transformation-stories/virginia/"
+    },
+    {
+      "type": "page",
+      "title": "Two vs. Four Front Teeth Veneers in Los Angeles | Exquisite Dentistry",
+      "description": "Compare two and four front teeth veneers with Dr. Aguil in Los Angeles. See how the teeth beside them affect shape and shade, and what to ask about costs.",
+      "href": "/veneers/front-teeth-veneers-los-angeles/",
+      "h1": "Two vs. four front teeth veneers: what changes?",
+      "id": "page:/veneers/front-teeth-veneers-los-angeles/"
     },
     {
       "type": "page",
