@@ -291,6 +291,26 @@ test('reopens privacy choices on mobile and persists consent revocation', async 
   await expect(page.locator('script[src*="_vercel/insights"], script[src*="va.vercel"]')).toHaveCount(0);
 });
 
+test('queues a sanitized organic landing view even when the app bundle never runs', async ({ page }) => {
+  await page.route('**/*', route =>
+    route.request().resourceType() === 'script' ? route.abort() : route.continue());
+  await page.goto('/koreatown-dentist/?email=private%40example.test#private', {
+    referer: 'https://www.google.com/search?q=private',
+  });
+  const commands = await readDataLayer(page);
+  const views = eventCommands(commands, 'page_view');
+  expect(views).toHaveLength(1);
+  expect(views[0][2]).toMatchObject({
+    page_path: '/koreatown-dentist',
+    // WebKit may trim a cross-origin referrer to its origin.
+    page_referrer: expect.stringMatching(/^https:\/\/www\.google\.com\/(?:search)?$/),
+  });
+  expect(views[0][2]?.page_location).toBe(new URL('/koreatown-dentist', page.url()).href);
+  const defaults = consentCommands(commands, 'default');
+  expect(defaults[0][2]?.analytics_storage).toBe('denied');
+  expect(commands.indexOf(defaults[0])).toBeLessThan(commands.indexOf(views[0]));
+});
+
 test('emits one sanitized manual page_view per initial and SPA route', async ({ page }) => {
   await page.goto('/?utm_source=google&utm_campaign=veneers&gclid=gclid-fixture-123#private-fragment');
 

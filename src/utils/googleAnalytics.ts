@@ -16,8 +16,8 @@ const PHONE_LIKE = /(?:\+?\d[\s().-]*){7,}/;
 const recentEvents = new Map<string, number>();
 let memoryConsent: AnalyticsConsent = null;
 let useMemoryConsent = false;
-let previousVirtualLocation: string | undefined;
-let lastPageViewLocation: string | undefined;
+// The main document owns its first view. Legacy documents start in React.
+let lastPageViewLocation = typeof window !== 'undefined' ? window.__exquisiteLandingViewLocation : undefined;
 
 const normalizePath = (pathname: string) => {
   const path = pathname || '/';
@@ -176,7 +176,7 @@ export const trackPageView = ({
   const pageLocation = sanitizeLocation(`${window.location.origin}${pagePath}`);
   if (!pageLocation || lastPageViewLocation === pageLocation) return false;
 
-  const initialReferrer = previousVirtualLocation ?? sanitizeLocation(document.referrer);
+  const initialReferrer = lastPageViewLocation ?? sanitizeLocation(document.referrer);
 
   const sent = sendEvent('page_view', {
     page_location: lastPageViewLocation
@@ -187,7 +187,6 @@ export const trackPageView = ({
   });
   if (sent) {
     lastPageViewLocation = pageLocation;
-    previousVirtualLocation = pageLocation;
   }
   return sent;
 };

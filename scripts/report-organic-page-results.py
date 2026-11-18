@@ -23,21 +23,21 @@ def fetch_rows(command, args):
             "--account", args.account, "--max", "10000", "--offset", str(offset),
             "--no-input", "--json",
         ]))
-        rows = data.get("rows", [])
+        rows = data.get("rows") or []
         yield from rows
         if len(rows) < 10000:
             break
         offset += len(rows)
 
 
-def analytics(args, dimensions, metric):
+def analytics(args, dimensions, metric, *, organic_only=True):
     for row in fetch_rows(["analytics", "report", PROPERTY, "--dimensions",
                            ",".join(dimensions), "--metrics", metric], args):
         values = [v["value"] for v in row["dimensionValues"]]
         host, channel, landing, *rest = values
         path = landing.rstrip("/")
-        if host in HOSTS and channel == "Organic Search" and path in PAGES:
-            yield path, rest, int(row["metricValues"][0]["value"])
+        if host in HOSTS and path in PAGES and (not organic_only or channel == "Organic Search"):
+            yield path, [channel, *rest], int(row["metricValues"][0]["value"])
 
 
 def main():
@@ -57,18 +57,27 @@ def main():
         rows = list(fetch_rows(command, args))
         results[path] = {
             "page": label, "gsc": rows[0] if rows else None,
-            "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
+            "all_channel_landing_sessions": 0, "google_organic_sessions": 0,
+            "google_organic_acquisition_leads": 0, "organic_sessions": 0, "gallery_pageviews": 0, "example_gallery_clicks": 0,
             "example_consultation_clicks": 0, "phone_taps": 0, "consultation_clicks": 0,
             "accepted_forms": 0, "acquisition_leads": 0,
         }
 
     cohort = ["hostName", "sessionDefaultChannelGroup", "landingPage"]
-    for path, _, count in analytics(args, cohort, "sessions"):
-        results[path]["organic_sessions"] += count
+    for path, (channel, source), count in analytics(
+        args, [*cohort, "sessionSourceMedium"], "sessions", organic_only=False
+    ):
+        results[path]["all_channel_landing_sessions"] += count
+        if channel == "Organic Search":
+            results[path]["organic_sessions"] += count
+            if source == "google / organic":
+                results[path]["google_organic_sessions"] += count
 
     # A visit or event anywhere in a session is credited to its entry page.
     # Count events separately from sessions; users can take an action more than once.
-    for path, (page, event), count in analytics(args, [*cohort, "pagePath", "eventName"], "eventCount"):
+    for path, (_, page, event, source), count in analytics(
+        args, [*cohort, "pagePath", "eventName", "sessionSourceMedium"], "eventCount"
+    ):
         if event == "page_view" and page.rstrip("/") == "/smile-gallery":
             results[path]["gallery_pageviews"] += count
         if event == "schedule_click":
@@ -77,14 +86,16 @@ def main():
             results[path]["accepted_forms"] += count
         if event == "generate_lead":
             results[path]["acquisition_leads"] += count
+            if source == "google / organic":
+                results[path]["google_organic_acquisition_leads"] += count
 
-    for path, (event, source), count in analytics(args, [*cohort, "eventName", "customEvent:cta_location"], "eventCount"):
+    for path, (_, event, source), count in analytics(args, [*cohort, "eventName", "customEvent:cta_location"], "eventCount"):
         if (event, source) == ("cta_click", "shape_guide_gallery"):
             results[path]["example_gallery_clicks"] += count
         if (event, source) == ("schedule_click", "shape_guide_consult"):
             results[path]["example_consultation_clicks"] += count
 
-    for path, (event, method), count in analytics(args, [*cohort, "eventName", "customEvent:interaction_method"], "eventCount"):
+    for path, (_, event, method), count in analytics(args, [*cohort, "eventName", "customEvent:interaction_method"], "eventCount"):
         if (event, method) == ("contact_click", "phone"):
             results[path]["phone_taps"] += count
 
