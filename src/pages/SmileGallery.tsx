@@ -44,7 +44,10 @@ const SmileGallery = () => {
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const scrollToHash = () => {
+    let cancelled = false;
+    let followUntil = 0;
+
+    const scrollToHash = (restartFollow = false) => {
       const raw = window.location.hash.slice(1);
       if (!raw) return;
       let id = raw;
@@ -53,11 +56,23 @@ const SmileGallery = () => {
       } catch {
         // Keep the raw fragment when it is not URI-encoded.
       }
-      document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      const target = document.getElementById(id);
+      if (!target) return;
+      if (restartFollow) followUntil = performance.now() + 3_000;
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
     };
 
-    scrollToHash();
-    window.addEventListener('hashchange', scrollToHash);
+    // Images above a lower section can load after the first scroll and shift it.
+    const followLayout = () => {
+      if (!cancelled && performance.now() <= followUntil) scrollToHash();
+    };
+
+    scrollToHash(true);
+    const onHashChange = () => scrollToHash(true);
+    window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('load', followLayout);
+    const observer = new ResizeObserver(followLayout);
+    observer.observe(document.documentElement);
 
     const onSameHashClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -68,12 +83,15 @@ const SmileGallery = () => {
       if (`${url.pathname}${url.search}` !== `${window.location.pathname}${window.location.search}`) return;
       if (!url.hash || url.hash !== window.location.hash) return;
       // Same-page, same-hash clicks do not fire hashchange or change React's hash.
-      scrollToHash();
+      scrollToHash(true);
     };
     document.addEventListener('click', onSameHashClick);
 
     return () => {
-      window.removeEventListener('hashchange', scrollToHash);
+      cancelled = true;
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('load', followLayout);
+      observer.disconnect();
       document.removeEventListener('click', onSameHashClick);
     };
   }, [hash]);

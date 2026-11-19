@@ -28,7 +28,7 @@ async function expectSlidersLanding(page: Page) {
   await expect(sliders).toBeInViewport();
   await expect.poll(() => sliders.evaluate(section =>
     Math.abs(section.getBoundingClientRect().top - parseFloat(getComputedStyle(section).scrollMarginTop)),
-  )).toBeLessThanOrEqual(1);
+  ), { timeout: 10_000 }).toBeLessThanOrEqual(1);
   await expect(sliders.getByRole('heading', { name: 'Up Close Transformations' }))
     .toBeInViewport({ ratio: 1 });
   await expect.poll(async () => {
