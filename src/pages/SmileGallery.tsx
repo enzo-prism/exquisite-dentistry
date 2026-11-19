@@ -45,44 +45,19 @@ const SmileGallery = () => {
 
   useEffect(() => {
     let cancelled = false;
-    let followUntil = 0;
-    let ignoreScroll = false;
-    let ignoreScrollTimer: number | undefined;
+    let following = false;
+    let expectedScrollY: number | null = null;
     let disconnectTimer: number | undefined;
+
+    const SCROLL_SLACK = 16;
 
     const isGallerySection = (target: Element | null): target is HTMLElement => (
       target instanceof HTMLElement && target.tagName === 'SECTION'
     );
 
-    const markProgrammaticScroll = () => {
-      ignoreScroll = true;
-      window.clearTimeout(ignoreScrollTimer);
-      ignoreScrollTimer = window.setTimeout(() => { ignoreScroll = false; }, 50);
-    };
-
-    const observer = new ResizeObserver(() => {
-      markProgrammaticScroll();
-      followLayout();
-    });
-
-    const stopFollowing = () => {
-      followUntil = 0;
-      observer.disconnect();
-      window.clearTimeout(disconnectTimer);
-    };
-
-    const armFollow = () => {
-      followUntil = performance.now() + 3_000;
-      observer.observe(document.documentElement);
-      window.clearTimeout(disconnectTimer);
-      disconnectTimer = window.setTimeout(() => {
-        if (!cancelled) observer.disconnect();
-      }, 3_000);
-    };
-
-    const scrollToHash = (restartFollow = false) => {
+    const hashSection = () => {
       const raw = window.location.hash.slice(1);
-      if (!raw) return;
+      if (!raw) return null;
       let id = raw;
       try {
         id = decodeURIComponent(raw);
@@ -90,19 +65,62 @@ const SmileGallery = () => {
         // Keep the raw fragment when it is not URI-encoded.
       }
       const target = document.getElementById(id);
-      if (!isGallerySection(target)) return;
+      return isGallerySection(target) ? target : null;
+    };
+
+    const sectionOffset = (target: HTMLElement) => {
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      return target.getBoundingClientRect().top - margin;
+    };
+
+    const isAtHashTarget = () => {
+      const target = hashSection();
+      return !!target && Math.abs(sectionOffset(target)) <= SCROLL_SLACK;
+    };
+
+    const observer = new ResizeObserver(() => {
+      followLayout();
+    });
+
+    const stopFollowing = () => {
+      following = false;
+      expectedScrollY = null;
+      observer.disconnect();
+      window.clearTimeout(disconnectTimer);
+    };
+
+    const scheduleIdleDisconnect = () => {
+      window.clearTimeout(disconnectTimer);
+      disconnectTimer = window.setTimeout(() => {
+        if (!cancelled) stopFollowing();
+      }, 3_000);
+    };
+
+    const observeLayout = () => {
+      observer.observe(document.documentElement);
+      if (document.body) observer.observe(document.body);
+    };
+
+    const armFollow = () => {
+      following = true;
+      observeLayout();
+      scheduleIdleDisconnect();
+    };
+
+    const scrollToHash = (restartFollow = false) => {
+      const target = hashSection();
+      if (!target) return;
       if (restartFollow) armFollow();
-      markProgrammaticScroll();
+      if (!following) return;
+      expectedScrollY = Math.max(0, window.scrollY + sectionOffset(target));
       target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      expectedScrollY = window.scrollY;
     };
 
     // Images above a lower section can load after the first scroll and shift it.
     const followLayout = () => {
-      if (cancelled) return;
-      if (performance.now() > followUntil) {
-        observer.disconnect();
-        return;
-      }
+      if (cancelled || !following) return;
+      scheduleIdleDisconnect();
       scrollToHash();
     };
 
@@ -110,9 +128,24 @@ const SmileGallery = () => {
     const onHashChange = () => scrollToHash(true);
     window.addEventListener('hashchange', onHashChange);
     window.addEventListener('load', followLayout);
+    const onImageLoad = (event: Event) => {
+      if (event.target instanceof HTMLImageElement) followLayout();
+    };
+    document.addEventListener('load', onImageLoad, true);
 
     const onUserIntent = () => stopFollowing();
-    const onScroll = () => { if (!ignoreScroll) stopFollowing(); };
+    // Cancel only when scroll moves off the position we set (or off the hash
+    // target). Layout shifts and late scrollIntoView settles must not look
+    // like user input; a fixed ignore window is too short in WebKit.
+    const onScroll = () => {
+      if (!following) return;
+      if (expectedScrollY !== null && Math.abs(window.scrollY - expectedScrollY) <= SCROLL_SLACK) return;
+      if (isAtHashTarget()) {
+        expectedScrollY = window.scrollY;
+        return;
+      }
+      stopFollowing();
+    };
     window.addEventListener('wheel', onUserIntent, { capture: true, passive: true });
     window.addEventListener('touchstart', onUserIntent, { capture: true, passive: true });
     window.addEventListener('keydown', onUserIntent, { capture: true });
@@ -135,9 +168,9 @@ const SmileGallery = () => {
     return () => {
       cancelled = true;
       stopFollowing();
-      window.clearTimeout(ignoreScrollTimer);
       window.removeEventListener('hashchange', onHashChange);
       window.removeEventListener('load', followLayout);
+      document.removeEventListener('load', onImageLoad, true);
       window.removeEventListener('wheel', onUserIntent, { capture: true });
       window.removeEventListener('touchstart', onUserIntent, { capture: true });
       window.removeEventListener('keydown', onUserIntent, { capture: true });

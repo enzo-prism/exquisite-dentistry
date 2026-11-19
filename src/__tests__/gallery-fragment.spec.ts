@@ -155,6 +155,19 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
         .toBeLessThan(200);
     });
 
+    test('keeps following after a late settle scroll and injected layout', async ({ page }) => {
+      await page.goto(slidersUrl);
+      await expectSlidersLanding(page);
+      await page.evaluate(() => window.dispatchEvent(new Event('scroll', { bubbles: true })));
+      await injectLateLayoutSpacer(page);
+      const sliders = page.locator('section#smile-gallery-sliders');
+      await expect.poll(() => sliders.evaluate(section =>
+        Math.abs(section.getBoundingClientRect().top - parseFloat(getComputedStyle(section).scrollMarginTop)),
+      ), { timeout: 2_000 }).toBeLessThanOrEqual(1);
+      await expect.poll(() => sliders.evaluate(section => section.getBoundingClientRect().top))
+        .toBeLessThan(200);
+    });
+
     test('scrolls to the close-ups on a synthetic hashchange', async ({ page }) => {
       await page.goto('/smile-gallery/');
       await expect(page.locator('section#smile-gallery-sliders')).toBeVisible();
