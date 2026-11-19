@@ -46,6 +46,39 @@ const SmileGallery = () => {
   useEffect(() => {
     let cancelled = false;
     let followUntil = 0;
+    let ignoreScroll = false;
+    let ignoreScrollTimer: number | undefined;
+    let disconnectTimer: number | undefined;
+
+    const isGallerySection = (target: Element | null): target is HTMLElement => (
+      target instanceof HTMLElement && target.tagName === 'SECTION'
+    );
+
+    const markProgrammaticScroll = () => {
+      ignoreScroll = true;
+      window.clearTimeout(ignoreScrollTimer);
+      ignoreScrollTimer = window.setTimeout(() => { ignoreScroll = false; }, 50);
+    };
+
+    const observer = new ResizeObserver(() => {
+      markProgrammaticScroll();
+      followLayout();
+    });
+
+    const stopFollowing = () => {
+      followUntil = 0;
+      observer.disconnect();
+      window.clearTimeout(disconnectTimer);
+    };
+
+    const armFollow = () => {
+      followUntil = performance.now() + 3_000;
+      observer.observe(document.documentElement);
+      window.clearTimeout(disconnectTimer);
+      disconnectTimer = window.setTimeout(() => {
+        if (!cancelled) observer.disconnect();
+      }, 3_000);
+    };
 
     const scrollToHash = (restartFollow = false) => {
       const raw = window.location.hash.slice(1);
@@ -57,25 +90,37 @@ const SmileGallery = () => {
         // Keep the raw fragment when it is not URI-encoded.
       }
       const target = document.getElementById(id);
-      if (!target) return;
-      if (restartFollow) followUntil = performance.now() + 3_000;
+      if (!isGallerySection(target)) return;
+      if (restartFollow) armFollow();
+      markProgrammaticScroll();
       target.scrollIntoView({ behavior: 'instant', block: 'start' });
     };
 
     // Images above a lower section can load after the first scroll and shift it.
     const followLayout = () => {
-      if (!cancelled && performance.now() <= followUntil) scrollToHash();
+      if (cancelled) return;
+      if (performance.now() > followUntil) {
+        observer.disconnect();
+        return;
+      }
+      scrollToHash();
     };
 
     scrollToHash(true);
     const onHashChange = () => scrollToHash(true);
     window.addEventListener('hashchange', onHashChange);
     window.addEventListener('load', followLayout);
-    const observer = new ResizeObserver(followLayout);
-    observer.observe(document.documentElement);
+
+    const onUserIntent = () => stopFollowing();
+    const onScroll = () => { if (!ignoreScroll) stopFollowing(); };
+    window.addEventListener('wheel', onUserIntent, { capture: true, passive: true });
+    window.addEventListener('touchstart', onUserIntent, { capture: true, passive: true });
+    window.addEventListener('keydown', onUserIntent, { capture: true });
+    window.addEventListener('pointerdown', onUserIntent, { capture: true });
+    window.addEventListener('scroll', onScroll, { capture: true, passive: true });
 
     const onSameHashClick = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const anchor = (event.target as Element | null)?.closest?.('a[href]');
       if (!(anchor instanceof HTMLAnchorElement)) return;
       const url = new URL(anchor.href, window.location.href);
@@ -89,9 +134,15 @@ const SmileGallery = () => {
 
     return () => {
       cancelled = true;
+      stopFollowing();
+      window.clearTimeout(ignoreScrollTimer);
       window.removeEventListener('hashchange', onHashChange);
       window.removeEventListener('load', followLayout);
-      observer.disconnect();
+      window.removeEventListener('wheel', onUserIntent, { capture: true });
+      window.removeEventListener('touchstart', onUserIntent, { capture: true });
+      window.removeEventListener('keydown', onUserIntent, { capture: true });
+      window.removeEventListener('pointerdown', onUserIntent, { capture: true });
+      window.removeEventListener('scroll', onScroll, { capture: true });
       document.removeEventListener('click', onSameHashClick);
     };
   }, [hash]);

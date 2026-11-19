@@ -699,6 +699,66 @@ test('a marked QA session emits no intake or lead events after its query flag is
   expect(eventCommands(commands, 'generate_lead')).toHaveLength(0);
   expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(0);
 });
+
+const hookVercelRecorder = async (page: Page) => {
+  await page.evaluate(() => {
+    const recorded: unknown[][] = [];
+    (window as typeof window & { recordedVa?: unknown[][] }).recordedVa = recorded;
+    window.va = (...args: unknown[]) => { recorded.push(args); };
+  });
+};
+
+const vercelCtaEvents = async (page: Page) => page.evaluate(() => {
+  const recorded = (window as typeof window & { recordedVa?: unknown[] }).recordedVa ?? [];
+  return recorded.filter((entry) => {
+    if (!Array.isArray(entry) || entry[0] !== 'event') return false;
+    const payload = entry[1] as { name?: string } | undefined;
+    return payload?.name === 'CTA Clicked';
+  });
+});
+
+const clickInjectedCta = async (page: Page, source: string, destination: string) => {
+  await page.evaluate(({ source: ctaSource, destination: href }) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.dataset.analyticsAction = 'cta';
+    link.dataset.analyticsSource = ctaSource;
+    link.textContent = ctaSource;
+    link.addEventListener('click', (event) => event.preventDefault());
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }, { source, destination });
+};
+
+test('dedupes a double-clicked Vercel CTA', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  await acceptAnalytics(page);
+  await hookVercelRecorder(page);
+  const link = page.getByRole('link', { name: 'Explore veneer cases in the smile gallery', exact: true });
+  await link.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await link.dblclick();
+  expect(await vercelCtaEvents(page)).toHaveLength(1);
+});
+
+test('counts distinct Vercel CTAs, destinations, routes, and clicks 1.2s apart', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  await acceptAnalytics(page);
+  await hookVercelRecorder(page);
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  await clickInjectedCta(page, 'probe_beta', '/smile-gallery/');
+  await clickInjectedCta(page, 'probe_alpha', '/testimonials/');
+  await page.waitForTimeout(1_200);
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  expect(await vercelCtaEvents(page)).toHaveLength(4);
+
+  await page.evaluate(() => {
+    history.pushState({}, '', '/contact/');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  expect(await vercelCtaEvents(page)).toHaveLength(5);
+});
 });
 
 test.describe('GA4 host gate', () => {
