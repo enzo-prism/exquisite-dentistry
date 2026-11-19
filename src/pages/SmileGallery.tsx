@@ -44,9 +44,38 @@ const SmileGallery = () => {
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (hash === '#smile-gallery-cases') {
-      sliderSectionRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
-    }
+    const scrollToHash = () => {
+      const raw = window.location.hash.slice(1);
+      if (!raw) return;
+      let id = raw;
+      try {
+        id = decodeURIComponent(raw);
+      } catch {
+        // Keep the raw fragment when it is not URI-encoded.
+      }
+      document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    };
+
+    scrollToHash();
+    window.addEventListener('hashchange', scrollToHash);
+
+    const onSameHashClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = (event.target as Element | null)?.closest?.('a[href]');
+      if (!(anchor instanceof HTMLAnchorElement)) return;
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (`${url.pathname}${url.search}` !== `${window.location.pathname}${window.location.search}`) return;
+      if (!url.hash || url.hash !== window.location.hash) return;
+      // Same-page, same-hash clicks do not fire hashchange or change React's hash.
+      scrollToHash();
+    };
+    document.addEventListener('click', onSameHashClick);
+
+    return () => {
+      window.removeEventListener('hashchange', scrollToHash);
+      document.removeEventListener('click', onSameHashClick);
+    };
   }, [hash]);
 
   const handleViewGallery = () => {
@@ -165,7 +194,7 @@ const SmileGallery = () => {
 
       {/* Up Close Transformations Section */}
       <section
-        className="bg-ivory py-16 md:py-24"
+        className="scroll-mt-28 bg-ivory py-16 md:py-24"
         id="smile-gallery-sliders"
       >
         <div className="container mx-auto px-4 max-w-6xl">
@@ -196,7 +225,7 @@ const SmileGallery = () => {
 
       <ConsultationCtaBand
         id="smile-gallery-consultation"
-        className="bg-white"
+        className="scroll-mt-28 bg-white"
         source="smile_gallery_cta"
         eyebrow="Your smile"
         title={<>Talk through <em className="whitespace-nowrap">your own</em> smile goals</>}

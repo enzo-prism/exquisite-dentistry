@@ -285,13 +285,25 @@ export const trackCtaClick = ({
   ctaText?: string;
   destination?: string;
 }) => {
+  const normalizedDestination = normalizeAnalyticsDestination(destination);
+  const eventKey = [
+    'cta',
+    getCurrentRoute(),
+    source,
+    normalizedDestination,
+  ].join('|');
+
+  if (!shouldTrackIntent(eventKey)) return false;
+
   trackVercelEvent('CTA Clicked', {
     source,
-    destination: normalizeAnalyticsDestination(destination),
+    destination: normalizedDestination,
     cta_text: ctaText,
     destination_type: getDestinationType(destination),
   });
   trackGoogleCtaClick({ ctaType: source, ctaLocation: source });
+
+  return true;
 };
 
 export const trackContactMethodClick = ({

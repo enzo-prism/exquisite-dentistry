@@ -523,6 +523,33 @@ test('successful Formspree response emits exactly one privacy-safe generate_lead
   assertPrivacySafeGaEvents(commands);
 });
 
+test('strips query strings from event page_location and page_referrer', async ({ page }) => {
+  await page.goto('/contact/?email=test%40example.invalid&phone=5550000', {
+    referer: 'https://www.google.com/search?q=test%40example.invalid&phone=5550000',
+  });
+  await acceptAnalytics(page);
+  await clearDataLayer(page);
+
+  const phone = page.locator('a[href^="tel:"]').first();
+  await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault(), { once: true }));
+  await phone.click();
+
+  const commands = await readDataLayer(page);
+  const events = eventCommands(commands, 'contact_click');
+  expect(events).toHaveLength(1);
+  const params = events[0]?.[2] ?? {};
+  expect(String(params.page_location)).toBe(new URL('/contact', page.url()).href);
+  expect(String(params.page_location)).not.toMatch(/[?#]/);
+  expect(params).toHaveProperty('page_referrer');
+  expect(String(params.page_referrer)).not.toMatch(/[?#]/);
+  expect(String(params.page_referrer)).toMatch(/^https:\/\/www\.google\.com(?:\/search)?$/);
+  expect(JSON.stringify(events)).not.toContain('email=');
+  expect(JSON.stringify(events)).not.toContain('phone=');
+  expect(JSON.stringify(events)).not.toContain('5550000');
+  expect(JSON.stringify(events)).not.toContain('example.invalid');
+  assertPrivacySafeGaEvents(commands);
+});
+
 test('credits a confirmed lead to the contact route after client-side navigation', async ({ page }) => {
   await page.route(FORM_ENDPOINT, route => route.fulfill({
     status: 200, contentType: 'application/json', body: '{"ok":true}',

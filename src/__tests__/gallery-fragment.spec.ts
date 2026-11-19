@@ -19,6 +19,25 @@ async function expectCasesLanding(page: Page) {
   await expect(cases.getByRole('button', { name: 'Veneers', exact: true })).toHaveAttribute('aria-pressed', 'true');
 }
 
+
+const slidersUrl = '/smile-gallery/#smile-gallery-sliders';
+
+async function expectSlidersLanding(page: Page) {
+  await expect(page).toHaveURL(/\/smile-gallery\/?#smile-gallery-sliders$/);
+  const sliders = page.locator('section#smile-gallery-sliders');
+  await expect(sliders).toBeInViewport();
+  await expect.poll(() => sliders.evaluate(section =>
+    Math.abs(section.getBoundingClientRect().top - parseFloat(getComputedStyle(section).scrollMarginTop)),
+  )).toBeLessThanOrEqual(1);
+  await expect(sliders.getByRole('heading', { name: 'Up Close Transformations' }))
+    .toBeInViewport({ ratio: 1 });
+  await expect.poll(async () => {
+    const header = await page.getByRole('banner').boundingBox();
+    const section = await sliders.boundingBox();
+    return header && section ? section.y - (header.y + header.height) : -1;
+  }).toBeGreaterThanOrEqual(0);
+}
+
 for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
   test.describe(`gallery fragments at ${viewport.width}px`, () => {
     test.use({ viewport });
@@ -26,6 +45,11 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     test('lands on the cases from a fresh fragment URL', async ({ page }) => {
       await page.goto(galleryUrl);
       await expectCasesLanding(page);
+    });
+
+    test('lands on the close-ups from a fresh fragment URL', async ({ page }) => {
+      await page.goto(slidersUrl);
+      await expectSlidersLanding(page);
     });
 
     for (const { path, link } of [
@@ -38,5 +62,11 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
         await expectCasesLanding(page);
       });
     }
+
+    test('lands on the close-ups via “View More Close-Ups”', async ({ page }) => {
+      await page.goto('/blog/veneers-before-after-los-angeles/');
+      await page.getByRole('link', { name: 'View More Close-Ups', exact: true }).click();
+      await expectSlidersLanding(page);
+    });
   });
 }
