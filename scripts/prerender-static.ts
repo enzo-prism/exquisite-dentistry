@@ -8,8 +8,23 @@ import { getTreatmentCostAnswer } from '../src/data/treatmentPricing';
 import { toMeta, buildSeoTitle } from '../src/utils/seoText';
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { servicePageConfigs } from "../src/data/servicePages";
-import { locationPageConfigs } from "../src/data/locationPages";
+import { servicePageConfigs, type ServicePageConfig } from "../src/data/servicePages";
+import { locationPageConfigs, type LocationPageConfig } from "../src/data/locationPages";
+import {
+  ABOUT_CREDENTIALS,
+  ABOUT_PHILOSOPHY,
+  COSMETIC_FAQS,
+  COSMETIC_PILLARS,
+  COSMETIC_SMILE_PATHS,
+  EMERGENCY_FAQS,
+  EMERGENCY_RAPID_RESPONSE,
+  EMERGENCY_TYPES,
+  INVISALIGN_BENEFITS,
+  INVISALIGN_FAQS,
+  INVISALIGN_MILESTONES,
+  WHITENING_FAQS,
+  WHITENING_PROGRAMS
+} from "../src/data/treatmentPageContent";
 import { getBlogPostIsoDate, getPublishedPosts, type BlogPost } from "../src/data/blogPosts";
 import { transformationStories } from "../src/data/transformationStories";
 import { getRouteMetadata, ROUTE_METADATA } from "../src/constants/metadata";
@@ -73,6 +88,7 @@ import { CULVER_CITY_TEETH_WHITENING_FAQS } from "../src/data/culver-city-teeth-
 import { SMILE_MAKEOVER_LOS_ANGELES_FAQS } from "../src/data/smile-makeover-los-angeles-faqs";
 import { INVISALIGN_BEVERLY_HILLS_FAQS } from "../src/data/invisalign-beverly-hills-faqs";
 import {
+  HOMEPAGE_INSURANCE_PANELS,
   INSURANCE_HERO_HEADLINE,
   INSURANCE_HERO_HOOK,
   INSURANCE_NETWORK_LIST,
@@ -89,6 +105,8 @@ export type StaticRouteSection = {
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
+  /** Rendered as an h3 + paragraph per item (benefits, steps, callouts). */
+  items?: Array<{ title: string; description: string }>;
   links?: StaticLink[];
 };
 export type StaticRoute = {
@@ -99,6 +117,7 @@ export type StaticRoute = {
   paragraphs: string[];
   sections?: StaticRouteSection[];
   faqItems?: Array<{ question: string; answer: string }>;
+  faqHeading?: string;
   links: StaticLink[];
   ogImage?: string;
   ogType?: "website" | "article";
@@ -304,6 +323,27 @@ export const manualPages: StaticRoute[] = [
           { label: "Schedule Consultation", href: "/schedule-consultation" },
         ],
       },
+      {
+        // Mirrors HomepageDoctorProof.
+        id: "meet-dr-aguil",
+        heading: "Meet Dr. Alexie Aguil",
+        paragraphs: [
+          "Discuss your goals and compare treatment options in an unhurried consultation. Dr. Aguil starts with digital scans and a conversation about what you want to change, so the final result feels like you, not a template.",
+        ],
+        bullets: [...ABOUT_CREDENTIALS],
+        links: [{ label: "About Dr. Aguil", href: "/about" }],
+      },
+      {
+        // Mirrors InsurancePaymentBand.
+        id: "insurance-and-payment",
+        heading: "Insurance and Payment Options",
+        items: HOMEPAGE_INSURANCE_PANELS.map(({ title, description }) => ({ title, description })),
+        links: [
+          { label: "Dental Insurance", href: "/insurance" },
+          { label: "Payment Plans", href: "/payment-plans" },
+          { label: "Patient Reviews", href: "/testimonials" },
+        ],
+      },
     ],
     links: [...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...LOCATION_LINKS, ...defaultNavLinks],
   },
@@ -313,7 +353,15 @@ export const manualPages: StaticRoute[] = [
     description: getRouteMetadata("/about").description,
     h1: "Meet Dr. Alexie Aguil",
     paragraphs: [
-      "Discover the artistic vision, advanced training, and personalized philosophy that has made Dr. Aguil Beverly Hills' most sought-after cosmetic dentist for over 15 years.",
+      "Dr. Alexie Aguil leads Exquisite Dentistry on Wilshire Boulevard in Los Angeles, where the practice has cared for patients since 2006. He provides general, cosmetic, and restorative dentistry, from exams and cleanings to porcelain veneers, Invisalign, and dental implants.",
+    ],
+    sections: [
+      { id: "credentials", heading: "Credentials", bullets: [...ABOUT_CREDENTIALS] },
+      {
+        id: "philosophy",
+        heading: "How Dr. Aguil Approaches Care",
+        items: ABOUT_PHILOSOPHY.map(({ title, body }) => ({ title, description: body })),
+      },
     ],
     links: [...LOCATION_LINKS, ...defaultNavLinks],
   },
@@ -411,7 +459,18 @@ export const manualPages: StaticRoute[] = [
     h1: "Invisalign® Clear Aligners",
     paragraphs: [
       "Discreet, digitally guided smile alignment tailored to Los Angeles lifestyles.",
+      getTreatmentCostAnswer("invisalign"),
     ],
+    sections: [
+      { id: "benefits", heading: "Why Patients Choose Invisalign", items: INVISALIGN_BENEFITS.map(({ title, description }) => ({ title, description })) },
+      {
+        id: "timeline",
+        heading: "Your Invisalign Timeline",
+        items: INVISALIGN_MILESTONES.map(({ step, title, description }) => ({ title: `${step}: ${title}`, description })),
+      },
+    ],
+    faqItems: INVISALIGN_FAQS.map(({ question, answer }) => ({ question, answer })),
+    faqHeading: "Invisalign FAQs",
     links: [...VENEER_BLOG_LINKS, ...CORE_SERVICES_LINKS, ...EVENT_LINKS, ...defaultNavLinks],
   },
   {
@@ -422,7 +481,13 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Professional teeth whitening in Los Angeles can remove common coffee, tea, and wine stains while keeping comfort and enamel health in focus.",
       "Explore in-office Zoom whitening, custom take-home options, and hybrid maintenance plans tailored to your timeline and sensitivity level.",
+      getTreatmentCostAnswer("whitening"),
     ],
+    sections: [
+      { id: "programs", heading: "Teeth Whitening Options", items: WHITENING_PROGRAMS.map(({ title, description }) => ({ title, description })) },
+    ],
+    faqItems: WHITENING_FAQS.map(({ question, answer }) => ({ question, answer })),
+    faqHeading: "Teeth Whitening FAQs",
     links: [
       ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/teeth-whitening"),
       ...EVENT_LINKS,
@@ -551,7 +616,14 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Veneers, whitening, bonding, and Invisalign, planned and finished to look natural.",
       "Dr. Alexie Aguil works case by case rather than from a set package, so the plan matches what you actually want changed.",
+      getTreatmentCostAnswer("cosmeticConsultation"),
     ],
+    sections: [
+      { id: "approach", heading: "How We Plan Cosmetic Treatment", items: COSMETIC_PILLARS.map(({ title, description }) => ({ title, description })) },
+      { id: "smile-paths", heading: "Ways to Improve Your Smile", items: COSMETIC_SMILE_PATHS.map(({ name, details }) => ({ title: name, description: details })) },
+    ],
+    faqItems: COSMETIC_FAQS.map(({ question, answer }) => ({ question, answer })),
+    faqHeading: "Cosmetic Dentistry FAQs",
     links: [
       ...CORE_SERVICES_LINKS.filter((link) => link.href !== "/emergency-dentist"),
       ...EVENT_LINKS,
@@ -565,8 +637,15 @@ export const manualPages: StaticRoute[] = [
     h1: "Emergency Dentist Los Angeles",
     paragraphs: [
       PRACTICE_FACTS.emergencyAvailability,
+      getTreatmentCostAnswer("emergencyExam"),
     ],
-    links: defaultNavLinks,
+    sections: [
+      { id: "how-we-help", heading: "How We Help With Urgent Dental Problems", items: EMERGENCY_RAPID_RESPONSE.map(({ title, description }) => ({ title, description })) },
+      { id: "emergency-types", heading: "Common Dental Emergencies", items: EMERGENCY_TYPES.map(({ heading, details }) => ({ title: heading, description: details })) },
+    ],
+    faqItems: EMERGENCY_FAQS.map(({ question, answer }) => ({ question, answer })),
+    faqHeading: "Emergency Dentistry FAQs",
+    links: [{ label: "Same-Day Dentist", href: "/same-day-dentist" }, ...defaultNavLinks],
   },
   {
     path: "/contact",
@@ -732,7 +811,9 @@ export const manualPages: StaticRoute[] = [
     paragraphs: [
       "Get answers about our Los Angeles practice near Beverly Hills: treatment procedures, insurance coverage, and what to expect at your visit.",
     ],
-    links: defaultNavLinks,
+    faqItems: faqs.map(({ question, answer }) => ({ question, answer })),
+    faqHeading: "Frequently Asked Questions",
+    links: [{ label: "Insurance", href: "/insurance" }, ...defaultNavLinks],
   },
   {
     path: "/blog",
@@ -1155,7 +1236,10 @@ const renderBreadcrumbs = (routePath: string) => {
       </nav>`;
 };
 
-const renderFaqSection = (faqItems: Array<{ question: string; answer: string }>) => {
+const renderFaqSection = (
+  faqItems: Array<{ question: string; answer: string }>,
+  heading = "FAQs",
+) => {
   const itemsHtml = faqItems
     .filter((item) => item.question && item.answer)
     .map(
@@ -1173,7 +1257,7 @@ const renderFaqSection = (faqItems: Array<{ question: string; answer: string }>)
 
   return `
   <section class="mt-10" id="faqs">
-    <h2 class="text-2xl font-semibold text-foreground mb-4">FAQs</h2>
+    <h2 class="text-2xl font-semibold text-foreground mb-4">${escapeHtml(heading)}</h2>
     <div class="space-y-4">${itemsHtml}</div>
   </section>`;
 };
@@ -1457,19 +1541,9 @@ const getSchemasForRoute = (route: StaticRoute) => {
   const routePath = route.path;
   const schemas: Record<string, unknown>[] = [MASTER_BUSINESS_ENTITY, WEBSITE_ENTITY];
 
-  const includeDoctor =
-    routePath === "/about" ||
-    routePath === "/why-us/team-excellence" ||
-    routePath === "/veneers" ||
-    routePath === "/zoom-whitening" ||
-    routePath === "/culver-city-teeth-whitening" ||
-    routePath === "/smile-makeover-los-angeles" ||
-    routePath === "/invisalign-beverly-hills" ||
-    routePath === "/teeth-whitening-beverly-hills" ||
-    routePath === "/dental-implants" ||
-    routePath === "/santa-monica-dental-implants";
-
-  if (includeDoctor) schemas.push(MASTER_DOCTOR_ENTITY);
+  // The doctor is referenced as performer/author across the site; define him in
+  // every graph so those @id references always resolve.
+  schemas.push(MASTER_DOCTOR_ENTITY);
 
   const pageType =
     routePath === "/about" || routePath === "/why-us/team-excellence"
@@ -1829,6 +1903,13 @@ const getSchemasForRoute = (route: StaticRoute) => {
     schemas.push(buildTestimonialsSchema());
   }
 
+  // Any route that shows FAQs in its static HTML also describes them as an
+  // FAQPage, unless a route-specific branch above already did.
+  const visibleFaqs = (route.faqItems ?? []).filter((item) => item.question && item.answer);
+  if (visibleFaqs.length && !schemas.some((schema) => schema["@type"] === "FAQPage")) {
+    schemas.push(createFAQSchema(visibleFaqs, route.h1));
+  }
+
   return schemas;
 };
 
@@ -1929,6 +2010,102 @@ const getBlogSupportLinks = (post: BlogPost): StaticLink[] => {
   return uniqueLinks(links);
 };
 
+/**
+ * Mirror the sections ServicePageTemplate renders, so crawlers that never run
+ * JavaScript (GPTBot, ClaudeBot, PerplexityBot, most link-preview fetchers) get
+ * the same benefits, steps, and answers a visitor sees.
+ */
+const buildServiceConfigSections = (config: ServicePageConfig): StaticRouteSection[] => {
+  const sections: StaticRouteSection[] = [];
+  if (config.hero.highlights.length || config.overview.callouts.length) {
+    sections.push({
+      id: "overview",
+      heading: `${config.title} at Exquisite Dentistry`,
+      bullets: [...config.hero.highlights],
+      items: config.overview.callouts.map(({ title, description }) => ({ title, description })),
+    });
+  }
+  if (config.benefits.length) {
+    sections.push({
+      id: "benefits",
+      heading: `Benefits of ${config.title}`,
+      items: config.benefits.map(({ title, description }) => ({ title, description })),
+    });
+  }
+  if (config.treatmentSteps.length) {
+    sections.push({
+      id: "timeline",
+      heading: "Your Visit Timeline",
+      items: config.treatmentSteps.map(({ title, detail }) => ({ title, description: detail })),
+    });
+  }
+  sections.push({
+    id: "next-step",
+    heading: config.cta.heading,
+    paragraphs: [config.cta.description],
+    links: config.cta.primaryHref.startsWith("/")
+      ? [{ label: config.cta.primaryText, href: config.cta.primaryHref }]
+      : [],
+  });
+  return sections;
+};
+
+/** Mirror the sections LocationPageTemplate renders (see buildServiceConfigSections). */
+const buildLocationConfigSections = (config: LocationPageConfig): StaticRouteSection[] => {
+  const sections: StaticRouteSection[] = [];
+  if (config.practiceLocation) {
+    sections.push({
+      // `location` suppresses the generic Visit Us block, so carry the NAP here.
+      id: "location",
+      heading: config.practiceLocation.heading,
+      paragraphs: [config.practiceLocation.description],
+      bullets: [
+        ...(config.practiceLocation.highlights ?? []),
+        `Address: ${ADDRESS}`,
+        `Phone: ${PHONE_NUMBER_DISPLAY}`,
+        ...BUSINESS_HOURS.map(({ label, value }) => `${label}: ${value}`),
+      ],
+      links: [
+        { label: "Get Directions (Google Maps)", href: GOOGLE_MAPS_SHORT_URL },
+        { label: `Call ${PHONE_NUMBER_DISPLAY}`, href: `tel:${PHONE_NUMBER_E164}` },
+      ],
+    });
+  }
+  if (config.neighborhoodHighlights.length) {
+    sections.push({
+      id: "nearby-care",
+      heading: `Why ${config.cityLabel} Patients Visit Us`,
+      bullets: [...config.neighborhoodHighlights],
+    });
+  }
+  if (config.signatureServices.length) {
+    sections.push({ id: "services", heading: "Signature Services", bullets: [...config.signatureServices] });
+  }
+  if (config.doctorSection) {
+    sections.push({
+      id: "dentist",
+      heading: `Meet the Dentist: ${config.doctorSection.heading}`,
+      paragraphs: [...config.doctorSection.paragraphs],
+      bullets: [...(config.doctorSection.highlights ?? [])],
+      links: [{ label: "About Dr. Aguil", href: "/about" }],
+    });
+  }
+  if (config.testimonials.length) {
+    sections.push({
+      id: "reviews",
+      heading: "In Our Patients’ Own Words",
+      bullets: config.testimonials.map(({ quote, author }) => `“${quote}” — ${author}`),
+    });
+  }
+  sections.push({
+    id: "plan-your-visit",
+    heading: config.cta.heading,
+    paragraphs: [config.cta.description],
+    links: config.relatedServices,
+  });
+  return sections;
+};
+
 export const buildRoutes = (): StaticRoute[] => {
   const routes: StaticRoute[] = [...manualPages];
 
@@ -1938,7 +2115,10 @@ export const buildRoutes = (): StaticRoute[] => {
       title: config.seo.title,
       description: config.seo.description,
       h1: config.hero.heading,
-      paragraphs: config.overview.intro.slice(0, 2),
+      paragraphs: [config.hero.subheading, ...config.overview.intro],
+      sections: buildServiceConfigSections(config),
+      faqItems: config.faqs.map(({ question, answer }) => ({ question, answer })),
+      faqHeading: "Frequently Asked Questions",
       links: uniqueLinks([
         ...config.internalLinks,
         ...CORE_SERVICES_LINKS,
@@ -1958,6 +2138,9 @@ export const buildRoutes = (): StaticRoute[] => {
       description: config.seo.description,
       h1: config.hero.heading,
       paragraphs: [config.hero.subheading],
+      sections: buildLocationConfigSections(config),
+      faqItems: config.faqs.map(({ question, answer }) => ({ question, answer })),
+      faqHeading: "Frequently Asked Questions",
       // Location pages share the practice smile image rather than the doctor
       // headshot banner — more inviting and topical for a neighborhood page.
       ogImage: "/lovable-uploads/2e2732fc-c4a6-4f21-9829-3717d9b2b36d.png",
@@ -2103,6 +2286,15 @@ export const renderRoute = (template: string, route: StaticRoute) => {
               .join("\n")}</ul>`
           : "";
 
+      const itemsHtml = (section.items ?? [])
+        .filter((item) => item.title && item.description)
+        .map(
+          (item) => `
+        <h3 class="text-xl font-semibold text-foreground mt-6 mb-2">${escapeHtml(item.title)}</h3>
+        <p class="text-lg leading-relaxed text-muted-foreground mb-4">${escapeHtml(item.description)}</p>`,
+        )
+        .join("\n");
+
       const links = uniqueLinks(section.links ?? []);
       const linksHtml =
         links.length > 0
@@ -2115,6 +2307,7 @@ export const renderRoute = (template: string, route: StaticRoute) => {
       <section class="mt-10"${sectionIdAttr}>
         <h2 class="text-2xl font-semibold text-foreground mb-4">${escapeHtml(section.heading)}</h2>
         ${sectionParagraphs}
+        ${itemsHtml}
         ${bulletsHtml}
         ${linksHtml}
       </section>`;
@@ -2123,7 +2316,7 @@ export const renderRoute = (template: string, route: StaticRoute) => {
 
   const faqHtml =
     route.faqItems?.length && route.faqItems.some((item) => item.question && item.answer)
-      ? renderFaqSection(route.faqItems)
+      ? renderFaqSection(route.faqItems, route.faqHeading)
       : "";
 
   const hasLocationSection = (route.sections ?? []).some(

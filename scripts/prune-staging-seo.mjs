@@ -11,7 +11,7 @@ if (!isStagingBuild) {
 }
 
 const distDir = path.join(process.cwd(), 'dist');
-const targets = ['robots.txt', 'sitemap.xml'].map((file) => path.join(distDir, file));
+const targets = ['robots.txt', 'sitemap.xml', 'llms.txt'].map((file) => path.join(distDir, file));
 
 let removed = 0;
 for (const target of targets) {

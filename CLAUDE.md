@@ -92,6 +92,8 @@ public/lovable-uploads/  # Referenced image ORIGINALS only (not a dumping ground
 - **PageSEO Component**: Route components use `<PageSEO path="/route-slug">` which handles canonical URLs via `getCanonicalUrl()` helper
 - **Structured Data**: Centralized schemas in `src/utils/centralizedSchemas.ts` and `src/components/ServiceStructuredData.tsx`
 - **Sitemap**: Auto-generated during build via Vite plugin (`generateXmlSitemap`)
+- **Crawler-visible HTML (AEO)**: AI crawlers (GPTBot, ClaudeBot, PerplexityBot) don't run JavaScript, so `scripts/prerender-static.ts` must carry each page's real copy, not just the hero. Service/location config pages mirror their template sections + FAQs automatically. For hand-built pages, keep copy in a JSX-free data module (e.g. `src/data/treatmentPageContent.ts`) that both the page and the prerender import — never type static-only copy that the rendered page doesn't show. Any route with `faqItems` gets an FAQPage in its static graph; `FAQStructuredData` skips its Helmet copy when that prerendered FAQPage exists, so a URL never carries two.
+- **llms.txt**: generated into `dist/` by `scripts/generate-llms-txt.ts` (`npm run generate:llms`, part of `build`) from contact constants, practice facts, `PRACTICE_SERVICES` and route metadata. There is no `public/llms.txt`; edit the sources, not the output.
 
 ## Development Workflow
 

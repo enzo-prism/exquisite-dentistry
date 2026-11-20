@@ -43,7 +43,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Teeth Cleaning in Los Angeles | Preventive Dental Care",
       description:
-        "Schedule a gentle teeth cleaning in West Hollywood with Dr. Aguil. Boutique preventive care, VELscope® oral cancer screenings, and a comfortable visit.",
+        "Gentle teeth cleanings with Dr. Aguil on Wilshire Blvd in Los Angeles. Preventive care, VELscope® oral cancer screenings, and a comfortable visit.",
       keywords: [
         "teeth cleaning los angeles",
         "dental cleaning west hollywood",
@@ -646,7 +646,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Gentle Root Canal Therapy in Los Angeles | Exquisite Dentistry",
       description:
-        "Explore root canal evaluations, imaging, and comfort planning in West Hollywood.",
+        "Root canal evaluations, digital imaging, and comfort planning with Dr. Aguil on Wilshire Blvd in Los Angeles.",
       keywords: ["root canal los angeles", "endodontic therapy LA", "root canal west hollywood"],
     },
     hero: {
@@ -743,7 +743,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Porcelain Dental Bridges in Los Angeles | Tooth Replacement",
       description:
-        "Replace missing teeth with handcrafted porcelain bridges in West Hollywood. Custom shade-matching, digital scans, and a comfortable visit.",
+        "Replace missing teeth with handcrafted porcelain bridges on Wilshire Blvd in Los Angeles. Custom shade-matching, digital scans, and a comfortable visit.",
       keywords: ["dental bridge los angeles", "tooth replacement west hollywood", "porcelain bridge LA"],
     },
     hero: {
@@ -944,7 +944,7 @@ export const servicePageConfigs: Record<string, ServicePageConfig> = {
     seo: {
       title: "Oral Cancer Screening in Los Angeles | VELscope at Exquisite Dentistry",
       description:
-        "Annual VELscope oral cancer screenings detect cellular changes early. Add a screening to any hygiene visit in West Hollywood.",
+        "Annual VELscope oral cancer screenings detect cellular changes early. Add a screening to any hygiene visit on Wilshire Blvd in Los Angeles.",
       keywords: [
         "oral cancer screening los angeles",
         "velscope dentist LA",

@@ -25,6 +25,7 @@ import Reveal from '@/components/motion/Reveal';
 import ConsultationBand from '@/components/service/ConsultationBand';
 import ServiceFaqList from '@/components/service/ServiceFaqList';
 import { trackConsultationIntent } from '@/utils/vercelAnalytics';
+import { WHITENING_PROGRAMS, WHITENING_FAQS } from '@/data/treatmentPageContent';
 
 const CARD = 'rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]';
 const WHITENING_CONSULTATION_HREF = consultationHref('teeth-whitening');
@@ -32,35 +33,9 @@ const INLINE_LINK = 'font-medium text-gold-dark underline decoration-gold/40 und
 
 const TeethWhitening = () => {
   const meta = ROUTE_METADATA['/teeth-whitening'];
-  const whiteningPrograms = [
-    {
-      title: "In-Office Zoom Whitening",
-      description: "In-office whitening for noticeable results in a single visit, with LED activation and a sensitivity protocol throughout."
-    },
-    {
-      title: "Custom Take-Home Whitening",
-      description: "Professional-strength gel in custom-fitted trays, so you can brighten gradually and control the pace and sensitivity."
-    },
-    {
-      title: "Hybrid Whitening Plan",
-      description: "Pair an in-office session with take-home touch-ups so your shade stays consistent over time."
-    }
-  ];
+  const whiteningPrograms = WHITENING_PROGRAMS;
 
-  const faqs = [
-    {
-      question: "Which whitening option is right for me?",
-      answer: "During your consultation, we look at existing restorations, sensitivity history, enamel thickness, and your timeline. If you have an event coming up soon, in-office whitening works well. If you would rather brighten gradually, custom take-home trays give you more control. A hybrid plan helps keep your shade consistent over time."
-    },
-    {
-      question: "How do you reduce sensitivity?",
-      answer: "We prep teeth with a desensitizing mousse, use carefully timed gel cycles, and apply fluoride varnish right after whitening. Custom take-home kits include desensitizing gel and clear instructions so you stay comfortable between sessions."
-    },
-    {
-      question: "How often should I whiten?",
-      answer: "In-office whitening can be repeated every 12 to 18 months, while take-home touch-ups keep results fresh in between. We will recommend a maintenance plan that fits your routine and stain exposure so your shade stays consistent."
-    }
-  ];
+  const faqs = [...WHITENING_FAQS];
 
   return (
     <>

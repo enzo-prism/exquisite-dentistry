@@ -26,65 +26,21 @@ import {
   POSTAL_CODE,
   STREET_ADDRESS
 } from '@/constants/contact';
+import { EMERGENCY_RAPID_RESPONSE, EMERGENCY_TYPES, EMERGENCY_FAQS } from '@/data/treatmentPageContent';
 
 const EmergencyDentist = () => {
   const meta = ROUTE_METADATA['/emergency-dentist'];
-  const rapidResponse = [
-    {
-      icon: <AlarmClock className="h-8 w-8 text-secondary" />,
-      title: "Appointment Availability",
-      description: PRACTICE_FACTS.emergencyAvailability
-    },
-    {
-      icon: <PhoneCall className="h-8 w-8 text-secondary" />,
-      title: "Direct Communication",
-      description: "Call during office hours to discuss your concern and confirm next steps before arriving."
-    },
-    {
-      icon: <ShieldCheck className="h-8 w-8 text-secondary" />,
-      title: "Comprehensive Solutions",
-      description: "We stabilize pain, repair fractures, treat infections, and coordinate specialists when complex care is required."
-    },
-    {
-      icon: <HeartPulse className="h-8 w-8 text-secondary" />,
-      title: "Comfort-First Approach",
-      description: PRACTICE_FACTS.sedation
-    }
+  const rapidResponseIcons = [
+    <AlarmClock className="h-8 w-8 text-secondary" />,
+    <PhoneCall className="h-8 w-8 text-secondary" />,
+    <ShieldCheck className="h-8 w-8 text-secondary" />,
+    <HeartPulse className="h-8 w-8 text-secondary" />,
   ];
+  const rapidResponse = EMERGENCY_RAPID_RESPONSE.map((item, index) => ({ ...item, icon: rapidResponseIcons[index] }));
 
-  const emergencyTypes = [
-    {
-      heading: "Tooth or Veneer Fractures",
-      details: "An evaluation helps determine whether bonding, a temporary restoration, or another repair is appropriate. Availability and treatment time depend on the injury."
-    },
-    {
-      heading: "Severe Toothaches",
-      details: "An evaluation helps identify the cause of a toothache. Treatment recommendations depend on the diagnosis."
-    },
-    {
-      heading: "Knocked-Out Teeth",
-      details: "Call to discuss a knocked-out tooth and confirm where to seek prompt evaluation. The appropriate care depends on the injury and your dental health."
-    },
-    {
-      heading: "Gum & Soft Tissue Injuries",
-      details: "The team can assess dental injuries and discuss treatment or referral based on the care needed."
-    }
-  ];
+  const emergencyTypes = EMERGENCY_TYPES;
 
-  const faqs = [
-    {
-      question: "Do you accept walk-in emergencies?",
-      answer: PRACTICE_FACTS.emergencyAvailability
-    },
-    {
-      question: "Can you help if I am visiting Los Angeles?",
-      answer: "Absolutely. We frequently treat travelers, performers, and conference attendees. We coordinate with your home dentist after care so continuity is seamless."
-    },
-    {
-      question: "What should I do before my appointment?",
-      answer: "Keep knocked-out teeth moist in milk or a saliva container, take over-the-counter pain relief as advised, and avoid extremely hot or cold foods. Our team will give you detailed instructions during your call."
-    }
-  ];
+  const faqs = EMERGENCY_FAQS;
 
   return (
     <>

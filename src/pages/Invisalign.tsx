@@ -22,69 +22,21 @@ import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import PracticeVideoPlayer from '@/components/PracticeVideoPlayer';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { INVISALIGN_BENEFITS, INVISALIGN_MILESTONES, INVISALIGN_FAQS } from '@/data/treatmentPageContent';
 
 const Invisalign = () => {
   const meta = ROUTE_METADATA['/invisalign'];
-  const benefits = [
-    {
-      icon: <Smile className="h-8 w-8 text-secondary" />,
-      title: "Discreet & Confident",
-      description: "Clear aligners stay discreet in photos, meetings, and evenings out around Los Angeles."
-    },
-    {
-      icon: <Clock className="h-8 w-8 text-secondary" />,
-      title: "Predictable Timelines",
-      description: "Digital treatment plans and weekly aligner changes get most adults to the finish line in 6 to 12 months."
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-secondary" />,
-      title: "Comfortable Progress",
-      description: "Smooth medical-grade plastic minimizes irritation and eliminates emergencies from broken brackets."
-    },
-    {
-      icon: <Sparkles className="h-8 w-8 text-secondary" />,
-      title: "Lifestyle Friendly",
-      description: "Remove aligners to enjoy restaurant tastings, audition work, and daily coffee without restrictions."
-    }
+  const benefitsIcons = [
+    <Smile className="h-8 w-8 text-secondary" />,
+    <Clock className="h-8 w-8 text-secondary" />,
+    <Shield className="h-8 w-8 text-secondary" />,
+    <Sparkles className="h-8 w-8 text-secondary" />,
   ];
+  const benefits = INVISALIGN_BENEFITS.map((item, index) => ({ ...item, icon: benefitsIcons[index] }));
 
-  const milestones = [
-    {
-      step: "Week 0",
-      title: "Digital Smile Mapping",
-      description: "iTero 3D scans create a precise model of your bite, while we preview tooth movements with ClinCheck simulations."
-    },
-    {
-      step: "Weeks 2 to 6",
-      title: "Trackable Progress",
-      description: "Receive micro-adjusted aligners that guide teeth gently into position; virtual check-ins keep you on pace between in-person visits."
-    },
-    {
-      step: "Weeks 12 to 24",
-      title: "Refinements & Detailing",
-      description: "Attachments and IPR, when indicated, refine the finishing details for an even, balanced occlusion."
-    },
-    {
-      step: "Graduation",
-      title: "Retention & Finishing",
-      description: "Whitening touch-ups, Vivera retainers, and smile contouring help keep your results stable over time."
-    }
-  ];
+  const milestones = INVISALIGN_MILESTONES;
 
-  const faqs = [
-    {
-      question: "How does Invisalign® treatment compare to braces?",
-      answer: "Both systems move teeth with controlled force, but Invisalign uses removable aligners instead of fixed brackets. You can eat normally, brush easily, and avoid emergencies from broken wires while still achieving precise, orthodontist-driven tooth movement."
-    },
-    {
-      question: "What is the typical Invisalign timeline in Los Angeles?",
-      answer: "Most cosmetic alignment cases finish within 6 to 12 months, while more complex bite corrections may take 18 months. We stage your plan around work, production schedules, and major life events so treatment fits around your calendar."
-    },
-    {
-      question: "Is Invisalign comfortable for speaking on camera or at events?",
-      answer: "Yes. The trays hug teeth closely, so you can present, sing, or record podcasts without the speech changes caused by bulky appliances. Regular wear, 20 to 22 hours per day, keeps your articulation crisp after just a day or two of acclimating."
-    }
-  ];
+  const faqs = INVISALIGN_FAQS;
 
   return (
     <>

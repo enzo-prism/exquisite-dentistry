@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize:images && npm run generate:blog-index && node scripts/generate-file-dates.mjs && vite build && npm run prerender:static && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
+    "build": "npm run optimize:images && npm run generate:blog-index && node scripts/generate-file-dates.mjs && vite build && npm run prerender:static && npm run generate:llms && node --import tsx scripts/generate-sitemap.js && node --import tsx scripts/generate-search-index.ts && node scripts/prune-staging-seo.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
@@ -32,6 +32,7 @@
     "test:schema-consistency": "node --import tsx scripts/test-schema-consistency.ts",
     "generate:fallbacks": "node --import tsx scripts/generate-fallbacks.ts",
     "prerender:static": "node --import tsx scripts/prerender-static.ts",
+    "generate:llms": "node --import tsx scripts/generate-llms-txt.ts",
     "generate:search-index": "node --import tsx scripts/generate-search-index.ts",
     "generate:blog-index": "node --import tsx scripts/generate-blog-index.ts",
     "test:attribution": "node --import tsx --test src/__tests__/utmTracking.unit.ts src/__tests__/openaiClickReference.unit.ts src/__tests__/confirmedSubmission.unit.ts",

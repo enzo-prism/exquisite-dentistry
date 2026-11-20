@@ -20,34 +20,16 @@ import PracticeVideoSection from '@/components/PracticeVideoSection';
 import TreatmentDecisionBand from '@/components/TreatmentDecisionBand';
 import { ROUTE_METADATA } from '@/constants/metadata';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
+import { ABOUT_CREDENTIALS, ABOUT_PHILOSOPHY } from '@/data/treatmentPageContent';
 
 const CARD_CLASS = 'rounded-2xl border border-gold/15 bg-white shadow-[0_24px_60px_-40px_rgba(23,18,10,0.35)]';
 
 /** Credentials as published on this page. */
-const CREDENTIALS = [
-  { icon: GraduationCap, label: 'UCLA School of Dentistry graduate' },
-  { icon: Award, label: 'Invisalign Lifetime Achievement Award' },
-  { icon: UserPlus, label: 'Member of the American Academy of Cosmetic Dentistry' },
-  { icon: Clock, label: 'Over 1,000 smile transformations completed' },
-] as const;
+const CREDENTIAL_ICONS = [GraduationCap, Award, UserPlus, Clock] as const;
+const CREDENTIALS = ABOUT_CREDENTIALS.map((label, index) => ({ icon: CREDENTIAL_ICONS[index], label }));
 
-const PHILOSOPHY = [
-  {
-    icon: Handshake,
-    title: 'Care built around you',
-    body: 'Dr. Aguil starts by understanding your goals and concerns, then builds a plan that fits your teeth and your timeline.',
-  },
-  {
-    icon: Gem,
-    title: 'Materials chosen with care',
-    body: 'Dr. Aguil uses quality materials and works with experienced dental laboratories, so your restorations fit well and look natural.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'A calm, comfortable visit',
-    body: 'We keep the setting calm and take the time to explain your options, so each visit feels unhurried and you know what to expect.',
-  },
-] as const;
+const PHILOSOPHY_ICONS = [Handshake, Gem, HeartHandshake] as const;
+const PHILOSOPHY = ABOUT_PHILOSOPHY.map((item, index) => ({ ...item, icon: PHILOSOPHY_ICONS[index] }));
 
 const TECHNOLOGY = [
   {

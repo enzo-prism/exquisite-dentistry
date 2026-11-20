@@ -21,61 +21,21 @@ import { featuredReviews } from '@/data/featuredReviews';
 import { getCanonicalUrl } from '@/utils/schemaValidation';
 import { SCHEDULE_CONSULTATION_PATH } from '@/constants/urls';
 import { ROUTE_METADATA } from '@/constants/metadata';
+import { COSMETIC_PILLARS, COSMETIC_SMILE_PATHS, COSMETIC_FAQS } from '@/data/treatmentPageContent';
 
 const CosmeticDentistry = () => {
   const meta = ROUTE_METADATA['/cosmetic-dentistry'];
-  const pillars = [
-    {
-      icon: <Palette className="h-8 w-8 text-secondary" />,
-      title: "Personalized Smile Design",
-      description: "Digital simulations and facial analysis help match each treatment to your features and goals."
-    },
-    {
-      icon: <Sparkles className="h-8 w-8 text-secondary" />,
-      title: "Natural-Looking Results",
-      description: "We combine veneers, whitening, bonding, and alignment so the work blends with the rest of your teeth."
-    },
-    {
-      icon: <Layers className="h-8 w-8 text-secondary" />,
-      title: "Planned in the Right Order",
-      description: "We sequence restorative, orthodontic, and cosmetic steps so your smile stays healthy at every stage."
-    },
-    {
-      icon: <Camera className="h-8 w-8 text-secondary" />,
-      title: "On-Camera and Photo Detail",
-      description: "If you appear on camera, we fine-tune shade, translucency, and contour so your teeth look natural under lighting."
-    }
+  const pillarsIcons = [
+    <Palette className="h-8 w-8 text-secondary" />,
+    <Sparkles className="h-8 w-8 text-secondary" />,
+    <Layers className="h-8 w-8 text-secondary" />,
+    <Camera className="h-8 w-8 text-secondary" />,
   ];
+  const pillars = COSMETIC_PILLARS.map((item, index) => ({ ...item, icon: pillarsIcons[index] }));
 
-  const smilePaths = [
-    {
-      name: "Full Smile Makeover",
-      details: "Porcelain veneers, Invisalign®, and whitening combined for a balanced, even smile."
-    },
-    {
-      name: "Minor Refinements",
-      details: "Bonding, gum contouring, and targeted whitening for small changes with little or no downtime."
-    },
-    {
-      name: "Single-Visit Options",
-      details: "Same-day bonding, professional whitening, and Botox® for a gummy smile, often done in one visit."
-    }
-  ];
+  const smilePaths = COSMETIC_SMILE_PATHS;
 
-  const faqs = [
-    {
-      question: "How do you plan a cosmetic dentistry makeover?",
-      answer: "We start with imaging, 3D scans, and a conversation about what you want to change. We review your photos, look at your facial proportions, and build a treatment plan together. Digital mockups and trial smiles let you preview the result before treatment begins."
-    },
-    {
-      question: "Can cosmetic dentistry be phased?",
-      answer: "Yes. Many patients phase treatment around their schedule, an upcoming event, or budget. We handle foundational work first, such as Invisalign or implants, then move to veneers, bonding, and whitening when you are ready."
-    },
-    {
-      question: "Is cosmetic dentistry only about looks?",
-      answer: "No. We balance appearance with function. We check your bite, airway, and gum health before recommending treatment, so the result looks good and stays comfortable."
-    }
-  ];
+  const faqs = COSMETIC_FAQS;
 
   return (
     <>

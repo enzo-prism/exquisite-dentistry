@@ -37,6 +37,45 @@ export const toAbsoluteUrl = (value?: string): string | undefined => {
   return `${BASE_URL}/${raw}`;
 };
 
+/**
+ * Services and service areas published on this site. Each `path` must be a live
+ * route; answer engines use these to map questions ("who does veneers near
+ * Beverly Hills?") to the practice entity and its pages.
+ */
+export const PRACTICE_SERVICES = [
+  { name: 'Dental exams and teeth cleaning', path: '/teeth-cleaning/' },
+  { name: 'Same-day dental care', path: '/same-day-dentist/' },
+  { name: 'Emergency dental care', path: '/emergency-dentist/' },
+  { name: 'Porcelain veneers', path: '/veneers/' },
+  { name: 'Invisalign clear aligners', path: '/invisalign/' },
+  { name: 'Teeth whitening', path: '/teeth-whitening/' },
+  { name: 'Zoom teeth whitening', path: '/zoom-whitening/' },
+  { name: 'Dental implants', path: '/dental-implants/' },
+  { name: 'Dental crowns', path: '/dental-crowns/' },
+  { name: 'Dental bridges', path: '/dental-bridge/' },
+  { name: 'Root canal treatment', path: '/root-canal/' },
+  { name: 'Smile makeovers', path: '/smile-makeover-los-angeles/' },
+  { name: 'Cosmetic dentistry', path: '/cosmetic-dentistry/' },
+  { name: 'Oral cancer screening', path: '/oral-cancer-screening/' },
+] as const;
+
+export const PRACTICE_AREA_SERVED = [
+  'Los Angeles',
+  'Beverly Hills',
+  'West Hollywood',
+  'Miracle Mile',
+  'Mid-Wilshire',
+  'Hancock Park',
+  'Larchmont',
+  'Koreatown',
+  'Fairfax District',
+  'Melrose',
+  'Culver City',
+  'West Los Angeles',
+  'Westwood',
+  'Bel Air',
+] as const;
+
 // Master business entity - single source of truth
 export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@context': 'https://schema.org',
@@ -44,7 +83,7 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
   '@id': 'https://exquisitedentistryla.com/#business',
   name: 'Exquisite Dentistry',
   alternateName: ['Exquisite Dentistry LA', 'Exquisite Dentistry Los Angeles'],
-  description: 'Cosmetic dentistry practice in Los Angeles specializing in porcelain veneers, teeth whitening, Invisalign, and complete smile makeovers',
+  description: 'General and cosmetic dental practice on Wilshire Boulevard in Los Angeles led by Dr. Alexie Aguil, offering exams and cleanings, same-day and emergency visits, porcelain veneers, Invisalign, teeth whitening, dental implants, crowns, and smile makeovers.',
   url: 'https://exquisitedentistryla.com/',
   telephone: PHONE_NUMBER_E164,
   email: EMAIL,
@@ -92,6 +131,16 @@ export const MASTER_BUSINESS_ENTITY: LocalBusinessSchema = {
       value: 'Carrier-specific PPO benefits are subject to plan verification before treatment',
     },
   ],
+  foundingDate: '2006',
+  currenciesAccepted: 'USD',
+  employee: [{ '@id': 'https://exquisitedentistryla.com/#doctor' }],
+  areaServed: PRACTICE_AREA_SERVED.map((name) => ({ '@type': 'Place', name })),
+  knowsAbout: PRACTICE_SERVICES.map(({ name }) => name),
+  availableService: PRACTICE_SERVICES.map(({ name, path }) => ({
+    '@type': 'MedicalProcedure',
+    name,
+    url: `${BASE_URL}${path}`,
+  })),
   sameAs: [
     SOCIAL_MEDIA.facebook,
     SOCIAL_MEDIA.instagram,
@@ -124,7 +173,30 @@ export const MASTER_DOCTOR_ENTITY: JsonLd = {
   '@type': 'Person',
   '@id': 'https://exquisitedentistryla.com/#doctor',
   name: 'Dr. Alexie Aguil',
+  honorificPrefix: 'Dr.',
+  givenName: 'Alexie',
+  familyName: 'Aguil',
   jobTitle: 'Cosmetic Dentist',
+  description:
+    'Dr. Alexie Aguil leads Exquisite Dentistry on Wilshire Boulevard in Los Angeles, providing general, cosmetic, and restorative dentistry.',
+  // Credentials as published on /about/ and /why-us/team-excellence/.
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'UCLA School of Dentistry',
+  },
+  memberOf: {
+    '@type': 'Organization',
+    name: 'American Academy of Cosmetic Dentistry',
+  },
+  award: 'Invisalign Lifetime Achievement Award',
+  knowsAbout: [
+    'Porcelain veneers',
+    'Invisalign clear aligners',
+    'Teeth whitening',
+    'Dental implants',
+    'Smile makeovers',
+    'General and preventive dentistry',
+  ],
   url: getCanonicalUrl('/about'),
   image: 'https://exquisitedentistryla.com/lovable-uploads/1575f241-2d2e-4530-b7e7-6fd4ff56ccf5.png',
   worksFor: {
