@@ -166,6 +166,37 @@ test.describe('ChatGPT Ads landing page', () => {
     ))).toBe('denied');
   });
 
+  test('assigns tagged landings by Pacific day and preserves the displayed arm on the receipt', async ({ page }) => {
+    const landing = '/lp/chatgpt/?utm_source=chatgpt&utm_medium=paid&utm_campaign=headline_fixture';
+    const control = 'Explore your smile options with Dr. Aguil.';
+    await page.clock.setFixedTime(new Date('2026-11-02T07:59:00Z'));
+    await page.goto(landing);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(control);
+    await page.clock.setFixedTime(new Date('2026-11-02T08:01:00Z'));
+    await page.reload();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Porcelain Veneer Consultations in Los Angeles');
+
+    await page.clock.setFixedTime(new Date('2026-11-03T08:01:00Z'));
+    let receipt = '';
+    await page.route('https://formspree.io/**', async route => {
+      receipt = route.request().postData() ?? '';
+      await route.fulfill({ json: { ok: true } });
+    });
+    await page.getByLabel('Name', { exact: true }).fill('Exquisite Launch Test');
+    await page.getByLabel('Email', { exact: true }).fill('fixture@example.com');
+    await page.getByRole('button', { name: 'Request my consultation' }).click();
+    await expect(page.getByRole('heading', { name: 'Request received' })).toBeVisible();
+    expect(receipt).toContain('name="headline_test_arm"\r\n\r\nveneers');
+    expect(receipt).toContain('name="headline_test_day"\r\n\r\n2026-11-02');
+
+    await page.clock.setFixedTime(new Date('2026-11-02T08:01:00Z'));
+    await page.goto(landing.replace('headline_fixture', 'another_campaign'));
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(control);
+    await page.clock.setFixedTime(new Date('2026-11-16T08:01:00Z'));
+    await page.goto(landing);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(control);
+  });
+
   test('signals a PII-free conversion handoff only after Formspree confirms success', async ({ page }) => {
     let postData = '';
     await page.route('https://formspree.io/**', async (route) => {

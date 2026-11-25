@@ -88,7 +88,29 @@ const appendAttributionMetadata = (formData: FormData) => {
   }
 };
 
+// Use Pacific reporting days so the two headlines can be compared against
+// Ads Manager clicks without adding a visitor identifier or a page-view tag.
+function getHeadlineTestDay() {
+  const start = import.meta.env.VITE_VENEER_HEADLINE_TEST_START;
+  const campaign = import.meta.env.VITE_VENEER_HEADLINE_TEST_CAMPAIGN;
+  if (!campaign || !start || !/^\d{4}-\d{2}-\d{2}$/.test(start)) return null;
+
+  const tags = new URLSearchParams(window.location.search);
+  if (tags.get('utm_source') !== 'chatgpt' || tags.get('utm_medium') !== 'paid'
+    || tags.get('utm_campaign') !== campaign) return null;
+
+  const startMs = Date.parse(start + 'T00:00:00Z');
+  if (!Number.isFinite(startMs) || new Date(startMs).toISOString().slice(0, 10) !== start) return null;
+  const day = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(new Date());
+  const offset = (Date.parse(day + 'T00:00:00Z') - startMs) / 86_400_000;
+  if (offset < 0 || offset >= 14) return null;
+  return { day, arm: offset % 2 === 0 ? 'control' : 'veneers' };
+}
+
 const ChatGPTAdsLanding = () => {
+  const [headlineTest] = useState(getHeadlineTestDay);
   const { recordStart, recordAttempt } = useContactFormMeasurement('chatgpt_ads_consultation');
   const [values, setValues] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>(EMPTY_ERRORS);
@@ -179,6 +201,10 @@ const ChatGPTAdsLanding = () => {
       formData.set('phone', values.phone.trim());
       formData.set('consultation_interest', selectedInterest?.label ?? 'Not sure yet');
       appendAttributionMetadata(formData);
+      if (headlineTest) {
+        formData.set('headline_test_arm', headlineTest.arm);
+        formData.set('headline_test_day', headlineTest.day);
+      }
       const measurement = annotateLeadSubmission(formData, true);
 
       await submitContactRequest(FORM_ENDPOINT, formData);
@@ -255,7 +281,9 @@ const ChatGPTAdsLanding = () => {
                   Cosmetic consultation · Los Angeles
                 </p>
                 <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-950 sm:text-5xl lg:text-[3.6rem]">
-                  Explore your smile options with Dr. Aguil.
+                  {headlineTest?.arm === 'veneers'
+                    ? 'Porcelain Veneer Consultations in Los Angeles'
+                    : 'Explore your smile options with Dr. Aguil.'}
                 </h1>
                 <Button
                   asChild
