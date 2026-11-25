@@ -139,6 +139,20 @@ export default defineConfig(({ mode }) => {
       port: 8080,
     },
     plugins: [
+      {
+        name: 'veneer-headline-test',
+        async transformIndexHtml() {
+          const campaign = env.VITE_VENEER_HEADLINE_TEST_CAMPAIGN;
+          const start = env.VITE_VENEER_HEADLINE_TEST_START;
+          if (!/^[a-zA-Z0-9_-]+$/.test(campaign ?? '') || !/^\d{4}-\d{2}-\d{2}$/.test(start ?? '')) return [];
+          return [{
+            tag: 'script',
+            attrs: { id: 'veneer-headline-test', 'data-campaign': campaign, 'data-start': start },
+            children: await readFile(path.resolve('scripts/veneer-headline-assignment.js'), 'utf8'),
+            injectTo: 'head-prepend' as const,
+          }];
+        },
+      },
       legacyVeneersDocumentsPlugin(),
       react(),
       googleSiteVerificationPlugin(env.VITE_GSC_VERIFICATION),

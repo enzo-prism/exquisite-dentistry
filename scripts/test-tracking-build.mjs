@@ -21,7 +21,10 @@ const landing = read('dist/lp/chatgpt/index.html');
 assert.match(landing, /<meta\s+name="robots"\s+content="noindex,nofollow,noarchive"[^>]*>/);
 const landingBody = landing.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
 assert.ok(landingBody, 'Paid landing must contain useful prerendered content before JavaScript loads');
-assert.match(landingBody, /<h1\b[^>]*>Explore your smile options with Dr\. Aguil\.<\/h1>/,
+if (landing.includes('id="veneer-headline-test"')) {
+  assert.ok(landing.indexOf('id="veneer-headline-test"') < landing.indexOf('</head>'));
+  assert.match(landingBody, /<h1[^>]*><span class="headline-control">Explore your smile options with Dr\. Aguil\.<\/span><span class="headline-veneers">Porcelain Veneer Consultations in Los Angeles<\/span><\/h1>/);
+} else assert.match(landingBody, /<h1\b[^>]*>Explore your smile options with Dr\. Aguil\.<\/h1>/,
   'Prerendered headline must match the interactive paid landing');
 assert.ok(landingBody.includes('Considering porcelain veneers or cosmetic dentistry? Meet Dr. Alexie Aguil in Los Angeles, discuss your goals, and understand your options before deciding on treatment.'),
   'Prerendered core offer must match the interactive paid landing');
