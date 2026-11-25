@@ -100,3 +100,9 @@ References:
 ## October 25 launch preflight
 
 The draft repair restores the campaign route exclusion documented in the September 2 launch system. Only the separately consented OpenAI success event remains on this route. Explicit QA traffic retains its test-session marker across the document boundary. The complete form, provider and campaign readiness evidence is in `launch-readiness-2026-10-25.md`. No production deployment or campaign activation is authorized by this preflight.
+
+## Veneer headline comparison
+
+The test is off by default. After auction delivery and office routing are verified and a new flight is approved, set the build variables `VITE_VENEER_HEADLINE_TEST_CAMPAIGN` to the flight’s exact campaign tag and `VITE_VENEER_HEADLINE_TEST_START` to its first full Pacific reporting date (YYYY-MM-DD). Deploy before that date. The same ad, URL, budget and form serve both headlines. Direct landings with the matching campaign, source `chatgpt` and medium `paid` alternate by Pacific calendar day for 14 days. Each weekday sees each headline once. The first day shows the original headline. Remove the variables and rebuild to stop early.
+
+Use the campaign’s daily Ads Manager clicks as the denominator for each arm. The accepted Formspree record retains the heading assignment and Pacific landing day even if the form is submitted after midnight. Exclude tests and duplicates, have the office qualify the inquiries, and compare qualified inquiries per ad click, then booked and attended visits. Flag days affected by delivery changes. With sparse clicks or large differences in delivery between days, the result is inconclusive. The paid route adds no analytics tags or cookies for this comparison.

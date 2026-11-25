@@ -2348,13 +2348,16 @@ export const renderRoute = (template: string, route: StaticRoute) => {
         )}</div>
       </section>`;
 
+  const headlineTest = route.path === '/lp/chatgpt' && template.includes('id="veneer-headline-test"');
+  const heroHeading = headlineTest
+    ? `<span class="headline-control">${escapeHtml(route.h1)}</span><span class="headline-veneers">Porcelain Veneer Consultations in Los Angeles</span>`
+    : escapeHtml(route.h1);
+
   const contentHtml = `
 	  <div class="min-h-screen bg-background">
 	    <main class="container mx-auto px-4 py-16">
 		      ${renderBreadcrumbs(route.path)}
-		      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${escapeHtml(
-		        route.h1,
-		      )}</h1>
+		      <h1 class="text-4xl font-semibold tracking-tight text-foreground mb-6">${heroHeading}</h1>
 		      ${paragraphsHtml}
 		      ${sectionsHtml}
 		      ${faqHtml}
@@ -2370,6 +2373,12 @@ export const renderRoute = (template: string, route: StaticRoute) => {
   const schemas = getSchemasForRoute(route);
   let html = injectSeo(template, route);
   html = injectJsonLd(html, schemas, route.path);
+  if (headlineTest) {
+    html = html.replace('</head>', `<style>
+      .headline-veneers, html[data-headline-arm="veneers"] .headline-control { display: none; }
+      html[data-headline-arm="veneers"] .headline-veneers { display: inline; }
+    </style></head>`);
+  }
   html = injectRoot(html, contentHtml);
   return html;
 };

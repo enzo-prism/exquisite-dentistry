@@ -31,6 +31,8 @@ export default defineConfig({
     command: 'npm run dev -- --host 127.0.0.1 --port 4179',
     env: {
       VITE_OPENAI_ADS_PIXEL_ID: 'playwright-test-pixel',
+      VITE_VENEER_HEADLINE_TEST_CAMPAIGN: 'headline_fixture',
+      VITE_VENEER_HEADLINE_TEST_START: '2026-11-01',
     },
     url: 'http://127.0.0.1:4179',
     reuseExistingServer: false,

@@ -89,6 +89,7 @@ const appendAttributionMetadata = (formData: FormData) => {
 };
 
 const ChatGPTAdsLanding = () => {
+  const { headlineArm, headlineDay } = document.documentElement.dataset;
   const { recordStart, recordAttempt } = useContactFormMeasurement('chatgpt_ads_consultation');
   const [values, setValues] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>(EMPTY_ERRORS);
@@ -179,6 +180,10 @@ const ChatGPTAdsLanding = () => {
       formData.set('phone', values.phone.trim());
       formData.set('consultation_interest', selectedInterest?.label ?? 'Not sure yet');
       appendAttributionMetadata(formData);
+      if (headlineArm && headlineDay) {
+        formData.set('headline_test_arm', headlineArm);
+        formData.set('headline_test_day', headlineDay);
+      }
       const measurement = annotateLeadSubmission(formData, true);
 
       await submitContactRequest(FORM_ENDPOINT, formData);
@@ -255,7 +260,9 @@ const ChatGPTAdsLanding = () => {
                   Cosmetic consultation · Los Angeles
                 </p>
                 <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-950 sm:text-5xl lg:text-[3.6rem]">
-                  Explore your smile options with Dr. Aguil.
+                  {headlineArm === 'veneers'
+                    ? 'Porcelain Veneer Consultations in Los Angeles'
+                    : 'Explore your smile options with Dr. Aguil.'}
                 </h1>
                 <Button
                   asChild
