@@ -44,9 +44,140 @@ const SmileGallery = () => {
   const sliderSectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (hash === '#smile-gallery-cases') {
-      sliderSectionRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
-    }
+    let cancelled = false;
+    let following = false;
+    let expectedScrollY: number | null = null;
+    let disconnectTimer: number | undefined;
+
+    const SCROLL_SLACK = 16;
+
+    const isGallerySection = (target: Element | null): target is HTMLElement => (
+      target instanceof HTMLElement && target.tagName === 'SECTION'
+    );
+
+    const hashSection = () => {
+      const raw = window.location.hash.slice(1);
+      if (!raw) return null;
+      let id = raw;
+      try {
+        id = decodeURIComponent(raw);
+      } catch {
+        // Keep the raw fragment when it is not URI-encoded.
+      }
+      const target = document.getElementById(id);
+      return isGallerySection(target) ? target : null;
+    };
+
+    const sectionOffset = (target: HTMLElement) => {
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      return target.getBoundingClientRect().top - margin;
+    };
+
+    const isAtHashTarget = () => {
+      const target = hashSection();
+      return !!target && Math.abs(sectionOffset(target)) <= SCROLL_SLACK;
+    };
+
+    const observer = new ResizeObserver(() => {
+      followLayout();
+    });
+
+    const stopFollowing = () => {
+      following = false;
+      expectedScrollY = null;
+      observer.disconnect();
+      window.clearTimeout(disconnectTimer);
+    };
+
+    const scheduleIdleDisconnect = () => {
+      window.clearTimeout(disconnectTimer);
+      disconnectTimer = window.setTimeout(() => {
+        if (!cancelled) stopFollowing();
+      }, 3_000);
+    };
+
+    const observeLayout = () => {
+      observer.observe(document.documentElement);
+      if (document.body) observer.observe(document.body);
+    };
+
+    const armFollow = () => {
+      following = true;
+      observeLayout();
+      scheduleIdleDisconnect();
+    };
+
+    const scrollToHash = (restartFollow = false) => {
+      const target = hashSection();
+      if (!target) return;
+      if (restartFollow) armFollow();
+      if (!following) return;
+      expectedScrollY = Math.max(0, window.scrollY + sectionOffset(target));
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      expectedScrollY = window.scrollY;
+    };
+
+    // Images above a lower section can load after the first scroll and shift it.
+    const followLayout = () => {
+      if (cancelled || !following) return;
+      scheduleIdleDisconnect();
+      scrollToHash();
+    };
+
+    scrollToHash(true);
+    const onHashChange = () => scrollToHash(true);
+    window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('load', followLayout);
+    const onImageLoad = (event: Event) => {
+      if (event.target instanceof HTMLImageElement) followLayout();
+    };
+    document.addEventListener('load', onImageLoad, true);
+
+    const onUserIntent = () => stopFollowing();
+    // Cancel only when scroll moves off the position we set (or off the hash
+    // target). Layout shifts and late scrollIntoView settles must not look
+    // like user input; a fixed ignore window is too short in WebKit.
+    const onScroll = () => {
+      if (!following) return;
+      if (expectedScrollY !== null && Math.abs(window.scrollY - expectedScrollY) <= SCROLL_SLACK) return;
+      if (isAtHashTarget()) {
+        expectedScrollY = window.scrollY;
+        return;
+      }
+      stopFollowing();
+    };
+    window.addEventListener('wheel', onUserIntent, { capture: true, passive: true });
+    window.addEventListener('touchstart', onUserIntent, { capture: true, passive: true });
+    window.addEventListener('keydown', onUserIntent, { capture: true });
+    window.addEventListener('pointerdown', onUserIntent, { capture: true });
+    window.addEventListener('scroll', onScroll, { capture: true, passive: true });
+
+    const onSameHashClick = (event: MouseEvent) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = (event.target as Element | null)?.closest?.('a[href]');
+      if (!(anchor instanceof HTMLAnchorElement)) return;
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (`${url.pathname}${url.search}` !== `${window.location.pathname}${window.location.search}`) return;
+      if (!url.hash || url.hash !== window.location.hash) return;
+      // Same-page, same-hash clicks do not fire hashchange or change React's hash.
+      scrollToHash(true);
+    };
+    document.addEventListener('click', onSameHashClick);
+
+    return () => {
+      cancelled = true;
+      stopFollowing();
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('load', followLayout);
+      document.removeEventListener('load', onImageLoad, true);
+      window.removeEventListener('wheel', onUserIntent, { capture: true });
+      window.removeEventListener('touchstart', onUserIntent, { capture: true });
+      window.removeEventListener('keydown', onUserIntent, { capture: true });
+      window.removeEventListener('pointerdown', onUserIntent, { capture: true });
+      window.removeEventListener('scroll', onScroll, { capture: true });
+      document.removeEventListener('click', onSameHashClick);
+    };
   }, [hash]);
 
   const handleViewGallery = () => {
@@ -165,7 +296,7 @@ const SmileGallery = () => {
 
       {/* Up Close Transformations Section */}
       <section
-        className="bg-ivory py-16 md:py-24"
+        className="scroll-mt-28 bg-ivory py-16 md:py-24"
         id="smile-gallery-sliders"
       >
         <div className="container mx-auto px-4 max-w-6xl">
@@ -196,7 +327,7 @@ const SmileGallery = () => {
 
       <ConsultationCtaBand
         id="smile-gallery-consultation"
-        className="bg-white"
+        className="scroll-mt-28 bg-white"
         source="smile_gallery_cta"
         eyebrow="Your smile"
         title={<>Talk through <em className="whitespace-nowrap">your own</em> smile goals</>}

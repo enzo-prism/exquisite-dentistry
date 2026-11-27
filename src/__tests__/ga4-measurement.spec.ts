@@ -523,6 +523,33 @@ test('successful Formspree response emits exactly one privacy-safe generate_lead
   assertPrivacySafeGaEvents(commands);
 });
 
+test('strips query strings from event page_location and page_referrer', async ({ page }) => {
+  await page.goto('/contact/?email=test%40example.invalid&phone=5550000', {
+    referer: 'https://www.google.com/search?q=test%40example.invalid&phone=5550000',
+  });
+  await acceptAnalytics(page);
+  await clearDataLayer(page);
+
+  const phone = page.locator('a[href^="tel:"]').first();
+  await phone.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault(), { once: true }));
+  await phone.click();
+
+  const commands = await readDataLayer(page);
+  const events = eventCommands(commands, 'contact_click');
+  expect(events).toHaveLength(1);
+  const params = events[0]?.[2] ?? {};
+  expect(String(params.page_location)).toBe(new URL('/contact', page.url()).href);
+  expect(String(params.page_location)).not.toMatch(/[?#]/);
+  expect(params).toHaveProperty('page_referrer');
+  expect(String(params.page_referrer)).not.toMatch(/[?#]/);
+  expect(String(params.page_referrer)).toMatch(/^https:\/\/www\.google\.com(?:\/search)?$/);
+  expect(JSON.stringify(events)).not.toContain('email=');
+  expect(JSON.stringify(events)).not.toContain('phone=');
+  expect(JSON.stringify(events)).not.toContain('5550000');
+  expect(JSON.stringify(events)).not.toContain('example.invalid');
+  assertPrivacySafeGaEvents(commands);
+});
+
 test('credits a confirmed lead to the contact route after client-side navigation', async ({ page }) => {
   await page.route(FORM_ENDPOINT, route => route.fulfill({
     status: 200, contentType: 'application/json', body: '{"ok":true}',
@@ -671,6 +698,66 @@ test('a marked QA session emits no intake or lead events after its query flag is
   const commands = await readDataLayer(page);
   expect(eventCommands(commands, 'generate_lead')).toHaveLength(0);
   expect(eventCommands(commands, 'form_submission_accepted')).toHaveLength(0);
+});
+
+const hookVercelRecorder = async (page: Page) => {
+  await page.evaluate(() => {
+    const recorded: unknown[][] = [];
+    (window as typeof window & { recordedVa?: unknown[][] }).recordedVa = recorded;
+    window.va = (...args: unknown[]) => { recorded.push(args); };
+  });
+};
+
+const vercelCtaEvents = async (page: Page) => page.evaluate(() => {
+  const recorded = (window as typeof window & { recordedVa?: unknown[] }).recordedVa ?? [];
+  return recorded.filter((entry) => {
+    if (!Array.isArray(entry) || entry[0] !== 'event') return false;
+    const payload = entry[1] as { name?: string } | undefined;
+    return payload?.name === 'CTA Clicked';
+  });
+});
+
+const clickInjectedCta = async (page: Page, source: string, destination: string) => {
+  await page.evaluate(({ source: ctaSource, destination: href }) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.dataset.analyticsAction = 'cta';
+    link.dataset.analyticsSource = ctaSource;
+    link.textContent = ctaSource;
+    link.addEventListener('click', (event) => event.preventDefault());
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }, { source, destination });
+};
+
+test('dedupes a double-clicked Vercel CTA', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  await acceptAnalytics(page);
+  await hookVercelRecorder(page);
+  const link = page.getByRole('link', { name: 'Explore veneer cases in the smile gallery', exact: true });
+  await link.evaluate((anchor) => anchor.addEventListener('click', (event) => event.preventDefault()));
+  await link.dblclick();
+  expect(await vercelCtaEvents(page)).toHaveLength(1);
+});
+
+test('counts distinct Vercel CTAs, destinations, routes, and clicks 1.2s apart', async ({ page }) => {
+  await page.goto('/blog/the-shapes-and-styles-of-dental-veneers/');
+  await acceptAnalytics(page);
+  await hookVercelRecorder(page);
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  await clickInjectedCta(page, 'probe_beta', '/smile-gallery/');
+  await clickInjectedCta(page, 'probe_alpha', '/testimonials/');
+  await page.waitForTimeout(1_200);
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  expect(await vercelCtaEvents(page)).toHaveLength(4);
+
+  await page.evaluate(() => {
+    history.pushState({}, '', '/contact/');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
+  await clickInjectedCta(page, 'probe_alpha', '/smile-gallery/');
+  expect(await vercelCtaEvents(page)).toHaveLength(5);
 });
 });
 
